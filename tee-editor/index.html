@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="assets/css/jqueryui.css" media="all" rel="stylesheet">
+    <link href="assets/css/designer.css" media="all" rel="stylesheet">
+    <link href="assets/css/custom.css" media="all" rel="stylesheet">
+
+    <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/js/core.js"></script>
+    <script src="./assets/js/add-ons.js"></script>
+    <script src="./assets/js/jquery.ui.rotatable.js"></script>
+    <script src="./assets/js/language.js"></script>
+    <script src="./assets/js/design.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/canvg.js"></script>
+    <script src="./assets/js/validate.js"></script>
+    <script src="./assets/js/design_upload.js"></script>
+
+</head>
+<body class="page__designs_edit" data-hasqtip="0">
+<div class="site__content_container" id="designs_edit">
+<div id="designer-container">
+    <!-- Designer Subheader ================================================== -->
+    <div class="campaign-subheader navbar">
+        <div class="navbar-inner">
+            <div class="wrapper">
+                <div class="container actions-bar">
+                    <ul id="launch-progression" class="nav">
+                        <li class="active-step"><a href="javascript:void(0);" data-step="design">
+                            <span class="progress-number">1</span>Create your tee</a></li>
+                        <li>
+                            <a href="javascript:void(0);" data-step="pricing">
+                                <span class="progress-number">2</span>Set a goal
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-step="details">
+                                <span class="progress-number">3</span>Add a description
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right" id="design-actions">
+                        <li>
+                            <a href="javascript:void(0);" data-action="save" class="asset-linked">
+                                <i class="icon-save"></i> Save
+                            </a>
+                        </li>
+                        <li class="preview">
+                            <a href="javascript:void(0);" data-action="preview" class="asset-linked">
+                                <i class="icon-eye-open"></i> Preview
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="no-band" class="no-offset">
+        <div class="container container_designer">
+            <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
+                <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
+                    <div id="design-tools" class="aside">
+                        <div class="partnership__dropdown">
+                            <div ></div>
+                        </div>
+                        <div class="design__area">
+                            <div >
+                                <ul class="tabs clearfix nav nav-tabs" >
+                                    <li class="tab active" data-name="Text" ><a>Text</a></li>
+                                </ul>
+                                <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text"
+                                     >
+                                    <div id="text-string" class="control-group" >
+                                        <label>Enter text below</label>
+                                        <textarea id="enter-text"
+                                              class="form__textfield"
+                                              placeholder="Add your text here"
+                                              ></textarea>
+                                    </div>
+                                    <div class="edit_tool font" >
+                                        <label class="no-bottom">Choose a font</label>
+                                        <div id="font-select" class="fake-input svg-selector designer-dropdown control-group font-selection">
+                                            <img src="assets/images/helvetica.png">
+                                        </div>
+                                        <div class="clearfix control-group font-color-selection"
+                                             >
+                                            <div class="fake-input color-picker standard designer-dropdown"
+                                                 title="Change color" >
+                                                <div class="swatch" title="" style="background-color:rgb(0,0,0);"
+                                                     ></div>
+                                            </div>
+                                            <div class="clearfix" ></div>
+                                        </div>
+                                    </div>
+                                    <div class="edit_tool" ><label style="float:left;">Add an outline</label>
+
+                                        <div class="clearfix control-group outline-selection" >
+                                            <div ><select id="outline-select"
+                                                                                   class="form-control outline-selector designer-select form__select_menu"
+                                                                                   >
+                                                <option value="0" >No outline</option>
+                                                <option value="0.33" >Thin outline</option>
+                                                <option value="0.66" >Medium outline
+                                                </option>
+                                                <option value="1" >Thick outline</option>
+                                            </select></div>
+                                        </div>
+                                        <div class="clearfix control-group outline-color-selection"
+                                             >
+                                            <div class="fake-input color-picker standard designer-dropdown" title="Change color" >
+                                                <div class="swatch" title="Black" style="background-color:#000000;"></div>
+                                                <div class="colors shirt-colors containertip"></div>
+                                            </div>
+                                            <div class="clearfix" ></div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix control-group" ></div>
+                                </div>
+                                <ul class="tabs clearfix nav nav-tabs" >
+                                    <li class="tab active" data-name="Art" ><a>Art</a></li>
+                                </ul>
+                                <div id="tab2-content" class="tab-content teespring-well designer-well tab-Art">
+                                    <div id="designer-art-choseType">
+                                        <div class="search_container">
+                                            <button class="button button--primary search">Browse Artwork</button>
+                                        </div>
+                                        <div class="hr"><span>OR</span></div>
+                                        <button class="button button--primary upload">Upload your own</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-view">
+                        <div class="new-editor-container">
+                            <div class="flip-container">
+                                <div class="new-editor front" tabindex="0" data-design-side="front"
+                                     style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
+                                    <div class="productColor" data-element="productColorEl"
+                                         style="background-color: rgb(255, 255, 255);"></div>
+                                    <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
+                                    <img class="ghost-image" data-element="ghostImageEl"
+                                         src="./assets/images/product_type_1_front.png">
+                                    <svg class="svg-surface" data-element="svgSurfaceEl"
+                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs data-element="defs">
+                                            <clippath data-element="globalClipPath" id="global-clip-path-front-0">
+                                                <rect x="0" y="0" width="530" height="630"
+                                                      data-element="globalClipRect"></rect>
+                                            </clippath>
+                                        </defs>
+                                        <g data-element="rootTag" clip-path="url(#global-clip-path-front-0)"></g>
+                                    </svg>
+                                    <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0">
+                                        <div class="printable-area-box"
+                                             style="left: 152px; top: 100px; width: 220px; height: 330px; border-color: rgba(0, 0, 0, 0.298039) !important; color: rgb(255, 255, 255) !important;">
+                                            <div class="printable-area-toolbar" data-element="toolbarEl"
+                                                 style="color: rgb(255, 255, 255) !important; background-color: rgba(0, 0, 0, 0.298039) !important;">
+                                                <span>Printable Area</span>
+
+                                                <div class="printable-area-zoom">
+                                                    <img class="printable-area-zoom-image" data-element="zoomLightInEl"
+                                                         src="./assets/images/zoom_in_light.svg">
+                                                    <img class="printable-area-zoom-image zero-opacity no-select"
+                                                         data-element="zoomLightOutEl"
+                                                         src="./assets/images/zoom_out_light.svg">
+                                                    <img class="printable-area-zoom-image zero-opacity no-select"
+                                                         data-element="zoomDarkInEl"
+                                                         src="./assets/images/zoom_in.svg">
+                                                    <img class="printable-area-zoom-image zero-opacity no-select"
+                                                         data-element="zoomDarkOutEl"
+                                                         src="./assets/images/zoom_out.svg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="xgridline" style="left: 262px;"></div>
+                                        <div class="ygridline" style="top: 210px;"></div>
+                                    </div>
+                                    <div class="flip-buttons">
+                                        <div class="flip-button flip-button-front no-select flip-button-active"
+                                             data-element="frontButton">Front
+                                        </div>
+                                        <div class="flip-button flip-button-back" data-element="backButton">Back</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="choices" class="aside">
+                        <div >
+                            <div id="product-selector" class="teespring-well designer-well " >
+                                <label>Style &amp; design</label>
+                                <select id="item-options-dropdown" class="form-control form__select_menu">
+                                    <option value="1" >Basic Tees</option>
+                                    <option value="3" >Long Sleeve Tees</option>
+                                </select>
+                                <ul class="options item-options active nav" >
+                                    <li class="item-option active" data-id="369" ><p
+                                            class="item-name" >Teespring Premium Tee</p>
+
+                                        <div class="item-overview" >
+                                            <div class="item-thumb-container item-thumb-loaded">
+                                                <img class="item-thumb" src="./assets/images/product_type_1_front_small.png"
+                                                                                     >
+                                            </div>
+                                            <p class="item-qualities" >Premium
+                                                materials</p>
+
+                                            <div class="sizes-label" >S – 5XL</div>
+                                        </div>
+                                        <div class="product-colors" >
+                                            <div class="tool_tip__container" >
+                                                <div class="tool_tip__definition" >
+                                                    <ul class="color-column quick-colors"
+                                                        >
+                                                        <li data-value="#222222" data-texture=""
+                                                            class="shirt-color-sample" title="Black"
+                                                            style="background-color:#222222;"
+                                                            ></li>
+                                                        <li data-value="#ba393f" data-texture=""
+                                                            class="shirt-color-sample" title="Classic Red"
+                                                            style="background-color:#ba393f;"
+                                                            ></li>
+                                                        <li data-value="#ca522f" data-texture=""
+                                                            class="shirt-color-sample" title="Deep Orange "
+                                                            style="background-color:#ca522f;"
+                                                            ></li>
+                                                        <li data-value="#fcf58b" data-texture=""
+                                                            class="shirt-color-sample" title="Lemon Yellow "
+                                                            style="background-color:#fcf58b;"
+                                                            ></li>
+                                                        <li data-value="#438d4e" data-texture=""
+                                                            class="shirt-color-sample" title="Kelly Green"
+                                                            style="background-color:#438d4e;"
+                                                            ></li>
+                                                        <li data-value="#0C1A2C" data-texture=""
+                                                            class="shirt-color-sample" title="New Navy"
+                                                            style="background-color:#0C1A2C;"
+                                                            ></li>
+                                                        <li data-value="#1e448b" data-texture=""
+                                                            class="shirt-color-sample" title="Deep Royal"
+                                                            style="background-color:#1e448b;"
+                                                            ></li>
+                                                        <li class="shirt-color-sample more"
+                                                            ></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-option " data-id="2" >
+                                        <p class="item-name">Hanes Tagless Tee</p>
+
+                                        <div class="item-overview" >
+                                            <div class="item-thumb-container item-thumb-loaded"
+                                                 ><img class="item-thumb" src="./assets/images/product_type_1_front_small.png"></div>
+                                            <p class="item-qualities" >Budget friendly</p>
+
+                                            <div class="sizes-label" >S – 5XL</div>
+                                        </div>
+                                    </li>
+                                    <li class="item-option " data-id="6" ><p class="item-name">American Apparel Crew</p>
+
+                                        <div class="item-overview" >
+                                            <div class="item-thumb-container item-thumb-loaded"
+                                                 ><img class="item-thumb" src="./assets/images/product_type_1_front_small.png"></div>
+                                            <p class="item-qualities" >Top of the line</p>
+
+                                            <div class="sizes-label" >XS – 3XL</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="price-display" class="teespring-well designer-well " >
+                                <div id="color-warning" class="alert alert-error" 
+                                     style="display: none;">Please reduce the amount of colors you are using
+                                </div>
+                                <div id="quote" ><p class="base-cost-intro"
+                                                                         ><span
+                                        >Base cost @ 50 shirts</span></p>
+
+                                    <p class="base-cost-display" id="price_preview" ><span
+                                            >$7.14</span></p></div>
+                                <button class="button button--transaction" id="nextPage" >Next
+                                </button>
+                            </div>
+                            <div class="clearfix" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </section>
+
+</div>
+</div>
+</body>
+</html>
