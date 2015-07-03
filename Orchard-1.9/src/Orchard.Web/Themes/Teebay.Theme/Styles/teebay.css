@@ -1,0 +1,233 @@
+﻿body {
+
+}
+.big-banner{
+    width: 100%;
+    height: auto;
+}
+.logo{
+    font-size:24px;
+    background-color:#0000ff;
+    color:#ffffff;
+    padding:1px 20px 1px 20px;
+    height: 56px;
+}
+.logo a {
+    color:#fff;
+}
+.logo a:hover {
+    text-decoration:none;
+}
+.tb-layout-header{
+    height:57px;
+}
+.tb-layout-before-main{
+    
+}
+.widget-createSearchButtons{
+    position: relative;
+    top: -120px;
+}
+.button-create-search-container{
+    
+}
+.button-create-search-container button{
+    background: #ff4f00;
+    border-width:0;
+    font-size: 16px;
+    margin: 0 10px 10px 10px;
+}
+.button-create-search-container span{
+    color:#ffffff;
+    font-size: 16px;
+}
+.zone{
+    padding:0;
+}
+.zone-before-main{
+   
+}
+.zone-header{
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex; 
+    justify-content: center;
+}
+.tb-layout-main {
+
+}
+.tb-layout-content {
+   
+}
+.tee-preview{
+    width:33%;
+    height:100px;
+    background-color:yellow;
+    border:solid 1px black;
+}
+.home-page-review{
+    width:25%;
+    height:100px;
+    background-color:lightcoral;
+    border:solid 1px black;
+}
+.tb-button{
+    font-size: 14px;
+    font-weight: normal;
+    border-radius: 2px;
+    padding: 6px 18px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    background: #eee;
+    height: 44px;
+    width: 168px;
+    text-decoration: none;
+}
+.tb-button-extra-large{
+    font-size: 16px;
+    padding: 6px 24px;
+    width: 300px;
+}
+.tb-search-form button{
+    cursor: pointer;
+    background: #fff;
+    height: 58px;
+    width: 70px;
+    margin: 0;
+    border-left-width: 0;
+    border-color: #0000ff;
+    padding: 10px 17px;
+}
+.tb-search-form img {
+    width: 100%;
+}
+.tb-search-form input[type=text] {
+     height: 56px;
+  width: 300px;
+  float: left;
+  border: 1px solid #0000ff;
+  border-right-width: 0;
+  font-size: 16px;
+  padding: 0;
+  padding-left: 10px;
+}
+@media only screen and (max-width: 1100px) {
+    .tb-search-form input[type=text] {
+        width: 250px;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .tb-search-form input[type=text] {
+        width: 200px;
+    }
+}
+.widget-anonimousMenu{
+      padding: 15px;
+}
+.widget-anonimousMenu ul{
+      margin-left: 20px;
+}
+.widget-anonimousMenu ul li {
+      border:0;
+      background-color:#fff;
+      font-size:14px;
+}
+.widget-anonimousMenu ul li a:hover{
+    text-decoration:none;
+    color:#0000ff;
+}
+.widget-getStartedButton {
+    padding:10px;
+}
+.widget-getStartedButton button {
+      cursor: pointer;
+  background: #0000ff; 
+  margin: 0;
+  padding: 10px 35px;
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+  border-radius: 20px;
+}
+.tb-layout-main-container{
+    position: relative;
+    top: -80px;
+}
+.aside-1 .tb-aside-first {
+    float: left;
+    width: 17.5%;
+}
+.aside-1 .tb-layout-content {
+    margin: 0 auto;
+    width: 65%;
+}
+.widget-LeftCommonMenu ul {
+    padding-right:10px;
+}
+.widget-LeftCommonMenu ul li {  
+    float:none;
+    padding: 10px 0;
+    background-color: #0000ff;
+    margin:0;
+}
+.widget-LeftCommonMenu ul li a {   
+    float:none;
+    color:#fff;
+}
+.widget-LeftCommonMenu ul li a:hover {
+    text-decoration: none
+}
+.widget-introductionVideo {
+    background-color:#e8eced;
+    padding: 20px;
+}
+.intro-video-container {
+    background-color:#fff;
+    padding:20px;
+}
+@media only screen and (max-width: 1200px) {
+    .aside-1 .tb-layout-content {   
+        margin-left: 16.8%;
+        margin-right: 1%;
+        width: 83%;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .intro-video-container .cell {
+        float: none;
+        padding-right:0;
+    }
+    .intro-video-container .span-6 {
+        width:100%;
+    }
+}
+@media only screen and (max-width: 750px) {   
+    .aside-1 .tb-aside-first {
+        float: none;
+        width: 100%;
+        text-align: center;       
+    }
+    .widget-LeftCommonMenu ul {
+        padding-right:0;
+    }
+    .aside-1 .tb-layout-content {
+        margin: 0;
+        width: 100%;
+    }
+}
+.intro-video-text {
+    padding: 20px;
+}
+.intro-video-text h3 {
+    font-size: 26px;
+    font-weight:500;
+}
+.intro-video-text p {
+    font-size: 20px;
+    color: #aaa;
+}
