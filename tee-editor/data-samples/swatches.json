@@ -1,0 +1,16 @@
+[{
+    "id": "TS11010",
+    "name": "White",
+    "inStock": true,
+    "rgb": [255, 255, 255]
+}, {
+    "id": "TS11020",
+    "name": "Black",
+    "inStock": true,
+    "rgb": [0, 0, 0]
+}, {
+    "id": "TS11030",
+    "name": "Lt Grey (420)",
+    "inStock": true,
+    "rgb": [200, 200, 200]
+}]
