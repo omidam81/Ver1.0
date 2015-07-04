@@ -94,6 +94,18 @@
   <ItemGroup>
     <Content Include="Views\Parts.Search.SearchForm-66.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts.Common.Metadata-Page.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts.Title-Page.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BadgeOfHonor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts.MenuWidget-63.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
