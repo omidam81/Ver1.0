@@ -12,6 +12,9 @@
     padding:1px 20px 1px 20px;
     height: 56px;
 }
+.logo h1 {
+    margin: 11px 0;
+}
 .logo a {
     color:#fff;
 }
