@@ -1,5 +1,5 @@
 ﻿body {
-
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
 .big-banner{
     width: 100%;
@@ -65,7 +65,7 @@
 .tb-button{
     font-size: 14px;
     font-weight: normal;
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 6px 18px;
     display: inline-block;
     color: white;
@@ -100,7 +100,8 @@
     width: 70px;
     margin: 0;
     border-left-width: 0;
-    border-color: #0000ff;
+    border-width:0;
+    border-bottom:1px solid #0000ff;
     padding: 10px 17px;
 }
 .tb-search-form img {
@@ -110,7 +111,7 @@
      height: 56px;
   width: 300px;
   float: left;
-  border: 1px solid #0000ff;
+  border: 0;
   border-right-width: 0;
   font-size: 16px;
   padding: 0;
@@ -124,6 +125,10 @@
 @media only screen and (max-width: 1100px) {
     .tb-search-form input[type=text] {
         width: 200px;
+    }
+    .get-started-button button,
+    .get-started-button a { 
+        padding: 10px 20px !important; 
     }
 }
 @media only screen and (max-width: 970px) {
@@ -142,8 +147,10 @@
     .widget-getStartedButton {
         padding: 10px 0 10px 0 !important;
     }
-    .get-started-button button { 
-      padding: 10px 25px !important; 
+    .widget-anonimousMenu nav ul li a,
+    .widget-authenticatedMenu nav ul li a {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
     }
 }
 @media only screen and (min-width: 780px) {
@@ -245,16 +252,21 @@
     position: relative;
     top: -5px;
 }
-.get-started-button button {
-      cursor: pointer;
-  background: #0000ff; 
-  margin: 0;
-  padding: 10px 35px;
-  color: #fff;
-  font-weight: 700;
-  border: 0;
-  border-radius: 20px;
-  margin-left:15px;
+.get-started-button button,
+.get-started-button a {
+    cursor: pointer;
+    background: #0000ff; 
+    margin: 0;
+    padding: 10px 35px;
+    color: #fff;
+    font-weight: 700;
+    border: 0;
+    border-radius: 20px;
+    margin-left:15px;
+    line-height: 18px;
+}
+.get-started-button a:hover {
+    color: #fff !important;
 }
 .tb-layout-main-container{
     position: relative;
@@ -307,6 +319,16 @@
     background-color:#fff;
     padding:20px;
 }
+@media only screen and (max-width: 1400px) {
+    .aside-1 .tb-layout-content {   
+        margin-left: 16.8%;
+        margin-right: 1%;
+        width: 83%;
+    }
+    .tb-layout-content {   
+        width: 75%;
+    }
+}
 @media only screen and (max-width: 1200px) {
     .aside-1 .tb-layout-content {   
         margin-left: 16.8%;
@@ -314,7 +336,7 @@
         width: 83%;
     }
     .tb-layout-content {   
-        width: 83%;
+        width: 90%;
     }
 }
 @media only screen and (max-width: 900px) {
@@ -355,13 +377,18 @@
     font-size: 20px;
     color: #aaa;
 }
-.list-brands {
-    
+.list-brands > div {
+    width: 20% !important;
+}
+@media only screen and (max-width: 1000px) {
+    .list-brands > div {
+        width: 33.33% !important;
+    }
 }
 @media only screen and (max-width: 750px) {
     .list-brands > div {
         float:none;
-        width:100%;
+        width:100% !important;
     }
 }
 .start-campaign-title {
