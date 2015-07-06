@@ -1,4 +1,4 @@
-﻿Name: Teebay Module
+﻿Name: Teebay
 AntiForgery: enabled
 Author: The Sollutium Team
 Website: http://sollutium.com

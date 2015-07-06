@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Content\menu-icon_.png" />
     <Content Include="Content\search-ico.png" />
+    <Content Include="Scripts\teebay.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\teebay.css" />
     <Content Include="Views\Layout.cshtml">

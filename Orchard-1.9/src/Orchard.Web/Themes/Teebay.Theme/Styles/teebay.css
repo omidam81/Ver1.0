@@ -26,7 +26,7 @@
     border-bottom: 1px solid #0000ff;
 }
 .tb-layout-before-main{
-    
+    margin-bottom: -80px;
 }
 .widget-createSearchButtons{
     position: relative;
@@ -272,8 +272,7 @@
     color: #fff !important;
 }
 .tb-layout-main-container{
-    position: relative;
-    top: -80px;
+    
 }
 .aside-1 .tb-aside-first {
     float: left;
@@ -601,7 +600,7 @@
     text-decoration:none;
 }
 .zone-featured {
-    margin: 0px 0px 60px 0px;
+   
 }
 .menu-wizard-design-next-button li a{
     text-decoration: none;
@@ -629,9 +628,6 @@
 }
 .widget-detailsLaunchPageWidget{
     text-align: left;
-}
-.insideContentTop{
-    margin-top: 60px;
 }
 .page-log-on{
     margin-top: 100px;
