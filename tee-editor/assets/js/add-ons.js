@@ -150,4 +150,4 @@
   };
 
 })(jQuery);
-var $jd = jQuery.noConflict();
+var $jd = jQuery;//.noConflict();

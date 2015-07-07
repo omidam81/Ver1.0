@@ -1,6 +1,6 @@
 ﻿Name: Teebay Theme
 Author: The Sollutium Team
-Description: cool Theme
+Description: Teebay Theme
 Version: 1.9.0
 Tags: Awesome
 Website: http://sollutium.com

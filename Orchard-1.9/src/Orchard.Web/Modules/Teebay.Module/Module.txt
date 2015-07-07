@@ -1,0 +1,10 @@
+﻿Name: Teebay
+AntiForgery: enabled
+Author: The Sollutium Team
+Website: http://sollutium.com
+Version: 1.0
+OrchardVersion: 1.9
+Description: Description for the module
+Features:
+    Teebay.Module:
+        Description: Description for feature Teebay.Module.

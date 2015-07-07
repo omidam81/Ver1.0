@@ -165,7 +165,7 @@ build/
 /buildtasks
 /artifacts
 *.sln.cache
-src/Orchard.Web/Media/*
+src/Orchard.Web/Media/Default/RecipeJournal/*
 log.xml
 profiling/
 *.orig

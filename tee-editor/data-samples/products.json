@@ -14,7 +14,7 @@
         6281,
         6294
       ],
-      "list_of_sizes": "S (4) – 2XL (18-20)"
+      "list_of_sizes": "S (4) - 2XL (18-20)"
     },
     {
       "id": 212,
@@ -41,7 +41,7 @@
         5829,
         6319
       ],
-      "list_of_sizes": "S – 5XL "
+      "list_of_sizes": "S - 5XL "
     }
   ],
   "product_colors": [
@@ -2157,6 +2157,23 @@
       "printable_back_height": 330,
       "chest_line_back": 150,
       "gender": null
+    },
+    {
+      "id": 2,
+      "product_id": 212,
+      "width": 530,
+      "height": 630,
+      "printable_front_left": 152,
+      "printable_front_top": 100,
+      "printable_front_width": 220,
+      "printable_front_height": 330,
+      "chest_line_front": 180,
+      "printable_back_left": 155,
+      "printable_back_top": 60,
+      "printable_back_width": 215,
+      "printable_back_height": 330,
+      "chest_line_back": 150,
+      "gender": null
     }
   ],
   "product_groups": [
@@ -2165,9 +2182,8 @@
       "name": "Basic Tees",
       "singular": "unisex tee",
       "products": [
-        2,
-        6,
-        369
+        95,
+        212
       ]
     },
     {
@@ -2175,9 +2191,7 @@
       "name": "Long Sleeve Tees",
       "singular": "long sleeve tee",
       "products": [
-        11,
-        12,
-        322
+        95
       ]
     },
     {
@@ -2185,75 +2199,7 @@
       "name": "Tank Tops",
       "singular": "tank top",
       "products": [
-        14,
-        16,
-        95,
-        117,
-        338,
-        390
-      ]
-    },
-    {
-      "id": 5,
-      "name": "Hoodies \u0026 Sweatshirts",
-      "singular": "sweatshirt",
-      "products": [
-        212,
-        227,
-        290,
-        345
-      ]
-    },
-    {
-      "id": 6,
-      "name": "V-Neck Tees",
-      "singular": "v-neck tee",
-      "products": [
-        76,
-        154,
-        226,
-        391
-      ]
-    },
-    {
-      "id": 9,
-      "name": "Women's Tees",
-      "singular": "women's tee",
-      "products": [
-        70,
-        87,
-        162,
-        370
-      ]
-    },
-    {
-      "id": 11,
-      "name": "Premium Tees",
-      "singular": "premium tee",
-      "products": [
-        72,
-        104
-      ]
-    },
-    {
-      "id": 12,
-      "name": "Kids \u0026 Babies",
-      "singular": "kids tee",
-      "products": [
-        175,
-        287,
-        340,
-        346,
-        371
-      ]
-    },
-    {
-      "id": 28,
-      "name": "Activewear",
-      "singular": "activewear tee",
-      "products": [
-        270,
-        277
+        212
       ]
     }
   ]

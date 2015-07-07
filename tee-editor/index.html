@@ -16,6 +16,8 @@
     <script type="text/javascript" src="./assets/js/core.js"></script>
     <script src="./assets/js/add-ons.js"></script>
     <script src="./assets/js/jquery.ui.rotatable.js"></script>
+    <script src="./assets/js/jquery.color.js"></script>
+    <script src="./assets/js/jquery.flip.js"></script>
     <script src="./assets/js/language.js"></script>
     <script src="./assets/js/design.js"></script>
     <script src="./assets/js/main.js"></script>
@@ -138,6 +140,54 @@
                             </div>
                         </div>
                     </div>
+                    <!-- design area -->
+                    <div id="design-area" class="div-design-area product-view">
+                        <div id="app-wrap" class="div-design-area new-editor-container">
+
+                            <!-- begin front design -->
+                            <div id="view-front" class="front labView active">
+                                <div class="product-design"></div>
+                                <div class="design-area"><div class="content-inner"></div></div>
+                                <div class="design-area-toolbar">
+                                    <span>Printable Area</span>
+                                    <div class="design-area-zoom">
+                                        <img class="printable-area-zoom-image no-select zoom-light-in" src="./assets/images/zoom_in_light.svg">
+                                        <img class="printable-area-zoom-image no-select zoom-light-out" src="./assets/images/zoom_out_light.svg">
+                                        <img class="printable-area-zoom-image no-select zoom-dark-in" src="./assets/images/zoom_in.svg">
+                                        <img class="printable-area-zoom-image no-select zoom-dark-out" src="./assets/images/zoom_out.svg">
+                                    </div>
+                                </div>
+                                <div class="flip-buttons">
+                                    <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
+                                    <div class="flip-button flip-button-back" data-element="backButton">Back</div>
+                                </div>
+                            </div>
+                            <!-- end front design -->
+
+                            <!-- begin back design -->
+                            <div id="view-back" class="back labView">
+                                <div class="product-design"></div>
+                                <div class="design-area"><div class="content-inner"></div></div>
+                                <div class="design-area-toolbar">
+                                    <span>Printable Area</span>
+                                    <div class="design-area-zoom">
+                                        <img class="printable-area-zoom-image no-select zoom-light-in" src="./assets/images/zoom_in_light.svg">
+                                        <img class="printable-area-zoom-image no-select zoom-light-out" src="./assets/images/zoom_out_light.svg">
+                                        <img class="printable-area-zoom-image no-select zoom-dark-in" src="./assets/images/zoom_in.svg">
+                                        <img class="printable-area-zoom-image no-select zoom-dark-out" src="./assets/images/zoom_out.svg">
+                                    </div>
+                                </div>
+                                <div class="flip-buttons">
+                                    <div class="flip-button flip-button-front">Front</div>
+                                    <div class="flip-button flip-button-back no-select flip-button-active">Back</div>
+                                </div>
+                            </div>
+                            <!-- end back design -->
+
+
+                        </div>
+                    </div>
+                    <!--
                     <div class="product-view">
                         <div class="new-editor-container">
                             <div class="flip-container">
@@ -193,89 +243,19 @@
                             </div>
                         </div>
                     </div>
+                    -->
+
+                    <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
+                        <!-- colors list -->
+                    </ul>
                     <div id="choices" class="aside">
                         <div >
                             <div id="product-selector" class="teespring-well designer-well " >
                                 <label>Style &amp; design</label>
                                 <select id="item-options-dropdown" class="form-control form__select_menu">
-                                    <option value="1" >Basic Tees</option>
-                                    <option value="3" >Long Sleeve Tees</option>
                                 </select>
-                                <ul class="options item-options active nav" >
-                                    <li class="item-option active" data-id="369" ><p
-                                            class="item-name" >Teespring Premium Tee</p>
-
-                                        <div class="item-overview" >
-                                            <div class="item-thumb-container item-thumb-loaded">
-                                                <img class="item-thumb" src="./assets/images/product_type_1_front_small.png"
-                                                                                     >
-                                            </div>
-                                            <p class="item-qualities" >Premium
-                                                materials</p>
-
-                                            <div class="sizes-label" >S – 5XL</div>
-                                        </div>
-                                        <div class="product-colors" >
-                                            <div class="tool_tip__container" >
-                                                <div class="tool_tip__definition" >
-                                                    <ul class="color-column quick-colors"
-                                                        >
-                                                        <li data-value="#222222" data-texture=""
-                                                            class="shirt-color-sample" title="Black"
-                                                            style="background-color:#222222;"
-                                                            ></li>
-                                                        <li data-value="#ba393f" data-texture=""
-                                                            class="shirt-color-sample" title="Classic Red"
-                                                            style="background-color:#ba393f;"
-                                                            ></li>
-                                                        <li data-value="#ca522f" data-texture=""
-                                                            class="shirt-color-sample" title="Deep Orange "
-                                                            style="background-color:#ca522f;"
-                                                            ></li>
-                                                        <li data-value="#fcf58b" data-texture=""
-                                                            class="shirt-color-sample" title="Lemon Yellow "
-                                                            style="background-color:#fcf58b;"
-                                                            ></li>
-                                                        <li data-value="#438d4e" data-texture=""
-                                                            class="shirt-color-sample" title="Kelly Green"
-                                                            style="background-color:#438d4e;"
-                                                            ></li>
-                                                        <li data-value="#0C1A2C" data-texture=""
-                                                            class="shirt-color-sample" title="New Navy"
-                                                            style="background-color:#0C1A2C;"
-                                                            ></li>
-                                                        <li data-value="#1e448b" data-texture=""
-                                                            class="shirt-color-sample" title="Deep Royal"
-                                                            style="background-color:#1e448b;"
-                                                            ></li>
-                                                        <li class="shirt-color-sample more"
-                                                            ></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item-option " data-id="2" >
-                                        <p class="item-name">Hanes Tagless Tee</p>
-
-                                        <div class="item-overview" >
-                                            <div class="item-thumb-container item-thumb-loaded"
-                                                 ><img class="item-thumb" src="./assets/images/product_type_1_front_small.png"></div>
-                                            <p class="item-qualities" >Budget friendly</p>
-
-                                            <div class="sizes-label" >S – 5XL</div>
-                                        </div>
-                                    </li>
-                                    <li class="item-option " data-id="6" ><p class="item-name">American Apparel Crew</p>
-
-                                        <div class="item-overview" >
-                                            <div class="item-thumb-container item-thumb-loaded"
-                                                 ><img class="item-thumb" src="./assets/images/product_type_1_front_small.png"></div>
-                                            <p class="item-qualities" >Top of the line</p>
-
-                                            <div class="sizes-label" >XS – 3XL</div>
-                                        </div>
-                                    </li>
+                                <ul class="options item-options active nav" id="products-list">
+                                    <!-- list of tees -->
                                 </ul>
                             </div>
                             <div id="price-display" class="teespring-well designer-well " >

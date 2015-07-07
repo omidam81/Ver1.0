@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -6,12 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{69BB2827-2835-4EBB-85D4-E2AEC8D313A8}</ProjectGuid>
+    <ProjectGuid>{B3E22153-B1E9-4062-80DF-D63A3F5CF358}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Teebay.Theme</RootNamespace>
-    <AssemblyName>Teebay.Theme</AssemblyName>
+    <RootNamespace>Teebay.Module</RootNamespace>
+    <AssemblyName>Teebay.Module</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
@@ -67,21 +67,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\menu-icon_.png" />
-    <Content Include="Content\search-ico.png" />
-    <Content Include="Scripts\teebay.js" />
-    <Content Include="Styles\Site.css" />
-    <Content Include="Styles\teebay.css" />
-    <Content Include="Views\Layout.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
-    <Content Include="Content\Web.config" />
-    <Content Include="Theme.txt" />
-    <Content Include="Theme.png" />
-    <Content Include="Placement.info" />
+    <Content Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Module.txt" />
+    <Folder Include="Properties" />
+    <Folder Include="Controllers" />
+    <Folder Include="Views" />
+    <Folder Include="Models" />
+    <Folder Include="Scripts" />
+    <Folder Include="Styles" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -92,33 +88,6 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Parts.Search.SearchForm-66.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Parts.Common.Metadata-Page.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Parts.Title-Page.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\BadgeOfHonor.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Parts.MenuWidget-63.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\LogOn.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Parts.MenuWidget-142.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\User.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\MenuItemLink-anonimous-menu-MenuItem-level-1.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

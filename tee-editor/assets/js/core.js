@@ -26,7 +26,8 @@ var app = {
         this.loadProducts();
         this.loadFonts();
         this.loadSwatches();
-	}
+	},
+    state: {}
 };
 
 jQuery(function() {

@@ -26,7 +26,7 @@
     border-bottom: 1px solid #0000ff;
 }
 .tb-layout-before-main{
-    
+    margin-bottom: -80px;
 }
 .widget-createSearchButtons{
     position: relative;
@@ -81,6 +81,9 @@
     text-decoration: none;
     border:0;
 }
+.tb-button:hover {
+    background:#aaa;
+}
 .tb-button-extra-large{
     font-size: 16px;
     padding: 6px 24px;
@@ -92,6 +95,9 @@
 }
 .tb-button-default {
     background-color:#0000ff;
+}
+.tb-button-default:hover {
+    background-color:#aaa;
 }
 .tb-button-warning {
     background-color:#ff4f00;
@@ -272,8 +278,7 @@
     color: #fff !important;
 }
 .tb-layout-main-container{
-    position: relative;
-    top: -80px;
+    
 }
 .aside-1 .tb-aside-first {
     float: left;
@@ -312,6 +317,7 @@
 }
 .widget-footerMenuLeft ul li a:hover,
 .widget-footerMenuRight ul li a:hover {
+    color:#5f97af;
     text-decoration: none
 }
 .widget-introductionVideo {
@@ -421,7 +427,9 @@
     text-align: -webkit-right;
     text-align: -moz-right;
     text-align: -ms-right;
-    padding-top: 10px !important;
+    /*padding-top: 10px !important;*/
+    overflow: hidden;
+    max-height: 180px;
 }
 .shop-now-image img {
     max-width:100%;
@@ -541,6 +549,10 @@
     width: 200px;
     font-size: 14px;
 }
+.widget-footerButtonGetStarted button:hover {
+    background-color: #aaa;
+}
+
 .widget-listOfLanguages {
     text-align:right;
     padding-top: 9px;
@@ -605,7 +617,7 @@
     text-decoration:none;
 }
 .zone-featured {
-    margin: 0px 0px 60px 0px;
+   
 }
 .menu-wizard-design-next-button li a{
     text-decoration: none;
@@ -633,9 +645,6 @@
 }
 .widget-detailsLaunchPageWidget{
     text-align: left;
-}
-.insideContentTop{
-    margin-top: 60px;
 }
 .page-log-on{
     margin-top: 100px;
