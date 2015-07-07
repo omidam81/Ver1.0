@@ -1,3 +1,56 @@
 #designs_edit .nav-tabs>li{
     margin-left: -2px;
 }
+.lab-colors {
+    position: absolute;
+    width: 20px;
+    right: 240px;
+    top: 30px;
+    padding: 0;
+}
+.lab-colors li {
+    border-radius: 50%;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    display: block;
+    height: 27px;
+    margin: 4px 0;
+    width: 27px;
+    cursor: pointer;
+}
+#design-area{
+    transition: transform 200ms ease
+}
+.design-area {
+    position:  absolute;
+    z-index: 100;
+    background: transparent;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    box-sizing: content-box;
+}
+.labView {
+    position: absolute;
+    display: block;
+}
+.design-area-toolbar{
+    position: absolute;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    text-align: left;
+    padding-left: 4px;
+    font-size: 10px;
+    height: 18px;
+}
+.printable-area-zoom-image{
+    width: 14px;
+    height: 14px;
+}
+.design-area-zoom{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
