@@ -7,10 +7,17 @@
 }
 .logo{
     font-size:24px;
-    background-color:#0000ff;
     color:#ffffff;
-    padding:1px 20px 1px 20px;
-    height: 56px;
+    /*padding:2px 20px 1px 20px;*/
+    /*height: 56px;*/
+}
+.logo-title{
+    font-family:"Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+.logo img{
+    height: 44px;
+    margin-top: -11px;
 }
 .logo h1 {
     margin: 11px 0;
@@ -21,9 +28,19 @@
 .logo a:hover {
     text-decoration:none;
 }
+.widget-mainSearch{
+    height:44px;
+}
+.orchard-layouts-root{
+    margin:0;
+}
+.logo-img-row, .logo-text-row{
+    margin:0;
+    height: 44px;
+}
 .tb-layout-header{
-    height:57px;
-    border-bottom: 1px solid #0000ff;
+    height:44px;
+    /*border-bottom: 1px solid #0000ff;*/
 }
 .tb-layout-before-main{
     margin-bottom: -80px;
@@ -40,6 +57,9 @@
     border-width:0;
     font-size: 16px;
     margin: 0 10px 10px 10px;
+}
+.button-create-search-container button:hover{
+     background: #ff3700;
 }
 .button-create-search-container span{
     color:#ffffff;
@@ -82,7 +102,8 @@
     border:0;
 }
 .tb-button:hover {
-    background:#aaa;
+    background:#0606d3;
+    
 }
 .tb-button-extra-large{
     font-size: 16px;
@@ -93,31 +114,35 @@
     background-color:#fff;
     color:#ff4f00;
 }
+.tb-button-white:hover {
+    background-color:#aaa;
+    
+}
 .tb-button-default {
     background-color:#0000ff;
 }
 .tb-button-default:hover {
-    background-color:#aaa;
+    background-color:#0606d3;
 }
 .tb-button-warning {
     background-color:#ff4f00;
 }
+
 .tb-search-form button{
     cursor: pointer;
     background: #fff;
-    height: 58px;
-    width: 70px;
+    height: 44px;
+    width: 30px;
     margin: 0;
     border-left-width: 0;
-    border-width:0;
-    border-bottom:1px solid #0000ff;
-    padding: 10px 17px;
+    border-width: 0;
+    padding: 10px 0px;
 }
 .tb-search-form img {
-    width: 100%;
+    width: 70%;
 }
 .tb-search-form input[type=text] {
-     height: 56px;
+     height: 44px;
   width: 300px;
   float: left;
   border: 0;
@@ -126,28 +151,27 @@
   padding: 0;
   padding-left: 10px;
 }
-@media all and (max-width: 1200px) {
+.widget-anonimousMenu,
+.widget-authenticatedMenu{
+    padding: 11px;
+}
+@media all and (max-width: 1400px) {
     .tb-search-form input[type=text] {
         width: 250px;
     }
 }
-@media all and (max-width: 1100px) {
+@media all and (max-width: 1300px) {
     .tb-search-form input[type=text] {
         width: 200px;
     }
     .get-started-button button,
     .get-started-button a { 
-        padding: 10px 20px !important; 
+        padding: 7px 20px !important; 
     }
 }
-@media all and (max-width: 970px) {
+@media all and (max-width: 1200px) {
     .tb-search-form input[type=text] {
-        width: 100px;
-    }
-}
-@media all and (max-width: 870px) {
-    .tb-search-form input[type=text] {
-        width: 50px;
+        width: 180px;
     }
     .widget-authenticatedMenu,
     .widget-anonimousMenu {
@@ -162,7 +186,12 @@
         padding-right: 10px !important;
     }
 }
-@media all and (min-width: 780px) {
+@media all and (max-width: 1100px) {
+    .tb-search-form input[type=text] {
+        width:100px;
+    }
+}
+@media all and (min-width: 1000px) {
     .widget-anonimousMenu nav ul,
     .widget-authenticatedMenu nav ul,
     .widget-anonimousMenu nav:active ul,
@@ -170,15 +199,15 @@
         display: block !important;
     }
 }
-@media all and (max-width: 780px) {
+@media all and (max-width: 1000px) {
     .tb-search-form input[type=text] {
-        width: 70% !important;
+        width: 40% !important;
     }
-    .widget-logo {
+    /*.widget-logo {
         width:150px !important;
-    }
+    }*/
     .widget-mainSearch {
-        width:80% !important;
+        width:50% !important;
     }
 
     header {
@@ -188,11 +217,12 @@
 	#menu-icon {
 		display:inline-block !important;
 	}
-
-    .widget-anonimousMenu,
+    
+   
+    /*.widget-anonimousMenu,
     .widget-authenticatedMenu {
         padding-top: 5px !important;
-    }
+    }*/
 
 	.widget-anonimousMenu nav ul, 
     .widget-authenticatedMenu nav ul,
@@ -204,7 +234,7 @@
 		background: #fff;
 		border: 3px solid #0000ff;
 		right: 20px;
-		top: 60px;
+		top: 50px;
 		width: 50%;
 		border-radius: 4px 0 4px 4px;
         z-index: 100;
@@ -218,23 +248,55 @@
 		margin: 0;
 	}
 }
-@media all and (max-width: 550px) {
+
+@media all and (max-width: 750px) {
     .tb-search-form input[type=text] {
-        width: 60% !important;
+        width: 40% !important;
     }
     .widget-mainSearch {
-        width:70% !important;
+        width:40% !important;
     }
+}
+
+
+@media all and (max-width: 620px) {
+    .tb-search-form input[type=text] {
+        width: 30% !important;
+        font-size: 10px;
+    }
+
+    .widget-mainSearch {
+        width: 30% !important;
+    }
+
+    .tb-search-form input[type=text] {
+        width: 30% !important;
+    }
+
+    .tb-search-form img {
+        width: 50%;
+    }
+    
+    .tb-search-form input[type=text]::-webkit-input-placeholder  {color:transparent;}
+    .tb-search-form input[type=text]::-moz-placeholder   {color:transparent;}
+    .tb-search-form input[type=text]:-moz-placeholder   {color:transparent;}
+
+    /*.logo-img {
+        margin-left: -15px;
+    }*/
 }
 
 #menu-icon {
 	display: none;
+    margin-top: -11px;
 }
 
-.widget-anonimousMenu,
-.widget-authenticatedMenu{
-      padding: 15px;
+#menu-icon img {
+
+   height:44px;
 }
+
+
 .widget-anonimousMenu ul,
 .widget-authenticatedMenu ul{
       margin-left: 20px;
@@ -266,7 +328,7 @@
     cursor: pointer;
     background: #0000ff; 
     margin: 0;
-    padding: 10px 35px;
+    padding: 7px 35px;
     color: #fff;
     font-weight: 700;
     border: 0;
@@ -274,8 +336,10 @@
     margin-left:15px;
     line-height: 18px;
 }
+
 .get-started-button a:hover {
-    color: #fff !important;
+    color: #fff!important;
+    background: #0606d3;
 }
 .tb-layout-main-container{
     
@@ -393,6 +457,13 @@
     font-size: 20px;
     color: #aaa;
 }
+   #featured-link{
+        opacity: .5;
+    }
+
+    #featured-link:hover{
+        opacity: 1;
+    }
 .list-brands > div {
     width: 20% !important;
 }
@@ -462,9 +533,18 @@
     background-color:#0000ff;
     padding: 20px;
 }
+.user-actions a{
+     color:#fff!important;
+}
+.user-actions a:hover{
+     color:#5f97af!important;
+}
 .tb-footer {
     width:65%;
     margin:0 auto;
+}
+.tb-footer-text{
+    color:#fff;
 }
 @media all and (max-width: 1200px) {
     .tb-footer {   
@@ -548,9 +628,10 @@
     border: solid 2px;
     width: 200px;
     font-size: 14px;
+    margin-left: -50px;
 }
 .widget-footerButtonGetStarted button:hover {
-    background-color: #aaa;
+    background-color: #0606d3;
 }
 
 .widget-listOfLanguages {
@@ -585,36 +666,6 @@
 .wizard-text{
     height:200px;
     background-color:#ff4f00;
-}
-.widget-getStartedMenu {
-    padding:5px;
-}
-.widget-getStartedMenu button {
-    cursor: pointer;
-    background: #0000ff; 
-    margin: 0;
-    padding: 10px 35px;
-    color: #fff;
-    font-weight: 700;
-    border: 0;
-    border-radius: 20px;
-}
-.widget-getStartedMenu li{
-    border: 0;
-}
-.widget-getStartedMenu li a{
-    cursor: pointer;
-    background: #0000ff; 
-    margin: 0;
-    padding: 10px 35px;
-    color: #fff;
-    font-weight: 700;
-    border: 0;
-    border-radius: 20px;
-    text-decoration: none;
-}
-.widget-getStartedMenu li a:hover {
-    text-decoration:none;
 }
 .zone-featured {
    
@@ -690,11 +741,11 @@
 .campaigns-text h1{
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: 600;
-    color: #39ace6;
+    color: #0000ff;
     line-height: 1.2;
 }
     .campaigns-text h1:hover {
-        color: #186a93;
+        color: #1c26bf;
         text-decoration: underline;
     }
 
@@ -761,9 +812,6 @@
         margin-bottom: 0;
     }
 
-
-    /*.preview-img img:hover {
-        width: 60%;
-        height: 60%;
-        background-image: url("/Media/Default/images/ff1.jpg");
-    }*/
+.user-display .welcome {
+  color: #fff;
+}
