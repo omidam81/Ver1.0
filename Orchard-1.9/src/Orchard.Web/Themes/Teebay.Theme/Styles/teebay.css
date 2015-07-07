@@ -413,7 +413,9 @@
     text-align: -webkit-right;
     text-align: -moz-right;
     text-align: -ms-right;
-    padding-top: 10px !important;
+    /*padding-top: 10px !important;*/
+    overflow: hidden;
+    max-height: 180px;
 }
 .shop-now-image img {
     max-width:100%;
