@@ -120,12 +120,12 @@
   padding: 0;
   padding-left: 10px;
 }
-@media only screen and (max-width: 1200px) {
+@media all and (max-width: 1200px) {
     .tb-search-form input[type=text] {
         width: 250px;
     }
 }
-@media only screen and (max-width: 1100px) {
+@media all and (max-width: 1100px) {
     .tb-search-form input[type=text] {
         width: 200px;
     }
@@ -134,12 +134,12 @@
         padding: 10px 20px !important; 
     }
 }
-@media only screen and (max-width: 970px) {
+@media all and (max-width: 970px) {
     .tb-search-form input[type=text] {
         width: 100px;
     }
 }
-@media only screen and (max-width: 870px) {
+@media all and (max-width: 870px) {
     .tb-search-form input[type=text] {
         width: 50px;
     }
@@ -156,7 +156,7 @@
         padding-right: 10px !important;
     }
 }
-@media only screen and (min-width: 780px) {
+@media all and (min-width: 780px) {
     .widget-anonimousMenu nav ul,
     .widget-authenticatedMenu nav ul,
     .widget-anonimousMenu nav:active ul,
@@ -164,7 +164,7 @@
         display: block !important;
     }
 }
-@media only screen and (max-width: 780px) {
+@media all and (max-width: 780px) {
     .tb-search-form input[type=text] {
         width: 70% !important;
     }
@@ -212,7 +212,7 @@
 		margin: 0;
 	}
 }
-@media only screen and (max-width: 550px) {
+@media all and (max-width: 550px) {
     .tb-search-form input[type=text] {
         width: 60% !important;
     }
@@ -322,7 +322,7 @@
     background-color:#fff;
     padding:20px;
 }
-@media only screen and (max-width: 1400px) {
+@media all and (max-width: 1400px) {
     .aside-1 .tb-layout-content {   
         margin-left: 16.8%;
         margin-right: 1%;
@@ -332,7 +332,7 @@
         width: 75%;
     }
 }
-@media only screen and (max-width: 1200px) {
+@media all and (max-width: 1200px) {
     .aside-1 .tb-layout-content {   
         margin-left: 16.8%;
         margin-right: 1%;
@@ -342,7 +342,7 @@
         width: 90%;
     }
 }
-@media only screen and (max-width: 900px) {
+@media all and (max-width: 900px) {
     .intro-video-container .cell {
         float: none;
         padding-right:0;
@@ -355,7 +355,7 @@
         width: 50% !important;
     }
 }
-@media only screen and (max-width: 750px) {   
+@media all and (max-width: 750px) {   
     .aside-1 .tb-aside-first {
         float: none;
         width: 100%;
@@ -367,6 +367,13 @@
     .tb-layout-content {
         margin: 0;
         width: 100%;
+    }
+}
+
+@media all and (max-width: 690px) {
+    .home-page-review {
+        padding-bottom:10px;
+        width: 100% !important;
     }
 }
 .intro-video-text {
@@ -383,12 +390,12 @@
 .list-brands > div {
     width: 20% !important;
 }
-@media only screen and (max-width: 1000px) {
+@media all and (max-width: 1000px) {
     .list-brands > div {
         width: 33.33% !important;
     }
 }
-@media only screen and (max-width: 750px) {
+@media all and (max-width: 750px) {
     .list-brands > div {
         float:none;
         width:100% !important;
@@ -426,9 +433,6 @@
 }
 .shop-now-title button {
 }
-.tee-preview {
-    width:33%;
-}
 .home-page-review {
     width:25%;
     text-align: center;
@@ -454,12 +458,12 @@
     width:65%;
     margin:0 auto;
 }
-@media only screen and (max-width: 1200px) {
+@media all and (max-width: 1200px) {
     .tb-footer {   
         width: 83%;
     }
 }
-@media only screen and (max-width: 750px) {   
+@media all and (max-width: 750px) {   
     .tb-footer {
         margin: 0;
         width: 100%;
@@ -479,7 +483,7 @@
     padding-left:17px;
     margin-bottom:25px;
 }
-@media only screen and (max-width: 1200px) {
+@media all and (max-width: 1200px) {
     .tb-footer-quad-second {
         width: 28% !important;
     }
@@ -490,7 +494,7 @@
         width: 22% !important;
     }
 }
-@media only screen and (max-width: 900px) {
+@media all and (max-width: 900px) {
     .tb-footer-quad-second {
         width: 32% !important;
     }
@@ -501,7 +505,7 @@
         width: 22% !important;
     }
 }
-@media only screen and (max-width: 750px) { 
+@media all and (max-width: 750px) { 
     .tb-footer-quad-second {
         width: 20% !important;
     }
@@ -516,7 +520,7 @@
         float:none;
     }
 }
-@media only screen and (max-width: 550px) { 
+@media all and (max-width: 550px) { 
     .tb-footer-quad-second {
         width: 30% !important;
     }
@@ -636,3 +640,121 @@
 .page-log-on{
     margin-top: 100px;
 }
+
+.progress-bar{
+  background-color: #4bb232;
+  height: 9px;
+  width: 30%;
+  margin-right: 1%;
+  margin-left: 1%;      
+}
+
+.tee-preview {
+  width: 30%;
+  margin-right: 1%;
+  margin-left: 1%;
+  background-color: #e8eced;
+  padding-top: 15px;
+  height: 280px;
+}
+.preview-img{
+    text-align: center !important;
+}
+.preview-img img{
+    width: 60%;
+    height: 60%;
+
+}
+.featured-campaigns-list{
+    margin-bottom: 0;
+}
+
+.campaigns-text{
+    padding-left: 12px !important;
+    width: 32% !important;
+}
+.campaigns-text h3{
+    font-size: 15px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    color: #6c7478;
+}
+.campaigns-text h1{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    color: #39ace6;
+    line-height: 1.2;
+}
+    .campaigns-text h1:hover {
+        color: #186a93;
+        text-decoration: underline;
+    }
+
+@media all and (max-width: 1700px) {
+   .tee-preview {
+
+  height: 270px;
+}
+}
+@media all and (max-width: 1550px) {
+   .tee-preview {
+
+  height: 250px;
+}
+}
+@media all and (max-width: 1450px) {
+    .tee-preview {
+        height: 255px;
+    }
+}
+    @media all and (max-width: 1050px) {
+        .tee-preview {
+            height: 230px;
+        }
+    }
+
+    @media all and (max-width: 930px) {
+        .tee-preview {
+            height: 210px;
+        }
+    }
+
+    @media  all and (max-width: 800px) {
+        .tee-preview {
+            height: 190px;
+        }
+    }
+
+    @media  all and (max-width: 640px) {
+        .tee-preview {
+            height: 170px;
+        }
+    }
+
+    @media  all and (max-width: 620px) {
+        .tee-preview {
+            height: 150px;
+        }
+    }
+
+    @media  all and (max-width: 550px) {
+        .tee-preview {
+            height: 130px;
+        }
+    }
+
+    @media  all and (max-width: 450px) {
+        .tee-preview {
+            height: 110px;
+        }
+    }
+
+    .row-campaigns {
+        margin-bottom: 0;
+    }
+
+
+    /*.preview-img img:hover {
+        width: 60%;
+        height: 60%;
+        background-image: url("/Media/Default/images/ff1.jpg");
+    }*/
