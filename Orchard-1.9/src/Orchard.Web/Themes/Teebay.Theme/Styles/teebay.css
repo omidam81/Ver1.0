@@ -330,11 +330,12 @@
     margin: 0;
     padding: 7px 35px;
     color: #fff;
-    font-weight: 700;
+    /*font-weight: 700;*/
     border: 0;
     border-radius: 20px;
     margin-left:15px;
     line-height: 18px;
+    font-size: 14px;
 }
 
 .get-started-button a:hover {
