@@ -81,6 +81,9 @@
     text-decoration: none;
     border:0;
 }
+.tb-button:hover {
+    background:#aaa;
+}
 .tb-button-extra-large{
     font-size: 16px;
     padding: 6px 24px;
@@ -92,6 +95,9 @@
 }
 .tb-button-default {
     background-color:#0000ff;
+}
+.tb-button-default:hover {
+    background-color:#aaa;
 }
 .tb-button-warning {
     background-color:#ff4f00;
@@ -311,6 +317,7 @@
 }
 .widget-footerMenuLeft ul li a:hover,
 .widget-footerMenuRight ul li a:hover {
+    color:#5f97af;
     text-decoration: none
 }
 .widget-introductionVideo {
@@ -538,6 +545,10 @@
     width: 200px;
     font-size: 14px;
 }
+.widget-footerButtonGetStarted button:hover {
+    background-color: #aaa;
+}
+
 .widget-listOfLanguages {
     text-align:right;
     padding-top: 9px;
