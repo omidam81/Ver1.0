@@ -34,6 +34,21 @@ var design={
             }
             design.products.setDesignAreaContrastColor(app.state.color);
         });
+        $(document.body).on('click', function(){
+            $('.containertip--open').removeClass('containertip--open');
+        });
+        $('.containertip').on('click', function(event){
+            event.preventDefault();
+            event.stopPropagation();
+        });
+        $('#enter-text').on('keyup', function(){
+            var item = design.item.get();
+            if(!item.length){
+                design.text.create();
+            }else{
+                design.text.update('text');
+            }
+        });
 		design.item.move();
 		$jd( "#dg-outline-width" ).slider({
 			animate: true,
@@ -65,7 +80,7 @@ var design={
 		/* lock */
 		$jd('.ui-lock').click(function(){
 			var e = me.item.get();
-			e.resizable('destroy')			
+			e.resizable('destroy');
 			if($jd(this).is(':checked') == true) me.item.resize(e, 'n, e, s, w, se');
 			else me.item.resize(e, 'se');
 		});
@@ -389,8 +404,7 @@ var design={
 				});
 			}
 		},
-		removeDesign: function(e)
-		{
+		removeDesign: function(e){
 			$(e).parents('.design-box').remove();
 			var id = $(e).data('id');
 			$.ajax({
@@ -593,7 +607,7 @@ var design={
 				return design.colors;
 			}
 			
-			if (print_type == 'screen' || print_type == 'embroidery')
+			if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
 			{
 				if (typeof view != 'undefined')
 					view = ' #view-'+view;
@@ -636,10 +650,10 @@ var design={
 		},
 		size:function(){
 			var sizes = {};
-			var postions = ['front', 'back', 'left', 'right'];
+			var positions = ['front', 'back'];
 			$('.screen-size').html('<div id="sizes-used"></div>');
 			
-			$.each(postions, function(i, postion){
+			$.each(positions, function(i, postion){
 				if ($('#view-'+postion+ ' .content-inner').html() != '' && $('#view-'+postion+ ' .product-design').html() != '')
 				{
 					var top = 500, left = 500, right = 500, bottom = 500, area = {}, print = {};
@@ -668,10 +682,11 @@ var design={
 					});
 					print.width 	= area.width - left - right;
 					print.height 	= area.height - top - bottom;
-					var item = eval ("(" + items.params[postion] + ")");
+                    var imageData = design.products.images[app.state.product.id];
+                    var ppi = imageData.ppi;
 					sizes[postion] = {};
-					sizes[postion].width = Math.round( (print.width * item.width)/area.width );
-					sizes[postion].height = Math.round( (print.height * item.height)/area.height );
+					sizes[postion].width = Math.round( print.width * ppi * 25.4 );
+					sizes[postion].height = Math.round( print.height * ppi * 25.4 );
 					
 					if (
 						(sizes[postion].width < 21 && sizes[postion].height < 29)
@@ -908,155 +923,156 @@ var design={
 		fonts: {},
 		fontActive: {},
 		loadColors: function(){
-			var self = this;
-			$.ajax({				
-				dataType: "json",
-				url: baseURL + "ajax/colors"			
-			}).done(function( data ) {
-				if (data.status == 1)
-				{					
-					self.addColor(data.colors);					
-				}
-			}).always(function(){			
-			});
+			var me = this;
+			app.loadSwatches().then(function(data){
+                me.addColor(data);
+            });
 		},
+        toRgbColor: function(color){
+            return 'rgb('+color.rgb[0]+','+color.rgb[1]+','+color.rgb[2]+')';
+        },
+        showColor: function($picker, color){
+            var $swatch = $('.swatch:first', $picker);
+            var rgb = design.designer.toRgbColor(color);
+            $swatch.css('background-color', rgb);
+        },
 		addColor: function(colors)
 		{
-			var screen_colors	= $('#screen_colors_list');
-			var div = $('.other-colors');
-			$(div).html('<span class="bg-colors bg-none" data-color="none" title="Normal" onclick="design.item.changeColor(this)"></span>');			
+            var me = this;
+
+            var $colorsContainers = $('.all-colors');
+            app.state.colorsInUse = [];
+            design.products.colors = {};
+
 			$.each(colors, function(i, color){
-				var span = document.createElement('span');
-					span.className = 'bg-colors';
-					span.setAttribute('data-color', color.hex);
-					span.setAttribute('title', color.title);							
-					span.setAttribute('onclick', 'design.item.changeColor(this)');							
-					span.style.backgroundColor = '#'+color.hex;						
-				$(div).append(span);				
-				
-				screen_colors.append('<span class="bg-colors" onclick="design.print.addColor(this)" style="background-color:#'+color.hex+'" data-color="'+color.hex+'" title="'+color.title+'"></span>');
-			});	
-		},
-		loadFonts: function(){
-			var self = this;
-			$.ajax({				
-				dataType: "json",
-				url: baseURL + "ajax/fonts"			
-			}).done(function( data ) {
-				if (data.status == 1)
-				{
-					if (typeof data.fonts.google_fonts != 'undefined')
-					{
-						$('head').append("<link href='http://fonts.googleapis.com/css?family="+data.fonts.google_fonts+"' rel='stylesheet' type='text/css'>");
-					}
-					self.fonts = data.fonts;
-					self.addFonts(data.fonts);
-					var div = $('.list-fonts');
-					$(div).html('');
-					$.each(data.fonts.fonts, function(i, font){
-						var a = document.createElement('a');
-							a.className = 'box-font';							
-							a.setAttribute('href', 'javascript:void(0)');
-							$(a).data('id', font.id);
-							$(a).data('title', font.title);
-							$(a).data('type', font.type);
-							if (font.type == '')
-							{
-								font.url = baseURL + font.path.replace('\\', '/') + '/';
-								$(a).data('url', font.url);
-								$(a).data('filename', font.filename);
-								var html = '<img src="' + font.url + font.thumb + '" alt="'+font.title+'">'+font.title;
-							}
-							else
-							{
-								var html = '<h2 class="margin-0" style="font-family:\''+font.title+'\'">abc zyz</h2>'+font.title;
-							}
-							$(a).bind('click', function(){self.changeFont(this)});
-						a.innerHTML = html;
-						$(div).append(a);
-					});
-				}
-			}).always(function(){			
+                if(!color.inStock){
+                    return;
+                }
+                var rgb = 'rgb('+color.rgb[0]+','+color.rgb[1]+','+color.rgb[2]+')';
+                var colorHtml = '<li data-value="'+color.id+')" class="shirt-color-sample" title="'+
+                    color.name+'" style="background-color:'+rgb+';"></li>';
+                $colorsContainers.each(function(){
+                    var $colorHtml = $(colorHtml);
+                    $colorHtml.on('click', function(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                        var $picker = $(this).parents('.color-picker:first');
+                        var category = $picker.data('value');
+                        app.state['color-'+category] = color;
+                        me.showColor($picker, color);
+                        if(design.item.get().length){
+                            if(category === 'text'){
+                                design.text.update('color');
+                            }else{
+                                design.text.update('outline');
+                            }
+                        }
+                        $picker.find('.containertip--open').removeClass('containertip--open');
+                    }).hover(
+                        function() {
+                            var $picker = $(this).parents('.color-picker:first');
+                            me.showColor($picker, color);
+                        }, function() {
+                            var $picker = $(this).parents('.color-picker:first');
+                            var category = $picker.data('value');
+                            me.showColor($picker, app.state['color-'+category]);
+                        });
+                    $(this).append($colorHtml);
+                });
 			});
+            $colorsContainers.each(function(){
+                $(this).find('li:first').click();
+            });
+            $('.color-picker').on('click', function(event){
+                event.preventDefault();
+                event.stopPropagation();
+
+                $('.shirt-colors').removeClass('containertip--open');
+                $(this).parents(':first').find('.shirt-colors').addClass('containertip--open');
+            });
+        },
+		loadFonts: function(){
+			var me = this;
+            app.loadFonts().then(function(data){
+                var fonts = {};
+                var categories = {};
+                for(var i=0;i<data.length;i++){
+                    var font = data[i];
+                    fonts[font.id] = font;
+                    var tags;
+                    if(font.tags && typeof font.tags === 'string'){
+                        tags = JSON.parse(font.tags);
+                    }else{
+                        tags = font.tags;
+                    }
+                    for(var j=0;j<tags.length;j++){
+                        var tag = tags[j];
+                        if(!categories[tag]){
+                            categories[tag] = [];
+                        }
+                        categories[tag].push(font.id);
+                    }
+                }
+                design.products.fonts = fonts;
+                design.products.fontCategories = categories;
+                me.addFonts();
+            });
 		},
-		addFonts: function(data)
+		addFonts: function()
 		{
-			var self = this;
-			var ul = $('.font-categories');
-			ul.html('');
-			var li = document.createElement('li');				
-			$(li).bind('click', function(){self.cateFont(this)});
-			$(li).data('id', 0);
-			var html = '<a href="javascript:void(0);" title="All fonts">All fonts</a>';
-			li.innerHTML = html;
-			$(ul).append(li);
-			$.each(data.categories, function(i, cate){
-				var li = document.createElement('li');				
-				$(li).bind('click', function(event){ event.preventDefault(); self.cateFont(this)});
-				$(li).data('id', cate.id);
-				var html = '<a href="javascript:void(0);" title="'+cate.title+'">'+cate.title+'</a>';
-				li.innerHTML = html;
-				$(ul).append(li);
-			});			
+			var me = this;
+            var categories = Object.keys(design.products.fontCategories);
+            var $categories = $('#font-select-menu .category-menu');
+            for(var i=0;i<categories.length;i++){
+                var category = categories[i];
+                var html = '<option value="'+category+'">'+category+'</option>';
+                $categories.append(html);
+            }
+            $categories.on('change', function(event){
+                var categoryName = event.target.value;
+                var $fonts = $('#font-select-menu .options');
+                $fonts.html('');
+                var fontIds = design.products.fontCategories[categoryName];
+                $.each(fontIds, function(i, id){
+                    var font = design.products.fonts[id];
+                    var $html = $('<li>'+font.family+'</li>');
+                    var url = assetsUrls.fonts+font.filename+'.png';
+                    $html.css('background-image', 'url("'+url+'")');
+                    $html.on('click', function(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                        app.state.font = font;
+                        var html = '<img src="'+url+'">';
+                        $('#font-select').html(html);
+                        me.changeFont(font);
+                        $(document.body).click();
+                    });
+                    $fonts.append($html);
+                });
+                if(!app.state.font){
+                    $fonts.find('li:first').click();
+                }
+            });
+            $('#font-select').on('click', function(event){
+                event.stopPropagation();
+                event.preventDefault();
+                $(document.body).click();
+                $('#font-select-menu').addClass('containertip--open');
+            });
+            $categories.change();
 		},
-		cateFont: function(e)
+		changeFont: function(font)
 		{
-			var self = this;
-			var id = $(e).data('id');
-			if (typeof id != 'undefined')
-			{
-				var div = $('.list-fonts');
-				$(div).html('');
-				if (typeof this.fonts.cateFonts[id] != 'undefined')
-				{
-					var fonts = this.fonts.cateFonts[id]['fonts'];
-				}
-				else
-				{
-					var fonts = this.fonts.fonts;
-				}
-				$.each(fonts, function(i, font){
-					var a = document.createElement('a');
-						a.className = 'box-font';							
-						a.setAttribute('href', 'javascript:void(0)');
-						$(a).data('id', font.id);
-						$(a).data('title', font.title);
-						$(a).data('type', font.type);
-						if (font.type == '')
-						{
-							font.url = baseURL + font.path.replace('\\', '/') + '/';
-							$(a).data('url', font.url);
-							$(a).data('filename', font.filename);
-							var html = '<img src="' + font.url + font.thumb + '" alt="'+font.title+'">'+font.title;
-						}
-						else
-						{
-							var html = '<h2 class="margin-0" style="font-family:\''+font.title+'\'">abc zyz</h2>'+font.title;
-						}
-						$(a).bind('click', function(){self.changeFont(this)});
-					a.innerHTML = html;
-					$(div).append(a);
-				});				
-			}
-		},
-		changeFont: function(e)
-		{
-			var selected = design.item.get();
+			/*var selected = design.item.get();
 			if (selected.length == 0)
 			{
-				$('#dg-fonts').modal('hide');
 				return false;
-			}
-			
-			$('.list-fonts a').removeClass('active');
-			$(e).addClass('active');
-			var id = $(e).data('id');
-			$('.labView.active .content-inner').addClass('loading');
+			}*/
+			var id = font.family;
+			//$('.labView.active .content-inner').addClass('loading');
 			if (typeof id != 'undefined')
 			{
-				var title = $(e).data('title');
-				$('#txt-fontfamily').html(title);
-				if (typeof design.designer.fontActive[id] != 'undefined' || $(e).data('type') == 'google')
+				if (typeof design.designer.fontActive[id] != 'undefined')
 				{					
 					design.text.update('fontfamily', title);
 					$('.labView.active .content-inner').removeClass('loading');
@@ -1081,40 +1097,40 @@ var design={
 				}
 				else
 				{
-					var filename = $(e).data('filename');
-					var url = $(e).data('url');
-					if (filename != '')
+					var url = assetsUrls.fonts+font.filename+'-webfont.woff';
+					if (font.filename)
 					{
-						var item = eval ("(" + filename + ")");													
-						design.designer.fontActive[id] = title;
-						var css = "<style type='text/css'>@font-face{font-family:'"+title+"';font-style: normal; font-weight: 400;src: local('"+title+"'), local('"+title+"'), url("+url+item.woff+") format('woff');}</style>";
-						design.fonts = design.fonts + ' '+css;
+						design.designer.fontActive[id] = true;
+						var css = "<style type='text/css'>@font-face{font-family:'"+id+"';font-style: normal; font-weight: 400;src: local('"+id+"'), local('"+id+"'), url("+url+") format('woff');}</style>";
+                        design.fonts = design.fonts + ' '+css;
 						$('head').append(css);
-						
-						var e = design.item.get();
-						var svg = e.find('svg');							
-						design.text.update('fontfamily', title);
-						$('.labView.active .content-inner').removeClass('loading');
-						setTimeout(function(){
-							var txt = e.find('text');
-							var size1 = txt[0].getBoundingClientRect();
-							var size2 = e[0].getBoundingClientRect();
-							var $w 	= parseInt(size1.width);							
-							var $h 	= parseInt(size1.height);							
-							
-							design.item.updateSize($w, $h);
 
-							var svg = e.find('svg'),
-							view = svg[0].getAttributeNS(null, 'viewBox');
-							var arr = view.split(' ');						
-							var y = txt[0].getAttributeNS(null, 'y');						
-							y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );						
-							txt[0].setAttributeNS(null, 'y', y);
-						}, 200);								
+                        if(design.item.get().length){
+                            var e = design.item.get();
+                            var svg = e.find('svg');
+                            design.text.update('fontfamily', id);
+                            setTimeout(function(){
+                                var txt = e.find('text');
+                                var size1 = txt[0].getBoundingClientRect();
+                                var size2 = e[0].getBoundingClientRect();
+                                var $w 	= parseInt(size1.width);
+                                var $h 	= parseInt(size1.height);
+
+                                if(design.item.get().length) {
+                                    design.item.updateSize($w, $h);
+                                }
+                                var svg = e.find('svg'),
+                                    view = svg[0].getAttributeNS(null, 'viewBox');
+                                var arr = view.split(' ');
+                                var y = txt[0].getAttributeNS(null, 'y');
+                                y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );
+                                txt[0].setAttributeNS(null, 'y', y);
+                            }, 200);
+                        }
+						//$('.labView.active .content-inner').removeClass('loading');
 					}
 				}
 			}
-			$('#dg-fonts').modal('hide');
 		}
 	},
 	products:{
@@ -1529,45 +1545,27 @@ var design={
 			return o;
 		},		
 		create: function(){
-			$jd('.ui-lock').attr('checked', false);
+            var text = $('#enter-text').val() || 'Hello';
+			$('.ui-lock').attr('checked', false);
 			var txt = {};
-			
-			txt.text = 'Hello';
-			txt.color = '#FF0000';
+			txt.text = text;
+			txt.color = design.designer.toRgbColor(app.state['color-text']);
 			txt.fontSize = '24px';
-			txt.fontFamily = 'arial';
-			txt.stroke = 'none';
-			txt.strokew = '0';
-			this.add(txt);			
+            console.log(app.state.font);
+			txt.fontFamily = app.state.font.family || 'arial';
+			txt.stroke = design.designer.toRgbColor(app.state['color-outline']);
+			txt.strokew = $('#outline-select').val();
+			this.add(txt);
 		},
 		setValue: function(o){
-			$jd('#enter-text').val(o.text);
+            $('#enter-text').val(o.text);
+
+
 			$jd('#txt-fontfamily').html(o.fontFamily);
 			var color = $jd('#txt-color');
 				color.data('color', o.color);
 				color.css('background-color', o.color);
 				
-			// text-align
-			if (typeof o.align == 'undefined')
-				o.align = 'center';
-			$('#text-align span').removeClass('active');
-			$('#text-align-'+o.align).addClass('active');
-			
-			if (typeof o.Istyle != 'undefined' && o.Istyle == 'italic')
-				$('#text-style-i').addClass('active');
-			else
-				$('#text-style-i').removeClass('active');
-			
-			if (typeof o.weight != 'undefined' && o.weight == 'bold')
-				$('#text-style-b').addClass('active');
-			else
-				$('#text-style-b').removeClass('active');
-				
-			if (typeof o.decoration != 'undefined' && o.decoration == 'underline')
-				$('#text-style-u').addClass('active');
-			else
-				$('#text-style-u').removeClass('active');
-		
 			if (typeof o.color != 'undefined')
 			{
 				var obj = $('#txt-color');
@@ -1657,9 +1655,6 @@ var design={
 			text.setAttributeNS(null, 'font-size', o.fontSize);
 			text.setAttributeNS(null, 'font-family', o.fontFamily);
 			
-			if(typeof o.fontWeight != 'undefined')
-			text.setAttributeNS(null, 'font-weight', o.fontWeight);
-			
 			if(typeof o.strokeWidth != 'undefined' && o.strokeWidth != 0){
 				text.setAttributeNS(null, 'stroke', o.stroke);
 				text.setAttributeNS(null, 'stroke-width', o.strokeWidth);
@@ -1709,11 +1704,9 @@ var design={
 							$('#txt-team-fontfamly').html(value);
 						break;
 					case 'color':
-						var color = $jd('#txt-color').data('value');
-						if (color == 'none') var hex = color;
-						else var hex = '#' + color;
-						txt[0].setAttributeNS(null, 'fill', hex);
-						obj.item.color = hex;
+                        var rgb = design.designer.toRgbColor(app.state['color-text']);
+						txt[0].setAttributeNS(null, 'fill', rgb);
+						obj.item.color = rgb;
 						break;
 					case 'colorT':
 						var color = $jd('#team-name-color').data('value');
@@ -1800,11 +1793,10 @@ var design={
 						obj.item.outlineW = value;
 						break;
 					case 'outline':
-						if (value == 'none') var hex = value;
-						else var hex = '#' + value;
-						txt[0].setAttributeNS(null, 'stroke', hex);
-						txt[0].setAttributeNS(null, 'stroke-width', $jd('.outline-value').html()/50);
-						obj.item.outlineC = hex;
+                        rgb = design.designer.toRgbColor(app.state['color-outline']);
+						txt[0].setAttributeNS(null, 'stroke', rgb);
+						//txt[0].setAttributeNS(null, 'stroke-width', $jd('.outline-value').html()/50);
+						obj.item.outlineC = rgb;
 						break;
 					default:
 						txt[0].setAttributeNS(null, lable, value);
@@ -2065,11 +2057,11 @@ var design={
                 });
             });
 		},
-		create: function(item){		
+		create: function(item){
 			this.unselect();
 			$('.labView.active .design-area').css('overflow', 'visible');
 			var e = $jd('#app-wrap .active .content-inner'),				
-				span = document.createElement('span');
+				span = document.createElement('div');
 			var n = -1;
 			$('#app-wrap .drag-item').each(function(){
 				var index 	= $(this).attr('id').replace('item-', '');
@@ -2093,7 +2085,7 @@ var design={
 			$(span).data('file', item.file);
 			$(span).data('width', item.width);
 			$(span).data('height', item.height);
-			
+
 			span.style.zIndex = design.zIndex;
 			design.zIndex  	= design.zIndex + 5;
 			span.style.width = item.width;
@@ -2114,7 +2106,7 @@ var design={
 			if(item.remove == true)
 			{
 				var remove = document.createElement('div');
-				remove.className = 'item-remove-on glyphicons bin';
+				remove.className = 'item-remove-on handle';
 				remove.setAttribute('title', 'Click to remove this item');
 				remove.setAttribute('onclick', 'design.item.remove(this)');
 				$(span).append(remove);				
@@ -2131,14 +2123,14 @@ var design={
 			
 			e.append(span);
 					
-			this.move($jd(span));
-			this.resize($jd(span));	
+			this.move($(span));
+			this.resize($(span));
 			if(item.rotate == true)
 				this.rotate($jd(span));
 			design.layers.add(item);
 			this.setup(item);
 			$('.btn-action-edit').css('display', 'none');
-			if (print_type == 'screen' || print_type == 'embroidery')
+			if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
 			{
 				if (item.confirmColor == true)
 				{
@@ -2193,7 +2185,7 @@ var design={
 		printColor: function(o){
 			var box = $('#item-print-colors');
 			$('.btn-action-edit').css('display', 'none');
-			if (print_type == 'screen' || print_type == 'embroidery')
+			if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
 			{				
 				box.html('').css('display', 'none');
 				if(o.item.confirmColor == true)
@@ -2230,7 +2222,7 @@ var design={
 			this.unselect();
 			$('.labView.active .design-area').css('overflow', 'visible');
 			var e = $jd('#app-wrap .active .content-inner'),				
-				span = document.createElement('span');
+				span = document.createElement('div');
 			var n = -1;
 			$('#app-wrap .drag-item').each(function(){
 				var index 	= $(this).attr('id').replace('item-', '');
@@ -2271,7 +2263,7 @@ var design={
 			}
 			$(span).data('width', item.width);
 			$(span).data('height', item.height);
-			
+
 			span.style.zIndex = item.zIndex;							
 			$(span).append(item.svg);					
 			
@@ -2359,7 +2351,7 @@ var design={
 						e.css('border', '1px solid #FF0000');						
 					}else{
 						e.data('block', false);
-						e.css('border', '1px dashed #444444');
+						//e.css('border', '1px dashed #444444');
 					}
 				},
 				stop: function( event, ui ) {
@@ -2368,7 +2360,7 @@ var design={
 			});						
 		},
 		resize: function(e, handles){
-			if(typeof handles == 'undefined') handles = 'se';
+			if(typeof handles == 'undefined') handles = 'n, s, w, e, se';
 			
 			if(handles == 'se') {var auto = true; e = e;}
 			else {var auto = false;}
@@ -2411,7 +2403,7 @@ var design={
 						}
 					}else{
 						e.data('block', false);
-						e.css('border', '1px dashed #444444');
+						//e.css('border', '1px dashed #444444');
 					}
 					var svg = e.find('svg');									
 					
@@ -2460,7 +2452,7 @@ var design={
 			this.unselect();
 			$('.labView.active .design-area').css('overflow', 'visible');
 			$jd(e).addClass('drag-item-selected');
-			$jd(e).css('border', '1px dashed #444444');	
+			//$jd(e).css('border', '1px dashed #444444');
 			$jd(e).resizable({ disabled: false, handles: 'e' });
 			$jd(e).draggable({ disabled: false });
 			design.popover('add_item_'+$(e).data('type'));
@@ -2495,7 +2487,7 @@ var design={
 			return;
 		},
 		setup: function(item){
-			if(item.type == 'clipart')
+            if(item.type == 'clipart')
 			{
 				$('.popover-title').children('span').html('Edit clipart');
 				
@@ -2535,9 +2527,10 @@ var design={
 			if(item.type == 'text'){
 				$('.popover-title').children('span').html('Edit text');
 			}
-			document.getElementById(item.type + '-width').value = parseInt(item.width);
-			document.getElementById(item.type + '-height').value = parseInt(item.height);
-			document.getElementById(item.type + '-rotate-value').value = 0;		
+            //todo: block with height+width
+			//document.getElementById(item.type + '-width').value = parseInt(item.width);
+			//document.getElementById(item.type + '-height').value = parseInt(item.height);
+			//document.getElementById(item.type + '-rotate-value').value = 0;
 			
 			$('.dropdown-color').popover({
 				html:true,				
@@ -2754,6 +2747,10 @@ var design={
 			});
 		}
 	},
+    menu: function(type){
+        $('.menu-left a').removeClass('active');
+        $('.add_item_' + type ).addClass('active');
+    },
 	popover: function(e){
 		$('.dg-options').css('display', 'none');
 		$('#options-'+e).css('display', 'block');

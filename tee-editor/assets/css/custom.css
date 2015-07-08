@@ -54,3 +54,118 @@
     height: 14px;
     cursor: pointer;
 }
+#cacheText {
+    float: left;
+    left: -999px;
+    position: absolute;
+    top: 0;
+    line-height: normal;
+}
+.design-area .drag-item {
+    display: block;
+    float: left;
+    position: absolute;
+    padding:1px;
+    opacity: 1;
+    filter:Alpha(Opacity=100)
+}
+.design-area .drag-item-selected {
+    //border: 1px dashed #444444;
+    cursor: move;
+    padding:0px;
+}
+.popover {
+    left: 34px;
+}
+.design-area .drag-item div{
+    display:none;
+}
+.design-area .drag-item-selected div{
+    width: 21px;
+    height: 21px;
+    position:absolute;
+    display:block;
+}
+.design-area .drag-item-selected div.glyphicons:before {
+    color: #333333;
+    font-size: 11px;
+    margin-top: -6px;
+    text-align: center;
+}
+.ui-icon-gripsmall-diagonal-se {
+    bottom: -19px;
+    right: -19px;
+    background-image: url("../images/scale.png");
+    position: absolute;
+    opacity: 0.8;
+    cursor: pointer;
+    background-position: 0;
+}
+.item-remove-on {
+    right: -30px;
+    top: -9px;
+    background-image: url("../images/delete.png");
+}
+.item-rotate-on {
+    bottom: -30px;
+    left: -9px;
+    background-image: url("../images/rotate.png");
+}
+.ui-resizable-e,
+.ui-resizable-w,
+.ui-resizable-s,
+.ui-resizable-n {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    background-color: rgba(255,255,255,0.2);
+    position: absolute;
+    opacity: 0.8;
+    width: 12px !important;
+    height: 12px !important;
+    cursor: default;
+}
+.ui-resizable-s,
+.ui-resizable-n{
+    left: 50%;
+    margin-left: -6px;
+}
+.ui-resizable-e,
+.ui-resizable-w{
+    top: 50%;
+    margin-top: -6px;
+}
+.ui-resizable-s{
+    bottom: -6px;
+}
+.ui-resizable-e{
+    right: -6px;
+}
+.ui-resizable-n{
+    top: -6px;
+}
+.ui-resizable-w{
+    left: -6px;
+}
+.drag-item-selected{
+    position: absolute;
+    -webkit-transform-origin: 0% 0%;
+    -ms-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    box-sizing: border-box;
+    background-image: -webkit-linear-gradient(left, #ddd 50%, #333 50%),-webkit-linear-gradient(left, #ddd 50%, #333 50%),-webkit-linear-gradient(top, #ddd 50%, #333 50%),-webkit-linear-gradient(top, #ddd 50%, #333 50%);
+    background-image: linear-gradient(to right, #dddddd 50%,#333333 50%),linear-gradient(to right, #dddddd 50%,#333333 50%),linear-gradient(to bottom, #dddddd 50%,#333333 50%),linear-gradient(to bottom, #dddddd 50%,#333333 50%);
+    background-color: transparent;
+
+    padding: 1px;
+    background-size: 8px 1px, 8px 1px, 1px 8px, 1px 8px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-animation: marching-ants-1 700ms;
+    animation: marching-ants-1 700ms;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-play-state: paused;
+    animation-play-state: running;
+}

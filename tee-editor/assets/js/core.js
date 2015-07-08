@@ -32,4 +32,5 @@ var app = {
 
 jQuery(function() {
 	app.ini(baseURL, dataUrls);
+    app.state.print_type='screen';
 });

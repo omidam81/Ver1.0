@@ -6,3 +6,7 @@ var dataUrls = {
     productPricing: 'product_pricing.json',
     swatches: 'swatches.json'
 };
+
+var assetsUrls = {
+    fonts: './assets/images/fonts/'
+};

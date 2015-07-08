@@ -25,7 +25,7 @@ $.widget("ui.rotatable", $.ui.mouse, {
         var handle;
 		if (!this.options.handle) {
 			handle = $(document.createElement('div'));
-    		handle.addClass('ui-rotatable-handle item-rotate-on glyphicons restart');
+    		handle.addClass('handle item-rotate-on');
 		}
         else {
             handle = this.options.handle;

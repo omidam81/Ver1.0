@@ -81,22 +81,29 @@
                                      >
                                     <div id="text-string" class="control-group" >
                                         <label>Enter text below</label>
-                                        <textarea id="enter-text"
-                                              class="form__textfield"
-                                              placeholder="Add your text here"
-                                              ></textarea>
+                                        <textarea id="enter-text" class="form__textfield" placeholder="Add your text here"></textarea>
                                     </div>
                                     <div class="edit_tool font" >
                                         <label class="no-bottom">Choose a font</label>
                                         <div id="font-select" class="fake-input svg-selector designer-dropdown control-group font-selection">
-                                            <img src="assets/images/helvetica.png">
+
                                         </div>
-                                        <div class="clearfix control-group font-color-selection"
-                                             >
-                                            <div class="fake-input color-picker standard designer-dropdown"
-                                                 title="Change color" >
-                                                <div class="swatch" title="" style="background-color:rgb(0,0,0);"
-                                                     ></div>
+                                        <div id="font-select-menu" class="containertip">
+                                            <select class="category-menu">
+                                                <option value="Popular">Popular</option>
+                                            </select>
+                                            <ul class="options">
+
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix control-group font-color-selection"                                             >
+                                            <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text" >
+                                                <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                                                <div class="colors shirt-colors containertip"><!--containertip--open -->
+                                                    <!-- <ul class="colors-in-use"></ul>
+                                                    <hr class="color-picker__divider">-->
+                                                    <ul class="all-colors"></ul>
+                                                </div>
                                             </div>
                                             <div class="clearfix" ></div>
                                         </div>
@@ -105,8 +112,7 @@
 
                                         <div class="clearfix control-group outline-selection" >
                                             <div ><select id="outline-select"
-                                                                                   class="form-control outline-selector designer-select form__select_menu"
-                                                                                   >
+                                                          class="form-control outline-selector designer-select form__select_menu">
                                                 <option value="0" >No outline</option>
                                                 <option value="0.33" >Thin outline</option>
                                                 <option value="0.66" >Medium outline
@@ -114,11 +120,15 @@
                                                 <option value="1" >Thick outline</option>
                                             </select></div>
                                         </div>
-                                        <div class="clearfix control-group outline-color-selection"
-                                             >
-                                            <div class="fake-input color-picker standard designer-dropdown" title="Change color" >
+                                        <div class="clearfix control-group outline-color-selection">
+                                            <div class="fake-input color-picker standard designer-dropdown"
+                                                 title="Change color" data-value="outline" >
                                                 <div class="swatch" title="Black" style="background-color:#000000;"></div>
-                                                <div class="colors shirt-colors containertip"></div>
+                                                <div class="colors shirt-colors containertip">
+                                                    <!-- <ul class="colors-in-use"></ul>
+                                                    <hr class="color-picker__divider">-->
+                                                    <ul class="all-colors"></ul>
+                                                </div>
                                             </div>
                                             <div class="clearfix" ></div>
                                         </div>
@@ -140,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+                    <div id="cacheText"></div>
                     <!-- design area -->
                     <div id="design-area" class="div-design-area product-view">
                         <div id="app-wrap" class="div-design-area new-editor-container">
