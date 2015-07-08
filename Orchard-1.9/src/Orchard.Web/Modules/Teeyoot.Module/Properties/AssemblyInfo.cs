@@ -6,7 +6,7 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Teebay.Module")]
+[assembly: AssemblyTitle("Teeyoot.Module")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Orchard")]
@@ -20,7 +20,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7c9ab008-ed1e-4764-aea7-c28c7fa442ec")]
+[assembly: Guid("e0ccca5c-efb8-43f2-a3cc-e3222a742726")]
 
 // Version information for an assembly consists of the following four values:
 //
