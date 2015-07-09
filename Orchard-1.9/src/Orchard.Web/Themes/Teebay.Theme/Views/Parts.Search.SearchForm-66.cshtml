@@ -1,8 +1,5 @@
-﻿@using Orchard.Search.ViewModels;
-
-@using(Html.BeginForm("index", "search", new { area = "Orchard.Search" }, FormMethod.Get, new { @class = "tb-search-form" })) {    
-    @Html.TextBox("q", (SearchViewModel)Model.ViewModel.Query, new { placeholder = T("Search") })
-    @Html.Hidden("culture", WorkContext.CurrentCulture)
+﻿@using(Html.BeginForm("index", "search", new { area = "Teeyoot.Module" }, FormMethod.Get, new { @class = "tb-search-form" })) {    
+    @Html.TextBox("q", null, new { placeholder = T("Search") })
     <button type="submit">
         <img src="~/Themes/Teebay.Theme/Content/search-ico.png" /></button>
 }
