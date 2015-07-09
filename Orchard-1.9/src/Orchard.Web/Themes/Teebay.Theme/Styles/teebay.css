@@ -91,12 +91,12 @@
 }
 
 .zone-header {
-    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox; /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Chrome */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    /*justify-content: center;*/
+    justify-content: space-between;
     margin: 0 auto;
     width: 65%;
 }
@@ -131,6 +131,7 @@
     width: 300px;
     margin-bottom: 0px;
     background-color: #ff4f00;
+    margin: 30px 0 30px 0;
 }
 
     .tb-button-orange:hover {
@@ -919,7 +920,7 @@
 .start-campaign-title {
     font-size: 22px;
     /*color: #ff4f00;*/
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .start-steps-list {
@@ -972,12 +973,14 @@
 
 .reviews-title {
     font-size: 22px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .featured-campaigns-title {
     font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .tb-layout-footer {
@@ -1204,14 +1207,16 @@
     margin-right: 1%;
     margin-left: 1%;
 }
-.progress-bar:first-child {
-    margin-right: 1%;
-    margin-left: 0;
-}
-.progress-bar:last-child {
-    margin-right: 0;
-    margin-left: 1%;
-}
+
+    .progress-bar:first-child {
+        margin-right: 1%;
+        margin-left: 0;
+    }
+
+    .progress-bar:last-child {
+        margin-right: 0;
+        margin-left: 1%;
+    }
 
 .tee-preview {
     width: 32%;
@@ -1220,21 +1225,23 @@
     padding-top: 15px;
     height: 280px;
 }
-.tee-preview:first-child {
-    width: 32%;
-    margin-right: 2%;
-    background-color: #e8eced;
-    padding-top: 15px;
-    height: 280px;
-}
-.tee-preview:last-child {
-    width: 32%;
-    margin-right: 0;
-    margin-left: 0;
-    background-color: #e8eced;
-    padding-top: 15px;
-    height: 280px;
-}
+
+    .tee-preview:first-child {
+        width: 32%;
+        margin-right: 2%;
+        background-color: #e8eced;
+        padding-top: 15px;
+        height: 280px;
+    }
+
+    .tee-preview:last-child {
+        width: 32%;
+        margin-right: 0;
+        margin-left: 0;
+        background-color: #e8eced;
+        padding-top: 15px;
+        height: 280px;
+    }
 
 .preview-img {
     text-align: center !important;
@@ -1253,10 +1260,11 @@
     width: 32% !important;
     margin-right: 1%;
 }
-.campaigns-text:last-child {
-    margin-right: 0;
-    margin-left: 1%;
-}
+
+    .campaigns-text:last-child {
+        margin-right: 0;
+        margin-left: 1%;
+    }
 
     .campaigns-text h3 {
         font-size: 15px;
@@ -1365,6 +1373,25 @@
 }
 
 .zone-content .orchard-layouts-root .span-12 {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    /*margin-top: 40px;
+    margin-bottom: 40px;*/
 }
+
+.intodduction-video-title {
+    text-align: center;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+}
+
+.zone-header ..widget-authenticatedMenu,
+.zone-header .widget-anonimousMenu {
+    /*width: 540px;*/
+    float: right;
+    width: auto;
+}
+
+    .zone-header .widget-anonimousMenu nav {
+        float: right;
+    }
