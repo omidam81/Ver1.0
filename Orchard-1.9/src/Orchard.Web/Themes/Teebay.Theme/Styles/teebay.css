@@ -211,6 +211,10 @@
     padding-bottom: 5%;
       
 }
+.banner-title .title-logo{
+    text-align: center;
+    font-size: 46px;
+}
 
 @media all and (max-width: 1750px) {
  
@@ -219,12 +223,18 @@
         width: 50%;
          padding-bottom: 7%;  
         }
+        .banner-title .title-logo {
+            font-size: 46px !important;
+        }
 }
 @media all and (max-width: 1550px) {
  
       .banner-title{  
         font-size: 48px!important;
         width: 60%;  
+        }
+      .banner-title .title-logo {
+            font-size: 46px !important;
         }
 }
 @media all and (max-width: 1400px) {
@@ -235,6 +245,9 @@
         font-size: 48px!important;
         width: 70%;  
         }
+      .banner-title .title-logo {
+            font-size: 46px !important;
+        }
 }
 @media all and (max-width: 1300px) {
     .banner-title{  
@@ -242,6 +255,9 @@
     width: 70%; 
     padding-bottom: 7%; 
 }
+    .banner-title .title-logo {
+            font-size: 46px !important;
+        }
     /*.tb-layout-before-main {
   margin-bottom: -280px;
 }*/
@@ -260,7 +276,10 @@
     padding-top: 5%;
     padding-bottom: 4%; 
 }
-    
+    .banner-title .title-logo {
+            font-size: 42px !important;
+        }
+
     .tb-search-form input[type=text] {
         width: 180px;
     }
@@ -284,6 +303,9 @@
     padding-top: 5%;
     padding-bottom: 5%; 
 }
+     .banner-title .title-logo {
+            font-size: 42px !important;
+        }
     .tb-search-form input[type=text] {
         width:100px;
     }
@@ -307,6 +329,9 @@
          width: 80%;
         font-size: 44px!important;
     }
+     .banner-title .title-logo {
+            font-size: 42px !important;
+        }
     .tb-search-form input[type=text] {
         width: 40% !important;
     }
@@ -383,6 +408,9 @@
         width: 80%;
         font-size: 36px !important;
     }
+    .banner-title .title-logo {
+            font-size: 34px !important;
+        }
 }
 @media all and (max-width: 770px) {
     .tb-search-form input[type=text] {
@@ -404,6 +432,9 @@
         width: 80%;
         font-size: 34px !important;
     }
+     .banner-title .title-logo {
+            font-size: 32px !important;
+        }
 }
 @media all and (max-width: 700px) {
     
@@ -420,6 +451,9 @@
         padding-bottom: 0%;
         font-size: 24px !important;
     }
+     .banner-title .title-logo {
+            font-size: 22px !important;
+        }
 }
 @media all and (max-width: 650px) {
 
@@ -480,6 +514,9 @@
         padding-bottom: 0%;
         font-size: 24px !important;
     }
+     .banner-title .title-logo {
+            font-size: 22px !important;
+        }
 }
 @media all and (max-width: 530px) {
      .tb-layout-before-main {
@@ -496,6 +533,9 @@
         padding-bottom: 0%;
         font-size: 20px !important;
     }
+     .banner-title .title-logo {
+            font-size: 18px !important;
+        }
 }
 
 @media all and (max-width: 450px) {
@@ -509,6 +549,9 @@
         padding-bottom: 0%;
         font-size: 20px !important;
     }
+     .banner-title .title-logo {
+            font-size: 18px !important;
+        }
 }
 
 #menu-icon {
