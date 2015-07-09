@@ -52,6 +52,9 @@
       <HintPath>..\..\lib\autofac\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Braintree-2.43.0">
+      <HintPath>..\packages\Braintree.2.43.0\lib\Braintree-2.43.0.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\..\lib\owin\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
@@ -164,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\Sites.config" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\teebay.bqt.me package.pubxml" />
     <None Include="Properties\PublishProfiles\teebay.bqt.me.pubxml" />
     <None Include="Web.Debug.config">
