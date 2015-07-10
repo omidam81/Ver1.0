@@ -1,0 +1,14 @@
+﻿@{
+    Layout.Title = T("Add FAQ Entry").ToString();
+}
+
+@Html.ValidationSummary()
+
+@Display(Model)
+
+@*@using (Html.BeginFormAntiForgeryPost()) {
+    
+    // Model is a Shape, calling Display() so that it is rendered using the most specific template for its Shape type
+    
+}*@
+

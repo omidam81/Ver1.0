@@ -20,7 +20,35 @@ namespace Teeyoot.Module
         {
             return new[] {
                 new RouteDescriptor {
-                    Priority = 5,
+                    Route = new Route(
+                        "Admin/FAQ",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "FaqAdmin"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/FAQ/Add",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "FaqAdmin"},
+                            {"action", "AddFaqEntry"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Priority = 11,
                     Route = new Route(
                         "Teeyoot/{controller}/{action}",
                         new RouteValueDictionary {

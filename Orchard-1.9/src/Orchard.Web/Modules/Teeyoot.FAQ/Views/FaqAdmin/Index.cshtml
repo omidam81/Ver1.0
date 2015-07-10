@@ -1,0 +1,8 @@
+﻿@{
+    Layout.Title = T("FAQ").ToString();
+}
+
+<div>
+    Welcome to FAQ Admin!
+    <a class="button primaryAction" href="@Url.Action("AddFaqEntry", new { returnUrl = Request.Url.ToString() })">@T("Add New FAQ Entry")</a>
+</div>

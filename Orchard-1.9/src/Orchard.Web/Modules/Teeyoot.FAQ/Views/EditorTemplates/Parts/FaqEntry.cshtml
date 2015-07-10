@@ -1,0 +1,30 @@
+﻿@model Teeyoot.FAQ.Models.FaqEntryPart
+<h2>@Model.TypeDefinition.DisplayName</h2>
+
+<fieldset>
+    @Html.LabelFor(m => m.Section, T("Section"))
+    @Html.DropDownListFor(m => m.Section, Model.AvailableSections.Select(l => new SelectListItem
+                                            {
+                                                Selected = l.Id == Model.Section.Id,
+                                                Text = l.Name,
+                                                Value = l.Id.ToString()
+                                            }))
+
+    @*<span class="hint">@T("The Layer where the Widget will be rendered.")</span>*@
+</fieldset>
+<fieldset>
+    @Html.LabelFor(m => m.Question, T("Question"))
+    @Html.TextBoxFor(m => m.Question, new { @class = "text large" })
+    @*<span class="hint">@T("The position of the Widget inside the Zone.")</span>*@
+</fieldset>
+<fieldset>
+    @Html.LabelFor(m => m.Language, T("Language"))
+    @Html.DropDownListFor(m => m.Language, Model.AvailableLanguages.Select(l => new SelectListItem 
+                                            {
+                                                Selected = l.Code == Model.Language.Code,
+                                                Text = l.Name,
+                                                Value = l.Code 
+                                            }))
+    @*<span class="hint">@T("The Zone in the Layout where the Widget will be rendered.")</span>*@
+</fieldset>
+
