@@ -6,12 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A11FB407-2B62-42D2-97B6-895056579905}</ProjectGuid>
+    <ProjectGuid>{C1227A9D-EBE0-4776-AF87-D2F677CE2200}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Teeyoot.Module</RootNamespace>
-    <AssemblyName>Teeyoot.Module</AssemblyName>
+    <RootNamespace>Teeyoot.FAQ</RootNamespace>
+    <AssemblyName>Teeyoot.FAQ</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
@@ -47,9 +47,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Braintree-2.43.0">
-      <HintPath>..\..\..\packages\Braintree.2.43.0\lib\Braintree-2.43.0.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -70,26 +67,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\wizard.js" />
-    <Content Include="Styles\Payment.css" />
-    <Content Include="Styles\Search.css" />
-    <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Payment.cshtml" />
-    <Content Include="Views\Wizard\Index.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -103,53 +85,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Controllers\WizardController.cs" />
-    <Compile Include="Migrations.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\CampaignProductRecord.cs" />
-    <Compile Include="Models\CampaignRecord.cs" />
-    <Compile Include="Models\CurrencyRecord.cs" />
-    <Compile Include="Models\FontRecord.cs" />
-    <Compile Include="Models\LinkProductColorRecord.cs" />
-    <Compile Include="Models\LinkProductSizeRecord.cs" />
-    <Compile Include="Models\ProductColorRecord.cs" />
-    <Compile Include="Models\ProductGroupRecord.cs" />
-    <Compile Include="Models\ProductHeadlineRecord.cs" />
-    <Compile Include="Models\ProductImageRecord.cs" />
-    <Compile Include="Models\ProductRecord.cs" />
-    <Compile Include="Models\ProductSizeRecord.cs" />
-    <Compile Include="Models\SizeCodeRecord.cs" />
-    <Compile Include="Models\SwatchRecord.cs" />
-    <Compile Include="Models\TeeyootUserPart.cs" />
-    <Compile Include="Models\TeeyootUserPartRecord.cs" />
     <Compile Include="Routes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Drivers\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Services\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
-  <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

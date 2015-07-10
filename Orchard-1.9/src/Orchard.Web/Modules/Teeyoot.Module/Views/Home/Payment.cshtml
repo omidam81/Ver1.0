@@ -1,0 +1,109 @@
+﻿@{
+    Style.Include("teebay.css");
+}
+
+
+<form action="@Url.Action("CreateTransaction")" method="POST" id="braintree-payment-form">
+     <div class="checkout__container">
+        <div class="accordion">
+            <div class="contLable">
+
+                <label class="accordion__label" for="new-credit-card">
+                    Credit Card
+                    <div class="accordion__sub_label accordion__sub_label--sticky">
+                        <ul class="credit_card_list js_credit_card_list">
+                            <li>
+                                <div class="credit_card credit_card--visa js-credit-card-visa credit_card--disabled"></div>
+                            </li>
+                            <li>
+                                <div class="credit_card credit_card--amex js-credit-card-amex credit_card--disabled"></div>
+                            </li>
+                            <li><div class="credit_card credit_card--mastercard js-credit-card-mastercard credit_card--disabled"></div></li>
+                            <li><div class="credit_card credit_card--discover js-credit-card-discover credit_card--disabled"></div></li>
+                        </ul>
+                    </div>
+                </label>
+                @Html.AntiForgeryToken()
+                <div class="accordion__content">
+                    <input class="form__textfield form__textfield--large js-cc-number" data-stripe="number" data-encrypted-name="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
+                    <div class="checkout_form__row">
+                        <div class="checkout__input--medium form-field-pair">
+                            <div class="mmYYYY">
+                                <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
+                                <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
+                                <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " data-encrypted-name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
+                            </div>
+
+                        </div>
+                        <div class="checkout__input--small">
+                            <div class="checkout__tool_tip_container">
+                                <div class="checkout__tool_tip--cvc" data-tooltip="3 or 4 digit security code usually located on the back of the card.">
+                                    <i class="ss-icon ss-standard tool_tip__toggle"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="accordion__item" style="margin-top:10px">
+
+                <label class="accordion__label" for="paypal">
+                    <p>
+                        <div id="paypal-container" style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"></div>
+                    </p>
+                </label>
+            </div>
+        </div>
+        <div class="checkout_form_footer" style="margin-top:10px">
+            <div class="checkout_form_footer__submit_wrap js_submit_wrap_cc">
+                <button class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="Place Your Order">Place Your Order</button>
+                <h2 style="background-color:yellow">@ViewBag.Result</h2>
+                <p class="tos_agreement">
+                    By clicking 'Place Your Order' you agree to our
+                    <a href='/about/privacy' target='_blank'>privacy policy</a>
+                    and <a href='/about/terms' target='_blank'>terms of service</a>
+                    .
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+<input type="hidden" id="Token" value=@ViewBag.ClientToken>
+
+<script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>
+<script type="text/javascript">
+    var braintree = Braintree.create("MIIBCgKCAQEA7ip7pligm7Ncb/KirwXTtZy4PrVM59+NyNwiSydzNBW49QaYQv60XoPHAquih1q1y4vb8+uVjr6RMUhQu70KszzL+az3YGwifipQuAhPliHQOvtf9HaraR4ca8shywaj6vI9R7icxL06ZuwhZPAV4VsNSHpaFug+FZ6JZVYAgQIsRwEaySm57YEY1lgAYC10gamM4d5rwpxLDjoQJwWUIUyf1WSS7yL3/ix3cQmfphlE/PkPg2l8CAc/uEqRZZRFF8YXhsbMg+ILyxD3t4NjaeyMjXYlboI/tBZm7jQCRblq/mN3Z2WzmFsOTloNLTOI9yXNd9Ep+SsIUgspbCLUDwIDAQAB");
+    braintree.onSubmitEncryptForm('braintree-payment-form');
+</script>
+<script type="text/javascript" src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<script type="text/javascript">
+    //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
+    var token = document.getElementById("Token").value;
+    braintree.setup(token, "paypal",
+        {
+            container: "paypal-container",
+            onPaymentMethodReceived: function (obj) {
+                document.querySelector(".contLable").style.display = "none";
+                document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
+                document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
+                document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
+                document.getElementById("bt-pp-cancel").style.background = "white";
+                document.querySelector(".accordion__item").style.borderTop = "0px";
+                document.querySelector(".accordion").style.height = "30px";
+                doSomethingWithTheNonce(obj.nonce);
+            }, onCancelled: function () {
+                document.querySelector(".contLable").style.display = "inline";
+                document.querySelector(".accordion").style.height = "215px";
+            }
+
+        });
+</script>

@@ -1,0 +1,381 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+}
+
+table {
+    background-color: transparent;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: right;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 970px;
+        width: 970px;
+    }
+}
+
+
+/* Shared properties */
+/* Repeated elements */
+.flow-steps .flow-step {
+    position: relative;
+}
+
+    .flow-steps .flow-step .number {
+        background: #77cb4c;
+    }
+
+    .flow-steps .flow-step .dot {
+        background: #77cb4c;
+        float: left;
+        margin: 0 0 0 16px;
+    }
+
+    .flow-steps .flow-step strong {
+        color: #77cb4c;
+    }
+
+    .flow-steps .flow-step.active .number {
+        background: #56b8ea;
+    }
+
+    .flow-steps .flow-step.active strong {
+        color: #56b8ea;
+    }
+
+    .flow-steps .flow-step.active .flow-step-before .dot {
+        background: #77cb4c;
+    }
+
+    .flow-steps .flow-step.active .flow-step-after .dot {
+        background: #dbdbdb;
+    }
+
+.flow-step-before {
+    left: 0;
+    position: absolute;
+    top: 20px;
+}
+
+.flow-step-after {
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
+
+
+.number,
+#sun-circle {
+    background: #56b8ea;
+    border-radius: 50%;
+    color: white;
+    font-size: 48px;
+    font-weight: 900;
+    height: 80px;
+    line-height: 76px;
+    margin: 0 auto;
+    text-align: center;
+    width: 80px;
+}
+
+.number {
+    -webkit-border-radius: 40px;
+}
+
+span.number {
+    display: inline-block;
+}
+
+
+
+.dot {
+    background: #56b8ea;
+    border-radius: 2px;
+    height: 4px;
+    margin: 16px auto;
+    width: 4px;
+}
+
+.dots {
+    position: absolute;
+    top: 38px;
+}
+
+    .dots .dot {
+        float: left;
+        margin: 0 0 0 16px;
+    }
+
+
+
+.lab {
+    background: #f5f5f5;
+    padding: 20px 0 80px;
+}
+
+.lab-steps.flow-steps {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+    .lab-steps.flow-steps .flow-step {
+        float: left;
+        width: 33%;
+    }
+
+        .lab-steps.flow-steps .flow-step .number {
+            font-size: 29px;
+            height: 50px;
+            line-height: 48px;
+            width: 50px;
+        }
+
+        .lab-steps.flow-steps .flow-step strong {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+.flow-step-before,
+.flow-step-after {
+    top: 22px;
+}
+
+
+.flow-steps .flow-step.active ~ .flow-step .number {
+    background: #dbdbdb;
+}
+
+.flow-steps .flow-step.active ~ .flow-step .dot {
+    background: #dbdbdb;
+}
+
+.flow-steps .flow-step.active ~ .flow-step strong {
+    color: #dbdbdb;
+}
+
+
+
+.Footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+}
+
+.SlideContainer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.Slides {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+    .Slides > div {
+        float: left;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .Slides .Content {
+        margin-left: 20%;
+        margin-top: 100px;
+    }
+
+        .Slides .Content a {
+            font-size: 30px;
+        }
+
+input[type=range], ::-moz-range-track, ::-ms-track {
+    -webkit-appearance: none;
+    background-color: #3f91e5;
+    width: 250px;
+    height: 20px;
+}
+
+::-webkit-slider-thumb, ::-moz-range-thumb, ::-ms-thumb {
+    -webkit-appearance: none;
+    background-color: #666;
+    width: 10px;
+    height: 20px;
+}
+
+.Left {
+    background: #ff4f00;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6px 18px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    height: 44px;
+    width: 168px;
+    text-decoration: none;
+    border: 0;
+}
+
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid white;
+    /*required for proper track sizing in FF*/
+    width: 300px;
+}
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 300px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF4F00;
+        margin-top: -4px;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ccc;
+        }
+
+    input[type=range]::-moz-range-track {
+        width: 300px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF4F00;
+    }
+
+    /*hide the outline behind the border*/
+    input[type=range]:-moz-focusring {
+        outline: 1px solid white;
+        outline-offset: -1px;
+    }
+
+    input[type=range]::-ms-track {
+        width: 300px;
+        height: 5px;
+        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+        background: transparent;
+        /*leave room for the larger thumb to overflow with a transparent border */
+        border-color: transparent;
+        border-width: 6px 0;
+        /*remove default tick marks*/
+        color: transparent;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+
+    input[type=range]::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF4F00;
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+        background: #888;
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+        background: #ccc;
+    }
+
+.block {
+    background: #f5f7f7;
+    border: 1px solid #ebeef0;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    padding: .5rem;
+    width: 100%;
+}
+
+    .block .thumbnail_wrapper {
+        height: 73px;
+        width: 64px;
+        border: 1px solid #d8dddf;
+        border-radius: 3px;
+        overflow: hidden;
+        -webkit-transition: background-color 400ms;
+        transition: background-color 400ms;
+        background-size: contain;
+    }
