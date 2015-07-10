@@ -77,8 +77,10 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\wizard.js" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\Search.css" />
+    <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -86,6 +88,8 @@
     <Content Include="Module.txt" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\Wizard\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -100,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Routes.cs" />
   </ItemGroup>
   <ItemGroup>
