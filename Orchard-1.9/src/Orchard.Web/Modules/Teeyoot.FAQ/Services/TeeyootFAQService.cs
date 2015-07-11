@@ -226,11 +226,12 @@ namespace Teeyoot.FAQ.Services
                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
                            
                            " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>",
-                           Section = new FaqSectionRecord {
+                           FaqSectionRecord = new FaqSectionRecord
+                           {
                                Name = "Section 1",
                                Id = 1 
                            },
-                           Language = new LanguageRecord
+                           LanguageRecord = new LanguageRecord
                            {
                                Name = "eng"
                            }
