@@ -27,9 +27,11 @@
         }
 
 .widget-mainSearch {
-    height: 44px;
+    height: 32px;
     width: 36%;
-    float: left;
+    /*float: left;*/
+    text-align: -webkit-center;
+    text-align: -moz-center;
     margin-left: 8px;
 }
 
@@ -67,7 +69,7 @@
 .button-create-search-container {
     position: absolute;
     width: 100%;
-    margin-top: -104px;
+    margin-top: -54px;
 }
 
     .button-create-search-container button {
@@ -204,15 +206,16 @@
 .tb-search-form {
     border: solid 1px #e8eced;
     border-radius: 10px;
-    margin-top: 1px;
+    margin-top: 6px;
     font-size: 12px;
     padding-left: 5px;
+    max-width: 300px;
 }
 
     .tb-search-form button {
         cursor: pointer;
         background: #fff;
-        height: 40px;
+        height: 30px;
         width: 30px;
         margin: 0;
         border-left-width: 0;
@@ -227,7 +230,7 @@
     }
 
     .tb-search-form input[type=text] {
-        height: 40px;
+        height: 30px;
         width: 88%;
         float: left;
         border: 0;
@@ -546,7 +549,11 @@
         height: 446px;
     }
 }
-
+@media all and (max-width: 1366px){
+    .widget-createSearchButtons {
+        height: 442px;
+    }
+}
 @media all and (max-width: 1355px) {
     .widget-mainSearch {
         width: 23%;
@@ -554,6 +561,9 @@
 
     .tb-search-form input[type=text] {
         width: 78%;
+    }
+    .widget-createSearchButtons {
+        height: 430px;
     }
 }
 
@@ -565,6 +575,9 @@
     .tb-search-form input[type=text] {
         width: 78%;
     }
+    .widget-createSearchButtons {
+        height: 442px;
+    }
 }
 
 @media all and (max-width: 1322px) {
@@ -574,6 +587,9 @@
 
     .tb-search-form input[type=text] {
         width: 75%;
+    }
+    .widget-createSearchButtons {
+        height: 428px;
     }
 }
 
@@ -1914,7 +1930,7 @@
 .start-campaign-title {
     font-size: 22px;
     /*color: #ff4f00;*/
-    margin-top: 33px;
+    margin-top: 50px;
 }
 
 .start-steps-list {
@@ -1980,13 +1996,13 @@
 
 .reviews-title {
     font-size: 22px;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 
 .featured-campaigns-title {
     font-size: 22px;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 25px;
 }
 
@@ -2425,7 +2441,7 @@
     font-weight: inherit;
     font-style: inherit;
     margin-bottom: 20px;
-    margin-top: 0px;
+    margin-top: 20px;
 }
 
 .zone-header ..widget-authenticatedMenu,
