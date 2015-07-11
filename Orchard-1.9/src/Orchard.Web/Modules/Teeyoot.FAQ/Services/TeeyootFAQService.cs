@@ -22,7 +22,7 @@ namespace Teeyoot.FAQ.Services
             _languageService = languageService;
         }
 
-        public IEnumerable<Models.FaqSectionRecord> GetFaqSections()
+        public IEnumerable<FaqSectionRecord> GetFaqSections()
         {
             return _sectionRepository.Table.ToList();
         }
@@ -74,5 +74,247 @@ namespace Teeyoot.FAQ.Services
         {
             return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>().Where(fe => fe.LanguageRecord.Code == language && fe.FaqSectionRecord.Id == section);
         }
+
+        public IEnumerable<FaqSectionRecord> GetFaqSectionsMoq()
+        {
+            var array = new FaqSectionRecord[] {
+                
+                new FaqSectionRecord 
+                {
+                    Id = 1,
+                    Name = "Section 1",
+                    Entries = new FaqEntryPartRecord[] {
+                        new FaqEntryPartRecord
+                        {
+                            Id = 1,
+                            Question = "Question 1"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 2"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 3"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 4"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 5"
+                        }
+
+                    }
+                },
+                new FaqSectionRecord 
+                {
+                    Id = 1,
+                    Name = "Section 2",
+                    Entries = new FaqEntryPartRecord[] {
+                        new FaqEntryPartRecord
+                        {
+                            Id = 1,
+                            Question = "Question 2.1"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 2.2"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 2.3"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 2.4"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 2.5"
+                        }
+
+                    }
+                },
+                new FaqSectionRecord 
+                {
+                    Id = 1,
+                    Name = "Section 3",
+                    Entries = new FaqEntryPartRecord[] {
+                        new FaqEntryPartRecord
+                        {
+                            Id = 1,
+                            Question = "Question 3.1"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 3.2"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 3.3"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 3.4"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 3.5"
+                        }
+
+                    }
+                },
+                new FaqSectionRecord 
+                {
+                    Id = 1,
+                    Name = "Section 4",
+                    Entries = new FaqEntryPartRecord[] {
+                        new FaqEntryPartRecord
+                        {
+                            Id = 1,
+                            Question = "Question 4.1"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 4.2"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 4.3"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 4.4"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 4.5"
+                        }
+
+                    }
+                }
+                
+                
+            };
+            return array;
+        }
+
+        public FaqEntryPartRecord GetFaqEntryPartRecordById(int id)
+        {
+            var record = new FaqEntryPartRecord
+                       {
+                           Id = 1,
+                           Question = "Question 1",
+                           Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>",
+                           Section = new FaqSectionRecord {
+                               Name = "Section 1",
+                               Id = 1 
+                           },
+                           Language = new LanguageRecord
+                           {
+                               Name = "eng"
+                           }
+                       };
+            return record;
+
+        }
+
+        public FaqSectionRecord GetFaqSectionRecordById(int id)
+        {
+            var record = new FaqSectionRecord
+            {
+                Id = 1,
+                Name = "Section 1",
+                 Entries = new FaqEntryPartRecord[] {
+                        new FaqEntryPartRecord
+                        {
+                            Id = 1111,
+                            Question = "Question 1",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf  dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 2,
+                            Question = "Question 2",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf  dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 3,
+                            Question = "Question 3",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 4,
+                            Question = "Question 4",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                        new FaqEntryPartRecord
+                        {
+                            Id = 5,
+                            Question = "Question 5",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                         new FaqEntryPartRecord
+                        {
+                            Id = 6,
+                            Question = "Question 6",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                         new FaqEntryPartRecord
+                        {
+                            Id = 7,
+                            Question = "Question 7",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        },
+                         new FaqEntryPartRecord
+                        {
+                            Id = 8,
+                            Question = "Question 8",
+                            Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
+                           
+                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>"
+                        }
+                    }                              
+            };
+            return record;
+
+         }
     }
+
 }

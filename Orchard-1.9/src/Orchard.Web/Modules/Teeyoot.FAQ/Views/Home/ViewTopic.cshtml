@@ -1,0 +1,41 @@
+﻿@{
+    Style.Include("FAQ.css");
+    @model Teeyoot.FAQ.Models.FaqEntryPartRecord
+
+}
+
+
+
+<div class="top-faq-banner">
+
+    <p class="search-faq-text">@T("Welcome to Teeyoot Answers")</p>
+
+    <span class="search-faq-place">
+        <input type="text" id="searchFaq" maxlength="100" value="" placeholder="Have a Question? Ask or enter a search term here." class="search-faq-input">
+        <span>
+            <button id="btn-faq" type="submit">
+                <img src="/Themes/Teebay.Theme/Content/search-ico.png">
+            </button>
+        </span>
+    </span>
+
+</div>
+
+<div class="text-area">
+
+    <div class="faq-nav-div">
+        <a class="faq-navigation" href="~/FAQ">Home</a> > <a class="faq-navigation" href="~/FAQ/Section/@Model.Section.Id">@Model.Section.Name</a> > <span class="faq-navigation faq-current-navigation"> @Model.Question</span>
+    </div>
+    <div class="question-topic">
+        @Model.Question
+    </div>
+
+    <div class="answer-topic">
+        @Html.Raw(Model.Answer)
+    </div>
+
+  
+
+
+
+</div>

@@ -82,9 +82,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Styles\FAQ.css" />
+    <Content Include="Styles\images\faq.png" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +91,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\FaqAdmin\Index.cshtml" />
     <Content Include="Views\FaqAdmin\AddFaqEntry.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ViewTopic.cshtml" />
+    <Content Include="Views\Home\ViewSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -105,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FaqAdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Drivers\FaqEntryPartDriver.cs" />
     <Compile Include="Handlers\FaqEntryPartHandler.cs" />
     <Compile Include="Mirgations.cs" />

@@ -47,6 +47,49 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 },
+               
+                new RouteDescriptor {
+                    Route = new Route(
+                        "FAQ",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "FAQ/Topic/{topicId}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
+                            {"action", "ViewTopic"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },
+                 new RouteDescriptor {
+                    Route = new Route(
+                        "FAQ/Section/{sectionId}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
+                            {"action", "ViewSection"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },
                 new RouteDescriptor {
                     Priority = 11,
                     Route = new Route(

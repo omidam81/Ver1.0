@@ -1,0 +1,64 @@
+﻿@{
+    Style.Include("FAQ.css");
+    @model Teeyoot.FAQ.Models.FaqSectionRecord
+
+}
+
+
+
+<div class="top-faq-banner">
+
+    <p class="search-faq-text">@T("Welcome to Teeyoot Answers")</p>
+
+    <span class="search-faq-place">
+        <input type="text" id="searchFaq" maxlength="100" value="" placeholder="Have a Question? Ask or enter a search term here." class="search-faq-input">
+        <span>
+            <button id="btn-faq" type="submit">
+                <img src="/Themes/Teebay.Theme/Content/search-ico.png">
+            </button>
+        </span>
+    </span>
+
+</div>
+
+<div class="text-area">
+    <div class="faq-nav-div">
+        <a class="faq-navigation" href="~/FAQ">Home</a> > <span class="faq-navigation faq-current-navigation">@Model.Name</span> 
+    </div>
+    <div class="section-name">
+        @Model.Name
+    </div>
+
+@foreach (var entry in Model.Entries)
+{
+
+    <div class="section-name question-sec">
+ 
+        @Html.ActionLink(entry.Question, "ViewTopic", new { topicId = entry.Id })
+    </div>
+        <div class="answer-topic answer-topic-short section-name">
+            <div class="answer answer-topic answer-topic-short ">
+                @Html.Raw(entry.Answer)
+            </div>
+            <div class="btn-read-article">
+                <a href="~/FAQ/Topic/@entry.Id" class="btn btn-pill">
+                    <span class="desk-view-text">Read Article </span>
+                </a>
+            </div>
+        </div>
+
+   
+
+
+}
+
+  
+    
+
+    
+
+
+
+
+
+</div>
