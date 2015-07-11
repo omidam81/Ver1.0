@@ -11,5 +11,11 @@ namespace Teeyoot.FAQ.Services
     public interface ITeeyootFaqService : IDependency 
     {
         IEnumerable<FaqSectionRecord> GetFaqSections();
+
+        IEnumerable<FaqSectionRecord> GetFaqSectionsMoq();
+
+        FaqEntryPartRecord GetFaqEntryPartRecordById(int id);
+
+        FaqSectionRecord GetFaqSectionRecordById(int id);
     }
 }
