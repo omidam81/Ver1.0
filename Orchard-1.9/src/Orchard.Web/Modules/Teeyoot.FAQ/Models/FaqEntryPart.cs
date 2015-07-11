@@ -2,6 +2,7 @@
 using Orchard.Core.Common.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,15 +25,19 @@ namespace Teeyoot.FAQ.Models
 
         public LanguageRecord Language
         {
-            get { return Retrieve(p => p.Language); }
-            set { Store(p => p.Language, value); }
+            get { return Record.LanguageRecord; }
+            set { Record.LanguageRecord = value; }
         }
 
         public FaqSectionRecord Section
         {
-            get { return Retrieve(p => p.Section); }
-            set { Store(p => p.Section, value); }
+            get { return Record.FaqSectionRecord; }
+            set { Record.FaqSectionRecord = value; }
         }
+
+        public string LanguageCode { get; set; }
+
+        public int SectionId { get; set; }
 
         public BodyPart Body
         {

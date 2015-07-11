@@ -82,7 +82,9 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
@@ -114,10 +116,10 @@
     <Compile Include="Services\ITeeyootFaqService.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\TeeyootFAQService.cs" />
+    <Compile Include="ViewModels\FaqEntriesIndexViewModel.cs" />
+    <Compile Include="ViewModels\FaqEntrySearchViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\EditorTemplates\Parts\FaqEntry.cshtml" />
   </ItemGroup>

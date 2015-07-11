@@ -1,8 +1,59 @@
-﻿@{
+﻿@model Teeyoot.FAQ.ViewModels.FaqEntriesIndexViewModel 
+@{
+    Script.Require("ShapesBase");
     Layout.Title = T("FAQ").ToString();
 }
 
-<div>
-    Welcome to FAQ Admin!
-    <a class="button primaryAction" href="@Url.Action("AddFaqEntry", new { returnUrl = Request.Url.ToString() })">@T("Add New FAQ Entry")</a>
+<div class="manage">
+    <a class="button primaryAction" href="@Url.Action("AddFaqEntry", new { returnUrl = Request.Url.ToString() })">@T("Add New FAQ Topic")</a>
 </div>
+
+<div>
+    @using (Html.BeginForm("Index", "FaqAdmin", FormMethod.Get))
+    {
+        <fieldset class="bulk-actions">
+            @Html.LabelFor(m => m.Search.SearchString, T("Filter")):
+            @Html.TextBoxFor(m => m.Search.SearchString)
+
+            @Html.LabelFor(m => m.Search.SectionId, T("Section")):
+            @Html.DropDownListFor(m => m.Search.SectionId, Model.Sections.Select(l => new SelectListItem
+                                            {
+                                                Selected = l.Id == Model.Search.SectionId,
+                                                Text = l.Name,
+                                                Value = l.Id.ToString()
+                                            }))
+
+            @Html.LabelFor(m => m.Search.LanguageCode, T("Language")):
+            @Html.DropDownListFor(m => m.Search.LanguageCode, Model.Languages.Select(l => new SelectListItem
+                                            {
+                                                Selected = l.Code == Model.Search.LanguageCode,
+                                                Text = l.Name,
+                                                Value = l.Code 
+                                            }))
+
+
+            <button type="submit">@T("Apply")</button>
+            <a href="@Url.Action("Index")">@T("By Default")</a>
+        </fieldset>
+    }
+</div>
+
+<ul class="contentItems">
+    @foreach (var entry in Model.FaqEntries)
+    {
+        <li data-record-text="@entry.Id">
+            <div class="summary">
+                <div class="properties">
+                    <div>
+                        <h3>@entry.Question</h3>
+                    </div>
+                </div>
+                <div class="related">
+                    <a href="@Url.Action("Edit", new { entry.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("Delete", new { entry.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@Display(Model.Pager)
