@@ -42,7 +42,7 @@
                
                 <a href="@Url.Action("ViewSection", new { sectionId = sec.Id })" class="btn btn-pill">
                     <span class="desk-view-text">View All </span>
-                    @sec.Entries.Count()
+                    <text class="entries-count">@sec.Entries.Count()</text>
                 </a>
             </div>
 

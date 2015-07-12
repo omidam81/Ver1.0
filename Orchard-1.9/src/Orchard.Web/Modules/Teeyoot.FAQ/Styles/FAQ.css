@@ -385,6 +385,9 @@ a.btn.btn-pill > span {
 .question-sec a:active{
     text-decoration: none;
 }
+.entries-count{
+    margin-left:10px;
+}
 
  
 /*#searchFaq:focus {
