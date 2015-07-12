@@ -18,10 +18,10 @@
             @Html.LabelFor(m => m.Search.SectionId, T("Section")):
             @Html.DropDownListFor(m => m.Search.SectionId, Model.Sections.Select(l => new SelectListItem
                                             {
-                                                Selected = l.Id == Model.Search.SectionId,
+                                                Selected = Model.Search.SectionId > 1 ? l.Id == Model.Search.SectionId : false,
                                                 Text = l.Name,
                                                 Value = l.Id.ToString()
-                                            }))
+                                            }), "-- show all --")
 
             @Html.LabelFor(m => m.Search.LanguageCode, T("Language")):
             @Html.DropDownListFor(m => m.Search.LanguageCode, Model.Languages.Select(l => new SelectListItem

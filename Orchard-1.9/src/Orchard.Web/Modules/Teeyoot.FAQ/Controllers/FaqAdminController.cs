@@ -56,11 +56,6 @@ namespace Teeyoot.FAQ.Controllers
             var sections = _faqService.GetFaqSections();
             var languages = _languageService.GetLanguages();
 
-            if (search.SectionId < 1)
-            {
-                search.SectionId = _faqService.GetDefaultSection().Id;
-            }
-
             if (string.IsNullOrWhiteSpace(search.LanguageCode))
             {
                 var culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
