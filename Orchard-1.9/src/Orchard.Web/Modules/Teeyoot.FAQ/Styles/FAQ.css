@@ -115,6 +115,15 @@ input[type="text"], input[type="password"]{
   overflow: hidden;
 }
 
+.section-name a{
+    text-decoration: none;
+  
+}
+.section-name a:hover{
+    text-decoration: none;
+    color: #f78027;
+}
+
 .faq-question{
       color: #6c7478;
       text-decoration: none;
@@ -220,15 +229,13 @@ a.btn.btn-pill > span {
 }
 @media all and (max-width: 1300px) {
     .section {
-        width: 40%;
+        width: 45%;
     }
   
 }
 
 @media all and (max-width: 1215px) {
-    .section {
-        width: 46%;
-    }
+   
      .text-area {
         width: 90%;
     }
@@ -236,20 +243,24 @@ a.btn.btn-pill > span {
 }
 @media all and (max-width: 1135px) {
     .section {
-        width: 40%;
+        width: 45%;
     }
     .search-faq-input {
       font-size: 14px!important;
   }
   
 }
+@media all and (max-width: 1000px) {
+    .section {
+        width: 100%;
+    }
+}
+
 @media all and (max-width: 775px) {
     .search-faq-input{
         width: 60%!important;        
     }
-     .section {
-        width: 100%;
-    }
+     
   
 }
 @media all and (max-width: 650px) {
@@ -375,4 +386,7 @@ a.btn.btn-pill > span {
 }
 
  
+/*#searchFaq:focus {
+    color:#ff4f00!important;
 
+}*/
