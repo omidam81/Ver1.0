@@ -55,6 +55,12 @@ namespace Teeyoot.FAQ.Services
             return faqEntryPart;
         }
 
+        public void DeleteFaqEntry(int id)
+        {
+            _contentManager.Remove(_contentManager.Get<FaqEntryPart>(id).ContentItem);
+        }
+
+
         public IContentQuery<FaqEntryPart> GetFaqEntries()
         {
             return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>();

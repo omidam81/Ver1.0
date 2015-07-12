@@ -20,7 +20,10 @@ namespace Teeyoot.FAQ.Services
         FaqSectionRecord GetFaqSectionRecordById(int id);
         
         FaqSectionRecord GetDefaultSection();
+
         FaqEntryPart CreateFaqEntry(string question, int sectionId, string languageCode, string answer = "");
+
+        void DeleteFaqEntry(int id);
         IContentQuery<FaqEntryPart> GetFaqEntries();
 
         IContentQuery<FaqEntryPart> GetFaqEntries(string language);
