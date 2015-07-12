@@ -1,4 +1,6 @@
-﻿using Orchard.Localization;
+﻿using Orchard;
+using Orchard.Core.Common.Models;
+using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
 using System;
@@ -7,24 +9,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Teeyoot.FAQ.Services;
+using Teeyoot.FAQ.ViewModels;
 
 namespace Teeyoot.FAQ.Controllers
 {
     [Themed]
     public class HomeController : Controller
     {
-         private readonly ILanguageService _languageService;
+        private readonly ILanguageService _languageService;
+        private readonly ITeeyootFaqService _faqService;
 
-         public HomeController(ITeeyootFaqService services, ILanguageService languageService)
+        public HomeController(ITeeyootFaqService faqService, ILanguageService languageService)
         {
             _languageService = languageService;
-            Services = services;
+            _faqService = faqService;
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
         }
 
-         
-        private ITeeyootFaqService Services { get; set; }
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
        
@@ -33,7 +35,7 @@ namespace Teeyoot.FAQ.Controllers
 
         public ActionResult Index()
         {
-            var sections = Services.GetFaqSectionsMoq();
+            var sections = _faqService.GetFaqSections();
 
             return View(sections);
         }
@@ -41,7 +43,7 @@ namespace Teeyoot.FAQ.Controllers
 
         public ActionResult ViewTopic(int topicId)
         {
-            var topic = Services.GetFaqEntryPartRecordById(topicId);
+            var topic = _faqService.GetFaqEntry(topicId);
 
             return View(topic);
         }
@@ -49,11 +51,10 @@ namespace Teeyoot.FAQ.Controllers
 
         public ActionResult ViewSection(int sectionId)
         {
+            var section = _faqService.GetFaqSectionById(sectionId);
+            var entries = _faqService.GetFaqEntries(sectionId).Join<BodyPartRecord>().List();
 
-            var section = Services.GetFaqSectionById(sectionId);
-
-            return View(section);
-         }
-
+            return View(new ViewSectionViewModel { Section = section, Topics = entries.ToArray() });
+        }
     }
 }

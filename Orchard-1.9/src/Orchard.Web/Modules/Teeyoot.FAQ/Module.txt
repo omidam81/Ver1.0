@@ -9,3 +9,4 @@ Features:
     Teeyoot.FAQ:
 		Name: Teeyoot FAQ
         Description: Description for feature Teeyoot.FAQ.
+		Dependencies: Teeyoot.Module

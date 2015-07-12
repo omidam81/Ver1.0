@@ -62,197 +62,31 @@ namespace Teeyoot.FAQ.Services
 
         public FaqEntryPart GetFaqEntry(int id)
         {
-            return _contentManager.Get<FaqEntryPart>(id);
+            return _contentManager.Get<FaqEntryPart>(id, VersionOptions.Latest);
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries()
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>();
+            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest);
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(string language)
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>().Where(fe => fe.LanguageRecord.Code == language);
+            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.LanguageRecord.Code == language);
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(int section)
         {
             if (section > 0)
             {
-                return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>().Where(fe => fe.FaqSectionRecord.Id == section);
+                return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.FaqSectionRecord.Id == section);
             }
             return GetFaqEntries();
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(string language, int section)
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>().Where(fe => fe.LanguageRecord.Code == language && fe.FaqSectionRecord.Id == section);
+            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.LanguageRecord.Code == language && fe.FaqSectionRecord.Id == section);
         }
-
-        public IEnumerable<FaqSectionRecord> GetFaqSectionsMoq()
-        {
-            var array = new FaqSectionRecord[] {
-                
-                new FaqSectionRecord 
-                {
-                    Id = 1,
-                    Name = "Section 1",
-                    Entries = new FaqEntryPartRecord[] {
-                        new FaqEntryPartRecord
-                        {
-                            Id = 1,
-                            Question = "Question 1"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 2"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 3"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 4"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 5"
-                        }
-
-                    }
-                },
-                new FaqSectionRecord 
-                {
-                    Id = 1,
-                    Name = "Section 2",
-                    Entries = new FaqEntryPartRecord[] {
-                        new FaqEntryPartRecord
-                        {
-                            Id = 1,
-                            Question = "Question 2.1"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 2.2"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 2.3"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 2.4"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 2.5"
-                        }
-
-                    }
-                },
-                new FaqSectionRecord 
-                {
-                    Id = 1,
-                    Name = "Section 3",
-                    Entries = new FaqEntryPartRecord[] {
-                        new FaqEntryPartRecord
-                        {
-                            Id = 1,
-                            Question = "Question 3.1"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 3.2"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 3.3"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 3.4"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 3.5"
-                        }
-
-                    }
-                },
-                new FaqSectionRecord 
-                {
-                    Id = 1,
-                    Name = "Section 4",
-                    Entries = new FaqEntryPartRecord[] {
-                        new FaqEntryPartRecord
-                        {
-                            Id = 1,
-                            Question = "Question 4.1"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 4.2"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 4.3"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 4.4"
-                        },
-                        new FaqEntryPartRecord
-                        {
-                            Id = 2,
-                            Question = "Question 4.5"
-                        }
-
-                    }
-                }
-                
-                
-            };
-            return array;
-        }
-
-        public FaqEntryPartRecord GetFaqEntryPartRecordById(int id)
-        {
-            var record = new FaqEntryPartRecord
-                       {
-                           Id = 1,
-                           Question = "Question 1",
-                           Answer = "<p>Ansver<p/><p> Some text jdjfhdfhdofh odhfgodhfg dhfghdfhdfh dhfod dhfig dfg dfg dfg dfgb dfg df gd fgd fgdf <br/> dfhskdfhksdhf df df df df df df df df<p/><h1>Some text<h1/><p>jdfgjdhfj dfg dfg dfg <p/>"+
-                           
-                           " <p> dfg df g dfg dfg df gd fgdfgdfg <p/> <h1> dfgdfgdfgdf <h1/> <p style='color: red'>dfs dfg dfg dfg df gdf gdf g<p/><span>dfgdfgdf fgghf f fg fg<span/>",
-                           FaqSectionRecord = new FaqSectionRecord
-                           {
-                               Name = "Section 1",
-                               Id = 1 
-                           },
-                           LanguageRecord = new LanguageRecord
-                           {
-                               Name = "eng"
-                           }
-                       };
-            return record;
-
-        }
-
     }
 }

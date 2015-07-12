@@ -4,6 +4,9 @@ nav > ul li.current {
    border-bottom: none!important; 
    background: none!important;
 }
+.tb-layout-main-container {
+    max-width:none !important;
+}
 .tb-layout-content{
     margin: 0!important;
 }
@@ -351,9 +354,8 @@ a.btn.btn-pill > span {
     font-size: 20px;
     color: #ff4f00;
     margin-bottom: 0px;
-    width: 130px;
 }
-.question-sec:hover {
+.question-sec a:hover {
     color: #f78027;
 }
 

@@ -129,6 +129,7 @@
     <Compile Include="Services\TeeyootFAQService.cs" />
     <Compile Include="ViewModels\FaqEntriesIndexViewModel.cs" />
     <Compile Include="ViewModels\FaqEntrySearchViewModel.cs" />
+    <Compile Include="ViewModels\ViewSectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

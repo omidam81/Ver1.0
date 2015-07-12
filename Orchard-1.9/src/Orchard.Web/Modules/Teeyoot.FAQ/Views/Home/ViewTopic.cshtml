@@ -1,6 +1,6 @@
 ﻿@{
     Style.Include("FAQ.css");
-    @model Teeyoot.FAQ.Models.FaqEntryPartRecord
+    @model Teeyoot.FAQ.Models.FaqEntryPart
 
 }
 
@@ -24,18 +24,13 @@
 <div class="text-area">
 
     <div class="faq-nav-div">
-        <a class="faq-navigation" href="~/FAQ">Home</a> > <a class="faq-navigation" href="~/FAQ/Section/@Model.FaqSectionRecord.Id">@Model.FaqSectionRecord.Name</a> > <span class="faq-navigation faq-current-navigation"> @Model.Question</span>
+        <a class="faq-navigation" href="@Url.Action("Index")">Home</a> > <a class="faq-navigation"  href="@Url.Action("ViewSection", new { sectionId = @Model.Section.Id })"> @Model.Section.Name</a> > <span class="faq-navigation faq-current-navigation"> @Model.Question</span>
     </div>
     <div class="question-topic">
         @Model.Question
     </div>
 
     <div class="answer-topic">
-        @Html.Raw(Model.Answer)
+        @Html.Raw(Model.Body.Text)
     </div>
-
-  
-
-
-
 </div>

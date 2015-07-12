@@ -13,6 +13,11 @@ namespace Teeyoot.FAQ.Handlers
         public FaqEntryPartHandler(IRepository<FaqEntryPartRecord> repository)
         {
             Filters.Add(StorageFilter.For(repository));
+
+            OnRemoved<FaqEntryPart>((context, part) =>
+            {
+                repository.Delete(part.Record);
+            });
         }
     }  
 }
