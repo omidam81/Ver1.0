@@ -1806,6 +1806,12 @@
     .widget-createSearchButtons {
         height: 327px;
     }
+    .banner-title {
+        font-size: 46px !important;
+    }
+    .banner-title .title-logo {
+        font-size: 40px !important;
+    }
 }
 
 @media all and (max-width: 650px) {
@@ -1813,6 +1819,12 @@
     .widget-createSearchButtons {
         /*position: absolute;*/
         height: 320px;
+    }
+    .banner-title {
+        font-size: 44px !important;
+    }
+    .banner-title .title-logo {
+        font-size: 38px !important;
     }
 }
 
@@ -1874,14 +1886,31 @@
     .banner-title {
         /*padding-top: 10%;*/
         /*padding-bottom: 0%;*/
-        font-size: 46px !important;
+        font-size: 44px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 40px !important;
+            font-size: 38px !important;
         }
 }
+@media all and (max-width: 600px) {
+    .banner-title {
+        font-size: 42px !important;
+    }
 
+        .banner-title .title-logo {
+            font-size: 36px !important;
+        }
+}
+@media all and (max-width: 556px) {
+    .banner-title {
+        font-size: 40px !important;
+    }
+
+        .banner-title .title-logo {
+            font-size: 34px !important;
+        }
+}
 @media all and (max-width: 580px) {
     .widget-createSearchButtons {
         height: 285px;
@@ -1907,11 +1936,23 @@
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
-        font-size: 46px !important;
+        font-size: 40px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 40px !important;
+            font-size: 34px !important;
+        }
+}
+
+@media all and (max-width: 525px) {
+    .banner-title {
+        /*padding-top: 4%;*/
+        /*padding-bottom: 0%;*/
+        font-size: 49px !important;
+    }
+
+        .banner-title .title-logo {
+            font-size: 43px !important;
         }
 }
 
@@ -1944,7 +1985,20 @@
         height: 393px;
     }
 }
+@media all and (max-width: 465px) {
+    .widget-createSearchButtons {
+        height: 385px;
+    }
+    .banner-title {
+        /*padding-top: 4%;*/
+        /*padding-bottom: 0%;*/
+        font-size: 44px !important;
+    }
 
+        .banner-title .title-logo {
+            font-size: 38px !important;
+        }
+}
 @media all and (max-width: 460px) {
     .widget-createSearchButtons {
         height: 385px;
@@ -1996,11 +2050,11 @@
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
-        font-size: 40px !important;
+        font-size: 42px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 34px !important;
+            font-size: 36px !important;
         }
 }
 
@@ -2055,11 +2109,11 @@
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
-        font-size: 38px !important;
+        font-size: 40px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 32px !important;
+            font-size: 34px !important;
         }
 }
 
@@ -2077,11 +2131,11 @@
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
-        font-size: 36px !important;
+        font-size: 38px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 30px !important;
+            font-size: 32px !important;
         }
 }
 
@@ -2105,11 +2159,11 @@
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
-        font-size: 34px !important;
+        font-size: 36px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 28px !important;
+            font-size: 30px !important;
         }
 }
 
@@ -2121,11 +2175,11 @@
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
-        font-size: 32px !important;
+        font-size: 36px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 26px !important;
+            font-size: 30px !important;
         }
 }
 
@@ -2134,6 +2188,15 @@
         height: 290px;
     }
 }
+@media all and (max-width: 340px) {
+    .banner-title {
+        font-size: 34px !important;
+    }
+
+        .banner-title .title-logo {
+            font-size: 28px !important;
+        }
+}
 
 @media all and (max-width: 338px) {
     .widget-createSearchButtons {
@@ -2141,11 +2204,11 @@
     }
 
     .banner-title {
-        font-size: 30px !important;
+        font-size: 34px !important;
     }
 
         .banner-title .title-logo {
-            font-size: 26px !important;
+            font-size: 28px !important;
         }
 }
 
@@ -2154,7 +2217,15 @@
         height: 276px;
     }
 }
+@media all and (max-width: 322px) {
+    .banner-title {
+        font-size: 33px !important;
+    }
 
+        .banner-title .title-logo {
+            font-size: 27px !important;
+        }
+}
 
 #menu-icon {
     display: none;
