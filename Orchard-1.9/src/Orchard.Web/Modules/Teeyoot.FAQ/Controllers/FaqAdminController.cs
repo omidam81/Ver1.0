@@ -26,7 +26,7 @@ using Teeyoot.FAQ.ViewModels;
 
 namespace Teeyoot.FAQ.Controllers
 {
-    [ValidateInput(false), Admin]
+    [Admin]
     public class FaqAdminController : Controller, IUpdateModel
     {
         private readonly ILanguageService _languageService;
@@ -55,11 +55,6 @@ namespace Teeyoot.FAQ.Controllers
         {
             var sections = _faqService.GetFaqSections();
             var languages = _languageService.GetLanguages();
-
-            if (search.SectionId < 1)
-            {
-                search.SectionId = _faqService.GetDefaultSection().Id;
-            }
 
             if (string.IsNullOrWhiteSpace(search.LanguageCode))
             {
@@ -137,6 +132,16 @@ namespace Teeyoot.FAQ.Controllers
             Services.Notifier.Information(T("New FAQ topic has been added."));
             return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, string returnUrl)
+        {
+            _faqService.DeleteFaqEntry(id);
+            Services.Notifier.Information(T("The FAQ topic has been deleted."));
+            return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
+        }
+
 
         bool IUpdateModel.TryUpdateModel<TModel>(TModel model, string prefix, string[] includeProperties, string[] excludeProperties)
         {

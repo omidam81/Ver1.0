@@ -55,6 +55,12 @@ namespace Teeyoot.FAQ.Services
             return faqEntryPart;
         }
 
+        public void DeleteFaqEntry(int id)
+        {
+            _contentManager.Remove(_contentManager.Get<FaqEntryPart>(id).ContentItem);
+        }
+
+
         public IContentQuery<FaqEntryPart> GetFaqEntries()
         {
             return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>();
@@ -67,7 +73,11 @@ namespace Teeyoot.FAQ.Services
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(int section)
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>().Where(fe => fe.FaqSectionRecord.Id == section);
+            if (section > 0)
+            {
+                return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>().Where(fe => fe.FaqSectionRecord.Id == section);
+            }
+            return GetFaqEntries();
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(string language, int section)

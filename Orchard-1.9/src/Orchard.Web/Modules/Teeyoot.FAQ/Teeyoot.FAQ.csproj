@@ -94,6 +94,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ViewTopic.cshtml" />
     <Content Include="Views\Home\ViewSection.cshtml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">

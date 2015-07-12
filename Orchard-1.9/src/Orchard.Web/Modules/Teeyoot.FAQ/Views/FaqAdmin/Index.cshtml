@@ -18,10 +18,10 @@
             @Html.LabelFor(m => m.Search.SectionId, T("Section")):
             @Html.DropDownListFor(m => m.Search.SectionId, Model.Sections.Select(l => new SelectListItem
                                             {
-                                                Selected = l.Id == Model.Search.SectionId,
+                                                Selected = Model.Search.SectionId > 1 ? l.Id == Model.Search.SectionId : false,
                                                 Text = l.Name,
                                                 Value = l.Id.ToString()
-                                            }))
+                                            }), "-- show all --")
 
             @Html.LabelFor(m => m.Search.LanguageCode, T("Language")):
             @Html.DropDownListFor(m => m.Search.LanguageCode, Model.Languages.Select(l => new SelectListItem
@@ -38,6 +38,11 @@
     }
 </div>
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+
 <ul class="contentItems">
     @foreach (var entry in Model.FaqEntries)
     {
@@ -49,11 +54,12 @@
                     </div>
                 </div>
                 <div class="related">
-                    <a href="@Url.Action("Edit", new { entry.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("Delete", new { entry.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    <a href="@Url.Action("Edit", new { id = entry.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("Delete", new { id = entry.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                 </div>
             </div>
         </li>
     }
 </ul>
 @Display(Model.Pager)
+   
