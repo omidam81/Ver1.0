@@ -42,17 +42,8 @@ namespace Teeyoot.FAQ.Drivers
         }
 
         protected override DriverResult Editor(FaqEntryPart part, IUpdateModel updater, dynamic shapeHelper)
-        {
-            var language = part.Language;
-            var section = part.Section;
-
+        {            
             updater.TryUpdateModel(part, Prefix, null, null);
-
-            if (part.Language == null)
-                part.Language = language;
-
-            if (part.Section == null)
-                part.Section = section;
 
             if (string.IsNullOrWhiteSpace(part.Question))
             {

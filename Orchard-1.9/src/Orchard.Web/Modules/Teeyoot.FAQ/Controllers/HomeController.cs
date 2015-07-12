@@ -50,7 +50,7 @@ namespace Teeyoot.FAQ.Controllers
         public ActionResult ViewSection(int sectionId)
         {
 
-            var section = Services.GetFaqSectionRecordById(sectionId);
+            var section = Services.GetFaqSectionById(sectionId);
 
             return View(section);
          }

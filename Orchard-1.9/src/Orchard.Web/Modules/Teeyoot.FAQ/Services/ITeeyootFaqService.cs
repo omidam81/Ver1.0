@@ -16,10 +16,10 @@ namespace Teeyoot.FAQ.Services
         IEnumerable<FaqSectionRecord> GetFaqSectionsMoq();
 
         FaqEntryPartRecord GetFaqEntryPartRecordById(int id);
-
-        FaqSectionRecord GetFaqSectionRecordById(int id);
         
         FaqSectionRecord GetDefaultSection();
+
+        FaqSectionRecord GetFaqSectionById(int id);
 
         FaqEntryPart CreateFaqEntry(string question, int sectionId, string languageCode, string answer = "");
 
