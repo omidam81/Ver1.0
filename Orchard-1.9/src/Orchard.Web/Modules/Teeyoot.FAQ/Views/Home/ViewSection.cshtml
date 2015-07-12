@@ -21,42 +21,28 @@
 
 <div class="text-area">
     <div class="faq-nav-div">
-        <a class="faq-navigation" href="@Url.Action("Index")">Home</a> > <span class="faq-navigation faq-current-navigation">@Model.Section.Name</span> 
+        <a class="faq-navigation" href="@Url.Action("Index")">Home</a> > <span class="faq-navigation faq-current-navigation">@Model.Section.Name</span>
     </div>
     <div class="section-name">
         @Model.Section.Name
     </div>
 
-@foreach (var entry in Model.Topics)
-{
+    @foreach (var entry in Model.Topics)
+    {
 
-    <div class="section-name question-sec">
- 
-        @Html.ActionLink(entry.Question, "ViewTopic", new { topicId = entry.Id })
-    </div>
+        <div class="section-name question-sec">
+
+            @Html.ActionLink(entry.Question, "ViewTopic", new { topicId = entry.Id })
+        </div>
         <div class="answer-topic answer-topic-short section-name">
             <div class="answer answer-topic answer-topic-short ">
                 @Html.Raw(entry.Body.Text)
             </div>
             <div class="btn-read-article">
-         <a class="btn btn-pill" href="@Url.Action("ViewTopic", new { topicId = entry.Id })">
-    <span class="desk-view-text">Read Article </span>
-</a>
+                <a class="btn btn-pill" href="@Url.Action("ViewTopic", new { topicId = entry.Id })">
+                    <span class="desk-view-text">Read Article </span>
+                </a>
             </div>
         </div>
-
-   
-
-
-}
-
-  
-    
-
-    
-
-
-
-
-
+    }
 </div>
