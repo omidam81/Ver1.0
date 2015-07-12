@@ -1,0 +1,222 @@
+﻿.block {
+    background: #f5f7f7;
+    border: 1px solid #ebeef0;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    margin-top: 2.3rem;
+    width: 100%;
+}
+
+.tabl .row {
+    background: white;
+    padding-top: 15px;
+    padding-left: 10px;
+    margin: 0px 0px 0px 0px !important;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+
+.t-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6% 18%;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+    margin: 0px 0px 0px 0px !important;
+}
+
+.button .t-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6% 18%;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+}
+
+.t-button:hover {
+    background: #fc7c42 !important;
+    background-color: #fc7c42 !important;
+}
+
+.t-button:active {
+    background: #ff4f00 !important;
+    background-color: #ff4f00 !important;
+}
+
+.tabl .row .a {
+    text-decoration: none;
+    color: #ff4f00;
+}
+
+.button {
+    background: #ff4f00 !important;
+    background-color: #fc7c42 !important;
+}
+
+    .button:hover {
+        background: #ff4f00 !important;
+        background-color: #fc7c42 !important;
+    }
+
+.email_inp {
+    font-size: 17px;
+    width: 57%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border: solid;
+    border-width: 1px !important;
+}
+
+.subj_inp {
+    font-size: 17px;
+    width: 57%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.input[type=text] .email_inp {
+    font-size: 17px;
+    width: 57%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.input[type=text] .subj_inp {
+    font-size: 17px;
+    width: 57%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.input[type=text] .msg_inp {
+    width: 306%;
+    height: 400px;
+    padding-bottom: 30px;
+    border-radius: 6px !important;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid !important;
+    padding: 0px 0px 0px 0px !important;
+}
+
+table > tr > td {
+    padding-left: 10px !important;
+}
+
+@media all and (max-width: 500px) {
+    .divRow {
+        display: block !important;
+        width: 100% !important;
+        border: none !important;
+    }
+
+    .row {
+        width: 100% !important;
+    }
+
+    .tdd {
+        display: flex !important;
+        height: 50% !important;
+    }
+
+    .printDiv {
+        margin-bottom: 49% !important;
+    }
+
+    .divRow .row {
+        margin: 0px 0px 20px 0px !important;
+    }
+    .tabl .row{
+        display:block;
+    }
+    .email_inp{
+        width:98% !important;
+    }
+    .subj_inp{
+        width:98% !important;
+    }
+    .customEmail {
+        width:93% !important;
+    }
+    .aEmail {
+        white-space:normal !important;
+    }
+    .divEmail{
+         width:98% !important;
+    }
+    .txtArea {
+        width:97% !important;
+    }
+}
+
+.divRow .row {
+    margin: 0px 0px 0px 0px;
+}
+.msgCont{
+     width: 97% !important;
+}
+.send-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6px 18px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+}
+.cancel-button {
+    background: #808080 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6px 18px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+}
+
+    .cancel-button:hover {
+        background: #fc7c42 !important;
+        background-color: #fc7c42 !important;
+    }
