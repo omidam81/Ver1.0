@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="related">
-                    <a href="@Url.Action("Edit", new { id = entry.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("EditFaqEntry", new { id = entry.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
                     <a href="@Url.Action("Delete", new { id = entry.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                 </div>
             </div>

@@ -47,6 +47,20 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/FAQ/Edit/{id}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "FaqAdmin"},
+                            {"action", "EditFaqEntry"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },
                
                 new RouteDescriptor {
                     Route = new Route(

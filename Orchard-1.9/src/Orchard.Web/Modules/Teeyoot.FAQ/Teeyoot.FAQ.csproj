@@ -95,6 +95,7 @@
     <Content Include="Views\Home\ViewTopic.cshtml" />
     <Content Include="Views\Home\ViewSection.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\FaqAdmin\EditFaqEntry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

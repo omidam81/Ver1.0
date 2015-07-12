@@ -26,7 +26,7 @@ using Teeyoot.FAQ.ViewModels;
 
 namespace Teeyoot.FAQ.Controllers
 {
-    [Admin]
+    [ValidateInput(false), Admin]
     public class FaqAdminController : Controller, IUpdateModel
     {
         private readonly ILanguageService _languageService;
@@ -115,9 +115,11 @@ namespace Teeyoot.FAQ.Controllers
         }
 
         [HttpPost, ActionName("AddFaqEntry")]
-        public ActionResult AddFaqEntryPOST([Bind(Prefix = "FaqEntryPart.SectionId")] int section,
+        public ActionResult AddFaqEntryPOST([Bind(Prefix = "FaqEntryPart.SectionId")] int section, 
+            [Bind(Prefix = "Body.Text")] string text,
             [Bind(Prefix = "FaqEntryPart.LanguageCode")] string language, string returnUrl)
         {
+            var request = Request;
             var faqEntryPart = _faqService.CreateFaqEntry("", section, language);
             if (faqEntryPart == null)
                 return HttpNotFound();
@@ -133,8 +135,18 @@ namespace Teeyoot.FAQ.Controllers
             return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
         }
 
+        public ActionResult EditFaqEntry(int id)
+        {
+            var faqEntryPart = _faqService.GetFaqEntry(id);
+
+            if (faqEntryPart == null)
+                return new HttpNotFoundResult();
+
+            var model = Services.ContentManager.BuildEditor(faqEntryPart);
+            return View(model);
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, string returnUrl)
         {
             _faqService.DeleteFaqEntry(id);
