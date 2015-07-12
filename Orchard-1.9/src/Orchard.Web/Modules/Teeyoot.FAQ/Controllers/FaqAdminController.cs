@@ -128,6 +128,10 @@ namespace Teeyoot.FAQ.Controllers
 
             if (!ModelState.IsValid)
             {
+                foreach (var error in ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage))
+                {
+                    Services.Notifier.Error(T(error));
+                }
                 return View(model);
             }
 
@@ -138,12 +142,35 @@ namespace Teeyoot.FAQ.Controllers
         public ActionResult EditFaqEntry(int id)
         {
             var faqEntryPart = _faqService.GetFaqEntry(id);
-
+           
             if (faqEntryPart == null)
                 return new HttpNotFoundResult();
 
             var model = Services.ContentManager.BuildEditor(faqEntryPart);
             return View(model);
+        }
+
+        [HttpPost, ActionName("EditFaqEntry")]
+        public ActionResult EditFaqEntryPOST(int id, FormCollection input, string returnUrl)
+        {
+            var faqEntryPart = _faqService.GetFaqEntry(id);
+
+            faqEntryPart.Language = _languageService.GetLanguageByCode(input["FaqEntryPart.LanguageCode"]);
+            faqEntryPart.Section = _faqService.GetFaqSectionById(int.Parse(input["FaqEntryPart.SectionId"]));
+
+            var model = Services.ContentManager.UpdateEditor(faqEntryPart, this);
+
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage))
+                {
+                    Services.Notifier.Error(T(error));
+                }
+                return View(model);
+            }
+
+            Services.Notifier.Information(T("The FAQ topic has been updated."));
+            return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
         }
 
         [HttpPost]

@@ -35,9 +35,17 @@ namespace Teeyoot.FAQ.Models
             set { Record.FaqSectionRecord = value; }
         }
 
-        public string LanguageCode { get; set; }
+        public string LanguageCode 
+        {
+            get { return Language.Code; }
+            set { Language.Code = value; }
+        }
 
-        public int SectionId { get; set; }
+        public int SectionId 
+        {
+            get { return Section.Id; }
+            set { Section.Id = value; }
+        }
 
         public BodyPart Body
         {
