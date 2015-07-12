@@ -1,0 +1,51 @@
+﻿
+@{
+    Style.Include("FAQ.css");
+    @model IEnumerable<Teeyoot.FAQ.Models.FaqSectionRecord>
+    
+}
+
+
+
+<div class="top-faq-banner">
+
+    <p class="search-faq-text">@T("Welcome to Teeyoot Answers")</p>
+    
+    <span  class="search-faq-place">      
+        <input type="text" id="searchFaq"  maxlength="100" value="" placeholder="Have a Question? Ask or enter a search term here." class="search-faq-input" >
+        <span>
+            <button id="btn-faq" type="submit">
+                <img src="/Themes/Teebay.Theme/Content/search-ico.png">
+            </button>
+        </span>  
+    </span>
+    
+</div>
+<div class="text-area" >
+    
+       
+        @foreach (var sec in Model)
+        {
+            
+            <div class="section">
+                <p class="section-name"><a href="~/FAQ/Section/@sec.Id">@sec.Name</a></p>
+                <ul>
+                @foreach (var entry in sec.Entries)
+                {
+                    
+                    <li>
+                        @Html.ActionLink(entry.Question, "ViewTopic", new { topicId = entry.Id }, new { @class = "faq-question" })
+                    </li>
+   
+                    }
+                </ul>
+               
+                <a href="~/FAQ/Section/@sec.Id" class="btn btn-pill">
+                    <span class="desk-view-text">View All </span>
+                    @sec.Entries.Count()
+                </a>
+            </div>
+
+        }
+    
+</div>

@@ -1,5 +1,6 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
+using Orchard.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,11 @@ namespace Teeyoot.FAQ.Drivers
             _languageService = languageService;
             _contentManager = contentManager;
             _faqService = faqService;
+
+            T = NullLocalizer.Instance;
         }
+
+        public Localizer T { get; set; }
 
         protected override string Prefix
         {
@@ -34,6 +39,18 @@ namespace Teeyoot.FAQ.Drivers
 
             return ContentShape("Parts_FaqEntry_Edit", () => shapeHelper
                 .EditorTemplate(TemplateName: "Parts/FaqEntry", Model: part, Prefix: Prefix));
+        }
+
+        protected override DriverResult Editor(FaqEntryPart part, IUpdateModel updater, dynamic shapeHelper)
+        {            
+            updater.TryUpdateModel(part, Prefix, null, null);
+
+            if (string.IsNullOrWhiteSpace(part.Question))
+            {
+                updater.AddModelError("Question", T("Topic can't be empty."));
+            }
+
+            return Editor(part, shapeHelper);
         }
     }
 }
