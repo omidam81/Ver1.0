@@ -105,12 +105,26 @@ namespace Teeyoot.Module
                         new MvcRouteHandler())
                 },
                 new RouteDescriptor {
-                    Priority = 11,
                     Route = new Route(
-                        "Teeyoot/{controller}/{action}",
+                        "Teeyoot",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},
                             {"controller", "Home"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
+                        "GetStarted",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Wizard"},
                             {"action", "Index"}                           
                         },
                         new RouteValueDictionary(),
