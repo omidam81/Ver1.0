@@ -16,6 +16,7 @@
     <script type="text/javascript" src="./assets/js/core.js"></script>
     <script src="./assets/js/add-ons.js"></script>
     <script src="./assets/js/jquery.ui.rotatable.js"></script>
+    <script src="./assets/js/jquery.ui.resizeable.js"></script>
     <script src="./assets/js/jquery.color.js"></script>
     <script src="./assets/js/jquery.flip.js"></script>
     <script src="./assets/js/language.js"></script>
@@ -69,11 +70,8 @@
             <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
                 <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
                     <div id="design-tools" class="aside">
-                        <div class="partnership__dropdown">
-                            <div ></div>
-                        </div>
                         <div class="design__area">
-                            <div >
+                            <div>
                                 <ul class="tabs clearfix nav nav-tabs" >
                                     <li class="tab active" data-name="Text" ><a>Text</a></li>
                                 </ul>
@@ -133,7 +131,36 @@
                                             <div class="clearfix" ></div>
                                         </div>
                                     </div>
-                                    <div class="clearfix control-group" ></div>
+                                    <div id="text-align-tools" class="clearfix control-group">
+                                        <div class="layer-tools">
+                                            <ul id="canvas-options" class="nav">
+                                                <li><input id="snap-to-center" type="checkbox" checked="">
+                                                    <label>Snap to center</label>
+                                                </li>
+                                            </ul>
+                                            <div id="panel-context-menu" class="btn-group control-group">
+                                                <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                    <i class="ts-icon ts-icon-composer-copy"></i>
+                                                </span>
+                                                <span class="separator"></span>
+                                                <span id="item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                    <i class="ts-icon ts-icon-composer-center"></i>
+                                                </span>
+                                                <span class="separator"></span>
+                                                <span id="push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                    <i class="ts-icon ts-icon-composer-sendtoback"></i>
+                                                </span>
+                                                <span class="separator"></span>
+                                                <span id="flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                    <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
+                                                </span>
+                                                <span class="separator"></span>
+                                                <span id="flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                    <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <ul class="tabs clearfix nav nav-tabs" >
                                     <li class="tab active" data-name="Art" ><a>Art</a></li>
@@ -156,18 +183,35 @@
                         <div id="app-wrap" class="div-design-area new-editor-container">
 
                             <!-- begin front design -->
-                            <div id="view-front" class="front labView active">
+                            <div id="view-front" class="front labView">
                                 <div class="product-design"></div>
-                                <div class="design-area"><div class="content-inner"></div></div>
-                                <div class="design-area-toolbar">
-                                    <span>Printable Area</span>
-                                    <div class="design-area-zoom">
-                                        <img class="printable-area-zoom-image no-select zoom-light-in" src="./assets/images/zoom_in_light.svg">
-                                        <img class="printable-area-zoom-image no-select zoom-light-out" src="./assets/images/zoom_out_light.svg">
-                                        <img class="printable-area-zoom-image no-select zoom-dark-in" src="./assets/images/zoom_in.svg">
-                                        <img class="printable-area-zoom-image no-select zoom-dark-out" src="./assets/images/zoom_out.svg">
+                                <div class="design-area printable-area-box">
+                                    <div class="content-inner"></div>
+                                    <div class="size-dialog aspect-ratio" style="display: none">
+                                        <div class="aspect-ratio__field width">
+                                            <span>Width</span>
+                                            <input class="aspect-ratio__field--width width" value="5.58">
+                                            <span>in.</span>
+                                        </div>
+                                        <div class="aspect-ratio__field height">
+                                            <span>Height</span>
+                                            <input class="height" value="1.49">
+                                            <span>in.</span>
+                                        </div>
+                                    </div>
+                                    <div class="printable-area-toolbar">
+                                        <span>Printable Area</span>
+                                        <div class="design-area-zoom printable-area-zoom">
+                                            <img class="printable-area-zoom-image no-select zoom-light-in" src="./assets/images/zoom_in_light.svg">
+                                            <img class="printable-area-zoom-image no-select zoom-light-out" src="./assets/images/zoom_out_light.svg">
+                                            <img class="printable-area-zoom-image no-select zoom-dark-in" src="./assets/images/zoom_in.svg">
+                                            <img class="printable-area-zoom-image no-select zoom-dark-out" src="./assets/images/zoom_out.svg">
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="xgridline" style="opacity: 0;"></div>
+                                <div class="ygridline" style="opacity: 0;"></div>
+
                                 <div class="flip-buttons">
                                     <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
                                     <div class="flip-button flip-button-back" data-element="backButton">Back</div>
@@ -178,16 +222,33 @@
                             <!-- begin back design -->
                             <div id="view-back" class="back labView">
                                 <div class="product-design"></div>
-                                <div class="design-area"><div class="content-inner"></div></div>
-                                <div class="design-area-toolbar">
-                                    <span>Printable Area</span>
-                                    <div class="design-area-zoom">
-                                        <img class="printable-area-zoom-image no-select zoom-light-in" src="./assets/images/zoom_in_light.svg">
-                                        <img class="printable-area-zoom-image no-select zoom-light-out" src="./assets/images/zoom_out_light.svg">
-                                        <img class="printable-area-zoom-image no-select zoom-dark-in" src="./assets/images/zoom_in.svg">
-                                        <img class="printable-area-zoom-image no-select zoom-dark-out" src="./assets/images/zoom_out.svg">
+                                <div class="design-area printable-area-box">
+                                    <div class="content-inner"></div>
+                                    <div class="size-dialog aspect-ratio" style="display: none">
+                                        <div class="aspect-ratio__field width">
+                                            <span>Width</span>
+                                            <input class="aspect-ratio__field--width width" value="5.58">
+                                            <span>in.</span>
+                                        </div>
+                                        <div class="aspect-ratio__field height">
+                                            <span>Height</span>
+                                            <input class="height" value="1.49">
+                                            <span>in.</span>
+                                        </div>
+                                    </div>
+                                    <div class="printable-area-toolbar">
+                                        <span>Printable Area</span>
+                                        <div class="design-area-zoom printable-area-zoom">
+                                            <img class="printable-area-zoom-image no-select zoom-light-in" src="./assets/images/zoom_in_light.svg">
+                                            <img class="printable-area-zoom-image no-select zoom-light-out" src="./assets/images/zoom_out_light.svg">
+                                            <img class="printable-area-zoom-image no-select zoom-dark-in" src="./assets/images/zoom_in.svg">
+                                            <img class="printable-area-zoom-image no-select zoom-dark-out" src="./assets/images/zoom_out.svg">
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="xgridline" style="opacity: 0;"></div>
+                                <div class="ygridline" style="opacity: 0;"></div>
+
                                 <div class="flip-buttons">
                                     <div class="flip-button flip-button-front">Front</div>
                                     <div class="flip-button flip-button-back no-select flip-button-active">Back</div>
@@ -198,63 +259,6 @@
 
                         </div>
                     </div>
-                    <!--
-                    <div class="product-view">
-                        <div class="new-editor-container">
-                            <div class="flip-container">
-                                <div class="new-editor front" tabindex="0" data-design-side="front"
-                                     style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
-                                    <div class="productColor" data-element="productColorEl"
-                                         style="background-color: rgb(255, 255, 255);"></div>
-                                    <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
-                                    <img class="ghost-image" data-element="ghostImageEl"
-                                         src="./assets/images/product_type_1_front.png">
-                                    <svg class="svg-surface" data-element="svgSurfaceEl"
-                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <defs data-element="defs">
-                                            <clippath data-element="globalClipPath" id="global-clip-path-front-0">
-                                                <rect x="0" y="0" width="530" height="630"
-                                                      data-element="globalClipRect"></rect>
-                                            </clippath>
-                                        </defs>
-                                        <g data-element="rootTag" clip-path="url(#global-clip-path-front-0)"></g>
-                                    </svg>
-                                    <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0">
-                                        <div class="printable-area-box"
-                                             style="left: 152px; top: 100px; width: 220px; height: 330px; border-color: rgba(0, 0, 0, 0.298039) !important; color: rgb(255, 255, 255) !important;">
-                                            <div class="printable-area-toolbar" data-element="toolbarEl"
-                                                 style="color: rgb(255, 255, 255) !important; background-color: rgba(0, 0, 0, 0.298039) !important;">
-                                                <span>Printable Area</span>
-
-                                                <div class="printable-area-zoom">
-                                                    <img class="printable-area-zoom-image" data-element="zoomLightInEl"
-                                                         src="./assets/images/zoom_in_light.svg">
-                                                    <img class="printable-area-zoom-image zero-opacity no-select"
-                                                         data-element="zoomLightOutEl"
-                                                         src="./assets/images/zoom_out_light.svg">
-                                                    <img class="printable-area-zoom-image zero-opacity no-select"
-                                                         data-element="zoomDarkInEl"
-                                                         src="./assets/images/zoom_in.svg">
-                                                    <img class="printable-area-zoom-image zero-opacity no-select"
-                                                         data-element="zoomDarkOutEl"
-                                                         src="./assets/images/zoom_out.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="xgridline" style="left: 262px;"></div>
-                                        <div class="ygridline" style="top: 210px;"></div>
-                                    </div>
-                                    <div class="flip-buttons">
-                                        <div class="flip-button flip-button-front no-select flip-button-active"
-                                             data-element="frontButton">Front
-                                        </div>
-                                        <div class="flip-button flip-button-back" data-element="backButton">Back</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
 
                     <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
                         <!-- colors list -->

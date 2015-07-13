@@ -23,7 +23,7 @@ var design={
             trigger: 'manual'
         });
         $('.flip-button:not(.flip-button-active)').on('click', function(event){
-            design.products.changeView(app.state.isFront?'back':'front');
+            design.products.changeView(app.state.getView(!app.state.isFront));
         });
         $('.design-area-zoom').on('click', function(){
             app.state.zoomed = !app.state.zoomed;
@@ -37,16 +37,64 @@ var design={
         $(document.body).on('click', function(){
             $('.containertip--open').removeClass('containertip--open');
         });
-        $('.containertip').on('click', function(event){
+        $('#flip-h').on('click', function(){
+            design.item.flip('h');
+        });
+        $('#flip-v').on('click', function(){
+            design.item.flip('v');
+        });
+        $('#item-center').on('click', function(){
+            var item = design.item.get();
+            if(item.length){
+                design.item.center();
+                design.item.placeSizeBox(item);
+                design.item.checkBorders(item);
+            }
+        });
+        $('#duplicate-text').on('click', function(){
+            var item = design.item.get();
+            if(item.length){
+                design.item.duplicate(item);
+            }
+        });
+        $('#snap-to-center').on('change', function(){
+            app.state.snapToCenter = $(this).is(':checked');
+        });
+        $('#push-back').on('click', function(){
+            design.item.pushBack();
+        });
+        $('.containertip, .size-dialog, .handle').on('click', function(event){
             event.preventDefault();
             event.stopPropagation();
         });
         $('#enter-text').on('keyup', function(){
             var item = design.item.get();
-            if(!item.length){
+            var text = $(this).val();
+            if(!item.length && text){
                 design.text.create();
             }else{
-                design.text.update('text');
+                if(text){
+                    design.text.update('text');
+                }else{
+                    design.item.remove(design.item.get().children(':first')[0]);
+                }
+            }
+        });
+        $('.size-dialog input').on('input', function(e){
+            var $this = $(this);
+            var item = design.item.get();
+            var val = parseFloat($this.val());
+            if(!isNaN(val) && item.length){
+                if(val>30){
+                    val = 30;
+                }
+                var isWidth = $this.hasClass('width');
+                design.item.resizeTo(item, isWidth?val:undefined, !isWidth?val:undefined, true, true);
+            }
+        });
+        $('#outline-select').on('change', function(e){
+            if(design.item.get().length){
+                design.text.update('outline-width', $(this).val());
             }
         });
 		design.item.move();
@@ -682,7 +730,7 @@ var design={
 					});
 					print.width 	= area.width - left - right;
 					print.height 	= area.height - top - bottom;
-                    var imageData = design.products.images[app.state.product.id];
+                    var imageData = app.state.getImage();
                     var ppi = imageData.ppi;
 					sizes[postion] = {};
 					sizes[postion].width = Math.round( print.width * ppi * 25.4 );
@@ -936,8 +984,7 @@ var design={
             var rgb = design.designer.toRgbColor(color);
             $swatch.css('background-color', rgb);
         },
-		addColor: function(colors)
-		{
+		addColor: function(colors){
             var me = this;
 
             var $colorsContainers = $('.all-colors');
@@ -1018,8 +1065,7 @@ var design={
                 me.addFonts();
             });
 		},
-		addFonts: function()
-		{
+		addFonts: function(){
 			var me = this;
             var categories = Object.keys(design.products.fontCategories);
             var $categories = $('#font-select-menu .category-menu');
@@ -1061,75 +1107,44 @@ var design={
             });
             $categories.change();
 		},
-		changeFont: function(font)
-		{
-			/*var selected = design.item.get();
-			if (selected.length == 0)
-			{
-				return false;
-			}*/
+		changeFont: function(font){
 			var id = font.family;
-			//$('.labView.active .content-inner').addClass('loading');
 			if (typeof id != 'undefined')
 			{
-				if (typeof design.designer.fontActive[id] != 'undefined')
-				{					
-					design.text.update('fontfamily', title);
-					$('.labView.active .content-inner').removeClass('loading');
-					setTimeout(function(){
-						var e = design.item.get();						
-						var txt = e.find('text');
-						var size1 = txt[0].getBoundingClientRect();
-						var size2 = e[0].getBoundingClientRect();
-						
-						var $w 	= parseInt(size1.width);							
-						var $h 	= parseInt(size1.height);							
-						
-						design.item.updateSize($w, $h);	
-						
-						var svg = e.find('svg'),
-						view = svg[0].getAttributeNS(null, 'viewBox');
-						var arr = view.split(' ');						
-						var y = txt[0].getAttributeNS(null, 'y');						
-						y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );						
-						txt[0].setAttributeNS(null, 'y', y);
-					}, 200);
-				}
-				else
-				{
-					var url = assetsUrls.fonts+font.filename+'-webfont.woff';
-					if (font.filename)
-					{
-						design.designer.fontActive[id] = true;
-						var css = "<style type='text/css'>@font-face{font-family:'"+id+"';font-style: normal; font-weight: 400;src: local('"+id+"'), local('"+id+"'), url("+url+") format('woff');}</style>";
-                        design.fonts = design.fonts + ' '+css;
-						$('head').append(css);
+				if (typeof design.designer.fontActive[id] === 'undefined') {
+                    if (font.filename) {
+                        var url = assetsUrls.fonts+font.filename+'-webfont.woff';
+                        design.designer.fontActive[id] = true;
+                        var css = "<style type='text/css'>@font-face{font-family:'" + id + "';font-style: normal; font-weight: 400;src: local('" + id + "'), local('" + id + "'), url(" + url + ") format('woff');}</style>";
+                        design.fonts = design.fonts + ' ' + css;
+                        $('head').append(css);
+                    }
+                }
+                var e = design.item.get();
+                if(e.length){
+                    design.text.update('fontfamily', id);
 
-                        if(design.item.get().length){
-                            var e = design.item.get();
-                            var svg = e.find('svg');
-                            design.text.update('fontfamily', id);
-                            setTimeout(function(){
-                                var txt = e.find('text');
-                                var size1 = txt[0].getBoundingClientRect();
-                                var size2 = e[0].getBoundingClientRect();
-                                var $w 	= parseInt(size1.width);
-                                var $h 	= parseInt(size1.height);
+                    setTimeout(function(){
+                        var txt = e.find('text');
+                        var size1 = txt[0].getBBox();
+                        var size2 = e[0].getBoundingClientRect();
 
-                                if(design.item.get().length) {
-                                    design.item.updateSize($w, $h);
-                                }
-                                var svg = e.find('svg'),
-                                    view = svg[0].getAttributeNS(null, 'viewBox');
-                                var arr = view.split(' ');
-                                var y = txt[0].getAttributeNS(null, 'y');
-                                y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );
-                                txt[0].setAttributeNS(null, 'y', y);
-                            }, 200);
-                        }
-						//$('.labView.active .content-inner').removeClass('loading');
-					}
-				}
+                        var $w 	= parseInt(size1.width);
+                        var $h 	= parseInt(size1.height);
+
+                        design.item.updateSize($w, $h);
+
+                        var svg = e.find('svg'),
+                            view = svg[0].getAttributeNS(null, 'viewBox');
+                        var arr = view.split(' ');
+                        var y = txt[0].getAttributeNS(null, 'y');
+                        //y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );
+                        //txt[0].setAttributeNS(null, 'y', y);
+
+                        design.item.placeSizeBox(e);
+                        design.item.checkBorders(e);
+                    }, 200);
+                }
 			}
 		}
 	},
@@ -1167,23 +1182,33 @@ var design={
 			design.item.designini();
 			//design.products.changeView('front');
 		},
-        setDesignAreaContrastColor: function(color){
-            var hex = color.value || color;
-            var $div = $('<div style="background:'+hex+'"></div>');
-            var background = $div.css('background-color');
-            var rgb = background.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
-            var yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
-            var isDarkBorder = yiq >= 128;
-            var newColor = isDarkBorder?'rgba(0,0,0,0.3)':'rgba(255,255,255,0.3)';
-            var textColor = !isDarkBorder?'rgba(0,0,0)':'rgba(255,255,255)';
-            $('.design-area-toolbar')
+        setDesignAreaContrastColor: function(color, isError){
+            var newColor, isDarkBorder, textColor, isDarkText;
+            if(!isError){
+                var hex = color.value || color;
+                var $div = $('<div style="background:'+hex+'"></div>');
+                var background = $div.css('background-color');
+                var rgb = background.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+                var yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
+                isDarkBorder = yiq >= 128;
+                newColor = isDarkBorder?'rgba(0,0,0,0.3)':'rgba(255,255,255,0.3)';
+                textColor = !isDarkBorder?'rgba(0,0,0)':'rgba(255,255,255)';
+                isDarkText = !isDarkBorder;
+            }else{
+                isDarkBorder = false;
+                newColor = color;
+                textColor = 'rgba(255,255,255)';
+                isDarkText = false;
+            }
+
+            $('.printable-area-toolbar')
                 .toggleClass('dark', isDarkBorder)
-                .stop().animate({backgroundColor: newColor, color: textColor}, aniSpeed);
+                .css({'background-color': newColor, color: textColor});
             var isZoomed = !!app.state.zoomed;
-            var selector = '.zoom-'+(isDarkBorder?'light':'dark')+'-'+(isZoomed?'out':'in');
+            var selector = '.zoom-'+(!isDarkText?'light':'dark')+'-'+(isZoomed?'out':'in');
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
-            $('.design-area').stop().animate({borderColor: newColor}, aniSpeed);
+            $('.design-area').css('border-color', newColor);
         },
 		changeDesign: function(product){
             app.state.product = product;
@@ -1544,18 +1569,17 @@ var design={
 			o.spacing 		= '0';			
 			return o;
 		},		
-		create: function(){
+		create: function(cloneFrom){
             var text = $('#enter-text').val() || 'Hello';
 			$('.ui-lock').attr('checked', false);
 			var txt = {};
 			txt.text = text;
 			txt.color = design.designer.toRgbColor(app.state['color-text']);
 			txt.fontSize = '24px';
-            console.log(app.state.font);
 			txt.fontFamily = app.state.font.family || 'arial';
 			txt.stroke = design.designer.toRgbColor(app.state['color-outline']);
 			txt.strokew = $('#outline-select').val();
-			this.add(txt);
+			this.add(txt, undefined, cloneFrom);
 		},
 		setValue: function(o){
             $('#enter-text').val(o.text);
@@ -1598,9 +1622,11 @@ var design={
 				o.outlineW = 0;
 			}
 			$('.outline-value.pull-left').html(o.outlineW);
-			$('#dg-outline-width a').css('left', o.outlineW + '%');			
+			$('#dg-outline-width a').css('left', o.outlineW + '%');
+
+            $('#text-align-tools').show();
 		},
-		add: function(o, type){
+		add: function(o, type, cloneFrom){
 			var item = {};
 				if (typeof type == 'undefined')
 				{
@@ -1687,9 +1713,11 @@ var design={
 			item.svg = svg;
 			
 			design.item.create(item);
-		},
+            $('#text-align-tools').show();
+        },
 		update: function(lable, value){
 			var e = design.item.get();
+            var oldWidth = parseInt(e.css('width'));
 			var txt = e.find('text');		
 			if(typeof lable != 'undefined' && lable != '')
 			{
@@ -1698,10 +1726,6 @@ var design={
 					case 'fontfamily':
 						txt[0].setAttributeNS(null, 'font-family', value);
 						obj.item.fontFamily = value;
-						if (obj.item.type == 'text')
-							$('#txt-fontfamly').html(value);
-						else
-							$('#txt-team-fontfamly').html(value);
 						break;
 					case 'color':
                         var rgb = design.designer.toRgbColor(app.state['color-text']);
@@ -1787,7 +1811,7 @@ var design={
 						this.setSize(e);
 						break;
 					case 'outline-width':
-						txt[0].setAttributeNS(null, 'stroke-width', value/50);
+						txt[0].setAttributeNS(null, 'stroke-width', value);
 						txt[0].setAttributeNS(null, 'stroke-linecap', 'round');
 						txt[0].setAttributeNS(null, 'stroke-linejoin', 'round');
 						obj.item.outlineW = value;
@@ -1802,6 +1826,14 @@ var design={
 						txt[0].setAttributeNS(null, lable, value);
 						break;
 				}
+                var width = parseInt(e.css('width'));
+                if(width!==oldWidth){
+                    var left = parseInt(e.css('left'));
+                    left -= (width - oldWidth)/2;
+                    e.css('left', left);
+                }
+                design.item.placeSizeBox(e);
+                design.item.checkBorders(e);
 			}
 		},
 		updateBack: function(e){
@@ -1815,8 +1847,8 @@ var design={
 		},
 		setSize: function(e){
 			var txt = e.find('text');
-			var $w 	= parseInt(txt[0].getBoundingClientRect().width);
-			var $h 	= parseInt(txt[0].getBoundingClientRect().height);
+			var $w 	= parseInt(txt[0].getBBox().width);
+			var $h 	= parseInt(txt[0].getBBox().height);
 			e.css('width', $w + 'px');
 			e.css('height', $h + 'px');						
 			var svg = e.find('svg'),
@@ -2030,7 +2062,7 @@ var design={
             var state = app.state;
             var color = state.color;
             var positions = ['front', 'back'];
-            var image = design.products.images[state.product.id];
+            var image = state.getImage();
             $.each(positions, function(i, view){
                 var $view = $('#view-'+view);
                 var $images = $view.find('.product-design');
@@ -2042,7 +2074,6 @@ var design={
                 $images.append($img);
 
                 var $designArea = $('.design-area', $view);
-                var $designAreaToolbar = $('.design-area-toolbar', $view);
                 var prefix = 'printable_'+view+'_';
                 $designArea.css({
                     'top':image[prefix+'top'],
@@ -2050,48 +2081,86 @@ var design={
                     'width': image[prefix+'width'],
                     'height': image[prefix+'height']
                 });
-                $designAreaToolbar.css({
-                    'top':image[prefix+'top']+image[prefix+'height']+2,
-                    'left':image[prefix+'left'],
-                    'width': image[prefix+'width']+4
-                });
             });
 		},
-		create: function(item){
-			this.unselect();
-			$('.labView.active .design-area').css('overflow', 'visible');
-			var e = $jd('#app-wrap .active .content-inner'),				
-				span = document.createElement('div');
-			var n = -1;
-			$('#app-wrap .drag-item').each(function(){
-				var index 	= $(this).attr('id').replace('item-', '');
-				if (index > n) n = parseInt(index);
-			});			
-			var n = n + 1;			
-			
-			span.className = 'drag-item-selected drag-item';
-			span.id 		= 'item-'+n;
-			span.item 		= item;
-			item.id 		= n;
-			$(span).bind('click', function(){design.item.select(this)});
-			var center = this.align.center(item);
-			span.style.left = center.left + 'px';
-			span.style.top 	= center.top + 'px';
-			span.style.width 	= item.width+'px';
-			span.style.height 	= item.height+'px';
-			
-			$(span).data('id', item.id);
-			$(span).data('type', item.type);
-			$(span).data('file', item.file);
-			$(span).data('width', item.width);
-			$(span).data('height', item.height);
+        getNodeRect: function($item){
+            var body = document.body;
+            var docElem = document.documentElement;
+            var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+            var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+            var clientTop = docElem.clientTop || body.clientTop || 0;
+            var clientLeft = docElem.clientLeft || body.clientLeft || 0;
+            var parentBox = $item.parents(':first').offset();
+            var box = $item[0].getBoundingClientRect();
+            var top = box.top +  scrollTop - clientTop -parentBox.top;
+            var left =  scrollLeft - clientLeft +box.left - parentBox.left;
+            return {top: top, left:left, width:box.width, height:box.height};
+        },
+        placeSizeBox:function($item, $sizeBox, keep){
+            $item = $($item);
+            var ppi = app.state.getImage().ppi;
+            if(!$sizeBox){
+                var id = '#sizer-'+$item.data('id');
+                $sizeBox = $(id);
+            }
+            var iWidth = ($item.width()/ppi).toFixed(2);
+            var iHeight = ($item.height()/ppi).toFixed(2);
 
-			span.style.zIndex = design.zIndex;
-			design.zIndex  	= design.zIndex + 5;
-			span.style.width = item.width;
-			span.style.height = item.height;					
-			$(span).append(item.svg);			
+
+            $sizeBox.html(iWidth+'" x '+iHeight+'"');
+            var rect = this.getNodeRect($item);
+            var view = '#view-'+app.state.getView();
+            $sizeBox.css({'top': rect.top + rect.height + 30, 'left':rect.left+rect.width/2});
+
+            var $dialog = $(view+' .size-dialog');
+            if(keep !== 'width'){
+                $dialog.find('input.width').val(iWidth);
+            }
+            if(keep!== 'height'){
+                $dialog.find('input.height').val(iHeight);
+            }
+            $dialog.css({'top': rect.top + rect.height + 30, 'left':rect.left+rect.width/2});
+        },
+        getNextId: function(){
+            var n = -1;
+            $('#app-wrap .drag-item').each(function(){
+                var index 	= $(this).attr('id').replace('item-', '');
+                if (index > n) n = parseInt(index);
+            });
+            n = n + 1;
+            return n;
+        },
+		create: function(item, x, y){
+            var me = this;
+			this.unselect();
+            var view = '#view-'+app.state.getView();
+			var e = $(view+' .content-inner'),
+				div = document.createElement('div');
+			var n = this.getNextId();
 			
+			div.className = 'drag-item-selected drag-item';
+			div.id 		= 'item-'+n;
+			div.item 		= item;
+			item.id 		= n;
+			$(div).bind('click', function(){design.item.select(this)});
+			var center = this.align.center(item);
+			div.style.left = (x || center.left) + 'px';
+			div.style.top 	= (y || center.top) + 'px';
+			div.style.width 	= item.width+'px';
+			div.style.height 	= item.height+'px';
+			
+			$(div).data('id', item.id);
+			$(div).data('type', item.type);
+			$(div).data('file', item.file);
+			$(div).data('width', item.width);
+			$(div).data('height', item.height);
+
+			div.style.zIndex = design.zIndex;
+			design.zIndex  	= design.zIndex + 5;
+			div.style.width = item.width;
+			div.style.height = item.height;
+			$(div).append(item.svg);
+
 			if(item.change_color == 1)
 			{
 				$('#clipart-colors').css('display', 'block');
@@ -2103,30 +2172,43 @@ var design={
 				$('.btn-action-colors').css('display', 'none');
 			}
 			
-			if(item.remove == true)
-			{
+			if(item.remove == true){
 				var remove = document.createElement('div');
 				remove.className = 'item-remove-on handle';
 				remove.setAttribute('title', 'Click to remove this item');
-				remove.setAttribute('onclick', 'design.item.remove(this)');
-				$(span).append(remove);				
+				$(remove).on('click', function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    design.item.remove(this);
+                });
+				$(div).append(remove);
 			}
+            var $div = $(div);
+            var $sizeBox = $('<div class="edit-box-sizer" id="sizer-'+item.id+'">11.38" x 1.55"</div>');
+            $sizeBox.css('z-index',div.style.zIndex);
+            $sizeBox.on('click', function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var $dialog = $(view+' .size-dialog');
+                me.placeSizeBox($div, $sizeBox);
+                $dialog.show();
+            });
 			
-			if(item.edit == true)
-			{
+			if(item.edit == true){
 				var edit = document.createElement('div');
 				edit.className = 'item-edit-on glyphicons pencil';
 				edit.setAttribute('title', 'Click to edit this item');
 				edit.setAttribute('onclick', 'design.item.edit(this)');
-				$(span).append(edit);
+				$(div).append(edit);
 			}	
 			
-			e.append(span);
-					
-			this.move($(span));
-			this.resize($(span));
+			e.append(div);
+            e.append($sizeBox);
+			this.placeSizeBox($div, $sizeBox);
+			this.move($(div));
+			this.resize($(div));
 			if(item.rotate == true)
-				this.rotate($jd(span));
+				this.rotate($jd(div));
 			design.layers.add(item);
 			this.setup(item);
 			$('.btn-action-edit').css('display', 'none');
@@ -2134,13 +2216,36 @@ var design={
 			{
 				if (item.confirmColor == true)
 				{
-					this.setupColorprint(span);
+					this.setupColorprint(div);
 					$('.btn-action-edit').css('display', 'block');
 				}				
 			}
 			design.print.colors();			
-			design.print.size();			
+			design.print.size();
+            return $(div);
 		},
+        duplicate: function(item){
+            var newItem = $.extend(true, {}, item[0].item);
+            newItem.width = item.css('width');
+            newItem.height = item.css('height');
+            newItem.svg  = $(newItem.svg).clone()[0];
+            var x = parseInt(item.css('left'))+20;
+            var y = parseInt(item.css('top'))+20;
+            var $div = this.create(newItem, x, y);
+            var data = $.extend({},item.data());
+            delete data['id'];
+            delete data['ui-draggable'];
+            delete data['ui-resizable'];
+            delete data['ui-rotatable'];
+            $div.data(data);
+
+            this.rotate($div);
+            $div.rotatable("setValue", item.data('angle'));
+            this.unselect();
+            this.select($div[0]);
+            this.checkBorders($div);
+
+        },
 		setupColorprint: function(o){
 			var item = o.item;
 			$('#screen_colors_images').html('<img class="img-thumbnail img-responsive" src="'+item.thumb+'">');
@@ -2220,8 +2325,8 @@ var design={
 		},
 		imports: function(item){		
 			this.unselect();
-			$('.labView.active .design-area').css('overflow', 'visible');
-			var e = $jd('#app-wrap .active .content-inner'),				
+            var view = '#view-'+app.state.getView();
+            var e = $(view+' .content-inner'),
 				span = document.createElement('div');
 			var n = -1;
 			$('#app-wrap .drag-item').each(function(){
@@ -2315,51 +2420,197 @@ var design={
 			bottom: function(){
 			},
 			center: function(item){
-				var align 	= {},
-				area 		= $('.labView.active .content-inner');
-				align.left 	= ($(area).width() - item.width)/2;
+                var imageData = app.state.getImage();
+                var view = app.state.getView();
+                var prefix = 'printable_'+view+'_';
+				var align 	= {};
+				align.left 	= (imageData[prefix+'width'] - item.width)/2;
 				align.left 	= parseInt(align.left);
-				align.top 	= ($(area).height() - item.height)/2;
+				align.top 	= (imageData[prefix+'height'] - item.height)/2;
 				align.top	= parseInt(align.top);
 				return align;
 			}
 		},
+        showGrid: function(){
+            if(app.state.snapToCenter){
+                var imageData = app.state.getImage();
+                var view = app.state.getView();
+                var prefix = 'printable_'+view+'_';
+                var left 	= parseInt(imageData[prefix+'width']/2)+imageData[prefix+'left'];
+                var top 	= imageData['chest_line_'+view];
+                $('#view-'+view+' .xgridline').css({opacity:1, left:left});
+                $('#view-'+view+' .ygridline').css({opacity:1, top:top});
+            }
+
+        },
+        hideGrid: function(){
+            $('.xgridline, .ygridline').css({opacity:0});
+        },
+        checkGrid: function(e, ui){
+            if(!app.state.snapToCenter){
+                return [0,0];
+            }
+            var left = ui.position.left;
+            var width = parseInt(e.css('width'));
+            var top = ui.position.top;
+            var height = parseInt(e.css('height'));
+
+            var imageData = app.state.getImage();
+            var view = app.state.getView();
+            var prefix = 'printable_'+view+'_';
+            var centerLeft 	= imageData[prefix+'width']/2;
+            var centerTop 	= imageData['chest_line_'+view] - imageData[prefix+'top'];
+            var snappedX = centerLeft - (left+width/2);
+            if(Math.abs(snappedX)>10){
+                snappedX = 0;
+            }
+            var snappedY = centerTop - (top+height/2);
+            if(Math.abs(snappedY)>10){
+                snappedY = 0;
+            }
+            return [snappedX, snappedY];
+
+        },
 		move: function(e){
+            var me = this;
 			if(!e) e = $jd('.drag-item-selected');
-			e.draggable({/*containment: "#dg-designer", */scroll: false, 
+			e.draggable({/*containment: "#dg-designer", */scroll: false,
+                start: function (event, ui) {
+                    me.showGrid();
+                    var left = parseInt($(this).css('left'),10);
+                    left = isNaN(left) ? 0 : left;
+                    var top = parseInt($(this).css('top'),10);
+                    top = isNaN(top) ? 0 : top;
+                    this.recoupLeft = left - ui.position.left;
+                    this.recoupTop = top - ui.position.top;
+                    this.first = true;
+                },
 				drag:function(event, ui){
 					var e = ui.helper;
-					
-					var o = e.parent().parent();
-					var	left = o.css('left');
-						left = parseInt(left.replace('px', ''));
-						
-					var	top = o.css('top');
-						top = parseInt(top.replace('px', ''));
-					var	width = o.css('width');
-						width = parseInt(width.replace('px', ''));
-					
-					var	height = o.css('height');
-						height = parseInt(height.replace('px', ''));
-												
-					var $left = ui.position.left,
-						$top = ui.position.top,
-						$width = e.width(),
-						$height = e.height();
-					if($left < 0 || $top < 0 || ($left+$width) > width || ($top+$height) > height){
-						e.data('block', true);
-						e.css('border', '1px solid #FF0000');						
-					}else{
-						e.data('block', false);
-						//e.css('border', '1px dashed #444444');
-					}
+                    if(!this.first){
+                        me.checkBorders(e, ui);
+                        me.placeSizeBox(e);
+                    }
+                    ui.position.left += this.recoupLeft;
+                    ui.position.top += this.recoupTop;
+                    var snaps = me.checkGrid(e, ui);
+                    ui.position.left += snaps[0];
+                    ui.position.top += snaps[1];
+                    this.first = false;
 				},
 				stop: function( event, ui ) {
+                    me.forceBorders($(this), ui);
+                    me.hideGrid();
 					design.print.size();
 				}
 			});						
 		},
+        forceBorders: function(e, ui){
+            var imageData = app.state.getImage();
+            var view = app.state.getView();
+
+            var height = imageData['printable_'+view+'_height'];
+            var width = imageData['printable_'+view+'_width'];
+            var rect = this.getNodeRect(e);
+            var $width = rect.width,
+                $height = rect.height,
+                $top = rect.top,
+                $left = rect.left;
+            //completely out of the box
+            if($left+$width < 0 || $top+$height < 0 || $left > width || $top > height){
+                var left = (width-$width)/2;
+                var top = (height-$height)/2;
+                ui.position.left = left;
+                ui.position.top = top;
+                e.css('left', left);
+                e.css('top', top);
+                this.placeSizeBox(e);
+                this.checkBorders(e, ui);
+            }
+        },
+        checkBorders: function(e){
+            var imageData = app.state.getImage();
+            var view = app.state.getView();
+            var height = imageData['printable_'+view+'_height'];
+            var width = imageData['printable_'+view+'_width'];
+            var rect = this.getNodeRect(e);
+            var $width = rect.width,
+                $height = rect.height,
+                $top = rect.top,
+                $left = rect.left;
+            if($left < 0 || $top < 0 || ($left+$width) > width || ($top+$height) > height){
+                e.data('block', true);
+                //set error border
+                design.products.setDesignAreaContrastColor('rgba(255, 0, 0, 0.298039)', true);
+            }else{
+                e.data('block', false);
+                var block = false;
+                $('#view-'+view+' .drag-item').each(function(i, item){
+                    block |= $(item).data('block');
+                });
+                if(!block){
+                    design.products.setDesignAreaContrastColor(app.state.color);
+                }
+            }
+
+        },
+        resizeTo: function(e, width, height, isInches, keepRatio){
+            design.item.checkBorders(e);
+            var svg = e.find('svg');
+            var imageData = app.state.getImage();
+            var keep;
+            if(keepRatio){
+                var ratio = e.data('ratio');
+                if(!ratio){
+                    var currentHeight = parseInt(e.css('height'));
+                    var currentWidth = parseInt(e.css('width'));
+                    currentHeight = currentHeight || 1;
+                    currentWidth = currentWidth || 1;
+                    ratio = currentWidth/currentHeight;
+                }
+                if(!width){
+                    keep = 'height';
+                    width = height*ratio;
+                }else if(!height){
+                    keep = 'width';
+                    height = width/ratio;
+                }
+            }
+
+            if(isInches){
+                var ppi = imageData.ppi;
+                width = width * ppi;
+                height = height * ppi;
+            }
+
+            e.css({width: width, height:height});
+            svg[0].setAttributeNS(null, 'width', width);
+            svg[0].setAttributeNS(null, 'height', height);
+            svg[0].setAttributeNS(null, 'preserveAspectRatio', 'none');
+
+            if(e.data('type') == 'clipart')
+            {
+                var file = e.data('file');
+                if(file.type == 'image')
+                {
+                    var img = e.find('image');
+                    img[0].setAttributeNS(null, 'width', width);
+                    img[0].setAttributeNS(null, 'height', height);
+                }
+            }
+
+            if(e.data('type') == 'text')
+            {
+                //var text = e.find('text');
+                //text[0].setAttributeNS(null, 'y', 20);
+            }
+            if(!keepRatio){
+                e.data('ratio', width/height);
+            }
+            this.placeSizeBox(e, null, keep);
+        },
 		resize: function(e, handles){
+            var me = this;
 			if(typeof handles == 'undefined') handles = 'n, s, w, e, se';
 			
 			if(handles == 'se') {var auto = true; e = e;}
@@ -2372,68 +2623,22 @@ var design={
 				handles: handles,
 				start: function( event, ui ){
 					oldwidth = ui.size.width;
-					oldsize = $jd('#dg-font-size').text();
+					oldsize = $('#dg-font-size').text();
 				},
 				stop: function( event, ui ) {
 					design.print.size();
 				},
 				resize: function(event,ui){
 					var e = ui.element;
-					var o = e.parent().parent();
-					var	left = o.css('left');
-						left = parseInt(left.replace('px', ''));
-						
-					var	top = o.css('top');
-						top = parseInt(top.replace('px', ''));
-					var	width = o.css('width');
-						width = parseInt(width.replace('px', ''));
-					
-					var	height = o.css('height');
-						height = parseInt(height.replace('px', ''));
-																		
-					var $left = parseInt(ui.position.left),
-						$top = parseInt(ui.position.top),
-						$width = parseInt(ui.size.width),
+
+					var $width = parseInt(ui.size.width),
 						$height = parseInt(ui.size.height);
-					if(($left + $width) > width || ($top + $height)>height){
-						e.data('block', true);
-						e.css('border', '1px solid #FF0000');
-						if(parseInt(left + $left + $width) > 490 || parseInt(top + $top + $height) > 490){
-							//$jd(this).resizable('widget').trigger('mouseup');
-						}
-					}else{
-						e.data('block', false);
-						//e.css('border', '1px dashed #444444');
-					}
-					var svg = e.find('svg');									
-					
-					svg[0].setAttributeNS(null, 'width', $width);
-					svg[0].setAttributeNS(null, 'height', $height);		
-					svg[0].setAttributeNS(null, 'preserveAspectRatio', 'none');					
-					
-					if(e.data('type') == 'clipart')
-					{
-						var file = e.data('file');
-						if(file.type == 'image')
-						{	
-							var img = e.find('image');
-							img[0].setAttributeNS(null, 'width', $width);
-							img[0].setAttributeNS(null, 'height', $height);
-						}
-					}
-					
-					if(e.data('type') == 'text')
-					{						
-						//var text = e.find('text');
-						//text[0].setAttributeNS(null, 'y', 20);						
-					}
-					
-					$('#'+e.data('type')+'-width').val(parseInt($width));
-					$('#'+e.data('type')+'-height').val(parseInt($height));
-				}				
+					me.resizeTo(e, $width, $height, false, false);
+				}
 			});
 		},
 		rotate: function(e, angle){
+            var me = this;
 			if( typeof angle == 'undefined') deg = 0;
 			else deg = angle;
 			if( typeof e != Object ) var o = $(e);
@@ -2444,34 +2649,57 @@ var design={
 					if(deg < 0) deg = 360 + deg;
 					$('#' + e.data('type') + '-rotate-value').val(deg);
 					o.data('rotate', deg);
-				}
+                    me.placeSizeBox(e);
+
+                }
 			});	
 			design.print.size();
 		},
+        pushBack: function(){
+            var e =this.get();
+            if(!e.length){
+                return;
+            }
+            var id = e.data('id');
+            $('#view-'+app.state.getView()+' .drag-item').each(function(){
+                this.style.zIndex = parseInt(this.style.zIndex) + 5;
+            });
+            e.css('z-index', 1);
+            design.zIndex += 5;
+        },
 		select: function(e){
+            var current =this.get();
+            var $e = $(e);
+            if(current.data('id') === $e.data('id')){
+                return;
+            }
+            var type = $e.data('type');
 			this.unselect();
-			$('.labView.active .design-area').css('overflow', 'visible');
-			$jd(e).addClass('drag-item-selected');
-			//$jd(e).css('border', '1px dashed #444444');
-			$jd(e).resizable({ disabled: false, handles: 'e' });
-			$jd(e).draggable({ disabled: false });
+			$e.addClass('drag-item-selected');
+            $('#sizer-'+$e.data('id')).css('z-index', design.zIndex).show();
+            e.style.zIndex = design.zIndex;
+            design.zIndex  	= design.zIndex + 5;
+			$(e).resizable({ disabled: false, handles: 'e' });
+			$(e).draggable({ disabled: false });
 			design.popover('add_item_'+$(e).data('type'));
 			$('.add_item_'+$(e).data('type')).addClass('active');
-			design.menu($(e).data('type'));
+			design.menu(type);
 			this.update(e);
 			this.printColor(e);
 			design.layers.select($(e).attr('id').replace('item-', ''));			
 		},
 		unselect: function(e){
-			$jd('#app-wrap .drag-item-selected').each(function(){
-				$jd(this).removeClass('drag-item-selected');
-				$jd(this).css('border', 0);				
-				$jd(this).resizable({ disabled: true, handles: 'e' });
-				$jd(this).draggable({ disabled: true });
+			$('#app-wrap .drag-item-selected').each(function(){
+				$(this).removeClass('drag-item-selected');
+				$(this).css('border', 0);
+				$(this).resizable({ disabled: true, handles: 'e' });
+				$(this).draggable({ disabled: true });
 			});
-			$('.labView.active .design-area').css('overflow', 'hidden');
-			$( ".popover" ).hide();
+            $('.edit-box-sizer').hide();
+            $('.size-dialog').hide();
+            $( ".popover" ).hide();
 			$('.menu-left a').removeClass('active');
+            $('#text-align-tools').hide();
 			$('#layers li').removeClass('active');
 			$('#dg-popover .dg-options-toolbar button').removeClass('active');
 			$('#dg-popover .dg-options-content').removeClass('active');
@@ -2480,11 +2708,22 @@ var design={
 		remove: function(e){
 			e.parentNode.parentNode.removeChild(e.parentNode);
 			var id = $(e.parentNode).data('id');
-			if($jd('#layer-'+id)) $jd('#layer-'+id).remove();
+			if($('#layer-'+id)){
+                $('#layer-'+id).remove();
+            }
 			$( "#dg-popover" ).hide(aniSpeed);			
 			design.print.colors();
 			design.print.size();
-			return;
+            $('#enter-text').val('');
+            $('#sizer-'+id).remove();
+            $('.size-dialog').hide();
+            var block = false;
+            $('#view-'+app.state.getView()+' .drag-item').each(function(i, item){
+                block |= $(item).data('block');
+            });
+            if(!block){
+                design.products.setDesignAreaContrastColor(app.state.color);
+            }
 		},
 		setup: function(item){
             if(item.type == 'clipart')
@@ -2562,7 +2801,7 @@ var design={
 			design.popover('add_item_'+item.type);
 		},
 		get: function(){
-			var e = $jd('#app-wrap .drag-item-selected');
+			var e = $('#app-wrap .drag-item-selected');
 			return e;
 		},
 		refresh: function(name){
@@ -2574,22 +2813,27 @@ var design={
 					break;
 			}
 		},
-		flip: function(n){
+		flip: function(direction){
 			var e = this.get(),
-				svg = e.find('svg'),
-				transform = '';
+				svg = e.find('svg');
 			var viewBox = svg[0].getAttributeNS(null, 'viewBox');
 			var size = viewBox.split(' ');
-			
-			if(typeof e.data('flipX') == 'undefined') e.data('flipX', true);
-			if(e.data('flipX') === true){
-				transform = 'translate('+size[2]+', 0) scale(-1,1)';
-				e.data('flipX', false);
-			}
-			else{
-				transform = 'translate(0, 0) scale(1,1)';
-				e.data('flipX', true);
-			}					
+
+			if(typeof e.data('flipX') == 'undefined') {
+                e.data('flipX', true);
+            }
+            if(typeof e.data('flipY') == 'undefined') {
+                e.data('flipY', true);
+            }
+            var targetX = direction==='h'?!e.data('flipX'):e.data('flipX');
+            var targetY = direction==='v'?!e.data('flipY'):e.data('flipY');
+            var tX = targetX?0:size[2];
+            var sX = targetX?1:-1;
+            var tY = targetY?0:size[3];
+            var sY = targetY?1:-1;
+            var transform = 'translate('+tX+', '+tY+') scale('+sX+','+sY+')';
+            e.data('flipX', targetX);
+            e.data('flipY', targetY);
 			var g = $(svg[0]).children('g');
 			if (g.length > 0)
 				g[0].setAttributeNS(null, 'transform', transform);
@@ -2597,7 +2841,7 @@ var design={
 		center: function(){
 			var e = this.get(),
 				$width = e.width(),
-				pw 		= e.parent().parent().width();
+				pw 		= e.parent().parent().width(),
 				w = (pw - $width)/2;
 			e.css('left', w+'px');
 		},
@@ -3409,13 +3653,15 @@ $(document).ready(function(){
 	$('#design-area').click(function(e){
 		var topCurso=!document.all ? e.clientY: event.clientY;
 		var leftCurso=!document.all ? e.clientX: event.clientX;
+        var view = app.state.getView();
 		var mouseDownAt = document.elementFromPoint(leftCurso,topCurso);
 		if( mouseDownAt.parentNode.className == 'product-design'
 			|| mouseDownAt.parentNode.className == 'div-design-area'			
-			|| mouseDownAt.parentNode.className == 'labView active'
+			|| mouseDownAt.parentNode.className == '#view'+view
 			|| mouseDownAt.parentNode.className == 'content-inner' )
 		{
 			design.item.unselect();
+            $('#enter-text').val('');
 			e.preventDefault();
 			$('.drag-item').click(function(){design.item.select(this)});
 		}
