@@ -104,7 +104,7 @@
 
 .email_inp {
     font-size: 17px;
-    width: 57%;
+    width: 87%;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
@@ -114,7 +114,7 @@
 
 .subj_inp {
     font-size: 17px;
-    width: 57%;
+    width: 87%;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
@@ -125,7 +125,7 @@
 
 .input[type=text] .email_inp {
     font-size: 17px;
-    width: 57%;
+    width: 87%;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
@@ -136,7 +136,7 @@
 
 .input[type=text] .subj_inp {
     font-size: 17px;
-    width: 57%;
+    width: 87%;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
@@ -211,6 +211,10 @@ table > tr > td {
     .txtArea {
         width: 97% !important;
     }
+
+    #campUrl {
+        width: 98% !important;
+    }
 }
 
 .divRow .row {
@@ -219,6 +223,9 @@ table > tr > td {
 
 .msgCont {
     width: 97% !important;
+    width: 49%;
+    height: 100%;
+    padding-right: 20px;
 }
 
 .send-button {
@@ -281,9 +288,9 @@ table > tr > td {
 
 #msgBoard {
     width: 100% !important;
-    border-bottom: solid ;
-    border-bottom-width: 1px ;
-    border-bottom-color: #E8ECED ;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #E8ECED;
 }
 
 .tdd .divRow {
@@ -291,4 +298,133 @@ table > tr > td {
     height: 50%;
     margin: 1%;
     display: flex;
+}
+
+.tabl {
+    width: 96%;
+    padding-left: 0 !important;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: solid;
+    border-width: 1px;
+    border-color: #E8ECED;
+}
+
+.customEmail {
+    width: 100%;
+    border: solid;
+    border-width: 1px;
+    border-color: #E8ECED;
+    padding: 10px;
+    background-color: #f5f7f7;
+    color: black;
+}
+
+.aEmail {
+    text-decoration: none !important;
+    width: 100%;
+    white-space: pre-line;
+}
+
+.txtArea {
+    width: 100%;
+    min-width: 50px;
+    height: 400px;
+    padding-bottom: 30px;
+    border-radius: 6px !important;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.div.div.a {
+    text-decoration: none;
+}
+
+    .div.div.a:hover {
+        text-decoration: none;
+    }
+
+.divButton {
+    float: right;
+    padding-right: 2%;
+    display: flex;
+}
+
+.msgContTitle {
+    width: 100%;
+    font-size: 17px;
+    color: #000000;
+}
+
+#hidden {
+    padding-top: 20px;
+    display: none;
+}
+
+.divEmail {
+    padding-bottom: 20px;
+    width: 83%;
+    padding-top: 20px;
+}
+
+.urlInp {
+    font-size: 17px;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+    width: 50%;
+    background: #f5f7f7 !important;
+}
+
+.campUrl {
+    font-size: 17px;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+    width: 50%;
+    border: solid;
+    border-width: 1px;
+    border-color: #FF4F00 !important;
+}
+
+.campUrlTitle {
+    padding-top: 20px;
+    font-size: 15px;
+    color: #000000;
+}
+
+#campUrl {
+    display: none;
+    width: 87%;
+}
+
+.campTitle {
+    width: 93%;
+    float: right;
+}
+
+.printPreview {
+    width: 6%;
+    height: 100%;
+}
+
+.recipients {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 17px;
+    color: #000000;
+}
+
+.emailAttr {
+    padding-top: 30px;
+    font-size: 17px;
+    color: #000000;
 }
