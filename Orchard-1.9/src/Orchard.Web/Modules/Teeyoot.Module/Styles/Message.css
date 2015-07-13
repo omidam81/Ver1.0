@@ -5,6 +5,9 @@
     margin-bottom: .5rem;
     margin-top: 2.3rem;
     width: 100%;
+    width: 100%;
+    height: 100%;
+    float: right;
 }
 
 .tabl .row {
@@ -15,6 +18,30 @@
     display: flex;
     display: -webkit-flex;
     display: -ms-flexbox;
+}
+
+.divRow .row {
+    width: 16%;
+    height: 100%;
+}
+
+.mesTitle {
+    width: 90%;
+    height: 60px;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 4%;
+    margin-right: 4%;
+    height: 14%;
+    font-size: 19px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #ffffff;
+    border: solid;
+    border-width: 2px;
+    border-radius: 3px;
+    border-color: #E8ECED;
 }
 
 .t-button {
@@ -156,35 +183,44 @@ table > tr > td {
     .divRow .row {
         margin: 0px 0px 20px 0px !important;
     }
-    .tabl .row{
-        display:block;
+
+    .tabl .row {
+        display: block;
     }
-    .email_inp{
-        width:98% !important;
+
+    .email_inp {
+        width: 98% !important;
     }
-    .subj_inp{
-        width:98% !important;
+
+    .subj_inp {
+        width: 98% !important;
     }
+
     .customEmail {
-        width:93% !important;
+        width: 93% !important;
     }
+
     .aEmail {
-        white-space:normal !important;
+        white-space: normal !important;
     }
-    .divEmail{
-         width:98% !important;
+
+    .divEmail {
+        width: 98% !important;
     }
+
     .txtArea {
-        width:97% !important;
+        width: 97% !important;
     }
 }
 
 .divRow .row {
     margin: 0px 0px 0px 0px;
 }
-.msgCont{
-     width: 97% !important;
+
+.msgCont {
+    width: 97% !important;
 }
+
 .send-button {
     background: #ff4f00 !important;
     border-width: 0;
@@ -200,6 +236,7 @@ table > tr > td {
     text-decoration: none;
     border: 0;
 }
+
 .cancel-button {
     background: #808080 !important;
     border-width: 0;
@@ -220,3 +257,38 @@ table > tr > td {
         background: #fc7c42 !important;
         background-color: #fc7c42 !important;
     }
+
+.tdd {
+    width: 92%;
+    height: 100%;
+    margin: 4%;
+    background-color: white;
+    border: solid;
+    border-width: 1px;
+    border-color: #E8ECED;
+}
+
+.printDiv {
+    width: 16%;
+    height: 100%;
+}
+
+.ttl {
+    color: #3b76d4;
+    font-size: 20px;
+    text-align: center;
+}
+
+#msgBoard {
+    width: 100% !important;
+    border-bottom: solid ;
+    border-bottom-width: 1px ;
+    border-bottom-color: #E8ECED ;
+}
+
+.tdd .divRow {
+    width: 98%;
+    height: 50%;
+    margin: 1%;
+    display: flex;
+}
