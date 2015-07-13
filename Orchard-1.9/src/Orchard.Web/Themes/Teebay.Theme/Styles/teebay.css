@@ -78,7 +78,7 @@
 .button-create-search-container {
     position: absolute;
     width: 100%;
-    margin-top: -54px;
+    margin-top: -124px;
     max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
@@ -278,6 +278,73 @@
 .menu-anonimous-menu {
     margin-right: -50px;
 }
+/**********************************************************/
+/*********************** Меню юзера ***********************/
+/**********************************************************/
+.widget-usermenu .menu-user-menu {
+    position: relative;
+    display: none;
+    z-index: 500;
+    border-left: 1px solid #000000;
+}
+
+.menu-for-user {
+    width: 220px;
+    height: 44px;
+    background: #ffffff;
+    margin-right: -30px;
+    border: none;
+}
+
+.user-email {
+    width: 100%;
+    padding-left: 1px;
+}
+
+.user-email-button {
+    background: #ffffff;
+    width: 100%;
+    height: 44px;
+    margin: 0;
+    border: 0;
+    border-left: solid 1px #e8eced;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+    .user-email-button:hover {
+        background: #ffffff;
+    }
+
+.widget-usermenu .menu-user-menu ul {
+    background: #ffffff;
+}
+
+.widget-usermenu .menu-user-menu li {
+    width: 100%;
+    position: relative;
+    padding: 10px 0 10px 0;
+    border: none;
+    background: #ffffff;
+    border-left: solid 1px #e8eced;
+    border-right: solid 1px #e8eced;
+}
+
+    .widget-usermenu .menu-user-menu li:last-child {
+        border-radius: 0 0 5px 5px;
+        border-bottom: solid 1px #e8eced;
+    }
+
+    .widget-usermenu .menu-user-menu li a {
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .widget-usermenu .menu-user-menu li a:hover {
+            text-decoration: none;
+            color: #e64700;
+        }
 
 .banner-title {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -952,18 +1019,12 @@
 @media all and (max-width: 1100px) {
     .banner-title {
         font-size: 44px;
-        /*width: 80%;*/
-        /*padding-top: 5%;
-        padding-bottom: 5%;*/
     }
 
         .banner-title .title-logo {
             font-size: 38px !important;
         }
 
-    /*.tb-search-form input[type=text] {
-        width: 100px;
-    }*/
     .button-create-search-container {
         margin-top: -54px;
     }
@@ -973,23 +1034,20 @@
 
     .widget-anonimousMenu nav ul,
     .widget-authenticatedMenu nav ul,
+    .widget-usermenu .menu-for-user,
     .widget-anonimousMenu nav:active ul,
-    .widget-authenticatedMenu nav:active ul {
+    .widget-authenticatedMenu nav:active ul,
+    .widget-usermenu .menu-for-user:active {
         display: block !important;
     }
 }
 
 @media all and (max-width: 1000px) {
     .widget-createSearchButtons {
-        /*position: relative;
-        top: -320px;*/
-        /*position: absolute;*/
         height: 492px;
     }
 
     .banner-title {
-        /*padding-top: 7%;*/
-        /*width: 80%;*/
         font-size: 48px !important;
     }
 
@@ -1022,16 +1080,8 @@
         display: inline-block !important;
     }
 
-
-    /*.widget-anonimousMenu,
-    .widget-authenticatedMenu {
-        padding-top: 5px !important;
-    }*/
-
     .widget-anonimousMenu nav ul,
-    .widget-authenticatedMenu nav ul,
-    .widget-anonimousMenu nav:active ul,
-    .widget-authenticatedMenu nav:active ul {
+    .widget-anonimousMenu nav:active ul {
         display: none;
         position: absolute;
         padding: 20px;
@@ -1044,6 +1094,22 @@
         z-index: 100;
     }
 
+    .widget-authenticatedMenu nav ul,
+    .widget-authenticatedMenu nav:active ul {
+        display: none;
+        position: absolute;
+        padding: 20px;
+        background: #fff;
+        border-left: 3px solid #0089B6;
+        border-top: 3px solid #0089B6;
+        border-right: 3px solid #0089B6;
+        right: 20px;
+        top: 50px;
+        width: 50%;
+        border-radius: 4px 0 0 0;
+        z-index: 100;
+    }
+
     .widget-anonimousMenu nav li,
     .widget-authenticatedMenu nav li {
         text-align: center;
@@ -1051,6 +1117,51 @@
         padding: 10px 0;
         margin: 0;
     }
+
+    .widget-usermenu .menu-for-user,
+    .widget-usermenu .menu-for-user:active {
+        display: none;
+        position: absolute;
+        padding-left: 29px;
+        padding-right: 11px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: #fff;
+        border-left: 3px solid #0089B6;
+        border-right: 3px solid #0089B6;
+        border-bottom: 3px solid #0089B6;
+        right: 20px;
+        top: 150px;
+        width: 50%;
+        border-radius: 4px 0 4px 4px;
+        z-index: 101;
+        margin-right: 0px;
+        text-align: left;
+    }
+
+        .widget-usermenu .menu-for-user .user-email-button {
+            width: 100%;
+            text-align: left;
+            border: 0;
+        }
+
+    .widget-usermenu .menu-user-menu {
+        margin-left: -33px;
+        margin-right: -8px;
+    }
+
+        .widget-usermenu .menu-user-menu li {
+            border-left: 3px solid #0089B6;
+            border-right: 3px solid #0089B6;
+        }
+
+            .widget-usermenu .menu-user-menu li:last-child {
+                border-bottom: 3px solid #0089B6;
+            }
+
+            .widget-usermenu .menu-user-menu li a {
+                padding-left: 30px;
+            }
 
     .start-steps-list .span-4 {
         width: 100%;
@@ -1806,12 +1917,14 @@
     .widget-createSearchButtons {
         height: 327px;
     }
+
     .banner-title {
         font-size: 46px !important;
     }
-    .banner-title .title-logo {
-        font-size: 40px !important;
-    }
+
+        .banner-title .title-logo {
+            font-size: 40px !important;
+        }
 }
 
 @media all and (max-width: 650px) {
@@ -1820,12 +1933,14 @@
         /*position: absolute;*/
         height: 320px;
     }
+
     .banner-title {
         font-size: 44px !important;
     }
-    .banner-title .title-logo {
-        font-size: 38px !important;
-    }
+
+        .banner-title .title-logo {
+            font-size: 38px !important;
+        }
 }
 
 @media all and (max-width: 620px) {
@@ -1893,6 +2008,7 @@
             font-size: 38px !important;
         }
 }
+
 @media all and (max-width: 600px) {
     .banner-title {
         font-size: 42px !important;
@@ -1902,6 +2018,7 @@
             font-size: 36px !important;
         }
 }
+
 @media all and (max-width: 556px) {
     .banner-title {
         font-size: 40px !important;
@@ -1911,6 +2028,7 @@
             font-size: 34px !important;
         }
 }
+
 @media all and (max-width: 580px) {
     .widget-createSearchButtons {
         height: 285px;
@@ -1985,10 +2103,12 @@
         height: 393px;
     }
 }
+
 @media all and (max-width: 465px) {
     .widget-createSearchButtons {
         height: 385px;
     }
+
     .banner-title {
         /*padding-top: 4%;*/
         /*padding-bottom: 0%;*/
@@ -1999,6 +2119,7 @@
             font-size: 38px !important;
         }
 }
+
 @media all and (max-width: 460px) {
     .widget-createSearchButtons {
         height: 385px;
@@ -2188,6 +2309,7 @@
         height: 290px;
     }
 }
+
 @media all and (max-width: 340px) {
     .banner-title {
         font-size: 34px !important;
@@ -2217,6 +2339,7 @@
         height: 276px;
     }
 }
+
 @media all and (max-width: 322px) {
     .banner-title {
         font-size: 33px !important;
