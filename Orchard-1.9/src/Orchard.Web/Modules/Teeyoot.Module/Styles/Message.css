@@ -287,7 +287,6 @@ table > tr > td {
 }
 
 #msgBoard {
-    width: 100% !important;
     border-bottom: solid;
     border-bottom-width: 1px;
     border-bottom-color: #E8ECED;
