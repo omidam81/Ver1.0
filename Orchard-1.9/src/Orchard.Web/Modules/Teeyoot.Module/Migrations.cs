@@ -179,7 +179,22 @@ namespace Teeyoot.Module
                 .WithPart("UserPart")
                 );
 
-            return 2;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
+                table => table
+                    .AddColumn<string>("Alias", c => c.WithLength(100))
+            );
+
+            return 3;
+        }
+
+        public int UpdateFrom2()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
+                table => table
+                    .AddColumn<string>("Alias", c => c.WithLength(100))
+            );
+
+            return 3;
         }
     }
 }

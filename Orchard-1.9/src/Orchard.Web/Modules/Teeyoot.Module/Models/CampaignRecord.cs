@@ -11,6 +11,8 @@ namespace Teeyoot.Module.Models
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
 
+        public virtual string Alias { get; set; }
+
         public virtual int ProductCountGoal { get; set; }
 
         public virtual int ProductCountSold { get; set; }

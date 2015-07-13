@@ -133,6 +133,40 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 }
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Dashboard/{controller}/{action}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Campaigns"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
+
+
+
+
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
+                        "{campaignName}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Campaign"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
             };
         }
     }
