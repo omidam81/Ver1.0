@@ -11,6 +11,8 @@ namespace Teeyoot.Module.Models
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
 
+        public virtual string Alias { get; set; }
+
         public virtual int ProductCountGoal { get; set; }
 
         public virtual int ProductCountSold { get; set; }
@@ -28,6 +30,8 @@ namespace Teeyoot.Module.Models
         public virtual bool AllowPickUpOrdersFromMe { get; set; }
 
         public virtual bool BackSideByDefault { get; set; }
+
+        public virtual int TeeyootUserId { get; set; }
 
         public virtual IList<CampaignProductRecord> Products { get; set; }
 

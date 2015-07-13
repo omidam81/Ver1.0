@@ -8,8 +8,10 @@
             var display = $('.widget-authenticatedMenu nav ul').css("display");
             if (display !== 'none') {
                 $('.widget-authenticatedMenu nav ul').css("display", "none");
+                $('.widget-usermenu .menu-for-user').css("display", "none");
             } else {
                 $('.widget-authenticatedMenu nav ul').css("display", "block");
+                $('.widget-usermenu .menu-for-user').css("display", "block");
             }
         }
     </script>

@@ -2,33 +2,41 @@
     Style.Include("Message.css");
     Script.Include("jquery-1.10.2.js").AtHead();
 }
-<div class="block" style="width:100%; height:100%; float:right; padding-bottom:10%">
+<div class="block" style="padding-bottom:10%">
 
 
-    <div style="color:#3b76d4; font-size:20px; text-align:center">Create message</div>
-    <div class="tabl" style="width:96%; padding-left:0 !important;   margin-left: 2%;  margin-right: 2%;  border:solid; border-width:1px; border-color:#E8ECED"> 
+    <div class="ttl">Create message</div>
+    <div class="tabl" >
         <div class="row">
-            <div class="msgCont" style="width:49%; height:100%; padding-right:20px">
-                <div style="padding-top:10px; padding-bottom:10px; font-size:17px; color:#000000">You are sending a message to all buyers of</div>
+            <div class="msgCont">
+                <div class="recipients">You are sending a message to all buyers of</div>
                 <div>
                     <div style="vertical-align:central">
-                        <img style=" width: 6%; height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
-                        <div style="width:93%; float:right;">Title of campaign</div>
+                        <img class="printPreview" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
+                        <div class="campTitle">Title of campaign</div>
                     </div>
                 </div>
-                <div style="padding-top:10px; font-size:17px;color:#000000">From</div>
+                <div class="emailAttr" style="padding-top:10px !important;">From</div>
                 <div><input class="email_inp" type="email" /></div>
-                <div style="padding-top:30px; font-size:17px;color:#000000">Subject</div>
+                <div class="emailAttr">Subject</div>
                 <div><input class="subj_inp" type="text" placeholder="Enter subject here" /></div>
-                <div style="padding-top:30px; font-size:17px;color:#000000">Email template</div>
+                <div class="emailAttr">Email template</div>
                 <div>
-                    <input type="radio" name="group1" value="1"> Default
-                    <input type="radio" name="group1" value="2" checked>New Campaign Launch
+                    <input id="def" type="radio" name="group1" value="1" checked> Default
+                    <input id="newCamp" type="radio" name="group1" value="2">New Campaign Launch
                 </div>
-                <div class="divEmail" style="padding-bottom:20px; width:63%; padding-top: 20px;">
-                    <div class="customEmail" style="width:100%; border:solid; border-width:1px; border-color:#E8ECED; padding:10px; background-color: #f5f7f7; color: black" class="view-source">
-                        <div><a class="aEmail" href="#" style="text-decoration:none; width:100%; white-space:pre-line">Learn how to further customize your emails</a></div>
-                        <div style="padding-top:20px" id="hidden">
+                <div id="campUrl">
+                    <div class="campUrlTitle">Campaign URL</div>
+                    <div style="display:flex">
+                        <input class="urlInp" type="text"  readonly value="teeyoot.com/" />
+                        <input class="campUrl" type="text" placeholder="campaign"/>
+                    </div>
+                    <div style="font-size:12px">Type Campaign URL to generate template</div>
+                </div>
+                <div class="divEmail">
+                    <div class="customEmail">
+                        <div><a class="aEmail" href="">Learn how to further customize your emails</a></div>
+                        <div id="hidden">
                             <div>
                                 <div>You can personalize your emails to your customers! Just use any of the following placeholders and they will be replaced with each specific buyer's info.</div>
                                 <div style="display:flex">
@@ -57,39 +65,22 @@
                                         <div>
                                             {{products_ordered}}
                                         </div>
-                                        
                                     </div>
-                                    
-                                       <div style="margin-left:6%"> 
-                                           <div>
-                                               <h1>Example</h1>
-                                           </div>
+                                    <div style="margin-left:6%">
+                                        <div>
+                                            <h1>Example</h1>
+                                        </div>
                                         <div>John</div>
-                                   
-                                    
-                                        
                                         <div>Smith</div>
-                                    
-                                        
                                         <div>San Francisco</div>
-                                    
-                                        
                                         <div>
                                             CA
                                         </div>
-                                    
-                                        
                                         <div>United States</div>
-                                    
-                                        
                                         <div>$101.43</div>
-                                    
-                                        
                                         <div>1x XL Red Hanes Tagless Tee</div>
                                     </div>
-                                    
                                 </div>
-                                
                             </div>
                             <div style="margin-top:6%">
                                 You can also format your email using HTML by switching to the HTML view.
@@ -99,33 +90,39 @@
                     </div>
                 </div>
                 <script>
-                $(document).ready(function () {
-                    $('#hidden').hide();
-                    $a = $('.aEmail');
-                    $a.on('click', function (event) {
-                        event.preventDefault();
-                        //$a.not(this).next().slideUp(500);
-                        $('#hidden').slideToggle(500);
+                    $(document).ready(function () {
+                        $a = $('.aEmail');
+                        $rb = $('#newCamp');
+                        $def = $('#def');
+                        $def.on('click', function (event) {
+                            $('#campUrl').slideUp(500);
+                        });
+                        $a.on('click', function (event) {
+                            event.preventDefault();
+                            $('#hidden').slideToggle(500);
+                        });
+                        $rb.on('click', function (event) {
+                            $('#campUrl').slideDown(500);
+                        });
                     });
-                });
-                            </script>
+                </script>
 
             </div>
-            <div class="msgCont"  style="width: 49%; padding-right: 20px; padding-bottom:20px">
+            <div class="msgCont" style="padding-bottom:20px">
 
-                <div style="width:100%; font-size:17px;color:#000000">Message Content</div>
-                <div><textarea class="txtArea" type="text" style=" width: 100%;  min-width:50px; height: 400px; padding-bottom: 30px; border-radius: 6px !important; border-color: #e8eced !important; border-width: 1px !important; border: solid ; padding: 0px 0px 0px 0px !important;"></textarea></div>
+                <div class="msgContTitle">Message Content</div>
+                <div><textarea class="txtArea" type="text"></textarea></div>
             </div>
         </div>
-</div>
+    </div>
     <div>
-        <div style="float:right; padding-right:2%; display:flex">
-            <a style="text-decoration:none;padding-right:10px" href="~/Teeyoot/Message/Index">
+        <div class="divButton">
+            <a style="padding-right:10px" href="~/Teeyoot/Message/Index">
                 <button class="cancel-button">Cancel</button>
             </a>
-            <a style="text-decoration:none;" href="~/Teeyoot/Message/getList">
+            <a  href="~/Teeyoot/Message/getList">
                 <button class="send-button">Send message</button>
-                </a>
-</div>
+            </a>
+        </div>
     </div>
 </div>
