@@ -161,13 +161,30 @@ namespace Teeyoot.Module
                             {"controller", "Campaign"},
                             {"action", "Index"}                           
                         },
-                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"campaignName", new ExpectedValuesConstraint("Admin")}
+                        },
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
                 }
             };
+        }
+
+        public class ExpectedValuesConstraint : IRouteConstraint
+        {
+            private readonly string[] _values;
+
+            public ExpectedValuesConstraint(params string[] values)
+            {
+                _values = values;
+            }
+
+            public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+            {
+                return !_values.Contains(values[parameterName].ToString(), StringComparer.InvariantCultureIgnoreCase);
+            }
         }
     }
 }
