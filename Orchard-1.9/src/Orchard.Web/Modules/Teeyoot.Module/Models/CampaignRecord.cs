@@ -31,6 +31,8 @@ namespace Teeyoot.Module.Models
 
         public virtual bool BackSideByDefault { get; set; }
 
+        public virtual int TeeyootUserId { get; set; }
+
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
         public CampaignRecord()
