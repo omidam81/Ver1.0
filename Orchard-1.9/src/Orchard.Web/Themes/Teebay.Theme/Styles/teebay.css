@@ -78,10 +78,11 @@
 .button-create-search-container {
     position: absolute;
     width: 100%;
-    margin-top: -124px;
+    /*margin-top: -124px;*/
     max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 3%;
 }
 
     .button-create-search-container button {
@@ -301,6 +302,21 @@
     padding-left: 1px;
 }
 
+    .user-email:after {
+        content: "";
+        height: 0;
+        position: absolute;
+        width: 0;
+        z-index: 800;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #aeb3b6;
+        top: 20px;
+        right: 0.7rem;
+        -webkit-transition: all 350ms linear;
+        transition: all 350ms linear;
+    }
+
 .user-email-button {
     background: #ffffff;
     width: 100%;
@@ -328,7 +344,7 @@
     border: none;
     background: #ffffff;
     border-left: solid 1px #e8eced;
-    border-right: solid 1px #e8eced;
+    /*border-right: solid 1px #e8eced;*/
 }
 
     .widget-usermenu .menu-user-menu li:last-child {
@@ -1026,7 +1042,7 @@
         }
 
     .button-create-search-container {
-        margin-top: -54px;
+        /*margin-top: -54px;*/
     }
 }
 
@@ -1040,6 +1056,11 @@
     .widget-usermenu .menu-for-user:active {
         display: block !important;
     }
+
+        /*.widget-usermenu .menu-for-user,
+        .widget-usermenu .menu-for-user:active {
+            border-bottom: 0px solid white;
+        }*/
 }
 
 @media all and (max-width: 1000px) {
@@ -1139,11 +1160,15 @@
         text-align: left;
     }
 
-        .widget-usermenu .menu-for-user .user-email-button {
-            width: 100%;
-            text-align: left;
-            border: 0;
-        }
+    .user-email:after {
+        top: 30px;
+    }
+
+    .widget-usermenu .menu-for-user .user-email-button {
+        width: 100%;
+        text-align: left;
+        border: 0;
+    }
 
     .widget-usermenu .menu-user-menu {
         margin-left: -33px;
