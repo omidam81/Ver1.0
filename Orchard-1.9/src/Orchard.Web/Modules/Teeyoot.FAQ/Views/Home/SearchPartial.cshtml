@@ -1,0 +1,70 @@
+﻿<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+@using (Script.Foot())
+{
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+
+    <script type="text/javascript">
+        var items = function (request, response) {
+            var result = new Array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("Autocomplete", "Home"))",
+                data: { "term": request.term },
+                success: function (data) {
+                    var title;
+                    for (var i = 0; i < data.length ; i++) {
+                        title = data[i].Value;
+                        title = title.replace("<span class='autocomplete-question'>", "");
+                        title = title.replace("</span><br/>", ". ");
+                        result[i] = {
+                            value: title,
+                            label: data[i].Value,
+                            id: data[i].Key
+                        };
+                    }
+                },
+            });
+            response(result);
+        };
+
+        $("#searchFaq").autocomplete({
+            minLength: 0,
+            source: items,
+            select: function (event, ui) {
+                var url = '@Url.Action("ViewTopic", "Home", new { topicid = "__id__" })';
+                window.location.href = url.replace('__id__', ui.item.id);
+            },
+        })
+    .autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+          .append("<div>" + item.label + "</div>")
+          .appendTo(ul);
+    };
+
+    </script>
+
+}‌
+<div class="top-faq-banner">
+
+    <p class="search-faq-text">@T("Welcome to Teeyoot Answers")</p>
+
+    @using (Html.BeginForm("GetDetailSearch", "Home", FormMethod.Get))
+    {
+        <span class="search-faq-place">
+            <input name="filter" type="text" id="searchFaq" maxlength="100" value="" placeholder="@T("Have a Question? Ask or enter a search term here.")" class="search-faq-input">
+            <span>
+
+                <button id="btn-faq" type="submit">
+                    <img src="/Themes/Teebay.Theme/Content/search-ico.png">
+                </button>
+
+            </span>
+        </span>
+    }
+
+</div>

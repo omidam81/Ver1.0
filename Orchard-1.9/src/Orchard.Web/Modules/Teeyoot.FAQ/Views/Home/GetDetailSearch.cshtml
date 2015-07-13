@@ -3,20 +3,21 @@
     @model Teeyoot.FAQ.ViewModels.ViewSectionViewModel
 
 }
+
 @Html.Partial("SearchPartial")
 
 <div class="text-area">
     <div class="faq-nav-div">
-        <a class="faq-navigation" href="@Url.Action("Index")">Home</a> > <span class="faq-navigation faq-current-navigation">@Model.Section.Name</span>
+        <a class="faq-navigation" href="@Url.Action("Index")">Home</a> > <span class="faq-navigation faq-current-navigation">@T("Search")</span> > <span class="faq-navigation faq-current-navigation">@Model.Section.Name</span>
     </div>
-    <div class="section-name">
-        @Model.Section.Name
+    <div class="search-results">
+        <span class="img-found"><img src="/Themes/Teebay.Theme/Content/search-ico.png"></span> @Model.Topics.Count() @T("results found for ")  "@Model.Section.Name"
     </div>
 
     @foreach (var entry in Model.Topics)
     {
 
-        <div class="section-name question-sec">
+        <div class="section-name question-search">
 
             @Html.ActionLink(entry.Question, "ViewTopic", new { topicId = entry.Id })
         </div>

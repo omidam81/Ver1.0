@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.FAQ.Models;
 using Teeyoot.FAQ.Services;
 using Teeyoot.FAQ.ViewModels;
 
@@ -29,7 +30,7 @@ namespace Teeyoot.FAQ.Controllers
 
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
-       
+
 
 
 
@@ -55,6 +56,41 @@ namespace Teeyoot.FAQ.Controllers
             var entries = _faqService.GetFaqEntries(sectionId).Join<BodyPartRecord>().List();
 
             return View(new ViewSectionViewModel { Section = section, Topics = entries.ToArray() });
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult Autocomplete(string term)
+        {
+            var entries = _faqService.GetFaqEntries().Join<BodyPartRecord>().List();
+            var result = new List<KeyValuePair<string, string>>();
+            IList<SelectListItem> List = new List<SelectListItem>();
+
+            foreach (var entr in entries)
+            {
+                var answer = entr.Body.Text;
+                answer = System.Text.RegularExpressions.Regex.Replace(answer, "<[^>]*>", "");
+                answer = System.Text.RegularExpressions.Regex.Replace(answer, "&nbsp", " ");
+                //answ = answ.Substring(0, 10);
+                //answ = answ + "...";
+                var question = "<span class='autocomplete-question'>" + entr.Question + "</span><br/>";
+                var text = question + answer;
+                List.Add(new SelectListItem { Text = text, Value = entr.Id.ToString() });
+            }
+
+            foreach (var item in List)
+            {
+                result.Add(new KeyValuePair<string, string>(item.Value.ToString(), item.Text));
+            }
+            var searchResult = result.Where(s => s.Value.ToLower().Contains
+                          (term.ToLower())).Select(w => w).Take(10).ToList();
+            return Json(searchResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetDetailSearch(string filter)
+        {
+            var entries = _faqService.GetFaqEntries().Join<BodyPartRecord>().List();
+            var searchResult = entries.Where(s => s.Question.ToLower().Contains(filter.ToLower()) || s.Body.Text.ToLower().Contains(filter.ToLower())).Select(w => w).ToList();
+            return View(new ViewSectionViewModel { Section = new FaqSectionRecord { Name = filter }, Topics = searchResult.ToArray() });
         }
     }
 }
