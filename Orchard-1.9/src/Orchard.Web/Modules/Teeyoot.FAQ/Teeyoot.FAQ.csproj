@@ -96,6 +96,8 @@
     <Content Include="Views\Home\ViewSection.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\FaqAdmin\EditFaqEntry.cshtml" />
+    <Content Include="Views\Home\GetDetailSearch.cshtml" />
+    <Content Include="Views\Home\SearchPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
