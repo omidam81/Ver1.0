@@ -25,13 +25,35 @@ textarea {
 table {
     background-color: transparent;
 }
+
 .table {
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
 }
 
+.flip-button-back {
+    border-radius: 0 5px 5px 0;
+    margin-left: -9px;
+}
 
+.flip-button-front {
+    border-radius: 5px 0 0 5px;
+}
+
+ul, ol      { margin: 0px !important; }
+
+.flip-button {
+    padding: 0.5rem 1.4rem;
+    line-height: 1.4rem;
+    border: 1px solid #6c7478;
+    background: white;
+    color: #6c7478;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
 
 @media (min-width: 768px) {
     .navbar-nav {
@@ -95,7 +117,14 @@ table {
     top: 20px;
 }
 
+.Content > table {
+    width:70%;
+}
 
+.sell {
+    width:100%;
+    height:100px
+}
 
 .number,
 #sun-circle {
@@ -226,12 +255,53 @@ span.number {
 
     .Slides .Content {
         margin-left: 20%;
-        margin-top: 100px;
+        margin-top: 10px;
     }
 
         .Slides .Content a {
             font-size: 30px;
         }
+
+.ssp_vcent {
+    width: 100%;
+    margin-left:20px;
+}
+
+
+.ssp_block {
+  background: #f5f7f7;
+  border: 1px solid #ebeef0;
+  border-radius: 3px;
+  margin-bottom: .5rem;
+  padding: .5rem;
+  width: 100%;
+}
+
+.ssp_block.product {
+  overflow: visible;
+}
+
+.ssp_block .ssp_heading {
+    font-size: .8rem;
+    margin: .5rem 0 .5rem 0;
+    width: 100%;
+    font-weight:800;
+    color: #44474d;
+}
+
+.ssp_block .ssp_metadata {
+    position: relative;
+    width: 100%;
+}
+
+
+.ssp_block .ssp_color{display:inline-block;vertical-align:middle;margin-right:4px}
+
+
+.ssp_block .ssp_thumbnail, .ssp_block .ssp_metadata {
+    display: table-cell;
+    vertical-align: middle;
+}
 
 input[type=range], ::-moz-range-track, ::-ms-track {
     -webkit-appearance: none;
@@ -378,4 +448,5 @@ input[type=range] {
         -webkit-transition: background-color 400ms;
         transition: background-color 400ms;
         background-size: contain;
+        float:left;
     }

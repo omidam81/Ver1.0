@@ -1,0 +1,373 @@
+[
+  {
+    "id": "TS11020",
+    "name": "Black",
+    "inStock": true,
+    "rgb": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "id": "TS11010",
+    "name": "White",
+    "inStock": true,
+    "rgb": [
+      255,
+      255,
+      255
+    ]
+  },
+
+  {
+    "id": "TS11030",
+    "name": "Lt Grey (420)",
+    "inStock": true,
+    "rgb": [
+      200,
+      200,
+      200
+    ]
+  },
+  {
+    "id": "TS11040",
+    "name": "Md Grey (423)",
+    "inStock": true,
+    "rgb": [
+      137,
+      145,
+      148
+    ]
+  },
+  {
+    "id": "TS11050",
+    "name": "Dk Grey (425)",
+    "inStock": true,
+    "rgb": [
+      84,
+      87,
+      90
+    ]
+  },
+  {
+    "id": "TS11060",
+    "name": "Butter Yellow (100)",
+    "inStock": true,
+    "rgb": [
+      249,
+      241,
+      142
+    ]
+  },
+  {
+    "id": "TS11070",
+    "name": "Lemon Yellow (102)",
+    "inStock": true,
+    "rgb": [
+      251,
+      207,
+      0
+    ]
+  },
+  {
+    "id": "TS11080",
+    "name": "Athletic Gold (1235)",
+    "inStock": true,
+    "rgb": [
+      255,
+      170,
+      41
+    ]
+  },
+  {
+    "id": "TS11090",
+    "name": "Dk Gold (1245)",
+    "inStock": true,
+    "rgb": [
+      201,
+      146,
+      18
+    ]
+  },
+  {
+    "id": "TS11100",
+    "name": "Tan (4525)",
+    "inStock": true,
+    "rgb": [
+      198,
+      184,
+      135
+    ]
+  },
+  {
+    "id": "TS11110",
+    "name": "Peach (1485)",
+    "inStock": true,
+    "rgb": [
+      255,
+      174,
+      96
+    ]
+  },
+  {
+    "id": "TS11120",
+    "name": "Orange (021)",
+    "inStock": true,
+    "rgb": [
+      231,
+      100,
+      43
+    ]
+  },
+  {
+    "id": "TS11130",
+    "name": "Burnt Orange (159)",
+    "inStock": true,
+    "rgb": [
+      183,
+      87,
+      52
+    ]
+  },
+  {
+    "id": "TS11140",
+    "name": "Bright Red (186)",
+    "inStock": true,
+    "rgb": [
+      193,
+      51,
+      61
+    ]
+  },
+  {
+    "id": "TS11150",
+    "name": "Maroon (188)",
+    "inStock": true,
+    "rgb": [
+      125,
+      54,
+      65
+    ]
+  },
+  {
+    "id": "TS11160",
+    "name": "Pink (210)",
+    "inStock": true,
+    "rgb": [
+      252,
+      160,
+      201
+    ]
+  },
+  {
+    "id": "TS11170",
+    "name": "Rose (1915)",
+    "inStock": true,
+    "rgb": [
+      226,
+      101,
+      139
+    ]
+  },
+  {
+    "id": "TS11180",
+    "name": "Magenta (233)",
+    "inStock": true,
+    "rgb": [
+      203,
+      0,
+      124
+    ]
+  },
+  {
+    "id": "TS11190",
+    "name": "Creme (7506)",
+    "inStock": true,
+    "rgb": [
+      246,
+      226,
+      201
+    ]
+  },
+  {
+    "id": "TS11200",
+    "name": "Spice Brown (723)",
+    "inStock": true,
+    "rgb": [
+      132,
+      103,
+      74
+    ]
+  },
+  {
+    "id": "TS11210",
+    "name": "Brown (731)",
+    "inStock": true,
+    "rgb": [
+      120,
+      79,
+      61
+    ]
+  },
+  {
+    "id": "TS11220",
+    "name": "Dk Brown (4625)",
+    "inStock": true,
+    "rgb": [
+      82,
+      64,
+      63
+    ]
+  },
+  {
+    "id": "TS11230",
+    "name": "Lilac (2573)",
+    "inStock": true,
+    "rgb": [
+      188,
+      132,
+      202
+    ]
+  },
+  {
+    "id": "TS11240",
+    "name": "Purple (269)",
+    "inStock": true,
+    "rgb": [
+      94,
+      75,
+      135
+    ]
+  },
+  {
+    "id": "TS11250",
+    "name": "Powder Blue (278)",
+    "inStock": true,
+    "rgb": [
+      139,
+      184,
+      234
+    ]
+  },
+  {
+    "id": "TS11260",
+    "name": "Lt Blue (299)",
+    "inStock": true,
+    "rgb": [
+      60,
+      173,
+      217
+    ]
+  },
+  {
+    "id": "TS11270",
+    "name": "Royal Blue (300)",
+    "inStock": true,
+    "rgb": [
+      0,
+      112,
+      167
+    ]
+  },
+  {
+    "id": "TS11280",
+    "name": "Dk Royal (287)",
+    "inStock": true,
+    "rgb": [
+      22,
+      91,
+      152
+    ]
+  },
+  {
+    "id": "TS11290",
+    "name": "Dk Navy (289)",
+    "inStock": true,
+    "rgb": [
+      60,
+      67,
+      104
+    ]
+  },
+  {
+    "id": "TS11300",
+    "name": "Turquoise (311)",
+    "inStock": true,
+    "rgb": [
+      44,
+      176,
+      202
+    ]
+  },
+  {
+    "id": "TS11310",
+    "name": "Aqua (320)",
+    "inStock": true,
+    "rgb": [
+      0,
+      154,
+      154
+    ]
+  },
+  {
+    "id": "TS11320",
+    "name": "Olive Green (392)",
+    "inStock": true,
+    "rgb": [
+      130,
+      122,
+      6
+    ]
+  },
+  {
+    "id": "TS11330",
+    "name": "Lime Green (375)",
+    "inStock": true,
+    "rgb": [
+      148,
+      214,
+      0
+    ]
+  },
+  {
+    "id": "TS11340",
+    "name": "Kelly Green (347)",
+    "inStock": true,
+    "rgb": [
+      0,
+      145,
+      81
+    ]
+  },
+  {
+    "id": "TS11350",
+    "name": "Forest Green (3425)",
+    "inStock": true,
+    "rgb": [
+      6,
+      100,
+      70
+    ]
+  },
+  {
+    "id": "TS11360",
+    "name": "Neon Yellow (809)",
+    "inStock": true,
+    "rgb": [
+      228,
+      255,
+      2
+    ]
+  },
+  {
+    "id": "TS11370",
+    "name": "Hot Pink (806)",
+    "inStock": true,
+    "rgb": [
+      254,
+      35,
+      129
+    ]
+  }
+]
