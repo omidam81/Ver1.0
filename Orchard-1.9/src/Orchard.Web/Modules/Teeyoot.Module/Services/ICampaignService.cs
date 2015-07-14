@@ -11,6 +11,6 @@ namespace Teeyoot.Module.Services
     {
         IQueryable<CampaignRecord> GetAllCampaigns();
 
-        CampaignRecord GetCampaignByShortName(string alias);
+        CampaignRecord GetCampaignByAlias(string alias);
     }
 }

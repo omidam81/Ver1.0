@@ -14,8 +14,8 @@ namespace Teeyoot.Module.Controllers
         // GET: /Campaign/
         public ActionResult Index(string campaignName)
         {
-            return new EmptyResult();
-            //return View((object)campaignName);
+            //return new EmptyResult();
+            return View((object)campaignName);
         }
 	}
 }
