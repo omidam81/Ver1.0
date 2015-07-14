@@ -41,7 +41,9 @@ table {
     border-radius: 5px 0 0 5px;
 }
 
-ul, ol      { margin: 0px !important; }
+ul, ol {
+    margin: 0px !important;
+}
 
 .flip-button {
     padding: 0.5rem 1.4rem;
@@ -77,39 +79,38 @@ ul, ol      { margin: 0px !important; }
 
 
 #content {
-    min-height:280px;
-
+    min-height: 580px !important;
 }
 
-    .flow-steps .flow-step .number {
-        background: #ff4f00;
-    }
+.flow-steps .flow-step .number {
+    background: #ff4f00;
+}
 
-    .flow-steps .flow-step .dot {
-        background: #56b8ea;
-        float: left;
-        margin: 0 0 0 16px;
-    }
+.flow-steps .flow-step .dot {
+    background: #56b8ea;
+    float: left;
+    margin: 0 0 0 16px;
+}
 
-    .flow-steps .flow-step strong {
-        color: #ff4f00;
-    }
+.flow-steps .flow-step strong {
+    color: #ff4f00;
+}
 
-    .flow-steps .flow-step.active .number {
-        background: #56b8ea;
-    }
+.flow-steps .flow-step.active .number {
+    background: #56b8ea;
+}
 
-    .flow-steps .flow-step.active strong {
-        color: #56b8ea;
-    }
+.flow-steps .flow-step.active strong {
+    color: #56b8ea;
+}
 
-    .flow-steps .flow-step.active .flow-step-before .dot {
-        background: #56b8ea;
-    }
+.flow-steps .flow-step.active .flow-step-before .dot {
+    background: #56b8ea;
+}
 
-    .flow-steps .flow-step.active .flow-step-after .dot {
-        background: #dbdbdb;
-    }
+.flow-steps .flow-step.active .flow-step-after .dot {
+    background: #dbdbdb;
+}
 
 .flow-step-before {
     left: 0;
@@ -124,12 +125,12 @@ ul, ol      { margin: 0px !important; }
 }
 
 .Content > table {
-    width:70%;
+    width: 70%;
 }
 
 .sell {
-    width:100%;
-    height:100px
+    width: 100%;
+    height: 100px;
 }
 
 .number,
@@ -240,6 +241,7 @@ span.number {
 }
 
 .SlideContainer {
+    height: 100% !important;
     position: absolute;
     left: 0;
     width: 100%;
@@ -259,53 +261,78 @@ span.number {
         overflow: hidden;
     }
 
+@media all and (max-width: 1820px) {
     .Slides .Content {
-        margin-left: 20%;
-        margin-top: 10px;
+        margin-left: 0;
+    }
+        #prodFront {
+        width: 400px;
     }
 
-        .Slides .Content a {
-            font-size: 30px;
-        }
+    #prodBack {
+        width: 400px;
+    }
+
+     /*#butt1 {
+        margin-top:-40px !important;
+    }
+
+         #butt2 {
+        margin-top:-40px !important;
+    }*/
+
+}
+
+.Slides .Content {
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+    .Slides .Content a {
+        font-size: 30px;
+    }
 
 .ssp_vcent {
     width: 100%;
-    margin-left:20px;
+    margin-left: 20px;
 }
 
 
 .ssp_block {
-  background: #f5f7f7;
-  border: 1px solid #ebeef0;
-  border-radius: 3px;
-  margin-bottom: .5rem;
-  padding: .5rem;
-  width: 100%;
-}
-
-.ssp_block.product {
-  overflow: visible;
-}
-
-.ssp_block .ssp_heading {
-    font-size: .8rem;
-    margin: .5rem 0 .5rem 0;
-    width: 100%;
-    font-weight:800;
-    color: #44474d;
-}
-
-.ssp_block .ssp_metadata {
-    position: relative;
+    background: #f5f7f7;
+    border: 1px solid #ebeef0;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    padding: .5rem;
     width: 100%;
 }
 
+    .ssp_block.product {
+        overflow: visible;
+    }
 
-.ssp_block .ssp_color{display:inline-block;vertical-align:middle;margin-right:4px}
+    .ssp_block .ssp_heading {
+        font-size: .8rem;
+        margin: .5rem 0 .5rem 0;
+        width: 100%;
+        font-weight: 800;
+        color: #44474d;
+    }
+
+    .ssp_block .ssp_metadata {
+        position: relative;
+        width: 100%;
+    }
 
 
-.ssp_block .ssp_thumbnai#
-    vertical-align: middle;
+    .ssp_block .ssp_color {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+
+
+    .ssp_block .ssp_thumbnai# vertical-align: middle;
 }
 
 input[type=range], ::-moz-range-track, ::-ms-track {
@@ -453,5 +480,5 @@ input[type=range] {
         -webkit-transition: background-color 400ms;
         transition: background-color 400ms;
         background-size: contain;
-        float:left;
+        float: left;
     }
