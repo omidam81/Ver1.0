@@ -1,35 +1,37 @@
 ﻿<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 
+@{
+    Script.Require("jQueryUI");
+}
+
 @using (Script.Foot())
 {
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-
-
     <script type="text/javascript">
         var items = function (request, response) {
-            var result = new Array();
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("Autocomplete", "Home"))",
-                data: { "term": request.term },
-                success: function (data) {
-                    var title;
-                    for (var i = 0; i < data.length ; i++) {
-                        title = data[i].Value;
-                        title = title.replace("<span class='autocomplete-question'>", "");
-                        title = title.replace("</span><br/>", ". ");
-                        result[i] = {
-                            value: title,
-                            label: data[i].Value,
-                            id: data[i].Key
-                        };
-                    }
-                },
-            });
-            response(result);
+            if (request.term.length > 1) {
+                var result = new Array();
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("Autocomplete", "Home"))",
+                    data: { "term": request.term },
+                    success: function (data) {
+                        var title;
+                        for (var i = 0; i < data.length ; i++) {
+                            title = data[i].Value;
+                            title = title.replace("<span class='autocomplete-question'>", "");
+                            title = title.replace("</span><br/>", ". ");
+                            result[i] = {
+                                value: title,
+                                label: data[i].Value,
+                                id: data[i].Key
+                            };
+                        }
+                    },
+                });
+                response(result);
+            }
         };
 
         $("#searchFaq").autocomplete({

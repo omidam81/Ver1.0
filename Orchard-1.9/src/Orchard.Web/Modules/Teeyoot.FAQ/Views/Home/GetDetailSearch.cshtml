@@ -21,7 +21,7 @@
 
             @Html.ActionLink(entry.Question, "ViewTopic", new { topicId = entry.Id })
         </div>
-        <div class="answer-topic answer-topic-short section-name">
+        <div class="answer-topic section-name">
             <div class="answer answer-topic answer-topic-short ">
                 @Html.Raw(entry.Body.Text)
             </div>
@@ -33,3 +33,17 @@
         </div>
     }
 </div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            var tableElem = document.getElementsByClassName('answer-topic-short');
+
+            for (var i = 0; i < tableElem.length; i++) {
+                var str = tableElem[i].textContent;
+                tableElem[i].innerHTML = "<span>" + str.substr(0, 400) + "...</span>";
+            }
+        }
+    </script>
+}

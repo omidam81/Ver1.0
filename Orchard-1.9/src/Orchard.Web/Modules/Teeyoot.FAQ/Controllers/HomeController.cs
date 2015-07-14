@@ -54,7 +54,6 @@ namespace Teeyoot.FAQ.Controllers
         {
             var section = _faqService.GetFaqSectionById(sectionId);
             var entries = _faqService.GetFaqEntries(sectionId).Join<BodyPartRecord>().List();
-
             return View(new ViewSectionViewModel { Section = section, Topics = entries.ToArray() });
         }
 
@@ -62,28 +61,28 @@ namespace Teeyoot.FAQ.Controllers
         public JsonResult Autocomplete(string term)
         {
             var entries = _faqService.GetFaqEntries().Join<BodyPartRecord>().List();
+            entries = entries.Where(s => s.Question.ToLower().Contains(term.ToLower()) || s.Body.Text.ToLower().Contains(term.ToLower())).Select(w => w).Take(7).ToList();
+
+
             var result = new List<KeyValuePair<string, string>>();
-            IList<SelectListItem> List = new List<SelectListItem>();
+            var list = new List<SelectListItem>();
 
             foreach (var entr in entries)
             {
                 var answer = entr.Body.Text;
                 answer = System.Text.RegularExpressions.Regex.Replace(answer, "<[^>]*>", "");
                 answer = System.Text.RegularExpressions.Regex.Replace(answer, "&nbsp", " ");
-                //answ = answ.Substring(0, 10);
-                //answ = answ + "...";
                 var question = "<span class='autocomplete-question'>" + entr.Question + "</span><br/>";
                 var text = question + answer;
-                List.Add(new SelectListItem { Text = text, Value = entr.Id.ToString() });
+                list.Add(new SelectListItem { Text = text, Value = entr.Id.ToString() });
             }
 
-            foreach (var item in List)
+            foreach (var item in list)
             {
                 result.Add(new KeyValuePair<string, string>(item.Value.ToString(), item.Text));
             }
-            var searchResult = result.Where(s => s.Value.ToLower().Contains
-                          (term.ToLower())).Select(w => w).Take(10).ToList();
-            return Json(searchResult, JsonRequestBehavior.AllowGet);
+           
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetDetailSearch(string filter)
