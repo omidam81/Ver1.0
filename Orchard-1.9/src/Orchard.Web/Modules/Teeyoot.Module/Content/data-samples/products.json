@@ -1,0 +1,2208 @@
+{
+  "products": [
+    {
+      "id": 95,
+      "name": "Bella Women's Flowy Tank",
+      "headline": "Premium materials",
+      "product_group_id": 4,
+      "colors_available": [
+        2260,
+        2261,
+        2264,
+        2267,
+        2270,
+        6281,
+        6294
+      ],
+      "list_of_sizes": "S (4) - 2XL (18-20)"
+    },
+    {
+      "id": 212,
+      "name": "Gildan 8oz Heavy Blend Hoodie",
+      "headline": "Budget friendly",
+      "product_group_id": 5,
+      "colors_available": [
+        5818,
+        5819,
+        5820,
+        5821,
+        5822,
+        5823,
+        5824,
+        5827,
+        5828,
+        5842,
+        5840,
+        5839,
+        5837,
+        5833,
+        5832,
+        5831,
+        5829,
+        6319
+      ],
+      "list_of_sizes": "S - 5XL "
+    }
+  ],
+  "product_colors": [
+    {
+      "id": 5844,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 5818,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 5800,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 4788,
+      "name": "White",
+      "value": "#F3F3F3",
+      "importance": 100
+    },
+    {
+      "id": 2548,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2536,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2507,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2486,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2342,
+      "name": "White",
+      "value": "#F3F3F3",
+      "importance": 100
+    },
+    {
+      "id": 2310,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2289,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2260,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 2122,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 656,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 100
+    },
+    {
+      "id": 5845,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 5819,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 5801,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 4789,
+      "name": "Black",
+      "value": "#010101",
+      "importance": 99
+    },
+    {
+      "id": 2549,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 2537,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 2508,
+      "name": "Black",
+      "value": "#1a1a1a",
+      "importance": 99
+    },
+    {
+      "id": 2397,
+      "name": "Black",
+      "value": "#1a1a1a",
+      "importance": 99
+    },
+    {
+      "id": 2343,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 2325,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 2311,
+      "name": "Black",
+      "value": "#1a1a1a",
+      "importance": 99
+    },
+    {
+      "id": 2261,
+      "name": "Black",
+      "value": "#000000",
+      "importance": 99
+    },
+    {
+      "id": 619,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 360,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 99
+    },
+    {
+      "id": 5846,
+      "name": "Navy",
+      "value": "#181923",
+      "importance": 98
+    },
+    {
+      "id": 5820,
+      "name": "Navy",
+      "value": "#262c50",
+      "importance": 98
+    },
+    {
+      "id": 5802,
+      "name": "Navy",
+      "value": "#181923",
+      "importance": 98
+    },
+    {
+      "id": 4790,
+      "name": "Navy",
+      "value": "#172C4B",
+      "importance": 98
+    },
+    {
+      "id": 2550,
+      "name": "Navy",
+      "value": "#1c1b2e",
+      "importance": 98
+    },
+    {
+      "id": 2538,
+      "name": "Navy",
+      "value": "#262c50",
+      "importance": 98
+    },
+    {
+      "id": 2509,
+      "name": "Navy",
+      "value": "#141525",
+      "importance": 98
+    },
+    {
+      "id": 2326,
+      "name": "Navy",
+      "value": "#262c50",
+      "importance": 98
+    },
+    {
+      "id": 639,
+      "name": "Navy",
+      "value": "#222953",
+      "importance": 98
+    },
+    {
+      "id": 576,
+      "name": "Navy",
+      "value": "#0A1339",
+      "importance": 98
+    },
+    {
+      "id": 377,
+      "name": "Navy",
+      "value": "#262c50",
+      "importance": 98
+    },
+    {
+      "id": 5848,
+      "name": "Deep Heather",
+      "value": "#616672",
+      "importance": 97
+    },
+    {
+      "id": 5821,
+      "name": "Ash Grey",
+      "value": "#E4E0E0",
+      "importance": 97
+    },
+    {
+      "id": 5803,
+      "name": "Deep Heather",
+      "value": "#CBCAC8",
+      "importance": 97
+    },
+    {
+      "id": 2487,
+      "name": "Ash Grey",
+      "value": "#E9E9EE",
+      "importance": 97
+    },
+    {
+      "id": 2439,
+      "name": "New Silver",
+      "value": "#ced5dd",
+      "importance": 97
+    },
+    {
+      "id": 677,
+      "name": "New Silver",
+      "value": "#ced5dd",
+      "importance": 97
+    },
+    {
+      "id": 562,
+      "name": "Ash",
+      "value": "#F1F2F6",
+      "importance": 97
+    },
+    {
+      "id": 5850,
+      "name": "True Royal",
+      "value": "#193c84",
+      "importance": 96
+    },
+    {
+      "id": 5849,
+      "name": "Steel Blue",
+      "value": "#5c88a4",
+      "importance": 96
+    },
+    {
+      "id": 5823,
+      "name": "Royal",
+      "value": "#014a8e",
+      "importance": 96
+    },
+    {
+      "id": 5822,
+      "name": "Sport Grey",
+      "value": "#C3C0C6",
+      "importance": 96
+    },
+    {
+      "id": 4792,
+      "name": "Royal",
+      "value": "#0C3594",
+      "importance": 96
+    },
+    {
+      "id": 4791,
+      "name": "Sport Grey",
+      "value": "#B4B1AF",
+      "importance": 96
+    },
+    {
+      "id": 2511,
+      "name": "Deep Royal",
+      "value": "#1a2f78",
+      "importance": 96
+    },
+    {
+      "id": 2489,
+      "name": "Sport Grey",
+      "value": "#C6C5C5",
+      "importance": 96
+    },
+    {
+      "id": 2347,
+      "name": "Royal",
+      "value": "#0050b2",
+      "importance": 96
+    },
+    {
+      "id": 2327,
+      "name": "Sport Grey",
+      "value": "#b7b7b7",
+      "importance": 96
+    },
+    {
+      "id": 2290,
+      "name": "Deep Royal",
+      "value": "#1a2f78",
+      "importance": 96
+    },
+    {
+      "id": 648,
+      "name": "Royal",
+      "value": "#0050b2",
+      "importance": 96
+    },
+    {
+      "id": 569,
+      "name": "Deep Royal",
+      "value": "#1a2f78",
+      "importance": 96
+    },
+    {
+      "id": 423,
+      "name": "Sport Grey",
+      "value": "#D0CFD1",
+      "importance": 96
+    },
+    {
+      "id": 5824,
+      "name": "Red",
+      "value": "#c90013",
+      "importance": 95
+    },
+    {
+      "id": 4793,
+      "name": "Red",
+      "value": "#B71A1A",
+      "importance": 95
+    },
+    {
+      "id": 2551,
+      "name": "Red",
+      "value": "#e70b1a",
+      "importance": 95
+    },
+    {
+      "id": 2540,
+      "name": "Red",
+      "value": "#c90013",
+      "importance": 95
+    },
+    {
+      "id": 2512,
+      "name": "Deep Red",
+      "value": "#9f0110",
+      "importance": 95
+    },
+    {
+      "id": 2490,
+      "name": "Red",
+      "value": "#c90013",
+      "importance": 95
+    },
+    {
+      "id": 2348,
+      "name": "Red",
+      "value": "#B40C17",
+      "importance": 95
+    },
+    {
+      "id": 647,
+      "name": "Red",
+      "value": "#e70b1a",
+      "importance": 95
+    },
+    {
+      "id": 568,
+      "name": "Deep Red",
+      "value": "#9f0110",
+      "importance": 95
+    },
+    {
+      "id": 5805,
+      "name": "Orange",
+      "value": "#ff5400",
+      "importance": 94
+    },
+    {
+      "id": 4794,
+      "name": "Orange",
+      "value": "#EC5600",
+      "importance": 94
+    },
+    {
+      "id": 2513,
+      "name": "Deep Forest",
+      "value": "#142510",
+      "importance": 94
+    },
+    {
+      "id": 2330,
+      "name": "Orange",
+      "value": "#ff6600",
+      "importance": 94
+    },
+    {
+      "id": 2313,
+      "name": "Deep Forest",
+      "value": "#142510",
+      "importance": 94
+    },
+    {
+      "id": 566,
+      "name": "Deep Forest",
+      "value": "#142510",
+      "importance": 94
+    },
+    {
+      "id": 2492,
+      "name": "Light Blue",
+      "value": "#96b3ef",
+      "importance": 93
+    },
+    {
+      "id": 577,
+      "name": "Orange",
+      "value": "#e54d09",
+      "importance": 93
+    },
+    {
+      "id": 5852,
+      "name": "Team Purple",
+      "value": "#2b1b40",
+      "importance": 92
+    },
+    {
+      "id": 5827,
+      "name": "Purple",
+      "value": "#4d2379",
+      "importance": 92
+    },
+    {
+      "id": 5806,
+      "name": "Team Purple",
+      "value": "#2b1b40",
+      "importance": 92
+    },
+    {
+      "id": 4795,
+      "name": "Purple",
+      "value": "#4d2379",
+      "importance": 92
+    },
+    {
+      "id": 2493,
+      "name": "Purple",
+      "value": "#4d2379",
+      "importance": 92
+    },
+    {
+      "id": 2232,
+      "name": "Purple",
+      "value": "#4b256e",
+      "importance": 92
+    },
+    {
+      "id": 4796,
+      "name": "Maroon",
+      "value": "#530A27",
+      "importance": 91
+    },
+    {
+      "id": 2516,
+      "name": "Light Blue",
+      "value": "#9dcbeb",
+      "importance": 91
+    },
+    {
+      "id": 2518,
+      "name": "Lime",
+      "value": "#a7fc5c",
+      "importance": 90
+    },
+    {
+      "id": 2495,
+      "name": "Gold",
+      "value": "#ffba31",
+      "importance": 90
+    },
+    {
+      "id": 2123,
+      "name": "Gold",
+      "value": "#ffb430",
+      "importance": 90
+    },
+    {
+      "id": 5828,
+      "name": "Forest Green",
+      "value": "#1c3d28",
+      "importance": 89
+    },
+    {
+      "id": 4798,
+      "name": "Forest Green",
+      "value": "#1c3d28",
+      "importance": 89
+    },
+    {
+      "id": 2496,
+      "name": "Forest Green",
+      "value": "#1c3d28",
+      "importance": 89
+    },
+    {
+      "id": 2333,
+      "name": "Forest Green",
+      "value": "#1c3d28",
+      "importance": 89
+    },
+    {
+      "id": 6513,
+      "name": "Black",
+      "value": "#222222",
+      "importance": 10
+    },
+    {
+      "id": 6565,
+      "name": "Classic Red",
+      "value": "#ba393f",
+      "importance": 9
+    },
+    {
+      "id": 6517,
+      "name": "Deep Orange ",
+      "value": "#ca522f",
+      "importance": 8
+    },
+    {
+      "id": 6518,
+      "name": "Lemon Yellow ",
+      "value": "#fcf58b",
+      "importance": 7
+    },
+    {
+      "id": 6519,
+      "name": "Kelly Green",
+      "value": "#438d4e",
+      "importance": 6
+    },
+    {
+      "id": 6514,
+      "name": "New Navy",
+      "value": "#0C1A2C",
+      "importance": 5
+    },
+    {
+      "id": 6521,
+      "name": "Deep Royal",
+      "value": "#1e448b",
+      "importance": 4
+    },
+    {
+      "id": 6526,
+      "name": "Purple",
+      "value": "#6349a2",
+      "importance": 3
+    },
+    {
+      "id": 6512,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": 1
+    },
+    {
+      "id": 6605,
+      "name": "White ",
+      "value": "#FFFFFF",
+      "importance": null
+    },
+    {
+      "id": 6604,
+      "name": "Deep Red ",
+      "value": "#932132",
+      "importance": null
+    },
+    {
+      "id": 6603,
+      "name": "Pink ",
+      "value": "#f389ae",
+      "importance": null
+    },
+    {
+      "id": 6602,
+      "name": "Pale Pink ",
+      "value": "#fde8e7",
+      "importance": null
+    },
+    {
+      "id": 6601,
+      "name": "Black",
+      "value": "#222222",
+      "importance": null
+    },
+    {
+      "id": 6600,
+      "name": "Aquatic Blue ",
+      "value": "#23ade4",
+      "importance": null
+    },
+    {
+      "id": 6598,
+      "name": "Deep Forest ",
+      "value": "#00483a",
+      "importance": null
+    },
+    {
+      "id": 6596,
+      "name": "Navy",
+      "value": "#181923",
+      "importance": null
+    },
+    {
+      "id": 6595,
+      "name": "Light Steel",
+      "value": "#97979b",
+      "importance": null
+    },
+    {
+      "id": 6589,
+      "name": "Eco True Turquoise ",
+      "value": "#55999E",
+      "importance": null
+    },
+    {
+      "id": 6588,
+      "name": "Eco Ivory ",
+      "value": "#E1DFDA",
+      "importance": null
+    },
+    {
+      "id": 6587,
+      "name": "Eco True Purple ",
+      "value": "#754B93",
+      "importance": null
+    },
+    {
+      "id": 6586,
+      "name": "Eco True Red ",
+      "value": "#D02538",
+      "importance": null
+    },
+    {
+      "id": 6585,
+      "name": "Eco Black",
+      "value": "#2A292C",
+      "importance": null
+    },
+    {
+      "id": 6584,
+      "name": "Eco Grey",
+      "value": "#888283",
+      "importance": null
+    },
+    {
+      "id": 6577,
+      "name": "Orange",
+      "value": "#CF7729",
+      "importance": null
+    },
+    {
+      "id": 6567,
+      "name": "Classic Red",
+      "value": "#ba393f",
+      "importance": null
+    },
+    {
+      "id": 6566,
+      "name": "Classic Red",
+      "value": "#ba393f",
+      "importance": null
+    },
+    {
+      "id": 6561,
+      "name": "Heathered Charcoal ",
+      "value": "#423d43",
+      "importance": null
+    },
+    {
+      "id": 6559,
+      "name": "Light Heather Grey ",
+      "value": "#aaa9aa",
+      "importance": null
+    },
+    {
+      "id": 6558,
+      "name": "Purple ",
+      "value": "#6349a2",
+      "importance": null
+    },
+    {
+      "id": 6557,
+      "name": "Deep Royal ",
+      "value": "#21498f",
+      "importance": null
+    },
+    {
+      "id": 6556,
+      "name": "Heathered Bright Turquoise ",
+      "value": "#439ad4",
+      "importance": null
+    },
+    {
+      "id": 6555,
+      "name": "Kelly Green ",
+      "value": "#41884e",
+      "importance": null
+    },
+    {
+      "id": 6554,
+      "name": "Lemon Yellow ",
+      "value": "#fcf68a",
+      "importance": null
+    },
+    {
+      "id": 6553,
+      "name": "Deep Orange ",
+      "value": "#ca532f",
+      "importance": null
+    },
+    {
+      "id": 6551,
+      "name": "Heathered Pink Raspberry ",
+      "value": "#bb579a",
+      "importance": null
+    },
+    {
+      "id": 6550,
+      "name": "True Pink ",
+      "value": "#ea80ac",
+      "importance": null
+    },
+    {
+      "id": 6549,
+      "name": "New Navy",
+      "value": "#0C1A2C",
+      "importance": null
+    },
+    {
+      "id": 6548,
+      "name": "Black",
+      "value": "#222222",
+      "importance": null
+    },
+    {
+      "id": 6547,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": null
+    },
+    {
+      "id": 6546,
+      "name": "Heathered Charcoal ",
+      "value": "#433e44",
+      "importance": null
+    },
+    {
+      "id": 6545,
+      "name": "Light Heather Grey",
+      "value": "#a39d9c",
+      "importance": null
+    },
+    {
+      "id": 6544,
+      "name": "Purple",
+      "value": "#6349a2",
+      "importance": null
+    },
+    {
+      "id": 6543,
+      "name": "Deep Royal ",
+      "value": "#22488f",
+      "importance": null
+    },
+    {
+      "id": 6541,
+      "name": "Heathered Bright Turquoise  ",
+      "value": "#439bd3",
+      "importance": null
+    },
+    {
+      "id": 6539,
+      "name": "Kelly Green ",
+      "value": "#448e4f",
+      "importance": null
+    },
+    {
+      "id": 6537,
+      "name": "Deep Orange",
+      "value": "#ca522f",
+      "importance": null
+    },
+    {
+      "id": 6535,
+      "name": "Heathered Pink Raspberry",
+      "value": "#b25192",
+      "importance": null
+    },
+    {
+      "id": 6534,
+      "name": "True Pink",
+      "value": "#ea80ac",
+      "importance": null
+    },
+    {
+      "id": 6533,
+      "name": "Grey",
+      "value": "#ADB1B0",
+      "importance": null
+    },
+    {
+      "id": 6532,
+      "name": "New Navy",
+      "value": "#0C1A2C",
+      "importance": null
+    },
+    {
+      "id": 6531,
+      "name": "Black",
+      "value": "#222222",
+      "importance": null
+    },
+    {
+      "id": 6530,
+      "name": "White",
+      "value": "#F7F7F7",
+      "importance": null
+    },
+    {
+      "id": 6529,
+      "name": "Heathered Charcoal ",
+      "value": "#413c42",
+      "importance": null
+    },
+    {
+      "id": 6527,
+      "name": "Light Heather Grey ",
+      "value": "#abaaab",
+      "importance": null
+    },
+    {
+      "id": 6525,
+      "name": "Heathered Royal ",
+      "value": "#6486d0",
+      "importance": null
+    },
+    {
+      "id": 6524,
+      "name": "Heathered Bright Turquoise ",
+      "value": "#4099d0",
+      "importance": null
+    },
+    {
+      "id": 6520,
+      "name": "Forest Green ",
+      "value": "#192d2c",
+      "importance": null
+    },
+    {
+      "id": 6515,
+      "name": "Grey",
+      "value": "#ADB1B0",
+      "importance": null
+    },
+    {
+      "id": 6510,
+      "name": "Orange",
+      "value": "#F9743F",
+      "importance": null
+    },
+    {
+      "id": 6509,
+      "name": "Charcoal",
+      "value": "#545454",
+      "importance": null
+    },
+    {
+      "id": 6508,
+      "name": "Purple",
+      "value": "#4D2379",
+      "importance": null
+    },
+    {
+      "id": 6507,
+      "name": "Orange",
+      "value": "#D15B05",
+      "importance": null
+    },
+    {
+      "id": 6412,
+      "name": "Black",
+      "value": "#222222",
+      "importance": null
+    },
+    {
+      "id": 6411,
+      "name": "Yellow ",
+      "value": "#F8D016",
+      "importance": null
+    },
+    {
+      "id": 6410,
+      "name": "Turquoise",
+      "value": "#0095B3",
+      "importance": null
+    },
+    {
+      "id": 6409,
+      "name": "Pink",
+      "value": "#FCBFC9",
+      "importance": null
+    },
+    {
+      "id": 6408,
+      "name": "White",
+      "value": "#F1F1F1",
+      "importance": null
+    },
+    {
+      "id": 6407,
+      "name": "Heather ",
+      "value": "#B7B7B7",
+      "importance": null
+    },
+    {
+      "id": 6406,
+      "name": "Royal",
+      "value": "#0079DB",
+      "importance": null
+    },
+    {
+      "id": 6405,
+      "name": "Navy ",
+      "value": "#222953",
+      "importance": null
+    },
+    {
+      "id": 6386,
+      "name": "Mint Green",
+      "value": "#ACD49F",
+      "importance": null
+    },
+    {
+      "id": 6385,
+      "name": "Light Blue",
+      "value": "#B7CEEB",
+      "importance": null
+    },
+    {
+      "id": 6383,
+      "name": "Navy ",
+      "value": "#151C33",
+      "importance": null
+    },
+    {
+      "id": 6382,
+      "name": "Red ",
+      "value": "#CB0012",
+      "importance": null
+    },
+    {
+      "id": 6381,
+      "name": "Royal ",
+      "value": "#1950BF",
+      "importance": null
+    },
+    {
+      "id": 6380,
+      "name": "Sport Grey ",
+      "value": "#D9D4D4",
+      "importance": null
+    },
+    {
+      "id": 6379,
+      "name": "White ",
+      "value": "#FDFDFD",
+      "importance": null
+    },
+    {
+      "id": 6378,
+      "name": "Light Blue",
+      "value": "#87ADE4",
+      "importance": null
+    },
+    {
+      "id": 6375,
+      "name": "Light Steel ",
+      "value": "#BFBABA",
+      "importance": null
+    },
+    {
+      "id": 6374,
+      "name": "Deep Forest ",
+      "value": "#0A2C17",
+      "importance": null
+    },
+    {
+      "id": 6373,
+      "name": "White ",
+      "value": "#F1F1F1",
+      "importance": null
+    },
+    {
+      "id": 6372,
+      "name": "Maroon",
+      "value": "#530417",
+      "importance": null
+    },
+    {
+      "id": 6370,
+      "name": "Deep Red ",
+      "value": "#A5000F",
+      "importance": null
+    },
+    {
+      "id": 6369,
+      "name": "Deep Royal ",
+      "value": "#0B2C8C",
+      "importance": null
+    },
+    {
+      "id": 6368,
+      "name": "Navy",
+      "value": "#080C40",
+      "importance": null
+    },
+    {
+      "id": 6367,
+      "name": "Black",
+      "value": "#0C0C0C",
+      "importance": null
+    },
+    {
+      "id": 6363,
+      "name": "Light Steel ",
+      "value": "#B1ACAC",
+      "importance": null
+    },
+    {
+      "id": 6362,
+      "name": "Deep Forest ",
+      "value": "#05290C",
+      "importance": null
+    },
+    {
+      "id": 6361,
+      "name": "White ",
+      "value": "#EBEBEB",
+      "importance": null
+    },
+    {
+      "id": 6360,
+      "name": "Maroon ",
+      "value": "#580E31",
+      "importance": null
+    },
+    {
+      "id": 6357,
+      "name": "Deep Red ",
+      "value": "#A10413",
+      "importance": null
+    },
+    {
+      "id": 6356,
+      "name": "Deep Royal ",
+      "value": "#051D73",
+      "importance": null
+    },
+    {
+      "id": 6355,
+      "name": "Navy ",
+      "value": "#091140",
+      "importance": null
+    },
+    {
+      "id": 6354,
+      "name": "Black",
+      "value": "#090909",
+      "importance": null
+    },
+    {
+      "id": 6353,
+      "name": "Ash Grey",
+      "value": "#DCDCDC",
+      "importance": null
+    },
+    {
+      "id": 6337,
+      "name": "Soft Pink",
+      "value": "#F1BFC3",
+      "importance": null
+    },
+    {
+      "id": 6336,
+      "name": "Light Aqua ",
+      "value": "#B2EBF1",
+      "importance": null
+    },
+    {
+      "id": 6335,
+      "name": "Kelly",
+      "value": "#007048",
+      "importance": null
+    },
+    {
+      "id": 6334,
+      "name": "White",
+      "value": "#E8E8E9",
+      "importance": null
+    },
+    {
+      "id": 6333,
+      "name": "Currant",
+      "value": "#680745",
+      "importance": null
+    },
+    {
+      "id": 6331,
+      "name": "Deep Heather",
+      "value": "#343B49",
+      "importance": null
+    },
+    {
+      "id": 6329,
+      "name": "Purple",
+      "value": "#29083E",
+      "importance": null
+    },
+    {
+      "id": 6328,
+      "name": "True Royal  ",
+      "value": "#083B9F",
+      "importance": null
+    },
+    {
+      "id": 6327,
+      "name": "Red",
+      "value": "#BA0013",
+      "importance": null
+    },
+    {
+      "id": 6326,
+      "name": "Navy",
+      "value": "#000524",
+      "importance": null
+    },
+    {
+      "id": 6325,
+      "name": "Black",
+      "value": "#222222",
+      "importance": null
+    },
+    {
+      "id": 6319,
+      "name": "Charcoal",
+      "value": "#827F77",
+      "importance": null
+    },
+    {
+      "id": 6318,
+      "name": "White/Forest ",
+      "value": "#2B443E",
+      "importance": null
+    },
+    {
+      "id": 6317,
+      "name": "White/Black ",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 6316,
+      "name": "White/Asphalt  ",
+      "value": "#414141",
+      "importance": null
+    },
+    {
+      "id": 6294,
+      "name": "Neon Pink",
+      "value": "#EF608F",
+      "importance": null
+    },
+    {
+      "id": 6281,
+      "name": "Coral",
+      "value": "#DE0C2D",
+      "importance": null
+    },
+    {
+      "id": 6273,
+      "name": "Navy",
+      "value": "#222953",
+      "importance": null
+    },
+    {
+      "id": 6272,
+      "name": "Deep Forest",
+      "value": "#1A3024",
+      "importance": null
+    },
+    {
+      "id": 6271,
+      "name": "Ash",
+      "value": "#CCCCCC",
+      "importance": null
+    },
+    {
+      "id": 6270,
+      "name": "White",
+      "value": "#ffffff",
+      "importance": null
+    },
+    {
+      "id": 6269,
+      "name": "Deep Forest ",
+      "value": "#1A3024",
+      "importance": null
+    },
+    {
+      "id": 6267,
+      "name": "Deep Red",
+      "value": "#AE2A36",
+      "importance": null
+    },
+    {
+      "id": 6208,
+      "name": "Wow Pink",
+      "value": "#D4487E",
+      "importance": null
+    },
+    {
+      "id": 6182,
+      "name": "Wow Pink",
+      "value": "#E7528A",
+      "importance": null
+    },
+    {
+      "id": 6112,
+      "name": "Light Steel",
+      "value": "#C1BDBD",
+      "importance": null
+    },
+    {
+      "id": 6111,
+      "name": "Royal",
+      "value": "#293B7B",
+      "importance": null
+    },
+    {
+      "id": 6110,
+      "name": "Navy ",
+      "value": "#222953",
+      "importance": null
+    },
+    {
+      "id": 6108,
+      "name": "Black",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 6097,
+      "name": "Black",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 6094,
+      "name": "Red",
+      "value": "#D62828",
+      "importance": null
+    },
+    {
+      "id": 6090,
+      "name": "Kelly",
+      "value": "#006A38",
+      "importance": null
+    },
+    {
+      "id": 6081,
+      "name": "Ash",
+      "value": "#E9E7E7",
+      "importance": null
+    },
+    {
+      "id": 6079,
+      "name": "White",
+      "value": "#F0F0F0",
+      "importance": null
+    },
+    {
+      "id": 6078,
+      "name": "Navy",
+      "value": "#00031E",
+      "importance": null
+    },
+    {
+      "id": 6077,
+      "name": "Light Blue",
+      "value": "#9DB7E4",
+      "importance": null
+    },
+    {
+      "id": 6076,
+      "name": "Wow Pink",
+      "value": "#E32D80",
+      "importance": null
+    },
+    {
+      "id": 6075,
+      "name": "Safety Orange",
+      "value": "#FF983A",
+      "importance": null
+    },
+    {
+      "id": 6074,
+      "name": "Safety Green",
+      "value": "#CCD940",
+      "importance": null
+    },
+    {
+      "id": 6073,
+      "name": "Maroon",
+      "value": "#5A0B27",
+      "importance": null
+    },
+    {
+      "id": 6070,
+      "name": "Navy",
+      "value": "#00072E",
+      "importance": null
+    },
+    {
+      "id": 6069,
+      "name": "Deep Royal",
+      "value": "#003795",
+      "importance": null
+    },
+    {
+      "id": 6068,
+      "name": "Deep Forest",
+      "value": "#1A3024",
+      "importance": null
+    },
+    {
+      "id": 6064,
+      "name": "Graphite",
+      "value": "#78736F",
+      "importance": null
+    },
+    {
+      "id": 6063,
+      "name": "White",
+      "value": "#F0F0F0",
+      "importance": null
+    },
+    {
+      "id": 6061,
+      "name": "Orange",
+      "value": "#CF7602",
+      "importance": null
+    },
+    {
+      "id": 6060,
+      "name": "Gold",
+      "value": "#D7AE4C",
+      "importance": null
+    },
+    {
+      "id": 6046,
+      "name": "Denim Blue",
+      "value": "#5c739c",
+      "importance": null
+    },
+    {
+      "id": 6045,
+      "name": "Purple",
+      "value": "#4D2379",
+      "importance": null
+    },
+    {
+      "id": 6044,
+      "name": "Evergreen",
+      "value": "#13726C",
+      "importance": null
+    },
+    {
+      "id": 6038,
+      "name": "Deep Royal",
+      "value": "#293B7B",
+      "importance": null
+    },
+    {
+      "id": 6037,
+      "name": "Wow Pink",
+      "value": "#D4487E",
+      "importance": null
+    },
+    {
+      "id": 6035,
+      "name": "Black",
+      "value": "#161616",
+      "importance": null
+    },
+    {
+      "id": 6025,
+      "name": "Black",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 6022,
+      "name": "Black",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 6001,
+      "name": "Deep Red",
+      "value": "#9A1818",
+      "importance": null
+    },
+    {
+      "id": 5983,
+      "name": "Heather Grey",
+      "value": "#D4D4D4",
+      "importance": null
+    },
+    {
+      "id": 5905,
+      "name": "Orchid",
+      "value": "#7467B3",
+      "importance": null
+    },
+    {
+      "id": 5904,
+      "name": "Coffee",
+      "value": "#5E534B",
+      "importance": null
+    },
+    {
+      "id": 5902,
+      "name": "Evergreen",
+      "value": "#187E6F",
+      "importance": null
+    },
+    {
+      "id": 5901,
+      "name": "Cranberry",
+      "value": "#6B3263",
+      "importance": null
+    },
+    {
+      "id": 5862,
+      "name": "Black",
+      "value": "#282A26",
+      "importance": null
+    },
+    {
+      "id": 5861,
+      "name": "Berry",
+      "value": "#B4236A",
+      "importance": null
+    },
+    {
+      "id": 5860,
+      "name": "White",
+      "value": "#FFFFFF",
+      "importance": null
+    },
+    {
+      "id": 5859,
+      "name": "Pink",
+      "value": "#F2D6D8",
+      "importance": null
+    },
+    {
+      "id": 5858,
+      "name": "Red",
+      "value": "#B61C39",
+      "importance": null
+    },
+    {
+      "id": 5857,
+      "name": "Navy",
+      "value": "#222953",
+      "importance": null
+    },
+    {
+      "id": 5855,
+      "name": "Athletic Heather",
+      "value": "#C4C3C3",
+      "importance": null
+    },
+    {
+      "id": 5854,
+      "name": "Dark Grey Heather",
+      "value": "#38393a",
+      "importance": null
+    },
+    {
+      "id": 5853,
+      "name": "Red",
+      "value": "#9c010b",
+      "importance": null
+    },
+    {
+      "id": 5842,
+      "name": "Light Pink",
+      "value": "#ffd5d5",
+      "importance": null
+    },
+    {
+      "id": 5840,
+      "name": "Heliconia",
+      "value": "#ed2870",
+      "importance": null
+    },
+    {
+      "id": 5839,
+      "name": "Carolina Blue",
+      "value": "#6299dd",
+      "importance": null
+    },
+    {
+      "id": 5837,
+      "name": "Safety Orange",
+      "value": "#ff5400",
+      "importance": null
+    },
+    {
+      "id": 5833,
+      "name": "Maroon",
+      "value": "#88353C",
+      "importance": null
+    },
+    {
+      "id": 5832,
+      "name": "Dark Heather",
+      "value": "#676769",
+      "importance": null
+    },
+    {
+      "id": 5831,
+      "name": "Cardinal Red",
+      "value": "#C03545",
+      "importance": null
+    },
+    {
+      "id": 5829,
+      "name": "Irish Green",
+      "value": "#1f6522",
+      "importance": null
+    },
+    {
+      "id": 5816,
+      "name": "Athletic Heather",
+      "value": "#BFBEBB",
+      "importance": null
+    },
+    {
+      "id": 5815,
+      "name": "Red",
+      "value": "#9c010b",
+      "importance": null
+    },
+    {
+      "id": 5814,
+      "name": "Silver",
+      "value": "#d5d2d5",
+      "importance": null
+    },
+    {
+      "id": 5812,
+      "name": "Kelly",
+      "value": "#015d39",
+      "importance": null
+    },
+    {
+      "id": 5811,
+      "name": "Neon Pink",
+      "value": "#EC839C",
+      "importance": null
+    },
+    {
+      "id": 5810,
+      "name": "True Royal",
+      "value": "#00337F",
+      "importance": null
+    },
+    {
+      "id": 4805,
+      "name": "Cardinal Red",
+      "value": "#88001F",
+      "importance": null
+    },
+    {
+      "id": 4804,
+      "name": "Charcoal",
+      "value": "#2C2C2C",
+      "importance": null
+    },
+    {
+      "id": 4800,
+      "name": "Irish Green",
+      "value": "#00B66D",
+      "importance": null
+    },
+    {
+      "id": 4799,
+      "name": "Light Pink",
+      "value": "#F6C6E8",
+      "importance": null
+    },
+    {
+      "id": 3420,
+      "name": "Coffee",
+      "value": "#5E534B",
+      "importance": null
+    },
+    {
+      "id": 3419,
+      "name": "Cranberry",
+      "value": "#662551",
+      "importance": null
+    },
+    {
+      "id": 3416,
+      "name": "Athletic Grey",
+      "value": "#A0A5C3",
+      "importance": null
+    },
+    {
+      "id": 3415,
+      "name": "Indigo",
+      "value": "#364D7B",
+      "importance": null
+    },
+    {
+      "id": 3413,
+      "name": "Oatmeal",
+      "value": "#FFF3E7",
+      "importance": null
+    },
+    {
+      "id": 3412,
+      "name": "Orchid",
+      "value": "#9298E3",
+      "importance": null
+    },
+    {
+      "id": 3411,
+      "name": "Athletic Blue",
+      "value": "#81ACD9",
+      "importance": null
+    },
+    {
+      "id": 2666,
+      "name": "Dark Grey Heather",
+      "value": "#3E3E3E",
+      "importance": null
+    },
+    {
+      "id": 2665,
+      "name": "True Royal",
+      "value": "#0061A5",
+      "importance": null
+    },
+    {
+      "id": 2664,
+      "name": "Black",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 2663,
+      "name": "Athletic Heather",
+      "value": "#CCCCCC",
+      "importance": null
+    },
+    {
+      "id": 2662,
+      "name": "Red",
+      "value": "#D43134",
+      "importance": null
+    },
+    {
+      "id": 2661,
+      "name": "Navy",
+      "value": "#222953",
+      "importance": null
+    },
+    {
+      "id": 2545,
+      "name": "Carolina Blue",
+      "value": "#6299DD",
+      "importance": null
+    },
+    {
+      "id": 2542,
+      "name": "Charcoal",
+      "value": "#494A4D",
+      "importance": null
+    },
+    {
+      "id": 2541,
+      "name": "Purple",
+      "value": "#4D2379",
+      "importance": null
+    },
+    {
+      "id": 2539,
+      "name": "Royal",
+      "value": "#014a8e",
+      "importance": null
+    },
+    {
+      "id": 2524,
+      "name": "Light Steel",
+      "value": "#bfbaba",
+      "importance": null
+    },
+    {
+      "id": 2521,
+      "name": "Pale Pink",
+      "value": "#efc5d1",
+      "importance": null
+    },
+    {
+      "id": 2519,
+      "name": "Smoke Gray",
+      "value": "#3f3f38",
+      "importance": null
+    },
+    {
+      "id": 2504,
+      "name": "Cardinal Red",
+      "value": "#711127",
+      "importance": null
+    },
+    {
+      "id": 2501,
+      "name": "Irish Green",
+      "value": "#1f6522",
+      "importance": null
+    },
+    {
+      "id": 2500,
+      "name": "Light Pink",
+      "value": "#ffd5d5",
+      "importance": null
+    },
+    {
+      "id": 2488,
+      "name": "Royal",
+      "value": "#014a8e",
+      "importance": null
+    },
+    {
+      "id": 2440,
+      "name": "Kelly",
+      "value": "#00915e",
+      "importance": null
+    },
+    {
+      "id": 2377,
+      "name": "Lemon",
+      "value": "#f7e599",
+      "importance": null
+    },
+    {
+      "id": 2375,
+      "name": "Light Pink",
+      "value": "#FFD7F0",
+      "importance": null
+    },
+    {
+      "id": 2371,
+      "name": "Fuchsia",
+      "value": "#FB4B91",
+      "importance": null
+    },
+    {
+      "id": 2370,
+      "name": "Forest",
+      "value": "#183836",
+      "importance": null
+    },
+    {
+      "id": 2369,
+      "name": "Asphalt",
+      "value": "#434343",
+      "importance": null
+    },
+    {
+      "id": 2367,
+      "name": "Aqua",
+      "value": "#63c9e0",
+      "importance": null
+    },
+    {
+      "id": 2357,
+      "name": "Slate",
+      "value": "#9993a3",
+      "importance": null
+    },
+    {
+      "id": 2351,
+      "name": "Orange",
+      "value": "#fc5614",
+      "importance": null
+    },
+    {
+      "id": 2341,
+      "name": "Dark Chocolate",
+      "value": "#382d21",
+      "importance": null
+    },
+    {
+      "id": 2340,
+      "name": "Charcoal",
+      "value": "#494949",
+      "importance": null
+    },
+    {
+      "id": 2339,
+      "name": "Safety Green",
+      "value": "#ccff00",
+      "importance": null
+    },
+    {
+      "id": 2338,
+      "name": "Daisy",
+      "value": "#ffe329",
+      "importance": null
+    },
+    {
+      "id": 2337,
+      "name": "Heliconia",
+      "value": "#ed2870",
+      "importance": null
+    },
+    {
+      "id": 2336,
+      "name": "Irish Green",
+      "value": "#1f6522",
+      "importance": null
+    },
+    {
+      "id": 2334,
+      "name": "Cardinal Red",
+      "value": "#711127",
+      "importance": null
+    },
+    {
+      "id": 2328,
+      "name": "Royal",
+      "value": "#014a8e",
+      "importance": null
+    },
+    {
+      "id": 2318,
+      "name": "Pale Pink",
+      "value": "#efc5d1",
+      "importance": null
+    },
+    {
+      "id": 2317,
+      "name": "Light Steel",
+      "value": "#bfbaba",
+      "importance": null
+    },
+    {
+      "id": 2316,
+      "name": "Navy",
+      "value": "#222953",
+      "importance": null
+    },
+    {
+      "id": 2315,
+      "name": "Carolina Blue",
+      "value": "#64a2f0",
+      "importance": null
+    },
+    {
+      "id": 2312,
+      "name": "Deep Red",
+      "value": "#9f0110",
+      "importance": null
+    },
+    {
+      "id": 2298,
+      "name": "Black",
+      "value": "#000000",
+      "importance": null
+    },
+    {
+      "id": 2297,
+      "name": "Deep Red",
+      "value": "#AD3129",
+      "importance": null
+    },
+    {
+      "id": 2296,
+      "name": "Pale Pink",
+      "value": "#FBD7E3",
+      "importance": null
+    },
+    {
+      "id": 2294,
+      "name": "Ash",
+      "value": "#EBEBEB",
+      "importance": null
+    },
+    {
+      "id": 2291,
+      "name": "Light Blue",
+      "value": "#A1C5DE",
+      "importance": null
+    },
+    {
+      "id": 2270,
+      "name": "Dark Grey Heather",
+      "value": "#222223",
+      "importance": null
+    },
+    {
+      "id": 2267,
+      "name": "Neon Yellow",
+      "value": "#EDF212",
+      "importance": null
+    },
+    {
+      "id": 2264,
+      "name": "Soft Pink",
+      "value": "#FFDEF5",
+      "importance": null
+    },
+    {
+      "id": 812,
+      "name": "Heather Grey",
+      "value": "#cfced3",
+      "importance": null
+    },
+    {
+      "id": 810,
+      "name": "Coral",
+      "value": "#ff5960",
+      "importance": null
+    },
+    {
+      "id": 783,
+      "name": "Kelly",
+      "value": "#006535",
+      "importance": null
+    },
+    {
+      "id": 652,
+      "name": "Teal",
+      "value": "#0098d9",
+      "importance": null
+    },
+    {
+      "id": 651,
+      "name": "Slate",
+      "value": "#9993a3",
+      "importance": null
+    },
+    {
+      "id": 640,
+      "name": "Olive",
+      "value": "#4e5220",
+      "importance": null
+    },
+    {
+      "id": 637,
+      "name": "Mint",
+      "value": "#37d4ba",
+      "importance": null
+    },
+    {
+      "id": 629,
+      "name": "Heather",
+      "value": "#D0CFD3",
+      "importance": null
+    },
+    {
+      "id": 628,
+      "name": "Gold",
+      "value": "#ffc000",
+      "importance": null
+    },
+    {
+      "id": 626,
+      "name": "Fuchsia",
+      "value": "#ff7aaf",
+      "importance": null
+    },
+    {
+      "id": 623,
+      "name": "Cranberry",
+      "value": "#780218",
+      "importance": null
+    },
+    {
+      "id": 614,
+      "name": "Asphalt",
+      "value": "#48464c",
+      "importance": null
+    },
+    {
+      "id": 588,
+      "name": "Lapis",
+      "value": "#203592",
+      "importance": null
+    },
+    {
+      "id": 581,
+      "name": "Smoke Gray",
+      "value": "#3f3f38",
+      "importance": null
+    },
+    {
+      "id": 578,
+      "name": "Pale Pink",
+      "value": "#efc5d1",
+      "importance": null
+    },
+    {
+      "id": 573,
+      "name": "Light Steel",
+      "value": "#D6D5D5",
+      "importance": null
+    },
+    {
+      "id": 384,
+      "name": "Safety Orange",
+      "value": "#ff5400",
+      "importance": null
+    },
+    {
+      "id": 365,
+      "name": "Dark Heather",
+      "value": "#383838",
+      "importance": null
+    },
+    {
+      "id": 363,
+      "name": "Charcoal",
+      "value": "#494949",
+      "importance": null
+    }
+  ],
+  "product_images": [
+    {
+      "id": 1,
+      "product_id": 95,
+      "width": 530,
+      "height": 630,
+      "ppi": 18,
+      "printable_front_left": 152,
+      "printable_front_top": 100,
+      "printable_front_width": 220,
+      "printable_front_height": 330,
+      "chest_line_front": 180,
+      "printable_back_left": 155,
+      "printable_back_top": 60,
+      "printable_back_width": 215,
+      "printable_back_height": 330,
+      "chest_line_back": 150,
+      "gender": null
+    },
+    {
+      "id": 2,
+      "product_id": 212,
+      "width": 530,
+      "height": 630,
+      "ppi": 18,
+      "printable_front_left": 152,
+      "printable_front_top": 100,
+      "printable_front_width": 220,
+      "printable_front_height": 330,
+      "chest_line_front": 180,
+      "printable_back_left": 155,
+      "printable_back_top": 60,
+      "printable_back_width": 215,
+      "printable_back_height": 330,
+      "chest_line_back": 150,
+      "gender": null
+    }
+  ],
+  "product_groups": [
+    {
+      "id": 1,
+      "name": "Basic Tees",
+      "singular": "unisex tee",
+      "products": [
+        95,
+        212
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Long Sleeve Tees",
+      "singular": "long sleeve tee",
+      "products": [
+        95
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Tank Tops",
+      "singular": "tank top",
+      "products": [
+        212
+      ]
+    }
+  ]
+}
