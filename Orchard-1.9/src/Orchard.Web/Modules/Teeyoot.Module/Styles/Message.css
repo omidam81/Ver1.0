@@ -26,12 +26,12 @@
 }
 
 .mesTitle {
-    width: 90%;
+    width: 94%;
     height: 60px;
     padding-left: 1%;
     padding-right: 1%;
-    margin-left: 4%;
-    margin-right: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
     height: 14%;
     font-size: 19px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -39,7 +39,7 @@
     padding-bottom: 3%;
     background-color: #ffffff;
     border: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 3px;
     border-color: #E8ECED;
 }
@@ -103,17 +103,18 @@
     }
 
 .email_inp {
-    font-size: 17px;
+    font-size: 14px;
     width: 87%;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
     border: solid;
+    padding: 0px !important;
     border-width: 1px !important;
 }
 
 .subj_inp {
-    font-size: 17px;
+    font-size: 14px;
     width: 87%;
     height: 28px;
     border-radius: 6px;
@@ -124,7 +125,7 @@
 }
 
 .input[type=text] .email_inp {
-    font-size: 17px;
+    font-size: 14px;
     width: 87%;
     height: 28px;
     border-radius: 6px;
@@ -135,7 +136,7 @@
 }
 
 .input[type=text] .subj_inp {
-    font-size: 17px;
+    font-size: 14px;
     width: 87%;
     height: 28px;
     border-radius: 6px;
@@ -164,7 +165,7 @@ table > tr > td {
     .divRow {
         display: block !important;
         width: 100% !important;
-        border: none !important;
+        border: none !impor;
     }
 
     .row {
@@ -228,9 +229,20 @@ table > tr > td {
     padding-right: 20px;
 }
 
+.msgText {
+    width: 96% !important;
+    height: 400px;
+    padding-right: 20px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+}
+
 .send-button {
     background: #ff4f00 !important;
     border-width: 0;
+    margin-left: 5px;
     font-size: 16px;
     font-weight: normal;
     border-radius: 5px;
@@ -265,14 +277,46 @@ table > tr > td {
         background-color: #fc7c42 !important;
     }
 
+    .cancel-button a {
+        text-decoration: none;
+    }
+
+        .cancel-button a:hover {
+            text-decoration: none;
+        }
+
 .tdd {
-    width: 92%;
+    width: 96%;
     height: 100%;
-    margin: 4%;
+    margin-bottom: 4%;
+    margin: 2%;
     background-color: white;
     border: solid;
     border-width: 1px;
     border-color: #E8ECED;
+}
+
+.validation-summary-errors {
+    background: #ed673e !important;
+    border: 1px solid #ed673e !important;
+    border-radius: 3px !important;
+    color: #fff !important;
+    width: 96% !important;
+    padding: 0px !important;
+    margin: 2% !important;
+}
+
+    .validation-summary-errors ul {
+        margin: 2px !important;
+    }
+
+        .validation-summary-errors ul li {
+            list-style-type: none !important;
+            padding-left: 1%;
+        }
+
+.input-validation-error {
+    border-color: #ed673e !important;
 }
 
 .printDiv {
@@ -282,6 +326,15 @@ table > tr > td {
 
 .ttl {
     color: #3b76d4;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 2%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+.status {
+    color: #FF4F00;
     font-size: 20px;
     text-align: center;
 }
@@ -353,7 +406,7 @@ table > tr > td {
 
 .msgContTitle {
     width: 100%;
-    font-size: 17px;
+    font-size: 16px;
     color: #000000;
 }
 
@@ -369,7 +422,7 @@ table > tr > td {
 }
 
 .urlInp {
-    font-size: 17px;
+    font-size: 16px;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
@@ -381,7 +434,7 @@ table > tr > td {
 }
 
 .campUrl {
-    font-size: 17px;
+    font-size: 16px;
     height: 28px;
     border-radius: 6px;
     border-color: #e8eced !important;
@@ -396,7 +449,7 @@ table > tr > td {
 
 .campUrlTitle {
     padding-top: 20px;
-    font-size: 15px;
+    font-size: 16px;
     color: #000000;
 }
 
@@ -418,12 +471,12 @@ table > tr > td {
 .recipients {
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 17px;
+    font-size: 16px;
     color: #000000;
 }
 
 .emailAttr {
     padding-top: 30px;
-    font-size: 17px;
+    font-size: 16px;
     color: #000000;
 }
