@@ -1351,6 +1351,11 @@
         .tb-search-form input[type=text] {
             width: 250px;
         }
+
+    .shop-now-button {
+        margin-top: -10px;
+        overflow: hidden;
+    }
 }
 
 @media all and (max-width: 670px) {
@@ -2673,6 +2678,7 @@
     text-align: -webkit-center;
     text-align: -moz-center;
     text-align: -ms-center;
+    margin-bottom: 30px;
 }
 
 .shop-now-banner {
@@ -3043,7 +3049,19 @@
         /*background-color: #e8eced;*/
         padding-top: 15px;
         height: auto;
+        padding-right: 0;
     }
+
+    .tee-preview:nth-child(4) {
+        padding-left: 0;
+    }
+
+@media all and (max-width: 1260px) {
+    .featured-campaigns-list {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
 
 .preview-img {
     text-align: center !important;
@@ -3792,10 +3810,6 @@ html, body {
             float: right;
             padding-right: 0;
         }
-    /*.tee-preview img,
-        .tee-preview:first-child img,
-        .tee-preview:last-child img {
-        }*/
 }
 
 .widget-tags {
@@ -3882,6 +3896,7 @@ html, body {
     vertical-align: middle;
     border-radius: 50px;
     padding-top: 5px;
+    margin: 0 auto;
 }
 
 .easy-steps-text {
@@ -3890,8 +3905,37 @@ html, body {
     font-size: 19px;
     font-family: inherit;
     font-weight: 700;
+    margin: 0 auto;
 }
 
-.start-steps-list {
-    margin-bottom: 30px;
+.easy-steps-img img {
+    margin: 0 auto;
+}
+
+@media all and (max-width: 599px) {
+    .shop-now-banner {
+        max-height: none;
+    }
+
+    .shop-now-title {
+        width: 100%;
+        text-align: -webkit-center;
+        margin: 0 auto;
+    }
+
+    .shop-now-image {
+        width: 100%;
+        float: none;
+        text-align: -webkit-center;
+        margin: 0 auto;
+        padding-left: 0;
+        margin-left: -10px;
+    }
+
+    .shop-now-button {
+        width: 100%;
+        text-align: -webkit-center;
+        margin: 0 auto;
+        display: table-caption;
+    }
 }
