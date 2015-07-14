@@ -11866,7 +11866,7 @@ legend {
 }
 
 #header {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     z-index: 7;
     width: 100%;
