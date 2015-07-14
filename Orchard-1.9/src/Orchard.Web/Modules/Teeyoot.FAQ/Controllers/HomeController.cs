@@ -57,29 +57,30 @@ namespace Teeyoot.FAQ.Controllers
             return View(new ViewSectionViewModel { Section = section, Topics = entries.ToArray() });
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Autocomplete(string term)
         {
-            var entries = _faqService.GetFaqEntries().Join<BodyPartRecord>().List();
-            entries = entries.Where(s => s.Question.ToLower().Contains(term.ToLower()) || s.Body.Text.ToLower().Contains(term.ToLower())).Select(w => w).Take(7).ToList();
-
-
             var result = new List<KeyValuePair<string, string>>();
-            var list = new List<SelectListItem>();
-
-            foreach (var entr in entries)
+            if (term.Length > 1)
             {
-                var answer = entr.Body.Text;
-                answer = System.Text.RegularExpressions.Regex.Replace(answer, "<[^>]*>", "");
-                answer = System.Text.RegularExpressions.Regex.Replace(answer, "&nbsp", " ");
-                var question = "<span class='autocomplete-question'>" + entr.Question + "</span><br/>";
-                var text = question + answer;
-                list.Add(new SelectListItem { Text = text, Value = entr.Id.ToString() });
-            }
+                var entries = _faqService.GetFaqEntries().Join<BodyPartRecord>().List();
+                entries = entries.Where(s => s.Question.ToLower().Contains(term.ToLower()) || s.Body.Text.ToLower().Contains(term.ToLower())).Select(w => w).Take(7).ToList();
+                
+                var list = new List<SelectListItem>();
 
-            foreach (var item in list)
-            {
-                result.Add(new KeyValuePair<string, string>(item.Value.ToString(), item.Text));
+                foreach (var entr in entries)
+                {
+                    var answer = entr.Body.Text;
+                    answer = System.Text.RegularExpressions.Regex.Replace(answer, "<[^>]*>", "");
+                    answer = System.Text.RegularExpressions.Regex.Replace(answer, "&nbsp", " ");
+                    var question = "<span class='autocomplete-question'>" + entr.Question + "</span><br/>";
+                    var text = question + answer;
+                    list.Add(new SelectListItem { Text = text, Value = entr.Id.ToString() });
+                }
+
+                foreach (var item in list)
+                {
+                    result.Add(new KeyValuePair<string, string>(item.Value.ToString(), item.Text));
+                }
             }
            
             return Json(result, JsonRequestBehavior.AllowGet);
