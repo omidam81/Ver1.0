@@ -1,18 +1,19 @@
 ﻿<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 
+@{
+    Script.Require("jQueryUI");
+}
+
 @using (Script.Foot())
 {
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-
-
     <script type="text/javascript">
         var items = function (request, response) {
+            
             var result = new Array();
             $.ajax({
                 async: false,
                 cache: false,
-                type: "POST",
+                type: "GET",
                 url: "@(Url.Action("Autocomplete", "Home"))",
                 data: { "term": request.term },
                 success: function (data) {
@@ -30,6 +31,7 @@
                 },
             });
             response(result);
+        
         };
 
         $("#searchFaq").autocomplete({

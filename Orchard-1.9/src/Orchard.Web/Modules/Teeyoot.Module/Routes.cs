@@ -60,8 +60,7 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
-                },
-               
+                },              
                 new RouteDescriptor {
                     Route = new Route(
                         "FAQ",
