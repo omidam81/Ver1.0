@@ -3919,14 +3919,20 @@ html, body {
 
     .shop-now-title {
         width: 100%;
+        text-align: center;
         text-align: -webkit-center;
+        text-align: -moz-center;
+        text-align: -ms-center;
         margin: 0 auto;
     }
 
     .shop-now-image {
         width: 100%;
         float: none;
+        text-align: center;
         text-align: -webkit-center;
+        text-align: -moz-center;
+        text-align: -ms-center;
         margin: 0 auto;
         padding-left: 0;
         margin-left: -10px;
@@ -3934,8 +3940,11 @@ html, body {
 
     .shop-now-button {
         width: 100%;
+        text-align: center;
         text-align: -webkit-center;
+        text-align: -moz-center;
+        text-align: -ms-center;
         margin: 0 auto;
-        display: table-caption;
+        display: table-cell;
     }
 }
