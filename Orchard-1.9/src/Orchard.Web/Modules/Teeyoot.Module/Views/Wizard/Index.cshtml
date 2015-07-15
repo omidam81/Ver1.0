@@ -46,9 +46,9 @@
 }
 
 
-<div class='lab-steps flow-steps'>
+<div class='lab-steps flow-steps' style="width:80%; margin-left:10%;">
     <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
-        <a data-toggle='tab'>
+        <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 1
             </span>
@@ -68,7 +68,7 @@
         </a>
     </div>
     <div id="goal" onclick="slide()" class='flow-step' tee-step-tab-select-title='goal'>
-        <a data-toggle='tab'>
+        <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 2
             </span>
@@ -96,7 +96,7 @@
         </a>
     </div>
     <div id="description" onclick="slide()" class='flow-step' tee-step-tab-select-title='detail'>
-        <a data-toggle='tab'>
+        <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 3
             </span>
@@ -123,10 +123,8 @@
 
 
 
-        <div class="Slide">
+        <div class="Slide" >
             <div class="Content" style="width:90%; margin-left:0px; margin-top:-50px;">
-
-
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
                         <div id="designer-container">
@@ -293,9 +291,9 @@
                                                                 <span>$7.14</span>
                                                             </p>
                                                         </div>
-                                                        <button class="button button--transaction" id="nextPage">
+                                                        @*<button class="button button--transaction" id="nextPage">
                                                             Next
-                                                        </button>
+                                                        </button>*@
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -311,7 +309,7 @@
 
 
 
-                <button class="Left">NEXT PAGE</button>
+                @*<button class="Left">NEXT PAGE</button>*@
             </div>
         </div>
 
@@ -331,7 +329,7 @@
 
 
 
-        <div class="Slide">
+        <div class="Slide" style="width:22% !important; margin-left:3%;">
             <div class="Content">
                 <table>
                     <tr>
@@ -339,15 +337,15 @@
 
                             <div id="card" style="margin-right:30px">
                                 <div class="front">
-                                    <img src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                    <div style="text-align:center; margin-top:-40px !important">
+                                    <img id="prodFront"  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png" >
+                                    <div id="butt1" style="text-align:center; margin-top:-40px !important;">
                                         <div class="flip-button flip-button-front" style="background-color:#44474d; color: white;">Front</div>
                                         <div class="flip-button flip-button-back">Back</div>
                                     </div>
                                 </div>
                                 <div class="back">
-                                    <img src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                    <div style="text-align:center; margin-top:-40px !important">
+                                    <img id="prodBack" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png" >
+                                    <div id="butt2" style="text-align:center; margin-top:-40px !important;">
                                         <div class="flip-button flip-button-front">Front</div>
                                         <div class="flip-button flip-button-back" style="background-color:#44474d; color: white;">Back</div>
                                     </div>
@@ -367,7 +365,7 @@
                             <div class="block">
                                 <input style="width:100%" type="range" id="trackbar" min="0" max="100" oninput="onChangeTrackBar()" list="volsettings" />
 
-                                <div class="tipping-point-slider">
+                                @*<div class="tipping-point-slider">
                                     <div class="tipping-point-slider__track" id="trackbar" style="background: linear-gradient(to right, rgb(139, 191, 79) 0%, rgb(139, 191, 79) 49%, rgb(223, 223, 223) 49%);">
                                     </div>
                                     <div class="tipping-point-slider__thumb containertip__toggle" oninput="onChangeTrackBar()" style="left: 49%;">
@@ -383,7 +381,7 @@
                                         <span class="tipping-point-slider__point" style="left:71%;">140</span>
                                         <span class="tipping-point-slider__point" style="left:87%;">400</span>
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <datalist id=volsettings>
                                     <option>0</option>

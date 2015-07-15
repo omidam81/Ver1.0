@@ -747,7 +747,7 @@
 
 @media all and (max-width: 1260px) {
     .widget-mainSearch {
-        width: 23%
+        width: 23%;
     }
 
     .tb-search-form input[type=text] {
@@ -948,6 +948,7 @@
         /*width: 175px;*/
     }
 }
+
 @media all and (max-width: 950px) {
     .zone-footer-quad-second {
         display: table-caption;
@@ -1072,7 +1073,7 @@
         display: block !important;
     }
 
-        /*.widget-usermenu .menu-for-user,
+    /*.widget-usermenu .menu-for-user,
         .widget-usermenu .menu-for-user:active {
             border-bottom: 0px solid white;
         }*/
@@ -1205,6 +1206,13 @@
 
     .start-steps-list .span-4 {
         width: 100%;
+    }
+
+    .start-steps-list .span-4:nth-child(2) {
+        margin-top: 20px;
+    }
+    .start-steps-list .span-4:nth-child(3) {
+        margin-top: 20px;
     }
 
     .featured-campaigns-list .span-4 {
@@ -1350,6 +1358,11 @@
         .tb-search-form input[type=text] {
             width: 250px;
         }
+
+    .shop-now-button {
+        margin-top: -10px;
+        overflow: hidden;
+    }
 }
 
 @media all and (max-width: 670px) {
@@ -2511,6 +2524,7 @@
     background-color: #e8eced;
     padding: 20px;
     border-radius: 5px;
+    margin-top: 60px;
 }
 
 .intro-video-container {
@@ -2591,8 +2605,14 @@
     }
 
     .home-page-review {
-        padding-bottom: 10px;
+        /*padding-bottom: 10px;*/
         width: 50% !important;
+        padding: 0px;
+    }
+
+    .review {
+        padding: 0px 30px 0px 30px !important;
+        height: 100%;
     }
 }
 
@@ -2616,8 +2636,8 @@
 
 @media all and (max-width: 690px) {
     .home-page-review {
-        padding-bottom: 10px;
-        width: 100% !important;
+        /*padding-bottom: 10px;*/
+        /*width: 100% !important;*/
     }
 }
 
@@ -2660,6 +2680,28 @@
     }
 }
 
+@media all and (max-width: 590px) {
+    .home-page-review {
+        width: 100% !important;
+    }
+
+    .home-page-review {
+        padding: 0 0 15px 0 !important;
+    }
+
+        .home-page-review:last-of-type {
+            padding: 0 0 0 0 !important;
+        }
+
+    .review .reviews-text {
+        padding: 0 !important;
+    }
+
+    .review h3 {
+        margin: 5px;
+    }
+}
+
 .start-campaign-title {
     font-size: 22px;
     /*color: #ff4f00;*/
@@ -2671,6 +2713,7 @@
     text-align: -webkit-center;
     text-align: -moz-center;
     text-align: -ms-center;
+    margin-bottom: 30px;
 }
 
 .shop-now-banner {
@@ -3041,7 +3084,19 @@
         /*background-color: #e8eced;*/
         padding-top: 15px;
         height: auto;
+        padding-right: 0;
     }
+
+    .tee-preview:nth-child(4) {
+        padding-left: 0;
+    }
+
+@media all and (max-width: 1260px) {
+    .featured-campaigns-list {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
 
 .preview-img {
     text-align: center !important;
@@ -3243,7 +3298,9 @@
     font-weight: inherit;
     font-style: inherit;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 0px;
+    padding-top: 0px;
+    line-height: 24px;
 }
 
 .zone-header ..widget-authenticatedMenu,
@@ -3755,6 +3812,8 @@ html, body {
     .tee-preview:nth-child(3),
     .tee-preview:last-child {
         width: 48%;
+        padding-right: 0px;
+        padding-left: 0px;
     }
 
         .tee-preview:nth-child(2) {
@@ -3788,10 +3847,6 @@ html, body {
             float: right;
             padding-right: 0;
         }
-    /*.tee-preview img,
-        .tee-preview:first-child img,
-        .tee-preview:last-child img {
-        }*/
 }
 
 .widget-tags {
@@ -3864,4 +3919,117 @@ html, body {
 
             .menu-tags li a:hover {
                 text-decoration: none;
+            }
+
+.easy-steps-number-fon {
+    width: 50px;
+    height: 45px;
+    background-color: rgba(0, 137, 182, 1);
+    color: rgba(255,255,255,1);
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50px;
+    padding-top: 5px;
+    margin: 0 auto;
+}
+
+.easy-steps-text {
+    padding-top: 10px;
+    color: rgba(0, 137, 182, 1);
+    font-size: 19px;
+    font-family: inherit;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+.easy-steps-img img {
+    margin: 0 auto;
+}
+
+@media all and (max-width: 599px) {
+    .shop-now-banner {
+        max-height: none;
+    }
+
+    .shop-now-title {
+        width: 100%;
+        text-align: center;
+        text-align: -webkit-center;
+        text-align: -moz-center;
+        text-align: -ms-center;
+        margin: 0 auto;
+    }
+
+    .shop-now-image {
+        width: 100%;
+        float: none;
+        text-align: center;
+        text-align: -webkit-center;
+        text-align: -moz-center;
+        text-align: -ms-center;
+        margin: 0 auto;
+        padding-left: 0;
+        margin-left: -10px;
+    }
+
+    .shop-now-button {
+        width: 100%;
+        text-align: center;
+        text-align: -webkit-center;
+        text-align: -moz-center;
+        text-align: -ms-center;
+        margin: 0 auto;
+        display: table-cell;
+    }
+}
+
+.review {
+    padding: 0 15px 0 15px;
+}
+
+    .review h3 {
+        width: 100%;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .review .reviews-text {
+        float: left;
+        width: 100%;
+        display: flex;
+        padding: 10px 0 0 0;
+    }
+
+        .review .reviews-text .reviews-logo {
+            float: left;
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+
+        .review .reviews-text .reviews-user {
+            width: auto;
+            float: left;
+            margin: 0px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+            .review .reviews-text .reviews-user h2 {
+                margin: 0 0 0 15px;
+                padding: 0;
+                text-align: left;
+                font-size: 18px;
+            }
+
+            .review .reviews-text .reviews-user h3 {
+                color: #c2c9cc;
+                font-size: 14px;
+                text-align: left;
+                margin: 0 0 0 15px;
+                line-height: 0;
+                padding: 5px 0 0 0;
             }

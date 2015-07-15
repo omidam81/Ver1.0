@@ -149,11 +149,11 @@ namespace Teeyoot.Module
                 ,
                 new RouteDescriptor {
                     Route = new Route(
-                        "Dashboard/{controller}/{action}",
+                        "Dashboard/{action}",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},
-                            {"controller", "Campaigns"},
-                            {"action", "Index"}                           
+                            {"controller", "Dashboard"},
+                            {"action", "Campaigns"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {

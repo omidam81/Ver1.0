@@ -50,7 +50,15 @@
     <Reference Include="Braintree-2.43.0">
       <HintPath>..\..\..\packages\Braintree.2.43.0\lib\Braintree-2.43.0.dll</HintPath>
     </Reference>
+    <Reference Include="MailChimp, Version=1.1.75.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MailChimp.NET.1.1.75.0\lib\net35\MailChimp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -577,12 +585,13 @@
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Wizard\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Message\Index.cshtml" />
-    <Content Include="Views\Message\CreateMessage.cshtml" />
-    <Content Include="Views\Message\getList.cshtml" />
+    <Content Include="Views\Dashboard\Messages.cshtml" />
+    <Content Include="Views\Dashboard\CreateMessage.cshtml" />
+    <Content Include="Views\Dashboard\getList.cshtml" />
     <Content Include="Views\Campaign\Index.cshtml" />
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
+    <Content Include="Views\Dashboard\Campaigns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -597,8 +606,9 @@
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\DashboardCampaignsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\DashboardMessagesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
@@ -608,6 +618,7 @@
     <Compile Include="Models\FontRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />
     <Compile Include="Models\LinkProductSizeRecord.cs" />
+    <Compile Include="Models\MessageContentRecord.cs" />
     <Compile Include="Models\ProductColorRecord.cs" />
     <Compile Include="Models\ProductGroupRecord.cs" />
     <Compile Include="Models\ProductHeadlineRecord.cs" />
@@ -624,12 +635,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
