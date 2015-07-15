@@ -1208,6 +1208,13 @@
         width: 100%;
     }
 
+    .start-steps-list .span-4:nth-child(2) {
+        margin-top: 20px;
+    }
+    .start-steps-list .span-4:nth-child(3) {
+        margin-top: 20px;
+    }
+
     .featured-campaigns-list .span-4 {
         width: 48%;
         height: auto;
@@ -2598,8 +2605,14 @@
     }
 
     .home-page-review {
-        padding-bottom: 10px;
+        /*padding-bottom: 10px;*/
         width: 50% !important;
+        padding: 0px;
+    }
+
+    .review {
+        padding: 0px 30px 0px 30px !important;
+        height: 100%;
     }
 }
 
@@ -2623,8 +2636,8 @@
 
 @media all and (max-width: 690px) {
     .home-page-review {
-        padding-bottom: 10px;
-        width: 100% !important;
+        /*padding-bottom: 10px;*/
+        /*width: 100% !important;*/
     }
 }
 
@@ -2664,6 +2677,28 @@
     .list-brands > div {
         float: none;
         width: 100% !important;
+    }
+}
+
+@media all and (max-width: 590px) {
+    .home-page-review {
+        width: 100% !important;
+    }
+
+    .home-page-review {
+        padding: 0 0 15px 0 !important;
+    }
+
+        .home-page-review:last-of-type {
+            padding: 0 0 0 0 !important;
+        }
+
+    .review .reviews-text {
+        padding: 0 !important;
+    }
+
+    .review h3 {
+        margin: 5px;
     }
 }
 
@@ -3777,6 +3812,8 @@ html, body {
     .tee-preview:nth-child(3),
     .tee-preview:last-child {
         width: 48%;
+        padding-right: 0px;
+        padding-left: 0px;
     }
 
         .tee-preview:nth-child(2) {
@@ -3948,3 +3985,51 @@ html, body {
         display: table-cell;
     }
 }
+
+.review {
+    padding: 0 15px 0 15px;
+}
+
+    .review h3 {
+        width: 100%;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .review .reviews-text {
+        float: left;
+        width: 100%;
+        display: flex;
+        padding: 10px 0 0 0;
+    }
+
+        .review .reviews-text .reviews-logo {
+            float: left;
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+
+        .review .reviews-text .reviews-user {
+            width: auto;
+            float: left;
+            margin: 0px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+            .review .reviews-text .reviews-user h2 {
+                margin: 0 0 0 15px;
+                padding: 0;
+                text-align: left;
+                font-size: 18px;
+            }
+
+            .review .reviews-text .reviews-user h3 {
+                color: #c2c9cc;
+                font-size: 14px;
+                text-align: left;
+                margin: 0 0 0 15px;
+                line-height: 0;
+                padding: 5px 0 0 0;
+            }
