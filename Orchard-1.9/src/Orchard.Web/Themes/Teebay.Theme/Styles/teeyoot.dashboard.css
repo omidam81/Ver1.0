@@ -1,0 +1,24 @@
+﻿.widget-SellerDashboardMenu ul {
+        padding: 15px 0;
+    }
+.widget-SellerDashboardMenu ul li {
+    float: none;
+    padding: 15px 0;
+    background-color: #fff;
+    margin: 0;
+    border: 0;
+}
+.widget-SellerDashboardMenu ul li a {
+    float: none;
+    color: #6e6e6e;
+}
+.widget-SellerDashboardMenu ul li a:hover {
+    text-decoration: none;
+    color: #e64700;
+}
+.widget-SellerDashboardMenu .current a {
+    color: #e64700;
+}
+.widget-SellerDashboardMenu li.last {
+    display:none;
+}
