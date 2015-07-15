@@ -3918,10 +3918,12 @@ ul.wysihtml5-toolbar > li > div.btn-group > a {
 #step-details > .row > .span5 {
     float: left;
     width: 370px;
+    margin-left:-10%;
+
 }
 
 #step-details > .row > .span7 {
-    float: left;
+    float: right;
     width: 100%;
 }
 
