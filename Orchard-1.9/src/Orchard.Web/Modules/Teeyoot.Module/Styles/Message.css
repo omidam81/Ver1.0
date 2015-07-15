@@ -109,7 +109,7 @@
     border-radius: 6px;
     border-color: #e8eced !important;
     border: solid;
-    padding: 0px !important;
+    padding: 0px 0px 0px 4px !important;
     border-width: 1px !important;
 }
 
@@ -121,7 +121,7 @@
     border-color: #e8eced !important;
     border-width: 1px !important;
     border: solid;
-    padding: 0px 0px 0px 0px !important;
+    padding: 0px 0px 0px 4px !important;
 }
 
 .input[type=text] .email_inp {
@@ -232,7 +232,7 @@ table > tr > td {
 .msgText {
     width: 96% !important;
     height: 400px;
-    padding-right: 20px;
+    padding: 5px;
     border-radius: 6px;
     border-color: #e8eced !important;
     border-width: 1px !important;
@@ -285,6 +285,13 @@ table > tr > td {
             text-decoration: none;
         }
 
+.t-button a {
+        text-decoration: none;
+    }
+
+        .t-button a:hover {
+            text-decoration: none;
+        }
 .tdd {
     width: 96%;
     height: 100%;
