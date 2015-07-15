@@ -67,10 +67,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\back.png" />
+    <Content Include="Content\back2.png" />
+    <Content Include="Content\front.png" />
+    <Content Include="Content\front2.png" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\menu-icon_.png" />
     <Content Include="Content\search-ico.png" />
     <Content Include="Content\TEEYOOT_LOGO_Full_Color.png" />
+    <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
+    <Content Include="Scripts\jquery.elevatezoom.js" />
     <Content Include="Scripts\teebay.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\teebay.css" />

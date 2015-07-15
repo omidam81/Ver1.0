@@ -532,12 +532,15 @@
     <Content Include="Content\fonts\zeroandzerois-webfont.woff" />
     <Content Include="Content\Web.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\campaign.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\design.js" />
     <Content Include="Scripts\design_upload.js" />
     <Content Include="Scripts\jquery.color.js" />
+    <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
+    <Content Include="Scripts\jquery.elevatezoom.js" />
     <Content Include="Scripts\jquery.flip.js" />
     <Content Include="Scripts\jquery.ui.rotatable.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -563,6 +566,8 @@
     <Content Include="Styles\Message.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\Search.css" />
+    <Content Include="Styles\StyleSheet1.css" />
+    <Content Include="Styles\StyleSheet2.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
