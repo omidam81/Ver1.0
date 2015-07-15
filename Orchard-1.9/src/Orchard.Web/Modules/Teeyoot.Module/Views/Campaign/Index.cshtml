@@ -1,5 +1,71 @@
 ﻿@{
-    Style.Include("campaign.css");
+    Style.Include("StyleSheet2.css");
+}
+
+
+
+@using (Script.Foot())
+{
+
+    <script src='/Themes/Teebay.Theme/Scripts/jquery.elevateZoom-3.0.8.min.js'></script>
+    <script>
+        $('#zoom-img').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
+        $('#zoom-img-back').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
+    </script>
+    
+    <script>
+
+        $(".product__size_chart_link--show").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+        });
+        $(".product__size_chart_link--hide").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+        });
+
+        $("#js-size-unit-toggle-inches").click(function () {
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch active";
+            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm";
+
+        });
+        $("#js-size-unit-toggle-centimeters").click(function () {
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch";
+            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm active";
+        });
+
+
+
+        $("#js-circle-nav-item-front").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+        });
+        $("#js-circle-nav-item-back").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        });
+        
+
+        $("#image-stack-arrow-right").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        });
+        $("#image-stack-arrow-left").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        });
+        
+
+    </script>
+
 }
 
 
