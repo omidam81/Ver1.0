@@ -606,6 +606,7 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\EmailsToCampaign.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
     <Compile Include="Models\FontRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />
