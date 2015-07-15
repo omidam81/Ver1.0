@@ -17,9 +17,7 @@ using MailChimp.Lists;
 
 namespace Teeyoot.Module.Controllers
 {
-
-    [Themed]
-    public class DashboardController : Controller
+    public partial class DashboardController : Controller
     {
         // GET: Message
         public ActionResult Messages()
@@ -60,11 +58,6 @@ namespace Teeyoot.Module.Controllers
                 return View("Index", ViewBag);
             }
             return View("CreateMessage");
-        }
-
-        public ActionResult Campaigns()
-        {
-            return View();
         }
     }
 }
