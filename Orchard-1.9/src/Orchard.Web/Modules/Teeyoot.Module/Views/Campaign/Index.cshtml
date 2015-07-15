@@ -2,9 +2,72 @@
     Style.Include("campaign.css");
 }
 
-<div>
-    @Model
-</div>
+
+
+@using (Script.Foot())
+{
+
+    <script src='/Themes/Teebay.Theme/Scripts/jquery.elevateZoom-3.0.8.min.js'></script>
+    <script>
+        $('#zoom-img').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
+        $('#zoom-img-back').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
+    </script>
+
+    <script>
+
+        $(".product__size_chart_link--show").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+        });
+        $(".product__size_chart_link--hide").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+        });
+
+        $("#js-size-unit-toggle-inches").click(function () {
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch active";
+            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm";
+
+        });
+        $("#js-size-unit-toggle-centimeters").click(function () {
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch";
+            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm active";
+        });
+
+
+
+        $("#js-circle-nav-item-front").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+        });
+        $("#js-circle-nav-item-back").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        });
+
+
+        $("#image-stack-arrow-right").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        });
+        $("#image-stack-arrow-left").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        });
+
+
+    </script>
+
+}
+
 
 <section class="site__featured_container">
     <section class="site__featured_full">
@@ -15,109 +78,111 @@
                     <i class="message_banner__close ts-icon-close"></i>
                 </div>
             </div>
-            
+
             <div class="js-campaign-title">
                 <h1 class="campaign__name campaign__name--old">Let's booze</h1>
                 <h1 class="campaign__name display--mobile hidden">Let's booze</h1>
             </div>
-        
+
             <div class="campaign__short_description display--mobile">
-                <span>There is nothing left but booze</span> 
+                <span>There is nothing left but booze</span>
                 <a class="js-description-jump" href="">Read more</a>
             </div>
-        
-            <div class="image_stack__container js_image_stack" style="height: 566px;">
 
-                <div class="image_stack__inner js_image_stack_inner" style="width: 649px;">
+            <div class="image_stack__container js_image_stack">
+
+                <div class="image_stack__inner js_image_stack_inner">
 
                     <div class="image_stack__arrows">
-                        <i class="image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden"></i>
-                        <i class="image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow"></i>
+                        <i id="image-stack-arrow-left" class="image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden"></i>
+                        <i id="image-stack-arrow-right" class="image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow"></i>
                     </div>
-                
+
                     <div class="image_stack__images">
-                        <div class="image_stack__image_wrap image_stack__image_wrap--active" data-idx="0">
-                            <img class="image_stack__image" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/front.png?v=2015-07-07-08-01">
+                        <div id="image-wrap-front" class="image_stack__image_wrap image_stack__image_wrap--active" data-idx="0">
+                            <img id="zoom-img" class="image_stack__image" src="/Themes/Teebay.Theme/Content/front.png" data-zoom-image="/Themes/Teebay.Theme/Content/front2.png">
                         </div>
-                
-                        <div class="image_stack__image_wrap" data-idx="1">
-                            <img class="image_stack__image" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/back.png?v=2015-07-07-08-01">
+
+                        <div id="image-wrap-back" class="image_stack__image_wrap" data-idx="1">
+                            <img id="zoom-img-back" class="image_stack__image" src="/Themes/Teebay.Theme/Content/back.png" data-zoom-image="/Themes/Teebay.Theme/Content/back2.png">
                         </div>
                     </div>
-                
+
                     <nav class="image_stack__nav">
                         <ul class="image_stack__nav_list">
-                            <li class="image_stack__nav_item js-circle-nav-item image_stack__nav_item--active" data-idx="0">
-                                <img class="image_stack__nav_item_thumb display--desktop" 
-                                     src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/front.png?v=2015-07-07-08-01" 
-                                     data-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/front.png?v=2015-07-07-08-01" 
+                            <li id="js-circle-nav-item-front" class="image_stack__nav_item image_stack__nav_item--active" data-idx="0">
+                                <img class="image_stack__nav_item_thumb display--desktop"
+                                     src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/front.png?v=2015-07-07-08-01"
+                                     data-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/front.png?v=2015-07-07-08-01"
                                      data-zoom-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/front.png?v=2015-07-07-08-01">
                             </li>
-                    
-                            <li class="image_stack__nav_item js-circle-nav-item" data-idx="1">
-                                <img class="image_stack__nav_item_thumb display--desktop" 
-                                     src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/back.png?v=2015-07-07-08-01" 
-                                     data-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/back.png?v=2015-07-07-08-01" 
+
+                            <li id="js-circle-nav-item-back" class="image_stack__nav_item" data-idx="1">
+                                <img class="image_stack__nav_item_thumb display--desktop"
+                                     src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/back.png?v=2015-07-07-08-01"
+                                     data-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/back.png?v=2015-07-07-08-01"
                                      data-zoom-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/back.png?v=2015-07-07-08-01">
                             </li>
                         </ul>
                     </nav>
+                    <div style="width: 100%; text-align: center; padding: 1rem 2rem 0;"><img style="max-width: 30rem;width: 100%;" src="http://i.imgur.com/Dw8nQJL.png"></div>
                 </div>
             </div>
-        
-            <div class="campaign__column--product" style="min-height: 566px;">
-            
+
+            <div class="campaign__column--product" style="min-height: inherit;">
+
                 <div class="zoom_window__container .zoomWindowContainer" style="max-width: none;">
-                
-                    <div style="overflow: hidden; float: left; z-index: 100; position: absolute; top: 0px; left: 0px; 
-                            background-image: url(http://vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/front.png?v=2015-07-07-08-01); 
-                            background-color: rgb(255, 255, 255); background-size: 756px 900px; background-position: -354.132720947266px -51.29296875px; 
-                            background-repeat: no-repeat;" class="zoomWindow">&nbsp;
+
+                    <div style="overflow: hidden; float: left; z-index: 100; position: absolute; top: 0px; left: 0px;
+                            background-image: url(http://vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/front.png?v=2015-07-07-08-01);
+                            background-color: rgb(255, 255, 255); background-size: 756px 900px; background-position: -354.132720947266px -51.29296875px;
+                            background-repeat: no-repeat;" class="zoomWindow">
+                        &nbsp;
                     </div>
                 </div>
-            
+
                 <h1 class="campaign__name display--desktop hidden">Let's booze</h1>
-            
+
                 <div class="campaign__description display--desktop">
                     There is nothing left but booze
                 </div>
-            
+
                 <div class="campaign_stats__container js_stats_countainer display--mobile">
-                
+
                     <div class="campaign_stats">
-                    
+
                         <p class="campaign_transaction__subtext display--desktop">
-                            Don't worry, you won't be charged unless the minimum is reached. 
+                            Don't worry, you won't be charged unless the minimum is reached.
                             <a href="/about">Learn why.</a>
                         </p>
-                    
+
                         <div class="campaign_stats__table">
-                        
+
                             <div class="campaign_stats__column campaign_stats__column--goal">
-                            
+
                                 <div class="campaign_stats__value">10</div>
-                            
+
                                 <div class="campaign_stats__label">needed to print!</div>
                             </div>
-                        
+
                             <div class="campaign_stats__column campaign_stats__column--timer js_stats_timer_subview">
-                            
+
                                 <div class="campaign_stats__value js_stats_default_time">2 days</div>
-                            
+
                                 <div class="campaign_stats__countdown js_stats_timer_countdown hidden campaign_stats__value--load_animation">
-                                
+
                                     <span class="campaign_stats__countdown__hours"></span>:
                                     <span class="campaign_stats__countdown__minutes"></span>:
                                     <span class="campaign_stats__countdown__seconds"></span>
                                 </div>
-                            
+
                                 <span class="campaign_stats__label">left to buy!</span>
-                            
+
                             </div>
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="product_dropdown__container">
 
                     <label class="product_dropdown__label">Available Styles:</label>
@@ -131,7 +196,7 @@
                         </select>
                     </div>
                 </div>
-            
+
                 <div class="product__container hidden">
 
                     <nav class="product__nav">
@@ -154,10 +219,10 @@
                         </ul>
                     </nav>
                 </div>
-            
+
                 <div class="product__container">
 
-                    <div class="product__card_wrap js-product-card product__card_wrap--v2">
+                    <div id="js-product-card" class="product__card_wrap js-product-card product__card_wrap--v2">
 
                         <a class="product__card__expand_link js-card-expand-link">
                             <span class="product__size_chart_link--show">View Sizing Chart &amp; Product Details</span>
@@ -165,42 +230,42 @@
                         </a>
 
                         <div class="product__card">
-                        
+
                             <div class="product__details_wrap">
-                            
+
                                 <div class="product__details product__details--active" data-product-id="369">
-                                    
-                                    <div class="product__row product__row--name-price">                                  
+
+                                    <div class="product__row product__row--name-price">
                                         <div class="product__name">Teespring Premium Tee</div>
                                         <div class="product__price"></div>
                                     </div>
-                                
+
                                     <div class="product__row product__row--localized-price">
                                         <div class="product__localized-price"></div>
                                     </div>
-                                
+
                                     <ul class="product__row product__row--fit-fabric product__row--fit-fabric--hidden">
                                         <li class="product__fit_wrap product__fit_wrap--hidden">
                                             <span class="product__fit"></span>
                                         </li>
-                                    
+
                                         <li class="product__fabric_wrap product__fabric_wrap--hidden">
                                             <span class="product__fabric"></span>
                                         </li>
                                     </ul>
                                 </div>
-                            
+                                @*///////////////Описание материала*@
                                 <div class="product__details" data-product-id="72">
 
                                     <div class="product__row product__row--name-price">
                                         <div class="product__name">American Apparel Triblend</div>
                                         <div class="product__price"></div>
                                     </div>
-                                
+
                                     <div class="product__row product__row--localized-price">
                                         <div class="product__localized-price"></div>
                                     </div>
-                                
+
                                     <ul class="product__row product__row--fit-fabric">
                                         <li class="product__fit_wrap">
                                             <span class="product__fit">Fitted Unisex Tee</span>
@@ -210,7 +275,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            
+
                                 <div class="product__details" data-product-id="2">
                                     <div class="product__row product__row--name-price">
                                         <div class="product__name">Hanes Tagless Tee</div>
@@ -220,467 +285,618 @@
                                     <div class="product__row product__row--localized-price">
                                         <div class="product__localized-price"></div>
                                     </div>
-                                
+
                                     <ul class="product__row product__row--fit-fabric">
                                         <li class="product__fit_wrap">
                                             <span class="product__fit">Relaxed Unisex Tee</span>
                                         </li>
-                                    
+
                                         <li class="product__fabric_wrap">
                                             <span class="product__fabric">100% preshrunk ComfortSoft® cotton.</span>
                                         </li>
                                     </ul>
                                 </div>
+
+                                @*///////////////Описание материала*@
+
+
                             </div>
-                        
-                            <div class="product__size_chart_wrap js-size-chart-wrap product__size_chart_wrap--inch">
+
+                            <div id="js-size-chart-wrap" class="product__size_chart_wrap product__size_chart_wrap--inch">
                                 <a class="product__size_chart_link js-card-expand-link">
                                     <span class="product__size_chart_link--show">Size Chart</span>
                                     <span class="product__size_chart_link--hide">Hide Chart</span>
                                 </a>
-                            <div class="product__size_chart active" data-product-id="369">
-                                
-                            <div class="size_chart__units">
-                                <span class="size_chart__unit size_chart__unit--inch js-size-unit-toggle" data-unit="inch">Inches</span>
-                                <span class="size_chart__unit size_chart__unit--cm js-size-unit-toggle" data-unit="cm">Centimeters</span>
+                                <div class="product__size_chart active" data-product-id="369">
+
+                                    <div class="size_chart__units">
+                                        <span id="js-size-unit-toggle-inches" class="size_chart__unit size_chart__unit--inch" data-unit="inch">Inches</span>
+                                        <span id="js-size-unit-toggle-centimeters" class="size_chart__unit size_chart__unit--cm" data-unit="cm">Centimeters</span>
+                                    </div>
+
+                                    <table class="product__size_chart__table">
+                                        <thead>
+                                            <tr class="product__size_chart__row">
+                                                <th class="product__size_chart__size_label">&nbsp;</th>
+                                                <th>Length</th>
+                                                <th>Sleeve</th>
+                                                <th>Width</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">S</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">8"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">20cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">19"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">48cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">M</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">29"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.5"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">20.75"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">52cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">L</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">9"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">22cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">22"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">55cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">31"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">9.5"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">24cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">24.25"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">61cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">2XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">32"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">81cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">10"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">25cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">26"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">66cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">4XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">34"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">86cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">11"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">27cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">30.5"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">77cm</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="product__size_chart" data-product-id="72">
+                                    <div class="size_chart__units">
+                                        <span class="size_chart__unit size_chart__unit--inch" data-unit="inch">Inches</span>
+                                        <span class="size_chart__unit size_chart__unit--cm" data-unit="cm">Centimeters</span>
+                                    </div>
+
+                                    <table class="product__size_chart__table">
+                                        <thead>
+                                            <tr class="product__size_chart__row">
+                                                <th class="product__size_chart__size_label">&nbsp;</th>
+                                                <th>Length</th>
+                                                <th>Width</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">S</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">28.75"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">17.38"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">44cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">M</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">29.75"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">75cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">19.38"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">49cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">L</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">30.75"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">21.38"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">54cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">31.75"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">80cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">23.38"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">59cm</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">2XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">32.75"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">83cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">25.38"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">64cm</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="product__size_chart" data-product-id="2">
+                                    <div class="size_chart__units">
+                                        <span class="size_chart__unit size_chart__unit--inch" data-unit="inch">Inches</span>
+                                        <span class="size_chart__unit size_chart__unit--cm" data-unit="cm">Centimeters</span>
+                                    </div>
+
+                                    <table class="product__size_chart__table">
+                                        <thead>
+                                            <tr class="product__size_chart__row">
+                                                <th class="product__size_chart__size_label">&nbsp;</th>
+                                                <th>Length</th>
+                                                <th>Sleeve</th>
+                                                <th>Width</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">S</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.13"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">20cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">18"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">45cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">M</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">29"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.38"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">20"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">50cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">L</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.63"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">22"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">55cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">31"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.88"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">22cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">24"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">60cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">2XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">33"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">83cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">9.63"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">24cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">26"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">66cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">3XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">34"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">86cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">10.13"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">25cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">4XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">35"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">88cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">10.63"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">27cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="product__size_chart__row">
+                                                <td class="product__size_chart__size_label">5XL</td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">36"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">91cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">11.13"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">28cm</span>
+                                                </td>
+                                                <td>
+                                                    <span class="product__size_chart__size product__size_chart__size--inch">32"</span>
+                                                    <span class="product__size_chart__size product__size_chart__size--cm">81cm</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                                
-                            <table class="product__size_chart__table">
-                                <thead>
-                                    <tr class="product__size_chart__row">
-                                        <th class="product__size_chart__size_label">&nbsp;</th>
-                                        <th>Length</th><th>Sleeve</th><th>Width</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">S</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">8"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">20cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">19"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">48cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">M</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">29"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">8.5"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">20.75"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">52cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">L</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">9"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">22cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">22"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">55cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">31"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">9.5"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">24cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">24.25"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">61cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">2XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">32"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">81cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">10"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">25cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">26"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">66cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">4XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">34"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">86cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">11"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">27cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">30.5"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">77cm</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
-                            
-                        <div class="product__size_chart" data-product-id="72">
-                            <div class="size_chart__units">
-                                <span class="size_chart__unit size_chart__unit--inch js-size-unit-toggle" data-unit="inch">Inches</span>
-                                <span class="size_chart__unit size_chart__unit--cm js-size-unit-toggle" data-unit="cm">Centimeters</span>
+                    </div>
+                </div>
+
+                <div class="product__color_container hide-colors">
+                    <ul class="product__color_list">
+                        <li class="product__color_list_item product__color_list_item--active" data-color-id="6524">
+                            <div class="product__color_block" style="background-color: rgb(64, 153, 208);">
                             </div>
-                                
-                            <table class="product__size_chart__table">
-                                <thead>
-                                    <tr class="product__size_chart__row">
-                                        <th class="product__size_chart__size_label">&nbsp;</th>
-                                        <th>Length</th>
-                                        <th>Width</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">S</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">28.75"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">17.38"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">44cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">M</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">29.75"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">75cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">19.38"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">49cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">L</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">30.75"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">21.38"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">54cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">31.75"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">80cm</span>
-                                        </td>
-                                        <td>    
-                                            <span class="product__size_chart__size product__size_chart__size--inch">23.38"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">59cm</span>
-                                        </td>
-                                    </tr>
-                                
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">2XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">32.75"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">83cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">25.38"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">64cm</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        </li>
+                    </ul>
+                </div>
+
+                @*<div class="product_size__container hidden">
+                        <ul class="product_size__list">
+                            <li class="product_size__item" data-product-id="369" data-size-id="1906">
+                                <span class="product_size__size">S</span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1907">
+                                <span class="product_size__size">M</span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1908">
+                                <span class="product_size__size">L</span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1909">
+                                <span class="product_size__size">XL</span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1910">
+                                <span class="product_size__size">2XL</span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1912">
+                                <span class="product_size__size">4XL</span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1911">
+                                <span class="product_size__size">3XL </span>
+                            </li>
+                            <li class="product_size__item" data-product-id="369" data-size-id="1913">
+                                <span class="product_size__size">5XL </span>
+                            </li>
+                        </ul>
+                    </div>*@
+
+                <div class="campaign_transaction js-transaction-button">
+                    <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
+                    <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
+                </div>
+
+                <div class="persistent_timer__wrap js_persistent_timer display--desktop persistent_timer__wrap--v2">
+                    <div class="presistent_timer__stats">
+                        <span class="persistent_timer__order_count">Only 10 more needed to print!</span>
+                    </div>
+
+                    <p class="campaign_transaction__subtext persistent_timer__subtext">
+                        Don't worry, you won't be charged unless the minimum is reached.
+                        <a href="/about">Learn why.</a>
+                    </p>
+
+                    <div class="persistent__timer">
+                        <span class="persistent_timer__label">
+                            <i class="ts-icon-time"></i> Want this shirt design?
+                        </span>
+
+                        <span class="persistent_timer__countdown">
+                            <div class="persistent_timer__unit_wrap">
+                                <div class="persistent_timer__value persistent_timer__days">
+                                    <span class="ce-days-digit">0</span>
+                                    <span class="ce-days-digit">1</span>
+                                </div>
+
+                                <label class="persistent_timer__unit persistent_timer__unit--days">days</label>
+                            </div>
+
+                            <div class="persistent_timer__unit_wrap">
+                                <div class="persistent_timer__value persistent_timer__hours">
+                                    <span class="ce-hours-digit">1</span>
+                                    <span class="ce-hours-digit">4</span>
+                                </div>
+
+                                <span class="persistent_timer__seperator">:</span>
+
+                                <div class="persistent_timer__unit">hours</div>
+                            </div>
+
+                            <div class="persistent_timer__unit_wrap">
+                                <div class="persistent_timer__value persistent_timer__minutes">
+                                    <span class="ce-minutes-digit">5</span>
+                                    <span class="ce-minutes-digit">0</span>
+                                </div>
+
+                                <span class="persistent_timer__seperator">:</span>
+
+                                <div class="persistent_timer__unit">minutes</div>
+                            </div>
+
+                            <div class="persistent_timer__unit_wrap">
+                                <div class="persistent_timer__value persistent_timer__seconds">
+                                    <span class="ce-seconds-digit">2</span>
+                                    <span class="ce-seconds-digit">0</span>
+                                </div>
+
+                                <div class="persistent_timer__unit">seconds</div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <p class="campaign_transaction__subtext display--mobile">
+                    Don't worry, you won't be charged unless the minimum is reached. <a href="/about">Learn why.</a>
+                </p>
+            </div>
+        </div>
+
+    </section>
+</section>
+
+<section class="site__main">
+
+    <div class="site__wrapper">
+        <div class="share__container display--mobile">
+            <h3 class="share__heading">Share this campaign on:</h3>
+            <ul class="share__buttons">
+                <li class="share__buttons__item">
+                    <a class="share__btn share__btn--facebook" data-social-network="facebook" href="http://www.facebook.com/share.php?u=http://tspr.ng/s6xGifsc&amp;title=Let's%20booze" target="_blank">
+                        <i class="ss-icon ss-social ss-facebook"></i>
+                    </a>
+                </li>
+                <li class="share__buttons__item">
+                    <a class="share__btn share__btn--twitter" data-social-network="twitter" href="http://twitter.com/home?status=Check%20out%20Let's%20booze!%20Available%20for%20the%20next%20about%2010%20hours%20via%20@Teespring:%20http://tspr.ng/s6xGitsc" target="_blank">
+                        <i class="ss-icon ss-social ss-twitter"></i>
+                    </a>
+                </li>
+                <li class="share__buttons__item">
+                    <a class="share__btn share__btn--pinterest" data-social-network="pinterest" href="https://www.pinterest.com/pin/create/button/?url=http://tspr.ng/s6xGipsc&amp;description=Let's%20booze&amp;media=http://vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/Front.jpg?v=2015-07-07-08-01" target="_blank">
+                        <i class="ss-icon ss-social ss-pinterest"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="campaign__column--description">
+            <div class="campaign__description display--mobile js_campaign_description">There is nothing left but booze</div>
+            <div class="campaign_info__container">
+                <div class="campaign_info__row campaign_info__row--shipping">
+                    <div class="campaign_info__header">
+                        Shipping Info
+                        @*<div class="campaign_info__region_dropdown">
+                                <div class="dropdown--popover js-shipping-info-dropdown" data-value="United States">
+                                    <div class="dropdown__toggle campaign_info__region_toggle js-region-toggle">United States</div>
+                                    <div class="dropdown__menu dropdown__menu--hidden">
+                                        <ul class="dropdown__menu_links">
+                                            <li class="dropdown__menu_item js-region-item" data-name="United States" data-value="United States">
+                                                <div class="dropdown__menu_link dropdown__menu_link--nowrap">United States</div>
+                                            </li>
+                                            <li class="dropdown__menu_item js-region-item" data-name="Canada" data-value="Canada">
+                                                <div class="dropdown__menu_link dropdown__menu_link--nowrap">Canada</div>
+                                            </li>
+                                            <li class="dropdown__menu_item js-region-item" data-name="International" data-value="Switzerland">
+                                                <div class="dropdown__menu_link dropdown__menu_link--nowrap">International</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                    <div class="campaign_info__content">
+                        <div class="campaign_info__content__row">
+                            Orders are printed and shipped when the time expires (<span data-timestamp="2015-07-15T03:00:00Z">July 15th</span>). You can expect your package to arrive around
+                            <span class="js-delivery-estimate">5</span> business days after printing starts.
                         </div>
-                            
-                        <div class="product__size_chart" data-product-id="2">
-                            <div class="size_chart__units">
-                                <span class="size_chart__unit size_chart__unit--inch js-size-unit-toggle" data-unit="inch">Inches</span>
-                                <span class="size_chart__unit size_chart__unit--cm js-size-unit-toggle" data-unit="cm">Centimeters</span>
+                        <div class="campaign_info__content__row js-shipping-info">
+                            Orders are mailed via first-class or priority mail. Shipping costs
+                            <span class="js-base-cost">$3.99</span> for the first item and <span class="js-additional-cost">$2.00</span> for each additional item.
+                        </div>
+                    </div>
+                </div>
+                <div class="campaign_info__row campaign_info__row--returns">
+                    <div class="campaign_info__header">Return Policy</div>
+                    <div class="campaign_info__content campaign_info__content--return_policy">
+                        If you're not 100% satisfied, return it and we'll refund you.
+                        <a href="http://answers.teespring.com/customer/portal/articles/1710937-refunds-and-returns">
+                            View Details
+                            <i class="ts-icon-right-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="campaign_info__row campaign_info__row--campaign_id">
+                    <div class="campaign_info__header">Campaign ID</div>
+                    <div class="campaign_info__content campaign_info__content--id">letsbooze</div>
+                </div>
+            </div>
+        </div>
+        <div class="campaign__column--stats display--desktop">
+            <div class="campaign_stats__container js_stats_countainer display--mobile active">
+                <div class="campaign_stats">
+                    <p class="campaign_transaction__subtext display--desktop">
+                        Don't worry, you won't be charged unless the minimum is reached.
+                        <a href="/about">Learn why.</a>
+                    </p>
+                    <div class="campaign_stats__table">
+                        <div class="campaign_stats__column campaign_stats__column--goal">
+                            <div class="campaign_stats__value">10</div><div class="campaign_stats__label">needed to print!</div>
+                        </div>
+                        <div class="campaign_stats__column campaign_stats__column--timer js_stats_timer_subview">
+                            <div class="campaign_stats__value js_stats_default_time hidden campaign_stats__value--load_animation">10:17:18</div>
+                            <div class="campaign_stats__countdown js_stats_timer_countdown">
+                                <span class="campaign_stats__countdown__hours">
+                                    <span class="ce-hours-digit">1</span>
+                                    <span class="ce-hours-digit">0</span>
+                                </span>:<span class="campaign_stats__countdown__minutes">
+                                    <span class="ce-minutes-digit">0</span>
+                                    <span class="ce-minutes-digit">2</span>
+                                </span>:
+                                <span class="campaign_stats__countdown__seconds">
+                                    <span class="ce-seconds-digit">4</span>
+                                    <span class="ce-seconds-digit">6</span>
+                                </span>
                             </div>
-                                
-                            <table class="product__size_chart__table">
-                                <thead>
-                                    <tr class="product__size_chart__row">
-                                        <th class="product__size_chart__size_label">&nbsp;</th>
-                                        <th>Length</th>
-                                        <th>Sleeve</th>
-                                        <th>Width</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">S</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">8.13"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">20cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">18"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">45cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">M</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">29"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">8.38"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">20"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">50cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">L</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">8.63"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">22"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">55cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">31"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">8.88"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">22cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">24"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">60cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">2XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">33"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">83cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">9.63"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">24cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">26"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">66cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">3XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">34"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">86cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">10.13"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">25cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">4XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">35"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">88cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">10.63"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">27cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="product__size_chart__row">
-                                        <td class="product__size_chart__size_label">5XL</td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">36"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">91cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">11.13"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">28cm</span>
-                                        </td>
-                                        <td>
-                                            <span class="product__size_chart__size product__size_chart__size--inch">32"</span>
-                                            <span class="product__size_chart__size product__size_chart__size--cm">81cm</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <span class="campaign_stats__label">left to buy!</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
-        <div class="product__color_container hide-colors">
-            <ul class="product__color_list">
-                <li class="product__color_list_item product__color_list_item--active" data-color-id="6524">
-                    <div class="product__color_block" style="background-color: rgb(64, 153, 208);">
-                    </div>
-                </li>
-            </ul>
-        </div>
-            
-        <div class="product_size__container hidden">
-            <ul class="product_size__list">
-                <li class="product_size__item" data-product-id="369" data-size-id="1906">
-                    <span class="product_size__size">S</span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1907">
-                    <span class="product_size__size">M</span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1908">
-                    <span class="product_size__size">L</span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1909">
-                    <span class="product_size__size">XL</span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1910">
-                    <span class="product_size__size">2XL</span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1912">
-                    <span class="product_size__size">4XL</span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1911">
-                    <span class="product_size__size">3XL </span>
-                </li>
-                <li class="product_size__item" data-product-id="369" data-size-id="1913">
-                    <span class="product_size__size">5XL </span>
-                </li>
-            </ul>
-        </div>
-            
-        <div class="campaign_transaction js-transaction-button">
-            <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
-            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
-        </div>
-            
-        <div class="persistent_timer__wrap js_persistent_timer display--desktop persistent_timer__wrap--v2">
-            <div class="presistent_timer__stats">
-                <span class="persistent_timer__order_count">Only 10 more needed to print!</span>
-            </div>
-                
-            <p class="campaign_transaction__subtext persistent_timer__subtext">Don't worry, you won't be charged unless the minimum is reached. 
-                <a href="/about">Learn why.</a>
-            </p>
-                
-            <div class="persistent__timer">
-                <span class="persistent_timer__label">
-                    <i class="ts-icon-time"></i> Want this shirt design?
-                </span>
-            
-                <span class="persistent_timer__countdown">
-                    <div class="persistent_timer__unit_wrap">
-                        <div class="persistent_timer__value persistent_timer__days">
-                            <span class="ce-days-digit">0</span>
-                            <span class="ce-days-digit">1</span>
-                        </div>
-                    
-                        <label class="persistent_timer__unit persistent_timer__unit--days">days</label>
-                    </div>
-                
-                    <div class="persistent_timer__unit_wrap">
-                        <div class="persistent_timer__value persistent_timer__hours">
-                            <span class="ce-hours-digit">1</span>
-                            <span class="ce-hours-digit">4</span>
-                        </div>
-                    
-                        <span class="persistent_timer__seperator">:</span>
-                    
-                        <div class="persistent_timer__unit">hours</div>
-                    </div>
-                
-                    <div class="persistent_timer__unit_wrap">
-                        <div class="persistent_timer__value persistent_timer__minutes">
-                            <span class="ce-minutes-digit">5</span>
-                            <span class="ce-minutes-digit">0</span>
-                        </div>
-                    
-                        <span class="persistent_timer__seperator">:</span>
-                    
-                        <div class="persistent_timer__unit">minutes</div>
-                    </div>
-                
-                    <div class="persistent_timer__unit_wrap">
-                        <div class="persistent_timer__value persistent_timer__seconds">
-                            <span class="ce-seconds-digit">2</span>
-                            <span class="ce-seconds-digit">0</span>
-                        </div>
-                    
-                        <div class="persistent_timer__unit">seconds</div>
-                    </div>
-                </span>
+            <div class="share__container">
+                <h3 class="share__heading">Share this campaign on:</h3>
+                <ul class="share__buttons">
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--facebook" data-social-network="facebook" href="http://www.facebook.com/share.php?u=http://tspr.ng/s6xGifsc&amp;title=Let's%20booze" target="_blank">
+                            <i class="ss-icon ss-social ss-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--twitter" data-social-network="twitter" href="http://twitter.com/home?status=Check%20out%20Let's%20booze!%20Available%20for%20the%20next%20about%2010%20hours%20via%20@Teespring:%20http://tspr.ng/s6xGitsc" target="_blank">
+                            <i class="ss-icon ss-social ss-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--pinterest" data-social-network="pinterest" href="https://www.pinterest.com/pin/create/button/?url=http://tspr.ng/s6xGipsc&amp;description=Let's%20booze&amp;media=http://vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/Front.jpg?v=2015-07-07-08-01" target="_blank">
+                            <i class="ss-icon ss-social ss-pinterest"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-            
-        <p class="campaign_transaction__subtext display--mobile">
-            Don't worry, you won't be charged unless the minimum is reached. <a href="/about">Learn why.</a>
-        </p>
+        <section class="site__featured site__featured--border hidden">
+            <div class="site__wrapper">
+                <div class="launch_campaign__container">
+                    <div class="launch_campaign__statement">Design and sell custom apparel with no risks and at no cost.</div>
+                    <div class="launch_campaign__statement">We ship, you keep the profit.</div>
+                    <a class="launch_campaign__button button__cta button__cta--primary" href="/designs">Launch a Campaign</a>
+                    <a class="launch_campaign__button button__cta button__cta--secondary" href="/about">Learn More</a>
+                </div>
+            </div>
+        </section>
     </div>
-</div>
-    
 </section>
-</section>
+
+
+
+
