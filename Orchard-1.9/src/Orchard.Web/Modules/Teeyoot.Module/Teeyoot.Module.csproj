@@ -580,12 +580,13 @@
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Wizard\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Message\Index.cshtml" />
-    <Content Include="Views\Message\CreateMessage.cshtml" />
-    <Content Include="Views\Message\getList.cshtml" />
+    <Content Include="Views\Dashboard\Messages.cshtml" />
+    <Content Include="Views\Dashboard\CreateMessage.cshtml" />
+    <Content Include="Views\Dashboard\getList.cshtml" />
     <Content Include="Views\Campaign\Index.cshtml" />
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
+    <Content Include="Views\Dashboard\Campaigns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -601,7 +602,7 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
@@ -628,12 +629,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

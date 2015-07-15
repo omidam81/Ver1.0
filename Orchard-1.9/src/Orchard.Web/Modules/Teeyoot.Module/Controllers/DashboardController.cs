@@ -19,10 +19,10 @@ namespace Teeyoot.Module.Controllers
 {
 
     [Themed]
-    public class MessageController : Controller
+    public class DashboardController : Controller
     {
         // GET: Message
-        public ActionResult Index()
+        public ActionResult Messages()
         {
             return View();
         }
@@ -60,6 +60,11 @@ namespace Teeyoot.Module.Controllers
                 return View("Index", ViewBag);
             }
             return View("CreateMessage");
+        }
+
+        public ActionResult Campaigns()
+        {
+            return View();
         }
     }
 }
