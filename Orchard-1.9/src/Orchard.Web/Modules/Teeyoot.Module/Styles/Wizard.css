@@ -274,7 +274,8 @@ span.number {
     .Slides .Content {
         margin-left: 0;
     }
-        #prodFront {
+
+    #prodFront {
         width: 400px;
     }
 
@@ -282,7 +283,7 @@ span.number {
         width: 400px;
     }
 
-     /*#butt1 {
+    /*#butt1 {
         margin-top:-40px !important;
     }
 
@@ -491,3 +492,21 @@ input[type=range] {
         background-size: contain;
         float: left;
     }
+
+.widget-anonimousMenu {
+    margin-right: -50px;
+}
+
+.menu-anonimous-menu .last {
+    display: none;
+}
+
+.tb-search-form {
+    height: 31px !important;
+}
+
+@media all and (max-width: 1000px) {
+    .widget-anonimousMenu {
+        margin-right: 0;
+    }
+}
