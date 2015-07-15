@@ -31,9 +31,32 @@
 { 
 
     <script type="text/javascript">
+
+        $(".flip-buttons").click(function () {
+            var $elem = $("#view-front");
+
+            if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
+                setTimeout(function () {
+                $(".flip-button-front").css("background-color", "#44474d");
+                $(".flip-button-front").css("color", "white");
+                $(".flip-button-back").css("background-color", "white");
+                $(".flip-button-back").css("color", "#44474d");
+                }, 180);
+        } else
+        if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
+            setTimeout(function () {
+                $(".flip-button-back").css("background-color", "#44474d");
+                $(".flip-button-back").css("color", "white");
+                $(".flip-button-front").css("background-color", "white");
+                $(".flip-button-front").css("color", "#44474d");
+            }, 180);
+
+            }    
+        });
+
+
         var isFront = true
         $(function ($) {
-
             $("#card").flip({
                 trigger: 'manual'
             }).click(function () {
@@ -42,7 +65,9 @@
                 $("#card").flip(!isFront);
             });
         });
-    </script>
+
+
+   </script>
 }
 
 
@@ -192,9 +217,9 @@
                                                                     <div class="fake-input color-picker standard designer-dropdown"
                                                                          title="Change color" data-value="outline">
                                                                         <div class="swatch" title="Black" style="background-color:#000000;"></div>
-                                                                        <div class="colors shirt-colors containertip">
+                                                                        <div class="colors shirt-colors containertip" style="top:35%">
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                                                          <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
@@ -236,8 +261,8 @@
                                                                 <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
                                                             </div>
                                                         </div>
-                                                        <div class="flip-buttons">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
+                                                        <div class="flip-buttons flp">
+                                                            <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#44474d; color:white;" data-element="frontButton">Front</div>
                                                             <div class="flip-button flip-button-back" data-element="backButton">Back</div>
                                                         </div>
                                                     </div>
@@ -255,9 +280,9 @@
                                                                 <img class=" printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
                                                             </div>
                                                         </div>
-                                                        <div class="flip-buttons">
-                                                            <div class="flip-button flip-button-front">Front</div>
-                                                            <div class="flip-button flip-button-back no-select flip-button-active">Back</div>
+                                                        <div class="flip-buttons ">
+                                                            <div class="flip-button flip-button-front" id="fr1">Front</div>
+                                                            <div class="flip-button flip-button-back no-select flip-button-active" id="bck1">Back</div>
                                                         </div>
                                                     </div>
                                                     <!-- end back design -->
@@ -339,15 +364,15 @@
                                 <div class="front">
                                     <img id="prodFront"  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png" >
                                     <div id="butt1" style="text-align:center; margin-top:-40px !important;">
-                                        <div class="flip-button flip-button-front" style="background-color:#44474d; color: white;">Front</div>
-                                        <div class="flip-button flip-button-back">Back</div>
+                                        <div class="flip-button flip-button-front-two" style="background-color:#44474d; color: white;">Front</div>
+                                        <div class="flip-button flip-button-back-two">Back</div>
                                     </div>
                                 </div>
                                 <div class="back">
                                     <img id="prodBack" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png" >
                                     <div id="butt2" style="text-align:center; margin-top:-40px !important;">
-                                        <div class="flip-button flip-button-front">Front</div>
-                                        <div class="flip-button flip-button-back" style="background-color:#44474d; color: white;">Back</div>
+                                        <div class="flip-button flip-button-front-two">Front</div>
+                                        <div class="flip-button flip-button-back-two" style="background-color:#44474d; color: white;">Back</div>
                                     </div>
                                 </div>
                             </div>

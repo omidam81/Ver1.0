@@ -1270,9 +1270,11 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 .font #font-select-menu {
-    left: 178px;
+    left: 18%;
     width: 290px;
     height: 300px;
+    top:280px;
+    position:fixed;
 }
 
     .font #font-select-menu:before {
@@ -2134,11 +2136,13 @@ tspan {
 }
 
 .color-picker .containertip {
-    top: -13px;
-    left: 64px;
+    top: 27%;
+    left: 25%;
     width: 234px;
     padding: 8px;
+    position:fixed;
 }
+
 
     .color-picker .containertip ul {
         margin-bottom: -7px;
@@ -5627,7 +5631,16 @@ div.flip-container {
     border-radius: 5px 0 0 5px;
 }
 
+.flip-button-front-two {
+    border-radius: 5px 0 0 5px;
+}
+
 .flip-button-back {
+    border-radius: 0 5px 5px 0;
+    margin-left: -4px;
+}
+
+.flip-button-back-two {
     border-radius: 0 5px 5px 0;
     margin-left: -4px;
 }
