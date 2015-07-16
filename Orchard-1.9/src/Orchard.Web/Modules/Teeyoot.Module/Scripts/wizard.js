@@ -1,6 +1,7 @@
 ﻿window.onload = function initWizard() {
     var w = $(window).width();
     var h = $(window).height();
+    document.getElementById('trackbar').value = 15;
     var slides = $('.Slides > div');
     $('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
@@ -122,8 +123,12 @@ function slide() {
     });
 }
 function onChangeTrackBar() {
-    document.getElementById('trackBarValue').innerHTML = document.getElementById('trackbar').value;
+    document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
     document.getElementById('total_profit').innerHTML = (document.getElementById('trackbar').value) * 10 + "$";
+}
+
+function onChangeValueForTrackBar() {
+    document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
 }
 
 
