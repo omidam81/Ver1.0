@@ -78,7 +78,7 @@
 .ui-icon-gripsmall-diagonal-se {
     bottom: -19px;
     right: -19px;
-    background-image: url("../images/scale.png");
+    background-image: url("../Content/images/scale.png");
     position: absolute;
     opacity: 0.8;
     cursor: pointer;
@@ -87,12 +87,12 @@
 .item-remove-on {
     right: -30px;
     top: -9px;
-    background-image: url("../images/delete.png");
+    background-image: url("../Content/images/delete.png");
 }
 .item-rotate-on {
     bottom: -30px;
     left: -9px;
-    background-image: url("../images/rotate.png");
+    background-image: url("../Content/images/rotate.png");
 }
 .ui-resizable-e,
 .ui-resizable-w,

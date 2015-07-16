@@ -1,10 +1,10 @@
 ﻿@{
 
     Style.Include("bootstrap.min.css");
-    Style.Include("designer.css").AtHead();
+    Style.Include("jqueryui.css");
+    Style.Include("designer.css");
     Style.Include("bootstrap-theme.min.css");
     Style.Include("Wizard.css");
-    Style.Include("jqueryui.css");
     Style.Include("custom.css");
 
 
@@ -160,9 +160,6 @@
                                     <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
                                         <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
                                             <div id="design-tools" class="aside">
-                                                <div class="partnership__dropdown">
-                                                    <div></div>
-                                                </div>
                                                 <div class="design__area">
                                                     <div>
                                                         <ul class="tabs clearfix nav nav-tabs">
@@ -190,7 +187,7 @@
                                                                         <div class="colors shirt-colors containertip">
                                                                             <!--containertip--open -->
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                                    <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
@@ -217,16 +214,46 @@
                                                                     <div class="fake-input color-picker standard designer-dropdown"
                                                                          title="Change color" data-value="outline">
                                                                         <div class="swatch" title="Black" style="background-color:#000000;"></div>
-                                                                        <div class="colors shirt-colors containertip" style="top:35%">
+                                                                        <div class="colors shirt-colors containertip">
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                                    <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="clearfix control-group"></div>
+                                                            <div id="text-align-tools" class="clearfix control-group">
+                                                                <div class="layer-tools">
+                                                                    <ul id="canvas-options" class="nav">
+                                                                        <li>
+                                                                            <input id="snap-to-center" type="checkbox" checked="">
+                                                                            <label>Snap to center</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div id="panel-context-menu" class="btn-group control-group">
+                                                                        <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                            <i class="ts-icon ts-icon-composer-copy"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                                            <i class="ts-icon ts-icon-composer-center"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                            <i class="ts-icon ts-icon-composer-sendtoback"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                                            <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                                            <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <ul class="tabs clearfix nav nav-tabs">
                                                             <li class="tab active" data-name="Art"><a>Art</a></li>
@@ -234,10 +261,121 @@
                                                         <div id="tab2-content" class="tab-content teespring-well designer-well tab-Art">
                                                             <div id="designer-art-choseType">
                                                                 <div class="search_container">
-                                                                    <button class="button button--primary search">Browse Artwork</button>
+                                                                    <button id="browse-artwork" class="button button--primary search">Browse Artwork</button>
+                                                                    <div class="design-art-search containertip">
+                                                                        <form action="." method="get" role="form" id="artwork-search-form">
+                                                                            <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
+                                                                            <button class="button button--primary search">Search</button>
+                                                                        </form>
+                                                                        <div class="art-search-container">
+                                                                            <!-- list of artworks -->
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="hr"><span>OR</span></div>
-                                                                <button class="button button--primary upload">Upload your own</button>
+                                                                <button id="artwork-upload" class="button button--primary upload">Upload your own</button>
+                                                            </div>
+                                                            <div id="dropbox" class="control-group" style="display: none">
+                                                                <div class="upload">
+                                                                    <div hidden="" class="form">
+                                                                        <form enctype="multipart/form-data" id="s3-uploader" method="post">
+                                                                            <input id="file" name="file" style="visibility: hidden;"
+                                                                                   type="file">
+                                                                        </form>
+                                                                    </div>
+                                                                    <p class="small dropbox-intro">Drag art here or ...</p>
+                                                                    <button class="button button--primary upload select-file">Click here to upload</button>
+                                                                    <p class="dropbox-disclosure">
+                                                                        <em>
+                                                                            By uploading an image you agree that you
+                                                                            hold the right to reproduce and sell the design.
+                                                                        </em>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div id="art-style" class="design-area__art--edit" style="display: none;">
+                                                                <div>
+                                                                    <div class="control-group clearfix art-color-selection">
+                                                                        <label>
+                                                                            Art
+                                                                            color
+                                                                        </label>
+
+                                                                        <div class="fake-input color-picker standard designer-dropdown"
+                                                                             title="Change color">
+                                                                            <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                                                                            <div class="colors shirt-colors containertip">
+                                                                                <ul></ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="edit_tool">
+                                                                        <label style="float:left;">Add an outline</label>
+
+                                                                        <div class="clearfix control-group outline-selection">
+                                                                            <div>
+                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu">
+                                                                                    <option value="0">
+                                                                                        No outline
+                                                                                    </option>
+                                                                                    <option value="0.33">
+                                                                                        Thin
+                                                                                        outline
+                                                                                    </option>
+                                                                                    <option value="0.66">
+                                                                                        Medium
+                                                                                        outline
+                                                                                    </option>
+                                                                                    <option value="1">
+                                                                                        Thick
+                                                                                        outline
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clearfix control-group outline-color-selection">
+                                                                            <div class="fake-input color-picker standard designer-dropdown"
+                                                                                 title="Change color">
+                                                                                <div class="swatch" title="Black"
+                                                                                     style="background-color:#000000;"></div>
+                                                                                <div class="colors shirt-colors containertip">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="file control-group" style="display: none">
+                                                                    <label>Uploaded File</label>
+
+                                                                    <div class="fake-input color-picker standard uploaded-file">
+                                                                        <div class="remove">Remove</div>
+                                                                        <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix control-group">
+                                                                    <div class="layer-tools">
+                                                                        <ul id="canvas-options-art" class="nav">
+                                                                            <li><input type="checkbox" checked=""><label>Snap to center</label></li>
+                                                                        </ul>
+                                                                        <div id="panel-context-menu-art" class="btn-group control-group">
+                                                                            <span class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                                <i class="ts-icon ts-icon-composer-copy"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Center">
+                                                                                <i class="ts-icon ts-icon-composer-center"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                                <i class="ts-icon ts-icon-composer-sendtoback"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
+                                                                                                                        data-tooltip="Flip Horizontally">
+                                                                                <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
+                                                                                                                        data-tooltip="Flip Vertically">
+                                                                                <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -249,20 +387,37 @@
                                                 <div id="app-wrap" class="div-design-area new-editor-container">
 
                                                     <!-- begin front design -->
-                                                    <div id="view-front" class="front labView active">
+                                                    <div id="view-front" class="front labView">
                                                         <div class="product-design"></div>
-                                                        <div class="design-area"><div class="content-inner"></div></div>
-                                                        <div class="design-area-toolbar">
-                                                            <span>Printable Area</span>
-                                                            <div class="design-area-zoom">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                        <div class="design-area printable-area-box">
+                                                            <div class="content-inner"></div>
+                                                            <div class="size-dialog aspect-ratio" style="display: none">
+                                                                <div class="aspect-ratio__field width">
+                                                                    <span>Width</span>
+                                                                    <input class="aspect-ratio__field--width width" value="5.58">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                                <div class="aspect-ratio__field height">
+                                                                    <span>Height</span>
+                                                                    <input class="height" value="1.49">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="printable-area-toolbar">
+                                                                <span>Printable Area</span>
+                                                                <div class="design-area-zoom printable-area-zoom">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="flip-buttons flp">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#44474d; color:white;" data-element="frontButton">Front</div>
+                                                        <div class="xgridline" style="opacity: 0;"></div>
+                                                        <div class="ygridline" style="opacity: 0;"></div>
+
+                                                        <div class="flip-buttons">
+                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
                                                             <div class="flip-button flip-button-back" data-element="backButton">Back</div>
                                                         </div>
                                                     </div>
@@ -270,19 +425,36 @@
                                                     <!-- begin back design -->
                                                     <div id="view-back" class="back labView">
                                                         <div class="product-design"></div>
-                                                        <div class="design-area"><div class="content-inner"></div></div>
-                                                        <div class="design-area-toolbar">
-                                                            <span>Printable Area</span>
-                                                            <div class="design-area-zoom">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
-                                                                <img class=" printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                        <div class="design-area printable-area-box">
+                                                            <div class="content-inner"></div>
+                                                            <div class="size-dialog aspect-ratio" style="display: none">
+                                                                <div class="aspect-ratio__field width">
+                                                                    <span>Width</span>
+                                                                    <input class="aspect-ratio__field--width width" value="5.58">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                                <div class="aspect-ratio__field height">
+                                                                    <span>Height</span>
+                                                                    <input class="height" value="1.49">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="printable-area-toolbar">
+                                                                <span>Printable Area</span>
+                                                                <div class="design-area-zoom printable-area-zoom">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="flip-buttons ">
-                                                            <div class="flip-button flip-button-front" id="fr1">Front</div>
-                                                            <div class="flip-button flip-button-back no-select flip-button-active" id="bck1">Back</div>
+                                                        <div class="xgridline" style="opacity: 0;"></div>
+                                                        <div class="ygridline" style="opacity: 0;"></div>
+
+                                                        <div class="flip-buttons">
+                                                            <div class="flip-button flip-button-front">Front</div>
+                                                            <div class="flip-button flip-button-back no-select flip-button-active">Back</div>
                                                         </div>
                                                     </div>
                                                     <!-- end back design -->
@@ -290,6 +462,7 @@
 
                                                 </div>
                                             </div>
+
                                             <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
                                                 <!-- colors list -->
                                             </ul>
@@ -316,9 +489,9 @@
                                                                 <span>$7.14</span>
                                                             </p>
                                                         </div>
-                                                        @*<button class="button button--transaction" id="nextPage">
-                                                                Next
-                                                            </button>*@
+                                                        <button class="button button--transaction" id="nextPage">
+                                                            Next
+                                                        </button>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -354,7 +527,7 @@
 
 
 
-        <div class="Slide" style="width:30% !important; margin-left:3%;">
+        <div class="Slide" style="width:30% !important; margin-left:3%">
             <div class="Content" style="margin-left:10% !important">
                 <table>
                     <tr>
@@ -1632,8 +1805,6 @@
                                 </div>
                             </div>
                         </div>
-                        <script src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/libraries-367980f019463abf9a0cc384b68f0ed4.js"></script>
-                        <script src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer-96cd1d465e840450e34ffe14306c87fc.js"></script>
                     </div>
                     @*<script>
                             window.ENV = {

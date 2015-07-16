@@ -1,4 +1,4 @@
-var baseURL = './data-samples/';
+var baseURL = '/Modules/Teeyoot.Module/Content/data-samples/';
 
 var dataUrls = {
     fonts: 'fonts.json',
@@ -11,6 +11,8 @@ var dataUrls = {
 };
 
 var assetsUrls = {
-    fonts: './assets/images/fonts/',
-    art: './assets/vector/'
+    fonts: '/Modules/Teeyoot.Module/Content/fonts/',
+    art: '/Modules/Teeyoot.Module/Content/vector/',
+    products: '/Modules/Teeyoot.Module/Content/images/',
+    images: '/Modules/Teeyoot.Module/Content/images/'
 };

@@ -26,8 +26,11 @@
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url("../images/fontawesome/fontawesome-webfont.eot");
-    src: url("../images/fontawesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),url("../images/fontawesome/fontawesome-webfont.woff") format("woff"),url("../images/fontawesome/fontawesome-webfont.ttf") format("truetype"),url("../images/fontawesome/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+    src: url("../Content/fontawesome/fontawesome-webfont.eot");
+    src: url("../Content/fontawesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../Content/fontawesome/fontawesome-webfont.woff") format("woff"),
+        url("../Content/fontawesome/fontawesome-webfont.ttf") format("truetype"),
+        url("../Content/fontawesome/fontawesome-webfont.svg#fontawesomeregular") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -15310,7 +15313,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "Open Sans";
     src: url("../images/fonts/opensans-light-webfont.eot");
-    src: url("../images/fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/opensans-light-webfont.woff") format("woff"),url("../images/fonts/opensans-light-webfont.ttf") format("truetype"),url("../images/fonts/opensans-light-webfont.svg#adelleitalic") format("svg");
+    src: url("../images/fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/opensans-light-webfont.woff") format("woff"),url("../images/fonts/opensans-light-webfont.ttf") format("truetype"),url("../images/fonts/opensans-light-webfont.svg#adelleitalic") format("svg");
     font-weight: 100;
     font-style: normal;
 }
@@ -15318,7 +15321,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "Open Sans";
     src: url("../images/fonts/opensans-lightitalic-webfont.eot");
-    src: url("../images/fonts/opensans-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/opensans-lightitalic-webfont.woff") format("woff"),url("../images/fonts/opensans-lightitalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-lightitalic-webfont.svg#opensansitalic") format("svg");
+    src: url("../images/fonts/opensans-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/opensans-lightitalic-webfont.woff") format("woff"),url("../images/fonts/opensans-lightitalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-lightitalic-webfont.svg#opensansitalic") format("svg");
     font-weight: 100;
     font-style: italic;
 }
@@ -15333,24 +15336,30 @@ input.dashboard__relaunch_settings_checkbox {
 
 @font-face {
     font-family: "Open Sans";
-    src: url("../Content/images/fonts/opensans-italic-webfont.eot");
-    src: url("../Content/images/fonts/opensans-italic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/opensans-italic-webfont.woff") format("woff"),url("../images/fonts/opensans-italic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-italic-webfont.svg#opensansitalic") format("svg");
+    src: url("../Content/fonts/opensans-italic-webfont.eot");
+    src: url("../Content/fonts/opensans-italic-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../Content/fonts/opensans-italic-webfont.woff") format("woff"),
+        url("../Content/fonts/opensans-italic-webfont.ttf") format("truetype"),
+        url("../Content/fonts/opensans-italic-webfont.svg#opensansitalic") format("svg");
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: "Open Sans";
-    src: url("../Content/images/fonts/opensans-light-webfont.eot");
-    src: url("../Content/images/fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/opensans-light-webfont.woff") format("woff"),url("../images/fonts/opensans-light-webfont.ttf") format("truetype"),url("../images/fonts/opensans-light-webfont.svg#adelleitalic") format("svg");
+    src: url("../Content/fonts/opensans-light-webfont.eot");
+    src: url("../Content/fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../Content/fonts/opensans-light-webfont.woff") format("woff"),
+        url("../Content/fonts/opensans-light-webfont.ttf") format("truetype"),
+        url("../Content/fonts/opensans-light-webfont.svg#adelleitalic") format("svg");
     font-weight: 100;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Open Sans";
-    src: url("../Content/images/fonts/opensans-lightitalic-webfont.eot");
-    src: url("../Content/images/fonts/opensans-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("../images/fonts/opensans-lightitalic-webfont.woff") format("woff"),url("../images/fonts/opensans-lightitalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-lightitalic-webfont.svg#opensansitalic") format("svg");
+    src: url("../Content/fonts/opensans-lightitalic-webfont.eot");
+    src: url("../Content/fonts/opensans-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("../images/fonts/opensans-lightitalic-webfont.woff") format("woff"),url("../images/fonts/opensans-lightitalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-lightitalic-webfont.svg#opensansitalic") format("svg");
     font-weight: 100;
     font-style: italic;
 }
@@ -15365,8 +15374,8 @@ input.dashboard__relaunch_settings_checkbox {
 
 @font-face {
     font-family: "Open Sans";
-    src: url("../Content/images/fonts/opensans-semibolditalic-webfont.eot");
-    src: url("../Content/images/fonts/opensans-semibolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/opensans-semibolditalic-webfont.woff") format("woff"),url("../images/fonts/opensans-semibolditalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-semibolditalic-webfont.svg#opensansbold_italic") format("svg");
+    src: url("../Content/fonts/opensans-semibolditalic-webfont.eot");
+    src: url("../Content/fonts/opensans-semibolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/opensans-semibolditalic-webfont.woff") format("woff"),url("../images/fonts/opensans-semibolditalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-semibolditalic-webfont.svg#opensansbold_italic") format("svg");
     font-weight: 600;
     font-style: italic;
 }
@@ -15381,24 +15390,24 @@ input.dashboard__relaunch_settings_checkbox {
 
 @font-face {
     font-family: "Open Sans";
-    src: url("../Content/images/fonts/opensans-bolditalic-webfont.eot");
-    src: url("../Content/images/fonts/opensans-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/opensans-bolditalic-webfont.woff") format("woff"),url("../images/fonts/opensans-bolditalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-bolditalic-webfont.svg#opensansbold_italic") format("svg");
+    src: url("../Content/fonts/opensans-bolditalic-webfont.eot");
+    src: url("../Content/fonts/opensans-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/opensans-bolditalic-webfont.woff") format("woff"),url("../images/fonts/opensans-bolditalic-webfont.ttf") format("truetype"),url("../images/fonts/opensans-bolditalic-webfont.svg#opensansbold_italic") format("svg");
     font-weight: 700;
     font-style: italic;
 }
 
 @font-face {
     font-family: "adelle";
-    src: url("../Content/images/fonts/typetogether_-_adelle-reg-webfont.eot");
-    src: url("../Content/images/fonts/typetogether_-_adelle-reg-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-reg-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-reg-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-reg-webfont.svg#adelleitalic") format("svg");
+    src: url("../Content/fonts/typetogether_-_adelle-reg-webfont.eot");
+    src: url("../Content/fonts/typetogether_-_adelle-reg-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-reg-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-reg-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-reg-webfont.svg#adelleitalic") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "adelle";
-    src: url("../Content/images/fonts/typetogether_-_adelle-italic-webfont.eot");
-    src: url("../Content/images/fonts/typetogether_-_adelle-italic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-italic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-italic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-italic-webfont.svg#adelleitalic") format("svg");
+    src: url("../Content/fonts/typetogether_-_adelle-italic-webfont.eot");
+    src: url("../Content/fonts/typetogether_-_adelle-italic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-italic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-italic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-italic-webfont.svg#adelleitalic") format("svg");
     font-weight: normal;
     font-style: italic;
 }
@@ -15406,15 +15415,15 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "adelle";
     src: url("../images/fonts/typetogether_-_adelle-light-webfont.eot");
-    src: url("../images/fonts/typetogether_-_adelle-light-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-light-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-light-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-light-webfont.svg#adellelight") format("svg");
+    src: url("../images/fonts/typetogether_-_adelle-light-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-light-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-light-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-light-webfont.svg#adellelight") format("svg");
     font-weight: 100;
     font-style: normal;
 }
 
 @font-face {
     font-family: "adelle";
-    src: url("../Content/images/fonts/typetogether_-_adelle-lightitalic-webfont.eot");
-    src: url("../Content/images/fonts/typetogether_-_adelle-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-lightitalic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-lightitalic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-lightitalic-webfont.svg#adellelight_italic") format("svg");
+    src: url("../Content/fonts/typetogether_-_adelle-lightitalic-webfont.eot");
+    src: url("../Content/fonts/typetogether_-_adelle-lightitalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-lightitalic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-lightitalic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-lightitalic-webfont.svg#adellelight_italic") format("svg");
     font-weight: 100;
     font-style: italic;
 }
@@ -15422,7 +15431,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "adelle";
     src: url("../images/fonts/typetogether_-_adelle-semibold-webfont.eot");
-    src: url("../images/fonts/typetogether_-_adelle-semibold-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-semibold-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-semibold-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-semibold-webfont.svg#adellebold") format("svg");
+    src: url("../images/fonts/typetogether_-_adelle-semibold-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-semibold-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-semibold-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-semibold-webfont.svg#adellebold") format("svg");
     font-weight: 600;
     font-style: normal;
 }
@@ -15430,7 +15439,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "adelle";
     src: url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.eot");
-    src: url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-semibolditalic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.svg#adellebold_italic") format("svg");
+    src: url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-semibolditalic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-semibolditalic-webfont.svg#adellebold_italic") format("svg");
     font-weight: 600;
     font-style: italic;
 }
@@ -15438,7 +15447,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "adelle";
     src: url("../images/fonts/typetogether_-_adelle-bold-webfont.eot");
-    src: url("../images/fonts/typetogether_-_adelle-bold-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-bold-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-bold-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-bold-webfont.svg#adellebold") format("svg");
+    src: url("../images/fonts/typetogether_-_adelle-bold-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-bold-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-bold-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-bold-webfont.svg#adellebold") format("svg");
     font-weight: 700;
     font-style: normal;
 }
@@ -15446,7 +15455,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "adelle";
     src: url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.eot");
-    src: url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/typetogether_-_adelle-bolditalic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.svg#adellebold_italic") format("svg");
+    src: url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/typetogether_-_adelle-bolditalic-webfont.woff") format("woff"),url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.ttf") format("truetype"),url("../images/fonts/typetogether_-_adelle-bolditalic-webfont.svg#adellebold_italic") format("svg");
     font-weight: 700;
     font-style: italic;
 }
@@ -15454,7 +15463,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "SSSocial";
     src: url("../images/fonts/ss-social-circle.eot");
-    src: url("../images/fonts/ss-social-circle.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/ss-social-circle.woff") format("woff"),url("../images/fonts/ss-social-circle.ttf") format("truetype"),url("../images/fonts/ss-social-circle.svg#SSSocialCircle") format("svg");
+    src: url("../images/fonts/ss-social-circle.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/ss-social-circle.woff") format("woff"),url("../images/fonts/ss-social-circle.ttf") format("truetype"),url("../images/fonts/ss-social-circle.svg#SSSocialCircle") format("svg");
     font-weight: bold;
     font-style: normal;
 }
@@ -15462,7 +15471,7 @@ input.dashboard__relaunch_settings_checkbox {
 @font-face {
     font-family: "SSSocial";
     src: url("../images/fonts/ss-social-regular.eot");
-    src: url("../images/fonts/ss-social-regular.eot?#iefix") format("embedded-opentype"),url("../Content/images/fonts/ss-social-regular.woff") format("woff"),url("../Content/images/fonts/ss-social-regular.ttf") format("truetype"),url("../Content/images/fonts/ss-social-regular.svg#SSSocialRegular") format("svg");
+    src: url("../images/fonts/ss-social-regular.eot?#iefix") format("embedded-opentype"),url("../Content/fonts/ss-social-regular.woff") format("woff"),url("../Content/fonts/ss-social-regular.ttf") format("truetype"),url("../Content/fonts/ss-social-regular.svg#SSSocialRegular") format("svg");
     font-weight: normal;
     font-style: normal;
 }

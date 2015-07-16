@@ -1177,7 +1177,7 @@ var design={
                     me.changeDesign(product);
                 } );
                 var html = '<p class="item-name">'+product.name+'</p><div class="item-overview">'+
-                    '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="./assets/images/product_type_'+product.id+'_front_small.png"></div>' +
+                    '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="' + assetsUrls.products + 'product_type_' + product.id + '_front_small.png"></div>' +
                     '<div class="sizes-label">'+product.list_of_sizes+'</div>';
 				$item.html(html);
 
@@ -1965,7 +1965,7 @@ var design={
                 $images.html('');
                 var $img = $('<img>')
                     .addClass('product_images')
-                    .attr('src', './assets/images/product_type_'+state.product.id+'_'+view+'.png')
+                    .attr('src', assetsUrls.products + 'product_type_'+state.product.id+'_'+view+'.png')
                     .css({'background': color.value, 'width':image.width, 'height': image.height});
                 $images.append($img);
 
