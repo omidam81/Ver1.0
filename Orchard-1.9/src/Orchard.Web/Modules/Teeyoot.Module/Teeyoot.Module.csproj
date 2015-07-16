@@ -588,6 +588,7 @@
     <Content Include="Views\Dashboard\CreateMessage.cshtml" />
     <Content Include="Views\Dashboard\getList.cshtml" />
     <Content Include="Views\Dashboard\Messages.cshtml" />
+    <Content Include="Views\Search\CategoriesSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -612,6 +613,8 @@
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
+    <Compile Include="Models\CampaignCategoriesPart.cs" />
+    <Compile Include="Models\CampaignCategoriesPartRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
@@ -630,6 +633,8 @@
     <Compile Include="Models\TeeyootUserPart.cs" />
     <Compile Include="Models\TeeyootUserPartRecord.cs" />
     <Compile Include="Routes.cs" />
+    <Compile Include="Services\CampaignCategoriesService.cs" />
+    <Compile Include="Services\ICampaignCategoriesService.cs" />
     <Compile Include="Services\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
   </ItemGroup>

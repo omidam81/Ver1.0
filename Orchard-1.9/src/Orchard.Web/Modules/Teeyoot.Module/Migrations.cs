@@ -239,7 +239,21 @@ namespace Teeyoot.Module
             .AlterColumn("TemplateId", x => x.WithType(DbType.Int32))
             );
 
-            return 5;
+            SchemaBuilder.CreateTable(typeof(CampaignCategoriesPartRecord).Name,
+                table => table
+                .ContentPartRecord()
+                .Column<string>("Name", c => c.WithLength(50))
+            );
+
+            ContentDefinitionManager.AlterPartDefinition(typeof(CampaignCategoriesPart).Name, part => part.Attachable(false));
+            ContentDefinitionManager.AlterTypeDefinition("CampaignCategories", type => type
+                .WithPart(typeof(CampaignCategoriesPart).Name)
+                .WithPart("CommonPart")
+            );
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("Tags", c => c.Unlimited()));
+
+            return 6;
         }
 
         public int UpdateFrom2()
@@ -314,6 +328,25 @@ namespace Teeyoot.Module
             );
 
             return 5;
+        }
+
+        public int UpdateFrom5()
+        {
+            SchemaBuilder.CreateTable(typeof(CampaignCategoriesPartRecord).Name,
+                table => table
+                .ContentPartRecord()
+                .Column<string>("Name", c => c.WithLength(50))
+            );
+            
+            ContentDefinitionManager.AlterPartDefinition(typeof(CampaignCategoriesPart).Name, part => part.Attachable(false));
+            ContentDefinitionManager.AlterTypeDefinition("CampaignCategories", type => type
+                .WithPart(typeof(CampaignCategoriesPart).Name)
+                .WithPart("CommonPart")
+            );
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("Tags", c => c.Unlimited()));
+
+            return 6;
         }
     }
 }

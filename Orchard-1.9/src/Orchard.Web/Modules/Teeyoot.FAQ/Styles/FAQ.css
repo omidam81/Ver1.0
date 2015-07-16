@@ -520,3 +520,123 @@ a.btn.btn-pill > span {
 /*.ui-state-focus:hover {
     background-color: #ff4f00!important;
 }*/
+@media all and (max-width: 333px) {
+    .faq-img-24 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 414px) {
+    .faq-img-23 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 457px) {
+    .faq-img-22 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 538px) {
+    .faq-img-21 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 587px) {
+    .faq-img-20 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 648px) {
+    .faq-img-19 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 684px) {
+    .faq-img-18 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 704px) {
+    .faq-img-17 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 744px) {
+    .faq-img-16 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 807px) {
+    .faq-img-15 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 899px) {
+    .faq-img-14 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 946px) {
+    .faq-img-13 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 960px) {
+    .faq-img-12 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1055px) {
+    .faq-img-11 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1089px) {
+    .faq-img-10 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1129px) {
+    .faq-img-9 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1155px) {
+    .faq-img-8 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1213px) {
+    .faq-img-7 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1254px) {
+    .faq-img-6 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1351px) {
+    .faq-img-5 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1451px) {
+    .faq-img-4 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1624px) {
+    .faq-img-3 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1687px) {
+    .faq-img-2 {
+        width: 100%;
+    }
+}
+@media all and (max-width: 1869px) {
+    .faq-img-1 {
+        width: 100%;
+    }
+}

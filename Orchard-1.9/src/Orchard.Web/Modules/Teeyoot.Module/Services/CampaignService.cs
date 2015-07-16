@@ -25,5 +25,10 @@ namespace Teeyoot.Module.Services
         {
             return GetAllCampaigns().FirstOrDefault(c => c.Alias == alias);
         }
+
+        public IQueryable<CampaignRecord> GetCampaignsForTheFilter(string filter)
+        {
+            return GetAllCampaigns().Where(c => c.Title.Contains(filter) || c.Description.Contains(filter) || c.Tags.Contains(filter)).OrderBy(c => c.ProductCountSold);
+        }
     }
 }

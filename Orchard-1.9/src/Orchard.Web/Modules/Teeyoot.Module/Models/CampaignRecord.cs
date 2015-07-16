@@ -35,6 +35,9 @@ namespace Teeyoot.Module.Models
 
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
+        [StringLengthMax]
+        public virtual string Tags { get; set; }
+
         public CampaignRecord()
         {
             Products = new List<CampaignProductRecord>();

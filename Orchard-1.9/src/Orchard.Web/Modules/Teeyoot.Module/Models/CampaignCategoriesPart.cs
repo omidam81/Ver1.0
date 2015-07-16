@@ -1,0 +1,23 @@
+﻿using Orchard.ContentManagement;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Teeyoot.Module.Models
+{
+    public class CampaignCategoriesPart : ContentPart<CampaignCategoriesPartRecord>
+    {
+        public string Name
+        {
+            get
+            {
+                return Retrieve(p => p.Name);
+            }
+            set
+            {
+                Store(p => p.Name, value);
+            }
+        }
+    }
+}
