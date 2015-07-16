@@ -1,5 +1,5 @@
-﻿@using(Html.BeginForm("", "", new { area = "" }, FormMethod.Get, new { @class = "tb-search-form" })) {    
-    @Html.TextBox("q", null, new { placeholder = T("Search Campaigns") })
+﻿@using(Html.BeginForm("Index", "Search", new { area = "Teeyoot.Module" }, FormMethod.Get, new { @class = "tb-search-form" })) {    
+    @Html.TextBox("filter", null, new { placeholder = T("Search Campaigns") })
     <button type="submit">
         <img src="~/Themes/Teebay.Theme/Content/search-ico.png" /></button>
 }

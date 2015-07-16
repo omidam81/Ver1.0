@@ -23,7 +23,7 @@ namespace Teebay.Module.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string filter)
+        public ActionResult Index(string filter, int skip = 0, int take =  16)
         {
             filter = filter.Trim();
 
@@ -31,11 +31,11 @@ namespace Teebay.Module.Controllers
 
             if (!string.IsNullOrEmpty(filter))
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter).ToList();
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).ToList();
             }
             else
             {
-                campListAfterSearch = _campService.GetAllCampaigns().OrderBy(c => c.ProductCountSold).ToList();
+                campListAfterSearch = _campService.GetAllCampaigns().OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
             }
 
             if (campListAfterSearch.Count == 0)
@@ -48,7 +48,7 @@ namespace Teebay.Module.Controllers
                 ViewBag.NotResult = false;
                 ViewBag.CampList = campListAfterSearch;
             }
-            
+            ViewBag.Count = 0;
             return View();
         }
 
