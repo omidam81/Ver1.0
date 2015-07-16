@@ -1,14 +1,19 @@
-﻿
+﻿@model IEnumerable<Teeyoot.Module.ViewModels.MailChimpListViewModel>
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>MailChimpSettings</title>
 </head>
 <body>
     <div>
-    
+        <div >
+            <button><a class="button primaryAction" href="@Url.Action("AddSetting", new { returnUrl = Request.Url.ToString() })">@T("Add New Setting")</a></button>
+        </div>
+
+
     </div>
 </body>
 </html>

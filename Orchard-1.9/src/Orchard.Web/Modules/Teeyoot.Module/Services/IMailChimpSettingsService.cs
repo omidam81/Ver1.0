@@ -1,4 +1,5 @@
 ﻿using Orchard;
+using Orchard.ContentManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Teeyoot.Module.Services
 {
     public interface IMailChimpSettingsService : IDependency
     {
-        IEnumerable<MailChimpSettingsPartRecord> GetAllSettings();
+        IContentQuery<MailChimpSettingsPart> GetAllSettings();
 
         MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpCampaignId, int templateId, string templateName, string mailChimpListId, string culture);
 

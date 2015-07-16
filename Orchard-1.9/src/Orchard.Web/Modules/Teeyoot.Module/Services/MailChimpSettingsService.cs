@@ -19,9 +19,9 @@ namespace Teeyoot.Module.Services
             _contentManager = contentManager;
         }
 
-        public IEnumerable<MailChimpSettingsPartRecord> GetAllSettings()
+        public IContentQuery<MailChimpSettingsPart> GetAllSettings()
         {
-            return _mailChimpSettingsRepository.Table.ToList();
+            return _contentManager.Query<MailChimpSettingsPart, MailChimpSettingsPartRecord>(VersionOptions.Latest);
         }
 
         public void DeleteMailChimpSettingsPart(int id)
