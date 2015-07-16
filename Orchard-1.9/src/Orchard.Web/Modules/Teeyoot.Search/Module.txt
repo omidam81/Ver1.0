@@ -1,0 +1,12 @@
+﻿Name: Teeyoot Search
+AntiForgery: enabled
+Author: The Sollutium Team
+Website: http://sollutium.com
+Version: 1.0
+OrchardVersion: 1.9
+Description: Description for the module
+Features:
+    Teeyoot.Search:
+		Name: Teeyoot Search
+        Description: Description for feature Teeyoot.Search.
+		Dependencies: Teeyoot.Module
