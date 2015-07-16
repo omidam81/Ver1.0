@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Teeyoot.Module.Models
 {
-    public class MessageContentRecord
+    public class MessageContentViewModel
     {
         public virtual int Id { get; set; }
 

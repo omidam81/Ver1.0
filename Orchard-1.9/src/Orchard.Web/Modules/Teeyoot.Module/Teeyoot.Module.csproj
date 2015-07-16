@@ -588,7 +588,9 @@
     <Content Include="Views\Dashboard\CreateMessage.cshtml" />
     <Content Include="Views\Dashboard\getList.cshtml" />
     <Content Include="Views\Dashboard\Messages.cshtml" />
+    <Content Include="Views\AdminMessage\Index.cshtml" />
     <Content Include="Views\Search\CategoriesSearch.cshtml" />
+    <Content Include="Views\AdminMessage\AddSetting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -602,6 +604,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
+    <Compile Include="Controllers\AdminMessageController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\DashboardCampaignsController.cs" />
     <Compile Include="Controllers\DashboardMessagesController.cs" />
@@ -621,7 +624,9 @@
     <Compile Include="Models\FontRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />
     <Compile Include="Models\LinkProductSizeRecord.cs" />
-    <Compile Include="Models\MessageContentRecord.cs" />
+    <Compile Include="ViewModels\MailChimpAddSettingViewModel.cs" />
+    <Compile Include="ViewModels\MailChimpListViewModel.cs" />
+    <Compile Include="ViewModels\MessageContentViewModel.cs" />
     <Compile Include="Models\ProductColorRecord.cs" />
     <Compile Include="Models\ProductGroupRecord.cs" />
     <Compile Include="Models\ProductHeadlineRecord.cs" />
@@ -637,6 +642,8 @@
     <Compile Include="Services\ICampaignCategoriesService.cs" />
     <Compile Include="Services\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
+    <Compile Include="Services\IMailChimpSettingsService.cs" />
+    <Compile Include="Services\MailChimpSettingsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers\" />

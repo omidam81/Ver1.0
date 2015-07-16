@@ -28,6 +28,11 @@ namespace Teeyoot.Module
                         .Position("2.2")
                         .Action("Index", "FaqAdmin", new { area = "Teeyoot.FAQ" })
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("MailChimpSettings"))
+                        .Position("2.3")
+                        .Action("Index", "AdminMessage", new { area = "Teeyoot.Module" })
+                    )
                 );
         }
     }
