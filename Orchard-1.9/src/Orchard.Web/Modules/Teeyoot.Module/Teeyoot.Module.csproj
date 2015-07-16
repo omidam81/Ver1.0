@@ -598,10 +598,8 @@
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />
-    <Content Include="Styles\Message.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\Search.css" />
-    <Content Include="Styles\campaign.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
