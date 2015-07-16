@@ -18,5 +18,33 @@ namespace Teeyoot.Module.Services
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
         }
+
+        public IEnumerable<MailChimpSettingsPartRecord> GetAllSettings()
+        {
+            return _mailChimpSettingsRepository.Table.ToList();
+        }
+
+        public void DeleteMailChimpSettingsPart(int id)
+        {
+            _contentManager.Remove(_contentManager.Get<MailChimpSettingsPart>(id).ContentItem);
+        }
+
+        public MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpCampaignId, int templateId, string templateName, string mailChimpListId, string culture)
+        {
+            var MailChimpSettingsPart = _contentManager.Create<MailChimpSettingsPart>("MailChimpSettings",
+                se =>
+                {
+                    se.ApiKey = apiKey;
+                    se.Culture = culture;
+                    se.MailChimpCampaignId = mailChimpCampaignId;
+                    se.MailChimpListId = mailChimpListId;
+                    se.TemplateId = templateId;
+                    se.TemplateName = templateName;
+                    
+                });
+
+            return MailChimpSettingsPart;
+        }
+
     }
 }
