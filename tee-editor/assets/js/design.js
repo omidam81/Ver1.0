@@ -34,8 +34,10 @@ var design={
             }
             design.products.setDesignAreaContrastColor(app.state.color);
         });
-        $(document.body).on('click', function(){
-            $('.containertip--open').removeClass('containertip--open');
+        $(document.body).on('click', function(event){
+            if(!$(event.target).is('button')) {
+                $('.containertip--open').removeClass('containertip--open');
+            }
         });
         $('#flip-h').on('click', function(){
             design.item.flip('h');
@@ -63,9 +65,38 @@ var design={
         $('#push-back').on('click', function(){
             design.item.pushBack();
         });
+        $('#browse-artwork').on('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $('.containertip--open').removeClass('containertip--open');
+            $('.design-art-search').addClass('containertip--open');
+            $('#artwork-query').focus();
+        });
+        $('#artwork-upload').on('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $('.containertip--open').removeClass('containertip--open');
+            $('#designer-art-choseType').hide();
+            $('#dropbox').show();
+        });
+        $('#artwork-search-form').on('submit', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            app.state.searchQuery = $('#artwork-query').val();
+            design.designer.searchArt(false);
+        });
+        $('.art-search-container').on('scroll', function(e){
+            var padding = 10;
+            var $this = $(this);
+            if(app.state.searchQuery && $this.scrollTop()+padding>=$this[0].scrollHeight- $this.height() && !app.state.artSearching){
+                design.designer.searchArt(true);
+            }
+        });
         $('.containertip, .size-dialog, .handle').on('click', function(event){
-            event.preventDefault();
-            event.stopPropagation();
+            if(!$(event.target).is('button')){
+                event.preventDefault();
+                event.stopPropagation();
+            }
         });
         $('#enter-text').on('keyup', function(){
             var item = design.item.get();
@@ -254,6 +285,7 @@ var design={
 		design.designer.fonts = {};
 		design.designer.fontActive = {};
 		design.products.productCate(0);
+        design.designer.loadRandomArt();
 		//design.ajax.getPrice();
 	},
 	ajax:{
@@ -473,7 +505,7 @@ var design={
 			if (document.getElementById('carousel-slide') == null)
 			{
 				var div = '<div id="carousel-slide" class="carousel slide" data-ride="carousel">'
-						+ 	'<div class="carousel-inner"></div>';
+						+ 	'<div class="carousel-inner"></div>'
 						+ '</div>';
 				$('#dg-main-slider').append(div);
 			}
@@ -759,215 +791,6 @@ var design={
 		}
 	},
 	designer:{
-		art:{
-			categories: function(load, index){
-				if (typeof index == 'undefined') index = 0;
-				self = this;
-				
-				var ajax = true;
-				if (typeof load != 'undefined' && load == true)
-				{
-					$('#dag-art-categories').children('ul').each(function(){
-						if (index == $(this).data('type'))
-						{
-							ajax = false;
-						}
-					});
-				}
-				else
-				{
-					ajax = false;
-				}
-				
-				if (ajax == true)
-				{					
-					$('#dag-art-categories').addClass('loading');
-					$.ajax({				
-						dataType: "json",
-						url: baseURL + "art/categories/"+index
-					}).done(function( data ) {						
-						if (data != '')
-						{								
-							var e = document.getElementById('dag-art-categories');
-							var html = self.treeCategories(data, e, index);							
-						}
-					}).always(function(){
-						$('#dag-art-categories').removeClass('loading');
-					});					
-				}
-			},
-			arts: function(cate_id)
-			{
-				var self = this;
-				var parent = document.getElementById('dag-list-arts');
-				parent.innerHTML = '';
-				$('#dag-art-detail').hide(aniSpeed);
-				$('#dag-list-arts').show(aniSpeed);
-				$('#arts-add').hide();
-				$('#dag-list-arts').addClass('loading');
-
-				var page = $('#art-number-page').val();
-				var keyword = $('#art-keyword').val();
-				$.ajax({
-					type: "POST",							
-					data: { page: page, keyword: keyword},
-					dataType: "json",					
-					url: baseURL + "art/arts/"+cate_id
-				}).done(function( data ) {
-					if (data == null)
-					{
-						$('#dag-list-arts').removeClass('loading');
-						parent.innerHTML = 'Data not found!';
-						var ul = $('#arts-pagination .pagination').html('');
-						$('#art-number-page').val(0);
-						return false;
-					}
-					if (data.arts.length > 0)
-					{
-						$.each(data.arts, function(i, art){
-							var url = art.path;
-							var div = document.createElement('div');
-								div.className = 'col-xs-3 col-md-2 box-art';
-							var a = document.createElement('a');
-								a.setAttribute('title', art.title);
-								a.setAttribute('class', 'thumbnail');
-								a.setAttribute('href', 'javascript:void(0)');
-								a.setAttribute('onclick', 'design.designer.art.artDetail(this)');
-								$(a).data('id', art.clipart_id);
-								$(a).data('clipart_id', art.clipart_id);
-								$(a).data('medium', url + art.medium);
-								art.imgThumb = url + art.thumb;
-								art.imgMedium = url + art.medium;
-								a.item = art;
-							var img = '<img alt="" src="'+url + art.thumb+'">';
-							a.innerHTML = img;
-							div.appendChild(a);
-							parent.appendChild(div);
-						});						
-						if (data.count > 1)
-						{
-							$('#arts-pagination').css('display', 'block');
-							var ul = $('#arts-pagination .pagination');
-							ul.html('');
-							for(var i=1; i<= data.count; i++)
-							{
-								var li = document.createElement('li');
-								$(li).data('id', i-1);
-								if ((i- 1) == page){
-									li.className = 'active';
-									li.innerHTML = '<a href="javascript:void(0)">'+i+'</a>';
-								}else{
-									li.innerHTML = '<a href="javascript:void(0)">'+i+'</a>';
-								}
-								ul.append(li);
-								$(li).click(function(){
-									if ( $(this).hasClass('active') == false )
-									{
-										$('#art-number-page').val( $(this).data('id') );
-										self.arts(cate_id);
-									}
-								});
-							}
-						}
-					}
-					$('#dag-list-arts').removeClass('loading');
-				});
-			},
-			artDetail: function(e)
-			{
-				var id = $(e).data('id');
-				$('.box-art-detail').css('display', 'none');
-				$('#arts-pagination').css('display', 'none');
-				if (document.getElementById('art-detail-'+id) == null)
-				{
-					var div = document.createElement('div');
-						div.className = 'box-art-detail';
-						div.setAttribute('id', 'art-detail-'+id);
-					var html = 	'<div class="col-xs-5 col-md-5 art-detail-left">'
-							+ 		'<img class="thumbnail img-responsive" src="'+$(e).data('medium')+'" alt="">'
-							+ 	'</div>'
-							+ 	'<div class="col-xs-7 col-md-7 art-detail-right">'							
-							+ 	'</div>';
-					div.innerHTML = html;
-					$('#dag-art-detail').append(div);
-					$('#art-detail-'+id+' .art-detail-right').addClass('loading');
-					$('.art-detail-price').html('');
-					$.ajax({
-						dataType: "json",					
-						url: baseURL + "art/detail/"+id
-					}).done(function( data ) {
-						if (typeof data.error != 'undefined' && data.error == 0)
-						{
-							var info = $('#art-detail-'+id+' .art-detail-right');
-							info.html('');
-							if (typeof data.info.title != 'undefined')
-								info.append('<h4>'+data.info.title+'</h4>');
-								info.append('<p>'+data.info.description+'</p>');
-								e.item.title = data.info.title;
-													
-							$('.art-detail-price').html('From ' + data.price.currency_symbol + data.price.amount);
-							
-						}					
-						$('#art-detail-'+id+' .art-detail-right').removeClass('loading');
-					}).fail(function(){
-						$('#art-detail-'+id+' .art-detail-right').removeClass('loading');
-					});
-				}
-				else
-				{
-					$('#art-detail-'+id).css('display', 'block');
-				}				
-				$('#dag-list-arts').hide(aniSpeed);
-				$('#dag-art-detail').show(aniSpeed);
-				$('#arts-add').show();
-				$('#arts-add button').unbind('click');
-				$('#arts-add button').bind('click', function(event){design.art.create(e);});
-				$('#arts-add button').button('reset');
-			},
-			treeCategories: function(categories, e, system)
-			{
-				self = this;
-				if (categories.length == 0) return false;
-				var ul = document.createElement('ul');
-				$(ul).data('type', system);
-				$.each(categories, function(i, cate){
-					var li = document.createElement('li'),
-						a = document.createElement('a');						
-						if ($.isEmptyObject(cate.children) == false)
-						{
-							var span = document.createElement('span');
-								span.innerHTML = '<i class="glyphicons plus"></i>';
-							$(span).click(function(){
-								var parent = this;
-								$(this).parent().children('ul').toggle(aniSpeed, function(){
-									var display = $(parent).parent().children('ul').css('display');
-									if (display == 'none')
-										$(parent).children('i').attr('class', 'glyphicons plus');
-									else
-										$(parent).children('i').attr('class', 'glyphicons minus');
-								});
-							});
-							li.appendChild(span);
-						}			
-						a.setAttribute('href', 'javascript:void(0)');
-						a.setAttribute('title', cate.title);
-						$(a).data('id', cate.id);
-						$(a).click(function(){
-							$('#dag-art-categories a').removeClass('active');
-							$(a).addClass('active');
-							$('#art-number-page').val(0);
-							$('#arts-pagination .pagination').html('');
-							self.arts(cate.id);
-						});
-						a.innerHTML = cate.title;
-						li.appendChild(a);
-					ul.appendChild(li);					
-					if ($.isEmptyObject(cate.children) == false)
-						design.designer.art.treeCategories(cate.children, li);
-				});
-				e.appendChild(ul);
-			}
-		},
 		fonts: {},
 		fontActive: {},
 		loadColors: function(){
@@ -1014,7 +837,7 @@ var design={
                                 design.text.update('outline');
                             }
                         }
-                        $picker.find('.containertip--open').removeClass('containertip--open');
+                        $('.containertip--open').removeClass('containertip--open');
                     }).hover(
                         function() {
                             var $picker = $(this).parents('.color-picker:first');
@@ -1034,8 +857,81 @@ var design={
                 event.preventDefault();
                 event.stopPropagation();
 
-                $('.shirt-colors').removeClass('containertip--open');
+                $('.containertip--open').removeClass('containertip--open');
                 $(this).parents(':first').find('.shirt-colors').addClass('containertip--open');
+            });
+        },
+        getArtPreviewUrl: function(art){
+            if(art.preview_url_42){
+                return art.preview_url_42;
+            }
+            return assetsUrls.art+art.filename.substring(0, art.filename.length-4)+'.png';
+        },
+        getArtUrl: function(art){
+            if(art.icon_url){
+                return art.icon_url;
+            }
+            return assetsUrls.art+art.filename;
+        },
+        addArt: function(data){
+            var me = this;
+            var arts = data || design.products.art;
+            var $container = $('.art-search-container');
+            for(var i=0;i<arts.length;i++){
+                var art = arts[i];
+                var $div = $('<div class="art-search-tile"></div>');
+                $div.append('<img class="art-search-preview" data-id="'+art.id
+                    +'" data-url-svg="'+me.getArtUrl(art)
+                    +'" src="'+me.getArtPreviewUrl(art)+'">');
+                if(art.isNoun){
+                    $div.append('<img class="art-search-preview-noun-logo" src="./assets/images/tnp.png"'+
+                        ' title="The Noun Project">');
+                }
+                $div.on('click', function(event){
+                    //todo add art on design + add it to recently added
+                });
+                $container.append($div);
+            }
+        },
+        searchArt: function(append){
+            var me = this;
+            var query = app.state.searchQuery;
+            var $container = $('.art-search-container');
+            if(!append){
+                $container.html('<div class="loading"><img src="./assets/images/small_loadwheel.gif"></div>');
+                app.state.currentArtSearchPage = 0;
+            }else{
+                app.state.currentArtSearchPage = app.state.currentArtSearchPage ||0;
+
+            }
+            app.state.artSearching = true;
+            app.searchArt(query, app.state.currentArtSearchPage).then(function(data){
+                app.state.currentArtSearchPage++;
+                if(!append){
+                    $container.html('');
+                    if(!data || !data.length){
+                        $container.html('<div class="no-results" ><div class="alert alert-block alert-warning">'+
+                            '<h4 class="alert-heading">Sorry!</h4><p data-select-like-a-boss="1">No results were found '+
+                            'for your query. Please try again! We recommend keeping it simple like "dog" or "cat".</p>'+
+                            '</div></div>');
+                    }
+                    design.products.art = data;
+                }else{
+                    var current = design.products.art || [];
+                    design.products.art = current.concat(data);
+                }
+                me.addArt(data);
+            }).always(function(){
+                app.state.artSearching = false;
+            });
+        },
+        loadRandomArt: function(){
+            var me= this;
+            var $container = $('.art-search-container');
+            app.loadRandomArt().then(function(data){
+                $container.html('');
+                design.products.art = data;
+                me.addArt();
             });
         },
 		loadFonts: function(){
@@ -1103,6 +999,7 @@ var design={
                 event.stopPropagation();
                 event.preventDefault();
                 $(document.body).click();
+                $('.containertip--open').removeClass('containertip--open');
                 $('#font-select-menu').addClass('containertip--open');
             });
             $categories.change();
@@ -1280,7 +1177,7 @@ var design={
                     me.changeDesign(product);
                 } );
                 var html = '<p class="item-name">'+product.name+'</p><div class="item-overview">'+
-                    '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="./assets/images/product_type_'+product.id+'_front_small.png"></div>' +
+                    '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="' + assetsUrls.products + 'product_type_' + product.id + '_front_small.png"></div>' +
                     '<div class="sizes-label">'+product.list_of_sizes+'</div>';
 				$item.html(html);
 
@@ -1956,7 +1853,6 @@ var design={
 	},
 	art:{
 		create: function(e){
-			$('#arts-add button').button('loading');
 			var item = e.item;
 			$jd('.ui-lock').attr('checked', false);
 			var img = $jd(e).children('img');			
@@ -2069,7 +1965,7 @@ var design={
                 $images.html('');
                 var $img = $('<img>')
                     .addClass('product_images')
-                    .attr('src', './assets/images/product_type_'+state.product.id+'_'+view+'.png')
+                    .attr('src', assetsUrls.products + 'product_type_'+state.product.id+'_'+view+'.png')
                     .css({'background': color.value, 'width':image.width, 'height': image.height});
                 $images.append($img);
 

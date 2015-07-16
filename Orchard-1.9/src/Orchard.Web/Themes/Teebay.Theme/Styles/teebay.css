@@ -1208,12 +1208,13 @@
         width: 100%;
     }
 
-    .start-steps-list .span-4:nth-child(2) {
-        margin-top: 20px;
-    }
-    .start-steps-list .span-4:nth-child(3) {
-        margin-top: 20px;
-    }
+        .start-steps-list .span-4:nth-child(2) {
+            margin-top: 20px;
+        }
+
+        .start-steps-list .span-4:nth-child(3) {
+            margin-top: 20px;
+        }
 
     .featured-campaigns-list .span-4 {
         width: 48%;
@@ -2773,13 +2774,13 @@
 .reviews-title {
     font-size: 22px;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .featured-campaigns-title {
     font-size: 22px;
     margin-top: 40px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .tb-layout-footer {
@@ -4009,6 +4010,10 @@ html, body {
             height: 40px;
             vertical-align: middle;
         }
+
+            .review .reviews-text .reviews-logo img {
+                width: 46px;
+            }
 
         .review .reviews-text .reviews-user {
             width: auto;

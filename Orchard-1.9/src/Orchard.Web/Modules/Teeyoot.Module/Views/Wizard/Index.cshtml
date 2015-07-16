@@ -1,12 +1,12 @@
 ﻿@{
 
     Style.Include("bootstrap.min.css");
-    Style.Include("designer.css").AtHead();
+    Style.Include("jqueryui.css");
+    Style.Include("designer.css");
     Style.Include("bootstrap-theme.min.css");
     Style.Include("Wizard.css");
-    Style.Include("jqueryui.css");
     Style.Include("custom.css");
-    
+
 
     Script.Require("jQueryUI");
     Script.Include("bootstrap.min.js");
@@ -27,13 +27,36 @@
     Script.Include("wizard.js");
 }
 
-@using(Script.Foot())
-{ 
+@using (Script.Foot())
+{
 
     <script type="text/javascript">
+
+        $(".flip-buttons").click(function () {
+            var $elem = $("#view-front");
+
+            if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
+                setTimeout(function () {
+                    $(".flip-button-front").css("background-color", "#44474d");
+                    $(".flip-button-front").css("color", "white");
+                    $(".flip-button-back").css("background-color", "white");
+                    $(".flip-button-back").css("color", "#44474d");
+                }, 180);
+            } else
+                if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
+                    setTimeout(function () {
+                        $(".flip-button-back").css("background-color", "#44474d");
+                        $(".flip-button-back").css("color", "white");
+                        $(".flip-button-front").css("background-color", "white");
+                        $(".flip-button-front").css("color", "#44474d");
+                    }, 180);
+
+                }
+        });
+
+
         var isFront = true
         $(function ($) {
-
             $("#card").flip({
                 trigger: 'manual'
             }).click(function () {
@@ -42,11 +65,13 @@
                 $("#card").flip(!isFront);
             });
         });
+
+
     </script>
 }
 
 
-<div class='lab-steps flow-steps' style="width:80%; margin-left:10%;">
+<div class='lab-steps flow-steps' style="width:80%;">
     <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
@@ -123,11 +148,11 @@
 
 
 
-        <div class="Slide" >
-            <div class="Content" style="width:90%; margin-left:0px; margin-top:-50px;">
+        <div class="Slide">
+            <div class="Content" style="width:90%; margin-top:-50px;">
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
-                        <div id="designer-container">
+                        <div id="designer-container" style="margin-left:10%">
                             <!-- Designer Subheader ================================================== -->
 
                             <section id="no-band" class="no-offset">
@@ -135,9 +160,6 @@
                                     <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
                                         <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
                                             <div id="design-tools" class="aside">
-                                                <div class="partnership__dropdown">
-                                                    <div></div>
-                                                </div>
                                                 <div class="design__area">
                                                     <div>
                                                         <ul class="tabs clearfix nav nav-tabs">
@@ -165,7 +187,7 @@
                                                                         <div class="colors shirt-colors containertip">
                                                                             <!--containertip--open -->
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                                    <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
@@ -194,14 +216,44 @@
                                                                         <div class="swatch" title="Black" style="background-color:#000000;"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                                    <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="clearfix control-group"></div>
+                                                            <div id="text-align-tools" class="clearfix control-group">
+                                                                <div class="layer-tools">
+                                                                    <ul id="canvas-options" class="nav">
+                                                                        <li>
+                                                                            <input id="snap-to-center" type="checkbox" checked="">
+                                                                            <label>Snap to center</label>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div id="panel-context-menu" class="btn-group control-group">
+                                                                        <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                            <i class="ts-icon ts-icon-composer-copy"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                                            <i class="ts-icon ts-icon-composer-center"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                            <i class="ts-icon ts-icon-composer-sendtoback"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                                            <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
+                                                                        </span>
+                                                                        <span class="separator"></span>
+                                                                        <span id="flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                                            <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <ul class="tabs clearfix nav nav-tabs">
                                                             <li class="tab active" data-name="Art"><a>Art</a></li>
@@ -209,10 +261,121 @@
                                                         <div id="tab2-content" class="tab-content teespring-well designer-well tab-Art">
                                                             <div id="designer-art-choseType">
                                                                 <div class="search_container">
-                                                                    <button class="button button--primary search">Browse Artwork</button>
+                                                                    <button id="browse-artwork" class="button button--primary search">Browse Artwork</button>
+                                                                    <div class="design-art-search containertip">
+                                                                        <form action="." method="get" role="form" id="artwork-search-form">
+                                                                            <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
+                                                                            <button class="button button--primary search">Search</button>
+                                                                        </form>
+                                                                        <div class="art-search-container">
+                                                                            <!-- list of artworks -->
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="hr"><span>OR</span></div>
-                                                                <button class="button button--primary upload">Upload your own</button>
+                                                                <button id="artwork-upload" class="button button--primary upload">Upload your own</button>
+                                                            </div>
+                                                            <div id="dropbox" class="control-group" style="display: none">
+                                                                <div class="upload">
+                                                                    <div hidden="" class="form">
+                                                                        <form enctype="multipart/form-data" id="s3-uploader" method="post">
+                                                                            <input id="file" name="file" style="visibility: hidden;"
+                                                                                   type="file">
+                                                                        </form>
+                                                                    </div>
+                                                                    <p class="small dropbox-intro">Drag art here or ...</p>
+                                                                    <button class="button button--primary upload select-file">Click here to upload</button>
+                                                                    <p class="dropbox-disclosure">
+                                                                        <em>
+                                                                            By uploading an image you agree that you
+                                                                            hold the right to reproduce and sell the design.
+                                                                        </em>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div id="art-style" class="design-area__art--edit" style="display: none;">
+                                                                <div>
+                                                                    <div class="control-group clearfix art-color-selection">
+                                                                        <label>
+                                                                            Art
+                                                                            color
+                                                                        </label>
+
+                                                                        <div class="fake-input color-picker standard designer-dropdown"
+                                                                             title="Change color">
+                                                                            <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                                                                            <div class="colors shirt-colors containertip">
+                                                                                <ul></ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="edit_tool">
+                                                                        <label style="float:left;">Add an outline</label>
+
+                                                                        <div class="clearfix control-group outline-selection">
+                                                                            <div>
+                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu">
+                                                                                    <option value="0">
+                                                                                        No outline
+                                                                                    </option>
+                                                                                    <option value="0.33">
+                                                                                        Thin
+                                                                                        outline
+                                                                                    </option>
+                                                                                    <option value="0.66">
+                                                                                        Medium
+                                                                                        outline
+                                                                                    </option>
+                                                                                    <option value="1">
+                                                                                        Thick
+                                                                                        outline
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clearfix control-group outline-color-selection">
+                                                                            <div class="fake-input color-picker standard designer-dropdown"
+                                                                                 title="Change color">
+                                                                                <div class="swatch" title="Black"
+                                                                                     style="background-color:#000000;"></div>
+                                                                                <div class="colors shirt-colors containertip">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="file control-group" style="display: none">
+                                                                    <label>Uploaded File</label>
+
+                                                                    <div class="fake-input color-picker standard uploaded-file">
+                                                                        <div class="remove">Remove</div>
+                                                                        <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix control-group">
+                                                                    <div class="layer-tools">
+                                                                        <ul id="canvas-options-art" class="nav">
+                                                                            <li><input type="checkbox" checked=""><label>Snap to center</label></li>
+                                                                        </ul>
+                                                                        <div id="panel-context-menu-art" class="btn-group control-group">
+                                                                            <span class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                                <i class="ts-icon ts-icon-composer-copy"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Center">
+                                                                                <i class="ts-icon ts-icon-composer-center"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                                <i class="ts-icon ts-icon-composer-sendtoback"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
+                                                                                                                        data-tooltip="Flip Horizontally">
+                                                                                <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
+                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
+                                                                                                                        data-tooltip="Flip Vertically">
+                                                                                <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -224,18 +387,35 @@
                                                 <div id="app-wrap" class="div-design-area new-editor-container">
 
                                                     <!-- begin front design -->
-                                                    <div id="view-front" class="front labView active">
+                                                    <div id="view-front" class="front labView">
                                                         <div class="product-design"></div>
-                                                        <div class="design-area"><div class="content-inner"></div></div>
-                                                        <div class="design-area-toolbar">
-                                                            <span>Printable Area</span>
-                                                            <div class="design-area-zoom">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                        <div class="design-area printable-area-box">
+                                                            <div class="content-inner"></div>
+                                                            <div class="size-dialog aspect-ratio" style="display: none">
+                                                                <div class="aspect-ratio__field width">
+                                                                    <span>Width</span>
+                                                                    <input class="aspect-ratio__field--width width" value="5.58">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                                <div class="aspect-ratio__field height">
+                                                                    <span>Height</span>
+                                                                    <input class="height" value="1.49">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="printable-area-toolbar">
+                                                                <span>Printable Area</span>
+                                                                <div class="design-area-zoom printable-area-zoom">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="xgridline" style="opacity: 0;"></div>
+                                                        <div class="ygridline" style="opacity: 0;"></div>
+
                                                         <div class="flip-buttons">
                                                             <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
                                                             <div class="flip-button flip-button-back" data-element="backButton">Back</div>
@@ -245,16 +425,33 @@
                                                     <!-- begin back design -->
                                                     <div id="view-back" class="back labView">
                                                         <div class="product-design"></div>
-                                                        <div class="design-area"><div class="content-inner"></div></div>
-                                                        <div class="design-area-toolbar">
-                                                            <span>Printable Area</span>
-                                                            <div class="design-area-zoom">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
-                                                                <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
-                                                                <img class=" printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                        <div class="design-area printable-area-box">
+                                                            <div class="content-inner"></div>
+                                                            <div class="size-dialog aspect-ratio" style="display: none">
+                                                                <div class="aspect-ratio__field width">
+                                                                    <span>Width</span>
+                                                                    <input class="aspect-ratio__field--width width" value="5.58">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                                <div class="aspect-ratio__field height">
+                                                                    <span>Height</span>
+                                                                    <input class="height" value="1.49">
+                                                                    <span>in.</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="printable-area-toolbar">
+                                                                <span>Printable Area</span>
+                                                                <div class="design-area-zoom printable-area-zoom">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
+                                                                    <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="xgridline" style="opacity: 0;"></div>
+                                                        <div class="ygridline" style="opacity: 0;"></div>
+
                                                         <div class="flip-buttons">
                                                             <div class="flip-button flip-button-front">Front</div>
                                                             <div class="flip-button flip-button-back no-select flip-button-active">Back</div>
@@ -265,6 +462,7 @@
 
                                                 </div>
                                             </div>
+
                                             <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
                                                 <!-- colors list -->
                                             </ul>
@@ -291,9 +489,9 @@
                                                                 <span>$7.14</span>
                                                             </p>
                                                         </div>
-                                                        @*<button class="button button--transaction" id="nextPage">
+                                                        <button class="button button--transaction" id="nextPage">
                                                             Next
-                                                        </button>*@
+                                                        </button>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -329,25 +527,25 @@
 
 
 
-        <div class="Slide" style="width:22% !important; margin-left:3%;">
-            <div class="Content">
+        <div class="Slide" style="width:30% !important; margin-left:3%">
+            <div class="Content" style="margin-left:10% !important">
                 <table>
                     <tr>
                         <td style="width:50%">
 
                             <div id="card" style="margin-right:30px">
                                 <div class="front">
-                                    <img id="prodFront"  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png" >
+                                    <img id="prodFront"  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                     <div id="butt1" style="text-align:center; margin-top:-40px !important;">
-                                        <div class="flip-button flip-button-front" style="background-color:#44474d; color: white;">Front</div>
-                                        <div class="flip-button flip-button-back">Back</div>
+                                        <div class="flip-button flip-button-front-two" style="background-color:#44474d; color: white;">Front</div>
+                                        <div class="flip-button flip-button-back-two">Back</div>
                                     </div>
                                 </div>
                                 <div class="back">
-                                    <img id="prodBack" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png" >
+                                    <img id="prodBack"  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
                                     <div id="butt2" style="text-align:center; margin-top:-40px !important;">
-                                        <div class="flip-button flip-button-front">Front</div>
-                                        <div class="flip-button flip-button-back" style="background-color:#44474d; color: white;">Back</div>
+                                        <div class="flip-button flip-button-front-two">Front</div>
+                                        <div class="flip-button flip-button-back-two" style="background-color:#44474d; color: white;">Back</div>
                                     </div>
                                 </div>
                             </div>
@@ -366,22 +564,22 @@
                                 <input style="width:100%" type="range" id="trackbar" min="0" max="100" oninput="onChangeTrackBar()" list="volsettings" />
 
                                 @*<div class="tipping-point-slider">
-                                    <div class="tipping-point-slider__track" id="trackbar" style="background: linear-gradient(to right, rgb(139, 191, 79) 0%, rgb(139, 191, 79) 49%, rgb(223, 223, 223) 49%);">
-                                    </div>
-                                    <div class="tipping-point-slider__thumb containertip__toggle" oninput="onChangeTrackBar()" style="left: 49%;">
-                                        <div class="containertip containertip--top">33</div>
-                                    </div>
+                                        <div class="tipping-point-slider__track" id="trackbar" style="background: linear-gradient(to right, rgb(139, 191, 79) 0%, rgb(139, 191, 79) 49%, rgb(223, 223, 223) 49%);">
+                                        </div>
+                                        <div class="tipping-point-slider__thumb containertip__toggle" oninput="onChangeTrackBar()" style="left: 49%;">
+                                            <div class="containertip containertip--top">33</div>
+                                        </div>
 
-                                    <div class="tipping-point-slider__points">
-                                        <span class="tipping-point-slider__point" style="left:0%;">5</span>
-                                        <span class="tipping-point-slider__point" style="left:16%;">7</span>
-                                        <span class="tipping-point-slider__point" style="left:26%;">10</span>
-                                        <span class="tipping-point-slider__point" style="left:40%;">20</span>
-                                        <span class="tipping-point-slider__point" style="left:58%;">60</span>
-                                        <span class="tipping-point-slider__point" style="left:71%;">140</span>
-                                        <span class="tipping-point-slider__point" style="left:87%;">400</span>
-                                    </div>
-                                </div>*@
+                                        <div class="tipping-point-slider__points">
+                                            <span class="tipping-point-slider__point" style="left:0%;">5</span>
+                                            <span class="tipping-point-slider__point" style="left:16%;">7</span>
+                                            <span class="tipping-point-slider__point" style="left:26%;">10</span>
+                                            <span class="tipping-point-slider__point" style="left:40%;">20</span>
+                                            <span class="tipping-point-slider__point" style="left:58%;">60</span>
+                                            <span class="tipping-point-slider__point" style="left:71%;">140</span>
+                                            <span class="tipping-point-slider__point" style="left:87%;">400</span>
+                                        </div>
+                                    </div>*@
 
                                 <datalist id=volsettings>
                                     <option>0</option>
@@ -510,38 +708,1485 @@
             </div>
         </div>
 
-        <div class="clearfix control-group font-color-selection">
-            <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
-                <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
-                <div class="colors shirt-colors containertip">
-                    <!--containertip--open -->
-                    <!-- <ul class="colors-in-use"></ul>
-                    <hr class="color-picker__divider">-->
-                    <ul class="all-colors"></ul>
+        @*<div class="clearfix control-group font-color-selection" style="width:1px">
+                <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
+                    <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                    <div class="colors shirt-colors containertip">
+                        <!--containertip--open -->
+                        <!-- <ul class="colors-in-use"></ul>
+                        <hr class="color-picker__divider">-->
+                        <ul class="all-colors"></ul>
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+                <div class="clearfix"></div>
+            </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <div class="Slide">
             <div class="Content">
-                <h1>Slide 3</h1>
-                <a href="~/">
-                    <button class="Left">
-                        LAUNCH
-                    </button>
+                <body class="page__designs_edit Chrome" data-hasqtip="0">
+                    @*<header class="site__header cf" role="banner"><div class="site__notification"><div class="notification__message"><i class="ts-icon-tshirt notification__icon"></i><span class="notification__message_text"></span><i class="ts-icon-close notification__close"></i></div></div><div class="site__wrapper"><nav class="site__menu site__menu--hidden"><ul class="menu__list" role="navigation"><div id="menu__logged_in"><li class="menu__item"><a class="menu__link" href="/track">Track Your Order</a></li><li class="menu__item"><a class="menu__link menu__link-designer" href="/designs">Launch a Campaign</a></li><li class="menu__item dropdown--list site__menu_dropdown js-site-user-menu"><div class="dropdown__toggle menu__link js-user-email"><div class="js-user-avatar header_avatar hidden"><img class="header_avatar__img"></div><span class="js-user-name"></span></div><div class="dropdown__menu dropdown__menu--hidden js-site-user-dropdown-menu"><ul class="dropdown__menu_links"><li class="dropdown__menu_item"><a class="dropdown__menu_link" href="/dashboard/campaigns">Campaigns</a></li><li class="dropdown__menu_item"><a class="dropdown__menu_link" href="/dashboard/stores">Storefronts</a></li><li class="dropdown__menu_item" data-feature="messages"><a class="dropdown__menu_link" href="/dashboard/messages">Messages</a></li><li class="dropdown__menu_item" data-feature="promotions"><a class="dropdown__menu_link" href="/dashboard/promotions">Promotions</a></li><li class="dropdown__menu_item" data-feature="upsells"><a class="dropdown__menu_link" href="/dashboard/upsells">Up-Sells</a><div class="badge--notice">beta</div></li><li class="dropdown__menu_item" data-feature="payouts"><a class="dropdown__menu_link" href="/dashboard/payouts">Payouts</a></li><li class="dropdown__menu_item" data-feature="account_settings"><a class="dropdown__menu_link" href="/dashboard/settings">Settings</a></li><li class="dropdown__menu_item facebook_ads hidden"><a class="dropdown__menu_link" href="/dashboard/ad_metrics">Facebook Ads</a><div class="badge--notice">beta</div></li><li class="dropdown__menu_item"><a class="dropdown__menu_link" href="/logout">Logout</a></li></ul></div></li></div><div id="menu__logged_out"><li class="menu__item"><a class="menu__link" href="/about">Learn More</a></li><li class="menu__item"><a class="menu__link" href="/track">Track Your Order</a></li><li class="menu__item"><a class="menu__link" href="/login">Login</a></li><li class="menu__item"><a class="button__cta menu__link-designer" href="/designs">Get Started</a></li></div></ul></nav><span class="site__menu_toggle ts-icon-list-view"></span><a class="site__logo" href="/"><i class="ts-icon-logo site__logo_icon"></i><h1 class="site__logo_text">Teespring shirts</h1></a><div class="site__search_container"><input autocomplete="off" class="site__search_input" id="search" name="search" placeholder="Search" type="text"><div class="site__search_init ts-icon-search"></div><div class="site__search_cancel ts-icon-close"></div></div></div></header>*@<div class="site__search_results" data-search-status="hide-results"><div class="site__wrapper"><div class="cards__container"></div><h1 class="no-results">No results found...</h1><div class="pagination__container"><ul class="site__search_pagination pagination"></ul></div><div class="search__hide_button site__search_container--hide">Hide Search</div></div></div><div class="site__search_overlay site__search_container--hide"></div>
+                    <!-- Starts Facebook Javascript
+                    Allows like buttons etc.
+                    ================================================== -->
+                    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="http://static.ak.facebook.com/connect/xd_arbiter/xRlIuTsSMoE.js?version=41#channel=f37e07f5c8&amp;origin=http%3A%2F%2Fteespring.com" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://s-static.ak.facebook.com/connect/xd_arbiter/xRlIuTsSMoE.js?version=41#channel=f37e07f5c8&amp;origin=http%3A%2F%2Fteespring.com" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+                    @*<script>
+                        (function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>*@
+                    <div class="site__content_container" id="designs_edit">
+                        @*<script type="text/javascript">
+                            window.app = window.app || {};
+                            app.config = {
+                                adminDomain: "admin.teespring.com",
+                                cdn: window.location.protocol + '//' + 'd1b2zzpxewkr9z.cloudfront.net',
+                                s3: window.location.protocol + '//s3.amazonaws.com',
+                                s3_asset: window.location.protocol + '//s3.amazonaws.com' + '/teespring-ass',
+                                s3_upload: {
+                                    acl: "public-read",
+                                    awsAccessKeyId: "AKIAIWKS5RB6X5Q5VIMQ",
+                                    key: "rfk2jk-uploads/{unique_id}-b33bf928d33c3c5f5a678d92912514af",
+                                    policy: "eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0xNlQwMDo1MjowM1oiLCJjb25kaXRpb25zIjpbWyJzdGFydHMtd2l0aCIsIiR1dGY4IiwiIl0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCJyZmsyamstdXBsb2Fkcy8iXSxbInN0YXJ0cy13aXRoIiwiJHgtcmVxdWVzdGVkLXdpdGgiLCIiXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwMF0sWyJzdGFydHMtd2l0aCIsIiRjb250ZW50LXR5cGUiLCIiXSx7ImJ1Y2tldCI6InRlZXNwcmluZy11c2VyY29udGVudCJ9LHsiYWNsIjoicHVibGljLXJlYWQifSx7InN1Y2Nlc3NfYWN0aW9uX3N0YXR1cyI6IjIwMSJ9XX0=",
+                                    signature: "N8uHWAtXXf4BLPDruSw+jPIg8vI=",
+                                    successActionStatus: "201",
+                                    url: "https://s3.amazonaws.com/teespring-usercontent/"
+                                },
+                                cdnPrefix: '/compiled_assets/designer',
+                                publicBucket: '/teespring-pub',
+                                usersBucket: '/teespring-usercontent',
+                                nounProjectEnabled: true,
+                                nounBucket: '/teespring-art-noun',
+                                primaryDomain: 'teespring.com',
+                                sessionProtocol: "https",
+                                maxColors: 10,
+                                minimumPPI: 1,
+                                minimumUploadPixels: 40000,
+                                localStorage: {
+                                    preferences: 60 * 24 * 60 * 60 * 1000 // 60 days
+                                },
+                                apiUrl: 'https://api.teespring.com',
+                                /**
+                                 * Lasy Loading Configuration
+                                 *
+                                 * A list of path to raw and minified files where the key is name
+                                 * of a controller or the name of a group of files.
+                                 *
+                                 * Note: use paths without leading slash.
+                                 *
+                                 * Note: Use a server a server side minifier/compiler whenever
+                                 * possible, otherwise use the "|" to load multiple files separately.
+                                 *
+                                 *
+                                 */
+                                files: {
+                                    oldUploader: "https://d1b2zzpxewkr9z.cloudfront.net/javascripts/qq.uploader.js"
+                                },
+                                twitchAffiliate: false,
+                                nflEnabled: false,
+                                regionEnabled: false,
+                                recommendedPricesEnabled: false,
+                                railsEnv: "production",
+                                designerImagePaths: {
+                                    selectAll: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/select_all-364579df01dd5b85aaff06da36a93d7c.png",
+                                    createOutlines: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/create_outlines-a36bb6881047287564c1e7be85b6d0c3.png",
+                                    outlinedText: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png",
+                                    teespring: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/teespring-5cded83b348c4a2f89b79324a834a427.png",
+                                    facebook: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/facebook-f8e6f5eb71f877978a489a35a10c6a8c.png",
+                                    google: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/google-298188fc43c3d523b280b3d4901fef81.png",
+                                    yahoo: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/yahoo-24ea0f8223a097d07794069f2bcadca7.png",
+                                    spinner: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif",
+                                    loader: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif"
+                                },
+                                user: {
+                                    id: null,
+                                    signup: null,
+                                    email: null,
+                                    location: { "country": "Ukraine", "continent": "Europe" },
+                                    lastCampaign: { "region": "USA", "currency": "USD" }
+                                }
+                            };
+
+                            if (!window.ENV) {
+                                window.ENV = {};
+                            }
+                            window.ENV.INTL = {
+                                "locales": "en-US",
+                                "messages": {
+                                    "generalForm": {
+                                        "optionOutlineNone": "No outline",
+                                        "optionOutlineThin": "Thin outline",
+                                        "optionOutlineMedium": "Medium outline",
+                                        "optionOutlineThick": "Thick outline",
+                                        "labelSelectOutline": "Add an outline",
+                                        "labelSelectOutlineColor": "Outline color"
+                                    },
+                                    "progressBar": {
+                                        "create": "Create your tee",
+                                        "goal": "Set a goal",
+                                        "description": "Add a description",
+                                        "fulfillmentLocation": "Fulfillment location",
+                                        "fulfillmentTooltip": "This sets the region your orders will print and ship from. Select the region where you expect most of your audience to be located. This allows us to optimize fulfillment location, primary currency, and shipping costs, allowing you to maximize buyer conversion rates.",
+                                        "save": "Save",
+                                        "preview": "Preview"
+                                    },
+                                    "designer": {
+                                        "campaignPreviewHtml": "This is a preview of your campaign. <a>Click here to go back and continue launching your campaign &raquo;</a>"
+                                    },
+                                    "modals": {
+                                        "tooManyColors": "Too many colors.",
+                                        "tooManyColorsExplanation": "Your design has more than 10 colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
+                                        "makeAdjustmentsHtml": "Make adjustments &raquo;",
+                                        "fullColor": "Did you try and upload a full color image?",
+                                        "fullColorExplanation": "Looks like you tried to upload an image with more than 10 colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
+                                        "mistakeHtml": "If you think the system has made a mistake, and your image is under 10 colors, please {link}",
+                                        "contact": "contact support for assistance",
+                                        "keepDesigningHtml": "Keep designing &raquo;",
+                                        "hasText": "Did you upload an artwork with text?",
+                                        "hasTextExplanation": "To ensure that your artwork gets printed correctly, we require it to be outlined. ",
+                                        "fileUploadFailed": "Oops! There was an error.",
+                                        "alternativeUploadActions": "Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!",
+                                        "how": "Here's how:",
+                                        "textOutlineSteps": {
+                                            "stepOne": " In Illustrator, select the entire design.",
+                                            "stepTwo": " Create outlines, using the Type menu."
+                                        },
+                                        "reupload": "Save your artwork and upload it again.",
+                                        "needMoreAssistanceHtml": "If you need more assistance, please {email}.",
+                                        "contactSupport": "contact support",
+                                        "blankDesign": "You need to create a design.",
+                                        "blankDesignExplanationHtml": "Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. {email}",
+                                        "needHelp": "Need help?",
+                                        "goBackHtml": "Go back to designer &raquo;",
+                                        "serverError": "Server error.",
+                                        "serverErrorExplanationHtml": "Sorry, we were unable to save your design. Please try again. If the problem persist, {email} and mention the following error.",
+                                        "contactCs": "contact our customer support",
+                                        "returnToDesignHtml": "Return to design &raquo;",
+                                        "applicationBusy": "Oops! The design application is still busy.",
+                                        "applicationBusyExplanationHtml": "Please try again in a few seconds. If the problem persists, {email}.",
+                                        "tooSmall": "File is too small",
+                                        "tooSmallExplanationHtml": "Your artwork should be at least <span class=\"width\"></span> pixels wide by <span class=\"height\"></span> pixels high.",
+                                        "helpHtml": "Need help? {email}",
+                                        "contactDesign": "Contact our design team!",
+                                        "waitingPreview": "Waiting for preview",
+                                        "waitingPreviewExplanation": "Please wait while your preview is generated.",
+                                        "login": "How would you like to login?",
+                                        "teespringLoginHtml": "You can <a data-provider=\"teespring\" data-action=\"sign-in\">login with Teespring</a> or use any of the sites below:",
+                                        "loginWith": "login with",
+                                        "signUpOr": "or",
+                                        "signup": "create a new account with Teespring",
+                                        "teespringLogin": "Login with Teespring",
+                                        "email": "Email",
+                                        "password": "Password",
+                                        "forgotPassword": "Forgot your password?",
+                                        "loginHtml": "Login to your account &raquo;",
+                                        "createAccount": "Want to create a new account?",
+                                        "createTeespringAccount": "Create an account with Teespring",
+                                        "confirmPassword": "Confirm Password",
+                                        "createAccountHtml": "Create your account &raquo;",
+                                        "alreadyHaveAccount": "Already have an account?",
+                                        "badFileType": "Incorrect File Type",
+                                        "badFileTypeExplanation": "Uploaded files must be either gif, jpeg, jpg, png, or eps.",
+                                        "fileSizeTooBig": "File size too big",
+                                        "fileSizeTooBigExplanation": "Uploaded files must be no more than 5MB.",
+                                        "badSvg": "Oops! We have a problem with that artwork",
+                                        "badSvgExplanation": "Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.",
+                                        "saving": "Saving your design",
+                                        "loading": "Loading...",
+                                        "uploadError": "Upload Error",
+                                        "uploadErrorExplanation": "An unknown error occurred with your upload. Our support staff have been notified. Please try again.",
+                                        "invalidProduct": "Invalid Product",
+                                        "invalidProductExplanation": "One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.",
+                                        "noPrintableColorHtml": "Oops! We couldn't find any printable\xA0color.",
+                                        "noPrintableColorExplanation": "This might have happened due to a low resolution image or small details that our analysis couldn't perceive.",
+                                        "noPrintableColorSolution": "Possible solutions are",
+                                        "uploadBigger": " a) uploading a bigger artwork,",
+                                        "uploadVector": " b) uploading a vectorized version,",
+                                        "emailForHelpHtml": "or c) {email} for assistance.",
+                                        "oops": "Oops! We ran into an issue.",
+                                        "oopsExplanationHtml": "Sorry, we were unable to retrieve this artwork. If it happens again, please {email} for assistance.",
+                                        "techniqueMismatch": "Incompatible Products",
+                                        "techniqueMismatchExplanation": "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.",
+                                        "techniqueMakeChange": "Select product",
+                                        "techniqueAbort": "Cancel",
+                                        "passwordLength": "Password: Must be longer than 6 characters.",
+                                        "launchErrorTitle": "Campaign Error.",
+                                        "launchErrorGeneric": "An unknown error occurred.",
+                                        "launchErrorZip": "Invalid Zip Code.",
+                                        "ok": "Ok",
+                                        "close": "Close"
+                                    },
+                                    "artUnselected": {
+                                        "buttonSearch": "Browse Artwork",
+                                        "dividerOr": "OR",
+                                        "buttonUpload": "Upload your own",
+                                        "labelUpload": "Upload your own images or vector art."
+                                    },
+                                    "artForm": {
+                                        "labelArtColor": "Art color"
+                                    },
+                                    "designerDesign": {
+                                        "labelTabText": "Text",
+                                        "labelTabArt": "Art",
+                                        "labelInputText": "Enter text below",
+                                        "placeholderInputText": "Add your text here",
+                                        "labelSelectFont": "Choose a font",
+                                        "labelSelectTextColor": "Text color",
+                                        "labelSelectProduct": "Style & design",
+                                        "warningColor": "Please reduce the amount of colors you are using",
+                                        "buttonSave": "Save Redesign",
+                                        "buttonNext": "Next"
+                                    },
+                                    "layerManipulationBar": {
+                                        "labelCheckCenter": "Snap to center",
+                                        "buttonDuplicate": "Duplicate",
+                                        "buttonCenter": "Center",
+                                        "buttonFlipHorizontal": "Flip Horizontally",
+                                        "buttonFlipVertical": "Flip Vertically",
+                                        "buttonDown": "Push Behind"
+                                    },
+                                    "tooltipColors": {
+                                        "labelUsed": "In use",
+                                        "labelAvailable": "Available"
+                                    },
+                                    "quote": {
+                                        "labelCost": "Base cost @ {numShirts, number} shirts"
+                                    },
+                                    "uploadArtForm": {
+                                        "labelUploadedFile": "Uploaded File",
+                                        "labelRemoveFile": "Remove"
+                                    },
+                                    "uploadBar": {
+                                        "titleSending": "Sending Image"
+                                    },
+                                    "uploadBarAnalyzing": {
+                                        "title": "Analyzing {what}",
+                                        "subtitle": "It may take a minute"
+                                    },
+                                    "uploadPanel": {
+                                        "labelDrag": "Drag art here or ...",
+                                        "linkUpload": "Click here to upload",
+                                        "alertPre": "TIP:",
+                                        "alertBody": "For best results, upload high resolution/vector art.",
+                                        "infoSizePre": "Max size:",
+                                        "infoDimensionPre": "Max dimension:",
+                                        "infoSize": "5MB",
+                                        "infoTypesPre": "File types:",
+                                        "infoTypes": ".jpg, .png, .eps",
+                                        "infoDimensions": "3000px for .jpg and .png",
+                                        "infoRights": "By uploading an image you agree that you hold the right to reproduce and sell the design."
+                                    },
+                                    "mobile": {
+                                        "title": "Welcome to our Designer!",
+                                        "infoForm": "It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?",
+                                        "labelEmail": "Email",
+                                        "buttonSubmit": "Remind Me",
+                                        "linkContinue": "Nah, let's continue!",
+                                        "titleSubmitted": "Awesome!",
+                                        "subtitleSubmitted": "We'll remind you to come back and design soon.",
+                                        "linkSubmitted": "Check out the designer now."
+                                    },
+                                    "designerDetailsAside": {
+                                        "labelTitle": "Campaign title",
+                                        "infoTitle": "Summarize your campaign in 40 characters or less.",
+                                        "labelDescription": "Description",
+                                        "infoDescription": "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.",
+                                        "linkTag": "Tag your campaign",
+                                        "labelTags": "Tags",
+                                        "infoTags": "Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)",
+                                        "labelLength": "Campaign length",
+                                        "optionLength": "{daysFromNow} Days",
+                                        "optionLengthEnding": "Ending",
+                                        "optionLengthEndingDelay": "with shipping delayed by {delayed} days",
+                                        "optionSpecial": "{specialLength} Days (Shirts arrive before event)",
+                                        "linkSpecial": "Learn more",
+                                        "labelURL": "URL",
+                                        "infoURL": "This is where you will send buyers to view your campaign.",
+                                        "labelOptions": "Display Options",
+                                        "checkOptionsBackside": "Show the back side by default",
+                                        "labelShipping": "Shipping options",
+                                        "checkShippingPickup": "Allow buyers to pick up their orders from you",
+                                        "infoShippingPickup": "Pick-up delivery is free. Please note that pick-up orders are shipped via UPS Ground and may take up to one extra week for delivery.",
+                                        "labelShippingPickupInstructions": "Where/when will buyers be able to pick up their shirts?",
+                                        "infoShippingPickupInstructions": "Buyers will see these instructions when choosing between shipping/pick-up",
+                                        "labelShippingPickupFirst": "First name",
+                                        "labelShippingPickupLast": "Last name",
+                                        "labelShippingPickupAddress": "Pick-up Shipping Address",
+                                        "buttonShippingPickupAddressDefault": "Use Default Address",
+                                        "labelShippingPickupCity": "City",
+                                        "labelShippingPickupState": "State",
+                                        "labelShippingPickupZip": "ZIP Code",
+                                        "infoShippingPickup": "Please note pick-up is currently only available to US Addresses.",
+                                        "disclaimer": "By clicking this button, I accept Teespring's {linkTOS}.",
+                                        "linkDisclaimerTOS": "Terms of Service",
+                                        "buttonSubmit": "Launch",
+                                        "or": "or",
+                                        "linkPreview": "preview",
+                                        "buttonEditorBold": "Bold",
+                                        "buttonEditorItalic": "Italic",
+                                        "buttonEditorUnderline": "Underline",
+                                        "buttonEditorLink": "Link",
+                                        "hoverEditorLink": "Insert link",
+                                        "buttonEditorImage": "Image",
+                                        "hoverEditorImage": "Insert image"
+                                    },
+                                    "designerPricing": {
+                                        "labelGoal": "Sales goal",
+                                        "labelGoalShirts": "# of shirts",
+                                        "infoGoalMin": "{min} is the minimum goal",
+                                        "infoGoalMax": "{max} is the maximum goal",
+                                        "infoGoal": "Your goal is the number of shirts you’re aiming to sell, but we’ll print your campaign as long as you sell enough to generate a profit.",
+                                        "infoGoalHelp": "In an effort to help as many people as possible get their designs printed, Teespring will print a campaign as long as: \n(1) More than five items have been sold, and \n(2) Those items can be produced profitably for the owner of the campaign. \nThis may result in slimmer profit margins on campaigns that do not reach their goals, but more profit than if they weren't printed at all.",
+                                        "labelProfit": "Estimated profit",
+                                        "labelPrice": "Set selling price",
+                                        "labelPriceHelp": "To keep your profit margin consistent, we may charge more for sizes (2XL and larger) that cost more to produce.",
+                                        "infoPrice": "Set the selling price of your shirt to determine your profit and add additional products to sell your design on!",
+                                        "alertResized": "The design has been resized to fit on the chosen products.",
+                                        "alertMoved": "The design has been moved to fit on the chosen products.",
+                                        "noticeCanAdd": "You can add {variationCount} additional products.",
+                                        "noticeLimitReached": "Sorry, you have reached the maximum number of allowed product additions. Please remove a current selection to add another product to your campaign.",
+                                        "linkOtherProduct": "Add a product that isn't listed",
+                                        "labelOtherProduct": "Add a product that isn't listed:",
+                                        "buttonNext": "Next",
+                                        "buttonAdd": "Add",
+                                        "vatLabel": "Selling price and profit margin include VAT.",
+                                        "primaryCurrency": "Primary Currency:",
+                                        "tooltipCurrency": "This allows you to optimize your selling price to a specific currency. We recommend choosing the currency you expect the majority of your buyers to purchase in."
+                                    },
+                                    "product": {
+                                        "hoverChange": "Change color",
+                                        "labelMin": "minimum",
+                                        "labelProfitPerSale": "profit/sale"
+                                    },
+                                    "productSuggestion": {
+                                        "checkAddProduct": "Add {name}"
+                                    },
+                                    "sizebox": {
+                                        "labelWidth": "Width",
+                                        "labelUnits": "in.",
+                                        "labelHeight": "Height"
+                                    },
+                                    "artExternalMain": {
+                                        "searchPlaceholder": "Search Artwork",
+                                        "buttonSearch": "Search",
+                                        "titleErrorEmpty": "Sorry!",
+                                        "infoErrorEmpty": "No results were found for your query. Please try again! We recommend keeping it simple like \"dog\" or \"cat\"."
+                                    },
+                                    "printArea": {
+                                        "titlePrintableArea": "Printable Area",
+                                        "buttonZoom": "zoom",
+                                        "buttonZoomOut": "zoom out"
+                                    },
+                                    "designerView": {
+                                        "Front": "Front",
+                                        "Back": "Back"
+                                    },
+                                    "designerDetailsView": {
+                                        "infoLength": "US orders will arrive 10-14 days after the end of the campaign.",
+                                        "infoLengthDelayed": "IMPORTANT: Due to the holiday season, orders from campaigns ending between Dec 17th and Jan 1st will take 2-3 weeks to be printed & delivered after the end of the campaign.",
+                                        "errorTerms": "Please agree to the terms of service before proceeding.",
+                                        "errorURL": "A URL is required.",
+                                        "errorURLPattern": "Letters, numbers, dashes and underscores only!",
+                                        "errorURLDuplicate": "Already in use, please try a different URL.",
+                                        "errorLength": "Enter between 4 and 30 characters.",
+                                        "urlValid": "URL looks perfect!",
+                                        "errorTitleRequired": "A title is required.",
+                                        "errorDescriptionRequired": "A description is required.",
+                                        "errorDescriptionLength": "Please enter no more than 1500 characters."
+                                    },
+                                    "productOptionShrinkDetail": {
+                                        "labelResizing": "Requires resizing:",
+                                        "labelResizingEqualAmounts": "Front and back {scalePercentage}% smaller",
+                                        "labelResizingDifferentAmounts": "Front {scalePercentageFront}% smaller, Back {scalePercentageBack}% smaller",
+                                        "labelResizingFrontOnly": "Front {scalePercentage}% smaller",
+                                        "labelResizingBackOnly": "Back {scalePercentage}% smaller"
+                                    },
+                                    "artwork": {
+                                        "recentlyUsed": "Recently Used Artwork"
+                                    }
+                                }
+                            }
+                            ;
+                            </script>*@
+
+                        <div id="designer-container">
+                            <aside class="disclaimer_designer disclaimer-show">
+                                <article class="disclaimer_designer-message">
+                                    <h1>Welcome to our Designer!</h1>
+                                    <p>It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?</p>
+                                    <form class="disclaimer_form" action="" method="POST" novalidate="novalidate">
+                                        <input type="hidden" name="oid" value="00DG0000000iMxy">
+                                        <label for="last_name"></label><input id="last_name" value="Teespringer" maxlength="80" name="last_name" size="20" type="hidden"><br>
+                                        <label for="email">Email</label><input class="disclaimer_input-email form__textfield" id="email" maxlength="80" name="email" size="20" type="email" required="">
+                                        <label for="lead_source"></label><input id="lead_source" value="Mobile Designer" name="lead_source" size="20" type="hidden">
+                                        <input type="submit" name="submit" value="Remind Me" class="button button--primary">
+                                    </form>
+                                    <a class="disclaimer_cancel">Nah, let's continue!</a>
+                                </article>
+                                <article class="disclaimer_designer-success">
+                                    <h1>Awesome!</h1>
+                                    <p>We'll remind you to come back and design soon.</p>
+                                    <p class="disclaimer_cancel">Check out the designer now.</p>
+                                </article>
+                            </aside>
+                            <!-- Designer Subheader ================================================== -->
+
+                            <section id="no-band" class="no-offset">
+                                <div class="container container_designer">
+                                    <div id="designer" class="clearfix" style="min-height: 600px; height: 811.9375px;">
+                                        <div class="step stepAnimation" id="step-details" style="transform: translateX(0px); opacity: 1;">
+                                            <!--designer-details-error-->
+                                            <div class="row">
+
+
+
+
+                                                <div class="span5">
+                                                    <div id="product-quick-preview" class="product-preview">
+                                                        <div class="product-view">
+                                                            <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
+                                                            <div class="new-editor-container">
+                                                                <div class="flip-container">
+                                                                    <div class="new-editor front" tabindex="4" data-design-side="front" style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
+                                                                        <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
+                                                                        <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
+                                                                        <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                        <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                            <defs data-element="defs">
+                                                                                <clipPath data-element="globalClipPath" id="global-clip-path-front-4">
+                                                                                    <rect x="152" y="100" width="220" height="330" data-element="globalClipRect"></rect>
+                                                                                </clipPath>
+                                                                            </defs>
+                                                                            <g data-element="rootTag" clip-path="url(#global-clip-path-front-4)"><g data-id="front-layer-0" data-width="48.875" data-height="29" transform="matrix(1, 0, 0, 1, 237.5625, 250.5)"><text font-family="Helvetica" font-size="24px" fill="rgb(0,0,0)" stroke-width="0" stroke="" x="0" y="0"><tspan x="0.00390625" y="0" dy="23">fgdg</tspan></text></g></g>
+                                                                        </svg>
+                                                                        <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262px;"></div><div class="ygridline" style="top: 210px;"></div><div class="edit-box hidden marching-ants marching" style="-webkit-transform: matrix(1, 0, 0, 1, 237.5625, 250.5); transform: matrix(1, 0, 0, 1, 237.5625, 250.5); width: 48.875px; height: 29px;"></div><div class="edit-box-sizer hidden" style="top: 309.5px; left: 262px;">48.88" x 29.00"</div><div></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/drag.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/rotate.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/scale.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/delete.png);"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 250.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 286.4375px; top: 265px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 279.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 237.5625px; top: 265px;"></div></div>
+                                                                        <div class="flip-buttons">
+                                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
+                                                                            <div class="flip-button flip-button-back" data-element="backButton">Back</div>
+                                                                        </div>
+                                                                    </div><div class="new-editor back" tabindex="5" data-design-side="back" style="-webkit-transform: rotateY(180deg); transform: rotateY(180deg);">
+                                                                        <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
+                                                                        <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
+                                                                        <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                        <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                            <defs data-element="defs">
+                                                                                <clipPath data-element="globalClipPath" id="global-clip-path-back-5">
+                                                                                    <rect x="155" y="60" width="215" height="330" data-element="globalClipRect"></rect>
+                                                                                </clipPath>
+                                                                            </defs>
+                                                                            <g data-element="rootTag" clip-path="url(#global-clip-path-back-5)"></g>
+                                                                        </svg>
+                                                                        <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262.5px;"></div><div class="ygridline" style="top: 170px;"></div></div>
+                                                                        <div class="flip-buttons">
+                                                                            <div class="flip-button flip-button-front" data-element="frontButton">Front</div>
+                                                                            <div class="flip-button flip-button-back no-select flip-button-active" data-element="backButton">Back</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- render flip buttons here -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="span7 aside">
+                                                    <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
+                                                        <form method="post" id="campaign_details" name="campaign_form" data-reactid=".6.0">
+                                                            <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
+                                                                <label class="has-under-text" data-reactid=".6.0.0.0">Campaign title</label>
+                                                                <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
+                                                                <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
+                                                            </div>
+                                                            <div class="teespring-well designer-well description" data-reactid=".6.0.1">
+                                                                <label data-reactid=".6.0.1.0">
+                                                                    <span data-reactid=".6.0.1.0.0"> </span><span data-reactid=".6.0.1.0.1">Description</span>
+                                                                </label>
+                                                                <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                                                                    <ul class="wysihtml5-toolbar" data-reactid=".6.0.1.1.0">
+                                                                        <li data-reactid=".6.0.1.1.0.0">
+                                                                            <div class="btn-group" data-reactid=".6.0.1.1.0.0.0">
+                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="bold" data-reactid=".6.0.1.1.0.0.0.0">Bold</a>
+                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="italic" data-reactid=".6.0.1.1.0.0.0.1">Italic</a>
+                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="underline" data-reactid=".6.0.1.1.0.0.0.2">Underline</a>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.1">
+                                                                            <div class="dropdown__menu hidden" data-reactid=".6.0.1.1.0.1.0">
+                                                                                <div class="popover__header" data-reactid=".6.0.1.1.0.1.0.0">
+                                                                                    <a class="popover__close ts-icon-close" data-reactid=".6.0.1.1.0.1.0.0.0"></a>
+                                                                                    <p class="popover__title" data-reactid=".6.0.1.1.0.1.0.0.1">Insert link</p>
+                                                                                </div>
+                                                                                <div class="popover__body" data-reactid=".6.0.1.1.0.1.0.1">
+                                                                                    <input class="form__textfield" value="http://" data-reactid=".6.0.1.1.0.1.0.1.0">
+                                                                                </div>
+                                                                                <div class="popover__footer" data-reactid=".6.0.1.1.0.1.0.2">
+                                                                                    <a href="#" class="button button--primary" data-reactid=".6.0.1.1.0.1.0.2.0">Insert link</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <a class="btn btn-default dropdown__toggle" data-wysihtml5-command="createLink" title="Insert link" href="#" unselectable="on" data-reactid=".6.0.1.1.0.1.1">
+                                                                                <i class="icon-link" data-reactid=".6.0.1.1.0.1.1.0"></i>
+                                                                                <span data-reactid=".6.0.1.1.0.1.1.1"> Link</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.2">
+                                                                            <div class="dropdown__menu hidden" data-reactid=".6.0.1.1.0.2.0">
+                                                                                <div class="popover__header" data-reactid=".6.0.1.1.0.2.0.0">
+                                                                                    <a class="popover__close ts-icon-close" data-reactid=".6.0.1.1.0.2.0.0.0"></a>
+                                                                                    <p class="popover__title" data-reactid=".6.0.1.1.0.2.0.0.1">Insert image</p>
+                                                                                </div>
+                                                                                <div class="popover__body" data-reactid=".6.0.1.1.0.2.0.1">
+                                                                                    <input class="form__textfield" value="http://" data-reactid=".6.0.1.1.0.2.0.1.0">
+                                                                                </div>
+                                                                                <div class="popover__footer" data-reactid=".6.0.1.1.0.2.0.2">
+                                                                                    <a href="#" class="button button--primary" data-reactid=".6.0.1.1.0.2.0.2.0">Insert image</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" href="#" unselectable="on" data-reactid=".6.0.1.1.0.2.1">
+                                                                                <i class="icon-picture" data-reactid=".6.0.1.1.0.2.1.0"></i>
+                                                                                <span data-reactid=".6.0.1.1.0.2.1.1"> Image</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="description" data-reactid=".6.0.1.1.1"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div data-reactid=".6.0.2">
+                                                                <p class="under-text show-tags-message" data-reactid=".6.0.2.0">
+                                                                    <a class="show-tags nowrap" data-reactid=".6.0.2.0.0">
+                                                                      @*  <span data-reactid=".6.0.2.0.0.0">Tag your campaign</span>*@
+                                                                      @*  <span data-reactid=".6.0.2.0.0.1"> »</span>*@
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="teespring-well designer-well campaign-length" data-reactid=".6.0.3">
+                                                                <label data-reactid=".6.0.3.0">Campaign length</label>
+                                                                <p class="under-text" data-reactid=".6.0.3.1">
+                                                                    <span id="arrive-by-estimate" data-reactid=".6.0.3.1.0">US orders will arrive 10-14 days after the end of the campaign.</span>
+                                                                    <span data-reactid=".6.0.3.1.1"> </span>
+                                                                    <a href="http://answers.teespring.com/customer/portal/articles/1710948" target="_new" class="nowrap" data-reactid=".6.0.3.1.2">
+                                                                        @*<span data-reactid=".6.0.3.1.2.0">Learn more</span><span data-reactid=".6.0.3.1.2.1"> »</span>*@
+                                                                    </a>
+                                                                </p>
+                                                                <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
+                                                                    <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">
+                                                                        <span data-reactid=".6.0.3.2.$8.0">8 Days</span>
+                                                                        <span data-reactid=".6.0.3.2.$8.1"> </span>
+                                                                        <span data-reactid=".6.0.3.2.$8.2"> </span>
+                                                                        <span data-reactid=".6.0.3.2.$8.3">(</span><span data-reactid=".6.0.3.2.$8.4">Ending</span>
+                                                                        <span data-reactid=".6.0.3.2.$8.5"> </span><span data-reactid=".6.0.3.2.$8.6"> </span>
+                                                                        <span data-reactid=".6.0.3.2.$8.7">Thursday, July 23, 2015</span>
+                                                                        <span data-reactid=".6.0.3.2.$8.9">)</span>
+                                                                    </option>
+                                                                    <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 Days  (Ending  Monday, July 20, 2015)</option>
+                                                                    <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 Days  (Ending  Wednesday, July 22, 2015)</option>
+                                                                    <option data-attr-delay="0" value="14" data-reactid=".6.0.3.2.$14">14 Days  (Ending  Wednesday, July 29, 2015)</option>
+                                                                    <option data-attr-delay="0" value="21" data-reactid=".6.0.3.2.$21">21 Days  (Ending  Wednesday, August 5, 2015)</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
+                                                                <label data-reactid=".6.0.4.0">URL</label>
+                                                                <p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>
+                                                                <p class="inline-input-text  small-bottom" data-reactid=".6.0.4.2">
+                                                                    <strong data-reactid=".6.0.4.2.0">teespring.com/</strong>
+                                                                </p>
+                                                                <input type="text" name="url" class="form__textfield " id="url" value="" data-reactid=".6.0.4.3">
+                                                            </div>
+                                                            <div class="teespring-well designer-well shipping-options" data-reactid=".6.0.5">
+                                                                <label data-reactid=".6.0.5.0">Shipping options</label>
+                                                                <label class="checkbox has-under-text pickup-label" data-reactid=".6.0.5.1">
+                                                                    <input type="checkbox" name="pickup" id="pickup" value="1" data-reactid=".6.0.5.1.0">
+                                                                    <span data-reactid=".6.0.5.1.1"> </span>
+                                                                    <span data-reactid=".6.0.5.1.2">Allow buyers to pick up their orders from you</span>
+                                                                </label>
+                                                                <p class="under-text" data-reactid=".6.0.5.2">Please note pick-up is currently only available to US Addresses.</p>
+                                                            </div>
+                                                            <div class="teespring-well designer-well" data-reactid=".6.0.6">
+                                                                <label data-reactid=".6.0.6.0">Display Options</label>
+                                                                <p data-reactid=".6.0.6.1">
+                                                                    <label class="checkbox display-label" data-reactid=".6.0.6.1.0">
+                                                                        <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1" data-reactid=".6.0.6.1.0.0">
+                                                                        <span data-reactid=".6.0.6.1.0.1">Show the back side by default</span>
+                                                                    </label>
+                                                                </p>
+                                                            </div>
+                                                            <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
+                                                                <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
+                                                                <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
+                                                                <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
+                                                                    <span data-reactid=".6.0.7.3.0">
+                                                                        <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teespring's </span>
+                                                                       @* <a href="http://teespring.com/about/terms" target="_blank" data-reactid=".6.0.7.3.0.1">Terms of Service</a><span data-reactid=".6.0.7.3.0.2">.</span>*@
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="preview" class="" style="display: none;">
+                                        <div class="subheader">
+                                            <div class="container">
+                                                This is a preview of your campaign. <a>Click here to go back and continue launching your campaign »</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div id="too-many-colors-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Too many colors.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Your design has more than 10 colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. </p>
+                                            <input type="button" value="Make adjustments »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="upload-photo-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Did you try and upload a full color image?</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Looks like you tried to upload an image with more than 10 colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. </p>
+                                            <p>
+                                                If you think the system has made a mistake, and your image is under 10 colors, please <a href="/contact" target="_blank">contact support for assistance</a>
+                                            </p>
+                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="upload-text-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Did you upload an artwork with text?</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>To ensure that your artwork gets printed correctly, we require it to be outlined. </p>
+                                            <p>Here's how:</p>
+                                            <p>
+                                                <strong>1</strong> In Illustrator, select the entire design.<br>
+                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/select_all-364579df01dd5b85aaff06da36a93d7c.png">
+                                            </p>
+                                            <p>
+                                                <strong>2</strong> Create outlines, using the Type menu.<br>
+                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/create_outlines-a36bb6881047287564c1e7be85b6d0c3.png">
+                                            </p>
+                                            <p>
+                                                Save your artwork and upload it again.<br>
+                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png">
+                                            </p>
+                                            <p>If you need more assistance, please <a href="/contact" target="_blank">contact support</a>.</p>
+                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="upload-image-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Oops! There was an error.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!</p>
+                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="no-content-error" class="modal modal-teespring" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">You need to create a design.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. <a href="/contact" target="_blank">Need help?</a></p>
+                                            <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="could-not-save-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Server error.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Sorry, we were unable to save your design. Please try again. If the problem persist, <a href="/contact" target="_blank">contact our customer support</a> and mention the following error.</p>
+                                            <p>Error: <code></code></p>
+                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="missing-colors-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Oops! The design application is still busy.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Please try again in a few seconds. If the problem persists, <a href="/contact" target="_blank">contact our customer support</a>.</p>
+                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="upload-resolution-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">File is too small</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Your artwork should be at least <span class="width"></span> pixels wide by <span class="height"></span> pixels high.</p>
+                                            <p>Need help? <a href="/contact" target="_blank">Contact our design team!</a></p>
+                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="waiting-for-preview" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Waiting for preview</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Please wait while your preview is generated.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal modal-teespring" id="default-sign-in">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="modal-title">How would you like to login?</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="errors"></div>
+                                            <p><small>You can <a data-provider="teespring" data-action="sign-in">login with Teespring</a> or use any of the sites below:</small></p>
+                                            <ul class="clean-list oauth-options">
+                                                <li>
+                                                    <a data-provider="teespring" data-action="sign-in">
+                                                        <p>login with</p>
+                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/teespring-5cded83b348c4a2f89b79324a834a427.png" alt="Teespring"></p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-provider="facebook" data-action="sign-in" id="facebook_signin_button" title="Login with Facebook">
+                                                        <p>login with</p>
+                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/facebook-f8e6f5eb71f877978a489a35a10c6a8c.png" alt="Facebook"></p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-provider="google" data-action="sign-in" id="google_signin_button">
+                                                        <p>login with</p>
+                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/google-298188fc43c3d523b280b3d4901fef81.png" alt="Google"></p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-provider="yahoo" data-action="sign-in">
+                                                        <p>login with</p>
+                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/yahoo-24ea0f8223a097d07794069f2bcadca7.png" alt="Yahoo"></p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <p class="large-under-link">
+                                                or
+                                                <a data-provider="teespring" data-action="sign-up">
+                                                    <strong>create a new account with Teespring</strong>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal modal-teespring" id="teespring-sign-in">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Login with Teespring</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="errors"></div>
+                                            <form action="#" method="post">
+                                                <label class="input-group">
+                                                    <span class="hidden">Email</span>
+                                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                                </label>
+                                                <label class="has-under-text input-group">
+                                                    <span class="hidden">Password</span>
+                                                    <input type="password" class="form-control" name="password" maxlength="50" placeholder="Password">
+                                                </label>
+                                                <p class="under-text"><a href="/recover" target="_blank">Forgot your password?</a></p>
+                                                <p>
+                                                    <button class="btn btn-large btn-success" data-provider="teespring" data-action="sign-in">
+                                                        Login to your account »
+                                                    </button>
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                </p>
+                                                <p><a data-provider="teespring" data-action="sign-up">Want to create a new account?</a></p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal modal-teespring" id="teespring-sign-up">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Create an account with Teespring</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="errors"></div>
+                                            <form action="#" method="post">
+                                                <label class="input-group">
+                                                    <span class="hidden">Email</span>
+                                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                                </label>
+                                                <label class="has-under-text input-group">
+                                                    <span class="hidden">Password</span>
+                                                    <input id="password" type="password" class="form-control" name="password" maxlength="50" placeholder="Password: Must be longer than 6 characters.">
+                                                </label>
+                                                <label class="input-group">
+                                                    <span class="hidden">Confirm Password</span>
+                                                    <input type="password" class="form-control" name="password_confirmation" maxlength="50" placeholder="Confirm Password">
+                                                </label>
+                                                <p>
+                                                    <button data-provider="teespring" data-action="sign-up" class="btn btn-large btn-success">
+                                                        Create your account »
+                                                    </button>
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                </p>
+                                                <p><a data-provider="teespring" data-action="sign-in">Already have an account?</a></p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="incorrect-file-type" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Incorrect File Type</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Uploaded files must be either gif, jpeg, jpg, png, or eps.</p>
+                                            <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="file-size-too-big" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">File size too big</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Uploaded files must be no more than 5MB.</p>
+                                            <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal modal-teespring" id="modal-saving-design" data-backdrop="static">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h5>Saving your design</h5>
+                                            <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal modal-teespring" id="designer-is-loading" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h5>Loading...</h5>
+                                            <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="unknown-s3-upload-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Upload Error</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>An unknown error occurred with your upload. Our support staff have been notified. Please try again.</p>
+                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="one-or-more-invalid-product-option" class="modal modal-teespring hide">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <h3 class="partitioned-header no-bottom">Invalid Product</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.</p>
+                                    <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                </div>
+                            </div>
+
+
+                            <!--generic error during campaign launch in designer_details_view-->
+                            <div id="launch-generic-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Campaign Error.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>An unknown error occurred.</p>
+                                            <input type="button" value="Ok" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--zip code error during campaign launch in designer_details_view-->
+                            <div id="launch-zip-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Campaign Error.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Invalid Zip Code.</p>
+                                            <input type="button" value="Ok" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="no-printable-colors-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Oops! We couldn't find any printable&nbsp;color.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>This might have happened due to a low resolution image or small details that our analysis couldn't perceive.</p>
+                                            <p>
+                                                Possible solutions are<br>
+                                                a) uploading a bigger artwork,<br>
+                                                b) uploading a vectorized version,<br>
+                                                or c) <a href="/contact" target="_blank">contact our customer support</a> for assistance.
+                                            </p>
+                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="unknown-art-error" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Oops! We ran into an issue.</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Sorry, we were unable to retrieve this artwork. If it happens again, please <a href="/contact" target="_blank">contact our customer support</a> for assistance.</p>
+                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="bad-svg" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Oops! We have a problem with that artwork</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.</p>
+                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="product-production-technique-mismatch" class="modal modal-teespring">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                            <h3 class="partitioned-header no-bottom">Incompatible Products</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.</p>
+                                            <input id="technique-change" type="button" value="Select product" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <input id="technique-abort" type="button" value="Cancel" class="btn btn-large" data-dismiss="modal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<script>
+                            window.ENV = {
+                                API_DOMAIN: "api.teespring.com",
+                                SHORTENER_URL: "tspr.ng",
+                                RAILS_ENV: "production",
+                                AVAILABLE_LOCALES: ["en", "de", "nl", "fr", "it", "es", "id", "pt-BR", "en-GB", "vi-VN"],
+                                ASSET_URL: window.location.protocol + '//' + "d1b2zzpxewkr9z.cloudfront.net",
+                                INTL: {
+                                    "locales": "en-US",
+                                    "messages": {
+                                        "generalForm": {
+                                            "optionOutlineNone": "No outline",
+                                            "optionOutlineThin": "Thin outline",
+                                            "optionOutlineMedium": "Medium outline",
+                                            "optionOutlineThick": "Thick outline",
+                                            "labelSelectOutline": "Add an outline",
+                                            "labelSelectOutlineColor": "Outline color"
+                                        },
+                                        "progressBar": {
+                                            "create": "Create your tee",
+                                            "goal": "Set a goal",
+                                            "description": "Add a description",
+                                            "fulfillmentLocation": "Fulfillment location",
+                                            "fulfillmentTooltip": "This sets the region your orders will print and ship from. Select the region where you expect most of your audience to be located. This allows us to optimize fulfillment location, primary currency, and shipping costs, allowing you to maximize buyer conversion rates.",
+                                            "save": "Save",
+                                            "preview": "Preview"
+                                        },
+                                        "designer": {
+                                            "campaignPreviewHtml": "This is a preview of your campaign. <a>Click here to go back and continue launching your campaign &raquo;</a>"
+                                        },
+                                        "modals": {
+                                            "tooManyColors": "Too many colors.",
+                                            "tooManyColorsExplanation": "Your design has more than 10 colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
+                                            "makeAdjustmentsHtml": "Make adjustments &raquo;",
+                                            "fullColor": "Did you try and upload a full color image?",
+                                            "fullColorExplanation": "Looks like you tried to upload an image with more than 10 colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
+                                            "mistakeHtml": "If you think the system has made a mistake, and your image is under 10 colors, please {link}",
+                                            "contact": "contact support for assistance",
+                                            "keepDesigningHtml": "Keep designing &raquo;",
+                                            "hasText": "Did you upload an artwork with text?",
+                                            "hasTextExplanation": "To ensure that your artwork gets printed correctly, we require it to be outlined. ",
+                                            "fileUploadFailed": "Oops! There was an error.",
+                                            "alternativeUploadActions": "Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!",
+                                            "how": "Here's how:",
+                                            "textOutlineSteps": {
+                                                "stepOne": " In Illustrator, select the entire design.",
+                                                "stepTwo": " Create outlines, using the Type menu."
+                                            },
+                                            "reupload": "Save your artwork and upload it again.",
+                                            "needMoreAssistanceHtml": "If you need more assistance, please {email}.",
+                                            "contactSupport": "contact support",
+                                            "blankDesign": "You need to create a design.",
+                                            "blankDesignExplanationHtml": "Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. {email}",
+                                            "needHelp": "Need help?",
+                                            "goBackHtml": "Go back to designer &raquo;",
+                                            "serverError": "Server error.",
+                                            "serverErrorExplanationHtml": "Sorry, we were unable to save your design. Please try again. If the problem persist, {email} and mention the following error.",
+                                            "contactCs": "contact our customer support",
+                                            "returnToDesignHtml": "Return to design &raquo;",
+                                            "applicationBusy": "Oops! The design application is still busy.",
+                                            "applicationBusyExplanationHtml": "Please try again in a few seconds. If the problem persists, {email}.",
+                                            "tooSmall": "File is too small",
+                                            "tooSmallExplanationHtml": "Your artwork should be at least <span class=\"width\"></span> pixels wide by <span class=\"height\"></span> pixels high.",
+                                            "helpHtml": "Need help? {email}",
+                                            "contactDesign": "Contact our design team!",
+                                            "waitingPreview": "Waiting for preview",
+                                            "waitingPreviewExplanation": "Please wait while your preview is generated.",
+                                            "login": "How would you like to login?",
+                                            "teespringLoginHtml": "You can <a data-provider=\"teespring\" data-action=\"sign-in\">login with Teespring</a> or use any of the sites below:",
+                                            "loginWith": "login with",
+                                            "signUpOr": "or",
+                                            "signup": "create a new account with Teespring",
+                                            "teespringLogin": "Login with Teespring",
+                                            "email": "Email",
+                                            "password": "Password",
+                                            "forgotPassword": "Forgot your password?",
+                                            "loginHtml": "Login to your account &raquo;",
+                                            "createAccount": "Want to create a new account?",
+                                            "createTeespringAccount": "Create an account with Teespring",
+                                            "confirmPassword": "Confirm Password",
+                                            "createAccountHtml": "Create your account &raquo;",
+                                            "alreadyHaveAccount": "Already have an account?",
+                                            "badFileType": "Incorrect File Type",
+                                            "badFileTypeExplanation": "Uploaded files must be either gif, jpeg, jpg, png, or eps.",
+                                            "fileSizeTooBig": "File size too big",
+                                            "fileSizeTooBigExplanation": "Uploaded files must be no more than 5MB.",
+                                            "badSvg": "Oops! We have a problem with that artwork",
+                                            "badSvgExplanation": "Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.",
+                                            "saving": "Saving your design",
+                                            "loading": "Loading...",
+                                            "uploadError": "Upload Error",
+                                            "uploadErrorExplanation": "An unknown error occurred with your upload. Our support staff have been notified. Please try again.",
+                                            "invalidProduct": "Invalid Product",
+                                            "invalidProductExplanation": "One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.",
+                                            "noPrintableColorHtml": "Oops! We couldn't find any printable\xA0color.",
+                                            "noPrintableColorExplanation": "This might have happened due to a low resolution image or small details that our analysis couldn't perceive.",
+                                            "noPrintableColorSolution": "Possible solutions are",
+                                            "uploadBigger": " a) uploading a bigger artwork,",
+                                            "uploadVector": " b) uploading a vectorized version,",
+                                            "emailForHelpHtml": "or c) {email} for assistance.",
+                                            "oops": "Oops! We ran into an issue.",
+                                            "oopsExplanationHtml": "Sorry, we were unable to retrieve this artwork. If it happens again, please {email} for assistance.",
+                                            "techniqueMismatch": "Incompatible Products",
+                                            "techniqueMismatchExplanation": "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.",
+                                            "techniqueMakeChange": "Select product",
+                                            "techniqueAbort": "Cancel",
+                                            "passwordLength": "Password: Must be longer than 6 characters.",
+                                            "launchErrorTitle": "Campaign Error.",
+                                            "launchErrorGeneric": "An unknown error occurred.",
+                                            "launchErrorZip": "Invalid Zip Code.",
+                                            "ok": "Ok",
+                                            "close": "Close"
+                                        },
+                                        "artUnselected": {
+                                            "buttonSearch": "Browse Artwork",
+                                            "dividerOr": "OR",
+                                            "buttonUpload": "Upload your own",
+                                            "labelUpload": "Upload your own images or vector art."
+                                        },
+                                        "artForm": {
+                                            "labelArtColor": "Art color"
+                                        },
+                                        "designerDesign": {
+                                            "labelTabText": "Text",
+                                            "labelTabArt": "Art",
+                                            "labelInputText": "Enter text below",
+                                            "placeholderInputText": "Add your text here",
+                                            "labelSelectFont": "Choose a font",
+                                            "labelSelectTextColor": "Text color",
+                                            "labelSelectProduct": "Style & design",
+                                            "warningColor": "Please reduce the amount of colors you are using",
+                                            "buttonSave": "Save Redesign",
+                                            "buttonNext": "Next"
+                                        },
+                                        "layerManipulationBar": {
+                                            "labelCheckCenter": "Snap to center",
+                                            "buttonDuplicate": "Duplicate",
+                                            "buttonCenter": "Center",
+                                            "buttonFlipHorizontal": "Flip Horizontally",
+                                            "buttonFlipVertical": "Flip Vertically",
+                                            "buttonDown": "Push Behind"
+                                        },
+                                        "tooltipColors": {
+                                            "labelUsed": "In use",
+                                            "labelAvailable": "Available"
+                                        },
+                                        "quote": {
+                                            "labelCost": "Base cost @ {numShirts, number} shirts"
+                                        },
+                                        "uploadArtForm": {
+                                            "labelUploadedFile": "Uploaded File",
+                                            "labelRemoveFile": "Remove"
+                                        },
+                                        "uploadBar": {
+                                            "titleSending": "Sending Image"
+                                        },
+                                        "uploadBarAnalyzing": {
+                                            "title": "Analyzing {what}",
+                                            "subtitle": "It may take a minute"
+                                        },
+                                        "uploadPanel": {
+                                            "labelDrag": "Drag art here or ...",
+                                            "linkUpload": "Click here to upload",
+                                            "alertPre": "TIP:",
+                                            "alertBody": "For best results, upload high resolution/vector art.",
+                                            "infoSizePre": "Max size:",
+                                            "infoDimensionPre": "Max dimension:",
+                                            "infoSize": "5MB",
+                                            "infoTypesPre": "File types:",
+                                            "infoTypes": ".jpg, .png, .eps",
+                                            "infoDimensions": "3000px for .jpg and .png",
+                                            "infoRights": "By uploading an image you agree that you hold the right to reproduce and sell the design."
+                                        },
+                                        "mobile": {
+                                            "title": "Welcome to our Designer!",
+                                            "infoForm": "It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?",
+                                            "labelEmail": "Email",
+                                            "buttonSubmit": "Remind Me",
+                                            "linkContinue": "Nah, let's continue!",
+                                            "titleSubmitted": "Awesome!",
+                                            "subtitleSubmitted": "We'll remind you to come back and design soon.",
+                                            "linkSubmitted": "Check out the designer now."
+                                        },
+                                        "designerDetailsAside": {
+                                            "labelTitle": "Campaign title",
+                                            "infoTitle": "Summarize your campaign in 40 characters or less.",
+                                            "labelDescription": "Description",
+                                            "infoDescription": "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.",
+                                            "linkTag": "Tag your campaign",
+                                            "labelTags": "Tags",
+                                            "infoTags": "Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)",
+                                            "labelLength": "Campaign length",
+                                            "optionLength": "{daysFromNow} Days",
+                                            "optionLengthEnding": "Ending",
+                                            "optionLengthEndingDelay": "with shipping delayed by {delayed} days",
+                                            "optionSpecial": "{specialLength} Days (Shirts arrive before event)",
+                                            "linkSpecial": "Learn more",
+                                            "labelURL": "URL",
+                                            "infoURL": "This is where you will send buyers to view your campaign.",
+                                            "labelOptions": "Display Options",
+                                            "checkOptionsBackside": "Show the back side by default",
+                                            "labelShipping": "Shipping options",
+                                            "checkShippingPickup": "Allow buyers to pick up their orders from you",
+                                            "infoShippingPickup": "Pick-up delivery is free. Please note that pick-up orders are shipped via UPS Ground and may take up to one extra week for delivery.",
+                                            "labelShippingPickupInstructions": "Where/when will buyers be able to pick up their shirts?",
+                                            "infoShippingPickupInstructions": "Buyers will see these instructions when choosing between shipping/pick-up",
+                                            "labelShippingPickupFirst": "First name",
+                                            "labelShippingPickupLast": "Last name",
+                                            "labelShippingPickupAddress": "Pick-up Shipping Address",
+                                            "buttonShippingPickupAddressDefault": "Use Default Address",
+                                            "labelShippingPickupCity": "City",
+                                            "labelShippingPickupState": "State",
+                                            "labelShippingPickupZip": "ZIP Code",
+                                            "infoShippingPickup": "Please note pick-up is currently only available to US Addresses.",
+                                            "disclaimer": "By clicking this button, I accept Teespring's {linkTOS}.",
+                                            "linkDisclaimerTOS": "Terms of Service",
+                                            "buttonSubmit": "Launch",
+                                            "or": "or",
+                                            "linkPreview": "preview",
+                                            "buttonEditorBold": "Bold",
+                                            "buttonEditorItalic": "Italic",
+                                            "buttonEditorUnderline": "Underline",
+                                            "buttonEditorLink": "Link",
+                                            "hoverEditorLink": "Insert link",
+                                            "buttonEditorImage": "Image",
+                                            "hoverEditorImage": "Insert image"
+                                        },
+                                        "designerPricing": {
+                                            "labelGoal": "Sales goal",
+                                            "labelGoalShirts": "# of shirts",
+                                            "infoGoalMin": "{min} is the minimum goal",
+                                            "infoGoalMax": "{max} is the maximum goal",
+                                            "infoGoal": "Your goal is the number of shirts you’re aiming to sell, but we’ll print your campaign as long as you sell enough to generate a profit.",
+                                            "infoGoalHelp": "In an effort to help as many people as possible get their designs printed, Teespring will print a campaign as long as: \n(1) More than five items have been sold, and \n(2) Those items can be produced profitably for the owner of the campaign. \nThis may result in slimmer profit margins on campaigns that do not reach their goals, but more profit than if they weren't printed at all.",
+                                            "labelProfit": "Estimated profit",
+                                            "labelPrice": "Set selling price",
+                                            "labelPriceHelp": "To keep your profit margin consistent, we may charge more for sizes (2XL and larger) that cost more to produce.",
+                                            "infoPrice": "Set the selling price of your shirt to determine your profit and add additional products to sell your design on!",
+                                            "alertResized": "The design has been resized to fit on the chosen products.",
+                                            "alertMoved": "The design has been moved to fit on the chosen products.",
+                                            "noticeCanAdd": "You can add {variationCount} additional products.",
+                                            "noticeLimitReached": "Sorry, you have reached the maximum number of allowed product additions. Please remove a current selection to add another product to your campaign.",
+                                            "linkOtherProduct": "Add a product that isn't listed",
+                                            "labelOtherProduct": "Add a product that isn't listed:",
+                                            "buttonNext": "Next",
+                                            "buttonAdd": "Add",
+                                            "vatLabel": "Selling price and profit margin include VAT.",
+                                            "primaryCurrency": "Primary Currency:",
+                                            "tooltipCurrency": "This allows you to optimize your selling price to a specific currency. We recommend choosing the currency you expect the majority of your buyers to purchase in."
+                                        },
+                                        "product": {
+                                            "hoverChange": "Change color",
+                                            "labelMin": "minimum",
+                                            "labelProfitPerSale": "profit/sale"
+                                        },
+                                        "productSuggestion": {
+                                            "checkAddProduct": "Add {name}"
+                                        },
+                                        "sizebox": {
+                                            "labelWidth": "Width",
+                                            "labelUnits": "in.",
+                                            "labelHeight": "Height"
+                                        },
+                                        "artExternalMain": {
+                                            "searchPlaceholder": "Search Artwork",
+                                            "buttonSearch": "Search",
+                                            "titleErrorEmpty": "Sorry!",
+                                            "infoErrorEmpty": "No results were found for your query. Please try again! We recommend keeping it simple like \"dog\" or \"cat\"."
+                                        },
+                                        "printArea": {
+                                            "titlePrintableArea": "Printable Area",
+                                            "buttonZoom": "zoom",
+                                            "buttonZoomOut": "zoom out"
+                                        },
+                                        "designerView": {
+                                            "Front": "Front",
+                                            "Back": "Back"
+                                        },
+                                        "designerDetailsView": {
+                                            "infoLength": "US orders will arrive 10-14 days after the end of the campaign.",
+                                            "infoLengthDelayed": "IMPORTANT: Due to the holiday season, orders from campaigns ending between Dec 17th and Jan 1st will take 2-3 weeks to be printed & delivered after the end of the campaign.",
+                                            "errorTerms": "Please agree to the terms of service before proceeding.",
+                                            "errorURL": "A URL is required.",
+                                            "errorURLPattern": "Letters, numbers, dashes and underscores only!",
+                                            "errorURLDuplicate": "Already in use, please try a different URL.",
+                                            "errorLength": "Enter between 4 and 30 characters.",
+                                            "urlValid": "URL looks perfect!",
+                                            "errorTitleRequired": "A title is required.",
+                                            "errorDescriptionRequired": "A description is required.",
+                                            "errorDescriptionLength": "Please enter no more than 1500 characters."
+                                        },
+                                        "productOptionShrinkDetail": {
+                                            "labelResizing": "Requires resizing:",
+                                            "labelResizingEqualAmounts": "Front and back {scalePercentage}% smaller",
+                                            "labelResizingDifferentAmounts": "Front {scalePercentageFront}% smaller, Back {scalePercentageBack}% smaller",
+                                            "labelResizingFrontOnly": "Front {scalePercentage}% smaller",
+                                            "labelResizingBackOnly": "Back {scalePercentage}% smaller"
+                                        },
+                                        "artwork": {
+                                            "recentlyUsed": "Recently Used Artwork"
+                                        }
+                                    }
+                                }
+                          ,
+                                SMARTYSTREETSKEY: "3417827631878337637",
+                                STRIPE_TOKEN: "pk_live_d1Nv5vuqeKHEl1oZBYEx0nS6",
+                                SEGMENT_IO_KEY: "mqphpt46p8",
+                                ALGOLIA_ID: "XNF09CCDO4",
+                                PUBLICLY_SEARCHABLE_ALGOLIA_READ_KEY: "5cf4b4f788d542e9e1661cb977480f0dcb5acfdae52786e3bf9593ba8da3ddd4",
+                                ALLOW_GOOGLE_ANALYTICS: "",
+                                HONEYBADGER_API_KEY: "3a315f1a"
+                            }
+                        </script>
+                        <footer class="site__footer js-footer"><div class="site__wrapper"><div class="site__footer_content"><aside class="site__social"><div class="site__switcher_container"><div class="site__locale_switcher"><div class="site__locale_switcher__overlay"><img class="site__locale_switcher__overlay__flag" data-locale="en"><span class="site__locale_switcher__overlay__country">English (USA)</span> </div><select class="site__locale_switcher__select js-locale-switcher"><option value="de">Deutsch</option><option selected="" value="">English (USA)</option><option value="en-GB">English (UK)</option><option value="es">Español</option><option value="fr">Français</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pt-BR">Português do Brasil</option></select></div></div><ul class="site__social_links"><li class="site__social_link"><a class="facebook-share" href="https://facebook.com/teespring"><i class="ss-icon ss-social">Facebook</i><div class="social_link__name">Like on Facebook</div></a></li><li class="site__social_link"><a class="twitter-follow" href="https://twitter.com/teespring"><i class="ss-icon ss-social">Twitter</i><div class="social_link__name">Follow on Twitter</div></a></li><li class="site__social_link"><a class="pinterest-pin-do" href="http://www.pinterest.com/teespring/"><i class="ss-icon ss-social">Pinterest</i><div class="social_link__name">Follow Teespring on Pinterest</div></a></li></ul></aside><nav class="footer__nav"><ul class="nav__items"><li class="nav__item"><a class="nav__link" href="/about" title="About Teespring">About</a></li><li class="nav__item"><a class="nav__link" href="/blog" title="Teespring Blog">Blog</a></li><li class="nav__item"><a class="nav__link" href="/jobs" title="Work at Teespring">Jobs</a></li><li class="nav__item"><a class="nav__link" href="/about/terms" title="Teespring Terms &amp; Conditions">Terms</a></li><li class="nav__item"><a class="nav__link" href="/about/privacy" title="Privacy Policy">Privacy</a></li><li class="nav__item"><a class="nav__link" href="/track" title="Track your order">Track Order</a></li><li class="nav__item"><a class="nav__link" href="http://university.teespring.com" title="Go to Teespring University">University</a></li><li class="nav__item"><a class="nav__link" href="/contact" target="_blank" title="Go to Teespring Help Desk">Help</a></li></ul><div class="site__legal_text">© 2015 Teespring, Inc.</div></nav></div></div></footer>
+                        <script type="text/javascript">
+                            var _kiq = _kiq || [];
+                            (function () {
+                                setTimeout(function () {
+                                    var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript';
+                                    s.async = true; s.src = 'https://s3.amazonaws.com/ki.js/51326/aTX.js'; f.parentNode.insertBefore(s, f);
+                                }, 1);
+                            })();
+                        </script>
+                        <script type="text/javascript">var gaEvents = [];</script>
+                        <script type="text/javascript">
+                            (function (i, s, o, g, r, a, m) {
+                                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                                    (i[r].q = i[r].q || []).push(arguments)
+                                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                            var analyticsInfo, userId, gaInfo = {};
+                            var gaPageOverride = null;
+                            var customGATrackerPresent = false;
+                            var customGATrackerSnippet = null;
+                            var testGroups = [];
+
+                            if (window.TS && window.TS.Cookies && (analyticsInfo = TS.Cookies.readJSON('user_analytics')) && (userId = analyticsInfo.user_id)) {
+                                ga('create', "UA-25627881-1", 'auto', { 'userId': userId });
+                            } else {
+                                ga('create', 'UA-25627881-1', 'auto');
+                            }
+
+                            ga('require', 'displayfeatures');
+
+                            if (customGATrackerPresent) {
+                                ga('create', customGATrackerSnippet, 'auto', { 'name': 'customTracker' });
+                                ga('customTracker.require', 'displayfeatures');
+                            }
+
+                            for (var i = 0; i < testGroups.length; i++) {
+                                ga('set', 'dimension3', testGroups[i]);
+                            }
+
+                            for (var i = 0; i < gaEvents.length; i++) {
+                                ga('send', 'event', gaEvents[i].category, gaEvents[i].action, gaEvents[i].label);
+                            }
+
+                            if (gaPageOverride) {
+                                gaInfo.page = gaPageOverride;
+                            }
+
+                            ga('send', 'pageview', gaInfo);
+
+                            if (customGATrackerPresent) {
+                                ga('customTracker.send', 'pageview', gaInfo);
+                            }</script>
+                        <script type="text/javascript">
+                            TS.Analytics.ready(function () {
+                                TS.Analytics.initialize();
+                            });</script>
+                        <script src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/segment-io-fb45e9c90c24b4ed6a964902bd690aee.js"></script>
+                        <script src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/app/analytics/designer_analytics-cba128aea22dbbd5209e9ec16d6e6c1e.js"></script><div id="window-resizer-tooltip" style="display: none;"><a href="#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1920</span> x <span class="tooltipHeight" id="winHeight">1040</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1920</span> x <span class="tooltipHeight" id="vpHeight">643</span></div>*@
+                </body>
+                <button class="Left">
+                    LAUNCH
+                </button>
                 </a>
             </div>
         </div>
 
     </div>
 </div>
-
-
-
-
-
-
-
-

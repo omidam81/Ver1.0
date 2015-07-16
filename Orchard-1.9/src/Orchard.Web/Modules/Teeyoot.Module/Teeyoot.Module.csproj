@@ -50,6 +50,10 @@
     <Reference Include="Braintree-2.43.0">
       <HintPath>..\..\..\packages\Braintree.2.43.0\lib\Braintree-2.43.0.dll</HintPath>
     </Reference>
+    <Reference Include="MailChimp, Version=1.1.75.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\MailChimp.NET.1.1.75.0\lib\net35\MailChimp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -606,6 +610,10 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
+    <Compile Include="Models\MailChimpSettingsPart.cs" />
+    <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
+    <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
     <Compile Include="Models\FontRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />

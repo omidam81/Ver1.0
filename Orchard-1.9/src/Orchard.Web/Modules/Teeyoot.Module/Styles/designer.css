@@ -1270,9 +1270,10 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 .font #font-select-menu {
-    left: 178px;
-    width: 290px;
-    height: 300px;
+    left:178px;
+    width:290px;
+    height:300px
+
 }
 
     .font #font-select-menu:before {
@@ -2133,12 +2134,14 @@ tspan {
     margin-top: 16px;
 }
 
-.color-picker .containertip {
-    top: -13px;
-    left: 64px;
-    width: 234px;
-    padding: 8px;
+.color-picker .containertip{
+    top:-13px;
+    left:64px;
+    width:234px;
+    padding:8px
+
 }
+
 
     .color-picker .containertip ul {
         margin-bottom: -7px;
@@ -3914,10 +3917,12 @@ ul.wysihtml5-toolbar > li > div.btn-group > a {
 #step-details > .row > .span5 {
     float: left;
     width: 370px;
+    margin-left:-10%;
+
 }
 
 #step-details > .row > .span7 {
-    float: left;
+    float: right;
     width: 100%;
 }
 
@@ -5627,7 +5632,16 @@ div.flip-container {
     border-radius: 5px 0 0 5px;
 }
 
+.flip-button-front-two {
+    border-radius: 5px 0 0 5px;
+}
+
 .flip-button-back {
+    border-radius: 0 5px 5px 0;
+    margin-left: -4px;
+}
+
+.flip-button-back-two {
     border-radius: 0 5px 5px 0;
     margin-left: -4px;
 }

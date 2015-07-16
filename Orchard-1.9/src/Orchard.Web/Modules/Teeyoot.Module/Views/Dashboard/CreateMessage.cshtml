@@ -26,7 +26,7 @@
     </script>
 }
 
-@using (Html.BeginForm("SendMessage", "Message", FormMethod.Get))
+@using (Html.BeginForm("SendMessage", "Dashboard", FormMethod.Get))
 {
     <div class="block" style="padding-bottom:10%">
 
@@ -48,12 +48,12 @@
                     @Html.TextBoxFor(m => m.From, new { @class = "email_inp" })
                     <div style="display:flex">
                         <div class="emailAttr">Subject</div>
-                        <div style="font-size:11px;  padding-left: 60%;  padding-top: 7%;">(max 50 characters)</div>
+                        <div style="font-size:11px;  padding-left: 46%;  padding-top: 10%;">(max 50 characters)</div>
                     </div>
                     @Html.TextBoxFor(m => m.Subject, new { @class = "subj_inp", @placeholder = "Enter subject here" })
                     <div style="display:flex">
                         <div class="emailAttr">Input email address of recipient</div>
-                        <div style="font-size:11px;  padding-left: 36%;  padding-top: 7%;">(test function)</div>
+                        <div style="font-size:11px;  padding-left: 8%;  padding-top: 9%;">(test function)</div>
                     </div>
                     @Html.TextBoxFor(m => m.Email, new { @class = "subj_inp" })
                     <div class="emailAttr">Email template</div>
@@ -132,9 +132,11 @@
                     @Html.TextAreaFor(m => m.Content, new { @class = "msgText", @placeholder = "Write something nice to your buyers..." })
                     @*<div><textarea class="txtArea" type="text"></textarea></div>*@
                     <div style="display:flex; width:101%">
-                        <div style="font-size:11px; width: 43%;  margin-right: 14%;">You may send buyers from a single campaign up to 3 emails in a 7-day period.</div>
-                        <div>
+                        <div style="font-size:11px; width: 28%;  margin-right: 4%;">You may send buyers from a single campaign up to 3 emails in a 7-day period.</div>
+                        <div style="float:right; width:70%">
+                            <a href="@Url.Action("Messages", "Dashboard")">
                             <button class="cancel-button">@Html.ActionLink("Cancel", "Index", "Message")</button>
+    </a>
                             <button class="send-button" type="submit">Send Message</button>
                         </div>
                     </div>

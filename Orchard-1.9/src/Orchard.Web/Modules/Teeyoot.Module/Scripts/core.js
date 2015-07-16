@@ -9,6 +9,18 @@ var app = {
             url: this.urlPrefix+this.urls.fonts
         });
     },
+    loadRandomArt: function(){
+        return jQuery.ajax({
+            url: this.urlPrefix+this.urls.randomArt
+        });
+    },
+    searchArt: function(query, page){
+        page = page||0;
+        return jQuery.ajax({
+            url: this.urlPrefix + this.urls.searchArt,
+            data: {query: query, page: page}
+        })
+    },
     loadSwatches: function(){
         return jQuery.ajax({
             url: this.urlPrefix+this.urls.swatches
@@ -27,7 +39,18 @@ var app = {
         this.loadFonts();
         this.loadSwatches();
 	},
-    state: {}
+    state: {
+        getView: function(value){
+            if(typeof value === 'undefined'){
+                value = this.isFront;
+            }
+            return value?'front':'back';
+        },
+        getImage: function(){
+            return design.products.images[this.product.id];
+        },
+        snapToCenter: true
+    }
 };
 
 jQuery(function() {

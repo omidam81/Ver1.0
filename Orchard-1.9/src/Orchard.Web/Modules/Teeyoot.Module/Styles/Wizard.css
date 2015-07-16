@@ -37,7 +37,16 @@ table {
     margin-left: -9px;
 }
 
+.flip-button-back-two {
+    border-radius: 0 5px 5px 0;
+    margin-left: -9px;
+}
+
 .flip-button-front {
+    border-radius: 5px 0 0 5px;
+}
+
+.flip-button-front-two {
     border-radius: 5px 0 0 5px;
 }
 
@@ -49,8 +58,6 @@ ul, ol {
     padding: 0.5rem 1.4rem;
     line-height: 1.4rem;
     border: 1px solid #6c7478;
-    background: white;
-    color: #6c7478;
     display: inline-block;
     text-align: center;
     box-sizing: border-box;
@@ -258,6 +265,7 @@ span.number {
     .Slides > div {
         float: left;
         height: 100%;
+        width: 100%;
         overflow: hidden;
     }
 
@@ -265,7 +273,8 @@ span.number {
     .Slides .Content {
         margin-left: 0;
     }
-        #prodFront {
+
+    #prodFront {
         width: 400px;
     }
 
@@ -273,7 +282,7 @@ span.number {
         width: 400px;
     }
 
-     /*#butt1 {
+    /*#butt1 {
         margin-top:-40px !important;
     }
 
@@ -284,13 +293,13 @@ span.number {
 }
 
 .Slides .Content {
-    margin-left: 0;
+    /*margin-left: 10%;*/
     margin-top: 10px;
 }
 
-    .Slides .Content a {
+    /*.Slides .Content a {
         font-size: 30px;
-    }
+    }*/
 
 .ssp_vcent {
     width: 100%;
@@ -481,4 +490,80 @@ input[type=range] {
         transition: background-color 400ms;
         background-size: contain;
         float: left;
+    }
+
+.widget-anonimousMenu {
+    margin-right: -50px;
+}
+
+.menu-anonimous-menu .last {
+    display: none;
+}
+
+.tb-search-form {
+    height: 31px !important;
+}
+
+@media all and (max-width: 1000px) {
+    .widget-anonimousMenu {
+        margin-right: 0;
+    }
+}
+.design__area a {
+    text-decoration: none;
+}
+
+#designer .button--primary {
+    background: #52b8eb;
+    background-color: #52b8eb;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52b8eb), color-stop(100%, #22a1e0));
+    background-image: -webkit-linear-gradient(#52b8eb, #22a1e0);
+    background-image: linear-gradient(#52b8eb,#22a1e0);
+    border: 1px solid #1592d1;
+    color: white;
+}
+
+#designer .button--primary:hover, #designer .button--primary.hover, #designer .button--primary:focus {
+        background: #7eb341;
+        background-color: #169adb;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #169adb), color-stop(100%, #1592d1));
+        background-image: -webkit-linear-gradient(#169adb, #1592d1);
+        background-image: linear-gradient(#169adb,#1592d1);
+        border: 1px solid #0884c2;
+        color: white;
+    }
+
+#designer .design__area .button--primary:active, #designer .button--primary.active {
+        background: #7eb341;
+        background-color: #1592d1;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1592d1), color-stop(100%, #169adb));
+        background-image: -webkit-linear-gradient(#1592d1, #169adb);
+        background-image: linear-gradient(#1592d1,#169adb);
+    }
+
+#designer .button--transaction {
+    background: #8bbf4f;
+    background-color: #7ac445;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7ac445), color-stop(100%, #5eba1c));
+    background-image: -webkit-linear-gradient(#7ac445, #5eba1c);
+    background-image: linear-gradient(#7ac445,#5eba1c);
+    border: 1px solid #50ab0f;
+    color: white;
+}
+
+#designer     .button--transaction:hover, #designer .button--transaction.hover {
+        background: #7eb341;
+        background-color: #66b52d;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #66b52d), color-stop(100%, #4cab09));
+        background-image: -webkit-linear-gradient(#66b52d, #4cab09);
+        background-image: linear-gradient(#66b52d,#4cab09);
+        border: 1px solid #419c00;
+    }
+
+#designer .button--transaction:active, #designer .button--transaction.active {
+        background: #648e34;
+        background-color: #5eba1c;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5eba1c), color-stop(100%, #7ac445));
+        background-image: -webkit-linear-gradient(#5eba1c, #7ac445);
+        background-image: linear-gradient(#5eba1c,#7ac445);
     }
