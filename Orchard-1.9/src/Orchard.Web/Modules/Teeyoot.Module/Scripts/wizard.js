@@ -124,7 +124,7 @@ function slide() {
 }
 function onChangeTrackBar() {
     document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
-    document.getElementById('total_profit').innerHTML = (document.getElementById('trackbar').value) * 10 + "$";
+    document.getElementById('total_profit').innerHTML = (document.getElementById('trackbar').value) * 10 + " RM";
 }
 
 function onChangeValueForTrackBar() {
