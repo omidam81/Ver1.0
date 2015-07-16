@@ -168,10 +168,110 @@
                                 <div id="tab2-content" class="tab-content teespring-well designer-well tab-Art">
                                     <div id="designer-art-choseType">
                                         <div class="search_container">
-                                            <button class="button button--primary search">Browse Artwork</button>
+                                            <button id="browse-artwork" class="button button--primary search">Browse Artwork</button>
+                                            <div class="design-art-search containertip">
+                                                <form action="." method="get" role="form" id="artwork-search-form">
+                                                    <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
+                                                    <button class="button button--primary search">Search</button>
+                                                </form>
+                                                <div class="art-search-container">
+                                                    <!-- list of artworks -->
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="hr"><span>OR</span></div>
-                                        <button class="button button--primary upload">Upload your own</button>
+                                        <button id="artwork-upload" class="button button--primary upload">Upload your own</button>
+                                    </div>
+                                    <div id="dropbox" class="control-group" style="display: none">
+                                        <div class="upload" >
+                                            <div hidden="" class="form" >
+                                                <form enctype="multipart/form-data" id="s3-uploader" method="post">
+                                                    <input id="file" name="file" style="visibility: hidden;"
+                                                           type="file">
+                                                </form>
+                                            </div>
+                                            <p class="small dropbox-intro" >Drag art here or ...</p>
+                                            <button class="button button--primary upload select-file">Click here to upload</button>
+                                            <p class="dropbox-disclosure">
+                                                <em>By uploading an image you agree that you
+                                                hold the right to reproduce and sell the design.</em>
+                                            </p></div>
+                                    </div>
+                                    <div id="art-style" class="design-area__art--edit" style="display: none;">
+                                        <div>
+                                            <div class="control-group clearfix art-color-selection"><label>Art
+                                                color</label>
+
+                                                <div class="fake-input color-picker standard designer-dropdown"
+                                                     title="Change color">
+                                                    <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                                                    <div class="colors shirt-colors containertip">
+                                                        <ul></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="edit_tool"><label style="float:left;">Add an outline</label>
+
+                                                <div class="clearfix control-group outline-selection">
+                                                    <div><select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu">
+                                                        <option value="0">No outline
+                                                        </option>
+                                                        <option value="0.33">Thin
+                                                            outline
+                                                        </option>
+                                                        <option value="0.66">Medium
+                                                            outline
+                                                        </option>
+                                                        <option value="1">Thick
+                                                            outline
+                                                        </option>
+                                                    </select></div>
+                                                </div>
+                                                <div class="clearfix control-group outline-color-selection">
+                                                    <div class="fake-input color-picker standard designer-dropdown"
+                                                         title="Change color">
+                                                        <div class="swatch" title="Black"
+                                                             style="background-color:#000000;"></div>
+                                                        <div class="colors shirt-colors containertip">
+                                                            <ul></ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="file control-group" style="display: none">
+                                            <label>Uploaded File</label>
+
+                                            <div class="fake-input color-picker standard uploaded-file">
+                                                <div class="remove">Remove</div>
+                                                <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix control-group">
+                                            <div class="layer-tools">
+                                                <ul id="canvas-options-art" class="nav">
+                                                    <li><input type="checkbox" checked=""><label>Snap to center</label></li>
+                                                </ul>
+                                                <div id="panel-context-menu-art" class="btn-group control-group"><span
+                                                        class="tooltip_composer__position" data-tooltip="Duplicate"><i
+                                                        class="ts-icon ts-icon-composer-copy"></i></span><span
+                                                        class="separator"></span><span
+                                                        class="tooltip_composer__position" data-tooltip="Center"><i
+                                                        class="ts-icon ts-icon-composer-center"></i></span><span
+                                                        class="separator"></span><span
+                                                        class="tooltip_composer__position" data-tooltip="Push Behind"><i
+                                                        class="ts-icon ts-icon-composer-sendtoback"></i></span><span
+                                                        class="separator"></span><span
+                                                        class="tooltip_composer__position"
+                                                        data-tooltip="Flip Horizontally"><i
+                                                        class="ts-icon ts-icon-composer-reflect-horizontal"></i></span><span
+                                                        class="separator"></span><span
+                                                        class="tooltip_composer__position"
+                                                        data-tooltip="Flip Vertically"><i
+                                                        class="ts-icon ts-icon-composer-reflect-vertical"></i></span></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

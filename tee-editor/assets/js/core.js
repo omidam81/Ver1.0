@@ -9,6 +9,18 @@ var app = {
             url: this.urlPrefix+this.urls.fonts
         });
     },
+    loadRandomArt: function(){
+        return jQuery.ajax({
+            url: this.urlPrefix+this.urls.randomArt
+        });
+    },
+    searchArt: function(query, page){
+        page = page||0;
+        return jQuery.ajax({
+            url: this.urlPrefix + this.urls.searchArt,
+            data: {query: query, page: page}
+        })
+    },
     loadSwatches: function(){
         return jQuery.ajax({
             url: this.urlPrefix+this.urls.swatches
