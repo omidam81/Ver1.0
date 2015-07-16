@@ -1,16 +1,17 @@
 ﻿@{
     Style.Include("campaign.css");
+    Script.Require("jQuery");
+    Script.Include("jquery.flip.js");
+    Script.Include("jquery.elevateZoom-3.0.8.min.js");
 }
 
 
 
 @using (Script.Foot())
 {
-
-    <script src='/Themes/Teebay.Theme/Scripts/jquery.elevateZoom-3.0.8.min.js'></script>
     <script>
-        $('#zoom-img').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
-        $('#zoom-img-back').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
+        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 450, zoomWindowHeight: 600 });
+        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 450, zoomWindowHeight: 600 });
     </script>
     
     <script>
@@ -62,77 +63,58 @@
             document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
             document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
         });
+        var i = 1;
+        $("#add-row").click(function () {
+            var table = document.getElementById('precheckout_table');
+            var trArray = table.getElementsByClassName('precheckout_items_table__row');                   
+            var row = document.getElementById('js-precheckout-line');
+            var rowHtml = row.firstElementChild.innerHTML;          
+            var row = table.insertRow(trArray.length + 1);
+            row.className = "precheckout_items_table__row";
+            row.id = "js-precheckout-line-item-" + i;
+            row.innerHTML = rowHtml;
+            i = i + 1;
+        });
+
         
 
     </script>
-
-}
-
-
-
-@using (Script.Foot())
-{
-
-    <script src='/Themes/Teebay.Theme/Scripts/jquery.elevateZoom-3.0.8.min.js'></script>
     <script>
-        $('#zoom-img').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
-        $('#zoom-img-back').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 440, zoomWindowHeight: 600 });
+        
+        function ItemRemove(node) {
+            var el = document.getElementById(node.id);
+            el.parentNode.removeChild(el);                           
+        }
     </script>
-
+    
+    
+    
     <script>
-
-        $(".product__size_chart_link--show").click(function () {
-            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+        var isFront = true
+        $(function ($) {
+            $("#card").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            });
         });
-        $(".product__size_chart_link--hide").click(function () {
-            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
-        });
-
-        $("#js-size-unit-toggle-inches").click(function () {
-            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
-            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch active";
-            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm";
-
-        });
-        $("#js-size-unit-toggle-centimeters").click(function () {
-            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
-            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch";
-            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm active";
-        });
-
-
-
-        $("#js-circle-nav-item-front").click(function () {
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
-        });
-        $("#js-circle-nav-item-back").click(function () {
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
-            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-        });
-
-
-        $("#image-stack-arrow-right").click(function () {
-            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
-            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        });
-        $("#image-stack-arrow-left").click(function () {
-            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
-            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-        });
-
-
+    </script>
+    <script>
+        function Resrve() {
+            document.getElementById("reserve-it-now").className = "dg-overlay";
+        }
+    </script>
+    <script>
+        function CloseReservation() {
+            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+    }
     </script>
 
 }
+
+                               @*Локализацию!!!!! Обвернуть всё в T()*@
 
 
 <section class="site__featured_container">
@@ -155,9 +137,28 @@
                 <a class="js-description-jump" href="">Read more</a>
             </div>
 
+
             <div class="image_stack__container js_image_stack">
 
-                <div class="image_stack__inner js_image_stack_inner">
+
+                <div id="card" style="margin-right:30px">
+                    <div class="front">
+                        <img id="prodFront" src="/Themes/Teebay.Theme/Content/front.png" data-zoom-image="/Themes/Teebay.Theme/Content/front2.png">
+                        <div id="butt1" style="text-align:center; ">
+                            <div class="flip-button flip-button-front" style="background-color:#44474d; color: white;"><span>Front</span></div>
+                            <div class="flip-button flip-button-back"><span>Back</span></div>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <img id="prodBack" src="/Themes/Teebay.Theme/Content/back.png" data-zoom-image="/Themes/Teebay.Theme/Content/back2.png">
+                        <div id="butt2" style="text-align:center;">
+                            <div class="flip-button flip-button-front"><span>Front</span></div>
+                            <div class="flip-button flip-button-back" style="background-color:#44474d; color: white;"><span>Back</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="image_stack__inner js_image_stack_inner">
 
                     <div class="image_stack__arrows">
                         <i id="image-stack-arrow-left" class="image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden"></i>
@@ -173,6 +174,8 @@
                             <img id="zoom-img-back" class="image_stack__image" src="/Themes/Teebay.Theme/Content/back.png" data-zoom-image="/Themes/Teebay.Theme/Content/back2.png">
                         </div>
                     </div>
+
+                   
 
                     <nav class="image_stack__nav">
                         <ul class="image_stack__nav_list">
@@ -192,7 +195,7 @@
                         </ul>
                     </nav>
                     <div style="width: 100%; text-align: center; padding: 1rem 2rem 0;"><img style="max-width: 30rem;width: 100%;" src="http://i.imgur.com/Dw8nQJL.png"></div>
-                </div>
+                </div>*@
             </div>
 
             <div class="campaign__column--product" style="min-height: inherit;">
@@ -751,9 +754,11 @@
                     </div>*@
 
                 <div class="campaign_transaction js-transaction-button">
-                    <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
-                    <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
-                </div>
+                    @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
+                    <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>*@
+                    <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
+                    <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
+                 </div>
 
                 <div class="persistent_timer__wrap js_persistent_timer display--desktop persistent_timer__wrap--v2">
                     <div class="presistent_timer__stats">
@@ -962,7 +967,133 @@
         </section>
     </div>
 </section>
+@*///////////////////////////Modal*@
 
+
+<div class="dg-overlay-not-show" id="reserve-it-now">
+    <div class="dg-table">
+        <div class="dg-cell">
+            <div class="dg-modal">
+
+                <div aria-hidden="true" aria-labelledby="myModalLabel" class="dm-overlay precheckout_modal modal" role="dialog" tabindex="1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" class="precheckout_close_button" id="close-reservation" onclick="CloseReservation()" type="button">
+                                    <i class="ts-icon-close"></i>
+                                </button>
+                                <h2 class="precheckout_modal__title">Your Order</h2>
+                            </div>
+                            <div class="precheckout_modal__image_container">
+                                <div class="precheckout_modal__image js-precheckout-banner" style="background-image: url(http://vangogh.teespring.com/shirt_pic/2592056/2860469/369/6524/front.png?v=2015-07-15-03-14);"></div>
+                            </div>
+                            <form accept-charset="UTF-8" action="http://teespring.com/buy/precheckout" class="precheckout_form js-precheckout-form" id="new_pre_checkout_form" method="post">
+                                <div style="display:none">
+                                    <input name="utf8" type="hidden" value="✓">
+                                    <input name="authenticity_token" type="hidden" value="D6HXAMfQEDGT8fwdvBz5E/DiistogjQwgQdkNiNKuSs=">
+                                </div>
+                                <input id="pre_checkout_form_campaign_id" name="pre_checkout_form[campaign_id]" type="hidden" value="2592056">
+                                <input id="pre_checkout_form_payment_method" name="pre_checkout_form[payment_method]" type="hidden" value="stripe">
+                                <input id="pre_checkout_form_ship_method" name="pre_checkout_form[ship_method]" type="hidden" value="1">
+                                <input id="pre_checkout_form_currency" name="pre_checkout_form[currency]" type="hidden" value="USD">
+                                <div class="modal-body">
+                                    <table id="precheckout_table" class="precheckout_items_table precheckout_table">
+                                        <thead class="precheckout_items_table__head">
+                                            <tr>
+                                                <th class="line_items_table__heading precheckout_items_table__item--image"></th>
+                                                <th class="line_items_table__heading">Qty</th>
+                                                <th class="line_items_table__heading">Size</th>
+                                                <th class="line_items_table__heading">Style</th>
+                                                <th class="line_items_table__heading line_items_table__heading--price">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="js-precheckout-line">
+                                            <tr id="js-precheckout-line-item" class="precheckout_items_table__row " data-index="1">
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--image">
+                                                    <img src="//vangogh.teespring.com/shirt_pic/2592056/2860469/369/6524/120x9999/front.png?v=2015-07-15-03-14">
+                                                </td>
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--qty">
+                                                    <div class="tooltip tooltip--topleft">
+                                                        <input class="form__textfield form__textfield--large js-quantity" name="pre_checkout_form[line_items_attributes][1][quantity]" type="text" value="1">
+                                                    </div>
+                                                </td>
+                                                <td class="precheckout_items_table__item">
+                                                    <div class="tooltip tooltip--topleft">
+                                                        <select class="form__select_menu precheckout_items_table__item--size js-size-select" name="pre_checkout_form[line_items_attributes][1][size]">
+                                                            <option value="--">--</option>
+                                                            <option value="S">S</option>
+                                                            <option value="M">M</option>
+                                                            <option value="L">L</option>
+                                                            <option value="XL">XL</option>
+                                                            <option value="2XL">2XL</option>
+                                                            <option value="3XL ">3XL </option>
+                                                            <option value="4XL">4XL</option>
+                                                            <option value="5XL ">5XL </option>
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--style">
+                                                    <select class="form__select_menu js-style-select" name="pre_checkout_form[line_items_attributes][1][style]">
+                                                        <option data-color-id="6524" data-product-id="369" selected="true" value="369-6524">Teespring Premium Tee Heathered Bright Turquoise </option>
+                                                        <option data-color-id="5902" data-product-id="72" value="72-5902">American Apparel Triblend Evergreen</option>
+                                                        <option data-color-id="577" data-product-id="2" value="2-577">Hanes Tagless Tee Orange</option>
+                                                    </select>
+                                                </td>
+                                                <td onclick="ItemRemove(this.parentNode)" class="precheckout_items_table__item precheckout_items_table__item--price">
+                                                    $15.00
+                                                    <div id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="precheckout_actions">
+                                        <div id="add-row" class="precheckout_actions__button">+ Add another style or color</div>
+                                    </div>
+                                    <div class="saved_payment_info">
+                                        <div class="saved_payment_info__container">
+                                            <a class="saved_payment_info__edit_link">
+                                                <i class="saved_payment_info__edit_icon ts-icon-edit"></i>
+                                            </a>
+                                            <div class="saved_payment_info__row">
+                                                <span class="saved_payment_info__label">Shipping Address:</span>
+                                                <span class="saved_payment_info__value">460 Bryant St. Suite 200, San Francisco, CA 94611</span>
+                                            </div>
+                                            <div class="saved_payment_info__row">
+                                                <span class="saved_payment_info__label">Pay With:</span>
+                                                <span class="saved_payment_info__value">Visa ending in 3456</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="payment_options_container">
+                                        <div class="payment_options_actions">
+                                            <input class="button button--transaction button--precheckout submit--checkout js-precheckout-submit" type="submit" value="Checkout">
+                                            <input class="button button--transaction button--precheckout submit--saved_payment_info js-precheckout-complete-order" type="submit" value="Complete Your Order">
+                                        </div>
+                                        <div class="payment_options_info">
+                                            <ul class="payment_options">
+                                                <li class="payment_options__item payment_options__item--visa"></li>
+                                                <li class="payment_options__item payment_options__item--amex"></li>
+                                                <li class="payment_options__item payment_options__item--mastercard"></li>
+                                                <li class="payment_options__item payment_options__item--discover"></li>
+                                                <li class="payment_options__item payment_options__item--border">
+                                                    <div class="payment_options__item--paypal"></div>
+                                                </li>
+                                            </ul>
+                                            <p class="payment_options_caption">We accept all major credit cards and Paypal</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

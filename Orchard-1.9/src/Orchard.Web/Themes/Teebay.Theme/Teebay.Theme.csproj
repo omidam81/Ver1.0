@@ -75,8 +75,6 @@
     <Content Include="Content\menu-icon_.png" />
     <Content Include="Content\search-ico.png" />
     <Content Include="Content\TEEYOOT_LOGO_Full_Color.png" />
-    <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
-    <Content Include="Scripts\jquery.elevatezoom.js" />
     <Content Include="Scripts\teebay.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\teebay.css" />
