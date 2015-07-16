@@ -26,7 +26,7 @@
     </script>
 }
 
-@using (Html.BeginForm("SendMessage", "Message", FormMethod.Get))
+@using (Html.BeginForm("SendMessage", "Dashboard", FormMethod.Get))
 {
     <div class="block" style="padding-bottom:10%">
 
@@ -134,7 +134,9 @@
                     <div style="display:flex; width:101%">
                         <div style="font-size:11px; width: 28%;  margin-right: 4%;">You may send buyers from a single campaign up to 3 emails in a 7-day period.</div>
                         <div style="float:right; width:70%">
+                            <a href="@Url.Action("Messages", "Dashboard")">
                             <button class="cancel-button">@Html.ActionLink("Cancel", "Index", "Message")</button>
+    </a>
                             <button class="send-button" type="submit">Send Message</button>
                         </div>
                     </div>

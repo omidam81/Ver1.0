@@ -3,6 +3,7 @@ using Orchard.Core.Contents.Extensions;
 using Orchard.ContentManagement.MetaData;
 using System;
 using Teeyoot.Module.Models;
+using System.Data;
 
 namespace Teeyoot.Module
 {
@@ -184,7 +185,61 @@ namespace Teeyoot.Module
                     .AddColumn<string>("Alias", c => c.WithLength(100))
             );
 
-            return 3;
+            SchemaBuilder.CreateTable(typeof(OrderRecord).Name,
+                 table => table
+                     .Column<int>("Id", column => column.PrimaryKey().Identity())
+                     .Column<string>("Email", c => c.WithLength(100))
+                     .Column<string>("FirstName", c => c.WithLength(100))
+                     .Column<string>("LastName", c => c.WithLength(100))
+                     .Column<string>("City", c => c.WithLength(100))
+                     .Column<string>("State", c => c.WithLength(100))
+                     .Column<string>("Country", c => c.WithLength(100))
+                     .Column<double>("TotalPrice")
+                     .Column<int>("CurrencyRecord_Id")
+                     );
+
+            SchemaBuilder.CreateTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .ContentPartRecord()
+                    .Column<string>("ApiKey", c => c.WithLength(50))
+                    .Column<string>("MailChimpCampaignId", c => c.WithLength(50))
+                    .Column<string>("TemplateId", c => c.WithLength(50))
+                    .Column<string>("MailChimpListId", c => c.WithLength(50))
+                    .Column<string>("Culture", c => c.WithLength(50))
+            );
+
+            SchemaBuilder.CreateTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("OrderRecord_Id")
+                    .Column<int>("CampaignProductRecord_Id")
+                    .Column<int>("Count")
+                    .Column<string>("Size", c => c.WithLength(10)));
+
+            SchemaBuilder.CreateForeignKey("Order_Currency", "OrderRecord", new[] { "CurrencyRecord_Id" }, "CurrencyRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_Order", "LinkOrderCampaignProductRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_CampaignProduct", "LinkOrderCampaignProductRecord", new[] { "CampaignProductRecord_Id" }, "CampaignProductRecord", new[] { "Id" });
+
+            ContentDefinitionManager.AlterPartDefinition(typeof(MailChimpSettingsPart).Name, part => part
+               .Attachable(false)
+               );
+
+            ContentDefinitionManager.AlterTypeDefinition("MailChimpSettings", type => type
+                .WithPart(typeof(MailChimpSettingsPart).Name)
+                .WithPart("CommonPart")
+                );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+               table => table
+                   .AddColumn<string>("TemplateName", c => c.WithLength(100))
+           );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+            .AlterColumn("TemplateId", x => x.WithType(DbType.Int32))
+            );
+
+            return 5;
         }
 
         public int UpdateFrom2()
@@ -195,6 +250,70 @@ namespace Teeyoot.Module
             );
 
             return 3;
+        }
+
+        public int UpdateFrom3()
+        {
+            SchemaBuilder.CreateTable(typeof(OrderRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Email", c => c.WithLength(100))
+                    .Column<string>("FirstName", c => c.WithLength(100))
+                    .Column<string>("LastName", c => c.WithLength(100))
+                    .Column<string>("City", c => c.WithLength(100))
+                    .Column<string>("State", c => c.WithLength(100))
+                    .Column<string>("Country", c => c.WithLength(100))
+                    .Column<double>("TotalPrice")
+                    .Column<int>("CurrencyRecord_Id")
+                    );
+
+            SchemaBuilder.CreateTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .ContentPartRecord()
+                    .Column<string>("ApiKey", c => c.WithLength(50))
+                    .Column<string>("MailChimpCampaignId", c => c.WithLength(50))
+                    .Column<string>("TemplateId", c => c.WithLength(50))
+                    .Column<string>("MailChimpListId", c => c.WithLength(50))
+                    .Column<string>("Culture", c => c.WithLength(50))
+            );
+
+            SchemaBuilder.CreateTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("OrderRecord_Id")
+                    .Column<int>("CampaignProductRecord_Id")
+                    .Column<int>("Count")
+                    .Column<string>("Size", c => c.WithLength(10)));
+
+            SchemaBuilder.CreateForeignKey("Order_Currency", "OrderRecord", new[] { "CurrencyRecord_Id" }, "CurrencyRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_Order", "LinkOrderCampaignProductRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_CampaignProduct", "LinkOrderCampaignProductRecord", new[] { "CampaignProductRecord_Id" }, "CampaignProductRecord", new[] { "Id" });
+
+            ContentDefinitionManager.AlterPartDefinition(typeof(MailChimpSettingsPart).Name, part => part
+               .Attachable(false)
+               );
+
+            ContentDefinitionManager.AlterTypeDefinition("MailChimpSettings", type => type
+                .WithPart(typeof(MailChimpSettingsPart).Name)
+                .WithPart("CommonPart")
+                );
+
+            return 4;
+        }
+
+        public int UpdateFrom4()
+        {
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<string>("TemplateName", c => c.WithLength(100))                                      
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+            .AlterColumn("TemplateId", x => x.WithType(DbType.Int32))
+            );
+
+            return 5;
         }
     }
 }
