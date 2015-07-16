@@ -1,12 +1,9 @@
 ﻿using Orchard.Mvc.Routes;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Teeyoot.Module
+namespace Teeyoot.FAQ
 {
     public class Routes : IRouteProvider
     {
@@ -19,115 +16,106 @@ namespace Teeyoot.Module
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
             return new[] {
+                
                 new RouteDescriptor {
                     Route = new Route(
-                        "Admin/MailChimpSettings",
+                        "Admin/FAQ",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "AdminMessage"},
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "FaqAdmin"},
                             {"action", "Index"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
+                            {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
                 },
                 new RouteDescriptor {
                     Route = new Route(
-                        "Admin/MailChimpSettings/Add",
+                        "Admin/FAQ/Add",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "AdminMessage"},
-                            {"action", "AddSetting"}                           
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "FaqAdmin"},
+                            {"action", "AddFaqEntry"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
+                            {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
-                }
-                ,
+                },
                 new RouteDescriptor {
                     Route = new Route(
-                        "GetStarted",
+                        "Admin/FAQ/Edit/{id}",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "Wizard"},
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "FaqAdmin"},
+                            {"action", "EditFaqEntry"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"}
+                        },
+                        new MvcRouteHandler())
+                },              
+                new RouteDescriptor {
+                    Route = new Route(
+                        "FAQ",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
                             {"action", "Index"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
+                            {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
-                }
-                ,
+                },
                 new RouteDescriptor {
                     Route = new Route(
-                        "Teeyoot/Search",
+                        "FAQ/Topic/{topicId}",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "Search"},
-                            {"action", "Index"}                           
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
+                            {"action", "ViewTopic"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
+                            {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
-                }
-                ,
-                new RouteDescriptor {
+                },
+                 new RouteDescriptor {
                     Route = new Route(
-                        "Teeyoot/CategoriesSearch",
+                        "FAQ/Section/{sectionId}",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "Search"},
-                            {"action", "CategoriesSearch"}                           
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
+                            {"action", "ViewSection"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
+                            {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
-                }
-
-
-                ,
+                },
                 new RouteDescriptor {
-                    Priority = -11,
                     Route = new Route(
-                        "{campaignName}",
+                        "FAQ/Search",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "Campaign"},
-                            {"action", "Index"}                           
+                            {"area", "Teeyoot.FAQ"},
+                            {"controller", "Home"},
+                            {"action", "GetDetailSearch"}                           
                         },
+                        new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"campaignName", new ExpectedValuesConstraint("Admin")}
-                        },
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
+                            {"area", "Teeyoot.FAQ"}
                         },
                         new MvcRouteHandler())
                 }
             };
-        }
-
-        public class ExpectedValuesConstraint : IRouteConstraint
-        {
-            private readonly string[] _values;
-
-            public ExpectedValuesConstraint(params string[] values)
-            {
-                _values = values;
-            }
-
-            public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
-            {
-                return !_values.Contains(values[parameterName].ToString(), StringComparer.InvariantCultureIgnoreCase);
-            }
         }
     }
 }

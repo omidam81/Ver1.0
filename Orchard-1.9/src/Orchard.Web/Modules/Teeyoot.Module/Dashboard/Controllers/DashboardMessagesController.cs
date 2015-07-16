@@ -1,35 +1,28 @@
-﻿using Orchard.Themes;
-using Orchard.UI.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Script.Serialization;
-using Teeyoot.Module.Models;
-using MailChimp;
+﻿using MailChimp;
 using MailChimp.Campaigns;
 using MailChimp.Helper;
 using MailChimp.Lists;
 using Orchard.Data;
-using MailChimp.Templates;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Teeyoot.Module.Dashboard.ViewModels;
+using Teeyoot.Module.Models;
 
 
-namespace Teeyoot.Module.Controllers
+namespace Teeyoot.Module.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-
+        
         private readonly IRepository<MailChimpSettingsPartRecord> mailChimpRepository;
 
         public DashboardController(IRepository<MailChimpSettingsPartRecord> mailChimpRepository)
         {
             this.mailChimpRepository = mailChimpRepository;
         }
-
-
+        
+        
         // GET: Message
         public ActionResult Messages()
         {
@@ -38,7 +31,7 @@ namespace Teeyoot.Module.Controllers
 
         [HttpGet]
         public ActionResult CreateMessage()
-        {
+        {           
             return View();
         }
         public ActionResult SendMessage(MessageContentViewModel m)
@@ -71,33 +64,41 @@ namespace Teeyoot.Module.Controllers
             return View("CreateMessage");
         }
 
-        public int AddUserToMailChimpList(string email)
+        public string AddUserToMailChimpList(string email)
         {
-            MailChimpSettingsPartRecord record = mailChimpRepository.Fetch(x => x.Id == 1).FirstOrDefault();
-            MailChimpManager mc = new MailChimpManager(record.ApiKey);
-            EmailParameter emailParam = new EmailParameter() { };
-            emailParam.Email = email;
-            EmailParameter subscr = mc.Subscribe(record.MailChimpListId, emailParam, null, "html", false);
-            if (subscr.LEId == null)
-            {
-                return -1;
-            }
-            return 1;
+            MailChimpManager mc = new MailChimpManager("efaebe4525defd02eec94579dfc7f4ce-us11");
+            MembersResult members = mc.GetAllMembersForList("f90603a2b0", "");
+            EmailParameter emailParam = new EmailParameter(){};
+            emailParam.Email = "info@sollutium.com";
+            EmailParameter subscr = mc.Subscribe("f90603a2b0", emailParam,null,"html",false);
+            return "OK";
         }
 
         public string SendWelcomeLetter(string userEmail)
         {
-            MailChimpSettingsPartRecord record = mailChimpRepository.Fetch(x => x.TemplateName == "Welcome").FirstOrDefault();
-            MailChimpManager mc = new MailChimpManager(record.ApiKey);
-            List<string> emails = new List<string>();
-            emails.Add(userEmail);
-            CampaignActionResult response = mc.SendCampaignTest(record.MailChimpCampaignId, emails, "Text");
-            if (response.Complete)
-            {
-                ViewBag.status = "Your message has been sended!";
+            mailChimpRepository.Fetch(x => x.TemplateName == "Welcome").FirstOrDefault();
+            //MailChimpManager mc = new MailChimpManager(apiKey);
+            //CampaignCreateOptions options = new CampaignCreateOptions() { };
+            //options.FromEmail = "anotifications@teeyoot.com";
+            //options.FromName = "Teeyoot";
+            //options.Subject = "Welcome message";
+            //options.TemplateID = templateId;
+            ////CampaignCreateContent content = new CampaignCreateContent() { };
+            ////content.Text = "vcx";
+            ////Campaign myCampaign = mc.CreateCampaign("regular", options, content);
+            ////CampaignContent newCont = new CampaignContent() { };
+            ////newCont.Text = m.Content;
+            ////CampaignUpdateResult upd = mc.UpdateCampaign(myCampaign.Id, "content", newCont);
+            //List<string> emails = new List<string>();
+            //emails.Add(userEmail);
+            //CampaignActionResult response = mc.SendCampaignTest(campaignId, emails, "Text");
+            //if (response.Complete)
+            //{
+            //    ViewBag.status = "Your message has been sended!";
 
-            }
-            return ViewBag.status;
+            //}
+            return "OK";
         }
+
     }
 }

@@ -4,24 +4,20 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations; 
 
-namespace Teeyoot.Module.Models
+namespace Teeyoot.Module.Dashboard.ViewModels
 {
     public class MessageContentViewModel
     {
-        public virtual int Id { get; set; }
-
-        public virtual int CampaignRecord_Id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(50), EmailAddressAttribute, Required(ErrorMessage = "From email can't be blank")]
-        public virtual string From { get; set; }
+        public string From { get; set; }
 
         [StringLength(50), Required(ErrorMessage = "Subject can't be blank")]
-        public virtual string Subject { get; set; }
-       [StringLength(50), EmailAddressAttribute, Required(ErrorMessage = "Recipient can't be blank")]
-        public virtual string Email { get; set; }
+        public string Subject { get; set; }
+        [StringLength(50), EmailAddressAttribute, Required(ErrorMessage = "Recipient can't be blank")]
+        public string Email { get; set; }
         [StringLength(50), Required(ErrorMessage = "Message can't be blank")]
-        public virtual string Content { get; set; }
-
-        
+        public string Content { get; set; }
     }
 }

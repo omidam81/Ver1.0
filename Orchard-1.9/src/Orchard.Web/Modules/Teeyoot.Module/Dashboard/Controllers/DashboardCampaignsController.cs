@@ -15,7 +15,7 @@ using MailChimp.Helper;
 using MailChimp.Lists;
 
 
-namespace Teeyoot.Module.Controllers
+namespace Teeyoot.Module.Dashboard.Controllers
 {
     [Themed]
     public partial class DashboardController : Controller

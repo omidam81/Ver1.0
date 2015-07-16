@@ -1,6 +1,23 @@
-﻿.widget-SellerDashboardMenu ul {
-        padding: 15px 0;
-    }
+﻿.dashboard-layout .tb-layout-main-container {
+    max-width:none;
+    padding: 0;
+    background-color:#f5f7f7;
+    display:table;
+    width:100%;
+}
+.dashboard-layout .tb-aside-first {
+    width:200px;
+    position:relative;
+    display:table-cell;
+}
+.dashboard-layout .tb-layout-content {
+    display:table-cell;
+    width:100%;
+    margin:0;
+}
+.widget-SellerDashboardMenu ul {
+    border-top: solid 1px #f5f7f7;
+}
 .widget-SellerDashboardMenu ul li {
     float: none;
     padding: 15px 0;
@@ -19,6 +36,9 @@
 .widget-SellerDashboardMenu .current a {
     color: #e64700;
 }
+.widget-SellerDashboardMenu li.first {
+    padding-top:30px;
+}
 .widget-SellerDashboardMenu li.last {
-    display:none;
+    padding-bottom:30px;
 }

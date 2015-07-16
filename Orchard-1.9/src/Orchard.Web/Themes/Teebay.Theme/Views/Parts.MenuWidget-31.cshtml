@@ -1,0 +1,11 @@
+﻿@{
+    foreach (var menuItem in Model.Menu)
+    {
+        if (menuItem.Text.ToString().ToLower() == T("Logout").ToString().ToLower())
+        {
+            Model.Menu.Items.Remove(menuItem);
+            break;
+        }
+    }    
+}
+@Display(Model.Menu);
