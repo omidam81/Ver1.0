@@ -29,9 +29,9 @@ namespace Teeyoot.Module
                         .Action("Index", "FaqAdmin", new { area = "Teeyoot.FAQ" })
                     )
                     .Add(subItem => subItem
-                        .Caption(T("MailChimpSettings"))
+                        .Caption(T("Mail Chimp Settings"))
                         .Position("2.3")
-                        .Action("Index", "AdminMessage", new { area = "Teeyoot.Module" })
+                        .Action("Index", "AdminMessage", new { area = "Teeyoot.Messaging" })
                     )
                 );
         }

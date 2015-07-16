@@ -568,10 +568,6 @@
     <Content Include="Content\Web.config" />
     <Content Include="Content\data-samples\random.json" />
     <Content Include="Content\data-samples\search.json" />
-    <Content Include="Views\Dashboard\Campaigns.cshtml" />
-    <Content Include="Views\Dashboard\CreateMessage.cshtml" />
-    <Content Include="Views\Dashboard\getList.cshtml" />
-    <Content Include="Views\Dashboard\Messages.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\config.js" />
@@ -619,8 +615,6 @@
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
     <Content Include="Views\Search\CategoriesSearch.cshtml" />
-    <Content Include="Views\AdminMessage\Addsetting.cshtml" />
-    <Content Include="Views\AdminMessage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -634,18 +628,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
-    <Compile Include="Controllers\AdminMessageController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
-    <Compile Include="Dashboard\Controllers\DashboardCampaignsController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dashboard\Controllers\DashboardMessagesController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dashboard\Routes.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\CampaignCategoriesPart.cs" />
     <Compile Include="Models\CampaignCategoriesPartRecord.cs" />
@@ -656,8 +642,6 @@
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />
     <Compile Include="Models\LinkProductSizeRecord.cs" />
-    <Compile Include="Models\MailChimpSettingsPart.cs" />
-    <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\ProductColorRecord.cs" />
     <Compile Include="Models\ProductGroupRecord.cs" />
@@ -674,18 +658,12 @@
     <Compile Include="Services\ICampaignCategoriesService.cs" />
     <Compile Include="Services\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
-    <Compile Include="Services\IMailChimpSettingsService.cs" />
-    <Compile Include="Services\MailChimpSettingsService.cs" />
-    <Compile Include="ViewModels\MailChimpAddSettingViewModel.cs" />
-    <Compile Include="ViewModels\MailChimpListViewModel.cs" />
-    <Compile Include="Dashboard\ViewModels\MessageContentViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

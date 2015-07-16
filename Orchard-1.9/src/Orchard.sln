@@ -273,6 +273,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teeyoot.Messaging", "Orchar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teeyoot.Search", "Orchard.Web\Modules\Teeyoot.Search\Teeyoot.Search.csproj", "{7504FD09-2A28-462D-8B05-9154B820C4BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teeyoot.Dashboard", "Orchard.Web\Modules\Teeyoot.Dashboard\Teeyoot.Dashboard.csproj", "{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeCoverage|Any CPU = CodeCoverage|Any CPU
@@ -1113,6 +1115,13 @@ Global
 		{7504FD09-2A28-462D-8B05-9154B820C4BF}.FxCop|Any CPU.ActiveCfg = Release|Any CPU
 		{7504FD09-2A28-462D-8B05-9154B820C4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7504FD09-2A28-462D-8B05-9154B820C4BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.CodeCoverage|Any CPU.ActiveCfg = Release|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Coverage|Any CPU.ActiveCfg = Release|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.FxCop|Any CPU.ActiveCfg = Release|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1201,5 +1210,6 @@ Global
 		{C1227A9D-EBE0-4776-AF87-D2F677CE2200} = {22C2C39D-97A0-4585-80B8-D7DC3CC6ADF2}
 		{8AB824C5-2480-4572-929A-9D4D4081AEBA} = {22C2C39D-97A0-4585-80B8-D7DC3CC6ADF2}
 		{7504FD09-2A28-462D-8B05-9154B820C4BF} = {22C2C39D-97A0-4585-80B8-D7DC3CC6ADF2}
+		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6} = {22C2C39D-97A0-4585-80B8-D7DC3CC6ADF2}
 	EndGlobalSection
 EndGlobal
