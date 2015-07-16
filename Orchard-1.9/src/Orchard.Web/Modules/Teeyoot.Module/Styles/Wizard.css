@@ -33,21 +33,39 @@ table {
 }
 
 .flip-button-back {
-    border-radius: 0 5px 5px 0;
-    margin-left: -9px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .flip-button-back-two {
-    border-radius: 0 5px 5px 0;
-    margin-left: -9px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+
+.flip-button-back-three {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .flip-button-front {
-    border-radius: 5px 0 0 5px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .flip-button-front-two {
-    border-radius: 5px 0 0 5px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+
+.flip-button-front-three {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 ul, ol {
@@ -94,7 +112,7 @@ ul, ol {
 }
 
 .flow-steps .flow-step .dot {
-    background: #56b8ea;
+    background: #dbdbdb;
     float: left;
     margin: 0 0 0 16px;
 }
@@ -104,15 +122,15 @@ ul, ol {
 }
 
 .flow-steps .flow-step.active .number {
-    background: #56b8ea;
+    background: #ff4f00;
 }
 
 .flow-steps .flow-step.active strong {
-    color: #56b8ea;
+    color: #ff4f00;
 }
 
 .flow-steps .flow-step.active .flow-step-before .dot {
-    background: #56b8ea;
+    background: #dbdbdb;
 }
 
 .flow-steps .flow-step.active .flow-step-after .dot {
@@ -270,25 +288,13 @@ span.number {
     }
 
 @media all and (max-width: 1820px) {
-    .Slides .Content {
-        margin-left: 0;
+    #Content2 {
+     margin-left:0 !important;
+     min-width:110%;
     }
 
-    #prodFront {
-        width: 400px !important;
-    }
 
-    #prodBack {
-        width: 400px !important;
-    }
 
-    /*#butt1 {
-        margin-top:-40px !important;
-    }
-
-         #butt2 {
-        margin-top:-40px !important;
-    }*/
 
 }
 

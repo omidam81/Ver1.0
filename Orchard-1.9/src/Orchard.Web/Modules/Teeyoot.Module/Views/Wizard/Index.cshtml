@@ -39,18 +39,18 @@
 
             if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
                 setTimeout(function () {
-                    $(".flip-button-front").css("background-color", "#44474d");
+                    $(".flip-button-front").css("background-color", "#6c7478");
                     $(".flip-button-front").css("color", "white");
                     $(".flip-button-back").css("background-color", "white");
-                    $(".flip-button-back").css("color", "#44474d");
+                    $(".flip-button-back").css("color", "#6c7478");
                 }, 180);
             } else
                 if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
                     setTimeout(function () {
-                        $(".flip-button-back").css("background-color", "#44474d");
+                        $(".flip-button-back").css("background-color", "#6c7478");
                         $(".flip-button-back").css("color", "white");
                         $(".flip-button-front").css("background-color", "white");
-                        $(".flip-button-front").css("color", "#44474d");
+                        $(".flip-button-front").css("color", "#6c7478");
                     }, 180);
 
                 }
@@ -68,12 +68,23 @@
             });
         });
 
+        var isFront3 = true
+        $(function ($) {
+            $("#card3").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront3 = !isFront3;
+                console.log(isFront3);
+                $("#card3").flip(!isFront3);
+            });
+        });
+
 
     </script>
 }
 
 
-<div class='lab-steps flow-steps' style="width:80%;">
+<div class='lab-steps flow-steps' style="width:80%;   margin-left: 10%;">
     <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
@@ -101,7 +112,7 @@
             </span>
             <br>
             <strong>
-                Set Up
+                Set a Goal
             </strong>
             <div class='flow-step-before'>
                 <div class='dot'></div>
@@ -416,8 +427,8 @@
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
                                                         <div class="flip-buttons">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
-                                                            <div class="flip-button flip-button-back" data-element="backButton">Back</div>
+                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position:absolute; margin-left:-15px; margin-top:10px;" >Front</span></div>
+                                                            <div class="flip-button flip-button-back" data-element="backButton"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- end front design -->
@@ -452,8 +463,8 @@
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
                                                         <div class="flip-buttons">
-                                                            <div class="flip-button flip-button-front">Front</div>
-                                                            <div class="flip-button flip-button-back no-select flip-button-active">Back</div>
+                                                            <div class="flip-button flip-button-front"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                                            <div class="flip-button flip-button-back no-select flip-button-active"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- end back design -->
@@ -485,7 +496,7 @@
                                                             </p>
 
                                                             <p class="base-cost-display" id="price_preview">
-                                                                <span>$7.14</span>
+                                                                <span>RM 7.14</span>
                                                             </p>
                                                         </div>
                                                         <button class="button button--transaction" id="nextPage">
@@ -507,7 +518,7 @@
             </div>
         </div>
         <div class="Slide" style="width:30% !important; margin-left:3%">
-            <div class="Content" style="margin-left:10% !important">
+            <div class="Content" id ="Content2"style="margin-left:10%">
                 <table>
                     <tr>
                         <td style="width:50%">
@@ -515,16 +526,16 @@
                             <div id="card" style="margin-right:30px">
                                 <div class="front">
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                    <div id="butt1" style="text-align:center; margin-top:-40px !important;">
-                                        <div class="flip-button flip-button-front-two" style="background-color:#44474d; color: white;">Front</div>
-                                        <div class="flip-button flip-button-back-two">Back</div>
+                                    <div id="butt1" style="text-align:center; margin-top:-60px !important;">
+                                        <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                        <div class="flip-button flip-button-back-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                     </div>
                                 </div>
                                 <div class="back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                    <div id="butt2" style="text-align:center; margin-top:-40px !important;">
-                                        <div class="flip-button flip-button-front-two">Front</div>
-                                        <div class="flip-button flip-button-back-two" style="background-color:#44474d; color: white;">Back</div>
+                                    <div id="butt2" style="text-align:center; margin-top:-60px !important;">
+                                        <div class="flip-button flip-button-front-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                        <div class="flip-button flip-button-back-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -562,7 +573,7 @@
                                         <div class="block" style="width:100%; border-radius: 11px 0px 0px 11px;">Number of shirts:</div>
                                     </td>
                                     <td>
-                                        <input style="height:92%; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
+                                        <input style="height:94%; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
                                         @* <span >5</span>*@
                                     </td>
                                 </tr>
@@ -593,7 +604,7 @@
                                   
                                       <div class="ssp_metadata">
                                         <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
-                                            <h4 class="ssp_heading" style=" font-weight: 800; color: #44474d;">Teespring Premium Tee</h4>
+                                            <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teespring Premium Tee</h4>
                                         </div>
                                     </div>
 
@@ -665,7 +676,7 @@
                                 <label>Estimated profit</label>
                             </div>
                             <div>
-                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">500$</span>
+                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">500 RM</span>
                             </div>
                             <div></div>
                             <button class="Left">NEXT PAGE</button>
@@ -728,378 +739,7 @@
                             fjs.parentNode.insertBefore(js, fjs);
                         }(document, 'script', 'facebook-jssdk'));</script>*@
                     <div class="site__content_container" id="designs_edit">
-                        @*<script type="text/javascript">
-                            window.app = window.app || {};
-                            app.config = {
-                                adminDomain: "admin.teespring.com",
-                                cdn: window.location.protocol + '//' + 'd1b2zzpxewkr9z.cloudfront.net',
-                                s3: window.location.protocol + '//s3.amazonaws.com',
-                                s3_asset: window.location.protocol + '//s3.amazonaws.com' + '/teespring-ass',
-                                s3_upload: {
-                                    acl: "public-read",
-                                    awsAccessKeyId: "AKIAIWKS5RB6X5Q5VIMQ",
-                                    key: "rfk2jk-uploads/{unique_id}-b33bf928d33c3c5f5a678d92912514af",
-                                    policy: "eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0xNlQwMDo1MjowM1oiLCJjb25kaXRpb25zIjpbWyJzdGFydHMtd2l0aCIsIiR1dGY4IiwiIl0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCJyZmsyamstdXBsb2Fkcy8iXSxbInN0YXJ0cy13aXRoIiwiJHgtcmVxdWVzdGVkLXdpdGgiLCIiXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwMF0sWyJzdGFydHMtd2l0aCIsIiRjb250ZW50LXR5cGUiLCIiXSx7ImJ1Y2tldCI6InRlZXNwcmluZy11c2VyY29udGVudCJ9LHsiYWNsIjoicHVibGljLXJlYWQifSx7InN1Y2Nlc3NfYWN0aW9uX3N0YXR1cyI6IjIwMSJ9XX0=",
-                                    signature: "N8uHWAtXXf4BLPDruSw+jPIg8vI=",
-                                    successActionStatus: "201",
-                                    url: "https://s3.amazonaws.com/teespring-usercontent/"
-                                },
-                                cdnPrefix: '/compiled_assets/designer',
-                                publicBucket: '/teespring-pub',
-                                usersBucket: '/teespring-usercontent',
-                                nounProjectEnabled: true,
-                                nounBucket: '/teespring-art-noun',
-                                primaryDomain: 'teespring.com',
-                                sessionProtocol: "https",
-                                maxColors: 10,
-                                minimumPPI: 1,
-                                minimumUploadPixels: 40000,
-                                localStorage: {
-                                    preferences: 60 * 24 * 60 * 60 * 1000 // 60 days
-                                },
-                                apiUrl: 'https://api.teespring.com',
-                                /**
-                                 * Lasy Loading Configuration
-                                 *
-                                 * A list of path to raw and minified files where the key is name
-                                 * of a controller or the name of a group of files.
-                                 *
-                                 * Note: use paths without leading slash.
-                                 *
-                                 * Note: Use a server a server side minifier/compiler whenever
-                                 * possible, otherwise use the "|" to load multiple files separately.
-                                 *
-                                 *
-                                 */
-                                files: {
-                                    oldUploader: "https://d1b2zzpxewkr9z.cloudfront.net/javascripts/qq.uploader.js"
-                                },
-                                twitchAffiliate: false,
-                                nflEnabled: false,
-                                regionEnabled: false,
-                                recommendedPricesEnabled: false,
-                                railsEnv: "production",
-                                designerImagePaths: {
-                                    selectAll: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/select_all-364579df01dd5b85aaff06da36a93d7c.png",
-                                    createOutlines: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/create_outlines-a36bb6881047287564c1e7be85b6d0c3.png",
-                                    outlinedText: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png",
-                                    teespring: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/teespring-5cded83b348c4a2f89b79324a834a427.png",
-                                    facebook: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/facebook-f8e6f5eb71f877978a489a35a10c6a8c.png",
-                                    google: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/google-298188fc43c3d523b280b3d4901fef81.png",
-                                    yahoo: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/yahoo-24ea0f8223a097d07794069f2bcadca7.png",
-                                    spinner: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif",
-                                    loader: "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif"
-                                },
-                                user: {
-                                    id: null,
-                                    signup: null,
-                                    email: null,
-                                    location: { "country": "Ukraine", "continent": "Europe" },
-                                    lastCampaign: { "region": "USA", "currency": "USD" }
-                                }
-                            };
-
-                            if (!window.ENV) {
-                                window.ENV = {};
-                            }
-                            window.ENV.INTL = {
-                                "locales": "en-US",
-                                "messages": {
-                                    "generalForm": {
-                                        "optionOutlineNone": "No outline",
-                                        "optionOutlineThin": "Thin outline",
-                                        "optionOutlineMedium": "Medium outline",
-                                        "optionOutlineThick": "Thick outline",
-                                        "labelSelectOutline": "Add an outline",
-                                        "labelSelectOutlineColor": "Outline color"
-                                    },
-                                    "progressBar": {
-                                        "create": "Create your tee",
-                                        "goal": "Set a goal",
-                                        "description": "Add a description",
-                                        "fulfillmentLocation": "Fulfillment location",
-                                        "fulfillmentTooltip": "This sets the region your orders will print and ship from. Select the region where you expect most of your audience to be located. This allows us to optimize fulfillment location, primary currency, and shipping costs, allowing you to maximize buyer conversion rates.",
-                                        "save": "Save",
-                                        "preview": "Preview"
-                                    },
-                                    "designer": {
-                                        "campaignPreviewHtml": "This is a preview of your campaign. <a>Click here to go back and continue launching your campaign &raquo;</a>"
-                                    },
-                                    "modals": {
-                                        "tooManyColors": "Too many colors.",
-                                        "tooManyColorsExplanation": "Your design has more than 10 colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
-                                        "makeAdjustmentsHtml": "Make adjustments &raquo;",
-                                        "fullColor": "Did you try and upload a full color image?",
-                                        "fullColorExplanation": "Looks like you tried to upload an image with more than 10 colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
-                                        "mistakeHtml": "If you think the system has made a mistake, and your image is under 10 colors, please {link}",
-                                        "contact": "contact support for assistance",
-                                        "keepDesigningHtml": "Keep designing &raquo;",
-                                        "hasText": "Did you upload an artwork with text?",
-                                        "hasTextExplanation": "To ensure that your artwork gets printed correctly, we require it to be outlined. ",
-                                        "fileUploadFailed": "Oops! There was an error.",
-                                        "alternativeUploadActions": "Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!",
-                                        "how": "Here's how:",
-                                        "textOutlineSteps": {
-                                            "stepOne": " In Illustrator, select the entire design.",
-                                            "stepTwo": " Create outlines, using the Type menu."
-                                        },
-                                        "reupload": "Save your artwork and upload it again.",
-                                        "needMoreAssistanceHtml": "If you need more assistance, please {email}.",
-                                        "contactSupport": "contact support",
-                                        "blankDesign": "You need to create a design.",
-                                        "blankDesignExplanationHtml": "Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. {email}",
-                                        "needHelp": "Need help?",
-                                        "goBackHtml": "Go back to designer &raquo;",
-                                        "serverError": "Server error.",
-                                        "serverErrorExplanationHtml": "Sorry, we were unable to save your design. Please try again. If the problem persist, {email} and mention the following error.",
-                                        "contactCs": "contact our customer support",
-                                        "returnToDesignHtml": "Return to design &raquo;",
-                                        "applicationBusy": "Oops! The design application is still busy.",
-                                        "applicationBusyExplanationHtml": "Please try again in a few seconds. If the problem persists, {email}.",
-                                        "tooSmall": "File is too small",
-                                        "tooSmallExplanationHtml": "Your artwork should be at least <span class=\"width\"></span> pixels wide by <span class=\"height\"></span> pixels high.",
-                                        "helpHtml": "Need help? {email}",
-                                        "contactDesign": "Contact our design team!",
-                                        "waitingPreview": "Waiting for preview",
-                                        "waitingPreviewExplanation": "Please wait while your preview is generated.",
-                                        "login": "How would you like to login?",
-                                        "teespringLoginHtml": "You can <a data-provider=\"teespring\" data-action=\"sign-in\">login with Teespring</a> or use any of the sites below:",
-                                        "loginWith": "login with",
-                                        "signUpOr": "or",
-                                        "signup": "create a new account with Teespring",
-                                        "teespringLogin": "Login with Teespring",
-                                        "email": "Email",
-                                        "password": "Password",
-                                        "forgotPassword": "Forgot your password?",
-                                        "loginHtml": "Login to your account &raquo;",
-                                        "createAccount": "Want to create a new account?",
-                                        "createTeespringAccount": "Create an account with Teespring",
-                                        "confirmPassword": "Confirm Password",
-                                        "createAccountHtml": "Create your account &raquo;",
-                                        "alreadyHaveAccount": "Already have an account?",
-                                        "badFileType": "Incorrect File Type",
-                                        "badFileTypeExplanation": "Uploaded files must be either gif, jpeg, jpg, png, or eps.",
-                                        "fileSizeTooBig": "File size too big",
-                                        "fileSizeTooBigExplanation": "Uploaded files must be no more than 5MB.",
-                                        "badSvg": "Oops! We have a problem with that artwork",
-                                        "badSvgExplanation": "Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.",
-                                        "saving": "Saving your design",
-                                        "loading": "Loading...",
-                                        "uploadError": "Upload Error",
-                                        "uploadErrorExplanation": "An unknown error occurred with your upload. Our support staff have been notified. Please try again.",
-                                        "invalidProduct": "Invalid Product",
-                                        "invalidProductExplanation": "One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.",
-                                        "noPrintableColorHtml": "Oops! We couldn't find any printable\xA0color.",
-                                        "noPrintableColorExplanation": "This might have happened due to a low resolution image or small details that our analysis couldn't perceive.",
-                                        "noPrintableColorSolution": "Possible solutions are",
-                                        "uploadBigger": " a) uploading a bigger artwork,",
-                                        "uploadVector": " b) uploading a vectorized version,",
-                                        "emailForHelpHtml": "or c) {email} for assistance.",
-                                        "oops": "Oops! We ran into an issue.",
-                                        "oopsExplanationHtml": "Sorry, we were unable to retrieve this artwork. If it happens again, please {email} for assistance.",
-                                        "techniqueMismatch": "Incompatible Products",
-                                        "techniqueMismatchExplanation": "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.",
-                                        "techniqueMakeChange": "Select product",
-                                        "techniqueAbort": "Cancel",
-                                        "passwordLength": "Password: Must be longer than 6 characters.",
-                                        "launchErrorTitle": "Campaign Error.",
-                                        "launchErrorGeneric": "An unknown error occurred.",
-                                        "launchErrorZip": "Invalid Zip Code.",
-                                        "ok": "Ok",
-                                        "close": "Close"
-                                    },
-                                    "artUnselected": {
-                                        "buttonSearch": "Browse Artwork",
-                                        "dividerOr": "OR",
-                                        "buttonUpload": "Upload your own",
-                                        "labelUpload": "Upload your own images or vector art."
-                                    },
-                                    "artForm": {
-                                        "labelArtColor": "Art color"
-                                    },
-                                    "designerDesign": {
-                                        "labelTabText": "Text",
-                                        "labelTabArt": "Art",
-                                        "labelInputText": "Enter text below",
-                                        "placeholderInputText": "Add your text here",
-                                        "labelSelectFont": "Choose a font",
-                                        "labelSelectTextColor": "Text color",
-                                        "labelSelectProduct": "Style & design",
-                                        "warningColor": "Please reduce the amount of colors you are using",
-                                        "buttonSave": "Save Redesign",
-                                        "buttonNext": "Next"
-                                    },
-                                    "layerManipulationBar": {
-                                        "labelCheckCenter": "Snap to center",
-                                        "buttonDuplicate": "Duplicate",
-                                        "buttonCenter": "Center",
-                                        "buttonFlipHorizontal": "Flip Horizontally",
-                                        "buttonFlipVertical": "Flip Vertically",
-                                        "buttonDown": "Push Behind"
-                                    },
-                                    "tooltipColors": {
-                                        "labelUsed": "In use",
-                                        "labelAvailable": "Available"
-                                    },
-                                    "quote": {
-                                        "labelCost": "Base cost @ {numShirts, number} shirts"
-                                    },
-                                    "uploadArtForm": {
-                                        "labelUploadedFile": "Uploaded File",
-                                        "labelRemoveFile": "Remove"
-                                    },
-                                    "uploadBar": {
-                                        "titleSending": "Sending Image"
-                                    },
-                                    "uploadBarAnalyzing": {
-                                        "title": "Analyzing {what}",
-                                        "subtitle": "It may take a minute"
-                                    },
-                                    "uploadPanel": {
-                                        "labelDrag": "Drag art here or ...",
-                                        "linkUpload": "Click here to upload",
-                                        "alertPre": "TIP:",
-                                        "alertBody": "For best results, upload high resolution/vector art.",
-                                        "infoSizePre": "Max size:",
-                                        "infoDimensionPre": "Max dimension:",
-                                        "infoSize": "5MB",
-                                        "infoTypesPre": "File types:",
-                                        "infoTypes": ".jpg, .png, .eps",
-                                        "infoDimensions": "3000px for .jpg and .png",
-                                        "infoRights": "By uploading an image you agree that you hold the right to reproduce and sell the design."
-                                    },
-                                    "mobile": {
-                                        "title": "Welcome to our Designer!",
-                                        "infoForm": "It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?",
-                                        "labelEmail": "Email",
-                                        "buttonSubmit": "Remind Me",
-                                        "linkContinue": "Nah, let's continue!",
-                                        "titleSubmitted": "Awesome!",
-                                        "subtitleSubmitted": "We'll remind you to come back and design soon.",
-                                        "linkSubmitted": "Check out the designer now."
-                                    },
-                                    "designerDetailsAside": {
-                                        "labelTitle": "Campaign title",
-                                        "infoTitle": "Summarize your campaign in 40 characters or less.",
-                                        "labelDescription": "Description",
-                                        "infoDescription": "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.",
-                                        "linkTag": "Tag your campaign",
-                                        "labelTags": "Tags",
-                                        "infoTags": "Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)",
-                                        "labelLength": "Campaign length",
-                                        "optionLength": "{daysFromNow} Days",
-                                        "optionLengthEnding": "Ending",
-                                        "optionLengthEndingDelay": "with shipping delayed by {delayed} days",
-                                        "optionSpecial": "{specialLength} Days (Shirts arrive before event)",
-                                        "linkSpecial": "Learn more",
-                                        "labelURL": "URL",
-                                        "infoURL": "This is where you will send buyers to view your campaign.",
-                                        "labelOptions": "Display Options",
-                                        "checkOptionsBackside": "Show the back side by default",
-                                        "labelShipping": "Shipping options",
-                                        "checkShippingPickup": "Allow buyers to pick up their orders from you",
-                                        "infoShippingPickup": "Pick-up delivery is free. Please note that pick-up orders are shipped via UPS Ground and may take up to one extra week for delivery.",
-                                        "labelShippingPickupInstructions": "Where/when will buyers be able to pick up their shirts?",
-                                        "infoShippingPickupInstructions": "Buyers will see these instructions when choosing between shipping/pick-up",
-                                        "labelShippingPickupFirst": "First name",
-                                        "labelShippingPickupLast": "Last name",
-                                        "labelShippingPickupAddress": "Pick-up Shipping Address",
-                                        "buttonShippingPickupAddressDefault": "Use Default Address",
-                                        "labelShippingPickupCity": "City",
-                                        "labelShippingPickupState": "State",
-                                        "labelShippingPickupZip": "ZIP Code",
-                                        "infoShippingPickup": "Please note pick-up is currently only available to US Addresses.",
-                                        "disclaimer": "By clicking this button, I accept Teespring's {linkTOS}.",
-                                        "linkDisclaimerTOS": "Terms of Service",
-                                        "buttonSubmit": "Launch",
-                                        "or": "or",
-                                        "linkPreview": "preview",
-                                        "buttonEditorBold": "Bold",
-                                        "buttonEditorItalic": "Italic",
-                                        "buttonEditorUnderline": "Underline",
-                                        "buttonEditorLink": "Link",
-                                        "hoverEditorLink": "Insert link",
-                                        "buttonEditorImage": "Image",
-                                        "hoverEditorImage": "Insert image"
-                                    },
-                                    "designerPricing": {
-                                        "labelGoal": "Sales goal",
-                                        "labelGoalShirts": "# of shirts",
-                                        "infoGoalMin": "{min} is the minimum goal",
-                                        "infoGoalMax": "{max} is the maximum goal",
-                                        "infoGoal": "Your goal is the number of shirts you’re aiming to sell, but we’ll print your campaign as long as you sell enough to generate a profit.",
-                                        "infoGoalHelp": "In an effort to help as many people as possible get their designs printed, Teespring will print a campaign as long as: \n(1) More than five items have been sold, and \n(2) Those items can be produced profitably for the owner of the campaign. \nThis may result in slimmer profit margins on campaigns that do not reach their goals, but more profit than if they weren't printed at all.",
-                                        "labelProfit": "Estimated profit",
-                                        "labelPrice": "Set selling price",
-                                        "labelPriceHelp": "To keep your profit margin consistent, we may charge more for sizes (2XL and larger) that cost more to produce.",
-                                        "infoPrice": "Set the selling price of your shirt to determine your profit and add additional products to sell your design on!",
-                                        "alertResized": "The design has been resized to fit on the chosen products.",
-                                        "alertMoved": "The design has been moved to fit on the chosen products.",
-                                        "noticeCanAdd": "You can add {variationCount} additional products.",
-                                        "noticeLimitReached": "Sorry, you have reached the maximum number of allowed product additions. Please remove a current selection to add another product to your campaign.",
-                                        "linkOtherProduct": "Add a product that isn't listed",
-                                        "labelOtherProduct": "Add a product that isn't listed:",
-                                        "buttonNext": "Next",
-                                        "buttonAdd": "Add",
-                                        "vatLabel": "Selling price and profit margin include VAT.",
-                                        "primaryCurrency": "Primary Currency:",
-                                        "tooltipCurrency": "This allows you to optimize your selling price to a specific currency. We recommend choosing the currency you expect the majority of your buyers to purchase in."
-                                    },
-                                    "product": {
-                                        "hoverChange": "Change color",
-                                        "labelMin": "minimum",
-                                        "labelProfitPerSale": "profit/sale"
-                                    },
-                                    "productSuggestion": {
-                                        "checkAddProduct": "Add {name}"
-                                    },
-                                    "sizebox": {
-                                        "labelWidth": "Width",
-                                        "labelUnits": "in.",
-                                        "labelHeight": "Height"
-                                    },
-                                    "artExternalMain": {
-                                        "searchPlaceholder": "Search Artwork",
-                                        "buttonSearch": "Search",
-                                        "titleErrorEmpty": "Sorry!",
-                                        "infoErrorEmpty": "No results were found for your query. Please try again! We recommend keeping it simple like \"dog\" or \"cat\"."
-                                    },
-                                    "printArea": {
-                                        "titlePrintableArea": "Printable Area",
-                                        "buttonZoom": "zoom",
-                                        "buttonZoomOut": "zoom out"
-                                    },
-                                    "designerView": {
-                                        "Front": "Front",
-                                        "Back": "Back"
-                                    },
-                                    "designerDetailsView": {
-                                        "infoLength": "US orders will arrive 10-14 days after the end of the campaign.",
-                                        "infoLengthDelayed": "IMPORTANT: Due to the holiday season, orders from campaigns ending between Dec 17th and Jan 1st will take 2-3 weeks to be printed & delivered after the end of the campaign.",
-                                        "errorTerms": "Please agree to the terms of service before proceeding.",
-                                        "errorURL": "A URL is required.",
-                                        "errorURLPattern": "Letters, numbers, dashes and underscores only!",
-                                        "errorURLDuplicate": "Already in use, please try a different URL.",
-                                        "errorLength": "Enter between 4 and 30 characters.",
-                                        "urlValid": "URL looks perfect!",
-                                        "errorTitleRequired": "A title is required.",
-                                        "errorDescriptionRequired": "A description is required.",
-                                        "errorDescriptionLength": "Please enter no more than 1500 characters."
-                                    },
-                                    "productOptionShrinkDetail": {
-                                        "labelResizing": "Requires resizing:",
-                                        "labelResizingEqualAmounts": "Front and back {scalePercentage}% smaller",
-                                        "labelResizingDifferentAmounts": "Front {scalePercentageFront}% smaller, Back {scalePercentageBack}% smaller",
-                                        "labelResizingFrontOnly": "Front {scalePercentage}% smaller",
-                                        "labelResizingBackOnly": "Back {scalePercentage}% smaller"
-                                    },
-                                    "artwork": {
-                                        "recentlyUsed": "Recently Used Artwork"
-                                    }
-                                }
-                            }
-                            ;
-                            </script>*@
+                 
 
                         <div id="designer-container">
                             <aside class="disclaimer_designer disclaimer-show">
@@ -1138,7 +778,27 @@
                                                         <div class="product-view">
                                                             <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
                                                             <div class="new-editor-container">
-                                                                <div class="flip-container">
+                                                                <td style="width:50%">
+
+                                                                    <div id="card3" style="margin-right:30px">
+                                                                        <div class="front">
+                                                                            <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                            <div id="butt1" style="text-align:center; margin-top:-60px !important;">
+                                                                                <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                                                                <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="back">
+                                                                            <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                            <div id="butt2" style="text-align:center; margin-top:-60px !important;">
+                                                                                <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                                                                <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
+                                                                </td>
+                                                                @*<div class="flip-container">
                                                                     <div class="new-editor front" tabindex="4" data-design-side="front" style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
                                                                         <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
                                                                         <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
@@ -1174,7 +834,7 @@
                                                                             <div class="flip-button flip-button-back no-select flip-button-active" data-element="backButton">Back</div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div>*@
                                                             </div>
                                                             <!-- render flip buttons here -->
                                                         </div>
@@ -1282,15 +942,7 @@
                                                                 </p>
                                                                 <input type="text" name="url" class="form__textfield " id="url" value="" data-reactid=".6.0.4.3">
                                                             </div>
-                                                            <div class="teespring-well designer-well shipping-options" data-reactid=".6.0.5">
-                                                                <label data-reactid=".6.0.5.0">Shipping options</label>
-                                                                <label class="checkbox has-under-text pickup-label" data-reactid=".6.0.5.1">
-                                                                    <input type="checkbox" name="pickup" id="pickup" value="1" data-reactid=".6.0.5.1.0">
-                                                                    <span data-reactid=".6.0.5.1.1"> </span>
-                                                                    <span data-reactid=".6.0.5.1.2">Allow buyers to pick up their orders from you</span>
-                                                                </label>
-                                                                <p class="under-text" data-reactid=".6.0.5.2">Please note pick-up is currently only available to US Addresses.</p>
-                                                            </div>
+
                                                             <div class="teespring-well designer-well" data-reactid=".6.0.6">
                                                                 <label data-reactid=".6.0.6.0">Display Options</label>
                                                                 <p data-reactid=".6.0.6.1">
@@ -1773,385 +1425,8 @@
                             </div>
                         </div>
                     </div>
-                    @*<script>
-                            window.ENV = {
-                                API_DOMAIN: "api.teespring.com",
-                                SHORTENER_URL: "tspr.ng",
-                                RAILS_ENV: "production",
-                                AVAILABLE_LOCALES: ["en", "de", "nl", "fr", "it", "es", "id", "pt-BR", "en-GB", "vi-VN"],
-                                ASSET_URL: window.location.protocol + '//' + "d1b2zzpxewkr9z.cloudfront.net",
-                                INTL: {
-                                    "locales": "en-US",
-                                    "messages": {
-                                        "generalForm": {
-                                            "optionOutlineNone": "No outline",
-                                            "optionOutlineThin": "Thin outline",
-                                            "optionOutlineMedium": "Medium outline",
-                                            "optionOutlineThick": "Thick outline",
-                                            "labelSelectOutline": "Add an outline",
-                                            "labelSelectOutlineColor": "Outline color"
-                                        },
-                                        "progressBar": {
-                                            "create": "Create your tee",
-                                            "goal": "Set a goal",
-                                            "description": "Add a description",
-                                            "fulfillmentLocation": "Fulfillment location",
-                                            "fulfillmentTooltip": "This sets the region your orders will print and ship from. Select the region where you expect most of your audience to be located. This allows us to optimize fulfillment location, primary currency, and shipping costs, allowing you to maximize buyer conversion rates.",
-                                            "save": "Save",
-                                            "preview": "Preview"
-                                        },
-                                        "designer": {
-                                            "campaignPreviewHtml": "This is a preview of your campaign. <a>Click here to go back and continue launching your campaign &raquo;</a>"
-                                        },
-                                        "modals": {
-                                            "tooManyColors": "Too many colors.",
-                                            "tooManyColorsExplanation": "Your design has more than 10 colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
-                                            "makeAdjustmentsHtml": "Make adjustments &raquo;",
-                                            "fullColor": "Did you try and upload a full color image?",
-                                            "fullColorExplanation": "Looks like you tried to upload an image with more than 10 colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. ",
-                                            "mistakeHtml": "If you think the system has made a mistake, and your image is under 10 colors, please {link}",
-                                            "contact": "contact support for assistance",
-                                            "keepDesigningHtml": "Keep designing &raquo;",
-                                            "hasText": "Did you upload an artwork with text?",
-                                            "hasTextExplanation": "To ensure that your artwork gets printed correctly, we require it to be outlined. ",
-                                            "fileUploadFailed": "Oops! There was an error.",
-                                            "alternativeUploadActions": "Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!",
-                                            "how": "Here's how:",
-                                            "textOutlineSteps": {
-                                                "stepOne": " In Illustrator, select the entire design.",
-                                                "stepTwo": " Create outlines, using the Type menu."
-                                            },
-                                            "reupload": "Save your artwork and upload it again.",
-                                            "needMoreAssistanceHtml": "If you need more assistance, please {email}.",
-                                            "contactSupport": "contact support",
-                                            "blankDesign": "You need to create a design.",
-                                            "blankDesignExplanationHtml": "Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. {email}",
-                                            "needHelp": "Need help?",
-                                            "goBackHtml": "Go back to designer &raquo;",
-                                            "serverError": "Server error.",
-                                            "serverErrorExplanationHtml": "Sorry, we were unable to save your design. Please try again. If the problem persist, {email} and mention the following error.",
-                                            "contactCs": "contact our customer support",
-                                            "returnToDesignHtml": "Return to design &raquo;",
-                                            "applicationBusy": "Oops! The design application is still busy.",
-                                            "applicationBusyExplanationHtml": "Please try again in a few seconds. If the problem persists, {email}.",
-                                            "tooSmall": "File is too small",
-                                            "tooSmallExplanationHtml": "Your artwork should be at least <span class=\"width\"></span> pixels wide by <span class=\"height\"></span> pixels high.",
-                                            "helpHtml": "Need help? {email}",
-                                            "contactDesign": "Contact our design team!",
-                                            "waitingPreview": "Waiting for preview",
-                                            "waitingPreviewExplanation": "Please wait while your preview is generated.",
-                                            "login": "How would you like to login?",
-                                            "teespringLoginHtml": "You can <a data-provider=\"teespring\" data-action=\"sign-in\">login with Teespring</a> or use any of the sites below:",
-                                            "loginWith": "login with",
-                                            "signUpOr": "or",
-                                            "signup": "create a new account with Teespring",
-                                            "teespringLogin": "Login with Teespring",
-                                            "email": "Email",
-                                            "password": "Password",
-                                            "forgotPassword": "Forgot your password?",
-                                            "loginHtml": "Login to your account &raquo;",
-                                            "createAccount": "Want to create a new account?",
-                                            "createTeespringAccount": "Create an account with Teespring",
-                                            "confirmPassword": "Confirm Password",
-                                            "createAccountHtml": "Create your account &raquo;",
-                                            "alreadyHaveAccount": "Already have an account?",
-                                            "badFileType": "Incorrect File Type",
-                                            "badFileTypeExplanation": "Uploaded files must be either gif, jpeg, jpg, png, or eps.",
-                                            "fileSizeTooBig": "File size too big",
-                                            "fileSizeTooBigExplanation": "Uploaded files must be no more than 5MB.",
-                                            "badSvg": "Oops! We have a problem with that artwork",
-                                            "badSvgExplanation": "Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.",
-                                            "saving": "Saving your design",
-                                            "loading": "Loading...",
-                                            "uploadError": "Upload Error",
-                                            "uploadErrorExplanation": "An unknown error occurred with your upload. Our support staff have been notified. Please try again.",
-                                            "invalidProduct": "Invalid Product",
-                                            "invalidProductExplanation": "One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.",
-                                            "noPrintableColorHtml": "Oops! We couldn't find any printable\xA0color.",
-                                            "noPrintableColorExplanation": "This might have happened due to a low resolution image or small details that our analysis couldn't perceive.",
-                                            "noPrintableColorSolution": "Possible solutions are",
-                                            "uploadBigger": " a) uploading a bigger artwork,",
-                                            "uploadVector": " b) uploading a vectorized version,",
-                                            "emailForHelpHtml": "or c) {email} for assistance.",
-                                            "oops": "Oops! We ran into an issue.",
-                                            "oopsExplanationHtml": "Sorry, we were unable to retrieve this artwork. If it happens again, please {email} for assistance.",
-                                            "techniqueMismatch": "Incompatible Products",
-                                            "techniqueMismatchExplanation": "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.",
-                                            "techniqueMakeChange": "Select product",
-                                            "techniqueAbort": "Cancel",
-                                            "passwordLength": "Password: Must be longer than 6 characters.",
-                                            "launchErrorTitle": "Campaign Error.",
-                                            "launchErrorGeneric": "An unknown error occurred.",
-                                            "launchErrorZip": "Invalid Zip Code.",
-                                            "ok": "Ok",
-                                            "close": "Close"
-                                        },
-                                        "artUnselected": {
-                                            "buttonSearch": "Browse Artwork",
-                                            "dividerOr": "OR",
-                                            "buttonUpload": "Upload your own",
-                                            "labelUpload": "Upload your own images or vector art."
-                                        },
-                                        "artForm": {
-                                            "labelArtColor": "Art color"
-                                        },
-                                        "designerDesign": {
-                                            "labelTabText": "Text",
-                                            "labelTabArt": "Art",
-                                            "labelInputText": "Enter text below",
-                                            "placeholderInputText": "Add your text here",
-                                            "labelSelectFont": "Choose a font",
-                                            "labelSelectTextColor": "Text color",
-                                            "labelSelectProduct": "Style & design",
-                                            "warningColor": "Please reduce the amount of colors you are using",
-                                            "buttonSave": "Save Redesign",
-                                            "buttonNext": "Next"
-                                        },
-                                        "layerManipulationBar": {
-                                            "labelCheckCenter": "Snap to center",
-                                            "buttonDuplicate": "Duplicate",
-                                            "buttonCenter": "Center",
-                                            "buttonFlipHorizontal": "Flip Horizontally",
-                                            "buttonFlipVertical": "Flip Vertically",
-                                            "buttonDown": "Push Behind"
-                                        },
-                                        "tooltipColors": {
-                                            "labelUsed": "In use",
-                                            "labelAvailable": "Available"
-                                        },
-                                        "quote": {
-                                            "labelCost": "Base cost @ {numShirts, number} shirts"
-                                        },
-                                        "uploadArtForm": {
-                                            "labelUploadedFile": "Uploaded File",
-                                            "labelRemoveFile": "Remove"
-                                        },
-                                        "uploadBar": {
-                                            "titleSending": "Sending Image"
-                                        },
-                                        "uploadBarAnalyzing": {
-                                            "title": "Analyzing {what}",
-                                            "subtitle": "It may take a minute"
-                                        },
-                                        "uploadPanel": {
-                                            "labelDrag": "Drag art here or ...",
-                                            "linkUpload": "Click here to upload",
-                                            "alertPre": "TIP:",
-                                            "alertBody": "For best results, upload high resolution/vector art.",
-                                            "infoSizePre": "Max size:",
-                                            "infoDimensionPre": "Max dimension:",
-                                            "infoSize": "5MB",
-                                            "infoTypesPre": "File types:",
-                                            "infoTypes": ".jpg, .png, .eps",
-                                            "infoDimensions": "3000px for .jpg and .png",
-                                            "infoRights": "By uploading an image you agree that you hold the right to reproduce and sell the design."
-                                        },
-                                        "mobile": {
-                                            "title": "Welcome to our Designer!",
-                                            "infoForm": "It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?",
-                                            "labelEmail": "Email",
-                                            "buttonSubmit": "Remind Me",
-                                            "linkContinue": "Nah, let's continue!",
-                                            "titleSubmitted": "Awesome!",
-                                            "subtitleSubmitted": "We'll remind you to come back and design soon.",
-                                            "linkSubmitted": "Check out the designer now."
-                                        },
-                                        "designerDetailsAside": {
-                                            "labelTitle": "Campaign title",
-                                            "infoTitle": "Summarize your campaign in 40 characters or less.",
-                                            "labelDescription": "Description",
-                                            "infoDescription": "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.",
-                                            "linkTag": "Tag your campaign",
-                                            "labelTags": "Tags",
-                                            "infoTags": "Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)",
-                                            "labelLength": "Campaign length",
-                                            "optionLength": "{daysFromNow} Days",
-                                            "optionLengthEnding": "Ending",
-                                            "optionLengthEndingDelay": "with shipping delayed by {delayed} days",
-                                            "optionSpecial": "{specialLength} Days (Shirts arrive before event)",
-                                            "linkSpecial": "Learn more",
-                                            "labelURL": "URL",
-                                            "infoURL": "This is where you will send buyers to view your campaign.",
-                                            "labelOptions": "Display Options",
-                                            "checkOptionsBackside": "Show the back side by default",
-                                            "labelShipping": "Shipping options",
-                                            "checkShippingPickup": "Allow buyers to pick up their orders from you",
-                                            "infoShippingPickup": "Pick-up delivery is free. Please note that pick-up orders are shipped via UPS Ground and may take up to one extra week for delivery.",
-                                            "labelShippingPickupInstructions": "Where/when will buyers be able to pick up their shirts?",
-                                            "infoShippingPickupInstructions": "Buyers will see these instructions when choosing between shipping/pick-up",
-                                            "labelShippingPickupFirst": "First name",
-                                            "labelShippingPickupLast": "Last name",
-                                            "labelShippingPickupAddress": "Pick-up Shipping Address",
-                                            "buttonShippingPickupAddressDefault": "Use Default Address",
-                                            "labelShippingPickupCity": "City",
-                                            "labelShippingPickupState": "State",
-                                            "labelShippingPickupZip": "ZIP Code",
-                                            "infoShippingPickup": "Please note pick-up is currently only available to US Addresses.",
-                                            "disclaimer": "By clicking this button, I accept Teespring's {linkTOS}.",
-                                            "linkDisclaimerTOS": "Terms of Service",
-                                            "buttonSubmit": "Launch",
-                                            "or": "or",
-                                            "linkPreview": "preview",
-                                            "buttonEditorBold": "Bold",
-                                            "buttonEditorItalic": "Italic",
-                                            "buttonEditorUnderline": "Underline",
-                                            "buttonEditorLink": "Link",
-                                            "hoverEditorLink": "Insert link",
-                                            "buttonEditorImage": "Image",
-                                            "hoverEditorImage": "Insert image"
-                                        },
-                                        "designerPricing": {
-                                            "labelGoal": "Sales goal",
-                                            "labelGoalShirts": "# of shirts",
-                                            "infoGoalMin": "{min} is the minimum goal",
-                                            "infoGoalMax": "{max} is the maximum goal",
-                                            "infoGoal": "Your goal is the number of shirts you’re aiming to sell, but we’ll print your campaign as long as you sell enough to generate a profit.",
-                                            "infoGoalHelp": "In an effort to help as many people as possible get their designs printed, Teespring will print a campaign as long as: \n(1) More than five items have been sold, and \n(2) Those items can be produced profitably for the owner of the campaign. \nThis may result in slimmer profit margins on campaigns that do not reach their goals, but more profit than if they weren't printed at all.",
-                                            "labelProfit": "Estimated profit",
-                                            "labelPrice": "Set selling price",
-                                            "labelPriceHelp": "To keep your profit margin consistent, we may charge more for sizes (2XL and larger) that cost more to produce.",
-                                            "infoPrice": "Set the selling price of your shirt to determine your profit and add additional products to sell your design on!",
-                                            "alertResized": "The design has been resized to fit on the chosen products.",
-                                            "alertMoved": "The design has been moved to fit on the chosen products.",
-                                            "noticeCanAdd": "You can add {variationCount} additional products.",
-                                            "noticeLimitReached": "Sorry, you have reached the maximum number of allowed product additions. Please remove a current selection to add another product to your campaign.",
-                                            "linkOtherProduct": "Add a product that isn't listed",
-                                            "labelOtherProduct": "Add a product that isn't listed:",
-                                            "buttonNext": "Next",
-                                            "buttonAdd": "Add",
-                                            "vatLabel": "Selling price and profit margin include VAT.",
-                                            "primaryCurrency": "Primary Currency:",
-                                            "tooltipCurrency": "This allows you to optimize your selling price to a specific currency. We recommend choosing the currency you expect the majority of your buyers to purchase in."
-                                        },
-                                        "product": {
-                                            "hoverChange": "Change color",
-                                            "labelMin": "minimum",
-                                            "labelProfitPerSale": "profit/sale"
-                                        },
-                                        "productSuggestion": {
-                                            "checkAddProduct": "Add {name}"
-                                        },
-                                        "sizebox": {
-                                            "labelWidth": "Width",
-                                            "labelUnits": "in.",
-                                            "labelHeight": "Height"
-                                        },
-                                        "artExternalMain": {
-                                            "searchPlaceholder": "Search Artwork",
-                                            "buttonSearch": "Search",
-                                            "titleErrorEmpty": "Sorry!",
-                                            "infoErrorEmpty": "No results were found for your query. Please try again! We recommend keeping it simple like \"dog\" or \"cat\"."
-                                        },
-                                        "printArea": {
-                                            "titlePrintableArea": "Printable Area",
-                                            "buttonZoom": "zoom",
-                                            "buttonZoomOut": "zoom out"
-                                        },
-                                        "designerView": {
-                                            "Front": "Front",
-                                            "Back": "Back"
-                                        },
-                                        "designerDetailsView": {
-                                            "infoLength": "US orders will arrive 10-14 days after the end of the campaign.",
-                                            "infoLengthDelayed": "IMPORTANT: Due to the holiday season, orders from campaigns ending between Dec 17th and Jan 1st will take 2-3 weeks to be printed & delivered after the end of the campaign.",
-                                            "errorTerms": "Please agree to the terms of service before proceeding.",
-                                            "errorURL": "A URL is required.",
-                                            "errorURLPattern": "Letters, numbers, dashes and underscores only!",
-                                            "errorURLDuplicate": "Already in use, please try a different URL.",
-                                            "errorLength": "Enter between 4 and 30 characters.",
-                                            "urlValid": "URL looks perfect!",
-                                            "errorTitleRequired": "A title is required.",
-                                            "errorDescriptionRequired": "A description is required.",
-                                            "errorDescriptionLength": "Please enter no more than 1500 characters."
-                                        },
-                                        "productOptionShrinkDetail": {
-                                            "labelResizing": "Requires resizing:",
-                                            "labelResizingEqualAmounts": "Front and back {scalePercentage}% smaller",
-                                            "labelResizingDifferentAmounts": "Front {scalePercentageFront}% smaller, Back {scalePercentageBack}% smaller",
-                                            "labelResizingFrontOnly": "Front {scalePercentage}% smaller",
-                                            "labelResizingBackOnly": "Back {scalePercentage}% smaller"
-                                        },
-                                        "artwork": {
-                                            "recentlyUsed": "Recently Used Artwork"
-                                        }
-                                    }
-                                }
-                          ,
-                                SMARTYSTREETSKEY: "3417827631878337637",
-                                STRIPE_TOKEN: "pk_live_d1Nv5vuqeKHEl1oZBYEx0nS6",
-                                SEGMENT_IO_KEY: "mqphpt46p8",
-                                ALGOLIA_ID: "XNF09CCDO4",
-                                PUBLICLY_SEARCHABLE_ALGOLIA_READ_KEY: "5cf4b4f788d542e9e1661cb977480f0dcb5acfdae52786e3bf9593ba8da3ddd4",
-                                ALLOW_GOOGLE_ANALYTICS: "",
-                                HONEYBADGER_API_KEY: "3a315f1a"
-                            }
-                        </script>
-                        <footer class="site__footer js-footer"><div class="site__wrapper"><div class="site__footer_content"><aside class="site__social"><div class="site__switcher_container"><div class="site__locale_switcher"><div class="site__locale_switcher__overlay"><img class="site__locale_switcher__overlay__flag" data-locale="en"><span class="site__locale_switcher__overlay__country">English (USA)</span> </div><select class="site__locale_switcher__select js-locale-switcher"><option value="de">Deutsch</option><option selected="" value="">English (USA)</option><option value="en-GB">English (UK)</option><option value="es">Español</option><option value="fr">Français</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="pt-BR">Português do Brasil</option></select></div></div><ul class="site__social_links"><li class="site__social_link"><a class="facebook-share" href="https://facebook.com/teespring"><i class="ss-icon ss-social">Facebook</i><div class="social_link__name">Like on Facebook</div></a></li><li class="site__social_link"><a class="twitter-follow" href="https://twitter.com/teespring"><i class="ss-icon ss-social">Twitter</i><div class="social_link__name">Follow on Twitter</div></a></li><li class="site__social_link"><a class="pinterest-pin-do" href="http://www.pinterest.com/teespring/"><i class="ss-icon ss-social">Pinterest</i><div class="social_link__name">Follow Teespring on Pinterest</div></a></li></ul></aside><nav class="footer__nav"><ul class="nav__items"><li class="nav__item"><a class="nav__link" href="/about" title="About Teespring">About</a></li><li class="nav__item"><a class="nav__link" href="/blog" title="Teespring Blog">Blog</a></li><li class="nav__item"><a class="nav__link" href="/jobs" title="Work at Teespring">Jobs</a></li><li class="nav__item"><a class="nav__link" href="/about/terms" title="Teespring Terms &amp; Conditions">Terms</a></li><li class="nav__item"><a class="nav__link" href="/about/privacy" title="Privacy Policy">Privacy</a></li><li class="nav__item"><a class="nav__link" href="/track" title="Track your order">Track Order</a></li><li class="nav__item"><a class="nav__link" href="http://university.teespring.com" title="Go to Teespring University">University</a></li><li class="nav__item"><a class="nav__link" href="/contact" target="_blank" title="Go to Teespring Help Desk">Help</a></li></ul><div class="site__legal_text">© 2015 Teespring, Inc.</div></nav></div></div></footer>
-                        <script type="text/javascript">
-                            var _kiq = _kiq || [];
-                            (function () {
-                                setTimeout(function () {
-                                    var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript';
-                                    s.async = true; s.src = 'https://s3.amazonaws.com/ki.js/51326/aTX.js'; f.parentNode.insertBefore(s, f);
-                                }, 1);
-                            })();
-                        </script>
-                        <script type="text/javascript">var gaEvents = [];</script>
-                        <script type="text/javascript">
-                            (function (i, s, o, g, r, a, m) {
-                                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                                    (i[r].q = i[r].q || []).push(arguments)
-                                }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-                            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-                            var analyticsInfo, userId, gaInfo = {};
-                            var gaPageOverride = null;
-                            var customGATrackerPresent = false;
-                            var customGATrackerSnippet = null;
-                            var testGroups = [];
-
-                            if (window.TS && window.TS.Cookies && (analyticsInfo = TS.Cookies.readJSON('user_analytics')) && (userId = analyticsInfo.user_id)) {
-                                ga('create', "UA-25627881-1", 'auto', { 'userId': userId });
-                            } else {
-                                ga('create', 'UA-25627881-1', 'auto');
-                            }
-
-                            ga('require', 'displayfeatures');
-
-                            if (customGATrackerPresent) {
-                                ga('create', customGATrackerSnippet, 'auto', { 'name': 'customTracker' });
-                                ga('customTracker.require', 'displayfeatures');
-                            }
-
-                            for (var i = 0; i < testGroups.length; i++) {
-                                ga('set', 'dimension3', testGroups[i]);
-                            }
-
-                            for (var i = 0; i < gaEvents.length; i++) {
-                                ga('send', 'event', gaEvents[i].category, gaEvents[i].action, gaEvents[i].label);
-                            }
-
-                            if (gaPageOverride) {
-                                gaInfo.page = gaPageOverride;
-                            }
-
-                            ga('send', 'pageview', gaInfo);
-
-                            if (customGATrackerPresent) {
-                                ga('customTracker.send', 'pageview', gaInfo);
-                            }</script>
-                        <script type="text/javascript">
-                            TS.Analytics.ready(function () {
-                                TS.Analytics.initialize();
-                            });</script>
-                        <script src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/segment-io-fb45e9c90c24b4ed6a964902bd690aee.js"></script>
-                        <script src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/app/analytics/designer_analytics-cba128aea22dbbd5209e9ec16d6e6c1e.js"></script><div id="window-resizer-tooltip" style="display: none;"><a href="#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1920</span> x <span class="tooltipHeight" id="winHeight">1040</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1920</span> x <span class="tooltipHeight" id="vpHeight">643</span></div>*@
-                </body>
-                <button class="Left">
-                    LAUNCH
-                </button>
-                </a>
+                   </body>
+                
             </div>
         </div>
 
