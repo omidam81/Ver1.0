@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Teeyoot.Module.Models
+namespace Teeyoot.Search.Models
 {
     public class CampaignCategoriesPart : ContentPart<CampaignCategoriesPartRecord>
     {

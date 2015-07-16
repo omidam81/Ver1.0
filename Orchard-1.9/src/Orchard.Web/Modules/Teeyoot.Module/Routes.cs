@@ -19,35 +19,7 @@ namespace Teeyoot.Module
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
             return new[] {
-                new RouteDescriptor {
-                    Route = new Route(
-                        "Admin/MailChimpSettings",
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "AdminMessage"},
-                            {"action", "Index"}                           
-                        },
-                        new RouteValueDictionary(),
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
-                        },
-                        new MvcRouteHandler())
-                },
-                new RouteDescriptor {
-                    Route = new Route(
-                        "Admin/MailChimpSettings/Add",
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "AdminMessage"},
-                            {"action", "AddSetting"}                           
-                        },
-                        new RouteValueDictionary(),
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
-                        },
-                        new MvcRouteHandler())
-                }
-                ,
+                
                 new RouteDescriptor {
                     Route = new Route(
                         "GetStarted",
@@ -63,38 +35,10 @@ namespace Teeyoot.Module
                         new MvcRouteHandler())
                 }
                 ,
-                new RouteDescriptor {
-                    Route = new Route(
-                        "Teeyoot/Search",
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "Search"},
-                            {"action", "Index"}                           
-                        },
-                        new RouteValueDictionary(),
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
-                        },
-                        new MvcRouteHandler())
-                }
-                ,
-                new RouteDescriptor {
-                    Route = new Route(
-                        "Teeyoot/CategoriesSearch",
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "Search"},
-                            {"action", "CategoriesSearch"}                           
-                        },
-                        new RouteValueDictionary(),
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
-                        },
-                        new MvcRouteHandler())
-                }
+                
 
 
-                ,
+                
                 new RouteDescriptor {
                     Priority = -11,
                     Route = new Route(

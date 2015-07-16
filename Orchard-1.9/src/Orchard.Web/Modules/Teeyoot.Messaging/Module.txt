@@ -9,3 +9,4 @@ Features:
     Teeyoot.Messaging:
 		Name: Teeyoot Messaging
         Description: Description for feature Teeyoot.Messaging.
+		Dependencies: Teeyoot.FAQ

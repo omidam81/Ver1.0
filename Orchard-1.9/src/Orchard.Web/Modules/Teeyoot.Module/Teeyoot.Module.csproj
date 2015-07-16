@@ -599,7 +599,6 @@
     <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
-    <Content Include="Styles\Search.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -608,11 +607,9 @@
     <Content Include="Module.txt" />
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Wizard\Index.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Campaign\Index.cshtml" />
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
-    <Content Include="Views\Search\CategoriesSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -628,11 +625,8 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
-    <Compile Include="Models\CampaignCategoriesPart.cs" />
-    <Compile Include="Models\CampaignCategoriesPartRecord.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
@@ -652,8 +646,6 @@
     <Compile Include="Models\TeeyootUserPart.cs" />
     <Compile Include="Models\TeeyootUserPartRecord.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="Services\CampaignCategoriesService.cs" />
-    <Compile Include="Services\ICampaignCategoriesService.cs" />
     <Compile Include="Services\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
   </ItemGroup>

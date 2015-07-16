@@ -209,18 +209,6 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_Order", "LinkOrderCampaignProductRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_CampaignProduct", "LinkOrderCampaignProductRecord", new[] { "CampaignProductRecord_Id" }, "CampaignProductRecord", new[] { "Id" });
 
-            SchemaBuilder.CreateTable(typeof(CampaignCategoriesPartRecord).Name,
-                table => table
-                .ContentPartRecord()
-                .Column<string>("Name", c => c.WithLength(50))
-            );
-
-            ContentDefinitionManager.AlterPartDefinition(typeof(CampaignCategoriesPart).Name, part => part.Attachable(false));
-            ContentDefinitionManager.AlterTypeDefinition("CampaignCategories", type => type
-                .WithPart(typeof(CampaignCategoriesPart).Name)
-                .WithPart("CommonPart")
-            );
-
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("Tags", c => c.Unlimited()));
 
             return 6;
@@ -268,18 +256,6 @@ namespace Teeyoot.Module
 
         public int UpdateFrom5()
         {
-            SchemaBuilder.CreateTable(typeof(CampaignCategoriesPartRecord).Name,
-                table => table
-                .ContentPartRecord()
-                .Column<string>("Name", c => c.WithLength(50))
-            );
-            
-            ContentDefinitionManager.AlterPartDefinition(typeof(CampaignCategoriesPart).Name, part => part.Attachable(false));
-            ContentDefinitionManager.AlterTypeDefinition("CampaignCategories", type => type
-                .WithPart(typeof(CampaignCategoriesPart).Name)
-                .WithPart("CommonPart")
-            );
-
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("Tags", c => c.Unlimited()));
 
             return 6;

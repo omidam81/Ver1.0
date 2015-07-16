@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.Search.Services;
+using Teeyoot.Search.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Models;
 
-namespace Teebay.Module.Controllers
+namespace Teebay.Search.Controllers
 {
     [Themed]
     public class SearchController : Controller
