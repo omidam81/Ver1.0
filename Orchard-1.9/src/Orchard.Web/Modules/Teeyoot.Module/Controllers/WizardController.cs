@@ -17,10 +17,11 @@ namespace Teeyoot.Module.Controllers
             return View();
         }
 
-        [HttpGet]
-        public JsonResult Data(string countTees,string profit,string itemOptions,string product,string campaignTitle,string description,string campaignLength,string url)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult LaunchCampaign(string ProductCountGoal, string profit, string itemOptions, string product, string campaignTitle, string description, string campaignLength, string url)
         {
-            return Json(countTees);
+            return Json(ProductCountGoal);
         }
     }
 }

@@ -62,15 +62,15 @@
         var itemOptions = document.getElementById('item-options-dropdown').value;
         var product = document.getElementById('product').value;
         var campaignTitle = document.getElementById('name').value;
-        var description = "asdasd";
+        var description = document.getElementById('campaign_description').innerHTML;
         var campaignLength = document.getElementById('length').value;
         var url = document.getElementById('url').value;
         $.ajax({
             async: false,
             cache: false,
-            type: "GET",
-            url: "@(Url.Action("Data", "Wizard"))",
-            data: { "countTees": countTees, "profit": profit, "itemOptions": itemOptions, "product": product, "campaignTitle": campaignTitle, "description": description, "campaignLength": campaignLength, "url": url },
+            type: "POST",
+            url: "@(Url.Action("LaunchCampaign", "Wizard"))",
+            data: addAntiForgeryToken({ "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product, "campaignTitle": campaignTitle, "description": description, "campaignLength": campaignLength, "url": url }),
             success: function (data) {
                 //var title;
                 //for (var i = 0; i < data.length ; i++) {
@@ -89,6 +89,10 @@
 
     }
 
+    function addAntiForgeryToken(data) {
+        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+        return data;
+    };
 
     var isFront = true
     $(function ($) {
@@ -875,7 +879,9 @@
                                                 </div>
                                                 <div class="span7 aside">
                                                     <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
-                                                        <form method="post" id="campaign_details" name="campaign_form" data-reactid=".6.0">
+
+                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { id="campaign_details", name="campaign_form", data_reactid=".6.0" }))
+                                                        {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                 <label class="has-under-text" data-reactid=".6.0.0.0">Campaign title</label>
                                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
@@ -931,7 +937,7 @@
                                                                             </a>
                                                                         </li>
                                                                     </ul>
-                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="description" data-reactid=".6.0.1.1.1"></div>
+                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="campaign_description" data-reactid=".6.0.1.1.1"></div>
                                                                 </div>
                                                             </div>
                                                             <div data-reactid=".6.0.2">
@@ -987,7 +993,7 @@
                                                             </div>
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                <button id="launch-campaign" type="submit" class="button button--transaction" onclick="sendData()"   data-reactid=".6.0.7.1">Launch</button>
+                                                                <button id="launch-campaign" type="submit" onclick="sendData(); return false;" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span data-reactid=".6.0.7.3.0">
                                                                         <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teespring's </span>
@@ -995,7 +1001,8 @@
                                                                     </span>
                                                                 </p>
                                                             </div>
-                                                        </form>
+                                                        }
+                                  
                                                     </div>
                                                 </div>
 
