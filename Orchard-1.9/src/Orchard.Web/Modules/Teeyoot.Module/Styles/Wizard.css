@@ -104,7 +104,7 @@ ul, ol {
 
 
 #content {
-    min-height: 580px !important;
+    min-height: 1200px !important;
 }
 
 .flow-steps .flow-step .number {
@@ -266,7 +266,7 @@ span.number {
 }
 
 .SlideContainer {
-    height: 100% !important;
+    /*height: 100% !important;*/
     position: absolute;
     left: 0;
     width: 100%;
@@ -289,13 +289,9 @@ span.number {
 
 @media all and (max-width: 1820px) {
     #Content2 {
-     margin-left:0 !important;
-     min-width:110%;
+        margin-left: 0 !important;
+        min-width: 110%;
     }
-
-
-
-
 }
 
 .Slides .Content {
@@ -347,10 +343,11 @@ span.number {
     }
 
 
-    .ssp_block .ssp_thumbnai# {vertical-align: middle;
-}
+    .ssp_block .ssp_thumbnai# {
+        vertical-align: middle;
+    }
 
-    .swatch2 {
+.swatch2 {
     width: 24px;
     height: 24px;
     border: 2px solid #fff;
@@ -379,20 +376,23 @@ input[type=range], ::-moz-range-track, ::-ms-track {
 
 .Left {
     background: #ff4f00;
-    border-width: 0;
+    background-color: #ff4f00;
     font-size: 16px;
     font-weight: normal;
     border-radius: 5px;
-    padding: 6px 18px;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    letter-spacing: .025em;
     height: 44px;
-    width: 168px;
-    text-decoration: none;
-    border: 0;
+    width: 200px;
+    border-width: 0;
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7ac445), color-stop(100%, #5eba1c));
+    background-image: -webkit-linear-gradient(#7ac445, #5eba1c);
+    background-image: linear-gradient(#7ac445,#5eba1c);*/
+    border: none;
+    color: white;
+}
+
+.Left:hover {
+    background: #dbdbdb;
+    background-color: #dbdbdb;
 }
 
 input[type=range] {
@@ -562,28 +562,39 @@ input[type=range] {
     }
 
 #designer .button--transaction {
-    background: #8bbf4f;
-    background-color: #7ac445;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7ac445), color-stop(100%, #5eba1c));
+    background: #ff4f00;
+    background-color: #ff4f00;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    height: 44px;
+
+    border-width: 0;
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7ac445), color-stop(100%, #5eba1c));
     background-image: -webkit-linear-gradient(#7ac445, #5eba1c);
-    background-image: linear-gradient(#7ac445,#5eba1c);
-    border: 1px solid #50ab0f;
+    background-image: linear-gradient(#7ac445,#5eba1c);*/
+    border: none;
     color: white;
 }
 
     #designer .button--transaction:hover, #designer .button--transaction.hover {
-        background: #7eb341;
-        background-color: #66b52d;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #66b52d), color-stop(100%, #4cab09));
+        background: #dbdbdb;
+        background-color: #dbdbdb;
+        font-size: 16px;
+        border-radius: 5px;
+        font-weight: normal;
+        height: 44px;
+        border-width: 0;
+        /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #66b52d), color-stop(100%, #4cab09));
         background-image: -webkit-linear-gradient(#66b52d, #4cab09);
-        background-image: linear-gradient(#66b52d,#4cab09);
-        border: 1px solid #419c00;
+        background-image: linear-gradient(#66b52d,#4cab09);*/
+        border: none;
     }
 
-    #designer .button--transaction:active, #designer .button--transaction.active {
+/*#designer .button--transaction:active, #designer .button--transaction.active {
         background: #648e34;
         background-color: #5eba1c;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5eba1c), color-stop(100%, #7ac445));
         background-image: -webkit-linear-gradient(#5eba1c, #7ac445);
         background-image: linear-gradient(#5eba1c,#7ac445);
-    }
+    }*/

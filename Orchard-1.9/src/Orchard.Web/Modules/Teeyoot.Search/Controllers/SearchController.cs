@@ -18,25 +18,26 @@ namespace Teebay.Search.Controllers
     {
         private readonly ICampaignService _campService;
         private readonly ICampaignCategoriesService _campCategService;
+        private readonly ICampaignProductService _campProductService;
 
         private List<CampaignRecord> campListAfterSearch;
+        private List<CampaignProductRecord> campProductList;
 
-        public SearchController(ICampaignService campService, ICampaignCategoriesService campCategService)
+        public SearchController(ICampaignService campService, ICampaignCategoriesService campCategService, ICampaignProductService campProductService)
         {
             _campService = campService;
             _campCategService = campCategService;
+            _campProductService = campProductService;
         }
 
         [HttpGet]
-        public ActionResult Search(string filter, int skip = 0, int take =  16)
+        public ActionResult Search(string filter, int skip = 0, int take = 16)
         {
             filter = filter.Trim();
 
-            //List<CampaignRecord> campListAfterSearch;
-
             if (!string.IsNullOrEmpty(filter))
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take, false).ToList();
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).ToList();
             }
             else
             {
@@ -45,7 +46,9 @@ namespace Teebay.Search.Controllers
 
             bool notResult = CheckResult();
 
-            return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch });
+            float[] price = PriceForCampaign(notResult);
+
+            return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
         }
 
         public ActionResult CategoriesSearch(string categoriesName)
@@ -67,7 +70,26 @@ namespace Teebay.Search.Controllers
 
             bool notResult = CheckResult();
 
-            return View(new SearchViewModel {NotResult = notResult, Filter = categoriesName, CampList = campListAfterSearch, NewRow = 0, NotFoundCategories = notFoundCateg, CampCategList = campCategList });
+            float[] price = PriceForCampaign(notResult);
+
+            return View(new SearchViewModel { NotResult = notResult, Filter = categoriesName, CampList = campListAfterSearch, NewRow = 0, NotFoundCategories = notFoundCateg, CampCategList = campCategList, Price = price});
+        }
+
+        private float[] PriceForCampaign(bool notRes)
+        {
+            campProductList = notRes == false ? _campProductService.GetCampaignProductsByCampaign(campListAfterSearch) : null;
+            float[] price = new float[campListAfterSearch.Count];
+            float? addPrice;
+            if (campProductList != null)
+            {
+                for (int i = 0; i < campListAfterSearch.Count; i++)
+                {
+                    addPrice = (float)campProductList.Where(c => c.CampaignRecord_Id == campListAfterSearch[i].Id).Select(c => c.Price).FirstOrDefault();
+                    price[i] = addPrice != null ? (float)addPrice : 0;
+                }
+            }
+
+            return price;
         }
 
         private bool CheckResult()
