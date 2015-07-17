@@ -5,27 +5,57 @@
 @using Teeyoot.Module.Models;
 @using Teeyoot.Search.Models;
 
-@if (Model.NotFoundCategories)
-{
-    <div class="tb- return-result">
-        <h1>Сategory "@Model.Filter" does not exist!</h1>
-    </div>
-}
-else
-{
-
-    if (Model.NotResult)
+<div class="tb- return-result">
+    @if (Model.NotFoundCategories)
     {
-        <div class="tb-return-result">
-            <h1>No search results for the word "@Model.Filter"!</h1>
+
+        <h1>Сategory "@Model.Filter" does not exist!</h1>
+
+        <div class="row categories-row">
+            <div class="title-categories">
+                <h2>Browse Other Categories:</h2>
+            </div>
+            <div class="categories">
+                <ul class="menu menu-tags">
+                    @foreach (CampaignCategoriesPartRecord categ in Model.CampCategList)
+                    {
+                        <li>
+                            <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
     }
     else
     {
 
-        <div class="tb-return-result">
-            @foreach (CampaignRecord camp in Model.CampList)
-            {   
+        <div class="row categories-row">
+            <div class="title-categories">
+                <h2>Browse Other Categories:</h2>
+            </div>
+            <div class="categories">
+                <ul class="menu menu-tags">
+                    @foreach (CampaignCategoriesPartRecord categ in Model.CampCategList)
+                    {
+                        <li>
+                            <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        if (Model.NotResult)
+        {
+            <h1>No search results for the category "@Model.Filter"!</h1>
+        }
+        else
+        {
+
+            int countPrice = 0;
+            foreach (CampaignRecord camp in Model.CampList)
+            {
                 string sold = camp.ProductCountSold.ToString() + "/" + camp.ProductCountGoal.ToString() + " sold";
 
                 DateTime now = DateTime.Now;
@@ -59,13 +89,23 @@ else
                     }
                 }
                 width = (int)widthResult + "% !important";
+
+                int maxSize = 8;
+                if (Model.CampList.Count < 8)
+                {
+                    maxSize = Model.CampList.Count;
+                }
                 Model.NewRow++;
-                
+                //float? price = (float)Model.CampProductList.Where(c => c.CampaignRecord_Id == camp.Id).Select(c => c.Price).First();
+                //price = (float)Model.CampProductList.Where(c => c.CampaignRecord_Id == camp.Id).Select(c => c.Price).FirstOrDefault();
+                //price = prod != null ? (float)prod.Price : 0;
+
 
                 <div class=" span-1 cell tee-preview">
                     <div>
                         <div class="featurde-compaigns">
                             <div class="preview-img">
+                                <div class="product-price">$ @Model.Price[countPrice]</div>
                                 <p><a href="#"><img src="/Media/Default/images/f5.jpg"></a></p>
                             </div>
                             <div class="progress-bar-search">
@@ -84,7 +124,8 @@ else
                     </div>
                 </div>
 
-                if (Model.NewRow == 8)
+                countPrice++;
+                if (Model.NewRow == maxSize)
                 {
                     <div class="row categories-row">
                         <div class="title-categories">
@@ -98,12 +139,13 @@ else
                                         <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
                                     </li>
                                 }
-                            </ul>   
+                            </ul>
                         </div>
                     </div>
                 }
 
             }
-        </div>
+
+        }
     }
-}
+</div>

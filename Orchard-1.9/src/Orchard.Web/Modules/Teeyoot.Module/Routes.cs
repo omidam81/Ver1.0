@@ -19,6 +19,20 @@ namespace Teeyoot.Module
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
             return new[] {
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Buy",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Home"},
+                            {"action", "Payment"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
                 
                 new RouteDescriptor {
                     Route = new Route(

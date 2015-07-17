@@ -5,7 +5,7 @@
     var slides = $('.Slides > div');
     $('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
-    document.getElementById('content').style.marginBottom = "60%";
+    //document.getElementById('content').style.marginBottom = "60%";
     slides.css({ width: w + 'px' });
 
     var pos = 0;
@@ -90,14 +90,29 @@ function slide() {
     slides.css({ width: w + 'px' });
     var pos = 0;
 
+
+
     $('.Left').click(function () {
-        pos--;
+       // pos--;
+        document.getElementById('goal').className = "flow-step";
+        document.getElementById('design').className = "flow-step";
+        document.getElementById('description').className = "flow-step active";
+        pos = -2;
+        $('.Slides').stop().animate({ left: (pos * w) + 'px' });
+   
+    });
+
+    $('#nextPage').click(function () {
+
+        document.getElementById('goal').className = "flow-step active";
+        document.getElementById('design').className = "flow-step";
+        document.getElementById('description').className = "flow-step";
+
+        pos = -1;
         $('.Slides').stop().animate({ left: (pos * w) + 'px' });
     });
-    $('.Right').click(function () {
-        pos++;
-        $('.Slides').stop().animate({ left: (pos * w) + 'px' });
-    });
+
+
     $('#design').click(function () {
         document.getElementById('goal').className = "flow-step";
         document.getElementById('design').className = "flow-step active";
