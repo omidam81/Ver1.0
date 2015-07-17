@@ -9,13 +9,18 @@
     width:100%;
     height: 100%;
 }
-.tb-layout-main {
+.dashboard-layout .tb-layout-main {
     display:table;
+    height: 100%;
 }
 .dashboard-layout .tb-aside-first {
-    width:200px;
+    width:auto;
     position:relative;
     display:table-cell;
+    border-right: 1px solid #e8eced;
+    float:none;
+    padding:0 40px 0 20px;
+    background-color: #fff;
 }
 .dashboard-layout .tb-layout-content {
     display:table-cell;
@@ -59,5 +64,5 @@
     background-color: #ffffff;
     margin-bottom: 30px;
     border-radius: 3px;
-    border: solid 1px #E8ECED;
+    border: solid 1px #e8eced;
 }
