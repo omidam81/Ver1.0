@@ -125,6 +125,7 @@
     <Compile Include="Models\FaqEntryPartRecord.cs" />
     <Compile Include="Models\FaqSectionRecord.cs" />
     <Compile Include="Models\LanguageRecord.cs" />
+    <Compile Include="Routes.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\ITeeyootFaqService.cs" />
     <Compile Include="Services\LanguageService.cs" />

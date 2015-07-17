@@ -33,21 +33,39 @@ table {
 }
 
 .flip-button-back {
-    border-radius: 0 5px 5px 0;
-    margin-left: -9px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .flip-button-back-two {
-    border-radius: 0 5px 5px 0;
-    margin-left: -9px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+
+.flip-button-back-three {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .flip-button-front {
-    border-radius: 5px 0 0 5px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 .flip-button-front-two {
-    border-radius: 5px 0 0 5px;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+
+.flip-button-front-three {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
 }
 
 ul, ol {
@@ -90,29 +108,29 @@ ul, ol {
 }
 
 .flow-steps .flow-step .number {
-    background: #ff4f00;
+    background: #dbdbdb;
 }
 
 .flow-steps .flow-step .dot {
-    background: #56b8ea;
+    background: #dbdbdb;
     float: left;
     margin: 0 0 0 16px;
 }
 
 .flow-steps .flow-step strong {
-    color: #ff4f00;
+    color: #dbdbdb;
 }
 
 .flow-steps .flow-step.active .number {
-    background: #56b8ea;
+    background: #ff4f00;
 }
 
 .flow-steps .flow-step.active strong {
-    color: #56b8ea;
+    color: #ff4f00;
 }
 
 .flow-steps .flow-step.active .flow-step-before .dot {
-    background: #56b8ea;
+    background: #dbdbdb;
 }
 
 .flow-steps .flow-step.active .flow-step-after .dot {
@@ -132,7 +150,7 @@ ul, ol {
 }
 
 .Content > table {
-    width: 70%;
+    width: 77%;
 }
 
 .sell {
@@ -270,25 +288,13 @@ span.number {
     }
 
 @media all and (max-width: 1820px) {
-    .Slides .Content {
-        margin-left: 0;
+    #Content2 {
+     margin-left:0 !important;
+     min-width:110%;
     }
 
-    #prodFront {
-        width: 400px;
-    }
 
-    #prodBack {
-        width: 400px;
-    }
 
-    /*#butt1 {
-        margin-top:-40px !important;
-    }
-
-         #butt2 {
-        margin-top:-40px !important;
-    }*/
 
 }
 
@@ -297,7 +303,7 @@ span.number {
     margin-top: 10px;
 }
 
-    /*.Slides .Content a {
+/*.Slides .Content a {
         font-size: 30px;
     }*/
 
@@ -341,7 +347,20 @@ span.number {
     }
 
 
-    .ssp_block .ssp_thumbnai# vertical-align: middle;
+    .ssp_block .ssp_thumbnai# {vertical-align: middle;
+}
+
+    .swatch2 {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 0px 1px #d8dddf;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    -webkit-transition: background-color 400ms;
+    transition: background-color 400ms;
 }
 
 input[type=range], ::-moz-range-track, ::-ms-track {
@@ -509,6 +528,7 @@ input[type=range] {
         margin-right: 0;
     }
 }
+
 .design__area a {
     text-decoration: none;
 }
@@ -523,7 +543,7 @@ input[type=range] {
     color: white;
 }
 
-#designer .button--primary:hover, #designer .button--primary.hover, #designer .button--primary:focus {
+    #designer .button--primary:hover, #designer .button--primary.hover, #designer .button--primary:focus {
         background: #7eb341;
         background-color: #169adb;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #169adb), color-stop(100%, #1592d1));
@@ -533,7 +553,7 @@ input[type=range] {
         color: white;
     }
 
-#designer .design__area .button--primary:active, #designer .button--primary.active {
+    #designer .design__area .button--primary:active, #designer .button--primary.active {
         background: #7eb341;
         background-color: #1592d1;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1592d1), color-stop(100%, #169adb));
@@ -551,7 +571,7 @@ input[type=range] {
     color: white;
 }
 
-#designer     .button--transaction:hover, #designer .button--transaction.hover {
+    #designer .button--transaction:hover, #designer .button--transaction.hover {
         background: #7eb341;
         background-color: #66b52d;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #66b52d), color-stop(100%, #4cab09));
@@ -560,7 +580,7 @@ input[type=range] {
         border: 1px solid #419c00;
     }
 
-#designer .button--transaction:active, #designer .button--transaction.active {
+    #designer .button--transaction:active, #designer .button--transaction.active {
         background: #648e34;
         background-color: #5eba1c;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5eba1c), color-stop(100%, #7ac445));

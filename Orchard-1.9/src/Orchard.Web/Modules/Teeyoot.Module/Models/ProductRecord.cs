@@ -11,7 +11,6 @@ namespace Teeyoot.Module.Models
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
 
-        public virtual string ProductGroupRecord_Id { get; set; }
         public virtual ProductHeadlineRecord ProductHeadlineRecord { get; private set; }
 
         public virtual ProductImageRecord ProductImageRecord { get; set; }

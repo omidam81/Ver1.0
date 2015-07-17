@@ -78,6 +78,7 @@
     <Content Include="Scripts\teebay.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\teebay.css" />
+    <Content Include="Styles\teeyoot.dashboard.css" />
     <Content Include="Views\Layout.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -133,7 +134,10 @@
     <Compile Include="Filters\LayoutFilter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Layout-Teeyoot_Module-Dashboard.cshtml" />
+    <Content Include="Views\Layout-Teeyoot_Dashboard-Dashboard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts.MenuWidget-31.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,471 @@
+﻿.block {
+    background: #f5f7f7;
+    border: 1px solid #ebeef0;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    margin-top: 2.3rem;
+    width: 100%;
+    width: 100%;
+    height: 100%;
+    float: right;
+}
+
+.tabl .row {
+    background: white;
+    padding-top: 15px;
+    padding-left: 10px;
+    margin: 0px 0px 0px 0px !important;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+
+.divRow .row {
+    width: 16%;
+    height: 100%;
+}
+
+.mesTitle {
+    height: 60px;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: 14%;
+    font-size: 19px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.t-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6% 18%;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+    margin: 0px 0px 0px 0px !important;
+}
+
+.button .t-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6% 18%;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+}
+
+.t-button:hover {
+    background: #fc7c42 !important;
+    background-color: #fc7c42 !important;
+}
+
+.t-button:active {
+    background: #ff4f00 !important;
+    background-color: #ff4f00 !important;
+}
+
+.tabl .row .a {
+    text-decoration: none;
+    color: #ff4f00;
+}
+
+.button {
+    background: #ff4f00 !important;
+    background-color: #fc7c42 !important;
+}
+
+    .button:hover {
+        background: #ff4f00 !important;
+        background-color: #fc7c42 !important;
+    }
+
+.email_inp {
+    font-size: 14px;
+    width: 87%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border: solid;
+    padding: 0px 0px 0px 4px !important;
+    border-width: 1px !important;
+}
+
+.subj_inp {
+    font-size: 14px;
+    width: 87%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 4px !important;
+}
+
+.input[type=text] .email_inp {
+    font-size: 14px;
+    width: 87%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.input[type=text] .subj_inp {
+    font-size: 14px;
+    width: 87%;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.input[type=text] .msg_inp {
+    width: 306%;
+    height: 400px;
+    padding-bottom: 30px;
+    border-radius: 6px !important;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid !important;
+    padding: 0px 0px 0px 0px !important;
+}
+
+table > tr > td {
+    padding-left: 10px !important;
+}
+
+@media all and (max-width: 500px) {
+    .divRow {
+        display: block !important;
+        width: 100% !important;
+        border: none !impor;
+    }
+
+    .row {
+        width: 100% !important;
+    }
+
+    .tdd {
+        display: flex !important;
+        height: 50% !important;
+    }
+
+    .printDiv {
+        margin-bottom: 49% !important;
+    }
+
+    .divRow .row {
+        margin: 0px 0px 20px 0px !important;
+    }
+
+    .tabl .row {
+        display: block;
+    }
+
+    .email_inp {
+        width: 98% !important;
+    }
+
+    .subj_inp {
+        width: 98% !important;
+    }
+
+    .customEmail {
+        width: 93% !important;
+    }
+
+    .aEmail {
+        white-space: normal !important;
+    }
+
+    .divEmail {
+        width: 98% !important;
+    }
+
+    .txtArea {
+        width: 97% !important;
+    }
+
+    #campUrl {
+        width: 98% !important;
+    }
+}
+
+.divRow .row {
+    margin: 0px 0px 0px 0px;
+}
+
+.msgCont {
+    width: 97% !important;
+    width: 49%;
+    height: 100%;
+    padding-right: 20px;
+}
+
+.msgText {
+    width: 96% !important;
+    height: 400px;
+    padding: 5px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+}
+
+.send-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6px 18px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+}
+
+.cancel-button {
+    background: #808080 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6px 18px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+}
+
+    .cancel-button:hover {
+        background: #fc7c42 !important;
+        background-color: #fc7c42 !important;
+    }
+
+    .cancel-button a {
+        text-decoration: none;
+    }
+
+        .cancel-button a:hover {
+            text-decoration: none;
+        }
+
+.t-button a {
+        text-decoration: none;
+    }
+
+        .t-button a:hover {
+            text-decoration: none;
+        }
+
+.validation-summary-errors {
+    background: #ed673e !important;
+    border: 1px solid #ed673e !important;
+    border-radius: 3px !important;
+    color: #fff !important;
+    width: 96% !important;
+    padding: 0px !important;
+    margin: 2% !important;
+}
+
+    .validation-summary-errors ul {
+        margin: 2px !important;
+    }
+
+        .validation-summary-errors ul li {
+            list-style-type: none !important;
+            padding-left: 1%;
+        }
+
+.input-validation-error {
+    border-color: #ed673e !important;
+}
+
+.printDiv {
+    width: 16%;
+    height: 100%;
+}
+
+.ttl {
+    color: #3b76d4;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 2%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+.status {
+    color: #FF4F00;
+    font-size: 20px;
+    text-align: center;
+}
+
+#msgBoard {
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #E8ECED;
+}
+
+.tdd .divRow {
+    width: 98%;
+    height: 50%;
+    margin: 1%;
+    display: flex;
+}
+
+.tabl {
+    width: 96%;
+    padding-left: 0 !important;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: solid;
+    border-width: 1px;
+    border-color: #E8ECED;
+}
+
+.customEmail {
+    width: 100%;
+    border: solid;
+    border-width: 1px;
+    border-color: #E8ECED;
+    padding: 10px;
+    background-color: #f5f7f7;
+    color: black;
+}
+
+.aEmail {
+    text-decoration: none !important;
+    width: 100%;
+    white-space: pre-line;
+}
+
+.txtArea {
+    width: 100%;
+    min-width: 50px;
+    height: 400px;
+    padding-bottom: 30px;
+    border-radius: 6px !important;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.div.div.a {
+    text-decoration: none;
+}
+
+    .div.div.a:hover {
+        text-decoration: none;
+    }
+
+.divButton {
+    float: right;
+    padding-right: 2%;
+    display: flex;
+}
+
+.msgContTitle {
+    width: 100%;
+    font-size: 16px;
+    color: #000000;
+}
+
+#hidden {
+    padding-top: 20px;
+    display: none;
+}
+
+.divEmail {
+    padding-bottom: 20px;
+    width: 83%;
+    padding-top: 20px;
+}
+
+.urlInp {
+    font-size: 16px;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+    width: 50%;
+    background: #f5f7f7 !important;
+}
+
+.campUrl {
+    font-size: 16px;
+    height: 28px;
+    border-radius: 6px;
+    border-color: #e8eced !important;
+    border-width: 1px !important;
+    border: solid;
+    padding: 0px 0px 0px 0px !important;
+    width: 50%;
+    border: solid;
+    border-width: 1px;
+    border-color: #FF4F00 !important;
+}
+
+.campUrlTitle {
+    padding-top: 20px;
+    font-size: 16px;
+    color: #000000;
+}
+
+#campUrl {
+    display: none;
+    width: 87%;
+}
+
+.campTitle {
+    width: 93%;
+    float: right;
+}
+
+.printPreview {
+    width: 6%;
+    height: 100%;
+}
+
+.recipients {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    color: #000000;
+}
+
+.emailAttr {
+    padding-top: 30px;
+    font-size: 16px;
+    color: #000000;
+}
