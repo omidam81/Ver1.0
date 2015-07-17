@@ -108,7 +108,7 @@ ul, ol {
 }
 
 .flow-steps .flow-step .number {
-    background: #ff4f00;
+    background: #dbdbdb;
 }
 
 .flow-steps .flow-step .dot {
@@ -118,7 +118,7 @@ ul, ol {
 }
 
 .flow-steps .flow-step strong {
-    color: #ff4f00;
+    color: #dbdbdb;
 }
 
 .flow-steps .flow-step.active .number {

@@ -34,50 +34,83 @@
     <script type="text/javascript">
 
 
-        $(".flip-buttons").click(function () {
-            var $elem = $("#view-front");
+    $(".flip-buttons").click(function () {
+        var $elem = $("#view-front");
 
-            if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
+        if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
+            setTimeout(function () {
+                $(".flip-button-front").css("background-color", "#6c7478");
+                $(".flip-button-front").css("color", "white");
+                $(".flip-button-back").css("background-color", "white");
+                $(".flip-button-back").css("color", "#6c7478");
+            }, 180);
+        } else
+            if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
                 setTimeout(function () {
-                    $(".flip-button-front").css("background-color", "#6c7478");
-                    $(".flip-button-front").css("color", "white");
-                    $(".flip-button-back").css("background-color", "white");
-                    $(".flip-button-back").css("color", "#6c7478");
+                    $(".flip-button-back").css("background-color", "#6c7478");
+                    $(".flip-button-back").css("color", "white");
+                    $(".flip-button-front").css("background-color", "white");
+                    $(".flip-button-front").css("color", "#6c7478");
                 }, 180);
-            } else
-                if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
-                    setTimeout(function () {
-                        $(".flip-button-back").css("background-color", "#6c7478");
-                        $(".flip-button-back").css("color", "white");
-                        $(".flip-button-front").css("background-color", "white");
-                        $(".flip-button-front").css("color", "#6c7478");
-                    }, 180);
 
-                }
+            }
+    });
+
+    function sendData() {
+        var countTees = document.getElementById('trackBarValue').value;
+        var profit = document.getElementById('total_profit').innerHTML;
+        var itemOptions = document.getElementById('item-options-dropdown').value;
+        var product = document.getElementById('product').value;
+        var campaignTitle = document.getElementById('name').value;
+        var description = "asdasd";
+        var campaignLength = document.getElementById('length').value;
+        var url = document.getElementById('url').value;
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "GET",
+            url: "@(Url.Action("Data", "Wizard"))",
+            data: { "countTees": countTees, "profit": profit, "itemOptions": itemOptions, "product": product, "campaignTitle": campaignTitle, "description": description, "campaignLength": campaignLength, "url": url },
+            success: function (data) {
+                //var title;
+                //for (var i = 0; i < data.length ; i++) {
+                //    title = data[i].Value;
+                //    title = title.replace("<span class='autocomplete-question'>", "");
+                //    title = title.replace("</span><br/>", ". ");
+                //    result[i] = {
+                //        value: title,
+                //        label: data[i].Value,
+                //        id: data[i].Key
+                //    };
+                //}
+                alert(" ");
+            },
         });
 
+    }
 
-        var isFront = true
-        $(function ($) {
-            $("#card").flip({
-                trigger: 'manual'
-            }).click(function () {
-                isFront = !isFront;
-                console.log(isFront);
-                $("#card").flip(!isFront);
-            });
-        });
 
-        var isFront3 = true
-        $(function ($) {
-            $("#card3").flip({
-                trigger: 'manual'
-            }).click(function () {
-                isFront3 = !isFront3;
-                console.log(isFront3);
-                $("#card3").flip(!isFront3);
-            });
+    var isFront = true
+    $(function ($) {
+        $("#card").flip({
+            trigger: 'manual'
+        }).click(function () {
+            isFront = !isFront;
+            console.log(isFront);
+            $("#card").flip(!isFront);
         });
+    });
+
+    var isFront3 = true
+    $(function ($) {
+        $("#card3").flip({
+            trigger: 'manual'
+        }).click(function () {
+            isFront3 = !isFront3;
+            console.log(isFront3);
+            $("#card3").flip(!isFront3);
+        });
+    });
 
 
     </script>
@@ -154,7 +187,7 @@
     </div>
     <div class='clearfix'></div>
 </div>
-<div class="SlideContainer">
+<div class="SlideContainer" style="margin-left:3%">
     <div class="Slides">
 
 
@@ -426,7 +459,7 @@
                                                         <div class="xgridline" style="opacity: 0;"></div>
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
-                                                        <div class="flip-buttons">
+                                                        <div class="flip-buttons" style="margin-bottom: -2%;">
                                                             <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position:absolute; margin-left:-15px; margin-top:10px;" >Front</span></div>
                                                             <div class="flip-button flip-button-back" data-element="backButton"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                                         </div>
@@ -573,7 +606,7 @@
                                         <div class="block" style="width:100%; border-radius: 11px 0px 0px 11px;">Number of shirts:</div>
                                     </td>
                                     <td>
-                                        <input style="height:94%; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
+                                        <input style="height:100%;   padding: 4px 0px 2px 1px; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
                                         @* <span >5</span>*@
                                     </td>
                                 </tr>
@@ -676,7 +709,7 @@
                                 <label>Estimated profit</label>
                             </div>
                             <div>
-                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">500 RM</span>
+                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">RM 150</span>
                             </div>
                             <div></div>
                             <button class="Left">NEXT PAGE</button>
@@ -954,7 +987,7 @@
                                                             </div>
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
+                                                                <button id="launch-campaign" type="submit" class="button button--transaction" onclick="sendData()"   data-reactid=".6.0.7.1">Launch</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span data-reactid=".6.0.7.3.0">
                                                                         <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teespring's </span>

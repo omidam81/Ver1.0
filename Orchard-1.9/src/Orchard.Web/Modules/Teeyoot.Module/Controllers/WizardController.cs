@@ -16,5 +16,11 @@ namespace Teeyoot.Module.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public JsonResult Data(string countTees,string profit,string itemOptions,string product,string campaignTitle,string description,string campaignLength,string url)
+        {
+            return Json(countTees);
+        }
     }
 }

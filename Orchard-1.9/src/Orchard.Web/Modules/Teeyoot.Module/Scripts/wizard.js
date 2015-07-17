@@ -61,8 +61,8 @@
         div.appendChild(divThumb);
         div.appendChild(divMeta);
         div.appendChild(divDelete);
-       
-        
+
+
 
         var primDiv = document.getElementById("primary");
 
@@ -124,11 +124,12 @@ function slide() {
 }
 function onChangeTrackBar() {
     document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
-    document.getElementById('total_profit').innerHTML = (document.getElementById('trackbar').value) * 10 + " RM";
+    document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 }
 
 function onChangeValueForTrackBar() {
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
 }
+
 
 
