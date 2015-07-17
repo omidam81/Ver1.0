@@ -73,7 +73,7 @@
 }
 
 .campaigns-text-search {
-    width: 22% !important;
+    width: 100% !important;
     margin-right: 1%;
     margin-left: 2%;
     padding-right: 0px !important;
@@ -112,10 +112,35 @@
         padding-left: 10px !important;
     }
 
+.categories-row {
+    width: 100%;
+    margin: 50px 0 50px 0 !important;
+    display: -webkit-box !important;
+}
+
+    .categories-row .title-categories {
+        /*margin-top: 50px;*/
+        width: 100%;
+    }
+
+    .categories-row .categories {
+        display: flex !important;
+    }
+
 @media all and (min-width: 1700px) {
     .tee-preview img,
     .tee-preview:first-child img,
     .tee-preview:last-child img {
         height: 212px !important;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .tb-return-result {
+        padding: 0;
+    }
+
+    .tee-preview {
+        width: 30% !important;
     }
 }

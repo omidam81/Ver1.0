@@ -9,6 +9,7 @@ using Teeyoot.Search.Services;
 using Teeyoot.Search.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Models;
+using Teeyoot.Search.ViewModels;
 
 namespace Teebay.Search.Controllers
 {
@@ -18,6 +19,8 @@ namespace Teebay.Search.Controllers
         private readonly ICampaignService _campService;
         private readonly ICampaignCategoriesService _campCategService;
 
+        private List<CampaignRecord> campListAfterSearch;
+
         public SearchController(ICampaignService campService, ICampaignCategoriesService campCategService)
         {
             _campService = campService;
@@ -25,38 +28,58 @@ namespace Teebay.Search.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string filter, int skip = 0, int take =  16)
+        public ActionResult Search(string filter, int skip = 0, int take =  16)
         {
             filter = filter.Trim();
 
-            List<CampaignRecord> campListAfterSearch;
+            //List<CampaignRecord> campListAfterSearch;
 
             if (!string.IsNullOrEmpty(filter))
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).ToList();
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take, false).ToList();
             }
             else
             {
                 campListAfterSearch = _campService.GetAllCampaigns().OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
             }
 
-            if (campListAfterSearch.Count == 0)
-            {
-                ViewBag.NotResult = true;
-                ViewBag.Filter = filter;
-            }
-            else
-            {
-                ViewBag.NotResult = false;
-                ViewBag.CampList = campListAfterSearch;
-            }
-            ViewBag.Count = 0;
-            return View();
+            bool notResult = CheckResult();
+
+            return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch });
         }
 
         public ActionResult CategoriesSearch(string categoriesName)
         {
-            return View();
+            categoriesName = categoriesName.Trim();
+
+            List<CampaignCategoriesPartRecord> campCategList = _campCategService.GetAllCategories().ToList();
+            CampaignCategoriesPartRecord findCampCateg = campCategList.Find(x => x.Name == categoriesName);
+            bool notFoundCateg = false;
+            if (findCampCateg != null)
+            {
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(categoriesName.ToLower(), 0, 16, true).ToList();
+                campCategList.Remove(findCampCateg);
+            }
+            else
+            {
+                notFoundCateg = true;
+            }
+
+            bool notResult = CheckResult();
+
+            return View(new SearchViewModel {NotResult = notResult, Filter = categoriesName, CampList = campListAfterSearch, NewRow = 0, NotFoundCategories = notFoundCateg, CampCategList = campCategList });
+        }
+
+        private bool CheckResult()
+        {
+            if ((campListAfterSearch != null) && (campListAfterSearch.Count == 0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

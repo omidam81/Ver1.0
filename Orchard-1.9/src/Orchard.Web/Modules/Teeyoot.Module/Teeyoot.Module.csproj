@@ -655,7 +655,6 @@
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

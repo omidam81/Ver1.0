@@ -23,11 +23,11 @@ namespace Teeyoot.Search
 
                 new RouteDescriptor {
                             Route = new Route(
-                                "Teeyoot/Search",
+                                "TSearch",
                                 new RouteValueDictionary {
                                     {"area", "Teeyoot.Search"},
                                     {"controller", "Search"},
-                                    {"action", "Index"}                           
+                                    {"action", "Search"}                           
                                 },
                                 new RouteValueDictionary(),
                                 new RouteValueDictionary {
@@ -38,7 +38,7 @@ namespace Teeyoot.Search
                         ,
                         new RouteDescriptor {
                             Route = new Route(
-                                "Teeyoot/CategoriesSearch",
+                                "CategoriesSearch",
                                 new RouteValueDictionary {
                                     {"area", "Teeyoot.Search"},
                                     {"controller", "Search"},
