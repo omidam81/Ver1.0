@@ -95,7 +95,9 @@
     <Compile Include="Models\CampaignCategoriesPartRecord.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Services\CampaignCategoriesService.cs" />
+    <Compile Include="Services\CampaignProductService.cs" />
     <Compile Include="Services\ICampaignCategoriesService.cs" />
+    <Compile Include="Services\ICampaignProductService.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

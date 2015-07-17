@@ -20,5 +20,7 @@ namespace Teeyoot.Search.ViewModels
         public bool NotFoundCategories { get; set; }
 
         public List<CampaignCategoriesPartRecord> CampCategList { get; set; }
+
+        public float[] Price { get; set; }
     }
 }

@@ -4,20 +4,21 @@
 }
 @using Teeyoot.Module.Models;
 
-@if (Model.NotResult)
-{
-    <div class="tb-return-result">
+<div class="tb-return-result">
+
+    @if (Model.NotResult)
+    {
         <h1>No search results for the word "@Model.Filter"!</h1>
-    </div>
-}
-else
-{
-   
-    <div class="tb-return-result">
-        @foreach (CampaignRecord camp in Model.CampList)
+
+    }
+    else
+    {
+
+        int countPrice = 0;
+        foreach (CampaignRecord camp in Model.CampList)
         {
             string sold = camp.ProductCountSold.ToString() + "/" + camp.ProductCountGoal.ToString() + " sold";
-            
+
             DateTime now = DateTime.Now;
             TimeSpan dif = camp.EndDate.Subtract(now);
             string dateLeft = string.Empty;
@@ -50,11 +51,12 @@ else
             }
             width = (int)widthResult + "% !important";
 
-            
+
             <div class=" span-1 cell tee-preview">
                 <div>
                     <div class="featurde-compaigns">
                         <div class="preview-img">
+                            <div class="product-price">$ @Model.Price[countPrice]</div>
                             <p><a href="#"><img src="/Media/Default/images/f5.jpg"></a></p>
                         </div>
                         <div class="progress-bar-search">
@@ -72,7 +74,8 @@ else
                     </div>
                 </div>
             </div>
-                
+            
+        countPrice++;
         }
-    </div>
-}
+    }
+</div>

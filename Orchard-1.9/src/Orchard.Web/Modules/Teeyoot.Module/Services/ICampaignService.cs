@@ -14,6 +14,6 @@ namespace Teeyoot.Module.Services
 
         CampaignRecord GetCampaignByAlias(string alias);
 
-        IQueryable<CampaignRecord> GetCampaignsForTheFilter(string filter, int skip, int take, bool tag);
+        IQueryable<CampaignRecord> GetCampaignsForTheFilter(string filter, int skip = 0, int take = 16, bool tag = false);
     }
 }

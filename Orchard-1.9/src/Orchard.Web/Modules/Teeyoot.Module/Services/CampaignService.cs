@@ -34,7 +34,7 @@ namespace Teeyoot.Module.Services
             }
             else
             {
-                return GetAllCampaigns().Where(c => c.Title.Contains(filter) || c.Description.Contains(filter) || c.Tags.Contains(filter)).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take);
+                return GetAllCampaigns().Where(c => c.Title.Contains(filter) || c.Description.Contains(filter) || c.Tags.Contains(filter)).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Skip(skip).Take(take);
             }
         }
     }
