@@ -46,7 +46,6 @@ namespace Teeyoot.Module
                 table => table
                     .Column<int>("Id", column => column.PrimaryKey().Identity())
                     .Column<string>("Name", c => c.WithLength(250))
-                    .Column<int>("ProductGroupRecord_Id")
                     .Column<int>("ProductHeadlineRecord_Id")
                     .Column<int>("ProductImageRecord_Id")
                     .Column<string>("Materials", c => c.Nullable())
@@ -155,7 +154,6 @@ namespace Teeyoot.Module
                     .Column<int>("Green")
             );
 
-            SchemaBuilder.CreateForeignKey("Product_ProductGroup", "ProductRecord", new[] { "ProductGroupRecord_Id" }, "ProductGroupRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("Product_ProductHeadline", "ProductRecord", new[] { "ProductHeadlineRecord_Id" }, "ProductHeadlineRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("Product_ProductImage", "ProductRecord", new[] { "ProductImageRecord_Id" }, "ProductImageRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("ProductSize_SizeCode", "ProductSizeRecord", new[] { "SizeCodeRecord_Id" }, "SizeCodeRecord", new[] { "Id" });
@@ -211,7 +209,14 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("Tags", c => c.Unlimited()));
 
-            return 6;
+            SchemaBuilder.CreateTable(typeof(LinkProductGroupRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("ProductGroupRecord_Id")
+                    .Column<int>("ProductRecord_Id")
+            );
+
+            return 7;
         }
 
         public int UpdateFrom2()
@@ -259,6 +264,25 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("Tags", c => c.Unlimited()));
 
             return 6;
+        }
+
+        public int UpdateFrom6()
+        {
+            SchemaBuilder.DropForeignKey("ProductRecord", "Product_ProductGroup");
+
+            SchemaBuilder.AlterTable(typeof(ProductRecord).Name, table => table.DropColumn("ProductGroupRecord_Id"));
+
+            SchemaBuilder.CreateTable(typeof(LinkProductGroupRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("ProductGroupRecord_Id")
+                    .Column<int>("ProductRecord_Id")
+            );
+
+            SchemaBuilder.CreateForeignKey("LinkProductGroup_Product", "LinkProductGroupRecord", new[] { "ProductRecord_Id" }, "ProductRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkProductGroup_ProductGroup", "LinkProductGroupRecord", new[] { "ProductGroupRecord_Id" }, "ProductGroupRecord", new[] { "Id" });
+
+            return 7;
         }
     }
 }
