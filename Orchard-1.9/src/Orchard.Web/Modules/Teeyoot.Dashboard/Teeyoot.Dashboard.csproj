@@ -70,7 +70,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\campaign.css" />
     <Content Include="Styles\Message.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />

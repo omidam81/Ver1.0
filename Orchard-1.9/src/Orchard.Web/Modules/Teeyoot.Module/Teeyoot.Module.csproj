@@ -593,6 +593,7 @@
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\campaign.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designer.css" />
     <Content Include="Styles\images\menu.teeyoot.png" />
