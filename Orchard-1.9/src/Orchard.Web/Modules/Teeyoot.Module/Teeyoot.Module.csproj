@@ -634,6 +634,7 @@
     <Compile Include="Models\FontRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />
+    <Compile Include="Models\LinkProductGroupRecord.cs" />
     <Compile Include="Models\LinkProductSizeRecord.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\ProductColorRecord.cs" />
