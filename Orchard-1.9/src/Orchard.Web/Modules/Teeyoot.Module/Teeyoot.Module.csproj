@@ -279,6 +279,7 @@
     <Content Include="Content\images\zoom_in_light.svg" />
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\add-ons.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -560,6 +561,7 @@
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\checkout.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designer.css" />
     <Content Include="Styles\images\menu.teeyoot.png" />
@@ -588,6 +590,8 @@
     <Content Include="Views\Dashboard\CreateMessage.cshtml" />
     <Content Include="Views\Dashboard\getList.cshtml" />
     <Content Include="Views\Dashboard\Messages.cshtml" />
+    <Content Include="Views\Home\Buy2.cshtml" />
+    <Content Include="Views\Home\Buy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">

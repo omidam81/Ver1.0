@@ -5747,9 +5747,13 @@ td {
         float: right;
     }
 }
-
+.payment_options_actions a:hover{
+    text-decoration:none;
+    color:#fff;
+}
 .payment_options_info {
     display: none;
+    margin-top:20px;
 }
 
 @media only screen and (min-height: 480px) {
