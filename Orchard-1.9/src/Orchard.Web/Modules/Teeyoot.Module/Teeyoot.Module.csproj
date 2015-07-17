@@ -280,37 +280,6 @@
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\vector\Aces.png" />
-    <Content Include="Content\vector\Airplane.png" />
-    <Content Include="Content\vector\All Day and Night.png" />
-    <Content Include="Content\vector\Badge 9.png" />
-    <Content Include="Content\vector\Baseball Dad.png" />
-    <Content Include="Content\vector\Birthday Cake 5.png" />
-    <Content Include="Content\vector\Curling Stone.png" />
-    <Content Include="Content\vector\Eagle 6.png" />
-    <Content Include="Content\vector\emc2.png" />
-    <Content Include="Content\vector\Envelope 2.png" />
-    <Content Include="Content\vector\Family Figures 3.png" />
-    <Content Include="Content\vector\Fire 2.png" />
-    <Content Include="Content\vector\Fish 2.png" />
-    <Content Include="Content\vector\Giraffe 5.png" />
-    <Content Include="Content\vector\Happy Holidays.png" />
-    <Content Include="Content\vector\Home.png" />
-    <Content Include="Content\vector\Hourglass 3.png" />
-    <Content Include="Content\vector\Hyena 2.png" />
-    <Content Include="Content\vector\links.html" />
-    <Content Include="Content\vector\Pipe Outline.png" />
-    <Content Include="Content\vector\Pirate Skull.png" />
-    <Content Include="Content\vector\RIP with Crow.png" />
-    <Content Include="Content\vector\Santa and Reindeer 5.png" />
-    <Content Include="Content\vector\Soda.png" />
-    <Content Include="Content\vector\Speaker.png" />
-    <Content Include="Content\vector\Symbol.png" />
-    <Content Include="Content\vector\Tower.png" />
-    <Content Include="Content\vector\Unlock.png" />
-    <Content Include="Content\vector\Weights.png" />
-    <Content Include="Content\vector\Wings 21.png" />
-    <Content Include="Content\vector\Woman 7.png" />
     <Content Include="Scripts\add-ons.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -567,8 +536,6 @@
     <Content Include="Content\fonts\zag-webfont.woff" />
     <Content Include="Content\fonts\zeroandzerois-webfont.woff" />
     <Content Include="Content\Web.config" />
-    <Content Include="Content\data-samples\random.json" />
-    <Content Include="Content\data-samples\search.json" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\config.js" />
@@ -595,13 +562,13 @@
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\checkout.css" />
-    <Content Include="Styles\campaign.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designer.css" />
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
+    <Content Include="Styles\campaign.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -610,11 +577,17 @@
     <Content Include="Module.txt" />
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Wizard\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\CreateMessage.cshtml" />
+    <Content Include="Views\Message\getList.cshtml" />
     <Content Include="Views\Campaign\Index.cshtml" />
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
-    <Content Include="Views\Home\Buy2.cshtml" />
-    <Content Include="Views\Home\Buy.cshtml" />
+    <Content Include="Views\Dashboard\Campaigns.cshtml" />
+    <Content Include="Views\Dashboard\CreateMessage.cshtml" />
+    <Content Include="Views\Dashboard\getList.cshtml" />
+    <Content Include="Views\Dashboard\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -634,13 +607,13 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
+    <Compile Include="Models\LinkProductGroupRecord.cs" />
+    <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
     <Compile Include="Models\FontRecord.cs" />
-    <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductColorRecord.cs" />
-    <Compile Include="Models\LinkProductGroupRecord.cs" />
     <Compile Include="Models\LinkProductSizeRecord.cs" />
-    <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\ProductColorRecord.cs" />
     <Compile Include="Models\ProductGroupRecord.cs" />
     <Compile Include="Models\ProductHeadlineRecord.cs" />
@@ -659,7 +632,12 @@
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
-    <Folder Include="Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

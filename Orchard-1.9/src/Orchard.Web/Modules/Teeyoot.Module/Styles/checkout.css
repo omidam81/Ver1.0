@@ -641,3 +641,13 @@ checkout__lock_icon {
     text-align: left;
     text-decoration: none;
 }
+.form__textfield {
+    height: 44px !important;
+}
+
+.tb-search-form input{
+    height : 27px !important;
+}
+.errorVal{
+    border-color: #CC0000!important;
+}
