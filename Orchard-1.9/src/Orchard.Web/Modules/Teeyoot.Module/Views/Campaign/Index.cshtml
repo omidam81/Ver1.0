@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Teeyoot.Module.Models.CampaignRecord
+@{
     Style.Include("campaign.css");
     Script.Require("jQuery");
     Script.Include("jquery.flip.js");
@@ -128,8 +129,8 @@
             </div>
 
             <div class="js-campaign-title">
-                <h1 class="campaign__name campaign__name--old">Let's booze</h1>
-                <h1 class="campaign__name display--mobile hidden">Let's booze</h1>
+                <h1 class="campaign__name campaign__name--old">@Model.Title</h1>
+                <h1 class="campaign__name display--mobile hidden">@Model.Title</h1>
             </div>
 
             <div class="campaign__short_description display--mobile">

@@ -66,14 +66,19 @@
         var campaignTitle = document.getElementById('name').value;
         var description = document.getElementById('campaign_description').innerHTML;
         var campaignLength = document.getElementById('length').value;
-        var url = document.getElementById('url').value;
+        var alias = document.getElementById('url').value;
+        var backSideByDefault = document.getElementById('backdefaultside').checked;
         $.ajax({
             async: false,
             cache: false,
             type: "POST",
             url: "@(Url.Action("LaunchCampaign", "Wizard"))",
-            data: addAntiForgeryToken({ "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product, "campaignTitle": campaignTitle, "description": description, "campaignLength": campaignLength, "url": url }),
-            success: function (data) {
+            data: addAntiForgeryToken({
+                "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
+                "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
+                'BackSideByDefault': backSideByDefault
+            }),
+            success: function (data, status, resp) {
                 //var title;
                 //for (var i = 0; i < data.length ; i++) {
                 //    title = data[i].Value;
@@ -85,7 +90,9 @@
                 //        id: data[i].Key
                 //    };
                 //}
-                alert(" ");
+                if (resp.status === 200) {
+                    window.location.href = '/' + alias;
+                }
             },
         });
 
