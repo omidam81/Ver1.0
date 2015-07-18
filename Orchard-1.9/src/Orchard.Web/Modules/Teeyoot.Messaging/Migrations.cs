@@ -21,6 +21,42 @@ namespace Teeyoot.Messaging
                     .Column<string>("TemplateName", c => c.WithLength(100))
             );
 
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+               table => table
+                   .DropColumn("MailChimpCampaignId")
+           );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .DropColumn("TemplateId")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .DropColumn("TemplateName")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<string>("WelcomeCampaignId", c => c.WithLength(50))
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<int>("WelcomeTemplateId")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<string>("AllBuyersCampaignId", c => c.WithLength(50))
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<int>("AllBuyersTemplateId")
+            );
+
+
             ContentDefinitionManager.AlterPartDefinition(typeof(MailChimpSettingsPart).Name, part => part
                .Attachable(false)
                );
@@ -31,6 +67,46 @@ namespace Teeyoot.Messaging
                 );
 
             return 1;
+        }
+
+        public int UpdateFrom1()
+        {
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .DropColumn("MailChimpCampaignId")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .DropColumn("TemplateId")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .DropColumn("TemplateName")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<string>("WelcomeCampaignId", c => c.WithLength(50))
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<int>("WelcomeTemplateId")
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<string>("AllBuyersCampaignId", c => c.WithLength(50))
+            );
+
+            SchemaBuilder.AlterTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .AddColumn<int>("AllBuyersTemplateId")
+            );
+
+            return 2;
         }
     }
 }

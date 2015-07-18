@@ -14,6 +14,7 @@
     Script.Include("core.js");
     Script.Include("add-ons.js");
     Script.Include("jquery.ui.rotatable.js");
+    Script.Include("jquery.ui.resizeable.js");
     Script.Include("jquery.color.js");
     Script.Include("jquery.flip.js");
     Script.Include("language.js");
@@ -22,6 +23,7 @@
     Script.Include("canvg.js");
     Script.Include("validate.js");
     Script.Include("design_upload.js");
+    Script.Include("fontdetect.js");
 
 
 
@@ -62,15 +64,15 @@
         var itemOptions = document.getElementById('item-options-dropdown').value;
         var product = document.getElementById('product').value;
         var campaignTitle = document.getElementById('name').value;
-        var description = "asdasd";
+        var description = document.getElementById('campaign_description').innerHTML;
         var campaignLength = document.getElementById('length').value;
         var url = document.getElementById('url').value;
         $.ajax({
             async: false,
             cache: false,
-            type: "GET",
-            url: "@(Url.Action("Data", "Wizard"))",
-            data: { "countTees": countTees, "profit": profit, "itemOptions": itemOptions, "product": product, "campaignTitle": campaignTitle, "description": description, "campaignLength": campaignLength, "url": url },
+            type: "POST",
+            url: "@(Url.Action("LaunchCampaign", "Wizard"))",
+            data: addAntiForgeryToken({ "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product, "campaignTitle": campaignTitle, "description": description, "campaignLength": campaignLength, "url": url }),
             success: function (data) {
                 //var title;
                 //for (var i = 0; i < data.length ; i++) {
@@ -89,6 +91,10 @@
 
     }
 
+    function addAntiForgeryToken(data) {
+        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+        return data;
+    };
 
     var isFront = true
     $(function ($) {
@@ -229,7 +235,7 @@
                                                                 </div>
                                                                 <div class="clearfix control-group font-color-selection">
                                                                     <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
-                                                                        <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                                                                        <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
@@ -238,7 +244,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="edit_tool">
-                                                                <label style="float:left;">Add an outline</label>
+                                                                <label style="float: left;">Add an outline</label>
 
                                                                 <div class="clearfix control-group outline-selection">
                                                                     <div>
@@ -246,9 +252,7 @@
                                                                                 class="form-control outline-selector designer-select form__select_menu">
                                                                             <option value="0">No outline</option>
                                                                             <option value="0.33">Thin outline</option>
-                                                                            <option value="0.66">
-                                                                                Medium outline
-                                                                            </option>
+                                                                            <option value="0.66">Medium outline</option>
                                                                             <option value="1">Thick outline</option>
                                                                         </select>
                                                                     </div>
@@ -256,7 +260,7 @@
                                                                 <div class="clearfix control-group outline-color-selection">
                                                                     <div class="fake-input color-picker standard designer-dropdown"
                                                                          title="Change color" data-value="outline">
-                                                                        <div class="swatch" title="Black" style="background-color:#000000;"></div>
+                                                                        <div class="swatch" title="Black" style="background-color: #000000;"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <!-- <ul class="colors-in-use"></ul>
                                                                             <hr class="color-picker__divider">-->
@@ -301,7 +305,7 @@
                                                         <ul class="tabs clearfix nav nav-tabs">
                                                             <li class="tab active" data-name="Art"><a>Art</a></li>
                                                         </ul>
-                                                        <div id="tab2-content" style="margin-top:-6%;   height: 155px;" class="tab-content teespring-well designer-well tab-Art">
+                                                        <div id="tab2-content" style="margin-top: -6%;" class="tab-content teespring-well designer-well tab-Art">
                                                             <div id="designer-art-choseType">
                                                                 <div class="search_container">
                                                                     <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search">Browse Artwork</button>
@@ -339,40 +343,26 @@
                                                             <div id="art-style" class="design-area__art--edit" style="display: none;">
                                                                 <div>
                                                                     <div class="control-group clearfix art-color-selection">
-                                                                        <label>
-                                                                            Art
-                                                                            color
-                                                                        </label>
+                                                                        <label>Art color </label>
 
                                                                         <div class="fake-input color-picker standard designer-dropdown"
                                                                              title="Change color">
-                                                                            <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
+                                                                            <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                             <div class="colors shirt-colors containertip">
                                                                                 <ul></ul>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="edit_tool">
-                                                                        <label style="float:left;">Add an outline</label>
+                                                                        <label style="float: left;">Add an outline</label>
 
                                                                         <div class="clearfix control-group outline-selection">
                                                                             <div>
                                                                                 <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu">
-                                                                                    <option value="0">
-                                                                                        No outline
-                                                                                    </option>
-                                                                                    <option value="0.33">
-                                                                                        Thin
-                                                                                        outline
-                                                                                    </option>
-                                                                                    <option value="0.66">
-                                                                                        Medium
-                                                                                        outline
-                                                                                    </option>
-                                                                                    <option value="1">
-                                                                                        Thick
-                                                                                        outline
-                                                                                    </option>
+                                                                                    <option value="0">No outline</option>
+                                                                                    <option value="0.33">Thin outline</option>
+                                                                                    <option value="0.66">Medium outline</option>
+                                                                                    <option value="1">Thick outline</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -380,7 +370,7 @@
                                                                             <div class="fake-input color-picker standard designer-dropdown"
                                                                                  title="Change color">
                                                                                 <div class="swatch" title="Black"
-                                                                                     style="background-color:#000000;"></div>
+                                                                                     style="background-color: #000000;"></div>
                                                                                 <div class="colors shirt-colors containertip">
                                                                                     <ul></ul>
                                                                                 </div>
@@ -460,8 +450,8 @@
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
                                                         <div class="flip-buttons" style="margin-bottom: -2%;">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position:absolute; margin-left:-15px; margin-top:10px;" >Front</span></div>
-                                                            <div class="flip-button flip-button-back" data-element="backButton"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;" >Front</span></div>
+                                                            <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Back</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- end front design -->
@@ -496,8 +486,8 @@
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
                                                         <div class="flip-buttons">
-                                                            <div class="flip-button flip-button-front"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
-                                                            <div class="flip-button flip-button-back no-select flip-button-active"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                            <div class="flip-button flip-button-front"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Front</span></div>
+                                                            <div class="flip-button flip-button-back no-select flip-button-active"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Back</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- end back design -->
@@ -542,8 +532,35 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="file-size-too-big" class="modal modal-teespring in" aria-hidden="false" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">File size too big</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Uploaded files must be no more than 5MB.</p>
+                                                <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="incorrect-file-type" class="modal modal-teespring in" aria-hidden="false" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">Incorrect File Type</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Uploaded files must be either gif, jpeg, jpg, png, or eps.</p>
+                                                <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
-
                         </div>
                     </div>
                 </div>
@@ -875,7 +892,9 @@
                                                 </div>
                                                 <div class="span7 aside">
                                                     <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
-                                                        <form method="post" id="campaign_details" name="campaign_form" data-reactid=".6.0">
+
+                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { id="campaign_details", name="campaign_form", data_reactid=".6.0" }))
+                                                        {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                 <label class="has-under-text" data-reactid=".6.0.0.0">Campaign title</label>
                                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
@@ -931,7 +950,7 @@
                                                                             </a>
                                                                         </li>
                                                                     </ul>
-                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="description" data-reactid=".6.0.1.1.1"></div>
+                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="campaign_description" data-reactid=".6.0.1.1.1"></div>
                                                                 </div>
                                                             </div>
                                                             <div data-reactid=".6.0.2">
@@ -987,7 +1006,7 @@
                                                             </div>
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                <button id="launch-campaign" type="submit" class="button button--transaction" onclick="sendData()"   data-reactid=".6.0.7.1">Launch</button>
+                                                                <button id="launch-campaign" type="submit" onclick="sendData(); return false;" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span data-reactid=".6.0.7.3.0">
                                                                         <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teespring's </span>
@@ -995,7 +1014,8 @@
                                                                     </span>
                                                                 </p>
                                                             </div>
-                                                        </form>
+                                                        }
+                                  
                                                     </div>
                                                 </div>
 
