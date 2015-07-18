@@ -21,6 +21,12 @@ namespace Teeyoot.Module.Models
 
         public virtual string Country { get; set; }
 
+        public virtual string StreetAddress { get; set; }
+
+        public virtual string PostalCode { get; set; }
+
+        public virtual string PhoneNumber { get; set; }
+
         public virtual double TotalPrice { get; set; }
 
         public virtual CurrencyRecord CurrencyRecord { get; set; }
