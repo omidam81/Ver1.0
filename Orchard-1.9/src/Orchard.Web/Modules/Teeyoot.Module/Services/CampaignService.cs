@@ -145,7 +145,7 @@ namespace Teeyoot.Module.Services
 
                     new CampaignProductData {
                         CurrencyId = 1,
-                        ProductId = 2,
+                        ProductId = 3,
                         ColorId = 9,
                         BaseCost = 15,
                         Price = 20

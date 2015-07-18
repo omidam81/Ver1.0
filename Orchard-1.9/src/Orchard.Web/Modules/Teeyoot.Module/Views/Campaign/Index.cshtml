@@ -141,8 +141,8 @@
             </div>
 
             <div class="campaign__short_description display--mobile">
-                <span>There is nothing left but booze</span>
-                <a class="js-description-jump" href="">Read more</a>
+                <span>@Model.Description</span>
+                <a class="js-description-jump" href="">@T("Read more")</a>
             </div>
 
 
@@ -151,14 +151,14 @@
 
                 <div id="card" style="margin-right:30px">
                     <div id="front" class="front">
-                        <img id="prodFront" src="/Themes/Teebay.Theme/Content/front.png" data-zoom-image="/Themes/Teebay.Theme/Content/front2.png">
+                        <img id="prodFront" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png" data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
                         <div id="butt1" style="text-align:center; ">
                             <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>
                             <div class="flip-button flip-button-back"><span>Back</span></div>
                         </div>
                     </div>
                     <div class="back">
-                        <img id="prodBack" src="/Themes/Teebay.Theme/Content/back.png" data-zoom-image="/Themes/Teebay.Theme/Content/back2.png">
+                        <img id="prodBack" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png" data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
                         <div id="butt2" style="text-align:center;">
                             <div class="flip-button flip-button-front"><span>Front</span></div>
                             <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>Back</span></div>
@@ -218,10 +218,10 @@
                     </div>
                 </div>
 
-                <h1 class="campaign__name display--desktop hidden">Let's booze</h1>
+                <h1 class="campaign__name display--desktop hidden">@Model.Title</h1>
 
                 <div class="campaign__description display--desktop">
-                    There is nothing left but booze
+                    @Model.Description
                 </div>
 
                 <div class="campaign_stats__container js_stats_countainer display--mobile">
@@ -262,19 +262,20 @@
 
                 <div class="product_dropdown__container">
 
-                    <label class="product_dropdown__label">Available Styles:</label>
+                    <label class="product_dropdown__label">@T("Available Styles"):</label>
 
                     <div class="js_product_dropdown">
 
                         <select class="product__dropdown form__select_menu js_product_select">
-                            <option data-usd-price="Teespring Premium Tee - $15.00" data-class="localized-price" value="369">Teespring Premium Tee - $15.00</option>
-                            <option data-usd-price="American Apparel Triblend - $20.00" data-class="localized-price" value="72">American Apparel Triblend - $20.00</option>
-                            <option data-usd-price="Hanes Tagless Tee - $21.00" data-class="localized-price" value="2">Hanes Tagless Tee - $21.00</option>
+                            @foreach(var prod in Model.Products)
+                            {
+                                <option data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                            }
                         </select>
                     </div>
                 </div>
 
-                <div class="product__container hidden">
+                @*<div class="product__container hidden">
 
                     <nav class="product__nav">
                         <ul class="product__list">
@@ -295,7 +296,7 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div>*@
 
                 <div class="product__container">
 

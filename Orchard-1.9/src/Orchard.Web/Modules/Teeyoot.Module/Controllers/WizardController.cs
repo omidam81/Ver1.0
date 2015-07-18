@@ -46,7 +46,7 @@ namespace Teeyoot.Module.Controllers
 
                 for (int i = 0; i < campaign.Products.Count; i++)
                 {
-                    CreateImagesForCampaignProduct(campaign.Id, campaign.Products[i].Id, i == 0);
+                    CreateImagesForCampaignProduct(campaign.Id, campaign.Products[i].Id);
                 }
                 
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -72,7 +72,7 @@ namespace Teeyoot.Module.Controllers
             return null;
         }
 
-        private void CreateImagesForCampaignProduct(int campaignId, int productId, bool createBig)
+        private void CreateImagesForCampaignProduct(int campaignId, int productId)
         {
             // TODO: eugene: implement method, now fake
             var imageNum = new Random().Next(1, 4);
@@ -81,9 +81,8 @@ namespace Teeyoot.Module.Controllers
 
             if (!Directory.Exists(destForder))
             {
-                Directory.CreateDirectory(destForder + "/normal");
-                if (createBig) 
-                    Directory.CreateDirectory(destForder + "/big");
+                Directory.CreateDirectory(destForder + "/normal");                
+                Directory.CreateDirectory(destForder + "/big");
             }
 
             var front = Image.FromFile(Path.Combine(srcFolder, "front.png"));
@@ -92,18 +91,14 @@ namespace Teeyoot.Module.Controllers
             front.Save(Path.Combine(destForder, "normal", "front.png"), ImageFormat.Png);
             back.Save(Path.Combine(destForder, "normal", "back.png"), ImageFormat.Png);
 
-            if (createBig)
-            {
-                var frontLarge = ResizeImage(front, 1070, 1274);
-                var backLarge = ResizeImage(back, 1070, 1274);
+            var frontLarge = ResizeImage(front, 1070, 1274);
+            var backLarge = ResizeImage(back, 1070, 1274);
 
-                frontLarge.Save(Path.Combine(destForder, "big", "front.png"), ImageFormat.Png);
-                backLarge.Save(Path.Combine(destForder, "big", "back.png"), ImageFormat.Png);
+            frontLarge.Save(Path.Combine(destForder, "big", "front.png"), ImageFormat.Png);
+            backLarge.Save(Path.Combine(destForder, "big", "back.png"), ImageFormat.Png);
 
-                frontLarge.Dispose();
-                backLarge.Dispose();
-            }
-
+            frontLarge.Dispose();
+            backLarge.Dispose();          
             front.Dispose();
             back.Dispose();
             
