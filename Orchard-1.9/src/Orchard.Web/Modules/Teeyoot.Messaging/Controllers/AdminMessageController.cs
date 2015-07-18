@@ -37,19 +37,16 @@ using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
         private IOrchardServices Services { get; set; }
         public ILogger Logger { get; set; }
         public Localizer T { get; set; }
+        private const string DEFAULT_LANGUAGE_CODE = "en";
 
-        public ActionResult Index()
+        public ActionResult Index(string culture)
         {
-
-            //var settings = _settingsService.GetAllSettings().List().Where(s => s.Culture == "en").FirstOrDefault();
-
-            //if (settings == null)
-            //{
-            //    var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("", "", "", 0, "", 0, "en");
-            //    if (mailChimpSettingPart == null)
-            //        return HttpNotFound();
-            //}
-            var settings = _settingsService.GetAllSettings().List().Select(s => new MailChimpSettingsPartRecord
+            if (string.IsNullOrWhiteSpace(culture))
+            {
+                    culture = _languageService.GetLanguages().FirstOrDefault(l => l.Code == DEFAULT_LANGUAGE_CODE).Code;
+            }
+            var availableLanguages = _languageService.GetLanguages().ToList();
+            var settings = _settingsService.GetSettingByCulture(culture).List().Select(s => new MailChimpListViewModel
             {
                 Id = s.Id,
                 ApiKey = s.ApiKey,
@@ -58,19 +55,32 @@ using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
                 WelcomeTemplateId = s.WelcomeTemplateId,
                 AllBuyersCampaignId = s.AllBuyersCampaignId,
                 AllBuyersTemplateId = s.AllBuyersTemplateId,
-                Culture = s.Culture
-            });
+                Culture = s.Culture,
+                AvailableLanguages = availableLanguages,
 
-            return View(settings);
+            });
+            if (settings.FirstOrDefault() == null)
+            {
+                var settingPart = new MailChimpListViewModel() {
+                    Culture = culture,
+                    AvailableLanguages = availableLanguages,               
+                };
+                return View(settingPart);
+            }
+                     
+            return View(settings.FirstOrDefault());
         }
 
-        public ActionResult AddSetting(string returnUrl)
+        public ActionResult AddSetting(string returnUrl, string language)
         {
             MailChimpSettingsPart mailChimpSettingsPart = Services.ContentManager.New<MailChimpSettingsPart>("MailChimpSettings");
+
             if (mailChimpSettingsPart == null)
                 return HttpNotFound();
             try
             {
+                var culture = _languageService.GetLanguages().ToList().Where(l=>l.Code == language);
+                mailChimpSettingsPart.AvailableLanguages = culture;
                 var model = Services.ContentManager.BuildEditor(mailChimpSettingsPart);
                 return View(model);
             }

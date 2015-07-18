@@ -35,7 +35,7 @@ namespace Teeyoot.Messaging.Drivers
 
         protected override DriverResult Editor(MailChimpSettingsPart part, dynamic shapeHelper)
         {
-            part.AvailableLanguages = _languageService.GetLanguages();
+            //part.AvailableLanguages = _languageService.GetLanguages();
 
             return ContentShape("Parts_MailChimpSettings_Edit", () => shapeHelper
                 .EditorTemplate(TemplateName: "Parts/MailChimpSettings", Model: part, Prefix: Prefix));

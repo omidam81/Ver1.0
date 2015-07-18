@@ -77,7 +77,6 @@ namespace Teeyoot.Module.Dashboard.Controllers
         public int SendMessageToCampaignBuyers(int campaignId , string culture)
         {           
                 
-            //toDo 
             var record = _settingsService.GetAllSettings().List().Where( x => x.Culture == culture).FirstOrDefault();
             MailChimpManager mc = new MailChimpManager(record.ApiKey);
             List<LinkOrderCampaignProductRecord> ordersList = _linkOrderCampaignProductRepository.Table.Fetch(x => x.CampaignProductRecord.CampaignRecord_Id == campaignId).ToList();

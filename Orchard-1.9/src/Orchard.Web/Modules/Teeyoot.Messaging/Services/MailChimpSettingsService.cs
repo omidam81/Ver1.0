@@ -50,5 +50,11 @@ namespace Teeyoot.Messaging.Services
         {
             return _contentManager.Get<MailChimpSettingsPart>(id, VersionOptions.Latest);
         }
+
+        public IContentQuery<MailChimpSettingsPart> GetSettingByCulture(string culture)
+        {
+            return _contentManager.Query<MailChimpSettingsPart, MailChimpSettingsPartRecord>(VersionOptions.Latest).Where(fe => fe.Culture == culture);
+        }
+
     }
 }

@@ -96,6 +96,7 @@ namespace Teeyoot.Messaging.Models
             }
         }
 
+
         [HiddenInput(DisplayValue = false)]
         public IEnumerable<LanguageRecord> AvailableLanguages { get; set; }
     }
