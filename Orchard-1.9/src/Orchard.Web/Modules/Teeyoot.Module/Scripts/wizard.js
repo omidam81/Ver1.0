@@ -1,4 +1,5 @@
 ﻿window.onload = function initWizard() {
+
     var w = $(window).width();
     var h = $(window).height();
     document.getElementById('trackbar').value = 15;
@@ -25,13 +26,96 @@
         var text = document.createElement("h4");
 
 
-
         image.src = "http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png";
         image.classList.add("sell");
+        image.style.height = "73px";
 
         imageDel.classList.add("ssp_delete");
         imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
         imageDel.style.cursor = "pointer";
+
+        $image = $(image);
+
+        //-----------------Color Picker------------------------------
+        //-----Создаем тимплейт для пикера
+        var divCol = document.createElement("div");
+        var divColPick = document.createElement("div");
+        var divSwatch = document.createElement("div");
+        var divColors = document.createElement("div");
+        var divClear = document.createElement("div");
+        var ulAllColors = document.createElement("ul");
+
+
+        divCol.classList.add("clearfix");
+        divCol.classList.add("control-group");
+        divCol.classList.add("font-color-selection");
+
+        divColPick.classList.add("fake-input");
+        divColPick.classList.add("color-picker");
+        divColPick.classList.add("standard");
+        divColPick.classList.add("designer-dropdown");
+        divColPick.classList.add("designDrop");
+
+        divSwatch.classList.add("swatch2");
+        $divSwatch = $(divSwatch);
+
+        divColors.classList.add("colors");
+        divColors.classList.add("shirt-colors");
+        divColors.classList.add("containertip");
+
+        ulAllColors.classList.add("all-colorsTwo");
+        ulAllColors.classList.add("colors");
+
+        $ulAllColors = $(ulAllColors);
+
+        divClear.classList.add("clearfix");
+
+        $divColPick = $(divColPick);
+
+        divColors.appendChild(ulAllColors);
+        divColPick.appendChild(divSwatch);
+        divColPick.appendChild(divColors);
+        divCol.appendChild(divColPick);
+        divCol.appendChild(divClear);
+
+        $divColors = $(divColors);
+        
+        // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
+        $divColPick.on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            $('.containertip--open').removeClass('containertip--open');
+            $(this).parents(':first').find('.shirt-colors').addClass('containertip--open');
+        });
+
+
+        // Перебор всех существующих цветов
+        $.each(design.products.colors, function (i, color) {
+
+            var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
+                              color.name + '" style="background-color:' + color.value + ';"></li>';
+            var $colorHtml = $(colorHtml);
+
+           
+            $colorHtml.click(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $image.css("background-color", color.value);
+                $divSwatch.css("background-color", color.value);
+                //$divColors.remove();
+                $divColors.removeClass('containertip--open');
+            }).hover(function () {
+                $image.css("background-color", color.value);
+                $divSwatch.css("background-color", color.value);
+            });
+            //Аппендим хтмли цветов с всеми евентами
+            $ulAllColors.append($colorHtml);
+        });
+
+        //-----------------Color Picker------------------------------
+
+
 
         div.classList.add("block");
         div.classList.add("ssp_block");
@@ -60,13 +144,19 @@
         divThumb.appendChild(image);
         div.appendChild(divThumb);
         div.appendChild(divMeta);
+        div.appendChild(divCol);
         div.appendChild(divDelete);
+        div.style.height = "90px";
+
+
+
 
 
 
         var primDiv = document.getElementById("primary");
 
         primDiv.appendChild(div);
+
 
         $(imageDel).click(function () {
             div.parentNode.removeChild(div);
@@ -79,6 +169,34 @@
 }
 
 
+
+function colorInit() {
+    var elem = $("#allColorsTwo");
+    //var els = design.products.colors;
+
+    //$.each(design.products.colors, function (i, color) {
+    //    if (app.state.product.colors_available.indexOf(color.id) == -1) { alert(color.id) }
+
+    //});
+
+
+    if (elem.html() === "") {
+        $.each(design.products.colors, function (i, color) {
+            var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
+                                color.name + '" style="background-color:' + color.value + ';"></li>';
+            var $colorHtml = $(colorHtml);
+            $colorHtml.click(function () {
+                $("#minImg").css("background-color", color.value);
+                $("#swatch2").css("background-color", color.value);
+                $('.containertip--open').removeClass('containertip--open');
+            }).hover(function () {
+                $("#minImg").css("background-color", color.value);
+                $("#swatch2").css("background-color", color.value);
+            });
+            elem.append($colorHtml);
+        })
+    }
+}
 
 
 function slide() {
@@ -103,7 +221,7 @@ function slide() {
     });
 
     $('#nextPage').click(function () {
-
+        colorInit();
         document.getElementById('goal').className = "flow-step active";
         document.getElementById('design').className = "flow-step";
         document.getElementById('description').className = "flow-step";
@@ -121,11 +239,10 @@ function slide() {
         $('.Slides').stop().animate({ left: (pos * w) + 'px' });
     });
     $('#goal').click(function () {
-
+        colorInit();
         document.getElementById('goal').className = "flow-step active";
         document.getElementById('design').className = "flow-step";
         document.getElementById('description').className = "flow-step";
-
         pos = -1;
         $('.Slides').stop().animate({ left: (pos * w) + 'px' });
     });
@@ -145,6 +262,5 @@ function onChangeTrackBar() {
 function onChangeValueForTrackBar() {
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
 }
-
 
 

@@ -3561,5 +3561,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('.drag-item').click(function(){alert(23); });
+	$('.drag-item').click(function () { alert(23); });
+
+
 });

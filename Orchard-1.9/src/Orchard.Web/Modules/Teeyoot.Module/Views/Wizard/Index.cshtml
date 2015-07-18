@@ -75,6 +75,7 @@
             url: "@(Url.Action("LaunchCampaign", "Wizard"))",
             data: addAntiForgeryToken({
                 "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
+
                 "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
                 'BackSideByDefault': backSideByDefault
             }),
@@ -126,8 +127,11 @@
     });
 
 
+
     </script>
 }
+
+
 
 
 <div class='lab-steps flow-steps' style="width:80%;   margin-left: 10%;">
@@ -200,14 +204,15 @@
     </div>
     <div class='clearfix'></div>
 </div>
-<div class="SlideContainer" >
+
+<div class="SlideContainer"  min-height:900px" >
     <div class="Slides" style="margin-left:3%;">
 
 
 
 
 
-        <div class="Slide">
+        <div class="Slide" >
             <div class="Content" style="width:90%; margin-top:-50px;">
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
@@ -241,7 +246,7 @@
                                                                     <ul class="options"></ul>
                                                                 </div>
                                                                 <div class="clearfix control-group font-color-selection">
-                                                                    <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
+                                                                    <div class="fake-input color-picker standard designer-dropdown"  title="Change color" data-value="text">
                                                                         <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <ul class="all-colors"></ul>
@@ -574,7 +579,7 @@
                 @*<button class="Left">NEXT PAGE</button>*@
             </div>
         </div>
-        <div class="Slide" style="width:30% !important; margin-left:2.5%">
+        <div class="Slide" style="width:30% !important; margin-left:2.5%; ">
             <div class="Content" id ="Content2"style="margin-left:10%">
                 <table>
                     <tr>
@@ -652,7 +657,7 @@
                             <div id="primary">
                                 <div class="block ssp_block " style="width:100%; height:100px">
                                     <div class="thumbnail_wrapper">
-                                        <img style=" width: 100%; height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
+                                        <img id="minImg" style=" width: 100%;  height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
                                     </div>
                                   
                                     
@@ -665,33 +670,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="ssp_color" data-reactid=".a.0.2.0.3.0.$0.1.1">
-                                        <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-reactid=".a.0.2.0.3.0.$0.1.1.0">
-                                            <div class="swatch swatch2" title="White" style="background-color:#ffffff;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.0"></div>
-                                            <div class="colors shirt-colors containertip" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1">
-                                                <ul class="colors-in-use" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.0"></ul>
-                                                <ul data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2">
-                                                    <li data-value="#222222" data-texture="" class="shirt-color-sample" title="Black" style="background-color:#222222;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#222222"></li>
-                                                    <li data-value="#ba393f" data-texture="" class="shirt-color-sample" title="Classic Red" style="background-color:#ba393f;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#ba393f"></li>
-                                                    <li data-value="#ca522f" data-texture="" class="shirt-color-sample" title="Deep Orange " style="background-color:#ca522f;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#ca522f"></li>
-                                                    <li data-value="#fcf58b" data-texture="" class="shirt-color-sample" title="Lemon Yellow " style="background-color:#fcf58b;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#fcf58b">
-                                                    </li>
-                                                    <li data-value="#438d4e" data-texture="" class="shirt-color-sample" title="Kelly Green" style="background-color:#438d4e;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#438d4e">
-                                                    </li>
-                                                    <li data-value="#0C1A2C" data-texture="" class="shirt-color-sample" title="New Navy" style="background-color:#0C1A2C;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#0C1A2C"></li>
-                                                    <li data-value="#1e448b" data-texture="" class="shirt-color-sample" title="Deep Royal" style="background-color:#1e448b;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#1e448b"></li>
-                                                    <li data-value="#6349a2" data-texture="" class="shirt-color-sample" title="Purple" style="background-color:#6349a2;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#6349a2"></li>
-                                                    <li data-value="#ffffff" data-texture="" class="shirt-color-sample" title="White" style="background-color:#ffffff;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#ffffff"></li>
-                                                    <li data-value="#4099d0" data-texture="" class="shirt-color-sample" title="Heathered Bright Turquoise " style="background-color:#4099d0;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#4099d0"></li>
-                                                    <li data-value="#6486d0" data-texture="" class="shirt-color-sample" title="Heathered Royal " style="background-color:#6486d0;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#6486d0"></li>
-                                                    <li data-value="#ADB1B0" data-texture="" class="shirt-color-sample" title="Grey" style="background-color:#ADB1B0;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#ADB1B0"></li>
-                                                    <li data-value="#abaaab" data-texture="" class="shirt-color-sample" title="Light Heather Grey " style="background-color:#abaaab;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#abaaab"></li>
-                                                    <li data-value="#413c42" data-texture="" class="shirt-color-sample" title="Heathered Charcoal " style="background-color:#413c42;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#413c42"></li>
-                                                    <li data-value="#192d2c" data-texture="" class="shirt-color-sample" title="Forest Green " style="background-color:#192d2c;" data-reactid=".a.0.2.0.3.0.$0.1.1.0.1.2.1:$#192d2c"></li>
-                                                </ul>
+
+                                    <div class="clearfix control-group font-color-selection" id="colPick"> 
+                                        <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="Change color" data-value="text">
+                                            <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
+                                            <div class="colors shirt-colors containertip" id="colors">
+                                                <ul class="all-colorsTwo" id="allColorsTwo"></ul>
                                             </div>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
+
+
 
 
 

@@ -104,8 +104,53 @@ ul, ol {
 
 
 #content {
-    min-height: 1200px !important;
+    min-height: 900px !important;
 }
+
+#designDrop {
+    width: 65px;
+    height:40px;
+    padding: 8px 6px;
+    border: 1px solid #d8dddf;
+  background-color: white;
+    border-radius: 5px;
+      margin-left: 15%;
+}
+
+.designDrop {
+    width: 65px;
+    height:40px;
+    padding: 8px 6px;
+    border: 1px solid #d8dddf;
+  background-color: white;
+    border-radius: 5px;
+      margin-left: 15%;
+}
+
+
+.swatch2 {
+    width: 24px;
+      margin-top: -1%;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 0px 1px #d8dddf;    
+    margin-bottom: 2px;
+    -webkit-transition: background-color 400ms;
+    transition: background-color 400ms;
+}
+
+#colors {
+  top: 25%;
+  left: 28%;
+}
+.colors {
+  top: 25%;
+  left: 28%;
+}
+
+
 
 .flow-steps .flow-step .number {
     background: #dbdbdb;
@@ -316,6 +361,7 @@ span.number {
     margin-bottom: .5rem;
     padding: .5rem;
     width: 100%;
+    overflow:visible;
 }
 
     .ssp_block.product {
@@ -347,18 +393,7 @@ span.number {
         vertical-align: middle;
     }
 
-.swatch2 {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #fff;
-    border-radius: 3px;
-    background-color: #fff;
-    box-shadow: 0px 0px 0px 1px #d8dddf;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    -webkit-transition: background-color 400ms;
-    transition: background-color 400ms;
-}
+
 
 input[type=range], ::-moz-range-track, ::-ms-track {
     -webkit-appearance: none;
@@ -390,10 +425,10 @@ input[type=range], ::-moz-range-track, ::-ms-track {
     color: white;
 }
 
-.Left:hover {
-    background: #dbdbdb;
-    background-color: #dbdbdb;
-}
+    .Left:hover {
+        background: #dbdbdb;
+        background-color: #dbdbdb;
+    }
 
 input[type=range] {
     /*removes default webkit styles*/
@@ -568,7 +603,6 @@ input[type=range] {
     font-weight: normal;
     border-radius: 5px;
     height: 44px;
-
     border-width: 0;
     /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7ac445), color-stop(100%, #5eba1c));
     background-image: -webkit-linear-gradient(#7ac445, #5eba1c);
