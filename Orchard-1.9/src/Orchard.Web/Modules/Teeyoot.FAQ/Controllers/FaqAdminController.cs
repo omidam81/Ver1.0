@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Web.Mvc;
-using System.Linq;
+﻿using Orchard;
 using Orchard.ContentManagement;
+using Orchard.Core.Common.Models;
 using Orchard.DisplayManagement;
-using Orchard.Environment.Extensions.Models;
-using Orchard.FileSystems.VirtualPath;
 using Orchard.Localization;
 using Orchard.Logging;
-using Orchard.Mvc;
 using Orchard.Mvc.Extensions;
-using Orchard.UI.Admin;
-using Orchard.UI.Notify;
-using Orchard.ContentManagement.Aspects;
-using Orchard.Core.Contents.Settings;
-using Orchard.Localization.Services;
-using Teeyoot.FAQ.Models;
-using Orchard;
-using Teeyoot.FAQ.Services;
-using Orchard.UI.Navigation;
-using Orchard.Core.Common.Models;
 using Orchard.Settings;
+using Orchard.UI.Admin;
+using Orchard.UI.Navigation;
+using Orchard.UI.Notify;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Web.Mvc;
+using Teeyoot.FAQ.Models;
+using Teeyoot.FAQ.Services;
 using Teeyoot.FAQ.ViewModels;
 
 namespace Teeyoot.FAQ.Controllers
@@ -108,8 +101,8 @@ namespace Teeyoot.FAQ.Controllers
             }
             catch (Exception exception)
             {
-                //Logger.Error(T("Creating widget failed: {0}", exception.Message).Text);
-                //Services.Notifier.Error(T("Creating widget failed: {0}", exception.Message));
+                Logger.Error(T("Creating FAQ entry failed: {0}", exception.Message).Text);
+                Services.Notifier.Error(T("Creating FAQ entry failed: {0}", exception.Message));
                 return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
             }
         }
@@ -119,7 +112,6 @@ namespace Teeyoot.FAQ.Controllers
             [Bind(Prefix = "Body.Text")] string text,
             [Bind(Prefix = "FaqEntryPart.LanguageCode")] string language, string returnUrl)
         {
-            var request = Request;
             var faqEntryPart = _faqService.CreateFaqEntry("", section, language);
             if (faqEntryPart == null)
                 return HttpNotFound();
