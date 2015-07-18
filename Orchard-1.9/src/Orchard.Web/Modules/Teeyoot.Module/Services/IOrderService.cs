@@ -10,8 +10,10 @@ namespace Teeyoot.Module.Services
 {
     public interface IOrderService : IDependency
     {
-        OrderRecord GetCOrderById(int id);
+        OrderRecord GetOrderById(int id);
 
-        
+        void UpdateOrder(OrderRecord order);
+
+        OrderRecord CreateOrder(OrderRecord order);
     }
 }

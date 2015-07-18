@@ -16,9 +16,25 @@ namespace Teeyoot.Module.Services
             _repository = repository;
 	    }
 
-        public OrderRecord GetCOrderById(int id)
+        public OrderRecord GetOrderById(int id)
         {
-            return _repository.Table.FirstOrDefault(r => r.Id == id);
+            //return _repository.Table.FirstOrDefault(r => r.Id == id);
+
+            OrderRecord order = new OrderRecord() { Id = id };
+            return order;
+  
+        }
+
+        public void UpdateOrder(OrderRecord order)
+        {
+           // _repository.Update(order);    
+        }
+
+        public OrderRecord CreateOrder(OrderRecord order)
+        {
+            //return _repository.Create(order);
+            order.Id = 12;
+            return order;
         }
     }
 }
