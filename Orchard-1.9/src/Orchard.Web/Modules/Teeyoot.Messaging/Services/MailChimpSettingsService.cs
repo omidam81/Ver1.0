@@ -29,22 +29,26 @@ namespace Teeyoot.Messaging.Services
             _contentManager.Remove(_contentManager.Get<MailChimpSettingsPart>(id).ContentItem);
         }
 
-        public MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpCampaignId, int templateId, string templateName, string mailChimpListId, string culture)
+        public MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpListId, string welcomeCampaignId, int welcomeTemplateId, string allBuyersCampaignId, int allBuyersTemplateId, string culture)
         {
             var MailChimpSettingsPart = _contentManager.Create<MailChimpSettingsPart>("MailChimpSettings",
                 se =>
                 {
                     se.ApiKey = apiKey;
                     se.Culture = culture;
-                    se.MailChimpCampaignId = mailChimpCampaignId;
                     se.MailChimpListId = mailChimpListId;
-                    se.TemplateId = templateId;
-                    se.TemplateName = templateName;
-                    
+                    se.WelcomeCampaignId = welcomeCampaignId;
+                    se.WelcomeTemplateId = welcomeTemplateId;
+                    se.AllBuyersCampaignId = allBuyersCampaignId;
+                    se.AllBuyersTemplateId = allBuyersTemplateId;                  
                 });
 
             return MailChimpSettingsPart;
         }
 
+        public MailChimpSettingsPart GetSetting(int id)
+        {
+            return _contentManager.Get<MailChimpSettingsPart>(id, VersionOptions.Latest);
+        }
     }
 }

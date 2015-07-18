@@ -216,7 +216,19 @@ namespace Teeyoot.Module
                     .Column<int>("ProductRecord_Id")
             );
 
-            return 7;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("StreetAddress", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("PostalCode", c => c.WithLength(50)));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("PhoneNumber", c => c.WithLength(50)));
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("StreetAddress"));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("PostalCode"));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("PhoneNumber"));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("StreetAddress", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("PostalCode", c => c.WithLength(50)));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("PhoneNumber", c => c.WithLength(50)));
+
+
+            return 9;
         }
 
         public int UpdateFrom2()
@@ -283,6 +295,27 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkProductGroup_ProductGroup", "LinkProductGroupRecord", new[] { "ProductGroupRecord_Id" }, "ProductGroupRecord", new[] { "Id" });
 
             return 7;
+        }
+        public int UpdateFrom7()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("StreetAddress", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("PostalCode", c => c.WithLength(50)));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("PhoneNumber", c => c.WithLength(50)));
+
+            return 8;
+        }
+
+        public int UpdateFrom8()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("StreetAddress"));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("PostalCode"));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("PhoneNumber"));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("StreetAddress", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("PostalCode", c => c.WithLength(50)));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("PhoneNumber", c => c.WithLength(50)));
+
+
+            return 9;
         }
     }
 }

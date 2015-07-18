@@ -12,7 +12,9 @@ namespace Teeyoot.Messaging.Services
     {
         IContentQuery<MailChimpSettingsPart> GetAllSettings();
 
-        MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpCampaignId, int templateId, string templateName, string mailChimpListId, string culture);
+        MailChimpSettingsPart GetSetting(int id);
+
+        MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpListId, string welcomeCampaignId, int welcomeTemplateId, string allBuyersCampaignId, int allBuyersTemplateId, string culture);
 
         void DeleteMailChimpSettingsPart(int id);
     }

@@ -10,10 +10,7 @@
 
 @using (Script.Foot())
 {
-    <script>
-        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 450, zoomWindowHeight: 600 });
-        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 450, zoomWindowHeight: 600 });
-    </script>
+    
 
     <script>
 
@@ -64,6 +61,7 @@
             document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
             document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
         });
+     
         var i = 1;
         $("#add-row").click(function () {
             var table = document.getElementById('precheckout_table');
@@ -81,6 +79,10 @@
 
     </script>
     <script>
+    $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+    $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+    </script>
+    <script>
 
         function ItemRemove(node) {
             var el = document.getElementById(node.id);
@@ -96,9 +98,14 @@
             $("#card").flip({
                 trigger: 'manual'
             }).click(function () {
+                //if (isFront == true) {
+                //    $("#prodFront").attr("data-zoom-image", "/Themes/Teebay.Theme/Content/front2.png");
+                //} else {
+                //    $("#prodFront").attr("data-zoom-image", "/Themes/Teebay.Theme/Content/back2.png");
+                //}
                 isFront = !isFront;
                 console.log(isFront);
-                $("#card").flip(!isFront);
+                $("#card").flip(!isFront);             
             });
         });
     </script>
@@ -143,7 +150,7 @@
 
 
                 <div id="card" style="margin-right:30px">
-                    <div class="front">
+                    <div id="front" class="front">
                         <img id="prodFront" src="/Themes/Teebay.Theme/Content/front.png" data-zoom-image="/Themes/Teebay.Theme/Content/front2.png">
                         <div id="butt1" style="text-align:center; ">
                             <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>

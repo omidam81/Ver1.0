@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -20,6 +21,12 @@ namespace Teeyoot.Module.Models
         public virtual string State { get; set; }
 
         public virtual string Country { get; set; }
+
+        public virtual string StreetAddress { get; set; }
+
+        public virtual string PostalCode { get; set; }
+
+        public virtual string PhoneNumber { get; set; }
 
         public virtual double TotalPrice { get; set; }
 

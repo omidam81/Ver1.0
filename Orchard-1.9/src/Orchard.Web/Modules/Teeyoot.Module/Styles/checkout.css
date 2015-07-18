@@ -651,3 +651,39 @@ checkout__lock_icon {
 .errorVal{
     border-color: #CC0000!important;
 }
+
+
+@media only screen and (max-width: 980px) {
+    .checkout__container_main{
+        width:100% !important;
+    }
+    .order_summary__container{
+        width: 100% !important;
+        padding-left:0 !important;
+        margin:10px !important;
+        float:left !important;
+    }
+    .order_summary__help{
+        padding-left:10px !important;
+    }
+    .checkout__container{
+        padding-top:5px !important;
+        padding-left:20px !important;
+         width:100% !important;
+    }
+    .site__wrapper{
+        width:auto!important;
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .form__textfield {
+        width: 47% !important;
+    }
+    .form__textfield--large{
+        width:97% !important;
+    }   
+    .form__select_menu option{
+        width: 20% !important;
+    }
+}
