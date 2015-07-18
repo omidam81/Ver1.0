@@ -64,7 +64,21 @@ namespace Teeyoot.Module
                         new MvcRouteHandler())
                 }
                 ,
-                
+                new RouteDescriptor {
+                    Route = new Route(
+                        "UpoadArtFile",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Wizard"},
+                            {"action", "UpoadArtFile"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
+                ,
 
 
                 

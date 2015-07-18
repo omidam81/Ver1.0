@@ -79,6 +79,9 @@ var design={
             $('#designer-art-choseType').hide();
             $('#dropbox').show();
         });
+	    $('.upload.select-file').click(function() {
+	        $("input#file").click();
+	    });
         $('#artwork-search-form').on('submit', function(e){
             e.preventDefault();
             e.stopPropagation();
@@ -101,7 +104,7 @@ var design={
         $('#enter-text').on('keyup', function(){
             var item = design.item.get();
             var text = $(this).val();
-            if(!item.length && text){
+            if((!item.length || item.data('type') !== 'text')&& text){
                 design.text.create();
             }else{
                 if(text){
@@ -1020,27 +1023,28 @@ var design={
                 var e = design.item.get();
                 if(e.length){
                     design.text.update('fontfamily', id);
+                    FontDetect.onFontLoaded(id, function () {
+                        window.setTimeout(function () {
+                            var txt = e.find('text');
+                            var size1 = txt[0].getBBox();
 
-                    setTimeout(function(){
-                        var txt = e.find('text');
-                        var size1 = txt[0].getBBox();
-                        var size2 = e[0].getBoundingClientRect();
+                            var $w = parseInt(size1.width);
+                            var $h = parseInt(size1.height);
 
-                        var $w 	= parseInt(size1.width);
-                        var $h 	= parseInt(size1.height);
+                            design.item.updateSize($w, $h);
 
-                        design.item.updateSize($w, $h);
+                            var svg = e.find('svg'),
+                                view = svg[0].getAttributeNS(null, 'viewBox');
+                            //var arr = view.split(' ');
+                            //var y = txt[0].getAttributeNS(null, 'y');
+                            //y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );
+                            //txt[0].setAttributeNS(null, 'y', y);
 
-                        var svg = e.find('svg'),
-                            view = svg[0].getAttributeNS(null, 'viewBox');
-                        var arr = view.split(' ');
-                        var y = txt[0].getAttributeNS(null, 'y');
-                        //y = Math.round(y) + Math.round(size2.top) - Math.round(size1.top) - ( (Math.round(size2.top) - Math.round(size1.top)) * (($w - arr[2])/$w) );
-                        //txt[0].setAttributeNS(null, 'y', y);
+                            design.item.placeSizeBox(e);
+                            design.item.checkBorders(e);
+                        }, 200);
+                    }, { msTimeout: 6000 });
 
-                        design.item.placeSizeBox(e);
-                        design.item.checkBorders(e);
-                    }, 200);
                 }
 			}
 		}
@@ -1804,13 +1808,12 @@ var design={
 		},
 	},
 	myart:{
-		create: function(e){
-		
+		create: function(e) {
 			var item = e.item;
-			$jd('.ui-lock').attr('checked', false);				
+			//$jd('.ui-lock').attr('checked', false);				
 			var o 			= {};
 			o.type 			= 'clipart';			
-			o.upload		= 1;			
+			o.upload = 1;
 			o.title 		= item.title;
 			o.url 			= item.url;
 			o.file_name 	= item.file_name;			
@@ -1822,7 +1825,7 @@ var design={
 			o.rotate 		= true;	
 			
 			
-			if (item.file_type != 'svg')
+			if (item.file_type !== 'svg')
 			{
 				o.file		= {};
 				o.file.type	= 'image';				
@@ -1831,22 +1834,34 @@ var design={
 				img.onload = function() {
 					o.width 	= this.width;
 					o.height	= this.height;
-					if (this.width > 100)
-					{
-						o.width 	= 100;						
-						o.height 	= (100/this.width) * this.height;
+					var imageData = app.state.getImage();
+					var view = app.state.getView();
+					var prefix = 'printable_'+view+'_';
+					var width = imageData[prefix+'width'];
+					var height = imageData[prefix+'height'];
+
+					if (this.width > width) {
+						o.width 	= width;						
+						o.height 	= (width/this.width) * this.height;
 					}
+                    if (o.height > height) {
+                        o.height 	= height;						
+                        o.width 	= (height/this.height) * this.width;
+                    }
 					o.change_color = 0;					
 								
 					var content = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink">'
-								 + '<g><image x="0" y="0" width="'+o.width+'" height="'+o.height+'" xlink:href="'+item.thumb+'" /></g>'
+								 + '<g><image x="1" y="1" width="' + (o.width-2) + '" height="' + (o.height-2) + '" xlink:href="' + item.url + '" preserveAspectRatio="none"/></g>'
 								 + '</svg>';
 					o.svg 		= $.parseHTML(content);					
-					design.item.create(o);
-					$jd('#dg-myclipart').modal('hide');
+					var $div = design.item.create(o);
+				    var svg = $div.find('svg:first')[0];
+				    svg.setAttributeNS(null, 'width', o.width);
+					svg.setAttributeNS(null, 'height', o.height);
+					svg.setAttributeNS(null, 'preserveAspectRatio', 'none');
 					design.mask(false);
 				}
-				img.src = item.thumb;
+				img.src = item.url;
 				return true;
 			}
 		}
@@ -2118,7 +2133,7 @@ var design={
 			}
 			design.print.colors();			
 			design.print.size();
-            return $(div);
+			return $div;
 		},
         duplicate: function(item){
             var newItem = $.extend(true, {}, item[0].item);
@@ -2487,11 +2502,11 @@ var design={
             if(e.data('type') == 'clipart')
             {
                 var file = e.data('file');
-                if(file.type == 'image')
+                if(file.type === 'image')
                 {
                     var img = e.find('image');
-                    img[0].setAttributeNS(null, 'width', width);
-                    img[0].setAttributeNS(null, 'height', height);
+                    img[0].setAttributeNS(null, 'width', width-2);
+                    img[0].setAttributeNS(null, 'height', height-2);
                 }
             }
 
@@ -2923,24 +2938,6 @@ var design={
 			}
 			var px = parseInt(value);
 			return Math.round(px);
-		}
-	},
-	upload:{
-		computer: function()
-		{
-			if ($('#upload-copyright').is(':checked') == false)
-			{
-				alert('Please tick the checkbox');
-				return false;
-			}
-			
-			if ($('#files-upload').val() == '')
-			{
-				alert('Please choose a file upload.');
-				return false;
-			}
-			
-			return true;
 		}
 	},
 	svg:{		

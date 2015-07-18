@@ -280,6 +280,7 @@
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\uploads\readme.txt" />
     <Content Include="Scripts\add-ons.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -542,10 +543,12 @@
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\design.js" />
     <Content Include="Scripts\design_upload.js" />
+    <Content Include="Scripts\fontdetect.js" />
     <Content Include="Scripts\jquery.color.js" />
     <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
     <Content Include="Scripts\jquery.elevatezoom.js" />
     <Content Include="Scripts\jquery.flip.js" />
+    <Content Include="Scripts\jquery.ui.resizeable.js" />
     <Content Include="Scripts\jquery.ui.rotatable.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -605,6 +608,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
