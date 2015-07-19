@@ -126,20 +126,6 @@ namespace Teeyoot.Module.Controllers
         [Themed]
         public ActionResult Payment(string result = "")
         {
-            OrderRecord order = new OrderRecord()
-            {
-                Products = {
-                     new LinkOrderCampaignProductRecord(){
-                         Count =3,
-                         Size ="M"
-                    },
-                    new LinkOrderCampaignProductRecord(){
-                         Count =1,
-                         Size ="S"
-                    },
-                }
-            };
-            _orderService.CreateOrder(order);
             //        var clientToken = Gateway.ClientToken.generate();
             //      ViewBag.ClientToken = clientToken;
 

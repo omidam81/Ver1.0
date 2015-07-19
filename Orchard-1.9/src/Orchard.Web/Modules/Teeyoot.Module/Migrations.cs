@@ -240,7 +240,15 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("Campaign_Status", "CampaignRecord", new[] { "CampaignStatusRecord_Id" }, "CampaignStatusRecord", new[] { "Id" });
 
-            return 10;
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.DropColumn("Size"));
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.AddColumn<int>("SizeId"));
+
+            SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "SizeId" }, "ProductSizeRecord", new[] { "Id" });
+
+            return 12;
         }
 
         public int UpdateFrom2()
@@ -346,6 +354,24 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("Campaign_Status", "CampaignRecord", new[] { "CampaignStatusRecord_Id" }, "CampaignStatusRecord", new[] { "Id" });
 
             return 10;
+        }
+
+        public int UpdateFrom10()
+        {
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.DropColumn("Size"));
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.AddColumn<int>("SizeId"));
+
+            return 11;
+        }
+
+        public int UpdateFrom11()
+        {
+            SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "SizeId" }, "ProductSizeRecord", new[] { "Id" });
+            
+            return 12;
         }
     }
 }

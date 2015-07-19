@@ -15,7 +15,7 @@ namespace Teeyoot.Module.Models
 
         public virtual int Count { get; set; }
 
-        public virtual string Size { get; set; }
+        public virtual int SizeId { get; set; }
 
     }
 }

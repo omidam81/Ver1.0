@@ -14,12 +14,14 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<ProductColorRecord> _colorRepository;
         private readonly IRepository<ProductRecord> _productRepository;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
+        private readonly IRepository<CampaignStatusRecord> _statusRepository;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository, 
                                IRepository<CampaignProductRecord> campProdRepository, 
                                IRepository<ProductColorRecord> colorRepository,
                                IRepository<ProductRecord> productRepository,
                                IRepository<CurrencyRecord> currencyRepository,
+                               IRepository<CampaignStatusRecord> statusRepository,
                                IOrchardServices services)
 	    {
             _campaignRepository = campaignRepository;
@@ -27,6 +29,7 @@ namespace Teeyoot.Module.Services
             _colorRepository = colorRepository;
             _productRepository = productRepository;
             _currencyRepository = currencyRepository;
+            _statusRepository = statusRepository;
             Services = services;
             
 	    }
@@ -92,6 +95,7 @@ namespace Teeyoot.Module.Services
                     ProductCountSold = 0,
                     TeeyootUserId = userId,
                     Title = data.CampaignTitle,
+                    CampaignStatusRecord = _statusRepository.Get(1)
                 };
                 _campaignRepository.Create(newCampaign);
 
