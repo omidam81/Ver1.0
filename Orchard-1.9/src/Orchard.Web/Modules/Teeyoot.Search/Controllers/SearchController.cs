@@ -46,7 +46,6 @@ namespace Teebay.Search.Controllers
             else
             {
                 campListAfterSearch = _campService.GetAllCampaigns().OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
-                //filter = "ads";
             }
 
             bool notResult = CheckResult();
@@ -55,7 +54,6 @@ namespace Teebay.Search.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                //ViewBag.IsEndOfRecords = (customers.Any()) && ((pageNum.Value * RecordsPerPage) >= customers.Last().Key);
                 return PartialView("_CustomerRow", new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
             }
             else

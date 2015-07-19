@@ -163,6 +163,12 @@
     font-size: 12px;
 }
 
+#loading {
+    width: 100%;
+    text-align: -webkit-center;
+    margin: 0 auto;
+}
+
 @media all and (min-width: 1700px) {
     .tee-preview img,
     .tee-preview:first-child img,

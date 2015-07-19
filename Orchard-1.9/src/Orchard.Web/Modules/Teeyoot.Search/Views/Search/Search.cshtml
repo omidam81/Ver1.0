@@ -6,7 +6,6 @@
 @using Teeyoot.Module.Models;
 
 <div class="tb-return-result">
-
     @if (Model.NotResult)
     {
         <h1>No search results for the word "@Model.Filter"!</h1>
@@ -19,10 +18,10 @@
                 @Html.Partial("_CustomerRow", (Model as Teeyoot.Search.ViewModels.SearchViewModel))
             </tbody>
         </table>
-        <div id="loading">
-            <img src='@Url.Content("~/Media/spin.gif")' /><p><b>Loading the next @ViewBag.RecordsPerPage&hellip;</b></p>
-        </div>
     }
+</div>
+<div id="loading">
+    <img src='@Url.Content("~/Media/spin.gif")' /><p><b>Loading the next &hellip;</b></p>
 </div>
 
 @using (Script.Foot())
@@ -40,7 +39,6 @@
             }
         });
 
-        //var isloadpage
         var doc_height = $(document).height();
         var page_height = $('#layout-wrapper').height();
         if (page_height <= doc_height)
@@ -48,7 +46,6 @@
             var footer_height_now = $('.tb-layout-footer').height();
             var footer_padding_top_now = parseInt($('.tb-layout-footer').css("padding-top"));
             var footer_padding_bottom_now = parseInt($('.tb-layout-footer').css("padding-bottom"));
-            //var footer_margin_top_now = parseInt($('.tb-layout-footer').css("margin-top"));
             var footer_margin_bottom_now = parseInt($('.tb-layout-footer').css("margin-bottom"));
             var container_height_now = $('.tb-layout-main-container').height();
             var container_padding_top_now = parseInt($('.tb-layout-main-container').css("padding-top"));
@@ -64,10 +61,6 @@
                 container_height_now - container_padding_top_now - container_padding_bottom_now - container_margin_top_now - container_margin_bottom_now -
                 header_height_now - header_padding_top_now - header_padding_bottom_now - header_margin_top_now - header_margin_bottom_now;
             var margin = footer_margin_top + "px";
-            //$('.tb-layout-footer group').css("margin-top", asd);
-            //document.getElementsByClassName('tb-layout-footer').style['marginTop'] = "20px";
-            //$('.tb-layout-footer').(footer_height);
-            //$('.tb-layout-footer').css("margin-top", footer_height + 'px !important');
             document.querySelector(".tb-layout-footer").style.marginTop = margin;
         }
 </script>
