@@ -1,0 +1,15 @@
+﻿@model string
+
+<h1>@Html.TitleForPage(T("Not found").ToString())</h1>
+<p>@T("The page you are looking for is not found.")</p>
+<div>@T("You can either go the ")<a href="/">@T("Home page")</a>@T(" or the ")
+    @if(string.IsNullOrWhiteSpace(Model))
+    {
+        <a href="/">@T("Previous page")</a>
+    }
+    else
+    {
+        <a href="@Model">@T("Previous page")</a>
+    }
+    </div>
+
