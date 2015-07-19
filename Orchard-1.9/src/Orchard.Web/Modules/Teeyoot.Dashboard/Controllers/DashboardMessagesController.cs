@@ -7,27 +7,13 @@ using Orchard.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Teeyoot.Messaging.Models;
-using Teeyoot.Messaging.Services;
 using Teeyoot.Module.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
 
-namespace Teeyoot.Module.Dashboard.Controllers
+namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-        
-        private  IMailChimpSettingsService _settingsService;
-        private readonly IRepository<LinkOrderCampaignProductRecord> _linkOrderCampaignProductRepository;
-
-
-        public DashboardController(IMailChimpSettingsService settingsService, IRepository<LinkOrderCampaignProductRecord> linkOrderCampaignProductRepository)
-        {
-            this._settingsService = settingsService;
-            this._linkOrderCampaignProductRepository = linkOrderCampaignProductRepository;
-        }
-        
-        
         // GET: Message
         public ActionResult Messages()
         {
