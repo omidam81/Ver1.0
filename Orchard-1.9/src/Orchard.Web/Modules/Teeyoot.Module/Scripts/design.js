@@ -815,7 +815,7 @@ var design={
 
             var $colorsContainers = $('.all-colors');
             app.state.colorsInUse = [];
-            design.products.colors = {};
+            //design.products.colors = {};
 
 			$.each(colors, function(i, color){
                 if(!color.inStock){
@@ -1158,6 +1158,7 @@ var design={
                     me.images[image.product_id] = image;
                 });
                 me.addCategory(data.product_groups);
+                me.categoriesList = data.product_groups;
             });
 		},
 		addProduct: function(productIds){
@@ -3560,5 +3561,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('.drag-item').click(function(){alert(23); });
+	$('.drag-item').click(function () { alert(23); });
+
+
 });

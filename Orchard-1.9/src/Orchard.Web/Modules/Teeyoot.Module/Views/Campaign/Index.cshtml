@@ -1,19 +1,15 @@
-﻿@{
+﻿@model Teeyoot.Module.Models.CampaignRecord
+@{
     Style.Include("campaign.css");
     Script.Require("jQuery");
     Script.Include("jquery.flip.js");
-    Script.Include("jquery.elevateZoom-3.0.8.min.js");
+    Script.Include("jquery.elevateZoom-3.0.8.min.js");   
 }
 
 
 
 @using (Script.Foot())
 {
-    <script>
-        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 450, zoomWindowHeight: 600 });
-        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 450, zoomWindowHeight: 600 });
-    </script>
-
     <script>
 
         $(".product__size_chart_link--show").click(function () {
@@ -63,13 +59,17 @@
             document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
             document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
         });
+
         var i = 1;
         $("#add-row").click(function () {
             var table = document.getElementById('precheckout_table');
             var trArray = table.getElementsByClassName('precheckout_items_table__row');
-            var row = document.getElementById('js-precheckout-line');
+            var row = document.getElementById('js-precheckout-line');                    
+            var sellect = row.firstElementChild.cells[3].childNodes[1];
+            sellect = sellect.id;
             var rowHtml = row.firstElementChild.innerHTML;
-            var row = table.insertRow(trArray.length + 1);
+            var row = table.insertRow(trArray.length + 1);         
+            document.getElementById(sellect).setAttribute("id", "product__dropdown_modal" + i);        
             row.className = "precheckout_items_table__row";
             row.id = "js-precheckout-line-item-" + i;
             row.innerHTML = rowHtml;
@@ -77,39 +77,97 @@
         });
 
 
-
-    </script>
-    <script>
-
+        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+   
         function ItemRemove(node) {
             var el = document.getElementById(node.id);
             el.parentNode.removeChild(el);
         }
-    </script>
-
-
-
-    <script>
+   
         var isFront = true
         $(function ($) {
             $("#card").flip({
                 trigger: 'manual'
             }).click(function () {
                 isFront = !isFront;
+                var elms = document.getElementsByClassName('zoomWindow');
+                @*if (isFront) {
+                    for (var i = 0; i < elms.length; i++) {
+                        elms[i].setAttribute("background-image", "url(/Media/campaigns/@Model.Id/" + id + "/big/front.png)");
+                    }
+                } else {
+                    for (var i = 0; i < elms.length; i++) {
+                        elms[i].setAttribute("background-image", "url(/Media/campaigns/@Model.Id/" + id + "/big/back.png)");
+                    }
+               
+                }*@
                 console.log(isFront);
                 $("#card").flip(!isFront);
             });
         });
-    </script>
-    <script>
+
         function Resrve() {
             document.getElementById("reserve-it-now").className = "dg-overlay";
         }
-    </script>
-    <script>
+   
         function CloseReservation() {
             document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
         }
+   
+        function ChangeProduct(item) {
+            var id = item[item.selectedIndex].id;
+            $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+            $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
+            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
+            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+        }
+      
+        function ChangeProductModal(item) {
+            var par = item.parentNode.parentNode.id;
+            var index = document.getElementById(item.id).selectedIndex;
+            var id = item[item.selectedIndex].id;
+            var camp = item.parentNode.parentNode.cells[0].childNodes[1];
+            camp.setAttribute("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+        }
+   
+        function sendData() {
+            var products = [];
+            var tableRows = $('.precheckout_items_table__row');
+            var count;
+            var productId;
+            var sizeId;
+
+            tableRows.each(function (index, el) {
+                productId = $(el).find('.product__dropdown')[0].selectedOptions[0].value;
+                sizeId = $(el).find('.size-dropdown')[0].selectedOptions[0].value;
+                count = $(el).find('.product-count')[0].value;
+
+                products.push({ ProductId: productId, SizeId: sizeId, Count: count });
+            });
+
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("CreateOrder", "Home"))",
+                data: addAntiForgeryToken({
+                    "products": products
+                }),
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        window.location.href = '/Buy';
+                    }
+                },
+            });
+
+        }
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
     </script>
 
 }
@@ -128,13 +186,13 @@
             </div>
 
             <div class="js-campaign-title">
-                <h1 class="campaign__name campaign__name--old">Let's booze</h1>
-                <h1 class="campaign__name display--mobile hidden">Let's booze</h1>
+                <h1 class="campaign__name campaign__name--old">@Model.Title</h1>
+                <h1 class="campaign__name display--mobile hidden">@Model.Title</h1>
             </div>
 
             <div class="campaign__short_description display--mobile">
-                <span>There is nothing left but booze</span>
-                <a class="js-description-jump" href="">Read more</a>
+                <span>@Model.Description</span>
+                <a class="js-description-jump" href="">@T("Read more")</a>
             </div>
 
 
@@ -142,15 +200,21 @@
 
 
                 <div id="card" style="margin-right:30px">
-                    <div class="front">
-                        <img id="prodFront" src="/Themes/Teebay.Theme/Content/front.png" data-zoom-image="/Themes/Teebay.Theme/Content/front2.png">
+                    <div id="front" class="front">
+                        <img id="prodFront"
+                             src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
+                             data-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
+                             data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
                         <div id="butt1" style="text-align:center; ">
                             <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>
                             <div class="flip-button flip-button-back"><span>Back</span></div>
                         </div>
                     </div>
                     <div class="back">
-                        <img id="prodBack" src="/Themes/Teebay.Theme/Content/back.png" data-zoom-image="/Themes/Teebay.Theme/Content/back2.png">
+                        <img id="prodBack"
+                             src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
+                             data-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
+                             data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
                         <div id="butt2" style="text-align:center;">
                             <div class="flip-button flip-button-front"><span>Front</span></div>
                             <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>Back</span></div>
@@ -201,19 +265,14 @@
             <div class="campaign__column--product" style="min-height: inherit;">
 
                 <div class="zoom_window__container .zoomWindowContainer" style="max-width: none;">
-
-                    <div style="overflow: hidden; float: left; z-index: 100; position: absolute; top: 0px; left: 0px;
-                            background-image: url(http://vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/front.png?v=2015-07-07-08-01);
-                            background-color: rgb(255, 255, 255); background-size: 756px 900px; background-position: -354.132720947266px -51.29296875px;
-                            background-repeat: no-repeat;" class="zoomWindow">
-                        &nbsp;
-                    </div>
+                   
+                    
                 </div>
 
-                <h1 class="campaign__name display--desktop hidden">Let's booze</h1>
+                <h1 class="campaign__name display--desktop hidden">@Model.Title</h1>
 
                 <div class="campaign__description display--desktop">
-                    There is nothing left but booze
+                    @Model.Description
                 </div>
 
                 <div class="campaign_stats__container js_stats_countainer display--mobile">
@@ -254,40 +313,41 @@
 
                 <div class="product_dropdown__container">
 
-                    <label class="product_dropdown__label">Available Styles:</label>
+                    <label class="product_dropdown__label">@T("Available Styles"):</label>
 
                     <div class="js_product_dropdown">
 
-                        <select class="product__dropdown form__select_menu js_product_select">
-                            <option data-usd-price="Teespring Premium Tee - $15.00" data-class="localized-price" value="369">Teespring Premium Tee - $15.00</option>
-                            <option data-usd-price="American Apparel Triblend - $20.00" data-class="localized-price" value="72">American Apparel Triblend - $20.00</option>
-                            <option data-usd-price="Hanes Tagless Tee - $21.00" data-class="localized-price" value="2">Hanes Tagless Tee - $21.00</option>
+                        <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
+                            @foreach (var prod in Model.Products)
+                            {
+                                <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                            }
                         </select>
                     </div>
                 </div>
 
-                <div class="product__container hidden">
+                @*<div class="product__container hidden">
 
-                    <nav class="product__nav">
-                        <ul class="product__list">
-                            <li class="product__each product__each--active" data-product-id="369">
-                                <div class="product__img-wrap">
-                                    <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/front.png?v=2015-07-07-08-01">
-                                </div>
-                            </li>
-                            <li class="product__each" data-product-id="72">
-                                <div class="product__img-wrap">
-                                    <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/72/5902/120x9999/front.png?v=2015-07-07-08-01">
-                                </div>
-                            </li>
-                            <li class="product__each" data-product-id="2">
-                                <div class="product__img-wrap">
-                                    <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/2/577/120x9999/front.png?v=2015-07-07-08-01">
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                        <nav class="product__nav">
+                            <ul class="product__list">
+                                <li class="product__each product__each--active" data-product-id="369">
+                                    <div class="product__img-wrap">
+                                        <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/front.png?v=2015-07-07-08-01">
+                                    </div>
+                                </li>
+                                <li class="product__each" data-product-id="72">
+                                    <div class="product__img-wrap">
+                                        <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/72/5902/120x9999/front.png?v=2015-07-07-08-01">
+                                    </div>
+                                </li>
+                                <li class="product__each" data-product-id="2">
+                                    <div class="product__img-wrap">
+                                        <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/2/577/120x9999/front.png?v=2015-07-07-08-01">
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>*@
 
                 <div class="product__container">
 
@@ -985,117 +1045,116 @@
                                 <h2 class="precheckout_modal__title">Your Order</h2>
                             </div>
                             <div class="precheckout_modal__image_container">
-                                <div class="precheckout_modal__image js-precheckout-banner" style="background-image: url(http://vangogh.teespring.com/shirt_pic/2592056/2860469/369/6524/front.png?v=2015-07-15-03-14);"></div>
+                                <div class="precheckout_modal__image" style="background-image: url(/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png);"></div>
                             </div>
-                            @*<form accept-charset="UTF-8"  class="precheckout_form js-precheckout-form" id="new_pre_checkout_form" >*@
-                            <div style="display:none">
-                                <input name="utf8" type="hidden" value="✓">
-                                <input name="authenticity_token" type="hidden" value="D6HXAMfQEDGT8fwdvBz5E/DiistogjQwgQdkNiNKuSs=">
-                            </div>
-                            <input id="pre_checkout_form_campaign_id" name="pre_checkout_form[campaign_id]" type="hidden" value="2592056">
-                            <input id="pre_checkout_form_payment_method" name="pre_checkout_form[payment_method]" type="hidden" value="stripe">
-                            <input id="pre_checkout_form_ship_method" name="pre_checkout_form[ship_method]" type="hidden" value="1">
-                            <input id="pre_checkout_form_currency" name="pre_checkout_form[currency]" type="hidden" value="USD">
-                            <div class="modal-body">
-                                <table id="precheckout_table" class="precheckout_items_table precheckout_table">
-                                    <thead class="precheckout_items_table__head">
-                                        <tr>
-                                            <th class="line_items_table__heading precheckout_items_table__item--image"></th>
-                                            <th class="line_items_table__heading">Qty</th>
-                                            <th class="line_items_table__heading">Size</th>
-                                            <th class="line_items_table__heading">Style</th>
-                                            <th class="line_items_table__heading line_items_table__heading--price">Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="js-precheckout-line">
-                                        <tr id="js-precheckout-line-item" class="precheckout_items_table__row " data-index="1">
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--image">
-                                                <img src="//vangogh.teespring.com/shirt_pic/2592056/2860469/369/6524/120x9999/front.png?v=2015-07-15-03-14">
-                                            </td>
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--qty">
-                                                <div class="tooltip tooltip--topleft">
-                                                    <input class="form__textfield form__textfield--large js-quantity" name="pre_checkout_form[line_items_attributes][1][quantity]" type="text" value="1">
-                                                </div>
-                                            </td>
-                                            <td class="precheckout_items_table__item">
-                                                <div class="tooltip tooltip--topleft">
-                                                    <select class="form__select_menu precheckout_items_table__item--size js-size-select" name="pre_checkout_form[line_items_attributes][1][size]">
-                                                        <option value="--">--</option>
-                                                        <option value="S">S</option>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="2XL">2XL</option>
-                                                        <option value="3XL ">3XL </option>
-                                                        <option value="4XL">4XL</option>
-                                                        <option value="5XL ">5XL </option>
+
+
+                                             
+                                
+                                <div class="modal-body">
+                                    <table id="precheckout_table" class="precheckout_items_table precheckout_table">
+                                        <thead class="precheckout_items_table__head">
+                                            <tr>
+                                                <th class="line_items_table__heading precheckout_items_table__item--image"></th>
+                                                <th class="line_items_table__heading">Qty</th>
+                                                <th class="line_items_table__heading">Size</th>
+                                                <th class="line_items_table__heading">Style</th>
+                                                <th class="line_items_table__heading line_items_table__heading--price">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="js-precheckout-line">
+                                            <tr id="js-precheckout-line-item" class="precheckout_items_table__row" data-index="1">
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--image">
+                                                    <img id="modal_campaign_img" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png">
+                                                </td>
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--qty">
+                                                    <div class="tooltip tooltip--topleft">
+                                                        <input class="form__textfield form__textfield--large product-count" type="text" value="1">
+                                                    </div>
+                                                </td>
+                                                <td class="precheckout_items_table__item">
+                                                    <div class="tooltip tooltip--topleft">
+                                                        <select class="form__select_menu size-dropdown precheckout_items_table__item--size">
+                                                            <option value="--">--</option>
+                                                            @foreach (var size in Model.Products[0].ProductRecord.SizesAvailable)
+                                                            {
+                                                                <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--style">
+                                                    <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
+                                                        @foreach (var prod in Model.Products)
+                                                        {
+                                                            <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                        }
                                                     </select>
-                                                </div>
-                                            </td>
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--style">
-                                                <select class="form__select_menu js-style-select" name="pre_checkout_form[line_items_attributes][1][style]">
-                                                    <option data-color-id="6524" data-product-id="369" selected="true" value="369-6524">Teespring Premium Tee Heathered Bright Turquoise </option>
-                                                    <option data-color-id="5902" data-product-id="72" value="72-5902">American Apparel Triblend Evergreen</option>
-                                                    <option data-color-id="577" data-product-id="2" value="2-577">Hanes Tagless Tee Orange</option>
-                                                </select>
-                                            </td>
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--price">
-                                                $15.00
-                                                <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                </td>
+                                                <td class="precheckout_items_table__item precheckout_items_table__item--price">
+                                                    $15.00
+                                                    <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                                <div class="precheckout_actions">
-                                    <div id="add-row" class="precheckout_actions__button">+ Add another style or color</div>
-                                </div>
-                                <div class="saved_payment_info">
-                                    <div class="saved_payment_info__container">
-                                        <a class="saved_payment_info__edit_link">
-                                            <i class="saved_payment_info__edit_icon ts-icon-edit"></i>
-                                        </a>
-                                        <div class="saved_payment_info__row">
-                                            <span class="saved_payment_info__label">Shipping Address:</span>
-                                            <span class="saved_payment_info__value">460 Bryant St. Suite 200, San Francisco, CA 94611</span>
-                                        </div>
-                                        <div class="saved_payment_info__row">
-                                            <span class="saved_payment_info__label">Pay With:</span>
-                                            <span class="saved_payment_info__value">Visa ending in 3456</span>
-                                        </div>
+                                    <div class="precheckout_actions">
+                                        <div id="add-row" class="precheckout_actions__button">+ Add another style or color</div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="payment_options_info">
-                                    <ul class="payment_options">
-                                        <li class="payment_options__item payment_options__item--visa"></li>
-                                        <li class="payment_options__item payment_options__item--amex"></li>
-                                        <li class="payment_options__item payment_options__item--mastercard"></li>
-                                        <li class="payment_options__item payment_options__item--discover"></li>
-                                        <li class="payment_options__item payment_options__item--border">
-                                            <div class="payment_options__item--paypal"></div>
-                                        </li>
-                                    </ul>
-                                    <p class="payment_options_caption">We accept all major credit cards and Paypal</p>
-                                </div>
-                                <div class="payment_options_container">
-                                    <div class="payment_options_actions">
-                                        <a href="@Url.Action("Payment", "Home")">
-                                            <div class="button button--transaction button--precheckout submit--checkout js-precheckout-submit">
-                                                Checkout
-
-                                                @*<input class="button button--transaction button--precheckout submit--saved_payment_info js-precheckout-complete-order" type="submit" value="Complete Your Order">*@
+                                    <div class="saved_payment_info">
+                                        <div class="saved_payment_info__container">
+                                            <a class="saved_payment_info__edit_link">
+                                                <i class="saved_payment_info__edit_icon ts-icon-edit"></i>
+                                            </a>
+                                            <div class="saved_payment_info__row">
+                                                <span class="saved_payment_info__label">Shipping Address:</span>
+                                                <span class="saved_payment_info__value">460 Bryant St. Suite 200, San Francisco, CA 94611</span>
                                             </div>
-                                        </a>
-
+                                            <div class="saved_payment_info__row">
+                                                <span class="saved_payment_info__label">Pay With:</span>
+                                                <span class="saved_payment_info__value">Visa ending in 3456</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                              
-                            </div>  @*</form>*@
-                        </div>
+                                <div class="modal-footer">
+                                    <div class="payment_options_info">
+                                        <ul class="payment_options">
+                                            <li class="payment_options__item payment_options__item--visa"></li>
+                                            <li class="payment_options__item payment_options__item--amex"></li>
+                                            <li class="payment_options__item payment_options__item--mastercard"></li>
+                                            <li class="payment_options__item payment_options__item--discover"></li>
+                                            <li class="payment_options__item payment_options__item--border">
+                                                <div class="payment_options__item--paypal"></div>
+                                            </li>
+                                        </ul>
+                                        <p class="payment_options_caption">We accept all major credit cards and Paypal</p>
+                                    </div>
+                                    <div class="payment_options_container">
+                                        <div class="payment_options_actions">
+                                            
+                                                <div onclick="sendData(); return false;" class="button button--transaction button--precheckout submit--checkout js-precheckout-submit">
+                                                    Checkout
+
+                                                    @*<input class="button button--transaction button--precheckout submit--saved_payment_info" type="submit" value="Complete Your Order">*@
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div> 
+                        
+</div>
                     </div>
                 </div>
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

@@ -2,28 +2,12 @@
     Style.Include("teebay.css");
     Style.Include("campaign.css");
     Style.Include("checkout.css");
+    @model Teeyoot.Module.Models.OrderRecord
 }
 
 <div class="site__content_container">
     <div class="site__wrapper">
-        <div class="order_summary__container">
-            <div class="order_summary__help">
-                <div class="order_summary__help__container">
-                    <h2>@T("How does Teeyoot work?")</h2>
-                    <p>@T("We won't charge you unless the campaign is successful. If the campaign doesn't reach its minimum, you won't be charged.")</p>
-                </div>
-                <div class="order_summary__help__container">
-                    <h2>@T("How long will it take to get my shirt?")</h2>
-                    <p>
-                        <span class="js-delivery-estimate">
-                            @T("Your order will arrive")
-                            <span class="js-estimate-earliest">10</span>-
-                            <span class="js-estimate-latest">15</span> @T("business days after the end of the campaign!")
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="form__message form__message--error hidden" style="padding: 15px"></div>
         <div class="checkout__wrapper">
@@ -81,11 +65,31 @@
             </div>
 
 
+            <div class="order_summary__container">
+                <div class="order_summary__help">
+                    <div class="order_summary__help__container">
+                        <h2>@T("How does Teeyoot work?")</h2>
+                        <p>@T("We won't charge you unless the campaign is successful. If the campaign doesn't reach its minimum, you won't be charged.")</p>
+                    </div>
+                    <div class="order_summary__help__container">
+                        <h2>@T("How long will it take to get my shirt?")</h2>
+                        <p>
+                            <span class="js-delivery-estimate">
+                                @T("Your order will arrive")
+                                <span class="js-estimate-earliest">10</span>-
+                                <span class="js-estimate-latest">15</span> @T("business days after the end of the campaign!")
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
 
             <form action="@Url.Action("CreateTransaction")" onsubmit="return Validate();" method="POST" id="braintree-payment-form">
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
-                    <input autofocus="autofocus" class="form__textfield form__textfield--large" id="email" name="email" placeholder="Email address" tabindex="1" type="text">
+                    <input autofocus="autofocus" class="form__textfield form__textfield--large" id="Email" name="Email" placeholder="Email address" tabindex="1" type="text">
 
                     <div class="checkout__legend">
                         <div class="checkout__tool_tip--lock" data-tooltip="All transactions are secure and encrypted.">
@@ -113,13 +117,13 @@
                             </label>
                             @Html.AntiForgeryToken()
                             <div class="accordion__content">
-                                <input class="form__textfield form__textfield--large js-cc-number" id="cc-number"  name="Credit card number" placeholder="Credit card number" tabindex="9" type="text">
+                                <input class="form__textfield form__textfield--large js-cc-number" data-stripe="number" data-encrypted-name="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
                                 <div class="checkout_form__row">
                                     <div class="checkout__input--medium form-field-pair">
                                         <div class="mmYYYY">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month"  max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year"  max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline; width:29% "  data-stripe="cvc" id="cc-cvv"  maxlength="4" placeholder="CVC" tabindex="12" type="text">
+                                            <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
+                                            <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
+                                            <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " data-encrypted-name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
                                         </div>
 
                                     </div>
@@ -132,6 +136,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="accordion__item" style="margin-top:10px">
@@ -146,36 +151,35 @@
 
 
                     <div class="form__group js-checkout-shipping">
-                        <div class="checkout__legend">@T("Shipping Info")</div>
-                        <input id="address_type" name="address_type" type="hidden" value="new_address">
+                        <div class="checkout__legend">@T("Shipping Info")</div>    
                         <div class="checkout__input--half">
-                            <input class="form__textfield form__textfield--large" data-default="" data-type="name" id="first_name" maxlength="30" name="first_name" placeholder="First name" size="30" tabindex="2" type="text">
+                            <input class="form__textfield form__textfield--large" data-default="" data-type="name" id="FirstName" maxlength="30" name="FirstName" placeholder="First name" size="30" tabindex="2" type="text">
                         </div>
                         <div class="checkout__input--half">
-                            <input class="form__textfield form__textfield--large" data-default="" data-type="name" id="last_name" maxlength="30" name="last_name" placeholder="Last name" size="30" tabindex="3" type="text">
+                            <input class="form__textfield form__textfield--large" data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="Last name" size="30" tabindex="3" type="text">
                         </div>
-                        <input class="form__textfield form__textfield--large" data-default="" id="address" maxlength="50" name="address" placeholder="Street address" size="50" tabindex="4" type="text">
-                        <input class="form__textfield form__textfield--large" data-default="" id="address2" maxlength="50" name="address2" placeholder="Address line 2" size="50" tabindex="5" type="text">
+                        <input class="form__textfield form__textfield--large" data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="Street address" size="50" tabindex="4" type="text">
+                        <input class="form__textfield form__textfield--large" data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="Address line 2" size="50" tabindex="5" type="text">
                         <div class="checkout_form__row">
                             <div class="checkout__input--half">
-                                <input class="form__textfield form__textfield--large" data-default="" id="city" maxlength="30" name="city" placeholder="City" size="30" tabindex="6" type="text">
+                                <input class="form__textfield form__textfield--large" data-default="" id="City" maxlength="30" name="City" placeholder="City" size="30" tabindex="6" type="text">
                             </div>
                             <div class="checkout__input--half">
 
-                                <input class="form__textfield form__textfield--large" data-default="43" id="province" placeholder="Province" name="province" abindex="7" type="text">
+                                <input class="form__textfield form__textfield--large" data-default="43" id="State" placeholder="Province" name="State" abindex="7" type="text">
                             </div>
                         </div>
                         <div class="checkout_form__row">
                             <div class="checkout__input--half smarty-streets-container">
-                                <input class="form__textfield form__textfield--large" data-default="" id="postal_code" name="postal_code" placeholder="Postal code" tabindex="8" type="text">
+                                <input class="form__textfield form__textfield--large" data-default="" id="PostalCode" name="PostalCode" placeholder="Postal code" tabindex="8" type="text">
 
                             </div>
                             <div class="checkout__input--half">
-                                <select class="form__select_menu form__textfield--large form__textfield " id="country" name="country" tabindex="8"></select>
+                                <select class="form__select_menu form__textfield--large form__textfield " id="Country" name="Country" tabindex="8"></select>
 
                             </div>
                             <div class="checkout__input--half">
-                                <input class="form__textfield form__textfield--large js-shipping-phone" id="phone" placeholder="Phone number" tabindex="9" type="text" value="" name="phone">
+                                <input class="form__textfield form__textfield--large js-shipping-phone" id="PhoneNumber" placeholder="Phone number" tabindex="9" type="text" value="" name="PhoneNumber">
                             </div>
                         </div>
                     </div>
@@ -193,9 +197,10 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div>          
             </form>
             <input type="hidden" id="Token" value=@ViewBag.ClientToken>
+            
         </div>
     </div>
 </div>
@@ -212,22 +217,50 @@
 
 
     <script>
-        
+
         function Validate() {
             var error = false;
-            jQuery("input[type=text]").each(function () {               
-                if ($(this).val() == "") {
-                    $(this).addClass("errorVal");
-                    error = true;
-                } 
-                else {
-                    $(this).removeClass("errorVal");
-                }              
-            });
+            var email = document.getElementById("Email");
+            if (email.value == "") {
+                email.className = "form__textfield form__textfield--large errorVal";
+                error = true;
+            }          
+            else {
+                email.className = "form__textfield form__textfield--large";
+            }
+
+            var first_name = document.getElementById("FirstName");
+            if (first_name.value == "") {
+                first_name.className = "form__textfield form__textfield--large errorVal";
+                error = true;
+            }
+            else {
+                first_name.className = "form__textfield form__textfield--large";
+            }
+            
+            var last_name = document.getElementById("LastName");
+            if (last_name.value == "") {
+                last_name.className = "form__textfield form__textfield--large errorVal";
+                error = true;
+            }
+            else {
+                last_name.className = "form__textfield form__textfield--large";
+            }
+
+            //jQuery("input[type=text]").each(function () {
+            //    if ($(this).val() == "") {
+            //        $(this).addClass("errorVal");
+            //        error = true;
+            //    }
+            //    else {
+            //        $(this).removeClass("errorVal");
+            //    }
+            //});
 
             return !error;
         }
-    </script>
+
+</script>
    
 
     <script type="text/javascript">
@@ -266,7 +299,7 @@
                 countryElement.options[countryElement.length] = new Option(country_arr[i], country_arr[i]);
             }
         }
-        populateCountries("country");
+        populateCountries("Country");
     </script>
     
    

@@ -1,27 +1,43 @@
-﻿using Orchard.Themes;
+﻿using Orchard.Logging;
+using Orchard.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.Module.Services;
 
 namespace Teeyoot.Module.Controllers
 {
     [Themed]
     public class CampaignController : Controller
     {
+        private readonly ICampaignService _campaignService;
+
+        public CampaignController(ICampaignService campaignService)
+        {
+            _campaignService = campaignService;
+            Logger = NullLogger.Instance;
+        }
+
+        public ILogger Logger { get; set; }
+
         //
         // GET: /Campaign/
         public ActionResult Index(string campaignName)
         {
-            if (campaignName == "11111")
+            if (!string.IsNullOrWhiteSpace(campaignName))
             {
-                return View((object)campaignName);
+                var campaign = _campaignService.GetCampaignByAlias(campaignName);
+
+                if (campaign != null)
+                {
+                    return View(campaign);
+                }
             }
-            else
-            {
-                return new EmptyResult();
-            }            
+
+            return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
         }
 	}
 }

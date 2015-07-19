@@ -50,6 +50,21 @@ namespace Teeyoot.Search
                                 },
                                 new MvcRouteHandler())
                 }
+                ,
+                        new RouteDescriptor {
+                            Route = new Route(
+                                "Scroll",
+                                new RouteValueDictionary {
+                                    {"area", "Teeyoot.Search"},
+                                    {"controller", "InfiniteScrollDemo"},
+                                    {"action", "Index"}                           
+                                },
+                                new RouteValueDictionary(),
+                                new RouteValueDictionary {
+                                    {"area", "Teeyoot.Search"}
+                                },
+                                new MvcRouteHandler())
+                }
             };
         }
     }

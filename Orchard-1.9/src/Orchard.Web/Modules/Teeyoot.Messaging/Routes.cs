@@ -21,6 +21,20 @@ namespace Teeyoot.Messaging
             return new[] {
                 new RouteDescriptor {
                     Route = new Route(
+                        "UpdateSetting",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Messaging"},
+                            {"controller", "AdminMessage"},
+                            {"action", "UpdateSetting"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Messaging"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
                         "Admin/MailChimpSettings",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Messaging"},

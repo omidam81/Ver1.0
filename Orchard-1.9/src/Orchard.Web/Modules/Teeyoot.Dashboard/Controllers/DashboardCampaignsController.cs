@@ -1,14 +1,12 @@
-﻿using Orchard.Themes;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-
-namespace Teeyoot.Module.Dashboard.Controllers
+namespace Teeyoot.Dashboard.Controllers
 {
-    [Themed]
     public partial class DashboardController : Controller
     {
         public ActionResult Campaigns()
         {
+            var campaigns = _campaignService.GetAllCampaigns();
             return View();
         }
     }

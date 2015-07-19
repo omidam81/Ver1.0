@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using Teeyoot.FAQ.Models;
 
 namespace Teeyoot.Messaging.Models
 {
@@ -20,42 +22,8 @@ namespace Teeyoot.Messaging.Models
             }
         }
 
-        public virtual string MailChimpCampaignId {
-            get
-            {
-                return Retrieve(p => p.MailChimpCampaignId);
-            }
-            set
-            {
-                Store(p => p.MailChimpCampaignId, value);
-            }
-        
-        }
-
-        public virtual int TemplateId {
-            get
-            {
-                return Retrieve(p => p.TemplateId);
-            }
-            set
-            {
-                Store(p => p.TemplateId, value);
-            }
-        }
-
-        public virtual string TemplateName
+        public virtual string MailChimpListId
         {
-            get
-            {
-                return Retrieve(p => p.TemplateName);
-            }
-            set
-            {
-                Store(p => p.TemplateName, value);
-            }
-        }
-
-        public virtual string MailChimpListId {
             get
             {
                 return Retrieve(p => p.MailChimpListId);
@@ -66,7 +34,58 @@ namespace Teeyoot.Messaging.Models
             }
         }
 
-        public virtual string Culture {
+        public virtual string WelcomeCampaignId
+        {
+            get
+            {
+                return Retrieve(p => p.WelcomeCampaignId);
+            }
+            set
+            {
+                Store(p => p.WelcomeCampaignId, value);
+            }
+
+        }
+
+        public virtual int WelcomeTemplateId
+        {
+            get
+            {
+                return Retrieve(p => p.WelcomeTemplateId);
+            }
+            set
+            {
+                Store(p => p.WelcomeTemplateId, value);
+            }
+        }
+
+        public virtual string AllBuyersCampaignId
+        {
+            get
+            {
+                return Retrieve(p => p.AllBuyersCampaignId);
+            }
+            set
+            {
+                Store(p => p.AllBuyersCampaignId, value);
+            }
+
+        }
+
+        public virtual int AllBuyersTemplateId
+        {
+            get
+            {
+                return Retrieve(p => p.AllBuyersTemplateId);
+            }
+            set
+            {
+                Store(p => p.AllBuyersTemplateId, value);
+            }
+        }
+
+        public virtual string Culture
+        {
             get
             {
                 return Retrieve(p => p.Culture);
@@ -76,6 +95,10 @@ namespace Teeyoot.Messaging.Models
                 Store(p => p.Culture, value);
             }
         }
+
+
+        [HiddenInput(DisplayValue = false)]
+        public IEnumerable<LanguageRecord> AvailableLanguages { get; set; }
     }
 
 }

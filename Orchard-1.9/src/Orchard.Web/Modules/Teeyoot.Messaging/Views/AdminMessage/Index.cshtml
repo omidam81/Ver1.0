@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Teeyoot.Messaging.ViewModels.MailChimpListViewModel>
+﻿@model Teeyoot.Messaging.ViewModels.MailChimpListViewModel
 
 <!DOCTYPE html>
 
@@ -9,11 +9,64 @@
 </head>
 <body>
     <div>
-        <div >
-            <button><a class="button primaryAction" href="@Url.Action("AddSetting", new { returnUrl = Request.Url.ToString() })">@T("Add New Setting")</a></button>
-        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+        }
 
+        @if (Model != null)
+        {
 
+            using (Html.BeginForm("Index", "AdminMessage", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+
+                    @Html.DropDownListFor(m => m.Culture, Model.AvailableLanguages.Select(l => new SelectListItem
+                                            {
+                                                Selected = l.Code == Model.Culture,
+                                                Text = l.Name,
+                                                Value = l.Code
+                                            }))
+
+                    <button type="submit">@T("Apply")</button>
+                </fieldset>
+            }
+            if(Model.ApiKey!=null){
+            <div style="width:80%; margin-top:20px; margin-left:10%; margin-left:10%">
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; ">
+                    <div style="width:25%;  text-align:center;padding-top:10px ">Api Key</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ApiKey</div>
+                    <div style="width:25%;text-align:center;padding-top:10px">Mail Chimp List Id</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.MailChimpListId</div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style=" width:25%;  text-align:center;padding-top:10px">WelcomeCampaignId</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.WelcomeCampaignId</div>
+                    <div style="width:25%;  text-align:center;padding-top:10px">WelcomeTemplateId</div>
+                    <div style="width:25%; border: 1px solid #eaeaea; text-align:center;padding-top:10px ">@Model.WelcomeTemplateId</div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style=" width:25%;  text-align:center;padding-top:10px">AllBuyersCampaignId</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.AllBuyersCampaignId</div>
+                    <div style="width:25%;  text-align:center;padding-top:10px">AllByersTemplateId</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.AllBuyersTemplateId</div>
+                </div>
+
+            </div>
+            <div style="display:flex; float:right;  margin-top: 20px;  margin-right: 10%;">
+                <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("EditMailChimpSetting", new { id = Model.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>
+                <a class="button primaryAction" href="@Url.Action("Delete", new { id = Model.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+
+            </div>
+            }
+            else
+            {
+                <div><h3>There are no setting to this language</h3></div>
+                <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { returnUrl = Request.Url.ToString(), language = Model.Culture })" title="@T("Add")">@T("Add")</a>
+            }
+        }
+        
     </div>
+
 </body>
 </html>

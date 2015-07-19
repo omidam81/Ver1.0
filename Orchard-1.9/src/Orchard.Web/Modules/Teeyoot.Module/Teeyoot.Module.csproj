@@ -60,6 +60,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -254,6 +255,12 @@
     <Content Include="Content\images\helvetica.png" />
     <Content Include="Content\images\paypal-logo-white-ie8.png" />
     <Content Include="Content\images\paypal-logo-white.png" />
+    <Content Include="Content\images\product_type_3_front_small.png" />
+    <Content Include="Content\images\product_type_3_front.png" />
+    <Content Include="Content\images\product_type_3_back.png" />
+    <Content Include="Content\images\product_type_2_front_small.png" />
+    <Content Include="Content\images\product_type_2_front.png" />
+    <Content Include="Content\images\product_type_2_back.png" />
     <Content Include="Content\images\product_type_1_back.png" />
     <Content Include="Content\images\product_type_1_front.png" />
     <Content Include="Content\images\product_type_1_front_small.png" />
@@ -279,8 +286,38 @@
     <Content Include="Content\images\zoom_in_light.svg" />
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\uploads\readme.txt" />
+    <Content Include="Content\vector\Aces.png" />
+    <Content Include="Content\vector\Airplane.png" />
+    <Content Include="Content\vector\All Day and Night.png" />
+    <Content Include="Content\vector\Badge 9.png" />
+    <Content Include="Content\vector\Baseball Dad.png" />
+    <Content Include="Content\vector\Birthday Cake 5.png" />
+    <Content Include="Content\vector\Curling Stone.png" />
+    <Content Include="Content\vector\Eagle 6.png" />
+    <Content Include="Content\vector\emc2.png" />
+    <Content Include="Content\vector\Envelope 2.png" />
+    <Content Include="Content\vector\Family Figures 3.png" />
+    <Content Include="Content\vector\Fire 2.png" />
+    <Content Include="Content\vector\Fish 2.png" />
+    <Content Include="Content\vector\Giraffe 5.png" />
+    <Content Include="Content\vector\Happy Holidays.png" />
+    <Content Include="Content\vector\Home.png" />
+    <Content Include="Content\vector\Hourglass 3.png" />
+    <Content Include="Content\vector\Hyena 2.png" />
+    <Content Include="Content\vector\links.html" />
+    <Content Include="Content\vector\Pipe Outline.png" />
+    <Content Include="Content\vector\Pirate Skull.png" />
+    <Content Include="Content\vector\RIP with Crow.png" />
+    <Content Include="Content\vector\Santa and Reindeer 5.png" />
+    <Content Include="Content\vector\Soda.png" />
+    <Content Include="Content\vector\Speaker.png" />
+    <Content Include="Content\vector\Symbol.png" />
+    <Content Include="Content\vector\Tower.png" />
+    <Content Include="Content\vector\Unlock.png" />
+    <Content Include="Content\vector\Weights.png" />
+    <Content Include="Content\vector\Wings 21.png" />
+    <Content Include="Content\vector\Woman 7.png" />
     <Content Include="Scripts\add-ons.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -537,6 +574,8 @@
     <Content Include="Content\fonts\zag-webfont.woff" />
     <Content Include="Content\fonts\zeroandzerois-webfont.woff" />
     <Content Include="Content\Web.config" />
+    <Content Include="Content\data-samples\random.json" />
+    <Content Include="Content\data-samples\search.json" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\config.js" />
@@ -580,17 +619,9 @@
     <Content Include="Module.txt" />
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Wizard\Index.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Message\Index.cshtml" />
-    <Content Include="Views\Message\CreateMessage.cshtml" />
-    <Content Include="Views\Message\getList.cshtml" />
     <Content Include="Views\Campaign\Index.cshtml" />
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
-    <Content Include="Views\Dashboard\Campaigns.cshtml" />
-    <Content Include="Views\Dashboard\CreateMessage.cshtml" />
-    <Content Include="Views\Dashboard\getList.cshtml" />
-    <Content Include="Views\Dashboard\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -611,8 +642,11 @@
     <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\CampaignStatusRecord.cs" />
+    <Compile Include="Models\LaunchCampaignData.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />
+    <Compile Include="Models\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
     <Compile Include="Models\FontRecord.cs" />
@@ -629,6 +663,8 @@
     <Compile Include="Models\TeeyootUserPart.cs" />
     <Compile Include="Models\TeeyootUserPartRecord.cs" />
     <Compile Include="Routes.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
   </ItemGroup>
@@ -636,6 +672,7 @@
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />

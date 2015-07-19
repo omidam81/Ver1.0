@@ -82,9 +82,15 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Teeyoot.FAQ\Teeyoot.FAQ.csproj">
+      <Project>{c1227a9d-ebe0-4776-af87-d2f677ce2200}</Project>
+      <Name>Teeyoot.FAQ</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminMessageController.cs" />
+    <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
+    <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
@@ -94,12 +100,31 @@
     <Compile Include="ViewModels\MailChimpAddSettingViewModel.cs" />
     <Compile Include="ViewModels\MailChimpListViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Views\AdminMessage\Addsetting.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\MailChimpSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminMessage\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Placement.info">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AdminMessage\AddSetting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AdminMessage\EditMailChimpSetting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

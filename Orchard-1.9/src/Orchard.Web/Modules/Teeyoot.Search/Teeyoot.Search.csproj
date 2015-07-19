@@ -67,6 +67,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\infiniteScroll.js" />
     <Content Include="Styles\Search.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -100,12 +101,14 @@
     <Compile Include="Services\ICampaignProductService.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Search\CategoriesSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Search\Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\_CustomerRow.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

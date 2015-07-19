@@ -22,6 +22,7 @@ namespace Teebay.Search.Controllers
 
         private List<CampaignRecord> campListAfterSearch;
         private List<CampaignProductRecord> campProductList;
+        private const int take = 16;
 
         public SearchController(ICampaignService campService, ICampaignCategoriesService campCategService, ICampaignProductService campProductService)
         {
@@ -31,8 +32,11 @@ namespace Teebay.Search.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(string filter, int skip = 0, int take = 16)
+        public ActionResult Search(string filter, int? page)
         {
+            page = page ?? 0;
+            int skip = (int)page * take;
+
             filter = filter.Trim();
 
             if (!string.IsNullOrEmpty(filter))
@@ -48,7 +52,14 @@ namespace Teebay.Search.Controllers
 
             float[] price = PriceForCampaign(notResult);
 
-            return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_CustomerRow", new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
+            }
+            else
+            {
+                return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
+            }
         }
 
         public ActionResult CategoriesSearch(string categoriesName)
