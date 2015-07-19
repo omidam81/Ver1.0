@@ -6,7 +6,7 @@ namespace Teeyoot.Dashboard.Controllers
     {
         public ActionResult Campaigns()
         {
-           
+            var campaigns = _campaignService.GetAllCampaigns();
             return View();
         }
     }

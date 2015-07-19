@@ -33,6 +33,8 @@ namespace Teeyoot.Module.Models
 
         public virtual int? TeeyootUserId { get; set; }
 
+        public virtual CampaignStatusRecord CampaignStatusRecord { get; set; }
+
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
         [StringLengthMax]
