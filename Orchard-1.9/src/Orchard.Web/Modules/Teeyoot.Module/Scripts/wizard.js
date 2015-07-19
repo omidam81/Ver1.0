@@ -34,7 +34,41 @@
         imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
         imageDel.style.cursor = "pointer";
 
-        $image = $(image);
+        var $image = $(image);
+
+        //----------- profit/sale ----------------------------------
+        var divPricing = document.createElement("div");
+        var divProfit = document.createElement("div");
+        var inpPrice = document.createElement("input");
+        var h4Profit = document.createElement("h4");
+
+        divPricing.classList.add("ssp_pricing");
+        divPricing.style.marginLeft = "-8%";
+
+        divProfit.classList.add("profitSale");
+        inpPrice.classList.add("ssp_input");
+        inpPrice.classList.add("price_per");
+        inpPrice.classList.add("form__textfield");
+        inpPrice.style.padding = "0.3em";
+        inpPrice.value = "RM 15";
+
+        h4Profit.classList.add("h4ProfSale");
+        h4Profit.innerHTML = "RM 5.00 profit / sale";
+        
+        $inp = $(inpPrice);
+
+
+        // Ивент на остаток прибыли от суммы одной футболки -------------------
+        $inp.change(function () {
+            h4Profit.innerHTML = "RM " + (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2) + " profit / sale";
+        });
+
+        var $divPricing = $(divPricing);
+        $divPricing.append($inp);
+        divProfit.appendChild(h4Profit);
+        var $divProfit = $(divProfit);
+        //----------- profit/sale ----------------------------------
+
 
         //-----------------Color Picker------------------------------
         //-----Создаем тимплейт для пикера
@@ -57,20 +91,22 @@
         divColPick.classList.add("designDrop");
 
         divSwatch.classList.add("swatch2");
-        $divSwatch = $(divSwatch);
+         var $divSwatch = $(divSwatch);
 
         divColors.classList.add("colors");
         divColors.classList.add("shirt-colors");
         divColors.classList.add("containertip");
+        divColors.style.top = "28%";
+        divColors.style.left = "28%";
 
         ulAllColors.classList.add("all-colorsTwo");
         ulAllColors.classList.add("colors");
 
-        $ulAllColors = $(ulAllColors);
+        var $ulAllColors = $(ulAllColors);
 
         divClear.classList.add("clearfix");
 
-        $divColPick = $(divColPick);
+        var $divColPick = $(divColPick);
 
         divColors.appendChild(ulAllColors);
         divColPick.appendChild(divSwatch);
@@ -78,7 +114,7 @@
         divCol.appendChild(divColPick);
         divCol.appendChild(divClear);
 
-        $divColors = $(divColors);
+        var $divColors = $(divColors);
         
         // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
         $divColPick.on('click', function (event) {
@@ -91,7 +127,7 @@
 
 
         // Перебор всех существующих цветов
-        $.each(design.products.colors, function (i, color) {
+        $.each(app.state.product.colors_available_obj, function (i, color) {
 
             var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
                               color.name + '" style="background-color:' + color.value + ';"></li>';
@@ -145,16 +181,13 @@
         div.appendChild(divThumb);
         div.appendChild(divMeta);
         div.appendChild(divCol);
+        div.appendChild(divPricing);
+        div.appendChild(divProfit);
         div.appendChild(divDelete);
         div.style.height = "90px";
 
 
-
-
-
-
         var primDiv = document.getElementById("primary");
-
         primDiv.appendChild(div);
 
 
@@ -169,19 +202,27 @@
 }
 
 
+function profitSale() {
+    var $val = document.getElementById("profSale").value;
+    var $price = (parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
+    $("#mainH4").html("RM " + $price + " profit / sale");
+}
+
+
 
 function colorInit() {
+    var arrColors = [];
+    $.each(design.products.colors, function (i, color) {
+        if (app.state.product.colors_available.indexOf(color.id) >= 0) {
+            arrColors.push(color);
+        }
+    });
+    app.state.product.colors_available_obj = arrColors;
+
+
     var elem = $("#allColorsTwo");
-    //var els = design.products.colors;
-
-    //$.each(design.products.colors, function (i, color) {
-    //    if (app.state.product.colors_available.indexOf(color.id) == -1) { alert(color.id) }
-
-    //});
-
-
     if (elem.html() === "") {
-        $.each(design.products.colors, function (i, color) {
+        $.each(arrColors, function (i, color) {
             var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
                                 color.name + '" style="background-color:' + color.value + ';"></li>';
             var $colorHtml = $(colorHtml);
