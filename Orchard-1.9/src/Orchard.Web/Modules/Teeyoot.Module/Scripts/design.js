@@ -13,7 +13,7 @@ var design={
 		var me = this;
 		
 		$('.dg-tooltip').tooltip();
-		$( "#layers" ).sortable({stop: function( event, ui ) {
+		$( "#layers" ).sortable({stop: function() {
 			me.layers.sort();
 		}});		
 		$('.popover-close').click(function(){
@@ -22,7 +22,7 @@ var design={
         $("#app-wrap").flip({
             trigger: 'manual'
         });
-        $('.flip-button:not(.flip-button-active)').on('click', function(event){
+        $('.flip-button:not(.flip-button-active)').on('click', function(){
             design.products.changeView(app.state.getView(!app.state.isFront));
         });
         $('.design-area-zoom').on('click', function(){
@@ -39,13 +39,13 @@ var design={
                 $('.containertip--open').removeClass('containertip--open');
             }
         });
-        $('#flip-h').on('click', function(){
+        $('#flip-h, #art-flip-h').on('click', function () {
             design.item.flip('h');
         });
-        $('#flip-v').on('click', function(){
+        $('#flip-v, #art-flip-v').on('click', function () {
             design.item.flip('v');
         });
-        $('#item-center').on('click', function(){
+        $('#item-center, #art-item-center').on('click', function(){
             var item = design.item.get();
             if(item.length){
                 design.item.center();
@@ -53,16 +53,18 @@ var design={
                 design.item.checkBorders(item);
             }
         });
-        $('#duplicate-text').on('click', function(){
+        $('#duplicate-text, #art-duplicate').on('click', function () {
             var item = design.item.get();
             if(item.length){
                 design.item.duplicate(item);
             }
         });
-        $('#snap-to-center').on('change', function(){
-            app.state.snapToCenter = $(this).is(':checked');
+        $('#snap-to-center, #art-snap-to-center').on('change', function () {
+            var isChecked = $(this).is(':checked');
+            $('#snap-to-center, #art-snap-to-center').prop('checked', isChecked);
+            app.state.snapToCenter = isChecked;
         });
-        $('#push-back').on('click', function(){
+        $('#push-back, #art-push-back').on('click', function () {
             design.item.pushBack();
         });
         $('#browse-artwork').on('click', function(e){
@@ -88,7 +90,7 @@ var design={
             app.state.searchQuery = $('#artwork-query').val();
             design.designer.searchArt(false);
         });
-        $('.art-search-container').on('scroll', function(e){
+        $('.art-search-container').on('scroll', function(){
             var padding = 10;
             var $this = $(this);
             if(app.state.searchQuery && $this.scrollTop()+padding>=$this[0].scrollHeight- $this.height() && !app.state.artSearching){
@@ -114,7 +116,7 @@ var design={
                 }
             }
         });
-        $('.size-dialog input').on('input', function(e){
+        $('.size-dialog input').on('input', function(){
             var $this = $(this);
             var item = design.item.get();
             var val = parseFloat($this.val());
@@ -126,21 +128,17 @@ var design={
                 design.item.resizeTo(item, isWidth?val:undefined, !isWidth?val:undefined, true, true);
             }
         });
-        $('#outline-select').on('change', function(e){
+        $('#outline-select').on('change', function(){
             if(design.item.get().length){
                 design.text.update('outline-width', $(this).val());
             }
         });
-		design.item.move();
-		$jd( "#dg-outline-width" ).slider({
-			animate: true,
-			slide: function( event, ui ) {
-				$('.outline-value').html(ui.value);
-				design.text.update('outline-width', ui.value);
-			}
-		});
-		
-		$jd( "#dg-shape-width" ).slider();
+        $('#outline-select-art').on('change', function () {
+            if (design.item.get().length) {
+                design.text.update('outline-width', $(this).val());
+            }
+        });
+        design.item.move();
 		
 		$jd('.dg-color-picker-active').click(function(){
 			$jd(this).parent().find('ul').show(aniSpeed);
@@ -152,10 +150,7 @@ var design={
 		});
 		$jd('.rotate-value').on("focus change", function(){
 			var e = me.item.get();
-			var deg = $jd(this).val();
-			if(deg > 360) deg = 360;
-			if(deg < 0) deg = 0;
-			var angle = ($jd(this).val() * Math.PI)/180;
+			var angle = ($(this).val() * Math.PI)/180;
 			e.rotatable("setValue", angle);	
 		});
 		
@@ -163,7 +158,7 @@ var design={
 		$jd('.ui-lock').click(function(){
 			var e = me.item.get();
 			e.resizable('destroy');
-			if($jd(this).is(':checked') == true) me.item.resize(e, 'n, e, s, w, se');
+			if($(this).is(':checked')) me.item.resize(e, 'n, e, s, w, se');
 			else me.item.resize(e, 'se');
 		});
 		
@@ -211,7 +206,7 @@ var design={
 		
 		$jd('.add_item_clipart').click(function(){
 			me.designer.art.categories(true, 0);
-			if( $('#dag-list-arts').html() == '')
+			if( $('#dag-list-arts').html() === '')
 				me.designer.art.arts('');
 		});
 		
@@ -235,7 +230,7 @@ var design={
 		/* layers-toolbar control */
 		$('.layers-toolbar button').click(function(){
 			var elm = $(this).parents('.div-layers');
-			if (elm.hasClass('no-active') == true)
+			if (elm.hasClass('no-active'))
 			{
 				elm.removeClass('no-active');
 			}
@@ -252,7 +247,7 @@ var design={
 			var elm = $(this).parents('.dg-options');
 			var type = $(this).data('type');
 			
-			if (check == true)
+			if (check)
 			{
 				elm.children('.dg-options-content').removeClass('active');
 				$('.toolbar-action-'+type).removeClass('active');
@@ -275,7 +270,7 @@ var design={
 		$jd('.text-update').each(function(){
 			var e = $jd(this);
 			e.bind(e.data('event'), function(){
-				if (e.data('value') != 'undefined')
+				if (e.data('value') !== 'undefined')
 					design.text.update(e.data('label'), e.data('value'));
 				else
 					design.text.update(e.data('label'));
@@ -304,7 +299,7 @@ var design={
 			datas.colors[index] = hex;			
 			
 			/* get Design color and size*/
-			colors 				= {};
+			var colors 				= {};
 			colors.front 		= design.print.colors('front');			
 			colors.back 		= design.print.colors('back');			
 			colors.left 		= design.print.colors('left');			
@@ -316,7 +311,7 @@ var design={
 			
 			/* product attribute */
 			var attributes = $('#tool_cart').serialize();
-			if (attributes != '')
+			if (attributes !== '')
 			{
 				var obj = JSON.parse('{"' + decodeURI(attributes).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 				datas = $.extend(datas, obj);
@@ -340,14 +335,14 @@ var design={
 				url: baseURL + "cart/prices",
 				data: datas
 			}).done(function( data ) {
-				if (data != '')
+				if (data !== '')
 				{
 					if (typeof data.sale != 'undefined')
 					{
 						$('.price-sale-number').html(data.sale);
 						$('.price-old-number').html(data.old);
 						
-						if (data.sale == data.old)
+						if (data.sale === data.old)
 							$('#product-price-old').css('display', 'none');
 						else
 							$('#product-price-old').css('display', 'inline');
@@ -362,7 +357,7 @@ var design={
 		addJs: function(e){
 			var quantity = document.getElementById('quantity').value;
 				quantity = parseInt(quantity);
-			if (quantity == NaN || quantity < 1)
+			if (isNaN(quantity) || quantity < 1)
 			{
 				alert('Please add quantity or size');
 				return false;
@@ -377,10 +372,10 @@ var design={
 		},
 		active: 'back',
 		save: function(){
-			if (design.ajax.active == 'back')
+			if (design.ajax.active === 'back')
 			{
 				design.ajax.active = 'left';
-				if ($('#view-back .product-design').html() != '' && $('#view-back .product-design').find('img').length > 0)
+				if ($('#view-back .product-design').html() !== '' && $('#view-back .product-design').find('img').length > 0)
 				{
 					design.svg.items('back', design.ajax.save);
 				}
@@ -390,10 +385,10 @@ var design={
 					design.ajax.save();
 				}
 			}
-			else if (design.ajax.active == 'left')
+			else if (design.ajax.active === 'left')
 			{
 				design.ajax.active = 'right';
-				if ($('#view-left .product-design').html() != '' && $('#view-left .product-design').find('img').length > 0)
+				if ($('#view-left .product-design').html() !== '' && $('#view-left .product-design').find('img').length > 0)
 				{
 					design.svg.items('left', design.ajax.save);
 				}
@@ -403,9 +398,9 @@ var design={
 					design.ajax.save();
 				}	
 			}
-			else if (design.ajax.active == 'right')
+			else if (design.ajax.active === 'right')
 			{
-				if ($('#view-right .product-design').html() != '' && $('#view-right .product-design').find('img').length > 0)
+				if ($('#view-right .product-design').html() !== '' && $('#view-right .product-design').find('img').length > 0)
 				{
 					design.svg.items('right', design.ajax.addToCart);
 				}
@@ -442,10 +437,10 @@ var design={
 				data: datas,
 				url: baseURL + "cart/addJs"					
 			}).done(function( data ){
-				if (data != '')
+				if (data !== '')
 				{
 					var content = eval ("(" + data + ")");
-					if (content.error == 0)
+					if (content.error === 0)
 					{
 						$('.cart-added-img').html('<img src="'+content.product.image+'" class="img-responsive" alt="">');
 						$('.cart-added-info').html(content.product.quantity +' x '+ content.product.name);
@@ -578,7 +573,7 @@ var design={
 				
 				var images 	= eval ("(" + items['design'][colorIndex][postion] + ")");
 				$.each(images, function(i, image){
-					if (image.id != 'area-design')
+					if (image.id !== 'area-design')
 					{
 						$('#'+postion+'-img-'+image.id).css({"width":image.width, "height":image.height, "left":image.left,"top":image.top});
 					}
@@ -799,13 +794,26 @@ var design={
 		loadColors: function(){
 			var me = this;
 			app.loadSwatches().then(function(data){
-                me.addColor(data);
-            });
+			    me.addColor(data);
+			    me.swatches = data;
+			});
 		},
-        toRgbColor: function(color){
-            return 'rgb('+color.rgb[0]+','+color.rgb[1]+','+color.rgb[2]+')';
-        },
-        showColor: function($picker, color){
+		toRgbColor: function (color) {
+		    return 'rgb(' + color.rgb[0] + ',' + color.rgb[1] + ',' + color.rgb[2] + ')';
+		},
+		fromRgbColor: function (color) {
+		    var chunks = color.replace('rgb(', '').replace(')', '').split(',');
+		    chunks[0] = parseInt(chunks[0]);
+		    chunks[1] = parseInt(chunks[1]);
+		    chunks[2] = parseInt(chunks[2]);
+		    for (var i = 0; i < this.swatches.length; i++) {
+		        color = this.swatches[i];
+		        if (color.rgb[0] === chunks[0] && color.rgb[2] === chunks[2] && color.rgb[2] === chunks[2]) {
+		            return color;
+		        }
+		    }
+		},
+		showColor: function ($picker, color) {
             var $swatch = $('.swatch:first', $picker);
             var rgb = design.designer.toRgbColor(color);
             $swatch.css('background-color', rgb);
@@ -831,13 +839,22 @@ var design={
                         event.stopPropagation();
                         var $picker = $(this).parents('.color-picker:first');
                         var category = $picker.data('value');
-                        app.state['color-'+category] = color;
+                        app.state['color-' + category] = color;
                         me.showColor($picker, color);
-                        if(design.item.get().length){
-                            if(category === 'text'){
-                                design.text.update('color');
-                            }else{
-                                design.text.update('outline');
+                        if (design.item.get().length) {
+                            switch (category) {
+                                case 'text':
+                                    design.text.update('color');
+                                    break;
+                                case 'art':
+                                    design.text.update('art-color');
+                                    break;
+                                case 'outline':
+                                    design.text.update('outline');
+                                    break;
+                                case 'art-outline':
+                                    design.text.update('art-outline');
+                                    break;
                             }
                         }
                         $('.containertip--open').removeClass('containertip--open');
@@ -876,6 +893,21 @@ var design={
             }
             return assetsUrls.art+art.filename;
         },
+        addAsRecentArt: function(art) {
+            var $list = $('#clientArts ul');
+            var $images = $list.find('img[src="' + art.src + '"]');
+            if ($images.length) {
+                return;
+            }
+            var $html = $('<li><div class="valign-outer"><div class="valign-middle"><div class="valign-inner">' +
+                '<img class="art-search-preview" data-url-svg="' + art.svg + '" src="' + art.src + '">' +
+                '</div></div></div></li>');
+            $list.append($html);
+            $html.on('click', function() {
+                var url = $(this).find('img').data('url-svg');
+                design.art.create({ item: { url: url, file_type: 'svg', change_color: 1 } });
+            });
+        },
         addArt: function(data){
             var me = this;
             var arts = data || design.products.art;
@@ -890,10 +922,14 @@ var design={
                     $div.append('<img class="art-search-preview-noun-logo" src="./assets/images/tnp.png"'+
                         ' title="The Noun Project">');
                 }
-                $div.on('click', function(event){
-                    //todo add art on design + add it to recently added
-                });
                 $container.append($div);
+                $div.on('click', function (event) {
+                    var url = $(this).find('img').data('url-svg');
+                    var src = $(this).find('img').attr('src');
+                    design.art.create({ item: { url: url, file_type: 'svg', change_color: 1 } });
+                    me.addAsRecentArt({ svg: url, src: src});
+                    $('.containertip--open').removeClass('containertip--open');
+                });
             }
         },
         searchArt: function(append){
@@ -1479,52 +1515,50 @@ var design={
 			txt.color = design.designer.toRgbColor(app.state['color-text']);
 			txt.fontSize = '24px';
 			txt.fontFamily = app.state.font.family || 'arial';
-			txt.stroke = design.designer.toRgbColor(app.state['color-outline']);
-			txt.strokew = $('#outline-select').val();
+			txt.outlineC = design.designer.toRgbColor(app.state['color-outline']);
+			txt.outlineW = $('#outline-select').val();
 			this.add(txt, undefined, cloneFrom);
 		},
-		setValue: function(o){
+		getFontByFamily: function(family) {
+		    var fonts = design.products.fonts || {};
+            var fontIds = Object.keys(fonts);
+            for (var i = 0; i < fontIds.length; i++) {
+                var font = fonts[fontIds[i]];
+                if (font.family === family) {
+                    return font;
+                }
+            }
+            return null;
+        },
+		setValue: function (o) {
             $('#enter-text').val(o.text);
 
+            var font = this.getFontByFamily(o.fontFamily);
+            if (font) {
+                app.state.font = font;
+                var url = assetsUrls.fonts + font.filename + '.png';
+                var html = '<img src="' + url + '">';
+                $('#font-select').html(html);
+            }
 
-			$jd('#txt-fontfamily').html(o.fontFamily);
-			var color = $jd('#txt-color');
-				color.data('color', o.color);
-				color.css('background-color', o.color);
-				
-			if (typeof o.color != 'undefined')
-			{
-				var obj = $('#txt-color');
-				if (o.color == 'none')
-					obj.addClass('bg-none');
-				else
-					obj.removeClass('bg-none');
-					
-				obj.data('color', o.color);
-				obj.data('value', o.color);
-				obj.css('background-color', '#'+o.color);
-			}
+		    var color;
+            if (o.color) {
+                color = design.designer.fromRgbColor(o.color);
+                app.state['color-text'] = color;
+                design.designer.showColor($('.color-picker[data-value="text"]'), color);
+            }
+
+            if (o.outlineC && o.outlineC!=='none') {
+                color = design.designer.fromRgbColor(o.outlineC);
+                app.state['color-outline'] = color;
+                design.designer.showColor($('.color-picker[data-value="outline"]'), color);
+            }
 			
-			if (typeof o.outlineC == 'undefined')
-			{
-				o.outlineC	= 'none';
-			}
-			var obj = $('.option-outline .dropdown-color');
-			if (o.outlineC == 'none')
-				obj.addClass('bg-none');
-			else
-				obj.removeClass('bg-none');
-				
-			obj.data('color', o.outlineC);
-			obj.data('value', o.outlineC);
-			obj.css('background-color', '#'+o.outlineC);					
-			
-			if (typeof o.outlineW == 'undefined')
-			{
-				o.outlineW = 0;
-			}
-			$('.outline-value.pull-left').html(o.outlineW);
-			$('#dg-outline-width a').css('left', o.outlineW + '%');
+            if (typeof o.outlineW == 'undefined') {
+                o.outlineW = 0;
+            }
+
+            $('#outline-select').val(o.outlineW);
 
             $('#text-align-tools').show();
 		},
@@ -1545,8 +1579,8 @@ var design={
 				item.text 		= o.text;
 				item.fontFamily = o.fontFamily;
 				item.color 		= o.color;
-				item.stroke		= 'none';
-				item.strokew 	= '0';
+				item.outlineC = 'none';
+				item.outlineW = '0';
 			if(o){
 				this.setValue(o);
 			}else{
@@ -1573,8 +1607,8 @@ var design={
 			tspan.setAttributeNS(null, 'dy', 0);
 							
 			text.setAttributeNS(null, 'fill', o.color);
-			text.setAttributeNS(null, 'stroke', o.stroke);
-			text.setAttributeNS(null, 'stroke-width', o.strokew);
+			text.setAttributeNS(null, 'stroke', o.outlineC);
+			text.setAttributeNS(null, 'stroke-width', o.outlineW);
 			text.setAttributeNS(null, 'stroke-linecap', 'round');
 			text.setAttributeNS(null, 'stroke-linejoin', 'round');
 			text.setAttributeNS(null, 'x', parseInt($width/2));
@@ -1620,21 +1654,30 @@ var design={
 		update: function(lable, value){
 			var e = design.item.get();
             var oldWidth = parseInt(e.css('width'));
-			var txt = e.find('text');		
+            var txt = e.find('text');
+            if (!txt.length) {
+                txt = e.find('svg');
+            }
 			if(typeof lable != 'undefined' && lable != '')
 			{
-				var obj = document.getElementById(e.attr('id'));
+			    var obj = document.getElementById(e.attr('id'));
+			    var rgb;
 				switch(lable){
 					case 'fontfamily':
 						txt[0].setAttributeNS(null, 'font-family', value);
 						obj.item.fontFamily = value;
 						break;
-					case 'color':
-                        var rgb = design.designer.toRgbColor(app.state['color-text']);
-						txt[0].setAttributeNS(null, 'fill', rgb);
-						obj.item.color = rgb;
-						break;
-					case 'colorT':
+				    case 'color':
+				        rgb = design.designer.toRgbColor(app.state['color-text']);
+				        txt[0].setAttributeNS(null, 'fill', rgb);
+				        obj.item.color = rgb;
+				        break;
+				    case 'art-color':
+				        rgb = design.designer.toRgbColor(app.state['color-art']);
+				        txt[0].setAttributeNS(null, 'fill', rgb);
+				        obj.item.color = rgb;
+				        break;
+				    case 'colorT':
 						var color = $jd('#team-name-color').data('value');
 						if (color == 'none') var hex = color;
 						else var hex = '#' + color;
@@ -1718,13 +1761,18 @@ var design={
 						txt[0].setAttributeNS(null, 'stroke-linejoin', 'round');
 						obj.item.outlineW = value;
 						break;
-					case 'outline':
-                        rgb = design.designer.toRgbColor(app.state['color-outline']);
-						txt[0].setAttributeNS(null, 'stroke', rgb);
-						//txt[0].setAttributeNS(null, 'stroke-width', $jd('.outline-value').html()/50);
-						obj.item.outlineC = rgb;
-						break;
-					default:
+				    case 'outline':
+				        rgb = design.designer.toRgbColor(app.state['color-outline']);
+				        txt[0].setAttributeNS(null, 'stroke', rgb);
+				        //txt[0].setAttributeNS(null, 'stroke-width', $jd('.outline-value').html()/50);
+				        obj.item.outlineC = rgb;
+				        break;
+				    case 'art-outline':
+				        rgb = design.designer.toRgbColor(app.state['color-art-outline']);
+				        txt[0].setAttributeNS(null, 'stroke', rgb);
+				        obj.item.outlineC = rgb;
+				        break;
+				    default:
 						txt[0].setAttributeNS(null, lable, value);
 						break;
 				}
@@ -1858,7 +1906,8 @@ var design={
 					var $div = design.item.create(o);
 				    var svg = $div.find('svg:first')[0];
 				    svg.setAttributeNS(null, 'width', o.width);
-					svg.setAttributeNS(null, 'height', o.height);
+				    svg.setAttributeNS(null, 'height', o.height);
+				    svg.setAttributeNS(null, 'viewBox', '0 0 ' + o.width + ' ' + o.height);
 					svg.setAttributeNS(null, 'preserveAspectRatio', 'none');
 					design.mask(false);
 				}
@@ -1870,8 +1919,7 @@ var design={
 	art:{
 		create: function(e){
 			var item = e.item;
-			$jd('.ui-lock').attr('checked', false);
-			var img = $jd(e).children('img');			
+			var img = $(e).children('img');			
 			var o 			= {};
 			o.type 			= 'clipart';			
 			o.upload 		= 0;			
@@ -1887,12 +1935,11 @@ var design={
 			o.confirmColor	= false;
 			
 			
-			if (item.file_type != 'svg')
-			{
+			if (item.file_type !== 'svg') {
 				o.confirmColor	= true;
 				var canvas = document.createElement('canvas');
 				var context = canvas.getContext('2d');
-				var img = new Image();
+				img = new Image();
 				img.onload = function() {				  
 					o.width 	= 100;
 					o.height	= Math.round((o.width/this.width) * this.height);
@@ -1913,27 +1960,45 @@ var design={
 					$('#arts-add button').button('reset');
 					design.item.create(o);
 					$jd('.modal').modal('hide');
-				}						
-				img.src = urlCase +'?src='+ item.imgMedium+'&w=250&h=atuto&q=90';				
-			}
-			else
-			{
-				$jd.ajax({
-					type: "POST",
-					data: item,
-					url: baseURL + "art/getSVG",
-					dataType: "json",
+				}
+			    img.src = item.url;
+			} else {
+				$.ajax({
+					type: "GET",
+					url: item.url,
 					success: function(data){					
-							o.width 		= data.size.width;
-							o.height		= data.size.height;
-							o.file			= data.info;						
-							o.svg 			= $.parseHTML(data.content);
+							o.file			= item.url;
+							o.svg = $(data).find('svg');
+
+							var imgWidth = parseFloat($(data).find('svg').attr('width'));;
+							var imgHeight = parseFloat($(data).find('svg').attr('height'));;
+							var imageData = app.state.getImage();
+							var view = app.state.getView();
+							var prefix = 'printable_' + view + '_';
+							var width = imageData[prefix + 'width'];
+							var height = imageData[prefix + 'height'];
+
+							//if (imgWidth > width) {
+							    o.width = width;
+							    o.height = (width / imgWidth) * imgHeight;
+							//}
+							if (o.height > height) {
+							    o.height = height;
+							    o.width = (height / imgHeight) * imgWidth;
+							}
+							o.outlineW = $('#outline-select-art').val();
 							design.item.create(o);
 							var elm = design.item.get();			
 							var svg = elm.children('svg');
-							var html = $(svg[0]).html();
-							$(svg[0]).html('<g>'+html+'</g>');
-							$jd('.modal').modal('hide');					
+
+							svg[0].setAttributeNS(null, 'width', o.width);
+							svg[0].setAttributeNS(null, 'height', o.height);
+							svg[0].setAttributeNS(null, 'preserveAspectRatio', 'none');
+					        var html = $(svg[0]).html();
+							$(svg[0]).html('<g>' + html + '</g>');
+							design.text.update('outline-width', $('#outline-select-art').val());
+							design.text.update('art-color');
+							design.text.update('art-outline');
 					},
 					failure: function(errMsg) {
 						alert(errMsg+ '. Please try again');
@@ -2611,13 +2676,17 @@ var design={
             $('.size-dialog').hide();
             $( ".popover" ).hide();
 			$('.menu-left a').removeClass('active');
-            $('#text-align-tools').hide();
+            //if it was a text item
+			$('#text-align-tools').hide();
+            //for cliparts
+			$('#designer-art-choseType').show();
+			$('#dropbox').hide();
+			$('#art-style').hide();
+
 			$('#layers li').removeClass('active');
-			$('#dg-popover .dg-options-toolbar button').removeClass('active');
-			$('#dg-popover .dg-options-content').removeClass('active');
-			$('#dg-popover .dg-options-content').children('.row').removeClass('active');
 		},
-		remove: function(e){
+		remove: function (e) {
+		    this.unselect();
 			e.parentNode.parentNode.removeChild(e.parentNode);
 			var id = $(e.parentNode).data('id');
 			if($('#layer-'+id)){
@@ -2638,44 +2707,38 @@ var design={
             }
 		},
 		setup: function(item){
-            if(item.type == 'clipart')
-			{
-				$('.popover-title').children('span').html('Edit clipart');
-				
-				/* color of clipart */
-				var e = this.get();
-				if (item.change_color == 1)
-				{
-					var colors = design.svg.getColors(e.children('svg'));				
+            if(item.type === 'clipart') {
+                $('#designer-art-choseType').hide();
+                $('#dropbox').hide();
+                $('#art-style').show();
+                
+				if (item.change_color) {
+				    $('#art-built-in').show();
+				} else {
+				    $('#art-built-in').hide();
 				}
-				if(typeof colors != 'undefined' && item.change_color == 1)
-				{
-					$('#'+item.type+'-colors').css('display', 'block');
-					$('.btn-action-colors').css('display', 'block');
-					var div = $('#list-clipart-colors');
-					div.html('');
-					for(var color in colors)
-					{
-						if (color == 'none') continue;
-						var a = document.createElement('a');
-							a.setAttribute('class', 'dropdown-color');
-							a.setAttribute('data-placement', 'top');
-							a.setAttribute('data-original-title', 'Click to change color');
-							a.setAttribute('href', 'javascript:void(0)');
-							a.setAttribute('data-color', color);
-							a.setAttribute('style', 'background-color:'+color);
-							$.data(a, 'colors', colors[color]);
-							a.innerHTML = '<span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>';
-							div.append(a);
-					}
+
+				var color;
+				if (item.color) {
+				    color = design.designer.fromRgbColor(item.color);
+				    app.state['color-art'] = color;
+				    design.designer.showColor($('.color-picker[data-value="art"]'), color);
 				}
-				else{
-					$('#'+item.type+'-colors').css('display', 'none');
-					$('.btn-action-colors').css('display', 'none');
+
+				if (item.outlineC && item.outlineC !== 'none') {
+				    color = design.designer.fromRgbColor(item.outlineC);
+				    app.state['color-art-outline'] = color;
+				    design.designer.showColor($('.color-picker[data-value="art-outline"]'), color);
 				}
+
+				if (typeof item.outlineW == 'undefined') {
+				    item.outlineW = 0;
+				}
+
+				$('#outline-select-art').val(item.outlineW);
 			}
 			
-			if(item.type == 'text'){
+			if(item.type === 'text'){
 				$('.popover-title').children('span').html('Edit text');
 			}
             //todo: block with height+width
@@ -2804,7 +2867,7 @@ var design={
 			/* width and height */
 			$jd('#'+type+'-width').val(design.convert.px(css.width));
 			$jd('#'+type+'-height').val(design.convert.px(css.height));
-			
+		    console.log(type);
 			switch(type){
 				case 'clipart':
 					design.art.update(e);
@@ -2933,7 +2996,7 @@ var design={
 			return Math.round(deg);
 		},
 		px: function(value){
-			if(value.indexOf('px') != -1)
+			if(value.indexOf('px') !== -1)
 			{
 				var px = value.replace('px', '');
 			}
@@ -3452,7 +3515,7 @@ var design={
 							if (typeof this.item.decoration != 'undefined')
 								item.decoration 		= this.item.decoration;
 						}
-						else if(item.type == 'clipart')
+						else if(item.type === 'clipart')
 						{
 							item.change_color	= this.item.change_color;
 							item.title			= this.item.title;

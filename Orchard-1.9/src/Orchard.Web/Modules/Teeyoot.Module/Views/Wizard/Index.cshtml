@@ -353,15 +353,14 @@
                                                                 </div>
                                                             </div>
                                                             <div id="art-style" class="design-area__art--edit" style="display: none;">
-                                                                <div>
+                                                                <div id="art-built-in">
                                                                     <div class="control-group clearfix art-color-selection">
                                                                         <label>Art color </label>
 
-                                                                        <div class="fake-input color-picker standard designer-dropdown"
-                                                                             title="Change color">
+                                                                        <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="art">
                                                                             <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                             <div class="colors shirt-colors containertip">
-                                                                                <ul></ul>
+                                                                                <ul class="all-colors"></ul>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -370,7 +369,7 @@
 
                                                                         <div class="clearfix control-group outline-selection">
                                                                             <div>
-                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu">
+                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
                                                                                     <option value="0">No outline</option>
                                                                                     <option value="0.33">Thin outline</option>
                                                                                     <option value="0.66">Medium outline</option>
@@ -380,11 +379,11 @@
                                                                         </div>
                                                                         <div class="clearfix control-group outline-color-selection">
                                                                             <div class="fake-input color-picker standard designer-dropdown"
-                                                                                 title="Change color">
+                                                                                 title="Change color" data-value="art-outline">
                                                                                 <div class="swatch" title="Black"
                                                                                      style="background-color: #000000;"></div>
                                                                                 <div class="colors shirt-colors containertip">
-                                                                                    <ul></ul>
+                                                                                    <ul class="all-colors"></ul>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="clearfix"></div>
@@ -399,23 +398,32 @@
                                                                         <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="clearfix control-group">
+                                                                <div id="art-align-tools" class="clearfix control-group">
                                                                     <div class="layer-tools">
-                                                                        <ul id="canvas-options-art" class="nav">
-                                                                            <li><input type="checkbox" checked=""><label>Snap to center</label></li>
+                                                                        <ul id="art-canvas-options" class="nav">
+                                                                            <li>
+                                                                                <input id="art-snap-to-center" type="checkbox" checked="">
+                                                                                <label>Snap to center</label>
+                                                                            </li>
                                                                         </ul>
-                                                                        <div id="panel-context-menu-art" class="btn-group control-group">
-                                                                            <span class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                        <div id="art-panel-context-menu" class="btn-group control-group">
+                                                                            <span id="art-duplicate" class="tooltip_composer__position" data-tooltip="Duplicate">
                                                                                 <i class="ts-icon ts-icon-composer-copy"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Center">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-item-center" class="tooltip_composer__position" data-tooltip="Center">
                                                                                 <i class="ts-icon ts-icon-composer-center"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
                                                                                 <i class="ts-icon ts-icon-composer-sendtoback"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
-                                                                                                                        data-tooltip="Flip Horizontally">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
-                                                                                                                        data-tooltip="Flip Vertically">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
                                                                             </span>
                                                                         </div>
@@ -423,6 +431,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    <div class="teespring-well designer-well" id="clientArts">
+                                                        <label>Recently Used Artwork</label>
+                                                        <ul class="nav">
+                                                            
+                                                        </ul>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
