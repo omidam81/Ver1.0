@@ -96,6 +96,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DashboardSettingsController.cs" />
+    <Compile Include="Controllers\DashboardPromotionsController.cs" />
+    <Compile Include="Controllers\DashboardPayoutsController.cs" />
+    <Compile Include="Controllers\DashboardStorefrontsController.cs" />
     <Compile Include="Controllers\DashboardCampaignsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DashboardMessagesController.cs" />
@@ -116,6 +120,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\Storefronts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\Promotions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\Payouts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\Settings.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
