@@ -4,9 +4,8 @@ namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-        public ActionResult Campaigns()
+        public ActionResult Payouts()
         {
-            var campaigns = _campaignService.GetAllCampaigns();
             return View();
         }
     }

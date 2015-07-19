@@ -642,9 +642,11 @@
     <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\LaunchCampaignData.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />
+    <Compile Include="Models\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
     <Compile Include="Models\FontRecord.cs" />

@@ -3,6 +3,7 @@ using Orchard.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Teeyoot.Module.Services;
@@ -35,8 +36,8 @@ namespace Teeyoot.Module.Controllers
                     return View(campaign);
                 }
             }
-           
-            return new EmptyResult();
+
+            return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
         }
 	}
 }

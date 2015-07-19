@@ -3,6 +3,7 @@ using Orchard.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Teeyoot.Module.Models;
@@ -114,24 +115,17 @@ namespace Teeyoot.Module.Controllers
             return RedirectToAction("Payment", new { result = res });
         }
 
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public HttpStatusCodeResult CreateOrder(IEnumerable<OrderProductViewModel> products)
+        {
+            Response.Write("13");
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+    
         [Themed]
         public ActionResult Payment(string result = "")
         {
-            OrderRecord order = new OrderRecord()
-            {
-                Products = {
-                     new LinkOrderCampaignProductRecord(){
-                         Count =3,
-                         Size ="M"
-                    },
-                    new LinkOrderCampaignProductRecord(){
-                         Count =1,
-                         Size ="S"
-                    },
-                }
-            };
-            _orderService.CreateOrder(order);
             //        var clientToken = Gateway.ClientToken.generate();
             //      ViewBag.ClientToken = clientToken;
 

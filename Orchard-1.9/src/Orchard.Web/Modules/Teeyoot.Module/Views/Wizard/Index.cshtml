@@ -36,95 +36,95 @@
     <script type="text/javascript">
 
 
-    $(".flip-buttons").click(function () {
-        var $elem = $("#view-front");
+        $(".flip-buttons").click(function () {
+            var $elem = $("#view-front");
 
-        if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
-            setTimeout(function () {
-                $(".flip-button-front").css("background-color", "#6c7478");
-                $(".flip-button-front").css("color", "white");
-                $(".flip-button-back").css("background-color", "white");
-                $(".flip-button-back").css("color", "#6c7478");
-            }, 180);
-        } else
-            if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
+            if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
                 setTimeout(function () {
-                    $(".flip-button-back").css("background-color", "#6c7478");
-                    $(".flip-button-back").css("color", "white");
-                    $(".flip-button-front").css("background-color", "white");
-                    $(".flip-button-front").css("color", "#6c7478");
+                    $(".flip-button-front").css("background-color", "#6c7478");
+                    $(".flip-button-front").css("color", "white");
+                    $(".flip-button-back").css("background-color", "white");
+                    $(".flip-button-back").css("color", "#6c7478");
                 }, 180);
+            } else
+                if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
+                    setTimeout(function () {
+                        $(".flip-button-back").css("background-color", "#6c7478");
+                        $(".flip-button-back").css("color", "white");
+                        $(".flip-button-front").css("background-color", "white");
+                        $(".flip-button-front").css("color", "#6c7478");
+                    }, 180);
 
-            }
-    });
-
-    function sendData() {
-        var countTees = document.getElementById('trackBarValue').value;
-        var profit = document.getElementById('total_profit').innerHTML;
-        var itemOptions = document.getElementById('item-options-dropdown').value;
-        var product = document.getElementById('product').value;
-        var campaignTitle = document.getElementById('name').value;
-        var description = document.getElementById('campaign_description').innerHTML;
-        var campaignLength = document.getElementById('length').value;
-        var alias = document.getElementById('url').value;
-        var backSideByDefault = document.getElementById('backdefaultside').checked;
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("LaunchCampaign", "Wizard"))",
-            data: addAntiForgeryToken({
-                "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-
-                "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
-                'BackSideByDefault': backSideByDefault
-            }),
-            success: function (data, status, resp) {
-                //var title;
-                //for (var i = 0; i < data.length ; i++) {
-                //    title = data[i].Value;
-                //    title = title.replace("<span class='autocomplete-question'>", "");
-                //    title = title.replace("</span><br/>", ". ");
-                //    result[i] = {
-                //        value: title,
-                //        label: data[i].Value,
-                //        id: data[i].Key
-                //    };
-                //}
-                if (resp.status === 200) {
-                    window.location.href = '/' + alias;
                 }
-            },
         });
 
-    }
+        function sendData() {
+            var countTees = document.getElementById('trackBarValue').value;
+            var profit = document.getElementById('total_profit').innerHTML;
+            var itemOptions = document.getElementById('item-options-dropdown').value;
+            var product = document.getElementById('product').value;
+            var campaignTitle = document.getElementById('name').value;
+            var description = document.getElementById('campaign_description').innerHTML;
+            var campaignLength = document.getElementById('length').value;
+            var alias = document.getElementById('url').value;
+            var backSideByDefault = document.getElementById('backdefaultside').checked;
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("LaunchCampaign", "Wizard"))",
+                data: addAntiForgeryToken({
+                    "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
 
-    function addAntiForgeryToken(data) {
-        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-        return data;
-    };
+                    "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
+                    'BackSideByDefault': backSideByDefault
+                }),
+                success: function (data, status, resp) {
+                    //var title;
+                    //for (var i = 0; i < data.length ; i++) {
+                    //    title = data[i].Value;
+                    //    title = title.replace("<span class='autocomplete-question'>", "");
+                    //    title = title.replace("</span><br/>", ". ");
+                    //    result[i] = {
+                    //        value: title,
+                    //        label: data[i].Value,
+                    //        id: data[i].Key
+                    //    };
+                    //}
+                    if (resp.status === 200) {
+                        window.location.href = '/' + alias;
+                    }
+                },
+            });
 
-    var isFront = true
-    $(function ($) {
-        $("#card").flip({
-            trigger: 'manual'
-        }).click(function () {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
+        }
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+        var isFront = true
+        $(function ($) {
+            $("#card").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            });
         });
-    });
 
-    var isFront3 = true
-    $(function ($) {
-        $("#card3").flip({
-            trigger: 'manual'
-        }).click(function () {
-            isFront3 = !isFront3;
-            console.log(isFront3);
-            $("#card3").flip(!isFront3);
+        var isFront3 = true
+        $(function ($) {
+            $("#card3").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront3 = !isFront3;
+                console.log(isFront3);
+                $("#card3").flip(!isFront3);
+            });
         });
-    });
 
 
 
@@ -205,7 +205,7 @@
     <div class='clearfix'></div>
 </div>
 
-<div class="SlideContainer"  min-height:900px" >
+<div class="SlideContainer" style="min-height:1000px; ">
     <div class="Slides" style="margin-left:3%;">
 
 
@@ -246,7 +246,7 @@
                                                                     <ul class="options"></ul>
                                                                 </div>
                                                                 <div class="clearfix control-group font-color-selection">
-                                                                    <div class="fake-input color-picker standard designer-dropdown"  title="Change color" data-value="text">
+                                                                    <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
                                                                         <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <ul class="all-colors"></ul>
@@ -476,7 +476,7 @@
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
                                                         <div class="flip-buttons" style="margin-bottom: -2%;">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;" >Front</span></div>
+                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Front</span></div>
                                                             <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Back</span></div>
                                                         </div>
                                                     </div>
@@ -594,7 +594,7 @@
             </div>
         </div>
         <div class="Slide" style="width:30% !important; margin-left:2.5%; ">
-            <div class="Content" id ="Content2"style="margin-left:10%">
+            <div class="Content" id="Content2" style="margin-left:10%">
                 <table>
                     <tr>
                         <td style="width:50%">
@@ -673,19 +673,19 @@
                                     <div class="thumbnail_wrapper">
                                         <img id="minImg" style=" width: 100%;  height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
                                     </div>
-                                  
-                                    
-                                    
-                                      @*<div class="ssp_metadata" data-reactid=".6.0.2.0.3.0.$0.1"><div class="ssp_vcent" data-reactid=".6.0.2.0.3.0.$0.1.0"><div data-reactid=".6.0.2.0.3.0.$0.1.0.0"><h4 class="ssp_heading" data-reactid=".6.0.2.0.3.0.$0.1.0.0.0">Teespring Premium Tee</h4></div></div><div class="ssp_color" data-reactid=".6.0.2.0.3.0.$0.1.1"><div class="fake-input color-picker standard designer-dropdown" title="Change color" data-reactid=".6.0.2.0.3.0.$0.1.1.0"><div class="swatch" title="White" style="background-color: rgb(255, 255, 255);" data-reactid=".6.0.2.0.3.0.$0.1.1.0.0"></div><div class="colors shirt-colors containertip" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1"><ul class="colors-in-use" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.0"></ul><ul data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2"><li data-value="#222222" data-texture="" class="shirt-color-sample" title="Black" style="background-color:#222222;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#222222"></li><li data-value="#ba393f" data-texture="" class="shirt-color-sample" title="Classic Red" style="background-color:#ba393f;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ba393f"></li><li data-value="#ca522f" data-texture="" class="shirt-color-sample" title="Deep Orange " style="background-color:#ca522f;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ca522f"></li><li data-value="#fcf58b" data-texture="" class="shirt-color-sample" title="Lemon Yellow " style="background-color:#fcf58b;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#fcf58b"></li><li data-value="#438d4e" data-texture="" class="shirt-color-sample" title="Kelly Green" style="background-color:#438d4e;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#438d4e"></li><li data-value="#0C1A2C" data-texture="" class="shirt-color-sample" title="New Navy" style="background-color:#0C1A2C;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#0C1A2C"></li><li data-value="#1e448b" data-texture="" class="shirt-color-sample" title="Deep Royal" style="background-color:#1e448b;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#1e448b"></li><li data-value="#6349a2" data-texture="" class="shirt-color-sample" title="Purple" style="background-color:#6349a2;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#6349a2"></li><li data-value="#ffffff" data-texture="" class="shirt-color-sample" title="White" style="background-color:#ffffff;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ffffff"></li><li data-value="#4099d0" data-texture="" class="shirt-color-sample" title="Heathered Bright Turquoise " style="background-color:#4099d0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#4099d0"></li><li data-value="#6486d0" data-texture="" class="shirt-color-sample" title="Heathered Royal " style="background-color:#6486d0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#6486d0"></li><li data-value="#ADB1B0" data-texture="" class="shirt-color-sample" title="Grey" style="background-color:#ADB1B0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ADB1B0"></li><li data-value="#abaaab" data-texture="" class="shirt-color-sample" title="Light Heather Grey " style="background-color:#abaaab;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#abaaab"></li><li data-value="#413c42" data-texture="" class="shirt-color-sample" title="Heathered Charcoal " style="background-color:#413c42;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#413c42"></li><li data-value="#192d2c" data-texture="" class="shirt-color-sample" title="Forest Green " style="background-color:#192d2c;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#192d2c"></li></ul></div></div></div><div class="ssp_pricing" data-reactid=".6.0.2.0.3.0.$0.1.2"><input type="text" class="ssp_input price_per form__textfield" value="$15.00" data-reactid=".6.0.2.0.3.0.$0.1.2.0"><div class="ssp_profit" data-reactid=".6.0.2.0.3.0.$0.1.2.1"><span class="profit_per" data-reactid=".6.0.2.0.3.0.$0.1.2.1.0"><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.0.0">$6.31</span></span><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.1">&nbsp;</span><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.2">profit/sale</span></div></div><span data-reactid=".6.0.2.0.3.0.$0.1.3"></span></div>*@
-                                  
-                                      <div class="ssp_metadata">
+
+
+
+                                    @*<div class="ssp_metadata" data-reactid=".6.0.2.0.3.0.$0.1"><div class="ssp_vcent" data-reactid=".6.0.2.0.3.0.$0.1.0"><div data-reactid=".6.0.2.0.3.0.$0.1.0.0"><h4 class="ssp_heading" data-reactid=".6.0.2.0.3.0.$0.1.0.0.0">Teespring Premium Tee</h4></div></div><div class="ssp_color" data-reactid=".6.0.2.0.3.0.$0.1.1"><div class="fake-input color-picker standard designer-dropdown" title="Change color" data-reactid=".6.0.2.0.3.0.$0.1.1.0"><div class="swatch" title="White" style="background-color: rgb(255, 255, 255);" data-reactid=".6.0.2.0.3.0.$0.1.1.0.0"></div><div class="colors shirt-colors containertip" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1"><ul class="colors-in-use" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.0"></ul><ul data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2"><li data-value="#222222" data-texture="" class="shirt-color-sample" title="Black" style="background-color:#222222;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#222222"></li><li data-value="#ba393f" data-texture="" class="shirt-color-sample" title="Classic Red" style="background-color:#ba393f;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ba393f"></li><li data-value="#ca522f" data-texture="" class="shirt-color-sample" title="Deep Orange " style="background-color:#ca522f;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ca522f"></li><li data-value="#fcf58b" data-texture="" class="shirt-color-sample" title="Lemon Yellow " style="background-color:#fcf58b;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#fcf58b"></li><li data-value="#438d4e" data-texture="" class="shirt-color-sample" title="Kelly Green" style="background-color:#438d4e;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#438d4e"></li><li data-value="#0C1A2C" data-texture="" class="shirt-color-sample" title="New Navy" style="background-color:#0C1A2C;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#0C1A2C"></li><li data-value="#1e448b" data-texture="" class="shirt-color-sample" title="Deep Royal" style="background-color:#1e448b;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#1e448b"></li><li data-value="#6349a2" data-texture="" class="shirt-color-sample" title="Purple" style="background-color:#6349a2;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#6349a2"></li><li data-value="#ffffff" data-texture="" class="shirt-color-sample" title="White" style="background-color:#ffffff;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ffffff"></li><li data-value="#4099d0" data-texture="" class="shirt-color-sample" title="Heathered Bright Turquoise " style="background-color:#4099d0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#4099d0"></li><li data-value="#6486d0" data-texture="" class="shirt-color-sample" title="Heathered Royal " style="background-color:#6486d0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#6486d0"></li><li data-value="#ADB1B0" data-texture="" class="shirt-color-sample" title="Grey" style="background-color:#ADB1B0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ADB1B0"></li><li data-value="#abaaab" data-texture="" class="shirt-color-sample" title="Light Heather Grey " style="background-color:#abaaab;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#abaaab"></li><li data-value="#413c42" data-texture="" class="shirt-color-sample" title="Heathered Charcoal " style="background-color:#413c42;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#413c42"></li><li data-value="#192d2c" data-texture="" class="shirt-color-sample" title="Forest Green " style="background-color:#192d2c;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#192d2c"></li></ul></div></div></div><div class="ssp_pricing" data-reactid=".6.0.2.0.3.0.$0.1.2"><input type="text" class="ssp_input price_per form__textfield" value="$15.00" data-reactid=".6.0.2.0.3.0.$0.1.2.0"><div class="ssp_profit" data-reactid=".6.0.2.0.3.0.$0.1.2.1"><span class="profit_per" data-reactid=".6.0.2.0.3.0.$0.1.2.1.0"><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.0.0">$6.31</span></span><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.1">&nbsp;</span><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.2">profit/sale</span></div></div><span data-reactid=".6.0.2.0.3.0.$0.1.3"></span></div>*@
+
+                                    <div class="ssp_metadata">
                                         <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
                                             <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teespring Premium Tee</h4>
                                         </div>
                                     </div>
 
 
-                                    <div class="clearfix control-group font-color-selection" id="colPick"> 
+                                    <div class="clearfix control-group font-color-selection" id="colPick">
                                         <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="Change color" data-value="text">
                                             <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
                                             <div class="colors shirt-colors containertip" id="colors">
@@ -695,13 +695,20 @@
                                         <div class="clearfix"></div>
                                     </div>
 
+                                    <div class="ssp_pricing" style="margin-left:-8%">
+                                        <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()" value="RM 15">
+                                    </div>
+                                    
+                                    <div class="profitSale" >
+                                        <h4 class="h4ProfSale" id= "mainH4"> RM 5.00 profit / sale</h4>
+                                    </div>
 
 
 
 
                                 </div>
                             </div>
-                          
+
 
 
 
@@ -800,7 +807,7 @@
                             fjs.parentNode.insertBefore(js, fjs);
                         }(document, 'script', 'facebook-jssdk'));</script>*@
                     <div class="site__content_container" id="designs_edit">
-                 
+
 
                         <div id="designer-container">
                             <aside class="disclaimer_designer disclaimer-show">
@@ -860,42 +867,42 @@
                                                                     @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
                                                                 </td>
                                                                 @*<div class="flip-container">
-                                                                    <div class="new-editor front" tabindex="4" data-design-side="front" style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
-                                                                        <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
-                                                                        <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
-                                                                        <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                                                        <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                            <defs data-element="defs">
-                                                                                <clipPath data-element="globalClipPath" id="global-clip-path-front-4">
-                                                                                    <rect x="152" y="100" width="220" height="330" data-element="globalClipRect"></rect>
-                                                                                </clipPath>
-                                                                            </defs>
-                                                                            <g data-element="rootTag" clip-path="url(#global-clip-path-front-4)"><g data-id="front-layer-0" data-width="48.875" data-height="29" transform="matrix(1, 0, 0, 1, 237.5625, 250.5)"><text font-family="Helvetica" font-size="24px" fill="rgb(0,0,0)" stroke-width="0" stroke="" x="0" y="0"><tspan x="0.00390625" y="0" dy="23">fgdg</tspan></text></g></g>
-                                                                        </svg>
-                                                                        <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262px;"></div><div class="ygridline" style="top: 210px;"></div><div class="edit-box hidden marching-ants marching" style="-webkit-transform: matrix(1, 0, 0, 1, 237.5625, 250.5); transform: matrix(1, 0, 0, 1, 237.5625, 250.5); width: 48.875px; height: 29px;"></div><div class="edit-box-sizer hidden" style="top: 309.5px; left: 262px;">48.88" x 29.00"</div><div></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/drag.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/rotate.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/scale.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/delete.png);"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 250.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 286.4375px; top: 265px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 279.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 237.5625px; top: 265px;"></div></div>
-                                                                        <div class="flip-buttons">
-                                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
-                                                                            <div class="flip-button flip-button-back" data-element="backButton">Back</div>
+                                                                        <div class="new-editor front" tabindex="4" data-design-side="front" style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
+                                                                            <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
+                                                                            <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
+                                                                            <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                            <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                                <defs data-element="defs">
+                                                                                    <clipPath data-element="globalClipPath" id="global-clip-path-front-4">
+                                                                                        <rect x="152" y="100" width="220" height="330" data-element="globalClipRect"></rect>
+                                                                                    </clipPath>
+                                                                                </defs>
+                                                                                <g data-element="rootTag" clip-path="url(#global-clip-path-front-4)"><g data-id="front-layer-0" data-width="48.875" data-height="29" transform="matrix(1, 0, 0, 1, 237.5625, 250.5)"><text font-family="Helvetica" font-size="24px" fill="rgb(0,0,0)" stroke-width="0" stroke="" x="0" y="0"><tspan x="0.00390625" y="0" dy="23">fgdg</tspan></text></g></g>
+                                                                            </svg>
+                                                                            <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262px;"></div><div class="ygridline" style="top: 210px;"></div><div class="edit-box hidden marching-ants marching" style="-webkit-transform: matrix(1, 0, 0, 1, 237.5625, 250.5); transform: matrix(1, 0, 0, 1, 237.5625, 250.5); width: 48.875px; height: 29px;"></div><div class="edit-box-sizer hidden" style="top: 309.5px; left: 262px;">48.88" x 29.00"</div><div></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/drag.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/rotate.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/scale.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/delete.png);"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 250.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 286.4375px; top: 265px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 279.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 237.5625px; top: 265px;"></div></div>
+                                                                            <div class="flip-buttons">
+                                                                                <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
+                                                                                <div class="flip-button flip-button-back" data-element="backButton">Back</div>
+                                                                            </div>
+                                                                        </div><div class="new-editor back" tabindex="5" data-design-side="back" style="-webkit-transform: rotateY(180deg); transform: rotateY(180deg);">
+                                                                            <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
+                                                                            <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
+                                                                            <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                            <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                                <defs data-element="defs">
+                                                                                    <clipPath data-element="globalClipPath" id="global-clip-path-back-5">
+                                                                                        <rect x="155" y="60" width="215" height="330" data-element="globalClipRect"></rect>
+                                                                                    </clipPath>
+                                                                                </defs>
+                                                                                <g data-element="rootTag" clip-path="url(#global-clip-path-back-5)"></g>
+                                                                            </svg>
+                                                                            <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262.5px;"></div><div class="ygridline" style="top: 170px;"></div></div>
+                                                                            <div class="flip-buttons">
+                                                                                <div class="flip-button flip-button-front" data-element="frontButton">Front</div>
+                                                                                <div class="flip-button flip-button-back no-select flip-button-active" data-element="backButton">Back</div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div><div class="new-editor back" tabindex="5" data-design-side="back" style="-webkit-transform: rotateY(180deg); transform: rotateY(180deg);">
-                                                                        <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
-                                                                        <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
-                                                                        <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                                                        <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                            <defs data-element="defs">
-                                                                                <clipPath data-element="globalClipPath" id="global-clip-path-back-5">
-                                                                                    <rect x="155" y="60" width="215" height="330" data-element="globalClipRect"></rect>
-                                                                                </clipPath>
-                                                                            </defs>
-                                                                            <g data-element="rootTag" clip-path="url(#global-clip-path-back-5)"></g>
-                                                                        </svg>
-                                                                        <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262.5px;"></div><div class="ygridline" style="top: 170px;"></div></div>
-                                                                        <div class="flip-buttons">
-                                                                            <div class="flip-button flip-button-front" data-element="frontButton">Front</div>
-                                                                            <div class="flip-button flip-button-back no-select flip-button-active" data-element="backButton">Back</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>*@
+                                                                    </div>*@
                                                             </div>
                                                             <!-- render flip buttons here -->
                                                         </div>
@@ -904,7 +911,7 @@
                                                 <div class="span7 aside">
                                                     <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
 
-                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { id="campaign_details", name="campaign_form", data_reactid=".6.0" }))
+                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
                                                         {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                 <label class="has-under-text" data-reactid=".6.0.0.0">Campaign title</label>
@@ -1026,7 +1033,7 @@
                                                                 </p>
                                                             </div>
                                                         }
-                                  
+
                                                     </div>
                                                 </div>
 
@@ -1489,8 +1496,8 @@
                             </div>
                         </div>
                     </div>
-                   </body>
-                
+                </body>
+
             </div>
         </div>
 
