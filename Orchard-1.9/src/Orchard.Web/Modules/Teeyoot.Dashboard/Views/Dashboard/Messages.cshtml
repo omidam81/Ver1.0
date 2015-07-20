@@ -1,25 +1,24 @@
-﻿@model Teeyoot.Module.Dashboard.ViewModels.MessageContentViewModel
-@{
+﻿@{
     Style.Include("Message.css");
 }
-<div>
-    <div class="status">@Model.Status</div>
+<div style="height:100%; margin-bottom:20%">
+    <div class="status">@ViewBag.Status</div>
     <div class="dashboard-section-title">Messages</div>
     <div class="box mesTitle">Messages allow you to communicate with all your previous buyers via email. You can choose to message buyers of a particular campaign, or create a group of campaigns to message together – get started today!</div>
     <div class="box tdd">
         <div class="divRow" id="msgBoard">
             <div class="divRow" style="margin-top:2%; ">
-                <div class=" printDiv">Print</div>
+                <div class=" row">Print</div>
                 <div class=" row">Name</div>
                 <div class=" row">Size</div>
                 <div class=" row">Last Send</div>
-                <div class=" row">Send This Week</div>
+                <div id="sentThisWeek" class=" row">Send This Week</div>
                 <div class=" row"></div>
             </div>
         </div>
         <div class="divRow" >
-            <div class="row"><img style=" width: 40%; height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png"></div>
-            <div class="row"><a href="#">Campaign</a></div>
+            <div class="row"><img style=" width: 40%; height: 100%; margin-left:9%" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png"></div>
+            <div id="campaignName" class="row">Campaign</div>
             <div class="row">10</div>
             <div class="row">3 days ago</div>
             <div class="row">2/3</div>

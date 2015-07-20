@@ -61,12 +61,13 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 MailChimpSettingsPart record = _settingsService.GetAllSettings().List().Where(x => x.Culture == culture).FirstOrDefault();
                 MailChimpManager mc = new MailChimpManager(record.ApiKey);
+                AddUserToMailChimpList(m.Email);
                 Thread deleteCampaign = new Thread(delegate(){DeleteSentCampaigns(mc);});
                 deleteCampaign.Start();
                 Thread crAndSend = new Thread(delegate() { CreateAndSendMessage(m,mc, record); });
                 crAndSend.Start();
-                m.Status = "Your message has been sent!";
-                return View("Messages", m);
+                ViewBag.Status = "Your message has been sent!";
+                return View("Messages", ViewBag);
             }
             return View("CreateMessage");
         }
@@ -108,7 +109,7 @@ namespace Teeyoot.Dashboard.Controllers
         }
 
 
-        public int AddUserToMailChimpList(string email, string firstName, string lastName, string city, string state, string country, double totalPrice, IEnumerable<ProductRecord> products = null, int campaignId = 0)
+        public int AddUserToMailChimpList(string email, string firstName = "", string lastName = "", string city = "", string state = "", string country = "", double totalPrice = 0.0, IEnumerable<ProductRecord> products = null, int campaignId = 0)
         {
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             MailChimpManager mc = new MailChimpManager(record.ApiKey);
@@ -131,18 +132,14 @@ namespace Teeyoot.Dashboard.Controllers
             return -1;
         }
 
-        public int SendWelcomeLetter(string userEmail, string culture)
+        public void SendWelcomeLetter(string userEmail, string culture)
         {
             var record = _settingsService.GetAllSettings().List().Where( x => x.Culture == culture).FirstOrDefault();
             MailChimpManager mc = new MailChimpManager(record.ApiKey);
             List<string> emails = new List<string>();
             emails.Add(userEmail);
             CampaignActionResult response = mc.SendCampaignTest(record.WelcomeCampaignId, emails, "Html");
-            if (response.Complete != true)
-            {
-                return -1;
-            }
-            return 1;
+            
         }
 
     }

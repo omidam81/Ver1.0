@@ -1,9 +1,7 @@
 ﻿.block {
     background: #f5f7f7;
-    border: 1px solid #ebeef0;
     border-radius: 3px;
     margin-bottom: .5rem;
-    margin-top: 2.3rem;
     width: 100%;
     width: 100%;
     height: 100%;
@@ -42,7 +40,7 @@
     font-size: 16px;
     font-weight: normal;
     border-radius: 5px;
-    padding: 6% 18%;
+    padding: 4% 12%;
     display: inline-block;
     color: white;
     text-align: center;
@@ -50,7 +48,7 @@
     letter-spacing: .025em;
     text-decoration: none;
     border: 0;
-    margin: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 12% !important;
 }
 
 .button .t-button {
@@ -59,7 +57,7 @@
     font-size: 16px;
     font-weight: normal;
     border-radius: 5px;
-    padding: 6% 18%;
+    padding: 4% 12%;
     display: inline-block;
     color: white;
     text-align: center;
@@ -152,12 +150,75 @@
 table > tr > td {
     padding-left: 10px !important;
 }
-
-@media all and (max-width: 500px) {
+@media all and (max-width: 830px) {
     .divRow {
+        text-align:center;
         display: block !important;
         width: 100% !important;
-        border: none !impor;
+        border: none !important;
+    }
+
+    .row {
+        width: 100% !important;
+    }
+
+    .tdd {
+        display: flex !important;
+        height: 50% !important;
+    }
+
+    .printDiv {
+        margin-bottom: 49% !important;
+    }
+
+    .divRow .row {
+        margin: 0px 0px 20px 0px !important;
+    }
+
+    .tabl .row {
+        display: block;
+    }
+
+    .email_inp {
+        width: 98% !important;
+    }
+
+    .subj_inp {
+        width: 98% !important;
+    }
+
+    .customEmail {
+        width: 93% !important;
+    }
+
+    .aEmail {
+        white-space: normal !important;
+    }
+
+    .divEmail {
+        width: 98% !important;
+    }
+
+    .txtArea {
+        width: 97% !important;
+    }
+
+    #campUrl {
+        width: 98% !important;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .t-button {
+    margin: 0px 0px 0px 0px !important;
+    }
+}
+@media all and (max-width: 500px) {
+    .divRow {
+        text-align:center;
+        display: block !important;
+        width: 100% !important;
+        border: none !important;
     }
 
     .row {
@@ -314,10 +375,8 @@ table > tr > td {
 }
 
 .ttl {
-    color: #3b76d4;
     font-size: 20px;
     text-align: left;
-    padding-left: 2%;
     margin-bottom: 1%;
     margin-top: 1%;
 }
@@ -335,6 +394,7 @@ table > tr > td {
 }
 
 .tdd .divRow {
+    text-align:center;
     width: 98%;
     height: 50%;
     margin: 1%;
@@ -342,9 +402,8 @@ table > tr > td {
 }
 
 .tabl {
-    width: 96%;
+    width: 100%;
     padding-left: 0 !important;
-    margin-left: 2%;
     margin-right: 2%;
     border: solid;
     border-width: 1px;
@@ -468,4 +527,13 @@ table > tr > td {
     padding-top: 30px;
     font-size: 16px;
     color: #000000;
+}
+#campaignName{
+   padding-left: 1% !important;
+}
+#sentThisWeek{
+    padding-left:1% !important;
+}
+.dashboard-layout .tb-layout-main-container {
+    height: auto !important;
 }
