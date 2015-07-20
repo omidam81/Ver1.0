@@ -16,6 +16,6 @@ namespace Teeyoot.Module.Services
 
         OrderRecord CreateOrder(IEnumerable<OrderProductViewModel> products);
 
-        IQueryable<OrderRecord> GetOrdersOfCampaignes(int[] ids);
+        IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaignes(int[] ids);
     }
 }

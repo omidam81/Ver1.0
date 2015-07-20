@@ -137,7 +137,7 @@ namespace Teeyoot.Module.Services
             return _campProdRepository.Table.Where(p => p.ProductRecord.Id == campaignId).OrderBy(p => p.Id);
         }
 
-        IQueryable<CampaignRecord> GetCampaignsOfUser(int userId)
+        public IQueryable<CampaignRecord> GetCampaignsOfUser(int userId)
         {
             return GetAllCampaigns(); //TODO: eugene: make for certain user
            //          .Where(c => c.TeeyootUserId == userId);
