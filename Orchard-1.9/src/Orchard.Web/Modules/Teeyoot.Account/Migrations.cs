@@ -1,13 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Orchard.ContentManagement.MetaData;
 using Orchard.Data.Migration;
+using Orchard.Roles.Services;
 
 namespace Teeyoot.Account
 {
     public class Migrations : DataMigrationImpl
     {
-        
+        private readonly IRoleService _roleService;
+
+        public Migrations(IRoleService roleService)
+        {
+            _roleService = roleService;
+        }
+
+        public int Create()
+        {
+            _roleService.CreateRole("TeeyootUser");
+
+            return 1;
+        }
+
+        public int UpdateFrom1()
+        {
+            ContentDefinitionManager.AlterTypeDefinition("TeeyootUser", builder =>
+                builder.WithPart("UserRolesPart"));
+
+            return 2;
+        }
     }
 }

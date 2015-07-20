@@ -103,7 +103,7 @@
     <Compile Include="Drivers\TeeyootUserPartDriver.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="Services\MembershipService.cs" />
+    <Compile Include="ViewModels\AccountIndexViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

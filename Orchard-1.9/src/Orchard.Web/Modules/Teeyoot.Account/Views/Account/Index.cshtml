@@ -1,44 +1,28 @@
-﻿@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]})))
+﻿@model Teeyoot.Account.ViewModels.AccountIndexViewModel
+
+@if (Model.ValidationIssueOccurred)
+{
+    @Model.RegistrationValidationSummary
+}
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account")))
 {
     <fieldset>
         <legend>@T("Account Information")</legend>
         <div>
-            <label for="email">@T("Email:")</label>
+            <label>@T("Email:")</label>
             @Html.TextBox("email")
-            @Html.ValidationMessage("email")
         </div>
         <div>
-            <label for="password">@T("Password:")</label>
+            <label>@T("Password:")</label>
             @Html.Password("password")
-            @Html.ValidationMessage("password")
         </div>
         <div>
-            <label for="confirmPassword">@T("Confirm password:")</label>
+            <label>@T("Confirm password:")</label>
             @Html.Password("confirmPassword")
-            @Html.ValidationMessage("confirmPassword")
         </div>
         <div>
             <button class="primaryAction" type="submit">@T("Register")</button>
         </div>
     </fieldset>
 }
-
-
-@*
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
-*@
