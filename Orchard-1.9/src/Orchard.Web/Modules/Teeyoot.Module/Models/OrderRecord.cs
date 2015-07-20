@@ -9,7 +9,7 @@ namespace Teeyoot.Module.Models
     public class OrderRecord
     {
         public virtual int Id { get; set; }
-
+      
         public virtual string Email { get; set; }
 
         public virtual string FirstName { get; set; }

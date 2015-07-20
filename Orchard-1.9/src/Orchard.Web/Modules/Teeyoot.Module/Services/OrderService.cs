@@ -71,5 +71,11 @@ namespace Teeyoot.Module.Services
         {
             return _ocpRepository.Table.Where(p => ids.Contains(p.CampaignProductRecord.CampaignRecord_Id));
         }
+
+        public IEnumerable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId)
+        {
+            return _ocpRepository.Table.Fetch(x => x.CampaignProductRecord.CampaignRecord_Id == campaignId);
+        }
+
     }
 }

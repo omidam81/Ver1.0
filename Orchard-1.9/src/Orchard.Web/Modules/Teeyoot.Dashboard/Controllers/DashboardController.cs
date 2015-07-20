@@ -15,12 +15,10 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IMailChimpSettingsService _settingsService;
         private readonly IOrderService _orderService;
-        private readonly IRepository<LinkOrderCampaignProductRecord> _linkOrderCampaignProductRepository;
         private readonly IWorkContextAccessor _wca;
 
         public DashboardController(ICampaignService campaignService, 
                                    IMailChimpSettingsService settingsService, 
-                                   IRepository<LinkOrderCampaignProductRecord> linkOrderCampaignProductRepository,
                                    IOrderService orderService,
                                    IWorkContextAccessor wca)
         {
@@ -28,7 +26,7 @@ namespace Teeyoot.Dashboard.Controllers
             _orderService = orderService;
             _wca = wca;
             this._settingsService = settingsService;
-            this._linkOrderCampaignProductRepository = linkOrderCampaignProductRepository;
+            this._orderService = orderService;
 
             Logger = NullLogger.Instance;
         }
