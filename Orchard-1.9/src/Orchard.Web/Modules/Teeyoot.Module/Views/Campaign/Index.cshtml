@@ -89,20 +89,29 @@
         }).click(function () {
             isFront = !isFront;
             var elms = document.getElementsByClassName('zoomWindow');
-            @*if (isFront) {
-                    for (var i = 0; i < elms.length; i++) {
-                        elms[i].setAttribute("background-image", "url(/Media/campaigns/@Model.Id/" + id + "/big/front.png)");
-                    }
-                } else {
-                    for (var i = 0; i < elms.length; i++) {
-                        elms[i].setAttribute("background-image", "url(/Media/campaigns/@Model.Id/" + id + "/big/back.png)");
-                    }
-
-                }*@
             console.log(isFront);
             $("#card").flip(!isFront);
+
+            if (isFront) {
+                document.getElementById("front").className = "front";
+                document.getElementById("back").className = "back image_stack__image_wrap";
+            } else {
+                document.getElementById("front").className = "front image_stack__image_wrap";
+                document.getElementById("back").className = "back";
+            }
         });
+        
     });
+   
+       
+
+
+       
+    
+
+    
+    
+
 
     function Resrve() {
         document.getElementById("reserve-it-now").className = "dg-overlay";
@@ -218,17 +227,15 @@
                     <div id="front" class="front">
                         <img id="prodFront"
                              src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
-                             data-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
                              data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
                         <div id="butt1" style="text-align:center; ">
                             <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>
                             <div class="flip-button flip-button-back"><span>Back</span></div>
                         </div>
                     </div>
-                    <div class="back">
+                    <div id="back" class="back image_stack__image_wrap">
                         <img id="prodBack"
                              src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
-                             data-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
                              data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
                         <div id="butt2" style="text-align:center;">
                             <div class="flip-button flip-button-front"><span>Front</span></div>
