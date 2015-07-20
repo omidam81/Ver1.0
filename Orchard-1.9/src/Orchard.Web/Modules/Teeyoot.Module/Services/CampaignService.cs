@@ -93,7 +93,7 @@ namespace Teeyoot.Module.Services
                     Description = data.Description,
                     Design = data.Design,
                     EndDate = DateTime.UtcNow.AddDays(data.CampaignLength),
-                    StartDate = DateTime.UtcNow.Date,
+                    StartDate = DateTime.UtcNow,
                     ProductCountGoal = data.ProductCountGoal,
                     ProductCountSold = 0,
                     TeeyootUserId = userId,
@@ -130,6 +130,12 @@ namespace Teeyoot.Module.Services
         public IQueryable<CampaignProductRecord> GetProductsOfCampaign(int campaignId)
         {
             return _campProdRepository.Table.Where(p => p.ProductRecord.Id == campaignId).OrderBy(p => p.Id);
+        }
+
+        IQueryable<CampaignRecord> GetCampaignsOfUser(int userId)
+        {
+            return GetAllCampaigns(); //TODO: eugene: make for certain user
+           //          .Where(c => c.TeeyootUserId == userId);
         }
 
         private void FillWithFakeData(LaunchCampaignData data)
