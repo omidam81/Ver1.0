@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Dashboard.ViewModels
@@ -14,8 +15,8 @@ namespace Teeyoot.Dashboard.ViewModels
             Campaigns = new List<CampaignSummary>();
         }
 
-        public IEnumerable<CampaignsOverview> Overviews { get; set; }
-        public IEnumerable<CampaignSummary> Campaigns { get; set; }
+        public IList<CampaignsOverview> Overviews { get; set; }
+        public IList<CampaignSummary> Campaigns { get; set; }
     }
 
     public class CampaignSummary
@@ -46,13 +47,5 @@ namespace Teeyoot.Dashboard.ViewModels
         public double ToBePaid { get; set; }
 
         public OverviewType Type { get; set; }
-    }
-
-    public enum OverviewType
-    {
-        Today = 1,
-        Yesterday = 2,
-        Active = 4,
-        AllTime = 8
     }
 }
