@@ -83,7 +83,7 @@ namespace Teeyoot.Module.Controllers
             {
                 int id = int.Parse(collection["OrderId"]);
                 var order = _orderService.GetOrderById(id);
-
+                var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
                 order.Email = collection["Email"];
                 order.FirstName = collection["FirstName"];
                 order.LastName = collection["LastName"];
@@ -97,7 +97,7 @@ namespace Teeyoot.Module.Controllers
 
                 _orderService.UpdateOrder(order);
 
-                var campaign = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id);
+                var campaign = _campaignService.GetCampaignById(campaignId);
                 campaign.ProductCountSold += order.Products.Sum(p => p.Count);
                 _campaignService.UpdateCampaign(campaign);
 

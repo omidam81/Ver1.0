@@ -52,7 +52,7 @@ namespace Teeyoot.Module.Services
 
         public CampaignRecord GetCampaignById(int id)
         {
-            return GetAllCampaigns().FirstOrDefault(c => c.Id == id);
+            return _campaignRepository.Get(id);
         }
 
         public List<CampaignRecord> GetCampaignsForTheFilter(string filter, int skip = 0, int take = 16, bool tag = false)
