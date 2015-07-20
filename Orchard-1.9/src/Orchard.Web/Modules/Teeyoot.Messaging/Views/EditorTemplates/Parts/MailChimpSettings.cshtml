@@ -33,13 +33,3 @@
     @Html.ValidationMessageFor(m => m.AllBuyersTemplateId)
 </fieldset>
 
-<fieldset>
-    @Html.LabelFor(m => m.Culture, T("Culture"))
-    @Html.DropDownListFor(m => m.Culture, Model.AvailableLanguages.Select(l => new SelectListItem
-                                            {
-                                                Selected = l.Code == Model.Culture,
-                                                Text = l.Name,
-                                                Value = l.Code
-                                            }))
-    @Html.ValidationMessageFor(m => m.Culture)
-</fieldset>

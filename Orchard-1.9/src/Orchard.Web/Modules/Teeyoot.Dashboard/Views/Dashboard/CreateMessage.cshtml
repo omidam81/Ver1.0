@@ -46,9 +46,9 @@
                     </div>
                     <div class="emailAttr" style="padding-top:10px !important;">From</div>
                     @Html.TextBoxFor(m => m.From, new { @class = "email_inp" })
-                    <div style="display:flex">
+                    <div style="display:flex; width:100%">
                         <div class="emailAttr">Subject</div>
-                        <div style="font-size:11px;  padding-left: 46%;  padding-top: 10%;">(max 50 characters)</div>
+                        <div style="font-size:11px;  padding-left: 68%; word-break:normal; padding-top: 5%;">(max 50 characters)</div>
                     </div>
                     @Html.TextBoxFor(m => m.Subject, new { @class = "subj_inp", @placeholder = "Enter subject here" })
                     <div style="display:flex">
@@ -81,25 +81,25 @@
                                                 <h1>Variable</h1>
                                             </div>
                                             <div>
-                                                {{first_name}}
+                                                *|FNAME|*
                                             </div>
                                             <div>
-                                                {{last_name}}
+                                                *|LNAME|*
                                             </div>
                                             <div>
-                                                {{city}}
+                                                *|CITY|*
                                             </div>
                                             <div>
-                                                {{state}}
+                                                *|STATE|*
                                             </div>
                                             <div>
-                                                {{country}}
+                                                *|COUNTRY|*
                                             </div>
                                             <div>
-                                                {{order_total}}
+                                                *|TOTALPRICE|*
                                             </div>
                                             <div>
-                                                {{products_ordered}}
+                                                *|PRODUCTS|*
                                             </div>
                                         </div>
                                         <div style="margin-left:6%">

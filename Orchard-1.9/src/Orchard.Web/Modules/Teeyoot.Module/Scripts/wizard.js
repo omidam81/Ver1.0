@@ -15,6 +15,8 @@
 
 
 
+
+
     $("#butAdd").click(function addElement() {
         var div = document.createElement("div");
         var divThumb = document.createElement("div");
@@ -26,7 +28,9 @@
         var text = document.createElement("h4");
 
 
-        image.src = "http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png";
+
+
+        image.src = assetsUrls.products + 'product_type_' + document.getElementById("product").value + '_front_small.png';
         image.classList.add("sell");
         image.style.height = "73px";
 
@@ -54,7 +58,7 @@
 
         h4Profit.classList.add("h4ProfSale");
         h4Profit.innerHTML = "RM 5.00 profit / sale";
-        
+
         $inp = $(inpPrice);
 
 
@@ -91,7 +95,7 @@
         divColPick.classList.add("designDrop");
 
         divSwatch.classList.add("swatch2");
-         var $divSwatch = $(divSwatch);
+        var $divSwatch = $(divSwatch);
 
         divColors.classList.add("colors");
         divColors.classList.add("shirt-colors");
@@ -115,7 +119,7 @@
         divCol.appendChild(divClear);
 
         var $divColors = $(divColors);
-        
+
         // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
         $divColPick.on('click', function (event) {
             event.preventDefault();
@@ -126,14 +130,29 @@
         });
 
 
+        // Из общего списка цветов по айдишникам выбираем только те цвета которые соответствуют данному продукту
+        var masColors = [];
+        $.each(design.products.productsData, function (i, elemProd) {
+            if (elemProd.id == document.getElementById("product").value)
+            {
+                $.each(design.products.colors, function (i,elem) {
+                    if (elemProd.colors_available.indexOf(elem.id) >= 0) {
+                        masColors.push(elem);
+                    }
+                });
+
+            }
+        });
+
+
         // Перебор всех существующих цветов
-        $.each(app.state.product.colors_available_obj, function (i, color) {
+        $.each(masColors, function (i, color) {
 
             var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
                               color.name + '" style="background-color:' + color.value + ';"></li>';
             var $colorHtml = $(colorHtml);
 
-           
+
             $colorHtml.click(function (event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -202,6 +221,57 @@
 }
 
 
+
+function initProducts() {
+    var list = document.getElementById("item-options-dropdown-tees");
+    var listProd = document.getElementById("product");
+    var mas = [];
+
+    //Если лист категорий пустой то мы его инициализируем
+    if (list.value == "")
+    {
+        $.each(design.products.categoriesList, function (i) {
+            var option = document.createElement("option");
+            option.value = i;
+            option.id = this.id;
+            option.innerHTML = this.name;
+            list.appendChild(option);
+            //Запихиваем айдишники продуктов по обьектам в массив
+            mas.push(this.products);
+        });
+        //Если лист продуктов пустой то мы его инициализируем
+        if (listProd.value == "") {
+            $.each(design.products.productsData, function (i, el) {
+                //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
+                if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.id = i;
+                    option.innerHTML = el.name;
+                    listProd.appendChild(option);
+                }
+            });
+        }
+
+        $(list).change(function () {
+            listProd.innerHTML = "";
+            $.each((mas[this.value]), function (i, id) {
+                $.each(design.products.productsData, function (i, el) {
+                    if (el.id == id) {
+                        var option = document.createElement("option");
+                        option.value = i;
+                        option.id = i;
+                        option.innerHTML = el.name;
+                        listProd.appendChild(option);
+                    }
+                });
+            });
+        });
+    }
+}
+
+
+
 function profitSale() {
     var $val = document.getElementById("profSale").value;
     var $price = (parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
@@ -252,13 +322,13 @@ function slide() {
 
 
     $('.Left').click(function () {
-       // pos--;
+        // pos--;
         document.getElementById('goal').className = "flow-step";
         document.getElementById('design').className = "flow-step";
         document.getElementById('description').className = "flow-step active";
         pos = -2;
         $('.Slides').stop().animate({ left: (pos * w) + 'px' });
-   
+
     });
 
     $('#nextPage').click(function () {
@@ -266,7 +336,6 @@ function slide() {
         document.getElementById('goal').className = "flow-step active";
         document.getElementById('design').className = "flow-step";
         document.getElementById('description').className = "flow-step";
-
         pos = -1;
         $('.Slides').stop().animate({ left: (pos * w) + 'px' });
     });
@@ -281,11 +350,13 @@ function slide() {
     });
     $('#goal').click(function () {
         colorInit();
+        initProducts();
         document.getElementById('goal').className = "flow-step active";
         document.getElementById('design').className = "flow-step";
         document.getElementById('description').className = "flow-step";
         pos = -1;
         $('.Slides').stop().animate({ left: (pos * w) + 'px' });
+
     });
     $('#description').click(function () {
         document.getElementById('goal').className = "flow-step";
@@ -301,7 +372,12 @@ function onChangeTrackBar() {
 }
 
 function onChangeValueForTrackBar() {
+    if (document.getElementById('trackBarValue').value < 15)
+        document.getElementById('trackBarValue').value = "15";
+    else if (document.getElementById('trackBarValue').value > 500)
+        document.getElementById('trackBarValue').value = "500";
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+    document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 }
 
 
