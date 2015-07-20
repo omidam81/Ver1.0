@@ -133,6 +133,11 @@ namespace Teeyoot.Module.Services
             }
         }
 
+        public void UpdateCampaign(CampaignRecord campiagn) 
+        {
+            _campaignRepository.Update(campiagn);
+        }
+
         public CampaignProductRecord GetCampaignProductById(int id)
         {
             return _campProdRepository.Get(id);

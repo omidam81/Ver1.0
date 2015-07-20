@@ -14,10 +14,12 @@ namespace Teeyoot.Module.Controllers
     public class HomeController : Controller
     {
         private readonly IOrderService _orderService;
+        private readonly ICampaignService _campaignService;
 
-        public HomeController(IOrderService orderService)
+        public HomeController(IOrderService orderService, ICampaignService campaignService)
         {
-            _orderService = orderService;            
+            _orderService = orderService;
+            _campaignService = campaignService;
         }
 
 
@@ -94,6 +96,10 @@ namespace Teeyoot.Module.Controllers
                 order.Paid = DateTime.UtcNow;
 
                 _orderService.UpdateOrder(order);
+
+                var campaign = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id);
+                campaign.ProductCountSold += order.Products.Sum(p => p.Count);
+                _campaignService.UpdateCampaign(campaign);
 
                 Transaction transaction = result.Target;
                 ViewData["TransactionId"] = transaction.Id;
