@@ -649,6 +649,7 @@
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />
+    <Compile Include="Models\PaymentViewModel.cs" />
     <Compile Include="Models\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />

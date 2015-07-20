@@ -275,7 +275,17 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_Campaign", "LinkCampaignAndCategoriesRecord", new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_CampaignCategories", "LinkCampaignAndCategoriesRecord", new[] { "CampaignCategoriesPartRecord_Id" }, "CampaignCategoriesPartRecord", new[] { "Id" });
 
-            return 14;
+            SchemaBuilder.DropForeignKey("LinkOrderCampaignProductRecord", "OrderProduct_Size");
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                 table => table.DropColumn("SizeId"));
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.AddColumn<int>("ProductSizeRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "ProductSizeRecord_Id" }, "ProductSizeRecord", new[] { "Id" });
+
+            return 15;
         }
 
         public int UpdateFrom2()
@@ -424,6 +434,21 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_CampaignCategories", "LinkCampaignAndCategoriesRecord", new[] { "CampaignCategoriesPartRecord_Id" }, "CampaignCategoriesPartRecord", new[] { "Id" });
 
             return 14;
+        }
+
+        public int UpdateFrom14()
+        {
+            SchemaBuilder.DropForeignKey("LinkOrderCampaignProductRecord", "OrderProduct_Size");
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.DropColumn("SizeId"));
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.AddColumn<int>("ProductSizeRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "ProductSizeRecord_Id" }, "ProductSizeRecord", new[] { "Id" });
+
+            return 15;
         }
     }
 }

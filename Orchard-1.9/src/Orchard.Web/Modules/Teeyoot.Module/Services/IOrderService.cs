@@ -14,6 +14,6 @@ namespace Teeyoot.Module.Services
 
         void UpdateOrder(OrderRecord order);
 
-        OrderRecord CreateOrder(OrderRecord order);
+        OrderRecord CreateOrder(IEnumerable<OrderProductViewModel> products);
     }
 }

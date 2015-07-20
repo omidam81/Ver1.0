@@ -3,7 +3,7 @@
     Style.Include("campaign.css");
     Script.Require("jQuery");
     Script.Include("jquery.flip.js");
-    Script.Include("jquery.elevateZoom-3.0.8.min.js");   
+    Script.Include("jquery.elevateZoom-3.0.8.min.js");
 }
 
 
@@ -12,87 +12,84 @@
 {
     <script>
 
-        $(".product__size_chart_link--show").click(function () {
-            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
-        });
-        $(".product__size_chart_link--hide").click(function () {
-            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
-        });
+    $(".product__size_chart_link--show").click(function () {
+        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+    });
+    $(".product__size_chart_link--hide").click(function () {
+        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+    });
 
-        $("#js-size-unit-toggle-inches").click(function () {
-            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
-            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch active";
-            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm";
+    $("#js-size-unit-toggle-inches").click(function () {
+        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+        document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch active";
+        document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm";
 
-        });
-        $("#js-size-unit-toggle-centimeters").click(function () {
-            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
-            document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch";
-            document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm active";
-        });
-
-
-
-        $("#js-circle-nav-item-front").click(function () {
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
-        });
-        $("#js-circle-nav-item-back").click(function () {
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
-            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-        });
+    });
+    $("#js-size-unit-toggle-centimeters").click(function () {
+        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+        document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch";
+        document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm active";
+    });
 
 
-        $("#image-stack-arrow-right").click(function () {
-            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
-            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        });
-        $("#image-stack-arrow-left").click(function () {
-            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
-            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-        });
 
-        var i = 1;
-        $("#add-row").click(function () {
-            var table = document.getElementById('precheckout_table');
-            var trArray = table.getElementsByClassName('precheckout_items_table__row');
-            var row = document.getElementById('js-precheckout-line');                    
-            var sellect = row.firstElementChild.cells[3].childNodes[1];
-            sellect = sellect.id;
-            var rowHtml = row.firstElementChild.innerHTML;
-            var row = table.insertRow(trArray.length + 1);         
-            document.getElementById(sellect).setAttribute("id", "product__dropdown_modal" + i);        
-            row.className = "precheckout_items_table__row";
-            row.id = "js-precheckout-line-item-" + i;
-            row.innerHTML = rowHtml;
-            i = i + 1;
-        });
+    $("#js-circle-nav-item-front").click(function () {
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+    });
+    $("#js-circle-nav-item-back").click(function () {
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+    });
 
 
-        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-   
-        function ItemRemove(node) {
-            var el = document.getElementById(node.id);
-            el.parentNode.removeChild(el);
-        }
-   
-        var isFront = true
-        $(function ($) {
-            $("#card").flip({
-                trigger: 'manual'
-            }).click(function () {
-                isFront = !isFront;
-                var elms = document.getElementsByClassName('zoomWindow');
-                @*if (isFront) {
+    $("#image-stack-arrow-right").click(function () {
+        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+    });
+    $("#image-stack-arrow-left").click(function () {
+        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+    });
+
+    var i = 1;
+    $("#add-row").click(function () {
+        
+        var rowHtml = document.getElementById('first-line-item').innerHTML;       
+        var newRow = document.createElement('tr');
+        $(newRow)
+            .addClass('precheckout_items_table__row')
+            .attr('id', 'js-precheckout-line-item-' + i)
+            .html(rowHtml)
+            .appendTo($("#order_item_list_modal"))      
+        i = i + 1;
+    });
+
+
+    $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+    $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+
+    function ItemRemove(node) {
+        var el = document.getElementById(node.id);
+        el.parentNode.removeChild(el);
+    }
+
+    var isFront = true
+    $(function ($) {
+        $("#card").flip({
+            trigger: 'manual'
+        }).click(function () {
+            isFront = !isFront;
+            var elms = document.getElementsByClassName('zoomWindow');
+            @*if (isFront) {
                     for (var i = 0; i < elms.length; i++) {
                         elms[i].setAttribute("background-image", "url(/Media/campaigns/@Model.Id/" + id + "/big/front.png)");
                     }
@@ -100,53 +97,69 @@
                     for (var i = 0; i < elms.length; i++) {
                         elms[i].setAttribute("background-image", "url(/Media/campaigns/@Model.Id/" + id + "/big/back.png)");
                     }
-               
+
                 }*@
-                console.log(isFront);
-                $("#card").flip(!isFront);
-            });
+            console.log(isFront);
+            $("#card").flip(!isFront);
+        });
+    });
+
+    function Resrve() {
+        document.getElementById("reserve-it-now").className = "dg-overlay";
+    }
+
+    function CloseReservation() {
+        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+    }
+
+    function ChangeProduct(item) {
+        var id = item[item.selectedIndex].id;
+        $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+        $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
+        $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
+        $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+    }
+
+    function ChangeProductModal(item) {
+        var par = item.parentNode.parentNode.id;
+        var index = item.selectedIndex;
+        var id = item[item.selectedIndex].id;
+        var row = item.parentNode.parentNode;
+        var img = $(row).find('.modal_campaign_img')[0];
+        img.setAttribute("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+
+        var currentSize = $(row).find('.size-dropdown.shown')[0];
+        var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+
+        $(currentSize).removeClass('shown').addClass('hidden');
+        $(newSize).removeClass('hidden').addClass('shown');
+
+        var currentPrice = $(row).find('.modal-price.shown')[0];
+        var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
+
+        $(currentPrice).removeClass('shown').addClass('hidden');
+        $(newSize).removeClass('hidden').addClass('shown');
+
+
+
+    }
+
+    function sendData() {
+        var products = [];
+        var tableRows = $('.precheckout_items_table__row');
+        var count;
+        var productId;
+        var sizeId;
+
+        tableRows.each(function (index, el) {
+            productId = $(el).find('.product__dropdown')[0].selectedOptions[0].value;
+            sizeId = $(el).find('.size-dropdown.shown')[0].selectedOptions[0].value;
+            count = $(el).find('.product-count')[0].value;
+
+            products.push({ ProductId: productId, SizeId: sizeId, Count: count });
         });
 
-        function Resrve() {
-            document.getElementById("reserve-it-now").className = "dg-overlay";
-        }
-   
-        function CloseReservation() {
-            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-        }
-   
-        function ChangeProduct(item) {
-            var id = item[item.selectedIndex].id;
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
-        }
-      
-        function ChangeProductModal(item) {
-            var par = item.parentNode.parentNode.id;
-            var index = document.getElementById(item.id).selectedIndex;
-            var id = item[item.selectedIndex].id;
-            var camp = item.parentNode.parentNode.cells[0].childNodes[1];
-            camp.setAttribute("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
-        }
-   
-        function sendData() {
-            var products = [];
-            var tableRows = $('.precheckout_items_table__row');
-            var count;
-            var productId;
-            var sizeId;
-
-            tableRows.each(function (index, el) {
-                productId = $(el).find('.product__dropdown')[0].selectedOptions[0].value;
-                sizeId = $(el).find('.size-dropdown')[0].selectedOptions[0].value;
-                count = $(el).find('.product-count')[0].value;
-
-                products.push({ ProductId: productId, SizeId: sizeId, Count: count });
-            });
-
-            $.ajax({
+        $.ajax({
                 async: false,
                 cache: false,
                 type: "POST",
@@ -156,19 +169,21 @@
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
-                        window.location.href = '/Buy';
+                        window.location.href = '/Buy?orderId=' + data;
+                    } else if (resp.status === 500) {
+
                     }
                 },
             });
 
-        }
+    }
 
-        function addAntiForgeryToken(data) {
-            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-            return data;
-        };
+    function addAntiForgeryToken(data) {
+        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+        return data;
+    };
 
-    </script>
+</script>
 
 }
 
@@ -265,8 +280,8 @@
             <div class="campaign__column--product" style="min-height: inherit;">
 
                 <div class="zoom_window__container .zoomWindowContainer" style="max-width: none;">
-                   
-                    
+
+
                 </div>
 
                 <h1 class="campaign__name display--desktop hidden">@Model.Title</h1>
@@ -1048,104 +1063,188 @@
                                 <div class="precheckout_modal__image" style="background-image: url(/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png);"></div>
                             </div>
 
-
-                                             
-                                
-                                <div class="modal-body">
-                                    <table id="precheckout_table" class="precheckout_items_table precheckout_table">
-                                        <thead class="precheckout_items_table__head">
-                                            <tr>
-                                                <th class="line_items_table__heading precheckout_items_table__item--image"></th>
-                                                <th class="line_items_table__heading">Qty</th>
-                                                <th class="line_items_table__heading">Size</th>
-                                                <th class="line_items_table__heading">Style</th>
-                                                <th class="line_items_table__heading line_items_table__heading--price">Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="js-precheckout-line">
-                                            <tr id="js-precheckout-line-item" class="precheckout_items_table__row" data-index="1">
-                                                <td class="precheckout_items_table__item precheckout_items_table__item--image">
-                                                    <img id="modal_campaign_img" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png">
-                                                </td>
-                                                <td class="precheckout_items_table__item precheckout_items_table__item--qty">
-                                                    <div class="tooltip tooltip--topleft">
-                                                        <input class="form__textfield form__textfield--large product-count" type="text" value="1">
-                                                    </div>
-                                                </td>
-                                                <td class="precheckout_items_table__item">
-                                                    <div class="tooltip tooltip--topleft">
-                                                        <select class="form__select_menu size-dropdown precheckout_items_table__item--size">
-                                                            <option value="--">--</option>
-                                                            @foreach (var size in Model.Products[0].ProductRecord.SizesAvailable)
-                                                            {
-                                                                <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
-                                                            }
-                                                        </select>
-                                                    </div>
-                                                </td>
-                                                <td class="precheckout_items_table__item precheckout_items_table__item--style">
-                                                    <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
-                                                        @foreach (var prod in Model.Products)
+                            <div class="modal-body">
+                                <table id="precheckout_table" class="precheckout_items_table precheckout_table">
+                                    <thead class="precheckout_items_table__head">
+                                        <tr>
+                                            <th class="line_items_table__heading precheckout_items_table__item--image"></th>
+                                            <th class="line_items_table__heading">Qty</th>
+                                            <th class="line_items_table__heading">Size</th>
+                                            <th class="line_items_table__heading">Style</th>
+                                            <th class="line_items_table__heading line_items_table__heading--price">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="order_item_list_modal">
+                                        <tr id="first-line-item" class="hidden">
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--image">
+                                                <img class="modal_campaign_img" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png">
+                                            </td>
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--qty product-count-item">
+                                                <div class="tooltip tooltip--topleft">
+                                                    <input class="form__textfield form__textfield--large product-count" type="text" value="1">
+                                                </div>
+                                            </td>
+                                            <td class="precheckout_items_table__item product-size-item">
+                                                <div class="tooltip tooltip--topleft">
+                                                    @for (var i = 0; i < Model.Products.Count; i++)
+                                                    {
+                                                        if (i == 0)
                                                         {
-                                                            <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown">
+                                                                @foreach (var size in Model.Products[i].ProductRecord.SizesAvailable)
+                                                                {
+                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                }
+                                                            </select>
                                                         }
-                                                    </select>
-                                                </td>
-                                                <td class="precheckout_items_table__item precheckout_items_table__item--price">
-                                                    $15.00
-                                                    <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                        else
+                                                        {
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size hidden">
+                                                                @foreach (var size in Model.Products[i].ProductRecord.SizesAvailable)
+                                                                {
+                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                }
+                                                            </select>
+                                                        }
+                                                    }
 
-                                    <div class="precheckout_actions">
-                                        <div id="add-row" class="precheckout_actions__button">+ Add another style or color</div>
-                                    </div>
-                                    <div class="saved_payment_info">
-                                        <div class="saved_payment_info__container">
-                                            <a class="saved_payment_info__edit_link">
-                                                <i class="saved_payment_info__edit_icon ts-icon-edit"></i>
-                                            </a>
-                                            <div class="saved_payment_info__row">
-                                                <span class="saved_payment_info__label">Shipping Address:</span>
-                                                <span class="saved_payment_info__value">460 Bryant St. Suite 200, San Francisco, CA 94611</span>
-                                            </div>
-                                            <div class="saved_payment_info__row">
-                                                <span class="saved_payment_info__label">Pay With:</span>
-                                                <span class="saved_payment_info__value">Visa ending in 3456</span>
-                                            </div>
+                                                </div>
+                                            </td>
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--style">
+                                                <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
+                                                    @foreach (var prod in Model.Products)
+                                                    {
+                                                        <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--price">
+                                               
+                                                @for (var i = 0; i < Model.Products.Count; i++)
+                                                {
+                                                    if (i == 0)
+                                                    {
+                                                        <span name="select_size_index_@i" class="modal-price shown">@Model.Products[i].CurrencyRecord.Code@Model.Products[i].Price</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span name="select_size_index_@i" class="modal-price hidden">@Model.Products[i].CurrencyRecord.Code@Model.Products[i].Price</span>
+                                                    }
+                                                }
+                                                <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr id="js-precheckout-line-item" class="precheckout_items_table__row">
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--image">
+                                                <img class="modal_campaign_img" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png">
+                                            </td>
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--qty product-count-item">
+                                                <div class="tooltip tooltip--topleft">
+                                                    <input class="form__textfield form__textfield--large product-count" type="text" value="1">
+                                                </div>
+                                            </td>
+                                            <td class="precheckout_items_table__item product-size-item">
+                                                <div class="tooltip tooltip--topleft">
+                                                    @for (var i = 0; i < Model.Products.Count; i++)
+                                                    {
+                                                        if (i == 0)
+                                                        {
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown">
+                                                                @foreach (var size in Model.Products[i].ProductRecord.SizesAvailable)
+                                                                {
+                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                }
+                                                            </select>
+                                                        }
+                                                        else
+                                                        {
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size hidden">
+                                                                @foreach (var size in Model.Products[i].ProductRecord.SizesAvailable)
+                                                                {
+                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                }
+                                                            </select>
+                                                        }
+                                                    }
+
+                                                </div>
+                                            </td>
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--style">
+                                                <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
+                                                    @foreach (var prod in Model.Products)
+                                                    {
+                                                        <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="precheckout_items_table__item precheckout_items_table__item--price">
+
+                                                @for (var i = 0; i < Model.Products.Count; i++)
+                                                {
+                                                    if (i == 0)
+                                                    {
+                                                        <span name="select_size_index_@i" class="modal-price shown">@Model.Products[i].CurrencyRecord.Code@Model.Products[i].Price</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span name="select_size_index_@i" class="modal-price hidden">@Model.Products[i].CurrencyRecord.Code@Model.Products[i].Price</span>
+                                                    }
+                                                }
+                                                <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
+                                            </td>
+                                        </tr>
+                                    
+                                    </tbody>
+                                </table>
+
+                                <div class="precheckout_actions">
+                                    <div id="add-row" class="precheckout_actions__button">+ Add another style or color</div>
+                                </div>
+                                <div class="saved_payment_info">
+                                    <div class="saved_payment_info__container">
+                                        <a class="saved_payment_info__edit_link">
+                                            <i class="saved_payment_info__edit_icon ts-icon-edit"></i>
+                                        </a>
+                                        <div class="saved_payment_info__row">
+                                            <span class="saved_payment_info__label">Shipping Address:</span>
+                                            <span class="saved_payment_info__value">460 Bryant St. Suite 200, San Francisco, CA 94611</span>
+                                        </div>
+                                        <div class="saved_payment_info__row">
+                                            <span class="saved_payment_info__label">Pay With:</span>
+                                            <span class="saved_payment_info__value">Visa ending in 3456</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <div class="payment_options_info">
-                                        <ul class="payment_options">
-                                            <li class="payment_options__item payment_options__item--visa"></li>
-                                            <li class="payment_options__item payment_options__item--amex"></li>
-                                            <li class="payment_options__item payment_options__item--mastercard"></li>
-                                            <li class="payment_options__item payment_options__item--discover"></li>
-                                            <li class="payment_options__item payment_options__item--border">
-                                                <div class="payment_options__item--paypal"></div>
-                                            </li>
-                                        </ul>
-                                        <p class="payment_options_caption">We accept all major credit cards and Paypal</p>
-                                    </div>
-                                    <div class="payment_options_container">
-                                        <div class="payment_options_actions">
-                                            
-                                                <div onclick="sendData(); return false;" class="button button--transaction button--precheckout submit--checkout js-precheckout-submit">
-                                                    Checkout
+                            </div>
+                            <div class="modal-footer">
+                                <div class="payment_options_info">
+                                    <ul class="payment_options">
+                                        <li class="payment_options__item payment_options__item--visa"></li>
+                                        <li class="payment_options__item payment_options__item--amex"></li>
+                                        <li class="payment_options__item payment_options__item--mastercard"></li>
+                                        <li class="payment_options__item payment_options__item--discover"></li>
+                                        <li class="payment_options__item payment_options__item--border">
+                                            <div class="payment_options__item--paypal"></div>
+                                        </li>
+                                    </ul>
+                                    <p class="payment_options_caption">We accept all major credit cards and Paypal</p>
+                                </div>
+                                <div class="payment_options_container">
+                                    <div class="payment_options_actions">
 
-                                                    @*<input class="button button--transaction button--precheckout submit--saved_payment_info" type="submit" value="Complete Your Order">*@
-                                                </div>
-                                            
+                                        <div onclick="sendData(); return false;" class="button button--transaction button--precheckout submit--checkout js-precheckout-submit">
+                                            Checkout
+
+                                            @*<input class="button button--transaction button--precheckout submit--saved_payment_info" type="submit" value="Complete Your Order">*@
                                         </div>
-                                    </div>
 
-                                </div> 
-                        
-</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
