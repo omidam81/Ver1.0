@@ -116,9 +116,6 @@
     <Content Include="Views\Parts.MenuWidget-63.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\LogOn.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Parts.MenuWidget-142.cshtml" />
   </ItemGroup>
   <ItemGroup>

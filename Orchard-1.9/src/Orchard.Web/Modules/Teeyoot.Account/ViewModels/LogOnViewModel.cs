@@ -1,9 +1,9 @@
 ﻿namespace Teeyoot.Account.ViewModels
 {
-    public class CreateAccountViewModel
+    public class LogOnViewModel
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

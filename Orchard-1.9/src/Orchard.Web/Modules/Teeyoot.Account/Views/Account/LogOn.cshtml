@@ -1,0 +1,23 @@
+﻿@model Teeyoot.Account.ViewModels.LogOnViewModel
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]})))
+{
+    <fieldset>
+        <legend>@T("Login with Teespring")</legend>
+        <div>
+            <label>@T("Email")</label>
+            @Html.TextBoxFor(model => model.Email)
+        </div>
+        <div>
+            <label>@T("Password")</label>
+            @Html.PasswordFor(model => model.Password)
+        </div>
+        <div>
+            <label>@T("Remember Me")</label>
+            @Html.CheckBoxFor(model => model.RememberMe)
+        </div>
+        <div>
+            <button type="submit">@T("Log in now")</button>
+        </div>
+    </fieldset>
+}

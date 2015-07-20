@@ -60,7 +60,11 @@ namespace Teeyoot.Account.Controllers
         [AlwaysAccessible]
         public ActionResult Index()
         {
-            var viewModel = new AccountIndexViewModel();
+            var viewModel = new AccountIndexViewModel
+            {
+                CreateAccountViewModel = new CreateAccountViewModel(),
+                LogOnViewModel = new LogOnViewModel()
+            };
 
             if (TempData[RegistrationValidationSummaryKey] != null)
             {
@@ -70,7 +74,7 @@ namespace Teeyoot.Account.Controllers
 
             if (TempData[LoggingOnValidationSummaryKey] != null)
             {
-                viewModel.LoggingOnValidationIssueOccured = true;
+                viewModel.LoggingOnValidationIssueOccurred = true;
                 viewModel.LoggingOnValidationSummary = (string) TempData[LoggingOnValidationSummaryKey];
             }
 
@@ -80,18 +84,15 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult Register(string email, string password, string confirmPassword, string returnUrl = null)
+        public ActionResult Register(CreateAccountViewModel viewModel, string returnUrl = null)
         {
-            if (!ValidateRegistration(email, password, confirmPassword))
+            if (ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
             {
-                return Redirect("~/Login");
-            }
-
-            var user = CreateTeeyootUser(email, password);
-
-            if (user != null)
-            {
-                _authenticationService.SignIn(user, false);
+                var user = CreateTeeyootUser(viewModel.Email, viewModel.Password);
+                if (user != null)
+                {
+                    _authenticationService.SignIn(user, false);
+                }
             }
 
             return Redirect("~/Login");
@@ -100,13 +101,13 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult LogOn(string email, string password, string returnUrl, bool rememberMe = false)
+        public ActionResult LogOn(LogOnViewModel viewModel, string returnUrl)
         {
-            var user = ValidateLogOn(email, password);
+            var user = ValidateLogOn(viewModel.Email, viewModel.Password);
 
             if (user != null)
             {
-                _authenticationService.SignIn(user, rememberMe);
+                _authenticationService.SignIn(user, viewModel.RememberMe);
             }
 
             return Redirect("~/Login");
