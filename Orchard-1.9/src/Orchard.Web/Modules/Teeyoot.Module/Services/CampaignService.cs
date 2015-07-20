@@ -127,6 +127,11 @@ namespace Teeyoot.Module.Services
             }
         }
 
+        public CampaignProductRecord GetCampaignProductById(int id)
+        {
+            return _campProdRepository.Get(id);
+        }
+
         public IQueryable<CampaignProductRecord> GetProductsOfCampaign(int campaignId)
         {
             return _campProdRepository.Table.Where(p => p.ProductRecord.Id == campaignId).OrderBy(p => p.Id);

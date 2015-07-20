@@ -23,5 +23,7 @@ namespace Teeyoot.Module.Services
         IQueryable<CampaignProductRecord> GetProductsOfCampaign(int campaignId);
 
         IQueryable<CampaignRecord> GetCampaignsOfUser(int userId);
+        
+        CampaignProductRecord GetCampaignProductById(int id);
     }
 }
