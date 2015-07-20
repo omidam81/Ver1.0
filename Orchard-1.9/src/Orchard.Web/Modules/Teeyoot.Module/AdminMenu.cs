@@ -33,6 +33,11 @@ namespace Teeyoot.Module
                         .Position("2.3")
                         .Action("Index", "AdminMessage", new { area = "Teeyoot.Messaging" })
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("Categories"))
+                        .Position("2.4")
+                        .Action("Index", "AdminSearch", new { area = "Teeyoot.Search" })
+                    )
                 );
         }
     }

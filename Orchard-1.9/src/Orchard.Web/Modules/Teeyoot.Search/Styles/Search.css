@@ -276,3 +276,19 @@
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
+
+
+.items .admin-categories-tr .visible{
+    font-size: 14px;
+}
+
+.items .admin-categories-tr .name a {
+    font-size: 16px;
+}
+
+.items tr td {
+    width: 25%;
+}
+.items tr td:last-child{
+    text-align: end;
+}
