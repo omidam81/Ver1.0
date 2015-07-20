@@ -349,6 +349,38 @@ span.number {
     }
 }
 
+@media all and (max-width: 1390px) {
+
+    #Content1 {
+        margin-left: -5%;
+    }
+
+    .Content > table {
+        width: 85%;
+    }
+
+}
+
+
+@media all and (max-width: 1450px) {
+    .ssp_pricing {
+        margin-left: -5%;
+    }
+
+    .h4ProfSale {
+        width: 99%;
+        margin-left: 20%;
+    }
+}
+
+
+@media all and (max-width: 1280px) {
+
+    #Content1 {
+        margin-left: -9%;
+    }
+}
+
 .Slides .Content {
     /*margin-left: 10%;*/
     margin-top: 10px;
