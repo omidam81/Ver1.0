@@ -67,3 +67,7 @@
     border-radius: 3px;
     border: solid 1px #e8eced;
 }
+.box-header {
+    border-bottom:solid 1px #e8eced;
+    padding:15px 0 0 20px;
+}
