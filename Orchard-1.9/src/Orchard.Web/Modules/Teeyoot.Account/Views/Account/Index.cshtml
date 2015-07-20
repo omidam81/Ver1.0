@@ -1,6 +1,6 @@
 ﻿@model Teeyoot.Account.ViewModels.AccountIndexViewModel
 
-@if (Model.ValidationIssueOccurred)
+@if (Model.RegistrationValidationIssueOccurred)
 {
     @Model.RegistrationValidationSummary
 }
@@ -8,7 +8,7 @@
 @using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account")))
 {
     <fieldset>
-        <legend>@T("Account Information")</legend>
+        <legend>@T("Create a new account")</legend>
         <div>
             <label>@T("Email:")</label>
             @Html.TextBox("email")
@@ -23,6 +23,33 @@
         </div>
         <div>
             <button class="primaryAction" type="submit">@T("Register")</button>
+        </div>
+    </fieldset>
+}
+
+@if (Model.LoggingOnValidationIssueOccured)
+{
+    @Model.LoggingOnValidationSummary
+}
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]})))
+{
+    <fieldset>
+        <legend>@T("Login with Teespring")</legend>
+        <div>
+            <label>@T("Email")</label>
+            @Html.TextBox("email")
+        </div>
+        <div>
+            <label>@T("Password")</label>
+            @Html.Password("password")
+        </div>
+        <div>
+            @Html.CheckBox("rememberMe")
+            <label>@T("Remember Me")</label>
+        </div>
+        <div>
+            <button class="primaryAction" type="submit">@T("Log in now")</button>
         </div>
     </fieldset>
 }

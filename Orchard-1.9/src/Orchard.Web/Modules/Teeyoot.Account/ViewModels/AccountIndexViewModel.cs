@@ -2,7 +2,9 @@
 {
     public class AccountIndexViewModel
     {
-        public bool ValidationIssueOccurred { get; set; }
+        public bool RegistrationValidationIssueOccurred { get; set; }
         public string RegistrationValidationSummary { get; set; }
+        public bool LoggingOnValidationIssueOccured { get; set; }
+        public string LoggingOnValidationSummary { get; set; }
     }
 }

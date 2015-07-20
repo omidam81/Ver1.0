@@ -21,6 +21,7 @@ namespace Teeyoot.Account.Controllers
     [Themed]
     public class AccountController : Controller
     {
+        private readonly IAuthenticationService _authenticationService;
         private readonly IMembershipService _membershipService;
         private readonly IUserService _userService;
         private readonly IOrchardServices _orchardServices;
@@ -28,14 +29,17 @@ namespace Teeyoot.Account.Controllers
         private readonly IRepository<UserRolesPartRecord> _userRolesRepository;
 
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
+        private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
 
         public AccountController(
+            IAuthenticationService authenticationService,
             IMembershipService membershipService,
             IUserService userService,
             IOrchardServices orchardServices,
             IRoleService roleService,
             IRepository<UserRolesPartRecord> userRolesRepository)
         {
+            _authenticationService = authenticationService;
             _membershipService = membershipService;
             _userService = userService;
             _orchardServices = orchardServices;
@@ -56,26 +60,53 @@ namespace Teeyoot.Account.Controllers
         [AlwaysAccessible]
         public ActionResult Index()
         {
-            var accountIndexViewModel = new AccountIndexViewModel();
+            var viewModel = new AccountIndexViewModel();
 
             if (TempData[RegistrationValidationSummaryKey] != null)
             {
-                accountIndexViewModel.ValidationIssueOccurred = true;
-                accountIndexViewModel.RegistrationValidationSummary =
-                    (string) TempData[RegistrationValidationSummaryKey];
+                viewModel.RegistrationValidationIssueOccurred = true;
+                viewModel.RegistrationValidationSummary = (string) TempData[RegistrationValidationSummaryKey];
             }
 
-            return View(accountIndexViewModel);
+            if (TempData[LoggingOnValidationSummaryKey] != null)
+            {
+                viewModel.LoggingOnValidationIssueOccured = true;
+                viewModel.LoggingOnValidationSummary = (string) TempData[LoggingOnValidationSummaryKey];
+            }
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult Register(string email, string password, string confirmPassword)
+        public ActionResult Register(string email, string password, string confirmPassword, string returnUrl = null)
         {
-            if (ValidateRegistration(email, password, confirmPassword))
+            if (!ValidateRegistration(email, password, confirmPassword))
             {
-                CreateTeeyootUser(email, password);
+                return Redirect("~/Login");
+            }
+
+            var user = CreateTeeyootUser(email, password);
+
+            if (user != null)
+            {
+                _authenticationService.SignIn(user, false);
+            }
+
+            return Redirect("~/Login");
+        }
+
+        [HttpPost]
+        [AlwaysAccessible]
+        [ValidateInput(false)]
+        public ActionResult LogOn(string email, string password, string returnUrl, bool rememberMe = false)
+        {
+            var user = ValidateLogOn(email, password);
+
+            if (user != null)
+            {
+                _authenticationService.SignIn(user, rememberMe);
             }
 
             return Redirect("~/Login");
@@ -158,7 +189,37 @@ namespace Teeyoot.Account.Controllers
             return validate;
         }
 
-        private void CreateTeeyootUser(string email, string password)
+        private IUser ValidateLogOn(string email, string password)
+        {
+            var validate = true;
+            const string validationSummary = "Sorry, that is not a valid login!";
+
+            if (string.IsNullOrEmpty(email))
+            {
+                validate = false;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                validate = false;
+            }
+
+            var user = _membershipService.ValidateUser(email, password);
+            if (user == null)
+            {
+                validate = false;
+            }
+
+            if (validate)
+            {
+                return user;
+            }
+
+            TempData[LoggingOnValidationSummaryKey] = validationSummary;
+            return null;
+        }
+
+        private IUser CreateTeeyootUser(string email, string password)
         {
             var registrationSettings = _orchardServices.WorkContext.CurrentSite.As<RegistrationSettingsPart>();
 
@@ -197,6 +258,8 @@ namespace Teeyoot.Account.Controllers
                     Role = role
                 });
             }
+
+            return userPart;
         }
     }
 }
