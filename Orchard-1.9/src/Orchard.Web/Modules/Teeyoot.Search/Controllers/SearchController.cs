@@ -40,7 +40,7 @@ namespace Teebay.Search.Controllers
 
             if (!string.IsNullOrEmpty(filter))
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).ToList();
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take);
             }
             else
             {
@@ -70,7 +70,7 @@ namespace Teebay.Search.Controllers
             bool notFoundCateg = false;
             if (findCampCateg != null)
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(categoriesName.ToLower(), 0, 16, true).ToList();
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(categoriesName.ToLower(), 0, 16, true);
                 campCategList.Remove(findCampCateg);
             }
             else

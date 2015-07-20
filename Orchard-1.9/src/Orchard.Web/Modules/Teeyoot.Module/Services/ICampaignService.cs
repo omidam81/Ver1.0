@@ -16,7 +16,7 @@ namespace Teeyoot.Module.Services
 
         CampaignRecord GetCampaignById(int id);
 
-        IQueryable<CampaignRecord> GetCampaignsForTheFilter(string filter, int skip = 0, int take = 16, bool tag = false);
+        List<CampaignRecord> GetCampaignsForTheFilter(string filter, int skip = 0, int take = 16, bool tag = false);
 
         CampaignRecord CreateNewCampiagn(LaunchCampaignData data);
 
