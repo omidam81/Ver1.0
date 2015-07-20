@@ -6,7 +6,7 @@
     {
         string sold = camp.ProductCountSold.ToString() + "/" + camp.ProductCountGoal.ToString() + " sold";
 
-        DateTime now = DateTime.Now;
+        DateTime now = DateTime.UtcNow;
         TimeSpan dif = camp.EndDate.Subtract(now);
         string dateLeft = string.Empty;
         if (dif.Days < 0)

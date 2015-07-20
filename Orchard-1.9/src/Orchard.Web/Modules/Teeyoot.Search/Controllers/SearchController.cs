@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Teeyoot.Search.Services;
-using Teeyoot.Search.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Models;
 using Teeyoot.Search.ViewModels;

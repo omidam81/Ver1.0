@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Teeyoot.Search.Models
+namespace Teeyoot.Module.Models
 {
     public class CampaignCategoriesPart : ContentPart<CampaignCategoriesPartRecord>
     {
@@ -17,6 +17,18 @@ namespace Teeyoot.Search.Models
             set
             {
                 Store(p => p.Name, value);
+            }
+        }
+
+        public bool IsVisible
+        {
+            get
+            {
+                return Retrieve(p => p.IsVisible);
+            }
+            set
+            {
+                Store(p => p.IsVisible, value);
             }
         }
     }

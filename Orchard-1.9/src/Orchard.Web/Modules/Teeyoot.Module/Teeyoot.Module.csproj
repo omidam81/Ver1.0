@@ -640,10 +640,13 @@
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ArtUpload.cs" />
+    <Compile Include="Models\CampaignCategoriesPart.cs" />
+    <Compile Include="Models\CampaignCategoriesPartRecord.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\LaunchCampaignData.cs" />
+    <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />
     <Compile Include="Models\OrderProductViewModel.cs" />
