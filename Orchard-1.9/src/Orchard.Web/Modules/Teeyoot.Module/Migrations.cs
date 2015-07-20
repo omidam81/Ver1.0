@@ -248,7 +248,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "SizeId" }, "ProductSizeRecord", new[] { "Id" });
 
-            return 12;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("StartDate"));
+
+            return 13;
         }
 
         public int UpdateFrom2()
@@ -372,6 +374,13 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "SizeId" }, "ProductSizeRecord", new[] { "Id" });
             
             return 12;
+        }
+
+        public int UpdateFrom12()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("StartDate"));
+
+            return 13;
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Teeyoot.Module.Models
         [StringLengthMax]
         public virtual string Description { get; set; }
 
+        public virtual DateTime StartDate { get; set; }
+
         public virtual DateTime EndDate { get; set; }
 
         public virtual string URL { get; set; }
