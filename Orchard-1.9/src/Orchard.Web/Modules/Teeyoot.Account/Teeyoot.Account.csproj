@@ -92,6 +92,14 @@
       <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
       <Name>Orchard.Users</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RM.QuickLogOn.OAuth\RM.QuickLogOn.OAuth.csproj">
+      <Project>{4055acbb-280e-4bf7-9706-e5598521a684}</Project>
+      <Name>RM.QuickLogOn.OAuth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RM.QuickLogOn\RM.QuickLogOn.csproj">
+      <Project>{809c09ed-f637-4c25-8ad6-65e4775e8dfe}</Project>
+      <Name>RM.QuickLogOn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Teeyoot.Module\Teeyoot.Module.csproj">
       <Project>{a11fb407-2b62-42d2-97b6-895056579905}</Project>
       <Name>Teeyoot.Module</Name>
@@ -103,6 +111,12 @@
     <Compile Include="Drivers\TeeyootUserPartDriver.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Routes.cs" />
+    <Compile Include="Services\ITeeyootMembershipService.cs" />
+    <Compile Include="Services\ITeeyootSocialLogOnService.cs" />
+    <Compile Include="Services\TeeyootFacebookOAuthService.cs" />
+    <Compile Include="Services\TeeyootMembershipService.cs" />
+    <Compile Include="Services\TeeyootSocialLogOnService.cs" />
+    <Compile Include="SocialLogOnUrlCreator.cs" />
     <Compile Include="ViewModels\AccountIndexViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
