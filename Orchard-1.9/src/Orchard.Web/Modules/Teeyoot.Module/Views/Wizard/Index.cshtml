@@ -41,6 +41,13 @@
 
 
     <script type="text/javascript">
+        history.pushState(null, null, 'GetStarted');
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, 'GetStarted');
+            NextPage();
+        });
+    </script>
+    <script type="text/javascript">
         $('.textarea').wysihtml5();
         $(".flip-buttons").click(function () {
             var $elem = $("#view-front");
