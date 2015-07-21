@@ -292,3 +292,13 @@
 .items tr td:last-child{
     text-align: end;
 }
+
+.admin-categories-menu {
+    margin-bottom: 40px;
+}
+.admin-categories-menu .left-box {
+    float: left;
+}
+.admin-categories-menu .right-box {
+    float: right;
+}

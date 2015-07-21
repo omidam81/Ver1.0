@@ -10,5 +10,13 @@ namespace Teeyoot.Search.Services
     public interface ICampaignCategoriesService : IDependency
     {
         IQueryable<CampaignCategoriesPartRecord> GetAllCategories();
+
+        IQueryable<CampaignRecord> GetCampaignsByIdCategory(int id);
+
+        CampaignCategoriesPartRecord GetCategoryById(int id);
+
+        IQueryable<CampaignRecord> GetCampaignsByNotThisIdCategory(int id);
+
+        int AddCategory(string name);
     }
 }

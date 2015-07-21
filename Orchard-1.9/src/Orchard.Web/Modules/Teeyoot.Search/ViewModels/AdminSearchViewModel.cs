@@ -8,17 +8,22 @@ namespace Teeyoot.Search.ViewModels
 {
     public class AdminSearchViewModel
     {
-        public List<CampaignCategoriesPartRecord> CampaignCategoriesList { get; set; }
+        public dynamic[] CampaignCategoriesList { get; set; }
 
-        public Action ActionId { get; set; }
+        public string SearchString { get; set; }
 
-        public Action Actions { get; set; }
+        public string NewCategory { get; set; }
 
-        public enum Action
-        {
-            Delete,
-            Check,
-            Uncheck
-        }
+        public int ActionId { get; set; }
+
+        public List<ActionsViewModel> Action { get; set; }
+
+
+        public dynamic[] Camapigns { get; set; }
+
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+
+        public dynamic Pager { get; set; }
     }
 }
