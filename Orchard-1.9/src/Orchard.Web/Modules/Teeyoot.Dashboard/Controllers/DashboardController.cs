@@ -1,4 +1,5 @@
-﻿using Orchard.Data;
+﻿using Orchard;
+using Orchard.Data;
 using Orchard.Logging;
 using Orchard.Themes;
 using System.Web.Mvc;
@@ -13,15 +14,19 @@ namespace Teeyoot.Dashboard.Controllers
     {
         private readonly ICampaignService _campaignService;
         private readonly IMailChimpSettingsService _settingsService;
-        private readonly IRepository<LinkOrderCampaignProductRecord> _linkOrderCampaignProductRepository;
+        private readonly IOrderService _orderService;
+        private readonly IWorkContextAccessor _wca;
 
         public DashboardController(ICampaignService campaignService, 
                                    IMailChimpSettingsService settingsService, 
-                                   IRepository<LinkOrderCampaignProductRecord> linkOrderCampaignProductRepository)
+                                   IOrderService orderService,
+                                   IWorkContextAccessor wca)
         {
             _campaignService = campaignService;
+            _orderService = orderService;
+            _wca = wca;
             this._settingsService = settingsService;
-            this._linkOrderCampaignProductRepository = linkOrderCampaignProductRepository;
+            this._orderService = orderService;
 
             Logger = NullLogger.Instance;
         }

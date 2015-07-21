@@ -1,13 +1,36 @@
 ﻿@{
-    
+    @model Teeyoot.Dashboard.ViewModels.CampaignsViewModel
+    Style.Include("campaigns.css");
 }
 
-<div class="dashboard-section-title">Campaigns</div>
+<div class="dashboard-section-title">@T("Campaigns")</div>
 
 <div class="box">
-    <div class="dashboard-section-title">Overview</div>
+    <div class="box-header">
+        <div class="dashboard-section-title">@T("Overview")</div>
+    </div>
+
+    <div class="campaigns-overview-body">
+        <div>@T("Products ordered"):</div>
+        <div>@T("Profit"):</div>
+        <div>@T("To be paid"):</div>
+        <div class="period-selector">
+            @foreach(var type in Model.Overviews)
+            {
+                <span>@type.Type</span>
+            }
+        </div>
+    </div>
 </div>
 
 <div class="box">
+    <div class="box-header">
+        <div></div>
+    </div>
+    @foreach (var campaign in Model.Campaigns)
+    {
+        <div class="campaign-item">
 
+        </div>
+    }
 </div>

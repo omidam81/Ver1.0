@@ -177,3 +177,31 @@ div.xgridline {
   border: 0;
   border-bottom: 3px solid transparent;
 }
+#art-canvas-options label {
+    display: inline;
+}
+
+
+
+#design-tools #art-panel-context-menu {
+    margin-top: 12px;
+    overflow: visible;
+}
+
+#design-tools #art-panel-context-menu .tooltip_composer__position {
+    padding: 0 10px;
+}
+
+#design-tools #art-panel-context-menu .tooltip_composer__position[data-tooltip]:hover:before {
+    width: auto;
+}
+
+#design-tools #art-panel-context-menu .ts-icon {
+    font-size: 26px;
+    cursor: pointer;
+    color: #8d999e;
+}
+
+#design-tools #art-panel-context-menu .ts-icon:hover {
+    color: #39ace6;
+}

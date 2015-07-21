@@ -1,0 +1,78 @@
+﻿@model Teeyoot.Search.ViewModels.AdminSearchViewModel
+@{
+    Layout.Title = T("Search Categories").ToString();
+    Style.Include("Search.css");
+}
+@using Teeyoot.Module.Models
+
+<div>
+    @using (Html.BeginForm("Index", "FaqAdmin", FormMethod.Get))
+    {
+        <fieldset class="bulk-actions">
+            @Html.LabelFor(m => m.ActionId, T("Action")):
+            @*@Html.DropDownListFor(m => m.ActionId, Model.Actions.Select(l => new SelectListItem
+                                            {
+                                                Selected = Model.Search.SectionId > 1 ? l.Id == Model.Search.SectionId : false,
+                                                Text = l.Name,
+                                                Value = l.Id.ToString()
+                                            }), "-- show all --")*@
+            <button type="submit">@T("Apply")</button>
+        </fieldset>
+    }
+</div>
+
+
+@{
+    <fieldset>
+        <table class="items">
+            <thead>
+                <tr class="admin-categories">
+                    <th class="check-box">
+                        <input type="checkbox" class="check-all">
+                    </th>
+                    <th class="visible">
+                        <h3>Visible</h3>
+                    </th>
+                    <th class="name">
+                        <h3>Name</h3>
+                    </th>
+                    <th class="related"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (CampaignCategoriesPartRecord categ in Model.CampaignCategoriesList)
+                {
+                    <tr data-record-text="@categ.Id" class="admin-categories-tr">
+                        <td class="check-box">
+                            <input type="checkbox">
+                        </td>
+                        <td class="visible">
+                            <h3>
+                                @{
+                    string vis = categ.IsVisible ? "Yes" : "No";
+                    @T(vis);
+                                }
+                            </h3>
+                        </td>
+                        <td class="name">
+                            <a>@categ.Name</a>
+                        </td>
+                        <td class="related">
+                            <a href="@Url.Action("EditFaqEntry", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                            @if (categ.IsVisible)
+                            {
+                                <a href="@Url.Action("EditFaqEntry", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Uncheck")">@T("Uncheck")</a>@T(" | ")
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("EditFaqEntry", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Check")">@T("Check")</a>@T(" | ")
+                            }
+
+                            <a href="@Url.Action("Delete", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+}

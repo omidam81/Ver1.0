@@ -2,7 +2,7 @@
     Style.Include("teebay.css");
     Style.Include("campaign.css");
     Style.Include("checkout.css");
-    @model Teeyoot.Module.Models.OrderRecord
+    @model Teeyoot.Module.Models.PaymentViewModel
 }
 
 <div class="site__content_container">
@@ -18,26 +18,32 @@
                         <h2 class="checkout__title checkout__title--small">@T("Order Summary")</h2>
                         <table class="order_summary">
                             <tbody class="order_summary__items">
+
+                                @foreach (var item in Model.Order.Products) { 
+
                                 <tr>
                                     <td>
                                         <div class="order_summary__item_image ">
-                                            <img src="//vangogh.teespring.com/shirt_pic/2592056/2860469/369/6524/120x9999/front.png?v=2015-07-15-03-14">
+                                            <img src="/Media/campaigns/@item.CampaignProductRecord.CampaignRecord_Id/@item.CampaignProductRecord.Id/normal/front.png">
                                         </div>
                                     </td>
                                     <td class="order_summary__item_name">
-                                        1x Teespring Premium Tee
+                                       @item.Count x @item.CampaignProductRecord.ProductRecord.Name
                                         <ul class="order_summary__item_options">
-                                            <li>M</li>
+                                            <li>@item.ProductSizeRecord.SizeCodeRecord.Name</li>
                                             <li>
-                                                <span class="order_summary__item_color_label">Heathered Bright Turquoise </span>
-                                                <span class="order_summary__item_color" style="background-color: #4099d0"></span>
+                                                <span class="order_summary__item_color_label">@item.CampaignProductRecord.ProductColorRecord.Name</span>
+                                                <span class="order_summary__item_color" style="background-color: @item.CampaignProductRecord.ProductColorRecord.Value"></span>
                                             </li>
                                         </ul>
                                     </td>
                                     <td class="order_summary__item_price">
-                                        <span class="order_summary__original_price hidden">$15.00</span>$15.00
+                                        @item.CampaignProductRecord.CurrencyRecord.Code @item.CampaignProductRecord.Price*@item.Count
                                     </td>
                                 </tr>
+
+                                }
+
                             </tbody>
                         </table>
                         <div class="order_summary__breakdown_container">
@@ -87,6 +93,7 @@
 
 
             <form action="@Url.Action("CreateTransaction")" onsubmit="return Validate();" method="POST" id="braintree-payment-form">
+                <input type="hidden" id="OrderId" name="OrderId" value=@Model.Order.Id>
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
                     <input autofocus="autofocus" class="form__textfield form__textfield--large" id="Email" name="Email" placeholder="Email address" tabindex="1" type="text">
@@ -188,7 +195,7 @@
                     <div class="checkout_form_footer" style="margin-top:10px">
                         <div class="checkout_form_footer__submit_wrap js_submit_wrap_cc">
                             <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="Place Your Order" >@T("Place Your Order")</button>
-                            <h2 style="background-color:yellow">@ViewBag.Result</h2>
+                            <h2 style="background-color:yellow">@Model.Result</h2>
                             <p class="tos_agreement">
                                 @T("By clicking 'Place Your Order' you agree to our")
                                 <a href='/about/privacy' target='_blank'>@T("privacy policy")</a>
@@ -197,9 +204,10 @@
                             </p>
                         </div>
                     </div>
-                </div>          
+                </div>                         
             </form>
-            <input type="hidden" id="Token" value=@ViewBag.ClientToken>
+            <input type="hidden" id="Token" value=@Model.ClientToken>
+            
             
         </div>
     </div>
@@ -247,15 +255,7 @@
                 last_name.className = "form__textfield form__textfield--large";
             }
 
-            //jQuery("input[type=text]").each(function () {
-            //    if ($(this).val() == "") {
-            //        $(this).addClass("errorVal");
-            //        error = true;
-            //    }
-            //    else {
-            //        $(this).removeClass("errorVal");
-            //    }
-            //});
+           
 
             return !error;
         }

@@ -213,7 +213,7 @@
 
 
         <div class="Slide" >
-            <div class="Content" style="width:90%; margin-top:-50px;">
+            <div class="Content" style="width:90%; margin-top:-50px;" id="Content1">
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
                         <div id="designer-container" style="margin-left:10%">
@@ -353,15 +353,14 @@
                                                                 </div>
                                                             </div>
                                                             <div id="art-style" class="design-area__art--edit" style="display: none;">
-                                                                <div>
+                                                                <div id="art-built-in">
                                                                     <div class="control-group clearfix art-color-selection">
                                                                         <label>Art color </label>
 
-                                                                        <div class="fake-input color-picker standard designer-dropdown"
-                                                                             title="Change color">
+                                                                        <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="art">
                                                                             <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                             <div class="colors shirt-colors containertip">
-                                                                                <ul></ul>
+                                                                                <ul class="all-colors"></ul>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -370,7 +369,7 @@
 
                                                                         <div class="clearfix control-group outline-selection">
                                                                             <div>
-                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu">
+                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
                                                                                     <option value="0">No outline</option>
                                                                                     <option value="0.33">Thin outline</option>
                                                                                     <option value="0.66">Medium outline</option>
@@ -380,11 +379,11 @@
                                                                         </div>
                                                                         <div class="clearfix control-group outline-color-selection">
                                                                             <div class="fake-input color-picker standard designer-dropdown"
-                                                                                 title="Change color">
+                                                                                 title="Change color" data-value="art-outline">
                                                                                 <div class="swatch" title="Black"
                                                                                      style="background-color: #000000;"></div>
                                                                                 <div class="colors shirt-colors containertip">
-                                                                                    <ul></ul>
+                                                                                    <ul class="all-colors"></ul>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="clearfix"></div>
@@ -399,23 +398,32 @@
                                                                         <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="clearfix control-group">
+                                                                <div id="art-align-tools" class="clearfix control-group">
                                                                     <div class="layer-tools">
-                                                                        <ul id="canvas-options-art" class="nav">
-                                                                            <li><input type="checkbox" checked=""><label>Snap to center</label></li>
+                                                                        <ul id="art-canvas-options" class="nav">
+                                                                            <li>
+                                                                                <input id="art-snap-to-center" type="checkbox" checked="">
+                                                                                <label>Snap to center</label>
+                                                                            </li>
                                                                         </ul>
-                                                                        <div id="panel-context-menu-art" class="btn-group control-group">
-                                                                            <span class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                        <div id="art-panel-context-menu" class="btn-group control-group">
+                                                                            <span id="art-duplicate" class="tooltip_composer__position" data-tooltip="Duplicate">
                                                                                 <i class="ts-icon ts-icon-composer-copy"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Center">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-item-center" class="tooltip_composer__position" data-tooltip="Center">
                                                                                 <i class="ts-icon ts-icon-composer-center"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
                                                                                 <i class="ts-icon ts-icon-composer-sendtoback"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
-                                                                                                                        data-tooltip="Flip Horizontally">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
-                                                                            </span><span class="separator"></span><span class="tooltip_composer__position"
-                                                                                                                        data-tooltip="Flip Vertically">
+                                                                            </span>
+                                                                            <span class="separator"></span>
+                                                                            <span id="art-flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
                                                                             </span>
                                                                         </div>
@@ -423,6 +431,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    <div class="teespring-well designer-well" id="clientArts">
+                                                        <label>Recently Used Artwork</label>
+                                                        <ul class="nav">
+                                                            
+                                                        </ul>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -603,19 +617,19 @@
                             </div>
                             @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
                         </td>
-                        <td style="width:50%; vertical-align:top">
+                        <td style="width:50%; vertical-align:top; position:relative;">
                             <label style="font-weight: bold;">Sales goal</label>
                             <div class="block">
                                 <input style="width:100%; background-color:#f5f7f7; border:none" type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
 
 
                                 <div class="tipping-point-slider__points" style="margin-top:-2%">
-                                    <span class="tipping-point-slider__point">15</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:1.9%">100</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:3.9%">200</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:5.9%">300</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:7.9%">400</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:9.9%">500</span>
+                                    <span class="tipping-point-slider__point" style="margin-left:1%">15</span>
+                                    <span class="tipping-point-slider__point" style="margin-left:18%">100</span>
+                                    <span class="tipping-point-slider__point" style="margin-left:37%">200</span>
+                                    <span class="tipping-point-slider__point" style="margin-left:57%">300</span>
+                                    <span class="tipping-point-slider__point" style="margin-left:76%">400</span>
+                                    <span class="tipping-point-slider__point" style="margin-left:95%">500</span>
 
                                 </div>
 
@@ -703,21 +717,14 @@
 
 
                             <div id="ui" class="ssp_select_boxes">
-                                <select id="item-options-dropdown" class="form-control form__select_menu">
-                                    <option value="1">
-                                        Basic Tees
-                                    </option>
-                                    <option value="3">Long Sleeve Tees</option>
-                                    <option value="4">Tank Tops</option>
-                                    <option value="5">Hoodies &amp; Sweatshirts</option>
-                                    <option value="6">V-Neck Tees</option>
-                                    <option value="9">Women's Tees</option>
-                                    <option value="11">Premium Tees</option>
+                                <select id="item-options-dropdown-tees" class="form-control form__select_menu">
                                 </select>
+                                
+                                
                                 <select id="product" class="form__select_menu">
-                                    <option value="369">Teespring Premium Tee</option>
+                                    @*<option value="369">Teespring Premium Tee</option>
                                     <option value="2">Hanes Tagless Tee</option>
-                                    <option value="6">American Apparel Crew</option>
+                                    <option value="6">American Apparel Crew</option>*@
                                 </select>
                                 <button type="button" id="butAdd" class="button button--primary ssp_add_button" title="Add"></button>
                             </div>

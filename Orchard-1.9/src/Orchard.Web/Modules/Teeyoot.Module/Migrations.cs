@@ -154,6 +154,18 @@ namespace Teeyoot.Module
                     .Column<int>("Green")
             );
 
+            SchemaBuilder.CreateTable(typeof(CampaignCategoriesPartRecord).Name,
+                table => table
+                .ContentPartRecord()
+                .Column<string>("Name", c => c.WithLength(50))
+            );
+
+            ContentDefinitionManager.AlterPartDefinition(typeof(CampaignCategoriesPart).Name, part => part.Attachable(false));
+            ContentDefinitionManager.AlterTypeDefinition("CampaignCategories", type => type
+                .WithPart(typeof(CampaignCategoriesPart).Name)
+                .WithPart("CommonPart")
+            );
+
             SchemaBuilder.CreateForeignKey("Product_ProductHeadline", "ProductRecord", new[] { "ProductHeadlineRecord_Id" }, "ProductHeadlineRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("Product_ProductImage", "ProductRecord", new[] { "ProductImageRecord_Id" }, "ProductImageRecord", new[] { "Id" });
             SchemaBuilder.CreateForeignKey("ProductSize_SizeCode", "ProductSizeRecord", new[] { "SizeCodeRecord_Id" }, "SizeCodeRecord", new[] { "Id" });
@@ -248,7 +260,32 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "SizeId" }, "ProductSizeRecord", new[] { "Id" });
 
-            return 12;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("StartDate"));
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("Tags"));
+
+            SchemaBuilder.AlterTable(typeof(CampaignCategoriesPartRecord).Name, table => table.AddColumn<bool>("IsVisible"));
+
+            SchemaBuilder.CreateTable(typeof(LinkCampaignAndCategoriesRecord).Name, table => table
+                .Column<int>("Id", column => column.PrimaryKey().Identity())
+                .Column<int>("CampaignRecord_Id")
+                .Column<int>("CampaignCategoriesPartRecord_Id")
+            );
+
+            SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_Campaign", "LinkCampaignAndCategoriesRecord", new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_CampaignCategories", "LinkCampaignAndCategoriesRecord", new[] { "CampaignCategoriesPartRecord_Id" }, "CampaignCategoriesPartRecord", new[] { "Id" });
+
+            SchemaBuilder.DropForeignKey("LinkOrderCampaignProductRecord", "OrderProduct_Size");
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                 table => table.DropColumn("SizeId"));
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.AddColumn<int>("ProductSizeRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "ProductSizeRecord_Id" }, "ProductSizeRecord", new[] { "Id" });
+
+            return 15;
         }
 
         public int UpdateFrom2()
@@ -372,6 +409,46 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "SizeId" }, "ProductSizeRecord", new[] { "Id" });
             
             return 12;
+        }
+
+        public int UpdateFrom12()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("StartDate"));
+
+            return 13;
+        }
+
+        public int UpdateFrom13()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("Tags"));
+
+            SchemaBuilder.AlterTable(typeof(CampaignCategoriesPartRecord).Name, table => table.AddColumn<bool>("IsVisible"));
+
+            SchemaBuilder.CreateTable(typeof(LinkCampaignAndCategoriesRecord).Name, table => table
+                .Column<int>("Id", column => column.PrimaryKey().Identity())
+                .Column<int>("CampaignRecord_Id")
+                .Column<int>("CampaignCategoriesPartRecord_Id")
+            );
+
+            SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_Campaign", "LinkCampaignAndCategoriesRecord", new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_CampaignCategories", "LinkCampaignAndCategoriesRecord", new[] { "CampaignCategoriesPartRecord_Id" }, "CampaignCategoriesPartRecord", new[] { "Id" });
+
+            return 14;
+        }
+
+        public int UpdateFrom14()
+        {
+            SchemaBuilder.DropForeignKey("LinkOrderCampaignProductRecord", "OrderProduct_Size");
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.DropColumn("SizeId"));
+
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name,
+                table => table.AddColumn<int>("ProductSizeRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "ProductSizeRecord_Id" }, "ProductSizeRecord", new[] { "Id" });
+
+            return 15;
         }
     }
 }

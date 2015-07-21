@@ -3,7 +3,6 @@
     @model Teeyoot.Search.ViewModels.SearchViewModel
 }
 @using Teeyoot.Module.Models;
-@using Teeyoot.Search.Models;
 
 <div class="tb- return-result">
     @if (Model.NotFoundCategories)
@@ -96,17 +95,17 @@
                     maxSize = Model.CampList.Count;
                 }
                 Model.NewRow++;
-                //float? price = (float)Model.CampProductList.Where(c => c.CampaignRecord_Id == camp.Id).Select(c => c.Price).First();
-                //price = (float)Model.CampProductList.Where(c => c.CampaignRecord_Id == camp.Id).Select(c => c.Price).FirstOrDefault();
-                //price = prod != null ? (float)prod.Price : 0;
 
+                string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
+                string backIMG = path + "/normal/back.png";
+                string frontIMG = path + "/normal/front.png";
 
                 <div class=" span-1 cell tee-preview">
                     <div>
                         <div class="featurde-compaigns">
                             <div class="preview-img">
                                 <div class="product-price">$ @Model.Price[countPrice]</div>
-                                <p><a href="#"><img src="/Media/Default/images/f5.jpg"></a></p>
+                                <p><a href="~/@camp.Alias"><img onmouseover="this.src='@backIMG'" onmouseout="this.src = '@frontIMG'" src="@frontIMG"></a></p>
                             </div>
                             <div class="progress-bar-search">
                                 <div class="progress-bar-result" style="width: @width"></div>

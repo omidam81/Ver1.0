@@ -23,6 +23,8 @@ namespace Teeyoot.Module.Models
         [StringLengthMax]
         public virtual string Description { get; set; }
 
+        public virtual DateTime StartDate { get; set; }
+
         public virtual DateTime EndDate { get; set; }
 
         public virtual string URL { get; set; }
@@ -37,12 +39,12 @@ namespace Teeyoot.Module.Models
 
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
-        [StringLengthMax]
-        public virtual string Tags { get; set; }
+        public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; } 
 
         public CampaignRecord()
         {
             Products = new List<CampaignProductRecord>();
+            Categories = new List<LinkCampaignAndCategoriesRecord>();
         }
     }
 }
