@@ -12,15 +12,7 @@
 { 
     
     <script>
-        var ua = navigator.userAgent.toLowerCase();
-        var isAndroid = ua.indexOf("android") > -1;      
-        if (isAndroid) {
-            var current = document.getElementsByClassName("widget-mainSearch")[0];
-            $(current).attr("style", "padding-top:6px");
-        }
-
-
-
+      
     $(".product__size_chart_link--show").click(function () {
         document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
     });
