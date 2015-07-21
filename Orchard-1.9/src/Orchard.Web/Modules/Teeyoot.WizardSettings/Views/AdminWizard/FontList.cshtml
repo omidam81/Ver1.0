@@ -1,0 +1,11 @@
+﻿@{
+    @model IEnumerable<Teeyoot.Module.Models.FontRecord> 
+    Layout.Title = T("Fonts").ToString();
+}
+
+<ul>
+    @foreach(var font in Model)
+    {
+        <li>@font.Family</li>
+    }
+</ul>
