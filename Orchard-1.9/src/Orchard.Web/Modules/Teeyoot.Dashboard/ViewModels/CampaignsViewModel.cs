@@ -17,6 +17,8 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public IList<CampaignsOverview> Overviews { get; set; }
         public IList<CampaignSummary> Campaigns { get; set; }
+
+        public string Currency { get; set; }
     }
 
     public class CampaignSummary
