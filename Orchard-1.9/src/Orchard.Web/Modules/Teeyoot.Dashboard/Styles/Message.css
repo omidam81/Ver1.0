@@ -206,6 +206,9 @@ table > tr > td {
     #campUrl {
         width: 98% !important;
     }
+    #campaignPrintRow{
+        margin-bottom:48% !important;
+    }
 }
 
 @media all and (max-width: 500px) {
