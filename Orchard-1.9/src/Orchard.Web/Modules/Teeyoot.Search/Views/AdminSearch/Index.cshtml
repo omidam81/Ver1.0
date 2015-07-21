@@ -17,7 +17,7 @@
                             Selected = Model.ActionId > 1 ? l.Id == Model.ActionId : false,
                             Text = l.Name,
                             Value = l.Id.ToString()
-                        }), "Choose action...")
+                        }), T("Choose action..."))
                     <button type="submit">@T("Apply")</button>
                 </fieldset>
             }

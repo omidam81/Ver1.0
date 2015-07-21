@@ -150,6 +150,9 @@ namespace Teeyoot.Search.Controllers
             return this.RedirectToAction("Index");
         }
 
-        //public ActionResult ChangeNameCategory(AdminSearchViewModel admin)
+        public ActionResult ChangeNameCategory(AdminSearchViewModel adminViewModel)
+        {
+            return this.RedirectToAction("EditCategory");
+        }
     }
 }
