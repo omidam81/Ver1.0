@@ -319,6 +319,7 @@
     <Content Include="Content\vector\Wings 21.png" />
     <Content Include="Content\vector\Woman 7.png" />
     <Content Include="Scripts\add-ons.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\data-samples\fonts.json" />
@@ -587,6 +588,7 @@
     <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
     <Content Include="Scripts\jquery.elevatezoom.js" />
     <Content Include="Scripts\jquery.flip.js" />
+    <Content Include="Scripts\jquery.hotkeys.js" />
     <Content Include="Scripts\jquery.ui.resizeable.js" />
     <Content Include="Scripts\jquery.ui.rotatable.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -597,6 +599,7 @@
     <Content Include="Scripts\language.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\quill.js" />
     <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\wizard.js" />
@@ -611,6 +614,8 @@
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
+    <Content Include="Styles\quill.base.css" />
+    <Content Include="Styles\quill.snow.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -635,8 +640,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
-    <Compile Include="Common\Enums\Enums.cs" />
-    <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
