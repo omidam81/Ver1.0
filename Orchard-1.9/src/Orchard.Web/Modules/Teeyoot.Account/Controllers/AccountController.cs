@@ -211,12 +211,12 @@ namespace Teeyoot.Account.Controllers
                 validate = false;
             }
 
-            if (validate)
+            if (!validate)
             {
+                TempData[LoggingOnValidationSummaryKey] = validationSummary;
                 return user;
             }
 
-            TempData[LoggingOnValidationSummaryKey] = validationSummary;
             return null;
         }
 
@@ -250,7 +250,7 @@ namespace Teeyoot.Account.Controllers
 
             _orchardServices.ContentManager.Create(teeyootUser);
 
-            var role = _roleService.GetRoleByName("TeeyootUser");
+            var role = _roleService.GetRoleByName("Seller");
             if (role != null)
             {
                 _userRolesRepository.Create(new UserRolesPartRecord

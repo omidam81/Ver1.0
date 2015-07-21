@@ -15,7 +15,7 @@ namespace Teeyoot.Account
 
         public int Create()
         {
-            _roleService.CreateRole("TeeyootUser");
+            _roleService.CreateRole("Seller");
 
             return 1;
         }
