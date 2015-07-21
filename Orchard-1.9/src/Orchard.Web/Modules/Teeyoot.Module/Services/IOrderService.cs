@@ -19,6 +19,6 @@ namespace Teeyoot.Module.Services
 
         IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaigns(int[] ids);
 
-        IEnumerable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId);
+        IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId);
     }
 }

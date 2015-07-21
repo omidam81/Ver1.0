@@ -391,6 +391,18 @@ span.number {
  }
 
 
+.modWind {
+  background-color: white;
+  width: 560px;
+  top: 25%;
+  left: 35%;
+  border: 1px solid #999;
+  height: 20%;
+  border-radius: 6px;
+}
+
+
+
 @media all and (max-width: 1450px) {
     .ssp_pricing {
         margin-left: -5%;

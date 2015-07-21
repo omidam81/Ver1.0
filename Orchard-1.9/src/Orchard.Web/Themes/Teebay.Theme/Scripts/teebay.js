@@ -12,6 +12,19 @@ function redirectToSearchCampaign() {
     window.location = des;
 }
 
+var toggleMenu = function () {
+    var el = $('.tb-aside-first');
+
+    if (el.hasClass('menu-closed')) {
+        el.removeClass('menu-closed');
+    } else {
+        el.addClass('menu-closed');
+    }
+
+    $('.fa-angle-left').toggleClass('hidden');
+    $('.fa-angle-right').toggleClass('hidden');
+}
+
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1;
 if (isAndroid) {

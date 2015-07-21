@@ -319,7 +319,7 @@
     <Content Include="Content\vector\Wings 21.png" />
     <Content Include="Content\vector\Woman 7.png" />
     <Content Include="Scripts\add-ons.js" />
-    <Content Include="Scripts\bootstrap-wysiwyg.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\data-samples\fonts.json" />
@@ -602,12 +602,15 @@
     <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\wizard.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
+    <Content Include="Styles\bootstrap-wysihtml5.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\checkout.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designer.css" />
+    <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />

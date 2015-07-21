@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Linq;
+using System.Collections.Generic;
 using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Common.Enums;
@@ -20,8 +21,33 @@ namespace Teeyoot.Dashboard.Controllers
             var productsOrderedQuery = _orderService.GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
 
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
+            FillCampaigns(model, campaignsQuery);
 
             return View(model);
+        }
+
+        private void FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
+        {
+            var campaignSummaries = new List<CampaignSummary>();
+            var campaigns = campaignsQuery.ToList();
+
+            foreach (var c in campaigns)
+            {
+                campaignSummaries.Add(new CampaignSummary
+                {
+                    EndDate = c.EndDate,
+                    Goal = c.ProductCountGoal,
+                    Id = c.Id,
+                    Name = c.Title,
+                    Sold = c.ProductCountSold,
+                    StartDate = c.StartDate,
+                    Status = c.CampaignStatusRecord,
+                    Profit = _orderService.GetProductsOrderedOfCampaign(c.Id)
+                                .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                                .Sum(entry => (int?)entry.Profit) ?? 0
+                });
+            }
+            model.Campaigns = campaignSummaries;
         }
 
         private void FillOverviews(CampaignsViewModel model, IQueryable<LinkOrderCampaignProductRecord> productsOrderedQuery, IQueryable<CampaignRecord> campaignsQuery)

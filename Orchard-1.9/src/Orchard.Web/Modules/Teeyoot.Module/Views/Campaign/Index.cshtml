@@ -152,9 +152,12 @@
         var productId;
         var sizeId;
 
-        tableRows.each(function (index, el) {
-            productId = $(el).find('.product__dropdown')[0].selectedOptions[0].value;
-            sizeId = $(el).find('.size-dropdown.shown')[0].selectedOptions[0].value;
+        tableRows.each(function (index, el) {         
+
+            var items = $(el).find('.product__dropdown')[0];
+            productId = items[items.selectedIndex].value;
+            items = $(el).find('.size-dropdown.shown')[0];
+            sizeId = items[items.selectedIndex].value;
             count = $(el).find('.product-count')[0].value;
 
             products.push({ ProductId: productId, SizeId: sizeId, Count: count });
