@@ -1,0 +1,91 @@
+﻿@model Teeyoot.Search.ViewModels.AdminSearchViewModel
+@{
+    Layout.Title = T("Edit сategory \"").ToString() + Model.CategoryName + "\"";
+    Style.Include("Search.css");
+}
+@using Teeyoot.Module.Models
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+
+<fieldset>
+    <div class="admin-categories-menu">
+        <div class="left-box">
+            @using (Html.BeginForm("ChangeNameCategory", "AdminSearch", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    @Html.LabelFor(m => m.NewCategory, T("Change name for category")):
+                    @Html.TextBoxFor(m => m.NewCategory, new { @placeholder = @T("New name") })
+                    <button type="submit">@T("Change")</button>
+                </fieldset>
+            }
+        </div>
+        <div class="right-box">
+            <fieldset class="bulk-actions">
+                <a class="button primaryAction" href="@Url.Action("AddCampaignForCategory", new { id = Model.CategoryId })">@T("Add Campaign")</a>
+            </fieldset>
+        </div>
+        <div class="right-box">
+            @using (Html.BeginForm("SearchCampaigns", "AdminSearch", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                    <button type="submit">@T("Search")</button>
+                    <a href="@Url.Action("EditCategory", new { id = Model.CategoryId})">@T("By Default")</a>
+                </fieldset>
+            }
+        </div>
+
+    </div>
+</fieldset>
+
+@{
+    <fieldset>
+        <table class="items">
+            <thead>
+                <tr class="admin-categories">
+                    <th class="visible">
+                        <h3>Sold</h3>
+                    </th>
+                    <th class="name">
+                        <h3>Title</h3>
+                    </th>
+                    <th class="related"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var camp in Model.Camapigns)
+                {
+                    <tr data-record-text="camp.Id" class="admin-categories-tr">
+                        <td class="visible">
+                            <h3>
+                                @camp.ProductCountSold/@camp.ProductCountGoal
+                            </h3>
+                        </td>
+                        <td class="name">
+                            <h3>@camp.Title</h3>
+                        </td>
+                        <td class="related">
+                            <a href="@Url.Action("DeleteCampaignsFromCategory", new { id = camp.Id, returnurl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+}
+<fieldset>
+    <div class="admin-categories-menu">
+        <div class="right-box">
+            @using (Html.BeginForm("Index", "AdminSearch", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    <button type="submit">@T("Back")</button>
+                </fieldset>
+            }
+        </div>
+    </div>
+</fieldset>

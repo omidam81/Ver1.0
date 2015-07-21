@@ -320,9 +320,6 @@ html:hover [class^="ss-"] {
     }
 }
 
-.form__textfield {
-    width: 32% !important;
-}
 
 .form__textfield--large {
     width: 100% !important;
@@ -641,49 +638,131 @@ checkout__lock_icon {
     text-align: left;
     text-decoration: none;
 }
+
 .form__textfield {
     height: 44px !important;
 }
 
-.tb-search-form input{
-    height : 27px !important;
+.tb-search-form input {
+    height: 27px !important;
 }
-.errorVal{
-    border-color: #CC0000!important;
+
+.errorVal {
+    border-color: #CC0000 !important;
 }
 
 
 @media only screen and (max-width: 980px) {
-    .checkout__container_main{
-        width:100% !important;
-    }
-    .order_summary__container{
+
+    .checkout__container_main {
         width: 100% !important;
-        padding-left:0 !important;
-        margin:10px !important;
-        float:left !important;
     }
-    .order_summary__help{
-        padding-left:10px !important;
+
+    .order_summary__container {
+        width: 100% !important;
+        padding-left: 0 !important;
+        margin: 10px !important;
+        float: left !important;
     }
-    .checkout__container{
-        padding-top:5px !important;
-        padding-left:20px !important;
-         width:100% !important;
+
+    .order_summary__help {
+        padding-left: 10px !important;
     }
-    .site__wrapper{
-        width:auto!important;
+
+    .checkout__container {
+        padding-top: 5px !important;
+        padding-left: 20px !important;
+        width: 100% !important;
+    }
+
+    .site__wrapper {
+        width: auto !important;
     }
 }
 
-@media only screen and (max-width: 415px) {
-    .form__textfield {
-        width: 47% !important;
+.error {
+    color: red;
+}
+
+.checkout_cell {
+    width: 32%;
+    float: left;
+}
+
+.form__textfield {
+    width: 100% !important;
+}
+
+.contLable {
+    height: 200px;
+}
+
+.cvc_cell {
+    float: right;
+}
+ 
+@media only screen and (max-width: 580px) {
+    #braintree-paypal-button{
+        margin-left:20px;
     }
-    .form__textfield--large{
-        width:97% !important;
-    }   
-    .form__select_menu option{
+    #paypal-container{
+        margin-left:-50px !important;
+    }
+    #bt-pp-email {
+        font-size: 14px !important;
+    }
+
+     #bt-pp-cancel {
+        font-size: 20px !important;
+    }
+
+    #bt-pp-name {
+        margin-left: 0 !important;
+    }
+
+    .accordion_min {
+        height: 450px !important;
+    }
+
+    .cvc_cell {
+        float: left;
+    }
+
+    .checkout_cell {
+        width: 100% !important;
+    }
+
+    .checkout__input--half {
+        width: 100% !important;
+    }
+
+    .form__textfield--large {
+        width: 97% !important;
+    }
+
+    .form__select_menu option {
         width: 20% !important;
     }
+}
+
+@media only screen and (max-width: 460px) {
+    #paypal-container {
+        margin-right: -30px !important;
+    }
+
+    #bt-pp-email {
+        font-size: 12px !important;
+    }
+  
+}
+
+
+@media only screen and (max-width: 380px) {
+   #accordion{
+       height:100px;
+   }
+    #bt-pp-email {
+        font-size: 10px !important;
+    }
+   
 }

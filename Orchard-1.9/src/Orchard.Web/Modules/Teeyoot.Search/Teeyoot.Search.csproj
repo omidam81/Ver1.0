@@ -97,6 +97,7 @@
     <Compile Include="Services\CampaignProductService.cs" />
     <Compile Include="Services\ICampaignCategoriesService.cs" />
     <Compile Include="Services\ICampaignProductService.cs" />
+    <Compile Include="ViewModels\ActionsViewModel.cs" />
     <Compile Include="ViewModels\AdminSearchViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
@@ -114,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminSearch\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AdminSearch\EditCategory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AdminSearch\AddCampaign.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

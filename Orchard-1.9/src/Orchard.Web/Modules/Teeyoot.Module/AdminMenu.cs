@@ -38,6 +38,13 @@ namespace Teeyoot.Module
                         .Position("2.4")
                         .Action("Index", "AdminSearch", new { area = "Teeyoot.Search" })
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("Products Settings"))
+                        .Position("2.5")
+                        .Action("Index", "AdminWizard", new { area = "Teeyoot.WizardSettings" })
+                            .Add(T("Fonts"), i => i.Action("FontList", "AdminWizard", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                            .Add(T("Colors"), i => i.Action("ColorList", "AdminWizard", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                    )
                 );
         }
     }

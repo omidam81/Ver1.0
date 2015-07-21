@@ -1,0 +1,27 @@
+﻿@{
+    Style.Include("storefonts.css");
+    @model Teeyoot.Module.Models.StoreRecord
+}
+
+
+<section class="site__featured_full">
+    <img class="featured__image" src="https://teespring-ass.s3.amazonaws.com/stores_banners/stores_default.png">
+    <div class="banner__image_uploader__container">
+        <form accept-charset="UTF-8" action="" class="image_uploader ss-glyphish-outlined ss-camera " data-callback-method="POST" data-callback-param="file" data-callback-url="null" enctype="multipart/form-data" method="post">
+            <input id="file" name="file" type="file"><div class="image_uploader__title">Upload banner photo</div>
+            <div class="image_uploader__subtitle">Recommended: 980px X 550px</div>
+            <div class="image_uploader__title--custom">Change image</div>
+        </form>
+        <div class="banner__image_progress">
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+    <section class="store__details_container">
+        <div class="store__details--edit">
+            <input class="store__name--edit" id="name" maxlength="30" name="name" placeholder="Store Title" type="text">
+            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)"></textarea>
+        </div>
+    </section>
+</section>

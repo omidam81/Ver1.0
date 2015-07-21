@@ -5,22 +5,52 @@
 }
 @using Teeyoot.Module.Models
 
-<div>
-    @using (Html.BeginForm("Index", "FaqAdmin", FormMethod.Get))
-    {
-        <fieldset class="bulk-actions">
-            @Html.LabelFor(m => m.ActionId, T("Action")):
-            @*@Html.DropDownListFor(m => m.ActionId, Model.Actions.Select(l => new SelectListItem
-                                            {
-                                                Selected = Model.Search.SectionId > 1 ? l.Id == Model.Search.SectionId : false,
-                                                Text = l.Name,
-                                                Value = l.Id.ToString()
-                                            }), "-- show all --")*@
-            <button type="submit">@T("Apply")</button>
-        </fieldset>
-    }
-</div>
+<fieldset>
+    <div class="admin-categories-menu">
+        <div class="left-box">
+            @using (Html.BeginForm("Index", "AdminSearch", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    @Html.LabelFor(m => m.ActionId, T("Action")):
+                    @Html.DropDownListFor(m => m.ActionId, Model.Action.Select(l => new SelectListItem
+                        {
+                            Selected = Model.ActionId > 1 ? l.Id == Model.ActionId : false,
+                            Text = l.Name,
+                            Value = l.Id.ToString()
+                        }), T("Choose action..."))
+                    <button type="submit">@T("Apply")</button>
+                </fieldset>
+            }
+        </div>
 
+        <div class="left-box">
+            @using (Html.BeginForm("Index", "AdminSearch", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                    <button type="submit">@T("Search")</button>
+                    <a href="@Url.Action("Index")">@T("By Default")</a>
+                </fieldset>
+            }
+        </div>
+
+        <div class="right-box">
+            @using (Html.BeginForm("AddNewCategory", "AdminSearch", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    @Html.TextBoxFor(m => m.NewCategory, new { @placeholder = @T("New Category") })
+                    <button type="submit">@T("Add new category")</button>
+                </fieldset>
+            }
+        </div>
+    </div>
+</fieldset>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
 
 @{
     <fieldset>
@@ -40,7 +70,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (CampaignCategoriesPartRecord categ in Model.CampaignCategoriesList)
+                @foreach (var categ in Model.CampaignCategoriesList)
                 {
                     <tr data-record-text="@categ.Id" class="admin-categories-tr">
                         <td class="check-box">
@@ -55,20 +85,20 @@
                             </h3>
                         </td>
                         <td class="name">
-                            <a>@categ.Name</a>
+                            <a href="@Url.Action("EditCategory", new { id = categ.Id})">@categ.Name</a>
                         </td>
                         <td class="related">
-                            <a href="@Url.Action("EditFaqEntry", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                            <a href="@Url.Action("EditCategory", new { id = categ.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
                             @if (categ.IsVisible)
                             {
-                                <a href="@Url.Action("EditFaqEntry", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Uncheck")">@T("Uncheck")</a>@T(" | ")
+                                <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = false })" title="@T("Unvisible")">@T("Unvisible")</a>@T(" | ")
                             }
                             else
                             {
-                                <a href="@Url.Action("EditFaqEntry", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Check")">@T("Check")</a>@T(" | ")
-                            }
+                                <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = true })" title="@T("Visible")">@T("Visible")</a>@T(" | ")
 
-                            <a href="@Url.Action("Delete", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                            }
+                            <a href="@Url.Action("DeleteCategory", new { id = categ.Id })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                         </td>
                     </tr>
                 }
@@ -76,3 +106,4 @@
         </table>
     </fieldset>
 }
+@Display(Model.Pager)

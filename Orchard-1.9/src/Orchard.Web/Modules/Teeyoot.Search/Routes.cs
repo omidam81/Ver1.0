@@ -79,6 +79,35 @@ namespace Teeyoot.Search
                         },
                         new MvcRouteHandler())
                 }
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/EditCategory",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Search"},
+                            {"controller", "AdminSearch"},
+                            {"action", "EditCategory"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Search"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/AddCampaign",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Search"},
+                            {"controller", "AdminSearch"},
+                            {"action", "AddCampaignForCategory"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Search"}
+                        },
+                        new MvcRouteHandler())
+                }
             };
         }
     }

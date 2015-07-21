@@ -72,6 +72,7 @@
   <ItemGroup>
     <Content Include="Styles\campaigns.css" />
     <Content Include="Styles\Message.css" />
+    <Content Include="Styles\storefonts.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -121,6 +122,7 @@
     <Content Include="Views\Dashboard\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\Settings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\NewStorefront.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

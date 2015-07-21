@@ -1,13 +1,7 @@
 ﻿@model Teeyoot.Messaging.ViewModels.MailChimpListViewModel
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>MailChimpSettings</title>
-</head>
-<body>
+@{
+    Layout.Title = T("Mail Chimp Settings").ToString();
+}
     <div>
         @using (Html.BeginForm())
         {
@@ -68,5 +62,3 @@
         
     </div>
 
-</body>
-</html>

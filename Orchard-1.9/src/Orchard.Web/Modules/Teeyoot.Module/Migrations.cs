@@ -285,7 +285,28 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "ProductSizeRecord_Id" }, "ProductSizeRecord", new[] { "Id" });
 
-            return 15;
+            SchemaBuilder.CreateTable(typeof(StoreRecord).Name,
+                 table => table
+                     .Column<int>("Id", column => column.PrimaryKey().Identity())
+                     .Column<int>("TeeyootUserId")
+                     .Column<string>("Title")
+                     .Column<string>("Description")
+                     .Column<bool>("HideStore", c => c.WithDefault(false))
+                     .Column<bool>("CrossSelling", c => c.WithDefault(false))
+                     );
+
+            SchemaBuilder.CreateTable(typeof(LinkStoreCampaignRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("StoreRecord_Id")
+                    .Column<int>("CampaignRecord_Id")
+                    );
+
+            SchemaBuilder.CreateForeignKey("Store_TeeyootUser", "StoreRecord", new[] { "TeeyootUserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkStoreCampaignRecord_CampaignRecord", "LinkStoreCampaignRecord", new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_StoreRecord", "LinkStoreCampaignRecord", new[] { "StoreRecord_Id" }, "StoreRecord", new[] { "Id" });
+
+            return 16;
         }
 
         public int UpdateFrom2()
@@ -449,6 +470,32 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("OrderProduct_Size", "LinkOrderCampaignProductRecord", new[] { "ProductSizeRecord_Id" }, "ProductSizeRecord", new[] { "Id" });
 
             return 15;
+        }
+
+        public int UpdateFrom15()
+        {
+            SchemaBuilder.CreateTable(typeof(StoreRecord).Name,
+                 table => table
+                     .Column<int>("Id", column => column.PrimaryKey().Identity())
+                     .Column<int>("TeeyootUserId")
+                     .Column<string>("Title")
+                     .Column<string>("Description")
+                     .Column<bool>("HideStore", c => c.WithDefault(false))
+                     .Column<bool>("CrossSelling", c => c.WithDefault(false))
+                     );
+
+            SchemaBuilder.CreateTable(typeof(LinkStoreCampaignRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("StoreRecord_Id")
+                    .Column<int>("CampaignRecord_Id")
+                    );
+
+            SchemaBuilder.CreateForeignKey("Store_TeeyootUser", "StoreRecord", new[] { "TeeyootUserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkStoreCampaignRecord_CampaignRecord", "LinkStoreCampaignRecord", new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_StoreRecord", "LinkStoreCampaignRecord", new[] { "StoreRecord_Id" }, "StoreRecord", new[] { "Id" });          
+
+            return 16;
         }
     }
 }

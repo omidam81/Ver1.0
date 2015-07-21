@@ -24,6 +24,8 @@
     Script.Include("validate.js");
     Script.Include("design_upload.js");
     Script.Include("fontdetect.js");
+    Script.Include("bootstrap-wysiwyg.js");
+    Script.Include("jquery.hotkeys.js");
 
 
 
@@ -33,9 +35,9 @@
 @using (Script.Foot())
 {
 
+
     <script type="text/javascript">
-
-
+        $('#descript').wysiwyg();
         $(".flip-buttons").click(function () {
             var $elem = $("#view-front");
 
@@ -80,17 +82,6 @@
                     'BackSideByDefault': backSideByDefault
                 }),
                 success: function (data, status, resp) {
-                    //var title;
-                    //for (var i = 0; i < data.length ; i++) {
-                    //    title = data[i].Value;
-                    //    title = title.replace("<span class='autocomplete-question'>", "");
-                    //    title = title.replace("</span><br/>", ". ");
-                    //    result[i] = {
-                    //        value: title,
-                    //        label: data[i].Value,
-                    //        id: data[i].Key
-                    //    };
-                    //}
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
                     }
@@ -134,7 +125,7 @@
 
 
 
-<div class='lab-steps flow-steps' style="width:80%;   margin-left: 10%;">
+<div class='lab-steps flow-steps' style="width:60%; margin-left: 20%;">
     <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
@@ -145,13 +136,13 @@
                 Design
             </strong>
             <div class='flow-step-after'>
-                <div class='dot'></div>
-                <div class='dot'></div>
-                <div class='dot'></div>
-                <div class='dot'></div>
-                <div class='dot'></div>
-                <div class='dot'></div>
-                <div class='dot'></div>
+                <div class='dot one'></div>
+                <div class='dot two'></div>
+                <div class='dot three'></div>
+                <div class='dot four'></div>
+                <div class='dot five'></div>
+                <div class='dot six'></div>
+                <div class='dot seven'></div>
             </div>
         </a>
     </div>
@@ -170,16 +161,16 @@
                 <div class='dot'></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
-                <div class='dot'></div>
+                <div class='dot one'></div>
             </div>
             <div class='flow-step-after'>
+                <div class='dot '></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
-                <div class='dot'></div>
-                <div class='dot'></div>
+                <div class='dot one'></div>
             </div>
         </a>
     </div>
@@ -193,7 +184,7 @@
                 Description
             </strong>
             <div class='flow-step-before'>
-                <div class='dot'></div>
+                <div class='dot one'></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
                 <div class='dot'></div>
@@ -212,7 +203,7 @@
 
 
 
-        <div class="Slide" >
+        <div class="Slide">
             <div class="Content" style="width:90%; margin-top:-50px;" id="Content1">
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
@@ -431,12 +422,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <div class="teespring-well designer-well" id="clientArts">
-                                                        <label>Recently Used Artwork</label>
-                                                        <ul class="nav">
-                                                            
-                                                        </ul>
-                                                    </div>
+                                                        <div class="teespring-well designer-well" id="clientArts">
+                                                            <label>Recently Used Artwork</label>
+                                                            <ul class="nav"></ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -593,7 +582,7 @@
                 @*<button class="Left">NEXT PAGE</button>*@
             </div>
         </div>
-        <div class="Slide" style="width:30% !important; margin-left:2.5%; ">
+        <div class="Slide" style="width:30% !important; margin-left:2.5%; min-height:700px ">
             <div class="Content" id="Content2" style="margin-left:10%">
                 <table>
                     <tr>
@@ -623,7 +612,7 @@
                                 <input style="width:100%; background-color:#f5f7f7; border:none" type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
 
 
-                                <div class="tipping-point-slider__points" style="margin-top:-2%">
+                                <div class="tipping-point-slider__points">
                                     <span class="tipping-point-slider__point" style="margin-left:1%">15</span>
                                     <span class="tipping-point-slider__point" style="margin-left:18%">100</span>
                                     <span class="tipping-point-slider__point" style="margin-left:37%">200</span>
@@ -698,14 +687,13 @@
                                     <div class="ssp_pricing" style="margin-left:-8%">
                                         <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()" value="RM 15">
                                     </div>
-                                    
-                                    <div class="profitSale" >
-                                        <h4 class="h4ProfSale" id= "mainH4"> RM 5.00 profit / sale</h4>
+
+                                    <div class="profitSale">
+                                        <h4 class="h4ProfSale" id="mainH4"> RM 5.00 profit / sale</h4>
                                     </div>
-
-
-
-
+                                </div>
+                                <div style="height:60px">
+                                    <span style="font-size:13px;">Below the 1st small t-shirt, a bigger gap with heading “Add some more styles of t-shirts your customers can buy”.</span>
                                 </div>
                             </div>
 
@@ -716,16 +704,10 @@
 
 
 
+
                             <div id="ui" class="ssp_select_boxes">
-                                <select id="item-options-dropdown-tees" class="form-control form__select_menu">
-                                </select>
-                                
-                                
-                                <select id="product" class="form__select_menu">
-                                    @*<option value="369">Teespring Premium Tee</option>
-                                    <option value="2">Hanes Tagless Tee</option>
-                                    <option value="6">American Apparel Crew</option>*@
-                                </select>
+                                <select id="item-options-dropdown-tees" class="form-control form__select_menu"></select>
+                                <select id="product" class="form__select_menu"></select>
                                 <button type="button" id="butAdd" class="button button--primary ssp_add_button" title="Add"></button>
                             </div>
 
@@ -912,61 +894,74 @@
                                                                 <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
                                                             </div>
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                                <label data-reactid=".6.0.1.0">
-                                                                    <span data-reactid=".6.0.1.0.0"> </span><span data-reactid=".6.0.1.0.1">Description</span>
+                                                                <label>
+                                                                    <span> </span><span data-reactid=".6.0.1.0.1">Description</span>
                                                                 </label>
                                                                 <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
-                                                                    <ul class="wysihtml5-toolbar" data-reactid=".6.0.1.1.0">
-                                                                        <li data-reactid=".6.0.1.1.0.0">
-                                                                            <div class="btn-group" data-reactid=".6.0.1.1.0.0.0">
-                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="bold" data-reactid=".6.0.1.1.0.0.0.0">Bold</a>
-                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="italic" data-reactid=".6.0.1.1.0.0.0.1">Italic</a>
-                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="underline" data-reactid=".6.0.1.1.0.0.0.2">Underline</a>
+
+                                                                    <ul class="wysihtml5-toolbar">
+                                                                        <li>
+                                                                            <div class="btn-group" data-role="editor-toolbar" id="toolbar" data-target="#descript">
+                                                                                <a class="btn btn-default ql-bold" href="#" data-edit="bold" data-wysihtml5-command="bold">Bold</a>
+                                                                                <a class="btn btn-default ql-italic" href="#" data-edit="italic" data-wysihtml5-command="italic">Italic</a>
+                                                                                <a class="btn btn-default" href="#" data-edit="underline" data-wysihtml5-command="underline">Underline</a>
+                                                                                @*   <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>*@
+                                                                                @*<div class="dropdown-menu input-append">
+                                                                                        <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+                                                                                        <button class="btn" type="button">Add</button>
+                                                                                    </div>*@
+
                                                                             </div>
+
                                                                         </li>
-                                                                        <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.1">
-                                                                            <div class="dropdown__menu hidden" data-reactid=".6.0.1.1.0.1.0">
-                                                                                <div class="popover__header" data-reactid=".6.0.1.1.0.1.0.0">
-                                                                                    <a class="popover__close ts-icon-close" data-reactid=".6.0.1.1.0.1.0.0.0"></a>
-                                                                                    <p class="popover__title" data-reactid=".6.0.1.1.0.1.0.0.1">Insert link</p>
-                                                                                </div>
-                                                                                <div class="popover__body" data-reactid=".6.0.1.1.0.1.0.1">
-                                                                                    <input class="form__textfield" value="http://" data-reactid=".6.0.1.1.0.1.0.1.0">
-                                                                                </div>
-                                                                                <div class="popover__footer" data-reactid=".6.0.1.1.0.1.0.2">
-                                                                                    <a href="#" class="button button--primary" data-reactid=".6.0.1.1.0.1.0.2.0">Insert link</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <a class="btn btn-default dropdown__toggle" data-wysihtml5-command="createLink" title="Insert link" href="#" unselectable="on" data-reactid=".6.0.1.1.0.1.1">
-                                                                                <i class="icon-link" data-reactid=".6.0.1.1.0.1.1.0"></i>
-                                                                                <span data-reactid=".6.0.1.1.0.1.1.1"> Link</span>
+                                                                        <li class="popover_wysiwyg">
+                                                                            @*<div class="dropdown__menu hidden">
+                                                                                    <div class="popover__header">
+                                                                                        <a class="popover__close ts-icon-close"></a>
+                                                                                        <p class="popover__title">Insert link</p>
+                                                                                    </div>
+                                                                                    <div class="popover__body">
+                                                                                        <input class="form__textfield" value="http://">
+                                                                                    </div>
+                                                                                    <div class="popover__footer" data-reactid=".6.0.1.1.0.1.0.2">
+                                                                                        <a href="#" class="button button--primary">Insert link</a>
+                                                                                    </div>
+                                                                                </div>*@
+                                                                            <a class="btn btn-default dropdown__toggle" data-wysihtml5-command="createLink" title="Insert link" href="#" unselectable="on" >
+                                                                                <i class="icon-link"></i>
+                                                                                <span> Link</span>
                                                                             </a>
                                                                         </li>
+
+
                                                                         <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.2">
-                                                                            <div class="dropdown__menu hidden" data-reactid=".6.0.1.1.0.2.0">
-                                                                                <div class="popover__header" data-reactid=".6.0.1.1.0.2.0.0">
-                                                                                    <a class="popover__close ts-icon-close" data-reactid=".6.0.1.1.0.2.0.0.0"></a>
-                                                                                    <p class="popover__title" data-reactid=".6.0.1.1.0.2.0.0.1">Insert image</p>
+                                                                            <div class="dropdown__menu hidden">
+                                                                                <div class="popover__header">
+                                                                                    <a class="popover__close ts-icon-close"></a>
+                                                                                    <p class="popover__title">Insert image</p>
                                                                                 </div>
                                                                                 <div class="popover__body" data-reactid=".6.0.1.1.0.2.0.1">
-                                                                                    <input class="form__textfield" value="http://" data-reactid=".6.0.1.1.0.2.0.1.0">
+                                                                                    <input class="form__textfield" value="http://">
                                                                                 </div>
                                                                                 <div class="popover__footer" data-reactid=".6.0.1.1.0.2.0.2">
-                                                                                    <a href="#" class="button button--primary" data-reactid=".6.0.1.1.0.2.0.2.0">Insert image</a>
+                                                                                    <a href="#" class="button button--primary">Insert image</a>
                                                                                 </div>
                                                                             </div>
-                                                                            <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" href="#" unselectable="on" data-reactid=".6.0.1.1.0.2.1">
+                                                                            <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" href="#" unselectable="on">
                                                                                 <i class="icon-picture" data-reactid=".6.0.1.1.0.2.1.0"></i>
                                                                                 <span data-reactid=".6.0.1.1.0.2.1.1"> Image</span>
                                                                             </a>
                                                                         </li>
                                                                     </ul>
-                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="campaign_description" data-reactid=".6.0.1.1.1"></div>
+                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="descript"></div>
+
+
+
                                                                 </div>
                                                             </div>
-                                                            <div data-reactid=".6.0.2">
-                                                                <p class="under-text show-tags-message" data-reactid=".6.0.2.0">
-                                                                    <a class="show-tags nowrap" data-reactid=".6.0.2.0.0">
+                                                            <div>
+                                                                <p class="under-text show-tags-message" >
+                                                                    <a class="show-tags nowrap" >
                                                                         @*  <span data-reactid=".6.0.2.0.0.0">Tag your campaign</span>*@
                                                                         @*  <span data-reactid=".6.0.2.0.0.1"> »</span>*@
                                                                     </a>
@@ -998,29 +993,35 @@
                                                                 </select>
                                                             </div>
                                                             <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
-                                                                <label data-reactid=".6.0.4.0">URL</label>
+                                                                <label>URL</label>
                                                                 <p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>
                                                                 <p class="inline-input-text  small-bottom" data-reactid=".6.0.4.2">
-                                                                    <strong data-reactid=".6.0.4.2.0">teespring.com/</strong>
+                                                                    <strong>teeyoot.com/</strong>
                                                                 </p>
                                                                 <input type="text" name="url" class="form__textfield " id="url" value="" data-reactid=".6.0.4.3">
                                                             </div>
 
-                                                            <div class="teespring-well designer-well" data-reactid=".6.0.6">
-                                                                <label data-reactid=".6.0.6.0">Display Options</label>
-                                                                <p data-reactid=".6.0.6.1">
-                                                                    <label class="checkbox display-label" data-reactid=".6.0.6.1.0">
-                                                                        <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1" data-reactid=".6.0.6.1.0.0">
-                                                                        <span data-reactid=".6.0.6.1.0.1">Show the back side by default</span>
+                                                            <div class="teespring-well designer-well">
+                                                                <label>Display Options</label>
+                                                                <p>
+                                                                    <label class="checkbox display-label">
+                                                                        <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
+                                                                        <span>Show the back side by default</span>
+                                                                    </label>
+
+                                                                    <label class="checkbox display-label">
+                                                                        <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
+                                                                        <span>For charity</span>
                                                                     </label>
                                                                 </p>
                                                             </div>
+
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
                                                                 <button id="launch-campaign" type="submit" onclick="sendData(); return false;" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span data-reactid=".6.0.7.3.0">
-                                                                        <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teespring's </span>
+                                                                        <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teeyoot's </span>
                                                                         @* <a href="http://teespring.com/about/terms" target="_blank" data-reactid=".6.0.7.3.0.1">Terms of Service</a><span data-reactid=".6.0.7.3.0.2">.</span>*@
                                                                     </span>
                                                                 </p>
@@ -1493,6 +1494,6 @@
 
             </div>
         </div>
-
+        <span style="clear:both;display: block;"></span>
     </div>
 </div>

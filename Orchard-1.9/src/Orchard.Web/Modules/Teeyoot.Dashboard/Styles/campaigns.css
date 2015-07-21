@@ -1,4 +1,32 @@
 ﻿.campaigns-overview-body {
-    padding: 15px 0 15px 20px;
+    padding: 15px 20px 15px 20px;
     line-height: 40px;
+}
+.period-selector {
+    text-align: center;
+}
+.overview-period {
+    padding:0 15px 0 18px;
+    border-left: 1px solid #babfbf;
+    font-size: 12px;
+    color: #babfbf;
+    cursor:pointer;
+}
+.overview-period.first {
+    border:0;
+}
+.overview-period.current,
+.overview-period:hover {
+    color: #e64700;
+}
+.overview-for-period {
+    display: none;
+}
+.overview-for-period.selected {
+    display: block;
+}
+.overview-for-period span {
+    font-size: 26px;
+    margin-right:10px;
+    color:#000;
 }
