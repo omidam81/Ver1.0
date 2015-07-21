@@ -24,3 +24,10 @@ var toggleMenu = function () {
     $('.fa-angle-left').toggleClass('hidden');
     $('.fa-angle-right').toggleClass('hidden');
 }
+
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1;
+if (isAndroid) {
+    var current = document.getElementsByClassName("widget-mainSearch")[0];
+    $(current).attr("style", "padding-top:4px");
+}

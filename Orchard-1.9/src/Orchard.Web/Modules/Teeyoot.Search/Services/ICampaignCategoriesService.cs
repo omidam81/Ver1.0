@@ -1,4 +1,5 @@
 ﻿using Orchard;
+using Orchard.ContentManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,9 @@ namespace Teeyoot.Search.Services
         IQueryable<CampaignRecord> GetCampaignsByNotThisIdCategory(int id);
 
         int AddCategory(string name);
+
+        bool CnehgeVisible(int id, bool changes);
+
+        bool DeleteCategory(int id); 
     }
 }

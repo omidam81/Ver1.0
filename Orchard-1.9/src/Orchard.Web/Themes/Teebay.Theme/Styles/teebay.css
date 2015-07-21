@@ -248,7 +248,7 @@
     }
 
     .tb-search-form input[type=text] {
-        height: 28px;
+        height: 27px;
         /*width: 88%;*/
         float: left;
         border: 0;
@@ -4024,7 +4024,8 @@ html, body {
         }
 
             .review .reviews-text .reviews-user h2 {
-                margin: 0 0 0 15px;
+                /*margin: 0 0 0 15px;*/
+                margin:0;
                 padding: 0;
                 text-align: left;
                 font-size: 18px;
@@ -4034,7 +4035,11 @@ html, body {
                 color: #c2c9cc;
                 font-size: 14px;
                 text-align: left;
-                margin: 0 0 0 15px;
+                /*margin: 0 0 0 15px;*/
+                margin:0;
                 line-height: 0;
                 padding: 5px 0 0 0;
             }
+.money{
+      height: 250px;
+}

@@ -17,7 +17,7 @@
                             Selected = Model.ActionId > 1 ? l.Id == Model.ActionId : false,
                             Text = l.Name,
                             Value = l.Id.ToString()
-                        }), "Choose action...")
+                        }), T("Choose action..."))
                     <button type="submit">@T("Apply")</button>
                 </fieldset>
             }
@@ -46,6 +46,12 @@
         </div>
     </div>
 </fieldset>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+
 @{
     <fieldset>
         <table class="items">
@@ -85,14 +91,14 @@
                             <a href="@Url.Action("EditCategory", new { id = categ.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
                             @if (categ.IsVisible)
                             {
-                                <a href="@Url.Action("UncheckCategory", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Uncheck")">@T("Uncheck")</a>@T(" | ")
+                                <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = false })" title="@T("Unvisible")">@T("Unvisible")</a>@T(" | ")
                             }
                             else
                             {
-                                <a href="@Url.Action("CheckCategory", new { id = categ.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Check")">@T("Check")</a>@T(" | ")
+                                <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = true })" title="@T("Visible")">@T("Visible")</a>@T(" | ")
 
                             }
-                            <a href="@Url.Action("DeleteCategory", new { id = categ.Id, returnurl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                            <a href="@Url.Action("DeleteCategory", new { id = categ.Id })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                         </td>
                     </tr>
                 }
