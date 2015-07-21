@@ -1,0 +1,27 @@
+﻿<a href="@Model.Href">
+    @if (Model.Text.ToString().ToLower() == T("Campaigns").ToString().ToLower())
+    {
+        <i class="fa fa-th fa-2x"></i>
+    }
+    @if (Model.Text.ToString().ToLower() == T("Storefronts").ToString().ToLower())
+    {
+        <i class="fa fa-stumbleupon fa-2x"></i>
+    }
+    @if (Model.Text.ToString().ToLower() == T("Messages").ToString().ToLower())
+    {
+        <i class="fa fa-envelope-o fa-2x"></i>
+    }
+    @if (Model.Text.ToString().ToLower() == T("Promotions").ToString().ToLower())
+    {
+        <i class="fa fa-tags fa-2x"></i>
+    }
+    @if (Model.Text.ToString().ToLower() == T("Payouts").ToString().ToLower())
+    {
+        <i class="fa fa-credit-card fa-2x"></i>
+    }
+    @if (Model.Text.ToString().ToLower() == T("Settings").ToString().ToLower())
+    {
+        <i class="fa fa-cogs fa-2x"></i>
+    }
+    <span class ="to-hide-on-click">@Model.Text</span>
+</a>

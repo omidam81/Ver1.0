@@ -84,6 +84,8 @@
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
+                    } else {
+                        alert('Status: ' + status + '. Error message: ' + resp.statusDescription);
                     }
                 },
             });
@@ -886,8 +888,6 @@
                                                 <div class="span7 aside">
                                                     <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
 
-                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
-                                                        {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                 <label class="has-under-text" data-reactid=".6.0.0.0">Campaign title</label>
                                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
@@ -1026,8 +1026,7 @@
                                                                     </span>
                                                                 </p>
                                                             </div>
-                                                        }
-
+                                                       
                                                     </div>
                                                 </div>
 
