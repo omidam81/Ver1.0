@@ -17,7 +17,10 @@ namespace Teeyoot.Account
         {
             _roleService.CreateRole("Seller");
 
-            return 1;
+            ContentDefinitionManager.AlterTypeDefinition("TeeyootUser", builder =>
+                builder.WithPart("UserRolesPart"));
+
+            return 2;
         }
 
         public int UpdateFrom1()

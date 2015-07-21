@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Teeyoot.Module.Common.ExtentionMethods;
+@{
     @model Teeyoot.Dashboard.ViewModels.CampaignsViewModel
     Style.Include("campaigns.css");
 }
@@ -11,13 +12,53 @@
     </div>
 
     <div class="campaigns-overview-body">
-        <div>@T("Products ordered"):</div>
-        <div>@T("Profit"):</div>
-        <div>@T("To be paid"):</div>
-        <div class="period-selector">
-            @foreach(var type in Model.Overviews)
+
+        @for (int i = 0; i < Model.Overviews.Count; i++)
+        {
+            var item = Model.Overviews[i];
+            if (item.Type == Teeyoot.Module.Common.Enums.OverviewType.Active)
+            { 
+                <div class="overview-for-period selected">
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
+                    <div><span>@Model.Currency@item.Profit</span>@T("profit")</div>
+                    <div><span>@Model.Currency@item.ToBePaid</span>@T("to be paid")</div>
+                </div>
+            }
+            else if (item.Type != Teeyoot.Module.Common.Enums.OverviewType.AllTime)
             {
-                <span>@type.Type</span>
+                <div class="overview-for-period">
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
+                    <div><span>@Model.Currency@item.Profit</span>@T("profit (includes pending profit)")</div>
+                    @*<div><span></span>@T("To be paid")</div>*@
+                </div>
+            }
+            else
+            {
+                <div class="overview-for-period">
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
+                    <div><span>@Model.Currency@item.Profit</span>@T("profit")</div>
+                    @*<div><span></span>@T("To be paid")</div>*@
+                </div>
+            }
+        }
+        
+        <div class="period-selector">
+            @for (int i = 0; i < Model.Overviews.Count; i++)
+            {
+                var item = Model.Overviews[i];
+                var current = item.Type == Teeyoot.Module.Common.Enums.OverviewType.Active ? "current" : "";
+                if (i == 0)
+                {
+                    <span onclick="showOverviewForPeriod(@i)" class="overview-period first @current">@T(item.Type.ToString().SplitCamelCase())</span>
+                }
+                else if (i < Model.Overviews.Count - 1)
+                {
+                    <span onclick="showOverviewForPeriod(@i)" class="overview-period @current">@T(item.Type.ToString().SplitCamelCase())</span>
+                }
+                else
+                {
+                    <span onclick="showOverviewForPeriod(@i)" class="overview-period last @current">@T(item.Type.ToString().SplitCamelCase())</span>
+                }
             }
         </div>
     </div>
@@ -34,3 +75,17 @@
         </div>
     }
 </div>
+
+@using(Script.Foot())
+{
+    <script>
+
+        var showOverviewForPeriod = function (index) {
+            $('.overview-for-period.selected').removeClass('selected');
+            $('.overview-period.current').removeClass('current');
+            $($('.overview-for-period')[index]).addClass('selected');
+            $($('.overview-period')[index]).addClass('current');
+        }
+
+    </script>
+}
