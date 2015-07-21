@@ -41,6 +41,13 @@
 
 
     <script type="text/javascript">
+        history.pushState(null, null, 'GetStarted');
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, 'GetStarted');
+            NextPage();
+        });
+    </script>
+    <script type="text/javascript">
         $('.textarea').wysihtml5();
         $(".flip-buttons").click(function () {
             var $elem = $("#view-front");
@@ -645,7 +652,7 @@
                                         <div class="block" style="width:100%; border-radius: 11px 0px 0px 11px;">Number of shirts:</div>
                                     </td>
                                     <td>
-                                        <input style="height:100%;   padding: 4px 0px 2px 1px; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
+                                        <input style="height:100%; font-size: 1.1rem; padding: 4px 0px 2px 1px; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
                                         @* <span >5</span>*@
                                     </td>
                                 </tr>
@@ -699,8 +706,8 @@
                                         <h4 class="h4ProfSale" id="mainH4"> RM 5.00 profit / sale</h4>
                                     </div>
                                 </div>
-                                <div style="height:60px">
-                                    <span style="font-size:13px;">Below the 1st small t-shirt, a bigger gap with heading “Add some more styles of t-shirts your customers can buy”.</span>
+                                <div style="height:40px">
+                                    <span style="font-size:13px;">Add some more styles of t-shirts your customers can buy.</span>
                                 </div>
                             </div>
 
@@ -775,19 +782,6 @@
         <div class="Slide">
             <div class="Content">
                 <body class="page__designs_edit Chrome" data-hasqtip="0">
-                    @*<header class="site__header cf" role="banner"><div class="site__notification"><div class="notification__message"><i class="ts-icon-tshirt notification__icon"></i><span class="notification__message_text"></span><i class="ts-icon-close notification__close"></i></div></div><div class="site__wrapper"><nav class="site__menu site__menu--hidden"><ul class="menu__list" role="navigation"><div id="menu__logged_in"><li class="menu__item"><a class="menu__link" href="/track">Track Your Order</a></li><li class="menu__item"><a class="menu__link menu__link-designer" href="/designs">Launch a Campaign</a></li><li class="menu__item dropdown--list site__menu_dropdown js-site-user-menu"><div class="dropdown__toggle menu__link js-user-email"><div class="js-user-avatar header_avatar hidden"><img class="header_avatar__img"></div><span class="js-user-name"></span></div><div class="dropdown__menu dropdown__menu--hidden js-site-user-dropdown-menu"><ul class="dropdown__menu_links"><li class="dropdown__menu_item"><a class="dropdown__menu_link" href="/dashboard/campaigns">Campaigns</a></li><li class="dropdown__menu_item"><a class="dropdown__menu_link" href="/dashboard/stores">Storefronts</a></li><li class="dropdown__menu_item" data-feature="messages"><a class="dropdown__menu_link" href="/dashboard/messages">Messages</a></li><li class="dropdown__menu_item" data-feature="promotions"><a class="dropdown__menu_link" href="/dashboard/promotions">Promotions</a></li><li class="dropdown__menu_item" data-feature="upsells"><a class="dropdown__menu_link" href="/dashboard/upsells">Up-Sells</a><div class="badge--notice">beta</div></li><li class="dropdown__menu_item" data-feature="payouts"><a class="dropdown__menu_link" href="/dashboard/payouts">Payouts</a></li><li class="dropdown__menu_item" data-feature="account_settings"><a class="dropdown__menu_link" href="/dashboard/settings">Settings</a></li><li class="dropdown__menu_item facebook_ads hidden"><a class="dropdown__menu_link" href="/dashboard/ad_metrics">Facebook Ads</a><div class="badge--notice">beta</div></li><li class="dropdown__menu_item"><a class="dropdown__menu_link" href="/logout">Logout</a></li></ul></div></li></div><div id="menu__logged_out"><li class="menu__item"><a class="menu__link" href="/about">Learn More</a></li><li class="menu__item"><a class="menu__link" href="/track">Track Your Order</a></li><li class="menu__item"><a class="menu__link" href="/login">Login</a></li><li class="menu__item"><a class="button__cta menu__link-designer" href="/designs">Get Started</a></li></div></ul></nav><span class="site__menu_toggle ts-icon-list-view"></span><a class="site__logo" href="/"><i class="ts-icon-logo site__logo_icon"></i><h1 class="site__logo_text">Teespring shirts</h1></a><div class="site__search_container"><input autocomplete="off" class="site__search_input" id="search" name="search" placeholder="Search" type="text"><div class="site__search_init ts-icon-search"></div><div class="site__search_cancel ts-icon-close"></div></div></div></header>*@<div class="site__search_results" data-search-status="hide-results"><div class="site__wrapper"><div class="cards__container"></div><h1 class="no-results">No results found...</h1><div class="pagination__container"><ul class="site__search_pagination pagination"></ul></div><div class="search__hide_button site__search_container--hide">Hide Search</div></div></div><div class="site__search_overlay site__search_container--hide"></div>
-                    <!-- Starts Facebook Javascript
-                    Allows like buttons etc.
-                    ================================================== -->
-                    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="http://static.ak.facebook.com/connect/xd_arbiter/xRlIuTsSMoE.js?version=41#channel=f37e07f5c8&amp;origin=http%3A%2F%2Fteespring.com" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://s-static.ak.facebook.com/connect/xd_arbiter/xRlIuTsSMoE.js?version=41#channel=f37e07f5c8&amp;origin=http%3A%2F%2Fteespring.com" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
-                    @*<script>
-                        (function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) return;
-                            js = d.createElement(s); js.id = id;
-                            js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>*@
                     <div class="site__content_container" id="designs_edit">
 
 
@@ -848,43 +842,6 @@
                                                                     </div>
                                                                     @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
                                                                 </td>
-                                                                @*<div class="flip-container">
-                                                                        <div class="new-editor front" tabindex="4" data-design-side="front" style="-webkit-transform: rotateY(0deg); transform: rotateY(0deg);">
-                                                                            <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
-                                                                            <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
-                                                                            <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                                                            <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                                <defs data-element="defs">
-                                                                                    <clipPath data-element="globalClipPath" id="global-clip-path-front-4">
-                                                                                        <rect x="152" y="100" width="220" height="330" data-element="globalClipRect"></rect>
-                                                                                    </clipPath>
-                                                                                </defs>
-                                                                                <g data-element="rootTag" clip-path="url(#global-clip-path-front-4)"><g data-id="front-layer-0" data-width="48.875" data-height="29" transform="matrix(1, 0, 0, 1, 237.5625, 250.5)"><text font-family="Helvetica" font-size="24px" fill="rgb(0,0,0)" stroke-width="0" stroke="" x="0" y="0"><tspan x="0.00390625" y="0" dy="23">fgdg</tspan></text></g></g>
-                                                                            </svg>
-                                                                            <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262px;"></div><div class="ygridline" style="top: 210px;"></div><div class="edit-box hidden marching-ants marching" style="-webkit-transform: matrix(1, 0, 0, 1, 237.5625, 250.5); transform: matrix(1, 0, 0, 1, 237.5625, 250.5); width: 48.875px; height: 29px;"></div><div class="edit-box-sizer hidden" style="top: 309.5px; left: 262px;">48.88" x 29.00"</div><div></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/drag.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 243.075378797541px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/rotate.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 293.862121202459px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/scale.png);"></div><div class="handle hidden" style="width: 21px; height: 21px; left: 230.137878797541px; top: 286.924621202459px; background-image: url(http://d1b2zzpxewkr9z.cloudfront.net/images/designer/tool/delete.png);"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 250.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 286.4375px; top: 265px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 262px; top: 279.5px;"></div><div class="handle hidden handle-noimage" style="width: 12px; height: 12px; left: 237.5625px; top: 265px;"></div></div>
-                                                                            <div class="flip-buttons">
-                                                                                <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton">Front</div>
-                                                                                <div class="flip-button flip-button-back" data-element="backButton">Back</div>
-                                                                            </div>
-                                                                        </div><div class="new-editor back" tabindex="5" data-design-side="back" style="-webkit-transform: rotateY(180deg); transform: rotateY(180deg);">
-                                                                            <div class="productColor" data-element="productColorEl" style="background-color: rgb(255, 255, 255);"></div>
-                                                                            <div class="texture-overlay hidden" data-element="textureOverlayEl"></div>
-                                                                            <img class="ghost-image" data-element="ghostImageEl" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                                                            <svg class="svg-surface" data-element="svgSurfaceEl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                                <defs data-element="defs">
-                                                                                    <clipPath data-element="globalClipPath" id="global-clip-path-back-5">
-                                                                                        <rect x="155" y="60" width="215" height="330" data-element="globalClipRect"></rect>
-                                                                                    </clipPath>
-                                                                                </defs>
-                                                                                <g data-element="rootTag" clip-path="url(#global-clip-path-back-5)"></g>
-                                                                            </svg>
-                                                                            <div class="html-surface" data-element="htmlSurfaceEl" tabindex="0"><div class="xgridline" style="left: 262.5px;"></div><div class="ygridline" style="top: 170px;"></div></div>
-                                                                            <div class="flip-buttons">
-                                                                                <div class="flip-button flip-button-front" data-element="frontButton">Front</div>
-                                                                                <div class="flip-button flip-button-back no-select flip-button-active" data-element="backButton">Back</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>*@
                                                             </div>
                                                             <!-- render flip buttons here -->
                                                         </div>
@@ -895,21 +852,19 @@
                                                         @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { onsubmit="sendData();return false;", id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
                                                         {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
-                                                                <label class="has-under-text" data-reactid=".6.0.0.0">Campaign title</label>
+                                                                <label class="has-under-text">Campaign title</label>
                                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
                                                                 <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
                                                             </div>
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                                <label>
-                                                                    <span> </span><span data-reactid=".6.0.1.0.1">Description</span>
-                                                                </label>
+                                                                <label class="has-under-text">Description</label>
                                                                 <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
                                                                  <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>                                                              
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                <p class="under-text show-tags-message" >
-                                                                    <a class="show-tags nowrap" >
+                                                                <p class="under-text show-tags-message">
+                                                                    <a class="show-tags nowrap">
                                                                         @*  <span data-reactid=".6.0.2.0.0.0">Tag your campaign</span>*@
                                                                         @*  <span data-reactid=".6.0.2.0.0.1"> »</span>*@
                                                                     </a>
@@ -943,10 +898,10 @@
                                                             <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
                                                                 <label>URL</label>
                                                                 <p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>
-                                                                <p class="inline-input-text  small-bottom" data-reactid=".6.0.4.2">
+                                                                <p class="inline-input-text  small-bottom" style="display: inline;">
                                                                     <strong>teeyoot.com/</strong>
                                                                 </p>
-                                                                <input type="text" name="url" class="form__textfield " id="url" value="" data-reactid=".6.0.4.3">
+                                                                <input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="">
                                                             </div>
 
                                                             <div class="teespring-well designer-well">
@@ -956,13 +911,19 @@
                                                                         <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
                                                                         <span>Show the back side by default</span>
                                                                     </label>
+                                                                </p>
+                                                            </div>
 
+                                                            <div class="teespring-well designer-well">
+                                                                <label>For charity</label>
+                                                                <p>
                                                                     <label class="checkbox display-label">
                                                                         <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
-                                                                        <span>For charity</span>
+                                                                        <span>Option for verified charity</span>
                                                                     </label>
                                                                 </p>
                                                             </div>
+
 
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
@@ -970,7 +931,7 @@
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span data-reactid=".6.0.7.3.0">
                                                                         <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teeyoot's </span>
-                                                                        @* <a href="http://teespring.com/about/terms" target="_blank" data-reactid=".6.0.7.3.0.1">Terms of Service</a><span data-reactid=".6.0.7.3.0.2">.</span>*@
+
                                                                     </span>
                                                                 </p>
                                                             </div>

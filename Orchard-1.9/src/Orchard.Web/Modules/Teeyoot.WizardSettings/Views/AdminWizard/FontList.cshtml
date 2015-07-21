@@ -3,9 +3,25 @@
     Layout.Title = T("Fonts").ToString();
 }
 
-<ul>
-    @foreach(var font in Model)
-    {
-        <li>@font.Family</li>
-    }
-</ul>
+@using (Script.Foot())
+{
+    <script>
+        $('#artwork-upload').click(function () {
+            $("input#file").click();
+        });
+    </script>
+}
+
+<div>
+        @foreach (var font in Model)
+        {
+            <div style="margin:5px; border: 1px solid #eaeaea;">
+                @font.Family
+                <div style="float:right">
+                    <a href="@Url.Action("EditFaqEntry", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("Delete", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                </div>
+            </div>
+        }
+   
+</div>
