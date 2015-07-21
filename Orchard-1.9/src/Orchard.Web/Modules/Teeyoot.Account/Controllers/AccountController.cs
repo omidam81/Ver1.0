@@ -237,10 +237,10 @@ namespace Teeyoot.Account.Controllers
             if (!validate)
             {
                 TempData[LoggingOnValidationSummaryKey] = validationSummary;
-                return user;
+                return null;
             }
 
-            return null;
+            return user;
         }
     }
 }
