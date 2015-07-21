@@ -1,21 +1,13 @@
 ﻿@{
-    ViewBag.Title = "NewStorefront";
+    Style.Include("storefonts.css");
+    @model Teeyoot.Module.Models.StoreRecord
 }
+
 
 <section class="site__featured_full">
     <img class="featured__image" src="https://teespring-ass.s3.amazonaws.com/stores_banners/stores_default.png">
     <div class="banner__image_uploader__container">
-        <form accept-charset="UTF-8" action="https://s3.amazonaws.com/teespring-storecontent/" class="s3-uploader image_uploader ss-glyphish-outlined ss-camera js-banner-uploader " data-callback-method="POST" data-callback-param="file" data-callback-url="null" enctype="multipart/form-data" method="post">
-            <div style="display:none">
-                <input name="utf8" type="hidden" value="✓">
-            </div>
-            <input id="key" name="key" type="hidden" value="Gmy8QFmEqzBtpbRQlJ0IXQ_store_header_image">
-            <input id="acl" name="acl" type="hidden" value="public-read">
-            <input id="AWSAccessKeyId" name="AWSAccessKeyId" type="hidden" value="AKIAIWKS5RB6X5Q5VIMQ">
-            <input id="policy" name="policy" type="hidden" value="eyJleHBpcmF0aW9uIjoiMjAxNS0wNy0yMVQyMDozNDo1N1oiLCJjb25kaXRpb25zIjpbWyJzdGFydHMtd2l0aCIsIiR1dGY4IiwiIl0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCIiXSxbInN0YXJ0cy13aXRoIiwiJHgtcmVxdWVzdGVkLXdpdGgiLCIiXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDQxOTQzMDQwXSxbInN0YXJ0cy13aXRoIiwiJGNvbnRlbnQtdHlwZSIsIiJdLHsiYnVja2V0IjoidGVlc3ByaW5nLXN0b3JlY29udGVudCJ9LHsiYWNsIjoicHVibGljLXJlYWQifSx7InN1Y2Nlc3NfYWN0aW9uX3N0YXR1cyI6IjIwMSJ9XX0=">
-            <input id="signature" name="signature" type="hidden" value="Dx4JYgdmd4Pqw0Ja/WYcmLtbUr8=">
-            <input id="success_action_status" name="success_action_status" type="hidden" value="201">
-            <input id="X-Requested-With" name="X-Requested-With" type="hidden" value="xhr">
+        <form accept-charset="UTF-8" action="" class="image_uploader ss-glyphish-outlined ss-camera " data-callback-method="POST" data-callback-param="file" data-callback-url="null" enctype="multipart/form-data" method="post">
             <input id="file" name="file" type="file"><div class="image_uploader__title">Upload banner photo</div>
             <div class="image_uploader__subtitle">Recommended: 980px X 550px</div>
             <div class="image_uploader__title--custom">Change image</div>

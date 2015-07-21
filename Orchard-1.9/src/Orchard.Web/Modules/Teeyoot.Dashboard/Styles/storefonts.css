@@ -49,7 +49,326 @@
         text-decoration: none;
         background: #e64700;
     }
-    .dashboard-layout .tb-layout-main-container{
-        height:auto!important;
+
+.dashboard-layout .tb-layout-main-container {
+    height: auto !important;
+}
+
+
+.image_uploader {
+    background: rgba(255,255,255,0.4);
+    color: rgba(41,48,51,0.7);
+    height: 20%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    -webkit-transition: color 250ms, background-color 500ms, -webkit-transform 2s;
+    transition: color 250ms, background-color 500ms, transform 2s;
+}
+
+@media only screen and (min-width: 660px) {
+    .image_uploader {
+         height: 550px;
+        width: 60%;
     }
+}
+
+.image_uploader #file {
+    cursor: pointer;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.image_uploader:before {
+    display: none;
+    font-size: 4rem;
+    position: absolute;
+    text-align: center;
+    top: 42%;
+    width: 100%;
+    z-index: 1;
+}
+
+@media only screen and (min-width: 660px) {
+    .image_uploader:before {
+        display: block;
+    }
+}
+
+.image_uploader:hover {
+    background: rgba(255,255,255,0.7);
+    text-shadow: 0 0 2rem white;
+    -webkit-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+    -webkit-transition: -webkit-transform 750ms cubic-bezier(0.075, 0.82, 0.165, 1),background-color 500ms,text-shadow 5s;
+    transition: transform 750ms cubic-bezier(0.075, 0.82, 0.165, 1),background-color 500ms,text-shadow 5s;
+}
+
+.image_uploader.store_banner--custom {
+    background: none;
+    cursor: pointer;
+    height: 2rem;
+    top: 1rem;
+    left: 1rem;
+    width: 8.8rem;
+}
+
+    .image_uploader.store_banner--custom:before {
+        font-size: 1.07rem;
+        left: .7rem;
+        top: .65rem;
+        width: auto;
+        z-index: 2;
+    }
+
+    .image_uploader.store_banner--custom:hover {
+        background: none;
+        text-shadow: 0;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+
+        .image_uploader.store_banner--custom:hover .image_uploader__title--custom, .image_uploader.store_banner--custom:hover:before {
+            color: #39ace6;
+        }
+
+.image_uploader__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    position: absolute;
+    top: 40%;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+
+@media only screen and (min-width: 660px) {
+    .image_uploader__title {
+        top: 52%;
+    }
+}
+
+.store_banner--custom .image_uploader__title {
+    display: none;
+}
+
+.image_uploader__title--custom {
+    background: white;
+    border: 1px solid #e8eced;
+    border-radius: .3rem;
+    display: none;
+    font-size: .8rem;
+    font-weight: 600;
+    left: 0;
+    padding: .45rem .75rem .5rem 2.3rem;
+    position: absolute;
+    top: 0;
+    width: auto;
+}
+
+.store_banner--custom .image_uploader__title--custom {
+    display: block;
+}
+
+.image_uploader__subtitle {
+    font-size: .688rem;
+    font-weight: 600;
+    position: absolute;
+    text-align: center;
+    top: 60%;
+    width: 100%;
+    z-index: 1;
+}
+
+.store_banner--custom .image_uploader__subtitle {
+    display: none;
+}
+
+
+.store__details--edit .store__name--edit {
+    background: #f5f7f7;
+    border: 2px dotted #e8eced;
+    color: #293033;
+    display: block;
+    font-family: "adelle", Times New Roman, Georgia, serif;
+    font-size: 2rem;
+    margin: .3rem auto;
+    outline: 0;
+    padding: .1rem .5rem;
+    text-align: center;
+    width: 100%;
+}
+
+@media only screen and (min-width: 660px) {
+    .store__details--edit .store__name--edit {
+        margin: .3rem 0;
+        text-align: left;
+        max-width: 24rem;
+    }
+}
+
+.store__details--edit .store__description--edit {
+    background: #f5f7f7;
+    border: 2px dotted #e8eced;
+    color: #293033;
+    height: 6rem;
+    line-height: 1.6;
+    outline: 0;
+    padding: .5rem;
+    text-align: center;
+    width: 100%;
+}
+
+@media only screen and (min-width: 660px) {
+    .store__details--edit .store__description--edit {
+        text-align: left;
+        max-width: 24rem;
+    }
+}
+
+.store__details_container {
+    padding: 2rem .5rem 0;
+}
+
+@media only screen and (min-width: 660px) {
+    .store__details_container {
+        background: #fcfcfc;
+        box-shadow: 0 0 6rem 6.785rem #fcfcfc;
+        height: 370px;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40%;
+        z-index: 2;
+    }
+}
+
+.store__details, .store__details--edit {
+    text-align: center;
+}
+
+@media only screen and (min-width: 660px) {
+    .store__details, .store__details--edit {
+        position: absolute;
+        top: 18%;
+        text-align: left;
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 980px) {
+    .store__details, .store__details--edit {
+        top: 30%;
+    }
+}
+
+.store__details .store__name, .store__details--edit .store__name {
+    color: #293033;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    margin: .67rem auto;
+    max-width: 24rem;
+    word-wrap: break-word;
+}
+
+@media only screen and (min-width: 660px) {
+    .store__details .store__name, .store__details--edit .store__name {
+        margin: .67rem 0;
+    }
+}
+
+.store__details .store__description, .store__details--edit .store__description {
+    line-height: 1.6;
+    margin: 0 auto 1rem;
+    max-width: 24rem;
+    word-wrap: break-word;
+}
+
+@media only screen and (min-width: 660px) {
+    .store__details .store__description, .store__details--edit .store__description {
+        margin: 0;
+    }
+}
+
+
+.banner__image_progress {
+    opacity: 0;
+    height: .3rem;
+    position: absolute;
+    top: 0;
+    -webkit-transition: opacity 2s 500ms;
+    transition: opacity 2s 500ms;
+    width: 100%;
+    z-index: 3;
+}
+
+    .banner__image_progress.banner__image_progress--show {
+        opacity: 1;
+        -webkit-transition: opacity 0 500ms;
+        transition: opacity 0 500ms;
+    }
+
+    .banner__image_progress .progress .bar {
+        background: #39ace6;
+        height: .3rem;
+        width: 0;
+        -webkit-transition: width 250ms;
+        transition: width 250ms;
+    }
+
+@media only screen and (min-width: 660px) {
+    .banner__image_progress .progress .bar {
+        height: .2rem;
+    }
+}
+
+
+
+.page__stores_show .store__details--edit, .page__stores_show .banner__image_uploader__container, .page__stores_show .card__options_container {
+    display: none;
+}
+
+
+@font-face {
+    font-family: "SSGlyphish";
+    src: url("https://d1b2zzpxewkr9z.cloudfront.net/webfonts/Symbolset/ss-glyphish-outlined.eot");
+    src: url("https://d1b2zzpxewkr9z.cloudfront.net/webfonts/Symbolset/ss-glyphish-outlined.eot?#iefix") format("embedded-opentype"),url("https://d1b2zzpxewkr9z.cloudfront.net/webfonts/Symbolset/ss-glyphish-outlined.woff") format("woff"),url("https://d1b2zzpxewkr9z.cloudfront.net/webfonts/Symbolset/ss-glyphish-outlined.ttf") format("truetype"),url("https://d1b2zzpxewkr9z.cloudfront.net/webfonts/Symbolset/ss-glyphish-outlined.svg#SSGlyphishOutlined") format("svg");
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ss-icon.ss-glyphish-outlined {
+    font-family: "SSGlyphish";
+    font-weight: 400;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ss-"].ss-glyphish-outlined:before, [class*=" ss-"].ss-glyphish-outlined:before, [class^="ss-"].ss-glyphish-outined.right:after, [class*=" ss-"].ss-glyphish-outlined.right:after {
+    font-family: "SSGlyphish";
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+    white-space: nowrap;
+    -moz-font-feature-settings: "liga=1";
+    -moz-font-feature-settings: "liga";
+    -ms-font-feature-settings: "liga" 1;
+    -webkit-font-feature-settings: "liga";
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+ss-camera:before, .ss-camera.right:after {
+    content: "📷";
+}
 
