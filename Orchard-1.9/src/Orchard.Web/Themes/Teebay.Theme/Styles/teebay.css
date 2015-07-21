@@ -108,7 +108,13 @@
 
 .zone-before-main {
 }
-
+.group-control {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
 .zone-header {
     display: -webkit-box;
     display: -moz-box;
