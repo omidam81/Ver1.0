@@ -4,7 +4,7 @@
     var h = $(window).height();
     document.getElementById('trackbar').value = 15;
     var slides = $('.Slides > div');
-    $('.SlideContainer').css({ height: (h - 60) + 'px' });
+    //$('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
     //document.getElementById('content').style.marginBottom = "60%";
     slides.css({ width: w + 'px' });
@@ -18,6 +18,12 @@
 
 
     $("#butAdd").click(function addElement() {
+
+        if (document.querySelectorAll(".ssp_block").length >= 7)
+        {
+            document.getElementById("ui").style.display = "none";
+        }
+
         var div = document.createElement("div");
         var divThumb = document.createElement("div");
         var divMeta = document.createElement("div");
@@ -211,6 +217,9 @@
 
 
         $(imageDel).click(function () {
+            if (document.querySelectorAll(".ssp_block").length == 8) {
+                document.getElementById("ui").style.display = "inline";
+            }
             div.parentNode.removeChild(div);
         });
 
@@ -314,7 +323,7 @@ function slide() {
     var w = $(window).width();
     var h = $(window).height();
     var slides = $('.Slides > div');
-    $('.SlideContainer').css({ height: (h - 60) + 'px' });
+    //('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
     slides.css({ width: w + 'px' });
     var pos = 0;
@@ -333,6 +342,7 @@ function slide() {
 
     $('#nextPage').click(function () {
         colorInit();
+        initProducts();
         document.getElementById('goal').className = "flow-step active";
         document.getElementById('design').className = "flow-step";
         document.getElementById('description').className = "flow-step";

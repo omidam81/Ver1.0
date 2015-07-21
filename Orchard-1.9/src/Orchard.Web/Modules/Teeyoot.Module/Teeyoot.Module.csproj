@@ -613,8 +613,6 @@
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
-    <Content Include="Styles\quill.base.css" />
-    <Content Include="Styles\quill.snow.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
