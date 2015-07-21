@@ -8,5 +8,12 @@ namespace Teeyoot.Dashboard.Controllers
         {
             return View();
         }
+
+        public ActionResult NewStorefront()
+        {
+            return View();
+        }
+       
+
     }
 }
