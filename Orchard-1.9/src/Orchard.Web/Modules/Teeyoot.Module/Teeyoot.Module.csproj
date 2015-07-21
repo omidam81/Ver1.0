@@ -599,7 +599,6 @@
     <Content Include="Scripts\language.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\quill.js" />
     <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\wizard.js" />
