@@ -708,6 +708,12 @@ input[type=range] {
         border: none;
     }
 
+@-moz-document url-prefix() {
+    #wizardSecondSlide{
+        margin-left:0% !important;
+    }
+}
+
 /*#designer .button--transaction:active, #designer .button--transaction.active {
         background: #648e34;
         background-color: #5eba1c;
