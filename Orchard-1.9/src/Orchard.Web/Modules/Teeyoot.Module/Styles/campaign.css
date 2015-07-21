@@ -5235,10 +5235,10 @@ thead .product__size_chart__size_label {
 }
 
 .flip-button {
-    padding: 0.5rem 1.4rem;
+    /*padding: 0.5rem 1.4rem;*/
     line-height: 1.4rem;
     border: 1px solid #6c7478;
-    background: white;
+    /*background: white;*/
     color: #6c7478;
     display: inline-block;
     text-align: center;
@@ -5256,14 +5256,14 @@ thead .product__size_chart__size_label {
 .flip-button-back {
     /*border-radius: 0 5px 5px 0;
     margin-left: -5px;*/
-    border-radius: 100px 100px 100px 100px;
+    border-radius: 50px 50px 50px 50px;
     height: 60px;
     width: 60px;
 }
 
 .flip-button-front {
     /*border-radius: 5px 0 0 5px;*/
-    border-radius: 100px 100px 100px 100px;
+    border-radius: 50px 50px 50px 50px;
     height: 60px;
     width: 60px;
 }
