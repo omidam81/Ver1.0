@@ -6220,3 +6220,15 @@ td {
 .tb-search-form input[type=text] {
     height: 27px!important;
 }
+
+@media all and (max-width: 400px) {
+    .menu-anonimous-menu{
+        width: 60%!important;
+    }
+}
+
+@media all and (max-width: 360px) {
+    .menu-anonimous-menu{
+       width: 70%!important;
+    }
+}
