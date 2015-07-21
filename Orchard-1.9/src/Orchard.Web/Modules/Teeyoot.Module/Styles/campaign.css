@@ -6220,20 +6220,35 @@ td {
 .tb-search-form input[type=text] {
     height: 27px!important;
 }
-
-@media all and (max-width: 400px) {
+@media all and (max-width: 500px) {
     .menu-anonimous-menu{
         width: 60%!important;
     }
+
+    .menu-for-user{
+        width: 70%!important;
+    }
+    .menu-authenticated-menu{
+        width: 70%!important;
+    }
+    
+}
+    
+@media all and (max-width: 400px) {
+     .menu-anonimous-menu{
+        width: 70%!important;
+    }
+
+    .menu-for-user{
+        width: 80%!important;
+    }
+    .menu-authenticated-menu{
+        width: 80%!important;
+    }
+
     
 }
 
-@media all and (max-width: 360px) {
-    .menu-anonimous-menu{
-       width: 70%!important;
-    }
-     
-}
 .menu-for-user {
     height: 64px !important;
 }
