@@ -118,7 +118,8 @@ using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
         public ActionResult EditMailChimpSetting(int id)
         {
             var mailChimpSettingPart = _settingsService.GetSetting(id);
-
+            var language = _languageService.GetLanguages().ToList().Where(l => l.Code == mailChimpSettingPart.Culture);
+            mailChimpSettingPart.AvailableLanguages = language;
             if (mailChimpSettingPart == null)
                 return new HttpNotFoundResult();
 
