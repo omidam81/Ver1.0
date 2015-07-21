@@ -19,7 +19,7 @@
         clear: both;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .site__wrapper {
         margin-left: auto;
         margin-right: auto;
@@ -52,7 +52,7 @@
     padding: 1.06666rem 2.66665rem 1.06666rem 1.06666rem;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .message_banner--success .message_banner, .message_banner--error .message_banner {
         margin-top: -1.5rem;
         margin-bottom: 2rem;
@@ -169,7 +169,7 @@
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__name {
         font-size: 1.9rem;
         margin-bottom: 1.06666rem;
@@ -184,7 +184,7 @@
     font-weight: bold;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__name.campaign__name--old {
         font-size: 2.8rem;
     }
@@ -235,7 +235,7 @@
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     
     .display--mobile {
         display: none;
@@ -256,7 +256,7 @@
     min-height: 20rem;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__container, .image_stack__images, .image_stack__image {
         min-height: none;
     }
@@ -266,7 +266,7 @@
     position: relative;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__inner {
         position: absolute;
     }
@@ -343,13 +343,12 @@
         opacity: 0;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and(min-width: 980px) {
   /*image_stack__image_wrap--active {
         left: 0;
     }*/
 }
-
-@media only screen and (min-width: 980px) {
+@media all and(min-width: 980px) {
     /*.image_stack__image_wrap {
         max-height: 60rem;
         left: -9999px;
@@ -379,7 +378,7 @@
     transition: opacity 250ms;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__image {
         max-height: 60rem;
         -webkit-transition: none;
@@ -403,7 +402,7 @@
     opacity: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and(min-width: 980px) {
     .image_stack__image_wrap--left, .image_stack__image_wrap--right {
         -webkit-animation: none;
         animation: none;
@@ -423,7 +422,7 @@
     opacity: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__image_wrap--left--next, .image_stack__image_wrap--right--next {
         -webkit-animation: none;
         animation: none;
@@ -437,7 +436,7 @@
     line-height: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__nav {
         position: absolute;
         z-index: 1000;
@@ -458,7 +457,7 @@
     margin: 5px;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__nav_item {
         background-color: white;
         border-width: 1px;
@@ -475,7 +474,7 @@
     border-color: #6c7478;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__nav_item {
         border-color: #6c7478;
     }
@@ -494,7 +493,7 @@ display--desktop {
     display: none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .display--desktop {
         display: block;
     }
@@ -504,13 +503,13 @@ display--desktop {
     display: block;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .display--mobile {
         display: none;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__column--product {
         display: inline;
         float: left;
@@ -534,14 +533,14 @@ display--desktop {
     z-index: -1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoom_window__container.zoom_window__container--fixed {
         position: fixed;
         top: 15px;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoom_window__container.zoom_window__container--sticky {
         bottom: 0;
     }
@@ -552,7 +551,7 @@ display--desktop {
     z-index: 999;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoom_window__container {
         display: block;
     }
@@ -568,7 +567,7 @@ display--desktop {
     display: none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoomContainer {
         display: block;
     }
@@ -580,7 +579,7 @@ display--desktop {
     height: 167px;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoomLens {
         z-index: 999;
     }
@@ -595,7 +594,7 @@ display--desktop {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__name {
         font-size: 1.9rem;
         margin-bottom: 1.06666rem;
@@ -610,7 +609,7 @@ display--desktop {
     font-weight: bold;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__name.campaign__name--old {
         font-size: 2.8rem;
     }
@@ -628,7 +627,7 @@ display--desktop {
     background-color: #f5f7f7;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .page__campaigns_show .site__featured_container {
         background-color: white;
         padding: 2.5rem 0;
@@ -645,7 +644,7 @@ display--desktop {
         padding-left: 1.06666rem;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .page__campaigns_show .site__main .share__container {
         padding-right: 0;
         padding-left: 0;
@@ -660,7 +659,7 @@ display--desktop {
     margin: 1rem 0;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__description {
         margin: 0 0 1.6rem 0;
         padding: 0 1.06666rem;
@@ -681,7 +680,7 @@ display--desktop {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_stats__container {
         border: 1px solid #e8eced;
         border-radius: 3px;
@@ -699,7 +698,7 @@ display--desktop {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_transaction__subtext {
         border-bottom: 0;
         background-color: white;
@@ -715,7 +714,7 @@ display--desktop {
         color: #114a67;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_transaction__subtext {
         padding: 2rem;
     }
@@ -741,7 +740,7 @@ display--desktop {
         clear: both;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_stats__table {
         border-bottom: none;
         margin-bottom: 0;
@@ -941,7 +940,7 @@ display--desktop {
     overflow: -moz-scrollbars-none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .product__nav {
         margin-bottom: .93rem;
     }
@@ -967,7 +966,7 @@ display--desktop {
     overflow: hidden;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .product__each {
         display: block;
         float: left;
@@ -1626,7 +1625,7 @@ thead .product__size_chart__size_label {
         opacity: 50%;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .button__cta {
         font-size: 15px;
         padding: .7em 1.75em .75em;
@@ -1653,7 +1652,7 @@ input[type="submit"].button-cta, button.button__cta {
         background: #e34515;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .button__cta--action {
         max-width: none;
     }
@@ -2045,7 +2044,7 @@ input {
     line-height: 1.3;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .persistent_timer__wrap--v2 .presistent_timer__stats {
         width: 110%;
     }
@@ -2065,7 +2064,7 @@ input {
     text-align: left;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .persistent_timer__wrap--v2 .persistent_timer__subtext {
         line-height: 1.3;
         padding: 0.25em 0 1.5em;
@@ -2174,7 +2173,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 26px !important;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     h1 {
         font-size: 2.4rem;
         line-height: 1.25em;
@@ -2223,7 +2222,7 @@ label {
     line-height: 1;
 }
 
-@media only screen and (max-width: 640px) {
+@media all and (max-width: 640px) {
     .touch input[type="text"]:focus, .touch input[type="password"]:focus, .touch input[type="datetime"]:focus, .touch input[type="datetime-local"]:focus, .touch input[type="date"]:focus, .touch input[type="month"]:focus, .touch input[type="time"]:focus, .touch input[type="week"]:focus, .touch input[type="number"]:focus, .touch input[type="email"]:focus, .touch input[type="url"]:focus, .touch input[type="search"]:focus, .touch input[type="tel"]:focus, .touch input[type="color"]:focus, .touch select:focus, .touch textarea {
         font-size: 1.0666666667em;
     }
@@ -2239,7 +2238,7 @@ label {
     display: none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .display--desktop {
         display: block;
     }
@@ -2249,7 +2248,7 @@ label {
     display: block;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .display--mobile {
         display: none;
     }
@@ -2466,7 +2465,7 @@ td, th {
         opacity: 50%;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .button__cta {
         font-size: 15px;
         padding: .7em 1.75em .75em;
@@ -2493,7 +2492,7 @@ input[type="submit"].button-cta, button.button__cta {
         background: #e34515;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .button__cta--action {
         max-width: none;
     }
@@ -2877,7 +2876,7 @@ input[type="submit"].button-cta, button.button__cta {
     display: none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .display--desktop {
         display: block;
     }
@@ -2887,7 +2886,7 @@ input[type="submit"].button-cta, button.button__cta {
     display: block;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .display--mobile {
         display: none;
     }
@@ -3021,7 +3020,7 @@ input[type="submit"].button-cta, button.button__cta {
     background-color: #f5f7f7;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .page__campaigns_show .site__featured_container {
         background-color: white;
         padding: 2.5rem 0;
@@ -3043,7 +3042,7 @@ input[type="submit"].button-cta, button.button__cta {
         padding-left: 1.06666rem;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .page__campaigns_show .site__main .share__container {
         padding-right: 0;
         padding-left: 0;
@@ -3051,7 +3050,7 @@ input[type="submit"].button-cta, button.button__cta {
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__column--product {
         display: inline;
         float: left;
@@ -3071,7 +3070,7 @@ input[type="submit"].button-cta, button.button__cta {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__name {
         font-size: 1.9rem;
         margin-bottom: 1.06666rem;
@@ -3086,7 +3085,7 @@ input[type="submit"].button-cta, button.button__cta {
     font-weight: bold;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__name.campaign__name--old {
         font-size: 2.8rem;
     }
@@ -3111,7 +3110,7 @@ input[type="submit"].button-cta, button.button__cta {
     margin: 1rem 0;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__description {
         margin: 0 0 1.6rem 0;
         padding: 0 1.06666rem;
@@ -3174,7 +3173,7 @@ input[type="submit"].button-cta, button.button__cta {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_transaction__subtext {
         border-bottom: 0;
         background-color: white;
@@ -3190,7 +3189,7 @@ input[type="submit"].button-cta, button.button__cta {
         color: #114a67;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_transaction__subtext {
         padding: 2rem;
     }
@@ -3211,7 +3210,7 @@ input[type="submit"].button-cta, button.button__cta {
         margin-bottom: 0;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .launch_campaign__statement {
         margin-bottom: 4rem;
     }
@@ -3229,7 +3228,7 @@ input[type="submit"].button-cta, button.button__cta {
         margin-bottom: 1rem;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .launch_campaign__button.button__cta {
         display: inline-block;
         width: 270px;
@@ -3405,7 +3404,7 @@ input[type="submit"].button-cta, button.button__cta {
     position: relative;
 }
 
-    /*@media only screen and (min-width: 980px) {
+    /*@media all and (min-width: 980px) {
     .image_stack__inner {
         position: absolute;
     }*/
@@ -3432,7 +3431,7 @@ input[type="submit"].button-cta, button.button__cta {
         /*opacity: 0;*/
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__image_wrap {
         left: 0;
     }
@@ -3441,7 +3440,7 @@ input[type="submit"].button-cta, button.button__cta {
     /*//max-height: 60rem;*/
     left: -9999px;
 }
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     /*.image_stack__image_wrap {
         max-height: 60rem;
         left: -9999px;
@@ -3470,7 +3469,7 @@ input[type="submit"].button-cta, button.button__cta {
     transition: opacity 250ms;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__image {
         max-height: 60rem;
         -webkit-transition: none;
@@ -3494,7 +3493,7 @@ input[type="submit"].button-cta, button.button__cta {
     opacity: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__image_wrap--left, .image_stack__image_wrap--right {
         -webkit-animation: none;
         animation: none;
@@ -3514,7 +3513,7 @@ input[type="submit"].button-cta, button.button__cta {
     opacity: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__image_wrap--left--next, .image_stack__image_wrap--right--next {
         -webkit-animation: none;
         animation: none;
@@ -3528,7 +3527,7 @@ input[type="submit"].button-cta, button.button__cta {
     line-height: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__nav {
         position: absolute;
         z-index: 1000;
@@ -3549,7 +3548,7 @@ input[type="submit"].button-cta, button.button__cta {
     margin: 5px;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__nav_item {
         background-color: white;
         border-width: 1px;
@@ -3599,14 +3598,14 @@ input[type="submit"].button-cta, button.button__cta {
     z-index: -1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoom_window__container.zoom_window__container--fixed {
         position: fixed;
         top: 15px;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoom_window__container.zoom_window__container--sticky {
         bottom: 0;
     }
@@ -3617,7 +3616,7 @@ input[type="submit"].button-cta, button.button__cta {
     z-index: 999;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoom_window__container {
         display: block;
     }
@@ -3655,83 +3654,83 @@ input[type="submit"].button-cta, button.button__cta {
     }
 
 
-@media only screen and (max-width: 1230px) {
+@media all and (max-width: 1230px) {
     .zoomWindowContainer > div {
         left: 590px !important;
     }
 }
-@media only screen and (max-width: 1180px) {
+@media all and (max-width: 1180px) {
     .zoomWindowContainer > div {
         left: 570px !important;
     }
 }
-@media only screen and (max-width: 1150px) {
+@media all and (max-width: 1150px) {
     .zoomWindowContainer > div {
         left: 560px !important;
     }
 }
-@media only screen and (max-width: 1130px) {
+@media all and (max-width: 1130px) {
     .zoomWindowContainer > div {
         left: 540px !important;
     }
 }
 
-@media only screen and (max-width: 1120px) {
+@media all and (max-width: 1120px) {
     .zoomWindowContainer > div {
         left: 530px !important;
     }
 }
 
-@media only screen and (max-width: 1115px) {
+@media all and (max-width: 1115px) {
     .zoomWindowContainer > div {
         left: 525px !important;
     }
 }
 
-@media only screen and (max-width: 1085px) {
+@media all and (max-width: 1085px) {
     .zoomWindowContainer > div {
         left: 505px !important;
         height: 560px !important;
     }
 }
 
-@media only screen and (max-width: 1075px) {
+@media all and (max-width: 1075px) {
     .zoomWindowContainer > div {
         left: 495px !important;
     }
 }
 
-@media only screen and (max-width: 1065px) {
+@media all and (max-width: 1065px) {
     .zoomWindowContainer > div {
         left: 485px !important;
     }
 }
 
-@media only screen and (max-width: 1045px) {
+@media all and (max-width: 1045px) {
     .zoomWindowContainer > div {
         left: 470px !important;
     }
 }
 
-@media only screen and (max-width: 1030px) {
+@media all and (max-width: 1030px) {
     .zoomWindowContainer > div {
         left: 465px !important;
     }
 }
 
-@media only screen and (max-width: 1020px) {
+@media all and (max-width: 1020px) {
     .zoomWindowContainer > div {
         left: 460px !important;
     }
 }
 
-@media only screen and (max-width: 1019px) {
+@media all and (max-width: 1019px) {
     .zoomWindowContainer > div {
         left: 455px !important;
     }
 }
 
-@media only screen and (max-width: 1010px) {
+@media all and (max-width: 1010px) {
     .site__wrapper {
         /*width: 1000px;*/
     }
@@ -3758,24 +3757,24 @@ input[type="submit"].button-cta, button.button__cta {
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media all and (max-width: 1000px) {
     .zoomWindowContainer > div {
         left: 445px !important;
     }
 }
-@media only screen and (max-width: 1010px) {
+@media all and (max-width: 1010px) {
     .image_stack__container {
         margin: 0 auto;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoomLens {
         z-index: 999;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .zoomContainer {
         display: block;
     }
@@ -3789,7 +3788,7 @@ input[type="submit"].button-cta, button.button__cta {
     width: 65% !important;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__container {
         display: inline;
         float: left;
@@ -3807,7 +3806,7 @@ input[type="submit"].button-cta, button.button__cta {
     min-height: 20rem;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__container, .image_stack__images, .image_stack__image, .image_stack__image_wrap {
         min-height: none;
     }
@@ -3819,7 +3818,7 @@ input[type="submit"].button-cta, button.button__cta {
     margin: 0 auto;*/
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .image_stack__nav_item {
         border-color: #6c7478;
     }
@@ -3833,7 +3832,7 @@ input[type="submit"].button-cta, button.button__cta {
             transition: all 100ms;
         }
 }
-@media only screen and (max-width: 730px) {
+@media all and (max-width: 730px) {
     .image_stack__container {
        width:60%!important;
     }
@@ -3841,12 +3840,12 @@ input[type="submit"].button-cta, button.button__cta {
        height:520px!important;
     }
 }
-@media only screen and (max-width: 630px) {
+@media all and (max-width: 630px) {
     .image_stack__container {
        height:500px!important;
     }
 }
-@media only screen and (max-width: 560px) {
+@media all and (max-width: 560px) {
     .image_stack__container {
        width:65%!important;
     }
@@ -3854,7 +3853,7 @@ input[type="submit"].button-cta, button.button__cta {
        height:480px!important;
     }
 }
-@media only screen and (max-width: 500px) {
+@media all and (max-width: 500px) {
     .image_stack__container {
        width:70%!important;
     }
@@ -3862,7 +3861,7 @@ input[type="submit"].button-cta, button.button__cta {
        height:440px!important;
     }
 }
-@media only screen and (max-width: 400px) {
+@media all and (max-width: 400px) {
     .image_stack__container {
        width:70%!important;
     }
@@ -3870,7 +3869,7 @@ input[type="submit"].button-cta, button.button__cta {
        height:360px!important;
     }
 }
-@media only screen and (max-width: 300px) {
+@media all and (max-width: 300px) {
     .image_stack__container {
        width:70%!important;
     }
@@ -3912,7 +3911,7 @@ input[type="submit"].button-cta, button.button__cta {
     overflow: -moz-scrollbars-none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .product__nav {
         margin-bottom: .93rem;
     }
@@ -3938,7 +3937,7 @@ input[type="submit"].button-cta, button.button__cta {
     overflow: hidden;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .product__each {
         display: block;
         float: left;
@@ -4478,7 +4477,7 @@ thead .product__size_chart__size_label {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_stats__container {
         border: 1px solid #e8eced;
         border-radius: 3px;
@@ -4504,7 +4503,7 @@ thead .product__size_chart__size_label {
         clear: both;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_stats__table {
         border-bottom: none;
         margin-bottom: 0;
@@ -4614,7 +4613,7 @@ thead .product__size_chart__size_label {
     line-height: 1.3;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .persistent_timer__wrap--v2 .presistent_timer__stats {
         width: 110%;
     }
@@ -4634,7 +4633,7 @@ thead .product__size_chart__size_label {
     text-align: left;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .persistent_timer__wrap--v2 .persistent_timer__subtext {
         line-height: 1.3;
         padding: 0.25em 0 1.5em;
@@ -4699,7 +4698,7 @@ thead .product__size_chart__size_label {
         box-shadow: 0 0 2px #6c7478;
     }
 
-@media only screen and (min-width: 660px) {
+@media all and (min-width: 660px) {
     .promo_modal .modal-dialog {
         width: 450px;
         display: inline-block;
@@ -4739,7 +4738,7 @@ thead .product__size_chart__size_label {
     float: none !important;
 }
 
-@media only screen and (max-width: 980px) {
+@media all and (max-width: 980px) {
     .site__featured_container {
         background-color: #f5f7f7 !important;
     }
@@ -4762,7 +4761,7 @@ thead .product__size_chart__size_label {
         clear: both;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_info__row {
         border-top: none;
         padding-top: 0;
@@ -4838,7 +4837,7 @@ thead .product__size_chart__size_label {
         color: white;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .share__btn {
         padding: .4rem 1rem 0;
     }
@@ -4850,7 +4849,7 @@ thead .product__size_chart__size_label {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_info__container {
         font-size: .867rem;
     }
@@ -4889,7 +4888,7 @@ thead .product__size_chart__size_label {
     padding: 1.06666rem 0;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign_info__row {
         border-top: none;
         padding-top: 0;
@@ -5002,7 +5001,7 @@ thead .product__size_chart__size_label {
         border-radius: 5px 5px 0 0;
     }
 
-@media only screen and (min-width: 780px) {
+@media all and (min-width: 780px) {
     .dropdown--list .dropdown__toggle--active {
         border: 1px solid #e8eced;
         position: relative;
@@ -5018,7 +5017,7 @@ thead .product__size_chart__size_label {
     transition: max-height 500ms cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-@media only screen and (min-width: 780px) {
+@media all and (min-width: 780px) {
     .dropdown--list .dropdown__menu {
         border: 1px solid #e8eced;
         border-radius: 0 0 5px 5px;
@@ -5036,7 +5035,7 @@ thead .product__size_chart__size_label {
     max-height: 0;
 }
 
-@media only screen and (min-width: 780px) {
+@media all and (min-width: 780px) {
     .dropdown--list .dropdown__menu--hidden {
         display: none;
         max-height: none;
@@ -5166,7 +5165,7 @@ thead .product__size_chart__size_label {
     position: relative;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .site__wrapper {
         /*max-width: 1140px;*/
         margin-left: auto;
@@ -5179,7 +5178,7 @@ thead .product__size_chart__size_label {
     padding-right: 1%;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__column--description {
         display: inline;
         float: left;
@@ -5189,7 +5188,7 @@ thead .product__size_chart__size_label {
 }
 
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .campaign__column--stats {
         display: inline;
         float: left;
@@ -5337,7 +5336,7 @@ ul, ol {
     padding-left: 1rem;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .line_items_table__heading--price {
         padding-left: 2rem;
     }
@@ -5364,7 +5363,7 @@ td {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_items_table__item--image {
         display: block;
     }
@@ -5399,7 +5398,7 @@ td {
     padding-right: 0;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_items_table__item--price {
         padding-left: 2rem;
     }
@@ -5496,7 +5495,7 @@ td {
         width: 0;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal {
         height: auto;
         left: 50%;
@@ -5579,7 +5578,7 @@ td {
         width: 0;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal .modal-body {
         overflow-y: auto;
         padding: 0;
@@ -5590,7 +5589,7 @@ td {
     background: white;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal .modal-header, .precheckout_modal .modal-body {
         padding: 1.5rem;
     }
@@ -5612,7 +5611,7 @@ td {
     width: 100%;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal .modal-footer {
         background: #f5f7f7;
     }
@@ -5627,7 +5626,7 @@ td {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal__title {
         display: block;
         font-size: 1.9rem;
@@ -5650,13 +5649,13 @@ td {
     transition: height 250ms;
 }
 
-@media only screen and (min-height: 480px) {
+@media all and (min-height: 480px) {
     .precheckout_modal__image_container {
         height: 10rem;
     }
 }
 
-@media only screen and (min-width: 660px) and (max-width: 979px) {
+@media all and (min-width: 660px) and (max-width: 979px) {
     .precheckout_modal__image_container {
         height: 15rem;
     }
@@ -5668,7 +5667,7 @@ td {
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal__image_container {
         display: none;
     }
@@ -5698,7 +5697,7 @@ td {
     width: 100%;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_actions__button {
         font-size: 1rem;
     }
@@ -5726,7 +5725,7 @@ td {
     z-index: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_close_button {
         background: none;
         border-radius: 0;
@@ -5763,13 +5762,13 @@ td {
         clear: both;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .payment_options_container {
         text-align: left;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .payment_options_actions, .payment_options_info {
         display: inline;
         float: left;
@@ -5790,7 +5789,7 @@ td {
     margin-top:20px;
 }
 
-@media only screen and (min-height: 480px) {
+@media all and (min-height: 480px) {
     .payment_options_info {
         display: block;
     }
@@ -5880,13 +5879,13 @@ td {
         z-index: 2;
     }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .modal-header {
         position: relative;
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .modal-body {
         padding: 1.5rem;
     }
@@ -5909,7 +5908,7 @@ td {
     z-index: 1;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .precheckout_form {
         padding-top: 0;
     }
@@ -5925,7 +5924,7 @@ td {
     padding: 1.5rem 0 1rem;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .payment_options_container {
         padding-bottom: 1.5rem;
     }
@@ -5936,7 +5935,7 @@ td {
     padding: .5rem 0;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .precheckout_modal__title {
         padding: 0;
     }
@@ -5946,7 +5945,7 @@ td {
     display: none;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .payment_options {
         display: block;
     }
@@ -5959,7 +5958,7 @@ td {
     margin: .2rem 0 0;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--upsell .payment_options_caption {
         display: none;
     }
@@ -5978,7 +5977,7 @@ td {
     text-align: center;
 }
 
-@media only screen and (min-width: 980px) {
+@media all and (min-width: 980px) {
     .precheckout_modal--saved_payment_info .payment_options_actions {
         display: inline-block;
         float: none;
