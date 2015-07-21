@@ -11,12 +11,14 @@ namespace Teeyoot.Search.Services
     public class CampaignCategoriesService : ICampaignCategoriesService
     {
         private readonly IRepository<CampaignCategoriesPartRecord> _repository;
+        private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCetegory;
         private readonly IContentManager _contentManager;
 
-        public CampaignCategoriesService(IRepository<CampaignCategoriesPartRecord> repository, IContentManager contentManager)
+        public CampaignCategoriesService(IRepository<CampaignCategoriesPartRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory)
         {
             _repository = repository;
             _contentManager = contentManager;
+            _linkCampaignAndCetegory = linkCampaignAndCetegory;
         }
 
         public IQueryable<CampaignCategoriesPartRecord> GetAllCategories()
@@ -48,12 +50,55 @@ namespace Teeyoot.Search.Services
             }
             else
             {
-                var newCateg = _contentManager.Create<CampaignCategoriesPart>(typeof(CampaignCategoriesPart).Name, tb =>
+                //TODO: don't work
+                //var newCateg = _contentManager.Create<CampaignCategoriesPart>("CampaignCategories", tb =>
+                //{
+                //    tb.Name = name;
+                //    tb.IsVisible = false;
+                //});
+                int newId = GetAllCategories().Select(c => c.Id).Max() + 1;
+                var newCateg = new CampaignCategoriesPartRecord
                 {
-                    tb.Name = name;
-                    tb.IsVisible = false;
-                });
-                return newCateg.Id;
+                    Name = name,
+                    IsVisible = false
+                };
+                try
+                {
+                    _repository.Create(newCateg);
+                    return newCateg.Id;
+                }catch{
+                    return 0;
+                }
+            }
+        }
+
+        public bool CnehgeVisible(int id, bool changes)
+        {
+            var asd = GetAllCategories().Where(c => c.Id == id).FirstOrDefault();
+            asd.IsVisible = changes;
+            try
+            {
+                _repository.Update(asd);
+                return true;
+            }catch{
+                return false;
+            }
+        }
+
+        public bool DeleteCategory(int id)
+        {
+            var cat = GetCategoryById(id);
+            try
+            {
+                foreach (var link in cat.Campaigns)
+                {
+                    _linkCampaignAndCetegory.Delete(link);
+                }
+                _repository.Delete(cat);
+                return true;
+            }
+            catch {
+                return false;
             }
         }
     }

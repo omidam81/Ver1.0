@@ -5,6 +5,11 @@
 }
 @using Teeyoot.Module.Models
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+
 <fieldset>
     <div class="admin-categories-menu">
         <div class="left-box">

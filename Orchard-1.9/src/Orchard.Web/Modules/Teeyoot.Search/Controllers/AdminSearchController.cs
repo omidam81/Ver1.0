@@ -29,8 +29,8 @@ namespace Teeyoot.Search.Controllers
         private const int takeCategories = 20;
         public List<ActionsViewModel> Actions = new List<ActionsViewModel>() { 
             new ActionsViewModel() { Id = 1, Name = "Delete" },
-            new ActionsViewModel() { Id = 2, Name = "Check" }, 
-            new ActionsViewModel() { Id = 3, Name = "Uncheck" } 
+            new ActionsViewModel() { Id = 2, Name = "Visible" }, 
+            new ActionsViewModel() { Id = 3, Name = "Unvisible" } 
         };
 
         public AdminSearchController(IOrchardServices services, ICampaignService campService, ICampaignCategoriesService campCategService, ISiteService siteService, IShapeFactory shapeFactory)
@@ -45,9 +45,14 @@ namespace Teeyoot.Search.Controllers
         private IOrchardServices Services { get; set; }
 
 
-        public ActionResult Index(PagerParameters pagerParameters)
+        public ActionResult Index(PagerParameters pagerParameters, AdminSearchViewModel adminViewModel)
         {
             var categoriesList = _campCategService.GetAllCategories().OrderBy(c => c.Name).ToList();
+
+            if (!string.IsNullOrEmpty(adminViewModel.SearchString))
+            {
+                categoriesList = categoriesList.Where(c => c.Name.Contains(adminViewModel.SearchString)).OrderBy(c => c.Name).ToList();
+            }
 
             var entriesProjection = categoriesList.Select(e =>
             {
@@ -95,16 +100,12 @@ namespace Teeyoot.Search.Controllers
             return View("EditCategory", new AdminSearchViewModel { Camapigns = entries.ToArray(), CategoryId = id, CategoryName = category.Name, Pager = pager });
         }
 
-        public ActionResult UncheckCategory(int id, string returnUrl)
+        public ActionResult ChangesVisibleCategory(int id, bool visible)
         {
-
-            return View();
-        }
-
-        public ActionResult CheckCategory(int id, string returnUrl)
-        {
-
-            return View();
+            if (!_campCategService.CnehgeVisible(id, visible)) {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Error when chenged visible category. Try again!"));
+            } 
+            return RedirectToAction("Index");
         }
 
         public ActionResult AddCampaignForCategory(int id)
@@ -134,5 +135,21 @@ namespace Teeyoot.Search.Controllers
             
             return this.RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(int id)
+        {
+            if (!_campCategService.DeleteCategory(id))
+            {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Category was not removed. Try again!"));
+            }
+            else
+            {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Information, T("The Category has been deleted."));
+            }
+            return this.RedirectToAction("Index");
+        }
+
+        //public ActionResult ChangeNameCategory(AdminSearchViewModel admin)
     }
 }
