@@ -24,6 +24,8 @@
     Script.Include("validate.js");
     Script.Include("design_upload.js");
     Script.Include("fontdetect.js");
+    Script.Include("bootstrap-wysiwyg.js");
+    Script.Include("jquery.hotkeys.js");
 
 
 
@@ -32,10 +34,10 @@
 
 @using (Script.Foot())
 {
+   
 
     <script type="text/javascript">
-
-
+        $('#descript').wysiwyg();
         $(".flip-buttons").click(function () {
             var $elem = $("#view-front");
 
@@ -80,17 +82,6 @@
                     'BackSideByDefault': backSideByDefault
                 }),
                 success: function (data, status, resp) {
-                    //var title;
-                    //for (var i = 0; i < data.length ; i++) {
-                    //    title = data[i].Value;
-                    //    title = title.replace("<span class='autocomplete-question'>", "");
-                    //    title = title.replace("</span><br/>", ". ");
-                    //    result[i] = {
-                    //        value: title,
-                    //        label: data[i].Value,
-                    //        id: data[i].Key
-                    //    };
-                    //}
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
                     }
@@ -212,7 +203,7 @@
 
 
 
-        <div class="Slide" >
+        <div class="Slide">
             <div class="Content" style="width:90%; margin-top:-50px;" id="Content1">
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
@@ -431,12 +422,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <div class="teespring-well designer-well" id="clientArts">
-                                                        <label>Recently Used Artwork</label>
-                                                        <ul class="nav">
-                                                            
-                                                        </ul>
-                                                    </div>
+                                                        <div class="teespring-well designer-well" id="clientArts">
+                                                            <label>Recently Used Artwork</label>
+                                                            <ul class="nav"></ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -698,14 +687,13 @@
                                     <div class="ssp_pricing" style="margin-left:-8%">
                                         <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()" value="RM 15">
                                     </div>
-                                    
-                                    <div class="profitSale" >
-                                        <h4 class="h4ProfSale" id= "mainH4"> RM 5.00 profit / sale</h4>
+
+                                    <div class="profitSale">
+                                        <h4 class="h4ProfSale" id="mainH4"> RM 5.00 profit / sale</h4>
                                     </div>
-
-
-
-
+                                </div>
+                                <div style="height:60px">
+                                    <span style="font-size:13px;">Below the 1st small t-shirt, a bigger gap with heading “Add some more styles of t-shirts your customers can buy”.</span>
                                 </div>
                             </div>
 
@@ -716,16 +704,10 @@
 
 
 
+
                             <div id="ui" class="ssp_select_boxes">
-                                <select id="item-options-dropdown-tees" class="form-control form__select_menu">
-                                </select>
-                                
-                                
-                                <select id="product" class="form__select_menu">
-                                    @*<option value="369">Teespring Premium Tee</option>
-                                    <option value="2">Hanes Tagless Tee</option>
-                                    <option value="6">American Apparel Crew</option>*@
-                                </select>
+                                <select id="item-options-dropdown-tees" class="form-control form__select_menu"></select>
+                                <select id="product" class="form__select_menu"></select>
                                 <button type="button" id="butAdd" class="button button--primary ssp_add_button" title="Add"></button>
                             </div>
 
@@ -912,57 +894,70 @@
                                                                 <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
                                                             </div>
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                                <label data-reactid=".6.0.1.0">
-                                                                    <span data-reactid=".6.0.1.0.0"> </span><span data-reactid=".6.0.1.0.1">Description</span>
+                                                                <label>
+                                                                    <span> </span><span data-reactid=".6.0.1.0.1">Description</span>
                                                                 </label>
                                                                 <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
-                                                                    <ul class="wysihtml5-toolbar" data-reactid=".6.0.1.1.0">
-                                                                        <li data-reactid=".6.0.1.1.0.0">
-                                                                            <div class="btn-group" data-reactid=".6.0.1.1.0.0.0">
-                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="bold" data-reactid=".6.0.1.1.0.0.0.0">Bold</a>
-                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="italic" data-reactid=".6.0.1.1.0.0.0.1">Italic</a>
-                                                                                <a class="btn btn-default" href="#" data-wysihtml5-command="underline" data-reactid=".6.0.1.1.0.0.0.2">Underline</a>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.1">
-                                                                            <div class="dropdown__menu hidden" data-reactid=".6.0.1.1.0.1.0">
-                                                                                <div class="popover__header" data-reactid=".6.0.1.1.0.1.0.0">
-                                                                                    <a class="popover__close ts-icon-close" data-reactid=".6.0.1.1.0.1.0.0.0"></a>
-                                                                                    <p class="popover__title" data-reactid=".6.0.1.1.0.1.0.0.1">Insert link</p>
+
+                                                                        <ul class="wysihtml5-toolbar">
+                                                                            <li>
+                                                                                <div class="btn-group" data-role="editor-toolbar"  id="toolbar" data-target="#descript">
+                                                                                    <a class="btn btn-default ql-bold" href="#" data-edit="bold" data-wysihtml5-command="bold">Bold</a>
+                                                                                    <a class="btn btn-default ql-italic" href="#" data-edit="italic" data-wysihtml5-command="italic">Italic</a>
+                                                                                    <a class="btn btn-default" href="#" data-edit="underline" data-wysihtml5-command="underline">Underline</a>
+                                                                                 @*   <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>*@
+                                                                                    @*<div class="dropdown-menu input-append">
+                                                                                        <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+                                                                                        <button class="btn" type="button">Add</button>
+                                                                                    </div>*@
+                                                                                
                                                                                 </div>
-                                                                                <div class="popover__body" data-reactid=".6.0.1.1.0.1.0.1">
-                                                                                    <input class="form__textfield" value="http://" data-reactid=".6.0.1.1.0.1.0.1.0">
+
+                                                                            </li>
+                                                                            <li class="popover_wysiwyg">
+                                                                                @*<div class="dropdown__menu hidden">
+                                                                                    <div class="popover__header">
+                                                                                        <a class="popover__close ts-icon-close"></a>
+                                                                                        <p class="popover__title">Insert link</p>
+                                                                                    </div>
+                                                                                    <div class="popover__body">
+                                                                                        <input class="form__textfield" value="http://">
+                                                                                    </div>
+                                                                                    <div class="popover__footer" data-reactid=".6.0.1.1.0.1.0.2">
+                                                                                        <a href="#" class="button button--primary">Insert link</a>
+                                                                                    </div>
+                                                                                </div>*@
+                                                                                <a class="btn btn-default dropdown__toggle" data-wysihtml5-command="createLink" title="Insert link" href="#" unselectable="on" data-reactid=".6.0.1.1.0.1.1">
+                                                                                    <i class="icon-link"></i>
+                                                                                    <span> Link</span>
+                                                                                </a>
+                                                                            </li>
+
+
+                                                                            <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.2">
+                                                                                <div class="dropdown__menu hidden">
+                                                                                    <div class="popover__header">
+                                                                                        <a class="popover__close ts-icon-close"></a>
+                                                                                        <p class="popover__title">Insert image</p>
+                                                                                    </div>
+                                                                                    <div class="popover__body" data-reactid=".6.0.1.1.0.2.0.1">
+                                                                                        <input class="form__textfield" value="http://">
+                                                                                    </div>
+                                                                                    <div class="popover__footer" data-reactid=".6.0.1.1.0.2.0.2">
+                                                                                        <a href="#" class="button button--primary">Insert image</a>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="popover__footer" data-reactid=".6.0.1.1.0.1.0.2">
-                                                                                    <a href="#" class="button button--primary" data-reactid=".6.0.1.1.0.1.0.2.0">Insert link</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <a class="btn btn-default dropdown__toggle" data-wysihtml5-command="createLink" title="Insert link" href="#" unselectable="on" data-reactid=".6.0.1.1.0.1.1">
-                                                                                <i class="icon-link" data-reactid=".6.0.1.1.0.1.1.0"></i>
-                                                                                <span data-reactid=".6.0.1.1.0.1.1.1"> Link</span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="popover_wysiwyg" data-reactid=".6.0.1.1.0.2">
-                                                                            <div class="dropdown__menu hidden" data-reactid=".6.0.1.1.0.2.0">
-                                                                                <div class="popover__header" data-reactid=".6.0.1.1.0.2.0.0">
-                                                                                    <a class="popover__close ts-icon-close" data-reactid=".6.0.1.1.0.2.0.0.0"></a>
-                                                                                    <p class="popover__title" data-reactid=".6.0.1.1.0.2.0.0.1">Insert image</p>
-                                                                                </div>
-                                                                                <div class="popover__body" data-reactid=".6.0.1.1.0.2.0.1">
-                                                                                    <input class="form__textfield" value="http://" data-reactid=".6.0.1.1.0.2.0.1.0">
-                                                                                </div>
-                                                                                <div class="popover__footer" data-reactid=".6.0.1.1.0.2.0.2">
-                                                                                    <a href="#" class="button button--primary" data-reactid=".6.0.1.1.0.2.0.2.0">Insert image</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" href="#" unselectable="on" data-reactid=".6.0.1.1.0.2.1">
-                                                                                <i class="icon-picture" data-reactid=".6.0.1.1.0.2.1.0"></i>
-                                                                                <span data-reactid=".6.0.1.1.0.2.1.1"> Image</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="campaign_description" data-reactid=".6.0.1.1.1"></div>
-                                                                </div>
+                                                                                <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" href="#" unselectable="on">
+                                                                                    <i class="icon-picture" data-reactid=".6.0.1.1.0.2.1.0"></i>
+                                                                                    <span data-reactid=".6.0.1.1.0.2.1.1"> Image</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <div contenteditable="true" class="wysiwyg form__textfield " name="description" id="descript"></div>
+
+
+
+                                                                    </div>
                                                             </div>
                                                             <div data-reactid=".6.0.2">
                                                                 <p class="under-text show-tags-message" data-reactid=".6.0.2.0">
