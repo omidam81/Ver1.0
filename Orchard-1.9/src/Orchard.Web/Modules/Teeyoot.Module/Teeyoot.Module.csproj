@@ -651,8 +651,10 @@
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />
-    <Compile Include="Models\PaymentViewModel.cs" />
-    <Compile Include="Models\OrderProductViewModel.cs" />
+    <Compile Include="Models\LinkStoreCampaignRecord.cs" />
+    <Compile Include="Models\StoreRecord.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\CurrencyRecord.cs" />
     <Compile Include="Models\FontRecord.cs" />
@@ -678,7 +680,6 @@
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />

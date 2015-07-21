@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers
 {

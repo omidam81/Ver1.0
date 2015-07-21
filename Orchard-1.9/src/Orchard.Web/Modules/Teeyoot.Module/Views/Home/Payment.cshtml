@@ -2,7 +2,9 @@
     Style.Include("teebay.css");
     Style.Include("campaign.css");
     Style.Include("checkout.css");
-    @model Teeyoot.Module.Models.PaymentViewModel
+    Script.Require("jQuery");
+    Script.Include("jquery.validate.min.js");
+    @model Teeyoot.Module.ViewModels.PaymentViewModel
 }
 
 <div class="site__content_container">
@@ -129,49 +131,49 @@
                             @Html.AntiForgeryToken()
                             <div class="accordion__content">
                                 @*data-encrypted-name="number"*@
-                            <div>
-                                <input class="form__textfield form__textfield--large js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
-                                <label id="cc-number-error" class="error valid" for="cc-number"></label>
-                            </div>
-                            <div class="checkout_form__row">
-                                <div class="checkout__input--medium form-field-pair">
-                                    <div class="mmYYYY">
-                                        <div class="checkout_cell">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
-                                            <label id="cc-month-error" class="error valid" for="cc-month"></label>
-                                        </div>
-                                        <div class="checkout_cell">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
-                                            <label id="cc-year-error" class="error valid" for="cc-year"></label>
-                                        </div>
-                                        <div class="cvc_cell checkout_cell">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
-                                            <label id="cc-cvv-error" class="error valid" for="cc-cvv"></label>
-                                        </div>
-                                    </div>@*data-encrypted-name="cvv"*@
-
+                                <div>
+                                    <input class="form__textfield form__textfield--large js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
+                                    <label id="cc-number-error" class="error valid" for="cc-number"></label>
                                 </div>
-                                <div class="checkout__input--small">
-                                    <div class="checkout__tool_tip_container">
-                                        <div class="checkout__tool_tip--cvc" data-tooltip="3 or 4 digit security code usually located on the back of the card.">
-                                            <i class="ss-icon ss-standard tool_tip__toggle"></i>
-                                        </div>
+                                <div class="checkout_form__row">
+                                    <div class="checkout__input--medium form-field-pair">
+                                        <div class="mmYYYY">
+                                            <div class="checkout_cell">
+                                                <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
+                                                <label id="cc-month-error" class="error valid" for="cc-month"></label>
+                                            </div>
+                                            <div class="checkout_cell">
+                                                <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
+                                                <label id="cc-year-error" class="error valid" for="cc-year"></label>
+                                            </div>
+                                            <div class="cvc_cell checkout_cell">
+                                                <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
+                                                <label id="cc-cvv-error" class="error valid" for="cc-cvv"></label>
+                                            </div>
+                                        </div>@*data-encrypted-name="cvv"*@
 
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="checkout__input--small">
+                                        <div class="checkout__tool_tip_container">
+                                            <div class="checkout__tool_tip--cvc" data-tooltip="3 or 4 digit security code usually located on the back of the card.">
+                                                <i class="ss-icon ss-standard tool_tip__toggle"></i>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="accordion__item" style="margin-top:10px">
+
+                            <label class="accordion__label" for="paypal">
+                                <p>
+                                    <div id="paypal-container" style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"></div>
+                                </p>
+                            </label>
                         </div>
                     </div>
-                    <div class="accordion__item" style="margin-top:10px">
-
-                        <label class="accordion__label" for="paypal">
-                            <p>
-                                <div id="paypal-container" style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"></div>
-                            </p>
-                        </label>
-                    </div>
-                </div>
 
 
                     <div class="form__group js-checkout-shipping">
@@ -197,22 +199,22 @@
                         </div>
                         <div class="checkout_form__row">
                             <div>
-                            <div class="checkout__input--half smarty-streets-container">
-                                <input class="form__textfield form__textfield--large" data-default="" id="PostalCode" name="PostalCode" placeholder="Postal code" tabindex="8" type="text">
-                                <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
-                            </div>
-                            <div class="checkout__input--half">
-                                <select class="form__select_menu form__textfield--large form__textfield " id="Country" name="Country" tabindex="8"></select>
-                                <label id="Country-error" class="error valid" for="Country"></label>
-                            </div>
-                            <div class="checkout__input--half">
-                                <input class="form__textfield form__textfield--large js-shipping-phone" id="PhoneNumber" placeholder="Phone number" tabindex="9" type="text" value="" name="PhoneNumber">
-                                <label id="PhoneNumber-error" class="error valid" for="PhoneNumber"></label>
+                                <div class="checkout__input--half smarty-streets-container">
+                                    <input class="form__textfield form__textfield--large" data-default="" id="PostalCode" name="PostalCode" placeholder="Postal code" tabindex="8" type="text">
+                                    <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
+                                </div>
+                                <div class="checkout__input--half">
+                                    <select class="form__select_menu form__textfield--large form__textfield " id="Country" name="Country" tabindex="8"></select>
+                                    <label id="Country-error" class="error valid" for="Country"></label>
+                                </div>
+                                <div class="checkout__input--half">
+                                    <input class="form__textfield form__textfield--large js-shipping-phone" id="PhoneNumber" placeholder="Phone number" tabindex="9" type="text" value="" name="PhoneNumber">
+                                    <label id="PhoneNumber-error" class="error valid" for="PhoneNumber"></label>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
-
                     <div class="checkout_form_footer" style="margin-top:10px">
                         <div class="checkout_form_footer__submit_wrap js_submit_wrap_cc">
                             <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="Place Your Order">@T("Place Your Order")</button>
@@ -243,8 +245,7 @@
         braintree.onSubmitEncryptForm('braintree-payment-form');
     </script>
     <script type="text/javascript" src="https://js.braintreegateway.com/v2/braintree.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    @*<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>*@
     <script>
         jQuery.validator.setDefaults({
             debug: true,
@@ -280,7 +281,7 @@
             },
             submitHandler: function (form) { form.submit(); }
         });
-        
+
 
     </script>
 

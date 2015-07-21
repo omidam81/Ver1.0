@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Teeyoot.Module.Models
+namespace Teeyoot.Module.ViewModels
 {
     public class OrderProductViewModel
     {
