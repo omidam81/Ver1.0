@@ -6225,10 +6225,21 @@ td {
     .menu-anonimous-menu{
         width: 60%!important;
     }
+    
 }
 
 @media all and (max-width: 360px) {
     .menu-anonimous-menu{
        width: 70%!important;
     }
+     
+}
+.menu-for-user {
+    height: 64px !important;
+}
+
+
+.widget-usermenu .menu-user-menu {
+  margin-left: -33px!important;
+  margin-right: -14px!important;
 }
