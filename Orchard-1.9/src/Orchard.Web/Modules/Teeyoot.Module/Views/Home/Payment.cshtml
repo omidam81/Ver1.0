@@ -7,8 +7,8 @@
 
 <div class="site__content_container">
     <div class="site__wrapper">
-       
 
+        <div>@Html.ValidationSummary()</div>
         <div class="form__message form__message--error hidden" style="padding: 15px"></div>
         <div class="checkout__wrapper">
             <div class="checkout__container_main">
@@ -19,28 +19,29 @@
                         <table class="order_summary">
                             <tbody class="order_summary__items">
 
-                                @foreach (var item in Model.Order.Products) { 
+                                @foreach (var item in Model.Order.Products)
+                                {
 
-                                <tr>
-                                    <td>
-                                        <div class="order_summary__item_image ">
-                                            <img src="/Media/campaigns/@item.CampaignProductRecord.CampaignRecord_Id/@item.CampaignProductRecord.Id/normal/front.png">
-                                        </div>
-                                    </td>
-                                    <td class="order_summary__item_name">
-                                       @item.Count x @item.CampaignProductRecord.ProductRecord.Name
-                                        <ul class="order_summary__item_options">
-                                            <li>@item.ProductSizeRecord.SizeCodeRecord.Name</li>
-                                            <li>
-                                                <span class="order_summary__item_color_label">@item.CampaignProductRecord.ProductColorRecord.Name</span>
-                                                <span class="order_summary__item_color" style="background-color: @item.CampaignProductRecord.ProductColorRecord.Value"></span>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="order_summary__item_price">
-                                        @item.CampaignProductRecord.CurrencyRecord.Code @item.CampaignProductRecord.Price*@item.Count
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="order_summary__item_image ">
+                                                <img src="/Media/campaigns/@item.CampaignProductRecord.CampaignRecord_Id/@item.CampaignProductRecord.Id/normal/front.png">
+                                            </div>
+                                        </td>
+                                        <td class="order_summary__item_name">
+                                            @item.Count x @item.CampaignProductRecord.ProductRecord.Name
+                                            <ul class="order_summary__item_options">
+                                                <li>@item.ProductSizeRecord.SizeCodeRecord.Name</li>
+                                                <li>
+                                                    <span class="order_summary__item_color_label">@item.CampaignProductRecord.ProductColorRecord.Name</span>
+                                                    <span class="order_summary__item_color" style="background-color: @item.CampaignProductRecord.ProductColorRecord.Value"></span>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="order_summary__item_price">
+                                            @item.CampaignProductRecord.CurrencyRecord.Code @item.CampaignProductRecord.Price*@item.Count
+                                        </td>
+                                    </tr>
 
                                 }
 
@@ -92,11 +93,14 @@
 
 
 
-            <form action="@Url.Action("CreateTransaction")" onsubmit="return Validate();" method="POST" id="braintree-payment-form">
+            <form action="@Url.Action("CreateTransaction")" method="POST" id="braintree-payment-form">
                 <input type="hidden" id="OrderId" name="OrderId" value=@Model.Order.Id>
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
-                    <input autofocus="autofocus" class="form__textfield form__textfield--large" id="Email" name="Email" placeholder="Email address" tabindex="1" type="text">
+                    <div>
+                        <input autofocus="autofocus" class="form__textfield form__textfield--large" id="Email" name="Email" placeholder="Email address" tabindex="1" type="text">
+                        <label id="Email-error" class="error valid" for="Email"></label>
+                    </div>
 
                     <div class="checkout__legend">
                         <div class="checkout__tool_tip--lock" data-tooltip="All transactions are secure and encrypted.">
@@ -104,7 +108,7 @@
                         </div>@T("Payment Info")
                     </div>
 
-                    <div class="accordion">
+                    <div id="accordion" class="accordion_min accordion">
                         <div class="contLable">
 
                             <label class="accordion__label_text" for="new-credit-card">
@@ -124,41 +128,54 @@
                             </label>
                             @Html.AntiForgeryToken()
                             <div class="accordion__content">
-                                <input class="form__textfield form__textfield--large js-cc-number" data-stripe="number" data-encrypted-name="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
-                                <div class="checkout_form__row">
-                                    <div class="checkout__input--medium form-field-pair">
-                                        <div class="mmYYYY">
+                                @*data-encrypted-name="number"*@
+                            <div>
+                                <input class="form__textfield form__textfield--large js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
+                                <label id="cc-number-error" class="error valid" for="cc-number"></label>
+                            </div>
+                            <div class="checkout_form__row">
+                                <div class="checkout__input--medium form-field-pair">
+                                    <div class="mmYYYY">
+                                        <div class="checkout_cell">
                                             <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
+                                            <label id="cc-month-error" class="error valid" for="cc-month"></label>
+                                        </div>
+                                        <div class="checkout_cell">
                                             <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
-                                            <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " data-encrypted-name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
+                                            <label id="cc-year-error" class="error valid" for="cc-year"></label>
+                                        </div>
+                                        <div class="cvc_cell checkout_cell">
+                                            <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
+                                            <label id="cc-cvv-error" class="error valid" for="cc-cvv"></label>
+                                        </div>
+                                    </div>@*data-encrypted-name="cvv"*@
+
+                                </div>
+                                <div class="checkout__input--small">
+                                    <div class="checkout__tool_tip_container">
+                                        <div class="checkout__tool_tip--cvc" data-tooltip="3 or 4 digit security code usually located on the back of the card.">
+                                            <i class="ss-icon ss-standard tool_tip__toggle"></i>
                                         </div>
 
-                                    </div>
-                                    <div class="checkout__input--small">
-                                        <div class="checkout__tool_tip_container">
-                                            <div class="checkout__tool_tip--cvc" data-tooltip="3 or 4 digit security code usually located on the back of the card.">
-                                                <i class="ss-icon ss-standard tool_tip__toggle"></i>
-                                            </div>
-
-                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                        <div class="accordion__item" style="margin-top:10px">
 
-                            <label class="accordion__label" for="paypal">
-                                <p>
-                                    <div id="paypal-container" style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"></div>
-                                </p>
-                            </label>
                         </div>
                     </div>
+                    <div class="accordion__item" style="margin-top:10px">
+
+                        <label class="accordion__label" for="paypal">
+                            <p>
+                                <div id="paypal-container" style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"></div>
+                            </p>
+                        </label>
+                    </div>
+                </div>
 
 
                     <div class="form__group js-checkout-shipping">
-                        <div class="checkout__legend">@T("Shipping Info")</div>    
+                        <div class="checkout__legend">@T("Shipping Info")</div>
                         <div class="checkout__input--half">
                             <input class="form__textfield form__textfield--large" data-default="" data-type="name" id="FirstName" maxlength="30" name="FirstName" placeholder="First name" size="30" tabindex="2" type="text">
                         </div>
@@ -170,23 +187,27 @@
                         <div class="checkout_form__row">
                             <div class="checkout__input--half">
                                 <input class="form__textfield form__textfield--large" data-default="" id="City" maxlength="30" name="City" placeholder="City" size="30" tabindex="6" type="text">
+                                <label id="City-error" class="error valid" for="City"></label>
                             </div>
                             <div class="checkout__input--half">
 
                                 <input class="form__textfield form__textfield--large" data-default="43" id="State" placeholder="Province" name="State" abindex="7" type="text">
+                                <label id="State-error" class="error valid" for="State"></label>
                             </div>
                         </div>
                         <div class="checkout_form__row">
+                            <div>
                             <div class="checkout__input--half smarty-streets-container">
                                 <input class="form__textfield form__textfield--large" data-default="" id="PostalCode" name="PostalCode" placeholder="Postal code" tabindex="8" type="text">
-
+                                <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
                             </div>
                             <div class="checkout__input--half">
                                 <select class="form__select_menu form__textfield--large form__textfield " id="Country" name="Country" tabindex="8"></select>
-
+                                <label id="Country-error" class="error valid" for="Country"></label>
                             </div>
                             <div class="checkout__input--half">
                                 <input class="form__textfield form__textfield--large js-shipping-phone" id="PhoneNumber" placeholder="Phone number" tabindex="9" type="text" value="" name="PhoneNumber">
+                                <label id="PhoneNumber-error" class="error valid" for="PhoneNumber"></label>
                             </div>
                         </div>
                     </div>
@@ -194,7 +215,7 @@
 
                     <div class="checkout_form_footer" style="margin-top:10px">
                         <div class="checkout_form_footer__submit_wrap js_submit_wrap_cc">
-                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="Place Your Order" >@T("Place Your Order")</button>
+                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="Place Your Order">@T("Place Your Order")</button>
                             <h2 style="background-color:yellow">@Model.Result</h2>
                             <p class="tos_agreement">
                                 @T("By clicking 'Place Your Order' you agree to our")
@@ -204,11 +225,11 @@
                             </p>
                         </div>
                     </div>
-                </div>                         
+                </div>
             </form>
             <input type="hidden" id="Token" value=@Model.ClientToken>
-            
-            
+
+
         </div>
     </div>
 </div>
@@ -222,46 +243,47 @@
         braintree.onSubmitEncryptForm('braintree-payment-form');
     </script>
     <script type="text/javascript" src="https://js.braintreegateway.com/v2/braintree.js"></script>
-
-
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
     <script>
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#braintree-payment-form").validate({
+            rules: {
+                Email: {
+                    required: true,
+                    email: true
+                },
+                FirstName: {
+                    required: true
+                },
+                LastName: {
+                    required: true
+                },
+                City: {
+                    required: true
+                },
+                State: {
+                    required: true
+                },
+                StreetAddress: {
+                    required: true
+                },
+                PostalCode: {
+                    required: true
+                },
+                PhoneNumber: {
+                    required: true
+                }
+            },
+            submitHandler: function (form) { form.submit(); }
+        });
+        
 
-        function Validate() {
-            var error = false;
-            var email = document.getElementById("Email");
-            if (email.value == "") {
-                email.className = "form__textfield form__textfield--large errorVal";
-                error = true;
-            }          
-            else {
-                email.className = "form__textfield form__textfield--large";
-            }
+    </script>
 
-            var first_name = document.getElementById("FirstName");
-            if (first_name.value == "") {
-                first_name.className = "form__textfield form__textfield--large errorVal";
-                error = true;
-            }
-            else {
-                first_name.className = "form__textfield form__textfield--large";
-            }
-            
-            var last_name = document.getElementById("LastName");
-            if (last_name.value == "") {
-                last_name.className = "form__textfield form__textfield--large errorVal";
-                error = true;
-            }
-            else {
-                last_name.className = "form__textfield form__textfield--large";
-            }
-
-           
-
-            return !error;
-        }
-
-</script>
-   
 
     <script type="text/javascript">
         //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
@@ -270,18 +292,20 @@
             {
                 container: "paypal-container",
                 onPaymentMethodReceived: function (obj) {
+                    document.getElementById("accordion").className = "accordion";
                     document.querySelector(".contLable").style.display = "none";
                     document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
                     document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
                     document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
-                    document.getElementById("bt-pp-cancel").style.fontSize = "18px";
+                    document.getElementById("bt-pp-cancel").style.fontSize = "20px";
                     document.getElementById("bt-pp-email").style.fontSize = "18px";
                     document.querySelector(".accordion__item").style.borderTop = "0px";
                     document.getElementById("bt-pp-cancel").style.background = "white";
-                    document.querySelector(".accordion").style.height = "40px";
+                    document.querySelector(".accordion").style.height = "50px";
                     document.getElementById("bt-pp-cancel").style.textDecoration = "none";
                     doSomethingWithTheNonce(obj.nonce);
                 }, onCancelled: function () {
+                    document.getElementById("accordion").className = "accordion_min accordion";
                     document.querySelector(".contLable").style.display = "inline";
                     document.querySelector(".accordion").style.height = "275px";
                 }
@@ -290,7 +314,7 @@
 
     <script language="javascript">
         var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Anguilla", "Antartica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Ashmore and Cartier Island", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czeck Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Europa Island", "Falkland Islands (Islas Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "Gambia, The", "Gaza Strip", "Georgia", "Germany", "Ghana", "Gibraltar", "Glorioso Islands", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See (Vatican City)", "Honduras", "Hong Kong", "Howland Island", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Ireland, Northern", "Israel", "Italy", "Jamaica", "Jan Mayen", "Japan", "Jarvis Island", "Jersey", "Johnston Atoll", "Jordan", "Juan de Nova Island", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Man, Isle of", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Midway Islands", "Moldova", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcaim Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romainia", "Russia", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Scotland", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and South Sandwich Islands", "Spain", "Spratly Islands", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Tobago", "Toga", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "USA", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands", "Wales", "Wallis and Futuna", "West Bank", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
-        function populateCountries(countryElementId) {          
+        function populateCountries(countryElementId) {
             var countryElement = document.getElementById(countryElementId);
             countryElement.length = 0;
             countryElement.options[0] = new Option('Select Country', '-1');
@@ -301,6 +325,6 @@
         }
         populateCountries("Country");
     </script>
-    
-   
+
+
 }

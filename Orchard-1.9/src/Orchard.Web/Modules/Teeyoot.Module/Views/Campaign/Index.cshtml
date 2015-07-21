@@ -103,15 +103,6 @@
         
     });
    
-       
-
-
-       
-    
-
-    
-    
-
 
     function Resrve() {
         document.getElementById("reserve-it-now").className = "dg-overlay";
@@ -196,7 +187,10 @@
 
 }
 
-@*Локализацию!!!!! Обвернуть всё в T()*@
+                                                                                            @*Локализацию!!!!! Обвернуть всё в T()*@
+
+
+
 
 
 <section class="site__featured_container">
@@ -230,7 +224,7 @@
                              data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
                         <div id="butt1" style="text-align:center; ">
                             <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>
-                            <div class="flip-button flip-button-back"><span>Back</span></div>
+                            <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
                         </div>
                     </div>
                     <div id="back" class="back image_stack__image_wrap">
@@ -238,7 +232,7 @@
                              src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
                              data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
                         <div id="butt2" style="text-align:center;">
-                            <div class="flip-button flip-button-front"><span>Front</span></div>
+                            <div class="flip-button flip-button-front"><span>@T("Front")</span></div>
                             <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>Back</span></div>
                         </div>
                     </div>
