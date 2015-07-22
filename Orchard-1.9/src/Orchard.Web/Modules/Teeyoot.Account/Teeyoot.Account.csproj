@@ -114,6 +114,7 @@
     <Compile Include="Services\ITeeyootMembershipService.cs" />
     <Compile Include="Services\ITeeyootSocialLogOnService.cs" />
     <Compile Include="Services\TeeyootFacebookOAuthService.cs" />
+    <Compile Include="Services\TeeyootGoogleOAuthService.cs" />
     <Compile Include="Services\TeeyootMembershipService.cs" />
     <Compile Include="Services\TeeyootSocialLogOnService.cs" />
     <Compile Include="SocialLogOnUrlCreator.cs" />

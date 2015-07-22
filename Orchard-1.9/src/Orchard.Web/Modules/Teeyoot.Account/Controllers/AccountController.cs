@@ -22,6 +22,7 @@ namespace Teeyoot.Account.Controllers
     {
         private readonly ITeeyootMembershipService _teeyootMembershipService;
         private readonly IFacebookOAuthService _facebookOAuthService;
+        private readonly IGoogleOAuthService _googleOAuthService;
 
         private readonly IAuthenticationService _authenticationService;
         private readonly IMembershipService _membershipService;
@@ -38,6 +39,7 @@ namespace Teeyoot.Account.Controllers
             IMembershipService membershipService,
             IUserService userService,
             IFacebookOAuthService facebookOAuthService,
+            IGoogleOAuthService googleOAuthService,
             IWorkContextAccessor workContextAccessor)
         {
             _teeyootMembershipService = teeyootMembershipService;
@@ -45,6 +47,7 @@ namespace Teeyoot.Account.Controllers
             _membershipService = membershipService;
             _userService = userService;
             _facebookOAuthService = facebookOAuthService;
+            _googleOAuthService = googleOAuthService;
             _workContextAccessor = workContextAccessor;
 
             T = NullLocalizer.Instance;
@@ -120,18 +123,29 @@ namespace Teeyoot.Account.Controllers
             return Redirect("~/Login");
         }
 
-        public ActionResult FacebookAuth(FacebookOAuthAuthViewModel viewModel)
+        public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
         {
             var response = _facebookOAuthService.Auth(
                 _workContextAccessor.GetContext(),
-                viewModel.Code,
-                viewModel.Error,
-                viewModel.State);
+                model.Code,
+                model.Error,
+                model.State);
 
             if (response.Error != null)
             {
                 TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
             }
+
+            return this.RedirectLocal(response.ReturnUrl);
+        }
+
+        public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
+        {
+            var response = _googleOAuthService.Auth(
+                _workContextAccessor.GetContext(),
+                model.Code,
+                model.Error,
+                model.State);
 
             return this.RedirectLocal(response.ReturnUrl);
         }
