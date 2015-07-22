@@ -10,18 +10,20 @@ namespace Teeyoot.Search.Services
 {
     public class CampaignCategoriesService : ICampaignCategoriesService
     {
-        private readonly IRepository<CampaignCategoriesPartRecord> _repository;
+        private readonly IRepository<CampaignCategoriesRecord> _repository;
         private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCetegory;
         private readonly IContentManager _contentManager;
+        private readonly IRepository<CampaignRecord> _campaign;
 
-        public CampaignCategoriesService(IRepository<CampaignCategoriesPartRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory)
+        public CampaignCategoriesService(IRepository<CampaignCategoriesRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory, IRepository<CampaignRecord> campaign)
         {
             _repository = repository;
             _contentManager = contentManager;
             _linkCampaignAndCetegory = linkCampaignAndCetegory;
+            _campaign = campaign;
         }
 
-        public IQueryable<CampaignCategoriesPartRecord> GetAllCategories()
+        public IQueryable<CampaignCategoriesRecord> GetAllCategories()
         {
             return _repository.Table;
         }
@@ -31,14 +33,21 @@ namespace Teeyoot.Search.Services
             return GetAllCategories().Where(c => c.Id == id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord));
         }
 
-        public CampaignCategoriesPartRecord GetCategoryById(int id)
+        public CampaignCategoriesRecord GetCategoryById(int id)
         {
             return GetAllCategories().Where(c => c.Id == id).FirstOrDefault();
         }
 
-        public IQueryable<CampaignRecord> GetCampaignsByNotThisIdCategory(int id)
+        public List<CampaignRecord> GetCampaignsByNotThisIdCategory(int id)
         {
-            return GetAllCategories().Where(c => c.Id != id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord));
+            var allCampaigns = _campaign.Table.ToList();
+            var campInCateg = _repository.Table.Where(c => c.Id == id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).Distinct().ToList();
+            foreach (var s in campInCateg)
+            {
+                allCampaigns.Remove(s);
+            }
+
+            return allCampaigns;
         }
 
         public int AddCategory(string name)
@@ -50,14 +59,7 @@ namespace Teeyoot.Search.Services
             }
             else
             {
-                //TODO: don't work
-                //var newCateg = _contentManager.Create<CampaignCategoriesPart>("CampaignCategories", tb =>
-                //{
-                //    tb.Name = name;
-                //    tb.IsVisible = false;
-                //});
-                int newId = GetAllCategories().Select(c => c.Id).Max() + 1;
-                var newCateg = new CampaignCategoriesPartRecord
+                var newCateg = new CampaignCategoriesRecord
                 {
                     Name = name,
                     IsVisible = false
@@ -66,7 +68,9 @@ namespace Teeyoot.Search.Services
                 {
                     _repository.Create(newCateg);
                     return newCateg.Id;
-                }catch{
+                }
+                catch
+                {
                     return 0;
                 }
             }
@@ -74,13 +78,15 @@ namespace Teeyoot.Search.Services
 
         public bool CnehgeVisible(int id, bool changes)
         {
-            var asd = GetAllCategories().Where(c => c.Id == id).FirstOrDefault();
-            asd.IsVisible = changes;
+            var cat = GetAllCategories().Where(c => c.Id == id).FirstOrDefault();
+            cat.IsVisible = changes;
             try
             {
-                _repository.Update(asd);
+                _repository.Update(cat);
                 return true;
-            }catch{
+            }
+            catch
+            {
                 return false;
             }
         }
@@ -97,7 +103,44 @@ namespace Teeyoot.Search.Services
                 _repository.Delete(cat);
                 return true;
             }
-            catch {
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ChnageNameCategory(int id, string newName)
+        {
+            var cat = GetCategoryById(id);
+            cat.Name = newName;
+            try
+            {
+                _repository.Update(cat);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool AddCampaignToCategory(int idCamp, int idCateg)
+        {
+            var camp = _campaign.Table.Where(c => c.Id == idCamp).FirstOrDefault();
+            var categ = GetCategoryById(idCateg);
+
+            var link = new LinkCampaignAndCategoriesRecord
+            {
+                CampaignRecord = camp,
+                CampaignCategoriesPartRecord = categ
+            };
+            try
+            {
+                _linkCampaignAndCetegory.Create(link);
+                return true;
+            }
+            catch
+            {
                 return false;
             }
         }

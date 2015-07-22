@@ -27,5 +27,7 @@ namespace Teeyoot.Module.Services
         CampaignProductRecord GetCampaignProductById(int id);
 
         void UpdateCampaign(CampaignRecord campiagn);
+
+        bool DeleteCampaignFromCategoryById(int campId, int categId);
     }
 }

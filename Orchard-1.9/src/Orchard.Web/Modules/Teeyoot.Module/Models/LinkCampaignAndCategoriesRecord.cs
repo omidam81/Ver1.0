@@ -12,6 +12,6 @@ namespace Teeyoot.Module.Models
 
         public virtual CampaignRecord CampaignRecord { get; set; }
 
-        public virtual CampaignCategoriesPartRecord CampaignCategoriesPartRecord { get; set; }
+        public virtual CampaignCategoriesRecord CampaignCategoriesPartRecord { get; set; }
     }
 }

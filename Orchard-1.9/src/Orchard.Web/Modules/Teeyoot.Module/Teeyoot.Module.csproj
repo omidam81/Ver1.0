@@ -645,7 +645,7 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignCategoriesPart.cs" />
-    <Compile Include="Models\CampaignCategoriesPartRecord.cs" />
+    <Compile Include="Models\CampaignCategoriesRecord.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
