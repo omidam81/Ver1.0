@@ -12,13 +12,6 @@ var design={
 	ini:function(){
 		var me = this;
 		
-		$('.dg-tooltip').tooltip();
-		$( "#layers" ).sortable({stop: function() {
-			me.layers.sort();
-		}});		
-		$('.popover-close').click(function(){
-			$( ".popover" ).hide('show');
-		});
         $("#app-wrap").flip({
             trigger: 'manual'
         });
@@ -227,19 +220,6 @@ var design={
 			$('#arts-pagination').css('display', 'block');
 		});
 		
-		/* layers-toolbar control */
-		$('.layers-toolbar button').click(function(){
-			var elm = $(this).parents('.div-layers');
-			if (elm.hasClass('no-active'))
-			{
-				elm.removeClass('no-active');
-			}
-			else
-			{
-				elm.addClass('no-active');
-			}
-		});
-		
 		/* mobile toolbar */
 		$('.dg-options-toolbar button').click(function(){
 			var check = $(this).hasClass('active');
@@ -383,31 +363,6 @@ var design={
 				{
 					delete design.output.back;
 					design.ajax.save();
-				}
-			}
-			else if (design.ajax.active === 'left')
-			{
-				design.ajax.active = 'right';
-				if ($('#view-left .product-design').html() !== '' && $('#view-left .product-design').find('img').length > 0)
-				{
-					design.svg.items('left', design.ajax.save);
-				}
-				else
-				{
-					delete design.output.left;
-					design.ajax.save();
-				}	
-			}
-			else if (design.ajax.active === 'right')
-			{
-				if ($('#view-right .product-design').html() !== '' && $('#view-right .product-design').find('img').length > 0)
-				{
-					design.svg.items('right', design.ajax.addToCart);
-				}
-				else
-				{
-					delete design.output.right;
-					design.ajax.addToCart();
 				}
 			}
 		},
@@ -3039,9 +2994,14 @@ var design={
 				}
 			});
 		},
-		items: function(postion, callback)
-		{
-			var area 	= eval ("(" + items['area'][postion] + ")");
+		items: function(postion, callback) {
+		    var imageData = app.state.getImage();
+		    var area = {
+		        top: imageData['printable_' + postion + '_top'],
+		        left: imageData['printable_' + postion + '_left'],
+		        width: imageData['printable_' + postion + '_width'],
+		        height: imageData['printable_' + postion + '_height']
+		    };
 			
 			var obj 	= [], i = 0;
 			$('#view-' +postion+ ' .design-area .drag-item').each(function(){
@@ -3081,12 +3041,9 @@ var design={
 				canvas.height 	= area.height;
 			var context = canvas.getContext('2d');
 			
-			var count = Object.keys(obj).length;
-			
-			var radius = design.convert.px(area.radius);		
+			var radius = 0;		
 			canvasLoad(obj, 0);
-			function canvasLoad(obj, i)
-			{
+			function canvasLoad(obj, i) {
 				if (typeof obj[i] != 'undefined')
 				{
 					var IE = /msie/.test(navigator.userAgent.toLowerCase());
@@ -3130,7 +3087,7 @@ var design={
 						item.top = (item.height/2) * -1;
 					}
 					try {							
-						if (item.img == true)
+						if (item.img)
 						{
 							var images 	= new Image();
 							images.src = item.src;
@@ -3279,34 +3236,45 @@ var design={
 			return canvas;
 		},
 		canvas: function(postion, canvas1, callback){			
-			var area 	= eval ("(" + items['area'][postion] + ")");
-			var index	= $('#product-list-colors span').index($('#product-list-colors span.active'));
+		    var imageData = app.state.getImage();
+		    var area = {
+		        top: imageData['printable_' + postion + '_top'],
+		        left: imageData['printable_' + postion + '_left'],
+		        width: imageData['printable_' + postion + '_width'],
+		        height: imageData['printable_' + postion + '_height']
+		    };
 			
 			var canvas 			= document.createElement('canvas');
-				canvas.width 	= 500;
-				canvas.height 	= 500;
+			canvas.width = imageData.width;
+			canvas.height = imageData.height;
 			var context = canvas.getContext('2d');
-						
+			context.rect(0, 0, imageData.width, imageData.height);
+			context.fillStyle = app.state.color.value;
+			context.fill();
+
 			design.output[postion] = canvas;
-			
-			var layers 	= eval ("(" + items["design"][index][postion] + ")");			
-			var count = Object.keys(layers).length;
-				count = parseInt(count) - 1;
-			var obj = [], j = 0;
-			for (i= count; i> -1; i--)
-			{
-				obj[j] = layers[i];
-				j++;
-			}
+
+		    var obj = [
+		        {
+		            id: 'images-0',
+		            width: imageData.width + 'px',
+		            height: imageData.height + 'px',
+		            top: '0px',
+		            left: '0px',
+		            zIndex: 'auto',
+		            img: assetsUrls.products + 'product_type_' + app.state.product.id + '_' + postion + '.png'
+		        }, 
+		        { id: 'area-design' }
+		    ];
+
 			canvasLoad(obj, 0);
-			function canvasLoad(obj, i)
-			{
+			function canvasLoad(obj, i) {
 				if (typeof obj[i] != 'undefined')
 				{
 					var layer = obj[i];
 					i++;
 					
-					if (layer.id != 'area-design')
+					if (layer.id !== 'area-design')
 					{
 						var imageObj = new Image();
 						var left 	= design.convert.px(layer.left);
@@ -3318,14 +3286,12 @@ var design={
 							context.drawImage(imageObj, left, top, width, height);
 							context.restore();
 							canvasLoad(obj, i);
-						}						
-						imageObj.src = baseURL +'image-tool/index.php?src='+ baseURL + layer.img +'&w='+width+'&h='+height;				
+						}
+						imageObj.src = layer.img;				
 					}
 					else
 					{
-						var left 	= design.convert.px(area.left);
-						var top 	= design.convert.px(area.top);				
-						context.drawImage(canvas1, left, top);
+						context.drawImage(canvas1, area.left, area.top);
 						canvasLoad(obj, i);
 					}
 				}
@@ -3341,106 +3307,32 @@ var design={
 	saveDesign: function(){
 	
 		var vectors	= JSON.stringify(design.exports.vector());		
-		var image = design.output.front.toDataURL();
-		var teams = JSON.stringify(design.teams);
-		var productColor = design.exports.productColor();
+		var front = design.output.front.toDataURL();
+		var back = design.output.back.toDataURL();
 		var data = {
-			"image":image, 
+		    'front': front,
+            'back':back,
 			'vectors':vectors, 
-			'vectors':vectors, 
-			'teams':teams,
 			'fonts': design.fonts,
-			'product_id':product_id,
+			'product_id':app.state.product.id,
 			'design_id':design.design_id,
 			'design_file':design.design_file,
 			'designer_id':design.designer_id,
 			'design_key':design.design_key,
-			'product_color':productColor
+			'product_color':app.state.color
 		};
-		
-		$.ajax({
-			url: baseURL + "user/saveDesign",
-			type: "POST",
-			contentType: 'application/json',
-			data: JSON.stringify(data),
-		}).done(function( msg ) {
-			var results = eval ("(" + msg + ")");
-			
-			if (results.error == 1)
-			{
-				alert(results.msg);
-			}
-			else
-			{
-				design.design_id = results.content.design_id;
-				design.design_file = results.content.design_file;
-				design.designer_id = results.content.designer_id;
-				design.design_key = results.content.design_key;
-				design.productColor = productColor;
-				design.product_id = product_id;
-				var linkEdit 	= baseURL + 'design/index/'+product_id+'/'+productColor+'/'+results.content.design_key;			
-				$('#link-design-saved').val(linkEdit);
-				$('#dg-share').modal();				
-			}
-			
-			$('#dg-mask').css('display', 'none');
-			$('#dg-designer').css('opacity', '1');
-		});		
+		app.state.design = data;
+	    return data;
 	},
-	save: function(){
-		if (user_id == 0)
-		{
-			$('#f-login').modal();
-		}
-		else
-		{	
-			if (user_id == design.designer_id)
-			{
-				$( "#save-confirm" ).dialog({
-					resizable: false,			  
-					height: 200,
-					width: 350,
-					closeText: 'X',
-					modal: true,
-					buttons: [
-						{
-							text: "Save New",
-							icons: {
-								primary: "ui-icon-heart"
-							},
-							click: function() {
-								$( this ).dialog( "close" );
-								$('#dg-mask').css('display', 'block');
-								$('#dg-designer').css('opacity', '0.3');
-								
-								design.design_id = 0;								
-								design.design_key = '';
-								design.design_file = '';								
-								design.svg.items('front', design.saveDesign);
-							}
-						},
-						{
-							text: "Update",
-							icons: {
-								primary: "ui-icon-heart"
-							},
-							click: function() {
-								$( this ).dialog( "close" );
-								$('#dg-mask').css('display', 'block');
-								$('#dg-designer').css('opacity', '0.3');
-								design.svg.items('front', design.saveDesign);
-							}
-						}
-					]
-				});
-			}
-			else
-			{
-				$('#dg-mask').css('display', 'block');
-				$('#dg-designer').css('opacity', '0.3');
-				design.svg.items('front', design.saveDesign);
-			}		
-		}
+	save: function(callback){
+	    design.svg.items('front', function () {
+	        design.svg.items('back', function() {
+	            var data = design.saveDesign();
+                if (typeof callback === 'function') {
+                    callback(data);
+                }
+	        });
+	    });
 	},
 	mask: function(load){
 		if (load == true){
@@ -3476,7 +3368,7 @@ var design={
 		},
 		vector: function(){
 			var vectors = {};
-			var postions = ['front', 'back', 'left', 'right'];
+			var postions = ['front', 'back'];
 			$.each(postions, function(i, postion){
 				if ($('#view-'+postion +' .product-design').html().length > 10)
 				{					

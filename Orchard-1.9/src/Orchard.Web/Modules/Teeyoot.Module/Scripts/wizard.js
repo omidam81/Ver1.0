@@ -229,6 +229,19 @@
 
 }
 
+function setDesign() {
+    if (!app.state.pos) {
+        var src = assetsUrls.products + 'product_type_' + app.state.product.id + '_front_small.png';
+        $('#primary .thumbnail_wrapper img').attr('src', src).css('background-color', app.state.color.value);
+        $('#primary .swatch2').css('background-color', app.state.color.value);
+        design.save(function(data) {
+            $('#prodFront').attr('src', data.front);
+            $('#prodBack').attr('src', data.back);
+            $('#prodFront3').attr('src', data.front);
+            $('#prodBack3').attr('src', data.back);
+        });
+    }
+}
 
 
 function initProducts() {
@@ -319,10 +332,10 @@ function colorInit() {
 }
 
 function NextPage() {
-    if (app.state.pos == -1) {
+    if (app.state.pos === -1) {
         Design();
     }
-    else if (app.state.pos == -2) {
+    else if (app.state.pos === -2) {
         Goal();
     }
     else
@@ -330,24 +343,30 @@ function NextPage() {
 }
 
 function Design() {
-    document.getElementById('goal').className = "flow-step";
-    document.getElementById('design').className = "flow-step active";
-    document.getElementById('description').className = "flow-step";
-    app.state.pos = 0;
-    $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
+    slideTo(1);
 }
 
 function Goal() {
     colorInit();
     initProducts();
-    document.getElementById('goal').className = "flow-step active";
-    document.getElementById('design').className = "flow-step";
-    document.getElementById('description').className = "flow-step";
-    app.state.pos = -1;
-    $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
-
+    slideTo(2);
 }
 
+var slideSteps = ['design', 'goal', 'description'];
+var slideTimeout;
+
+function slideTo(slideNumber) {
+    if (slideTimeout) {
+        window.clearTimeout(slideTimeout);
+    }
+    setDesign();
+    slideTimeout = window.setTimeout(function() {
+        $('.flow-step.active').removeClass('active');
+        $('#' + slideSteps[slideNumber - 1]).addClass('active');
+        app.state.pos = 1 - slideNumber;
+        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
+    }, 200);//delay to render design
+}
 
 function slide() {
     app.state.w = $(window).width();
@@ -358,52 +377,15 @@ function slide() {
     slides.css({ width: app.state.w + 'px' });
     app.state.pos = 0;
 
-
-
     $('.Left').click(function () {
-        // app.state.pos--;
-        document.getElementById('goal').className = "flow-step";
-        document.getElementById('design').className = "flow-step";
-        document.getElementById('description').className = "flow-step active";
-        app.state.pos = -2;
-        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
-
+        slideTo(3);
     });
 
-    $('#nextPage').click(function () {
-        colorInit();
-        initProducts();
-        document.getElementById('goal').className = "flow-step active";
-        document.getElementById('design').className = "flow-step";
-        document.getElementById('description').className = "flow-step";
-        app.state.pos = -1;
-        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
-    });
+    $('#nextPage, #goal').click(Goal);
 
-
-    $('#design').click(function () {
-        document.getElementById('goal').className = "flow-step";
-        document.getElementById('design').className = "flow-step active";
-        document.getElementById('description').className = "flow-step";
-        app.state.pos = 0;
-        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
-    });
-    $('#goal').click(function() {
-        colorInit();
-        initProducts();
-        document.getElementById('goal').className = "flow-step active";
-        document.getElementById('design').className = "flow-step";
-        document.getElementById('description').className = "flow-step";
-        app.state.pos = -1;
-        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
-
-    });
-    $('#description').click(function Description() {
-        document.getElementById('goal').className = "flow-step";
-        document.getElementById('design').className = "flow-step";
-        document.getElementById('description').className = "flow-step active";
-        app.state.pos = -2;
-        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
+    $('#design').click(Design);
+    $('#description').click(function () {
+        slideTo(3);
     });
 }
 function onChangeTrackBar() {

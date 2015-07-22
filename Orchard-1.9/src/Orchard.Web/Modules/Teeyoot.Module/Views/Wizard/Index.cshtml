@@ -88,7 +88,7 @@
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
                     "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-
+                    "Design": JSON.stringify(app.state.design),
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
                     'BackSideByDefault': backSideByDefault
                 }),
@@ -140,7 +140,7 @@
 
 
 <div class='lab-steps flow-steps' style="width:60%; margin-left: 20%;">
-    <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
+    <div id="design" class='flow-step active' tee-step-tab-select-title='item'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 1
@@ -160,7 +160,7 @@
             </div>
         </a>
     </div>
-    <div id="goal" onclick="slide()" class='flow-step' tee-step-tab-select-title='goal'>
+    <div id="goal" class='flow-step' tee-step-tab-select-title='goal'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 2
@@ -188,7 +188,7 @@
             </div>
         </a>
     </div>
-    <div id="description" onclick="slide()" class='flow-step' tee-step-tab-select-title='detail'>
+    <div id="description" class='flow-step' tee-step-tab-select-title='detail'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 3

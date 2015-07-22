@@ -156,7 +156,7 @@ namespace Teeyoot.Module.Services
 
         private void FillWithFakeData(LaunchCampaignData data)
         {
-            data.Design = "{ some data in Json }";
+            data.Design = data.Design??"{ \"key\":\"some data in Json\" }";
 
             var prodCount = new Random().Next(1, 3);
 
