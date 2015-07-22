@@ -35,6 +35,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 campaignSummaries.Add(new CampaignSummary
                 {
+                    Alias = c.Alias,
                     EndDate = c.EndDate,
                     Goal = c.ProductCountGoal,
                     Id = c.Id,
@@ -42,6 +43,7 @@ namespace Teeyoot.Dashboard.Controllers
                     Sold = c.ProductCountSold,
                     StartDate = c.StartDate,
                     Status = c.CampaignStatusRecord,
+                    FirstProductId = c.Products[0].Id,
                     Profit = _orderService.GetProductsOrderedOfCampaign(c.Id)
                                 .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                                 .Sum(entry => (int?)entry.Profit) ?? 0

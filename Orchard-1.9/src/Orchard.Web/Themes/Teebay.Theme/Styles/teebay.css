@@ -115,6 +115,10 @@
     display: -webkit-flex;
     display: flex;
 }
+.group-control label {
+    margin-left:15px;
+    margin-right:5px;
+}
 .zone-header {
     display: -webkit-box;
     display: -moz-box;

@@ -25,6 +25,19 @@ var toggleMenu = function () {
     $('.fa-angle-right').toggleClass('hidden');
 }
 
+$(window).scroll(function (event) {
+    var yOffset = window.pageYOffset;
+    var windowHeight = window.innerHeight;
+    var footer = $('.tb-layout-footer')[0];
+    var footerOffsetTop = footer.offsetTop;
+
+    if (windowHeight + yOffset > footerOffsetTop) {
+        $(".collapse-button").removeClass("fixed");
+    } else {
+        $(".collapse-button").addClass("fixed");
+    }
+});
+
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1;
 if (isAndroid) {
