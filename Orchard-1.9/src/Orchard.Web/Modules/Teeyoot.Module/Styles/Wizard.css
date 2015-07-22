@@ -391,6 +391,18 @@ span.number {
  }
 
 
+.modWind {
+  background-color: white;
+  width: 560px;
+  top: 25%;
+  left: 35%;
+  border: 1px solid #999;
+  height: 20%;
+  border-radius: 6px;
+}
+
+
+
 @media all and (max-width: 1450px) {
     .ssp_pricing {
         margin-left: -5%;
@@ -695,6 +707,12 @@ input[type=range] {
         background-image: linear-gradient(#66b52d,#4cab09);*/
         border: none;
     }
+
+@-moz-document url-prefix() {
+    #wizardSecondSlide{
+        margin-left:0% !important;
+    }
+}
 
 /*#designer .button--transaction:active, #designer .button--transaction.active {
         background: #648e34;

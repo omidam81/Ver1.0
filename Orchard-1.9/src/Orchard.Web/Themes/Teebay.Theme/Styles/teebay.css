@@ -108,7 +108,13 @@
 
 .zone-before-main {
 }
-
+.group-control {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
 .zone-header {
     display: -webkit-box;
     display: -moz-box;
@@ -248,7 +254,7 @@
     }
 
     .tb-search-form input[type=text] {
-        height: 28px;
+        height: 27px;
         /*width: 88%;*/
         float: left;
         border: 0;

@@ -40,6 +40,21 @@ namespace Teeyoot.Module.Controllers
         [ValidateAntiForgeryToken]
         public HttpStatusCodeResult LaunchCampaign(LaunchCampaignData data)
         {
+            if (string.IsNullOrWhiteSpace(data.CampaignTitle))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn Title can't be empty");
+            }
+
+            if (string.IsNullOrWhiteSpace(data.Description))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn Description can't be empty");
+            }
+
+            if (string.IsNullOrWhiteSpace(data.Alias))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't be empty");
+            }
+
             try
             {
                 var campaign = _campaignService.CreateNewCampiagn(data);

@@ -1751,6 +1751,7 @@ input[type="submit"].button-cta, button.button__cta {
     background-image: -webkit-linear-gradient(#7ac445, #5eba1c);
     background-image: linear-gradient(#7ac445,#5eba1c);
     border: 1px solid #50ab0f;
+    background: #4BB232 none repeat scroll 0% 0% !important;
 }
 
     .button--transaction:hover, .button--transaction.hover {
@@ -1760,6 +1761,7 @@ input[type="submit"].button-cta, button.button__cta {
         background-image: -webkit-linear-gradient(#66b52d, #4cab09);
         background-image: linear-gradient(#66b52d,#4cab09);
         border: 1px solid #419c00;
+        background: #66b52d none repeat scroll 0% 0% !important;
     }
 
     .button--transaction:active, .button--transaction.active {
@@ -4825,12 +4827,14 @@ thead .product__size_chart__size_label {
 .share__btn--pinterest {
     background-color: #c8232c;
 }
-
+.share__btn{
+    height:46px!important;
+}
 .share__btn {
     border-radius: 3px;
     color: white;
     display: block;
-    padding: .4rem 1rem .2rem;
+    /*padding: .4rem 1rem .2rem;*/
 }
 
     .share__btn:hover {
@@ -4839,7 +4843,7 @@ thead .product__size_chart__size_label {
 
 @media all and (min-width: 980px) {
     .share__btn {
-        padding: .4rem 1rem 0;
+        /*padding: .4rem 1rem 0;*/
     }
 }
 
@@ -5235,10 +5239,10 @@ thead .product__size_chart__size_label {
 }
 
 .flip-button {
-    padding: 0.5rem 1.4rem;
+    /*padding: 0.5rem 1.4rem;*/
     line-height: 1.4rem;
     border: 1px solid #6c7478;
-    background: white;
+    /*background: white;*/
     color: #6c7478;
     display: inline-block;
     text-align: center;
@@ -5256,14 +5260,14 @@ thead .product__size_chart__size_label {
 .flip-button-back {
     /*border-radius: 0 5px 5px 0;
     margin-left: -5px;*/
-    border-radius: 100px 100px 100px 100px;
+    border-radius: 50px 50px 50px 50px;
     height: 60px;
     width: 60px;
 }
 
 .flip-button-front {
     /*border-radius: 5px 0 0 5px;*/
-    border-radius: 100px 100px 100px 100px;
+    border-radius: 50px 50px 50px 50px;
     height: 60px;
     width: 60px;
 }
@@ -5345,7 +5349,7 @@ ul, ol {
 .precheckout_items_table__item {
     line-height: 1;
     min-width: 5rem;
-    padding: 1.067rem .5rem 0 0;
+    padding: 15px 5px 0 0;
     width: 5rem;
 }
 
@@ -5372,10 +5376,13 @@ td {
 .precheckout_items_table__item--image img {
     max-height: 2.667rem;
 }
-
+input{
+     vertical-align: -webkit-baseline-middle;
+}
 .precheckout_items_table__item--qty {
     max-width: 3rem;
     min-width: 3rem;
+     vertical-align: -webkit-baseline-middle;
 }
 
 .precheckout_items_table__item--size {
@@ -5557,11 +5564,14 @@ td {
         border-color: #ed673e !important;
     }
 
-    .form__textfield.form__textfield--large, .form__textfield.form__textarea--large, .form__textarea.form__textfield--large, .form__textarea.form__textarea--large {
+     .form__textfield.form__textarea--large, .form__textarea.form__textfield--large, .form__textarea.form__textarea--large {
         margin-bottom: 1rem;
         width: 100%;
     }
-
+    .form__textfield.form__textfield--large{
+         margin-bottom: 0!important;
+         width: 100%;
+    }
     .form__textfield.form__textfield--last, .form__textfield.form__textarea--last, .form__textfield.form__textfield--no-margin, .form__textarea.form__textfield--last, .form__textarea.form__textarea--last, .form__textarea.form__textfield--no-margin {
         margin-bottom: 0;
     }
@@ -6219,4 +6229,55 @@ td {
 
 .tb-search-form input[type=text] {
     height: 27px!important;
+}
+@media all and (max-width: 500px) {
+    .menu-anonimous-menu{
+        width: 60%!important;
+    }
+
+    .menu-for-user{
+        width: 70%!important;
+    }
+    .menu-authenticated-menu{
+        width: 70%!important;
+    }
+    .share__btn{
+    height:36px!important;
+}
+}
+    
+@media all and (max-width: 400px) {
+     .menu-anonimous-menu{
+        width: 70%!important;
+    }
+
+    .menu-for-user{
+        width: 80%!important;
+    }
+    .menu-authenticated-menu{
+        width: 80%!important;
+    }
+
+    
+}
+
+.menu-for-user {
+    height: 64px !important;
+}
+
+
+.widget-usermenu .menu-user-menu {
+  margin-left: -33px!important;
+  margin-right: -14px!important;
+}
+
+    .form__textfield.form__textfield--large{
+         margin-bottom: 0!important;
+         width: 100%;
+    }
+    #js-precheckout-line-item td{
+    vertical-align:middle!important;
+}
+    td, tr{
+   vertical-align: middle!important;
 }

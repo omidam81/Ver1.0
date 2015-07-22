@@ -66,12 +66,86 @@
 
 <div class="box">
     <div class="box-header">
-        <div></div>
+        <div class="group-control">
+            <input type="text" placeholder="Search by filter" />
+            <select></select>
+            <select></select>
+        </div>
     </div>
-    @foreach (var campaign in Model.Campaigns)
+
+
+
+    <div class="full_width_cards__container">
+        <div class="card" data-id="2609941">
+            <div class="card__image_container">
+                <img alt="dsfdsaf" 
+                     class="main_campaign_image campaign-image shirtFront front shirtSide--show" 
+                     data-zoom-image="//vangogh.teespring.com/shirt_pic/2609941/2886437/369/6512/756x900/front.jpg?v=2015-07-19-16-32" 
+                     data-zoom="//vangogh.teespring.com/shirt_pic/2609941/2886437/369/6512/front.jpg?v=2015-07-19-16-32" 
+                     src="//vangogh.teespring.com/shirt_pic/2609941/2886437/369/6512/front.jpg?v=2015-07-19-16-32">
+            </div>
+
+            <div class="card__options_container">
+                <ul class="campaign_options__list">
+                    <li class="options__item options__item_view">
+                        <a class="option__link" href="/dsfdsaf"><i class="option__icon ts-icon-view"></i>
+                            <div class="option__name">View</div>
+                        </a>
+                    </li>
+                    <li class="options__item" data-tooltip="Edit">
+                        <a class="option__link campaign__edit_link" href="/campaigns/2609941/edit">
+                            <i class="option__icon ts-icon-edit"></i>
+                            <div class="option__name">Edit</div>
+                        </a>
+                    </li>
+                    <li class="options__item" data-tooltip="Settings">
+                        <a class="option__link" href="/dashboard/campaigns/2609941">
+                            <i class="option__icon ts-icon-settings"></i>
+                            <div class="option__name">Settings</div>
+                        </a>
+                    </li>
+                    <li class="options__item" data-tooltip="Duplicate">
+                        <a class="option__link" data-disable-with="☃" data-method="post" href="/campaigns/2609941/duplicate" rel="nofollow">
+                            <i class="option__icon ts-icon-copy"></i>
+                            <div class="option__name">Duplicate</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card__progress_container">
+                <div class="progress_bar">
+                    <div class="progress_bar__completed false" style="width: 0.5%">
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card__campaign_profit">
+                <span class="amount__not_available">N/A</span>
+            </div>
+        
+            <div class="card__content_container">
+                <div class="card__campaign_stats">
+                    <div class="card__sold">0 / 50 sold</div>
+
+                    <div class="card__campaign_time">
+                        <abbr class="campaign_time__status" title="07/27/15">5d</abbr>
+                        <div class="campaign_time__title">remaining</div>
+                    </div>
+                </div>
+            
+                <h1 class="card__title"><a href="/dsfdsaf" title="dsfdsaf">dsfdsaf</a></h1>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @foreach (var c in Model.Campaigns)
     {
         <div class="campaign-item">
-
+            @c.Name - @c.Profit
         </div>
     }
 </div>

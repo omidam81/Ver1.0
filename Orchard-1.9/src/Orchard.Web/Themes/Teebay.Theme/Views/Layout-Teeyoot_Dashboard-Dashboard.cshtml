@@ -16,6 +16,7 @@
     Style.Include("site.css");
     Style.Include("teebay.css");
     Style.Include("teeyoot.dashboard.css");
+    Style.Include("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
     /* Some useful shortcuts or settings
     ***************************************************************/
@@ -67,7 +68,7 @@
         </header>
     }
     <div class="tb-layout-main-container">
-        <div class="group tb-layout-main">
+        
             @if (Model.AsideFirst != null)
             {
                 <aside class="tb-aside-first group">
@@ -82,7 +83,7 @@
                     </div>
                 }
             </div>
-        </div>
+       
     </div>
 
     <div class="tb-layout-footer group">
@@ -127,4 +128,20 @@
 @{ 
     Script.Require("JQuery").AtFoot();
     Script.Include("teebay.js").AtFoot();
+}
+
+@using (Script.Foot())
+{
+    <script>
+        var lastScrollTop = 0;
+        $(window).scroll(function (event) {
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop) {
+                $(".collapse-button").removeClass("fixed");
+            } else if (st === 0) {
+                $(".collapse-button").addClass("fixed");
+            }
+            lastScrollTop = st;
+        });
+    </script>
 }
