@@ -119,7 +119,7 @@
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
                     "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-
+                    "Design": JSON.stringify(app.state.design),
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
                     'BackSideByDefault': backSideByDefault, "Tags":tags
                 }),
@@ -171,7 +171,7 @@
 
 
 <div class='lab-steps flow-steps' style="width:60%; margin-left: 20%;">
-    <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
+    <div id="design" class='flow-step active' tee-step-tab-select-title='item'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 1
@@ -191,7 +191,7 @@
             </div>
         </a>
     </div>
-    <div id="goal" onclick="slide()" class='flow-step' tee-step-tab-select-title='goal'>
+    <div id="goal" class='flow-step' tee-step-tab-select-title='goal'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 2
@@ -219,7 +219,7 @@
             </div>
         </a>
     </div>
-    <div id="description" onclick="slide()" class='flow-step' tee-step-tab-select-title='detail'>
+    <div id="description" class='flow-step' tee-step-tab-select-title='detail'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 3
@@ -636,6 +636,7 @@
                             <div id="card" style="margin-right:30px">
                                 <div class="front">
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                    <img style="position:absolute" id="prodFront_d" src="">
                                     <div id="butt1" style="text-align:center; margin-top:-60px !important;">
                                         <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                         <div class="flip-button flip-button-back-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -643,6 +644,7 @@
                                 </div>
                                 <div class="back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                    <img style="position:absolute" id="prodBack_d" src="">
                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                         <div class="flip-button flip-button-front-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                         <div class="flip-button flip-button-back-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -813,6 +815,7 @@
                                                                     <div id="card3" style="margin-right:30px">
                                                                         <div class="front">
                                                                             <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                            <img style="position:absolute" id="prodFront3_d" src="">
                                                                             <div id="butt1" style="text-align:center; margin-top:-60px !important;">
                                                                                 <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                                                                 <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -820,6 +823,7 @@
                                                                         </div>
                                                                         <div class="back">
                                                                             <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                            <img style="position:absolute" id="prodBack3_d" src="">
                                                                             <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                                                 <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                                                                 <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>

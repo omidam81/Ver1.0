@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Teeyoot.Module.Models
 {
@@ -16,7 +17,7 @@ namespace Teeyoot.Module.Models
         public bool BackSideByDefault { get; set; }
 
         // needed as well
-
+        [AllowHtml]
         public string Design { get; set; }
         public string[] Tags { get; set; }
         public CampaignProductData[] Products { get; set; }

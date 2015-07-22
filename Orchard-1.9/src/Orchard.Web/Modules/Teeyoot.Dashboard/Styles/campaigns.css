@@ -2,31 +2,215 @@
     padding: 15px 20px 15px 20px;
     line-height: 40px;
 }
+
 .period-selector {
     text-align: center;
 }
+
 .overview-period {
-    padding:0 15px 0 18px;
+    padding: 0 15px 0 18px;
     border-left: 1px solid #babfbf;
     font-size: 12px;
     color: #babfbf;
-    cursor:pointer;
+    cursor: pointer;
 }
-.overview-period.first {
-    border:0;
-}
-.overview-period.current,
-.overview-period:hover {
-    color: #e64700;
-}
+
+    .overview-period.first {
+        border: 0;
+    }
+
+    .overview-period.current,
+    .overview-period:hover {
+        color: #e64700;
+    }
+
 .overview-for-period {
     display: none;
 }
-.overview-for-period.selected {
-    display: block;
+
+    .overview-for-period.selected {
+        display: block;
+    }
+
+    .overview-for-period span {
+        font-size: 26px;
+        margin-right: 10px;
+        color: #000;
+    }
+
+.campaigns-list-container {
+    display: table;
+    margin-bottom: 50px;
 }
-.overview-for-period span {
-    font-size: 26px;
-    margin-right:10px;
-    color:#000;
+
+    .campaigns-list-container > div {
+        padding-left: 30px;
+    }
+
+.campaign-card {
+    float: left;
+    min-width: 250px;
+    width: 18%;
+    margin: 10px 10px 25px 10px;
+    height: 300px;
+}
+.campaign-card-image a {
+    color:#fff;
+    text-decoration:none;
+}
+.campaign-card-image {
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    min-width: 250px;
+    height: 85%;
+    margin-bottom: 5px;
+}
+.campaign-card-image:hover {
+    background: rgba(41,48,51,1);
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    opacity:.5;
+    color:#fff;
+}
+.campaign-card-image:hover .campaign-card-profit {
+    background:none;
+}
+
+@media all and (max-width: 1670px) {
+    .campaign-card {
+        width: 23%;
+    }
+}
+
+@media all and (max-width: 1390px) {
+    .campaign-card {
+        width: 30%;
+    }
+
+    .campaign-card-image {
+        background-size: 65%;
+    }
+}
+
+@media all and (max-width: 1120px) {
+    .campaign-card {
+        width: 45%;
+    }
+
+    .campaign-card-image {
+        background-size: 60%;
+    }
+}
+
+@media all and (max-width: 980px) {
+    .campaign-card {
+        width: 30%;
+    }
+
+    .campaign-card-image {
+        background-size: 65%;
+    }
+}
+
+@media all and (max-width: 870px) {
+    .campaign-card {
+        width: 45%;
+    }
+
+    .campaign-card-image {
+        background-size: 60%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .campaign-card {
+        width: 75%;
+        margin: 0 auto;
+        float: none;
+        margin-bottom: 30px;
+    }
+
+    .campaign-card-image {
+        background-size: 50%;
+    }
+
+    .campaigns-list-container {
+        margin-top:20px;
+        display: block;
+    }
+
+        .campaigns-list-container > div {
+            padding-left: 0;
+        }
+}
+
+@media all and (max-width: 530px) {
+    .campaign-card-image {
+        background-size: 57%;
+    }
+
+    .overview-period {
+        padding: 0 8px 0 10px;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .campaign-card-image {
+        background-size: 65%;
+    }
+}
+
+.campaign-card-progress-bar {
+    background-color: #e8eced;
+    height: 9px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.campaign-card-progress-bar-completed {
+    background-color: #ff4f00;
+    height: 9px;
+    border-radius: 5px;
+    float: left;
+}
+
+.campaign-card-sold {
+    float: left;
+}
+
+.campaign-card-left {
+    float: right;
+}
+
+.campaign-card-info {
+    display: table;
+    width: 100%;
+}
+
+.campaign-card-title {
+    line-height: 15px;
+}
+
+    .campaign-card-title a {
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .campaign-card-title a:hover {
+            text-decoration: none;
+            color: #e64700;
+        }
+
+.campaign-card-links {
+    float: right;
+}
+
+.campaign-card-profit {
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #6c7478;
+    float: left;
 }
