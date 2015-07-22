@@ -102,6 +102,7 @@ namespace Teeyoot.Account.Controllers
                 if (user != null)
                 {
                     _authenticationService.SignIn(user, false);
+                    return this.RedirectLocal(returnUrl);
                 }
             }
 
@@ -118,6 +119,7 @@ namespace Teeyoot.Account.Controllers
             if (user != null)
             {
                 _authenticationService.SignIn(user, viewModel.RememberMe);
+                return this.RedirectLocal(returnUrl);
             }
 
             return Redirect("~/Login");

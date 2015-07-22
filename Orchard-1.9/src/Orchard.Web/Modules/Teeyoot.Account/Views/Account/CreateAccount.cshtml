@@ -1,6 +1,6 @@
 ﻿@model Teeyoot.Account.ViewModels.CreateAccountViewModel
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account")))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]})))
 {
     <fieldset>
         <legend>@T("Create a new account")</legend>
