@@ -16,7 +16,7 @@
             </div>
             <div class="categories">
                 <ul class="menu menu-tags">
-                    @foreach (CampaignCategoriesPartRecord categ in Model.CampCategList)
+                    @foreach (var categ in Model.CampCategList)
                     {
                         <li>
                             <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
@@ -35,7 +35,7 @@
             </div>
             <div class="categories">
                 <ul class="menu menu-tags">
-                    @foreach (CampaignCategoriesPartRecord categ in Model.CampCategList)
+                    @foreach (var categ in Model.CampCategList)
                     {
                         <li>
                             <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="categories">
                             <ul class="menu menu-tags">
-                                @foreach (CampaignCategoriesPartRecord categ in Model.CampCategList)
+                                @foreach (var categ in Model.CampCategList)
                                 {
                                     <li>
                                         <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>

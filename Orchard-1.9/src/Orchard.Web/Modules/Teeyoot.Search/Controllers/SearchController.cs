@@ -66,7 +66,7 @@ namespace Teebay.Search.Controllers
             categoriesName = categoriesName.Trim();
 
             List<CampaignCategoriesRecord> campCategList = _campCategService.GetAllCategories().ToList();
-            CampaignCategoriesRecord findCampCateg = campCategList.Find(x => x.Name == categoriesName);
+            CampaignCategoriesRecord findCampCateg = campCategList.Find(x => x.Name.ToLower() == categoriesName.ToLower());
             bool notFoundCateg = false;
             if (findCampCateg != null)
             {
