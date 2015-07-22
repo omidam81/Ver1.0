@@ -110,7 +110,6 @@
     <Compile Include="ViewModels\GoogleOAuthAuthViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Localization\en-US\orchard.module.po" />
     <Content Include="Placement.info" />
     <Content Include="Views\EditorTemplates\Parts.Google.SiteSettings.cshtml" />
     <Content Include="Views\Web.config" />

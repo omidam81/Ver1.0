@@ -67,7 +67,6 @@
     <Compile Include="ViewModels\LogOnDummyModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Localization\en-US\orchard.module.po" />
     <Content Include="Placement.info" />
     <Content Include="Views\Parts\QuickLogOnWidget.cshtml" />
     <Content Include="Views\LogOnDummy.cshtml" />
