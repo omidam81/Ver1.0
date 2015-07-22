@@ -73,6 +73,7 @@
     background-repeat: no-repeat;
     opacity:.5;
     color:#fff;
+    transition:opacity 300ms;
 }
 .campaign-card-image:hover .campaign-card-profit {
     background:none;
@@ -131,7 +132,9 @@
         float: none;
         margin-bottom: 30px;
     }
-
+    .group-control.filters {
+        display:block;
+    }
     .campaign-card-image {
         background-size: 50%;
     }

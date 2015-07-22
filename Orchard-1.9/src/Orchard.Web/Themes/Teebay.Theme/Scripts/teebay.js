@@ -25,6 +25,20 @@ var toggleMenu = function () {
     $('.fa-angle-right').toggleClass('hidden');
 }
 
+var toggleMobileMenu = function () {
+    var el = $('.widget-SellerDashboardMenu')[0];
+
+    if ($(el).hasClass('shown')) {
+        $(el).removeClass('shown');
+        $('.menu-opener').removeClass('hidden');
+        $('.menu-closer').removeClass('shown');
+    } else {
+        $('.menu-closer').addClass('shown');
+        $('.menu-opener').addClass('hidden')
+        $(el).addClass('shown');
+    }
+}
+
 $(window).scroll(function (event) {
     var yOffset = window.pageYOffset;
     var windowHeight = window.innerHeight;

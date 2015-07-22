@@ -4,7 +4,10 @@
     Style.Include("campaigns.css");
 }
 
-<div class="dashboard-section-title">@T("Campaigns")</div>
+<div class="dashboard-section-title">@T("Campaigns") 
+    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+</div>
 
 <div class="box">
     <div class="box-header">
@@ -66,7 +69,7 @@
 
 <div class="box">
     <div class="box-header">
-        <div class="group-control">
+        <div class="group-control filters">
             <input type="text" placeholder="Search by filter" />
             <label>@T("Sort By")</label>
             <select class="campaign-sort">
