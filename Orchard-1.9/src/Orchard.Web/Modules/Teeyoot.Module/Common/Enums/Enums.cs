@@ -18,4 +18,13 @@ namespace Teeyoot.Module.Common.Enums
         Active = 4,
         AllTime = 8
     }
+
+    public enum CampaignSortOrder
+    {
+        StartDate = 0,
+        EndDate,
+        Sales,
+        Reservations,
+        Name
+    }
 }

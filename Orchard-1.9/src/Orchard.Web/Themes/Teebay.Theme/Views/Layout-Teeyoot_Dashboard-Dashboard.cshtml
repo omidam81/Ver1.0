@@ -129,19 +129,3 @@
     Script.Require("JQuery").AtFoot();
     Script.Include("teebay.js").AtFoot();
 }
-
-@using (Script.Foot())
-{
-    <script>
-        var lastScrollTop = 0;
-        $(window).scroll(function (event) {
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop) {
-                $(".collapse-button").removeClass("fixed");
-            } else if (st === 0) {
-                $(".collapse-button").addClass("fixed");
-            }
-            lastScrollTop = st;
-        });
-    </script>
-}

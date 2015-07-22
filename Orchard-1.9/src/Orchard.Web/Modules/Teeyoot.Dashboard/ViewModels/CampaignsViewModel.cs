@@ -25,6 +25,8 @@ namespace Teeyoot.Dashboard.ViewModels
     {
         public int Id { get; set; }
 
+        public int FirstProductId { get; set; }
+
         public string Name { get; set; }
 
         public DateTime EndDate { get; set; }
@@ -36,6 +38,8 @@ namespace Teeyoot.Dashboard.ViewModels
         public int Sold { get; set; }
 
         public double Profit { get; set; }
+
+        public string Alias { get; set; }
 
         public CampaignStatusRecord Status { get; set; }
     }
