@@ -18,9 +18,10 @@ namespace Teeyoot.Account.Services
     public class TeeyootFacebookOAuthService : IFacebookOAuthService
     {
         public const string TokenRequestUrl =
-            "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}";
+            "https://graph.facebook.com/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}&scope=email";
 
-        public const string EmailRequestUrl = "https://graph.facebook.com/me?access_token={0}";
+        public const string EmailRequestUrl =
+            "https://graph.facebook.com/v2.4/me?access_token={0}&fields=email,verified";
 
         private readonly ITeeyootSocialLogOnService _teeyootSocialLogOnService;
         private readonly IEncryptionService _oauthHelper;
