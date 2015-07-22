@@ -4,11 +4,14 @@
     Style.Include("campaigns.css");
 }
 
-<div class="dashboard-section-title">@T("Campaigns")</div>
+<div class="dashboard-section-title">@T("Campaigns") 
+    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+</div>
 
 <div class="box">
     <div class="box-header">
-        <div class="dashboard-section-title">@T("Overview")</div>
+        <div class="box-header-title">@T("Overview")</div>
     </div>
 
     <div class="campaigns-overview-body">
@@ -66,84 +69,78 @@
 
 <div class="box">
     <div class="box-header">
-        <div>
+        <div class="group-control filters">
             <input type="text" placeholder="Search by filter" />
+            <label>@T("Sort By")</label>
+            <select class="campaign-sort">
+                @foreach (Teeyoot.Module.Common.Enums.CampaignSortOrder item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignSortOrder)))
+                {
+                    <option value="@item.ToString()">@T(item.ToString().SplitCamelCase())</option>   
+                }
+            </select>
+            <label>@T("Show")</label>
+            <select>
+                @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
+                {
+                    <option value="@item.ToString()">@T(item.ToString().SplitCamelCase())</option>
+                }
+                <option value="All">@T("All")</option>
+            </select>
         </div>
     </div>
 
-    <div class="full_width_cards__container">
-        <div class="card" data-id="2609941">
-            <div class="card__image_container">
-                <img alt="dsfdsaf" 
-                     class="main_campaign_image campaign-image shirtFront front shirtSide--show" 
-                     data-zoom-image="//vangogh.teespring.com/shirt_pic/2609941/2886437/369/6512/756x900/front.jpg?v=2015-07-19-16-32" 
-                     data-zoom="//vangogh.teespring.com/shirt_pic/2609941/2886437/369/6512/front.jpg?v=2015-07-19-16-32" 
-                     src="//vangogh.teespring.com/shirt_pic/2609941/2886437/369/6512/front.jpg?v=2015-07-19-16-32">
-            </div>
+    <div class="campaigns-list-container">
+        <div>
+            @foreach (var c in Model.Campaigns)
+            {
+                var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
+                
+                <div class="campaign-card">
 
-            <div class="card__options_container">
-                <ul class="campaign_options__list">
-                    <li class="options__item options__item_view">
-                        <a class="option__link" href="/dsfdsaf"><i class="option__icon ts-icon-view"></i>
-                            <div class="option__name">View</div>
-                        </a>
-                    </li>
-                    <li class="options__item" data-tooltip="Edit">
-                        <a class="option__link campaign__edit_link" href="/campaigns/2609941/edit">
-                            <i class="option__icon ts-icon-edit"></i>
-                            <div class="option__name">Edit</div>
-                        </a>
-                    </li>
-                    <li class="options__item" data-tooltip="Settings">
-                        <a class="option__link" href="/dashboard/campaigns/2609941">
-                            <i class="option__icon ts-icon-settings"></i>
-                            <div class="option__name">Settings</div>
-                        </a>
-                    </li>
-                    <li class="options__item" data-tooltip="Duplicate">
-                        <a class="option__link" data-disable-with="☃" data-method="post" href="/campaigns/2609941/duplicate" rel="nofollow">
-                            <i class="option__icon ts-icon-copy"></i>
-                            <div class="option__name">Duplicate</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                    <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/front.png')">
 
-            <div class="card__progress_container">
-                <div class="progress_bar">
-                    <div class="progress_bar__completed false" style="width: 0.5%">
+                        <div class="campaign-card-links">
+                            <span>
+                                <a href="#" title="@T("Edit")">
+                                    <i class="fa fa-pencil"></i>                             
+                                </a>
+                            </span>
+                            <span>
+                                <a href="#" title="@T("Duplicate")">
+                                    <i class="fa fa-files-o"></i>
+                                </a>
+                            </span>                                
+                        </div>
+
+                        <div class="campaign-card-profit">
+                            <span>@Model.Currency@c.Profit</span>
+                        </div>
+
                     </div>
-                </div>
-            </div>
-        
-            <div class="card__campaign_profit">
-                <span class="amount__not_available">N/A</span>
-            </div>
-        
-            <div class="card__content_container">
-                <div class="card__campaign_stats">
-                    <div class="card__sold">0 / 50 sold</div>
-
-                    <div class="card__campaign_time">
-                        <abbr class="campaign_time__status" title="07/27/15">5d</abbr>
-                        <div class="campaign_time__title">remaining</div>
+                   
+                    <div class="campaign-card-progress">
+                        <div class="campaign-card-progress-bar">
+                            <div class="campaign-card-progress-bar-completed" style="width:@(c.Sold * 100 / @c.Goal)%">
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="campaign-card-info">
+                        
+                        <div class="campaign-card-sold">@c.Sold / @c.Goal @T("sold")</div>
+
+                        <div class="campaign-card-left" title="@c.EndDate.ToString("dd.MM.yyyy")">
+                            <span>@(daysRemaining > 0 ? daysRemaining : c.EndDate.Subtract(DateTime.UtcNow).Hours)@(daysRemaining > 0 ? "d" : "h") @T("remaining")</span>
+                        </div>
+                                              
+                    </div>
+
+                    <div class="campaign-card-title"><a href="/@c.Alias" title="@c.Name">@c.Name</a></div>
                 </div>
-            
-                <h1 class="card__title"><a href="/dsfdsaf" title="dsfdsaf">dsfdsaf</a></h1>
-            </div>
+                
+            }
         </div>
     </div>
-
-
-
-
-    @foreach (var c in Model.Campaigns)
-    {
-        <div class="campaign-item">
-            @c.Name - @c.Profit
-        </div>
-    }
 </div>
 
 @using(Script.Foot())

@@ -48,6 +48,36 @@
         });
     </script>
     <script type="text/javascript">
+
+        var items = function (request, response) {
+            var result = new Array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetDetailTags", "Wizard"))",
+                data: { "filter": document.getElementById("inputTags").value },
+            success: function (data) {
+                for (var i = 0; i < data.length ; i++) {
+                    result[i] = data[i];  
+                }
+            },
+            });
+        response(result);
+
+        };
+
+
+        $("#inputTags").autocomplete({
+            minLength: 0,
+            source: items,
+            select: function (event, ui) {
+            },
+        })
+
+
+
+
         $('.textarea').wysihtml5();
         $(".flip-buttons").click(function () {
             var $elem = $("#view-front");
@@ -81,6 +111,7 @@
             var campaignLength = document.getElementById('length').value;
             var alias = document.getElementById('url').value;
             var backSideByDefault = document.getElementById('backdefaultside').checked;
+            var tags = document.getElementById("inputTags").value.split(" ");
             $.ajax({
                 async: false,
                 cache: false,
@@ -88,14 +119,14 @@
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
                     "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-
+                    "Design": JSON.stringify(app.state.design),
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
-                    'BackSideByDefault': backSideByDefault
+                    'BackSideByDefault': backSideByDefault, "Tags":tags
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
-                    } 
+                    }
                 },
                 error: function (data, status, resp) {
                     alert('Status: ' + data.status + '. Error message: ' + data.statusText);
@@ -140,7 +171,7 @@
 
 
 <div class='lab-steps flow-steps' style="width:60%; margin-left: 20%;">
-    <div id="design" onclick="slide()" class='flow-step active' tee-step-tab-select-title='item'>
+    <div id="design" class='flow-step active' tee-step-tab-select-title='item'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 1
@@ -160,7 +191,7 @@
             </div>
         </a>
     </div>
-    <div id="goal" onclick="slide()" class='flow-step' tee-step-tab-select-title='goal'>
+    <div id="goal" class='flow-step' tee-step-tab-select-title='goal'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 2
@@ -188,7 +219,7 @@
             </div>
         </a>
     </div>
-    <div id="description" onclick="slide()" class='flow-step' tee-step-tab-select-title='detail'>
+    <div id="description" class='flow-step' tee-step-tab-select-title='detail'>
         <a data-toggle='tab' style="text-decoration: none;">
             <span class='number'>
                 3
@@ -596,7 +627,7 @@
                 @*<button class="Left">NEXT PAGE</button>*@
             </div>
         </div>
-        <div class="Slide" style="width:30% !important; margin-left:2.5%; min-height:700px ">
+        <div id="wizardSecondSlide" class="Slide" style="width:30% !important; margin-left:2.5%; min-height:700px ">
             <div class="Content" id="Content2" style="margin-left:10%">
                 <table>
                     <tr>
@@ -605,6 +636,7 @@
                             <div id="card" style="margin-right:30px">
                                 <div class="front">
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                    <img style="position:absolute" id="prodFront_d" src="">
                                     <div id="butt1" style="text-align:center; margin-top:-60px !important;">
                                         <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                         <div class="flip-button flip-button-back-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -612,6 +644,7 @@
                                 </div>
                                 <div class="back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                    <img style="position:absolute" id="prodBack_d" src="">
                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                         <div class="flip-button flip-button-front-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                         <div class="flip-button flip-button-back-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -623,8 +656,9 @@
                         <td style="width:50%; vertical-align:top; position:relative;">
                             <label style="font-weight: bold;">Sales goal</label>
                             <div class="block">
-                                <input style="width:100%; background-color:#f5f7f7; border:none" type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
-
+                                <div style="display:block">
+                                    <input style="width:100%; background-color:#f5f7f7; height: 22px; border:none" type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
+                                </div>
 
                                 <div class="tipping-point-slider__points">
                                     <span class="tipping-point-slider__point" style="margin-left:1%">15</span>
@@ -676,11 +710,6 @@
                                     <div class="thumbnail_wrapper">
                                         <img id="minImg" style=" width: 100%;  height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
                                     </div>
-
-
-
-                                    @*<div class="ssp_metadata" data-reactid=".6.0.2.0.3.0.$0.1"><div class="ssp_vcent" data-reactid=".6.0.2.0.3.0.$0.1.0"><div data-reactid=".6.0.2.0.3.0.$0.1.0.0"><h4 class="ssp_heading" data-reactid=".6.0.2.0.3.0.$0.1.0.0.0">Teespring Premium Tee</h4></div></div><div class="ssp_color" data-reactid=".6.0.2.0.3.0.$0.1.1"><div class="fake-input color-picker standard designer-dropdown" title="Change color" data-reactid=".6.0.2.0.3.0.$0.1.1.0"><div class="swatch" title="White" style="background-color: rgb(255, 255, 255);" data-reactid=".6.0.2.0.3.0.$0.1.1.0.0"></div><div class="colors shirt-colors containertip" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1"><ul class="colors-in-use" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.0"></ul><ul data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2"><li data-value="#222222" data-texture="" class="shirt-color-sample" title="Black" style="background-color:#222222;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#222222"></li><li data-value="#ba393f" data-texture="" class="shirt-color-sample" title="Classic Red" style="background-color:#ba393f;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ba393f"></li><li data-value="#ca522f" data-texture="" class="shirt-color-sample" title="Deep Orange " style="background-color:#ca522f;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ca522f"></li><li data-value="#fcf58b" data-texture="" class="shirt-color-sample" title="Lemon Yellow " style="background-color:#fcf58b;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#fcf58b"></li><li data-value="#438d4e" data-texture="" class="shirt-color-sample" title="Kelly Green" style="background-color:#438d4e;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#438d4e"></li><li data-value="#0C1A2C" data-texture="" class="shirt-color-sample" title="New Navy" style="background-color:#0C1A2C;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#0C1A2C"></li><li data-value="#1e448b" data-texture="" class="shirt-color-sample" title="Deep Royal" style="background-color:#1e448b;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#1e448b"></li><li data-value="#6349a2" data-texture="" class="shirt-color-sample" title="Purple" style="background-color:#6349a2;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#6349a2"></li><li data-value="#ffffff" data-texture="" class="shirt-color-sample" title="White" style="background-color:#ffffff;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ffffff"></li><li data-value="#4099d0" data-texture="" class="shirt-color-sample" title="Heathered Bright Turquoise " style="background-color:#4099d0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#4099d0"></li><li data-value="#6486d0" data-texture="" class="shirt-color-sample" title="Heathered Royal " style="background-color:#6486d0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#6486d0"></li><li data-value="#ADB1B0" data-texture="" class="shirt-color-sample" title="Grey" style="background-color:#ADB1B0;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#ADB1B0"></li><li data-value="#abaaab" data-texture="" class="shirt-color-sample" title="Light Heather Grey " style="background-color:#abaaab;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#abaaab"></li><li data-value="#413c42" data-texture="" class="shirt-color-sample" title="Heathered Charcoal " style="background-color:#413c42;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#413c42"></li><li data-value="#192d2c" data-texture="" class="shirt-color-sample" title="Forest Green " style="background-color:#192d2c;" data-reactid=".6.0.2.0.3.0.$0.1.1.0.1.2.1:$#192d2c"></li></ul></div></div></div><div class="ssp_pricing" data-reactid=".6.0.2.0.3.0.$0.1.2"><input type="text" class="ssp_input price_per form__textfield" value="$15.00" data-reactid=".6.0.2.0.3.0.$0.1.2.0"><div class="ssp_profit" data-reactid=".6.0.2.0.3.0.$0.1.2.1"><span class="profit_per" data-reactid=".6.0.2.0.3.0.$0.1.2.1.0"><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.0.0">$6.31</span></span><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.1">&nbsp;</span><span data-reactid=".6.0.2.0.3.0.$0.1.2.1.2">profit/sale</span></div></div><span data-reactid=".6.0.2.0.3.0.$0.1.3"></span></div>*@
-
                                     <div class="ssp_metadata">
                                         <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
                                             <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teespring Premium Tee</h4>
@@ -742,43 +771,6 @@
                 </table>
             </div>
         </div>
-
-        @*<div class="clearfix control-group font-color-selection" style="width:1px">
-                <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
-                    <div class="swatch" title="" style="background-color:rgb(0,0,0);"></div>
-                    <div class="colors shirt-colors containertip">
-                        <!--containertip--open -->
-                        <!-- <ul class="colors-in-use"></ul>
-                        <hr class="color-picker__divider">-->
-                        <ul class="all-colors"></ul>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="Slide">
             <div class="Content">
                 <body class="page__designs_edit Chrome" data-hasqtip="0">
@@ -809,14 +801,10 @@
 
                             <section id="no-band" class="no-offset">
                                 <div class="container container_designer">
-                                    <div id="designer" class="clearfix" style="min-height: 600px; height: 811.9375px;">
+                                    <div id="designer" class="clearfix" style="min-height: 600px; height: 920.9375px;">
                                         <div class="step stepAnimation" id="step-details" style="transform: translateX(0px); opacity: 1;">
                                             <!--designer-details-error-->
                                             <div class="row">
-
-
-
-
                                                 <div class="span5">
                                                     <div id="product-quick-preview" class="product-preview">
                                                         <div class="product-view">
@@ -827,6 +815,7 @@
                                                                     <div id="card3" style="margin-right:30px">
                                                                         <div class="front">
                                                                             <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                            <img style="position:absolute" id="prodFront3_d" src="">
                                                                             <div id="butt1" style="text-align:center; margin-top:-60px !important;">
                                                                                 <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                                                                 <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -834,13 +823,13 @@
                                                                         </div>
                                                                         <div class="back">
                                                                             <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                            <img style="position:absolute" id="prodBack3_d" src="">
                                                                             <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                                                 <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
                                                                                 <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
                                                                 </td>
                                                             </div>
                                                             <!-- render flip buttons here -->
@@ -849,7 +838,7 @@
                                                 </div>
                                                 <div class="span7 aside">
                                                     <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
-                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { onsubmit="sendData();return false;", id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
+                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { onsubmit = "sendData();return false;", id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
                                                         {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                 <label class="has-under-text">Campaign title</label>
@@ -859,35 +848,38 @@
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
                                                                 <label class="has-under-text">Description</label>
                                                                 <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
-                                                                 <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>                                                              
+                                                                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>
                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                <p class="under-text show-tags-message">
-                                                                    <a class="show-tags nowrap">
-                                                                        @*  <span data-reactid=".6.0.2.0.0.0">Tag your campaign</span>*@
-                                                                        @*  <span data-reactid=".6.0.2.0.0.1"> »</span>*@
-                                                                    </a>
+                                                            <a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>
+
+                                                            <div class="teespring-well designer-well" id="tags" style="display:none">
+                                                                <label>Tags</label>
+                                                                <p>
+                                                                    <label class="display-label">
+                                                                        <span>Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)</span>
+                                                                    </label>
                                                                 </p>
+                                                                <input type="text" name="name" class="form__textfield " id="inputTags" value="">
                                                             </div>
-                                                            <div class="teespring-well designer-well campaign-length" data-reactid=".6.0.3">
-                                                                <label data-reactid=".6.0.3.0">Campaign length</label>
-                                                                <p class="under-text" data-reactid=".6.0.3.1">
-                                                                    <span id="arrive-by-estimate" data-reactid=".6.0.3.1.0">US orders will arrive 10-14 days after the end of the campaign.</span>
+
+                                                            <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
+                                                                <label>Campaign length</label>
+                                                                <p class="under-text">
+                                                                    <span id="arrive-by-estimate">US orders will arrive 10-14 days after the end of the campaign.</span>
                                                                     <span data-reactid=".6.0.3.1.1"> </span>
-                                                                    <a href="http://answers.teespring.com/customer/portal/articles/1710948" target="_new" class="nowrap" data-reactid=".6.0.3.1.2">
-                                                                        @*<span data-reactid=".6.0.3.1.2.0">Learn more</span><span data-reactid=".6.0.3.1.2.1"> »</span>*@
+                                                                    <a href="http://answers.teespring.com/customer/portal/articles/1710948" target="_new" class="nowrap">
                                                                     </a>
                                                                 </p>
                                                                 <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
                                                                     <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">
-                                                                        <span data-reactid=".6.0.3.2.$8.0">8 Days</span>
-                                                                        <span data-reactid=".6.0.3.2.$8.1"> </span>
-                                                                        <span data-reactid=".6.0.3.2.$8.2"> </span>
-                                                                        <span data-reactid=".6.0.3.2.$8.3">(</span><span data-reactid=".6.0.3.2.$8.4">Ending</span>
-                                                                        <span data-reactid=".6.0.3.2.$8.5"> </span><span data-reactid=".6.0.3.2.$8.6"> </span>
-                                                                        <span data-reactid=".6.0.3.2.$8.7">Thursday, July 23, 2015</span>
-                                                                        <span data-reactid=".6.0.3.2.$8.9">)</span>
+                                                                        <span>8 Days</span>
+                                                                        <span> </span>
+                                                                        <span> </span>
+                                                                        <span>(</span><span>Ending</span>
+                                                                        <span> </span><span> </span>
+                                                                        <span>Thursday, July 23, 2015</span>
+                                                                        <span>)</span>
                                                                     </option>
                                                                     <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 Days  (Ending  Monday, July 20, 2015)</option>
                                                                     <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 Days  (Ending  Wednesday, July 22, 2015)</option>
@@ -929,8 +921,8 @@
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
                                                                 <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
-                                                                    <span data-reactid=".6.0.7.3.0">
-                                                                        <span data-reactid=".6.0.7.3.0.0">By clicking this button, I accept Teeyoot's </span>
+                                                                    <span>
+                                                                        <span>By clicking this button, I accept Teeyoot's </span>
 
                                                                     </span>
                                                                 </p>

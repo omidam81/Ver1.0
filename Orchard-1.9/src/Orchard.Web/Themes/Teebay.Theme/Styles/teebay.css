@@ -1,7 +1,9 @@
 ﻿body {
     font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
-
+.shown {
+    display: block !important;
+}
 .big-banner {
     width: 100%;
     height: auto;
@@ -108,7 +110,17 @@
 
 .zone-before-main {
 }
-
+.group-control {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.group-control label {
+    margin-left:15px;
+    margin-right:5px;
+}
 .zone-header {
     display: -webkit-box;
     display: -moz-box;
@@ -3977,13 +3989,13 @@ html, body {
     }
 
     .shop-now-button {
-        width: 100%;
+        /*width: 100%;*/
         text-align: center;
         text-align: -webkit-center;
         text-align: -moz-center;
         text-align: -ms-center;
         margin: 0 auto;
-        display: table-cell;
+        display :inline-block!important;
     }
 }
 

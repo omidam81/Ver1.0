@@ -14,18 +14,24 @@
         </div>
 
         <div class="right-box">
-            @using (Html.BeginForm("AddCampaignForCategory", "AdminSearch", FormMethod.Get))
+            @using (Html.BeginForm("SearchCampaignForCategory", "AdminSearch", FormMethod.Get))
             {
                 <fieldset class="bulk-actions">
                     @Html.LabelFor(m => m.SearchString, T("Filter")):
                     @Html.TextBoxFor(m => m.SearchString)
+                    @Html.HiddenFor(m => m.CategoryId)
                     <button type="submit">@T("Search")</button>
-                    <a href="@Url.Action("AddCampaignForCategory")">@T("By Default")</a>
+                    <a href="@Url.Action("AddCampaignForCategory", new { id = Model.CategoryId })">@T("By Default")</a>
                 </fieldset>
             }
         </div>
     </div>
 </fieldset>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
 
 @{
     <fieldset>
@@ -42,7 +48,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (CampaignRecord camp in Model.Camapigns)
+                @foreach (var camp in Model.Camapigns)
                 {
                     <tr data-record-text="camp.Id" class="admin-categories-tr">
                         <td class="visible">
@@ -54,7 +60,7 @@
                             <a>@camp.Title</a>
                         </td>
                         <td class="related">
-                            <a href="@Url.Action("AddCampaign", new { id = camp.Id, returnurl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Add")</a>
+                            <a href="@Url.Action("AddCampaign", new { idCamp = camp.Id, idCateg = Model.CategoryId, stringSearch = Model.SearchString })">@T("Add")</a>
                         </td>
                     </tr>
                 }
@@ -62,3 +68,13 @@
         </table>
     </fieldset>
 }
+
+@Display(Model.Pager)
+
+<fieldset>
+    <div class="admin-categories-menu">
+        <div class="right-box">
+            <a class ="button primaryAction" href="@Url.Action("EditCategory", new  { id = Model.CategoryId})">@T("Back")</a>
+        </div>
+    </div>
+</fieldset>

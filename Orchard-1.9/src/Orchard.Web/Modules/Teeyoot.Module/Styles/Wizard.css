@@ -95,6 +95,9 @@ ul, ol {
     }
 }
 
+#designer {
+    min-height:920px;
+}
 
 /* Shared properties */
 /* Repeated elements */
@@ -707,6 +710,12 @@ input[type=range] {
         background-image: linear-gradient(#66b52d,#4cab09);*/
         border: none;
     }
+
+@-moz-document url-prefix() {
+    #wizardSecondSlide{
+        margin-left:0% !important;
+    }
+}
 
 /*#designer .button--transaction:active, #designer .button--transaction.active {
         background: #648e34;
