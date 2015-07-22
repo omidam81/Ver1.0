@@ -30,7 +30,10 @@ namespace Teeyoot.Search.Services
 
         public IQueryable<CampaignRecord> GetCampaignsByIdCategory(int id)
         {
-            return GetAllCategories().Where(c => c.Id == id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord));
+            var categCamp = GetAllCategories().Where(c => c.Id == id).Select(c => c.Id);
+            var campForTags = _linkCampaignAndCetegory.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord);
+            //return GetAllCategories().Where(c => c.Id == id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord));
+            return campForTags;
         }
 
         public CampaignCategoriesRecord GetCategoryById(int id)
@@ -40,9 +43,14 @@ namespace Teeyoot.Search.Services
 
         public List<CampaignRecord> GetCampaignsByNotThisIdCategory(int id)
         {
+            //var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).Select(c => c.Id);
+            //var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord);
+
             var allCampaigns = _campaign.Table.ToList();
-            var campInCateg = _repository.Table.Where(c => c.Id == id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).Distinct().ToList();
-            foreach (var s in campInCateg)
+            //var campInCateg = _repository.Table.Where(c => c.Id == id).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).Distinct().ToList();
+            var categCamp = _repository.Table.Where(c => c.Id == id).Select(c => c.Id);
+            var campForTags = _linkCampaignAndCetegory.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord);
+            foreach (var s in campForTags)
             {
                 allCampaigns.Remove(s);
             }

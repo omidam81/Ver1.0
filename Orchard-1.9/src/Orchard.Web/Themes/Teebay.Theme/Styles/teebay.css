@@ -3987,13 +3987,13 @@ html, body {
     }
 
     .shop-now-button {
-        width: 100%;
+        /*width: 100%;*/
         text-align: center;
         text-align: -webkit-center;
         text-align: -moz-center;
         text-align: -ms-center;
         margin: 0 auto;
-        display: table-cell;
+        display :inline-block!important;
     }
 }
 
