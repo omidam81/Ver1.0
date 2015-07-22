@@ -37,17 +37,17 @@ namespace Teeyoot.Account.Services
             Logger = NullLogger.Instance;
         }
 
-        public string GetAccessToken(WorkContext wc, string code, string returnUrl)
+        public string GetAccessToken(WorkContext workContext, string code, string returnUrl)
         {
             try
             {
-                var part = wc.CurrentSite.As<FacebookSettingsPart>();
+                var part = workContext.CurrentSite.As<FacebookSettingsPart>();
                 var clientId = part.ClientId;
                 var clientSecret = _oauthHelper.Decrypt(part.Record.EncryptedClientSecret);
 
-                var urlHelper = new UrlHelper(wc.HttpContext.Request.RequestContext);
+                var urlHelper = new UrlHelper(workContext.HttpContext.Request.RequestContext);
                 var redirectUrl = new Uri(
-                    wc.HttpContext.Request.Url,
+                    workContext.HttpContext.Request.Url,
                     urlHelper.Action("FacebookAuth", "Account", new {Area = "Teeyoot.Account"})
                     ).ToString();
                 var url = string.Format(TokenRequestUrl, urlHelper.Encode(clientId), urlHelper.Encode(redirectUrl),

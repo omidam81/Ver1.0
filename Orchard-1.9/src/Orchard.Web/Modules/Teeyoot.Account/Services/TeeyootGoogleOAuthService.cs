@@ -35,17 +35,17 @@ namespace Teeyoot.Account.Services
             Logger = NullLogger.Instance;
         }
 
-        private string GetAccessToken(WorkContext wc, string code)
+        private string GetAccessToken(WorkContext workContext, string code)
         {
             try
             {
-                var part = wc.CurrentSite.As<GoogleSettingsPart>();
+                var part = workContext.CurrentSite.As<GoogleSettingsPart>();
                 var clientId = part.ClientId;
                 var clientSecret = _oauthHelper.Decrypt(part.Record.EncryptedClientSecret);
 
-                var urlHelper = new UrlHelper(wc.HttpContext.Request.RequestContext);
+                var urlHelper = new UrlHelper(workContext.HttpContext.Request.RequestContext);
                 var redirectUrl = new Uri(
-                    wc.HttpContext.Request.Url,
+                    workContext.HttpContext.Request.Url,
                     urlHelper.Action("GoogleAuth", "Account", new {Area = "Teeyoot.Account"})
                     ).ToString();
 
@@ -98,7 +98,7 @@ namespace Teeyoot.Account.Services
             return null;
         }
 
-        public QuickLogOnResponse Auth(WorkContext wc, string code, string error, string returnUrl)
+        public QuickLogOnResponse Auth(WorkContext workContext, string code, string error, string returnUrl)
         {
             if (string.IsNullOrEmpty(code) && string.IsNullOrEmpty(error))
             {
@@ -106,7 +106,7 @@ namespace Teeyoot.Account.Services
             }
             else
             {
-                var token = GetAccessToken(wc, code);
+                var token = GetAccessToken(workContext, code);
                 if (!string.IsNullOrEmpty(token))
                 {
                     var email = GetEmailAddress(token);
@@ -122,7 +122,7 @@ namespace Teeyoot.Account.Services
                     }
                     error =
                         T(
-                            "Email address required. Please make sure your Facebook profile includes an email and try again.")
+                            "Email address required. Please make sure your Google profile includes an email and try again.")
                             .ToString();
                 }
                 else
