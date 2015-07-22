@@ -18,15 +18,15 @@
         "link": function (locale, options) {
             var size = (options && options.size) ? ' btn-' + options.size : '';
             return "<li>" +
-              "<div style = 'margin-top:50px;' class='bootstrap-wysihtml5-insert-link-modal modal modWind'>" +
+              "<div style = 'margin-top:45px; height:180px;' class='bootstrap-wysihtml5-insert-link-modal modal modWind'>" +
                 "<div class='modal-header'>" +
                   "<a class='close' data-dismiss='modal'>&times;</a>" +
-                  "<h3>" + locale.link.insert + "</h3>" +
+                  "<h3 style='font-size: initial;'>" + locale.link.insert + "</h3>" +
                 "</div>" +
                 "<div class='modal-body'>" +
                   "<input  value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
                 "</div>" +
-                "<div class='modal-footer' style = 'margin-left: 36%;'>" +
+                "<div class='modal-footer' style = 'margin-left: 34%;'>" +
                   "<a href='#' style = 'background-color:#ff4f00;'class='btn btn-primary' data-dismiss='modal'>" + locale.link.insert + "</a>" +
                 "</div>" +
               "</div>" +
@@ -37,15 +37,15 @@
         "image": function (locale, options) {
             var size = (options && options.size) ? ' btn-' + options.size : '';
             return "<li>" +
-              "<div style = 'margin-top:50px;' class='bootstrap-wysihtml5-insert-image-modal modal fade modWind'>" +
+              "<div style = 'margin-top:45px; height:180px;' class='bootstrap-wysihtml5-insert-image-modal modal fade modWind'>" +
                 "<div class='modal-header'>" +
                   "<a class='close' data-dismiss='modal'>&times;</a>" +
-                  "<h3>" + locale.image.insert + "</h3>" +
+                  "<h3 style='font-size: initial;'>" + locale.image.insert + "</h3>" +
                 "</div>" +
                 "<div class='modal-body'>" +
                   "<input value='http://' class='bootstrap-wysihtml5-insert-image-url input-xlarge'>" +
                 "</div>" +
-                "<div class='modal-footer' style = 'margin-left: 36%;'>" +
+                "<div class='modal-footer' style = 'margin-left: 34%;'>" +
                   "<a href='#' style = 'background-color:#ff4f00; border-color:#ff4f00;' class='btn btn-primary' data-dismiss='modal'>" + locale.image.insert + "</a>" +
                 "</div>" +
               "</div>" +
