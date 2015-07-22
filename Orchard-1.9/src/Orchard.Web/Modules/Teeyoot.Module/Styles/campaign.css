@@ -2375,14 +2375,6 @@ td, th {
     content: "\e63b";
 }
 
-.share__btn--twitter {
-    background-color: #50abf1;
-}
-
-.share__btn--pinterest {
-    background-color: #c8232c;
-}
-
 .button__ir--paypal, .site__logo_old {
     text-indent: 100%;
     white-space: nowrap;
@@ -4817,15 +4809,15 @@ thead .product__size_chart__size_label {
     }
 
 .share__btn--facebook {
-    background-color: #39579a;
+    /*background-color: #39579a;*/
 }
 
 .share__btn--twitter {
-    background-color: #50abf1;
+    /*background-color: #50abf1;*/
 }
 
 .share__btn--pinterest {
-    background-color: #c8232c;
+    /*background-color: #c8232c;*/
 }
 .share__btn{
     height:46px!important;

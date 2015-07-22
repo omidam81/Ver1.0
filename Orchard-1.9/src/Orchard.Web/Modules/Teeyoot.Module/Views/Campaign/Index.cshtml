@@ -292,7 +292,7 @@
                 <h1 class="campaign__name display--desktop hidden">@Model.Title</h1>
 
                 <div class="campaign__description display--desktop">
-                    @Model.Description
+                    @Html.Raw(@Model.Description)
                 </div>
 
                 <div class="campaign_stats__container js_stats_countainer display--mobile">
@@ -916,17 +916,17 @@
             
             <ul class="share__buttons">
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--facebook"  href="http://www.facebook.com" target="_blank">
-                        <img src="/Media/Default/images/facebook.png"></a>
+                    <a href="http://www.facebook.com" target="_blank">
+                        <img src="/Media/Default/images/facebook_ic.png"></a>
                 </li>
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--twitter" href="http://twitter.com" target="_blank">
-                        <img src="/Media/Default/images/twit.png">
+                    <a href="http://twitter.com" target="_blank">
+                        <img src="/Media/Default/images/twit_ic.png">
                     </a>
                 </li>
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--pinterest" href="https://www.pinterest.com" target="_blank">
-                        <img src="/Media/Default/images/pinterest.png">
+                    <a href="https://www.pinterest.com" target="_blank">
+                        <img src="/Media/Default/images/p_ic.png">
                     </a>
                 </li>
             </ul>
@@ -1018,18 +1018,18 @@
                 <h3 class="share__heading">Share this campaign on:</h3>
                 <ul class="share__buttons">
                     <li class="share__buttons__item">
-                        <a class="share__btn share__btn--facebook" href="http://www.facebook.com" target="_blank">
-                            <img src="/Media/Default/images/facebook.png">
+                        <a href="http://www.facebook.com" target="_blank">
+                            <img src="/Media/Default/images/facebook_ic.png">
                         </a>
                     </li>
                     <li class="share__buttons__item">
-                        <a class="share__btn share__btn--twitter" href="http://twitter.com" target="_blank">
-                            <img src="/Media/Default/images/twit.png">
+                        <a href="http://twitter.com" target="_blank">
+                            <img src="/Media/Default/images/twit_ic.png">
                         </a>
                     </li>
                     <li class="share__buttons__item">
-                        <a class="share__btn share__btn--pinterest" href="https://www.pinterest.com" target="_blank">
-                            <img src="/Media/Default/images/pinterest.png">
+                        <a href="https://www.pinterest.com" target="_blank">
+                            <img src="/Media/Default/images/p_ic.png">
                         </a>
                     </li>
                 </ul>

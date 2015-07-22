@@ -99,6 +99,14 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Teeyoot.Module\Teeyoot.Module.csproj">
+      <Project>{a11fb407-2b62-42d2-97b6-895056579905}</Project>
+      <Name>Teeyoot.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modules\Teeyoot.Search\Teeyoot.Search.csproj">
+      <Project>{7504fd09-2a28-462d-8b05-9154b820c4bf}</Project>
+      <Name>Teeyoot.Search</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Parts.Search.SearchForm-66.cshtml" />

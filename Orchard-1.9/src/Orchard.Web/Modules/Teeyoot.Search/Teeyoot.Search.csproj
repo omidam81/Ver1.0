@@ -111,6 +111,7 @@
     <Content Include="Views\Search\_CustomerRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Handlers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

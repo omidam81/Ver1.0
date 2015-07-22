@@ -10,18 +10,22 @@ namespace Teeyoot.Search.Services
 {
     public interface ICampaignCategoriesService : IDependency
     {
-        IQueryable<CampaignCategoriesPartRecord> GetAllCategories();
+        IQueryable<CampaignCategoriesRecord> GetAllCategories();
 
         IQueryable<CampaignRecord> GetCampaignsByIdCategory(int id);
 
-        CampaignCategoriesPartRecord GetCategoryById(int id);
+        CampaignCategoriesRecord GetCategoryById(int id);
 
-        IQueryable<CampaignRecord> GetCampaignsByNotThisIdCategory(int id);
+        List<CampaignRecord> GetCampaignsByNotThisIdCategory(int id);
 
         int AddCategory(string name);
 
         bool CnehgeVisible(int id, bool changes);
 
-        bool DeleteCategory(int id); 
+        bool DeleteCategory(int id);
+
+        bool ChnageNameCategory(int id, string newName);
+
+        bool AddCampaignToCategory(int idCamp, int idCateg);
     }
 }

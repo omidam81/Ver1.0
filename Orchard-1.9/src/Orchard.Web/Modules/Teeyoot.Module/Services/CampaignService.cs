@@ -15,7 +15,9 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<ProductRecord> _productRepository;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IRepository<CampaignStatusRecord> _statusRepository;
-        private readonly IRepository<CampaignCategoriesPartRecord> _campaignCategories;
+        private readonly IRepository<CampaignCategoriesRecord> _campaignCategories;
+        private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCategories;
+
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -23,8 +25,9 @@ namespace Teeyoot.Module.Services
                                IRepository<ProductRecord> productRepository,
                                IRepository<CurrencyRecord> currencyRepository,
                                IRepository<CampaignStatusRecord> statusRepository,
-                               IRepository<CampaignCategoriesPartRecord> campaignCategories,
-                               IOrchardServices services)
+                               IRepository<CampaignCategoriesRecord> campaignCategories,
+                               IOrchardServices services,
+                               IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategories)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -34,11 +37,16 @@ namespace Teeyoot.Module.Services
             _statusRepository = statusRepository;
             _campaignCategories = campaignCategories;
             Services = services;
-
+            _linkCampaignAndCategories = linkCampaignAndCategories;
         }
 
         private IOrchardServices Services { get; set; }
 
+
+        public IQueryable<CampaignCategoriesRecord> GetAllCategories()
+        {
+            return _campaignCategories.Table;
+        }
 
         public IQueryable<CampaignRecord> GetAllCampaigns()
         {
@@ -59,12 +67,16 @@ namespace Teeyoot.Module.Services
         {
             if (tag)
             {
-                var camp = _campaignCategories.Table.Where(c => c.Name.ToLower() == filter).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
-                return camp.Skip(skip).Take(take).ToList();
+                //var camp = _campaignCategories.Table.Where(c => c.Name.ToLower() == filter).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
+                var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower() == filter).Select(c => c.Id);
+                var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
+                return campForTags.Skip(skip).Take(take).ToList();
             }
             else
             {
-                IEnumerable<CampaignRecord> campForTags = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord));
+                var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).Select(c => c.Id);
+                var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord);
+                //List<CampaignRecord> campForTags = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).ToList();
                 IEnumerable<CampaignRecord> camps = GetAllCampaigns().Where(c => c.Title.Contains(filter) || c.Description.Contains(filter));
                 camps = camps.Concat(campForTags).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
                 //return camps.Skip(skip).Take(take);
@@ -193,6 +205,27 @@ namespace Teeyoot.Module.Services
                         Price = 15
                     }
                 };
+            }
+        }
+
+        public bool DeleteCampaignFromCategoryById(int campId, int categId)
+        {
+            var camp = GetCampaignById(campId);
+            try
+            {
+                foreach (var link in camp.Categories)
+                {
+                    if (link.CampaignCategoriesPartRecord.Id == categId)
+                    {
+                        _linkCampaignAndCategories.Delete(link);
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

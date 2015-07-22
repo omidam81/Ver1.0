@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Teeyoot.Module.Models
 {
-    public class CampaignCategoriesPart : ContentPart<CampaignCategoriesPartRecord>
+    public class CampaignCategoriesPart : ContentPart<CampaignCategoriesRecord>
     {
         public string Name
         {

@@ -18,6 +18,7 @@
                 <fieldset class="bulk-actions">
                     @Html.LabelFor(m => m.NewCategory, T("Change name for category")):
                     @Html.TextBoxFor(m => m.NewCategory, new { @placeholder = @T("New name") })
+                    @Html.HiddenFor(m => m.CategoryId)
                     <button type="submit">@T("Change")</button>
                 </fieldset>
             }
@@ -33,6 +34,7 @@
                 <fieldset class="bulk-actions">
                     @Html.LabelFor(m => m.SearchString, T("Filter")):
                     @Html.TextBoxFor(m => m.SearchString)
+                    @Html.HiddenFor(m => m.CategoryId)
                     <button type="submit">@T("Search")</button>
                     <a href="@Url.Action("EditCategory", new { id = Model.CategoryId})">@T("By Default")</a>
                 </fieldset>
@@ -69,7 +71,7 @@
                             <h3>@camp.Title</h3>
                         </td>
                         <td class="related">
-                            <a href="@Url.Action("DeleteCampaignsFromCategory", new { id = camp.Id, returnurl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                            <a href="@Url.Action("DeleteCampaignsFromCategory", new { id = camp.Id, categId = Model.CategoryId })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                         </td>
                     </tr>
                 }
@@ -77,6 +79,9 @@
         </table>
     </fieldset>
 }
+
+@Display(Model.Pager)
+
 <fieldset>
     <div class="admin-categories-menu">
         <div class="right-box">

@@ -6,15 +6,16 @@ using System.Web;
 
 namespace Teeyoot.Module.Models
 {
-    public class CampaignCategoriesPartRecord : ContentPartRecord
+    public class CampaignCategoriesRecord
     {
+        public virtual int Id { get; set; }
         public virtual string Name { get; set; }
 
         public virtual bool IsVisible { get; set; }
 
         public virtual IList<LinkCampaignAndCategoriesRecord> Campaigns { get; set; }
 
-        public CampaignCategoriesPartRecord()
+        public CampaignCategoriesRecord()
         {
             Campaigns = new List<LinkCampaignAndCategoriesRecord>();
         }

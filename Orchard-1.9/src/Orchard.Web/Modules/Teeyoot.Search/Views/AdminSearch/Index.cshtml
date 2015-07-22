@@ -7,7 +7,7 @@
 
 <fieldset>
     <div class="admin-categories-menu">
-        <div class="left-box">
+        <div class="left-box" style="display: none;">
             @using (Html.BeginForm("Index", "AdminSearch", FormMethod.Get))
             {
                 <fieldset class="bulk-actions">
@@ -85,7 +85,7 @@
                             </h3>
                         </td>
                         <td class="name">
-                            <a href="@Url.Action("EditCategory", new { id = categ.Id})">@categ.Name</a>
+                            <a href="@Url.Action("EditCategory", new  { id = categ.Id})">@categ.Name</a>
                         </td>
                         <td class="related">
                             <a href="@Url.Action("EditCategory", new { id = categ.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
