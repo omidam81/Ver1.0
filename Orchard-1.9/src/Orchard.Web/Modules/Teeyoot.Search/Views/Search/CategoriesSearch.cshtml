@@ -18,9 +18,12 @@
                 <ul class="menu menu-tags">
                     @foreach (var categ in Model.CampCategList)
                     {
-                        <li>
-                            <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
-                        </li>
+                        if (categ.IsVisible)
+                        {
+                            <li>
+                                <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
+                            </li>
+                        }
                     }
                 </ul>
             </div>
@@ -37,9 +40,12 @@
                 <ul class="menu menu-tags">
                     @foreach (var categ in Model.CampCategList)
                     {
-                        <li>
-                            <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
-                        </li>
+                        if (categ.IsVisible)
+                        {
+                            <li>
+                                <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
+                            </li>
+                        }
                     }
                 </ul>
             </div>
@@ -134,9 +140,12 @@
                             <ul class="menu menu-tags">
                                 @foreach (var categ in Model.CampCategList)
                                 {
-                                    <li>
-                                        <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
-                                    </li>
+                                    if (categ.IsVisible)
+                                    {
+                                        <li>
+                                            <a href="~/CategoriesSearch?categoriesName=@categ.Name">@categ.Name</a>
+                                        </li>
+                                    }
                                 }
                             </ul>
                         </div>
