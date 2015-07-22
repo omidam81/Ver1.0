@@ -38,6 +38,7 @@ namespace Teeyoot.Module.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public HttpStatusCodeResult LaunchCampaign(LaunchCampaignData data)
         {
             if (string.IsNullOrWhiteSpace(data.CampaignTitle))
@@ -143,5 +144,12 @@ namespace Teeyoot.Module.Controllers
 
             return destImage;
         }
+
+        public JsonResult GetDetailTags(string filter)
+        {
+            var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(filter)).Select(n => n.Name).Take(10).ToList();
+            return Json(entries, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

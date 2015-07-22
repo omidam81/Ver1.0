@@ -292,7 +292,7 @@
                 <h1 class="campaign__name display--desktop hidden">@Model.Title</h1>
 
                 <div class="campaign__description display--desktop">
-                    @Model.Description
+                    @Html.Raw(@Model.Description)
                 </div>
 
                 <div class="campaign_stats__container js_stats_countainer display--mobile">

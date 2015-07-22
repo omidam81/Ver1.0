@@ -95,6 +95,9 @@ ul, ol {
     }
 }
 
+#designer {
+    min-height:920px;
+}
 
 /* Shared properties */
 /* Repeated elements */

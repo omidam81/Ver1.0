@@ -18,6 +18,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<CampaignCategoriesRecord> _campaignCategories;
         private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCategories;
 
+
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
                                IRepository<ProductColorRecord> colorRepository,
@@ -41,6 +42,11 @@ namespace Teeyoot.Module.Services
 
         private IOrchardServices Services { get; set; }
 
+
+        public IQueryable<CampaignCategoriesRecord> GetAllCategories()
+        {
+            return _campaignCategories.Table;
+        }
 
         public IQueryable<CampaignRecord> GetAllCampaigns()
         {
