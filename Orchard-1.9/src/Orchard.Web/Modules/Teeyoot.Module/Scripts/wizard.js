@@ -235,10 +235,22 @@ function setDesign() {
         $('#primary .thumbnail_wrapper img').attr('src', src).css('background-color', app.state.color.value);
         $('#primary .swatch2').css('background-color', app.state.color.value);
         design.save(function(data) {
-            $('#prodFront').attr('src', data.front);
-            $('#prodBack').attr('src', data.back);
-            $('#prodFront3').attr('src', data.front);
-            $('#prodBack3').attr('src', data.back);
+            var srcFront = assetsUrls.products + 'product_type_' + app.state.product.id + '_front.png';
+            var srcBack = assetsUrls.products + 'product_type_' + app.state.product.id + '_back.png';
+            var imageData = app.state.getImage();
+            var front = {
+                top: imageData['printable_front_top'],
+                left: imageData['printable_front_left']
+            };
+            var back = {
+                top: imageData['printable_front_top'],
+                left: imageData['printable_front_left']
+            };
+
+            $('#prodFront, #prodFront3').attr('src', srcFront).css('background-color', app.state.color.value);
+            $('#prodBack, #prodBack3').attr('src', srcBack).css('background-color', app.state.color.value);
+            $('#prodFront_d, #prodFront3_d').attr('src', data.front).css({ top: front.top, left:front.left });
+            $('#prodBack_d, #prodBack3_d').attr('src', data.back).css({ top: back.top, left: back.left });
         });
     }
 }

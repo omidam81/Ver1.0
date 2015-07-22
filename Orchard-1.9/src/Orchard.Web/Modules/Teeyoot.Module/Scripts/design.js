@@ -3055,8 +3055,7 @@ var design={
 						item.svg = item.svg.replace(' NS1:xmlns:xlink="http://www.w3.org/1999/xlink"', '');
 						item.svg = item.svg.replace(' xmlns="http://www.w3.org/2000/svg"', '');
 					}				
-					if (radius > 0)
-					{
+					if (radius > 0) {
 						context.save();
 						var x = 0, 
 							y = 0;
@@ -3106,8 +3105,12 @@ var design={
 					}					
 				}
 				else
-				{					
-					design.svg.canvas(postion, canvas, callback);
+				{
+				    design.output[postion] = canvas;
+				    if (typeof callback === "function") {
+				        callback();
+				    }
+					//design.svg.canvas(postion, canvas, callback);
 				}
 			}
 			return canvas;
@@ -3228,8 +3231,7 @@ var design={
 					}
 					images.src 	= mySrc;
 				}
-				else
-				{					
+				else {
 					design.svg.canvas(postion, canvas, callback);
 				}
 			}
