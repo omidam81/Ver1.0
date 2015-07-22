@@ -101,9 +101,6 @@ namespace Teeyoot.Module.Services
 
             try
             {
-
-                //TODO: Viktor: implement Tags
-
                 var newCampaign = new CampaignRecord
                 {
                     Alias = data.Alias,
@@ -119,6 +116,34 @@ namespace Teeyoot.Module.Services
                     CampaignStatusRecord = _statusRepository.Get(1)
                 };
                 _campaignRepository.Create(newCampaign);
+
+                foreach (var tag in data.Tags)
+                {
+                    if (_campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault() != null)
+                    {
+                        var cat = _campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault();
+                        var link = new LinkCampaignAndCategoriesRecord {
+                            CampaignRecord = newCampaign,
+                            CampaignCategoriesPartRecord = cat
+                        };
+                        _linkCampaignAndCategories.Create(link);
+                    }
+                    else
+                    {
+                        var cat = new CampaignCategoriesRecord
+                        {
+                            Name = tag,
+                            IsVisible = false
+                        };
+                        _campaignCategories.Create(cat);
+                        var link = new LinkCampaignAndCategoriesRecord
+                        {
+                            CampaignRecord = newCampaign,
+                            CampaignCategoriesPartRecord = cat
+                        };
+                        _linkCampaignAndCategories.Create(link);
+                    }
+                }
 
                 foreach (var prod in data.Products)
                 {
