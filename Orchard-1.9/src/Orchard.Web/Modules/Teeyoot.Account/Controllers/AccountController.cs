@@ -62,12 +62,12 @@ namespace Teeyoot.Account.Controllers
 
         [HttpGet]
         [AlwaysAccessible]
-        public ActionResult Index()
+        public ActionResult Index(string returnUrl)
         {
             var viewModel = new AccountIndexViewModel
             {
                 CreateAccountViewModel = new CreateAccountViewModel(),
-                LogOnViewModel = new LogOnViewModel(),
+                LogOnViewModel = new LogOnViewModel(returnUrl),
             };
 
             if (TempData[RegistrationValidationSummaryKey] != null)
@@ -94,7 +94,7 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult Register(CreateAccountViewModel viewModel, string returnUrl = null)
+        public ActionResult Register(CreateAccountViewModel viewModel)
         {
             if (ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
             {
@@ -102,27 +102,37 @@ namespace Teeyoot.Account.Controllers
                 if (user != null)
                 {
                     _authenticationService.SignIn(user, false);
-                    return this.RedirectLocal(returnUrl);
+                    if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
+                    {
+                        return this.RedirectLocal(viewModel.ReturnUrl);
+                    }
+
+                    return this.RedirectLocal("~/");
                 }
             }
 
-            return Redirect("~/Login");
+            return this.RedirectLocal("~/Login");
         }
 
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult LogOn(LogOnViewModel viewModel, string returnUrl)
+        public ActionResult LogOn(LogOnViewModel viewModel)
         {
             var user = ValidateLogOn(viewModel.Email, viewModel.Password);
 
             if (user != null)
             {
                 _authenticationService.SignIn(user, viewModel.RememberMe);
-                return this.RedirectLocal(returnUrl);
+                if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
+                {
+                    return this.RedirectLocal(viewModel.ReturnUrl);
+                }
+
+                return this.RedirectLocal("~/");
             }
 
-            return Redirect("~/Login");
+            return this.RedirectLocal("~/Login");
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
