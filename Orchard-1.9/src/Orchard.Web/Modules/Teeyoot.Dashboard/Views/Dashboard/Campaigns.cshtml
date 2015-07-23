@@ -70,7 +70,7 @@
 <div class="box">
     <div class="box-header">
         <div class="group-control filters">
-            <input type="text" placeholder="Search by filter" />
+            <input type="text" id="campaign_list_filter" oninput="filterCampaignList(this);" placeholder="Search by filter" />
             <label>@T("Sort By")</label>
             <select class="campaign-sort">
                 @foreach (Teeyoot.Module.Common.Enums.CampaignSortOrder item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignSortOrder)))
@@ -95,21 +95,21 @@
             {
                 var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
                 
-                <div class="campaign-card">
+                <div name="@c.Name" class="campaign-card">
 
                     <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/front.png')">
 
                         <div class="campaign-card-links">
-                            <span>
+                            <div>
                                 <a href="#" title="@T("Edit")">
                                     <i class="fa fa-pencil"></i>                             
                                 </a>
-                            </span>
-                            <span>
+                            </div>
+                            <div>
                                 <a href="#" title="@T("Duplicate")">
                                     <i class="fa fa-files-o"></i>
                                 </a>
-                            </span>                                
+                            </div>                                
                         </div>
 
                         <div class="campaign-card-profit">
@@ -152,6 +152,17 @@
             $('.overview-period.current').removeClass('current');
             $($('.overview-for-period')[index]).addClass('selected');
             $($('.overview-period')[index]).addClass('current');
+        }
+
+        var filterCampaignList = function (el) {
+            $('.campaign-card').each(function (index, elem) {
+                elem = $(elem);
+                if (elem.attr('name').indexOf(el.value) === -1) {
+                    elem.addClass('hidden');
+                } else if (elem.hasClass('hidden')) {
+                    elem.removeClass('hidden');
+                }
+            });
         }
 
     </script>
