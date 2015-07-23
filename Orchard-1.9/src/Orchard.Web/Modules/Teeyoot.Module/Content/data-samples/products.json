@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 95,
-      "name": "Bella Women's Flowy Tank",
+      "name": "Flowy Tank",
       "headline": "Premium materials",
       "product_group_id": 4,
       "colors_available": [
@@ -18,7 +18,7 @@
     },
     {
       "id": 212,
-      "name": "Gildan 8oz Heavy Blend Hoodie",
+      "name": "Blend Hoodie",
       "headline": "Budget friendly",
       "product_group_id": 5,
       "colors_available": [

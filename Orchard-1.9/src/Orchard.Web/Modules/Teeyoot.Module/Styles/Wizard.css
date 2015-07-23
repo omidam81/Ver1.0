@@ -44,6 +44,16 @@ table {
     width: 60px;
 }
 
+
+.art-button {
+  border-radius: 45px !important;
+  color: #ff4f00 !important;
+  background: white !important;
+  border-color: #ff4f00 !important;
+}
+
+
+
 .flip-button-back-three {
     border-radius: 100px 100px 100px 100px;
     height: 60px;
@@ -87,6 +97,7 @@ ul, ol {
         float: right;
     }
 }
+
 
 @media (min-width: 1200px) {
     .container {
@@ -354,14 +365,34 @@ span.number {
         margin-left: 0 !important;
         min-width: 110%;
     }
+
+    .Slides > div {
+        overflow: visible;
+    }
 }
 
 @media all and (max-width: 1550px) {
     .one {
         display: none;
     }
+
+    .design__area {
+        margin-left:-18% !important;
+    }
+
+    #Content2 {
+          margin-left: 7% !IMPORTANT;
+    }
+
+    #Content3 {
+        margin-left: 5%;
+    }
+
 }
 
+    #Content3 {
+        margin-left: 3%;
+    }
 
 
 @media all and (max-width: 1390px) {
@@ -374,7 +405,40 @@ span.number {
         width: 85%;
     }
 
+
 }
+
+@media all and (max-width: 1335px) {
+         .two {
+        display: none;
+    }
+}
+
+@media all and (max-width: 1135px) {
+         .three {
+        display: none;
+    }
+}
+
+@media all and (max-width: 950px) {
+         .four {
+        display: none;
+    }
+}
+
+@media all and (max-width: 715px) {
+         .five {
+        display: none;
+    }
+}
+
+@media all and (max-width: 540px) {
+         .six {
+        display: none;
+    }
+}
+
+
 
  #descript {
      	max-height: 250px;
@@ -417,11 +481,21 @@ span.number {
     }
 }
 
+@media all and (max-width: 1293px) {
 
-@media all and (max-width: 1280px) {
+        .Slides {
+        margin-left: 0% !important;
+    }
 
-    #Content1 {
-        margin-left: -9%;
+            .design__area {
+         margin-left: -8% !important;
+    }
+}
+
+
+@media all and (max-width: 1220px) {
+        .design__area {
+         margin-left: -15% !important;
     }
 }
 

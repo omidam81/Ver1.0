@@ -20,16 +20,14 @@
         </table>
     }
 </div>
-<div id="loading">
-    <img src='@Url.Content("~/Media/spin.gif")' /><p><b>Loading the next &hellip;</b></p>
-</div>
+
 
 @using (Script.Foot())
 {
     <script type="text/javascript">
-        $(function () {
-            $("div#loading").hide();
-        });
+        //$(function () {
+        //    $("div#loading").hide();
+        //});
         var moreRowsUrl = "/Teeyoot.Search/Search/Search";
         var string = '@Model.Filter.ToString()';
         $(window).scroll(function () {
@@ -62,6 +60,14 @@
                 header_height_now - header_padding_top_now - header_padding_bottom_now - header_margin_top_now - header_margin_bottom_now;
             var margin = footer_margin_top + "px";
             document.querySelector(".tb-layout-footer").style.marginTop = margin;
+        }
+        var height = $('.tee-preview:first-child img').height();
+        $('.tee-preview img').css("height", height + "px !important");
+
+        window.onresize = function (e) {
+            $('.tee-preview:first-child img').css("height", "100% !important");
+            var heightNew = $('.tee-preview:first-child img').height();
+            $('.tee-preview img').css("height", heightNew + "px !important");
         }
 </script>
 }

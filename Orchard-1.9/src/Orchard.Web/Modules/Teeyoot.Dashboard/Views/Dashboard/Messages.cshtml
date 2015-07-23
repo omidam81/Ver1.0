@@ -21,14 +21,14 @@
             </div>
         </div>
         <div class="divRow" >
-            <div class="row"><img style=" width: 40%; height: 100%; margin-left:9%" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png"></div>
+            <div class="row"><img style=" width: 40%;margin-left:9%" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png"></div>
             <div id="campaignName" class="row">Campaign</div>
             <div class="row">10</div>
             <div class="row">3 days ago</div>
             <div class="row">2/3</div>
             <div style="align-content:center" class="row">
                 <div>                   
-                        <button class="t-button">@Html.ActionLink("Message", "CreateMessage", "Dashboard")</button>                   
+                    <a href="@Url.Action("CreateMessage")"><button type="button" class="t-button">@T("Message")</button></a>                  
                 </div>
             </div>
         </div>
