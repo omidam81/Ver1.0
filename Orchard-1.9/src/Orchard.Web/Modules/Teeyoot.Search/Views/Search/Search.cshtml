@@ -61,5 +61,13 @@
             var margin = footer_margin_top + "px";
             document.querySelector(".tb-layout-footer").style.marginTop = margin;
         }
+        var height = $('.tee-preview:first-child img').height();
+        $('.tee-preview img').css("height", height + "px !important");
+
+        window.onresize = function (e) {
+            $('.tee-preview:first-child img').css("height", "100% !important");
+            var heightNew = $('.tee-preview:first-child img').height();
+            $('.tee-preview img').css("height", heightNew + "px !important");
+        }
 </script>
 }
