@@ -76,7 +76,7 @@
     };
 
     var i = 1;
-    $("#add-row").click(function () {      
+    $("#add-row").click(function () {
         var rowHtml = document.getElementById('first-line-item').innerHTML;
         var newRow = document.createElement('tr');
         $(newRow)
@@ -92,7 +92,7 @@
     $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
     $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
 
-    function ItemRemove(node) {        
+    function ItemRemove(node) {
         var el = document.getElementById(node.id);
         el.parentNode.removeChild(el);
         VisibleRemove();
@@ -108,11 +108,11 @@
             console.log(isFront);
             $("#card").flip(!isFront);
 
-            if (!isFront) {            
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/16/14/big/back.png "+ ")");
+            if (!isFront) {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png " + ")");
             } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/16/14/big/front.png " + ")");             
-            }          
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png" + ")");
+            }
         });
 
     });
