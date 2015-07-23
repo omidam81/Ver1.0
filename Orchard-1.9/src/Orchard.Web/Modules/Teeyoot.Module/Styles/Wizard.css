@@ -365,6 +365,10 @@ span.number {
         margin-left: 0 !important;
         min-width: 110%;
     }
+
+    .Slides > div {
+        overflow: visible;
+    }
 }
 
 @media all and (max-width: 1550px) {
@@ -477,11 +481,21 @@ span.number {
     }
 }
 
+@media all and (max-width: 1293px) {
 
-@media all and (max-width: 1280px) {
+        .Slides {
+        margin-left: 0% !important;
+    }
 
-    #Content1 {
-        margin-left: -9%;
+            .design__area {
+         margin-left: -8% !important;
+    }
+}
+
+
+@media all and (max-width: 1220px) {
+        .design__area {
+         margin-left: -15% !important;
     }
 }
 
