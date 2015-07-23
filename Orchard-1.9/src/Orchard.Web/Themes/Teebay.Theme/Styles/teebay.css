@@ -2708,6 +2708,7 @@
 
     .review .reviews-text {
         padding: 0 !important;
+        padding-left: 6px!important;
     }
 
     .review h3 {
@@ -4013,7 +4014,8 @@ html, body {
         float: left;
         width: 100%;
         display: flex;
-        padding: 10px 0 0 0;
+        /*padding: 10px 0 0 0;*/
+        margin-top: -5px;
     }
 
         .review .reviews-text .reviews-logo {
@@ -4041,6 +4043,7 @@ html, body {
                 padding: 0;
                 text-align: left;
                 font-size: 18px;
+                color: #ff4f00;
             }
 
             .review .reviews-text .reviews-user h3 {
