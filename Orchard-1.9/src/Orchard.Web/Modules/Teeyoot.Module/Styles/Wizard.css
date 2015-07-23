@@ -44,6 +44,16 @@ table {
     width: 60px;
 }
 
+
+.art-button {
+  border-radius: 45px !important;
+  color: #ff4f00 !important;
+  background: white !important;
+  border-color: #ff4f00 !important;
+}
+
+
+
 .flip-button-back-three {
     border-radius: 100px 100px 100px 100px;
     height: 60px;

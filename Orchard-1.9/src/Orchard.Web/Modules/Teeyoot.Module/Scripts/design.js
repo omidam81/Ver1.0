@@ -857,8 +857,9 @@ var design={
             var $html = $('<li><div class="valign-outer"><div class="valign-middle"><div class="valign-inner">' +
                 '<img class="art-search-preview" data-url-svg="' + art.svg + '" src="' + art.src + '">' +
                 '</div></div></div></li>');
+            $('#labArt').css('display', 'inline');
             $list.append($html);
-            $html.on('click', function() {
+            $html.on('#click', function() {
                 var url = $(this).find('img').data('url-svg');
                 design.art.create({ item: { url: url, file_type: 'svg', change_color: 1 } });
             });

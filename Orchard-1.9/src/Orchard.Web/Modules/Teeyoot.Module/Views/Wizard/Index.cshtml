@@ -267,10 +267,10 @@
                                     <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
                                         <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
                                             <div id="design-tools" class="aside">
-                                                <div class="design__area">
+                                                <div class="design__area" style="margin-left:-18%;">
                                                     <div>
                                                         <ul class="tabs clearfix nav nav-tabs">
-                                                            <li class="tab active" data-name="Text"><a>Text</a></li>
+                                                            <li class="tab active" data-name="Text"><a style="text-decoration: underline;">Text</a></li>
                                                         </ul>
                                                         <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
                                                             <div id="text-string" class="control-group">
@@ -318,7 +318,7 @@
                                                                         <div class="swatch" title="Black" style="background-color: #000000;"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
@@ -358,12 +358,12 @@
                                                             </div>
                                                         </div>
                                                         <ul class="tabs clearfix nav nav-tabs">
-                                                            <li class="tab active" data-name="Art"><a>Art</a></li>
+                                                            <li class="tab active" data-name="Art"><a style="text-decoration:underline; height: 51px;">Art</a></li>
                                                         </ul>
                                                         <div id="tab2-content" style="margin-top: -6%;" class="tab-content teespring-well designer-well tab-Art">
                                                             <div id="designer-art-choseType">
                                                                 <div class="search_container">
-                                                                    <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search">Browse Artwork</button>
+                                                                    <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">Browse Artwork</button>
                                                                     <div class="design-art-search containertip">
                                                                         <form action="." method="get" role="form" id="artwork-search-form">
                                                                             <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
@@ -375,7 +375,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="hr"><span>OR</span></div>
-                                                                <button id="artwork-upload" class="button button--primary upload">Upload your own</button>
+                                                                <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">Upload your own</button>
                                                             </div>
                                                             <div id="dropbox" class="control-group" style="display: none">
                                                                 <div class="upload">
@@ -475,7 +475,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="teespring-well designer-well" id="clientArts">
-                                                            <label>Recently Used Artwork</label>
+                                                            <label id="labArt" style="display:none">Recently Used Artwork</label>
                                                             <ul class="nav"></ul>
                                                         </div>
                                                     </div>
@@ -517,8 +517,8 @@
                                                         <div class="ygridline" style="opacity: 0;"></div>
 
                                                         <div class="flip-buttons" style="margin-bottom: -2%;">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Front</span></div>
-                                                            <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; margin-left: -15px; margin-top: 10px;">Back</span></div>
+                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; margin-left: -15px; margin-top: 11px;">Front</span></div>
+                                                            <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; margin-left: -13px; margin-top: 11px;">Back</span></div>
                                                         </div>
                                                     </div>
                                                     <!-- end front design -->
@@ -645,7 +645,7 @@
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                     <img style="position:absolute" id="prodFront_d" src="">
                                     <div id="butt1" style="text-align:center; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                        <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">Front</span></div>
                                         <div class="flip-button flip-button-back-two"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                     </div>
                                 </div>
@@ -824,7 +824,7 @@
                                                                             <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                                                             <img style="position:absolute" id="prodFront3_d" src="">
                                                                             <div id="butt1" style="text-align:center; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Front</span></div>
+                                                                                <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">Front</span></div>
                                                                                 <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                                                             </div>
                                                                         </div>
