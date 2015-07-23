@@ -10,14 +10,8 @@
     <fieldset>
         @Html.LabelFor(m => m.Family, T("Api Key"))
         @Html.TextBoxFor(m => m.Family, new { @class = "text large" })
-        @Html.ValidationMessageFor(m => m.ApiKey)
+        @Html.ValidationMessageFor(m => m.Family)
     </fieldset>
-    <fieldset>
-        @Html.LabelFor(m => m.MailChimpListId, T("Mail Chimp List ID"))
-        @Html.TextBoxFor(m => m.MailChimpListId, new { @class = "text large" })
-        @Html.ValidationMessageFor(m => m.MailChimpListId)
-    </fieldset>
-
     <input type="file" name="file" id="name" />
     <input type="submit" value="Upload File">
 }
