@@ -1,0 +1,26 @@
+﻿@model RM.QuickLogOn.OAuth.Models.GoogleSettingsPart
+@using Orchard.Utility.Extensions;
+@{
+    var baseUri = new Uri(WorkContext.CurrentSite.BaseUrl);
+    var callbackUrl = new Uri(baseUri, Url.Action("Auth", "GoogleOAuth", new { area = "RM.QuickLogOn.OAuth" })).ToString();
+ }
+<fieldset>
+    <legend>@T("Google OAuth")</legend>
+    <ol style="list-style-type: decimal;padding-left: 20px;">
+        <li>@T("Setup or update existing Google API Project:")&nbsp;<a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a></li>
+        <li>@T("Put callback url to Google API Project settings:")&nbsp;@Html.Link(callbackUrl, callbackUrl)</li>
+        <li>@T("Receive ClientId and ClientSecret from Google API Project and put them into appropriate fields below")</li>
+    </ol>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ClientId)">@T("Client Id")</label>
+        @Html.TextBoxFor(m=>m.ClientId)
+        @Html.ValidationMessage("ClientId", "*")
+        <span class="hint">@T("Enter client id.")</span>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ClientSecret)">@T("Client Secret")</label>
+        @Html.PasswordFor(m=>m.ClientSecret)
+        @Html.ValidationMessage("ClientSecret", "*")
+        <span class="hint">@T("Entre client secret to change. If empty then no change.")</span>
+    </div>
+</fieldset>

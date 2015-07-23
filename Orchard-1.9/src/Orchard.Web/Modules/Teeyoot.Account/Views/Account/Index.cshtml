@@ -1,15 +1,23 @@
-﻿@model Teeyoot.Account.ViewModels.AccountIndexViewModel
+﻿@using Teeyoot.Account
+@model Teeyoot.Account.ViewModels.AccountIndexViewModel
 
 @if (Model.RegistrationValidationIssueOccurred)
 {
     @Model.RegistrationValidationSummary
 }
-
-@Html.Partial("CreateAccount", Model.CreateAccountViewModel)
-
 @if (Model.LoggingOnValidationIssueOccurred)
 {
     @Model.LoggingOnValidationSummary
 }
+@if (Model.FacebookLogOnFailed)
+{
+    @Model.FacebookLogOnFailedError
+}
+
+@Html.Partial("CreateAccount", Model.CreateAccountViewModel)
 
 @Html.Partial("LogOn", Model.LogOnViewModel)
+
+Or login with...
+<a href="@Html.GetFacebookLogOnUrl(WorkContext)">Login with Facebook</a>
+<a href="@Html.GetGoogleLogOnUrl(WorkContext)">Login with Google</a>

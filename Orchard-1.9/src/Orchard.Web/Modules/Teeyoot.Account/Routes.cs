@@ -34,6 +34,42 @@ namespace Teeyoot.Account
                         },
                         new MvcRouteHandler()
                         )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "GoogleAuth",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "GoogleAuth"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "FacebookAuth",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "FacebookAuth"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
                 }
             };
         }
