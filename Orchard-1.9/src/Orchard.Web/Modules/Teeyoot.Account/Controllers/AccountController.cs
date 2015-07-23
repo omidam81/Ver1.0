@@ -62,12 +62,12 @@ namespace Teeyoot.Account.Controllers
 
         [HttpGet]
         [AlwaysAccessible]
-        public ActionResult Index(string returnUrl)
+        public ActionResult Index(string logOnReturnUrl, string registerReturnUrl)
         {
             var viewModel = new AccountIndexViewModel
             {
-                CreateAccountViewModel = new CreateAccountViewModel(),
-                LogOnViewModel = new LogOnViewModel(returnUrl),
+                CreateAccountViewModel = new CreateAccountViewModel(registerReturnUrl),
+                LogOnViewModel = new LogOnViewModel(logOnReturnUrl),
             };
 
             if (TempData[RegistrationValidationSummaryKey] != null)
@@ -143,12 +143,13 @@ namespace Teeyoot.Account.Controllers
                 model.Error,
                 model.State);
 
-            if (response.Error != null)
+            if (response.Error == null)
             {
-                TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
+                return this.RedirectLocal("~/");
             }
 
-            return this.RedirectLocal(response.ReturnUrl);
+            TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
+            return Redirect("~/Login");
         }
 
         public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
@@ -159,7 +160,13 @@ namespace Teeyoot.Account.Controllers
                 model.Error,
                 model.State);
 
-            return this.RedirectLocal(response.ReturnUrl);
+            if (response.Error == null)
+            {
+                return this.RedirectLocal("~/");
+            }
+
+            TempData["GoogleLogOnFailedError"] = response.Error.ToString();
+            return Redirect("~/Login");
         }
 
         private bool ValidateRegistration(string email, string password, string confirmPassword)
