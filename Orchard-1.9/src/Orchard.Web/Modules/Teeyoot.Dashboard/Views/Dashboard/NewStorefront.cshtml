@@ -3,14 +3,22 @@
     @model Teeyoot.Module.Models.StoreRecord
 }
 
+<style>
+    .widget-SellerDashboardMenu {
+        display: none;
+    }
 
-<section class="site__featured_full">
-    <img class="featured__image" src="https://teespring-ass.s3.amazonaws.com/stores_banners/stores_default.png">
+    .tb-aside-first {
+        display: none !important;
+    }
+</style>
+<div class="site__featured_full">
     <div class="banner__image_uploader__container">
-        <form accept-charset="UTF-8" action="" class="image_uploader ss-glyphish-outlined ss-camera " data-callback-method="POST" data-callback-param="file" data-callback-url="null" enctype="multipart/form-data" method="post">
-            <input id="file" name="file" type="file"><div class="image_uploader__title">Upload banner photo</div>
+        <form accept-charset="UTF-8" action="" class="image_uploader" data-callback-method="POST" data-callback-param="file" data-callback-url="null" enctype="multipart/form-data" method="post">
+            <input id="file" name="file" type="file">
+            <i class="fa fa-camera-retro fa-5x"></i>
+            <div class="image_uploader__title">Upload banner photo</div>
             <div class="image_uploader__subtitle">Recommended: 980px X 550px</div>
-            <div class="image_uploader__title--custom">Change image</div>
         </form>
         <div class="banner__image_progress">
             <div class="progress">
@@ -24,4 +32,132 @@
             <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)"></textarea>
         </div>
     </section>
+</div>
+
+<section class="site__sub_header">
+    <div class="site__wrapper">
+        <header class="store_owner__banner">
+            <button class="store_publish__button button button--primary">Publish Store</button>
+            <div class="store_settings">
+                <div class="store_settings__toggle">
+                    <i class="fa fa-cog fa-1x"></i>Settings
+                </div>
+                <div class="store_settings__menu store_settings__menu--hidden">
+                    <ul class="store_settings__menu_links">
+                        <li class="store_settings__menu_item change_url__container">
+                            <div class="store_settings__header">URL permalink</div>
+                            <div class="input__group input__group_url">
+                                <div class="input__group_addon url__host">teespring.com/stores/</div>
+                                <input class="store_settings__slug form__textfield input__group_control" maxlength="30" type="text">
+                            </div>
+                            <div class="status_message__url"></div>
+                        </li>
+                        <li class="store_settings__menu_item">
+                            <div class="store_settings__description">
+                                <div class="store_settings__header">Hide store</div>
+                                <div class="store_settings__details">Hide this store from internet search engines</div>
+                            </div><label class="switch__label">
+                                <input class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
+                                <div class="switch__el" data-off="Off" data-on="On"></div>
+                            </label>
+                        </li>
+                        <li class="store_settings__menu_item">
+                            <div class="store_settings__description">
+                                <div class="store_settings__header">
+                                    Enable cross-selling
+                                    <a class="cross_sell__info ts-icon-tip" href="http://answers.teespring.com/customer/portal/articles/1829753-cross-selling" target="_blank">
+                                    </a>
+                                </div>
+                                <div class="store_settings__details">Suggests other campaigns from this store after a customer’s initial purchase</div>
+                            </div>
+                            <label class="switch__label">
+                                <input checked="" class="switch__input cross_sell__toggle" name="hide" type="checkbox">
+                                <div class="switch__el" data-off="Off" data-on="On">
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
 </section>
+
+
+@*<section class="site__main">
+        <div class="site__wrapper">
+            <div class="form__message form__message--error store__alerts hidden">
+                <div class="form__message_list"></div>
+                <i class="form__message_close ts-icon-close"></i>
+            </div>
+            <div class="form__message form__message--warning cross_sell_warning hidden">
+                Cross-selling is currently enabled but there are not enough active campaigns. Please
+                <a href="/dashboard">relaunch a campaign</a> or
+                <a href="/designs">create a new campaign</a>
+                <i class="form__message_close ts-icon-close"></i>
+            </div>
+            <section class="store__ftue">
+                <h1 class="page__heading">Create your first storefront!</h1>
+                <ol class="list__counter">
+                    <li class="list_item__counter">Launch 3 campaigns (2 more needed)</li>
+                    <li class="list_item__counter">Pick a name &amp; write a description</li>
+                    <li class="list_item__counter">Upload a cover photo</li>
+                    <li class="list_item__counter">Add campaigns to your storefront</li>
+                </ol>
+                <p>You need at least 3 campaigns to create a storefront.</p>
+                <p>
+                    <a class="button__cta" href="/designs">Launch one now</a>
+                </p>
+            </section>
+            <section class="cards__container cards__container--editable">
+                <div class="card add_campaigns__card">
+                    <div class="add_campaigns__toggle card__image_container card__toggle">Add Campaigns +</div>
+                </div>
+                <div aria-hidden="true" class="choose_campaigns_modal modal modal--inactive fade" role="dialog" tabindex="-1">
+                    <div class="modal__header">
+                        <h3 class="modal__heading">Add Campaigns to </h3>
+                    </div><div class="campaigns__filter_options">
+                        <div class="filter_option__select_container">
+                            <input class="checkbox__select_all" type="checkbox" value="">
+                        </div>
+                        <div class="filter_option__search_container">
+                            <div class="searchbox__container">
+                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" type="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campaigns__list_container">
+                        <div class="campaigns__list store__campaign_results" id="search_results">
+                            <label class="list_item">
+                                <div class="list_item__cell list_item__select_container">
+                                    <input type="checkbox" name="funny" id="2512523" value="2512523" class="list_item__select">
+                                </div>
+                                <div class="list_item__cell list_item__thumbnail">
+                                    <img src="//vangogh.teespring.com/design/2512523/2746340/50x50/front.jpg?v=2015-06-26-11-57">
+                                </div>
+                                <div class="list_item__cell list_item__title">        funny      </div>
+                                <div class="list_item__cell list_item__campaign_reserved">
+                                    <div class="campaign_reserved">0 / 50</div>
+                                    <div class="campaign_reserved__caption">reserved</div>
+                                    <div class="progress_container">
+                                        <div class="progress_bar">
+                                            <div class="progress_bar__completed" style="width: 0.5%">            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list_item__cell list_item__campaign_time">
+                                    <div class="campaign_time__status">Ended</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="add_campaigns__button button button--primary">Update Store</button>
+                    </div>
+                    <a aria-hidden="true" class="modal__close_btn ts-icon-close" data-dismiss="modal" href=".choose_campaigns_modal"></a>
+                </div>
+            </section>
+            <div class="store__pagination">
+            </div>
+        </div>
+    </section>*@
