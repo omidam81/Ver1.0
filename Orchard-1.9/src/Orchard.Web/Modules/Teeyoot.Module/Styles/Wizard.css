@@ -98,6 +98,7 @@ ul, ol {
     }
 }
 
+
 @media (min-width: 1200px) {
     .container {
         max-width: 970px;
@@ -370,8 +371,24 @@ span.number {
     .one {
         display: none;
     }
+
+    .design__area {
+        margin-left:-18% !important;
+    }
+
+    #Content2 {
+          margin-left: 7% !IMPORTANT;
+    }
+
+    #Content3 {
+        margin-left: 5%;
+    }
+
 }
 
+    #Content3 {
+        margin-left: 3%;
+    }
 
 
 @media all and (max-width: 1390px) {
