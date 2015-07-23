@@ -368,7 +368,7 @@ table > tr > td {
 }
 
 .send-button {
-    height:32px;
+    height: 32px;
     background: #ff4f00 !important;
     border-width: 0;
     margin-left: 5px;
@@ -386,7 +386,7 @@ table > tr > td {
 }
 
 .cancel-button {
-    margin-top:1px;
+    margin-top: 1px;
     background: #808080 !important;
     border-width: 0;
     font-size: 16px;
@@ -648,13 +648,14 @@ html, body {
     .a:focus {
         text-decoration: none !important;
     }
+
     .a:focus, a:hover {
         text-decoration: none !important;
     }
 
-.buttonDiv{
-    width:98%;
-    text-align:center;
+.buttonDiv {
+    width: 98%;
+    text-align: center;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -684,38 +685,56 @@ html, body {
     -ms-flex-align: center;
     align-items: center;
 }
-.flexDiv {
-    width:100%;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-direction: normal;
-    -moz-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
 
+.flexDiv {
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
+.exampleDiv {
+     margin-left: 6%;
+}
+@media all and (max-width: 475px) {
+    #campaignPrintRow{
+        margin-bottom:78% !important;
+    }
+@media all and (max-width: 380px) {
+    .exampleDiv {
+        margin-top: 25px;
+        width: 47%;
+        margin-left: 4%;
+    }
+}
+@media all and (max-width: 300px) {
+    #campaignPrintRow{
+        margin-bottom:93% !important;
+    }
 /*
     Legacy Firefox implementation treats all flex containers
     as inline-block elements.
