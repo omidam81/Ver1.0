@@ -401,7 +401,40 @@ span.number {
         width: 85%;
     }
 
+
 }
+
+@media all and (max-width: 1335px) {
+         .two {
+        display: none;
+    }
+}
+
+@media all and (max-width: 1135px) {
+         .three {
+        display: none;
+    }
+}
+
+@media all and (max-width: 950px) {
+         .four {
+        display: none;
+    }
+}
+
+@media all and (max-width: 715px) {
+         .five {
+        display: none;
+    }
+}
+
+@media all and (max-width: 540px) {
+         .six {
+        display: none;
+    }
+}
+
+
 
  #descript {
      	max-height: 250px;
