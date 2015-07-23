@@ -27,6 +27,11 @@
     Script.Include("design_upload.js");
     Script.Include("fontdetect.js");
 
+    Script.Include("ciede2000.js");
+    Script.Include("quantize.js");
+    Script.Include("color_model.js");
+    Script.Include("image_analysis_model.js");
+
     Script.Include("wysihtml5-0.3.0.js");
     Script.Include("jquery.hotkeys.js");
 
@@ -41,6 +46,8 @@
 
 
     <script type="text/javascript">
+        var maxDesignColors = 11;
+
         history.pushState(null, null, 'GetStarted');
         window.addEventListener('popstate', function (event) {
             history.pushState(null, null, 'GetStarted');
@@ -951,7 +958,7 @@
                                             <h3 class="partitioned-header no-bottom">Too many colors.</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Your design has more than 10 colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. </p>
+                                            <p>Your design has more than <span class="max-colors-count"></span> colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over <span class="max-colors-count"></span> colors. </p>
                                             <input type="button" value="Make adjustments »" class="btn btn-large btn-primary" data-dismiss="modal">
                                         </div>
                                     </div>
@@ -966,9 +973,9 @@
                                             <h3 class="partitioned-header no-bottom">Did you try and upload a full color image?</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Looks like you tried to upload an image with more than 10 colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over 10 colors. </p>
+                                            <p>Looks like you tried to upload an image with more than <span class="max-colors-count"></span> colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over <span class="max-colors-count"></span> colors. </p>
                                             <p>
-                                                If you think the system has made a mistake, and your image is under 10 colors, please <a href="/contact" target="_blank">contact support for assistance</a>
+                                                If you think the system has made a mistake, and your image is under <span class="max-colors-count"></span> colors, please <a href="/contact" target="_blank">contact support for assistance</a>
                                             </p>
                                             <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
                                         </div>

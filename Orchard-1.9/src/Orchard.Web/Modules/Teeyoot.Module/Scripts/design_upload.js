@@ -22,12 +22,23 @@
 	    console.log(typeof window.FileReader, file.type);
 		if (typeof window.FileReader !== "undefined" && (file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg' || file.type === 'image/gif')) {
 			var reader = new FileReader();
-			console.log("reader");
 			reader.onload = function (evt) {
-			    console.log(evt);
 
 			    var type = file.type.split('/')[1];
-			    design.myart.create({ item: { url: evt.target.result, file_type: type } });
+			    var img = new Image();
+			    img.onload = function () {
+			        var analysis = new ImageAnalysisModel(img, new ColorModel(app.state.color));
+			        var colors = analysis.colors;
+			        var result = [];
+                    for (var i = 0; i < colors.length; i++) {
+                        result.push(colors[i].value);
+                    }
+                    if (result.length > maxDesignColors) {
+                        $('#upload-photo-error').modal('show');
+                    }
+                    design.myart.create({ item: { url: evt.target.result, file_type: type, colors: result } });
+			    }
+			    img.src = evt.target.result;
 			};
 			reader.readAsDataURL(file);
 		}
@@ -52,7 +63,6 @@
 
 		    xhr.onload = function () {
 		        var media = eval('(' + this.responseText + ')');
-		        console.log(media);
 		        //span.setAttribute('onclick', 'dagFiles.file.select(this)');			
 		        //img.setAttribute('src', media.url);			
 		    };

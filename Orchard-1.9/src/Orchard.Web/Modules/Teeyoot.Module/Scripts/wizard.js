@@ -373,6 +373,10 @@ var slideSteps = ['design', 'goal', 'description'];
 var slideTimeout;
 
 function slideTo(slideNumber) {
+    if (app.state.getUsedColorsCount('front') > maxDesignColors || app.state.getUsedColorsCount('back') > maxDesignColors) {
+        $('#too-many-colors-error').modal('show');
+        return;
+    }
     if (slideTimeout) {
         window.clearTimeout(slideTimeout);
     }
