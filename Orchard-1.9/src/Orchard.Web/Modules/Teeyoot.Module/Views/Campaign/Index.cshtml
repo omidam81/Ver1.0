@@ -61,9 +61,22 @@
         document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
     });
 
-    var i = 1;
-    $("#add-row").click(function () {
+    window.onload = VisibleRemove();
+    function VisibleRemove() {
+        var cntRows = document.getElementById('order_item_list_modal').childElementCount;
+        if (cntRows == 2) {
+            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+            var newSize = $(current).find("#precheckout-item-remove")[0];
+            newSize.className = "precheckout_item_remove_button hidden";
+        } else {
+            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+            var newSize = $(current).find("#precheckout-item-remove")[0];
+            newSize.className = "precheckout_item_remove_button";
+        }
+    };
 
+    var i = 1;
+    $("#add-row").click(function () {      
         var rowHtml = document.getElementById('first-line-item').innerHTML;
         var newRow = document.createElement('tr');
         $(newRow)
@@ -72,15 +85,17 @@
             .html(rowHtml)
             .appendTo($("#order_item_list_modal"))
         i = i + 1;
+        VisibleRemove();
     });
 
 
     $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
     $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
 
-    function ItemRemove(node) {
+    function ItemRemove(node) {        
         var el = document.getElementById(node.id);
         el.parentNode.removeChild(el);
+        VisibleRemove();
     }
 
     var isFront = true
