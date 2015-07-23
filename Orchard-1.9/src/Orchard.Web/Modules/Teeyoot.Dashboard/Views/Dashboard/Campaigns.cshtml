@@ -71,21 +71,63 @@
     <div class="box-header">
         <div class="group-control filters">
             <input type="text" id="campaign_list_filter" oninput="filterCampaignList(this);" placeholder="Search by filter" />
-            <label>@T("Sort By")</label>
-            <select class="campaign-sort">
-                @foreach (Teeyoot.Module.Common.Enums.CampaignSortOrder item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignSortOrder)))
-                {
-                    <option value="@item.ToString()">@T(item.ToString().SplitCamelCase())</option>   
-                }
-            </select>
-            <label>@T("Show")</label>
-            <select>
-                @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
-                {
-                    <option value="@item.ToString()">@T(item.ToString().SplitCamelCase())</option>
-                }
-                <option value="All">@T("All")</option>
-            </select>
+
+            <div class="campaign-sort filter-dropdown">
+                <div class="filter-dropdown-toggle">
+                    @T("Sort By")
+                    @{
+                        var sortBy = Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignSortOrder)).GetValue(0);
+                    }
+                    <span class="sort-by">
+                        <span data-sortby="@sortBy">
+                            @T(sortBy.ToString().SplitCamelCase())
+                        </span>
+                    </span>
+                </div>
+                <div class="filter-dropdown-menu">
+                    <ul>
+                        @foreach (Teeyoot.Module.Common.Enums.CampaignSortOrder item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignSortOrder)))
+                        {
+                            <li onclick="sortCampaignList(this)" class="filter-dropdown-item">
+                                <span data-sortby="@item">
+                                    @T(item.ToString().SplitCamelCase())
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="campaign-status-filter filter-dropdown">
+                <div class="filter-dropdown-toggle">
+                    @T("Show")
+                    @{
+                        var filterBy = Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)).GetValue(0);
+                    }
+                    <span class="filtered-by">
+                        <span data-filterby="@filterBy">
+                            @T(filterBy.ToString().SplitCamelCase())
+                        </span>
+                    </span>
+                </div>
+                <div class="filter-dropdown-menu">
+                    <ul>
+                        @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
+                        {
+                            <li onclick="filterByStatus(this)" class="filter-dropdown-item">
+                                <span data-filterby="@item">
+                                    @T(item.ToString().SplitCamelCase())
+                                </span>
+                            </li>
+                        }
+                        <li onclick="filterByStatus(this)" class="filter-dropdown-item">
+                            <span data-filterby="All">
+                                @T("All")
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -95,7 +137,12 @@
             {
                 var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
                 
-                <div name="@c.Name" class="campaign-card">
+                <div data-Name="@c.Name.ToLower()" class="campaign-card" 
+                     data-campaign-status="@c.Status.Name" 
+                     data-StartDate="@c.StartDate.Ticks"
+                     data-Reservations="1"
+                     data-EndDate="@c.EndDate.Ticks"
+                     data-Sales="@c.Sold">
 
                     <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/front.png')">
 
@@ -136,6 +183,7 @@
                     </div>
 
                     <div class="campaign-card-title"><a href="/@c.Alias" title="@c.Name">@c.Name</a></div>
+
                 </div>
                 
             }
@@ -146,7 +194,6 @@
 @using(Script.Foot())
 {
     <script>
-
         var showOverviewForPeriod = function (index) {
             $('.overview-for-period.selected').removeClass('selected');
             $('.overview-period.current').removeClass('current');
@@ -157,13 +204,75 @@
         var filterCampaignList = function (el) {
             $('.campaign-card').each(function (index, elem) {
                 elem = $(elem);
-                if (elem.attr('name').indexOf(el.value) === -1) {
+                if (elem.attr('data-Name').indexOf(el.value) === -1) {
                     elem.addClass('hidden');
                 } else if (elem.hasClass('hidden')) {
                     elem.removeClass('hidden');
                 }
             });
         }
+
+        var sortCampaignList = function (el) {
+            var sortBy = $(el).find('span');
+
+            $('.sort-by span').text(sortBy.text()).attr('data-sortby', sortBy.attr('data-sortby'));
+
+            var campaigns = $('.campaign-card');
+
+            campaigns.sort(function (a, b) {
+                var sortByValue = sortBy.attr('data-sortby');
+                var an = sortByValue === "Sales" ? parseInt(b.getAttribute('data-' + sortByValue), 10) : a.getAttribute('data-' + sortByValue),
+                    bn = sortByValue === "Sales" ? parseInt(a.getAttribute('data-' + sortByValue), 10) : b.getAttribute('data-' + sortByValue);
+
+                if (an > bn) {
+                    return 1;
+                }
+                if (an < bn) {
+                    return -1;
+                }
+                return 0;
+            });
+
+            campaigns.detach().appendTo($('.campaigns-list-container > div'));
+        }
+
+        var filterByStatus = function (el) {
+            var status = $(el).find('span');
+
+            $('.filtered-by span').text(status.text()).attr('data-filterby', status.attr('data-filterby'));
+
+            if (status.attr('data-filterby') === 'All') {
+                $('.campaign-card').removeClass('hidden');
+            } else {
+                $('.campaign-card').each(function (index, el) {
+                    el = $(el);
+                    if (el.attr('data-campaign-status') !== status.attr('data-filterby')) {
+                        el.addClass('hidden');
+                    } else if (el.hasClass('hidden')) {
+                        el.removeClass('hidden');
+                    }
+                });
+            }
+        }
+
+        $('.filter-dropdown-toggle').click(function () {
+            //$(".filter-dropdown").removeClass('open');
+            $(this).parent().toggleClass('open')
+        });
+
+        $(document).click(function (e) {
+            if (!$(e.target).hasClass("filter-dropdown-toggle") && !$(e.target).parent().parent().hasClass("filter-dropdown-toggle")) {
+                    $(".filter-dropdown").removeClass('open');
+                }
+            }
+        );
+
+        $(document).ready(function () {
+            var statusFilter = document.getElementsByClassName('filtered-by');
+            var sortBy = document.getElementsByClassName('sort-by');
+            filterByStatus(statusFilter);
+            sortCampaignList(sortBy);
+        });
 
     </script>
 }

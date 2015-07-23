@@ -1,9 +1,11 @@
 ﻿body {
     font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
+
 .shown {
     display: block !important;
 }
+
 .big-banner {
     width: 100%;
     height: auto;
@@ -110,6 +112,7 @@
 
 .zone-before-main {
 }
+
 .group-control {
     display: -webkit-box;
     display: -moz-box;
@@ -117,10 +120,12 @@
     display: -webkit-flex;
     display: flex;
 }
-.group-control label {
-    margin-left:15px;
-    margin-right:5px;
-}
+
+    .group-control label {
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+
 .zone-header {
     display: -webkit-box;
     display: -moz-box;
@@ -3995,7 +4000,7 @@ html, body {
         text-align: -moz-center;
         text-align: -ms-center;
         margin: 0 auto;
-        display :inline-block!important;
+        display: inline-block !important;
     }
 }
 
@@ -4037,7 +4042,7 @@ html, body {
 
             .review .reviews-text .reviews-user h2 {
                 /*margin: 0 0 0 15px;*/
-                margin:0;
+                margin: 0;
                 padding: 0;
                 text-align: left;
                 font-size: 18px;
@@ -4048,10 +4053,77 @@ html, body {
                 font-size: 14px;
                 text-align: left;
                 /*margin: 0 0 0 15px;*/
-                margin:0;
+                margin: 0;
                 line-height: 0;
                 padding: 5px 0 0 0;
             }
-.money{
-      height: 250px;
+
+.money {
+    height: 250px;
+}
+
+.filter-dropdown {
+    position: relative;
+}
+    .filter-dropdown.open .filter-dropdown-toggle {
+        background: white;
+        border: 1px solid #e8eced;
+        border-radius: 5px 5px 0 0;
+    }
+    .filter-dropdown.open .filter-dropdown-menu {
+        display:block;
+    }
+
+.filter-dropdown-toggle {
+    position: relative;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 5px 0 5px 10px;
+    z-index: 1;
+    width: 100%;
+}
+
+    .filter-dropdown-toggle span {
+        margin-left: 5px;
+    }
+
+    .filter-dropdown-toggle:after {
+        content: "";
+        height: 0;
+        width: 0;
+        z-index: 1000;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid;
+        -webkit-transition: all 350ms linear;
+        transition: all 350ms linear;
+        float: right;
+        margin: 10px;
+        margin-left:0;
+    }
+
+    .filter-dropdown-toggle:hover,
+    .filter-dropdown-item:hover {
+        color: #e64700;
+    }
+
+.filter-dropdown-menu {
+    background: white;
+    border: 1px solid #e8eced;
+    border-top: 0;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    position: absolute;
+    padding-left:10px;
+}
+
+    .filter-dropdown-menu ul {
+        list-style: none;
+        margin: 10px;
+        line-height: 30px;
+    }
+.filter-dropdown-item {
+    cursor:pointer;
 }
