@@ -1,7 +1,9 @@
 ﻿body {
     font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
-
+.shown {
+    display: block !important;
+}
 .big-banner {
     width: 100%;
     height: auto;

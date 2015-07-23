@@ -73,6 +73,7 @@
     background-repeat: no-repeat;
     opacity:.5;
     color:#fff;
+    transition:opacity 300ms;
 }
 .campaign-card-image:hover .campaign-card-profit {
     background:none;
@@ -131,7 +132,9 @@
         float: none;
         margin-bottom: 30px;
     }
-
+    .group-control.filters {
+        display:block;
+    }
     .campaign-card-image {
         background-size: 50%;
     }
@@ -205,7 +208,15 @@
 
 .campaign-card-links {
     float: right;
+    margin-right:8px;
 }
+#campaign_list_filter {
+    border:solid 1px #e8eced;
+    border-radius:5px;
+}
+#campaign_list_filter:focus::-webkit-input-placeholder  {color:transparent;}
+#campaign_list_filter:focus::-moz-placeholder   {color:transparent;}
+#campaign_list_filter:focus:-moz-placeholder   {color:transparent;}
 
 .campaign-card-profit {
     padding: 2px 5px;

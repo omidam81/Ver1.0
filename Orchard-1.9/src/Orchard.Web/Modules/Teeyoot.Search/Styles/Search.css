@@ -177,7 +177,15 @@
     .tee-preview img,
     .tee-preview:first-child img,
     .tee-preview:last-child img {
-        height: 212px !important;
+        height: 100% !important;
+    }
+}
+
+@media (max-width: 1700px) {
+    .tee-preview img, 
+    .tee-preview:first-child img, 
+    .tee-preview:last-child img {
+        height: 100% !important;
     }
 }
 

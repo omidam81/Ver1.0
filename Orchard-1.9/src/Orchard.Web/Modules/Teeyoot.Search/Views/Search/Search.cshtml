@@ -20,16 +20,14 @@
         </table>
     }
 </div>
-<div id="loading">
-    <img src='@Url.Content("~/Media/spin.gif")' /><p><b>Loading the next &hellip;</b></p>
-</div>
+
 
 @using (Script.Foot())
 {
     <script type="text/javascript">
-        $(function () {
-            $("div#loading").hide();
-        });
+        //$(function () {
+        //    $("div#loading").hide();
+        //});
         var moreRowsUrl = "/Teeyoot.Search/Search/Search";
         var string = '@Model.Filter.ToString()';
         $(window).scroll(function () {

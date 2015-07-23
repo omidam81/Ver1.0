@@ -3,7 +3,11 @@
 }
 <div style="height:100%; margin-bottom:20%">
     <div class="status">@ViewBag.Status</div>
-    <div class="dashboard-section-title">Messages</div>
+    <div class="dashboard-section-title">
+        @T("Messages")
+        <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+        <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+    </div>
     <div class="box mesTitle">Messages allow you to communicate with all your previous buyers via email. You can choose to message buyers of a particular campaign, or create a group of campaigns to message together – get started today!</div>
     <div class="box tdd">
         <div class="divRow" id="msgBoard">

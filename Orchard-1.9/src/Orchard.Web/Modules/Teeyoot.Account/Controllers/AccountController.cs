@@ -3,17 +3,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Orchard;
-using Orchard.ContentManagement;
-using Orchard.Data;
 using Orchard.Localization;
-using Orchard.Roles.Models;
-using Orchard.Roles.Services;
+using Orchard.Mvc.Extensions;
 using Orchard.Security;
 using Orchard.Themes;
 using Orchard.Users.Models;
 using Orchard.Users.Services;
+using RM.QuickLogOn.OAuth.Services;
+using RM.QuickLogOn.OAuth.ViewModels;
+using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
-using Teeyoot.Module.Models;
 
 namespace Teeyoot.Account.Controllers
 {
@@ -21,30 +20,35 @@ namespace Teeyoot.Account.Controllers
     [Themed]
     public class AccountController : Controller
     {
+        private readonly ITeeyootMembershipService _teeyootMembershipService;
+        private readonly IFacebookOAuthService _facebookOAuthService;
+        private readonly IGoogleOAuthService _googleOAuthService;
+
         private readonly IAuthenticationService _authenticationService;
         private readonly IMembershipService _membershipService;
         private readonly IUserService _userService;
-        private readonly IOrchardServices _orchardServices;
-        private readonly IRoleService _roleService;
-        private readonly IRepository<UserRolesPartRecord> _userRolesRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
         private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
+        private const string FacebookLogOnFailedErrorKey = "FacebookLogOnFailedError";
 
         public AccountController(
+            ITeeyootMembershipService teeyootMembershipService,
             IAuthenticationService authenticationService,
             IMembershipService membershipService,
             IUserService userService,
-            IOrchardServices orchardServices,
-            IRoleService roleService,
-            IRepository<UserRolesPartRecord> userRolesRepository)
+            IFacebookOAuthService facebookOAuthService,
+            IGoogleOAuthService googleOAuthService,
+            IWorkContextAccessor workContextAccessor)
         {
+            _teeyootMembershipService = teeyootMembershipService;
             _authenticationService = authenticationService;
             _membershipService = membershipService;
             _userService = userService;
-            _orchardServices = orchardServices;
-            _roleService = roleService;
-            _userRolesRepository = userRolesRepository;
+            _facebookOAuthService = facebookOAuthService;
+            _googleOAuthService = googleOAuthService;
+            _workContextAccessor = workContextAccessor;
 
             T = NullLocalizer.Instance;
         }
@@ -63,7 +67,7 @@ namespace Teeyoot.Account.Controllers
             var viewModel = new AccountIndexViewModel
             {
                 CreateAccountViewModel = new CreateAccountViewModel(),
-                LogOnViewModel = new LogOnViewModel()
+                LogOnViewModel = new LogOnViewModel(),
             };
 
             if (TempData[RegistrationValidationSummaryKey] != null)
@@ -78,6 +82,12 @@ namespace Teeyoot.Account.Controllers
                 viewModel.LoggingOnValidationSummary = (string) TempData[LoggingOnValidationSummaryKey];
             }
 
+            if (TempData[FacebookLogOnFailedErrorKey] != null)
+            {
+                viewModel.FacebookLogOnFailed = true;
+                viewModel.FacebookLogOnFailedError = (string) TempData[FacebookLogOnFailedErrorKey];
+            }
+
             return View(viewModel);
         }
 
@@ -88,10 +98,11 @@ namespace Teeyoot.Account.Controllers
         {
             if (ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
             {
-                var user = CreateTeeyootUser(viewModel.Email, viewModel.Password);
+                var user = _teeyootMembershipService.CreateUser(viewModel.Email, viewModel.Password);
                 if (user != null)
                 {
                     _authenticationService.SignIn(user, false);
+                    return this.RedirectLocal(returnUrl);
                 }
             }
 
@@ -108,9 +119,37 @@ namespace Teeyoot.Account.Controllers
             if (user != null)
             {
                 _authenticationService.SignIn(user, viewModel.RememberMe);
+                return this.RedirectLocal(returnUrl);
             }
 
             return Redirect("~/Login");
+        }
+
+        public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
+        {
+            var response = _facebookOAuthService.Auth(
+                _workContextAccessor.GetContext(),
+                model.Code,
+                model.Error,
+                model.State);
+
+            if (response.Error != null)
+            {
+                TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
+            }
+
+            return this.RedirectLocal(response.ReturnUrl);
+        }
+
+        public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
+        {
+            var response = _googleOAuthService.Auth(
+                _workContextAccessor.GetContext(),
+                model.Code,
+                model.Error,
+                model.State);
+
+            return this.RedirectLocal(response.ReturnUrl);
         }
 
         private bool ValidateRegistration(string email, string password, string confirmPassword)
@@ -214,53 +253,10 @@ namespace Teeyoot.Account.Controllers
             if (!validate)
             {
                 TempData[LoggingOnValidationSummaryKey] = validationSummary;
-                return user;
+                return null;
             }
 
-            return null;
-        }
-
-        private IUser CreateTeeyootUser(string email, string password)
-        {
-            var registrationSettings = _orchardServices.WorkContext.CurrentSite.As<RegistrationSettingsPart>();
-
-            var teeyootUser = _orchardServices.ContentManager.New("TeeyootUser");
-
-            var userPart = teeyootUser.As<UserPart>();
-
-            userPart.UserName = email;
-            userPart.Email = email;
-            userPart.NormalizedUserName = email.ToLowerInvariant();
-            userPart.HashAlgorithm = "SHA1";
-            _membershipService.SetPassword(userPart, password);
-
-            if (registrationSettings != null)
-            {
-                userPart.RegistrationStatus = registrationSettings.UsersAreModerated
-                    ? UserStatus.Pending
-                    : UserStatus.Approved;
-                userPart.EmailStatus = registrationSettings.UsersMustValidateEmail
-                    ? UserStatus.Pending
-                    : UserStatus.Approved;
-            }
-
-            var teeyootUserPart = teeyootUser.As<TeeyootUserPart>();
-
-            teeyootUserPart.CreatedUtc = DateTime.UtcNow;
-
-            _orchardServices.ContentManager.Create(teeyootUser);
-
-            var role = _roleService.GetRoleByName("Seller");
-            if (role != null)
-            {
-                _userRolesRepository.Create(new UserRolesPartRecord
-                {
-                    UserId = userPart.Id,
-                    Role = role
-                });
-            }
-
-            return userPart;
+            return user;
         }
     }
 }

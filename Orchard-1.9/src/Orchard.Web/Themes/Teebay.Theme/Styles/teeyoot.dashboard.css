@@ -123,6 +123,14 @@
 .dashboard-layout .tb-aside-first.menu-closed span.to-hide-on-click {
     display: none;
 }
+.menu-opener,
+.menu-closer {
+    display:none;
+    cursor:pointer;
+}
+.menu-closer.shown {
+    display: inline !important;
+}
 @media all and (max-width: 980px) {
     .dashboard-layout .tb-layout-main-container,
     .dashboard-layout .tb-aside-first,
@@ -132,7 +140,17 @@
     .dashboard-layout .tb-layout-content {
         padding:0;
     }
+    .dashboard-section-title {
+        margin-top:15px;
+        margin-left:20px;
+    }
     .collapse-button {
         display:none;
+    }
+    .widget-SellerDashboardMenu {
+        display:none;
+    }
+    .menu-opener {
+        display:inline;
     }
 }

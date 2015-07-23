@@ -22,7 +22,7 @@ function loadMoreToInfiniteScrollTable(loadMoreRowsUrl, filter) {
                 }
 
                 inCallback = false;
-                $("div#loading").hide();
+                //$("div#loading").hide();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
             }
