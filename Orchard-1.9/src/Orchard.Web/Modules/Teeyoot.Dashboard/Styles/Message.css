@@ -537,6 +537,3 @@ table > tr > td {
 #sentThisWeek{
     padding-left:1% !important;
 }
-.dashboard-layout .tb-layout-main-container {
-    height: auto !important;
-}
