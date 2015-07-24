@@ -112,7 +112,7 @@ namespace Teeyoot.WizardSettings.Controllers
                 {
                     _orchardServices.Notifier.Error(T(error));
                 }
-                return RedirectToAction("AddProductHeadline");
+                return RedirectToAction("EditProductHeadline", new {productHeadlineId = viewModel.Id});
             }
 
             var productHeadline = _productHeadlineRepository.Get(viewModel.Id);

@@ -108,7 +108,7 @@ namespace Teeyoot.WizardSettings.Controllers
                 {
                     _orchardServices.Notifier.Error(T(error));
                 }
-                return RedirectToAction("AddProductStyle");
+                return RedirectToAction("EditProductStyle", new {productStyleId = viewModel.Id});
             }
 
             var productStyle = _productStyleRepository.Get(viewModel.Id);
