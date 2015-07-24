@@ -1,5 +1,8 @@
 ﻿@using Teeyoot.Account
 @model Teeyoot.Account.ViewModels.AccountIndexViewModel
+@{
+    Style.Include("Login.css");
+}
 
 @if (Model.RegistrationValidationIssueOccurred)
 {
@@ -14,10 +17,48 @@
     @Model.FacebookLogOnFailedError
 }
 
-@Html.Partial("CreateAccount", Model.CreateAccountViewModel)
+<div class="login">
+    <div class="login-and-create">
+        <div id="create-account" class="create-account">
+            @Html.Partial("CreateAccount", Model.CreateAccountViewModel)
+        </div>
+        <div id="login-into-teeyoot" class="login-into-teeyoot">
+            @Html.Partial("LogOn", Model.LogOnViewModel)
+        </div>
+    </div>
+    <div class="login-with-social-network">
+        <div class="title">
+            <legend class="name">@T("Or login with...")</legend>
+        </div>
+        <div class="text">
+            Do you already have an account on Facebook or Google? <br />
+            Click the logo below to log in:
+        </div>
+        <div>
+            <a class="button button-facebook" href="@Html.GetFacebookLogOnUrl(WorkContext)">Login with Facebook</a>
+        </div>
+        <div>
+            <a class="button button-google" href=" @Html.GetGoogleLogOnUrl(WorkContext) ">Login with Google</a>
+        </div>
+    </div>
+</div>
 
-@Html.Partial("LogOn", Model.LogOnViewModel)
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        function changeLogAndCreate(element_id, element_id2) {
+            if (document.getElementById(element_id)) {
+                var obj = document.getElementById(element_id);
+                if (obj.style.display != "block") {
+                    obj.style.display = "block";
+                    document.getElementById(element_id2).style.display = "none";
+                }
+                else {
+                    obj.style.display = "none";
+                    document.getElementById(element_id2).style.display = "block";
+                }
+            }
 
-Or login with...
-<a href="@Html.GetFacebookLogOnUrl(WorkContext)">Login with Facebook</a>
-<a href="@Html.GetGoogleLogOnUrl(WorkContext)">Login with Google</a>
+        }
+    </script>
+}

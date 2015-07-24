@@ -1,0 +1,136 @@
+﻿.login {
+    margin: 50px 40px 0 20px;
+    padding: 20px 20px 0px 20px;
+    max-width: 1216px;
+    display: -webkit-box;
+    background: #edeef0;
+    border-radius: 5px;
+}
+
+    .login .login-and-create {
+        width: 50%;
+    }
+
+        .login .login-and-create .create-account {
+            display: none;
+        }
+
+        .login .login-and-create .login-into-teeyoot {
+            padding-right: 15px;
+        }
+
+            .login .login-and-create .login-into-teeyoot .title,
+            .login .login-and-create .create-account .title,
+            .login .login-with-social-network .title {
+                display: -webkit-box;
+                width: 100%;
+                border-bottom: dotted 1px #000;
+                margin-bottom: 15px;
+            }
+
+            .login .login-and-create .login-into-teeyoot .email label,
+            .login .login-and-create .login-into-teeyoot .password label,
+            .login .login-and-create .create-account .email label,
+            .login .login-and-create .create-account .password label {
+                font-size: 16px;
+                font-weight: 700;
+                margin: 15px 0 0 0;
+                color: #000;
+            }
+
+            .login .login-and-create .login-into-teeyoot .email input,
+            .login .login-and-create .login-into-teeyoot .password input,
+            .login .login-and-create .create-account .email input,
+            .login .login-and-create .create-account .password input {
+                width: 80%;
+            }
+
+            .login .login-and-create .login-into-teeyoot .forgot a {
+                text-decoration: none;
+            }
+
+                .login .login-and-create .login-into-teeyoot .forgot a:hover {
+                    text-decoration: underline;
+                    color: #ff4f00;
+                }
+
+            .login .login-and-create .login-into-teeyoot .button-login {
+                width: 200px;
+                height: 50px;
+                font-size: 20px;
+                font-weight: 500;
+                color: #ffffff;
+                background: #ff4f00;
+                border-radius: 5px;
+                margin: 5px 0 10px 0;
+            }
+
+        .login .login-and-create .create-account .button-login {
+            width: 300px;
+            height: 50px;
+            font-size: 20px;
+            font-weight: 500;
+            color: #ffffff;
+            background: #ff4f00;
+            border-radius: 5px;
+            margin: 15px 0 10px 0;
+        }
+
+            .login .login-and-create .login-into-teeyoot .button-login:hover,
+            .login .login-and-create .create-account .button-login:hover {
+                background: #e64700;
+            }
+
+        .login .login-and-create .login-into-teeyoot .remember {
+            display: -webkit-box;
+        }
+
+            .login .login-and-create .login-into-teeyoot .remember label {
+                margin-left: 10px;
+                font-size: 18px;
+            }
+
+        .login .login-and-create .login-into-teeyoot .title .name,
+        .login .login-and-create .create-account .title .name,
+        .login .login-with-social-network .title .name {
+            width: 50%;
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+        }
+
+    .login .login-with-social-network .title .name {
+        margin-top: 6px;
+    }
+
+    .login .login-with-social-network .text {
+        font-size: 16px;
+    }
+
+    .login .login-with-social-network .button-facebook {
+        font-size: 16px;
+        width: 80%;
+    }
+
+    .login .login-and-create .login-into-teeyoot .title .link,
+    .login .login-and-create .create-account .title .link {
+        width: 50%;
+        text-align: right;
+    }
+
+        .login .login-and-create .login-into-teeyoot .title .link a,
+        .login .login-and-create .create-account .title .link a {
+            text-decoration: none;
+        }
+
+            .login .login-and-create .login-into-teeyoot .title .link a:hover,
+            .login .login-and-create .create-account .title .link a:hover {
+                text-decoration: underline;
+                color: #ff4f00;
+            }
+
+    .login .login-with-social-network {
+        width: 49%;
+        height: auto;
+        padding-left: 15px;
+    }

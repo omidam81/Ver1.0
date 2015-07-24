@@ -1,23 +1,27 @@
 ﻿@model Teeyoot.Account.ViewModels.CreateAccountViewModel
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account", new {returnUrl = Model.ReturnUrl})))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account", new { returnUrl = Model.ReturnUrl })))
 {
     <fieldset>
-        <legend>@T("Create a new account")</legend>
-        <div>
+        <div class="title">
+            <legend class="name">@T("Create a new account")</legend>
+            <legend class="link"><a href="#" onclick="changeLogAndCreate('login-into-teeyoot', 'create-account')">@T("Already have an account?")</a></legend>
+        </div>
+        <div class="email">
             <label>@T("Email address")</label>
             @Html.TextBoxFor(model => model.Email)
         </div>
-        <div>
+        <div class="password">
             <label>@T("Password")</label>
             @Html.PasswordFor(model => model.Password)
+            <p>Must be longer than 6 characters!</p>
         </div>
-        <div>
+        <div class="password">
             <label>@T("Confirm Password")</label>
             @Html.PasswordFor(model => model.ConfirmPassword)
         </div>
         <div>
-            <button type="submit">@T("Register")</button>
+            <button class="button-login" type="submit">@T("Register")</button>
         </div>
     </fieldset>
 }
