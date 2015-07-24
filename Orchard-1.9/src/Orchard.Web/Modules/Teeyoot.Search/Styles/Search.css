@@ -348,3 +348,8 @@
     .admin-categories-menu .right-box {
         float: right;
     }
+.infinite-scroll {
+    width: 100%;
+    display: -moz-inline-grid;
+    display: inline-grid;
+}
