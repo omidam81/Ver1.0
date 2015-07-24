@@ -1,0 +1,34 @@
+﻿@using Orchard.Utility.Extensions;
+@using Orchard.Mvc.Html;
+@using Orchard.Mvc.Extensions;
+@using System.Linq;
+@using Teeyoot.Module.Models;
+
+@{
+    var providers = Model.Providers as List<CampaignCategoriesRecord>;
+}
+
+
+@if (providers.Any())
+{
+    <ul class="menu menu-tags">
+        <li class="first">
+            <span class="raw"><h1>See more from:</h1></span>
+        </li>
+        @foreach (CampaignCategoriesRecord p in providers)
+        {
+            if (p.IsVisible && !string.IsNullOrEmpty(p.Name))
+            {
+                <li>
+
+                    <a href="/CategoriesSearch?categoriesName=@p.Name">@p.Name</a>
+
+                </li>
+            }
+        }
+    </ul>
+}
+else
+{
+    <div>Sorry, but there is no category</div>
+}
