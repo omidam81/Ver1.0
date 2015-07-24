@@ -177,7 +177,30 @@
                         <div class="campaign-card-sold">@c.Sold / @c.Goal @T("sold")</div>
 
                         <div class="campaign-card-left" title="@c.EndDate.ToString("dd.MM.yyyy")">
-                            <span>@(daysRemaining > 0 ? daysRemaining : c.EndDate.Subtract(DateTime.UtcNow).Hours)@(daysRemaining > 0 ? "d" : "h") @T("remaining")</span>
+                            <span>
+                                @if(daysRemaining > 0)
+                                {
+                                    @daysRemaining@:d @T("remaining")
+                                }
+                                else if(daysRemaining <= -1)
+                                {
+                                    @Math.Abs(daysRemaining)@:d @T("ago")
+                                } 
+                                else
+                                {
+                                    var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours;
+                                    
+                                    if(hours > 0)
+                                    {
+                                        @hours@:h @T("remaining")
+                                    }
+                                    else
+                                    {
+                                        @Math.Abs(hours)@:h @T("ago")
+                                    }
+                                } 
+                                
+                            </span>
                         </div>
                                               
                     </div>
