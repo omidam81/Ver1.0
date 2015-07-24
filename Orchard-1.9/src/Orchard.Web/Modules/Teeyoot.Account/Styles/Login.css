@@ -107,10 +107,41 @@
         font-size: 16px;
     }
 
-    .login .login-with-social-network .button-facebook {
-        font-size: 16px;
-        width: 80%;
+    .login .login-with-social-network .button-social-network {
+        text-align: left;
+        margin-top: 20px;
     }
+
+        .login .login-with-social-network .button-social-network .button-facebook {
+            font-size: 16px;
+            text-decoration: none;
+            width: 80%;
+            height: 50px;
+            margin: 0px;
+            background: #3d699b;
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 5px;
+        }
+            .login .login-with-social-network .button-social-network .button-facebook:hover {
+                background: #274464;
+            }
+
+        .login .login-with-social-network .button-social-network .button-google {
+            font-size: 16px;
+            text-decoration: none;
+            width: 80%;
+            height: 50px;
+            margin: 0px;
+            background: #5c5f66;
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 5px;
+        }
+
+            .login .login-with-social-network .button-social-network .button-google:hover {
+                background: #494b51;
+            }
 
     .login .login-and-create .login-into-teeyoot .title .link,
     .login .login-and-create .create-account .title .link {

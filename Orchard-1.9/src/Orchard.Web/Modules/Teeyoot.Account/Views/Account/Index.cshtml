@@ -34,11 +34,11 @@
             Do you already have an account on Facebook or Google? <br />
             Click the logo below to log in:
         </div>
-        <div>
-            <a class="button button-facebook" href="@Html.GetFacebookLogOnUrl(WorkContext)">Login with Facebook</a>
+        <div class="button-social-network">
+            <button class="button-facebook" onclick="location.href = '@Html.GetFacebookLogOnUrl(WorkContext)'"><p style="display: inline; margin-right: 10px; font-size: 18px; font-weight: 800;">f</p>@T("Login with Facebook")</button>
         </div>
-        <div>
-            <a class="button button-google" href=" @Html.GetGoogleLogOnUrl(WorkContext) ">Login with Google</a>
+        <div class="button-social-network">
+            <button class="button-google" onclick="location.href = '@Html.GetGoogleLogOnUrl(WorkContext)'"><img src="/Media/Default/images/gogle_icon.png" />@T("Login with Google")</button>
         </div>
     </div>
 </div>
