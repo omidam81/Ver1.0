@@ -29,7 +29,7 @@ namespace Teeyoot.Dashboard.Controllers
         private void FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
         {
             var campaignSummaries = new List<CampaignSummary>();
-            var campaigns = campaignsQuery.ToList();
+            var campaigns = campaignsQuery.OrderBy(c => c.StartDate).ToList();
 
             foreach (var c in campaigns)
             {

@@ -64,13 +64,13 @@
                 type: "GET",
                 url: "@(Url.Action("GetDetailTags", "Wizard"))",
                 data: { "filter": document.getElementById("inputTags").value },
-            success: function (data) {
-                for (var i = 0; i < data.length ; i++) {
-                    result[i] = data[i];  
-                }
-            },
+                success: function (data) {
+                    for (var i = 0; i < data.length ; i++) {
+                        result[i] = data[i];
+                    }
+                },
             });
-        response(result);
+            response(result);
 
         };
 
@@ -128,7 +128,7 @@
                     "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
                     "Design": JSON.stringify(app.state.design),
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
-                    'BackSideByDefault': backSideByDefault, "Tags":tags
+                    'BackSideByDefault': backSideByDefault, "Tags": tags
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
@@ -266,6 +266,9 @@
                                 <div class="container container_designer">
                                     <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
                                         <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
+
+
+                                            <div>
                                             <div id="design-tools" class="aside">
                                                 <div class="design__area" style="margin-left:-22%;">
                                                     <div>
@@ -318,7 +321,7 @@
                                                                         <div class="swatch" title="Black" style="background-color: #000000;"></div>
                                                                         <div class="colors shirt-colors containertip">
                                                                             <!-- <ul class="colors-in-use"></ul>
-                                <hr class="color-picker__divider">-->
+                                                                            <hr class="color-picker__divider">-->
                                                                             <ul class="all-colors"></ul>
                                                                         </div>
                                                                     </div>
@@ -562,38 +565,42 @@
 
                                                 </div>
                                             </div>
+                                           </div>
 
-                                            <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
-                                                <!-- colors list -->
-                                            </ul>
-                                            <div id="choices" class="aside">
-                                                <div>
-                                                    <div id="product-selector" class="teespring-well designer-well ">
-                                                        <label>Style &amp; design</label>
-                                                        <select id="item-options-dropdown" class="form-control form__select_menu"></select>
-                                                        <ul class="options item-options active nav" id="products-list">
-                                                            <!-- list of tees -->
-                                                        </ul>
-                                                    </div>
-                                                    <div id="price-display" class="teespring-well designer-well ">
-                                                        <div id="color-warning" class="alert alert-error"
-                                                             style="display: none;">
-                                                            Please reduce the amount of colors you are using
-                                                        </div>
-                                                        <div id="quote">
-                                                            <p class="base-cost-intro">
-                                                                <span>Base cost@50 shirts</span>
-                                                            </p>
 
-                                                            <p class="base-cost-display" id="price_preview">
-                                                                <span>RM 7.14</span>
-                                                            </p>
+                                            <div>
+                                                <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
+                                                    <!-- colors list -->
+                                                </ul>
+                                                <div id="choices" class="aside">
+                                                    <div>
+                                                        <div id="product-selector" class="teespring-well designer-well ">
+                                                            <label>Style &amp; design</label>
+                                                            <select id="item-options-dropdown" class="form-control form__select_menu"></select>
+                                                            <ul class="options item-options active nav" id="products-list">
+                                                                <!-- list of tees -->
+                                                            </ul>
                                                         </div>
-                                                        <button class="button button--transaction" id="nextPage">
-                                                            Next Page
-                                                        </button>
+                                                        <div id="price-display" class="teespring-well designer-well ">
+                                                            <div id="color-warning" class="alert alert-error"
+                                                                 style="display: none;">
+                                                                Please reduce the amount of colors you are using
+                                                            </div>
+                                                            <div id="quote">
+                                                                <p class="base-cost-intro">
+                                                                    <span>Base cost@50 shirts</span>
+                                                                </p>
+
+                                                                <p class="base-cost-display" id="price_preview">
+                                                                    <span>RM 7.14</span>
+                                                                </p>
+                                                            </div>
+                                                            <button class="button button--transaction" id="nextPage">
+                                                                Next Page
+                                                            </button>
+                                                        </div>
+                                                        <div class="clearfix"></div>
                                                     </div>
-                                                    <div class="clearfix"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -693,13 +700,13 @@
                                         <div class="block" style="width:100%; border-radius: 11px 0px 0px 11px;">Number of shirts:</div>
                                     </td>
                                     <td>
-                                        <input style="height:100%; font-size: 1.1rem; padding: 4px 0px 2px 1px; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="15">
+                                        <input style="height:100%; font-size: 1.1rem; padding: 4px 0px 2px 1px; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="250">
                                         @* <span >5</span>*@
                                     </td>
                                 </tr>
                             </table>
                             <div>
-                                <span style="font-size:13px">Your goal is the number of shirts you’re aiming to sell</span>
+                                <span style="font-weight: bold;">Your goal is the number of shirts you’re aiming to sell</span>
                             </div>
                             <div>
                                 <label style="font-weight: bold;">Set selling price</label>
@@ -769,7 +776,7 @@
                                 <label style="font-weight: bold;">Estimated profit</label>
                             </div>
                             <div>
-                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">RM 150</span>
+                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">RM 2500</span>
                             </div>
                             <div></div>
                             <button class="Left">NEXT PAGE</button>

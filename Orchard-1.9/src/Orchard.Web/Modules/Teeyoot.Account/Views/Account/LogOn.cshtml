@@ -1,6 +1,6 @@
 ﻿@model Teeyoot.Account.ViewModels.LogOnViewModel
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {ReturnUrl = Request.QueryString["ReturnUrl"]})))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {returnUrl = Model.ReturnUrl})))
 {
     <fieldset>
         <legend>@T("Login with Teespring")</legend>

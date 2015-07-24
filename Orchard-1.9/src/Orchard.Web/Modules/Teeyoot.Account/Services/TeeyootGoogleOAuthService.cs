@@ -46,7 +46,8 @@ namespace Teeyoot.Account.Services
                 var urlHelper = new UrlHelper(workContext.HttpContext.Request.RequestContext);
                 var redirectUrl = new Uri(
                     workContext.HttpContext.Request.Url,
-                    urlHelper.Action("GoogleAuth", "Account", new {Area = "Teeyoot.Account"})
+                    //urlHelper.Action("GoogleAuth", "Account", new {Area = "Teeyoot.Account"})
+                    urlHelper.Action("GoogleAuth", "Account", new { Area = "Teeyoot.Account" })
                     ).ToString();
 
                 var wr = WebRequest.Create(TokenRequestUrl);

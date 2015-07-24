@@ -42,7 +42,7 @@
                     <div class="recipients">You are sending a message to all buyers of</div>
                     <div>
                         <div style="vertical-align:central">
-                            <img class="printPreview" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
+                            <img style="width:6%" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
                             <div class="campTitle">Title of campaign</div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                                                 *|PRODUCTS|*
                                             </div>
                                         </div>
-                                        <div style="margin-left:6%">
+                                        <div class="exampleDiv">
                                             <div>
                                                 <h1>Example</h1>
                                             </div>
@@ -134,9 +134,9 @@
                     <div class="msgContTitle">Message Content</div>
                     @Html.TextAreaFor(m => m.Content, new { @class = "msgText", @placeholder = "Write something nice to your buyers..." })
                     @*<div><textarea class="txtArea" type="text"></textarea></div>*@
-                    <div class="buttonDiv">
-                        <div style="font-size:11px; margin-right: 4%;">You may send buyers from a single campaign up to 3 emails in a 7-day period.</div>
-                        <div style="float:right; width:70%">     
+                    <div class="msgFooterDiv">
+                        <div style="font-size:11px; width:90%; margin-right: 4%;">You may send buyers from a single campaign up to 3 emails in a 7-day period.</div>
+                        <div style="text-align:center; width:90%">     
                             <a class="cancel-button" href="@Url.Action("Messages")">@T("Cancel")</a>             
                             <button class="send-button" type="submit">Send Message</button>
                         </div>
@@ -144,7 +144,7 @@
                 </div>
             </div>
 }
-            <div style="text-align:right"></div>  
+           
         </div>
    
     </div>

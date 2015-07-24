@@ -2,7 +2,7 @@
 
     app.state.w = $(window).width();
     app.state.h = $(window).height();
-    document.getElementById('trackbar').value = 15;
+    document.getElementById('trackbar').value = 250;
     var slides = $('.Slides > div');
     //$('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });

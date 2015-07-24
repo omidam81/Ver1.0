@@ -62,12 +62,12 @@ namespace Teeyoot.Account.Controllers
 
         [HttpGet]
         [AlwaysAccessible]
-        public ActionResult Index()
+        public ActionResult Index(string logOnReturnUrl, string registerReturnUrl)
         {
             var viewModel = new AccountIndexViewModel
             {
-                CreateAccountViewModel = new CreateAccountViewModel(),
-                LogOnViewModel = new LogOnViewModel(),
+                CreateAccountViewModel = new CreateAccountViewModel(registerReturnUrl),
+                LogOnViewModel = new LogOnViewModel(logOnReturnUrl),
             };
 
             if (TempData[RegistrationValidationSummaryKey] != null)
@@ -94,7 +94,7 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult Register(CreateAccountViewModel viewModel, string returnUrl = null)
+        public ActionResult Register(CreateAccountViewModel viewModel)
         {
             if (ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
             {
@@ -102,27 +102,37 @@ namespace Teeyoot.Account.Controllers
                 if (user != null)
                 {
                     _authenticationService.SignIn(user, false);
-                    return this.RedirectLocal(returnUrl);
+                    if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
+                    {
+                        return this.RedirectLocal(viewModel.ReturnUrl);
+                    }
+
+                    return this.RedirectLocal("~/");
                 }
             }
 
-            return Redirect("~/Login");
+            return this.RedirectLocal("~/Login");
         }
 
         [HttpPost]
         [AlwaysAccessible]
         [ValidateInput(false)]
-        public ActionResult LogOn(LogOnViewModel viewModel, string returnUrl)
+        public ActionResult LogOn(LogOnViewModel viewModel)
         {
             var user = ValidateLogOn(viewModel.Email, viewModel.Password);
 
             if (user != null)
             {
                 _authenticationService.SignIn(user, viewModel.RememberMe);
-                return this.RedirectLocal(returnUrl);
+                if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
+                {
+                    return this.RedirectLocal(viewModel.ReturnUrl);
+                }
+
+                return this.RedirectLocal("~/");
             }
 
-            return Redirect("~/Login");
+            return this.RedirectLocal("~/Login");
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
@@ -133,12 +143,13 @@ namespace Teeyoot.Account.Controllers
                 model.Error,
                 model.State);
 
-            if (response.Error != null)
+            if (response.Error == null)
             {
-                TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
+                return this.RedirectLocal("~/");
             }
 
-            return this.RedirectLocal(response.ReturnUrl);
+            TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
+            return Redirect("~/Login");
         }
 
         public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
@@ -149,7 +160,13 @@ namespace Teeyoot.Account.Controllers
                 model.Error,
                 model.State);
 
-            return this.RedirectLocal(response.ReturnUrl);
+            if (response.Error == null)
+            {
+                return this.RedirectLocal("~/");
+            }
+
+            TempData["GoogleLogOnFailedError"] = response.Error.ToString();
+            return Redirect("~/Login");
         }
 
         private bool ValidateRegistration(string email, string password, string confirmPassword)
