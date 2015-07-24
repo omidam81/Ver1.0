@@ -3124,7 +3124,7 @@
 
     .preview-img img {
         width: 60%;
-        height: 60%;
+        /*height: 60%;*/
     }
 
 .featured-campaigns-list {
@@ -3926,6 +3926,8 @@ html, body {
         background: #ffffff;
         border: 1px solid rgba(0,137,182,0.25);
         display: -webkit-inline-box;
+        display: -moz-inline-box;
+        display: inline-block;
     }
 
         .menu-tags li:hover {

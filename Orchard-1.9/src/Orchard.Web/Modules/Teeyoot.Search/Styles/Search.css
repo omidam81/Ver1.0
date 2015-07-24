@@ -179,13 +179,13 @@
 
 @media all and (min-width: 1700px) {
     .tee-previewSearch:first-child img {
-        height: 100% !important;
+        /*height: 100% !important;*/
     }
 }
 
 @media (max-width: 1700px) {
     .tee-previewSearch:first-child img {
-        height: 100% !important;
+        /*height: 100% !important;*/
     }
 }
 
