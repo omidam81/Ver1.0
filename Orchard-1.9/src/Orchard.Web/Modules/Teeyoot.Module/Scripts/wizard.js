@@ -4,16 +4,40 @@
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
     var slides = $('.Slides > div');
-    //$('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
-    //document.getElementById('content').style.marginBottom = "60%";
     slides.css({ width: app.state.w + 'px' });
-
     app.state.pos = 0;
     slide();
 
 
-    
+
+    if (document.querySelector(".user-email") == null) {
+        if (app.state.w > "1800") {
+            document.querySelector(".design__area").style.marginLeft = "0%";
+            document.getElementById("no-band1").style.marginLeft = "-8%";
+            document.getElementById("Content3").style.marginLeft = "2%";
+            document.getElementById("wizardSecondSlide").style.marginLeft = "1.7%";
+        } else if (app.state.w < "1300") {
+            document.getElementById("no-band1").style.marginLeft = "-4%";
+            document.querySelector(".design__area").style.marginLeft = "-6%";
+            document.getElementById("Content2").style.marginLeft = "7%";
+        } else if (app.state.w < "1450") {
+            document.getElementById("no-band1").style.marginLeft = "-7%";
+            document.querySelector(".design__area").style.marginLeft = "-5%";
+            document.getElementById("wizardSecondSlide").style.marginLeft = "1.1%";
+            document.getElementById("Content3").style.marginLeft = "6%";
+
+        }
+    } else {
+        if ("1300" < app.state.w && app.state.w < "1450") {
+            document.querySelector(".design__area").style.marginLeft = "-18%";
+            document.getElementById("Content3").style.marginLeft = "6%";
+        } else if (app.state.w < "1300") {
+            document.getElementById("Content3").style.marginLeft = "13%";
+            document.getElementById("Content2").style.marginLeft = "11.5%";
+            
+        }
+    }
 
   
 
