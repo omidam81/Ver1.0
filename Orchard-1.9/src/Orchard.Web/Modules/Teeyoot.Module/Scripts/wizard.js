@@ -4,16 +4,20 @@
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
     var slides = $('.Slides > div');
-    //$('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
-    //document.getElementById('content').style.marginBottom = "60%";
     slides.css({ width: app.state.w + 'px' });
-
     app.state.pos = 0;
     slide();
 
 
-    
+
+        if (document.querySelector(".user-email") == null) {
+            document.querySelector(".design__area").style.marginLeft = "0%";
+            document.getElementById("no-band1").style.marginLeft = "-8%";
+            document.getElementById("Content3").style.marginLeft = "2%";
+            document.getElementById("wizardSecondSlide").style.marginLeft = "1.7%";
+        }
+        
 
   
 

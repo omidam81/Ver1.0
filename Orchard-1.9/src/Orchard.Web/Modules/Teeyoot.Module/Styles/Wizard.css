@@ -483,12 +483,19 @@ span.number {
 
 @media all and (max-width: 1293px) {
 
-        .Slides {
+        /*.Slides {
         margin-left: 0% !important;
+    }*/
+    #wizardSecondSlide {
+        margin-left: 1.5% !important;
     }
 
             .design__area {
          margin-left: -8% !important;
+    }
+
+    #Content3 {
+      margin-left: 10%;
     }
 }
 
