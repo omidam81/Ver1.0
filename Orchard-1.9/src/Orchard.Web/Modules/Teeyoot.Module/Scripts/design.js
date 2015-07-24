@@ -857,8 +857,9 @@ var design={
             var $html = $('<li><div class="valign-outer"><div class="valign-middle"><div class="valign-inner">' +
                 '<img class="art-search-preview" data-url-svg="' + art.svg + '" src="' + art.src + '">' +
                 '</div></div></div></li>');
+            $('#labArt').css('display', 'inline');
             $list.append($html);
-            $html.on('click', function() {
+            $html.on('#click', function() {
                 var url = $(this).find('img').data('url-svg');
                 design.art.create({ item: { url: url, file_type: 'svg', change_color: 1 } });
             });
@@ -1019,8 +1020,8 @@ var design={
                             var txt = e.find('text');
                             var size1 = txt[0].getBBox();
 
-                            var $w = parseInt(size1.width);
-                            var $h = parseInt(size1.height);
+                            var $w = parseInt(size1.width * (e[0].item.scaleX || 1));
+                            var $h = parseInt(size1.height * (e[0].item.scaleY || 1));
 
                             design.item.updateSize($w, $h);
 
@@ -1534,14 +1535,14 @@ var design={
 				item.text 		= o.text;
 				item.fontFamily = o.fontFamily;
 				item.color 		= o.color;
-				item.outlineC = 'none';
-				item.outlineW = '0';
+				//item.outlineC = 'none';
+				//item.outlineW = '0';
 			if(o){
 				this.setValue(o);
 			}else{
 				var o = this.getValue();
 			}
-			
+
 			var div = document.createElement('div');
 			var node = document.createTextNode(o.text);
 				div.appendChild(node);
@@ -1561,6 +1562,8 @@ var design={
 			tspan.setAttributeNS(null, 'x', '50%');
 			tspan.setAttributeNS(null, 'dy', 0);
 							
+			item.outlineC = o.outlineC;
+			item.outlineW = o.outlineW;
 			text.setAttributeNS(null, 'fill', o.color);
 			text.setAttributeNS(null, 'stroke', o.outlineC);
 			text.setAttributeNS(null, 'stroke-width', o.outlineW);
@@ -1625,12 +1628,20 @@ var design={
 				    case 'color':
 				        rgb = design.designer.toRgbColor(app.state['color-text']);
 				        txt[0].setAttributeNS(null, 'fill', rgb);
+				        if (obj.item.color) {
+				            app.state.unuseColors(obj.item.color);
+				        }
 				        obj.item.color = rgb;
+				        app.state.useColors(rgb);
 				        break;
 				    case 'art-color':
 				        rgb = design.designer.toRgbColor(app.state['color-art']);
 				        txt[0].setAttributeNS(null, 'fill', rgb);
+				        if (obj.item.color) {
+				            app.state.unuseColors(obj.item.color);
+				        }
 				        obj.item.color = rgb;
+				        app.state.useColors(rgb);
 				        break;
 				    case 'colorT':
 						var color = $jd('#team-name-color').data('value');
@@ -1710,22 +1721,43 @@ var design={
 						}
 						this.setSize(e);
 						break;
-					case 'outline-width':
+				    case 'outline-width':
+				        var oldVal = parseFloat(txt[0].getAttributeNS(null, 'stroke-width'));
+				        if (oldVal && obj.item.outlineC) {
+                            app.state.unuseColors(obj.item.outlineC);
+                        }
 						txt[0].setAttributeNS(null, 'stroke-width', value);
 						txt[0].setAttributeNS(null, 'stroke-linecap', 'round');
 						txt[0].setAttributeNS(null, 'stroke-linejoin', 'round');
 						obj.item.outlineW = value;
+						if (parseFloat(value) && obj.item.outlineC) {
+						    app.state.useColors(obj.item.outlineC);
+						}
 						break;
 				    case 'outline':
+				        var oWidth = parseFloat(txt[0].getAttributeNS(null, 'stroke-width'));
 				        rgb = design.designer.toRgbColor(app.state['color-outline']);
 				        txt[0].setAttributeNS(null, 'stroke', rgb);
 				        //txt[0].setAttributeNS(null, 'stroke-width', $jd('.outline-value').html()/50);
+				        if (oWidth && obj.item.outlineC) {
+				            app.state.unuseColors(obj.item.outlineC);
+				        }
 				        obj.item.outlineC = rgb;
+				        if (oWidth) {
+				            app.state.useColors(rgb);
+				        }
 				        break;
 				    case 'art-outline':
+				        oWidth = parseFloat(txt[0].getAttributeNS(null, 'stroke-width'));
 				        rgb = design.designer.toRgbColor(app.state['color-art-outline']);
 				        txt[0].setAttributeNS(null, 'stroke', rgb);
+				        if (oWidth && obj.item.outlineC) {
+				            app.state.unuseColors(obj.item.outlineC);
+				        }
 				        obj.item.outlineC = rgb;
+				        if (oWidth) {
+				            app.state.useColors(rgb);
+				        }
 				        break;
 				    default:
 						txt[0].setAttributeNS(null, lable, value);
@@ -1752,8 +1784,8 @@ var design={
 		},
 		setSize: function(e){
 			var txt = e.find('text');
-			var $w 	= parseInt(txt[0].getBBox().width);
-			var $h 	= parseInt(txt[0].getBBox().height);
+			var $w = parseInt(txt[0].getBBox().width * (e[0].item.scaleX || 1));
+			var $h = parseInt(txt[0].getBBox().height * (e[0].item.scaleY || 1));
 			e.css('width', $w + 'px');
 			e.css('height', $h + 'px');						
 			var svg = e.find('svg'),
@@ -1821,7 +1853,8 @@ var design={
 			o.title 		= item.title;
 			o.url 			= item.url;
 			o.file_name 	= item.file_name;			
-			o.thumb			= item.thumb;
+			o.thumb = item.thumb;
+		    o.colors = item.colors;
 			o.confirmColor	= true;
 			o.remove 		= true;
 			o.edit 			= false;
@@ -1852,8 +1885,8 @@ var design={
                         o.height 	= height;						
                         o.width 	= (height/this.height) * this.width;
                     }
-					o.change_color = 0;					
-								
+					o.change_color = 0;
+
 					var content = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink">'
 								 + '<g><image x="1" y="1" width="' + (o.width-2) + '" height="' + (o.height-2) + '" xlink:href="' + item.url + '" preserveAspectRatio="none"/></g>'
 								 + '</svg>';
@@ -2062,8 +2095,17 @@ var design={
             n = n + 1;
             return n;
         },
-		create: function(item, x, y){
-            var me = this;
+        create: function (item, x, y) {
+		    var me = this;
+
+		    var colors = item.colors || item.color;
+		    if (colors) {
+		        app.state.useColors(colors);
+		    }
+            if (parseFloat(item.outlineW) && item.outlineC) {
+                app.state.useColors(item.outlineC);
+            }
+
 			this.unselect();
             var view = '#view-'+app.state.getView();
 			var e = $(view+' .content-inner'),
@@ -2533,6 +2575,11 @@ var design={
 
             if(e.data('type') == 'text')
             {
+                var txt = e.find('text');
+                var $w = parseInt(txt[0].getBBox().width);
+                var $h = parseInt(txt[0].getBBox().height);
+                e[0].item.scaleX = width / $w;
+                e[0].item.scaleY = height / $h;
                 //var text = e.find('text');
                 //text[0].setAttributeNS(null, 'y', 20);
             }
@@ -2642,7 +2689,15 @@ var design={
 		},
 		remove: function (e) {
 		    this.unselect();
-			e.parentNode.parentNode.removeChild(e.parentNode);
+		    e.parentNode.parentNode.removeChild(e.parentNode);
+		    var item = $(e.parentNode)[0].item;
+		    var colors = item.colors || item.color;
+            if (colors) {
+                app.state.unuseColors(colors);
+            }
+            if (item.outlineC && item.outlineW) {
+                app.state.unuseColors(item.outlineC);
+            }
 			var id = $(e.parentNode).data('id');
 			if($('#layer-'+id)){
                 $('#layer-'+id).remove();
@@ -3499,7 +3554,8 @@ var design={
 	}
 };
 
-$(document).ready(function(){
+$(document).ready(function () {
+    $('.max-colors-count').html(maxDesignColors);
 	design.ini();
 	$('#design-area').click(function(e){
 		var topCurso=!document.all ? e.clientY: event.clientY;

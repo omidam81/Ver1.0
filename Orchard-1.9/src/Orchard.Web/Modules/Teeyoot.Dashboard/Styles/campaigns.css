@@ -147,6 +147,15 @@
         .campaigns-list-container > div {
             padding-left: 0;
         }
+
+        .filter-dropdown-toggle,
+        .filter-dropdown-menu {
+            width:200px !important;
+        }
+         
+        .campaign-status-filter {
+            margin-left: 0 !important;
+        }
 }
 
 @media all and (max-width: 530px) {
@@ -208,7 +217,17 @@
 
 .campaign-card-links {
     float: right;
+    margin-right:8px;
 }
+#campaign_list_filter {
+    border:solid 1px #e8eced;
+    border-radius:5px;
+    margin-right:15px;
+    height: 26px;
+}
+#campaign_list_filter:focus::-webkit-input-placeholder  {color:transparent;}
+#campaign_list_filter:focus::-moz-placeholder   {color:transparent;}
+#campaign_list_filter:focus:-moz-placeholder   {color:transparent;}
 
 .campaign-card-profit {
     padding: 2px 5px;
@@ -216,4 +235,7 @@
     color: #fff;
     background-color: #6c7478;
     float: left;
+}
+.campaign-status-filter {
+    margin-left: 27px;
 }

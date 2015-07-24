@@ -609,11 +609,15 @@
     <Content Include="Content\data-samples\search.json" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
+    <Content Include="Scripts\ciede2000.js" />
+    <Content Include="Scripts\color-counter.js" />
+    <Content Include="Scripts\color_model.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\core.js" />
     <Content Include="Scripts\design.js" />
     <Content Include="Scripts\design_upload.js" />
     <Content Include="Scripts\fontdetect.js" />
+    <Content Include="Scripts\image_analysis_model.js" />
     <Content Include="Scripts\jquery.color.js" />
     <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
     <Content Include="Scripts\jquery.elevatezoom.js" />
@@ -629,6 +633,7 @@
     <Content Include="Scripts\language.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\quantize.js" />
     <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\wizard.js" />
@@ -678,6 +683,7 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignCategoriesPart.cs" />
+    <Compile Include="Models\CampaignCategoriesWidgetPart.cs" />
     <Compile Include="Models\CampaignCategoriesRecord.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />

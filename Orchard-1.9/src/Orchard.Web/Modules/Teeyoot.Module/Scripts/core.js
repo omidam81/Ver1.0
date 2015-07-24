@@ -49,8 +49,58 @@ var app = {
         getImage: function(){
             return design.products.images[this.product.id];
         },
-        snapToCenter: true
-    }
+        getUsedColorsCount: function (view) {
+            var usedColors = this['usedColors_' + (view || this.getView())];
+            var count = Object.keys(usedColors).length;
+            if (count > maxDesignColors) {
+                $('#color-warning').show();
+                $('#quote').hide();
+            } else {
+                $('#color-warning').hide();
+                $('#quote').show();
+            }
+            return count;
+        },
+        useColors: function (colors) {
+            if (colors === 'none') {
+                return;
+            }
+            if (typeof colors === 'string') {
+                colors = [colors];
+            }
+            var usedColors = this['usedColors_' + this.getView()];
+            for (var i = 0; i < colors.length; i++) {
+                var color = colors[i];
+                if (!usedColors[color]) {
+                    usedColors[color] = 0;
+                }
+                usedColors[color]++;
+            }
+            console.log('colors: ' + this.getUsedColorsCount());
+        },
+        unuseColors: function (colors) {
+            if (colors === 'none') {
+                return;
+            }
+            if (typeof colors === 'string') {
+                colors = [colors];
+            }
+            var usedColors = this['usedColors_' + this.getView()];
+            for (var i = 0; i < colors.length; i++) {
+                var color = colors[i];
+                if (usedColors[color]) {
+                    usedColors[color]--;
+                    if (usedColors[color] === 0) {
+                        delete usedColors[color];
+                    }
+                }
+            }
+            console.log('colors: '+this.getUsedColorsCount());
+        },
+        snapToCenter: true,
+        usedColors_front: {},
+        usedColors_back: {}
+}
 };
 
 jQuery(function() {
