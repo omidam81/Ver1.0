@@ -1,0 +1,18 @@
+﻿@model Teeyoot.WizardSettings.ViewModels.ProductStyleViewModel
+@{
+    Layout.Title = T("Add New Product Style").ToString();
+}
+
+<h2>Add New Product Style</h2>
+
+@using (Html.BeginFormAntiForgeryPost())
+{
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Name"))
+        @Html.TextBoxFor(m => m.Name, new {@class = "text large"})
+    </fieldset>
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">Save</button>
+        <a class="button" href="@Url.Action("Index", "ProductHeadline")">Cancel</a>
+    </fieldset>
+}
