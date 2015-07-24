@@ -38,6 +38,8 @@
 {
     <script type="text/javascript">
         window.onload = function () {
+            document.title = "FAQ Search | Teeyoot";
+
             var tableElem = document.getElementsByClassName('answer-topic-short');
 
             for (var i = 0; i < tableElem.length; i++) {
@@ -45,5 +47,5 @@
                 tableElem[i].innerHTML = "<span>" + str.substr(0, 400) + "...</span>";
             }
         }
-    </script>
+    </script>  
 }
