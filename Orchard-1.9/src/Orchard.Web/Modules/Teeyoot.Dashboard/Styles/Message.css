@@ -653,8 +653,8 @@ html, body {
         text-decoration: none !important;
     }
 
-.buttonDiv {
-    width: 98%;
+.msgFooterDiv {
+    width: 90%;
     text-align: center;
     display: -webkit-box;
     display: -moz-box;
