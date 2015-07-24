@@ -11,13 +11,33 @@
 
 
 
-        if (document.querySelector(".user-email") == null) {
+    if (document.querySelector(".user-email") == null) {
+        if (app.state.w > "1800") {
             document.querySelector(".design__area").style.marginLeft = "0%";
             document.getElementById("no-band1").style.marginLeft = "-8%";
             document.getElementById("Content3").style.marginLeft = "2%";
             document.getElementById("wizardSecondSlide").style.marginLeft = "1.7%";
+        } else if (app.state.w < "1300") {
+            document.getElementById("no-band1").style.marginLeft = "-4%";
+            document.querySelector(".design__area").style.marginLeft = "-6%";
+            document.getElementById("Content2").style.marginLeft = "7%";
+        } else if (app.state.w < "1450") {
+            document.getElementById("no-band1").style.marginLeft = "-7%";
+            document.querySelector(".design__area").style.marginLeft = "-5%";
+            document.getElementById("wizardSecondSlide").style.marginLeft = "1.1%";
+            document.getElementById("Content3").style.marginLeft = "6%";
+
         }
-        
+    } else {
+        if ("1300" < app.state.w && app.state.w < "1450") {
+            document.querySelector(".design__area").style.marginLeft = "-18%";
+            document.getElementById("Content3").style.marginLeft = "6%";
+        } else if (app.state.w < "1300") {
+            document.getElementById("Content3").style.marginLeft = "13%";
+            document.getElementById("Content2").style.marginLeft = "11.5%";
+            
+        }
+    }
 
   
 
