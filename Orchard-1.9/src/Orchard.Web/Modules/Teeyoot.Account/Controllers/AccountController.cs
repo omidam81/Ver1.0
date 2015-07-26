@@ -61,7 +61,6 @@ namespace Teeyoot.Account.Controllers
         }
 
         [HttpGet]
-        [AlwaysAccessible]
         public ActionResult Index(string logOnReturnUrl, string registerReturnUrl)
         {
             var viewModel = new AccountIndexViewModel
@@ -92,47 +91,34 @@ namespace Teeyoot.Account.Controllers
         }
 
         [HttpPost]
-        [AlwaysAccessible]
-        [ValidateInput(false)]
         public ActionResult Register(CreateAccountViewModel viewModel)
         {
-            if (ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
+            if (!ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
             {
-                var user = _teeyootMembershipService.CreateUser(viewModel.Email, viewModel.Password);
-                if (user != null)
-                {
-                    _authenticationService.SignIn(user, false);
-                    if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
-                    {
-                        return this.RedirectLocal(viewModel.ReturnUrl);
-                    }
-
-                    return this.RedirectLocal("~/");
-                }
+                return this.RedirectLocal("~/Login");
             }
 
-            return this.RedirectLocal("~/Login");
+            var user = _teeyootMembershipService.CreateUser(viewModel.Email, viewModel.Password);
+            if (user == null)
+            {
+                return this.RedirectLocal("~/Login");
+            }
+            _authenticationService.SignIn(user, false);
+
+            return this.RedirectLocal(!string.IsNullOrEmpty(viewModel.ReturnUrl) ? viewModel.ReturnUrl : "~/");
         }
 
         [HttpPost]
-        [AlwaysAccessible]
-        [ValidateInput(false)]
         public ActionResult LogOn(LogOnViewModel viewModel)
         {
             var user = ValidateLogOn(viewModel.Email, viewModel.Password);
-
-            if (user != null)
+            if (user == null)
             {
-                _authenticationService.SignIn(user, viewModel.RememberMe);
-                if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
-                {
-                    return this.RedirectLocal(viewModel.ReturnUrl);
-                }
-
-                return this.RedirectLocal("~/");
+                return this.RedirectLocal("~/Login");
             }
+            _authenticationService.SignIn(user, viewModel.RememberMe);
 
-            return this.RedirectLocal("~/Login");
+            return this.RedirectLocal(string.IsNullOrEmpty(viewModel.ReturnUrl) ? "~/" : viewModel.ReturnUrl);
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
@@ -249,7 +235,7 @@ namespace Teeyoot.Account.Controllers
         private IUser ValidateLogOn(string email, string password)
         {
             var validate = true;
-            const string validationSummary = "Sorry, that is not a valid login!";
+            var validationSummary = T("Sorry, that is not a valid login!").ToString();
 
             if (string.IsNullOrEmpty(email))
             {
@@ -267,13 +253,13 @@ namespace Teeyoot.Account.Controllers
                 validate = false;
             }
 
-            if (!validate)
+            if (validate)
             {
-                TempData[LoggingOnValidationSummaryKey] = validationSummary;
-                return null;
+                return user;
             }
 
-            return user;
+            TempData[LoggingOnValidationSummaryKey] = validationSummary;
+            return null;
         }
     }
 }
