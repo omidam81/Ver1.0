@@ -31,14 +31,16 @@
             <legend class="name">@T("Or login with...")</legend>
         </div>
         <div class="text">
-            Do you already have an account on Facebook or Google? <br />
+            Do you already have an account on Facebook or Google? <br/>
             Click the logo below to log in:
         </div>
         <div class="button-social-network">
-            <button class="button-facebook" onclick="location.href = '@Html.GetFacebookLogOnUrl(WorkContext)'"><p style="display: inline; margin-right: 10px; font-size: 18px; font-weight: 800;">f</p>@T("Login with Facebook")</button>
+            <button class="button-facebook" onclick="location.href = '@Html.GetFacebookLogOnUrl(WorkContext)'">
+                <p style="display: inline; margin-right: 10px; font-size: 18px; font-weight: 800;">f</p>@T("Login with Facebook")</button>
         </div>
         <div class="button-social-network">
-            <button class="button-google" onclick="location.href = '@Html.GetGoogleLogOnUrl(WorkContext)'"><img style="width: 20px; margin-right: 10px;" src="/Media/Default/images/gogle_icon.png" />@T("Login with Google")</button>
+            <button class="button-google" onclick="location.href = '@Html.GetGoogleLogOnUrl(WorkContext)'">
+                <img style="width: 20px; margin-right: 10px;" src="/Media/Default/images/gogle_icon.png"/>@T("Login with Google")</button>
         </div>
     </div>
 </div>
@@ -52,8 +54,7 @@
                 if (obj.style.display != "block") {
                     obj.style.display = "block";
                     document.getElementById(element_id2).style.display = "none";
-                }
-                else {
+                } else {
                     obj.style.display = "none";
                     document.getElementById(element_id2).style.display = "block";
                 }
@@ -71,7 +72,7 @@
             var container_height_now = $('.tb-layout-main-container').height();
             var container_padding_top_now = parseInt($('.tb-layout-main-container').css("padding-top"));
             var container_padding_bottom_now = parseInt($('.tb-layout-main-container').css("padding-bottom"));
-            var container_margin_top_now = 0;//parseInt($('.tb-layout-main-container').css("margin-top"));
+            var container_margin_top_now = 0; //parseInt($('.tb-layout-main-container').css("margin-top"));
             var container_margin_bottom_now = parseInt($('.tb-layout-main-container').css("margin-bottom"));
             var header_height_now = $('.tb-layout-header').height();
             var header_padding_top_now = parseInt($('.tb-layout-header').css("padding-top"));

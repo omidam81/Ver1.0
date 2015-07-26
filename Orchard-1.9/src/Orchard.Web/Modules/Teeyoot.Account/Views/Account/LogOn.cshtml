@@ -1,11 +1,13 @@
 ﻿@model Teeyoot.Account.ViewModels.LogOnViewModel
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new { returnUrl = Model.ReturnUrl })))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {returnUrl = Model.ReturnUrl})))
 {
     <fieldset>
         <div class="title">
             <legend class="name">@T("Login with Teeyoot")</legend>
-            <legend class="link"><a href="#" onclick="changeLogAndCreate('create-account', 'login-into-teeyoot')">@T("Create a new account")</a></legend>
+            <legend class="link">
+                <a href="#" onclick="changeLogAndCreate('create-account', 'login-into-teeyoot')">@T("Create a new account")</a>
+            </legend>
         </div>
         <div class="email">
             <label>@T("Email address")</label>
@@ -17,7 +19,7 @@
         </div>
         <div class="forgot">
             <legend class="link">
-                <a href="#">@T("Forgot your password?")</a>
+                <a href="@Url.Action("Recover", "Account")">@T("Forgot your password?")</a>
             </legend>
         </div>
         <div>

@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Orchard;
 using Orchard.Localization;
+using Orchard.Logging;
 using Orchard.Mvc.Extensions;
 using Orchard.Security;
 using Orchard.Themes;
@@ -31,6 +32,7 @@ namespace Teeyoot.Account.Controllers
 
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
         private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
+        private const string RecoverValidationSummaryKey = "RecoverValidationSummary";
         private const string FacebookLogOnFailedErrorKey = "FacebookLogOnFailedError";
 
         public AccountController(
@@ -50,9 +52,11 @@ namespace Teeyoot.Account.Controllers
             _googleOAuthService = googleOAuthService;
             _workContextAccessor = workContextAccessor;
 
+            Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
         }
 
+        public ILogger Logger { get; set; }
         public Localizer T { get; set; }
 
         private int MinPasswordLength
@@ -153,6 +157,43 @@ namespace Teeyoot.Account.Controllers
 
             TempData["GoogleLogOnFailedError"] = response.Error.ToString();
             return Redirect("~/Login");
+        }
+
+        public ActionResult Recover()
+        {
+            var viewModel = new RecoverViewModel();
+
+            if (TempData[RecoverValidationSummaryKey] != null)
+            {
+                viewModel.RecoverFailed = true;
+                viewModel.RecoverIssueSummary = (string) TempData[RecoverValidationSummaryKey];
+            }
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Recover(RecoverViewModel viewModel)
+        {
+            if (string.IsNullOrWhiteSpace(viewModel.Email))
+            {
+                TempData[RecoverValidationSummaryKey] = T("You did not provide a valid email.").ToString();
+            }
+
+            return this.RedirectLocal("~/Recover");
+        }
+
+        public ActionResult ResetPassword()
+        {
+            var viewModel = new ResetPasswordViewModel();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordViewModel viewModel)
+        {
+            throw new NotImplementedException();
         }
 
         private bool ValidateRegistration(string email, string password, string confirmPassword)
@@ -259,6 +300,7 @@ namespace Teeyoot.Account.Controllers
             }
 
             TempData[LoggingOnValidationSummaryKey] = validationSummary;
+
             return null;
         }
     }

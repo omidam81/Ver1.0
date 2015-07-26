@@ -122,6 +122,8 @@
     <Compile Include="ViewModels\AccountIndexViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
+    <Compile Include="ViewModels\RecoverViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -134,6 +136,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\LogOn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Recover.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

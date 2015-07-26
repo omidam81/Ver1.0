@@ -10,7 +10,9 @@ namespace Teeyoot.Account
         public void GetRoutes(ICollection<RouteDescriptor> routes)
         {
             foreach (var routeDescriptor in GetRoutes())
+            {
                 routes.Add(routeDescriptor);
+            }
         }
 
         public IEnumerable<RouteDescriptor> GetRoutes()
@@ -62,6 +64,24 @@ namespace Teeyoot.Account
                             {"area", "Teeyoot.Account"},
                             {"controller", "Account"},
                             {"action", "FacebookAuth"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Recover",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "Recover"}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary

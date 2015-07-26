@@ -1,0 +1,21 @@
+﻿@model Teeyoot.Account.ViewModels.RecoverViewModel
+
+@if (Model.RecoverFailed)
+{
+    @Model.RecoverIssueSummary
+}
+else
+{
+    @T("An email containing a link that will allow you to change your password has been sent to you. If you do not receive an email in the next ten minutes, please email us.")
+}
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Recover", "Account")))
+{
+    <h4>@T("Request a Password Reset")</h4>
+    <fieldset>
+        <div>
+            @Html.TextBoxFor(model => model.Email)
+        </div>
+        <button class="button-login" type="submit">@T("Request")</button>
+    </fieldset>
+}
