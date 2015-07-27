@@ -3,25 +3,22 @@
     Layout.Title = T("Fonts").ToString();
 }
 
-@using (Script.Foot())
-{
-    <script>
-        $('#artwork-upload').click(function () {
-            $("input#file").click();
-        });
-    </script>
-}
 
-<div>
-        @foreach (var font in Model)
+<div> <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddFont")" title="@T("Add Font")">@T("Add Font")</a></div>
+<div> 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+         
+     foreach (var font in Model)
         {
             <div style="margin:5px; border: 1px solid #eaeaea;">
                 @font.Family
                 <div style="float:right">
-                    <a href="@Url.Action("EditFaqEntry", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("Delete", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    <a href="@Url.Action("EditFont", new { id = font.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("DeleteFont", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                 </div>
             </div>
         }
-   
+    }
 </div>

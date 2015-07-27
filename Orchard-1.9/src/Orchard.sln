@@ -278,6 +278,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teeyoot.Account", "Orchard.Web\Modules\Teeyoot.Account\Teeyoot.Account.csproj", "{C84695E6-FA40-41DA-83F7-736DFAE19E9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teeyoot.WizardSettings", "Orchard.Web\Modules\Teeyoot.WizardSettings\Teeyoot.WizardSettings.csproj", "{54D5314C-7241-4392-8631-EBE69CC41351}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1227A9D-EBE0-4776-AF87-D2F677CE2200} = {C1227A9D-EBE0-4776-AF87-D2F677CE2200}
+		{8AB824C5-2480-4572-929A-9D4D4081AEBA} = {8AB824C5-2480-4572-929A-9D4D4081AEBA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.QuickLogOn", "Orchard.Web\Modules\RM.QuickLogOn\RM.QuickLogOn.csproj", "{809C09ED-F637-4C25-8AD6-65E4775E8DFE}"
 EndProject
