@@ -2513,7 +2513,6 @@ tspan {
 
 #step-design {
     @extends .step;
-    ;
     min-height: 1100px;
 }
 

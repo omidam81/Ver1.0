@@ -48,7 +48,7 @@ namespace Teeyoot.Module
                         .Add(T("Fonts"),
                             i => i.Action("FontList", "AdminWizard", new {area = "Teeyoot.WizardSettings"}).LocalNav())
                         .Add(T("Colors"),
-                            i => i.Action("ColorList", "AdminWizard", new {area = "Teeyoot.WizardSettings"}).LocalNav())
+                            i => i.Action("Index", "Colour", new {area = "Teeyoot.WizardSettings"}).LocalNav())
                         .Add(T("Product Headlines"),
                             i =>
                                 i.Action("Index", "ProductHeadline", new {area = "Teeyoot.WizardSettings"})

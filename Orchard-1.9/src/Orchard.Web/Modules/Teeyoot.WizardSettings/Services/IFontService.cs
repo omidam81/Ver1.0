@@ -1,9 +1,5 @@
-﻿using Orchard;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Orchard;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.WizardSettings.Services
@@ -11,5 +7,15 @@ namespace Teeyoot.WizardSettings.Services
     public interface IFontService : IDependency
     {
         IQueryable<FontRecord> GetAllfonts();
+
+        void DeleteFont(int id);
+
+        void EditFont(FontRecord font);
+
+        void AddFont(FontRecord font);
+
+        FontRecord GetFont(int id);
     }
+
+    
 }

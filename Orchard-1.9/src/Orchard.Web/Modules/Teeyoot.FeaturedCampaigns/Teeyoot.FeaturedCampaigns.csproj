@@ -6,12 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{54D5314C-7241-4392-8631-EBE69CC41351}</ProjectGuid>
+    <ProjectGuid>{C16BAD49-1A04-4CB4-A8EB-B59E1C9DCDA3}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Teeyoot.WizardSettings</RootNamespace>
-    <AssemblyName>Teeyoot.WizardSettings</AssemblyName>
+    <RootNamespace>Teeyoot.FeaturedCampaigns</RootNamespace>
+    <AssemblyName>Teeyoot.FeaturedCampaigns</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
@@ -67,8 +67,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\spectrum.js" />
-    <Content Include="Styles\spectrum.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -90,61 +88,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AdminWizardController.cs" />
-    <Compile Include="Controllers\ColourController.cs" />
-    <Compile Include="Controllers\ProductHeadlineController.cs" />
-    <Compile Include="Controllers\ProductStyleController.cs" />
-    <Compile Include="Models\ChooseColourFor.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Drivers\FeaturedCampaignsWidget.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="Services\FontService.cs" />
-    <Compile Include="Services\IFontService.cs" />
-    <Compile Include="ViewModels\ColourIndexViewModel.cs" />
-    <Compile Include="ViewModels\ProductColourListViewModel.cs" />
-    <Compile Include="ViewModels\ProductColourViewModel.cs" />
-    <Compile Include="ViewModels\ProductHeadlineIndexViewModel.cs" />
-    <Compile Include="ViewModels\ProductHeadlineViewModel.cs" />
-    <Compile Include="ViewModels\ProductStyleIndexViewModel.cs" />
-    <Compile Include="ViewModels\ProductStyleViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Style\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AdminWizard\FontList.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AdminWizard\ColorList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\AdminWizard\AddFont.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ProductHeadline\Index.cshtml" />
-    <Content Include="Views\AdminWizard\EditFont.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ProductHeadline\AddProductHeadline.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ProductHeadline\EditProductHeadline.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ProductStyle\AddProductStyle.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ProductStyle\EditProductStyle.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ProductStyle\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Colour\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Colour\AddProductColour.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Colour\ProductColourList.cshtml" />
+    <Content Include="Views\Parts\FeaturedCampaignsWidget.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

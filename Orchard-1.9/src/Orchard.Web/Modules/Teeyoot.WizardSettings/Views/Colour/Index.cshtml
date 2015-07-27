@@ -1,0 +1,43 @@
+﻿@using Teeyoot.WizardSettings.Models
+@model Teeyoot.WizardSettings.ViewModels.ColourIndexViewModel
+
+<div class="manage">
+    @if (Model.ChooseColourFor == ChooseColourFor.Product)
+    {
+        <a class="button primaryAction" href="@Url.Action("AddProductColour", "Colour")">@T("Add New Product Colour")</a>
+    }
+</div>
+
+<fieldset class="bulk-actions">
+    @Html.LabelFor(m => m.ChooseColourFor, T("Color for:"))
+    @Html.DropDownListFor(m => m.ChooseColourFor, new[]
+    {
+        new SelectListItem
+        {
+            Text = T("Product").ToString(),
+            Value = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)
+        },
+        new SelectListItem
+        {
+            Text = T("Swatch").ToString(),
+            Value = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)
+        }
+    }, T("Please select ...").ToString(), new {id = "choose_colour_for"})
+</fieldset>
+
+@if (Model.ChooseColourFor == ChooseColourFor.Product)
+{
+    Html.RenderAction("ProductColourList", "Colour");
+}
+
+@using (Script.Foot())
+{
+    <script>
+        $(document).ready(function() {
+            $("#choose_colour_for").change(function() {
+                var selectedColourFor = $(this).find('option:selected').val();
+                window.location.href = '/Admin/Colours/' + selectedColourFor;
+            });
+        });
+    </script>
+}
