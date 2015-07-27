@@ -128,7 +128,7 @@
                     "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
                     "Design": JSON.stringify(app.state.design),
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
-                    'BackSideByDefault': backSideByDefault, "Tags": tags
+                    'BackSideByDefault': backSideByDefault, "Tags": tags, "Products": app.state.products
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {

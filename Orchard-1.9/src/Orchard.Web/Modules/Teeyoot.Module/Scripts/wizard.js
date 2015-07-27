@@ -3,9 +3,11 @@
     var slides = $('.Slides > div');
     slides.css({ width: app.state.w + 'px' });
 };
-
+var globalPrdc = '';
 window.onload = function initWizard() {
+    
 
+    app.state.products = [];
     app.state.w = $(window).width();
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
@@ -16,32 +18,6 @@ window.onload = function initWizard() {
     slide();
 
     //if (document.querySelector(".user-email") == null) {
-    //    if (app.state.w > "1800") {
-    //        document.querySelector(".design__area").style.marginLeft = "0%";
-    //        document.getElementById("no-band1").style.marginLeft = "-8%";
-    //        document.getElementById("Content3").style.marginLeft = "2%";
-    //        document.getElementById("wizardSecondSlide").style.marginLeft = "1.7%";
-    //    } else if (app.state.w < "1300") {
-    //        document.getElementById("no-band1").style.marginLeft = "-4%";
-    //        document.querySelector(".design__area").style.marginLeft = "-6%";
-    //        document.getElementById("Content2").style.marginLeft = "7%";
-    //    } else if (app.state.w < "1450") {
-    //        document.getElementById("no-band1").style.marginLeft = "-7%";
-    //        document.querySelector(".design__area").style.marginLeft = "-5%";
-    //        document.getElementById("wizardSecondSlide").style.marginLeft = "1.1%";
-    //        document.getElementById("Content3").style.marginLeft = "6%";
-
-    //    }
-    //} else {
-    //    if ("1300" < app.state.w && app.state.w < "1450") {
-    //        document.querySelector(".design__area").style.marginLeft = "-18%";
-    //        document.getElementById("Content3").style.marginLeft = "6%";
-    //    } else if (app.state.w < "1300") {
-    //        document.getElementById("Content3").style.marginLeft = "13%";
-    //        document.getElementById("Content2").style.marginLeft = "11.5%";
-            
-    //    }
-    //}
 
 $("#openTags").click(function () {
     document.getElementById("tags").style.display = "inline"; 
@@ -50,10 +26,20 @@ $("#openTags").click(function () {
 
 $("#butAdd").click(function addElement() {
 
+
     if (document.querySelectorAll(".ssp_block").length >= 7)
     {
         document.getElementById("ui").style.display = "none";
     }
+
+    var prdc = {
+        ProductId: 95,
+        BaseCost: 7.14,
+        ColorId: 2260,
+        Price: 15,
+        CurrencyId: 12
+    };
+
 
     var div = document.createElement("div");
     var divThumb = document.createElement("div");
@@ -70,6 +56,7 @@ $("#butAdd").click(function addElement() {
     image.src = assetsUrls.products + 'product_type_' + document.getElementById("product").value + '_front_small.png';
     image.classList.add("sell");
     image.style.height = "73px";
+    prdc.ProductId = parseInt(document.getElementById("product").value);
 
     imageDel.classList.add("ssp_delete");
     imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
@@ -99,9 +86,12 @@ $("#butAdd").click(function addElement() {
     $inp = $(inpPrice);
 
 
+
     // Ивент на остаток прибыли от суммы одной футболки -------------------
     $inp.change(function () {
-        h4Profit.innerHTML = "RM " + (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2) + " profit / sale";
+        var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
+        prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
+        h4Profit.innerHTML = "RM " + price + " profit / sale";
     });
 
     var $divPricing = $(divPricing);
@@ -195,6 +185,7 @@ $("#butAdd").click(function addElement() {
             event.stopPropagation();
             $image.css("background-color", color.value);
             $divSwatch.css("background-color", color.value);
+            prdc.ColorId = parseInt(color.id);
             //$divColors.remove();
             $divColors.removeClass('containertip--open');
         }).hover(function () {
@@ -252,8 +243,12 @@ $("#butAdd").click(function addElement() {
             document.getElementById("ui").style.display = "inline";
         }
         div.parentNode.removeChild(div);
-    });
+        app.state.products.pop(prdc);
 
+    });
+    
+    globalPrdc = prdc;
+    app.state.products.push(prdc);
 
 });
 
@@ -336,16 +331,17 @@ function initProducts() {
 }
 
 
-
 function profitSale() {
     var $val = document.getElementById("profSale").value;
     var $price = (parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
     $("#mainH4").html("RM " + $price + " profit / sale");
+    app.state.currentProduct.Price = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
 }
 
 
 
 function colorInit() {
+
     var arrColors = [];
     $.each(design.products.colors, function (i, color) {
         if (app.state.product.colors_available.indexOf(color.id) >= 0) {
@@ -365,6 +361,7 @@ function colorInit() {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
                 $('.containertip--open').removeClass('containertip--open');
+                app.state.currentProduct.ColorId = parseInt(color.id);
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
@@ -392,6 +389,10 @@ function Design() {
 function Goal() {
     colorInit();
     initProducts();
+    if (app.state.products.length < 1) {
+        app.state.products.push(app.state.currentProduct);
+    }
+
     slideTo(2);
 }
 

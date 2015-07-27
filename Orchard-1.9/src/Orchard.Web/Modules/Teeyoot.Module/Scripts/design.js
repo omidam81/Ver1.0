@@ -1,4 +1,12 @@
 var aniSpeed = 200;
+app.state.currentProduct = {
+    ProductId: 95,
+    BaseCost: 7.14,
+    ColorId: 2260,
+    Price:  parseFloat(String(document.getElementById("profSale").value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2),
+    CurrencyId:1
+
+};
 var design={
 	zIndex: 1,
 	design_id: null,
@@ -789,7 +797,7 @@ var design={
                     color.name+'" style="background-color:'+rgb+';"></li>';
                 $colorsContainers.each(function(){
                     var $colorHtml = $(colorHtml);
-                    $colorHtml.on('click', function(event){
+                    $colorHtml.on('click', function (event) {
                         event.preventDefault();
                         event.stopPropagation();
                         var $picker = $(this).parents('.color-picker:first');
@@ -831,7 +839,6 @@ var design={
             $('.color-picker').on('click', function(event){
                 event.preventDefault();
                 event.stopPropagation();
-
                 $('.containertip--open').removeClass('containertip--open');
                 $(this).parents(':first').find('.shirt-colors').addClass('containertip--open');
             });
@@ -1121,6 +1128,7 @@ var design={
                     .attr('title', color.name)
                     .on('click', function(){
                         design.products.changeColor(color);
+                        app.state.currentProduct.ColorId = parseInt(color.id);
                     })
                     .hover(
                         function() {
@@ -1172,6 +1180,7 @@ var design={
                     $('#products-list li').removeClass('active');
                     $(this).addClass('active');
                     me.changeDesign(product);
+                    app.state.currentProduct.ProductId = parseInt(product.id);
                 } );
                 var html = '<p class="item-name">'+product.name+'</p><div class="item-overview">'+
                     '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="' + assetsUrls.products + 'product_type_' + product.id + '_front_small.png"></div>' +
@@ -2037,7 +2046,6 @@ var design={
                     .attr('src', assetsUrls.products + 'product_type_'+state.product.id+'_'+view+'.png')
                     .css({'background': color.value, 'width':image.width, 'height': image.height});
                 $images.append($img);
-
                 var $designArea = $('.design-area', $view);
                 var prefix = 'printable_'+view+'_';
                 $designArea.css({
