@@ -43,9 +43,29 @@ namespace Teeyoot.WizardSettings.Controllers
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index(ChooseColourFor? chooseColourFor)
+        public ActionResult Index(ChooseColourFor? chooseColourFor, PagerParameters pagerParameters)
         {
             var viewModel = new ColourIndexViewModel(chooseColourFor);
+
+            if (chooseColourFor == null)
+            {
+                return View(viewModel);
+            }
+
+            if (chooseColourFor.Value == ChooseColourFor.Product)
+            {
+                var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+
+                var productColours = _productColourRepository.Table
+                    .OrderBy(p => p.Name)
+                    .Skip(pager.GetStartIndex())
+                    .Take(pager.PageSize);
+
+                var pagerShape = Shape.Pager(pager).TotalItemCount(_productColourRepository.Table.Count());
+
+                viewModel.Colors = productColours;
+                viewModel.Pager = pagerShape;
+            }
 
             return View(viewModel);
         }
@@ -82,20 +102,61 @@ namespace Teeyoot.WizardSettings.Controllers
                 new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
         }
 
-        public ActionResult ProductColourList(PagerParameters pagerParameters)
+        public ActionResult EditProductColour(int productColourId)
         {
-            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+            var productColour = _productColourRepository.Get(productColourId);
 
-            var productColours = _productColourRepository.Table
-                .OrderBy(p => p.Name)
-                .Skip(pager.GetStartIndex())
-                .Take(pager.PageSize);
-
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_productColourRepository.Table.Count());
-
-            var viewModel = new ProductColourListViewModel(productColours, pagerShape);
+            var viewModel = new ProductColourViewModel
+            {
+                Id = productColour.Id,
+                Name = productColour.Name,
+                Value = productColour.Value
+            };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditProductColour(ProductColourViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage))
+                {
+                    _orchardServices.Notifier.Error(T(error));
+                }
+                return RedirectToAction("EditProductColour", new {productColourId = viewModel.Id});
+            }
+
+            var productColour = _productColourRepository.Get(viewModel.Id);
+            productColour.Name = viewModel.Name;
+            productColour.Value = viewModel.Value;
+            _productColourRepository.Update(productColour);
+
+            _orchardServices.Notifier.Information(T("Product Colour has been edited."));
+            return RedirectToAction("Index", "Colour",
+                new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
+        }
+
+        public ActionResult DeleteProductColour(int productColourId)
+        {
+            try
+            {
+                var productColour = _productColourRepository.Get(productColourId);
+                _productColourRepository.Delete(productColour);
+                _productColourRepository.Flush();
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(T("Deleting Product Colour failed: {0}", exception.Message).Text);
+                _orchardServices.Notifier.Error(T("Deleting Product Colour failed: {0}", exception.Message));
+                return RedirectToAction("Index",
+                    new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
+            }
+
+            _orchardServices.Notifier.Information(T("Product Colour has been deleted."));
+            return RedirectToAction("Index",
+                new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
         }
     }
 }

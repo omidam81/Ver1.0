@@ -57,6 +57,23 @@ namespace Teeyoot.WizardSettings
                 new RouteDescriptor
                 {
                     Route = new Route(
+                        "Admin/Colours/EditProductColour",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "Colour"},
+                            {"action", "EditProductColour"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
                         "Admin/Colours/{chooseColourFor}",
                         new RouteValueDictionary
                         {

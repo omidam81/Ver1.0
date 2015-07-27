@@ -29,8 +29,12 @@
 {
     <script>
         $(document).ready(function() {
+            var colour = "#ffffff";
+
+            $('#colour').val(colour);
+
             $('#colour').spectrum({
-                color: "#ECC",
+                color: colour,
                 showInput: true,
                 className: "full-spectrum",
                 showInitial: true,

@@ -99,7 +99,6 @@
     <Compile Include="Services\FontService.cs" />
     <Compile Include="Services\IFontService.cs" />
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
-    <Compile Include="ViewModels\ProductColourListViewModel.cs" />
     <Compile Include="ViewModels\ProductColourViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineViewModel.cs" />
@@ -111,9 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminWizard\FontList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\AdminWizard\ColorList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminWizard\AddFont.cshtml" />
@@ -144,7 +140,7 @@
     <Content Include="Views\Colour\AddProductColour.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Colour\ProductColourList.cshtml" />
+    <Content Include="Views\Colour\EditProductColour.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

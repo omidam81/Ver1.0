@@ -3,7 +3,7 @@
     Layout.Title = T("Add New Product Style").ToString();
 }
 
-<h2>Add New Product Style</h2>
+<h2>@T("Add New Product Style")</h2>
 
 @using (Html.BeginFormAntiForgeryPost())
 {
@@ -13,6 +13,6 @@
     </fieldset>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">Save</button>
-        <a class="button" href="@Url.Action("Index", "ProductHeadline")">Cancel</a>
+        <a class="button" href="@Url.Action("Index", "ProductStyle")">Cancel</a>
     </fieldset>
 }
