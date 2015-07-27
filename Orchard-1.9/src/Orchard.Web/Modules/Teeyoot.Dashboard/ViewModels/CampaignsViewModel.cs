@@ -42,6 +42,8 @@ namespace Teeyoot.Dashboard.ViewModels
         public string Alias { get; set; }
 
         public CampaignStatusRecord Status { get; set; }
+
+        public bool ShowBack { get; set; }
     }
 
     public class CampaignsOverview

@@ -150,6 +150,9 @@
   <ItemGroup>
     <Content Include="Views\MenuItemLink-seller-dashboard-menu.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Widget-Name-searchothercampaigns.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
@@ -78,5 +79,11 @@ namespace Teeyoot.Module.Services
             return _ocpRepository.Table.Where(x => x.CampaignProductRecord.CampaignRecord_Id == campaignId);
         }
 
+        public Task<int> GetProfitOfCampaign(int id)
+        {
+            return Task.Run<int>(() => GetProductsOrderedOfCampaign(id)
+                                        .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                                        .Sum(entry => (int?)entry.Profit) ?? 0);
+        }
     }
 }

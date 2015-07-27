@@ -6,11 +6,27 @@ using Teeyoot.Module.Models;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Common.ExtentionMethods;
 using System;
+using System.Threading.Tasks;
 
 namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
+        //public async Task<ActionResult> Campaigns()
+        //{
+        //    var model = new CampaignsViewModel();
+        //    model.Currency = "RM"; //TODO: eugene: implement currency
+        //    var user = _wca.GetContext().CurrentUser;
+        //    var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+        //    var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser != null ? teeyootUser.Id : 0);
+        //    var productsOrderedQuery = _orderService.GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
+
+        //    await FillCampaigns(model, campaignsQuery);
+        //    FillOverviews(model, productsOrderedQuery, campaignsQuery);
+           
+        //    return View(model);
+        //}
+
         public ActionResult Campaigns()
         {
             var model = new CampaignsViewModel();
@@ -20,11 +36,36 @@ namespace Teeyoot.Dashboard.Controllers
             var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser != null ? teeyootUser.Id : 0);
             var productsOrderedQuery = _orderService.GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
 
-            FillOverviews(model, productsOrderedQuery, campaignsQuery);
             FillCampaigns(model, campaignsQuery);
+            FillOverviews(model, productsOrderedQuery, campaignsQuery);
 
             return View(model);
         }
+
+        //private async Task FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
+        //{
+        //    var campaignSummaries = new List<CampaignSummary>();
+        //    var campaigns = campaignsQuery.OrderBy(c => c.StartDate).ToList();
+
+        //    foreach (var c in campaigns)
+        //    {
+        //        campaignSummaries.Add(new CampaignSummary
+        //        {
+        //            Alias = c.Alias,
+        //            EndDate = c.EndDate,
+        //            Goal = c.ProductCountGoal,
+        //            Id = c.Id,
+        //            Name = c.Title,
+        //            Sold = c.ProductCountSold,
+        //            StartDate = c.StartDate,
+        //            Status = c.CampaignStatusRecord,
+        //            ShowBack = c.BackSideByDefault,
+        //            FirstProductId = c.Products[0].Id,
+        //            Profit = await _orderService.GetProfitOfCampaign(c.Id)                   
+        //        });
+        //    }
+        //    model.Campaigns = campaignSummaries;
+        //}
 
         private void FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
         {
@@ -43,10 +84,11 @@ namespace Teeyoot.Dashboard.Controllers
                     Sold = c.ProductCountSold,
                     StartDate = c.StartDate,
                     Status = c.CampaignStatusRecord,
+                    ShowBack = c.BackSideByDefault,
                     FirstProductId = c.Products[0].Id,
                     Profit = _orderService.GetProductsOrderedOfCampaign(c.Id)
-                                .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                                .Sum(entry => (int?)entry.Profit) ?? 0
+                                        .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                                        .Sum(entry => (int?)entry.Profit) ?? 0
                 });
             }
             model.Campaigns = campaignSummaries;
