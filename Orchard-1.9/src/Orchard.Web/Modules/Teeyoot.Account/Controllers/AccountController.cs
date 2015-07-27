@@ -33,6 +33,8 @@ namespace Teeyoot.Account.Controllers
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
         private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
         private const string RecoverValidationSummaryKey = "RecoverValidationSummary";
+        private const string RecoverEmailSentKey = "RecoverEmailSent";
+        private const string ResetPasswordValidationSummaryKey = "ResetPasswordValidationSummary";
         private const string FacebookLogOnFailedErrorKey = "FacebookLogOnFailedError";
 
         public AccountController(
@@ -107,9 +109,12 @@ namespace Teeyoot.Account.Controllers
             {
                 return this.RedirectLocal("~/Login");
             }
+
             _authenticationService.SignIn(user, false);
 
-            return this.RedirectLocal(!string.IsNullOrEmpty(viewModel.ReturnUrl) ? viewModel.ReturnUrl : "~/");
+            return string.IsNullOrEmpty(viewModel.ReturnUrl)
+                ? Redirect("~/")
+                : this.RedirectLocal(viewModel.ReturnUrl);
         }
 
         [HttpPost]
@@ -120,9 +125,12 @@ namespace Teeyoot.Account.Controllers
             {
                 return this.RedirectLocal("~/Login");
             }
+
             _authenticationService.SignIn(user, viewModel.RememberMe);
 
-            return this.RedirectLocal(string.IsNullOrEmpty(viewModel.ReturnUrl) ? "~/" : viewModel.ReturnUrl);
+            return string.IsNullOrEmpty(viewModel.ReturnUrl)
+                ? Redirect("~/")
+                : this.RedirectLocal(viewModel.ReturnUrl);
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
@@ -135,7 +143,7 @@ namespace Teeyoot.Account.Controllers
 
             if (response.Error == null)
             {
-                return this.RedirectLocal("~/");
+                return Redirect("~/");
             }
 
             TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
@@ -152,7 +160,7 @@ namespace Teeyoot.Account.Controllers
 
             if (response.Error == null)
             {
-                return this.RedirectLocal("~/");
+                return Redirect("~/");
             }
 
             TempData["GoogleLogOnFailedError"] = response.Error.ToString();
@@ -169,6 +177,11 @@ namespace Teeyoot.Account.Controllers
                 viewModel.RecoverIssueSummary = (string) TempData[RecoverValidationSummaryKey];
             }
 
+            if (TempData[RecoverEmailSentKey] != null)
+            {
+                viewModel.RecoverEmailSent = (bool) TempData[RecoverEmailSentKey];
+            }
+
             return View(viewModel);
         }
 
@@ -179,22 +192,126 @@ namespace Teeyoot.Account.Controllers
             {
                 TempData[RecoverValidationSummaryKey] = T("You did not provide a valid email.").ToString();
             }
+            else
+            {
+                var baseUri = _workContextAccessor.GetContext().HttpContext.Request.Url;
+                //var recoverUri = new Uri(baseUri, Url.Action("ResetPassword", "Account", new { nonce }));
+
+                _userService.SendLostPasswordEmail(viewModel.Email,
+                    nonce => "http://localhost:30323/Recover/Request/" + Server.UrlEncode(nonce));
+
+                /*
+                _userService.SendLostPasswordEmail(viewModel.Email, 
+                    nonce => "http://localhost:30323/Recover/Request/" + Server.UrlEncode(nonce));
+                 */
+
+
+                //Url.MakeAbsolute()
+                    //new Uri(baseUri, "~/Recover/Request/" + HttpUtility.UrlPathEncode(nonce)).ToString());
+
+                    /*
+                    new Uri(baseUri,
+                        Url.Action("ResetPassword", "Account", new {area = "Teeyoot.Account", nonce = HttpUtility.UrlPathEncode(nonce)})).ToString());
+                     */
+                    
+                    /*
+                    nonce =>
+                    new Uri(baseUri, Url.Action("ResetPassword", "Account", new {nonce})).ToString());
+                     */
+                        
+                        
+                    
+                        
+                        //Url.Action("ResetPassword", "Account", new {nonce})).ToString());
+
+
+                /*
+                var siteUrl = _workContextAccessor.GetContext().CurrentSite.BaseUrl;
+                if (string.IsNullOrWhiteSpace(siteUrl))
+                {
+                    siteUrl = HttpContext.Request.ToRootUrlString();
+                }
+
+                _userService.SendLostPasswordEmail(viewModel.Email,
+                    nonce =>
+                        Url.MakeAbsolute(
+                            Url.Action("ResetPassword", "Account",
+                                new {area = "Teeyoot.Account", nonce = nonce}),
+                            siteUrl));
+
+                */
+
+                //var baseUri = _workContextAccessor.GetContext().HttpContext.Request.Url.ToString();
+                //var recoverUri = new Uri(baseUri, Url.Action("ResetPassword", "Account", new {nonce}));
+
+                //_userService.SendLostPasswordEmail(viewModel.Email,
+                //        nonce => Url.MakeAbsolute(Url.Action("ResetPassword", "Account", new { area="Teeyoot.Account", nonce = nonce }), baseUri));
+
+                /*
+                        new Uri(baseUri,
+                            Url.Action("ResetPassword", "Account",
+                                new {area = "Teeyoot.Account", nonce = nonce})).ToString());
+                         */
+
+
+                //var siteUrl = _workContextAccessor.GetContext().CurrentSite.;
+                /*
+                if (string.IsNullOrEmpty(siteUrl))
+                {
+                    siteUrl = HttpContext.Request.ToRootUrlString();
+                }
+                _userService.SendLostPasswordEmail(viewModel.Email,
+                    nonce => Url.MakeAbsolute(Url.Action("ResetPassword", "Account", new {nonce}), siteUrl));
+                 */
+
+                TempData[RecoverEmailSentKey] = true;
+            }
 
             return this.RedirectLocal("~/Recover");
         }
 
-        public ActionResult ResetPassword()
+        [HttpGet]
+        public ActionResult ResetPassword(string nonce)
         {
             var viewModel = new ResetPasswordViewModel();
+
+            var user = _userService.ValidateLostPassword(nonce);
+            if (user == null)
+            {
+                return this.RedirectLocal("~/Login");
+            }
+
+            if (TempData[ResetPasswordValidationSummaryKey] != null)
+            {
+                viewModel.ResetPasswordIssueOccurred = true;
+                viewModel.ResetPasswordValidationSummary = (string) TempData[ResetPasswordValidationSummaryKey];
+            }
 
             return View(viewModel);
         }
 
+        /*
         [HttpPost]
         public ActionResult ResetPassword(ResetPasswordViewModel viewModel)
         {
-            throw new NotImplementedException();
+            var user = _userService.ValidateLostPassword(viewModel.Nonce);
+            if (user == null)
+            {
+                return Redirect("~/");
+            }
+
+            if (!ValidateNewPassword(viewModel.Password, viewModel.ConfirmPassword))
+            {
+                return this.RedirectLocal(Url.Action("ResetPassword", "Account", new {nonce = viewModel.Nonce}));
+            }
+
+            _membershipService.SetPassword(user, viewModel.Password);
+
+            _authenticationService.SignIn(user, false);
+
+            return Redirect("~/");
         }
+        */
 
         private bool ValidateRegistration(string email, string password, string confirmPassword)
         {
@@ -302,6 +419,54 @@ namespace Teeyoot.Account.Controllers
             TempData[LoggingOnValidationSummaryKey] = validationSummary;
 
             return null;
+        }
+
+        private bool ValidateNewPassword(string password, string confirmPassword)
+        {
+            var validate = true;
+
+            string passwordCantBeBlank = null;
+            string passwordIsTooShort = null;
+            string passwordDoesntMatch = null;
+            string confirmPasswordCantBeBlank = null;
+
+            if (string.IsNullOrEmpty(password))
+            {
+                passwordCantBeBlank = T("Password can't be blank").ToString();
+                validate = false;
+            }
+            else if (password.Length < MinPasswordLength)
+            {
+                passwordIsTooShort =
+                    T("Password is too short (minimum is {0} characters)", MinPasswordLength).ToString();
+                validate = false;
+            }
+
+            if (string.IsNullOrEmpty(confirmPassword))
+            {
+                confirmPasswordCantBeBlank = T("Password confirmation can't be blank").ToString();
+                validate = false;
+            }
+            else if (!string.Equals(password, confirmPassword, StringComparison.Ordinal))
+            {
+                passwordDoesntMatch = T("Password confirmation doesn't match Password").ToString();
+                validate = false;
+            }
+
+            var validationSummary = string.Join(". ", new[]
+            {
+                passwordCantBeBlank,
+                passwordIsTooShort,
+                confirmPasswordCantBeBlank,
+                passwordDoesntMatch
+            }.Where(it => it != null));
+
+            if (!validate)
+            {
+                TempData[RegistrationValidationSummaryKey] = validationSummary;
+            }
+
+            return validate;
         }
     }
 }

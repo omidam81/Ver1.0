@@ -76,6 +76,24 @@ namespace Teeyoot.Account
                 new RouteDescriptor
                 {
                     Route = new Route(
+                        "Recover/Request/{*nonce}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "ResetPassword"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
                         "Recover",
                         new RouteValueDictionary
                         {

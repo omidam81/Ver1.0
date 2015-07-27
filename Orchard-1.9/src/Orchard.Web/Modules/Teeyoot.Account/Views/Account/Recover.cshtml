@@ -4,7 +4,7 @@
 {
     @Model.RecoverIssueSummary
 }
-else
+@if (Model.RecoverEmailSent)
 {
     @T("An email containing a link that will allow you to change your password has been sent to you. If you do not receive an email in the next ten minutes, please email us.")
 }
