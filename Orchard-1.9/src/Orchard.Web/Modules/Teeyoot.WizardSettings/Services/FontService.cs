@@ -20,5 +20,33 @@ namespace Teeyoot.WizardSettings.Services
         {
             return _fontRepository.Table;
         }
+
+        public void DeleteFont(int id)
+        {
+            _fontRepository.Delete(_fontRepository.Get(id));
+        }
+
+        public void EditFont(FontRecord font)
+        {
+            FontRecord record = _fontRepository.Get(f => f.Id == font.Id);
+            record.Family = font.Family;
+            record.FileName = font.FileName;
+            record.Priority = font.Priority;
+            record.Tags = font.Tags;
+            _fontRepository.Update(record);
+            
+        }
+
+        public void AddFont(FontRecord font)
+        {
+            _fontRepository.Create(font);
+
+        }
+
+
+        public FontRecord GetFont(int id)
+        {
+            return _fontRepository.Get(f => f.Id == id);
+        }
     }
 }

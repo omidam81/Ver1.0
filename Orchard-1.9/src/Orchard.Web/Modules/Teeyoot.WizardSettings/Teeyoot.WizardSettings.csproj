@@ -102,6 +102,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\Style\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminWizard\FontList.cshtml" />
@@ -114,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ProductHeadline\Index.cshtml" />
+    <Content Include="Views\AdminWizard\EditFont.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ProductHeadline\AddProductHeadline.cshtml" />
