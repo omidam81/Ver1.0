@@ -144,11 +144,11 @@
                      data-EndDate="@c.EndDate.Ticks"
                      data-Sales="@c.Sold">
 
-                    <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/front.png')">
+                    <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/@(!c.ShowBack ? "front.png" : "back.png")')">
 
                         <div class="campaign-card-links">
                             <div>
-                                <a href="#" title="@T("Edit")">
+                                <a href="@Url.Action("CreateImage", "Wizard", new { area = "Teeyoot.Module", campaignId = c.Id })" title="@T("Edit")">
                                     <i class="fa fa-pencil"></i>                             
                                 </a>
                             </div>

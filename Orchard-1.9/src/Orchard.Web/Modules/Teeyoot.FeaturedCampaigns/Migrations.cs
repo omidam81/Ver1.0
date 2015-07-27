@@ -1,6 +1,7 @@
 ﻿using Orchard.ContentManagement.MetaData;
 using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
+using Teeyoot.Module.Models;
 
 namespace Teeyoot.FeaturedCampaigns
 {
@@ -9,19 +10,36 @@ namespace Teeyoot.FeaturedCampaigns
         public int Create()
         {
             ContentDefinitionManager.AlterPartDefinition(
-                "CampaignCategoriesWidgetPart",
+                "FeaturedCampaignsWidgetPart",
                 builder => builder.Attachable());
 
             ContentDefinitionManager.AlterTypeDefinition(
-                "CampaignCategoriesWidget",
+                "FeaturedCampaignsWidget",
                 cfg => cfg
-                           .WithPart("CampaignCategoriesWidgetPart")
+                           .WithPart("FeaturedCampaignsWidgetPart")
                            .WithPart("CommonPart")
                            .WithPart("WidgetPart")
                            .WithSetting("Stereotype", "Widget")
                 );
 
-            return 1;
+            return 2;
+        }
+
+        public int UpdateFrom1(){
+            ContentDefinitionManager.AlterPartDefinition(
+                "FeaturedCampaignsWidgetPart",
+                builder => builder.Attachable());
+
+            ContentDefinitionManager.AlterTypeDefinition(
+                "FeaturedCampaignsWidget",
+                cfg => cfg
+                           .WithPart("FeaturedCampaignsWidgetPart")
+                           .WithPart("CommonPart")
+                           .WithPart("WidgetPart")
+                           .WithSetting("Stereotype", "Widget")
+                );
+
+            return 2;
         }
     }
 }

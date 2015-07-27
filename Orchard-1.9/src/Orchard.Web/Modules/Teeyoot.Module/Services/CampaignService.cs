@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Services
 {
@@ -187,13 +188,12 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<CampaignRecord> GetCampaignsOfUser(int userId)
         {
-            return GetAllCampaigns(); //TODO: eugene: make for certain user
-           //          .Where(c => c.TeeyootUserId == userId);
+            return userId > 0 ? GetAllCampaigns().Where(c => c.TeeyootUserId == userId) : GetAllCampaigns().Where(c => !c.TeeyootUserId.HasValue);
         }
 
         private void FillWithFakeData(LaunchCampaignData data)
         {
-            data.Design = data.Design??"{ \"key\":\"some data in Json\" }";
+            data.Design = data.Design ?? "{ \"key\":\"some data in Json\" }";
 
             var prodCount = new Random().Next(1, 3);
 

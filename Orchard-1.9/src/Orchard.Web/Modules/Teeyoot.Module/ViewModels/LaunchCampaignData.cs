@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Teeyoot.Module.Models
+namespace Teeyoot.Module.ViewModels
 {
     public class LaunchCampaignData
     {
@@ -34,5 +34,12 @@ namespace Teeyoot.Module.Models
         public double BaseCost { get; set; }
 
         public double Price { get; set; }
+    }
+
+    public class DesignInfo
+    {
+        public string Front { get; set; }
+
+        public string Back { get; set; }
     }
 }

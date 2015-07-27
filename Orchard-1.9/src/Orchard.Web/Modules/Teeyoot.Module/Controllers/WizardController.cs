@@ -12,8 +12,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -86,6 +88,89 @@ namespace Teeyoot.Module.Controllers
                 return Json(new ArtUpload { Name = fileName });
             }
             return null;
+        }
+
+        public ActionResult CreateImage(int campaignId)
+        {
+            var campaign = _campaignService.GetCampaignById(campaignId);
+            var data = new JavaScriptSerializer().Deserialize<DesignInfo>(campaign.Design);
+
+            var str = @"data:image/png;base64,";
+            if (data.Front.StartsWith(str))
+            {
+                data.Front = data.Front.Replace(str, "").Trim();
+            }
+            if (data.Back.StartsWith(str))
+            {
+                data.Back = data.Back.Replace(str, "").Trim();
+            }
+
+            foreach (var p in campaign.Products)
+            {
+                var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
+                var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+
+                var front = new Bitmap(frontPath);
+                var back = new Bitmap(backPath);
+
+                var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
+
+                BuildProductImage(front, Base64ToBitmap(data.Front), rgba).Save(@"c:/users/eugene/desktop/image_" + new Random().Next(0, 100) + ".png");
+                BuildProductImage(back, Base64ToBitmap(data.Back), rgba).Save(@"c:/users/eugene/desktop/image_" + new Random().Next(0, 100) + ".png");
+            }
+
+            return Redirect("~/Dashboard/Campaigns");
+        }
+
+        private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color)
+        {
+            var background = CreateBackground(image.Width, image.Height, color);
+            image = ApplyBackground(image, background);
+            return ApplyDesign(image, design);
+        }
+
+        private Bitmap CreateBackground(int width, int height, Color newColor)
+        {          
+            Bitmap bmp = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(newColor);
+            }
+           
+            return bmp;         
+        }
+
+        private Bitmap ApplyBackground(Bitmap image, Bitmap background)
+        {
+            var width = background.Width;
+            var height = background.Height;
+            var bmp = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.Transparent);
+                g.DrawImage(background, new Rectangle(0, 0, width, height));
+                g.DrawImage(image, new Rectangle(0, 0, width, height));
+            }
+
+            bmp.MakeTransparent(Color.White);           
+            return bmp;                      
+        }
+
+        private Bitmap ApplyDesign(Bitmap image, Bitmap design)
+        {
+            design.Save(@"c:/users/eugene/desktop/image_" + new Random().Next(0, 100) + ".png");
+            return ApplyBackground(design, image);
+        }
+
+        private Bitmap Base64ToBitmap(string base64String)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            using (var ms = new MemoryStream(imageBytes))
+            {
+                ms.Position = 0;
+                return new Bitmap(ms);
+            }
         }
 
         private void CreateImagesForCampaignProduct(int campaignId, int productId)

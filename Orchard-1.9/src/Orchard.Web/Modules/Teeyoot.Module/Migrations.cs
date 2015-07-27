@@ -319,7 +319,10 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_CampaignCategories", "LinkCampaignAndCategoriesRecord", new[] { "CampaignCategoriesPartRecord_Id" }, "CampaignCategoriesRecord", new[] { "Id" });
 
-            return 18;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
+               table => table.AddColumn<bool>("IsFeatured", cl => cl.WithDefault(false)));
+
+            return 19;
         }
 
         public int UpdateFrom2()
@@ -533,6 +536,14 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCampaignAndCategories_CampaignCategories", "LinkCampaignAndCategoriesRecord", new[] { "CampaignCategoriesPartRecord_Id" }, "CampaignCategoriesRecord", new[] { "Id" });
 
             return 18;
+        }
+
+        public int UpdateFrom18()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
+                table => table.AddColumn<bool>("IsFeatured", cl => cl.WithDefault(false)));
+
+            return 19;
         }
     }
 }

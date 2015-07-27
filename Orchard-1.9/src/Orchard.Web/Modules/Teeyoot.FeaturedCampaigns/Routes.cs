@@ -25,13 +25,13 @@ namespace Teeyoot.FeaturedCampaigns
                     Route = new Route(
                         "Admin/FeaturedCampaigns",
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Search"},
-                            {"controller", "AdminSearch"},
+                            {"area", "Teeyoot.FeaturedCampaigns"},
+                            {"controller", "AdminFeaturedCampaigns"},
                             {"action", "Index"}                           
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                            {"area", "Teeyoot.Search"}
+                            {"area", "Teeyoot.FeaturedCampaigns"}
                         },
                         new MvcRouteHandler())
                 }

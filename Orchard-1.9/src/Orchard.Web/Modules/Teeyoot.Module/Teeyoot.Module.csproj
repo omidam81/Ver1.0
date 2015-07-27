@@ -688,13 +688,15 @@
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
-    <Compile Include="Models\FeaturedCampaignsPart.cs" />
-    <Compile Include="Models\LaunchCampaignData.cs" />
+    <Compile Include="ViewModels\LaunchCampaignData.cs" />
+    <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />
     <Compile Include="Models\LinkStoreCampaignRecord.cs" />
     <Compile Include="Models\StoreRecord.cs" />
+    <Compile Include="Services\IStoreService.cs" />
+    <Compile Include="Services\StoreService.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />

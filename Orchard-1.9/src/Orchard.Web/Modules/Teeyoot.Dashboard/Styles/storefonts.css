@@ -328,6 +328,95 @@
 
 
 
+.card__options_container {
+    background: rgba(41,48,51,0.7);
+    border-radius: .3rem .3rem 0 0;
+    height: 75%;
+    min-height: 140px;
+    opacity: 0;
+    padding: .8rem;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-transition: opacity 200ms;
+    transition: opacity 200ms;
+    z-index: 3;
+}
+
+    .card__options_container:hover {
+        opacity: 1;
+    }
+
+@media only screen and (min-width: 660px) {
+    .card__options_container {
+        display: block;
+        height: 228px;
+    }
+}
+
+.card__options_container .options__item {
+    display: inline-block;
+    margin-right: .5rem;
+}
+
+    .card__options_container .options__item:last-child {
+        margin-right: 0;
+    }
+
+.card__options_container .option__icon {
+    color: rgba(255,255,255,0.85);
+}
+
+    .card__options_container .option__icon:hover {
+        color: #ff4f00;
+    }
+
+.card__options_container .option__name {
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.card__options_container .options__item_view {
+    left: 10%;
+    margin-right: 0;
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    width: 80%;
+}
+
+    .card__options_container .options__item_view .option__icon {
+        display: none;
+    }
+
+    .card__options_container .options__item_view .option__name {
+        border: 1px solid white;
+        border-radius: 1.5rem;
+        color: white;
+        font-size: .875rem;
+        opacity: 1;
+        padding: .36rem;
+        text-align: center;
+        -webkit-transition: border-color 100ms, background-color 100ms;
+        transition: border-color 100ms, background-color 100ms;
+    }
+
+.option__name span {
+    text-decoration: none;
+}
+
+    .option__name span:hover, .option__name span:focus {
+        text-decoration: none !important;
+    }
+
+.card__options_container .options__item_view .option__name:hover {
+    background: #ff4f00;
+    border-color: #ff4f00;
+    text-decoration: none;
+}
+
 .page__stores_show .store__details--edit, .page__stores_show .banner__image_uploader__container, .page__stores_show .card__options_container {
     display: none;
 }
@@ -368,6 +457,7 @@ img {
 
 .dashboard-layout .tb-layout-content {
     padding: 0 !important;
+    background-color:white!important;
 }
 
 @media only screen and (max-width: 960px) {
@@ -983,6 +1073,15 @@ page__heading, .page__sub_heading {
     transition: max-width 800ms, opacity 300ms;
 }
 
+.page__stores_show .cards__container--editing .card__options_container {
+    display: block;
+}
+
+.touch .page__stores_show .cards__container--editing .card__options_container {
+    background: rgba(41,48,51,0.7);
+    opacity: 1;
+}
+
 page__stores_show .cards__container--editing .add_campaigns__card {
     max-width: 50%;
     opacity: 1;
@@ -1258,6 +1357,7 @@ page__stores_show .cards__container--editing .add_campaigns__card {
     user-select: none;
     width: 100%;
     z-index: 2;
+    padding-right: 5px !important;
 }
 
 .modal__heading {
@@ -1269,6 +1369,8 @@ page__stores_show .cards__container--editing .add_campaigns__card {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 95%;
+    float: left;
 }
 
 .modal__body {
@@ -1571,7 +1673,7 @@ a.button__cta {
         outline: 0;
     }
 
-    
+
 .list_item__cell {
     display: table-cell;
     padding: .75rem 1rem;
@@ -1597,8 +1699,8 @@ a.button__cta {
 
 .list_item__thumbnail img {
     display: inline-block;
-      height: 40px;
-  max-width: 60px;
+    height: 40px;
+    max-width: 60px;
     vertical-align: middle;
 }
 
@@ -1630,16 +1732,237 @@ a.button__cta {
         white-space: nowrap;
     }
 }
-@media only screen and (min-width: 980px)
+
+@media only screen and (min-width: 980px) {
+    .modal__close_btn {
+        right: 1.2666666667rem;
+    }
+}
+
 .modal__close_btn {
-  right: 1.2666666667rem;
+    color: #6c7478;
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+    top: 1.2666666667rem;
+    right: 1rem;
 }
+
+.progress_bar {
+    background: #f5f7f7;
+    border-radius: 0.3333333333rem;
+    height: .625rem;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 }
-.modal__close_btn {
-  color: #6c7478;
-  cursor: pointer;
-  position: absolute;
-  z-index: 100;
-  top: 1.2666666667rem;
-  right: 1rem;
+
+.progress_bar__completed {
+    -webkit-animation: barAnimation 3s 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    animation: barAnimation 3s 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    background: #ff4f00 !important;
+    border-radius: 10px;
+    height: 100%;
+    position: relative;
 }
+
+.no-cssanimations .progress_bar__completed {
+    left: 0;
+}
+
+
+.card__campaign_time .campaign_time__status {
+    display: inline-block;
+    margin-right: .3rem;
+}
+
+.list_item__campaign_reserved .campaign_reserved, .list_item__campaign_time .campaign_time__status {
+    color: #293033;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.href_to_start_campaign {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+    .href_to_start_campaign a {
+        text-decoration: none;
+        color: #c2c9cc;
+        font-size: 16px;
+    }
+
+        .href_to_start_campaign a:hover {
+            text-decoration: none;
+            color: #ff4f00;
+        }
+
+
+.card__toggle {
+    border: 2px dashed #c2c9cc;
+    border-radius: 5px;
+    color: #c2c9cc;
+    cursor: pointer;
+    display: block;
+    font-size: 1.066666667rem;
+    font-weight: 600;
+    min-height: 140px;
+    text-align: center;
+    -webkit-transition: color 250ms, border-color 250ms;
+    transition: color 250ms, border-color 250ms;
+}
+
+@media only screen and (min-width: 660px) {
+    .card__toggle {
+        min-height: 270px;
+        width: 23%;
+        float: left;
+        padding-top: 10%;
+        margin-right: 20px;
+    }
+
+    .card-campaign {
+        min-height: 270px;
+        width: 25%;
+        float: left;
+        padding: 5px;
+    }
+}
+
+.card__toggle:hover {
+    border-color: #ff4f00;
+    color: #ff4f00;
+}
+
+.image_container {
+    margin: 0 auto;
+    text-align: center !important;
+}
+
+.zone-content {
+    background-color: white;
+}
+
+.card__campaign_price, .card__campaign_profit {
+    background: rgba(108,116,120,0.8);
+    border-radius: .3em;
+    color: white;
+    font-size: 0.75em;
+    padding: .1em .4em;
+    position: absolute;
+    top: .75em;
+    left: .3em;
+    z-index: 2;
+}
+
+.card__content_container {
+    padding: .5em 0;
+}
+
+.card__campaign_stats {
+    *zoom: 1;
+    display: none;
+}
+
+    .card__campaign_stats:before, .card__campaign_stats:after {
+        content: " ";
+        display: table;
+    }
+
+    .card__campaign_stats:after {
+        clear: both;
+    }
+
+@media only screen and (min-width: 660px) {
+    .card__campaign_stats {
+        display: block;
+    }
+}
+
+.card__title {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    .card__title a {
+        color: #293033;
+        text-decoration: none;
+    }
+
+        .card__title a:hover {
+            color: #ff4f00;
+            text-decoration: none;
+        }
+
+.card__sold {
+    color: #c2c9cc;
+    display: block;
+    float: left;
+    font-size: .8em;
+    line-height: 1.5;
+    margin: 0 0 .25em;
+    text-align: left;
+}
+
+.card__campaign_time {
+    color: #c2c9cc;
+    border: none;
+    float: right;
+    font-size: .8em;
+    text-align: right;
+}
+
+    .card__campaign_time .campaign_time__status {
+        display: inline-block;
+        margin-right: .3rem;
+    }
+
+    .card__campaign_time .campaign_time__title {
+        display: inline-block;
+    }
+
+.fa-trash {
+    color: white;
+}
+
+    .fa-trash:hover {
+        color: #ff4f00;
+    }
+
+.a:hover, .a:focus {
+    text-decoration: none !important;
+}
+.dg-overlay-not-show {
+    display: none;
+}
+/* Стили модального окна и содержания */
+.dg-overlay { /* слой затемнения */
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+
+        display: block;
+        -webkit-animation: fade .6s;
+        -moz-animation: fade .6s;
+        animation: fade .6s;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 8000;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: opacity .3s linear;
+        transition: opacity .3s linear;
+    }
