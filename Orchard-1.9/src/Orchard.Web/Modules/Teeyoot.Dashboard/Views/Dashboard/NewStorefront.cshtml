@@ -1,6 +1,6 @@
 ﻿@{
     Style.Include("storefonts.css");
-    @model Teeyoot.Module.Models.StoreRecord
+    @model Teeyoot.Dashboard.ViewModels.StoreViewModel
 }
 
 <style>
@@ -25,15 +25,8 @@
                 press = false;
             }
         });
-
+      
         function onFileSelected(event) {
-            //var selectedFile = event.target.files[0];
-            //var reader = new FileReader();
-
-            //var imgtag = document.getElementById("banner-image");
-
-
-            //imgtag.title = "/Media/Default/images/" + selectedFile.name;
             var selectedFile = event.target.files[0];
             var reader = new FileReader();
 
@@ -56,13 +49,97 @@
         function AddCampaigns() {
             var window = document.getElementById("modal-campaigns-choose");
             $(window).removeClass('hidden');
-         
+            var container = document.getElementsByClassName("store__ftue")[0];
+            $(container).addClass('hidden');
+            document.getElementById("dg-overlay").className = "dg-overlay";
+            var addContainer = document.getElementsByClassName("card__toggle")[0];
+            $(addContainer).removeClass('hidden');
         }
 
+        function CloseModal() {
+            var window = document.getElementById("modal-campaigns-choose");
+            $(window).addClass('hidden');
+            document.getElementById("dg-overlay").className = "dg-overlay-not-show";
+        }
+       
+        $(".checkbox__select_all").click(function () {
+            var value = document.getElementsByClassName("checkbox__select_all")[0].checked;
+            var boxes = document.getElementsByClassName("list_item__select");
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].checked = value;
+            }            
+        });
+        $(".list_item__select").click(function () {
+            var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;            
+        });
+        function UpdateCampaings() {
+            var boxes = document.getElementsByClassName("list_item__select");
+            var value;
+            var campaigns = document.getElementsByClassName("card-campaign");
+            var id;
+            var campaign;
+            for (var i = 0; i < boxes.length; i++) {
+                value = boxes[i].checked;
+                if (value) {
+                    id = boxes[i].getAttribute("id");
+                    campaign = document.getElementById("card_" + id);
+                    $(campaign).removeClass('hidden');
+                   
+                } else {
+                    id = boxes[i].getAttribute("id");
+                    campaign = document.getElementById("card_" + id);
+                    $(campaign).addClass('hidden');
+                }
+
+            }
+            CloseModal();    
+        }
+        function DeleteItem(item){
+            var idItem = item.getAttribute("id");
+            var id;
+            var campaigns = document.getElementsByClassName("card-campaign");
+            var boxes = document.getElementsByClassName("list_item__select");
+          
+            for (var i = 0; i < boxes.length; i++) {
+                id = boxes[i].getAttribute("id");
+                if (id == idItem) {
+                    boxes[i].checked = false;
+                }
+            }
+
+            campaign = document.getElementById("card_" + idItem);
+            $(campaign).addClass('hidden');     
+        }
+
+
+        @*function PublishStore() {
+            var imgtag = document.getElementsByClassName("site__featured_full")[0];
+            var modelt = @Model.Title;
+            var img = model.Img = imgtag.getAttribute("src");
+            
+
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("CreateStorefront", "Dashboard"))",
+                data: addAntiForgeryToken({
+                    "products": products
+                }),
+            success: function (data) {
+              
+            },
+            });
+
+        }
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };*@
     </script>
 }
 
-
+<div id="dg-overlay"></div>
 <div class="site__featured_full">
     <img id="banner-image" class="banner-image">
     <div class="banner__image_uploader__container">
@@ -81,8 +158,8 @@
     </div>
     <div class="store__details_container">
         <div class="store__details--edit">
-            <input class="store__name--edit" id="name" maxlength="30" name="name" placeholder="Store Title" type="text">
-            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)"></textarea>
+            <input class="store__name--edit" id="name" maxlength="30" name="name" placeholder="Store Title" type="text" value="@Model.Title">
+            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)" value="@Model.Description"></textarea>
         </div>
     </div>
 </div>
@@ -90,7 +167,7 @@
 <section class="site__sub_header">
     <div class="site__wrapper">
         <header class="store_owner__banner">
-            <button class="store_publish__button button button--primary">Publish Store</button>
+            <button onclick="PublishStore()" class="store_publish__button button button--primary">Publish Store</button>
             <div class="store_settings">
                 <div id="btn-settings" class="store_settings__toggle">
                     <i class="fa fa-cog fa-1x"></i>Settings
@@ -154,155 +231,212 @@
         <div class="store__ftue">
             <h1 class="page__heading">Create your first storefront!</h1>
             <ol class="list__counter">
+               @if (Model.Campaigns.Count() >= 1)
+               {
+                <li class="list_item__counter list_item__counter--done">Launch 3 campaigns</li>
+               }
+               else
+               {
                 <li class="list_item__counter">Launch 3 campaigns (2 more needed)</li>
+               }
                 <li class="list_item__counter">Pick a name &amp; write a description</li>
                 <li class="list_item__counter">Upload a cover photo</li>
                 <li class="list_item__counter">Add campaigns to your storefront</li>
             </ol>
-            <p>You need at least 3 campaigns to create a storefront.</p>
-            <p>
-                <a class="button__cta" href="/GetStarted">Launch one now</a>
-            </p>
+
+            @if (Model.Campaigns.Count() == 0)
+            { 
+            <div>
+                <p>You need at least 3 campaigns to create a storefront.</p>
+                <p>
+                    <a class="button__cta" href="redirectToStartCampaign()">Launch one now</a>
+                </p>
+            </div>
+            }
+            else
+            {
+                <p>
+                    <div class="button__cta" onclick="AddCampaigns()">Add Campaigns</div>               
+                    <div class="href_to_start_campaign"> or <a href="redirectToStartCampaign()">launch a new campaign</a></div> 
+                </p>
+            }
+
         </div>
+        
+@if (Model.Campaigns.Count() >= 1)
+{
+        <div class="cards__container cards__container--editing">
+            <div class="card add_campaigns__card">
+                <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">Add Campaigns +</div>
 
-        <div class="card add_campaigns__card ">
-            <div class="add_campaigns__toggle card__image_container card__toggle" onclick="AddCampaigns()">Add Campaigns +</div>
-        </div>
 
-        <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
 
-            <div class="choose_campaigns_modal modal fade">
-                <div class="modal__header">
-                    <h3 class="modal__heading">Add Campaigns to </h3>
-                </div><div class="campaigns__filter_options">
-                    <div class="filter_option__select_container">
-                        <input class="checkbox__select_all" type="checkbox" value="">
+             @foreach (var prod in Model.Campaigns)
+             {
+                 var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+                <div class="card card-campaign hidden" id="card_@prod.Id">
+                    <div class="image_container">
+                        <a href="@prod.URL" title="@prod.Title">
+                            <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                        </a>
                     </div>
-                    <div class="filter_option__search_container">
-                        <div class="searchbox__container">
-                            <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" type="search">
+                    <div class="card__options_container">
+                        <ul class="card__options">
+                            <li class="options__item options__item_view">
+                                <a href="@prod.URL" class="option__link" title="View @prod.Title">
+                                    <div class="option__name"><span>View</span></div>
+                                </a>
+                            </li>
+                            <div class="options__item" id="@prod.Id" onclick="DeleteItem(this)">
+                                <a class="store_remove_campaign option__link"  data-tooltip="Remove" href="#" title="Remove @prod.Title">
+                                    <i class="fa fa-trash fa-2x"></i>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="card__progress_container">
+                        <div class="progress_bar">
+                            <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)%"></div>
                         </div>
                     </div>
-                </div>
-                <div class="campaigns__list_container">
-                    <div class="campaigns__list store__campaign_results" id="search_results">
-                        <label class="list_item">
-                            <div class="list_item__cell list_item__select_container">
-                                <input type="checkbox" name="funny" id="2512523" value="2512523" class="list_item__select">
-                            </div>
-                            <div class="list_item__cell list_item__thumbnail">
-                                <img src="//vangogh.teespring.com/design/2512523/2746340/50x50/front.jpg?v=2015-06-26-11-57">
-                            </div>
-                            <div class="list_item__cell list_item__title">        funny      </div>
-                            <div class="list_item__cell list_item__campaign_reserved">
-                                <div class="campaign_reserved">0 / 50</div>
-                                <div class="campaign_reserved__caption">reserved</div>
-                                <div class="progress_container">
-                                    <div class="progress_bar">
-                                        <div class="progress_bar__completed" style="width: 0.5%">            </div>
-                                    </div>
+                    <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
+                    <div class="card__content_container">
+                        <div class="card__campaign_stats">
+                            <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal sold</div>
+                            <div class="card__campaign_time">     
+                                <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
+                                    <span>
+                                        @if (daysRemaining > 0)
+                                        {
+                                            @daysRemaining@:d @T("remaining")
+                                            }
+                                        else if (daysRemaining <= -1)
+                                        {
+                                            @Math.Abs(daysRemaining)@:d @T("ago")
+                                            }
+                                        else
+                                        {
+                                            var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours;
+
+                                            if (hours > 0)
+                                            {
+                                                @hours@:h @T("remaining")
+                                                }
+                                            else
+                                            {
+                                                @Math.Abs(hours)@:h @T("ago")
+                                                }
+                                        }
+
+                                    </span>
                                 </div>
+
                             </div>
-                            <div class="list_item__cell list_item__campaign_time">
-                                <div class="campaign_time__status">Ended</div>
-                            </div>
-                        </label>
-                        <label class="list_item">
-                            <div class="list_item__cell list_item__select_container">
-                                <input type="checkbox" name="rest" id="2632995" value="2632995" class="list_item__select">
-                            </div>
-                            <div class="list_item__cell list_item__thumbnail">
-                                <img src="//vangogh.teespring.com/design/2632995/2919146/50x50/front.jpg?v=2015-07-24-14-10">
-                            </div>
-                            <div class="list_item__cell list_item__title">        rest      </div>
-                            <div class="list_item__cell list_item__campaign_reserved">
-                                <div class="campaign_reserved">0 / 77</div>
-                                <div class="campaign_reserved__caption">reserved</div>
-                                <div class="progress_container">
-                                    <div class="progress_bar">
-                                        <div class="progress_bar__completed" style="width: 0.5%">            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list_item__cell list_item__campaign_time">
-                                <div class="campaign_time__status">5d</div>
-                                <div class="campaign_time__title">remaining</div>
-                            </div>
-                        </label>
-                        <label class="list_item">
-                            <div class="list_item__cell list_item__select_container">
-                                <input type="checkbox" name="rest" id="2632995" value="2632995" class="list_item__select">
-                            </div>
-                            <div class="list_item__cell list_item__thumbnail">
-                                <img src="//vangogh.teespring.com/design/2632995/2919146/50x50/front.jpg?v=2015-07-24-14-10">
-                            </div>
-                            <div class="list_item__cell list_item__title">        rest      </div>
-                            <div class="list_item__cell list_item__campaign_reserved">
-                                <div class="campaign_reserved">0 / 77</div>
-                                <div class="campaign_reserved__caption">reserved</div>
-                                <div class="progress_container">
-                                    <div class="progress_bar">
-                                        <div class="progress_bar__completed" style="width: 0.5%">            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list_item__cell list_item__campaign_time">
-                                <div class="campaign_time__status">5d</div>
-                                <div class="campaign_time__title">remaining</div>
-                            </div>
-                        </label>
-                        <label class="list_item">
-                            <div class="list_item__cell list_item__select_container">
-                                <input type="checkbox" name="rest" id="2632995" value="2632995" class="list_item__select">
-                            </div>
-                            <div class="list_item__cell list_item__thumbnail">
-                                <img src="//vangogh.teespring.com/design/2632995/2919146/50x50/front.jpg?v=2015-07-24-14-10">
-                            </div>
-                            <div class="list_item__cell list_item__title">        rest      </div>
-                            <div class="list_item__cell list_item__campaign_reserved">
-                                <div class="campaign_reserved">0 / 77</div>
-                                <div class="campaign_reserved__caption">reserved</div>
-                                <div class="progress_container">
-                                    <div class="progress_bar">
-                                        <div class="progress_bar__completed" style="width: 0.5%">            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list_item__cell list_item__campaign_time">
-                                <div class="campaign_time__status">5d</div>
-                                <div class="campaign_time__title">remaining</div>
-                            </div>
-                        </label>
-                        <label class="list_item">
-                            <div class="list_item__cell list_item__select_container">
-                                <input type="checkbox" name="rest" id="2632995" value="2632995" class="list_item__select">
-                            </div>
-                            <div class="list_item__cell list_item__thumbnail">
-                                <img src="//vangogh.teespring.com/design/2632995/2919146/50x50/front.jpg?v=2015-07-24-14-10">
-                            </div>
-                            <div class="list_item__cell list_item__title">        rest      </div>
-                            <div class="list_item__cell list_item__campaign_reserved">
-                                <div class="campaign_reserved">0 / 77</div>
-                                <div class="campaign_reserved__caption">reserved</div>
-                                <div class="progress_container">
-                                    <div class="progress_bar">
-                                        <div class="progress_bar__completed" style="width: 0.5%">            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list_item__cell list_item__campaign_time">
-                                <div class="campaign_time__status">5d</div>
-                                <div class="campaign_time__title">remaining</div>
-                            </div>
-                        </label>
+                        </div>
+                        <h1 class="card__title">
+                            <a href="" title="@prod.Title">@prod.Title</a>
+                        </h1>
                     </div>
                 </div>
-                <div class="modal__footer">
-                    <button class="add_campaigns__button button button--primary">Update Store</button>
-                </div>
-                <a aria-hidden="true" class="modal__close_btn ts-icon-close" data-dismiss="modal" href=".choose_campaigns_modal"></a>
+                }
+
+
+
             </div>
+
+            
+
+
         </div>
+
+    
+     
+            <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
+
+                <div class="choose_campaigns_modal modal">
+                    <div class="modal__header">
+                        <h3 class="modal__heading">Add Campaigns to </h3>
+                        <i onclick="CloseModal()" class="fa fa-times  fa-2x"></i>
+                    </div>
+                    <div class="campaigns__filter_options">
+                        <div class="filter_option__select_container">
+                            <input class="checkbox__select_all" type="checkbox" value="">
+                        </div>
+                        <div class="filter_option__search_container">
+                            <div class="searchbox__container">
+                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" type="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campaigns__list_container">
+                        <div class="campaigns__list store__campaign_results" id="search_results">
+                            @foreach (var prod in Model.Campaigns)
+                        {
+                            var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+
+                                <label class="list_item">
+                                    <div class="list_item__cell list_item__select_container">
+                                        <input type="checkbox" name="@prod.Title" id="@prod.Id" value="@prod.Id" class="list_item__select">
+                                    </div>
+                                    <div class="list_item__cell list_item__thumbnail">
+                                        <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                    </div>
+                                    <div class="list_item__cell list_item__title">   @prod.Title       </div>
+                                    <div class="list_item__cell list_item__campaign_reserved">
+                                        <div class="campaign_reserved">@prod.ProductCountSold / @prod.ProductCountGoal </div>
+                                        <div class="campaign_reserved__caption">reserved</div>
+                                        <div class="progress_container">
+                                            <div class="progress_bar">
+                                                <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)% !important">            </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="list_item__cell list_item__campaign_time">
+
+                                        <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
+                                            <span>
+                                                @if (daysRemaining > 0)
+                                            {
+                                                    @daysRemaining@:d @T("remaining")
+                                            }
+                                            else if (daysRemaining <= -1)
+                                            {
+                                                @Math.Abs(daysRemaining)@:d @T("ago")
+                                            }
+                                            else
+                                            {
+                                                var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours;
+
+                                                if (hours > 0)
+                                                {
+                                                    @hours@:h @T("remaining")
+                                                }
+                                                else
+                                                {
+                                                    @Math.Abs(hours)@:h @T("ago")
+                                                }
+                                            }
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </label>
+
+                        }
+                        </div>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">Update Store</button>
+                    </div>
+                    <a aria-hidden="true" class="modal__close_btn ts-icon-close" data-dismiss="modal" href=".choose_campaigns_modal"></a>
+                </div>
+            </div>
+    
+
+        }
+
+
         <div class="store__pagination">
         </div>
     </div>

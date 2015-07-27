@@ -697,6 +697,8 @@
     <Compile Include="Models\LinkProductGroupRecord.cs" />
     <Compile Include="Models\LinkStoreCampaignRecord.cs" />
     <Compile Include="Models\StoreRecord.cs" />
+    <Compile Include="Services\IStoreService.cs" />
+    <Compile Include="Services\StoreService.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />

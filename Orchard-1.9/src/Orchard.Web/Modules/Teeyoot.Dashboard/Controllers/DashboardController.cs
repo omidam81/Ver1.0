@@ -16,17 +16,20 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IMailChimpSettingsService _settingsService;
         private readonly IOrderService _orderService;
         private readonly IWorkContextAccessor _wca;
+        private readonly IStoreService _storeService;
 
         public DashboardController(ICampaignService campaignService, 
                                    IMailChimpSettingsService settingsService, 
                                    IOrderService orderService,
-                                   IWorkContextAccessor wca)
+                                   IWorkContextAccessor wca,
+                                   IStoreService storeService)
         {
             _campaignService = campaignService;
             _orderService = orderService;
             _wca = wca;
             this._settingsService = settingsService;
             this._orderService = orderService;
+            _storeService = storeService;
 
             Logger = NullLogger.Instance;
         }

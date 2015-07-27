@@ -108,6 +108,7 @@
     <Compile Include="Routes.cs" />
     <Compile Include="ViewModels\CampaignsViewModel.cs" />
     <Compile Include="ViewModels\MessageContentViewModel.cs" />
+    <Compile Include="ViewModels\StoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\Campaigns.cshtml" />
