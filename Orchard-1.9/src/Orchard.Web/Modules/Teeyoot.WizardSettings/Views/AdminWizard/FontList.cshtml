@@ -1,24 +1,39 @@
 ﻿@{
-    @model IEnumerable<Teeyoot.Module.Models.FontRecord> 
+    Style.Include("WizardSettings.css");
     Layout.Title = T("Fonts").ToString();
-}
 
+}
+@model IEnumerable<Teeyoot.Module.Models.FontRecord>
 
 <div> <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddFont")" title="@T("Add Font")">@T("Add Font")</a></div>
-<div> 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-         
-     foreach (var font in Model)
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table style="width:100%; border: 1px solid #eaeaea; margin-top:30px">
+        <th style="width:33%; border: 1px solid #eaeaea;"><h1>Font family</h1></th>
+        <th style="width:33%; border: 1px solid #eaeaea;"><h1>Preview</h1></th>
+        <th style="width:33%; border: 1px solid #eaeaea;"><h1>Action</h1></th>
+        @foreach (var font in Model)
         {
-            <div style="margin:5px; border: 1px solid #eaeaea;">
-                @font.Family
-                <div style="float:right">
-                    <a href="@Url.Action("EditFont", new { id = font.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("DeleteFont", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
-                </div>
-            </div>
+            string url = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + ".ttf";
+            <style>
+                @@font-face {
+                    font-family: @font.Family;
+                    src: url('@url') format("truetype");
+                }
+            </style>
+
+            <tr style="border: 1px solid #eaeaea;">
+                <td class="fontCell">@font.Family</td>
+                <td class="fontCell"><div style="font-family:@font.Family">Preview</div></td>
+                <td class="fontCell">
+                    <div>
+                        <a href="@Url.Action("EditFont", new { id = font.Id })" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                        <a href="@Url.Action("DeleteFont", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </td>
+            </tr>
         }
-    }
-</div>
+    </table>
+}

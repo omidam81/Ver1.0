@@ -1,4 +1,4 @@
-﻿@model Teeyoot.Module.Models.FontRecord
+﻿@model Teeyoot.WizardSettings.ViewModels.FontViewModel
 @{
     Layout.Title = T("Edit Font").ToString();
 }
@@ -7,6 +7,11 @@
 @using (Html.BeginForm("UpdateFont", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => Model.Thumbnail)
+    @Html.HiddenFor(m => Model.TtfFile)
+    @Html.HiddenFor(m => Model.WoffFile)
+    @Html.HiddenFor(m => Model.Family)
+    @Html.HiddenFor(m => Model.FileName)
     <fieldset>
         @Html.LabelFor(m => m.Family, T("FontFamily"))
         @Html.TextBoxFor(m => m.Family, new { @class = "text large" , @value = Model.Family.ToString() ?? ""})

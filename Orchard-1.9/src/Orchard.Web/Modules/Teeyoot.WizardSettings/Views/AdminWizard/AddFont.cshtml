@@ -1,56 +1,86 @@
-﻿@model Teeyoot.Module.Models.FontRecord
+﻿@model Teeyoot.WizardSettings.ViewModels.FontViewModel
 @{
     Layout.Title = T("Add Font").ToString();
+    Style.Include("WizardSettings.css");
 }
 
 
 @Html.AntiForgeryToken()
-@using (Html.BeginForm("AddNewFont", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-    
-    @Html.AntiForgeryToken()
-    
-<fieldset>
-    @Html.LabelFor(m => m.Family, T("FontFamily"))
-    @Html.TextBoxFor(m => m.Family, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.Family)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.Tags, T("Tags"))
-    @Html.TextBoxFor(m => m.Tags, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.Tags)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.Priority, T("Priority"))
-    @Html.TextBoxFor(m => m.Priority, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.Priority)
-</fieldset>
-    if (Model.FileName != null) { 
-    <fieldset>
-        @Html.LabelFor(m => m.FileName, T("File Name"))
-        @Html.TextBoxFor(m => m.FileName, new { @class = "text large" })
-        @Html.ValidationMessageFor(m => m.FileName)
-    </fieldset>
-    }
-    <input class="button primaryAction" type="submit" value="Add font">
-    }
-<div style="display:-webkit-box;  margin:20px">
+<div class="inpFields">
     Select Woff
-    @using (Html.BeginForm("UploadWoffFile", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("UploadWoffFile", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
     {
         @Html.AntiForgeryToken()
-        <input style="margin-left:30px" type="file" name="file" id="name" />
+        @Html.HiddenFor(m => Model.Thumbnail)
+        @Html.HiddenFor(m => Model.TtfFile)
+        @Html.HiddenFor(m => Model.WoffFile)
+        @Html.HiddenFor(m => Model.Family)
+        @Html.HiddenFor(m => Model.FileName)
+        <input style="margin-left:55px" type="file" name="file" id="name" />
         <input class="button primaryAction" type="submit" value="Upload File">
     }
 </div>
-<div style="display:-webkit-box; margin:20px">
+<div class="inpFields">
     Select Ttf
-    @using (Html.BeginForm("UploadTtfFile", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("UploadTtfFile", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
     {
         @Html.AntiForgeryToken()
-        <input style="margin-left:42px" type="file" name="file" id="name" />
+        @Html.HiddenFor(m => Model.Thumbnail)
+        @Html.HiddenFor(m => Model.TtfFile)
+        @Html.HiddenFor(m => Model.WoffFile)
+        @Html.HiddenFor(m => Model.Family)
+        @Html.HiddenFor(m => Model.FileName)
+        <input style="margin-left:67px" type="file" name="file" id="name" />
         <input class="button primaryAction" type="submit" value="Upload File">
     }
 </div>
+<div class="inpFields">
+    Font Thumbnail
+    @using (Html.BeginForm("UploadThumbnail", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => Model.Thumbnail)
+        @Html.HiddenFor(m => Model.TtfFile)
+        @Html.HiddenFor(m => Model.WoffFile)
+        @Html.HiddenFor(m => Model.Family)
+        @Html.HiddenFor(m => Model.FileName)
+        <input style="margin-left:30px" type="file" name="file" id="name" value=@Model.Thumbnail />
+        <input class="button primaryAction" type="submit" value="Upload File">
+    }
+</div>
+@using (Html.BeginForm("AddNewFont", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => Model.Thumbnail)
+    @Html.HiddenFor(m => Model.TtfFile)
+    @Html.HiddenFor(m => Model.WoffFile)
+    <fieldset>
+        @Html.LabelFor(m => m.Family, T("Font Family"))
+        @Html.TextBoxFor(m => m.Family, (((Model.FileName == null) || (Model.Thumbnail == null)) ? (object)new { @class = "text large", disabled = "disabled" } : (object)new { @class = "text large" }))
+        @Html.ValidationMessageFor(m => m.Family)
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.Tags, T("Tags"))
+        @Html.TextBoxFor(m => m.Tags, (((Model.FileName == null) || (Model.Thumbnail == null)) ? (object)new { @class = "text large", disabled = "disabled" } : (object)new { @class = "text large" }))
+        @Html.ValidationMessageFor(m => m.Tags)
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.Priority, T("Priority"))
+        @Html.TextBoxFor(m => m.Priority, (((Model.FileName == null) || (Model.Thumbnail == null)) ? (object)new { @class = "text large", disabled = "disabled" } : (object)new { @class = "text large" }))
+        @Html.ValidationMessageFor(m => m.Priority)
+    </fieldset>
+    if (Model.FileName != null)
+    {
+        <fieldset>
+            @Html.LabelFor(m => m.FileName, T("File Name"))
+            @Html.TextBoxFor(m => m.FileName, new { @class = "text large", @readonly = true })
+            @Html.ValidationMessageFor(m => m.FileName)
+        </fieldset>
+    }
     
+    <input class="button primaryAction" type="submit" value="Add font">
+}
+
+
 
