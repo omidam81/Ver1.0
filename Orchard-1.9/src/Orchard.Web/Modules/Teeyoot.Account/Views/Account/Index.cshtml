@@ -52,13 +52,20 @@
                 if (obj.style.display != "block") {
                     obj.style.display = "block";
                     document.getElementById(element_id2).style.display = "none";
+                    var footer_margin_top_now = parseInt($('.tb-layout-footer').css("margin-top"));
+                    if (element_id == 'login-into-teeyoot') {
+                        footer_margin_top_now = footer_margin_top_now + 44;
+                    } else {
+                        footer_margin_top_now = footer_margin_top_now - 44;
+                    }
+                    var margin = footer_margin_top_now + "px";
+                    document.querySelector(".tb-layout-footer").style.marginTop = margin;
                 }
                 else {
                     obj.style.display = "none";
                     document.getElementById(element_id2).style.display = "block";
                 }
             }
-
         }
 
         var doc_height = $(document).height();
@@ -79,7 +86,7 @@
             var header_padding_bottom_now = parseInt($('.tb-layout-header').css("padding-bottom"));
             var header_margin_top_now = parseInt($('.tb-layout-header').css("margin-top"));
             var header_margin_bottom_now = parseInt($('.tb-layout-header').css("margin-bottom"));
-            var footer_margin_top = doc_height - footer_height_now - footer_padding_top_now - footer_padding_bottom_now - footer_margin_bottom_now - footer_margin_top_now - container_height_now - container_padding_top_now - container_padding_bottom_now - container_margin_top_now - container_margin_bottom_now - header_height_now - header_padding_top_now - header_padding_bottom_now - header_margin_top_now - header_margin_bottom_now - 50;
+            var footer_margin_top = doc_height - footer_height_now - footer_padding_top_now - footer_padding_bottom_now - footer_margin_bottom_now - footer_margin_top_now - container_height_now - container_padding_top_now - container_padding_bottom_now - container_margin_top_now - container_margin_bottom_now - header_height_now - header_padding_top_now - header_padding_bottom_now - header_margin_top_now - header_margin_bottom_now - 70;
             var margin = footer_margin_top + "px";
             document.querySelector(".tb-layout-footer").style.marginTop = margin;
         }
