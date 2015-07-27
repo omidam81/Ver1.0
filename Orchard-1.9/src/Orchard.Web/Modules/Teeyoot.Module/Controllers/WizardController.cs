@@ -13,6 +13,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.ViewModels;
@@ -23,10 +24,12 @@ namespace Teeyoot.Module.Controllers
     public class WizardController : Controller
     {
         private readonly ICampaignService _campaignService;
+        private readonly IimageHelper _imageHelper;
 
-        public WizardController(ICampaignService campaignService)
+        public WizardController(ICampaignService campaignService, IimageHelper imageHelper)
         {
             _campaignService = campaignService;
+            _imageHelper = imageHelper;
             Logger = NullLogger.Instance;
         }
 
@@ -60,13 +63,9 @@ namespace Teeyoot.Module.Controllers
 
             try
             {
-                var campaign = _campaignService.CreateNewCampiagn(data);
-
-                for (int i = 0; i < campaign.Products.Count; i++)
-                {
-                    CreateImagesForCampaignProduct(campaign.Id, campaign.Products[i].Id);
-                }
-                
+                var campaign = _campaignService.CreateNewCampiagn(data);                
+                CreateImagesForCampaignProducts(campaign);
+               
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             catch (Exception e)
@@ -90,9 +89,8 @@ namespace Teeyoot.Module.Controllers
             return null;
         }
 
-        public ActionResult CreateImage(int campaignId)
+        private void CreateImagesForCampaignProducts(CampaignRecord campaign)
         {
-            var campaign = _campaignService.GetCampaignById(campaignId);
             var data = new JavaScriptSerializer().Deserialize<DesignInfo>(campaign.Design);
 
             var str = @"data:image/png;base64,";
@@ -110,99 +108,44 @@ namespace Teeyoot.Module.Controllers
                 var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
                 var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+                var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), p.Id.ToString());
 
-                var front = new Bitmap(frontPath);
-                var back = new Bitmap(backPath);
+                if (!Directory.Exists(destForder))
+                {
+                    Directory.CreateDirectory(destForder + "/normal");
+                    Directory.CreateDirectory(destForder + "/big");
+                }
+
+                var frontTemplate = new Bitmap(frontPath);
+                var backTemplate = new Bitmap(backPath);
 
                 var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
 
-                BuildProductImage(front, Base64ToBitmap(data.Front), rgba).Save(@"c:/users/eugene/desktop/image_" + new Random().Next(0, 100) + ".png");
-                BuildProductImage(back, Base64ToBitmap(data.Back), rgba).Save(@"c:/users/eugene/desktop/image_" + new Random().Next(0, 100) + ".png");
-            }
+                var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, 
+                    p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+                    p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+                front.Save(Path.Combine(destForder, "normal", "front.png"));
 
-            return Redirect("~/Dashboard/Campaigns");
-        }
+                var back = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, 
+                    p.ProductRecord.ProductImageRecord.PrintableBackTop, p.ProductRecord.ProductImageRecord.PrintableBackLeft,
+                    p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
+                back.Save(Path.Combine(destForder, "normal", "back.png"));
 
-        private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color)
-        {
-            var background = CreateBackground(image.Width, image.Height, color);
-            image = ApplyBackground(image, background);
-            return ApplyDesign(image, design);
-        }
+                ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
+                ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
 
-        private Bitmap CreateBackground(int width, int height, Color newColor)
-        {          
-            Bitmap bmp = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(bmp))
-            {
-                g.Clear(newColor);
-            }
-           
-            return bmp;         
-        }
-
-        private Bitmap ApplyBackground(Bitmap image, Bitmap background)
-        {
-            var width = background.Width;
-            var height = background.Height;
-            var bmp = new Bitmap(width, height);
-            using (var g = Graphics.FromImage(bmp))
-            {
-                g.Clear(Color.Transparent);
-                g.DrawImage(background, new Rectangle(0, 0, width, height));
-                g.DrawImage(image, new Rectangle(0, 0, width, height));
-            }
-
-            bmp.MakeTransparent(Color.White);           
-            return bmp;                      
-        }
-
-        private Bitmap ApplyDesign(Bitmap image, Bitmap design)
-        {
-            design.Save(@"c:/users/eugene/desktop/image_" + new Random().Next(0, 100) + ".png");
-            return ApplyBackground(design, image);
-        }
-
-        private Bitmap Base64ToBitmap(string base64String)
-        {
-            byte[] imageBytes = Convert.FromBase64String(base64String);
-            using (var ms = new MemoryStream(imageBytes))
-            {
-                ms.Position = 0;
-                return new Bitmap(ms);
+                frontTemplate.Dispose();
+                backTemplate.Dispose();
+                front.Dispose();
+                back.Dispose();
             }
         }
 
-        private void CreateImagesForCampaignProduct(int campaignId, int productId)
+        private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
         {
-            // TODO: eugene: implement method, now fake
-            var imageNum = new Random().Next(1, 4);
-            var srcFolder = Path.Combine(Server.MapPath("Media/samples/"), imageNum.ToString());
-            var destForder = Path.Combine(Server.MapPath("Media/campaigns/"), campaignId.ToString(), productId.ToString());
-
-            if (!Directory.Exists(destForder))
-            {
-                Directory.CreateDirectory(destForder + "/normal");                
-                Directory.CreateDirectory(destForder + "/big");
-            }
-
-            var front = Image.FromFile(Path.Combine(srcFolder, "front.png"));
-            var back = Image.FromFile(Path.Combine(srcFolder, "back.png"));
-
-            front.Save(Path.Combine(destForder, "normal", "front.png"), ImageFormat.Png);
-            back.Save(Path.Combine(destForder, "normal", "back.png"), ImageFormat.Png);
-
-            var frontLarge = ResizeImage(front, 1070, 1274);
-            var backLarge = ResizeImage(back, 1070, 1274);
-
-            frontLarge.Save(Path.Combine(destForder, "big", "front.png"), ImageFormat.Png);
-            backLarge.Save(Path.Combine(destForder, "big", "back.png"), ImageFormat.Png);
-
-            frontLarge.Dispose();
-            backLarge.Dispose();          
-            front.Dispose();
-            back.Dispose();
-            
+            var background = _imageHelper.CreateBackground(image.Width, image.Height, color);
+            image = _imageHelper.ApplyBackground(image, background);
+            return _imageHelper.ApplyDesign(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight);
         }
 
         private Bitmap ResizeImage(Image image, int width, int height)

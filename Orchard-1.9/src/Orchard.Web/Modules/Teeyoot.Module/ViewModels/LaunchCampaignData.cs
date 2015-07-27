@@ -31,9 +31,9 @@ namespace Teeyoot.Module.ViewModels
 
         public int ColorId { get; set; }
 
-        public double BaseCost { get; set; }
+        public string BaseCost { get; set; }
 
-        public double Price { get; set; }
+        public string Price { get; set; }
     }
 
     public class DesignInfo
