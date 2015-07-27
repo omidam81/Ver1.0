@@ -96,7 +96,7 @@ input[type="text"], input[type="password"] {
 
 
 .section {
-    width: 46%;
+    width: 100%;
     margin: 0;
     float: left;
     padding-left: 20px;
@@ -178,6 +178,7 @@ input[type="text"], input[type="password"] {
     margin: 7px;
     padding: 0;
     margin-bottom: 30px !important;
+    margin-left: 280px;
 }
 
     .section ul li {
@@ -222,6 +223,7 @@ a.btn.btn-pill {
     color: #A8A8A8;
     border: 1px solid #A8A8A8;
     margin-bottom: 30px;
+    margin-left: 280px;
 }
 
     a.btn.btn-pill:hover {
@@ -276,9 +278,7 @@ a.btn.btn-pill > span {
 }
 
 @media all and (max-width: 1300px) {
-    .section {
-        width: 45%;
-    }
+    
 }
 
 @media all and (max-width: 1215px) {
@@ -289,10 +289,6 @@ a.btn.btn-pill > span {
 }
 
 @media all and (max-width: 1135px) {
-    .section {
-        width: 45%;
-    }
-
     .search-faq-input {
         font-size: 14px !important;
     }
@@ -303,7 +299,18 @@ a.btn.btn-pill > span {
         width: 100%;
     }
 }
-
+@media all and (max-width: 830px) {
+    .section {
+  width: 80%;
+}
+    .section ul {
+        margin-left: 200px;
+        width: 60%;
+    }
+    a.btn.btn-pill {
+        margin-left: 200px;
+    }
+}
 @media all and (max-width: 775px) {
     .search-faq-input {
         width: 60% !important;
@@ -327,6 +334,13 @@ a.btn.btn-pill > span {
         height: 20px;
         margin-left: -50px;
         margin-top: -14px;
+    }
+    .section ul {
+        margin-left: 100px;
+        width: 60%;
+    }
+    a.btn.btn-pill {
+        margin-left: 100px;
     }
 }
 
@@ -517,12 +531,25 @@ a.btn.btn-pill > span {
     line-height: 1.5 !important;
 }
 
-/*.ui-state-focus:hover {
-    background-color: #ff4f00!important;
-}*/
+@media all and (max-width: 500px) {
+    .section ul {
+        margin-left: 10px;
+        width: 50%;
+    }
+    a.btn.btn-pill {
+        margin-left: 10px;
+    }
+}
 @media all and (max-width: 333px) {
     .faq-img-24 {
         width: 100%;
+    }
+    .section ul {
+        margin-left: 0px;
+        width: 50%;
+    }
+    a.btn.btn-pill {
+        margin-left: 0px;
     }
 }
 @media all and (max-width: 414px) {
@@ -639,4 +666,9 @@ a.btn.btn-pill > span {
     .faq-img-1 {
         width: 100%;
     }
+}
+
+.ui-autocomplete li:hover{
+    background:#f78027!important;
+    background-color:#f78027!important;
 }

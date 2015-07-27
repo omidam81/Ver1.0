@@ -7,6 +7,12 @@
     right: 240px;
     top: 30px;
     padding: 0;
+    border: solid #39ace6 1px;
+    border-radius: 5px;
+    padding: 4px;
+    width: 39px;
+    right: 223px;
+        background-color:#e1f3fb;
 }
 .lab-colors li {
     border-radius: 50%;
@@ -16,6 +22,7 @@
     margin: 4px 0;
     width: 27px;
     cursor: pointer;
+
 }
 #design-area{
     transition: transform 200ms ease

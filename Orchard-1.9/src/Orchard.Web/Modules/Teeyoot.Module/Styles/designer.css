@@ -872,13 +872,13 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 
         #product-selector .item-options .item-option:first-child {
             border-top-color: #d8dddf;
-            border-top-left-radius: 5px;
+            /*border-top-left-radius: 5px;*/
             border-top-right-radius: 5px;
         }
 
         #product-selector .item-options .item-option:last-child {
             border-bottom-color: #d8dddf;
-            border-bottom-left-radius: 5px;
+            /*border-bottom-left-radius: 5px;*/
             border-bottom-right-radius: 5px;
         }
 
@@ -889,6 +889,19 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 
             #product-selector .item-options .item-option.active .item-thumb-container {
                 border: 1px solid #c2c9cc;
+            }
+
+            #product-selector .item-options .item-option.active:before {
+                display: block;
+                content: " ";
+                border-top: solid #39ace6 1px;
+                border-bottom: solid #39ace6 1px;
+                position: absolute;
+                width: 16px;
+                height: 82px;
+                left: -16px;
+                top: -1px;
+                background-color: #e1f3fb;
             }
 
         #product-selector .item-options .item-option .item-name {
@@ -1468,7 +1481,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 
 .tipping-point-slider__points {
     height: 20px;
-      /*margin-top: -0.8%;*/
+    /*margin-top: -0.8%;*/
 }
 
 .tipping-point-slider__point {
@@ -2500,7 +2513,6 @@ tspan {
 
 #step-design {
     @extends .step;
-    ;
     min-height: 1100px;
 }
 
@@ -3237,17 +3249,18 @@ label.checkbox label.checkbox {
     }
 
 #design-tools .fake-input, #designer select.outline-selector {
-    border-color: #d8dddf;
-    border-radius: 5px;
+    border-color: #ff4f00;
+    border-radius: 10px;
 }
 
     #design-tools .fake-input.svg-selector {
-        border-color: #d8dddf;
+        border-color: #ff4f00;
+            border-radius: 10px;
         padding: 7px 10px 10px 10px;
     }
 
 #designer #design-tools .fake-input.color-picker {
-    border-color: #d8dddf;
+    border-color:  #ff4f00;
 }
 
 #design-tools textarea {
@@ -5617,6 +5630,8 @@ div.flip-container {
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
+          font-size: 1rem;
+  font-weight: 300;
 }
 
 .flip-button-active {

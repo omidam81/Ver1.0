@@ -103,10 +103,10 @@
                 Model.NewRow++;
 
                 string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
-                string backIMG = path + "/normal/back.png";
-                string frontIMG = path + "/normal/front.png";
+                string backIMG = path + "normal/back.png";
+                string frontIMG = path + "normal/front.png";
 
-                <div class=" span-1 cell tee-preview">
+                <div class=" span-1 cell tee-previewSearch">
                     <div>
                         <div class="featurde-compaigns">
                             <div class="preview-img">
@@ -157,3 +157,17 @@
         }
     }
 </div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        var height = $('.tee-preview:first-child img').height();
+        $('.tee-preview img').css("height", height + "px !important");
+
+        window.onresize = function (e) {
+            $('.tee-preview:first-child img').css("height", "100% !important");
+            var heightNew = $('.tee-preview:first-child img').height();
+            $('.tee-preview img').css("height", heightNew + "px !important");
+        }
+    </script>
+}

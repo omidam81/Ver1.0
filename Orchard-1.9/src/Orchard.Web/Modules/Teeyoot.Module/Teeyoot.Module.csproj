@@ -689,6 +689,7 @@
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
+    <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
     <Compile Include="Models\LinkOrderCampaignProductRecord.cs" />
     <Compile Include="Models\LinkProductGroupRecord.cs" />

@@ -20,3 +20,12 @@
         @Html.Raw(Model.Body.Text)
     </div>
 </div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        document.title = "@Model.Question | Teeyoot";
+    }
+    </script>
+}

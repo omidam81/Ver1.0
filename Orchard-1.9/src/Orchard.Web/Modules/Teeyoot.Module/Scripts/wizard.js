@@ -1,21 +1,47 @@
-﻿window.onload = function initWizard() {
+﻿window.onresize = function () {
+    app.state.w = $(window).width();
+    var slides = $('.Slides > div');
+    slides.css({ width: app.state.w + 'px' });
+};
+
+window.onload = function initWizard() {
 
     app.state.w = $(window).width();
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
     var slides = $('.Slides > div');
-    //$('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
-    //document.getElementById('content').style.marginBottom = "60%";
     slides.css({ width: app.state.w + 'px' });
-
     app.state.pos = 0;
     slide();
 
+    //if (document.querySelector(".user-email") == null) {
+    //    if (app.state.w > "1800") {
+    //        document.querySelector(".design__area").style.marginLeft = "0%";
+    //        document.getElementById("no-band1").style.marginLeft = "-8%";
+    //        document.getElementById("Content3").style.marginLeft = "2%";
+    //        document.getElementById("wizardSecondSlide").style.marginLeft = "1.7%";
+    //    } else if (app.state.w < "1300") {
+    //        document.getElementById("no-band1").style.marginLeft = "-4%";
+    //        document.querySelector(".design__area").style.marginLeft = "-6%";
+    //        document.getElementById("Content2").style.marginLeft = "7%";
+    //    } else if (app.state.w < "1450") {
+    //        document.getElementById("no-band1").style.marginLeft = "-7%";
+    //        document.querySelector(".design__area").style.marginLeft = "-5%";
+    //        document.getElementById("wizardSecondSlide").style.marginLeft = "1.1%";
+    //        document.getElementById("Content3").style.marginLeft = "6%";
 
-    
-
-  
+    //    }
+    //} else {
+    //    if ("1300" < app.state.w && app.state.w < "1450") {
+    //        document.querySelector(".design__area").style.marginLeft = "-18%";
+    //        document.getElementById("Content3").style.marginLeft = "6%";
+    //    } else if (app.state.w < "1300") {
+    //        document.getElementById("Content3").style.marginLeft = "13%";
+    //        document.getElementById("Content2").style.marginLeft = "11.5%";
+            
+    //    }
+    //}
 
 $("#openTags").click(function () {
     document.getElementById("tags").style.display = "inline"; 
@@ -385,7 +411,12 @@ function slideTo(slideNumber) {
         $('.flow-step.active').removeClass('active');
         $('#' + slideSteps[slideNumber - 1]).addClass('active');
         app.state.pos = 1 - slideNumber;
-        $('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
+        $('.Slides').stop().animate(
+            {
+                left: -100 * (slideNumber - 1) + '%'
+            });
+
+        //$('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
     }, 200);//delay to render design
 }
 
@@ -395,7 +426,7 @@ function slide() {
     var slides = $('.Slides > div');
     //('.SlideContainer').css({ height: (h - 60) + 'px' });
     $('.Slides').css({ width: slides.length + '00%' });
-    slides.css({ width: app.state.w + 'px' });
+    //slides.css({ width: app.state.w + 'px' });
     app.state.pos = 0;
 
     $('.Left').click(function () {
@@ -409,6 +440,7 @@ function slide() {
         slideTo(3);
     });
 }
+
 function onChangeTrackBar() {
     document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
     document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;

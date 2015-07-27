@@ -36,20 +36,18 @@ table {
     border-radius: 100px 100px 100px 100px;
     height: 60px;
     width: 60px;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-.flip-button-back-two {
-    border-radius: 100px 100px 100px 100px;
-    height: 60px;
-    width: 60px;
-}
+
 
 
 .art-button {
-  border-radius: 45px !important;
-  color: #ff4f00 !important;
-  background: white !important;
-  border-color: #ff4f00 !important;
+    border-radius: 45px !important;
+    color: #ff4f00 !important;
+    background: white !important;
+    border-color: #ff4f00 !important;
 }
 
 
@@ -66,17 +64,6 @@ table {
     width: 60px;
 }
 
-.flip-button-front-two {
-    border-radius: 100px 100px 100px 100px;
-    height: 60px;
-    width: 60px;
-}
-
-.flip-button-front-three {
-    border-radius: 100px 100px 100px 100px;
-    height: 60px;
-    width: 60px;
-}
 
 ul, ol {
     margin: 0px !important;
@@ -107,7 +94,7 @@ ul, ol {
 }
 
 #designer {
-    min-height:920px;
+    min-height: 920px;
 }
 
 /* Shared properties */
@@ -210,7 +197,7 @@ ul, ol {
 }
 
 .Content > table {
-    width: 77%;
+    width: 100%;
 }
 
 .sell {
@@ -343,7 +330,7 @@ span.number {
 }
 
 .tb-layout-main-container {
-    max-width:100% !important;
+    max-width: 100% !important;
 }
 
 .Slides {
@@ -355,117 +342,87 @@ span.number {
 
     .Slides > div {
         float: left;
-        /*height: 100%;*/
+        min-width: 1220px;
         width: 100%;
         overflow: hidden;
     }
 
-@media all and (max-width: 1820px) {
-    #Content2 {
-        margin-left: 0 !important;
-        min-width: 110%;
+@media all and (max-width: 1280px) {
+    /*.Slides {
+     width: 100% !important;
+     left: 0 !important; 
     }
 
-    .Slides > div {
-        overflow: visible;
-    }
+    .Slides .Slide {
+      width: auto !important;
+      float: none;
+    }*/
 }
 
 @media all and (max-width: 1550px) {
     .one {
         display: none;
     }
-
-    .design__area {
-        margin-left:-18% !important;
-    }
-
-    #Content2 {
-          margin-left: 7% !IMPORTANT;
-    }
-
-    #Content3 {
-        margin-left: 5%;
-    }
-
 }
 
-    #Content3 {
-        margin-left: 3%;
-    }
-
-
-@media all and (max-width: 1390px) {
-
-    #Content1 {
-        margin-left: -5%;
-    }
-
-    .Content > table {
-        width: 85%;
-    }
-
-
-}
 
 @media all and (max-width: 1335px) {
-         .two {
+    .two {
         display: none;
     }
 }
 
 @media all and (max-width: 1135px) {
-         .three {
+    .three {
         display: none;
     }
 }
 
 @media all and (max-width: 950px) {
-         .four {
+    .four {
         display: none;
     }
 }
 
 @media all and (max-width: 715px) {
-         .five {
+    .five {
         display: none;
     }
 }
 
 @media all and (max-width: 540px) {
-         .six {
+    .six {
         display: none;
     }
 }
 
-
-
- #descript {
-     	max-height: 250px;
-	height: 250px;
-	background-color: white;
-	border-collapse: separate; 
-	border: 1px solid rgb(204, 204, 204); 
-	padding: 4px; 
-	box-sizing: content-box; 
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	border-top-right-radius: 3px; border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px; border-top-left-radius: 3px;
-	overflow: scroll;
-	outline: none;
-
- }
+#descript {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow: scroll;
+    outline: none;
+}
 
 
 .modWind {
-  background-color: white;
-  width: 560px;
-  top: 25%;
-  left: 35%;
-  border: 1px solid #999;
-  height: 20%;
-  border-radius: 6px;
+    background-color: white;
+    width: 560px;
+    top: 25%;
+    left: 35%;
+    border: 1px solid #999;
+    height: 20%;
+    border-radius: 6px;
 }
 
 
@@ -483,30 +440,45 @@ span.number {
 
 @media all and (max-width: 1293px) {
 
-        .Slides {
+    /*.Slides {
         margin-left: 0% !important;
     }
-
-            .design__area {
-         margin-left: -8% !important;
+    #wizardSecondSlide {
+        margin-left: 1.5% !important;
     }
+
+
+    #Content3 {
+      margin-left: 10%;
+    }*/
 }
 
 
-@media all and (max-width: 1220px) {
-        .design__area {
-         margin-left: -15% !important;
+@media all and (max-width: 1199px) {
+    .design__area {
+        margin-left: -10% !important;
     }
 }
 
 .Slides .Content {
-    /*margin-left: 10%;*/
-    margin-top: 10px;
+    max-width: 1236px;
+    margin: 10px auto 0;
+    padding: 0 60px 0 30px;
+    box-sizing: border-box;
 }
 
-/*.Slides .Content a {
-        font-size: 30px;
-    }*/
+body.page__designs_edit .Slides .container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.Slides #designer {
+    width: 100%;
+}
+
+.Slides .step {
+    width: 100%;
+}
 
 .ssp_vcent {
     width: 100%;
@@ -786,8 +758,8 @@ input[type=range] {
     }
 
 @-moz-document url-prefix() {
-    #wizardSecondSlide{
-        margin-left:0% !important;
+    #wizardSecondSlide {
+        margin-left: 0% !important;
     }
 }
 

@@ -1,23 +1,31 @@
 ﻿@model Teeyoot.Account.ViewModels.LogOnViewModel
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {returnUrl = Model.ReturnUrl})))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new { returnUrl = Model.ReturnUrl })))
 {
     <fieldset>
-        <legend>@T("Login with Teespring")</legend>
-        <div>
-            <label>@T("Email")</label>
+        <div class="title">
+            <legend class="name">@T("Login with Teeyoot")</legend>
+            <legend class="link"><a href="#" onclick="changeLogAndCreate('create-account', 'login-into-teeyoot')">@T("Create a new account")</a></legend>
+        </div>
+        <div class="email">
+            <label>@T("Email address")</label>
             @Html.TextBoxFor(model => model.Email)
         </div>
-        <div>
+        <div class="password">
             <label>@T("Password")</label>
             @Html.PasswordFor(model => model.Password)
         </div>
-        <div>
-            <label>@T("Remember Me")</label>
-            @Html.CheckBoxFor(model => model.RememberMe)
+        <div class="forgot">
+            <legend class="link">
+                <a href="#">@T("Forgot your password?")</a>
+            </legend>
         </div>
         <div>
-            <button type="submit">@T("Log in now")</button>
+            <button class="button-login" type="submit">@T("Log in now") >></button>
+        </div>
+        <div class="remember">
+            @Html.CheckBoxFor(model => model.RememberMe)
+            <label>@T("Remember me on this computer")</label>
         </div>
     </fieldset>
 }

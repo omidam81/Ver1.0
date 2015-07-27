@@ -1,0 +1,11 @@
+﻿Name: Teeyoot Featured Campaigns
+AntiForgery: enabled
+Author: The Sollutium Team
+Website: http://sollutium.com
+Version: 1.0
+OrchardVersion: 1.0
+Description: Description for the module
+Features:
+    Teeyoot.FeaturedCampaigns:
+		Name: Teeyoot Featured Campaigns
+        Description: Description for feature Teeyoot.FeaturedCampaigns.

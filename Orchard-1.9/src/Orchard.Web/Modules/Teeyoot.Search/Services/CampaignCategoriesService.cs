@@ -104,10 +104,15 @@ namespace Teeyoot.Search.Services
             var cat = GetCategoryById(id);
             try
             {
-                foreach (var link in cat.Campaigns)
-                {
-                    _linkCampaignAndCetegory.Delete(link);
-                }
+
+                //var links = _linkCampaignAndCetegory.Table.Where(c => c.CampaignCategoriesPartRecord.Id == id);
+                //if (links != null)
+                //{
+                //    foreach (var link in links)
+                //    {
+                //        _linkCampaignAndCetegory.Delete(link);
+                //    }
+                //}
                 _repository.Delete(cat);
                 return true;
             }
