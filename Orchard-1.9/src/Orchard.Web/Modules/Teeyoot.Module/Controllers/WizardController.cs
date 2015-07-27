@@ -25,11 +25,13 @@ namespace Teeyoot.Module.Controllers
     {
         private readonly ICampaignService _campaignService;
         private readonly IimageHelper _imageHelper;
+        private readonly IFontService _fontService;
 
-        public WizardController(ICampaignService campaignService, IimageHelper imageHelper)
+        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService)
         {
             _campaignService = campaignService;
             _imageHelper = imageHelper;
+            _fontService = fontService;
             Logger = NullLogger.Instance;
         }
 
@@ -88,6 +90,20 @@ namespace Teeyoot.Module.Controllers
             }
             return null;
         }
+
+        public JsonResult GetDetailTags(string filter)
+        {
+            var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(filter)).Select(n => n.Name).Take(10).ToList();
+            return Json(entries, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFonts()
+        {
+            var fonts = _fontService.GetAllfonts();
+            return Json(fonts.Select(f => new { id = f.Id, family = f.Family, fileName = f.FileName, tags = f.Tags, priority = f.Priority }), JsonRequestBehavior.AllowGet);
+        }
+
+        #region Helper methods
 
         private void CreateImagesForCampaignProducts(CampaignRecord campaign)
         {
@@ -173,11 +189,7 @@ namespace Teeyoot.Module.Controllers
             return destImage;
         }
 
-        public JsonResult GetDetailTags(string filter)
-        {
-            var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(filter)).Select(n => n.Name).Take(10).ToList();
-            return Json(entries, JsonRequestBehavior.AllowGet);
-        }
+        #endregion
 
     }
 }

@@ -2,7 +2,7 @@
 using Orchard;
 using Teeyoot.Module.Models;
 
-namespace Teeyoot.WizardSettings.Services
+namespace Teeyoot.Module.Services
 {
     public interface IFontService : IDependency
     {

@@ -1,16 +1,19 @@
-﻿using System;
-using System.IO;
+﻿using Orchard;
+using Orchard.UI.Admin;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Orchard;
 using Orchard.Localization;
+using Teeyoot.Module.Services;
+using System.IO;
 using Orchard.Logging;
-using Orchard.Mvc.Extensions;
-using Orchard.UI.Admin;
 using Orchard.UI.Notify;
+using Orchard.Mvc.Extensions;
 using Teeyoot.Module.Models;
-using Teeyoot.WizardSettings.Services;
+using Teeyoot.Module.ViewModels;
+using Teeyoot.WizardSettings.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers
 {
@@ -41,24 +44,46 @@ namespace Teeyoot.WizardSettings.Controllers
         }
 
 
-        public ActionResult AddFont(FontRecord record)
+        public ActionResult AddFont(FontViewModel record)
         {
             if (record != null)
             {
                 return View(record);
             }
-            return View();               
+            return View();
         }
 
 
         public ActionResult EditFont(int id)
         {
             FontRecord record = _fontService.GetFont(id);
-            return View(record);
+            FontViewModel editRecord = new FontViewModel() { };
+            editRecord.Id = record.Id;
+            editRecord.Family = record.Family;
+            editRecord.FileName = record.FileName;
+            editRecord.Priority = record.Priority;
+            string[] stringSeparators = new string[] { ","};
+            string[] separatedTags;
+            string Tags = record.Tags.Trim(new Char[] { '[', '*', ',', ']',' ', '.' });          
+            Tags = Tags.Replace("\\\"","");
+            string resultTags = "";
+            separatedTags = Tags.Split(stringSeparators, StringSplitOptions.None);
+            int i = 0;
+            foreach (var item in separatedTags)
+            {
+                if (i != 0)
+                {
+                    resultTags = resultTags + "," + " ";
+                }
+                resultTags = resultTags + item;
+                i++;
+            }
+            editRecord.Tags = resultTags;
+            return View(editRecord);
         }
-        
+
         [HttpPost]
-        public RedirectToRouteResult UploadWoffFile(HttpPostedFileBase file)
+        public RedirectToRouteResult UploadWoffFile(HttpPostedFileBase file, FontViewModel model)
         {
             if (file != null && file.ContentLength > 0)
             {
@@ -67,19 +92,42 @@ namespace Teeyoot.WizardSettings.Controllers
                 if (allowed.Contains(extension))
                 {
                     string fileExt = Path.GetExtension(file.FileName);
-                    string fileName = Guid.NewGuid() + fileExt;
-                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/uploads/"), fileName);
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"), file.FileName);
                     file.SaveAs(path);
-                    FontRecord rec = new FontRecord() { };
-                    rec.FileName = file.FileName;
-                    return RedirectToAction("AddFont", rec);
+                    model.WoffFile = file.FileName;
+                    model.FileName = fileName;
+                    Services.Notifier.Information(T("WOFF file has been added!"));
+                    return RedirectToAction("AddFont", model);
                 }
             }
             return null;
         }
 
         [HttpPost]
-        public RedirectToRouteResult UploadTtfFile(HttpPostedFileBase file)
+        public RedirectToRouteResult UploadThumbnail(HttpPostedFileBase file, FontViewModel model)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                string[] allowed = { ".png", ".jpeg" , ".jpg", ".gif"};
+                var extension = System.IO.Path.GetExtension(file.FileName);
+                if (allowed.Contains(extension))
+                {
+                    string fileExt = Path.GetExtension(file.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"), file.FileName);
+                    file.SaveAs(path);
+                    model.Thumbnail = file.FileName;
+                    Services.Notifier.Information(T("Thumbnail has been added!"));
+                    return RedirectToAction("AddFont", model);
+                }
+            }
+            return null;
+        }
+
+
+        [HttpPost]
+        public RedirectToRouteResult UploadTtfFile(HttpPostedFileBase file, FontViewModel model)
         {
             if (file != null && file.ContentLength > 0)
             {
@@ -88,18 +136,19 @@ namespace Teeyoot.WizardSettings.Controllers
                 if (allowed.Contains(extension))
                 {
                     string fileExt = Path.GetExtension(file.FileName);
-                    string fileName = Guid.NewGuid() + fileExt;
-                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/uploads/"), fileName);
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"), file.FileName);
                     file.SaveAs(path);
-                    FontRecord rec = new FontRecord() { };
-                    rec.FileName = file.FileName;
-                    return RedirectToAction("AddFont", rec);
+                    model.TtfFile = file.FileName;
+                    model.FileName = fileName;
+                    Services.Notifier.Information(T("TTF file has been added!"));
+                    return RedirectToAction("AddFont", model);
                 }
             }
             return null;
         }
 
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteFont(int id, string returnUrl)
         {
             _fontService.DeleteFont(id);
@@ -107,21 +156,87 @@ namespace Teeyoot.WizardSettings.Controllers
             return this.RedirectLocal(returnUrl, () => RedirectToAction("FontList"));
         }
 
-         [HttpPost]
-        public ActionResult UpdateFont(FontRecord font)
+        [HttpPost]
+        public ActionResult UpdateFont(FontViewModel model)
         {
-            _fontService.EditFont(font);
+
+            FontRecord newFont = new FontRecord() { };
+            newFont.Id = model.Id;
+            newFont.Family = model.Family;
+            newFont.FileName = model.FileName;
+            newFont.Priority = model.Priority;
+            int i = 0;
+            if (model.Tags != null)
+            {
+                string[] stringSeparators = new string[] { "," };
+                string[] separatedTags;
+                string resultTags = "[";
+                separatedTags = model.Tags.Split(stringSeparators, StringSplitOptions.None);
+                foreach (var item in separatedTags)
+                {
+                    if (i != 0)
+                    {
+                        resultTags = resultTags + ",";
+                    }
+                    resultTags = resultTags + "\\" + "\"" + item + "\\" + "\"";
+                    i++;
+                }
+                resultTags += "]";
+                newFont.Tags = resultTags;
+            }
+            _fontService.EditFont(newFont);
             Services.Notifier.Information(T("The font has been updated."));
             return RedirectToAction("FontList");
         }
 
-         [HttpPost]
-         [ValidateAntiForgeryToken] 
-         public RedirectToRouteResult AddNewFont(FontRecord record)
-         {
-             _fontService.AddFont(record);
-             Services.Notifier.Information(T("The font has been added"));
-             return RedirectToAction("FontList");
-         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public RedirectToRouteResult AddNewFont(FontViewModel model)
+        {
+            string errorMsg = "";
+            if (model.Family == null)
+            {
+                errorMsg += T("Font family is required.\n");
+            }
+            if (!((model.TtfFile == null) || (model.WoffFile == null)))
+            {
+                errorMsg += T("Font file is required.\n");
+            }
+            if (model.Thumbnail == null)
+            {
+                errorMsg += T("Thumbnail is required.\n");
+            }
+            if (errorMsg.Length > 0)
+            {
+                Services.Notifier.Error(T(errorMsg));
+                return RedirectToAction("AddFont", model);
+            }
+            FontRecord newFont = new FontRecord() { };
+            newFont.Family = model.Family;
+            newFont.FileName = model.FileName;
+            newFont.Priority = model.Priority;
+            int i = 0;
+            if (model.Tags != null)
+            {
+                string[] stringSeparators = new string[] { "," };
+                string[] separatedTags;
+                string resultTags = "[";
+                separatedTags = model.Tags.Split(stringSeparators, StringSplitOptions.None);
+                foreach (var item in separatedTags)
+                {
+                    if (i != 0)
+                    {
+                        resultTags = resultTags + ",";
+                    }
+                    resultTags = resultTags +"\\" + "\"" + item + "\\" + "\"";
+                    i++;
+                }
+                resultTags += "]";
+                newFont.Tags = resultTags;
+            }
+            _fontService.AddFont(newFont);
+            Services.Notifier.Information(T("The font has been added"));
+            return RedirectToAction("FontList");
+        }
     }
 }

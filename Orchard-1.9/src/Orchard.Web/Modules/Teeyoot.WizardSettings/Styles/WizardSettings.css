@@ -1,0 +1,21 @@
+﻿td {
+    text-align: center !important;
+}
+
+th {
+    text-align: center !important;
+}
+
+h1 {
+    margin: 5px !important;
+}
+
+.inpFields {
+    display: -webkit-box;
+    margin: 20px;
+}
+
+.fontCell {
+    width: 33%;
+    border: 1px solid #eaeaea;
+}
