@@ -690,6 +690,8 @@
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
+    <Compile Include="Services\FontService.cs" />
+    <Compile Include="Services\IFontService.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />

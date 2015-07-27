@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Teeyoot.Module.Models;
 
-namespace Teeyoot.WizardSettings.Services
+namespace Teeyoot.Module.Services
 {
     public class FontService : IFontService
     {

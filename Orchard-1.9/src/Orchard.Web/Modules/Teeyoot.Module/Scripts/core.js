@@ -1,12 +1,13 @@
 var app = {
     loadProducts: function(){
         return jQuery.ajax({
-            url: this.urlPrefix+this.urls.products
+            url: this.urlPrefix+this.urls.products            
         });
     },
     loadFonts: function(){
         return jQuery.ajax({
-            url: this.urlPrefix+this.urls.fonts
+            //url: this.urlPrefix+this.urls.fonts
+            url: '/GetAllFonts'
         });
     },
     loadRandomArt: function(){

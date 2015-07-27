@@ -6,12 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Orchard.Localization;
-using Teeyoot.WizardSettings.Services;
+using Teeyoot.Module.Services;
 using System.IO;
 using Orchard.Logging;
 using Orchard.UI.Notify;
 using Orchard.Mvc.Extensions;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.ViewModels;
 using Teeyoot.WizardSettings.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers

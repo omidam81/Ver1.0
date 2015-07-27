@@ -79,7 +79,21 @@ namespace Teeyoot.Module
                         new MvcRouteHandler())
                 }
                 ,
-
+                new RouteDescriptor {
+                    Route = new Route(
+                        "GetAllFonts",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Wizard"},
+                            {"action", "GetFonts"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
+                ,
 
                 
                 new RouteDescriptor {
