@@ -58,6 +58,11 @@ namespace Teeyoot.Module
                                 i.Action("Index", "ProductStyle", new {area = "Teeyoot.WizardSettings"})
                                     .LocalNav())
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("Featured Campaigns"))
+                        .Position("2.6")
+                        .Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" })
+                    )
                 );
         }
     }
