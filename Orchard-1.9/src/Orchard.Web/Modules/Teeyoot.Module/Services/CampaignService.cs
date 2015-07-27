@@ -151,9 +151,9 @@ namespace Teeyoot.Module.Services
                     var campProduct = new CampaignProductRecord
                     {
                         CampaignRecord_Id = newCampaign.Id,
-                        BaseCost = prod.BaseCost,
+                        BaseCost = double.Parse(prod.BaseCost),
                         CurrencyRecord = _currencyRepository.Get(prod.CurrencyId),
-                        Price = prod.Price,
+                        Price = double.Parse(prod.Price),
                         ProductColorRecord = _colorRepository.Get(prod.ColorId),
                         ProductRecord = _productRepository.Get(prod.ProductId)
                     };
@@ -205,16 +205,16 @@ namespace Teeyoot.Module.Services
                         CurrencyId = 1,
                         ProductId = 2,
                         ColorId = 3,
-                        BaseCost = 10,
-                        Price = 15
+                        BaseCost = "10",
+                        Price = "15"
                     },
 
                     new CampaignProductData {
                         CurrencyId = 1,
                         ProductId = 3,
                         ColorId = 9,
-                        BaseCost = 15,
-                        Price = 20
+                        BaseCost = "15",
+                        Price = "20"
                     }
                 };
             }
@@ -226,8 +226,8 @@ namespace Teeyoot.Module.Services
                         CurrencyId = 1,
                         ProductId = 2,
                         ColorId = 3,
-                        BaseCost = 10,
-                        Price = 15
+                        BaseCost = "10",
+                        Price = "15"
                     }
                 };
             }
