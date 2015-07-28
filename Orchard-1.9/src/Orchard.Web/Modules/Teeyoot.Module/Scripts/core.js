@@ -7,7 +7,7 @@ var app = {
     loadFonts: function(){
         return jQuery.ajax({
             //url: this.urlPrefix+this.urls.fonts
-            url: '/GetAllFonts'
+            url: this.urls.fonts
         });
     },
     loadRandomArt: function(){

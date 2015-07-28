@@ -100,7 +100,7 @@ namespace Teeyoot.Module.Controllers
         public JsonResult GetFonts()
         {
             var fonts = _fontService.GetAllfonts();
-            return Json(fonts.Select(f => new { id = f.Id, family = f.Family, fileName = f.FileName, tags = f.Tags, priority = f.Priority }), JsonRequestBehavior.AllowGet);
+            return Json(fonts.Select(f => new { id = f.Id, family = f.Family, filename = f.FileName, tags = f.Tags, priority = f.Priority }), JsonRequestBehavior.AllowGet);
         }
 
         #region Helper methods

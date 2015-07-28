@@ -1,7 +1,7 @@
 var baseURL = '/Modules/Teeyoot.Module/Content/data-samples/';
 
 var dataUrls = {
-    fonts: 'fonts.json',
+    fonts: '/GetAllFonts',
     products: 'products.json',
     productPricing: 'product_pricing.json',
     swatches: 'swatches.json',
