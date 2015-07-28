@@ -63,6 +63,11 @@ namespace Teeyoot.Module
                         .Position("2.6")
                         .Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" })
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("T-Shirt Cost"))
+                        .Position("2.7")
+                        .Action("Index", "AdminCost", new { area = "Teeyoot.Module" })
+                    )
                 );
         }
     }
