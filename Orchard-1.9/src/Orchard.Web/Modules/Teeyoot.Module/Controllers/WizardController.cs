@@ -114,9 +114,6 @@ namespace Teeyoot.Module.Controllers
             return Json(swatches.ToList().Select(s => new { id = s.Id, name = s.Name, inStock = s.InStock, rgb = new[] { s.Red, s.Green, s.Blue } }), JsonRequestBehavior.AllowGet);
         }
 
-
-
-
         public JsonResult GetProducts()
         {
             var model = new WizardProductsViewModel();
