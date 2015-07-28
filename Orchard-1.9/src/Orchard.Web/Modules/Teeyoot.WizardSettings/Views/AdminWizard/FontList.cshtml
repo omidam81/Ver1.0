@@ -17,10 +17,12 @@
         @foreach (var font in Model)
         {
             string url = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + ".ttf";
+            string urlWoff = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + ".woff";
             <style>
                 @@font-face {
                     font-family: @font.Family;
-                    src: url('@url') format("truetype");
+                    src: url('@url'),
+               url('@urlWoff');
                 }
             </style>
 
