@@ -14,9 +14,11 @@ namespace Teeyoot.Module.Services
 
         StoreRecord GetStoreById(int id);
 
-        StoreRecord CreateStore(StoreRecord store);
+        StoreRecord GetStoreByUrl(string url);
 
-        void UpdateStore(StoreRecord store);
+        StoreRecord CreateStore(int? teeyootUserId, string title, string description, string url, bool hideStore, bool crossSelling, IList<String> selectedCampaigns);
+
+        void UpdateStore(int id, int? teeyootUserId, string title, string description, string url, bool hideStore, bool crossSelling, IList<String> selectedCampaigns);
 
         bool DeleteStore(int id);
     }

@@ -21,6 +21,20 @@ namespace Teeyoot.Module.Dashboard
             return new[] {
                 new RouteDescriptor {
                     Route = new Route(
+                        "Stores/{url}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Dashboard"},
+                            {"controller", "Dashboard"},
+                            {"action", "ViewStorefront"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Dashboard"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
                         "Dashboard/Storefronts/New",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Dashboard"},
