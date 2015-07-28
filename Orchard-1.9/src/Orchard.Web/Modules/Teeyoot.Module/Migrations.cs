@@ -322,7 +322,25 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
                table => table.AddColumn<bool>("IsFeatured", cl => cl.WithDefault(false)));
 
-            return 19;
+            SchemaBuilder.AlterTable(typeof(StoreRecord).Name,
+                 table => table.AddColumn<string>("Url", cl => cl.WithLength(150)));
+
+            SchemaBuilder.CreateTable(typeof(TShirtCostRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<float>("FirstScreenCost")
+                    .Column<float>("AdditionalScreenCosts")
+                    .Column<float>("InkCost")
+                    .Column<int>("PrintsPerLitre")
+                    .Column<float>("LabourCost")
+                    .Column<int>("LabourTimePerColourPerPrint")
+                    .Column<int>("LabourTimePerSidePrintedPerPrint")
+                    .Column<float>("CostOfMaterial")
+                    .Column<float>("PercentageMarkUpRequired")
+                    .Column<float>("DTGPrintPrice")
+            );
+
+            return 21;
         }
 
         public int UpdateFrom2()
@@ -544,6 +562,33 @@ namespace Teeyoot.Module
                 table => table.AddColumn<bool>("IsFeatured", cl => cl.WithDefault(false)));
 
             return 19;
+        }
+        public int UpdateFrom19()
+        {
+            SchemaBuilder.AlterTable(typeof(StoreRecord).Name,
+                table => table.AddColumn<string>("Url", cl => cl.WithLength(150)));
+
+            return 20;
+        }
+
+        public int UpdateFrom20()
+        {
+            SchemaBuilder.CreateTable(typeof(TShirtCostRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<float>("FirstScreenCost")
+                    .Column<float>("AdditionalScreenCosts")
+                    .Column<float>("InkCost")
+                    .Column<int>("PrintsPerLitre")
+                    .Column<float>("LabourCost")
+                    .Column<int>("LabourTimePerColourPerPrint")
+                    .Column<int>("LabourTimePerSidePrintedPerPrint")
+                    .Column<float>("CostOfMaterial")
+                    .Column<float>("PercentageMarkUpRequired")
+                    .Column<float>("DTGPrintPrice")
+            );
+
+            return 21;
         }
     }
 }

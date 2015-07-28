@@ -26,25 +26,27 @@
             }
         });
       
+     
         function onFileSelected(event) {
             var selectedFile = event.target.files[0];
             var reader = new FileReader();
-
             var imgtag = document.getElementsByClassName("site__featured_full")[0];
-            $(imgtag).attr("style", "background:url('/Media/Default/images/" + selectedFile.name + "'); background-size: cover;");
-
+           
+            var img = document.getElementById("banner-image");
+            img.title = selectedFile.name;
             var form = document.getElementById("img-load-form");
             $(form).addClass('s3-uploader store_banner--custom');
 
             var icon = document.getElementsByClassName("fa-camera-retro")[0];
             $(icon).removeClass('fa-5x').addClass('fa-1x');
+
             reader.onload = function (event) {
-                imgtag.src = event.target.result;
+                img.src = event.target.result;
+                $(imgtag).attr("style", "background:url('"+ event.target.result+"'); background-size: cover;");
             };
 
             reader.readAsDataURL(selectedFile);
         }
-
 
         function AddCampaigns() {
             var window = document.getElementById("modal-campaigns-choose");
@@ -72,6 +74,12 @@
         $(".list_item__select").click(function () {
             var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;            
         });
+
+        $("#title").change(function () {
+            var title = document.getElementById("title").value;
+            var url = document.getElementById("Url_store").value = title;
+        });
+        
         function UpdateCampaings() {
             var boxes = document.getElementsByClassName("list_item__select");
             var value;
@@ -112,11 +120,28 @@
         }
 
 
-        @*function PublishStore() {
-            var imgtag = document.getElementsByClassName("site__featured_full")[0];
-            var modelt = @Model.Title;
-            var img = model.Img = imgtag.getAttribute("src");
-            
+        function PublishStore() {
+            var img = document.getElementById("banner-image");
+
+
+
+            img = img.getAttribute("src");
+            var title = document.getElementById("title").value;
+            var description = document.getElementById("description").value;
+            var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
+            var url = document.getElementById("Url_store").value;           
+            var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
+            var selectedCampaigns = [];
+            var boxes = document.getElementsByClassName("list_item__select");
+            var value;
+            var id;
+            for (var i = 0; i < boxes.length; i++) {
+                value = boxes[i].checked;
+                if (value) {
+                    id = boxes[i].getAttribute("id");
+                    selectedCampaigns.push(id);
+                } 
+            }         
 
             $.ajax({
                 async: false,
@@ -124,32 +149,36 @@
                 type: "POST",
                 url: "@(Url.Action("CreateStorefront", "Dashboard"))",
                 data: addAntiForgeryToken({
-                    "products": products
+                    "base64image": img, "title": title, "description": description, "url": url, "hideStore": hideStore, "crossSelling": crossSell, "selectedCampaigns": selectedCampaigns
                 }),
-            success: function (data) {
-              
-            },
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        window.location.href = '/Stores/' + data;
+                    } else if (resp.status === 500) {
+
+                    }
+                },
             });
 
         }
         function addAntiForgeryToken(data) {
             data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
             return data;
-        };*@
+        };
     </script>
 }
 
 <div id="dg-overlay"></div>
 <div class="site__featured_full">
-    <img id="banner-image" class="banner-image">
+    <img id="banner-image" class="banner-image hidden">
     <div class="banner__image_uploader__container">
-        <form accept-charset="UTF-8" action="" id="img-load-form" class="image_uploader" data-callback-method="POST" data-callback-param="file" data-callback-url="null" enctype="multipart/form-data" method="post">
-            <input id="file" name="file" type="file" onchange="onFileSelected(event)">
+        <div id="img-load-form" class="image_uploader">
+            <input id="file" name="file" type="file" onchange="onFileSelected(event)" accept="image/x-png">
             <i class=" fa fa-camera-retro fa-5x"></i>
-            <div class="image_uploader__title">Upload banner photo</div>
-            <div class="image_uploader__subtitle">Recommended: 980px X 550px</div>
-            <div class="image_uploader__title--custom">Change image</div>
-        </form>
+            <div class="image_uploader__title">@T("Upload banner photo")</div>
+            <div class="image_uploader__subtitle">@T("Recommended: 980px X 550px")</div>
+            <div class="image_uploader__title--custom">@T("Change image")</div>
+        </div>
         <div class="banner__image_progress">
             <div class="progress">
                 <div class="bar"></div>
@@ -158,7 +187,7 @@
     </div>
     <div class="store__details_container">
         <div class="store__details--edit">
-            <input class="store__name--edit" id="name" maxlength="30" name="name" placeholder="Store Title" type="text" value="@Model.Title">
+            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="Store Title" type="text" value="@Model.Title">
             <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)" value="@Model.Description"></textarea>
         </div>
     </div>
@@ -167,25 +196,25 @@
 <section class="site__sub_header">
     <div class="site__wrapper">
         <header class="store_owner__banner">
-            <button onclick="PublishStore()" class="store_publish__button button button--primary">Publish Store</button>
+            <button onclick="PublishStore()" class="store_publish__button button button--primary">@T("Publish Store")</button>
             <div class="store_settings">
                 <div id="btn-settings" class="store_settings__toggle">
-                    <i class="fa fa-cog fa-1x"></i>Settings
+                    <i class="fa fa-cog fa-1x"></i>@T("Settings")
                 </div>
                 <div id="settings-menu" class="store_settings__menu store_settings__menu--hidden">
                     <ul class="store_settings__menu_links">
                         <li class="store_settings__menu_item change_url__container">
-                            <div class="store_settings__header">URL permalink</div>
+                            <div class="store_settings__header">@T("URL permalink")</div>
                             <div class="input__group input__group_url">
-                                <div class="input__group_addon url__host">teeyoot.com/stores/</div>
-                                <input class="store_settings__slug form__textfield input__group_control" maxlength="30" type="text">
+                                <div class="input__group_addon url__host">teeyoot.com/Stores/</div>
+                                <input class="store_settings__slug form__textfield input__group_control" maxlength="30" id="Url_store" type="text">
                             </div>
                             <div class="status_message__url"></div>
                         </li>
                         <li class="store_settings__menu_item">
                             <div class="store_settings__description">
-                                <div class="store_settings__header">Hide store</div>
-                                <div class="store_settings__details">Hide this store from internet search engines</div>
+                                <div class="store_settings__header">@T("Hide store")</div>
+                                <div class="store_settings__details">@T("Hide this store from internet search engines")</div>
                             </div><label class="switch__label">
                                 <input class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
                                 <div class="switch__el" data-off="Off" data-on="On"></div>
@@ -194,11 +223,11 @@
                         <li class="store_settings__menu_item">
                             <div class="store_settings__description">
                                 <div class="store_settings__header">
-                                    Enable cross-selling
+                                    @T("Enable cross-selling")
                                     <a class="cross_sell__info ts-icon-tip" href="" target="_blank">
                                     </a>
                                 </div>
-                                <div class="store_settings__details">Suggests other campaigns from this store after a customer’s initial purchase</div>
+                                <div class="store_settings__details">@T("Suggests other campaigns from this store after a customer’s initial purchase")</div>
                             </div>
                             <label class="switch__label">
                                 <input checked="" class="switch__input cross_sell__toggle" name="hide" type="checkbox">
@@ -223,51 +252,51 @@
             <i class="form__message_close ts-icon-close"></i>
         </div>
         <div class="form__message form__message--warning cross_sell_warning hidden">
-            Cross-selling is currently enabled but there are not enough active campaigns. Please
-            <a href="/dashboard">relaunch a campaign</a> or
-            <a href="/designs">create a new campaign</a>
+            @T("Cross-selling is currently enabled but there are not enough active campaigns. Please")
+            <a href="/dashboard">@T("relaunch a campaign")</a> @T("or")
+            <a href="/designs">@T("create a new campaign")</a>
             <i class="form__message_close ts-icon-close"></i>
         </div>
         <div class="store__ftue">
-            <h1 class="page__heading">Create your first storefront!</h1>
+            <h1 class="page__heading">@T("Create your first storefront!")</h1>
             <ol class="list__counter">
                @if (Model.Campaigns.Count() >= 1)
                {
-                <li class="list_item__counter list_item__counter--done">Launch 3 campaigns</li>
+                <li class="list_item__counter list_item__counter--done">@T("Launch 3 campaigns")</li>
                }
                else
                {
-                <li class="list_item__counter">Launch 3 campaigns (2 more needed)</li>
+                <li class="list_item__counter">@T("Launch 3 campaigns (2 more needed)")</li>
                }
-                <li class="list_item__counter">Pick a name &amp; write a description</li>
-                <li class="list_item__counter">Upload a cover photo</li>
-                <li class="list_item__counter">Add campaigns to your storefront</li>
+                <li class="list_item__counter">@T("Pick a name &amp; write a description")</li>
+                <li class="list_item__counter">@T("Upload a cover photo")</li>
+                <li class="list_item__counter">@T("Add campaigns to your storefront")</li>
             </ol>
 
             @if (Model.Campaigns.Count() == 0)
-            { 
+            {
             <div>
-                <p>You need at least 3 campaigns to create a storefront.</p>
+                <p>@T("You need at least 3 campaigns to create a storefront.")</p>
                 <p>
-                    <a class="button__cta" href="redirectToStartCampaign()">Launch one now</a>
+                    <a class="button__cta" href="redirectToStartCampaign()">@T("Launch one now")</a>
                 </p>
             </div>
             }
             else
             {
                 <p>
-                    <div class="button__cta" onclick="AddCampaigns()">Add Campaigns</div>               
-                    <div class="href_to_start_campaign"> or <a href="redirectToStartCampaign()">launch a new campaign</a></div> 
+                    <div class="button__cta" onclick="AddCampaigns()">@T("Add Campaigns")</div>
+                    <div class="href_to_start_campaign"> or <a href="redirectToStartCampaign()">@T("launch a new campaign")</a></div>
                 </p>
             }
 
         </div>
-        
+
 @if (Model.Campaigns.Count() >= 1)
 {
         <div class="cards__container cards__container--editing">
             <div class="card add_campaigns__card">
-                <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">Add Campaigns +</div>
+                <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">@T("Add Campaigns +")</div>
 
 
 
@@ -283,8 +312,8 @@
                     <div class="card__options_container">
                         <ul class="card__options">
                             <li class="options__item options__item_view">
-                                <a href="@prod.URL" class="option__link" title="View @prod.Title">
-                                    <div class="option__name"><span>View</span></div>
+                                <a href="/@prod.Alias" class="option__link" title="View @prod.Title">
+                                    <div class="option__name"><span>@T("View")</span></div>
                                 </a>
                             </li>
                             <div class="options__item" id="@prod.Id" onclick="DeleteItem(this)">
@@ -302,8 +331,8 @@
                     <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
                     <div class="card__content_container">
                         <div class="card__campaign_stats">
-                            <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal sold</div>
-                            <div class="card__campaign_time">     
+                            <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal @T("sold")</div>
+                            <div class="card__campaign_time">
                                 <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
                                     <span>
                                         @if (daysRemaining > 0)
@@ -334,7 +363,7 @@
                             </div>
                         </div>
                         <h1 class="card__title">
-                            <a href="" title="@prod.Title">@prod.Title</a>
+                            <a href="/@prod.Alias" title="@prod.Title">@prod.Title</a>
                         </h1>
                     </div>
                 </div>
@@ -428,16 +457,9 @@
                     </div>
                     <div class="modal__footer">
                         <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">Update Store</button>
-                    </div>
-                    <a aria-hidden="true" class="modal__close_btn ts-icon-close" data-dismiss="modal" href=".choose_campaigns_modal"></a>
+                    </div>                  
                 </div>
             </div>
-    
-
-        }
-
-
-        <div class="store__pagination">
-        </div>
+        }       
     </div>
 </div>

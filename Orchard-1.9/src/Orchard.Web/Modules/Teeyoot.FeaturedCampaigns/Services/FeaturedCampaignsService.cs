@@ -106,5 +106,23 @@ namespace Teeyoot.FeaturedCampaigns.Services
         {
             return _campaignRepository.Table.OrderByDescending(c => c.ProductCountSold);
         }
+
+        public CampaignRecord GetCampaignsById(int id)
+        {
+            return _campaignRepository.Table.Where(c => c.Id == id).FirstOrDefault();
+        }
+
+        public bool UpdateCampaigns(CampaignRecord camp)
+        {
+            try
+            {
+                _campaignRepository.Update(camp);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

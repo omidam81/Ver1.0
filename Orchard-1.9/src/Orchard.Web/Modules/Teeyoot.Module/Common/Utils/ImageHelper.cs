@@ -58,10 +58,15 @@ namespace Teeyoot.Module.Common.Utils
 
         public Bitmap Base64ToBitmap(string base64String)
         {
-            var str = @"data:image/png;base64,";
-            if (base64String.StartsWith(str))
+            var array = new[] { @"data:image/png;base64,", @"data:image/jpeg;base64,", @"data:image/gif;base64", @"data:image/pjpeg;base64", @"data:image/svg+xml;base64", @"data:image/tiff;base64", @"data:image/vnd.microsoft.icon;base64", @"data:image/vnd.wap.wbmp;base64" };
+
+            foreach (var str in array)
             {
-                base64String = base64String.Replace(str, "").Trim();
+                if (base64String.StartsWith(str))
+                {
+                    base64String = base64String.Replace(str, "").Trim();
+                    break;
+                }
             }
 
             byte[] imageBytes = Convert.FromBase64String(base64String);
