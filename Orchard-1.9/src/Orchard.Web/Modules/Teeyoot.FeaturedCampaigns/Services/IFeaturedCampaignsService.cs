@@ -19,5 +19,9 @@ namespace Teeyoot.FeaturedCampaigns.Services
         Dictionary<CampaignRecord, int> GetCampaignsFromAdminForOneDay(List<CampaignRecord> camp);
 
         IQueryable<CampaignRecord> GetAllCampaigns();
+
+        CampaignRecord GetCampaignsById(int id);
+
+        bool UpdateCampaigns(CampaignRecord camp);
     }
 }

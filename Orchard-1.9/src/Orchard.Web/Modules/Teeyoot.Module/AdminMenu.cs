@@ -59,7 +59,7 @@ namespace Teeyoot.Module
                                     .LocalNav())
                     )
                     .Add(subItem => subItem
-                        .Caption(T("Featured Campaigns"))
+                        .Caption(T("Campaigns"))
                         .Position("2.6")
                         .Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" })
                     )

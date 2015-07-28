@@ -12,6 +12,10 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
 
         public List<int> Color { get; set; }
 
+        public dynamic Pager { get; set; }
+
+        public int StartedIndex { get; set; }
+
         //public Dictionary<CampaignRecord, int> CampaignsFromOrderForDay { get; set; }
 
         //public List<CampaignRecord> OtherCampaigns { get; set; }

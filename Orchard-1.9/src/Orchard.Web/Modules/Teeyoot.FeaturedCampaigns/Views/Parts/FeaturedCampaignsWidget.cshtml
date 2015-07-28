@@ -1,1 +1,53 @@
-﻿
+﻿<div class="row">
+    <div class=" span-12 cell">
+        <div class="featured-campaigns-title"><h1 class="section__subheading" style="text-align: center;" data-mce-style="text-align: center;">@T("Featured Campaigns")</h1></div>
+    </div>
+</div>
+
+<div class="row featured-campaigns-list">
+    @foreach (var camp in Model.Campaigns)
+    {
+        float widthResult = 0;
+        string width = string.Empty;
+        if ((camp.ProductCountGoal - camp.ProductCountSold) <= 0)
+        {
+            widthResult = 100;
+        }
+        else
+        {
+            if (camp.ProductCountSold != 0)
+            {
+                float procent = (float)camp.ProductCountGoal / 100;
+                widthResult = camp.ProductCountSold / procent;
+            }
+            else
+            {
+                widthResult = 0;
+            }
+        }
+        width = (int)widthResult + "% !important";
+
+        string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
+        string backIMG = path + "normal/back.png";
+        string frontIMG = path + "normal/front.png";
+
+        string sold = camp.ProductCountSold.ToString() + " of " + camp.ProductCountGoal.ToString() + " sold";
+
+        <div class=" span-1 cell tee-preview">
+            <div>
+                <div class="featurde-compaigns">
+                    <div class="preview-img">
+                        <p><a href="~/@camp.Alias"><img onmouseover="this.src='@backIMG'" onmouseout="this.src = '@frontIMG'" src="@frontIMG"></a></p>
+                    </div>
+                    <div class="progress-bar" style="background-color: #ffffff !important; border: solid 1px #ff4f00; width: initial; border-radius: 3px;">
+                        <div class="progress-bar-sold" style="background-color: #ff4f00; height: 9px; width: @width;"></div>
+                        </div>
+                    <div class="campaigns-text">
+                        <h3>@sold</h3>
+                        <h1><a href="~/@camp.Alias">@camp.Title</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
