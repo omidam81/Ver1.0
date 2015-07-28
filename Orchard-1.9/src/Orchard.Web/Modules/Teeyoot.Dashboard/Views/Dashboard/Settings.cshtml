@@ -1,8 +1,146 @@
 ﻿@{
-    
+    Style.Include("Settings.css");
 }
 
-<div class="dashboard-section-title">@T("Settings")
+<div class="dashboard-section-title">
+    @T("Settings")
     <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
     <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
 </div>
+<section class="general_settings">
+    <div class="dashboard_section__header">
+        <h1 class="dashboard_section__heading">Change Your Info</h1>
+    </div>
+    <div class="dashboard_section__content--padded">
+        @using (Html.BeginForm("ChangeUserInfo", "DashboardSettings",  FormMethod.Post))
+              {
+            <div class="account__user_info">
+                <label>
+                    <div class="label__title">Public name</div>
+                    <input class="form__textfield" type="text" maxlength="30" size="30" />
+                </label>
+                <label>
+                    <div class="label__title">Phone number</div>
+                    <input class="form__textfield" type="text" maxlength="30" size="30" />
+                </label>
+                <label>
+
+                </label>
+                <label>
+                    <div class="label__title">Global Settings</div>
+                    <input name="show_aggregate_campaign_goals" class="checkbox__show_aggregate_campaign_goals" id="show_aggregate_campaign_goals" type="checkbox" checked="checked" value="true">
+                    <p class="disclaimer">Show all-time number sold on active campaigns</p>
+                </label>
+                <label>
+
+                </label>
+            </div>
+            <div class="address__info">
+
+                <div class="label__title label__mailing_address">Change your default address</div>
+                <div class="address__group">
+                    <div class="address__group_row">
+                        <label class="address__field address__field_street">
+                            <input name="user[address]" class="form__textfield" id="user_address" type="text" value="" data-default="">
+                            <div class="label__subtitle">Street</div>
+                        </label>
+                        <label class="address__field address__field_apt">
+                            <input name="user[address2]" class="form__textfield" id="user_address2" type="text" value="" data-default="">
+                            <div class="label__subtitle">Apt / Suite</div>
+                        </label>
+                    </div>
+                    <div class="address__group_row">
+                        <label class="address__field address__field_city">
+                            <input name="user[city]" class="form__textfield" id="user_city" type="text" value="" data-default="">
+                            <div class="label__subtitle">City</div>
+                        </label>
+                        <label class="address__field address__field_state" id="states">
+                            <select name="user[state]" class="state-select state-us form__select_menu" id="state-us">
+                                <option value=""></option>
+                                <option value="JH">JH</option>
+                                <option value="KH">KH</option>
+                                <option value="KN">KN</option>
+                                <option value="MK">MK</option>
+                                <option value="NS">NS</option>
+                                <option value="PH">PH</option>
+                                <option value="PK">PK</option>
+                                <option value="PS">PS</option>
+                                <option value="PN">PN</option>
+                                <option value="SL">SL</option>
+                                <option value="TR">TR</option>
+                                <option value="PTJ">PTJ</option>
+                                <option value="KL">KL</option>
+                                <option value="SBH">SBH</option>
+                                <option value="SWK">SWK</option>
+                                <option value="LB">LB</option>
+                            </select>
+                            <div class="label__subtitle label__subtitle_state">State</div>
+                        </label>
+                        <label class="address__field address__field_zip">
+                            <input name="user[zip]" class="form__textfield" id="user_zip" type="text" value="" data-default="">
+                            <div class="label__subtitle">Zip</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="account__user_info--submit">
+                <input name="commit" class="t-button" type="submit" value="Update Info">
+            </div>
+
+
+        }
+    </div>
+</section>
+<section class="account__email_settings">
+    <div class="dashboard_section__header">
+        <h1 class="dashboard_section__heading">Change Your Email</h1>
+    </div>
+    <div class="dashboard_section__content--padded">
+        @using (Html.BeginForm("ChangeEmail", "DashboardSettings", FormMethod.Post))
+                        {
+        <div class="account__email_info">
+            <label>
+                <div class="label__title">New email address</div>
+                <input name="user[email]" class="form__textfield" id="user_email" type="text" maxlength="30" size="30">
+            </label>
+            <label>
+                <div class="label__title">Confirm new email address</div>
+                <input name="user[email_confirmation]" class="form__textfield" id="user_email_confirmation" type="text" maxlength="30" size="30">
+            </label>
+            <label>
+                <div class="label__title">Current password</div>
+                <input name="user[password]" class="form__textfield" id="user_password" type="password" maxlength="30" size="30">
+            </label><input name="commit" class="t-button" type="submit" value="Update Email">
+        </div>
+       }
+    </div>
+</section>
+<section class="account__password_settings">
+    <div class="dashboard_section__header">
+        <h1 class="dashboard_section__heading">Change Your Password</h1>
+    </div>
+    <div class="dashboard_section__content--padded">
+       @using (Html.BeginForm("ChangePassword", "DashboardSettings", FormMethod.Post))
+                        {
+            <div style="display: none;">
+                <input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch">
+                <input name="authenticity_token" type="hidden" value="kIbplJRzGkr7vPSQaRHJ1RJ5cFugU66ujOR/IqEh+tw=">
+            </div>
+            <div class="account__password_info">
+                <label>
+                    <div class="label__title">Current password</div>
+                    <input name="password[current]" class="form__textfield" id="password_current" type="password" maxlength="30" size="30">
+                </label>
+                <label>
+                    <div class="label__title">New password</div>
+                    <input name="password[new]" class="form__textfield" id="password_new" type="password" placeholder="Must be longer than 6 characters" maxlength="30" size="30">
+                </label>
+                <label>
+                    <div class="label__title">Confirm new password</div>
+                    <input name="password[confirm]" class="form__textfield" id="password_confirm" type="password" maxlength="30" size="30">
+                </label>
+                <input name="commit" class="t-button" type="submit" value="Update Password">
+            </div>
+        }
+    </div>
+</section>

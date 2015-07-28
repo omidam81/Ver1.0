@@ -26,12 +26,14 @@ namespace Teeyoot.Module.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IimageHelper _imageHelper;
         private readonly IFontService _fontService;
+        private readonly ISwatchService _swatchService;
 
-        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService)
+        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, ISwatchService swatchService)
         {
             _campaignService = campaignService;
             _imageHelper = imageHelper;
             _fontService = fontService;
+            _swatchService = swatchService;
             Logger = NullLogger.Instance;
         }
 
@@ -102,6 +104,15 @@ namespace Teeyoot.Module.Controllers
             var fonts = _fontService.GetAllfonts();
             return Json(fonts.Select(f => new { id = f.Id, family = f.Family, filename = f.FileName, tags = f.Tags, priority = f.Priority }), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetSwatches()
+        {
+            var swatches = _swatchService.GetAllSwatches();
+            return Json(swatches.ToList().Select(s => new { id = s.Id, name = s.Name, inStock = s.InStock, rgb = new[] { s.Red, s.Green, s.Blue } }), JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
         #region Helper methods
 

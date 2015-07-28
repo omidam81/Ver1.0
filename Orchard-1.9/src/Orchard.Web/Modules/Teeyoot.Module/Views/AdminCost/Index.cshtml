@@ -1,0 +1,57 @@
+﻿@model Teeyoot.Module.ViewModels.AdminCostViewModel
+@{
+    Layout.Title = T("T-Shirt Cost").ToString();
+    Style.Include("Cost.css");
+}
+
+<fieldset>
+    <div>
+        <table class="items">
+            <tr>
+                <th>@T("1st Screen Cost (RM)")</th>
+                <td>@Model.FirstScreenCost</td>
+            </tr>
+            <tr>
+                <th>@T("Additional Screen Costs (RM)")</th>
+                <td>@Model.AdditionalScreenCosts</td>
+            </tr>
+            <tr>
+                <th>@T("Ink Cost (RM per litre per colour)")</th>
+                <td>@Model.InkCost</td>
+            </tr>
+            <tr>
+                <th>@T("Prints per litre")</th>
+                <td>@Model.PrintsPerLitre</td>
+            </tr>
+            <tr>
+                <th>@T("Labour Cost (RM per hr)")</th>
+                <td>@Model.LabourCost</td>
+            </tr>
+            <tr>
+                <th>@T("Labour time per colour per print (seconds)")</th>
+                <td>@Model.LabourTimePerColourPerPrint</td>
+            </tr>
+            <tr>
+                <th>@T("Labour time per side printed per print (seconds)")</th>
+                <td>@Model.LabourTimePerSidePrintedPerPrint</td>
+        </tr>
+        <tr>
+            <th>@T("Cost of material / t-shirt (RM each)")</th>
+            <td>@Model.CostOfMaterial</td>
+        </tr>
+        <tr>
+            <th>@T("Percentage Mark-Up required")</th>
+            <td>@Model.PercentageMarkUpRequired</td>
+        </tr>
+        <tr>
+            <th>@T("DTG print price (RM)")</th>
+            <td>@Model.DTGPrintPrice</td>
+        </tr>
+    </table>
+</div>
+</fieldset>
+<fieldset class="bulk-actions">
+    <div class="button-cost">
+        <a class="button" href="@Url.Action("Edit")" title="@T("Edit")">@T("Edit")</a>
+    </div>
+</fieldset>
