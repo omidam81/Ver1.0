@@ -101,7 +101,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return RedirectToAction("AddFont", model);
                 }
             }
-            return null;
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("AddFont", model);
         }
 
         [HttpPost]
@@ -122,7 +123,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return RedirectToAction("AddFont", model);
                 }
             }
-            return null;
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("AddFont", model);
         }
 
 
@@ -145,7 +147,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return RedirectToAction("AddFont", model);
                 }
             }
-            return null;
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("AddFont", model);
         }
 
         [ValidateAntiForgeryToken]
