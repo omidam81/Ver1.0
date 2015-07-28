@@ -65,7 +65,7 @@ namespace Teeyoot.WizardSettings.Controllers
             string[] stringSeparators = new string[] { ","};
             string[] separatedTags;
             string Tags = record.Tags.Trim(new Char[] { '[', '*', ',', ']',' ', '.' });          
-            Tags = Tags.Replace("\\\"","");
+            Tags = Tags.Replace("\"","");
             string resultTags = "";
             separatedTags = Tags.Split(stringSeparators, StringSplitOptions.None);
             int i = 0;
@@ -178,7 +178,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     {
                         resultTags = resultTags + ",";
                     }
-                    resultTags = resultTags + "\\" + "\"" + item + "\\" + "\"";
+                    resultTags = resultTags + "\"" + item  + "\"";
                     i++;
                 }
                 resultTags += "]";
@@ -228,7 +228,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     {
                         resultTags = resultTags + ",";
                     }
-                    resultTags = resultTags +"\\" + "\"" + item + "\\" + "\"";
+                    resultTags = resultTags + "\"" + item  + "\"";
                     i++;
                 }
                 resultTags += "]";
