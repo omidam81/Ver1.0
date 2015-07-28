@@ -1,1 +1,68 @@
-﻿
+﻿@model Teeyoot.FeaturedCampaigns.ViewModels.AdminFeaturedCampaignsViewModel
+@{
+    Layout.Title = T("Featured Campaigns").ToString();
+    Style.Include("FeaturedCampaigns.css");
+    string colorAdmin = "#00FFFF";
+    string colorTOP = "#FFEBCD";
+    string colorOther = "#FFFFFF";
+}
+<fieldset>
+    <table class="items">
+        <thead>
+            <tr>
+                <th>@T("Featured")</th>
+                <th>@T("Sold in this day")</th>
+                <th>@T("Sold/Goal")</th>
+                <th>@T("Name campaign")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AllInFeatured != null)
+            {
+                int colorIndex = 0;
+                foreach (var camp in Model.AllInFeatured)
+                {
+                    string isFeatured = camp.Key.IsFeatured ? "Yes" : "No";
+                    string value = camp.Value > 0 ? camp.Value.ToString() : "-";
+                    string color = "#FFFFFF";
+                    switch (Model.Color[colorIndex])
+                    {
+                        case 0:
+                            {
+                                color = colorOther;
+                                break;
+                            }
+                        case 1:
+                            {
+                                color = colorTOP;
+                                break;
+                            }
+                        case 2:
+                            {
+                                color = colorAdmin;
+                                break;
+                            }
+                    }
+                    
+                    <tr style="background-color: @color">
+                        <td>@T(isFeatured)</td>
+                        <td>@value</td>
+                        <td>@camp.Key.ProductCountSold / @camp.Key.ProductCountGoal</td>
+                        <td>@camp.Key.Title</td>
+                        <td>
+                            @if (camp.Key.IsFeatured)
+                            {
+                                <a href="@Url.Action("ChangeVisible", new { id = camp.Key.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ChangeVisible", new { id = camp.Key.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</fieldset>
