@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Web.Mvc;
 using Orchard;
@@ -22,6 +23,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductColorRecord> _productColourRepository;
+        private readonly IRepository<SwatchRecord> _swatchColourRepository;
 
         private dynamic Shape { get; set; }
 
@@ -29,11 +31,14 @@ namespace Teeyoot.WizardSettings.Controllers
             ISiteService siteService,
             IOrchardServices orchardServices,
             IRepository<ProductColorRecord> productColourRepository,
+            IRepository<SwatchRecord> swatchRecordRepository,
             IShapeFactory shapeFactory)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
             _productColourRepository = productColourRepository;
+            _swatchColourRepository = swatchRecordRepository;
+
             Shape = shapeFactory;
 
             T = NullLocalizer.Instance;
@@ -64,6 +69,27 @@ namespace Teeyoot.WizardSettings.Controllers
                 var pagerShape = Shape.Pager(pager).TotalItemCount(_productColourRepository.Table.Count());
 
                 viewModel.Colors = productColours;
+                viewModel.Pager = pagerShape;
+            }
+            else if (chooseColourFor == ChooseColourFor.Swatch)
+            {
+                var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+
+                var swatchColours = _swatchColourRepository.Table
+                    .OrderBy(p => p.Name)
+                    .Skip(pager.GetStartIndex())
+                    .Take(pager.PageSize)
+                    .Select(s => new SwatchColourViewModel
+                    {
+                        Id = s.Id,
+                        Name = s.Name,
+                        Value = ColorTranslator.ToHtml(Color.FromArgb(s.Red, s.Green, s.Blue)),
+                        InStock = s.InStock
+                    });
+
+                var pagerShape = Shape.Pager(pager).TotalItemCount(_swatchColourRepository.Table.Count());
+
+                viewModel.Colors = swatchColours;
                 viewModel.Pager = pagerShape;
             }
 
@@ -157,6 +183,108 @@ namespace Teeyoot.WizardSettings.Controllers
             _orchardServices.Notifier.Information(T("Product Colour has been deleted."));
             return RedirectToAction("Index",
                 new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
+        }
+
+        public ActionResult AddSwatchColour()
+        {
+            var viewModel = new SwatchColourViewModel {InStock = true};
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddSwatchColour([Bind(Exclude = "Id")] SwatchColourViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage))
+                {
+                    _orchardServices.Notifier.Error(T(error));
+                }
+                return RedirectToAction("AddSwatchColour");
+            }
+
+            var rgbColor = ColorTranslator.FromHtml(viewModel.Value);
+
+            var swatchColour = new SwatchRecord
+            {
+                Name = viewModel.Name,
+                Red = rgbColor.R,
+                Green = rgbColor.G,
+                Blue = rgbColor.B,
+                InStock = viewModel.InStock
+            };
+
+            _swatchColourRepository.Create(swatchColour);
+
+            _orchardServices.Notifier.Information(T("New Swatch Colour has been added."));
+            return RedirectToAction("Index", "Colour",
+                new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)});
+        }
+
+        public ActionResult EditSwatchColour(int swatchColourId)
+        {
+            var swatchColour = _swatchColourRepository.Get(swatchColourId);
+
+            var viewModel = new SwatchColourViewModel
+            {
+                Id = swatchColour.Id,
+                Name = swatchColour.Name,
+                Value = ColorTranslator.ToHtml(Color.FromArgb(swatchColour.Red, swatchColour.Green, swatchColour.Blue)),
+                InStock = swatchColour.InStock
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditSwatchColour(SwatchColourViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage))
+                {
+                    _orchardServices.Notifier.Error(T(error));
+                }
+                return RedirectToAction("EditSwatchColour", new {swatchColourId = viewModel.Id});
+            }
+
+            var rgbColor = ColorTranslator.FromHtml(viewModel.Value);
+
+            var swatchColour = _swatchColourRepository.Get(viewModel.Id);
+
+            swatchColour.Name = viewModel.Name;
+            swatchColour.Red = rgbColor.R;
+            swatchColour.Green = rgbColor.G;
+            swatchColour.Blue = rgbColor.B;
+            swatchColour.InStock = viewModel.InStock;
+
+            _swatchColourRepository.Update(swatchColour);
+
+            _orchardServices.Notifier.Information(T("Swatch Colour has been edited."));
+            return RedirectToAction("Index", "Colour",
+                new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)});
+        }
+
+        public ActionResult DeleteSwatchColour(int swatchColourId)
+        {
+            try
+            {
+                var swatchColour = _swatchColourRepository.Get(swatchColourId);
+                _swatchColourRepository.Delete(swatchColour);
+                _swatchColourRepository.Flush();
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(T("Deleting Swatch Colour failed: {0}", exception.Message).Text);
+                _orchardServices.Notifier.Error(T("Deleting Swatch Colour failed: {0}", exception.Message));
+                return RedirectToAction("Index",
+                    new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)});
+            }
+
+            _orchardServices.Notifier.Information(T("Swatch Colour has been deleted."));
+            return RedirectToAction("Index",
+                new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)});
         }
     }
 }

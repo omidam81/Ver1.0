@@ -6,6 +6,10 @@
     {
         <a class="button primaryAction" href="@Url.Action("AddProductColour", "Colour")">@T("Add New Product Colour")</a>
     }
+    else if (Model.ChooseColourFor == ChooseColourFor.Swatch)
+    {
+        <a class="button primaryAction" href="@Url.Action("AddSwatchColour", "Colour")">@T("Add New Swatch Colour")</a>
+    }
 </div>
 
 <fieldset class="bulk-actions">
@@ -51,6 +55,46 @@
                     <a href="@Url.Action("EditProductColour", "Colour", new {productColourId = productColour.Id})" title="@T("Edit")">@T("Edit")</a>
                     @T(" | ")
                     <a href="@Url.Action("DeleteProductColour", "Colour", new {productColourId = productColour.Id})" itemprop="RemoveUrl">@T("Delete")</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else if (Model.ChooseColourFor == ChooseColourFor.Swatch)
+{
+    <table class="items">
+        <thead>
+        <tr>
+            <th>
+                <h4>Name</h4>
+            </th>
+            <th>
+                <h4>Color</h4>
+            </th>
+            <th>
+                <h4>In Stock</h4>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var swatchColour in Model.Colors)
+        {
+            <tr>
+                <td>
+                    @swatchColour.Name
+                </td>
+                <td style="background: @swatchColour.Value"></td>
+                <td>
+                    <input type="checkbox" @if (swatchColour.InStock)
+                                           {
+                                               <text>checked="checked"</text>
+                                           } disabled="disabled"/>
+                </td>
+                <td>
+                    <a href="@Url.Action("EditSwatchColour", "Colour", new {swatchColourId = swatchColour.Id})" title="@T("Edit")">@T("Edit")</a>
+                    @T(" | ")
+                    <a href="@Url.Action("DeleteSwatchColour", "Colour", new {swatchColourId = swatchColour.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                 </td>
             </tr>
         }
