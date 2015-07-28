@@ -703,7 +703,7 @@
     <Compile Include="Services\Interfaces\IProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
-    <Compile Include="Services\ISwatchService.cs" />
+    <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
