@@ -644,6 +644,7 @@
     <Content Include="Styles\bootstrap-wysihtml5.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\checkout.css" />
+    <Content Include="Styles\Cost.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designer.css" />
     <Content Include="Styles\bootstrap-responsive.css" />
