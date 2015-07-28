@@ -94,8 +94,24 @@ namespace Teeyoot.Module
                         new MvcRouteHandler())
                 }
                 ,
-
+                new RouteDescriptor {
+                    Route = new Route(
+                        "GetAllProducts",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Wizard"},
+                            {"action", "GetProducts"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
+                ,
                 
+
+
                 new RouteDescriptor {
                     Priority = -11,
                     Route = new Route(

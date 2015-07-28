@@ -691,7 +691,9 @@
     <Compile Include="Models\CampaignRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Services\FontService.cs" />
-    <Compile Include="Services\IFontService.cs" />
+    <Compile Include="Services\Interfaces\IFontService.cs" />
+    <Compile Include="Services\Interfaces\IProductService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
@@ -699,7 +701,7 @@
     <Compile Include="Models\LinkProductGroupRecord.cs" />
     <Compile Include="Models\LinkStoreCampaignRecord.cs" />
     <Compile Include="Models\StoreRecord.cs" />
-    <Compile Include="Services\IStoreService.cs" />
+    <Compile Include="Services\Interfaces\IStoreService.cs" />
     <Compile Include="Services\StoreService.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
@@ -720,9 +722,10 @@
     <Compile Include="Models\TeeyootUserPartRecord.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Services\OrderService.cs" />
-    <Compile Include="Services\IOrderService.cs" />
-    <Compile Include="Services\ICampaignService.cs" />
+    <Compile Include="Services\Interfaces\IOrderService.cs" />
+    <Compile Include="Services\Interfaces\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
+    <Compile Include="ViewModels\WizardProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Drivers\" />

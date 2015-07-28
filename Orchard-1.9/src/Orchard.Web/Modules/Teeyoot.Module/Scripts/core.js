@@ -1,7 +1,8 @@
 var app = {
     loadProducts: function(){
         return jQuery.ajax({
-            url: this.urlPrefix+this.urls.products            
+            //url: this.urlPrefix+this.urls.products  
+            url: this.urls.products  
         });
     },
     loadFonts: function(){
