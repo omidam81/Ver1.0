@@ -107,6 +107,20 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/Cost",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCost"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
 
                 
                 new RouteDescriptor {
@@ -126,24 +140,7 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 }
-                ,
-                new RouteDescriptor {
-                    Priority = -11,
-                    Route = new Route(
-                        "Admin/Cost",
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"},
-                            {"controller", "AdminCost"},
-                            {"action", "Index"}                           
-                        },
-                        new RouteValueDictionary {
-                            {"campaignName", new ExpectedValuesConstraint("Admin")}
-                        },
-                        new RouteValueDictionary {
-                            {"area", "Teeyoot.Module"}
-                        },
-                        new MvcRouteHandler())
-                }
+                
             };
         }
 
