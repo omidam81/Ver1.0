@@ -154,6 +154,10 @@ namespace Teeyoot.WizardSettings.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteFont(int id, string returnUrl)
         {
+            var record = _fontService.GetFont(id);
+            var fontsPath = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"));
+            string searchPattern = record.FileName + ".*";
+            Array.ForEach(Directory.GetFiles(fontsPath, searchPattern), delegate(string path) { System.IO.File.Delete(path); });
             _fontService.DeleteFont(id);
             Services.Notifier.Information(T("The font has been deleted."));
             return this.RedirectLocal(returnUrl, () => RedirectToAction("FontList"));
