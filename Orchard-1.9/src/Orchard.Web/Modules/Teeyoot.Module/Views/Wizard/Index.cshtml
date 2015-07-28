@@ -119,6 +119,7 @@
             var alias = document.getElementById('url').value;
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tags = document.getElementById("inputTags").value.split(" ");
+            var isForCharity = document.getElementById('is_for_charity').checked;
             $.ajax({
                 async: false,
                 cache: false,
@@ -126,7 +127,7 @@
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
                     "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-                    "Design": JSON.stringify(app.state.design),
+                    "Design": JSON.stringify(app.state.design), 'IsForCharity': isForCharity,
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
                     'BackSideByDefault': backSideByDefault, "Tags": tags, "Products": app.state.products
                 }),
@@ -919,7 +920,7 @@
                                                                 <label>For charity</label>
                                                                 <p>
                                                                     <label class="checkbox display-label">
-                                                                        <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
+                                                                        <input type="checkbox" name="is_for_charity" id="is_for_charity" value="1">
                                                                         <span>Option for verified charity</span>
                                                                     </label>
                                                                 </p>

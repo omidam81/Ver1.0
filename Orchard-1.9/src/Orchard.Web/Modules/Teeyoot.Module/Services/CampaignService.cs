@@ -87,10 +87,6 @@ namespace Teeyoot.Module.Services
 
         public CampaignRecord CreateNewCampiagn(LaunchCampaignData data)
         {
-            // TODO: eugene: implement with real data, real user
-
-            FillWithFakeData(data); // TODO: eugene: get rid of this
-
             var user = Services.WorkContext.CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             int? userId = null;
@@ -109,6 +105,7 @@ namespace Teeyoot.Module.Services
                     Description = data.Description,
                     Design = data.Design,
                     EndDate = DateTime.UtcNow.AddDays(data.CampaignLength),
+                    IsForCharity = data.IsForCharity,
                     StartDate = DateTime.UtcNow,
                     ProductCountGoal = data.ProductCountGoal,
                     ProductCountSold = 0,
@@ -148,12 +145,24 @@ namespace Teeyoot.Module.Services
 
                 foreach (var prod in data.Products)
                 {
+                    double baseCost = 0;
+                    if (!double.TryParse(prod.BaseCost, out baseCost))
+                    {
+                        double.TryParse(prod.BaseCost.Replace('.', ','), out baseCost);
+                    }
+
+                    double price = 0;
+                    if (!double.TryParse(prod.Price, out price))
+                    {
+                        double.TryParse(prod.Price.Replace('.', ','), out price);
+                    }
+
                     var campProduct = new CampaignProductRecord
                     {
                         CampaignRecord_Id = newCampaign.Id,
-                        BaseCost = double.Parse(prod.BaseCost),
-                        CurrencyRecord = _currencyRepository.Get(prod.CurrencyId),
-                        Price = double.Parse(prod.Price),
+                        BaseCost = baseCost,
+                        CurrencyRecord = prod.CurrencyId != 1 ? _currencyRepository.Get(1) : _currencyRepository.Get(prod.CurrencyId), // TODO: eugene: implement
+                        Price = price,
                         ProductColorRecord = _colorRepository.Get(prod.ColorId),
                         ProductRecord = _productRepository.Get(prod.ProductId)
                     };
@@ -189,48 +198,6 @@ namespace Teeyoot.Module.Services
         public IQueryable<CampaignRecord> GetCampaignsOfUser(int userId)
         {
             return userId > 0 ? GetAllCampaigns().Where(c => c.TeeyootUserId == userId) : GetAllCampaigns().Where(c => !c.TeeyootUserId.HasValue);
-        }
-
-        private void FillWithFakeData(LaunchCampaignData data)
-        {
-            data.Design = data.Design ?? "{ \"key\":\"some data in Json\" }";
-
-            var prodCount = new Random().Next(1, 3);
-
-            if (prodCount == 2)
-            {
-                data.Products = new CampaignProductData[] {
-
-                    new CampaignProductData {
-                        CurrencyId = 1,
-                        ProductId = 2,
-                        ColorId = 3,
-                        BaseCost = "10",
-                        Price = "15"
-                    },
-
-                    new CampaignProductData {
-                        CurrencyId = 1,
-                        ProductId = 3,
-                        ColorId = 9,
-                        BaseCost = "15",
-                        Price = "20"
-                    }
-                };
-            }
-            else
-            {
-                data.Products = new CampaignProductData[] {
-
-                    new CampaignProductData {
-                        CurrencyId = 1,
-                        ProductId = 2,
-                        ColorId = 3,
-                        BaseCost = "10",
-                        Price = "15"
-                    }
-                };
-            }
         }
 
         public bool DeleteCampaignFromCategoryById(int campId, int categId)

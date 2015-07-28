@@ -29,7 +29,7 @@ namespace Teeyoot.Module.Models
 
         public virtual string URL { get; set; }
 
-        public virtual bool AllowPickUpOrdersFromMe { get; set; }
+        public virtual bool IsForCharity { get; set; }
 
         public virtual bool BackSideByDefault { get; set; }
 

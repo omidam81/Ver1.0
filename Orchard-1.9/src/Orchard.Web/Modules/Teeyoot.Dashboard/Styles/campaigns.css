@@ -60,7 +60,7 @@
 }
 .campaign-card-image {
     background-position: center;
-    background-size: 70%;
+    background-size: 75%;
     background-repeat: no-repeat;
     min-width: 250px;
     height: 85%;
@@ -69,7 +69,7 @@
 .campaign-card-image:hover {
     background: rgba(41,48,51,1);
     background-position: center;
-    background-size: 70%;
+    background-size: 75%;
     background-repeat: no-repeat;
     opacity:.5;
     color:#fff;
@@ -90,8 +90,9 @@
         width: 30%;
     }
 
-    .campaign-card-image {
-        background-size: 65%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 70%;
     }
 }
 
@@ -100,8 +101,9 @@
         width: 45%;
     }
 
-    .campaign-card-image {
-        background-size: 60%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 65%;
     }
 }
 
@@ -110,8 +112,9 @@
         width: 30%;
     }
 
-    .campaign-card-image {
-        background-size: 65%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 75%;
     }
 }
 
@@ -120,8 +123,9 @@
         width: 45%;
     }
 
-    .campaign-card-image {
-        background-size: 60%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 65%;
     }
 }
 
@@ -135,8 +139,9 @@
     .group-control.filters {
         display:block;
     }
-    .campaign-card-image {
-        background-size: 50%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 52%;
     }
 
     .campaigns-list-container {
@@ -159,8 +164,9 @@
 }
 
 @media all and (max-width: 530px) {
-    .campaign-card-image {
-        background-size: 57%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 60%;
     }
 
     .overview-period {
@@ -169,8 +175,9 @@
 }
 
 @media all and (max-width: 450px) {
-    .campaign-card-image {
-        background-size: 65%;
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 70%;
     }
 }
 

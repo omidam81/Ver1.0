@@ -120,7 +120,7 @@ namespace Teeyoot.Module
                     .Column<string>("Description", c => c.Unlimited())
                     .Column<DateTime>("EndDate")
                     .Column<string>("URL")
-                    .Column<bool>("AllowPickUpOrdersFromMe", c => c.WithDefault(false))
+                    .Column<bool>("IsForCharity", c => c.WithDefault(false))
                     .Column<bool>("BackSideByDefault", c => c.WithDefault(false))
             );
 
