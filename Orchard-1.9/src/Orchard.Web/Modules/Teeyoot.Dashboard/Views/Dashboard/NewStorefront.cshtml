@@ -29,11 +29,16 @@
      
         function onFileSelected(event) {
             var selectedFile = event.target.files[0];
+            if (selectedFile.type !== 'image/png') {
+                alert('Only .png files allowed');
+                return;
+            }
+
             var reader = new FileReader();
             var imgtag = document.getElementsByClassName("site__featured_full")[0];
            
             var img = document.getElementById("banner-image");
-            img.title = selectedFile.name;
+      
             var form = document.getElementById("img-load-form");
             $(form).addClass('s3-uploader store_banner--custom');
 
