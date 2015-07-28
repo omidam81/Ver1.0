@@ -57,12 +57,46 @@ namespace Teeyoot.WizardSettings
                 new RouteDescriptor
                 {
                     Route = new Route(
-                        "Admin/Colours/EditProductColour",
+                        "Admin/Colours/EditProductColour/{productColourId}",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.WizardSettings"},
                             {"controller", "Colour"},
                             {"action", "EditProductColour"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Colours/AddSwatchColour",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "Colour"},
+                            {"action", "AddSwatchColour"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Colours/EditSwatchColour/{swatchColourId}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "Colour"},
+                            {"action", "EditSwatchColour"}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary
