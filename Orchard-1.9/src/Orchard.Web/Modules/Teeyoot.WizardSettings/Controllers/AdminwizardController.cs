@@ -65,7 +65,7 @@ namespace Teeyoot.WizardSettings.Controllers
             string[] stringSeparators = new string[] { ","};
             string[] separatedTags;
             string Tags = record.Tags.Trim(new Char[] { '[', '*', ',', ']',' ', '.' });          
-            Tags = Tags.Replace("\\\"","");
+            Tags = Tags.Replace("\"","");
             string resultTags = "";
             separatedTags = Tags.Split(stringSeparators, StringSplitOptions.None);
             int i = 0;
@@ -101,7 +101,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return RedirectToAction("AddFont", model);
                 }
             }
-            return null;
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("AddFont", model);
         }
 
         [HttpPost]
@@ -122,7 +123,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return RedirectToAction("AddFont", model);
                 }
             }
-            return null;
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("AddFont", model);
         }
 
 
@@ -145,12 +147,17 @@ namespace Teeyoot.WizardSettings.Controllers
                     return RedirectToAction("AddFont", model);
                 }
             }
-            return null;
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("AddFont", model);
         }
 
         [ValidateAntiForgeryToken]
         public ActionResult DeleteFont(int id, string returnUrl)
         {
+            var record = _fontService.GetFont(id);
+            var fontsPath = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"));
+            string searchPattern = record.FileName + ".*";
+            Array.ForEach(Directory.GetFiles(fontsPath, searchPattern), delegate(string path) { System.IO.File.Delete(path); });
             _fontService.DeleteFont(id);
             Services.Notifier.Information(T("The font has been deleted."));
             return this.RedirectLocal(returnUrl, () => RedirectToAction("FontList"));
@@ -178,7 +185,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     {
                         resultTags = resultTags + ",";
                     }
-                    resultTags = resultTags + "\\" + "\"" + item + "\\" + "\"";
+                    resultTags = resultTags + "\"" + item  + "\"";
                     i++;
                 }
                 resultTags += "]";
@@ -228,7 +235,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     {
                         resultTags = resultTags + ",";
                     }
-                    resultTags = resultTags +"\\" + "\"" + item + "\\" + "\"";
+                    resultTags = resultTags + "\"" + item  + "\"";
                     i++;
                 }
                 resultTags += "]";
