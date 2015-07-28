@@ -9,7 +9,7 @@ namespace Teeyoot.WizardSettings.ViewModels
     public class FontViewModel
     {
         public int Id { get; set; }
-       
+
         public string Family { get; set; }
         
         public string FileName { get; set; }

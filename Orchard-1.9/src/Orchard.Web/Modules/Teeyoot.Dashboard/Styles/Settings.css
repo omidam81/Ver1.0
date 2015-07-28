@@ -1,0 +1,222 @@
+﻿.general_settings {
+    /*border: 1px solid #e8eced;*/
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard_section__header {
+    background: white;
+    border: 1px solid #e8eced;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+}
+
+.dashboard_section__heading {
+    margin: 0 !important;
+    font-size: 1.2rem;
+    padding: 1.35rem 1.667rem;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.dashboard_section__content--padded {
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 1.35rem 1.667rem;
+    border-radius: 0 0 3px 3px;
+    background-color: white;
+    border: 1px solid #e8eced;
+    box-shadow: 0 2px 3px -2px rgba(194,201,204,0.5);
+}
+
+.account__user_info, .account__email_info, .account__password_info {
+    max-width: 25rem;
+    margin-right: 6.25rem;
+    float: left;
+}
+
+.form__textfield, .form__textarea {
+    border: 1px solid #e8eced !important;
+    border-radius: 5px;
+    color: #293033;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 2.25rem;
+    outline: 0;
+    padding: .6rem .867rem;
+    -webkit-transition: border-color .15s;
+    transition: border-color .15s;
+}
+
+.label__title {
+    color: #293033;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+}
+
+.address__info {
+    max-width: 25rem;
+    float: left;
+}
+
+.label__title + input, .label__title + select, .label__title + textarea {
+    font-weight: 400;
+}
+
+.account__user_info .label__title + input, .account__email_info .label__title + input, .account__password_info .label__title + input {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.address__field .form__textfield, .address__field .form__select_menu {
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.checkbox__hide_from_search + .disclaimer, .checkbox__show_aggregate_campaign_goals + .disclaimer, .checkbox__marketplace_default_opt_in + .disclaimer, .checkbox__google_product_listing_ads_enabled + .disclaimer {
+    margin: -1.4rem 0 2rem 2rem;
+}
+
+.disclaimer {
+    color: #6c7478;
+    font-size: .78rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.account__user_info input[type=checkbox], .account__email_info input[type=checkbox], .account__password_info input[type=checkbox] {
+    margin-bottom: 0;
+    width: auto;
+}
+
+.address__group {
+    max-width: 25rem;
+    width: 100%;
+}
+
+.address__group_row {
+    display: flex;
+    margin-bottom: 1.9rem;
+}
+
+    .address__group_row .address__field {
+        float: left;
+        margin-right: 4.4%;
+    }
+
+.address__field_city {
+    width: 47.46%;
+}
+
+.address__field_street {
+    width: 72.7%;
+}
+
+.address__field_apt {
+    width: 21.50%;
+}
+
+.label__subtitle {
+    font-size: .6875rem;
+    font-weight: 600;
+}
+
+.form__select_menu {
+    margin-right: 0.6rem;
+    background-color: white;
+    background-image: url("https://d1b2zzpxewkr9z.cloudfront.net/images/icons/double_caret.png");
+    background-repeat: no-repeat;
+    background-position: right .3rem top 50%;
+    background-size: 14px 16px;
+    border: 1px solid #e8eced;
+    border-radius: 5px;
+    color: #293033;
+    font-size: 1rem;
+    height: 2.15rem;
+    line-height: 1.4;
+    margin-bottom: 2.25rem;
+    outline: 0;
+    max-width: 100%;
+    min-width: 4rem;
+    padding: .2rem 0rem .2rem 0rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.address__field .form__select_menu {
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.form__textfield, .form__textarea {
+    border: 1px solid #e8eced;
+    border-radius: 5px;
+    color: #293033;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 2.25rem;
+    outline: 0;
+    padding: .6rem .867rem;
+    -webkit-transition: border-color .15s;
+    transition: border-color .15s;
+    /* -webkit-appearance: none; */
+}
+
+.account__user_info--submit {
+    float: left;
+    width: 100%;
+}
+
+.t-button {
+    background: #ff4f00 !important;
+    border-width: 0;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 4% 12%;
+    display: inline-block;
+    color: white !important;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border: 0;
+    border: none !important;
+    margin: 0px 0px 0px 0px !important;
+}
+
+    .t-button:hover {
+        background: #fc7c42 !important;
+        background-color: #fc7c42 !important;
+    }
+
+    .t-button:active {
+        background: #ff4f00 !important;
+        background-color: #ff4f00 !important;
+    }
+
+.account__email_settings {
+    margin-top: 20px;
+}
+
+.account__password_settings {
+    margin-top: 20px;
+}
+
+@-moz-document url-prefix() {
+    #states {
+        margin-right: 1%;
+    }
+}
+
+@media all and (max-width: 818px) {
+    .form__select_menu {
+        margin-right: 0.6rem;
+        height: 2.05rem;
+    }
+}
