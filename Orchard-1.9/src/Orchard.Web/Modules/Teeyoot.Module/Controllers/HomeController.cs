@@ -143,5 +143,18 @@ namespace Teeyoot.Module.Controllers
                 return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
             }
         }
+
+
+        [Themed]
+        public ActionResult TrackOrder() {
+            return View();
+        }
+
+        [Themed]
+        [HttpPost]
+        public ActionResult Tracking(string number)
+        {
+            return View();
+        }
     }
 }

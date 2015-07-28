@@ -24,7 +24,8 @@ var app = {
     },
     loadSwatches: function(){
         return jQuery.ajax({
-            url: this.urlPrefix+this.urls.swatches
+            //url: this.urlPrefix+this.urls.swatches
+            url: this.urls.swatches
         });
     },
     getPrice:function(params){

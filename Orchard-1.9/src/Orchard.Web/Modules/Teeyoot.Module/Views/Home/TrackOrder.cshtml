@@ -1,0 +1,34 @@
+﻿@{
+    Style.Include("designer.css");
+    Style.Include("bootstrap.min.css");
+    Style.Include("track.css");
+}
+
+<div class="content" style="margin-top:4%; min-height:900px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <h1 style="font-weight: bold; font-size: 2.508em;">Track your order</h1>
+                <p>Enter your lookup number (included in your confirmation email) to check the status of your order:</p>
+                <form method="post" @Url.Action("Tracking","Home")>
+                    <div style="display:none"><input type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="8qcOOiQvWaKVvpsMSx6gWPBluSO8e9xqUkDiOidsKmQ="></div>
+                    <div class="row">
+                        <div class="col-sm-8 lookupNumber">
+                            <input class="form-control input-lg input-inline-with-btn" id="lookup_number" name="lookup_number" placeholder="Lookup number" type="text">
+                        </div>
+                        <div class="col-sm-2">
+                            <input class="btnTrack" name="commit" type="submit" value="Track order">
+                        </div>
+                    </div>
+                </form>
+                <p>
+                    <a href="/track/recover">Forget your order number?</a>
+                </p>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1 hidden-xs">
+                <img alt="Index" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/index-46ae6ccb12e2f60675e10f7146dbe3a7.png">
+            </div>
+        </div>
+    </div>
+</div>
+

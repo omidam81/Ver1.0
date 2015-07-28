@@ -4,7 +4,7 @@ var dataUrls = {
     fonts: '/GetAllFonts',
     products: 'products.json',
     productPricing: 'product_pricing.json',
-    swatches: 'swatches.json',
+    swatches: '/GetAllSwatches',
     randomArt: 'random.json',
     searchArt: 'search.json',
     searchNoun: 'searchNoun.json',
