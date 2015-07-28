@@ -322,7 +322,10 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
                table => table.AddColumn<bool>("IsFeatured", cl => cl.WithDefault(false)));
 
-            return 19;
+            SchemaBuilder.AlterTable(typeof(StoreRecord).Name,
+                 table => table.AddColumn<string>("Url", cl => cl.WithLength(150)));
+
+            return 20;
         }
 
         public int UpdateFrom2()
@@ -545,5 +548,13 @@ namespace Teeyoot.Module
 
             return 19;
         }
+        public int UpdateFrom19()
+        {
+            SchemaBuilder.AlterTable(typeof(StoreRecord).Name,
+                table => table.AddColumn<string>("Url", cl => cl.WithLength(150)));
+
+            return 20;
+        }
+
     }
 }
