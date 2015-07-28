@@ -14,6 +14,8 @@ namespace Teeyoot.Module.Models
 
         public virtual string Title { get; set; }
 
+        public virtual string Url { get; set; }
+
         public virtual string Description { get; set; }
 
         public virtual bool HideStore { get; set; }

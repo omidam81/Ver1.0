@@ -652,6 +652,7 @@
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
+    <Content Include="Styles\track.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -664,6 +665,7 @@
     <Content Include="Styles\bootstrap-theme.css.map" />
     <Content Include="Styles\bootstrap.css.map" />
     <Content Include="Views\AdminCost\Index.cshtml" />
+    <Content Include="Views\Home\TrackOrder.cshtml" />
     <Content Include="Views\AdminCost\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -698,6 +700,8 @@
     <Compile Include="Services\FontService.cs" />
     <Compile Include="Services\IFontService.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
+    <Compile Include="Services\ISwatchService.cs" />
+    <Compile Include="Services\SwatchService.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
