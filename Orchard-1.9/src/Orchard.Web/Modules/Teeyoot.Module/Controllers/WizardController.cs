@@ -68,6 +68,23 @@ namespace Teeyoot.Module.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't be empty");
             }
 
+            data.Alias = data.Alias.Trim();
+
+            if (data.Alias.Any(ch => Char.IsWhiteSpace(ch)))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't contain whitespaces");
+            }
+
+            if (data.Alias.Contains('&') || data.Alias.Contains('?') || data.Alias.Contains('/') || data.Alias.Contains('\\'))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL has wrong format");
+            }
+
+            if (_campaignService.GetCampaignByAlias(data.Alias) != null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn with this URL already exists");
+            }
+
             try
             {
                 var campaign = _campaignService.CreateNewCampiagn(data);                
