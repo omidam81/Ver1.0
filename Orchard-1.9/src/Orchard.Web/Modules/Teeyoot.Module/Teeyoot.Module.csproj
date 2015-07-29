@@ -701,9 +701,9 @@
     <Compile Include="Services\FontService.cs" />
     <Compile Include="Services\Interfaces\IFontService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
-    <Compile Include="Services\Interfaces\ITShirtCost.cs" />
+    <Compile Include="Services\Interfaces\ITShirtCostService.cs" />
     <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Services\TShirtCost.cs" />
+    <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />
