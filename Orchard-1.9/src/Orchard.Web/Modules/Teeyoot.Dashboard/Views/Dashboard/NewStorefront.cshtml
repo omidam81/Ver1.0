@@ -144,7 +144,22 @@
         function PublishStore() {
             var boxes = document.getElementsByClassName("list_item__select");
             var countCheckedCheckboxes = $(boxes).filter(':checked').length;
-
+            var title = document.getElementById("title").value;
+            var url = document.getElementById("Url_store").value;
+            
+            if ( title == "") {
+                var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                $(messageDiv).removeClass("hidden");
+                var message = document.getElementsByClassName("form__message_list")[0];
+                $(message).append("Title can't be empty!");
+                return;
+            } if (url == "") {
+                var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                $(messageDiv).removeClass("hidden");
+                var message = document.getElementsByClassName("form__message_list")[0];
+                $(message).append("Url can't be empty!");
+                return;
+            }
             if (countCheckedCheckboxes <= 2) {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
@@ -154,10 +169,8 @@
             } else {
                 var img = document.getElementById("banner-image");
                 img = img.getAttribute("src");
-                var title = document.getElementById("title").value;
                 var description = document.getElementById("description").value;
                 var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
-                var url = document.getElementById("Url_store").value;
                 var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
                 var selectedCampaigns = [];
                 var boxes = document.getElementsByClassName("list_item__select");
@@ -335,7 +348,7 @@
             {
                 <p>
                     <div class="button__cta" onclick="AddCampaigns()">@T("Add Campaigns")</div>
-                    <div class="href_to_start_campaign"> or <a href="redirectToStartCampaign()">@T("launch a new campaign")</a></div>
+                    <div class="href_to_start_campaign"> or <a href="/GetStarted">@T("launch a new campaign")</a></div>
                 </p>
             }
 
