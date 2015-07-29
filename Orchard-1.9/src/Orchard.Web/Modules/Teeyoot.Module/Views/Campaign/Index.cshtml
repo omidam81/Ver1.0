@@ -97,21 +97,29 @@
         el.parentNode.removeChild(el);
         VisibleRemove();
     }
-
-    var isFront = true
-    $(function ($) {
+    var firstBack = "@Model.BackSideByDefault";
+        var isFront = true;
+        $(function ($) {
         $("#card").flip({
             trigger: 'manual'
         }).click(function () {
             isFront = !isFront;
-            var elms = document.getElementsByClassName('zoomWindow');
             console.log(isFront);
             $("#card").flip(!isFront);
+            var id = $("#product__dropdown option:selected")[0].id;
 
-            if (!isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png " + ")");
-            } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png" + ")");
+            if(firstBack=="True"){
+                if (isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/"+id+"/big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/front.png" + ")");
+                }
+            }else{
+                if (!isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/front.png" + ")");
+                }
             }
         });
 
@@ -128,10 +136,36 @@
 
     function ChangeProduct(item) {
         var id = item[item.selectedIndex].id;
-        $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
-        $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
-        $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
-        $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+        if (!isFront) {
+            isFront = !isFront;
+            console.log(isFront);
+            $("#card").flip(!isFront);
+        }
+        if (firstBack == "True") {
+            $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
+            $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");           
+        } else {
+            $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+            $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
+            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
+            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+        }
+
+        if (firstBack == "True") {
+            if (isFront) {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/"+id+"/big/back.png " + ")");
+            } else {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/front.png" + ")");
+            }
+        } else {
+            if (!isFront) {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/back.png " + ")");
+            } else {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/front.png" + ")");
+            }
+        }
     }
 
     function ChangeProductModal(item) {
@@ -232,28 +266,59 @@
 
 
             <div class="image_stack__container js_image_stack">
-     
-                <div id="card" style="margin-right:30px">
-                    <div id="front" class="front">
-                        <img id="prodFront"
-                             src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
-                             data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
-                        <div id="butt1" style="text-align:center; ">
-                            <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>
-                            <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
-                        </div>
-                    </div>
-                    <div id="back" class="back">
-                        <img id="prodBack"
-                             src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
-                             data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
-                        <div id="butt2" style="text-align:center;">
-                            <div class="flip-button flip-button-front"><span>@T("Front")</span></div>
-                            <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>Back</span></div>
-                        </div>
-                    </div>
-                </div>
 
+                <div id="card" style="margin-right:30px">
+                    
+                       
+                   
+                        <div id="front" class="front">
+                            @if (@Model.BackSideByDefault)
+                            {
+                                <img id="prodFront" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
+                                     data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
+                                <div id="butt1" style="text-align:center; ">
+                                    <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
+                                    <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
+                                </div>
+                            }
+                            else
+                            {
+                                <img id="prodFront"
+                                           src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
+                                           data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
+
+
+                             <div id="butt1" style="text-align:center; ">
+                                <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
+                                <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
+                            </div>
+                            }
+                        </div>
+                        <div id="back" class="back">
+                            @if (@Model.BackSideByDefault)
+                            { <img id="prodBack"
+                                   src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
+                                   data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
+                                <div id="butt2" style="text-align:center;">
+                                    <div class="flip-button flip-button-front"><span>@T("Back")</span></div>
+                                    <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
+                                </div>
+                            }
+                            else
+                            {
+                                  <img id="prodBack"
+                                       src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
+                                       data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
+
+                            <div id="butt2" style="text-align:center;">
+                                <div class="flip-button flip-button-front"><span>@T("Front")</span></div>
+                                <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
+                            </div>
+                            }
+                        </div>
+
+
+                </div>
                 @*<div class="image_stack__inner js_image_stack_inner">
 
                         <div class="image_stack__arrows">

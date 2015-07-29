@@ -631,7 +631,7 @@ display--desktop {
     .page__campaigns_show .site__featured_container {
         background-color: white;
         padding: 2.5rem 0;
-        margin-bottom: 2.5rem;
+        padding-bottom: 2.5rem;
     }
 }
 
@@ -3007,7 +3007,7 @@ input[type="submit"].button-cta, button.button__cta {
     background: white;
     overflow: hidden;
     position: relative;
-    margin-bottom: 0;
+    padding-bottom: 80px!important;
 }
 
 .page__campaigns_show .site__featured_container {
@@ -3018,11 +3018,11 @@ input[type="submit"].button-cta, button.button__cta {
     .page__campaigns_show .site__featured_container {
         background-color: white;
         padding: 2.5rem 0;
-        margin-bottom: 2.5rem;
+        padding-bottom: 2.5rem;
     }
 
     .site__featured_container {
-        margin-bottom: 50px;
+        /*padding-bottom: 50px;*/
     }
 }
 
@@ -3623,14 +3623,13 @@ input[type="submit"].button-cta, button.button__cta {
 
 .zoomContainer {
     z-index: 799;
-    /*margin-left: 110px;*/
     border: none !important;
     display: none;
 }
 
 .zoomWindowContainer > div {
-    left: 630px !important;
     border: none !important;
+        margin-left: 130px;
 }
 
 .zoomLens {
@@ -3647,124 +3646,86 @@ input[type="submit"].button-cta, button.button__cta {
         height: inherit !important;
     }
 
-
 @media all and (max-width: 1230px) {
     .zoomWindowContainer > div {
-        left: 590px !important;
+         margin-left: 110px;
     }
 }
-@media all and (max-width: 1180px) {
+@media all and (max-width: 1210px) {
     .zoomWindowContainer > div {
-        left: 570px !important;
+         margin-left: 100px;
+    }
+}
+@media all and (max-width: 1185px) {
+    .zoomWindowContainer > div {
+        margin-left: 80px;
     }
 }
 @media all and (max-width: 1150px) {
     .zoomWindowContainer > div {
-        left: 560px !important;
+         margin-left: 60px;
     }
 }
 @media all and (max-width: 1130px) {
     .zoomWindowContainer > div {
-        left: 540px !important;
+        margin-left: 40px;
     }
 }
 
-@media all and (max-width: 1120px) {
+@media all and (max-width: 1100px) {
     .zoomWindowContainer > div {
-        left: 530px !important;
+       margin-left: 20px;
+        height: 560px !important;
     }
 }
-
-@media all and (max-width: 1115px) {
-    .zoomWindowContainer > div {
-        left: 525px !important;
-    }
-}
-
-@media all and (max-width: 1085px) {
-    .zoomWindowContainer > div {
-        left: 505px !important;
+@media all and (max-width: 1090px) {
+    .zoomWindowContainer > div {  
         height: 560px !important;
     }
 }
 
-@media all and (max-width: 1075px) {
+@media all and (max-width: 1070px) {
     .zoomWindowContainer > div {
-        left: 495px !important;
-    }
-}
-
-@media all and (max-width: 1065px) {
-    .zoomWindowContainer > div {
-        left: 485px !important;
+        margin-left: 0;
     }
 }
 
 @media all and (max-width: 1045px) {
     .zoomWindowContainer > div {
-        left: 470px !important;
-    }
-}
-
-@media all and (max-width: 1030px) {
-    .zoomWindowContainer > div {
-        left: 465px !important;
+       
+        width:460px!important;
     }
 }
 
 @media all and (max-width: 1020px) {
     .zoomWindowContainer > div {
-        left: 460px !important;
-    }
-}
-
-@media all and (max-width: 1019px) {
-    .zoomWindowContainer > div {
-        left: 455px !important;
+       
+         width:450px!important;
     }
 }
 
 @media all and (max-width: 1010px) {
-    .site__wrapper {
-        /*width: 1000px;*/
-    }
-
-    .zoomWindowContainer {
-        width: 350px !important;
-        height: 200px !important;
-    }
-
-        .zoomWindowContainer > div {
-            left: 450px !important;
-        }
-
-    .zoomWindowContainer {
-        width: 330px !important;
-    }
-
-    .image_stack__container {
-        width: 69% !important;
-    }
-
-    .campaign__column--product {
-        float: left;
-    }
-}
-
-@media all and (max-width: 1000px) {
     .zoomWindowContainer > div {
-        left: 445px !important;
+        width:440px!important;
     }
 }
 @media all and (max-width: 1010px) {
     .image_stack__container {
         margin: 0 auto;
+        margin-bottom:50px;
     }
 }
-
+@media all and (max-width: 990px) {
+    .zoomWindowContainer > div {
+        width:430px!important;
+    }
+}
 @media all and (min-width: 980px) {
     .zoomLens {
         z-index: 999;
+    }
+     .zoomWindowContainer > div {
+        left: 525px !important;
     }
 }
 
@@ -3826,7 +3787,32 @@ input[type="submit"].button-cta, button.button__cta {
             transition: all 100ms;
         }
 }
+
+@media all and (max-width: 820px) {
+    .image_stack__container {
+        margin-bottom:35px;
+    }
+}
+@media all and (max-width: 800px) {
+    .image_stack__container {        
+        margin-bottom:15px;
+    }
+}
+@media all and (max-width: 770px) {
+    .image_stack__container {        
+        margin-bottom:0;
+        height:620px!important;
+    }
+}
 @media all and (max-width: 730px) {
+    .image_stack__container {
+       width:60%!important;
+    }
+    .image_stack__container {
+       height:540px!important;
+    }
+}
+@media all and (max-width: 710px) {
     .image_stack__container {
        width:60%!important;
     }
@@ -5178,6 +5164,7 @@ thead .product__size_chart__size_label {
     .campaign__column--description {
         display: inline;
         float: left;
+        margin-top:20px!important;
         /*margin: 0 0.6825938702%;*/
         width: 56.9681455929%;
     }

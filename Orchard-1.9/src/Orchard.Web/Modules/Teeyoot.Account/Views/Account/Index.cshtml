@@ -4,41 +4,48 @@
     Style.Include("Login.css");
 }
 
-@if (Model.RegistrationValidationIssueOccurred)
-{
-    @Model.RegistrationValidationSummary
-}
-@if (Model.LoggingOnValidationIssueOccurred)
-{
-    @Model.LoggingOnValidationSummary
-}
-@if (Model.FacebookLogOnFailed)
-{
-    @Model.FacebookLogOnFailedError
-}
+<div style="margin-top: 50px;">
+    @if (Model.RegistrationValidationIssueOccurred || Model.LoggingOnValidationIssueOccurred || Model.FacebookLogOnFailed)
+    {
+        <div class="login-valid">
+            @if (Model.RegistrationValidationIssueOccurred)
+            {
+                @Model.RegistrationValidationSummary
+            }
+            @if (Model.LoggingOnValidationIssueOccurred)
+            {
+                @Model.LoggingOnValidationSummary
+            }
+            @if (Model.FacebookLogOnFailed)
+            {
+                @Model.FacebookLogOnFailedError
+            }
+        </div>
+    }
 
-<div class="login">
-    <div class="login-and-create">
-        <div id="create-account" class="create-account">
-            @Html.Partial("CreateAccount", Model.CreateAccountViewModel)
+    <div class="login">
+        <div class="login-and-create">
+            <div id="create-account" class="create-account">
+                @Html.Partial("CreateAccount", Model.CreateAccountViewModel)
+            </div>
+            <div id="login-into-teeyoot" class="login-into-teeyoot">
+                @Html.Partial("LogOn", Model.LogOnViewModel)
+            </div>
         </div>
-        <div id="login-into-teeyoot" class="login-into-teeyoot">
-            @Html.Partial("LogOn", Model.LogOnViewModel)
-        </div>
-    </div>
-    <div class="login-with-social-network">
-        <div class="title">
-            <legend class="name">@T("Or login with...")</legend>
-        </div>
-        <div class="text">
-            Do you already have an account on Facebook or Google? <br />
-            Click the logo below to log in:
-        </div>
-        <div class="button-social-network">
-            <button class="button-facebook" onclick="location.href = '@Html.GetFacebookLogOnUrl(WorkContext)'"><p style="display: inline; margin-right: 10px; font-size: 18px; font-weight: 800;">f</p>@T("Login with Facebook")</button>
-        </div>
-        <div class="button-social-network">
-            <button class="button-google" onclick="location.href = '@Html.GetGoogleLogOnUrl(WorkContext)'"><div style="display: -webkit-inline-box; display: -moz-inline-box; display: -ms-inline-flexbox; margin-top: 5px; text-align: -webkit-auto;"><img style="width: 20px; margin-right: 10px;" src="/Media/Default/images/gogle_icon.png" /><div style="margin-top: 2px;">@T("Login with Google")</div></div></button>
+        <div class="login-with-social-network">
+            <div class="title">
+                <legend class="name">@T("Or login with...")</legend>
+            </div>
+            <div class="text">
+                Do you already have an account on Facebook or Google? <br />
+                Click the logo below to log in:
+            </div>
+            <div class="button-social-network">
+                <button class="button-facebook" onclick="location.href = '@Html.GetFacebookLogOnUrl(WorkContext)'"><p style="display: inline; margin-right: 10px; font-size: 18px; font-weight: 800;">f</p>@T("Login with Facebook")</button>
+            </div>
+            <div class="button-social-network">
+                <button class="button-google" onclick="location.href = '@Html.GetGoogleLogOnUrl(WorkContext)'"><div style="display: -webkit-inline-box; display: -moz-inline-box; display: -ms-inline-flexbox; margin-top: 5px; text-align: -webkit-auto;"><img style="width: 20px; margin-right: 10px;" src="/Media/Default/images/gogle_icon.png" /><div style="margin-top: 2px;">@T("Login with Google")</div></div></button>
+            </div>
         </div>
     </div>
 </div>
@@ -86,7 +93,7 @@
             var header_padding_bottom_now = parseInt($('.tb-layout-header').css("padding-bottom"));
             var header_margin_top_now = parseInt($('.tb-layout-header').css("margin-top"));
             var header_margin_bottom_now = parseInt($('.tb-layout-header').css("margin-bottom"));
-            var footer_margin_top = doc_height - footer_height_now - footer_padding_top_now - footer_padding_bottom_now - footer_margin_bottom_now - footer_margin_top_now - container_height_now - container_padding_top_now - container_padding_bottom_now - container_margin_top_now - container_margin_bottom_now - header_height_now - header_padding_top_now - header_padding_bottom_now - header_margin_top_now - header_margin_bottom_now - 70;
+            var footer_margin_top = doc_height - footer_height_now - footer_padding_top_now - footer_padding_bottom_now - footer_margin_bottom_now - footer_margin_top_now - container_height_now - container_padding_top_now - container_padding_bottom_now - container_margin_top_now - container_margin_bottom_now - header_height_now - header_padding_top_now - header_padding_bottom_now - header_margin_top_now - header_margin_bottom_now - 50;
             var margin = footer_margin_top + "px";
             document.querySelector(".tb-layout-footer").style.marginTop = margin;
         }

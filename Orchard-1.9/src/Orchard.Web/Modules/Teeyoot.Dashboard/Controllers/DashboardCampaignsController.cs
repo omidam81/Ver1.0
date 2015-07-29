@@ -34,7 +34,9 @@ namespace Teeyoot.Dashboard.Controllers
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser != null ? teeyootUser.Id : 0);
-            var productsOrderedQuery = _orderService.GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
+            var productsOrderedQuery = _orderService
+                .GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
+                //.Where(p => p.OrderRecord.OrderStatusRecord.Name != OrderStatus.Created.ToString());
 
             FillCampaigns(model, campaignsQuery);
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
@@ -104,13 +106,13 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = productsOrderedQuery
                             .FilterByType(OverviewType.Today)
-                            //.Where(p => p.OrderRecord.Paid.HasValue)
+                            //.Where(p => p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (int?)entry.Profit) ?? 0
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Today)
-                //            .Where(p => !p.OrderRecord.Paid.HasValue)
+                //            .Where(p => !p.OrderRecord.Reserved.HasValue)
                 //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                 //            .Sum(entry => entry.Profit)
             });
@@ -123,13 +125,13 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = productsOrderedQuery
                             .FilterByType(OverviewType.Yesterday)
-                            //.Where(p => p.OrderRecord.Paid.HasValue)
+                            //.Where(p => p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (int?)entry.Profit) ?? 0
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Yesterday)
-                //            .Where(p => !p.OrderRecord.Paid.HasValue)
+                //            .Where(p => !p.OrderRecord.Reserved.HasValue)
                 //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                 //            .Sum(entry => entry.Profit)
             });
@@ -142,12 +144,12 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.Paid.HasValue)
+                            .Where(p => p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (int?)entry.Profit) ?? 0,
                 ToBePaid = productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => !p.OrderRecord.Paid.HasValue)
+                            .Where(p => !p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (int?)entry.Profit) ?? 0
             });
@@ -158,12 +160,12 @@ namespace Teeyoot.Dashboard.Controllers
                 ProductsOrdered = productsOrderedQuery
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = productsOrderedQuery
-                            .Where(p => p.OrderRecord.Paid.HasValue)
+                          //.Where(p => p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (int?)entry.Profit) ?? 0
                 //,
                 //ToBePaid = productsOrderedQuery
-                //            .Where(p => !p.OrderRecord.Paid.HasValue)
+                //            .Where(p => !p.OrderRecord.Reserved.HasValue)
                 //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                 //            .Sum(entry => entry.Profit)
             });

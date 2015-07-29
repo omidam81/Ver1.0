@@ -32,9 +32,13 @@ namespace Teeyoot.Module.Models
 
         public virtual DateTime Created { get; set; }
 
+        public virtual DateTime? Reserved { get; set; }
+
         public virtual DateTime? Paid { get; set; }
 
         public virtual CurrencyRecord CurrencyRecord { get; set; }
+
+        public virtual OrderStatusRecord OrderStatusRecord { get; set; }
          
         public virtual IList<LinkOrderCampaignProductRecord> Products { get; set; }
 

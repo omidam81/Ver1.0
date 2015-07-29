@@ -1,4 +1,7 @@
-﻿<div class="row">
+﻿@{
+    Style.Include("FeaturedCampaigns.css");
+}
+<div class="row">
     <div class=" span-12 cell">
         <div class="featured-campaigns-title"><h1 class="section__subheading" style="text-align: center;" data-mce-style="text-align: center;">@T("Featured Campaigns")</h1></div>
     </div>
@@ -28,8 +31,18 @@
         width = (int)widthResult + "% !important";
 
         string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
-        string backIMG = path + "normal/back.png";
-        string frontIMG = path + "normal/front.png";
+        string backIMG;
+        string frontIMG;
+        if (camp.BackSideByDefault)
+        {
+            backIMG = path + "normal/front.png";
+            frontIMG = path + "normal/back.png";
+        }
+        else
+        {
+            backIMG = path + "normal/back.png";
+            frontIMG = path + "normal/front.png";
+        }
 
         string sold = camp.ProductCountSold.ToString() + " of " + camp.ProductCountGoal.ToString() + " sold";
 

@@ -103,10 +103,20 @@
                 Model.NewRow++;
 
                 string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
-                string backIMG = path + "normal/back.png";
-                string frontIMG = path + "normal/front.png";
+                string backIMG;
+                string frontIMG;
+                if (camp.BackSideByDefault)
+                {
+                    backIMG = path + "normal/front.png";
+                    frontIMG = path + "normal/back.png";
+                }
+                else
+                {
+                    backIMG = path + "normal/back.png";
+                    frontIMG = path + "normal/front.png";
+                }
 
-                <div class=" span-1 cell tee-previewSearch">
+                <div class="span-1 cell tee-previewSearch">
                     <div>
                         <div class="featurde-compaigns">
                             <div class="preview-img">

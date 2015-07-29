@@ -68,6 +68,23 @@ namespace Teeyoot.Module.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't be empty");
             }
 
+            data.Alias = data.Alias.Trim();
+
+            if (data.Alias.Any(ch => Char.IsWhiteSpace(ch)))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't contain whitespaces");
+            }
+
+            if (data.Alias.Contains('&') || data.Alias.Contains('?') || data.Alias.Contains('/') || data.Alias.Contains('\\'))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL has wrong format");
+            }
+
+            if (_campaignService.GetCampaignByAlias(data.Alias) != null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn with this URL already exists");
+            }
+
             try
             {
                 var campaign = _campaignService.CreateNewCampiagn(data);                
@@ -193,20 +210,25 @@ namespace Teeyoot.Module.Controllers
 
         #region Helper methods
 
+        private object _locker = new object();
+
         private Task<ColorViewModel[]> GetColorViewModelsAsync()
         {
             var tcs = new TaskCompletionSource<ColorViewModel[]>();
             Task.Run(() => {
                 try
                 {
-                    var result = _productService.GetAllColorsAvailable().Select(c => new ColorViewModel
-                        {
-                            id = c.Id,
-                            name = c.Name,
-                            value = c.Value,
-                            importance = c.Importance
-                        }).ToArray();
-                    tcs.SetResult(result);
+                    lock (_locker)
+                    {
+                        var result = _productService.GetAllColorsAvailable().Select(c => new ColorViewModel
+                            {
+                                id = c.Id,
+                                name = c.Name,
+                                value = c.Value,
+                                importance = c.Importance
+                            }).ToArray();
+                        tcs.SetResult(result);
+                    }
                 }
                 catch(Exception ex)
                 {
@@ -225,18 +247,21 @@ namespace Teeyoot.Module.Controllers
             {
                 try
                 {
-                    var result = _productService.GetAllProducts().ToList().Select(p => new ProductViewModel
-                        {
-                            id = p.Id,
-                            name = p.Name,
-                            headline = p.ProductHeadlineRecord.Name,
-                            colors_available = p.ColorsAvailable.Select(c => c.ProductColorRecord.Id).ToArray(),
-                            list_of_sizes = p.SizesAvailable.Count > 0 ?
-                                p.SizesAvailable.First().ProductSizeRecord.SizeCodeRecord.Name + " - " + p.SizesAvailable.Last().ProductSizeRecord.SizeCodeRecord.Name :
-                                ""
-                        }).ToArray();
+                    lock (_locker)
+                    {
+                        var result = _productService.GetAllProducts().ToList().Select(p => new ProductViewModel
+                            {
+                                id = p.Id,
+                                name = p.Name,
+                                headline = p.ProductHeadlineRecord.Name,
+                                colors_available = p.ColorsAvailable.Select(c => c.ProductColorRecord.Id).ToArray(),
+                                list_of_sizes = p.SizesAvailable.Count > 0 ?
+                                    p.SizesAvailable.First().ProductSizeRecord.SizeCodeRecord.Name + " - " + p.SizesAvailable.Last().ProductSizeRecord.SizeCodeRecord.Name :
+                                    ""
+                            }).ToArray();
 
-                    tcs.SetResult(result);
+                        tcs.SetResult(result);
+                    }                   
                 }
                 catch (Exception ex)
                 {
@@ -255,15 +280,18 @@ namespace Teeyoot.Module.Controllers
             {
                 try
                 {
-                    var groups = _productService.GetAllProductGroups().ToList().Select(g => new ProductGroupViewModel
-                        {
-                            id = g.Id,
-                            name = g.Name,
-                            singular = g.Name.ToLower(),
-                            products = g.Products.Select(pr => pr.ProductRecord.Id).ToArray()
-                        }).ToArray();
+                    lock (_locker)
+                    {
+                        var groups = _productService.GetAllProductGroups().ToList().Select(g => new ProductGroupViewModel
+                            {
+                                id = g.Id,
+                                name = g.Name,
+                                singular = g.Name.ToLower(),
+                                products = g.Products.Select(pr => pr.ProductRecord.Id).ToArray()
+                            }).ToArray();
 
-                    tcs.SetResult(groups);
+                        tcs.SetResult(groups);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -282,27 +310,30 @@ namespace Teeyoot.Module.Controllers
             {
                 try
                 {
-                    var images = _productService.GetAllProducts().Select(p => new ProductImageViewModel
-                        {
-                            id = p.ProductImageRecord.Id,
-                            product_id = p.Id,
-                            width = p.ProductImageRecord.Width,
-                            height = p.ProductImageRecord.Height,
-                            ppi = p.ProductImageRecord.Ppi,
-                            printable_back_height = p.ProductImageRecord.PrintableBackHeight,
-                            printable_back_left = p.ProductImageRecord.PrintableBackLeft,
-                            printable_back_top = p.ProductImageRecord.PrintableBackTop,
-                            printable_back_width = p.ProductImageRecord.PrintableBackWidth,
-                            printable_front_height = p.ProductImageRecord.PrintableFrontHeight,
-                            printable_front_left = p.ProductImageRecord.PrintableFrontLeft,
-                            printable_front_top = p.ProductImageRecord.PrintableFrontTop,
-                            printable_front_width = p.ProductImageRecord.PrintableFrontWidth,
-                            chest_line_back = p.ProductImageRecord.ChestLineBack,
-                            chest_line_front = p.ProductImageRecord.ChestLineFront,
-                            gender = p.ProductImageRecord.Gender
-                        }).ToArray();
+                    lock (_locker)
+                    {
+                        var images = _productService.GetAllProducts().Select(p => new ProductImageViewModel
+                            {
+                                id = p.ProductImageRecord.Id,
+                                product_id = p.Id,
+                                width = p.ProductImageRecord.Width,
+                                height = p.ProductImageRecord.Height,
+                                ppi = p.ProductImageRecord.Ppi,
+                                printable_back_height = p.ProductImageRecord.PrintableBackHeight,
+                                printable_back_left = p.ProductImageRecord.PrintableBackLeft,
+                                printable_back_top = p.ProductImageRecord.PrintableBackTop,
+                                printable_back_width = p.ProductImageRecord.PrintableBackWidth,
+                                printable_front_height = p.ProductImageRecord.PrintableFrontHeight,
+                                printable_front_left = p.ProductImageRecord.PrintableFrontLeft,
+                                printable_front_top = p.ProductImageRecord.PrintableFrontTop,
+                                printable_front_width = p.ProductImageRecord.PrintableFrontWidth,
+                                chest_line_back = p.ProductImageRecord.ChestLineBack,
+                                chest_line_front = p.ProductImageRecord.ChestLineFront,
+                                gender = p.ProductImageRecord.Gender
+                            }).ToArray();
 
-                    tcs.SetResult(images);
+                        tcs.SetResult(images);
+                    }                  
                 }
                 catch (Exception ex)
                 {

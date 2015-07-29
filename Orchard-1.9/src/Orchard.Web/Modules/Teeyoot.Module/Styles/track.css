@@ -19,3 +19,126 @@ background: #ff4f00 !important;
     
     background-color: #dbdbdb !important;
 }
+
+.h1{
+    font-weight: bold; 
+    font-size: 42px;
+}
+
+.h2{
+    font-weight: bold; 
+    font-size: 36px;
+}
+
+.h4{
+    font-weight: bold; 
+    font-size: 22px;
+}
+
+#track-order {
+    z-index: 4;
+    border-left: 1px solid #acb0b8;
+}
+
+.track-bar .track-position {
+    position: relative;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 82px;
+}
+.track-bar .track-state {
+    border-top: 1px solid #acb0b8;
+    border-bottom: 1px solid #acb0b8;
+    text-align: center;
+}
+.track-bar .track-margin-line {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -30px;
+    width: 30px;
+    height: 100%;
+    border-top: 1px solid #acb0b8;
+    border-bottom: 1px solid #acb0b8;
+}
+#track-deliver {
+    z-index: 1;
+    border-right: 1px solid #acb0b8;
+}
+.track-order-future .track-arrow {
+    background-position: 29px 0;
+}
+.track-bar .track-arrow {
+    position: absolute;
+    top: 0;
+    right: -28px;
+    width: 29px;
+    height: 100%;
+    background: url(https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/track-2c63062259b3c636bba7493be6777f04.png) 29px 0;
+}
+.track-order-future .track-state span {
+    background: white;
+    border: 1px solid #acb0b8;
+}
+.track-bar .track-state span {
+    position: absolute;
+    top: -12px;
+    left: 44%;
+    margin-bottom: 30px;
+    background: white;
+    border: 1px solid #acb0b8;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    line-height: 24px;
+    font-size: 13px;
+}
+.track-bar .track-state img {
+    margin-top: -3px;
+    margin-right: 10px;
+    width: 44px;
+    height: 36px;
+    vertical-align: middle;
+}
+.track-order-future img {
+    opacity: 0.2;
+}
+
+.track-stats #blank-header {
+    display: block;
+    height: 14px;
+    background: #edeef0;
+    border: 1px solid #acb0b8;
+}
+.track-stats .track-left {
+    position: relative;
+    z-index: 1;
+    padding: 30px 0;
+    background: white;
+    border-left: 1px solid #acb0b8;
+    border-right: 1px solid #acb0b8;
+    border-bottom: 1px solid #acb0b8;
+}
+.track-stats .track-inner {
+    margin: 0 50px;
+}
+.track-stats .track-inner .badge {
+    font-weight: normal;
+}
+.track-stats .track-right {
+    position: relative;
+    padding: 30px 1px;
+    border-right: 1px solid #acb0b8;
+    border-bottom: 1px solid #acb0b8;
+}
+.track-stats .row{
+    margin: 0;
+}
+
+.track-border-left {
+    border-left: 1px solid #acb0b8;
+}
+.track-stats .track-inner .badge-success {
+    background: #4bb232;
+}

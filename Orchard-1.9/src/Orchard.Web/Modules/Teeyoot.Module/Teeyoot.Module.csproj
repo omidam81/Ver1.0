@@ -668,6 +668,7 @@
     <Content Include="Views\AdminCost\Index.cshtml" />
     <Content Include="Views\Home\TrackOrder.cshtml" />
     <Content Include="Views\AdminCost\Edit.cshtml" />
+    <Content Include="Views\Home\OrderTracking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -696,12 +697,18 @@
     <Compile Include="Models\CampaignCategoriesRecord.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\OrderStatusRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
+    <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Services\FontService.cs" />
     <Compile Include="Services\Interfaces\IFontService.cs" />
+    <Compile Include="Services\Interfaces\IPayoutService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
+    <Compile Include="Services\Interfaces\ITShirtCostService.cs" />
+    <Compile Include="Services\PayoutService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />

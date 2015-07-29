@@ -116,7 +116,7 @@
             var campaignTitle = document.getElementById('name').value;
             var description = document.getElementById('campaign_description_text').value;
             var campaignLength = document.getElementById('length').value;
-            var alias = document.getElementById('url').value;
+            var alias = document.getElementById('url').value.trim();
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tags = document.getElementById("inputTags").value.split(" ");
             var isForCharity = document.getElementById('is_for_charity').checked;

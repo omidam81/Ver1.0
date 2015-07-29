@@ -1,5 +1,5 @@
 ﻿.login {
-    margin: 50px 40px 20px 20px;
+    margin: 0px 40px 20px 20px;
     padding: 20px 20px 0px 20px;
     max-width: 1216px;
     display: -webkit-box;
@@ -9,6 +9,16 @@
     background: #edeef0;
     border-radius: 5px;
     /*width: 92%;*/
+}
+
+.login-valid {
+    margin: 0px 40px 0 20px;
+    padding: 20px;
+    background-color: #f00000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
 }
 
     .login .login-and-create {
@@ -181,6 +191,9 @@
 @media all and (max-width: 1000px) {
     .login {
         display: block;
+        margin-right: 20px;
+    }
+    .login-valid {
         margin-right: 20px;
     }
 
