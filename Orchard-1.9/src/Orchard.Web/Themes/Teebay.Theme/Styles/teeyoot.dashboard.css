@@ -138,6 +138,9 @@
     .dashboard-layout .tb-layout-content {
         display:block;
     }
+    .dashboard-layout .tb-layout-main-container {
+        height:auto;
+    }
     .dashboard-layout .tb-layout-content {
         padding:0;
     }
