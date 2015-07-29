@@ -10,6 +10,8 @@ namespace Teeyoot.Module.Services
 {
     public interface IStoreService : IDependency
     {
+        IQueryable<StoreRecord> GetAllStores();
+
         IQueryable<StoreRecord> GetAllStoresForUser(int userId);
 
         StoreRecord GetStoreById(int id);

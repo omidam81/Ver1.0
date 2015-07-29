@@ -1,5 +1,6 @@
 ﻿@{
     Style.Include("storefonts.css");
+    @model IEnumerable<Teeyoot.Module.Models.StoreRecord>
 }
 <div>
     <div class="dashboard-section-title">
@@ -7,9 +8,102 @@
         <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
         <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
     </div>
+    @if (@Model.Count() == 0) { 
     <div class="empty_storefront">
         <img alt="Empty store" class="empty_storefront__img" src="/Media/Default/images/shop.png">
         <p class="empty_storefront__explanation">@T("Use storefronts to group related campaigns together. You'll have a single page to show customers and we'll even help you cross-promote to encourage multiple purchases!")</p>
-        <a class="getstarted_btn_storefront" href="@Url.Action("NewStorefront")">@T("Get Started")</a> 
+        <a class="getstarted_btn_storefront" href="@Url.Action("NewStorefront")">@T("Get Started")</a>
+    </div>
+    }
+    else { 
+
+
+
+    <div class="dashboard__info_message">
+        <div class="cart-arrow-down-div"><i class="fa fa-cart-arrow-down fa-2x"></i></div>
+        <p>@T("Use storefronts to group related campaigns together. You'll have a single page to show customers and we'll even help you cross-promote to encourage multiple purchases!")</p>
+    </div>
+
+    <div class="dashboard_section__header">
+        <h1 class="dashboard_section__heading">@T("All Storefronts")</h1>
+        <div class="dashboard_section__header_button">
+            <a class="add_storefront" href="@Url.Action("NewStorefront")">@T("Create New Storefront")</a>
+        </div>
+    </div>
+
+    <div class="dashboard_section__content--padded storefronts__grid">
+        <div class="full_width_cards__container cf">
+@foreach (var store in Model) {
+
+
+            <div class="card">
+                <div class="card__image_container cf">
+                    
+                   @for (int i = 0; i < 8; i++)
+                   {
+                       if (store.Campaigns.Count > i) { 
+                    <div class="thumbnail__block">
+                       @if (store.Campaigns[i].CampaignRecord.BackSideByDefault) { 
+                         <img alt="Back" src="/Media/campaigns/@store.Campaigns[i].CampaignRecord.Id/@store.Campaigns[i].CampaignRecord.Products[0].Id/normal/back.png">
+                       }
+                       else
+                       {
+                        <img alt="Front" src="/Media/campaigns/@store.Campaigns[i].CampaignRecord.Id/@store.Campaigns[i].CampaignRecord.Products[0].Id/normal/front.png">
+                       }
+                    </div>
+                       }
+                       else
+                       {
+                        <div class="thumbnail__block placeholder"></div>
+                       }
+                   }
+                    
+                    <div class="card__options_container">
+
+                        <ul class="card_slide__options" data-ui-toggle="hide">
+                            <li class="options__item">
+                                <a class="option__link" href="/Stores/@store.Url">
+                                    <i class="option__icon ts-icon-view"></i>
+                                    <div class="option__name">@T("View Store")</div>
+                                </a>
+                            </li>
+                           
+                        </ul>
+
+                        <ul class="card__options">
+                            @*<li><a class="option__link" href="/Stores/@store.Url">
+                                    <i class="fa fa-pencil fa-2x"></i>
+                                </a>
+                            </li>*@
+                            <li class="options__item options__item_view">
+                                <a class="option__link" href="/Stores/@store.Url">
+                                    <div class="option__name">@T("View Store")</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="card__content_container">
+                    <div class="card__store_stats cf">
+                        <div class="card__campaign_counts">
+                            <p>@store.Campaigns.Count @T("campaigns")</p>
+                        </div>
+                        <div class="card__active_campaigns">
+                            <p>@store.Campaigns.Count(c => c.CampaignRecord.CampaignStatusRecord.Name == Teeyoot.Module.Common.Enums.CampaignStatus.Active.ToString()) @T("active")</p>
+                        </div>
+                    </div>
+                    <h1 class="card__title">
+                        <a href="/Stores/@store.Url" title="@store.Title">@store.Title</a>
+                    </h1>
+                </div>
+            </div>
+
+}
     </div>
 </div>
+<div class="storefronts__grid_pagination"></div>
+    
+    }
+</div>
+   

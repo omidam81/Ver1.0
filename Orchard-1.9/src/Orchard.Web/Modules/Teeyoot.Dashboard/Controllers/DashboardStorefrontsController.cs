@@ -15,7 +15,10 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult Storefronts()
         {
-            return View();
+            var user = _wca.GetContext().CurrentUser;
+            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+            var stores = _storeService.GetAllStoresForUser(teeyootUser.Id).ToList();
+            return View(stores);
         }
 
         public ActionResult NewStorefront()
@@ -31,6 +34,14 @@ namespace Teeyoot.Dashboard.Controllers
         [HttpPost]
         public HttpStatusCodeResult CreateStorefront(string base64image, string title, string description, string url, bool hideStore, bool crossSelling, IList<String> selectedCampaigns)
         {
+            var allStores = _storeService.GetAllStores();
+            foreach (var store in allStores)
+            {
+                if (store.Url == url)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Such url exists! It must be unique.");
+                }
+            }
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             var newStore = _storeService.CreateStore(teeyootUser.Id, title,  description,url, hideStore, crossSelling, selectedCampaigns);
@@ -78,6 +89,14 @@ namespace Teeyoot.Dashboard.Controllers
         [HttpPost]
         public HttpStatusCodeResult SaveStorefront(string base64image, string title, string description, string url, bool hideStore, bool crossSelling, IList<String> selectedCampaigns, int id)
         {
+            var allStores = _storeService.GetAllStores();
+            foreach (var store in allStores)
+            {
+                if (store.Url == url & store.Id != id)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Such url exists! It must be unique.");
+                }
+            }
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
 
@@ -100,6 +119,14 @@ namespace Teeyoot.Dashboard.Controllers
 
         }
 
+
+        [HttpPost]
+        public HttpStatusCodeResult DeleteStorefront(int id)
+        {
+            _storeService.DeleteStore(id);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+        
 
     }
 }
