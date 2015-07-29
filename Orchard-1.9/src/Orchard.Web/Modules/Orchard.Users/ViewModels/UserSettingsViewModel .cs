@@ -4,9 +4,11 @@ using Orchard.Users.Models;
 
 namespace Orchard.Users.ViewModels {
     public class UserSettingsViewModel  {
-       
-        public string PublicName { get; set; }
 
+        public int Id { get; set; }
+        
+        public string PublicName { get; set; }
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public string Street { get; set; }
@@ -19,18 +21,21 @@ namespace Orchard.Users.ViewModels {
 
         public string Zip { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string NewEmailAddress { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string ConfirmNewEmailAddress { get; set; }
-
+        
         public string CurrentPassword { get; set; }
-
+       
         public string NewPassword { get; set; }
-
+      
         public string ConfirmPassword { get; set; }
 
-        public string ShowNumberSold { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public string InfoMessage { get; set; }
+
     }
 }

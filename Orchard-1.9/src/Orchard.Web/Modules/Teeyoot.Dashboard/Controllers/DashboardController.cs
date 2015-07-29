@@ -1,4 +1,5 @@
 ﻿using Orchard;
+using Orchard.ContentManagement;
 using Orchard.Data;
 using Orchard.Logging;
 using Orchard.Security;
@@ -21,6 +22,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IStoreService _storeService;
         private readonly IimageHelper _imageHelper;
         private readonly IMembershipService _membershipService;
+        private readonly IContentManager _contentManager;
         private IOrchardServices Services { get; set; }
 
         public DashboardController(ICampaignService campaignService, 
@@ -30,7 +32,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    IStoreService storeService,
                                    IimageHelper imageHelper,
                                    IMembershipService membershipService,
-                                   IOrchardServices services)
+                                   IOrchardServices services,
+                                    IContentManager contentManager)
         {
             _campaignService = campaignService;
             _orderService = orderService;
@@ -40,6 +43,7 @@ namespace Teeyoot.Dashboard.Controllers
             _storeService = storeService;
             _imageHelper = imageHelper;
             _membershipService = membershipService;
+            _contentManager = contentManager;
             Services = services;
 
             Logger = NullLogger.Instance;

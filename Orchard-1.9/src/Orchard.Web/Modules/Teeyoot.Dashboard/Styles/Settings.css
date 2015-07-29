@@ -171,6 +171,34 @@
     float: left;
     width: 100%;
 }
+.field-validation-error
+{
+    color: #ff0000;
+}
+.validation-summary-errors {
+  background: #ed673e !important;
+    border: 1px solid #ed673e !important;
+  border-radius: 3px !important;
+  color: #fff !important;
+  width: 99% !important;
+  padding: 3px !important;
+  margin-top: 1% !important;
+  margin-bottom: 1% !important;
+    font-size: 1rem;
+  font-weight: 600;
+}
+.info-message{
+      background: #21a307 !important;
+
+  border-radius: 3px !important;
+  color: #fff !important;
+  width: 99% !important;
+  padding: 3px !important;
+  margin-top: 1% !important;
+  margin-bottom: 1% !important;
+    font-size: 1rem;
+  font-weight: 600;
+}
 
 .t-button {
     background: #ff4f00 !important;
