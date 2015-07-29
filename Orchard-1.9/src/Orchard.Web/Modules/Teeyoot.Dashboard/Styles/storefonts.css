@@ -246,7 +246,7 @@
 
 .store__details_container {
     background: #fcfcfc;
-    box-shadow: 0 0 2rem 7.7rem #fcfcfc;
+    /*box-shadow: 0 0 10rem 7.7rem #fcfcfc;*/
     height: 250px;
     padding: 0;
     position: absolute;
@@ -445,6 +445,7 @@ img {
 
 
 .site__featured_full {
+    box-shadow: inset -100px 0 80px -10px #fcfcfc;
     background: url("/Media/Default/images/storefront.png");
     height: 350px;
     width: 70%;

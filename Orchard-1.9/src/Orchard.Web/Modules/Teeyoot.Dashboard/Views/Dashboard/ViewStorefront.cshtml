@@ -21,6 +21,10 @@
 
 
     function Visible() {
+        var imgtag = document.getElementsByClassName("site__featured_full")[0];
+        $(imgtag).attr("style", "");
+        $(imgtag).attr("style", "background:url('@Model.Img '); background-size: cover;");
+
         var form = document.getElementById("img-load-form");
         $(form).addClass('s3-uploader store_banner--custom hidden');
 
@@ -52,7 +56,10 @@
         var addContainer = document.getElementsByClassName("card__toggle")[0];
         $(addContainer).removeClass('hidden');
 
-
+        var optionContainer = document.getElementsByClassName("card__options_container");
+        for (var i = 0; i < optionContainer.length; i++) {
+            $(optionContainer[i]).removeClass('hidden');
+        }   
     });
 
     $(".store_cancel_edit__button").click(function () {
@@ -75,6 +82,11 @@
 
         var addContainer = document.getElementsByClassName("card__toggle")[0];
         $(addContainer).addClass('hidden');
+
+        var optionContainer = document.getElementsByClassName("card__options_container");
+        for (var i = 0; i < optionContainer.length; i++) {
+            $(optionContainer[i]).addClass('hidden');
+        }       
     });
 
 
@@ -211,11 +223,7 @@
                     "base64image": img, "title": title, "url": url, "description": description, "hideStore": hideStore, "crossSelling": crossSell, "selectedCampaigns": selectedCampaigns, "id": id_storeFront
                 }),
                 success: function (data, status, resp) {
-                    if (resp.status === 200) {
-                        var imgtag = document.getElementsByClassName("site__featured_full")[0];
-                        $(imgtag).attr("style", "");
-                        $(imgtag).attr("style", "background:url('@Model.Img '); background-size: cover;");
-
+                    if (resp.status === 200) {                      
                     window.location.href = '/Stores/' + data;
                 } else if (resp.status === 500) {
 
@@ -228,7 +236,39 @@
         data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
         return data;
     };
+        //$("#search_campaigns_stores").keypress(function () {
+        //    alert("dfgdf");
+        //    var searchText = document.getElementById("search_campaigns_stores").value;
+            
+        //    var boxes = document.getElementsByClassName("list_item__select");
+        //    var value;
+            
+        //    for (var i = 0; i < boxes.length; i++) {
+        //        value = boxes[i].name;
+        //        if (value) {
+        //            id = boxes[i].getAttribute("id");
+        //            campaign = document.getElementById("card_" + id);
+        //            $(campaign).removeClass('hidden');
+
+        //        } else {
+        //            id = boxes[i].getAttribute("id");
+        //            campaign = document.getElementById("card_" + id);
+        //            $(campaign).addClass('hidden');
+        //        }
+
+
+
+        //});
+
+        //$("#search_campaigns_stores").keyup(function () {
+        //    alert("2");
+        //});
+        
+
+
 </script>
+
+
 }
 
 <div id="dg-overlay"></div>
@@ -343,10 +383,10 @@
                         <div class="card card-campaign " id="card_@prod.Id">
                             <div class="image_container">
                                 <a href="@prod.URL" title="@prod.Title">
-                                    <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                    <img onmouseover="this.src = '/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png'" onmouseout="this.src ='/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png'" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
                                 </a>
                             </div>
-                            <div class="card__options_container">
+                            <div class="card__options_container hidden">
                                 <ul class="card__options">
                                     <li class="options__item options__item_view">
                                         <a href="/@prod.Alias" class="option__link" title="View @prod.Title">
