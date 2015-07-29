@@ -60,25 +60,9 @@
                             <div class="label__subtitle">City</div>
                         </label>
                         <label class="address__field address__field_state" id="states">
-                            <select name="user[state]" class="state-select state-us form__select_menu" id="state-us">
-                                <option value=""></option>
-                                <option value="JH">JH</option>
-                                <option value="KH">KH</option>
-                                <option value="KN">KN</option>
-                                <option value="MK">MK</option>
-                                <option value="NS">NS</option>
-                                <option value="PH">PH</option>
-                                <option value="PK">PK</option>
-                                <option value="PS">PS</option>
-                                <option value="PN">PN</option>
-                                <option value="SL">SL</option>
-                                <option value="TR">TR</option>
-                                <option value="PTJ">PTJ</option>
-                                <option value="KL">KL</option>
-                                <option value="SBH">SBH</option>
-                                <option value="SWK">SWK</option>
-                                <option value="LB">LB</option>
-                            </select>
+                            
+                            @Html.TextBoxFor(m => m.State, new { @class = "form__textfield" })
+                           
                             <div class="label__subtitle label__subtitle_state">State</div>
                         </label>
                         <label class="address__field address__field_zip">
