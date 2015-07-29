@@ -64,6 +64,30 @@ var app = {
             }
             return count;
         },
+        getUsedColorsCountBack: function (view) {
+            var usedColors = this['usedColors_back'];
+            var count = Object.keys(usedColors).length;
+            if (count > maxDesignColors) {
+                $('#color-warning').show();
+                $('#quote').hide();
+            } else {
+                $('#color-warning').hide();
+                $('#quote').show();
+            }
+            return count;
+        },
+        getUsedColorsCountFront: function (view) {
+            var usedColors = this['usedColors_front'];
+            var count = Object.keys(usedColors).length;
+            if (count > maxDesignColors) {
+                $('#color-warning').show();
+                $('#quote').hide();
+            } else {
+                $('#color-warning').hide();
+                $('#quote').show();
+            }
+            return count;
+        },
         useColors: function (colors) {
             if (colors === 'none') {
                 return;
@@ -79,7 +103,13 @@ var app = {
                 }
                 usedColors[color]++;
             }
-            console.log('colors: ' + this.getUsedColorsCount());
+            console.log('colors: ' + this.getUsedColorsCountFront());
+            console.log('where: ' + this.getView());
+            console.log('colors: ' + this.getUsedColorsCountBack());
+            console.log('where: ' + 'back');
+            //var elem1111 = document.getElementById("price_preview");
+            //elem1111.innerText = "asdasd";
+            calculatePrice(this.getUsedColorsCountFront(), this.getUsedColorsCountBack());
         },
         unuseColors: function (colors) {
             if (colors === 'none') {

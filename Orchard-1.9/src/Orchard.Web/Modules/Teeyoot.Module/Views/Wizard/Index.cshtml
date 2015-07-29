@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Teeyoot.Module.ViewModels.AdminCostViewModel
+@{
 
     Style.Include("bootstrap.min.css");
     Style.Include("jqueryui.css");
@@ -39,11 +40,12 @@
 
     Script.Include("wizard.js");
     Script.Include("bootstrap-wysihtml5.js");
+
+    Script.Include("CostCalculator.js");
 }
 
 @using (Script.Foot())
 {
-
 
     <script type="text/javascript">
         var maxDesignColors = 11;
@@ -172,7 +174,18 @@
 
 
 
-
+        window.additionalScreenCosts = @Model.AdditionalScreenCosts;
+        window.costOfMaterial = @Model.CostOfMaterial;
+        window.dTGPrintPrice = @Model.DTGPrintPrice;
+        window.firstScreenCost = @Model.FirstScreenCost;
+        window.inkCost = @Model.InkCost;
+        window.labourCost = @Model.LabourCost;
+        window.labourTimePerColourPerPrint = @Model.LabourTimePerColourPerPrint;
+        window.labourTimePerSidePrintedPerPrint = @Model.LabourTimePerSidePrintedPerPrint;
+        window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
+        window.printsPerLitre = @Model.PrintsPerLitre;
+        window.count = 50; // Первоначальное количество элементов, должно будет изменяться
+        window.defaultPrice = 7.14; // Первоначальная цена футболки, должна будет меняться в зависимости от цвета и формы футболки
 
     </script>
 }

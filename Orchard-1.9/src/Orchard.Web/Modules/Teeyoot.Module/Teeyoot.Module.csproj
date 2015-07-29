@@ -615,6 +615,7 @@
     <Content Include="Scripts\color_model.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\core.js" />
+    <Content Include="Scripts\CostCalculator.js" />
     <Content Include="Scripts\design.js" />
     <Content Include="Scripts\design_upload.js" />
     <Content Include="Scripts\fontdetect.js" />

@@ -17,6 +17,7 @@ using System.Web.Script.Serialization;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers
@@ -29,8 +30,9 @@ namespace Teeyoot.Module.Controllers
         private readonly IFontService _fontService;
         private readonly IProductService _productService;
         private readonly ISwatchService _swatchService;
+        private readonly ITShirtCostService _costService;
 
-        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService)
+        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService)
         {
             _campaignService = campaignService;
             _imageHelper = imageHelper;
@@ -38,6 +40,7 @@ namespace Teeyoot.Module.Controllers
             _productService = productService;
             _swatchService = swatchService;
             Logger = NullLogger.Instance;
+            _costService = costService;
         }
 
         public ILogger Logger { get; set; }
@@ -45,6 +48,25 @@ namespace Teeyoot.Module.Controllers
         // GET: Wizard
         public ActionResult Index()
         {
+            var cost = _costService.GetCost();
+            if (cost != null)
+            {
+                AdminCostViewModel costViewModel = new AdminCostViewModel
+                {
+                    AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(),
+                    CostOfMaterial = cost.CostOfMaterial.ToString(),
+                    DTGPrintPrice = cost.DTGPrintPrice.ToString(),
+                    FirstScreenCost = cost.FirstScreenCost.ToString(),
+                    InkCost = cost.InkCost.ToString(),
+                    LabourCost = cost.LabourCost.ToString(),
+                    LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint,
+                    LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint,
+                    PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(),
+                    PrintsPerLitre = cost.PrintsPerLitre
+                };
+                return View(costViewModel);
+            }
+
             return View();
         }
 
