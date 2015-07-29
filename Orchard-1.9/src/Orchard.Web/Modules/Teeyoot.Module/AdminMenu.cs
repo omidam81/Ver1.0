@@ -50,23 +50,21 @@ namespace Teeyoot.Module
                         .Add(T("Colors"),
                             i => i.Action("Index", "Colour", new {area = "Teeyoot.WizardSettings"}).LocalNav())
                         .Add(T("Product Headlines"),
-                            i =>
-                                i.Action("Index", "ProductHeadline", new {area = "Teeyoot.WizardSettings"})
-                                    .LocalNav())
-                        .Add(T("Product Styles"),
-                            i =>
-                                i.Action("Index", "ProductStyle", new {area = "Teeyoot.WizardSettings"})
-                                    .LocalNav())
+                            i => i.Action("Index", "ProductHeadline", new {area = "Teeyoot.WizardSettings"}).LocalNav())
+                        .Add(T("Product Styles"), 
+                            i => i.Action("Index", "ProductStyle", new {area = "Teeyoot.WizardSettings"}).LocalNav())
+                        .Add(T("Products"), 
+                            i => i.Action("Index", "Product", new {area = "Teeyoot.WizardSettings"}).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("Campaigns"))
                         .Position("2.6")
-                        .Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" })
+                        .Action("Index", "AdminFeaturedCampaigns", new {area = "Teeyoot.FeaturedCampaigns"})
                     )
                     .Add(subItem => subItem
                         .Caption(T("T-Shirt Cost"))
                         .Position("2.7")
-                        .Action("Index", "AdminCost", new { area = "Teeyoot.Module" })
+                        .Action("Index", "AdminCost", new {area = "Teeyoot.Module"})
                     )
                 );
         }

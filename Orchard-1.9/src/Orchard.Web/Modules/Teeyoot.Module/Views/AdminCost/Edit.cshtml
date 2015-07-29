@@ -3,7 +3,7 @@
     Layout.Title = T("T-Shirt Cost Edit").ToString();
     Style.Include("Cost.css");
 }
-
+@using System.Globalization;
 @using (Html.BeginForm("Save", "AdminCost", FormMethod.Get))
 {
     @Html.ValidationSummary(true)
@@ -11,15 +11,15 @@
         <table class="items">
             <tr>
                 <th>@T("1st Screen Cost (RM)")</th>
-                <td>@Html.TextBoxFor(m => m.FirstScreenCost, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.FirstScreenCost, new { required = "required" })</td>
             </tr>
             <tr>
                 <th>@T("Additional Screen Costs (RM)")</th>
-                <td>@Html.TextBoxFor(m => m.AdditionalScreenCosts, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.AdditionalScreenCosts, new { required = "required" })</td>
             </tr>
             <tr>
                 <th>@T("Ink Cost (RM per litre per colour)")</th>
-                <td>@Html.TextBoxFor(m => m.InkCost, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.InkCost, new { required = "required" })</td>
             </tr>
             <tr>
                 <th>@T("Prints per litre")</th>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th>@T("Labour Cost (RM per hr)")</th>
-                <td>@Html.TextBoxFor(m => m.LabourCost, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.LabourCost, new { required = "required" })</td>
             </tr>
             <tr>
                 <th>@T("Labour time per colour per print (seconds)")</th>
@@ -39,15 +39,15 @@
             </tr>
             <tr>
                 <th>@T("Cost of material/ t-shirt (RM each)")</th>
-                <td>@Html.TextBoxFor(m => m.CostOfMaterial, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.CostOfMaterial, new { required = "required"})</td>
             </tr>
             <tr>
                 <th>@T("Percentage Mark-Up required")</th>
-                <td>@Html.TextBoxFor(m => m.PercentageMarkUpRequired, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.PercentageMarkUpRequired, new { required = "required" })</td>
             </tr>
             <tr>
                 <th>@T("DTG print price (RM)")</th>
-                <td>@Html.TextBoxFor(m => m.DTGPrintPrice, new { required = "required", type = "number", step = "any" })</td>
+                <td>@Html.TextBoxFor(m => m.DTGPrintPrice, new { required = "required" })</td>
             </tr>
         </table>
     </fieldset>

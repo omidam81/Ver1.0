@@ -152,8 +152,7 @@ namespace Teeyoot.Module.Controllers
         }
 
         [Themed]
-        [HttpPost]
-        public ActionResult Tracking(string number)
+        public ActionResult OrderTracking()
         {
             return View();
         }
