@@ -143,12 +143,13 @@ namespace Teeyoot.WizardSettings
                 new RouteDescriptor
                 {
                     Route = new Route(
-                        "Admin/Products/Add",
+                        "Admin/Products/Edit/{productId}",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.WizardSettings"},
                             {"controller", "Product"},
-                            {"action", "AddProduct"}
+                            {"action", "EditProduct"},
+                            {"productId", ""}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary

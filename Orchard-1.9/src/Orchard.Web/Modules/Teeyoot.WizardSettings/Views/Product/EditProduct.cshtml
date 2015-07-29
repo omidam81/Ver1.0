@@ -1,0 +1,57 @@
+﻿@model Teeyoot.WizardSettings.ViewModels.ProductViewModel
+@{
+    Layout.Title = T("Add Product").ToString();
+
+    Style.Include("multi-select/css/multi-select.css");
+
+    Script.Require("jQuery");
+    Script.Include("jquery.multi-select.js");
+}
+
+<h2>Add New Product</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("EditProduct", "Product"), FormMethod.Post, new {id = "product_form"}))
+{
+    @Html.HiddenFor(m => m.Id)
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Name"))
+        @Html.TextBoxFor(m => m.Name, new {@class = "text large", id = "name"})
+    </fieldset>
+    <fieldset>
+        @Html.Label(T("Colors").ToString())
+        <select id="colors" multiple="multiple" name="SelectedProductColours">
+            @foreach (var productColour in Model.ProductColours)
+            {
+                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected)
+                                                                                                     {
+                                                                                                         <text> selected="selected" </text>
+                                                                                                     }>
+                    @productColour.Name
+                </option>
+            }
+        </select>
+    </fieldset>
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">Save</button>
+    </fieldset>
+}
+
+@using (Script.Foot())
+{
+    <script>
+        $(document).ready(function() {
+            $('#colors').multiSelect();
+
+            $('#product_form').submit(function() {
+                var name = $('#name').val();
+
+                if ($.trim(name) === '') {
+                    alert('Please enter product name.');
+                    return false;
+                }
+
+                return true;
+            });
+        });
+    </script>
+}
