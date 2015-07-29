@@ -276,38 +276,48 @@
                             {
                                 <img id="prodFront" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
                                      data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
+                                <div id="butt1" style="text-align:center; ">
+                                    <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
+                                    <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
+                                </div>
                             }
                             else
                             {
-                                <img id="prodFront" 
-                                           src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png" 
+                                <img id="prodFront"
+                                           src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
                                            data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
-                            }
+
 
                              <div id="butt1" style="text-align:center; ">
-                                <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>Front</span></div>
+                                <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
                                 <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
                             </div>
+                            }
                         </div>
                         <div id="back" class="back">
                             @if (@Model.BackSideByDefault)
                             { <img id="prodBack"
                                    src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
                                    data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
+                                <div id="butt2" style="text-align:center;">
+                                    <div class="flip-button flip-button-front"><span>@T("Back")</span></div>
+                                    <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
+                                </div>
                             }
                             else
                             {
                                   <img id="prodBack"
                                        src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
                                        data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
-                            }
+
                             <div id="butt2" style="text-align:center;">
                                 <div class="flip-button flip-button-front"><span>@T("Front")</span></div>
-                                <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>Back</span></div>
+                                <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
                             </div>
+                            }
                         </div>
 
-                    
+
                 </div>
                 @*<div class="image_stack__inner js_image_stack_inner">
 
