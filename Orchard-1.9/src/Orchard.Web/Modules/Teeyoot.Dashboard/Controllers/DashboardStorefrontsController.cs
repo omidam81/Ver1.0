@@ -122,9 +122,33 @@ namespace Teeyoot.Dashboard.Controllers
 
         [HttpPost]
         public HttpStatusCodeResult DeleteStorefront(int id)
-        {
+        {  
             _storeService.DeleteStore(id);
+
+            var user = _wca.GetContext().CurrentUser;
+            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+          
+            var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString());
+
+            clearFolder(destForder);
+            
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        private void clearFolder(string FolderName)
+        {
+            DirectoryInfo dir = new DirectoryInfo(FolderName);
+
+            foreach (FileInfo fi in dir.GetFiles())
+            {
+                fi.Delete();
+            }
+
+            foreach (DirectoryInfo di in dir.GetDirectories())
+            {
+                clearFolder(di.FullName);
+                di.Delete();
+            }
         }
         
 
