@@ -369,7 +369,9 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("State", c => c.WithLength(100)));
             SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Zip", c => c.WithLength(50)));
 
-            return 24;
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("OrderPublicId", c => c.NotNull().WithLength(50)));
+
+            return 25;
         }
 
         public int UpdateFrom2()
@@ -662,6 +664,12 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Zip", c => c.WithLength(50)));
 
             return 24;
+        }
+
+        public int UpdateFrom24()
+        {
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("OrderPublicId", c => c.NotNull().WithLength(50)));
+            return 25;
         }
     }
 }

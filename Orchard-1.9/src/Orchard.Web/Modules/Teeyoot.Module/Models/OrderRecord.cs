@@ -28,6 +28,8 @@ namespace Teeyoot.Module.Models
 
         public virtual string PhoneNumber { get; set; }
 
+        public virtual string OrderPublicId { get; set; }
+
         public virtual double TotalPrice { get; set; }
 
         public virtual DateTime Created { get; set; }
