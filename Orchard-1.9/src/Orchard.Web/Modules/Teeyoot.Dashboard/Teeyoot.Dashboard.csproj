@@ -75,7 +75,6 @@
     <Content Include="Styles\Message.css" />
     <Content Include="Styles\Settings.css" />
     <Content Include="Styles\storefonts.css" />
-    <Content Include="Styles\StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
