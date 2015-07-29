@@ -96,6 +96,7 @@
 
             <form action="@Url.Action("CreateTransaction")" method="POST" id="braintree-payment-form">
                 <input type="hidden" id="OrderId" name="OrderId" value=@Model.Order.Id>
+                <input type="hidden" id="OrderPublicId" name="OrderPublicId" value=@Model.Order.OrderPublicId>
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
                     <div>

@@ -39,6 +39,11 @@ namespace Teeyoot.Module.Services
             return _orderRepository.Table.FirstOrDefault(r => r.Id == id);
         }
 
+        public OrderRecord GetOrderByPublicId(string id)
+        {
+            return _orderRepository.Table.FirstOrDefault(r => r.OrderPublicId == id);
+        }
+
         public void UpdateOrder(OrderRecord order)
         {
             _orderRepository.Update(order);    
@@ -52,18 +57,33 @@ namespace Teeyoot.Module.Services
                 {
                     Created = DateTime.UtcNow,
                     CurrencyRecord = _currencyRepository.Get(1),
-                    OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Created.ToString("d")))
+                    OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Created.ToString("d"))),
+                    OrderPublicId = ""
                 };
                 _orderRepository.Create(order);
+
+                var ticks = DateTime.Now.Date.Ticks;
+
+                while(ticks % 10 == 0)
+                {
+                    ticks = ticks / 10;
+                }
+
+                order.OrderPublicId = (ticks + order.Id).ToString();
+                _orderRepository.Update(order);
+
                 List<LinkOrderCampaignProductRecord> productsList = new List<LinkOrderCampaignProductRecord>();
 
                 foreach (var product in products)
                 {
                     var campaignProduct = _campaignService.GetCampaignProductById(product.ProductId);
-                    var orderProduct = new LinkOrderCampaignProductRecord() { Count = product.Count, 
-                                                                              ProductSizeRecord = _sizeRepository.Get(product.SizeId), 
-                                                                              CampaignProductRecord = campaignProduct, 
-                                                                              OrderRecord = order };
+                    var orderProduct = new LinkOrderCampaignProductRecord()
+                    {
+                        Count = product.Count,
+                        ProductSizeRecord = _sizeRepository.Get(product.SizeId),
+                        CampaignProductRecord = campaignProduct,
+                        OrderRecord = order
+                    };
                     _ocpRepository.Create(orderProduct);
                     productsList.Add(orderProduct);
                 }

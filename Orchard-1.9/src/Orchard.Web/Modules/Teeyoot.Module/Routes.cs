@@ -21,7 +21,7 @@ namespace Teeyoot.Module
             return new[] {
                 new RouteDescriptor {
                     Route = new Route(
-                        "Buy",
+                        "Buy/{orderId}",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},
                             {"controller", "Home"},

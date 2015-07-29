@@ -220,11 +220,12 @@
             }),
             success: function (data, status, resp) {
                 if (resp.status === 200) {
-                    window.location.href = '/Buy?orderId=' + data;
-                } else if (resp.status === 500) {
-
-                }
+                    window.location.href = '/Buy/' + data;
+                } 
             },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            }
         });
 
     }

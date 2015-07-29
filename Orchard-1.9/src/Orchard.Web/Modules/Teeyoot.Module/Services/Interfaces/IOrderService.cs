@@ -14,6 +14,8 @@ namespace Teeyoot.Module.Services
     {
         OrderRecord GetOrderById(int id);
 
+        OrderRecord GetOrderByPublicId(string id);
+
         void UpdateOrder(OrderRecord order);
 
         void UpdateOrder(OrderRecord order, OrderStatus status);

@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using Orchard.Logging;
 using Orchard.Themes;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,11 @@ namespace Teeyoot.Module.Controllers
         {
             _orderService = orderService;
             _campaignService = campaignService;
+
+            Logger = NullLogger.Instance;
         }
 
+        public ILogger Logger { get; set; }
 
         public static BraintreeGateway Gateway = new BraintreeGateway
         {
@@ -113,23 +117,31 @@ namespace Teeyoot.Module.Controllers
                 ViewData["Message"] = result.Message;
             }
 
-            return RedirectToAction("Payment", new {orderId = collection["OrderId"], result = res });
+            return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], result = res });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public HttpStatusCodeResult CreateOrder(IEnumerable<OrderProductViewModel> products)
-        {                      
-            var id = _orderService.CreateOrder(products).Id;
+        {
+            try
+            {
+                var id = _orderService.CreateOrder(products).OrderPublicId;
 
-            Response.Write(id);
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+                Response.Write(id);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Error occured when trying to create new order ---------------> " + e.ToString());
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new order");
+            }
         }
     
         [Themed]
-        public ActionResult Payment(int orderId, string result = "")
+        public ActionResult Payment(string orderId, string result = "")
         {            
-            var order = _orderService.GetOrderById(orderId);
+            var order = _orderService.GetOrderByPublicId(orderId);
 
             if (order != null)
             {
