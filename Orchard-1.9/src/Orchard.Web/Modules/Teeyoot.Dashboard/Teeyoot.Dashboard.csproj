@@ -75,7 +75,6 @@
     <Content Include="Styles\Message.css" />
     <Content Include="Styles\Settings.css" />
     <Content Include="Styles\storefonts.css" />
-    <Content Include="Styles\StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -90,6 +89,10 @@
     <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+      <Name>Orchard.Users</Name>
     </ProjectReference>
     <ProjectReference Include="..\Teeyoot.Messaging\Teeyoot.Messaging.csproj">
       <Project>{8ab824c5-2480-4572-929a-9d4d4081aeba}</Project>

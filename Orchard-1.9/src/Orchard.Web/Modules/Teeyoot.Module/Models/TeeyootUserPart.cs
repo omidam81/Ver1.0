@@ -41,5 +41,65 @@ namespace Teeyoot.Module.Models
                 Store(p => p.PhoneNumber, value);
             }
         }
+
+        public string Street
+        {
+            get
+            {
+                return Retrieve(p => p.Street);
+            }
+            set
+            {
+                Store(p => p.Street, value);
+            }
+        }
+
+        public string Suit
+        {
+            get
+            {
+                return Retrieve(p => p.Suit);
+            }
+            set
+            {
+                Store(p => p.Suit, value);
+            }
+        }
+
+        public string City
+        {
+            get
+            {
+                return Retrieve(p => p.City);
+            }
+            set
+            {
+                Store(p => p.City, value);
+            }
+        }
+
+        public string State
+        {
+            get
+            {
+                return Retrieve(p => p.State);
+            }
+            set
+            {
+                Store(p => p.State, value);
+            }
+        }
+
+        public string Zip
+        {
+            get
+            {
+                return Retrieve(p => p.Zip);
+            }
+            set
+            {
+                Store(p => p.Zip, value);
+            }
+        }
     }
 }

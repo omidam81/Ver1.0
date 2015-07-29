@@ -11,263 +11,303 @@
     .tb-aside-first {
         display: none !important;
     }
+
+    .dashboard-layout .tb-layout-content {
+        padding: 0 !important;
+        background-color: white !important;
+    }
+
+    .zone-content {
+        background-color: white;
+    }
 </style>
 @using (Script.Foot())
 {
 
     <script type="text/javascript">
-    window.onload = Visible();
+        window.onload = Visible();
 
 
 
-    function Visible() {
-        var imgtag = document.getElementsByClassName("site__featured_full")[0];
-        $(imgtag).attr("style", "");
-        $(imgtag).attr("style", "background:url('@Model.Img '); background-size: cover;");
+        function Visible() {
+            var imgtag = document.getElementsByClassName("site__featured_full")[0];
+            $(imgtag).attr("style", "");
+            $(imgtag).attr("style", "background:url('@Model.Img '); background-size: cover;");
 
-        var form = document.getElementById("img-load-form");
-        $(form).addClass('s3-uploader store_banner--custom hidden');
+            var form = document.getElementById("img-load-form");
+            $(form).addClass('s3-uploader store_banner--custom hidden');
 
-        var icon = document.getElementsByClassName("fa-camera-retro")[0];
-        $(icon).removeClass('fa-5x').addClass('fa-1x');
+            var icon = document.getElementsByClassName("fa-camera-retro")[0];
+            $(icon).removeClass('fa-5x').addClass('fa-1x');
 
-        UpdateCampaings();
-    }
-
-
-    $(".store_edit__button").click(function () {
-        var btn_edit = document.getElementsByClassName("store_edit__button")[0];
-        $(btn_edit).addClass("hidden");
-        var btn_cancel = document.getElementsByClassName("store_cancel_edit__button")[0];
-        $(btn_cancel).addClass("button--show");
-        var btn_save = document.getElementsByClassName("store_save__button")[0];
-        $(btn_save).addClass("button--show");
-        var settings = document.getElementsByClassName("store_settings")[0];
-        $(settings).removeClass("hidden");
-
-        var form = document.getElementById("img-load-form");
-        $(form).removeClass('hidden');
-
-        var detailsShow = document.getElementsByClassName("store__details")[0];
-        $(detailsShow).removeClass('store__details_container_show').addClass("store__details_container_notshow");
-        var titleNotShow = document.getElementsByClassName("store__details--edit")[0];
-        $(titleNotShow).removeClass('store__details_container_notshow').addClass("store__details_container_show");
-
-        var addContainer = document.getElementsByClassName("card__toggle")[0];
-        $(addContainer).removeClass('hidden');
-
-        var optionContainer = document.getElementsByClassName("card__options_container");
-        for (var i = 0; i < optionContainer.length; i++) {
-            $(optionContainer[i]).removeClass('hidden');
-        }   
-    });
-
-    $(".store_cancel_edit__button").click(function () {
-        var btn_cancel = document.getElementsByClassName("store_cancel_edit__button")[0];
-        $(btn_cancel).removeClass("button--show");
-        var btn_edit = document.getElementsByClassName("store_edit__button")[0];
-        $(btn_edit).removeClass("hidden");
-        var btn_save = document.getElementsByClassName("store_save__button")[0];
-        $(btn_save).removeClass("button--show");
-        var settings = document.getElementsByClassName("store_settings")[0];
-        $(settings).addClass("hidden");
-
-        var form = document.getElementById("img-load-form");
-        $(form).addClass('hidden');
-
-        var detailsShow = document.getElementsByClassName("store__details")[0];
-        $(detailsShow).removeClass('store__details_container_notshow').addClass("store__details_container_show");
-        var titleNotShow = document.getElementsByClassName("store__details--edit")[0];
-        $(titleNotShow).removeClass('store__details_container_show').addClass("store__details_container_notshow");
-
-        var addContainer = document.getElementsByClassName("card__toggle")[0];
-        $(addContainer).addClass('hidden');
-
-        var optionContainer = document.getElementsByClassName("card__options_container");
-        for (var i = 0; i < optionContainer.length; i++) {
-            $(optionContainer[i]).addClass('hidden');
-        }       
-    });
-
-
-    var press;
-    $("#btn-settings").click(function () {
-        if (!press) {
-            document.getElementById("settings-menu").className = "store_settings__menu";
-            press = true;
-        } else {
-            document.getElementById("settings-menu").className = "store_settings__menu store_settings__menu--hidden";
-            press = false;
+            UpdateCampaings();
         }
-    });
 
-    var imgChanged = false;
-    function onFileSelected(event) {
-        var selectedFile = event.target.files[0];
-        var reader = new FileReader();
-        var imgtag = document.getElementsByClassName("site__featured_full")[0];
 
-        var img = document.getElementById("banner-image");
-        img.title = selectedFile.name;
+        $(".store_edit__button").click(function () {
+            var btn_edit = document.getElementsByClassName("store_edit__button")[0];
+            $(btn_edit).addClass("hidden");
+            var btn_cancel = document.getElementsByClassName("store_cancel_edit__button")[0];
+            $(btn_cancel).addClass("button--show");
+            var btn_save = document.getElementsByClassName("store_save__button")[0];
+            $(btn_save).addClass("button--show");
+            var settings = document.getElementsByClassName("store_settings")[0];
+            $(settings).removeClass("hidden");
 
-        reader.onload = function (event) {
-            img.src = event.target.result;
-            $(imgtag).attr("style", "background:url('" + event.target.result + "'); background-size: cover;");
-            imgChanged = true;
-        };
+            var form = document.getElementById("img-load-form");
+            $(form).removeClass('hidden');
 
-        reader.readAsDataURL(selectedFile);
-    }
+            var detailsShow = document.getElementsByClassName("store__details")[0];
+            $(detailsShow).removeClass('store__details_container_show').addClass("store__details_container_notshow");
+            var titleNotShow = document.getElementsByClassName("store__details--edit")[0];
+            $(titleNotShow).removeClass('store__details_container_notshow').addClass("store__details_container_show");
 
-    function AddCampaigns() {
-        var window = document.getElementById("modal-campaigns-choose");
-        $(window).removeClass('hidden');
-        var container = document.getElementsByClassName("store__ftue")[0];
-        $(container).addClass('hidden');
-        document.getElementById("dg-overlay").className = "dg-overlay";
-        var addContainer = document.getElementsByClassName("card__toggle")[0];
-        $(addContainer).removeClass('hidden');
-    }
+            var addContainer = document.getElementsByClassName("card__toggle")[0];
+            $(addContainer).removeClass('hidden');
 
-    function CloseModal() {
-        var window = document.getElementById("modal-campaigns-choose");
-        $(window).addClass('hidden');
-        document.getElementById("dg-overlay").className = "dg-overlay-not-show";
-    }
-
-    $(".checkbox__select_all").click(function () {
-        var value = document.getElementsByClassName("checkbox__select_all")[0].checked;
-        var boxes = document.getElementsByClassName("list_item__select");
-        for (var i = 0; i < boxes.length; i++) {
-            boxes[i].checked = value;
-        }
-    });
-    $(".list_item__select").click(function () {
-        var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;
-    });
-
-    $("#title").change(function () {
-        var title = document.getElementById("title").value;
-        var url = document.getElementById("Url").value = title;
-    });
-
-    function UpdateCampaings() {
-        var boxes = document.getElementsByClassName("list_item__select");
-        var value;
-        var campaigns = document.getElementsByClassName("card-campaign");
-        var id;
-        var campaign;
-        for (var i = 0; i < boxes.length; i++) {
-            value = boxes[i].checked;
-            if (value) {
-                id = boxes[i].getAttribute("id");
-                campaign = document.getElementById("card_" + id);
-                $(campaign).removeClass('hidden');
-
-            } else {
-                id = boxes[i].getAttribute("id");
-                campaign = document.getElementById("card_" + id);
-                $(campaign).addClass('hidden');
+            var optionContainer = document.getElementsByClassName("card__options_container");
+            for (var i = 0; i < optionContainer.length; i++) {
+                $(optionContainer[i]).removeClass('hidden');
             }
-
-        }
-        CloseModal();
-    }
-    function DeleteItem(item) {
-        var idItem = item.getAttribute("id");
-        var id;
-        var campaigns = document.getElementsByClassName("card-campaign");
-        var boxes = document.getElementsByClassName("list_item__select");
-
-        for (var i = 0; i < boxes.length; i++) {
-            id = boxes[i].getAttribute("id");
-            if (id == idItem) {
-                boxes[i].checked = false;
-            }
-        }
-
-        campaign = document.getElementById("card_" + idItem);
-        $(campaign).addClass('hidden');
-    }
-
-
-    function SaveStorefront() {
-        if (imgChanged) {
-            var img = document.getElementById("banner-image");
-            img = img.getAttribute("src");
-        }
-        var title = document.getElementById("title").value;
-        var description = document.getElementById("description").value;
-        var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
-        var url = document.getElementById("Url").value;
-        var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
-        var id_storeFront = document.getElementById("id_storeFront").value;
-        var selectedCampaigns = [];
-        var boxes = document.getElementsByClassName("list_item__select");
-        var value;
-        var id;
-        for (var i = 0; i < boxes.length; i++) {
-            value = boxes[i].checked;
-            if (value) {
-                id = boxes[i].getAttribute("id");
-                selectedCampaigns.push(id);
-            }
-        }
-
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("SaveStorefront", "Dashboard"))",
-                data: addAntiForgeryToken({
-                    "base64image": img, "title": title, "url": url, "description": description, "hideStore": hideStore, "crossSelling": crossSell, "selectedCampaigns": selectedCampaigns, "id": id_storeFront
-                }),
-                success: function (data, status, resp) {
-                    if (resp.status === 200) {                      
-                    window.location.href = '/Stores/' + data;
-                } else if (resp.status === 500) {
-
-                }
-            },
         });
 
-    }
-    function addAntiForgeryToken(data) {
-        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-        return data;
-    };
-        //$("#search_campaigns_stores").keypress(function () {
-        //    alert("dfgdf");
-        //    var searchText = document.getElementById("search_campaigns_stores").value;
-            
-        //    var boxes = document.getElementsByClassName("list_item__select");
-        //    var value;
-            
-        //    for (var i = 0; i < boxes.length; i++) {
-        //        value = boxes[i].name;
-        //        if (value) {
-        //            id = boxes[i].getAttribute("id");
-        //            campaign = document.getElementById("card_" + id);
-        //            $(campaign).removeClass('hidden');
+        $(".store_cancel_edit__button").click(function () {
+            var btn_cancel = document.getElementsByClassName("store_cancel_edit__button")[0];
+            $(btn_cancel).removeClass("button--show");
+            var btn_edit = document.getElementsByClassName("store_edit__button")[0];
+            $(btn_edit).removeClass("hidden");
+            var btn_save = document.getElementsByClassName("store_save__button")[0];
+            $(btn_save).removeClass("button--show");
+            var settings = document.getElementsByClassName("store_settings")[0];
+            $(settings).addClass("hidden");
 
-        //        } else {
-        //            id = boxes[i].getAttribute("id");
-        //            campaign = document.getElementById("card_" + id);
-        //            $(campaign).addClass('hidden');
-        //        }
+            var form = document.getElementById("img-load-form");
+            $(form).addClass('hidden');
 
+            var detailsShow = document.getElementsByClassName("store__details")[0];
+            $(detailsShow).removeClass('store__details_container_notshow').addClass("store__details_container_show");
+            var titleNotShow = document.getElementsByClassName("store__details--edit")[0];
+            $(titleNotShow).removeClass('store__details_container_show').addClass("store__details_container_notshow");
 
+            var addContainer = document.getElementsByClassName("card__toggle")[0];
+            $(addContainer).addClass('hidden');
 
-        //});
-
-        //$("#search_campaigns_stores").keyup(function () {
-        //    alert("2");
-        //});
-        
+            var optionContainer = document.getElementsByClassName("card__options_container");
+            for (var i = 0; i < optionContainer.length; i++) {
+                $(optionContainer[i]).addClass('hidden');
+            }
+        });
 
 
-</script>
+        var press;
+        $("#btn-settings").click(function () {
+            if (!press) {
+                document.getElementById("settings-menu").className = "store_settings__menu";
+                press = true;
+            } else {
+                document.getElementById("settings-menu").className = "store_settings__menu store_settings__menu--hidden";
+                press = false;
+            }
+        });
 
+        var imgChanged = false;
+
+
+        $(".close_message").click(function () {
+            var messageDiv = document.getElementsByClassName("form__message--error")[0];
+            $(messageDiv).addClass("hidden");
+            var message = document.getElementsByClassName("form__message_list")[0];
+            message.innerHTML = "";
+        });
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            if (selectedFile.type !== 'image/png') {
+                var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                $(messageDiv).removeClass("hidden");
+                var message = document.getElementsByClassName("form__message_list")[0];
+                $(message).append(" Only .png files allowed!");
+                return;
+            }
+
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+            var imgtag = document.getElementsByClassName("site__featured_full")[0];
+
+            var img = document.getElementById("banner-image");
+            img.title = selectedFile.name;
+
+            reader.onload = function (event) {
+                img.src = event.target.result;
+                $(imgtag).attr("style", "background:url('" + event.target.result + "'); background-size: cover;");
+                imgChanged = true;
+            };
+
+            reader.readAsDataURL(selectedFile);
+        }
+
+        function AddCampaigns() {
+            var window = document.getElementById("modal-campaigns-choose");
+            $(window).removeClass('hidden');
+            var container = document.getElementsByClassName("store__ftue")[0];
+            $(container).addClass('hidden');
+            document.getElementById("dg-overlay").className = "dg-overlay";
+            var addContainer = document.getElementsByClassName("card__toggle")[0];
+            $(addContainer).removeClass('hidden');
+        }
+
+        function CloseModal() {
+            var window = document.getElementById("modal-campaigns-choose");
+            $(window).addClass('hidden');
+            document.getElementById("dg-overlay").className = "dg-overlay-not-show";
+        }
+
+        $(".checkbox__select_all").click(function () {
+            var value = document.getElementsByClassName("checkbox__select_all")[0].checked;
+            var boxes = document.getElementsByClassName("list_item__select");
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].checked = value;
+            }
+        });
+        $(".list_item__select").click(function () {
+            var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;
+        });
+
+        $("#title").change(function () {
+            var title = document.getElementById("title").value;
+            var url = document.getElementById("Url").value = title;
+        });
+
+        function UpdateCampaings() {
+            var boxes = document.getElementsByClassName("list_item__select");
+            var value;
+            var campaigns = document.getElementsByClassName("card-campaign");
+            var id;
+            var campaign;
+            for (var i = 0; i < boxes.length; i++) {
+                value = boxes[i].checked;
+                if (value) {
+                    id = boxes[i].getAttribute("id");
+                    campaign = document.getElementById("card_" + id);
+                    $(campaign).removeClass('hidden');
+
+                } else {
+                    id = boxes[i].getAttribute("id");
+                    campaign = document.getElementById("card_" + id);
+                    $(campaign).addClass('hidden');
+                }
+
+            }
+            CloseModal();
+        }
+        function DeleteItem(item) {
+            var idItem = item.getAttribute("id");
+            var id;
+            var campaigns = document.getElementsByClassName("card-campaign");
+            var boxes = document.getElementsByClassName("list_item__select");
+
+            for (var i = 0; i < boxes.length; i++) {
+                id = boxes[i].getAttribute("id");
+                if (id == idItem) {
+                    boxes[i].checked = false;
+                }
+            }
+
+            campaign = document.getElementById("card_" + idItem);
+            $(campaign).addClass('hidden');
+        }
+
+
+        function SaveStorefront() {
+            var boxes = document.getElementsByClassName("list_item__select");
+            var countCheckedCheckboxes = $(boxes).filter(':checked').length;
+
+            if (countCheckedCheckboxes <= 2) {
+                var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                $(messageDiv).removeClass("hidden");
+                var message = document.getElementsByClassName("form__message_list")[0];
+                $(message).append("You must add at least 3 campaigns to your storefront.");
+                return;
+            } else {
+                var boxes = document.getElementsByClassName("list_item__select");
+                if (imgChanged) {
+                    var img = document.getElementById("banner-image");
+                    img = img.getAttribute("src");
+                }
+                var title = document.getElementById("title").value;
+                var description = document.getElementById("description").value;
+                var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
+                var url = document.getElementById("Url").value;
+                var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
+                var id_storeFront = document.getElementById("id_storeFront").value;
+                var selectedCampaigns = [];
+                var value;
+                var id;
+                for (var i = 0; i < boxes.length; i++) {
+                    value = boxes[i].checked;
+                    if (value) {
+                        id = boxes[i].getAttribute("id");
+                        selectedCampaigns.push(id);
+                    }
+                }
+
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("SaveStorefront", "Dashboard"))",
+                    data: addAntiForgeryToken({
+                        "base64image": img, "title": title, "url": url, "description": description, "hideStore": hideStore, "crossSelling": crossSell, "selectedCampaigns": selectedCampaigns, "id": id_storeFront
+                    }),
+                    success: function (data, status, resp) {
+                        if (resp.status === 200) {
+                            window.location.href = '/Stores/' + data;
+                        }
+                    },
+                    error: function (data, status, resp) {
+                        var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                        $(messageDiv).removeClass("hidden");
+                        var message = document.getElementsByClassName("form__message_list")[0];
+                        $(message).append(data.statusText);
+                    }
+                });
+            }
+        }
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+        var filterCampaignList = function (el) {
+            $('.search_filter').each(function (index, elem) {
+                elem = $(elem);
+                if (elem.attr('data-Name').indexOf(el.value) === -1) {
+                    elem.addClass('hidden');
+                } else if (elem.hasClass('hidden')) {
+                    elem.removeClass('hidden');
+                }
+            });
+        }
+
+        function DeleteStore() {
+            if (confirm("Are you sure you want to delete this store? (This action cannot be undone)")) {
+                var id_storeFront = document.getElementById("id_storeFront").value;
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("DeleteStorefront", "Dashboard"))",
+                    data: addAntiForgeryToken({
+                        "id": id_storeFront
+                    }),
+                    success: function (data, status, resp) {
+                        if (resp.status === 200) {
+                            window.location.href = '/Dashboard/Storefronts';
+                        }
+                    },
+                });
+            }
+        }
+    </script>
 
 }
 
@@ -295,7 +335,7 @@
         </div>
         <div class="store__details--edit store__details_container_notshow">
             <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="Store Title" type="text" value="@Model.Title">
-            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)" >@Model.Description</textarea>
+            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)">@Model.Description</textarea>
         </div>
     </div>
 </div>
@@ -307,7 +347,6 @@
                 <button class="store_cancel_edit__button button button--primary">@T("Cancel")</button>
                 <button class="store_edit__button button button--primary">@T("Edit Store")</button>
                 <button class="store_save__button button button--primary " onclick="SaveStorefront()">@T("Save")</button>
-
             </div>
 
             <div class="store_settings hidden">
@@ -329,13 +368,14 @@
                                 <div class="store_settings__header">@T("Hide store")</div>
                                 <div class="store_settings__details">@T("Hide this store from internet search engines")</div>
                             </div><label class="switch__label">
-                            @if (Model.HideStore == true) {
-                                      <input checked="checked" class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
-                            }
-                            else
-                            {
-                                <input class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
-                            }
+                                @if (Model.HideStore == true)
+                                {
+                                    <input checked="checked" class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
+                                }
+                                else
+                                {
+                                    <input class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
+                                }
                                 <div class="switch__el" data-off="Off" data-on="On"></div>
                             </label>
                         </li>
@@ -355,12 +395,21 @@
                                 }
                                 else
                                 {
-                                    <input  class="switch__input cross_sell__toggle" name="hide" type="checkbox">
+                                    <input class="switch__input cross_sell__toggle" name="hide" type="checkbox">
                                 }
 
                                 <div class="switch__el" data-off="Off" data-on="On">
                                 </div>
                             </label>
+                        </li>
+
+
+                        <li class="store_settings__menu_item">
+                            <div class="store_settings__description">
+                                <div class="store_settings__header">@T("Delete Store")</div>
+                                <div class="store_settings__details">@T("Permanently close this store. Your campaigns will not be affected. (Cannot be undone!)")</div>
+                            </div>
+                            <button onclick="DeleteStore()" class="store_delete__button button button--warning">@T("Delete Store")</button>
                         </li>
                     </ul>
                 </div>
@@ -370,116 +419,119 @@
 </section>
 <div>
     <div class="site__wrapper">
+        <div class="form__message form__message--error store__alerts hidden">
+            <span class="form__message_list">
 
-            <div class="cards__container cards__container--editing">
-                <div class="card add_campaigns__card">
-                    <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">@T("Add Campaigns +")</div>
+            </span>
+            <i class="close_message fa fa-times  fa-2x"></i>
+        </div>
+        <div class="cards__container cards__container--editing">
+            <div class="card add_campaigns__card">
+                <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">@T("Add Campaigns +")</div>
 
 
 
-                    @foreach (var prod in Model.Campaigns)
-                    {
-                        var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
-                        <div class="card card-campaign " id="card_@prod.Id">
-                            <div class="image_container">
-                                <a href="@prod.URL" title="@prod.Title">
-                                    <img onmouseover="this.src = '/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png'" onmouseout="this.src ='/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png'" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
-                                </a>
-                            </div>
-                            <div class="card__options_container hidden">
-                                <ul class="card__options">
-                                    <li class="options__item options__item_view">
-                                        <a href="/@prod.Alias" class="option__link" title="View @prod.Title">
-                                            <div class="option__name"><span>@T("View")</span></div>
-                                        </a>
-                                    </li>
-                                    <div class="options__item" id="@prod.Id" onclick="DeleteItem(this)">
-                                        <a class="store_remove_campaign option__link" data-tooltip="Remove" href="#" title="Remove @prod.Title">
-                                            <i class="fa fa-trash fa-2x"></i>
-                                        </a>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="card__progress_container">
-                                <div class="progress_bar">
-                                    <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)%"></div>
+                @foreach (var prod in Model.Campaigns)
+                {
+                    var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+                    <div class="card card-campaign " id="card_@prod.Id">
+                        <div class="image_container">
+                            <a href="@prod.URL" title="@prod.Title">
+                                @if (prod.BackSideByDefault)
+                                {
+                                    <img onmouseover="this.src = '/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png'" onmouseout="this.src ='/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png'" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
+                                }
+                                else
+                                {
+                                    <img onmouseover="this.src = '/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png'" onmouseout="this.src ='/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png'" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                }
+                            </a>
+                        </div>
+                        <div class="card__options_container hidden">
+                            <ul class="card__options">
+                                <li class="options__item options__item_view">
+                                    <a href="/@prod.Alias" class="option__link" title="View @prod.Title">
+                                        <div class="option__name"><span>@T("View")</span></div>
+                                    </a>
+                                </li>
+                                <div class="options__item" id="@prod.Id" onclick="DeleteItem(this)">
+                                    <a class="store_remove_campaign option__link" data-tooltip="Remove" href="#" title="Remove @prod.Title">
+                                        <i class="fa fa-trash fa-2x"></i>
+                                    </a>
                                 </div>
+                            </ul>
+                        </div>
+                        <div class="card__progress_container">
+                            <div class="progress_bar">
+                                <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)%"></div>
                             </div>
-                            <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
-                            <div class="card__content_container">
-                                <div class="card__campaign_stats">
-                                    <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal @T("sold")</div>
-                                    <div class="card__campaign_time">
-                                        <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
-                                            <span>
-                                                @if (daysRemaining > 0)
-                                                {
-                                                    @daysRemaining@:d @T("remaining")
+                        </div>
+                        <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
+                        <div class="card__content_container">
+                            <div class="card__campaign_stats">
+                                <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal @T("sold")</div>
+                                <div class="card__campaign_time">
+                                    <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
+                                        <span>
+                                            @if (daysRemaining > 0)
+                                            {
+                                                @daysRemaining@:d @T("remaining")
                                             }
-                                                else if (daysRemaining <= -1)
-                                                {
-                                                    @Math.Abs(daysRemaining)@:d @T("ago")
+                                            else if (daysRemaining <= -1)
+                                            {
+                                                @Math.Abs(daysRemaining)@:d @T("ago")
                                             }
+                                            else
+                                            {
+                                                var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours;
+
+                                                if (hours > 0)
+                                                {
+                                                    @hours@:h @T("remaining")
+                                                }
                                                 else
                                                 {
-                                                    var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours;
-
-                                                    if (hours > 0)
-                                                    {
-                                                        @hours@:h @T("remaining")
+                                                    @Math.Abs(hours)@:h @T("ago")
                                                 }
-                                                    else
-                                                    {
-                                                        @Math.Abs(hours)@:h @T("ago")
-                                                }
-                                                }
-
-                                            </span>
-                                        </div>
-
+                                            }
+                                        </span>
                                     </div>
+
                                 </div>
-                                <h1 class="card__title">
-                                    <a href="/@prod.Alias" title="@prod.Title">@prod.Title</a>
-                                </h1>
                             </div>
+                            <h1 class="card__title">
+                                <a href="/@prod.Alias" title="@prod.Title">@prod.Title</a>
+                            </h1>
                         </div>
-                    }
-
-
-
-                </div>
-
-
-
-
+                    </div>
+                }
             </div>
+        </div>
 
-
-
-            <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
-
-                <div class="choose_campaigns_modal modal">
-                    <div class="modal__header">
-                        <h3 class="modal__heading">@T("Add Campaigns to") </h3>
-                        <i onclick="CloseModal()" class="fa fa-times  fa-2x"></i>
+        <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
+            <div class="choose_campaigns_modal modal">
+                <div class="modal__header">
+                    <h3 class="modal__heading">@T("Add Campaigns to") </h3>
+                    <i onclick="CloseModal()" class="fa fa-times  fa-2x"></i>
+                </div>
+                <div class="campaigns__filter_options">
+                    <div class="filter_option__select_container">
+                        <input class="checkbox__select_all" type="checkbox">
                     </div>
-                    <div class="campaigns__filter_options">
-                        <div class="filter_option__select_container">
-                            <input class="checkbox__select_all" type="checkbox" value="">
-                        </div>
-                        <div class="filter_option__search_container">
-                            <div class="searchbox__container">
-                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" type="search">
-                            </div>
+                    <div class="filter_option__search_container">
+                        <div class="searchbox__container">
+                            <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" oninput="filterCampaignList(this);">
                         </div>
                     </div>
-                    <div class="campaigns__list_container">
-                        <div class="campaigns__list store__campaign_results" id="search_results">
-                            @foreach (var prod in Model.Campaigns)
-                            {
-                                var i=0;
-                                var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+                </div>
+                <div class="campaigns__list_container">
+                    <div class="campaigns__list store__campaign_results" id="search_results">
+                        @foreach (var prod in Model.Campaigns)
+                        {
+                            var i = 0;
+                            var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+
+                            <div class="search_filter" data-name="@prod.Title">
 
                                 <label class="list_item">
                                     <div class="list_item__cell list_item__select_container">
@@ -493,14 +545,22 @@
                                             }
                                             else
                                             {
-                                                if (i == Model.SelectedCampaigns.Count) {
-                                                         <input type="checkbox" name="@prod.Title" id="@prod.Id" value="@prod.Id" class="list_item__select">
-                                                 }
+                                                if (i == Model.SelectedCampaigns.Count)
+                                                {
+                                                    <input type="checkbox" name="@prod.Title" id="@prod.Id" value="@prod.Id" class="list_item__select">
+                                                }
                                             }
                                         }
                                     </div>
                                     <div class="list_item__cell list_item__thumbnail">
-                                        <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                        @if (prod.BackSideByDefault)
+                                        {
+                                            <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
+                                        }
+                                        else
+                                        {
+                                            <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                        }
                                     </div>
                                     <div class="list_item__cell list_item__title">   @prod.Title       </div>
                                     <div class="list_item__cell list_item__campaign_reserved">
@@ -543,15 +603,15 @@
                                         </div>
                                     </div>
                                 </label>
-
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
-                    <div class="modal__footer">
-                        <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Store")</button>
-                    </div>                   
+                </div>
+                <div class="modal__footer">
+                    <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Store")</button>
                 </div>
             </div>
+        </div>
     </div>
 </div>
-<input class="hidden" id="id_storeFront"  value="@Model.Id">
+<input class="hidden" id="id_storeFront" value="@Model.Id">

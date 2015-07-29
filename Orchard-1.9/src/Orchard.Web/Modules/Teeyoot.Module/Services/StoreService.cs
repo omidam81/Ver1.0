@@ -23,6 +23,10 @@ namespace Teeyoot.Module.Services
             _campaignService = campaignService;
         }
 
+        public IQueryable<StoreRecord> GetAllStores()
+        {
+            return _storeRepository.Table;
+        }
 
         public IQueryable<StoreRecord> GetAllStoresForUser(int userId)
         {
@@ -116,14 +120,11 @@ namespace Teeyoot.Module.Services
             try
             {
                 foreach (var link in store.Campaigns)
-                {
-                    if (link.CampaignRecord.Id == id)
-                    {
-                        _linkStoreCampaignRepository.Delete(link);
-                        return true;
-                    }
+                {                  
+                        _linkStoreCampaignRepository.Delete(link);                       
                 }
-                return false;
+                _storeRepository.Delete(store);
+                return true;
             }
             catch
             {

@@ -1,6 +1,7 @@
 ﻿using Orchard;
 using Orchard.Data;
 using Orchard.Logging;
+using Orchard.Security;
 using Orchard.Themes;
 using System.Web.Mvc;
 using Teeyoot.Messaging.Services;
@@ -19,13 +20,17 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IWorkContextAccessor _wca;
         private readonly IStoreService _storeService;
         private readonly IimageHelper _imageHelper;
+        private readonly IMembershipService _membershipService;
+        private IOrchardServices Services { get; set; }
 
         public DashboardController(ICampaignService campaignService, 
                                    IMailChimpSettingsService settingsService, 
                                    IOrderService orderService,
                                    IWorkContextAccessor wca,
                                    IStoreService storeService,
-                                   IimageHelper imageHelper)
+                                   IimageHelper imageHelper,
+                                   IMembershipService membershipService,
+                                   IOrchardServices services)
         {
             _campaignService = campaignService;
             _orderService = orderService;
@@ -34,6 +39,8 @@ namespace Teeyoot.Dashboard.Controllers
             this._orderService = orderService;
             _storeService = storeService;
             _imageHelper = imageHelper;
+            _membershipService = membershipService;
+            Services = services;
 
             Logger = NullLogger.Instance;
         }

@@ -1,18 +1,16 @@
-﻿using Orchard;
-using Orchard.UI.Admin;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Orchard;
 using Orchard.Localization;
-using Teeyoot.Module.Services;
-using System.IO;
 using Orchard.Logging;
-using Orchard.UI.Notify;
 using Orchard.Mvc.Extensions;
+using Orchard.UI.Admin;
+using Orchard.UI.Notify;
 using Teeyoot.Module.Models;
-using Teeyoot.Module.ViewModels;
+using Teeyoot.Module.Services;
 using Teeyoot.WizardSettings.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers

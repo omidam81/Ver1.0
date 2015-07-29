@@ -11,6 +11,14 @@
     .tb-aside-first {
         display: none !important;
     }
+    .dashboard-layout .tb-layout-content {
+        padding: 0 !important;
+        background-color: white !important;
+    }
+    .zone-content {
+    background-color: white;
+}
+
 </style>
 @using (Script.Foot())
 {
@@ -26,11 +34,19 @@
             }
         });
       
-     
+        $(".close_message").click(function () {
+            var messageDiv = document.getElementsByClassName("form__message--error")[0];
+            $(messageDiv).addClass("hidden");
+            var message = document.getElementsByClassName("form__message_list")[0];
+            message.innerHTML = "";
+        });
         function onFileSelected(event) {
             var selectedFile = event.target.files[0];
             if (selectedFile.type !== 'image/png') {
-                alert('Only .png files allowed');
+                var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                $(messageDiv).removeClass("hidden");
+                var message = document.getElementsByClassName("form__message_list")[0];
+                $(message).append(" Only .png files allowed!");
                 return;
             }
 
@@ -126,50 +142,72 @@
 
 
         function PublishStore() {
-            var img = document.getElementById("banner-image");
-
-
-
-            img = img.getAttribute("src");
-            var title = document.getElementById("title").value;
-            var description = document.getElementById("description").value;
-            var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
-            var url = document.getElementById("Url_store").value;           
-            var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
-            var selectedCampaigns = [];
             var boxes = document.getElementsByClassName("list_item__select");
-            var value;
-            var id;
-            for (var i = 0; i < boxes.length; i++) {
-                value = boxes[i].checked;
-                if (value) {
-                    id = boxes[i].getAttribute("id");
-                    selectedCampaigns.push(id);
-                } 
-            }         
+            var countCheckedCheckboxes = $(boxes).filter(':checked').length;
 
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("CreateStorefront", "Dashboard"))",
-                data: addAntiForgeryToken({
-                    "base64image": img, "title": title, "description": description, "url": url, "hideStore": hideStore, "crossSelling": crossSell, "selectedCampaigns": selectedCampaigns
-                }),
-                success: function (data, status, resp) {
-                    if (resp.status === 200) {
-                        window.location.href = '/Stores/' + data;
-                    } else if (resp.status === 500) {
-
+            if (countCheckedCheckboxes <= 2) {
+                var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                $(messageDiv).removeClass("hidden");
+                var message = document.getElementsByClassName("form__message_list")[0];
+                $(message).append("You must add at least 3 campaigns to your storefront.");
+                return;
+            } else {
+                var img = document.getElementById("banner-image");
+                img = img.getAttribute("src");
+                var title = document.getElementById("title").value;
+                var description = document.getElementById("description").value;
+                var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
+                var url = document.getElementById("Url_store").value;
+                var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
+                var selectedCampaigns = [];
+                var boxes = document.getElementsByClassName("list_item__select");
+                var value;
+                var id;
+                for (var i = 0; i < boxes.length; i++) {
+                    value = boxes[i].checked;
+                    if (value) {
+                        id = boxes[i].getAttribute("id");
+                        selectedCampaigns.push(id);
                     }
-                },
-            });
+                }
 
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("CreateStorefront", "Dashboard"))",
+                    data: addAntiForgeryToken({
+                        "base64image": img, "title": title, "description": description, "url": url, "hideStore": hideStore, "crossSelling": crossSell, "selectedCampaigns": selectedCampaigns
+                    }),
+                    success: function (data, status, resp) {
+                        if (resp.status === 200) {
+                            window.location.href = '/Stores/' + data;
+                        }
+                    },
+                    error: function (data, status, resp) {
+                        var messageDiv = document.getElementsByClassName("form__message--error")[0];
+                        $(messageDiv).removeClass("hidden");
+                        var message = document.getElementsByClassName("form__message_list")[0];
+                        $(message).append(data.statusText);
+                    }
+                });
+            }
         }
         function addAntiForgeryToken(data) {
             data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
             return data;
         };
+
+        var filterCampaignList = function (el) {
+            $('.search_filter').each(function (index, elem) {
+                elem = $(elem);
+                if (elem.attr('data-Name').indexOf(el.value) === -1) {
+                    elem.addClass('hidden');
+                } else if (elem.hasClass('hidden')) {
+                    elem.removeClass('hidden');
+                }
+            });
+        }
     </script>
 }
 
@@ -249,6 +287,12 @@
 <div>
     <div class="site__wrapper">
         <div class="form__message form__message--error store__alerts hidden">
+            <span class="form__message_list">
+
+            </span>
+            <i class="close_message fa fa-times  fa-2x"></i>
+        </div>
+        <div class="form__message form__message--error store__alerts hidden">
             <div class="form__message_list"></div>
             <i class="form__message_close ts-icon-close"></i>
         </div>
@@ -303,15 +347,20 @@
             <div class="card add_campaigns__card">
                 <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">@T("Add Campaigns +")</div>
 
-
-
              @foreach (var prod in Model.Campaigns)
              {
                  var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
                 <div class="card card-campaign hidden" id="card_@prod.Id">
                     <div class="image_container">
                         <a href="@prod.URL" title="@prod.Title">
-                            <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                            @if (prod.BackSideByDefault)
+                            {
+                                <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
+                            }
+                            else
+                            {
+                                <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                            }
                         </a>
                     </div>
                     <div class="card__options_container">
@@ -361,10 +410,8 @@
                                                 @Math.Abs(hours)@:h @T("ago")
                                                 }
                                         }
-
                                     </span>
                                 </div>
-
                             </div>
                         </div>
                         <h1 class="card__title">
@@ -373,18 +420,9 @@
                     </div>
                 </div>
                 }
-
-
-
             </div>
-
-            
-
-
         </div>
 
-    
-     
             <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
 
                 <div class="choose_campaigns_modal modal">
@@ -398,7 +436,7 @@
                         </div>
                         <div class="filter_option__search_container">
                             <div class="searchbox__container">
-                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" type="search">
+                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" oninput="filterCampaignList(this);">
                             </div>
                         </div>
                     </div>
@@ -407,32 +445,39 @@
                             @foreach (var prod in Model.Campaigns)
                         {
                             var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
-
-                                <label class="list_item">
-                                    <div class="list_item__cell list_item__select_container">
-                                        <input type="checkbox" name="@prod.Title" id="@prod.Id" value="@prod.Id" class="list_item__select">
-                                    </div>
-                                    <div class="list_item__cell list_item__thumbnail">
-                                        <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
-                                    </div>
-                                    <div class="list_item__cell list_item__title">   @prod.Title       </div>
-                                    <div class="list_item__cell list_item__campaign_reserved">
-                                        <div class="campaign_reserved">@prod.ProductCountSold / @prod.ProductCountGoal </div>
-                                        <div class="campaign_reserved__caption">reserved</div>
-                                        <div class="progress_container">
-                                            <div class="progress_bar">
-                                                <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)% !important">            </div>
-                                            </div>
-
+                                <div class="search_filter" data-name="@prod.Title">
+                                    <label class="list_item">
+                                        <div class="list_item__cell list_item__select_container">
+                                            <input type="checkbox" name="@prod.Title" id="@prod.Id" value="@prod.Id" class="list_item__select">
                                         </div>
-                                    </div>
-                                    <div class="list_item__cell list_item__campaign_time">
+                                        <div class="list_item__cell list_item__thumbnail">
+                                            @if (prod.BackSideByDefault)
+                                        {
+                                                <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
+                                        }
+                                        else
+                                        {
+                                                <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                        }
+                                        </div>
+                                        <div class="list_item__cell list_item__title">   @prod.Title       </div>
+                                        <div class="list_item__cell list_item__campaign_reserved">
+                                            <div class="campaign_reserved">@prod.ProductCountSold / @prod.ProductCountGoal </div>
+                                            <div class="campaign_reserved__caption">reserved</div>
+                                            <div class="progress_container">
+                                                <div class="progress_bar">
+                                                    <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)% !important">            </div>
+                                                </div>
 
-                                        <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
-                                            <span>
-                                                @if (daysRemaining > 0)
+                                            </div>
+                                        </div>
+                                        <div class="list_item__cell list_item__campaign_time">
+
+                                            <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
+                                                <span>
+                                                    @if (daysRemaining > 0)
                                             {
-                                                    @daysRemaining@:d @T("remaining")
+                                                        @daysRemaining@:d @T("remaining")
                                             }
                                             else if (daysRemaining <= -1)
                                             {
@@ -452,13 +497,13 @@
                                                 }
                                             }
 
-                                            </span>
+                                                </span>
+                                            </div>
                                         </div>
+                                    </label>
                                     </div>
-                                </label>
-
-                        }
-                        </div>
+                                    }
+                                </div>
                     </div>
                     <div class="modal__footer">
                         <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">Update Store</button>

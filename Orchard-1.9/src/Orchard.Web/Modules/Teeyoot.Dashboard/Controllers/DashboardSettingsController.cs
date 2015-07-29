@@ -1,26 +1,18 @@
-﻿using Orchard;
-using Orchard.Security;
+﻿using Orchard.ContentManagement;
+using Orchard.Users.Models;
+using Orchard.Users.ViewModels;
 using System.Web.Mvc;
 
 namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-
-        private readonly IMembershipService _membershipService;
-       // private readonly IWorkContextAccessor _wca;
-
-
-        public DashboardController(IMembershipService membershipService, IWorkContextAccessor wca)
-        {
-            _membershipService = membershipService;
-        }
-        
-        
+      
         public ActionResult Settings()
         {
-            var user = _wca.GetContext().HttpContext.User; 
-            
+            string currentUser = Services.WorkContext.CurrentUser.Email;
+            var user = _membershipService.GetUser(currentUser);
+            UserSettingsViewModel model = new UserSettingsViewModel() { };
             return View();
         }
     }
