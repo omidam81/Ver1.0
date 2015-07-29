@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 
@@ -14,6 +15,8 @@ namespace Teeyoot.Module.Services
         OrderRecord GetOrderById(int id);
 
         void UpdateOrder(OrderRecord order);
+
+        void UpdateOrder(OrderRecord order, OrderStatus status);
 
         OrderRecord CreateOrder(IEnumerable<OrderProductViewModel> products);
 

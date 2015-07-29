@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.ViewModels;
@@ -94,9 +95,9 @@ namespace Teeyoot.Module.Controllers
                 order.PostalCode = collection["PostalCode"];
                 order.Country = collection["Country"];
                 order.PhoneNumber = collection["PhoneNumber"];
-                order.Paid = DateTime.UtcNow;
+                order.Reserved = DateTime.UtcNow;
 
-                _orderService.UpdateOrder(order);
+                _orderService.UpdateOrder(order, OrderStatus.Reserved);
 
                 var campaign = _campaignService.GetCampaignById(campaignId);
                 campaign.ProductCountSold += order.Products.Sum(p => p.Count);

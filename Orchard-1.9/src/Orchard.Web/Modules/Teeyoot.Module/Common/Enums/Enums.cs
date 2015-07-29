@@ -11,6 +11,15 @@ namespace Teeyoot.Module.Common.Enums
         Ended = 2
     }
 
+    public enum OrderStatus
+    {
+        Created = 1,
+        Reserved,
+        Printing,
+        Shipped,
+        Delivered
+    }
+
     public enum OverviewType
     {
         Today = 1,
