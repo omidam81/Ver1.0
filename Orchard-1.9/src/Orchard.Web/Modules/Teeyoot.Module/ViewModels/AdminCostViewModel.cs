@@ -9,19 +9,19 @@ namespace Teeyoot.Module.ViewModels
     public class AdminCostViewModel
     {
         [Required]
-        public float FirstScreenCost { get; set; }
+        public decimal FirstScreenCost { get; set; }
 
         [Required]
-        public float AdditionalScreenCosts { get; set; }
+        public decimal AdditionalScreenCosts { get; set; }
 
         [Required]
-        public float InkCost { get; set; }
+        public decimal InkCost { get; set; }
 
         [Required]
         public int PrintsPerLitre { get; set; }
 
         [Required]
-        public float LabourCost { get; set; }
+        public decimal LabourCost { get; set; }
 
         [Required]
         public int LabourTimePerColourPerPrint { get; set; }
@@ -30,12 +30,12 @@ namespace Teeyoot.Module.ViewModels
         public int LabourTimePerSidePrintedPerPrint { get; set; }
 
         [Required]
-        public float CostOfMaterial { get; set; }
+        public decimal CostOfMaterial { get; set; }
 
         [Required]
-        public float PercentageMarkUpRequired { get; set; }
+        public decimal PercentageMarkUpRequired { get; set; }
 
         [Required]
-        public float DTGPrintPrice { get; set; } 
+        public decimal DTGPrintPrice { get; set; }
     }
 }
