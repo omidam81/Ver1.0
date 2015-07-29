@@ -64,6 +64,9 @@ namespace Teeyoot.Module.Controllers
                     PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(),
                     PrintsPerLitre = cost.PrintsPerLitre
                 };
+
+                costViewModel = ReplaceAllCost(costViewModel);
+
                 return View(costViewModel);
             }
 
@@ -442,5 +445,17 @@ namespace Teeyoot.Module.Controllers
 
         #endregion
 
+        public AdminCostViewModel ReplaceAllCost(AdminCostViewModel cost)
+        {
+            cost.AdditionalScreenCosts = cost.AdditionalScreenCosts.Replace(",", ".");
+            cost.CostOfMaterial = cost.CostOfMaterial.Replace(",", ".");
+            cost.DTGPrintPrice = cost.DTGPrintPrice.Replace(",", ".");
+            cost.FirstScreenCost = cost.FirstScreenCost.Replace(",", ".");
+            cost.InkCost = cost.InkCost.Replace(",", ".");
+            cost.LabourCost = cost.LabourCost.Replace(",", ".");
+            cost.PercentageMarkUpRequired = cost.PercentageMarkUpRequired.Replace(",", ".");
+
+            return cost;
+        }
     }
 }

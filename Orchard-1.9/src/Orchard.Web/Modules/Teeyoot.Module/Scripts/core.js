@@ -128,7 +128,8 @@ var app = {
                     }
                 }
             }
-            console.log('colors: '+this.getUsedColorsCount());
+            console.log('colors: ' + this.getUsedColorsCount());
+            calculatePrice(this.getUsedColorsCountFront(), this.getUsedColorsCountBack());
         },
         snapToCenter: true,
         usedColors_front: {},

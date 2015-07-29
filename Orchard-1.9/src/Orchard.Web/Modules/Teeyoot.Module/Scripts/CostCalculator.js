@@ -1,7 +1,8 @@
 ﻿function calculatePrice(frontColor, backColor) {
 
+    var res = parseFloat(formula(frontColor, backColor));
     var price = document.getElementById("price_preview");
-    price.innerText = "RM " + frontColor + backColor;
+    price.innerText = "RM " + res.toFixed(2);
 }
 
 function formula(frontColor, backColor) {
@@ -13,82 +14,104 @@ function formula(frontColor, backColor) {
     var labourCost = parseFloat(window.labourCost);                                             //B7
     var labourTimePerColourPerPrint = parseInt(window.labourTimePerColourPerPrint);             //B8
     var labourTimePerSidePrintedPerPrint = parseInt(window.labourTimePerSidePrintedPerPrint);   //B9
-    var percentageMarkUpRequired = parseFloat(window.percentageMarkUpRequired);                 //B11
+    var percentageMarkUpRequired = parseFloat(window.percentageMarkUpRequired) / 100;           //B11
     var printsPerLitre = parseInt(window.printsPerLitre);                                       //B6
     var count = parseInt(window.count);                                                         //B16
     var defaultPrice = parseFloat(window.defaultPrice);
 
-    // a
-    var a = 1 + percentageMarkUpRequired;
+    // argument1
+    var argument1 = 1 + percentageMarkUpRequired;
 
-    // b
-    var b;
+    // argument2
+    var argument2;
     if (backColor > 0) {
-        b = parseInt("1");
+        argument2 = parseInt("1");
     } else {
-        b = parseInt("0");
+        argument2 = parseInt("0");
     }
 
-    // c
-    var c;
+    // argument3
+    var argument3;
     if (frontColor > 0) {
-        c = parseInt("1");
+        argument3 = parseInt("1");
     } else {
-        c = parseInt("0");
+        argument3 = parseInt("0");
     }
 
-    // q
-    var q = parseFloat(labourTimePerSidePrintedPerPrint / 3600);
+    // argument4
+    var argument4 = parseFloat(labourTimePerSidePrintedPerPrint / 3600);
 
-    // w
-    var w = frontColor + backColor;
+    // argument5
+    var argument5 = frontColor + backColor;
 
-    // e
-    var e = costOfMaterial + dTGPrintPrice;
+    // argument6
+    var argument6 = costOfMaterial + dTGPrintPrice;
 
-    // r
-    var r;
+    // argument7
+    var argument7;
     if (frontColor > 1) {
-        r = parseInt("1");
+        argument7 = parseInt("1");
     } else {
-        r = parseInt(frontColor);
+        argument7 = parseInt(frontColor);
     }
 
-    // t
-    var t;
-    var t1 = parseInt(frontColor - 1);
-    if (t1 > 0) {
-        t = parseInt(t1);
+    // argument8
+    var argument8;
+    var argument8_1 = parseInt(frontColor - 1);
+    if (argument8_1 > 0) {
+        argument8 = parseInt(argument8_1);
     } else {
-        t = parseInt("0");
+        argument8 = parseInt("0");
     }
 
-    // y
-    var y;
+    // argument9
+    var argument9;
     if (backColor > 1) {
-        y = parseInt("1");
+        argument9 = parseInt("1");
     } else {
-        y = parseInt(backColor);
+        argument9 = parseInt(backColor);
     }
 
-    // u
-    var u;
-    var u1 = parseInt(backColor - 1);
-    if (u1 > 0) {
-        u = parseInt(u1);
+    // argument10
+    var argument10;
+    var argument10_1 = parseInt(backColor - 1);
+    if (argument10_1 > 0) {
+        argument10 = parseInt(argument10_1);
     } else {
-        u = parseInt("0");
+        argument10 = parseInt("0");
     }
 
-    // i
-    var i = costOfMaterial * count;
+    // argument11
+    var argument11 = costOfMaterial * count;
 
-    // p
-    var p = count * w;
+    // argument12
+    var argument12 = count * argument5;
 
-    // s
-    var s = labourCost * labourTimePerColourPerPrint / 3600 * p;
+    // argument13
+    var argument13 = labourCost * labourTimePerColourPerPrint / 3600 * argument12;
 
-    // d
-    var d
+    // argument14
+    var argument14 = inkCost / printsPerLitre * argument12;
+
+    // argument15
+    var argument15_1 = argument3 + argument2;
+    var argument15 = labourCost * argument4 * argument15_1 * count;
+
+    // основная функция
+    var function1 = argument7 + argument9;
+    var function2 = firstScreenCost * function1;
+    var function3 = argument8 + argument10;
+    var function4 = additionalScreenCosts * function3;
+    var function5 = function2 + function4 + argument13 + argument14 + argument15 + argument11;
+    var function6 = function5 / count;
+    var function7;
+    if (argument6 > function6) {
+        function7 = parseFloat(function6);
+    } else {
+        function7 = parseFloat(argument6);
+    }
+
+    var result = function7 * argument1;
+
+    return result; //+ defaultPrice;
 }
