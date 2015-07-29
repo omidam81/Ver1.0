@@ -668,6 +668,7 @@
     <Content Include="Views\AdminCost\Index.cshtml" />
     <Content Include="Views\Home\TrackOrder.cshtml" />
     <Content Include="Views\AdminCost\Edit.cshtml" />
+    <Content Include="Views\Home\OrderTracking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
