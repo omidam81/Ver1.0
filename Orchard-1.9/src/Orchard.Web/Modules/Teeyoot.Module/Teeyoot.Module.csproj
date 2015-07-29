@@ -696,6 +696,7 @@
     <Compile Include="Models\CampaignCategoriesRecord.cs" />
     <Compile Include="Models\CampaignProductRecord.cs" />
     <Compile Include="Models\CampaignRecord.cs" />
+    <Compile Include="Models\OrderStatusRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Services\FontService.cs" />

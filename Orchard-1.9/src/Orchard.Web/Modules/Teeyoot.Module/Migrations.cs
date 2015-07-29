@@ -340,7 +340,18 @@ namespace Teeyoot.Module
                     .Column<float>("DTGPrintPrice")
             );
 
-            return 21;
+            SchemaBuilder.CreateTable(typeof(OrderStatusRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Name", c => c.WithLength(150))
+            );
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<DateTime>("Reserved", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<int>("OrderStatusRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("Order_Status", "OrderRecord", new[] { "OrderStatusRecord_Id" }, "OrderStatusRecord", new[] { "Id" });
+
+            return 22;
         }
 
         public int UpdateFrom2()
@@ -589,6 +600,22 @@ namespace Teeyoot.Module
             );
 
             return 21;
+        }
+
+        public int UpdateFrom21()
+        {
+            SchemaBuilder.CreateTable(typeof(OrderStatusRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Name", c => c.WithLength(150))
+            );
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<DateTime>("Reserved", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<int>("OrderStatusRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("Order_Status", "OrderRecord", new[] { "OrderStatusRecord_Id" }, "OrderStatusRecord", new[] { "Id" });
+
+            return 22;
         }
     }
 }
