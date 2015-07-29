@@ -363,7 +363,13 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("PayoutRecord_UserId", "PayoutRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
 
-            return 23;
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Street", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Suit", c => c.WithLength(50)));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("City", c => c.WithLength(100)));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("State", c => c.WithLength(100)));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Zip", c => c.WithLength(50)));
+
+            return 24;
         }
 
         public int UpdateFrom2()
@@ -645,6 +651,17 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("PayoutRecord_UserId", "PayoutRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
 
             return 23;
+        }
+
+        public int UpdateFrom23()
+        {
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Street", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Suit", c => c.WithLength(50)));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("City", c => c.WithLength(100)));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("State", c => c.WithLength(100)));
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name, table => table.AddColumn<string>("Zip", c => c.WithLength(50)));
+
+            return 24;
         }
     }
 }
