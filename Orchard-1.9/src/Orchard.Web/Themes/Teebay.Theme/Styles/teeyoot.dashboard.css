@@ -10,6 +10,7 @@
         width: 100%;
         min-height: 100%;
         display:table;
+        height:100%;
     }
 
     .dashboard-layout .tb-aside-first {

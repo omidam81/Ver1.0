@@ -35,8 +35,8 @@ namespace Teeyoot.Dashboard.Controllers
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser != null ? teeyootUser.Id : 0);
             var productsOrderedQuery = _orderService
-                .GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray())//;
-                .Where(p => p.OrderRecord.OrderStatusRecord.Name != OrderStatus.Created.ToString());
+                .GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
+                //.Where(p => p.OrderRecord.OrderStatusRecord.Name != OrderStatus.Created.ToString());
 
             FillCampaigns(model, campaignsQuery);
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
