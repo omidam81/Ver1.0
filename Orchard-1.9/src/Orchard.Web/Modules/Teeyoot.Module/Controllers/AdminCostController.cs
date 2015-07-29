@@ -9,6 +9,7 @@ using Teeyoot.Module.ViewModels;
 using Teeyoot.Module.Services.Interfaces;
 using Orchard.Localization;
 using Orchard;
+using System.Globalization;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -36,7 +37,7 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = Convert.ToDecimal(cost.AdditionalScreenCosts), CostOfMaterial = Convert.ToDecimal(cost.CostOfMaterial), DTGPrintPrice = Convert.ToDecimal(cost.DTGPrintPrice), FirstScreenCost = Convert.ToDecimal(cost.FirstScreenCost), InkCost = Convert.ToDecimal(cost.InkCost), LabourCost = Convert.ToDecimal(cost.LabourCost), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = Convert.ToDecimal(cost.PercentageMarkUpRequired), PrintsPerLitre = cost.PrintsPerLitre };
+                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), CostOfMaterial = cost.CostOfMaterial.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre };
 
                 return View("Index", costViewModel);
             }
@@ -51,7 +52,7 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = Convert.ToDecimal(cost.AdditionalScreenCosts), CostOfMaterial = Convert.ToDecimal(cost.CostOfMaterial), DTGPrintPrice = Convert.ToDecimal(cost.DTGPrintPrice), FirstScreenCost = Convert.ToDecimal(cost.FirstScreenCost), InkCost = Convert.ToDecimal(cost.InkCost), LabourCost = Convert.ToDecimal(cost.LabourCost), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = Convert.ToDecimal(cost.PercentageMarkUpRequired), PrintsPerLitre = cost.PrintsPerLitre };
+                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), CostOfMaterial = cost.CostOfMaterial.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre };
 
                 return View("Edit", costViewModel);
             }
@@ -59,33 +60,60 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult Save(AdminCostViewModel costViewModel)
         {
+            costViewModel = ReplaceAllCost(costViewModel);
+
             bool dontUpdate = false;
-            if (costViewModel.AdditionalScreenCosts == 0)
+            float flo;
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.AdditionalScreenCosts, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Additional Screen Costs\""));
                 dontUpdate = true;
             }
-            if (costViewModel.CostOfMaterial == 0)
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.CostOfMaterial, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Cost of material\""));
                 dontUpdate = true;
             }
-            if (costViewModel.DTGPrintPrice == 0)
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.DTGPrintPrice, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"DTG print price\""));
                 dontUpdate = true;
             }
-            if (costViewModel.FirstScreenCost == 0)
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.FirstScreenCost, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"1st Screen Cost\""));
                 dontUpdate = true;
             }
-            if (costViewModel.InkCost == 0)
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.InkCost, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Ink Cost\""));
                 dontUpdate = true;
             }
-            if (costViewModel.LabourCost == 0)
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.LabourCost, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Labour Cost\""));
                 dontUpdate = true;
@@ -100,7 +128,11 @@ namespace Teeyoot.Module.Controllers
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Labour time per side printed per print\""));
                 dontUpdate = true;
             }
-            if (costViewModel.PercentageMarkUpRequired == 0)
+            try
+            {
+                flo = Convert.ToSingle(costViewModel.PercentageMarkUpRequired, new CultureInfo("en-US"));
+            }
+            catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Percentage Mark-Up required\""));
                 dontUpdate = true;
@@ -121,15 +153,15 @@ namespace Teeyoot.Module.Controllers
             {
                 TShirtCostRecord newCost = new TShirtCostRecord
                 {
-                    AdditionalScreenCosts = (float)costViewModel.AdditionalScreenCosts,
-                    CostOfMaterial = (float)costViewModel.CostOfMaterial,
-                    DTGPrintPrice = (float)costViewModel.DTGPrintPrice,
-                    FirstScreenCost = (float)costViewModel.FirstScreenCost,
-                    InkCost = (float)costViewModel.InkCost,
-                    LabourCost = (float)costViewModel.LabourCost,
+                    AdditionalScreenCosts = Convert.ToSingle(costViewModel.AdditionalScreenCosts, new CultureInfo("en-US")),
+                    CostOfMaterial = Convert.ToSingle(costViewModel.CostOfMaterial, new CultureInfo("en-US")),
+                    DTGPrintPrice = Convert.ToSingle(costViewModel.DTGPrintPrice, new CultureInfo("en-US")),
+                    FirstScreenCost = Convert.ToSingle(costViewModel.FirstScreenCost, new CultureInfo("en-US")),
+                    InkCost = Convert.ToSingle(costViewModel.InkCost, new CultureInfo("en-US")),
+                    LabourCost = Convert.ToSingle(costViewModel.LabourCost, new CultureInfo("en-US")),
                     LabourTimePerColourPerPrint = costViewModel.LabourTimePerColourPerPrint,
                     LabourTimePerSidePrintedPerPrint = costViewModel.LabourTimePerSidePrintedPerPrint,
-                    PercentageMarkUpRequired = (float)costViewModel.PercentageMarkUpRequired,
+                    PercentageMarkUpRequired = Convert.ToSingle(costViewModel.PercentageMarkUpRequired, new CultureInfo("en-US")),
                     PrintsPerLitre = costViewModel.PrintsPerLitre
                 };
 
@@ -144,15 +176,15 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                cost.AdditionalScreenCosts = (float)costViewModel.AdditionalScreenCosts;
-                cost.CostOfMaterial = (float)costViewModel.CostOfMaterial;
-                cost.DTGPrintPrice = (float)costViewModel.DTGPrintPrice;
-                cost.FirstScreenCost = (float)costViewModel.FirstScreenCost;
-                cost.InkCost = (float)costViewModel.InkCost;
-                cost.LabourCost = (float)costViewModel.LabourCost;
+                cost.AdditionalScreenCosts = Convert.ToSingle(costViewModel.AdditionalScreenCosts, new CultureInfo("en-US"));
+                cost.CostOfMaterial = Convert.ToSingle(costViewModel.CostOfMaterial, new CultureInfo("en-US"));
+                cost.DTGPrintPrice = Convert.ToSingle(costViewModel.DTGPrintPrice, new CultureInfo("en-US"));
+                cost.FirstScreenCost = Convert.ToSingle(costViewModel.FirstScreenCost, new CultureInfo("en-US"));
+                cost.InkCost = Convert.ToSingle(costViewModel.InkCost, new CultureInfo("en-US"));
+                cost.LabourCost = Convert.ToSingle(costViewModel.LabourCost, new CultureInfo("en-US"));
                 cost.LabourTimePerColourPerPrint = costViewModel.LabourTimePerColourPerPrint;
                 cost.LabourTimePerSidePrintedPerPrint = costViewModel.LabourTimePerSidePrintedPerPrint;
-                cost.PercentageMarkUpRequired = (float)costViewModel.PercentageMarkUpRequired;
+                cost.PercentageMarkUpRequired = Convert.ToSingle(costViewModel.PercentageMarkUpRequired, new CultureInfo("en-US"));
                 cost.PrintsPerLitre = costViewModel.PrintsPerLitre;
 
                 if (_costService.UpdateCost(cost))
@@ -168,50 +200,17 @@ namespace Teeyoot.Module.Controllers
             return this.RedirectToAction("Index");
         }
 
-        public ActionResult ValidationForInput(AdminCostViewModel cost)
+        public AdminCostViewModel ReplaceAllCost(AdminCostViewModel cost)
         {
-            if (cost.AdditionalScreenCosts == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Additional Screen Costs\""));
-            }
-            if (cost.CostOfMaterial == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Cost of material\""));
-            }
-            if (cost.DTGPrintPrice == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"DTG print price\""));
-            }
-            if (cost.FirstScreenCost == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"1st Screen Cost\""));
-            }
-            if (cost.InkCost == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Ink Cost\""));
-            }
-            if (cost.LabourCost == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Labour Cost\""));
-            }
-            if (cost.LabourTimePerColourPerPrint == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Labour time per colour per print\""));
-            }
-            if (cost.LabourTimePerSidePrintedPerPrint == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Labour time per side printed per print\""));
-            }
-            if (cost.PercentageMarkUpRequired == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Percentage Mark-Up required\""));
-            }
-            if (cost.PrintsPerLitre == 0)
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Prints per litre\""));
-            }
+            cost.AdditionalScreenCosts = cost.AdditionalScreenCosts.Replace(",", ".");
+            cost.CostOfMaterial = cost.CostOfMaterial.Replace(",", ".");
+            cost.DTGPrintPrice = cost.DTGPrintPrice.Replace(",", ".");
+            cost.FirstScreenCost = cost.FirstScreenCost.Replace(",", ".");
+            cost.InkCost = cost.InkCost.Replace(",", ".");
+            cost.LabourCost = cost.LabourCost.Replace(",", ".");
+            cost.PercentageMarkUpRequired = cost.PercentageMarkUpRequired.Replace(",", ".");
 
-            return this.RedirectToAction("Edit");
+            return cost;
         }
     }
 }
