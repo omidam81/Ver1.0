@@ -40,7 +40,9 @@
 {
     <script>
         $(document).ready(function() {
-            $('#colors').multiSelect();
+            $('#colors').multiSelect({
+                keepOrder: true
+            });
 
             $('#product_form').submit(function() {
                 var name = $('#name').val();
