@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminWizardController.cs" />
     <Compile Include="Controllers\ColourController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductHeadlineController.cs" />
     <Compile Include="Controllers\ProductStyleController.cs" />
     <Compile Include="Models\ChooseColourFor.cs" />
@@ -150,6 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Colour\EditSwatchColour.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
