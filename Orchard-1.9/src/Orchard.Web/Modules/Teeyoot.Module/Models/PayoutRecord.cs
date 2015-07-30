@@ -13,6 +13,6 @@ namespace Teeyoot.Module.Models
         public virtual string Event { get; set; }
         public virtual double Amount { get; set; }     
         public virtual bool IsPlus { get; set; }
-        public virtual TeeyootUserPartRecord UserId { get; set; }
+        public virtual int UserId { get; set; }
     }
 }

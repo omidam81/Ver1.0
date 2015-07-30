@@ -32,6 +32,8 @@ namespace Teeyoot.Module.Models
 
         public virtual double TotalPrice { get; set; }
 
+        public virtual bool IsActive { get; set; }
+
         public virtual DateTime Created { get; set; }
 
         public virtual DateTime? Reserved { get; set; }

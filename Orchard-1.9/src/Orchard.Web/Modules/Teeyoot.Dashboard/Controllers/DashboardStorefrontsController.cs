@@ -61,16 +61,15 @@ namespace Teeyoot.Dashboard.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
             
         }
-        public ActionResult ViewStorefront(string url)
-        {
-            var user = _wca.GetContext().CurrentUser;
-            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-            var storeFront = _storeService.GetStoreByUrl(url);
 
-            var campaigns = _campaignService.GetCampaignsOfUser(teeyootUser.Id).ToList();
+ 
+        public ActionResult ViewStorefront(string url)
+        {            
+            var storeFront = _storeService.GetStoreByUrl(url);
+            var campaigns = _campaignService.GetCampaignsOfUser(int.Parse(storeFront.TeeyootUserId.ToString())).ToList();
             var model = new StoreViewModel();
             model.Campaigns = campaigns;
-            model.Img = "/Media/Storefronts/" + teeyootUser.Id.ToString() + "/" + storeFront.Id.ToString() + "/storefront.png";
+            model.Img = "/Media/Storefronts/" +storeFront.TeeyootUserId.ToString() + "/" + storeFront.Id.ToString() + "/storefront.png";
             model.Title = storeFront.Title;
             model.Description = storeFront.Description;
             IList<CampaignRecord> selectedCamp = new List<CampaignRecord>();
@@ -83,7 +82,42 @@ namespace Teeyoot.Dashboard.Controllers
             model.HideStore = storeFront.HideStore;
             model.Url = storeFront.Url;
             model.Id = storeFront.Id;
-            return View(model);
+            var user = _wca.GetContext().CurrentUser;
+            
+                if (user != null)
+                {
+                    var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+
+                    if (teeyootUser.Id == storeFront.TeeyootUserId)
+                    {
+                        return View(model);
+                    }
+                    else
+                    {
+
+                        if (!storeFront.HideStore)
+                        {
+                            return View("StorefrontForClient", model);
+                        }
+                        else
+                        {
+                            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                        }
+                    }
+                }
+                else
+                {
+                    if (!storeFront.HideStore)
+                    {
+                        return View("StorefrontForClient", model);
+                    }
+                    else
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                    }
+                    
+                }
+           
         }
 
         [HttpPost]
