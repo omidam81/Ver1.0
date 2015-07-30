@@ -8,7 +8,7 @@ using Teeyoot.Module.Models;
 
 namespace Teeyoot.Module.Services.Interfaces
 {
-    interface IPayoutService : IDependency
+    public interface IPayoutService : IDependency
     {
         IQueryable<PayoutRecord> GetAllPayouts();
     }

@@ -9,6 +9,7 @@ using Teeyoot.Messaging.Services;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -23,6 +24,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IimageHelper _imageHelper;
         private readonly IMembershipService _membershipService;
         private readonly IContentManager _contentManager;
+        private readonly IPayoutService _payoutService;
         private IOrchardServices Services { get; set; }
 
         public DashboardController(ICampaignService campaignService, 
@@ -32,6 +34,7 @@ namespace Teeyoot.Dashboard.Controllers
                                    IStoreService storeService,
                                    IimageHelper imageHelper,
                                    IMembershipService membershipService,
+                                   IPayoutService payoutService,
                                    IOrchardServices services,
                                     IContentManager contentManager)
         {
@@ -44,6 +47,7 @@ namespace Teeyoot.Dashboard.Controllers
             _imageHelper = imageHelper;
             _membershipService = membershipService;
             _contentManager = contentManager;
+            _payoutService = payoutService;
             Services = services;
 
             Logger = NullLogger.Instance;
