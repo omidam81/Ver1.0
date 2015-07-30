@@ -105,6 +105,7 @@
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductColourItemViewModel.cs" />
     <Compile Include="ViewModels\ProductColourViewModel.cs" />
+    <Compile Include="ViewModels\ProductGroupItemViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleIndexViewModel.cs" />

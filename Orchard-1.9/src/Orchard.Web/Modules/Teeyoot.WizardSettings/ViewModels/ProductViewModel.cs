@@ -14,7 +14,10 @@ namespace Teeyoot.WizardSettings.ViewModels
             Id = productId;
 
             ProductColours = new List<ProductColourItemViewModel>();
-            SelectedProductColours = new List<int>();
+            SelectedProductColours = new List<ProductColourItemViewModel>();
+
+            ProductGroups = new List<ProductGroupItemViewModel>();
+            SelectedProductGroups = new List<int>();
         }
 
         public int? Id { get; set; }
@@ -23,6 +26,10 @@ namespace Teeyoot.WizardSettings.ViewModels
         public string Name { get; set; }
 
         public IEnumerable<ProductColourItemViewModel> ProductColours { get; set; }
-        public IEnumerable<int> SelectedProductColours { get; set; }
+        public List<ProductColourItemViewModel> SelectedProductColours { get; set; }
+        public IEnumerable<ProductGroupItemViewModel> ProductGroups { get; set; }
+        public IEnumerable<int> SelectedProductGroups { get; set; }
+        public IEnumerable<ProductHeadlineViewModel> ProductHeadlines { get; set; }
+        public int SelectedProductHeadline { get; set; }
     }
 }

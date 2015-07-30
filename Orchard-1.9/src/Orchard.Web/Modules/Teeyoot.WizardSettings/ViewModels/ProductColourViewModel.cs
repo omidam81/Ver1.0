@@ -4,6 +4,8 @@ namespace Teeyoot.WizardSettings.ViewModels
 {
     public class ProductColourViewModel
     {
+        public string ReturnUrl { get; set; }
+
         [Required]
         public int Id { get; set; }
 

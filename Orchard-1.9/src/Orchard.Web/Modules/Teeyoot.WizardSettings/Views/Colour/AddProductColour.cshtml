@@ -11,6 +11,7 @@
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("AddProductColour", "Colour")))
 {
+    @Html.HiddenFor(m => m.ReturnUrl)
     <fieldset>
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.TextBoxFor(m => m.Name, new {@class = "text large"})

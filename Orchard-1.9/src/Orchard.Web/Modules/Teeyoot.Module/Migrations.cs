@@ -375,7 +375,22 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.NotNull().WithDefault(false)));
 
-            return 27;
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name, table => table.AddColumn<string>("Status", c => c.NotNull().WithLength(50)));
+
+            SchemaBuilder.CreateTable(typeof(PromotionRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<DateTime>("Expiration")
+                    .Column<string>("PromoId", c => c.WithLength(15))
+                    .Column<string>("AmountType", c => c.WithLength(50))
+                    .Column<int>("AmountSize")
+                    .Column<string>("DiscountType", c => c.WithLength(50))
+                    .Column<bool>("Status")
+                    .Column<int>("Redeemed")
+            ); 
+
+            return 29;
+
         }
 
         public int UpdateFrom2()
@@ -686,6 +701,28 @@ namespace Teeyoot.Module
         {
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.NotNull().WithDefault(false)));
             return 27;
+        }
+
+        public int UpdateFrom27()
+        {
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name, table => table.AddColumn<string>("Status", c => c.NotNull().WithLength(50)));
+            return 28;
+        }
+
+        public int UpdateFrom28()
+        {
+            SchemaBuilder.CreateTable(typeof(PromotionRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<DateTime>("Expiration")
+                    .Column<string>("PromoId", c => c.WithLength(15))
+                    .Column<string>("AmountType", c => c.WithLength(50))
+                    .Column<int>("AmountSize")
+                    .Column<string>("DiscountType", c => c.WithLength(50))
+                    .Column<bool>("Status")
+                    .Column<int>("Redeemed")
+            ); 
+            return 29;
         }
     }
 }

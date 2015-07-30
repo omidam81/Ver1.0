@@ -1136,6 +1136,7 @@ var design={
                                 price = prices[i].price;
                             }
                         }
+                        app.state.currentProduct.BaseCost = parseFloat(price).toFixed(2);
                         window.costOfMaterial = parseFloat(price).toFixed(2);
                         calculatePrice(window.frontColor, window.backColor);
                     })

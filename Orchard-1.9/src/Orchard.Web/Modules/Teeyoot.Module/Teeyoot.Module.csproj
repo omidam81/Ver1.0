@@ -693,6 +693,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\PromotionRecord.cs" />
     <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignCategoriesPart.cs" />
     <Compile Include="Models\CampaignCategoriesWidgetPart.cs" />
@@ -703,7 +704,9 @@
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
+    <Compile Include="Services\PromotionService.cs" />
     <Compile Include="Services\FontService.cs" />
+    <Compile Include="Services\Interfaces\IPromotionService.cs" />
     <Compile Include="Services\Interfaces\IFontService.cs" />
     <Compile Include="Services\Interfaces\IPayoutService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
