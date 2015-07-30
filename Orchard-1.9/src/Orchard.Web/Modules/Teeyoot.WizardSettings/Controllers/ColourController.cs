@@ -96,9 +96,9 @@ namespace Teeyoot.WizardSettings.Controllers
             return View(viewModel);
         }
 
-        public ActionResult AddProductColour()
+        public ActionResult AddProductColour(string returnUrl)
         {
-            var viewModel = new ProductColourViewModel();
+            var viewModel = new ProductColourViewModel {ReturnUrl = returnUrl};
 
             return View(viewModel);
         }
@@ -123,7 +123,13 @@ namespace Teeyoot.WizardSettings.Controllers
 
             _productColourRepository.Create(productColour);
 
-            _orchardServices.Notifier.Information(T("New Product Colour has been added."));
+            _orchardServices.Notifier.Information(T("New Product Colour \"{0}\" has been added.", productColour.Name));
+
+            if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
+            {
+                return Redirect(viewModel.ReturnUrl);
+            }
+
             return RedirectToAction("Index", "Colour",
                 new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
         }

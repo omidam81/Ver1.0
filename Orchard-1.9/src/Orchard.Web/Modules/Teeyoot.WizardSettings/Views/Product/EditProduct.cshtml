@@ -31,6 +31,7 @@
                 </option>
             }
         </select>
+        <button id="add_colour" type="button" class="primaryAction">Add Colour</button>
         @Html.Label(T("Selected Colours").ToString())
         <table id="selected-colours-table" class="items">
             <thead>
@@ -144,6 +145,12 @@
                 deselectProductColour(productColourId);
 
                 $(this).closest('.product-colour-row').remove();
+            });
+
+            $('#add_colour').click(function() {
+                if (confirm('All unsaved changes will be lost. Are you sure?')) {
+                    window.location.href = '/Admin/Colours/Product/Add?returnUrl=' + encodeURIComponent(window.location.href);
+                }
             });
 
             $('#product_form').submit(function() {
