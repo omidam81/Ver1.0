@@ -17,7 +17,6 @@ function formula(frontColor, backColor) {
     var percentageMarkUpRequired = parseFloat(window.percentageMarkUpRequired) / 100;           //B11
     var printsPerLitre = parseInt(window.printsPerLitre);                                       //B6
     var count = parseInt(window.count);                                                         //B16
-    var defaultPrice = parseFloat(window.defaultPrice);
 
     // argument1
     var argument1 = 1 + percentageMarkUpRequired;
@@ -113,5 +112,5 @@ function formula(frontColor, backColor) {
 
     var result = function7 * argument1;
 
-    return result; //+ defaultPrice;
+    return result;
 }

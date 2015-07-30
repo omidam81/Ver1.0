@@ -30,9 +30,6 @@ namespace Teeyoot.Module.ViewModels
         public int LabourTimePerSidePrintedPerPrint { get; set; }
 
         [Required]
-        public string CostOfMaterial { get; set; }
-
-        [Required]
         public string PercentageMarkUpRequired { get; set; }
 
         [Required]
