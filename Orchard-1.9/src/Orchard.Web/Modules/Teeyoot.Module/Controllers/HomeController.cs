@@ -1,6 +1,8 @@
 ﻿using Braintree;
+using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
+using Orchard.UI.Notify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +20,21 @@ namespace Teeyoot.Module.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly ICampaignService _campaignService;
+        private readonly INotifier _notifier;
 
-        public HomeController(IOrderService orderService, ICampaignService campaignService)
+        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier)
         {
             _orderService = orderService;
             _campaignService = campaignService;
 
             Logger = NullLogger.Instance;
+            _notifier = notifier;
+            T = NullLocalizer.Instance;
         }
 
-        public ILogger Logger { get; set; }
-
+        private ILogger Logger { get; set; }
+        private Localizer T { get; set; }
+      
         public static BraintreeGateway Gateway = new BraintreeGateway
         {
             Environment = Braintree.Environment.SANDBOX,
@@ -162,16 +168,25 @@ namespace Teeyoot.Module.Controllers
 
         [Themed]
         public ActionResult TrackOrder() {
+
+            var message = TempData["OrderNotFoundMessage"];
+            if (message != null && !string.IsNullOrWhiteSpace(message.ToString()))
+                _notifier.Error(T(message.ToString()));
             return View();
         }
 
-        public ActionResult GetOrderTracking(string orderId)
+        [Themed]
+        [HttpPost]
+        public ActionResult OrderTracking(string orderId)
         {
-            return View();
-        }
+            var order = _orderService.GetActiveOrderByPublicId(orderId);
 
-        public ActionResult OrderTracking()
-        {
+            if (order == null)
+            {
+                TempData["OrderNotFoundMessage"] = "Could not find order with that lookup number";
+                return RedirectToAction("TrackOrder");
+            }
+
             return View();
         }
     }

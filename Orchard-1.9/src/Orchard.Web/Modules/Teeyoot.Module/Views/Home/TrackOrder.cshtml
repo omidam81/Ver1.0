@@ -10,16 +10,19 @@
             <div class="col-sm-7">
                 <h1 style="font-weight: bold; font-size: 2.508em;">Track your order</h1>
                 <p>Enter your lookup number (included in your confirmation email) to check the status of your order:</p>
-                <form method="get" action="@Url.Action("GetOrderTracking")">
+                
+                @using (Html.BeginFormAntiForgeryPost("TrackOrder", FormMethod.Post, new { onsubmit = "return setUrl(this)" }))
+                {                 
                     <div class="row">
                         <div class="col-sm-8 lookupNumber">
                             <input class="form-control input-lg input-inline-with-btn" id="orderId" name="orderId" placeholder="Lookup number" type="text">
                         </div>
                         <div class="col-sm-2">
-                            <input class="btnTrack" name="commit" type="submit" value="Track order">
+                            <input class="btnTrack" type="submit">
                         </div>
                     </div>
-                </form>
+                }
+
                 <p>
                     <a href="/track/recover">Forget your order number?</a>
                 </p>
@@ -30,4 +33,22 @@
         </div>
     </div>
 </div>
+
+@using (Script.Foot())
+{ 
+    <script>
+
+        var setUrl = function (form) {
+            var orderId = $('#orderId').val();
+
+            if (orderId === '') {
+                alert('Please enter your order lookup number');
+                return false;
+            }
+
+            form.action = form.action + '/' + orderId;
+        }
+
+    </script>
+}
 
