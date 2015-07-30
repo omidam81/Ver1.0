@@ -73,6 +73,7 @@
   <ItemGroup>
     <Content Include="Styles\campaigns.css" />
     <Content Include="Styles\Message.css" />
+    <Content Include="Styles\Payouts.css" />
     <Content Include="Styles\Settings.css" />
     <Content Include="Styles\storefonts.css" />
     <Content Include="Web.config" />
@@ -114,6 +115,7 @@
     <Compile Include="Routes.cs" />
     <Compile Include="ViewModels\CampaignsViewModel.cs" />
     <Compile Include="ViewModels\MessageContentViewModel.cs" />
+    <Compile Include="ViewModels\PayoutsViewModel.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\ViewStorefront.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\StartPayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dashboard\StorefrontForClient.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

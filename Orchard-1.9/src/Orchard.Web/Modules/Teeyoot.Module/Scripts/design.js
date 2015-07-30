@@ -1129,6 +1129,16 @@ var design={
                     .on('click', function(){
                         design.products.changeColor(color);
                         app.state.currentProduct.ColorId = parseInt(color.id);
+                        var prices = app.state.product.prices;
+                        var price;
+                        for (var i = 0; i < prices.length; i++) {
+                            if (prices[i].color_id == color.id) {
+                                price = prices[i].price;
+                            }
+                        }
+                        app.state.currentProduct.BaseCost = parseFloat(price).toFixed(2);
+                        window.costOfMaterial = parseFloat(price).toFixed(2);
+                        calculatePrice(window.frontColor, window.backColor);
                     })
                     .hover(
                         function() {

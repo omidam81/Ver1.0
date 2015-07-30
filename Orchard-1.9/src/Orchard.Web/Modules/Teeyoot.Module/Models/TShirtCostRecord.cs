@@ -22,8 +22,6 @@ namespace Teeyoot.Module.Models
 
         public virtual int LabourTimePerSidePrintedPerPrint { get; set; }
 
-        public virtual float CostOfMaterial { get; set; }
-
         public virtual float PercentageMarkUpRequired { get; set; }
 
         public virtual float DTGPrintPrice { get; set; }

@@ -1,8 +1,64 @@
-﻿@{
-    
+﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
+
+@{
+    Style.Include("Payouts.css");
 }
 
-<div class="dashboard-section-title">@T("Payouts")
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(".btnStartPayout").click(function () {
+            $(".main").css = ({ "display": "none" });
+            $("#startPayout").css = ({ "display": "inline" });
+        });
+    </script>
+}
+
+<div class="dashboard-section-title">
+    @T("Payouts")
     <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
     <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
 </div>
+
+<section class="general_border">
+    <div class="main">
+        <h1>Current Payout Amount</h1>
+        <div class="balance">
+            <h3 style="float:left; margin-left:5%;">You currently have   $ </h3>
+            <p style="font-size: larger; float:left; margin: 10px;"> @Model.Balance</p>
+            <h3 style="float:left;">ready to be paid out</h3>
+
+            <a class="button btnStartPayout" href="@Url.Action("StartPayout", "Dashboard")">Start a payout</a>
+        </div>
+
+        <h1>Payout History</h1>
+
+        <table>
+            <tr>
+                <td class="td1 main">DATE</td>
+                <td class="td2 main">EVENT</td>
+                <td class="td3 main">AMOUNT</td>
+            </tr>
+            @foreach (var elem in @Model.Transactions)
+            {
+                <tr>
+                    <td class="td1">@elem.Date</td>
+                    <td class="td2">@elem.Event</td>
+                    @if (@elem.IsPlus)
+                    {
+                        <td class="td3">+ $@elem.Amount</td>
+                    }
+                    else
+                    {
+                        <td class="td3">- $@elem.Amount</td>
+                    }
+
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div id="startPayout" style="display:none">
+        @Html.Partial("StartPayout")
+    </div>
+</section>

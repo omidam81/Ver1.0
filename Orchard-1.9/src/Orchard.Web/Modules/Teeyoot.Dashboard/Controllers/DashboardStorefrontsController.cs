@@ -61,16 +61,23 @@ namespace Teeyoot.Dashboard.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
             
         }
-        public ActionResult ViewStorefront(string url)
-        {
-            var user = _wca.GetContext().CurrentUser;
-            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-            var storeFront = _storeService.GetStoreByUrl(url);
 
-            var campaigns = _campaignService.GetCampaignsOfUser(teeyootUser.Id).ToList();
+ 
+        public ActionResult ViewStorefront(string url)
+        {            
+            var storeFront = _storeService.GetStoreByUrl(url);
+            var campaigns = _campaignService.GetCampaignsOfUser(int.Parse(storeFront.TeeyootUserId.ToString())).ToList();
             var model = new StoreViewModel();
             model.Campaigns = campaigns;
-            model.Img = "/Media/Storefronts/" + teeyootUser.Id.ToString() + "/" + storeFront.Id.ToString() + "/storefront.png";
+
+            var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), storeFront.TeeyootUserId.ToString(), storeFront.Id.ToString());
+            DirectoryInfo dir = new DirectoryInfo(destForder);
+
+            foreach (FileInfo fi in dir.GetFiles())
+            {
+                model.Img = "/Media/Storefronts/" + storeFront.TeeyootUserId.ToString() + "/" + storeFront.Id.ToString() + "/"+ fi.Name;
+            }
+
             model.Title = storeFront.Title;
             model.Description = storeFront.Description;
             IList<CampaignRecord> selectedCamp = new List<CampaignRecord>();
@@ -83,7 +90,42 @@ namespace Teeyoot.Dashboard.Controllers
             model.HideStore = storeFront.HideStore;
             model.Url = storeFront.Url;
             model.Id = storeFront.Id;
-            return View(model);
+            var user = _wca.GetContext().CurrentUser;
+            
+                if (user != null)
+                {
+                    var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+
+                    if (teeyootUser.Id == storeFront.TeeyootUserId)
+                    {
+                        return View(model);
+                    }
+                    else
+                    {
+
+                        if (!storeFront.HideStore)
+                        {
+                            return View("StorefrontForClient", model);
+                        }
+                        else
+                        {
+                            return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
+                        }
+                    }
+                }
+                else
+                {
+                    if (!storeFront.HideStore)
+                    {
+                        return View("StorefrontForClient", model);
+                    }
+                    else
+                    {
+                        return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
+                    }
+                    
+                }
+           
         }
 
         [HttpPost]
@@ -105,13 +147,15 @@ namespace Teeyoot.Dashboard.Controllers
             if (base64image != null)
             {
                 var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString(), id.ToString());
+                
+                clearFolder(destForder);
 
                 if (!Directory.Exists(destForder))
                 {
                     Directory.CreateDirectory(destForder);
                 }
 
-                _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront.png"), ImageFormat.Png);
+                _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront"+DateTime.Now.Millisecond+".png"), ImageFormat.Png);
             }
 
             Response.Write(url);

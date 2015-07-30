@@ -40,32 +40,6 @@ background: #ff4f00 !important;
     border-left: 1px solid #acb0b8;
 }
 
-.track-bar .track-position {
-    position: relative;
-    height: 100%;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 82px;
-}
-.track-bar .track-state {
-    border-top: 1px solid #acb0b8;
-    border-bottom: 1px solid #acb0b8;
-    text-align: center;
-}
-.track-bar .track-margin-line {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: -30px;
-    width: 30px;
-    height: 100%;
-    border-top: 1px solid #acb0b8;
-    border-bottom: 1px solid #acb0b8;
-}
-#track-deliver {
-    z-index: 1;
-    border-right: 1px solid #acb0b8;
-}
 .track-order-future .track-arrow {
     background-position: 29px 0;
 }
@@ -136,6 +110,89 @@ background: #ff4f00 !important;
     margin: 0;
 }
 
+
+.track-bar .track-position {
+    position: relative;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 82px;
+}
+.track-bar .track-state {
+    border-top: 1px solid #acb0b8;
+    border-bottom: 1px solid #acb0b8;
+    text-align: center;
+}
+
+.track-order-past {
+    color: #5c5f66;
+    background-position: 0 0;
+    background-color: #dcdde0;
+}
+.track-order-past .track-state span {
+  background: #dcdde0;
+  border: 1px solid #acb0b8;
+}
+
+.track-order-past .track-arrow {
+  background-position: 0 0;
+}
+
+.track-order-past .track-margin-line {
+  background: #dcdde0;
+}
+
+.track-order-current {
+  background: #edeef0;
+  color: #5c5f66;
+}
+
+.track-order-current .track-state span {
+  background: #4bb232;
+  border: 1px solid #4bb232;
+  color: white;
+}
+
+.track-order-current .track-arrow {
+  background-position: 58px 0;
+}
+
+.track-order-current .track-margin-line {
+  background: #edeef0;
+}
+
+.track-order-future {
+  color: #acb0b8;
+}
+
+.track-order-future .track-state span {
+  background: white;
+  border: 1px solid #acb0b8;
+}
+
+.track-order-future .track-arrow {
+  background-position: 29px 0;
+}
+
+.track-order-future img {
+  opacity: 0.2;
+}
+
+
+.track-bar .track-margin-line {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -30px;
+    width: 30px;
+    height: 100%;
+    border-top: 1px solid #acb0b8;
+    border-bottom: 1px solid #acb0b8;
+}
+#track-deliver {
+    z-index: 1;
+    border-right: 1px solid #acb0b8;
+}
 .track-border-left {
     border-left: 1px solid #acb0b8;
 }

@@ -113,10 +113,7 @@
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.Id)
-            <div style="display: none;">
-                <input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="patch">
-                <input name="authenticity_token" type="hidden" value="kIbplJRzGkr7vPSQaRHJ1RJ5cFugU66ujOR/IqEh+tw=">
-            </div>
+           
             <div class="account__password_info">
                 <label>
                     <div class="label__title">Current password</div>

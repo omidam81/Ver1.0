@@ -54,7 +54,6 @@ namespace Teeyoot.Module.Controllers
                 AdminCostViewModel costViewModel = new AdminCostViewModel
                 {
                     AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(),
-                    CostOfMaterial = cost.CostOfMaterial.ToString(),
                     DTGPrintPrice = cost.DTGPrintPrice.ToString(),
                     FirstScreenCost = cost.FirstScreenCost.ToString(),
                     InkCost = cost.InkCost.ToString(),
@@ -208,7 +207,12 @@ namespace Teeyoot.Module.Controllers
                 colors_available = p.ColorsAvailable.Select(c => c.ProductColorRecord.Id).ToArray(),
                 list_of_sizes = p.SizesAvailable.Count > 0 ? 
                     p.SizesAvailable.First().ProductSizeRecord.SizeCodeRecord.Name + " - " + p.SizesAvailable.Last().ProductSizeRecord.SizeCodeRecord.Name :
-                    ""
+                    "",
+                prices = p.ColorsAvailable.Select(c => new ProductPriceViewModel
+                {
+                    color_id = c.ProductColorRecord.Id,
+                    price = c.BaseCost
+                }).ToArray()
             }).ToArray();
 
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -448,7 +452,6 @@ namespace Teeyoot.Module.Controllers
         public AdminCostViewModel ReplaceAllCost(AdminCostViewModel cost)
         {
             cost.AdditionalScreenCosts = cost.AdditionalScreenCosts.Replace(",", ".");
-            cost.CostOfMaterial = cost.CostOfMaterial.Replace(",", ".");
             cost.DTGPrintPrice = cost.DTGPrintPrice.Replace(",", ".");
             cost.FirstScreenCost = cost.FirstScreenCost.Replace(",", ".");
             cost.InkCost = cost.InkCost.Replace(",", ".");

@@ -37,7 +37,7 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), CostOfMaterial = cost.CostOfMaterial.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre };
+                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre };
 
                 return View("Index", costViewModel);
             }
@@ -52,7 +52,7 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), CostOfMaterial = cost.CostOfMaterial.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre };
+                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre };
 
                 return View("Edit", costViewModel);
             }
@@ -71,15 +71,6 @@ namespace Teeyoot.Module.Controllers
             catch
             {
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Additional Screen Costs\""));
-                dontUpdate = true;
-            }
-            try
-            {
-                flo = Convert.ToSingle(costViewModel.CostOfMaterial, new CultureInfo("en-US"));
-            }
-            catch
-            {
-                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Incorrect entries in the box \"Cost of material\""));
                 dontUpdate = true;
             }
             try
@@ -154,7 +145,6 @@ namespace Teeyoot.Module.Controllers
                 TShirtCostRecord newCost = new TShirtCostRecord
                 {
                     AdditionalScreenCosts = Convert.ToSingle(costViewModel.AdditionalScreenCosts, new CultureInfo("en-US")),
-                    CostOfMaterial = Convert.ToSingle(costViewModel.CostOfMaterial, new CultureInfo("en-US")),
                     DTGPrintPrice = Convert.ToSingle(costViewModel.DTGPrintPrice, new CultureInfo("en-US")),
                     FirstScreenCost = Convert.ToSingle(costViewModel.FirstScreenCost, new CultureInfo("en-US")),
                     InkCost = Convert.ToSingle(costViewModel.InkCost, new CultureInfo("en-US")),
@@ -177,7 +167,6 @@ namespace Teeyoot.Module.Controllers
             else
             {
                 cost.AdditionalScreenCosts = Convert.ToSingle(costViewModel.AdditionalScreenCosts, new CultureInfo("en-US"));
-                cost.CostOfMaterial = Convert.ToSingle(costViewModel.CostOfMaterial, new CultureInfo("en-US"));
                 cost.DTGPrintPrice = Convert.ToSingle(costViewModel.DTGPrintPrice, new CultureInfo("en-US"));
                 cost.FirstScreenCost = Convert.ToSingle(costViewModel.FirstScreenCost, new CultureInfo("en-US"));
                 cost.InkCost = Convert.ToSingle(costViewModel.InkCost, new CultureInfo("en-US"));
@@ -203,7 +192,6 @@ namespace Teeyoot.Module.Controllers
         public AdminCostViewModel ReplaceAllCost(AdminCostViewModel cost)
         {
             cost.AdditionalScreenCosts = cost.AdditionalScreenCosts.Replace(",", ".");
-            cost.CostOfMaterial = cost.CostOfMaterial.Replace(",", ".");
             cost.DTGPrintPrice = cost.DTGPrintPrice.Replace(",", ".");
             cost.FirstScreenCost = cost.FirstScreenCost.Replace(",", ".");
             cost.InkCost = cost.InkCost.Replace(",", ".");

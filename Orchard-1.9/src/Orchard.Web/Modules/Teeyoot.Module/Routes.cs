@@ -66,6 +66,21 @@ namespace Teeyoot.Module
                 ,
                 new RouteDescriptor {
                     Route = new Route(
+                        "TrackOrder/{orderId}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Home"},
+                            {"action", "OrderTracking"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                }
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
                         "LaunchCampaign",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},

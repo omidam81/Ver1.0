@@ -1,6 +1,8 @@
 ﻿using Braintree;
+using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
+using Orchard.UI.Notify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +20,21 @@ namespace Teeyoot.Module.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly ICampaignService _campaignService;
+        private readonly INotifier _notifier;
 
-        public HomeController(IOrderService orderService, ICampaignService campaignService)
+        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier)
         {
             _orderService = orderService;
             _campaignService = campaignService;
 
             Logger = NullLogger.Instance;
+            _notifier = notifier;
+            T = NullLocalizer.Instance;
         }
 
-        public ILogger Logger { get; set; }
-
+        private ILogger Logger { get; set; }
+        private Localizer T { get; set; }
+      
         public static BraintreeGateway Gateway = new BraintreeGateway
         {
             Environment = Braintree.Environment.SANDBOX,
@@ -58,7 +64,8 @@ namespace Teeyoot.Module.Controllers
                     PaymentMethodNonce = "fake-valid-nonce",
                     Options = new TransactionOptionsRequest
                     {
-                        SubmitForSettlement = true
+                        SubmitForSettlement = true,
+                        StoreInVault = true
                     }
                 };
 
@@ -78,11 +85,11 @@ namespace Teeyoot.Module.Controllers
                     },
                     Options = new TransactionOptionsRequest
                     {
-                        SubmitForSettlement = true
+                        StoreInVault = true
                     }
                 };
-
-                result = Gateway.Transaction.Sale(requestCard);
+                //result = Gateway.Transaction.Sale(requestCard);
+                result = Gateway.Transaction.SubmitForSettlement("the_transaction_id", Decimal.Parse("1000.0"));
             }
            
             if (result.IsSuccess())
@@ -100,6 +107,7 @@ namespace Teeyoot.Module.Controllers
                 order.Country = collection["Country"];
                 order.PhoneNumber = collection["PhoneNumber"];
                 order.Reserved = DateTime.UtcNow;
+                order.IsActive = true;
 
                 _orderService.UpdateOrder(order, OrderStatus.Reserved);
 
@@ -137,6 +145,7 @@ namespace Teeyoot.Module.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new order");
             }
         }
+
     
         [Themed]
         public ActionResult Payment(string orderId, string result = "")
@@ -160,12 +169,25 @@ namespace Teeyoot.Module.Controllers
 
         [Themed]
         public ActionResult TrackOrder() {
+
+            var message = TempData["OrderNotFoundMessage"];
+            if (message != null && !string.IsNullOrWhiteSpace(message.ToString()))
+                _notifier.Error(T(message.ToString()));
             return View();
         }
 
         [Themed]
-        public ActionResult OrderTracking()
+        [HttpPost]
+        public ActionResult OrderTracking(string orderId)
         {
+            var order = _orderService.GetActiveOrderByPublicId(orderId);
+
+            if (order == null)
+            {
+                TempData["OrderNotFoundMessage"] = "Could not find order with that lookup number";
+                return RedirectToAction("TrackOrder");
+            }
+
             return View();
         }
     }
