@@ -373,7 +373,7 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.DropColumn("CostOfMaterial"));
 
-            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.WithDefault(false)));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.NotNull().WithDefault(false)));
 
             return 27;
         }
@@ -684,7 +684,7 @@ namespace Teeyoot.Module
         
         public int UpdateFrom26()
         {
-            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.WithDefault(false)));
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.NotNull().WithDefault(false)));
             return 27;
         }
     }
