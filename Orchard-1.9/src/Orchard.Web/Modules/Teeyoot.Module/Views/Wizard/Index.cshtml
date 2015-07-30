@@ -175,7 +175,7 @@
 
 
         window.additionalScreenCosts = @Model.AdditionalScreenCosts;
-        window.costOfMaterial = @Model.CostOfMaterial;
+        window.costOfMaterial = parseFloat("7.14");
         window.dTGPrintPrice = @Model.DTGPrintPrice;
         window.firstScreenCost = @Model.FirstScreenCost;
         window.inkCost = @Model.InkCost;
@@ -185,7 +185,6 @@
         window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
         window.printsPerLitre = @Model.PrintsPerLitre;
         window.count = 50; // Первоначальное количество элементов, должно будет изменяться
-        window.defaultPrice = 7.14; // Первоначальная цена футболки, должна будет меняться в зависимости от цвета и формы футболки
 
     </script>
 }
@@ -278,303 +277,303 @@
 
 
                                             <div>
-                                            <div id="design-tools" class="aside">
-                                                <div class="design__area">
-                                                    <div>
-                                                        <ul class="tabs clearfix nav nav-tabs">
-                                                            <li class="tab active" data-name="Text"><a style="text-decoration: underline;">Text</a></li>
-                                                        </ul>
-                                                        <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
-                                                            <div id="text-string" class="control-group">
-                                                                <label>Enter text below</label>
-                                                                <textarea id="enter-text" class="form__textfield" placeholder="Add your text here"></textarea>
-                                                            </div>
-                                                            <div class="edit_tool font">
-                                                                <label class="no-bottom">Choose a font</label>
-                                                                <div id="font-select" class="fake-input svg-selector designer-dropdown control-group font-selection">
+                                                <div id="design-tools" class="aside">
+                                                    <div class="design__area">
+                                                        <div>
+                                                            <ul class="tabs clearfix nav nav-tabs">
+                                                                <li class="tab active" data-name="Text"><a style="text-decoration: underline;">Text</a></li>
+                                                            </ul>
+                                                            <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
+                                                                <div id="text-string" class="control-group">
+                                                                    <label>Enter text below</label>
+                                                                    <textarea id="enter-text" class="form__textfield" placeholder="Add your text here"></textarea>
+                                                                </div>
+                                                                <div class="edit_tool font">
+                                                                    <label class="no-bottom">Choose a font</label>
+                                                                    <div id="font-select" class="fake-input svg-selector designer-dropdown control-group font-selection">
 
-                                                                </div>
-                                                                <div id="font-select-menu" class="containertip">
-                                                                    <select class="category-menu">
-                                                                        <option value="Popular">Popular</option>
-                                                                    </select>
-                                                                    <ul class="options"></ul>
-                                                                </div>
-                                                                <div class="clearfix control-group font-color-selection">
-                                                                    <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
-                                                                        <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
-                                                                        <div class="colors shirt-colors containertip">
-                                                                            <ul class="all-colors"></ul>
-                                                                        </div>
                                                                     </div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="edit_tool">
-                                                                <label style="float: left;">Add an outline</label>
-
-                                                                <div class="clearfix control-group outline-selection">
-                                                                    <div>
-                                                                        <select id="outline-select"
-                                                                                class="form-control outline-selector designer-select form__select_menu">
-                                                                            <option value="0">No outline</option>
-                                                                            <option value="0.33">Thin outline</option>
-                                                                            <option value="0.66">Medium outline</option>
-                                                                            <option value="1">Thick outline</option>
+                                                                    <div id="font-select-menu" class="containertip">
+                                                                        <select class="category-menu">
+                                                                            <option value="Popular">Popular</option>
                                                                         </select>
+                                                                        <ul class="options"></ul>
                                                                     </div>
-                                                                </div>
-                                                                <div class="clearfix control-group outline-color-selection">
-                                                                    <div class="fake-input color-picker standard designer-dropdown"
-                                                                         title="Change color" data-value="outline">
-                                                                        <div class="swatch" title="Black" style="background-color: #000000;"></div>
-                                                                        <div class="colors shirt-colors containertip">
-                                                                            <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
-                                                                            <ul class="all-colors"></ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div id="text-align-tools" class="clearfix control-group">
-                                                                <div class="layer-tools">
-                                                                    <ul id="canvas-options" class="nav">
-                                                                        <li>
-                                                                            <input id="snap-to-center" type="checkbox" checked="">
-                                                                            <label>Snap to center</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <div id="panel-context-menu" class="btn-group control-group">
-                                                                        <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="Duplicate">
-                                                                            <i class="ts-icon ts-icon-composer-copy"></i>
-                                                                        </span>
-                                                                        <span class="separator"></span>
-                                                                        <span id="item-center" class="tooltip_composer__position" data-tooltip="Center">
-                                                                            <i class="ts-icon ts-icon-composer-center"></i>
-                                                                        </span>
-                                                                        <span class="separator"></span>
-                                                                        <span id="push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
-                                                                            <i class="ts-icon ts-icon-composer-sendtoback"></i>
-                                                                        </span>
-                                                                        <span class="separator"></span>
-                                                                        <span id="flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
-                                                                            <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
-                                                                        </span>
-                                                                        <span class="separator"></span>
-                                                                        <span id="flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
-                                                                            <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="tabs clearfix nav nav-tabs">
-                                                            <li class="tab active" data-name="Art"><a style="text-decoration:underline; height: 51px;">Art</a></li>
-                                                        </ul>
-                                                        <div id="tab2-content" style="margin-top: -6%;" class="tab-content teespring-well designer-well tab-Art">
-                                                            <div id="designer-art-choseType">
-                                                                <div class="search_container">
-                                                                    <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">Browse Artwork</button>
-                                                                    <div class="design-art-search containertip">
-                                                                        <form action="." method="get" role="form" id="artwork-search-form">
-                                                                            <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
-                                                                            <button style="margin-top: -1%;" class="button button--primary search">Search</button>
-                                                                        </form>
-                                                                        <div class="art-search-container">
-                                                                            <!-- list of artworks -->
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="hr"><span>OR</span></div>
-                                                                <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">Upload your own</button>
-                                                            </div>
-                                                            <div id="dropbox" class="control-group" style="display: none">
-                                                                <div class="upload">
-                                                                    <div hidden="" class="form">
-                                                                        <form enctype="multipart/form-data" id="s3-uploader" method="post">
-                                                                            <input id="file" name="file" style="visibility: hidden;"
-                                                                                   type="file">
-                                                                        </form>
-                                                                    </div>
-                                                                    <p class="small dropbox-intro">Drag art here or ...</p>
-                                                                    <button class="button button--primary upload select-file">Click here to upload</button>
-                                                                    <p class="dropbox-disclosure">
-                                                                        <em>
-                                                                            By uploading an image you agree that you
-                                                                            hold the right to reproduce and sell the design.
-                                                                        </em>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div id="art-style" class="design-area__art--edit" style="display: none;">
-                                                                <div id="art-built-in">
-                                                                    <div class="control-group clearfix art-color-selection">
-                                                                        <label>Art color </label>
-
-                                                                        <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="art">
+                                                                    <div class="clearfix control-group font-color-selection">
+                                                                        <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
                                                                             <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                             <div class="colors shirt-colors containertip">
                                                                                 <ul class="all-colors"></ul>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="edit_tool">
-                                                                        <label style="float: left;">Add an outline</label>
-
-                                                                        <div class="clearfix control-group outline-selection">
-                                                                            <div>
-                                                                                <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
-                                                                                    <option value="0">No outline</option>
-                                                                                    <option value="0.33">Thin outline</option>
-                                                                                    <option value="0.66">Medium outline</option>
-                                                                                    <option value="1">Thick outline</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="clearfix control-group outline-color-selection">
-                                                                            <div class="fake-input color-picker standard designer-dropdown"
-                                                                                 title="Change color" data-value="art-outline">
-                                                                                <div class="swatch" title="Black"
-                                                                                     style="background-color: #000000;"></div>
-                                                                                <div class="colors shirt-colors containertip">
-                                                                                    <ul class="all-colors"></ul>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="clearfix"></div>
-                                                                        </div>
+                                                                        <div class="clearfix"></div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="file control-group" style="display: none">
-                                                                    <label>Uploaded File</label>
+                                                                <div class="edit_tool">
+                                                                    <label style="float: left;">Add an outline</label>
 
-                                                                    <div class="fake-input color-picker standard uploaded-file">
-                                                                        <div class="remove">Remove</div>
-                                                                        <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
+                                                                    <div class="clearfix control-group outline-selection">
+                                                                        <div>
+                                                                            <select id="outline-select"
+                                                                                    class="form-control outline-selector designer-select form__select_menu">
+                                                                                <option value="0">No outline</option>
+                                                                                <option value="0.33">Thin outline</option>
+                                                                                <option value="0.66">Medium outline</option>
+                                                                                <option value="1">Thick outline</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix control-group outline-color-selection">
+                                                                        <div class="fake-input color-picker standard designer-dropdown"
+                                                                             title="Change color" data-value="outline">
+                                                                            <div class="swatch" title="Black" style="background-color: #000000;"></div>
+                                                                            <div class="colors shirt-colors containertip">
+                                                                                <!-- <ul class="colors-in-use"></ul>
+                                                                                <hr class="color-picker__divider">-->
+                                                                                <ul class="all-colors"></ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
                                                                     </div>
                                                                 </div>
-                                                                <div id="art-align-tools" class="clearfix control-group">
+                                                                <div id="text-align-tools" class="clearfix control-group">
                                                                     <div class="layer-tools">
-                                                                        <ul id="art-canvas-options" class="nav">
+                                                                        <ul id="canvas-options" class="nav">
                                                                             <li>
-                                                                                <input id="art-snap-to-center" type="checkbox" checked="">
+                                                                                <input id="snap-to-center" type="checkbox" checked="">
                                                                                 <label>Snap to center</label>
                                                                             </li>
                                                                         </ul>
-                                                                        <div id="art-panel-context-menu" class="btn-group control-group">
-                                                                            <span id="art-duplicate" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                        <div id="panel-context-menu" class="btn-group control-group">
+                                                                            <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="Duplicate">
                                                                                 <i class="ts-icon ts-icon-composer-copy"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="art-item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                                            <span id="item-center" class="tooltip_composer__position" data-tooltip="Center">
                                                                                 <i class="ts-icon ts-icon-composer-center"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="art-push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                            <span id="push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
                                                                                 <i class="ts-icon ts-icon-composer-sendtoback"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="art-flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                                            <span id="flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="art-flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                                            <span id="flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
                                                                             </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="teespring-well designer-well" id="clientArts">
-                                                            <label id="labArt" style="display:none">Recently Used Artwork</label>
-                                                            <ul class="nav"></ul>
+                                                            <ul class="tabs clearfix nav nav-tabs">
+                                                                <li class="tab active" data-name="Art"><a style="text-decoration:underline; height: 51px;">Art</a></li>
+                                                            </ul>
+                                                            <div id="tab2-content" style="margin-top: -6%;" class="tab-content teespring-well designer-well tab-Art">
+                                                                <div id="designer-art-choseType">
+                                                                    <div class="search_container">
+                                                                        <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">Browse Artwork</button>
+                                                                        <div class="design-art-search containertip">
+                                                                            <form action="." method="get" role="form" id="artwork-search-form">
+                                                                                <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
+                                                                                <button style="margin-top: -1%;" class="button button--primary search">Search</button>
+                                                                            </form>
+                                                                            <div class="art-search-container">
+                                                                                <!-- list of artworks -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="hr"><span>OR</span></div>
+                                                                    <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">Upload your own</button>
+                                                                </div>
+                                                                <div id="dropbox" class="control-group" style="display: none">
+                                                                    <div class="upload">
+                                                                        <div hidden="" class="form">
+                                                                            <form enctype="multipart/form-data" id="s3-uploader" method="post">
+                                                                                <input id="file" name="file" style="visibility: hidden;"
+                                                                                       type="file">
+                                                                            </form>
+                                                                        </div>
+                                                                        <p class="small dropbox-intro">Drag art here or ...</p>
+                                                                        <button class="button button--primary upload select-file">Click here to upload</button>
+                                                                        <p class="dropbox-disclosure">
+                                                                            <em>
+                                                                                By uploading an image you agree that you
+                                                                                hold the right to reproduce and sell the design.
+                                                                            </em>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="art-style" class="design-area__art--edit" style="display: none;">
+                                                                    <div id="art-built-in">
+                                                                        <div class="control-group clearfix art-color-selection">
+                                                                            <label>Art color </label>
+
+                                                                            <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="art">
+                                                                                <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
+                                                                                <div class="colors shirt-colors containertip">
+                                                                                    <ul class="all-colors"></ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="edit_tool">
+                                                                            <label style="float: left;">Add an outline</label>
+
+                                                                            <div class="clearfix control-group outline-selection">
+                                                                                <div>
+                                                                                    <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
+                                                                                        <option value="0">No outline</option>
+                                                                                        <option value="0.33">Thin outline</option>
+                                                                                        <option value="0.66">Medium outline</option>
+                                                                                        <option value="1">Thick outline</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="clearfix control-group outline-color-selection">
+                                                                                <div class="fake-input color-picker standard designer-dropdown"
+                                                                                     title="Change color" data-value="art-outline">
+                                                                                    <div class="swatch" title="Black"
+                                                                                         style="background-color: #000000;"></div>
+                                                                                    <div class="colors shirt-colors containertip">
+                                                                                        <ul class="all-colors"></ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="file control-group" style="display: none">
+                                                                        <label>Uploaded File</label>
+
+                                                                        <div class="fake-input color-picker standard uploaded-file">
+                                                                            <div class="remove">Remove</div>
+                                                                            <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="art-align-tools" class="clearfix control-group">
+                                                                        <div class="layer-tools">
+                                                                            <ul id="art-canvas-options" class="nav">
+                                                                                <li>
+                                                                                    <input id="art-snap-to-center" type="checkbox" checked="">
+                                                                                    <label>Snap to center</label>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <div id="art-panel-context-menu" class="btn-group control-group">
+                                                                                <span id="art-duplicate" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                                    <i class="ts-icon ts-icon-composer-copy"></i>
+                                                                                </span>
+                                                                                <span class="separator"></span>
+                                                                                <span id="art-item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                                                    <i class="ts-icon ts-icon-composer-center"></i>
+                                                                                </span>
+                                                                                <span class="separator"></span>
+                                                                                <span id="art-push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                                    <i class="ts-icon ts-icon-composer-sendtoback"></i>
+                                                                                </span>
+                                                                                <span class="separator"></span>
+                                                                                <span id="art-flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                                                    <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
+                                                                                </span>
+                                                                                <span class="separator"></span>
+                                                                                <span id="art-flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                                                    <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="teespring-well designer-well" id="clientArts">
+                                                                <label id="labArt" style="display:none">Recently Used Artwork</label>
+                                                                <ul class="nav"></ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div id="cacheText"></div>
-                                            <!-- design area -->
-                                            <div id="design-area" class="div-design-area product-view">
-                                                <div id="app-wrap" class="div-design-area new-editor-container">
+                                                <div id="cacheText"></div>
+                                                <!-- design area -->
+                                                <div id="design-area" class="div-design-area product-view">
+                                                    <div id="app-wrap" class="div-design-area new-editor-container">
 
-                                                    <!-- begin front design -->
-                                                    <div id="view-front" class="front labView">
-                                                        <div class="product-design"></div>
-                                                        <div class="design-area printable-area-box">
-                                                            <div class="content-inner"></div>
-                                                            <div class="size-dialog aspect-ratio" style="display: none">
-                                                                <div class="aspect-ratio__field width">
-                                                                    <span>Width</span>
-                                                                    <input class="aspect-ratio__field--width width" value="5.58">
-                                                                    <span>in.</span>
+                                                        <!-- begin front design -->
+                                                        <div id="view-front" class="front labView">
+                                                            <div class="product-design"></div>
+                                                            <div class="design-area printable-area-box">
+                                                                <div class="content-inner"></div>
+                                                                <div class="size-dialog aspect-ratio" style="display: none">
+                                                                    <div class="aspect-ratio__field width">
+                                                                        <span>Width</span>
+                                                                        <input class="aspect-ratio__field--width width" value="5.58">
+                                                                        <span>in.</span>
+                                                                    </div>
+                                                                    <div class="aspect-ratio__field height">
+                                                                        <span>Height</span>
+                                                                        <input class="height" value="1.49">
+                                                                        <span>in.</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="aspect-ratio__field height">
-                                                                    <span>Height</span>
-                                                                    <input class="height" value="1.49">
-                                                                    <span>in.</span>
+                                                                <div class="printable-area-toolbar">
+                                                                    <span>Printable Area</span>
+                                                                    <div class="design-area-zoom printable-area-zoom">
+                                                                        <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
+                                                                        <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
+                                                                        <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
+                                                                        <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="printable-area-toolbar">
-                                                                <span>Printable Area</span>
-                                                                <div class="design-area-zoom printable-area-zoom">
-                                                                    <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
-                                                                    <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
-                                                                    <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
-                                                                    <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
-                                                                </div>
+                                                            <div class="xgridline" style="opacity: 0;"></div>
+                                                            <div class="ygridline" style="opacity: 0;"></div>
+
+                                                            <div class="flip-buttons" style="margin-bottom: -2%;">
+                                                                <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; font-weight: 300; margin-left: -17px; margin-top: 11px;">Front</span></div>
+                                                                <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; font-weight: 300; margin-left: -14px; margin-top: 11px;">Back</span></div>
                                                             </div>
                                                         </div>
-                                                        <div class="xgridline" style="opacity: 0;"></div>
-                                                        <div class="ygridline" style="opacity: 0;"></div>
+                                                        <!-- end front design -->
+                                                        <!-- begin back design -->
+                                                        <div id="view-back" class="back labView">
+                                                            <div class="product-design"></div>
+                                                            <div class="design-area printable-area-box">
+                                                                <div class="content-inner"></div>
+                                                                <div class="size-dialog aspect-ratio" style="display: none">
+                                                                    <div class="aspect-ratio__field width">
+                                                                        <span>Width</span>
+                                                                        <input class="aspect-ratio__field--width width" value="5.58">
+                                                                        <span>in.</span>
+                                                                    </div>
+                                                                    <div class="aspect-ratio__field height">
+                                                                        <span>Height</span>
+                                                                        <input class="height" value="1.49">
+                                                                        <span>in.</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="printable-area-toolbar">
+                                                                    <span>Printable Area</span>
+                                                                    <div class="design-area-zoom printable-area-zoom">
+                                                                        <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
+                                                                        <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
+                                                                        <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
+                                                                        <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="xgridline" style="opacity: 0;"></div>
+                                                            <div class="ygridline" style="opacity: 0;"></div>
 
-                                                        <div class="flip-buttons" style="margin-bottom: -2%;">
-                                                            <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; font-weight: 300; margin-left: -17px; margin-top: 11px;">Front</span></div>
-                                                            <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; font-weight: 300; margin-left: -14px; margin-top: 11px;">Back</span></div>
+                                                            <div class="flip-buttons">
+                                                                <div class="flip-button flip-button-front"><span style="position: absolute; margin-left: -15px; font-weight: 400; margin-top: 10px;">Front</span></div>
+                                                                <div class="flip-button flip-button-back no-select flip-button-active"><span style="position: absolute; font-weight: 400; margin-left: -15px; margin-top: 10px;">Back</span></div>
+                                                            </div>
                                                         </div>
+                                                        <!-- end back design -->
+
+
                                                     </div>
-                                                    <!-- end front design -->
-                                                    <!-- begin back design -->
-                                                    <div id="view-back" class="back labView">
-                                                        <div class="product-design"></div>
-                                                        <div class="design-area printable-area-box">
-                                                            <div class="content-inner"></div>
-                                                            <div class="size-dialog aspect-ratio" style="display: none">
-                                                                <div class="aspect-ratio__field width">
-                                                                    <span>Width</span>
-                                                                    <input class="aspect-ratio__field--width width" value="5.58">
-                                                                    <span>in.</span>
-                                                                </div>
-                                                                <div class="aspect-ratio__field height">
-                                                                    <span>Height</span>
-                                                                    <input class="height" value="1.49">
-                                                                    <span>in.</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="printable-area-toolbar">
-                                                                <span>Printable Area</span>
-                                                                <div class="design-area-zoom printable-area-zoom">
-                                                                    <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
-                                                                    <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
-                                                                    <img class="printable-area-zoom-image no-select zoom-dark-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in.svg">
-                                                                    <img class="printable-area-zoom-image no-select zoom-dark-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out.svg">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="xgridline" style="opacity: 0;"></div>
-                                                        <div class="ygridline" style="opacity: 0;"></div>
-
-                                                        <div class="flip-buttons">
-                                                            <div class="flip-button flip-button-front"><span style="position: absolute; margin-left: -15px; font-weight: 400; margin-top: 10px;">Front</span></div>
-                                                            <div class="flip-button flip-button-back no-select flip-button-active"><span style="position: absolute; font-weight: 400; margin-left: -15px; margin-top: 10px;">Back</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end back design -->
-
-
                                                 </div>
                                             </div>
-                                           </div>
 
 
                                             <div>
@@ -715,7 +714,7 @@
                                 </tr>
                             </table>
                             <div>
-                                <span >Your goal is the number of shirts you’re aiming to sell</span>
+                                <span>Your goal is the number of shirts you’re aiming to sell</span>
                             </div>
                             <div>
                                 <label style="font-weight: bold; margin-top:3%">Set selling price</label>

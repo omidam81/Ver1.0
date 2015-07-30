@@ -54,7 +54,6 @@ namespace Teeyoot.Module.Controllers
                 AdminCostViewModel costViewModel = new AdminCostViewModel
                 {
                     AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(),
-                    CostOfMaterial = cost.CostOfMaterial.ToString(),
                     DTGPrintPrice = cost.DTGPrintPrice.ToString(),
                     FirstScreenCost = cost.FirstScreenCost.ToString(),
                     InkCost = cost.InkCost.ToString(),
@@ -448,7 +447,6 @@ namespace Teeyoot.Module.Controllers
         public AdminCostViewModel ReplaceAllCost(AdminCostViewModel cost)
         {
             cost.AdditionalScreenCosts = cost.AdditionalScreenCosts.Replace(",", ".");
-            cost.CostOfMaterial = cost.CostOfMaterial.Replace(",", ".");
             cost.DTGPrintPrice = cost.DTGPrintPrice.Replace(",", ".");
             cost.FirstScreenCost = cost.FirstScreenCost.Replace(",", ".");
             cost.InkCost = cost.InkCost.Replace(",", ".");
