@@ -31,6 +31,8 @@
                 </option>
             }
         </select>
+        <hr/>
+        <button id="add_group" type="button" class="primaryAction">Add New Group</button>
     </fieldset>
     <h3>Colours</h3>
     <hr/>
@@ -174,6 +176,12 @@
 
             $('#groups').multiSelect({
                 keepOrder: true
+            });
+
+            $('#add_group').click(function() {
+                if (confirm('All unsaved changes will be lost. Are you sure?')) {
+                    window.location.href = '/Admin/ProductGroups/Add?returnUrl=' + encodeURIComponent(window.location.href);
+                }
             });
 
             $('#product_form').submit(function() {

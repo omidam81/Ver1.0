@@ -58,9 +58,9 @@ namespace Teeyoot.WizardSettings.Controllers
             return View(viewModel);
         }
 
-        public ActionResult AddProductStyle()
+        public ActionResult AddProductStyle(string returnUrl)
         {
-            var viewModel = new ProductStyleViewModel();
+            var viewModel = new ProductStyleViewModel {ReturnUrl = returnUrl};
 
             return View(viewModel);
         }
@@ -80,7 +80,13 @@ namespace Teeyoot.WizardSettings.Controllers
             var productStyle = new ProductGroupRecord {Name = viewModel.Name};
             _productStyleRepository.Create(productStyle);
 
-            _orchardServices.Notifier.Information(T("New Product Style has been added."));
+            _orchardServices.Notifier.Information(T("New Product Style \"{0}\" has been added.", productStyle.Name));
+
+            if (!string.IsNullOrEmpty(viewModel.ReturnUrl))
+            {
+                return Redirect(viewModel.ReturnUrl);
+            }
+
             return RedirectToAction("Index");
         }
 

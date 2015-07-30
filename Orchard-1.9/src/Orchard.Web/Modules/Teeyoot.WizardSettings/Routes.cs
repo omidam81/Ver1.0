@@ -17,7 +17,6 @@ namespace Teeyoot.WizardSettings
 
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
-
             return new[]
             {
                 new RouteDescriptor
@@ -29,6 +28,57 @@ namespace Teeyoot.WizardSettings
                             {"area", "Teeyoot.WizardSettings"},
                             {"controller", "AdminWizard"},
                             {"action", "FontList"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductGroups",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductStyle"},
+                            {"action", "Index"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductGroups/Add",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductStyle"},
+                            {"action", "AddProductStyle"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductGroups/Edit/{productStyleId}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductStyle"},
+                            {"action", "EditProductStyle"}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary
