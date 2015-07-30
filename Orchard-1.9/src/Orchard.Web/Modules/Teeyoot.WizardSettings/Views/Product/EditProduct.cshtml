@@ -18,18 +18,68 @@
         @Html.TextBoxFor(m => m.Name, new {@class = "text large", id = "name"})
     </fieldset>
     <fieldset>
-        @Html.Label(T("Colors").ToString())
-        <select id="colors" multiple="multiple" name="SelectedProductColours">
+        @Html.Label(T("Colours").ToString())
+        <select id="colours" multiple="multiple">
             @foreach (var productColour in Model.ProductColours)
             {
                 <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected)
                                                                                                      {
                                                                                                          <text> selected="selected" </text>
-                                                                                                     }>
+                                                                                                     }
+                        data-name="@productColour.Name" data-colour="@productColour.HexValue">
                     @productColour.Name
                 </option>
             }
         </select>
+        @Html.Label(T("Selected Colours").ToString())
+        <table id="selected-colours-table" class="items">
+            <thead>
+            <tr>
+                <td>
+                    Color
+                </td>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Base Cost
+                </td>
+                <td>
+                    Action
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            @for (var i = 0; i < Model.SelectedProductColours.Count; i++)
+            {
+                <tr class="product-colour-row">
+                    <td class="product-colour-colour" style="background-color: @Model.SelectedProductColours[i].HexValue;">
+                        @Html.HiddenFor(m => Model.SelectedProductColours[i].Id)
+                        @Html.HiddenFor(m => Model.SelectedProductColours[i].ProductColourId)
+                    </td>
+                    <td class="product-colour-name">@Model.SelectedProductColours[i].Name</td>
+                    <td class="product-colour-base-cost">
+                        @Html.TextBoxFor(m => Model.SelectedProductColours[i].BaseCost)
+                    </td>
+                    <td>
+                        <a href="javascript:;" class="remove-product-colour">Remove</a>
+                    </td>
+                </tr>
+            }
+            <tr class="product-colour-template product-colour-row" style="display: none;">
+                <td class="product-colour-colour">
+                </td>
+                <td class="product-colour-name">
+                </td>
+                <td class="product-colour-base-cost">
+                    <input type="text" value="0"/>
+                </td>
+                <td>
+                    <a href="javascript:;" class="remove-product-colour">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </fieldset>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">Save</button>
@@ -39,16 +89,34 @@
 @using (Script.Foot())
 {
     <script>
+        function addAndHandleProductColour(productColourId) {
+            var selectedColourOption = $('#colours option[value="' + productColourId + '"]');
+            var productColourTemplate = $('#selected-colours-table .product-colour-template').clone();
+            var addedProductColour = $('#selected-colours-table tr:last').after(productColourTemplate);
+
+            addedProductColour.removeClass('product-colour-template').show();
+
+            $('.product-colour-colour', addedProductColour).css('background-color', selectedColourOption.data('colour'));
+            $('.product-colour-name', addedProductColour).html(selectedColourOption.data('name'));
+
+            $('.remove-product-colour').click(function() {
+                $(this).closest('.product-colour-row').remove();
+            });
+        };
+
         $(document).ready(function() {
-            $('#colors').multiSelect({
-                keepOrder: true
+            $('#colours').multiSelect({
+                keepOrder: true,
+                afterSelect: function(values) {
+                    addAndHandleProductColour(values[0]);
+                }
             });
 
             $('#product_form').submit(function() {
                 var name = $('#name').val();
 
                 if ($.trim(name) === '') {
-                    alert('Please enter product name.');
+                    alert('Please enter Product Name.');
                     return false;
                 }
 

@@ -61,14 +61,15 @@ namespace Teeyoot.WizardSettings.Controllers
                 _linkProductColorRepository.Delete(linkProductColour);
             }
 
-            foreach (var productColourId in viewModel.SelectedProductColours)
+            foreach (var productColourItem in viewModel.SelectedProductColours)
             {
-                var productColour = _productColourRepository.Get(productColourId);
+                var productColour = _productColourRepository.Get(productColourItem.ProductColourId);
 
                 var linkProductColour = new LinkProductColorRecord
                 {
                     ProductRecord = product,
-                    ProductColorRecord = productColour
+                    ProductColorRecord = productColour,
+                    BaseCost = productColourItem.BaseCost
                 };
 
                 _linkProductColorRepository.Create(linkProductColour);
@@ -115,6 +116,19 @@ namespace Teeyoot.WizardSettings.Controllers
                     c.Selected = true;
                 }
             });
+
+            viewModel.SelectedProductColours = _linkProductColorRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .Fetch(it => it.ProductColorRecord)
+                .Select(it => new ProductColourItemViewModel
+                {
+                    Id = it.Id,
+                    ProductColourId = it.ProductColorRecord.Id,
+                    Name = it.ProductColorRecord.Name,
+                    HexValue = it.ProductColorRecord.Value,
+                    BaseCost = it.BaseCost
+                })
+                .ToList();
         }
     }
 }
