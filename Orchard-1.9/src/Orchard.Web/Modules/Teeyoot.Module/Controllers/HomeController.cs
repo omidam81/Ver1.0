@@ -64,7 +64,8 @@ namespace Teeyoot.Module.Controllers
                     PaymentMethodNonce = "fake-valid-nonce",
                     Options = new TransactionOptionsRequest
                     {
-                        SubmitForSettlement = true
+                        SubmitForSettlement = true,
+                        StoreInVault = true
                     }
                 };
 
@@ -84,11 +85,11 @@ namespace Teeyoot.Module.Controllers
                     },
                     Options = new TransactionOptionsRequest
                     {
-                        SubmitForSettlement = true
+                        StoreInVault = true
                     }
                 };
-
-                result = Gateway.Transaction.Sale(requestCard);
+                //result = Gateway.Transaction.Sale(requestCard);
+                result = Gateway.Transaction.SubmitForSettlement("the_transaction_id", Decimal.Parse("1000.0"));
             }
            
             if (result.IsSuccess())

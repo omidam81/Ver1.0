@@ -24,6 +24,7 @@
 {
     <script type="text/javascript">
         var press;
+        
         $("#btn-settings").click(function () {
             if (!press) {
                 document.getElementById("settings-menu").className = "store_settings__menu";
@@ -40,6 +41,7 @@
             var message = document.getElementsByClassName("form__message_list")[0];
             message.innerHTML = "";
         });
+      
         function onFileSelected(event) {
             var selectedFile = event.target.files[0];
             if (selectedFile.type !== 'image/png') {
@@ -59,11 +61,11 @@
             $(form).addClass('s3-uploader store_banner--custom');
 
             var icon = document.getElementsByClassName("fa-camera-retro")[0];
-            $(icon).removeClass('fa-5x').addClass('fa-1x');
+            $(icon).removeClass('fa-5x').addClass('load_img fa-1x');
 
             reader.onload = function (event) {
                 img.src = event.target.result;
-                $(imgtag).attr("style", "background:url('"+ event.target.result+"'); background-size: cover;");
+                $(imgtag).attr("style", "background:url('" + event.target.result + "'); background-size: cover;");
             };
 
             reader.readAsDataURL(selectedFile);
@@ -340,7 +342,7 @@
             <div>
                 <p>@T("You need at least 3 campaigns to create a storefront.")</p>
                 <p>
-                    <a class="button__cta" href="redirectToStartCampaign()">@T("Launch one now")</a>
+                    <a class="button__cta" href="/GetStarted">@T("Launch one now")</a>
                 </p>
             </div>
             }

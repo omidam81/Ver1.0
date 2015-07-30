@@ -207,7 +207,12 @@ namespace Teeyoot.Module.Controllers
                 colors_available = p.ColorsAvailable.Select(c => c.ProductColorRecord.Id).ToArray(),
                 list_of_sizes = p.SizesAvailable.Count > 0 ? 
                     p.SizesAvailable.First().ProductSizeRecord.SizeCodeRecord.Name + " - " + p.SizesAvailable.Last().ProductSizeRecord.SizeCodeRecord.Name :
-                    ""
+                    "",
+                prices = p.ColorsAvailable.Select(c => new ProductPriceViewModel
+                {
+                    color_id = c.ProductColorRecord.Id,
+                    price = c.BaseCost
+                }).ToArray()
             }).ToArray();
 
             return Json(model, JsonRequestBehavior.AllowGet);
