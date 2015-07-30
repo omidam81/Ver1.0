@@ -1,6 +1,6 @@
 ﻿@model Teeyoot.WizardSettings.ViewModels.ProductViewModel
 @{
-    Layout.Title = T("Add Product").ToString();
+    Layout.Title = Model.Id == null ? T("Add New Product") : T("Edit Product");
 
     Style.Include("multi-select/css/multi-select.css");
 
@@ -8,7 +8,9 @@
     Script.Include("jquery.multi-select.js");
 }
 
-<h2>Add New Product</h2>
+<h2>
+    @(Model.Id == null ? T("Add New Product") : T("Edit Product"))
+</h2>
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("EditProduct", "Product"), FormMethod.Post, new {id = "product_form"}))
 {
@@ -16,6 +18,8 @@
     <fieldset>
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.TextBoxFor(m => m.Name, new {@class = "text large", id = "name"})
+        @Html.LabelFor(m => m.SelectedProductHeadline, T("Headline"))
+        @Html.DropDownListFor(m => m.SelectedProductHeadline, new SelectList(Model.ProductHeadlines, "Id", "Name"), "Select Headline ...", new {id = "headlines"})
     </fieldset>
     <h3>Product Groups</h3>
     <hr/>
@@ -189,6 +193,13 @@
 
                 if ($.trim(name) === '') {
                     alert('Please enter Product Name.');
+                    return false;
+                }
+
+                var selectedHeadline = $('#headlines option:selected').val();
+
+                if (!selectedHeadline) {
+                    alert('Please select Product Headline.');
                     return false;
                 }
 

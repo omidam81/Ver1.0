@@ -29,5 +29,7 @@ namespace Teeyoot.WizardSettings.ViewModels
         public List<ProductColourItemViewModel> SelectedProductColours { get; set; }
         public IEnumerable<ProductGroupItemViewModel> ProductGroups { get; set; }
         public IEnumerable<int> SelectedProductGroups { get; set; }
+        public IEnumerable<ProductHeadlineViewModel> ProductHeadlines { get; set; }
+        public int SelectedProductHeadline { get; set; }
     }
 }

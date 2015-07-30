@@ -15,19 +15,22 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IRepository<LinkProductColorRecord> _linkProductColorRepository;
         private readonly IRepository<ProductGroupRecord> _productGroupRepository;
         private readonly IRepository<LinkProductGroupRecord> _linkProductGroupRepository;
+        private readonly IRepository<ProductHeadlineRecord> _productHeadlineRepository;
 
         public ProductController(
             IRepository<ProductRecord> productRepository,
             IRepository<ProductColorRecord> productColourRepository,
             IRepository<LinkProductColorRecord> linkProductColorRepository,
             IRepository<ProductGroupRecord> productGroupRepository,
-            IRepository<LinkProductGroupRecord> linkProductGroupRepository)
+            IRepository<LinkProductGroupRecord> linkProductGroupRepository,
+            IRepository<ProductHeadlineRecord> productHeadlineRepository)
         {
             _productRepository = productRepository;
             _productColourRepository = productColourRepository;
             _linkProductColorRepository = linkProductColorRepository;
             _productGroupRepository = productGroupRepository;
             _linkProductGroupRepository = linkProductGroupRepository;
+            _productHeadlineRepository = productHeadlineRepository;
         }
 
         public ActionResult Index()
@@ -48,10 +51,12 @@ namespace Teeyoot.WizardSettings.Controllers
             if (product != null)
             {
                 productViewModel.Name = product.Name;
+                productViewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
             }
 
             FillProductViewModelWithColours(productViewModel, product);
             FillProductViewModelWithGroups(productViewModel, product);
+            FillProductViewModelWithHeadLines(productViewModel);
 
             return View(productViewModel);
         }
@@ -62,6 +67,9 @@ namespace Teeyoot.WizardSettings.Controllers
             var product = viewModel.Id == null ? new ProductRecord() : _productRepository.Get(viewModel.Id.Value);
 
             product.Name = viewModel.Name;
+
+            var productHeadline = _productHeadlineRepository.Get(viewModel.SelectedProductHeadline);
+            product.ProductHeadlineRecord = productHeadline;
 
             foreach (var linkProductColour in product.ColorsAvailable)
             {
@@ -183,6 +191,18 @@ namespace Teeyoot.WizardSettings.Controllers
                     g.Selected = true;
                 }
             });
+        }
+
+        private void FillProductViewModelWithHeadLines(ProductViewModel viewModel)
+        {
+            viewModel.ProductHeadlines = _productHeadlineRepository.Table
+                .OrderBy(h => h.Name)
+                .Select(h => new ProductHeadlineViewModel
+                {
+                    Id = h.Id,
+                    Name = h.Name
+                })
+                .ToList();
         }
     }
 }
