@@ -3,6 +3,7 @@ using Orchard.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 
@@ -18,7 +19,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<CampaignStatusRecord> _statusRepository;
         private readonly IRepository<CampaignCategoriesRecord> _campaignCategories;
         private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCategories;
-
+        private readonly IRepository<LinkOrderCampaignProductRecord> _ocpRepository;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -28,7 +29,8 @@ namespace Teeyoot.Module.Services
                                IRepository<CampaignStatusRecord> statusRepository,
                                IRepository<CampaignCategoriesRecord> campaignCategories,
                                IOrchardServices services,
-                               IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategories)
+                               IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategories,
+                               IRepository<LinkOrderCampaignProductRecord> ocpRepository)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -39,6 +41,7 @@ namespace Teeyoot.Module.Services
             _campaignCategories = campaignCategories;
             Services = services;
             _linkCampaignAndCategories = linkCampaignAndCategories;
+            _ocpRepository = ocpRepository;
         }
 
         private IOrchardServices Services { get; set; }
@@ -111,7 +114,7 @@ namespace Teeyoot.Module.Services
                     ProductCountSold = 0,
                     TeeyootUserId = userId,
                     Title = data.CampaignTitle,
-                    CampaignStatusRecord = _statusRepository.Get(1)
+                    CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Active.ToString())
                 };
                 _campaignRepository.Create(newCampaign);
 
@@ -218,6 +221,27 @@ namespace Teeyoot.Module.Services
             catch
             {
                 return false;
+            }
+        }
+
+        public void CheckExpiredCampaigns()
+        {
+            var campaigns = _campaignRepository.Table.Where(c => c.EndDate.Date < DateTime.UtcNow.Date);
+
+            foreach (var c in campaigns)
+            {
+                c.CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Ended.ToString());
+                UpdateCampaign(c);
+
+                if (c.ProductCountGoal <= c.ProductCountSold)
+                {                  
+                    var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct();
+
+                    foreach(var o in orders)
+                    {
+                        //o.OrderStatusRecord = 
+                    }
+                }
             }
         }
     }

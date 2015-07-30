@@ -32,5 +32,7 @@ namespace Teeyoot.Module.Services
         void UpdateCampaign(CampaignRecord campiagn);
 
         bool DeleteCampaignFromCategoryById(int campId, int categId);
+
+        void CheckExpiredCampaigns();
     }
 }
