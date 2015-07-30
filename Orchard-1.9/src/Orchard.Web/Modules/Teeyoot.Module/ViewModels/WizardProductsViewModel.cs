@@ -21,6 +21,7 @@ namespace Teeyoot.Module.ViewModels
         public string headline { get; set; }
         public int[] colors_available { get; set; }
         public string list_of_sizes { get; set; }
+        public ProductPriceViewModel[] prices { get; set; }
     }
 
     public class ColorViewModel
@@ -30,7 +31,7 @@ namespace Teeyoot.Module.ViewModels
         public string value { get; set; }
         public int? importance { get; set; }
     }
-    
+
     public class ProductImageViewModel
     {
         public int id { get; set; }
@@ -57,5 +58,11 @@ namespace Teeyoot.Module.ViewModels
         public string name { get; set; }
         public string singular { get; set; }
         public int[] products { get; set; }
+    }
+
+    public class ProductPriceViewModel
+    {
+        public int color_id { get; set; }
+        public double price { get; set; }
     }
 }

@@ -19,238 +19,238 @@ window.onload = function initWizard() {
 
     //if (document.querySelector(".user-email") == null) {
 
-$("#openTags").click(function () {
-    document.getElementById("tags").style.display = "inline"; 
-    document.getElementById("openTags").style.display = "none";
-});
-
-$("#butAdd").click(function addElement() {
-
-
-    if (document.querySelectorAll(".ssp_block").length >= 7)
-    {
-        document.getElementById("ui").style.display = "none";
-    }
-
-    var prdc = {
-        ProductId: 95,
-        BaseCost: 7.14,
-        ColorId: 2260,
-        Price: 15,
-        CurrencyId: 12
-    };
-
-
-    var div = document.createElement("div");
-    var divThumb = document.createElement("div");
-    var divMeta = document.createElement("div");
-    var divVcent = document.createElement("div");
-    var divDelete = document.createElement("div");
-    var image = document.createElement("img");
-    var imageDel = document.createElement("img");
-    var text = document.createElement("h4");
-
-
-
-
-    image.src = assetsUrls.products + 'product_type_' + document.getElementById("product").value + '_front_small.png';
-    image.classList.add("sell");
-    image.style.height = "73px";
-    prdc.ProductId = parseInt(document.getElementById("product").value);
-
-    imageDel.classList.add("ssp_delete");
-    imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
-    imageDel.style.cursor = "pointer";
-
-    var $image = $(image);
-
-    //----------- profit/sale ----------------------------------
-    var divPricing = document.createElement("div");
-    var divProfit = document.createElement("div");
-    var inpPrice = document.createElement("input");
-    var h4Profit = document.createElement("h4");
-
-    divPricing.classList.add("ssp_pricing");
-    divPricing.style.marginLeft = "-8%";
-
-    divProfit.classList.add("profitSale");
-    inpPrice.classList.add("ssp_input");
-    inpPrice.classList.add("price_per");
-    inpPrice.classList.add("form__textfield");
-    inpPrice.style.padding = "0.3em";
-    inpPrice.value = "RM 15";
-
-    h4Profit.classList.add("h4ProfSale");
-    h4Profit.innerHTML = "RM 5.00 profit / sale";
-
-    $inp = $(inpPrice);
-
-
-
-    // Ивент на остаток прибыли от суммы одной футболки -------------------
-    $inp.change(function () {
-        var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
-        prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
-        h4Profit.innerHTML = "RM " + price + " profit / sale";
+    $("#openTags").click(function () {
+        document.getElementById("tags").style.display = "inline"; 
+        document.getElementById("openTags").style.display = "none";
     });
 
-    var $divPricing = $(divPricing);
-    $divPricing.append($inp);
-    divProfit.appendChild(h4Profit);
-    var $divProfit = $(divProfit);
-    //----------- profit/sale ----------------------------------
+    $("#butAdd").click(function addElement() {
 
 
-    //-----------------Color Picker------------------------------
-    //-----Создаем тимплейт для пикера
-    var divCol = document.createElement("div");
-    var divColPick = document.createElement("div");
-    var divSwatch = document.createElement("div");
-    var divColors = document.createElement("div");
-    var divClear = document.createElement("div");
-    var ulAllColors = document.createElement("ul");
-
-
-    divCol.classList.add("clearfix");
-    divCol.classList.add("control-group");
-    divCol.classList.add("font-color-selection");
-
-    divColPick.classList.add("fake-input");
-    divColPick.classList.add("color-picker");
-    divColPick.classList.add("standard");
-    divColPick.classList.add("designer-dropdown");
-    divColPick.classList.add("designDrop");
-
-    divSwatch.classList.add("swatch2");
-    var $divSwatch = $(divSwatch);
-
-    divColors.classList.add("colors");
-    divColors.classList.add("shirt-colors");
-    divColors.classList.add("containertip");
-    divColors.style.top = "28%";
-    divColors.style.left = "28%";
-
-    ulAllColors.classList.add("all-colorsTwo");
-    ulAllColors.classList.add("colors");
-
-    var $ulAllColors = $(ulAllColors);
-
-    divClear.classList.add("clearfix");
-
-    var $divColPick = $(divColPick);
-
-    divColors.appendChild(ulAllColors);
-    divColPick.appendChild(divSwatch);
-    divColPick.appendChild(divColors);
-    divCol.appendChild(divColPick);
-    divCol.appendChild(divClear);
-
-    var $divColors = $(divColors);
-
-    // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
-    $divColPick.on('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        $('.containertip--open').removeClass('containertip--open');
-        $(this).parents(':first').find('.shirt-colors').addClass('containertip--open');
-    });
-
-
-    // Из общего списка цветов по айдишникам выбираем только те цвета которые соответствуют данному продукту
-    var masColors = [];
-    $.each(design.products.productsData, function (i, elemProd) {
-        if (elemProd.id == document.getElementById("product").value)
+        if (document.querySelectorAll(".ssp_block").length >= 7)
         {
-            $.each(design.products.colors, function (i,elem) {
-                if (elemProd.colors_available.indexOf(elem.id) >= 0) {
-                    masColors.push(elem);
-                }
-            });
-
+            document.getElementById("ui").style.display = "none";
         }
-    });
+
+        var prdc = {
+            ProductId: 95,
+            BaseCost: 7.14,
+            ColorId: 2260,
+            Price: 15,
+            CurrencyId: 12
+        };
 
 
-    // Перебор всех существующих цветов
-    $.each(masColors, function (i, color) {
+        var div = document.createElement("div");
+        var divThumb = document.createElement("div");
+        var divMeta = document.createElement("div");
+        var divVcent = document.createElement("div");
+        var divDelete = document.createElement("div");
+        var image = document.createElement("img");
+        var imageDel = document.createElement("img");
+        var text = document.createElement("h4");
 
-        var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
-                          color.name + '" style="background-color:' + color.value + ';"></li>';
-        var $colorHtml = $(colorHtml);
 
 
-        $colorHtml.click(function (event) {
+
+        image.src = assetsUrls.products + 'product_type_' + document.getElementById("product").value + '_front_small.png';
+        image.classList.add("sell");
+        image.style.height = "73px";
+        prdc.ProductId = parseInt(document.getElementById("product").value);
+
+        imageDel.classList.add("ssp_delete");
+        imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
+        imageDel.style.cursor = "pointer";
+
+        var $image = $(image);
+
+        //----------- profit/sale ----------------------------------
+        var divPricing = document.createElement("div");
+        var divProfit = document.createElement("div");
+        var inpPrice = document.createElement("input");
+        var h4Profit = document.createElement("h4");
+
+        divPricing.classList.add("ssp_pricing");
+        divPricing.style.marginLeft = "-8%";
+
+        divProfit.classList.add("profitSale");
+        inpPrice.classList.add("ssp_input");
+        inpPrice.classList.add("price_per");
+        inpPrice.classList.add("form__textfield");
+        inpPrice.style.padding = "0.3em";
+        inpPrice.value = "RM 15";
+
+        h4Profit.classList.add("h4ProfSale");
+        h4Profit.innerHTML = "RM 5.00 profit / sale";
+
+        $inp = $(inpPrice);
+
+
+
+        // Ивент на остаток прибыли от суммы одной футболки -------------------
+        $inp.change(function () {
+            var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
+            prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
+            h4Profit.innerHTML = "RM " + price + " profit / sale";
+        });
+
+        var $divPricing = $(divPricing);
+        $divPricing.append($inp);
+        divProfit.appendChild(h4Profit);
+        var $divProfit = $(divProfit);
+        //----------- profit/sale ----------------------------------
+
+
+        //-----------------Color Picker------------------------------
+        //-----Создаем тимплейт для пикера
+        var divCol = document.createElement("div");
+        var divColPick = document.createElement("div");
+        var divSwatch = document.createElement("div");
+        var divColors = document.createElement("div");
+        var divClear = document.createElement("div");
+        var ulAllColors = document.createElement("ul");
+
+
+        divCol.classList.add("clearfix");
+        divCol.classList.add("control-group");
+        divCol.classList.add("font-color-selection");
+
+        divColPick.classList.add("fake-input");
+        divColPick.classList.add("color-picker");
+        divColPick.classList.add("standard");
+        divColPick.classList.add("designer-dropdown");
+        divColPick.classList.add("designDrop");
+
+        divSwatch.classList.add("swatch2");
+        var $divSwatch = $(divSwatch);
+
+        divColors.classList.add("colors");
+        divColors.classList.add("shirt-colors");
+        divColors.classList.add("containertip");
+        divColors.style.top = "28%";
+        divColors.style.left = "28%";
+
+        ulAllColors.classList.add("all-colorsTwo");
+        ulAllColors.classList.add("colors");
+
+        var $ulAllColors = $(ulAllColors);
+
+        divClear.classList.add("clearfix");
+
+        var $divColPick = $(divColPick);
+
+        divColors.appendChild(ulAllColors);
+        divColPick.appendChild(divSwatch);
+        divColPick.appendChild(divColors);
+        divCol.appendChild(divColPick);
+        divCol.appendChild(divClear);
+
+        var $divColors = $(divColors);
+
+        // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
+        $divColPick.on('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
-            $image.css("background-color", color.value);
-            $divSwatch.css("background-color", color.value);
-            prdc.ColorId = parseInt(color.id);
-            //$divColors.remove();
-            $divColors.removeClass('containertip--open');
-        }).hover(function () {
-            $image.css("background-color", color.value);
-            $divSwatch.css("background-color", color.value);
+
+            $('.containertip--open').removeClass('containertip--open');
+            $(this).parents(':first').find('.shirt-colors').addClass('containertip--open');
         });
-        //Аппендим хтмли цветов с всеми евентами
-        $ulAllColors.append($colorHtml);
-    });
-
-    //-----------------Color Picker------------------------------
 
 
+        // Из общего списка цветов по айдишникам выбираем только те цвета которые соответствуют данному продукту
+        var masColors = [];
+        $.each(design.products.productsData, function (i, elemProd) {
+            if (elemProd.id == document.getElementById("product").value)
+            {
+                $.each(design.products.colors, function (i,elem) {
+                    if (elemProd.colors_available.indexOf(elem.id) >= 0) {
+                        masColors.push(elem);
+                    }
+                });
 
-    div.classList.add("block");
-    div.classList.add("ssp_block");
-
-    divThumb.classList.add("thumbnail_wrapper");
-
-    divMeta.classList.add("ssp_metadata");
-
-    divVcent.classList.add("ssp_vcent");
-    divVcent.style.width = "100%"
-    divVcent.style.marginLeft = "20px";
-
-    text.classList.add("ssp_heading");
-    text.style.color = "#44474d";
-    text.style.fontWeight = "800";
-    text.textContent = "Teespring Premium Tee";
-
-    divDelete.classList.add("ssp_delete");
-
-    divDelete.appendChild(imageDel);
+            }
+        });
 
 
+        // Перебор всех существующих цветов
+        $.each(masColors, function (i, color) {
 
-    divVcent.appendChild(text);
-    divMeta.appendChild(divVcent);
-    divThumb.appendChild(image);
-    div.appendChild(divThumb);
-    div.appendChild(divMeta);
-    div.appendChild(divCol);
-    div.appendChild(divPricing);
-    div.appendChild(divProfit);
-    div.appendChild(divDelete);
-    div.style.height = "90px";
+            var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
+                              color.name + '" style="background-color:' + color.value + ';"></li>';
+            var $colorHtml = $(colorHtml);
 
 
-    var primDiv = document.getElementById("primary");
-    primDiv.appendChild(div);
+            $colorHtml.click(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $image.css("background-color", color.value);
+                $divSwatch.css("background-color", color.value);
+                prdc.ColorId = parseInt(color.id);
+                //$divColors.remove();
+                $divColors.removeClass('containertip--open');
+            }).hover(function () {
+                $image.css("background-color", color.value);
+                $divSwatch.css("background-color", color.value);
+            });
+            //Аппендим хтмли цветов с всеми евентами
+            $ulAllColors.append($colorHtml);
+        });
+
+        //-----------------Color Picker------------------------------
 
 
-    $(imageDel).click(function () {
-        if (document.querySelectorAll(".ssp_block").length == 8) {
-            document.getElementById("ui").style.display = "inline";
-        }
-        div.parentNode.removeChild(div);
-        app.state.products.pop(prdc);
 
-    });
+        div.classList.add("block");
+        div.classList.add("ssp_block");
+
+        divThumb.classList.add("thumbnail_wrapper");
+
+        divMeta.classList.add("ssp_metadata");
+
+        divVcent.classList.add("ssp_vcent");
+        divVcent.style.width = "100%"
+        divVcent.style.marginLeft = "20px";
+
+        text.classList.add("ssp_heading");
+        text.style.color = "#44474d";
+        text.style.fontWeight = "800";
+        text.textContent = "Teespring Premium Tee";
+
+        divDelete.classList.add("ssp_delete");
+
+        divDelete.appendChild(imageDel);
+
+
+
+        divVcent.appendChild(text);
+        divMeta.appendChild(divVcent);
+        divThumb.appendChild(image);
+        div.appendChild(divThumb);
+        div.appendChild(divMeta);
+        div.appendChild(divCol);
+        div.appendChild(divPricing);
+        div.appendChild(divProfit);
+        div.appendChild(divDelete);
+        div.style.height = "90px";
+
+
+        var primDiv = document.getElementById("primary");
+        primDiv.appendChild(div);
+
+
+        $(imageDel).click(function () {
+            if (document.querySelectorAll(".ssp_block").length == 8) {
+                document.getElementById("ui").style.display = "inline";
+            }
+            div.parentNode.removeChild(div);
+            app.state.products.pop(prdc);
+
+        });
     
-    globalPrdc = prdc;
-    app.state.products.push(prdc);
+        globalPrdc = prdc;
+        app.state.products.push(prdc);
 
-});
+    });
 
 
 }
@@ -333,9 +333,20 @@ function initProducts() {
 
 function profitSale() {
     var $val = document.getElementById("profSale").value;
-    var $price = (parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
-    $("#mainH4").html("RM " + $price + " profit / sale");
-    app.state.currentProduct.Price = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
+    var selPrice = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
+    var $price = (selPrice - window.nowPrice).toFixed(2);
+    
+
+    if(selPrice < window.nowPrice){
+        $("#mainH4").html("RM " + window.nowPrice + " minimum");
+        app.state.currentProduct.Price = window.sellingPrice;
+        $("#total_profit").html("RM 0+");
+    }else{
+        $("#mainH4").html("RM " + $price + " profit / sale");
+        app.state.currentProduct.Price = selPrice;
+        window.sellingPrice = app.state.currentProduct.Price;
+        estimatedProfitChange();
+    }
 }
 
 
@@ -394,6 +405,8 @@ function Goal() {
     }
 
     slideTo(2);
+    setPriceInGoalFromDesign();
+    profitSale();
 }
 
 var slideSteps = ['design', 'goal', 'description'];
@@ -445,6 +458,11 @@ function slide() {
 function onChangeTrackBar() {
     document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
     document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
+
+    setPriceInDesignFromGoal();
+
+    profitSale();
+    estimatedProfitChange();
 }
 
 function onChangeValueForTrackBar() {
@@ -453,7 +471,9 @@ function onChangeValueForTrackBar() {
     else if (document.getElementById('trackBarValue').value > 500)
         document.getElementById('trackBarValue').value = "500";
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
-    document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
+    //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
+
+    setPriceInDesignFromGoal();
+    profitSale();
+    estimatedProfitChange();
 }
-
-

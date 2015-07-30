@@ -175,7 +175,7 @@
 
 
         window.additionalScreenCosts = @Model.AdditionalScreenCosts;
-        window.costOfMaterial = parseFloat("7.14");
+        window.costOfMaterial = parseFloat("7.14"); // Цена за выбранную футболку
         window.dTGPrintPrice = @Model.DTGPrintPrice;
         window.firstScreenCost = @Model.FirstScreenCost;
         window.inkCost = @Model.InkCost;
@@ -185,6 +185,12 @@
         window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
         window.printsPerLitre = @Model.PrintsPerLitre;
         window.count = 50; // Первоначальное количество элементов, должно будет изменяться
+        window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
+        document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
+        window.sellingPrice = Math.round(window.nowPrice * 2); // Цена за футболку, которую будет видеть покупатель на компании. Отображаеться в Set a goal
+        window.frontColor = parseInt("0");  // Переменная для отображения цветов спереди на футболке
+        window.backColor = parseInt("0");   // Переменная для отображения цветов из зади на футюолке
+        calculatePrice(window.frontColor, window.backColor);
 
     </script>
 }
@@ -595,12 +601,9 @@
                                                                 Please reduce the amount of colors you are using
                                                             </div>
                                                             <div id="quote">
-                                                                <p class="base-cost-intro">
-                                                                    <span>Base cost@50 shirts</span>
+                                                                <p class="base-cost-intro" id="count_preview">
                                                                 </p>
-
                                                                 <p class="base-cost-display" id="price_preview">
-                                                                    <span>RM 7.14</span>
                                                                 </p>
                                                             </div>
                                                             <button class="button button--transaction" id="nextPage">
@@ -750,11 +753,11 @@
                                     </div>
 
                                     <div class="ssp_pricing" style="margin-left:-8%">
-                                        <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()" value="RM 15">
+                                        <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()">
                                     </div>
 
                                     <div class="profitSale">
-                                        <h4 class="h4ProfSale" id="mainH4"> RM 5.00 profit / sale</h4>
+                                        <h4 class="h4ProfSale" id="mainH4"></h4>
                                     </div>
                                 </div>
                                 <div style="height:40px">
@@ -784,7 +787,7 @@
                                 <label style="font-weight: bold;">Estimated profit</label>
                             </div>
                             <div>
-                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px">RM 2500</span>
+                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px"></span>
                             </div>
                             <div></div>
                             <button class="Left">NEXT PAGE</button>

@@ -1,9 +1,26 @@
 ﻿function calculatePrice(frontColor, backColor) {
-
     var res = parseFloat(formula(frontColor, backColor));
-    var price = document.getElementById("price_preview");
-    price.innerText = "RM " + res.toFixed(2);
+
+    window.frontColor = parseInt(frontColor);
+    window.backColor = parseInt(backColor);
+    window.nowPrice = parseFloat(res.toFixed(2));
+
+    if (document.getElementById('profSale').value.length == 0) {
+        window.sellingPrice = parseFloat(res.toFixed(2)) * ((parseFloat(window.percentageMarkUpRequired) / 100) * 2);
+    }
+
+    document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
 }
+
+//function calculatePriceFromGoal() {
+//    var res = parseFloat(formula(window.frontColor, window.backColor));
+
+//    window.frontColor = parseInt(frontColor);
+//    window.backColor = parseInt(backColor);
+//    window.nowPrice = parseFloat(res.toFixed(2));
+//    window.sellingPrice = Math.round(window.nowPrice * 2);
+//    document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
+//}
 
 function formula(frontColor, backColor) {
     var additionalScreenCosts = parseFloat(window.additionalScreenCosts);                       //B4
@@ -14,7 +31,7 @@ function formula(frontColor, backColor) {
     var labourCost = parseFloat(window.labourCost);                                             //B7
     var labourTimePerColourPerPrint = parseInt(window.labourTimePerColourPerPrint);             //B8
     var labourTimePerSidePrintedPerPrint = parseInt(window.labourTimePerSidePrintedPerPrint);   //B9
-    var percentageMarkUpRequired = parseFloat(window.percentageMarkUpRequired) / 100;           //B11
+    var percentageMarkUpRequired = parseFloat("0");//parseFloat(window.percentageMarkUpRequired) / 100;           //B11
     var printsPerLitre = parseInt(window.printsPerLitre);                                       //B6
     var count = parseInt(window.count);                                                         //B16
 
@@ -113,4 +130,24 @@ function formula(frontColor, backColor) {
     var result = function7 * argument1;
 
     return result;
+}
+
+function setPriceInGoalFromDesign() {
+    document.getElementById('profSale').value = "RM " + window.sellingPrice;
+    document.getElementById('trackBarValue').value = window.count;
+    document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+}
+
+function setPriceInDesignFromGoal() {
+    window.count = document.getElementById('trackbar').value;
+
+    calculatePrice(window.frontColor, window.backColor);
+
+    document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+    document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
+}
+
+function estimatedProfitChange() {
+    var est = Math.floor(parseFloat((window.sellingPrice - window.nowPrice) * window.count));
+    $("#total_profit").html("RM " + est + "+");
 }
