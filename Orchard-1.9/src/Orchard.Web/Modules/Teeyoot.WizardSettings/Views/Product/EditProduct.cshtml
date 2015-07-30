@@ -24,7 +24,7 @@
             {
                 <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected)
                                                                                                      {
-                                                                                                         <text> selected="selected" </text>
+                                                                                                         <text> selected="selected" disabled="disabled" </text>
                                                                                                      }
                         data-name="@productColour.Name" data-colour="@productColour.HexValue">
                     @productColour.Name
@@ -54,12 +54,14 @@
             {
                 <tr class="product-colour-row">
                     <td class="product-colour-colour" style="background-color: @Model.SelectedProductColours[i].HexValue;">
-                        @Html.HiddenFor(m => Model.SelectedProductColours[i].Id)
-                        @Html.HiddenFor(m => Model.SelectedProductColours[i].ProductColourId)
+                        @Html.HiddenFor(m => Model.SelectedProductColours[i].Id, new {@class = "row-id"})
+                        @Html.HiddenFor(m => Model.SelectedProductColours[i].ProductColourId, new {@class = "row-product-colour-id"})
                     </td>
-                    <td class="product-colour-name">@Model.SelectedProductColours[i].Name</td>
+                    <td class="product-colour-name">
+                        @Model.SelectedProductColours[i].Name
+                    </td>
                     <td class="product-colour-base-cost">
-                        @Html.TextBoxFor(m => Model.SelectedProductColours[i].BaseCost)
+                        @Html.TextBoxFor(m => Model.SelectedProductColours[i].BaseCost, new {@class = "row-base-cost"})
                     </td>
                     <td>
                         <a href="javascript:;" class="remove-product-colour">Remove</a>
@@ -68,11 +70,13 @@
             }
             <tr class="product-colour-template product-colour-row" style="display: none;">
                 <td class="product-colour-colour">
+                    <input type="hidden" class="row-id"/>
+                    <input type="hidden" class="row-product-colour-id"/>
                 </td>
                 <td class="product-colour-name">
                 </td>
                 <td class="product-colour-base-cost">
-                    <input type="text" value="0"/>
+                    <input type="text" value="0" class="row-base-cost"/>
                 </td>
                 <td>
                     <a href="javascript:;" class="remove-product-colour">Remove</a>
@@ -89,19 +93,40 @@
 @using (Script.Foot())
 {
     <script>
+        function selectProductColour(productColourId) {
+            var selectedColourOption = $('#colours option[value="' + productColourId + '"]');
+            selectedColourOption.prop('disabled', true);
+
+            $('#colours').multiSelect('refresh');
+        };
+
+        function deselectProductColour(productColourId) {
+            var deselectedColourOption = $('#colours option[value="' + productColourId + '"]');
+            deselectedColourOption.prop('disabled', false);
+
+            $('#colours').multiSelect('refresh');
+
+            $('#colours').multiSelect('deselect', [productColourId]);
+        };
+
+        function fixProductColoursIndexing() {
+            $('#selected-colours-table .product-colour-row:visible').each(function(index, element) {
+                $(element).find('.row-id').attr('name', 'SelectedProductColours[' + index + '].Id');
+                $(element).find('.row-product-colour-id').attr('name', 'SelectedProductColours[' + index + '].ProductColourId');
+                $(element).find('.row-base-cost').attr('name', 'SelectedProductColours[' + index + '].BaseCost');
+            });
+        };
+
         function addAndHandleProductColour(productColourId) {
             var selectedColourOption = $('#colours option[value="' + productColourId + '"]');
-            var productColourTemplate = $('#selected-colours-table .product-colour-template').clone();
+            var productColourTemplate = $('#selected-colours-table .product-colour-template').clone(true);
             var addedProductColour = $('#selected-colours-table tr:last').after(productColourTemplate);
 
             addedProductColour.removeClass('product-colour-template').show();
 
             $('.product-colour-colour', addedProductColour).css('background-color', selectedColourOption.data('colour'));
+            $('.product-colour-colour .row-product-colour-id', addedProductColour).val(productColourId);
             $('.product-colour-name', addedProductColour).html(selectedColourOption.data('name'));
-
-            $('.remove-product-colour').click(function() {
-                $(this).closest('.product-colour-row').remove();
-            });
         };
 
         $(document).ready(function() {
@@ -109,7 +134,16 @@
                 keepOrder: true,
                 afterSelect: function(values) {
                     addAndHandleProductColour(values[0]);
+                    selectProductColour(values[0]);
                 }
+            });
+
+            $('.remove-product-colour').click(function() {
+                var productColourId = $(this).closest('.product-colour-row').find('.row-product-colour-id').val();
+
+                deselectProductColour(productColourId);
+
+                $(this).closest('.product-colour-row').remove();
             });
 
             $('#product_form').submit(function() {
@@ -119,6 +153,8 @@
                     alert('Please enter Product Name.');
                     return false;
                 }
+
+                fixProductColoursIndexing();
 
                 return true;
             });
