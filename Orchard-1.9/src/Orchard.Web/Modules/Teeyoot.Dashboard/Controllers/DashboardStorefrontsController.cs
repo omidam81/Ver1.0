@@ -69,7 +69,15 @@ namespace Teeyoot.Dashboard.Controllers
             var campaigns = _campaignService.GetCampaignsOfUser(int.Parse(storeFront.TeeyootUserId.ToString())).ToList();
             var model = new StoreViewModel();
             model.Campaigns = campaigns;
-            model.Img = "/Media/Storefronts/" +storeFront.TeeyootUserId.ToString() + "/" + storeFront.Id.ToString() + "/storefront.png";
+
+            var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), storeFront.TeeyootUserId.ToString(), storeFront.Id.ToString());
+            DirectoryInfo dir = new DirectoryInfo(destForder);
+
+            foreach (FileInfo fi in dir.GetFiles())
+            {
+                model.Img = "/Media/Storefronts/" + storeFront.TeeyootUserId.ToString() + "/" + storeFront.Id.ToString() + "/"+ fi.Name;
+            }
+
             model.Title = storeFront.Title;
             model.Description = storeFront.Description;
             IList<CampaignRecord> selectedCamp = new List<CampaignRecord>();
@@ -101,7 +109,7 @@ namespace Teeyoot.Dashboard.Controllers
                         }
                         else
                         {
-                            return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                            return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
                         }
                     }
                 }
@@ -113,7 +121,7 @@ namespace Teeyoot.Dashboard.Controllers
                     }
                     else
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                        return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
                     }
                     
                 }
@@ -139,13 +147,15 @@ namespace Teeyoot.Dashboard.Controllers
             if (base64image != null)
             {
                 var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString(), id.ToString());
+                
+                clearFolder(destForder);
 
                 if (!Directory.Exists(destForder))
                 {
                     Directory.CreateDirectory(destForder);
                 }
 
-                _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront.png"), ImageFormat.Png);
+                _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront"+DateTime.Now.Millisecond+".png"), ImageFormat.Png);
             }
 
             Response.Write(url);
