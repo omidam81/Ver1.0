@@ -13,15 +13,21 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IRepository<ProductRecord> _productRepository;
         private readonly IRepository<ProductColorRecord> _productColourRepository;
         private readonly IRepository<LinkProductColorRecord> _linkProductColorRepository;
+        private readonly IRepository<ProductGroupRecord> _productGroupRepository;
+        private readonly IRepository<LinkProductGroupRecord> _linkProductGroupRepository;
 
         public ProductController(
             IRepository<ProductRecord> productRepository,
             IRepository<ProductColorRecord> productColourRepository,
-            IRepository<LinkProductColorRecord> linkProductColorRepository)
+            IRepository<LinkProductColorRecord> linkProductColorRepository,
+            IRepository<ProductGroupRecord> productGroupRepository,
+            IRepository<LinkProductGroupRecord> linkProductGroupRepository)
         {
             _productRepository = productRepository;
             _productColourRepository = productColourRepository;
             _linkProductColorRepository = linkProductColorRepository;
+            _productGroupRepository = productGroupRepository;
+            _linkProductGroupRepository = linkProductGroupRepository;
         }
 
         public ActionResult Index()
@@ -45,6 +51,7 @@ namespace Teeyoot.WizardSettings.Controllers
             }
 
             FillProductViewModelWithColours(productViewModel, product);
+            FillProductViewModelWithGroups(productViewModel, product);
 
             return View(productViewModel);
         }
@@ -82,6 +89,28 @@ namespace Teeyoot.WizardSettings.Controllers
             else
             {
                 _productRepository.Update(product);
+            }
+
+            var linkProductGroups = _linkProductGroupRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .ToList();
+
+            foreach (var linkProductGroup in linkProductGroups)
+            {
+                _linkProductGroupRepository.Delete(linkProductGroup);
+            }
+
+            foreach (var productGroupId in viewModel.SelectedProductGroups)
+            {
+                var productGroup = _productGroupRepository.Get(productGroupId);
+
+                var linkProductGroup = new LinkProductGroupRecord
+                {
+                    ProductRecord = product,
+                    ProductGroupRecord = productGroup
+                };
+
+                _linkProductGroupRepository.Create(linkProductGroup);
             }
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
@@ -129,6 +158,31 @@ namespace Teeyoot.WizardSettings.Controllers
                     BaseCost = it.BaseCost
                 })
                 .ToList();
+        }
+
+        private void FillProductViewModelWithGroups(ProductViewModel viewModel, ProductRecord product)
+        {
+            viewModel.ProductGroups = _productGroupRepository.Table
+                .OrderBy(g => g.Name)
+                .Select(g => new ProductGroupItemViewModel
+                {
+                    Id = g.Id,
+                    Name = g.Name
+                })
+                .ToList();
+
+            var selectedProductGroupIds = _linkProductGroupRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .Select(it => it.ProductGroupRecord.Id)
+                .ToList();
+
+            viewModel.ProductGroups.ToList().ForEach(g =>
+            {
+                if (selectedProductGroupIds.Contains(g.Id))
+                {
+                    g.Selected = true;
+                }
+            });
         }
     }
 }

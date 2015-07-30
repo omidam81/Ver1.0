@@ -17,8 +17,24 @@
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.TextBoxFor(m => m.Name, new {@class = "text large", id = "name"})
     </fieldset>
+    <h3>Product Groups</h3>
+    <hr/>
     <fieldset>
-        @Html.Label(T("Colours").ToString())
+        <select id="groups" name="SelectedProductGroups" multiple="multiple">
+            @foreach (var productGroup in Model.ProductGroups)
+            {
+                <option value="@productGroup.Id" @if (productGroup.Selected)
+                                                 {
+                                                     <text> selected="selected" </text>
+                                                 }>
+                    @productGroup.Name
+                </option>
+            }
+        </select>
+    </fieldset>
+    <h3>Colours</h3>
+    <hr/>
+    <fieldset>
         <select id="colours" multiple="multiple">
             @foreach (var productColour in Model.ProductColours)
             {
@@ -31,8 +47,12 @@
                 </option>
             }
         </select>
-        <button id="add_colour" type="button" class="primaryAction">Add Colour</button>
-        @Html.Label(T("Selected Colours").ToString())
+        <hr/>
+        <button id="add_colour" type="button" class="primaryAction">Add New Colour</button>
+    </fieldset>
+    <h3>Selected Colours</h3>
+    <hr/>
+    <fieldset>
         <table id="selected-colours-table" class="items">
             <thead>
             <tr>
@@ -74,8 +94,7 @@
                     <input type="hidden" class="row-id"/>
                     <input type="hidden" class="row-product-colour-id"/>
                 </td>
-                <td class="product-colour-name">
-                </td>
+                <td class="product-colour-name"></td>
                 <td class="product-colour-base-cost">
                     <input type="text" value="0" class="row-base-cost"/>
                 </td>
@@ -151,6 +170,10 @@
                 if (confirm('All unsaved changes will be lost. Are you sure?')) {
                     window.location.href = '/Admin/Colours/Product/Add?returnUrl=' + encodeURIComponent(window.location.href);
                 }
+            });
+
+            $('#groups').multiSelect({
+                keepOrder: true
             });
 
             $('#product_form').submit(function() {
