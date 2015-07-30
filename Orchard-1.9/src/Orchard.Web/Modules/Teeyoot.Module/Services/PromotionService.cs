@@ -36,7 +36,7 @@ namespace Teeyoot.Module.Services
             promotion.Status = true;
         }
 
-        public void AddPromotion(string promoId, string discountType, int amountSize, string amountType, bool status, DateTime expiration)
+        public void AddPromotion(string promoId, string discountType, int amountSize, string amountType,  DateTime expiration)
         {
             try
             {

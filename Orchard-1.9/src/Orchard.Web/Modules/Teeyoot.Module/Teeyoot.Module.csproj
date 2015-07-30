@@ -754,6 +754,7 @@
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
+    <Folder Include="Views\Promotion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
