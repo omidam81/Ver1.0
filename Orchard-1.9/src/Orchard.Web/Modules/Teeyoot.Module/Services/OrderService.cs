@@ -39,9 +39,14 @@ namespace Teeyoot.Module.Services
             return _orderRepository.Table.FirstOrDefault(r => r.Id == id);
         }
 
-        public OrderRecord GetOrderByPublicId(string id)
+        public OrderRecord GetActiveOrderById(int id)
         {
-            return _orderRepository.Table.FirstOrDefault(r => r.OrderPublicId == id);
+            return _orderRepository.Table.FirstOrDefault(r => r.Id == id && r.IsActive);
+        }
+
+        public OrderRecord GetActiveOrderByPublicId(string id)
+        {
+            return _orderRepository.Table.FirstOrDefault(r => r.OrderPublicId == id && r.IsActive);
         }
 
         public void UpdateOrder(OrderRecord order)
@@ -99,12 +104,12 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaigns(int[] ids)
         {
-            return _ocpRepository.Table.Where(p => ids.Contains(p.CampaignProductRecord.CampaignRecord_Id));
+            return _ocpRepository.Table.Where(p => ids.Contains(p.CampaignProductRecord.CampaignRecord_Id) && p.OrderRecord.IsActive);
         }
 
         public IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId)
         {
-            return _ocpRepository.Table.Where(x => x.CampaignProductRecord.CampaignRecord_Id == campaignId);
+            return _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive);
         }
 
         public Task<int> GetProfitOfCampaign(int id)

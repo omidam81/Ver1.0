@@ -352,14 +352,14 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("Order_Status", "OrderRecord", new[] { "OrderStatusRecord_Id" }, "OrderStatusRecord", new[] { "Id" });
 
             SchemaBuilder.CreateTable(typeof(PayoutRecord).Name,
-             table => table
-            .Column<int>("Id", column => column.PrimaryKey().Identity())
-            .Column<DateTime>("Date")
-            .Column<string>("Event", c => c.Unlimited())
-            .Column<double>("Amount")
-            .Column<bool>("IsPlus")
-            .Column<int>("UserId")
-    );
+                     table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<DateTime>("Date")
+                    .Column<string>("Event", c => c.Unlimited())
+                    .Column<double>("Amount")
+                    .Column<bool>("IsPlus")
+                    .Column<int>("UserId")
+            );
 
             SchemaBuilder.CreateForeignKey("PayoutRecord_UserId", "PayoutRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
 
@@ -371,7 +371,14 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("OrderPublicId", c => c.NotNull().WithLength(50)));
 
-            return 25;
+
+
+
+
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.WithDefault(false)));
+
+            return 27;
         }
 
         public int UpdateFrom2()
@@ -670,6 +677,16 @@ namespace Teeyoot.Module
         {
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("OrderPublicId", c => c.NotNull().WithLength(50)));
             return 25;
+        }
+
+
+
+
+
+        public int UpdateFrom26()
+        {
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.WithDefault(false)));
+            return 27;
         }
     }
 }

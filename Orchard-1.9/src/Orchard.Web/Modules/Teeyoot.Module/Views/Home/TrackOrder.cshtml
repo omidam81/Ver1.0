@@ -10,11 +10,10 @@
             <div class="col-sm-7">
                 <h1 style="font-weight: bold; font-size: 2.508em;">Track your order</h1>
                 <p>Enter your lookup number (included in your confirmation email) to check the status of your order:</p>
-                <form method="post" @Url.Action("Tracking","Home")>
-                    <div style="display:none"><input type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="8qcOOiQvWaKVvpsMSx6gWPBluSO8e9xqUkDiOidsKmQ="></div>
+                <form method="get" action="@Url.Action("GetOrderTracking")">
                     <div class="row">
                         <div class="col-sm-8 lookupNumber">
-                            <input class="form-control input-lg input-inline-with-btn" id="lookup_number" name="lookup_number" placeholder="Lookup number" type="text">
+                            <input class="form-control input-lg input-inline-with-btn" id="orderId" name="orderId" placeholder="Lookup number" type="text">
                         </div>
                         <div class="col-sm-2">
                             <input class="btnTrack" name="commit" type="submit" value="Track order">

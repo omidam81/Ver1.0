@@ -100,6 +100,7 @@ namespace Teeyoot.Module.Controllers
                 order.Country = collection["Country"];
                 order.PhoneNumber = collection["PhoneNumber"];
                 order.Reserved = DateTime.UtcNow;
+                order.IsActive = true;
 
                 _orderService.UpdateOrder(order, OrderStatus.Reserved);
 
@@ -137,11 +138,12 @@ namespace Teeyoot.Module.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new order");
             }
         }
+
     
         [Themed]
         public ActionResult Payment(string orderId, string result = "")
         {            
-            var order = _orderService.GetOrderByPublicId(orderId);
+            var order = _orderService.GetActiveOrderByPublicId(orderId);
 
             if (order != null)
             {
@@ -163,7 +165,11 @@ namespace Teeyoot.Module.Controllers
             return View();
         }
 
-        [Themed]
+        public ActionResult GetOrderTracking(string orderId)
+        {
+            return View();
+        }
+
         public ActionResult OrderTracking()
         {
             return View();
