@@ -27,18 +27,16 @@
     <script type="text/javascript">
         window.onload = Visible();
 
-
-
         function Visible() {
-            var imgtag = document.getElementsByClassName("site__featured_full")[0];
+            @*var imgtag = document.getElementsByClassName("site__featured_full")[0];
             $(imgtag).attr("style", "");
-            $(imgtag).attr("style", "background:url('@Model.Img '); background-size: cover;");
+            $(imgtag).attr("style", "background:url('@Model.Img '); background-size: cover;")*@
 
             var form = document.getElementById("img-load-form");
             $(form).addClass('s3-uploader store_banner--custom hidden');
 
             var icon = document.getElementsByClassName("fa-camera-retro")[0];
-            $(icon).removeClass('fa-5x').addClass('fa-1x');
+            $(icon).removeClass('fa-5x').addClass('load_img fa-1x');
 
             UpdateCampaings();
         }
@@ -217,7 +215,6 @@
             var countCheckedCheckboxes = $(boxes).filter(':checked').length;
             var title = document.getElementById("title").value;
             var url = document.getElementById("Url").value;
-           
             if (title == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
@@ -242,7 +239,7 @@
                 if (imgChanged) {
                     var img = document.getElementById("banner-image");
                     img = img.getAttribute("src");
-                }               
+                }
                 var description = document.getElementById("description").value;
                 var hideStore = document.getElementsByClassName("hide_from_search__checkbox")[0].checked;
                 var crossSell = document.getElementsByClassName("cross_sell__toggle")[0].checked;
@@ -268,6 +265,8 @@
                     }),
                     success: function (data, status, resp) {
                         if (resp.status === 200) {
+                            var imgtag = document.getElementsByClassName("site__featured_full")[0];
+                            $(imgtag).attr("style", "");
                             window.location.href = '/Stores/' + data;
                         }
                     },
@@ -318,7 +317,6 @@
     </script>
 
 }
-
 <div id="dg-overlay"></div>
 <div class="site__featured_full" style="background:url('@Model.Img'); background-size:cover;">
     <img id="banner-image" class="banner-image hidden" src="@Model.Img">
@@ -444,7 +442,7 @@
                     var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
                     <div class="card card-campaign " id="card_@prod.Id">
                         <div class="image_container">
-                            <a href="@prod.URL" title="@prod.Title">
+                            <a href="/@prod.Alias" title="@prod.Title">
                                 @if (prod.BackSideByDefault)
                                 {
                                     <img onmouseover="this.src = '/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png'" onmouseout="this.src ='/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png'" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
