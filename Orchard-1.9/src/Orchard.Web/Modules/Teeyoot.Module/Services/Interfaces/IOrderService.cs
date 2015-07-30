@@ -12,7 +12,9 @@ namespace Teeyoot.Module.Services
 {
     public interface IOrderService : IDependency
     {
-        OrderRecord GetOrderById(int id); 
+        OrderRecord GetOrderById(int id);
+
+        OrderRecord GetOrderByPublicId(string id);
 
         OrderRecord GetActiveOrderById(int id);
 

@@ -149,7 +149,7 @@ namespace Teeyoot.Module.Controllers
         [Themed]
         public ActionResult Payment(string orderId, string result = "")
         {            
-            var order = _orderService.GetActiveOrderByPublicId(orderId);
+            var order = _orderService.GetOrderByPublicId(orderId);
 
             if (order != null)
             {

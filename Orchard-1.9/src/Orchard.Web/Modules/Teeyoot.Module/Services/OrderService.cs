@@ -39,6 +39,11 @@ namespace Teeyoot.Module.Services
             return _orderRepository.Table.FirstOrDefault(r => r.Id == id);
         }
 
+        public OrderRecord GetOrderByPublicId(string id)
+        {
+            return _orderRepository.Table.FirstOrDefault(r => r.OrderPublicId == id);
+        }
+
         public OrderRecord GetActiveOrderById(int id)
         {
             return _orderRepository.Table.FirstOrDefault(r => r.Id == id && r.IsActive);
