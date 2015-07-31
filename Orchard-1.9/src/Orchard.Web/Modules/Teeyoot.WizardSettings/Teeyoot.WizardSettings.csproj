@@ -95,12 +95,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EditImageRequest.cs" />
+    <Compile Include="Common\GetImageResponse.cs" />
     <Compile Include="Controllers\AdminWizardController.cs" />
     <Compile Include="Controllers\ColourController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductHeadlineController.cs" />
+    <Compile Include="Controllers\ProductImageController.cs" />
     <Compile Include="Controllers\ProductStyleController.cs" />
-    <Compile Include="Models\ChooseColourFor.cs" />
+    <Compile Include="Common\ChooseColourFor.cs" />
+    <Compile Include="Common\ProductImageSavingResult.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductColourItemViewModel.cs" />
@@ -115,7 +119,9 @@
     <Compile Include="ViewModels\SwatchColourViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\ProductImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminWizard\FontList.cshtml" />

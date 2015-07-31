@@ -21,20 +21,6 @@
     }
 </div>
 <div class="inpFields">
-    Select Ttf
-    @using (Html.BeginForm("UploadTtfFile", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => Model.Thumbnail)
-        @Html.HiddenFor(m => Model.TtfFile)
-        @Html.HiddenFor(m => Model.WoffFile)
-        @Html.HiddenFor(m => Model.Family)
-        @Html.HiddenFor(m => Model.FileName)
-        <input style="margin-left:67px" type="file" name="file" id="name" />
-        <input class="button primaryAction" type="submit" value="Upload File">
-    }
-</div>
-<div class="inpFields">
     Font Thumbnail
     @using (Html.BeginForm("UploadThumbnail", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
     {

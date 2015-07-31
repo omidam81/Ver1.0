@@ -16,13 +16,11 @@
         <th style="width:33%; border: 1px solid #eaeaea;"><h1>Action</h1></th>
         @foreach (var font in Model)
         {
-            string url = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + ".ttf";
-            string urlWoff = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + ".woff";
+            string url = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + "-webfont" + ".woff";
             <style>
                 @@font-face {
                     font-family: @font.Family;
-                    src: url('@url'),
-               url('@urlWoff');
+                    src: url('@url');
                 }
             </style>
 

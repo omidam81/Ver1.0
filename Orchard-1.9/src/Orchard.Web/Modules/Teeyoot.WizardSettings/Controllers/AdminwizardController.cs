@@ -90,7 +90,7 @@ namespace Teeyoot.WizardSettings.Controllers
                 if (allowed.Contains(extension))
                 {
                     string fileExt = Path.GetExtension(file.FileName);
-                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(file.FileName).Replace("-webfont", "");
                     var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"), file.FileName);
                     file.SaveAs(path);
                     model.WoffFile = file.FileName;
@@ -108,7 +108,7 @@ namespace Teeyoot.WizardSettings.Controllers
         {
             if (file != null && file.ContentLength > 0)
             {
-                string[] allowed = { ".png", ".jpeg" , ".jpg", ".gif"};
+                string[] allowed = { ".png"};
                 var extension = System.IO.Path.GetExtension(file.FileName);
                 if (allowed.Contains(extension))
                 {
@@ -118,30 +118,6 @@ namespace Teeyoot.WizardSettings.Controllers
                     file.SaveAs(path);
                     model.Thumbnail = file.FileName;
                     Services.Notifier.Information(T("Thumbnail has been added!"));
-                    return RedirectToAction("AddFont", model);
-                }
-            }
-            Services.Notifier.Error(T("Wrong file extention!"));
-            return RedirectToAction("AddFont", model);
-        }
-
-
-        [HttpPost]
-        public RedirectToRouteResult UploadTtfFile(HttpPostedFileBase file, FontViewModel model)
-        {
-            if (file != null && file.ContentLength > 0)
-            {
-                string[] allowed = { ".ttf" };
-                var extension = System.IO.Path.GetExtension(file.FileName);
-                if (allowed.Contains(extension))
-                {
-                    string fileExt = Path.GetExtension(file.FileName);
-                    string fileName = Path.GetFileNameWithoutExtension(file.FileName);
-                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/fonts/"), file.FileName);
-                    file.SaveAs(path);
-                    model.TtfFile = file.FileName;
-                    model.FileName = fileName;
-                    Services.Notifier.Information(T("TTF file has been added!"));
                     return RedirectToAction("AddFont", model);
                 }
             }
