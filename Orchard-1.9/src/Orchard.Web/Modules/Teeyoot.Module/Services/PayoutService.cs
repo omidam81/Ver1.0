@@ -18,5 +18,17 @@ namespace Teeyoot.Module.Services
         {
             return _payoutRepository.Table;
         }
+
+        public void AddPayout(PayoutRecord payout)
+        {
+            _payoutRepository.Create(payout);
+
+        }
+
+        public void UpdatePayout(PayoutRecord payout)
+        {
+            _payoutRepository.Update(payout);
+
+        }
     }
 }

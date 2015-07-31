@@ -109,6 +109,11 @@ namespace Teeyoot.Module.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn with this URL already exists");
             }
 
+            if (string.IsNullOrWhiteSpace(data.Design))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No design found for your campaign");
+            }
+
             try
             {
                 var campaign = _campaignService.CreateNewCampiagn(data);                

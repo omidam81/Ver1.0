@@ -11,5 +11,8 @@ namespace Teeyoot.Module.Services.Interfaces
     public interface IPayoutService : IDependency
     {
         IQueryable<PayoutRecord> GetAllPayouts();
+        void AddPayout(PayoutRecord payout );
+        void UpdatePayout(PayoutRecord payout);
+        
     }
 }

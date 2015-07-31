@@ -15,7 +15,7 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public IList<History> Transactions { get; set; }
         public double Balance { get; set; }
-
+        public string filter { get; set;}
     }
 
     public class History {
@@ -31,6 +31,8 @@ namespace Teeyoot.Dashboard.ViewModels
         public bool IsPlus { get; set; }
 
         public int UserId { get; set; }
+
+        public String Status { get; set; }
     
     }
 

@@ -20,11 +20,15 @@ table {
     padding: 5px;
 }
 .td2 {
-    width:70%;
+    width:55%;
 }
 .td3 {
     width:15%;
 }
+.td4 {
+    width:15%;
+}
+
 
 .main {
     border: 1px solid #e8eced;
