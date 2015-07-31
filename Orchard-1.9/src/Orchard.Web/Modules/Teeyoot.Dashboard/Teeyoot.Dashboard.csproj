@@ -71,6 +71,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\promotion.js" />
     <Content Include="Styles\campaigns.css" />
     <Content Include="Styles\EditCampaign.css" />
     <Content Include="Styles\Message.css" />

@@ -59,7 +59,7 @@
 .new_promotion__save__container {
   display: inline;
   float: left;
-  margin: 0 0.6825938702%;
+  margin: 1.5rem 0.6825938702%;
   width: 15.3014789262%;
 }
 .new_promotion__form .label__title {
@@ -98,10 +98,13 @@
   cursor: default;
 }
 .input__group .input__group_control, .input__group .input__group_addon {
-  border: 1px solid #e8eced;
-  display: table-cell;
-  padding: .6rem .86667rem;
-  vertical-align: middle;
+  border: 1px solid #e8eced !important;
+  display: table-cell !important;
+  padding: 11px .86667rem !important;
+  vertical-align: middle !important;
+    width: 4% !important;
+    content:url("../../Teeyoot.Module/Content/images/refresh.png");
+    
 }
 .input__group>:first-child {
   border-radius: 5px 0 0 5px;
@@ -123,9 +126,7 @@
   border-radius: 0 5px 5px 0;
   border-left: 0;
 }
-.input__group>:first-child {
-    border-radius: 5px 5px 5px 5px;
-}
+
 .new_promotion__discount .discount_amount__prefix {
   padding: 0;
 }
@@ -186,14 +187,14 @@
   padding: .75rem 1rem;
 }
 .form__textfield, .form__textarea {
-  border: 1px solid #e8eced;
+  border: 1px solid #e8eced ;
   border-radius: 5px;
   color: #293033;
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 0 !important;
   outline: 0;
-  padding: .6rem .867rem;
+  padding: .6rem .867rem !important;
   -webkit-transition: border-color .15s;
   transition: border-color .15s;
   -webkit-appearance: none; 
@@ -209,7 +210,51 @@
   border-radius: 5px;
   color: #293033;
   font-size: 1rem;
-  height: 2.15rem;
+  height: 39px !important;
+  line-height: 1.4;
+  margin-bottom: 0 !important;
+  outline: 0;
+  max-width: 100%;
+  min-width: 4rem;
+  padding: .2rem 0rem .2rem 0rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.form__select_menu:hover {
+  margin-right: 0.6rem;
+  background-color: white;
+  background-image: url("https://d1b2zzpxewkr9z.cloudfront.net/images/icons/double_caret.png");
+  background-repeat: no-repeat;
+  background-position: right .3rem top 50%;
+  background-size: 14px 16px;
+  border: 1px solid #e8eced;
+  border-radius: 5px;
+  color: #293033;
+  font-size: 1rem;
+  height: 39px !important;
+  line-height: 1.4;
+  margin-bottom: 0 !important;
+  outline: 0;
+  max-width: 100%;
+  min-width: 4rem;
+  padding: .2rem 0rem .2rem 0rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+ .form__select_menu:focus {
+  margin-right: 0.6rem;
+  background-color: white;
+  background-image: url("https://d1b2zzpxewkr9z.cloudfront.net/images/icons/double_caret.png");
+  background-repeat: no-repeat;
+  background-position: right .3rem top 50%;
+  background-size: 14px 16px;
+  border: 1px solid #e8eced;
+  border-radius: 5px;
+  color: #293033;
+  font-size: 1rem;
+  height: 39px !important;
   line-height: 1.4;
   margin-bottom: 0 !important;
   outline: 0;
@@ -225,4 +270,41 @@
   font-size: 1.1rem;
   border-radius: 5px 5px 5px 5px;
   width: 70% !important;
+}
+.generatePromoId {
+  border-color: #c2c9cc;
+  font-size: 1.1rem;
+  border-radius: 5px 5px 5px 5px;
+  width: 25% !important;
+}
+.ts-icon-reload:before {
+    height:30px;
+    width:30px;
+  content: url("../../Teeyoot.Module/Content/images/refresh.png");
+}
+.hide-replaced.ws-inputreplace {
+    display: none !important;
+}
+.input-picker .picker-list td > button.othermonth {
+    color: #888888;
+    background: #fff;
+}
+.ws-inline-picker.ws-size-2, .ws-inline-picker.ws-size-4 {
+    width: 49.6154em;
+}
+.ws-size-4 .ws-index-0, .ws-size-4 .ws-index-1 {
+    border-bottom: 0.07692em solid #eee;
+    padding-bottom: 1em;
+    margin-bottom: 0.5em;
+}
+.picker-list.ws-index-2, .picker-list.ws-index-3 {
+    margin-top: 3.5em;
+}
+
+.date-display {
+    display: inline-block;
+    min-width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    min-height: 1em;
 }

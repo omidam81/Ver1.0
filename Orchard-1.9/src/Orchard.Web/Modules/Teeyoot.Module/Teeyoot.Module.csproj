@@ -270,6 +270,7 @@
     <Content Include="Content\images\product_type_95_back.png" />
     <Content Include="Content\images\product_type_95_front.png" />
     <Content Include="Content\images\product_type_95_front_small.png" />
+    <Content Include="Content\images\refresh.png" />
     <Content Include="Content\images\rotate.png" />
     <Content Include="Content\images\scale.png" />
     <Content Include="Content\images\select2.png" />
