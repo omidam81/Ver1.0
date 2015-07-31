@@ -1,0 +1,100 @@
+﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
+@{
+    Style.Include("AdminPayout.css");
+}
+
+@{
+
+    <div>
+        @using (Html.BeginForm("Index", "FaqAdmin", FormMethod.Get))
+        {
+            <fieldset class="bulk-actions">
+
+                @* @Html.LabelFor(m => m.Search.SectionId, T("Section")):*@
+              
+                  @*@Html.DropDownListFor(model => model.filter, new SelectList(
+                  new List<Object>
+                  {
+                       new { value = 0 , text = "Pending"  },
+                       new { value = 1 , text = "Completed" }
+                  }), "-- show all --","asd");
+
+
+
+                <button type="submit">@T("Apply")</button>
+                <a href="@Url.Action("Index")">@T("By Default")</a>*@
+            </fieldset>
+        }
+    </div>
+
+    <fieldset>
+        <table class="items">
+            <thead>
+                <tr class="admin-categories">
+                    <th class="date">
+                        <h3>DATE</h3>
+                    </th>
+                    <th class="event">
+                        <h3>EVENT</h3>
+                    </th>
+                    <th class="amount">
+                        <h3>AMOUNT</h3>
+                    </th>
+                    <th class="status">
+                        <h3>STATUS</h3>
+                    </th>
+                    <th class="userId">
+                        <h3>USERID</h3>
+                    </th>
+                </tr>
+            </thead>
+
+
+
+
+
+            <tbody>
+                @foreach (var item in Model.Transactions)
+                {
+                    <tr class="admin-categories-tr">
+                        <td class="date">
+                            @item.Date
+                        </td>
+                        <td class="event">
+                            @item.Event
+                        </td>
+                        <td class="amount">
+                            @if (@item.IsPlus)
+                            {
+                                @T("+ ")@item.Amount
+
+                            }
+                            else
+                            {
+                                @T("- ")@item.Amount
+
+                            }
+                        </td>
+                        <td class="status">
+                            @item.Status
+                            @if (@item.Status == "pending")
+                            {
+                                @T(" | ")
+                                <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" Completed")">@T("Completed")</a>
+                            }
+
+                        </td>
+                        <td class="userId">
+                            @item.UserId
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </fieldset>
+}
+
+
+
