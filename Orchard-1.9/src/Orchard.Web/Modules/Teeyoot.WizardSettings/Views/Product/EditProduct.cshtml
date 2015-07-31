@@ -123,6 +123,7 @@
     <hr/>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">Save</button>
+        <a id="cancel" class="button" href="@Url.Action("Index", "Product")">Cancel</a>
     </fieldset>
 }
 
@@ -196,6 +197,13 @@
                 if (confirm('All unsaved changes will be lost. Are you sure?')) {
                     window.location.href = '/Admin/ProductGroups/Add?returnUrl=' + encodeURIComponent(window.location.href);
                 }
+            });
+
+            $('#cancel').click(function() {
+                if (confirm('All unsaved changes will be lost. Are you sure?')) {
+                    return true;
+                }
+                return false;
             });
 
             $('#product_form').submit(function() {
