@@ -1,7 +1,16 @@
-﻿using System.Linq;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Orchard;
 using Orchard.Data;
+using Orchard.Localization;
+using Orchard.Logging;
 using Orchard.UI.Admin;
+using Orchard.UI.Notify;
+using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.WizardSettings.ViewModels;
 
@@ -10,6 +19,7 @@ namespace Teeyoot.WizardSettings.Controllers
     [Admin]
     public class ProductController : Controller
     {
+        private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductRecord> _productRepository;
         private readonly IRepository<ProductColorRecord> _productColourRepository;
         private readonly IRepository<LinkProductColorRecord> _linkProductColorRepository;
@@ -18,15 +28,33 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IRepository<ProductHeadlineRecord> _productHeadlineRepository;
         private readonly IRepository<ProductImageRecord> _productImageRepository;
 
+        private readonly IimageHelper _imageHelper;
+
+        private const int ProductImageWidth = 530;
+        private const int ProductImageHeight = 630;
+
+        private const int ProductImageFrontSmallWidth = 212;
+        private const int ProductImageFrontSmallHeight = 252;
+
+        private const string ProductImagesRelativePath = "~/Modules/Teeyoot.Module/Content/images";
+
+        private const string ProductImageFrontFilenameTemplate = "product_type_{0}_front.png";
+        private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
+        private const string ProductImageBackFilenameTemplate = "product_type_{0}_back.png";
+        //private const string FrontImage
+
         public ProductController(
+            IOrchardServices orchardServices,
             IRepository<ProductRecord> productRepository,
             IRepository<ProductColorRecord> productColourRepository,
             IRepository<LinkProductColorRecord> linkProductColorRepository,
             IRepository<ProductGroupRecord> productGroupRepository,
             IRepository<LinkProductGroupRecord> linkProductGroupRepository,
             IRepository<ProductHeadlineRecord> productHeadlineRepository,
-            IRepository<ProductImageRecord> productImageRepository)
+            IRepository<ProductImageRecord> productImageRepository,
+            IimageHelper imageHelper)
         {
+            _orchardServices = orchardServices;
             _productRepository = productRepository;
             _productColourRepository = productColourRepository;
             _linkProductColorRepository = linkProductColorRepository;
@@ -34,7 +62,14 @@ namespace Teeyoot.WizardSettings.Controllers
             _linkProductGroupRepository = linkProductGroupRepository;
             _productHeadlineRepository = productHeadlineRepository;
             _productImageRepository = productImageRepository;
+            _imageHelper = imageHelper;
+
+            T = NullLocalizer.Instance;
+            Logger = NullLogger.Instance;
         }
+
+        public Localizer T { get; set; }
+        public ILogger Logger { get; set; }
 
         public ActionResult Index()
         {
@@ -132,6 +167,8 @@ namespace Teeyoot.WizardSettings.Controllers
                 _linkProductGroupRepository.Create(linkProductGroup);
             }
 
+            SaveProductFrontImage(viewModel.ProductImageFront, product);
+
             return RedirectToAction("EditProduct", new {productId = product.Id});
         }
 
@@ -214,6 +251,34 @@ namespace Teeyoot.WizardSettings.Controllers
                     Name = h.Name
                 })
                 .ToList();
+        }
+
+        private void SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)
+        {
+            using (var image = Image.FromStream(imageFile.InputStream, true, true))
+            {
+                if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
+                {
+                    _orchardServices.Notifier.Error(T("Front Image should be {0}x{1}.", ProductImageWidth,
+                        ProductImageHeight));
+                    return;
+                }
+
+                var imageFilename = string.Format(ProductImageFrontFilenameTemplate, product.Id);
+                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+
+                image.Save(imagePhysicalPath, ImageFormat.Png);
+
+                var smallImageBitmap = _imageHelper.ResizeImage(
+                    image,
+                    ProductImageFrontSmallWidth,
+                    ProductImageFrontSmallHeight);
+
+                var smallImageFilename = string.Format(ProductImageFrontSmallFilenameTemplate, product.Id);
+                var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFilename);
+
+                smallImageBitmap.Save(smallImagePhysicalPath, ImageFormat.Png);
+            }
         }
     }
 }
