@@ -1,4 +1,8 @@
-﻿.lookupNumber {
+﻿.order-tracker {
+    margin: 20px 0 40px -15px;
+}
+
+.lookupNumber {
     padding-left:0px;
 }
 
@@ -65,7 +69,7 @@ background: #ff4f00 !important;
     width: 24px;
     height: 24px;
     border-radius: 12px;
-    line-height: 24px;
+    line-height: 22px;
     font-size: 13px;
 }
 .track-bar .track-state img {
@@ -148,8 +152,8 @@ background: #ff4f00 !important;
 }
 
 .track-order-current .track-state span {
-  background: #4bb232;
-  border: 1px solid #4bb232;
+  background: #ff4f00;
+  border: 1px solid #ff4f00;
   color: white;
 }
 
@@ -197,5 +201,5 @@ background: #ff4f00 !important;
     border-left: 1px solid #acb0b8;
 }
 .track-stats .track-inner .badge-success {
-    background: #4bb232;
+    background: #ff4f00;
 }
