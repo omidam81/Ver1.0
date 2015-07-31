@@ -187,7 +187,7 @@
         window.count = 50; // Первоначальное количество элементов, должно будет изменяться
         window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
         document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
-        window.sellingPrice = Math.round(window.nowPrice * 2); // Цена за футболку, которую будет видеть покупатель на компании. Отображаеться в Set a goal
+        window.sellingPrice = parseFloat("0"); // Цена за футболку, которую будет видеть покупатель на компании. Отображаеться в Set a goal
         window.frontColor = parseInt("0");  // Переменная для отображения цветов спереди на футболке
         window.backColor = parseInt("0");   // Переменная для отображения цветов из зади на футюолке
         calculatePrice(window.frontColor, window.backColor);
