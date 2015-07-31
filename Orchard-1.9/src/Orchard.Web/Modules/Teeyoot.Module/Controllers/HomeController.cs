@@ -176,16 +176,22 @@ namespace Teeyoot.Module.Controllers
             return View();
         }
 
-        [Themed]
         [HttpPost]
+        public ActionResult SearchForOrder(string orderId)
+        {
+            return RedirectToAction("OrderTracking", new { orderId });
+        }
+
+        [Themed]
+        [HttpGet]
         public ActionResult OrderTracking(string orderId)
         {
             var order = _orderService.GetActiveOrderByPublicId(orderId);
 
             if (order == null)
             {
-                TempData["OrderNotFoundMessage"] = "Could not find order with that lookup number";
-                return RedirectToAction("TrackOrder");
+                _notifier.Error(T("Could not find order with that lookup number"));
+                return View("TrackOrder");
             }
 
             return View();

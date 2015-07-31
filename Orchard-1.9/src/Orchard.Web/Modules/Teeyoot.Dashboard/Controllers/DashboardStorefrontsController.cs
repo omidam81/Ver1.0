@@ -46,17 +46,19 @@ namespace Teeyoot.Dashboard.Controllers
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             var newStore = _storeService.CreateStore(teeyootUser.Id, title,  description,url, hideStore, crossSelling, selectedCampaigns);
 
-
-            var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString(), newStore.Id.ToString());
-
-            if (!Directory.Exists(destForder))
+            if (base64image != "")
             {
-                Directory.CreateDirectory(destForder);
+                var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString(), newStore.Id.ToString());
+
+                if (!Directory.Exists(destForder))
+                {
+                    Directory.CreateDirectory(destForder);
+                }
+
+                _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront.png"), ImageFormat.Png);
+
             }
-
-            _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront.png"), ImageFormat.Png);
-
-            
+  
             Response.Write(url);
             return new HttpStatusCodeResult(HttpStatusCode.OK);
             
@@ -73,11 +75,17 @@ namespace Teeyoot.Dashboard.Controllers
             var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), storeFront.TeeyootUserId.ToString(), storeFront.Id.ToString());
             DirectoryInfo dir = new DirectoryInfo(destForder);
 
-            foreach (FileInfo fi in dir.GetFiles())
+            if (dir.Exists == true)
             {
-                model.Img = "/Media/Storefronts/" + storeFront.TeeyootUserId.ToString() + "/" + storeFront.Id.ToString() + "/"+ fi.Name;
+                foreach (FileInfo fi in dir.GetFiles())
+                {
+                    model.Img = "/Media/Storefronts/" + storeFront.TeeyootUserId.ToString() + "/" + storeFront.Id.ToString() + "/" + fi.Name;
+                }
             }
-
+            if (model.Img == null)
+            {
+                model.Img = "/Media/Default/images/storefront.png";
+            }
             model.Title = storeFront.Title;
             model.Description = storeFront.Description;
             IList<CampaignRecord> selectedCamp = new List<CampaignRecord>();
@@ -147,13 +155,19 @@ namespace Teeyoot.Dashboard.Controllers
             if (base64image != null)
             {
                 var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString(), id.ToString());
-                
-                clearFolder(destForder);
 
-                if (!Directory.Exists(destForder))
+                DirectoryInfo dir = new DirectoryInfo(destForder);
+                if (dir.Exists == true)
+                {
+                    foreach (FileInfo fi in dir.GetFiles())
+                    {
+                        fi.Delete();
+                    }
+                }
+                else
                 {
                     Directory.CreateDirectory(destForder);
-                }
+                } 
 
                 _imageHelper.Base64ToBitmap(base64image).Save(Path.Combine(destForder, "storefront"+DateTime.Now.Millisecond+".png"), ImageFormat.Png);
             }
@@ -174,24 +188,28 @@ namespace Teeyoot.Dashboard.Controllers
           
             var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString());
 
-            clearFolder(destForder);
+            clearFolder(destForder, id.ToString());
             
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        private void clearFolder(string FolderName)
+        private void clearFolder(string FolderPath, string FolderName)
         {
-            DirectoryInfo dir = new DirectoryInfo(FolderName);
+            DirectoryInfo dir = new DirectoryInfo(FolderPath);
+            if (dir.Exists == true)
+            {               
+                foreach (DirectoryInfo di in dir.GetDirectories())
+                {
+                    if (di.Name == FolderName)
+                    {
+                        foreach (FileInfo fi in di.GetFiles())
+                        {
+                            fi.Delete();
+                        }
 
-            foreach (FileInfo fi in dir.GetFiles())
-            {
-                fi.Delete();
-            }
-
-            foreach (DirectoryInfo di in dir.GetDirectories())
-            {
-                clearFolder(di.FullName);
-                di.Delete();
+                        di.Delete();
+                    }
+                }
             }
         }
         

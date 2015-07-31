@@ -57,6 +57,18 @@ window.onload = function initWizard() {
         image.classList.add("sell");
         image.style.height = "73px";
         prdc.ProductId = parseInt(document.getElementById("product").value);
+         
+        var product = design.products.productsData[prdc.ProductId];
+        prdc.ColorId = product.colors_available[0];
+        var prices = product.prices;
+        for (var i = 0; i < prices.length; i++) {
+            if (prices[i].color_id == prdc.ColorId) {
+                prdc.BaseCost = prices[i].price;
+            }
+        }
+        var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
+        prdc.BaseCost = calc[0];
+        prdc.Price = calc[1];
 
         imageDel.classList.add("ssp_delete");
         imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
@@ -78,10 +90,12 @@ window.onload = function initWizard() {
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
         inpPrice.style.padding = "0.3em";
-        inpPrice.value = "RM 15";
+        inpPrice.value = "RM " + prdc.Price;
 
         h4Profit.classList.add("h4ProfSale");
-        h4Profit.innerHTML = "RM 5.00 profit / sale";
+        h4Profit.id = "h4ProfSale_" + prdc.ProductId;
+        var chenges = prdc.Price - prdc.BaseCost;
+        h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " profit / sale";
 
         $inp = $(inpPrice);
 
@@ -89,9 +103,10 @@ window.onload = function initWizard() {
 
         // Ивент на остаток прибыли от суммы одной футболки -------------------
         $inp.change(function () {
-            var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) / 3).toFixed(2);
+            var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost).toFixed(2);
             prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
             h4Profit.innerHTML = "RM " + price + " profit / sale";
+            estimatedProfitChangeForManuProducts();
         });
 
         var $divPricing = $(divPricing);
@@ -186,6 +201,20 @@ window.onload = function initWizard() {
                 $image.css("background-color", color.value);
                 $divSwatch.css("background-color", color.value);
                 prdc.ColorId = parseInt(color.id);
+
+                var product = design.products.productsData[prdc.ProductId];
+                var prices = product.prices;
+                for (var i = 0; i < prices.length; i++) {
+                    if (prices[i].color_id == prdc.ColorId) {
+                        prdc.BaseCost = prices[i].price;
+                    }
+                }
+                var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
+                prdc.BaseCost = calc[0];
+                var chenges = prdc.Price - prdc.BaseCost;
+                h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " profit / sale";
+                estimatedProfitChangeForManuProducts();
+
                 //$divColors.remove();
                 $divColors.removeClass('containertip--open');
             }).hover(function () {
@@ -249,10 +278,8 @@ window.onload = function initWizard() {
     
         globalPrdc = prdc;
         app.state.products.push(prdc);
-
+        estimatedProfitChangeForManuProducts();
     });
-
-
 }
 
 function setDesign() {
@@ -345,7 +372,6 @@ function profitSale() {
         $("#mainH4").html("RM " + $price + " profit / sale");
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
-        estimatedProfitChange();
     }
 }
 
@@ -373,6 +399,18 @@ function colorInit() {
                 $("#swatch2").css("background-color", color.value);
                 $('.containertip--open').removeClass('containertip--open');
                 app.state.currentProduct.ColorId = parseInt(color.id);
+
+                var product = design.products.productsData[app.state.currentProduct.ProductId];
+                var prices = product.prices;
+                for (var i = 0; i < prices.length; i++) {
+                    if (prices[i].color_id == app.state.currentProduct.ColorId) {
+                        app.state.currentProduct.BaseCost = prices[i].price;
+                    }
+                }
+                var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, app.state.currentProduct.BaseCost);
+                app.state.currentProduct.BaseCost = calc[0];
+                var chenges = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
+                $("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
@@ -457,12 +495,17 @@ function slide() {
 
 function onChangeTrackBar() {
     document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
-    document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
+    //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
+    window.count = parseInt(document.getElementById('trackbar').value);
     setPriceInDesignFromGoal();
-
     profitSale();
-    estimatedProfitChange();
+
+    if (app.state.products.length > 1) {
+        estimatedProfitChangeForManuProducts()
+    } else {
+        estimatedProfitChange();
+    }
 }
 
 function onChangeValueForTrackBar() {
@@ -473,7 +516,14 @@ function onChangeValueForTrackBar() {
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
+    window.count = parseInt(document.getElementById('trackBarValue').value);
+
     setPriceInDesignFromGoal();
     profitSale();
-    estimatedProfitChange();
+
+    if (app.state.products.length > 1) {
+        estimatedProfitChangeForManuProducts()
+    } else {
+        estimatedProfitChange();
+    }
 }

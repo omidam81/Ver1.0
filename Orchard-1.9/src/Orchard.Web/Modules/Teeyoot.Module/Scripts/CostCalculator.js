@@ -7,22 +7,23 @@
 
     if (document.getElementById('profSale').value.length == 0) {
         window.sellingPrice = parseFloat(res.toFixed(2)) * ((parseFloat(window.percentageMarkUpRequired) / 100) * 2);
+        app.state.currentProduct.Price = window.sellingPrice;
     }
 
     document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
+    app.state.currentProduct.BaseCost = window.nowPrice;
 }
 
-//function calculatePriceFromGoal() {
-//    var res = parseFloat(formula(window.frontColor, window.backColor));
+function calculatePriceForNewProduct(frontColor, backColor, cost) {
+    var res = parseFloat(formula(frontColor, backColor, cost));
 
-//    window.frontColor = parseInt(frontColor);
-//    window.backColor = parseInt(backColor);
-//    window.nowPrice = parseFloat(res.toFixed(2));
-//    window.sellingPrice = Math.round(window.nowPrice * 2);
-//    document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
-//}
+    var price = parseFloat(res.toFixed(2)) * ((parseFloat(window.percentageMarkUpRequired) / 100) * 2);
+    var prices = [parseFloat(res.toFixed(2)), price];
 
-function formula(frontColor, backColor) {
+    return prices;
+}
+
+function formula(frontColor, backColor, cost) {
     var additionalScreenCosts = parseFloat(window.additionalScreenCosts);                       //B4
     var costOfMaterial = parseFloat(window.costOfMaterial);                                     //B10
     var dTGPrintPrice = parseFloat(window.dTGPrintPrice);                                       //B12 
@@ -34,6 +35,10 @@ function formula(frontColor, backColor) {
     var percentageMarkUpRequired = parseFloat("0");//parseFloat(window.percentageMarkUpRequired) / 100;           //B11
     var printsPerLitre = parseInt(window.printsPerLitre);                                       //B6
     var count = parseInt(window.count);                                                         //B16
+
+    if (cost != null) {
+        costOfMaterial = parseFloat(cost.toFixed(2));
+    }
 
     // argument1
     var argument1 = 1 + percentageMarkUpRequired;
@@ -136,6 +141,12 @@ function setPriceInGoalFromDesign() {
     document.getElementById('profSale').value = "RM " + window.sellingPrice;
     document.getElementById('trackBarValue').value = window.count;
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+
+    if (app.state.products.length > 1) {
+        estimatedProfitChangeForManuProducts();
+    } else {
+        estimatedProfitChange();
+    }
 }
 
 function setPriceInDesignFromGoal() {
@@ -150,4 +161,33 @@ function setPriceInDesignFromGoal() {
 function estimatedProfitChange() {
     var est = Math.floor(parseFloat((window.sellingPrice - window.nowPrice) * window.count));
     $("#total_profit").html("RM " + est + "+");
+}
+
+function estimatedProfitChangeForManuProducts() {
+    var products = app.state.products;
+
+    var result = [];
+    for (var i = 0; i < products.length; i++) {
+        var cost;
+        var product = design.products.productsData[products[i].ProductId];
+        var prices = product.prices;
+        for (var k = 0; k < prices.length; k++) {
+            if (prices[k].color_id == products[i].ColorId) {
+                cost = prices[k].price;
+            }
+        }
+
+
+        var prices = calculatePriceForNewProduct(window.frontColor, window.backColor, parseFloat(cost.toFixed(2)));
+        products[i].BaseCost = prices[0];
+        result.push(Math.floor(parseFloat(products[i].Price - products[i].BaseCost) * window.count));
+        if (i > 0) {
+            var profit = parseFloat((products[i].Price - products[i].BaseCost).toFixed(2));
+            document.getElementById("h4ProfSale_" + products[i].ProductId).innerText = "RM " + profit + " profit / sale";
+        }
+    }
+    var min = Math.min.apply(null, result);
+    var max = Math.max.apply(null, result);
+
+    $("#total_profit").html("RM " + min + "-" + max + "+");
 }
