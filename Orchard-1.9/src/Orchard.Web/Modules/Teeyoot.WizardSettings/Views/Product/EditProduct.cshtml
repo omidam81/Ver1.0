@@ -12,7 +12,7 @@
     @(Model.Id == null ? T("Add New Product") : T("Edit Product"))
 </h2>
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("EditProduct", "Product"), FormMethod.Post, new {id = "product_form"}))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("EditProduct", "Product"), FormMethod.Post, new {id = "product_form", enctype = "multipart/form-data"}))
 {
     @Html.HiddenFor(m => m.Id)
     <fieldset>
@@ -111,6 +111,16 @@
             </tbody>
         </table>
     </fieldset>
+    <h3>Product Images</h3>
+    <hr/>
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Choose Front Image"))
+        @Html.TextBoxFor(m => m.ProductImageFront, new {type = "file", accept = "image/png"})
+        @Html.LabelFor(m => m.Name, T("Choose Back Image"))
+        @Html.TextBoxFor(m => m.ProductImageBack, new {type = "file", accept = "image/png"})
+    </fieldset>
+    <button id="edit_image" type="button" class="primaryAction">Edit Image</button>
+    <hr/>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">Save</button>
     </fieldset>
