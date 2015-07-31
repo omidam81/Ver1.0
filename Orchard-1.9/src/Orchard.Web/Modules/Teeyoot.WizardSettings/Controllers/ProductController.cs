@@ -38,6 +38,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
         private const int ProductImageWidth = 530;
         private const int ProductImageHeight = 630;
+        private const int ProductImagePpi = 18;
 
         private const int ProductImageFrontSmallWidth = 212;
         private const int ProductImageFrontSmallHeight = 252;
@@ -116,6 +117,11 @@ namespace Teeyoot.WizardSettings.Controllers
             {
                 productViewModel.Name = product.Name;
                 productViewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
+
+                productViewModel.ProductImageFrontFilename = CheckProductImageExistence(product,
+                    ProductImageFrontFilenameTemplate);
+                productViewModel.ProductImageBackFilename = CheckProductImageExistence(product,
+                    ProductImageBackFilenameTemplate);
             }
 
             FillProductViewModelWithColours(productViewModel, product);
@@ -399,6 +405,15 @@ namespace Teeyoot.WizardSettings.Controllers
         {
             productImageRecord.Width = width;
             productImageRecord.Height = height;
+            productImageRecord.Ppi = ProductImagePpi;
+        }
+
+        private string CheckProductImageExistence(ProductRecord product, string productImageFilenameTemplate)
+        {
+            var imageFilename = string.Format(productImageFilenameTemplate, product.Id);
+            var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+
+            return System.IO.File.Exists(imagePhysicalPath) ? imageFilename : null;
         }
     }
 }
