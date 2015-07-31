@@ -1,4 +1,4 @@
-﻿namespace Teeyoot.WizardSettings.Models
+﻿namespace Teeyoot.WizardSettings.Common
 {
     public class ProductImageSavingResult
     {

@@ -12,7 +12,7 @@ using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
 using Teeyoot.Module.Models;
-using Teeyoot.WizardSettings.Models;
+using Teeyoot.WizardSettings.Common;
 using Teeyoot.WizardSettings.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers
