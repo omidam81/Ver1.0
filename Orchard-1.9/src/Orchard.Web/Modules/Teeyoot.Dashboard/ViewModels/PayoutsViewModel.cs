@@ -14,8 +14,10 @@ namespace Teeyoot.Dashboard.ViewModels
         }
 
         public IList<History> Transactions { get; set; }
+        public dynamic[] Transacts { get; set; }
         public double Balance { get; set; }
         public string filter { get; set;}
+        public dynamic Pager { get; set; }
     }
 
     public class History {
