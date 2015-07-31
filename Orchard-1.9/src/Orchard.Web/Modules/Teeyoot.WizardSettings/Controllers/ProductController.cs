@@ -197,12 +197,12 @@ namespace Teeyoot.WizardSettings.Controllers
 
             if (frontImageSavingResult != null)
             {
-                FillProductImageRecordWith(product.ProductImageRecord, frontImageSavingResult.Width,
+                FillProductImageWith(product.ProductImageRecord, frontImageSavingResult.Width,
                     frontImageSavingResult.Height);
             }
             else if (backImageSavingResult != null)
             {
-                FillProductImageRecordWith(product.ProductImageRecord, backImageSavingResult.Width,
+                FillProductImageWith(product.ProductImageRecord, backImageSavingResult.Width,
                     backImageSavingResult.Height);
             }
 
@@ -364,7 +364,7 @@ namespace Teeyoot.WizardSettings.Controllers
             }
         }
 
-        private static void FillProductImageRecordWith(ProductImageRecord productImageRecord, int width, int height)
+        private static void FillProductImageWith(ProductImageRecord productImageRecord, int width, int height)
         {
             productImageRecord.Width = width;
             productImageRecord.Height = height;

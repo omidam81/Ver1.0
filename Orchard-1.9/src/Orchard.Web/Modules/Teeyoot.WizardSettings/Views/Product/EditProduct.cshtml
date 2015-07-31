@@ -14,7 +14,7 @@
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("EditProduct", "Product"), FormMethod.Post, new {id = "product_form", enctype = "multipart/form-data"}))
 {
-    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Id, new {id = "product_id"})
     <fieldset>
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.TextBoxFor(m => m.Name, new {@class = "text large", id = "name"})
@@ -114,9 +114,9 @@
     <h3>Product Images</h3>
     <hr/>
     <fieldset>
-        @Html.LabelFor(m => m.Name, T("Choose Front Image"))
+        @Html.LabelFor(m => m.Name, T("Choose Front Image. 530x630 only allowed."))
         @Html.TextBoxFor(m => m.ProductImageFront, new {type = "file", accept = "image/png"})
-        @Html.LabelFor(m => m.Name, T("Choose Back Image"))
+        @Html.LabelFor(m => m.Name, T("Choose Back Image. 530x630 only allowed."))
         @Html.TextBoxFor(m => m.ProductImageBack, new {type = "file", accept = "image/png"})
     </fieldset>
     <button id="edit_image" type="button" class="primaryAction">Edit Image</button>
