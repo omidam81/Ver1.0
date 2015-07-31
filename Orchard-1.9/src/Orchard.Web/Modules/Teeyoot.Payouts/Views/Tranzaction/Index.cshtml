@@ -6,23 +6,22 @@
 @{
 
     <div>
-        @using (Html.BeginForm("Index", "FaqAdmin", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Tranzaction", FormMethod.Get))
         {
             <fieldset class="bulk-actions">
-
-                @* @Html.LabelFor(m => m.Search.SectionId, T("Section")):*@
-              
-                  @*@Html.DropDownListFor(model => model.filter, new SelectList(
-                  new List<Object>
-                  {
-                       new { value = 0 , text = "Pending"  },
-                       new { value = 1 , text = "Completed" }
-                  }), "-- show all --","asd");
-
+                @T("Filter:")
+                @Html.DropDownListFor(model => model.filter, new SelectList(
+                  new List<Object>{
+                       new { value = 0 , text = "All"  },
+                       new { value = 1 , text = "Pending"  },
+                       new { value = 2 , text = "Completed" },
+                    },
+                  "value",
+                  "text",
+                   0))
 
 
                 <button type="submit">@T("Apply")</button>
-                <a href="@Url.Action("Index")">@T("By Default")</a>*@
             </fieldset>
         }
     </div>
@@ -49,12 +48,8 @@
                 </tr>
             </thead>
 
-
-
-
-
             <tbody>
-                @foreach (var item in Model.Transactions)
+                @foreach (var item in Model.Transacts)
                 {
                     <tr class="admin-categories-tr">
                         <td class="date">
@@ -94,6 +89,7 @@
             </tbody>
         </table>
     </fieldset>
+    @Display(Model.Pager)
 }
 
 

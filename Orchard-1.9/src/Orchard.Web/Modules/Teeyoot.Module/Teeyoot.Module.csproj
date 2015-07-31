@@ -685,7 +685,7 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
-    <Compile Include="Common\ScheduledTasks\MonitoringCampaignsTaskHandler.cs" />
+    <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
     <Compile Include="Common\Utils\ImageHelper.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />

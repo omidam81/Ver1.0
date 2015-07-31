@@ -1,9 +1,114 @@
 ﻿@model IEnumerable<Teeyoot.Module.Models.PromotionRecord>
-@{
-    
-}
+    @{
+        Style.Include("Promotions.css");
+        Style.Include("Settings.css");
+    }
 
-<div class="dashboard-section-title">@T("Promotions")
-    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
-    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
-</div>
+    <div class="dashboard-section-title">
+        @T("Promotions")
+        <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+        <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+    </div>
+
+    <div class="dashboard__info_message">
+        <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
+        <div class="share_promotions">
+            Share promotions by appending the ID to the end of your campaign URL. <div class="share_promotions__example">
+                (e.g., <span class="share_promotions__url">http://teespring.com/yourcampaign</span>
+                <strong class="share_promotions__query">?promo=PROMOID</strong>)
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("ChangeUserInfo", "Dashboard", FormMethod.Post, new { model = Model }))
+    {
+        @*@foreach(var promotion in Model){
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => promotion.Id)*@
+
+
+        @*}*@
+    }
+
+
+
+    <section class="account__email_settings">
+        <div class="dashboard_section__header">
+            <h1 class="dashboard_section__heading">Add New Promotion</h1>
+        </div>
+        @using (Html.BeginForm("ChangeEmail", "Dashboard", FormMethod.Post, new { model = Model }))
+        {
+            <div class="dashboard_section__content--padded">
+                <div class="new_promotion__form">
+                    <div class="new_promotion__code">
+                        <div class="label__title">Promo ID (alphanumeric)</div>
+                        <div class="input__group new_promotion__field">
+                            <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
+                        </div>
+                    </div>
+                    <div class="new_promotion__type">
+                        <div class="label__title">Type</div>
+                        <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
+                    </div>
+                    <div class="new_promotion__discount">
+                        <div class="label__title">Amount</div>
+                        <div class="input__group new_promotion__field">
+                            <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
+                            <select class="form__select_menu" id="prefix" name="prefix">
+                                <option value="fixed_value">$</option>
+                                <option value="percentage">%</option>
+                            </select>                           
+                        </div>
+                    </div>
+                    <div class="new_promotion__expiration">
+                        <div class="label__title">Expiration</div>
+                        <div class="input__group new_promotion__field">
+                            <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
+                           
+                        </div>
+                    </div>
+                    <div class="new_promotion__save__container">
+                        <input name="commit" class="t-button" type="submit" value="Add discount">
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+
+
+    <section class="account__password_settings">
+        <div class="dashboard_section__header">
+            <h1 class="dashboard_section__heading">All promotions</h1>
+
+        </div>
+        <div class="dashboard_section__content--padded">
+            @using (Html.BeginForm("ChangePassword", "Dashboard", FormMethod.Post, new { model = Model }))
+            {
+
+
+                @*@Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+
+                    <div class="account__password_info">
+                        <label>
+                            <div class="label__title">Current password</div>
+                            @Html.ValidationMessageFor(m => m.CurrentPassword)
+                            @Html.TextBoxFor(m => m.CurrentPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password" })
+
+                        </label>
+                        <label>
+                            <div class="label__title">New password</div>
+                            @Html.ValidationMessageFor(m => m.NewPassword)
+                            @Html.TextBoxFor(m => m.NewPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password", @placeholder = "Must be longer than 7 characters" })
+
+                        </label>
+                        <label>
+                            <div class="label__title">Confirm new password</div>
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password" })
+
+                        </label>
+                        <input name="commit" class="t-button" type="submit" value="Update Password">
+                    </div>*@
+            }
+        </div>
+    </section>

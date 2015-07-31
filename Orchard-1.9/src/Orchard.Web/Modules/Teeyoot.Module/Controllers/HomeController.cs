@@ -89,7 +89,7 @@ namespace Teeyoot.Module.Controllers
                     }
                 };
                 result = Gateway.Transaction.Sale(requestCard);
-                //result = Gateway.Transaction.SubmitForSettlement("the_transaction_id", Decimal.Parse("1000.0"));
+                //result = Gateway.Transaction.SubmitForSettlement("the_transaction_id", 1000.0M);
             }
            
             if (result.IsSuccess())

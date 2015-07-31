@@ -1,0 +1,21 @@
+﻿body {
+}
+.admin-categories-tr {
+    font-size: 16px;
+}
+
+.date{
+    width:20%;
+}
+.event{
+    width:30%;
+}
+.amount{
+    width:20%;
+}
+.status{
+    width:20%;
+}
+.userId{
+    width:10%;
+}

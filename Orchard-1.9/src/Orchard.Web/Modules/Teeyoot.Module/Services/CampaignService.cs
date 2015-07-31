@@ -20,6 +20,8 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<CampaignCategoriesRecord> _campaignCategories;
         private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCategories;
         private readonly IRepository<LinkOrderCampaignProductRecord> _ocpRepository;
+        private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
+        private readonly IRepository<OrderRecord> _orderRepository;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -30,7 +32,9 @@ namespace Teeyoot.Module.Services
                                IRepository<CampaignCategoriesRecord> campaignCategories,
                                IOrchardServices services,
                                IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategories,
-                               IRepository<LinkOrderCampaignProductRecord> ocpRepository)
+                               IRepository<LinkOrderCampaignProductRecord> ocpRepository,
+                               IRepository<OrderStatusRecord> orderStatusRepository,
+                               IRepository<OrderRecord> orderRepository)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -42,6 +46,8 @@ namespace Teeyoot.Module.Services
             Services = services;
             _linkCampaignAndCategories = linkCampaignAndCategories;
             _ocpRepository = ocpRepository;
+            _orderStatusRepository = orderStatusRepository;
+            _orderRepository = orderRepository;
         }
 
         private IOrchardServices Services { get; set; }
@@ -226,20 +232,27 @@ namespace Teeyoot.Module.Services
 
         public void CheckExpiredCampaigns()
         {
-            var campaigns = _campaignRepository.Table.Where(c => c.EndDate.Date < DateTime.UtcNow.Date);
+            var campaigns = _campaignRepository.Table.Where(c => c.EndDate < DateTime.UtcNow && c.CampaignStatusRecord.Name == CampaignStatus.Active.ToString()).ToList();
 
             foreach (var c in campaigns)
             {
                 c.CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Ended.ToString());
-                UpdateCampaign(c);
+                _campaignRepository.Update(c);
+                _campaignRepository.Flush();
 
                 if (c.ProductCountGoal <= c.ProductCountSold)
                 {                  
-                    var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct();
+                    var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
 
                     foreach(var o in orders)
                     {
-                        //o.OrderStatusRecord = 
+                        if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
+                        {
+                            o.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString());
+                            o.Paid = DateTime.UtcNow;
+                            _orderRepository.Update(o);
+                            _orderRepository.Flush();
+                        }
                     }
                 }
             }
