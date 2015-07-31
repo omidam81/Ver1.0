@@ -342,7 +342,7 @@
                 <li class="list_item__counter">@T("Add campaigns to your storefront")</li>
             </ol>
 
-            @if (Model.Campaigns.Count() == 0)
+            @if (Model.Campaigns.Count() < 3)
             {
             <div>
                 <p>@T("You need at least 3 campaigns to create a storefront.")</p>

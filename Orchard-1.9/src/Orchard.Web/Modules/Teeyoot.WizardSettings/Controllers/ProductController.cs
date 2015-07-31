@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -6,9 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using Orchard;
 using Orchard.Data;
+using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
+using Orchard.Settings;
 using Orchard.UI.Admin;
+using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
@@ -20,6 +24,7 @@ namespace Teeyoot.WizardSettings.Controllers
     [Admin]
     public class ProductController : Controller
     {
+        private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductRecord> _productRepository;
         private readonly IRepository<ProductColorRecord> _productColourRepository;
@@ -44,8 +49,12 @@ namespace Teeyoot.WizardSettings.Controllers
 
         private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
 
+        private dynamic Shape { get; set; }
+
         public ProductController(
+            ISiteService siteService,
             IOrchardServices orchardServices,
+            IShapeFactory shapeFactory,
             IRepository<ProductRecord> productRepository,
             IRepository<ProductColorRecord> productColourRepository,
             IRepository<LinkProductColorRecord> linkProductColorRepository,
@@ -55,7 +64,9 @@ namespace Teeyoot.WizardSettings.Controllers
             IRepository<ProductImageRecord> productImageRepository,
             IimageHelper imageHelper)
         {
+            _siteService = siteService;
             _orchardServices = orchardServices;
+
             _productRepository = productRepository;
             _productColourRepository = productColourRepository;
             _linkProductColorRepository = linkProductColorRepository;
@@ -63,18 +74,32 @@ namespace Teeyoot.WizardSettings.Controllers
             _linkProductGroupRepository = linkProductGroupRepository;
             _productHeadlineRepository = productHeadlineRepository;
             _productImageRepository = productImageRepository;
+
             _imageHelper = imageHelper;
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            Shape = shapeFactory;
         }
 
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index()
+        public ActionResult Index(PagerParameters pagerParameters)
         {
-            return View();
+            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+
+            var products = _productRepository.Table
+                .OrderBy(p => p.Name)
+                .Skip(pager.GetStartIndex())
+                .Take(pager.PageSize);
+
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_productRepository.Table.Count());
+
+            var viewModel = new ProductIndexViewModel(products, pagerShape);
+
+            return View(viewModel);
         }
 
         public ActionResult EditProduct(int? productId)
@@ -173,16 +198,46 @@ namespace Teeyoot.WizardSettings.Controllers
 
             if (frontImageSavingResult != null)
             {
-                FillProductImageRecordWith(product.ProductImageRecord, frontImageSavingResult.Width,
+                FillProductImageWith(product.ProductImageRecord, frontImageSavingResult.Width,
                     frontImageSavingResult.Height);
             }
             else if (backImageSavingResult != null)
             {
-                FillProductImageRecordWith(product.ProductImageRecord, backImageSavingResult.Width,
+                FillProductImageWith(product.ProductImageRecord, backImageSavingResult.Width,
                     backImageSavingResult.Height);
             }
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
+        }
+
+        public ActionResult DeleteProduct(int productId)
+        {
+            var product = _productRepository.Get(productId);
+
+            try
+            {
+                var productGroups = _linkProductGroupRepository.Table
+                    .Where(g => g.ProductRecord == product)
+                    .ToList();
+
+                foreach (var productGroup in productGroups)
+                {
+                    _linkProductGroupRepository.Delete(productGroup);
+                }
+
+                _productRepository.Delete(product);
+                _productRepository.Flush();
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(T("Deleting Product \"{0}\" failed: {1}", product.Name, exception.Message).Text);
+                _orchardServices.Notifier.Error(T("Deleting Product \"{0}\" failed: {1}", product.Name,
+                    exception.Message));
+                return RedirectToAction("Index");
+            }
+
+            _orchardServices.Notifier.Information(T("Product \"{0}\" has been deleted.", product.Name));
+            return RedirectToAction("Index");
         }
 
         private void FillProductViewModelWithColours(ProductViewModel viewModel, ProductRecord product)
@@ -340,7 +395,7 @@ namespace Teeyoot.WizardSettings.Controllers
             }
         }
 
-        private static void FillProductImageRecordWith(ProductImageRecord productImageRecord, int width, int height)
+        private static void FillProductImageWith(ProductImageRecord productImageRecord, int width, int height)
         {
             productImageRecord.Width = width;
             productImageRecord.Height = height;

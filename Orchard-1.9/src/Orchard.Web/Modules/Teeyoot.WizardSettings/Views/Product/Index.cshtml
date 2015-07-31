@@ -1,3 +1,28 @@
-﻿<div class="manage">
+﻿@model Teeyoot.WizardSettings.ViewModels.ProductIndexViewModel
+@{
+    Layout.Title = T("Products");
+}
+
+<div class="manage">
     <a class="button primaryAction" href="@Url.Action("EditProduct", "Product")">@T("Add New Product")</a>
 </div>
+
+<ul class="contentItems">
+    @foreach (var product in Model.Products)
+    {
+        <li>
+            <div class="summary">
+                <div class="properties">
+                    <div>
+                        <h3>@product.Name</h3>
+                    </div>
+                </div>
+                <div class="related">
+                    <a href="@Url.Action("EditProduct", "Product", new {productId = product.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("DeleteProduct", "Product", new {productId = product.Id})" itemprop="RemoveUrl">@T("Delete")</a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@Display(Model.Pager)

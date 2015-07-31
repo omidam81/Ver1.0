@@ -1,15 +1,18 @@
 ﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
 
 @{
+    Style.Include("bootstrap.min.css");
     Style.Include("Payouts.css");
+    //Script.Include("bootstrap.min.js");
 }
 
 @using (Script.Foot())
 {
     <script type="text/javascript">
         $(".btnStartPayout").click(function () {
-            $(".main").css = ({ "display": "none" });
-            $("#startPayout").css = ({ "display": "inline" });
+            $("#startPayout").toggle();
+            console.log(55);
+            return false;
         });
     </script>
 }
@@ -24,20 +27,18 @@
     <div class="main">
         <h1>Current Payout Amount</h1>
         <div class="balance">
-            <h3 style="float:left; margin-left:5%;">You currently have   $ </h3>
-            <p style="font-size: larger; float:left; margin: 10px;"> @Model.Balance</p>
-            <h3 style="float:left;">ready to be paid out</h3>
-
-            <a class="button btnStartPayout" href="@Url.Action("StartPayout", "Dashboard")">Start a payout</a>
+            You currently have $ <b>@Model.Balance</b> ready to be paid out
+            <a class="btnStartPayout" href="@Url.Action("StartPayout", "Dashboard")">Start a payout</a>
+            <div style="clear:both;"></div>
         </div>
 
         <h1>Payout History</h1>
 
-        <table>
-            <tr>
-                <td class="td1 main">DATE</td>
-                <td class="td2 main">EVENT</td>
-                <td class="td3 main">AMOUNT</td>
+        <table class="tbl-pay">
+            <tr class="thead">
+                <td class="td1">DATE</td>
+                <td class="td2">EVENT</td>
+                <td class="td3">AMOUNT</td>
                 <td class="td4 main">STATUS</td>
             </tr>
             @foreach (var elem in @Model.Transactions)
