@@ -12,6 +12,7 @@ using Orchard.UI.Admin;
 using Orchard.UI.Notify;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
+using Teeyoot.WizardSettings.Models;
 using Teeyoot.WizardSettings.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers
@@ -167,8 +168,19 @@ namespace Teeyoot.WizardSettings.Controllers
                 _linkProductGroupRepository.Create(linkProductGroup);
             }
 
-            SaveProductFrontImage(viewModel.ProductImageFront, product);
-            SaveProductBackImage(viewModel.ProductImageBack, product);
+            var frontImageSavingResult = SaveProductFrontImage(viewModel.ProductImageFront, product);
+            var backImageSavingResult = SaveProductBackImage(viewModel.ProductImageBack, product);
+
+            if (frontImageSavingResult != null)
+            {
+                FillProductImageRecordWith(product.ProductImageRecord, frontImageSavingResult.Width,
+                    frontImageSavingResult.Height);
+            }
+            else if (backImageSavingResult != null)
+            {
+                FillProductImageRecordWith(product.ProductImageRecord, backImageSavingResult.Width,
+                    backImageSavingResult.Height);
+            }
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
         }
@@ -254,20 +266,23 @@ namespace Teeyoot.WizardSettings.Controllers
                 .ToList();
         }
 
-        private void SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)
+        private ProductImageSavingResult SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)
         {
             if (imageFile == null)
             {
-                return;
+                return null;
             }
 
             using (var image = Image.FromStream(imageFile.InputStream, true, true))
             {
                 if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
                 {
-                    _orchardServices.Notifier.Error(T("Front Image should be {0}x{1}.", ProductImageWidth,
-                        ProductImageHeight));
-                    return;
+                    _orchardServices.Notifier.Error(
+                        T("Front Image should be {0}x{1}.",
+                            ProductImageWidth,
+                            ProductImageHeight));
+
+                    return null;
                 }
 
                 var imageFilename = string.Format(ProductImageFrontFilenameTemplate, product.Id);
@@ -284,30 +299,51 @@ namespace Teeyoot.WizardSettings.Controllers
                 var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFilename);
 
                 smallImageBitmap.Save(smallImagePhysicalPath, ImageFormat.Png);
+
+                return new ProductImageSavingResult
+                {
+                    Width = image.Width,
+                    Height = image.Height
+                };
             }
         }
 
-        private void SaveProductBackImage(HttpPostedFileBase imageFile, ProductRecord product)
+        private ProductImageSavingResult SaveProductBackImage(HttpPostedFileBase imageFile, ProductRecord product)
         {
             if (imageFile == null)
             {
-                return;
+                return null;
             }
 
             using (var image = Image.FromStream(imageFile.InputStream, true, true))
             {
                 if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
                 {
-                    _orchardServices.Notifier.Error(T("Back Image should be {0}x{1}.", ProductImageWidth,
-                        ProductImageHeight));
-                    return;
+                    _orchardServices.Notifier.Error(
+                        T("Back Image should be {0}x{1}.",
+                            ProductImageWidth,
+                            ProductImageHeight));
+
+                    return null;
                 }
 
                 var imageFilename = string.Format(ProductImageBackFilenameTemplate, product.Id);
                 var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
 
                 image.Save(imagePhysicalPath, ImageFormat.Png);
+
+                return new ProductImageSavingResult
+                {
+                    Width = image.Width,
+                    Height = image.Height
+                };
             }
+        }
+
+        private static void FillProductImageRecordWith(ProductImageRecord productImageRecord, int width, int height)
+        {
+            productImageRecord.Width = width;
+            productImageRecord.Height = height;
         }
     }
 }

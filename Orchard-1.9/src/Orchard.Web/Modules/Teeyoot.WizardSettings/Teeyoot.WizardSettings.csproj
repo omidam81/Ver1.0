@@ -101,6 +101,7 @@
     <Compile Include="Controllers\ProductHeadlineController.cs" />
     <Compile Include="Controllers\ProductStyleController.cs" />
     <Compile Include="Models\ChooseColourFor.cs" />
+    <Compile Include="Models\ProductImageSavingResult.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductColourItemViewModel.cs" />
