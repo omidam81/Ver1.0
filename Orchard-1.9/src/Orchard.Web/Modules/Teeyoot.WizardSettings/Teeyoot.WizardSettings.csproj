@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\EditImageRequest.cs" />
+    <Compile Include="Common\GetImageResponse.cs" />
     <Compile Include="Controllers\AdminWizardController.cs" />
     <Compile Include="Controllers\ColourController.cs" />
     <Compile Include="Controllers\ProductController.cs" />

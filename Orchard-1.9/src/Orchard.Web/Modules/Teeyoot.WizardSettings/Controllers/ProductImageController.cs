@@ -15,6 +15,36 @@ namespace Teeyoot.WizardSettings.Controllers
             _productRepository = productRepository;
         }
 
+        [HttpGet]
+        public JsonResult GetImage(int productId)
+        {
+            var product = _productRepository.Get(productId);
+            var productImage = product.ProductImageRecord;
+
+            var response = new GetImageResponse
+            {
+                Ppi = productImage.Ppi,
+
+                // Front Image
+                PrintableFrontLeft = productImage.PrintableFrontLeft,
+                PrintableFrontTop = productImage.PrintableFrontTop,
+                PrintableFrontWidth = productImage.PrintableFrontWidth,
+                PrintableFrontHeight = productImage.PrintableFrontHeight,
+
+                ChestLineFront = productImage.ChestLineFront,
+
+                // Back Image
+                PrintableBackLeft = productImage.PrintableBackLeft,
+                PrintableBackTop = productImage.PrintableBackTop,
+                PrintableBackWidth = productImage.PrintableBackWidth,
+                PrintableBackHeight = productImage.PrintableBackHeight,
+
+                ChestLineBack = productImage.ChestLineBack
+            };
+
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult EditImage(EditImageRequest request)
         {
