@@ -3116,10 +3116,11 @@ var design={
 			
 			var radius = 0;		
 			canvasLoad(obj, 0);
+			function isIE() { return ((navigator.appName == 'Microsoft Internet Explorer') || ((navigator.appName == 'Netscape') && (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null))); }
 			function canvasLoad(obj, i) {
 				if (typeof obj[i] != 'undefined')
 				{
-					var IE = /msie/.test(navigator.userAgent.toLowerCase());
+				    var IE = isIE();
 					var item = obj[i];
 					i++;
 					if (IE === true)
