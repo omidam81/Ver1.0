@@ -405,8 +405,8 @@ namespace Teeyoot.Module.Controllers
                     p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
                 back.Save(Path.Combine(destForder, "normal", "back.png"));
 
-                ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
-                ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+                _imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
+                _imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
 
                 frontTemplate.Dispose();
                 backTemplate.Dispose();
@@ -420,31 +420,6 @@ namespace Teeyoot.Module.Controllers
             var background = _imageHelper.CreateBackground(width, height, color);
             image = _imageHelper.ApplyBackground(image, background, width, height);
             return _imageHelper.ApplyDesign(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
-        }
-
-        private Bitmap ResizeImage(Image image, int width, int height)
-        {
-            var destRect = new Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
-            {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
-
-            return destImage;
         }
 
         #endregion
