@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\ProductGroupItemViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineViewModel.cs" />
+    <Compile Include="ViewModels\ProductIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleIndexViewModel.cs" />
     <Compile Include="ViewModels\FontViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleViewModel.cs" />

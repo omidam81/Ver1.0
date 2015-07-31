@@ -232,14 +232,18 @@ namespace Teeyoot.Module.Services
 
         public void CheckExpiredCampaigns()
         {
-            var campaigns = _campaignRepository.Table.Where(c => c.EndDate < DateTime.UtcNow && c.CampaignStatusRecord.Name == CampaignStatus.Active.ToString()).ToList();
+            var campaigns = _campaignRepository
+                                .Table
+                                .Where(c => c.EndDate < DateTime.UtcNow && c.CampaignStatusRecord.Name == CampaignStatus.Active.ToString())
+                                .ToList();
 
             foreach (var c in campaigns)
             {
-                c.CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Ended.ToString());
+                c.CampaignStatusRecord = _statusRepository
+                                            .Table
+                                            .First(s => s.Name == CampaignStatus.Ended.ToString());
                 _campaignRepository.Update(c);
-                _campaignRepository.Flush();
-
+                
                 if (c.ProductCountGoal <= c.ProductCountSold)
                 {                  
                     var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
@@ -250,12 +254,13 @@ namespace Teeyoot.Module.Services
                         {
                             o.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString());
                             o.Paid = DateTime.UtcNow;
-                            _orderRepository.Update(o);
-                            _orderRepository.Flush();
+                            _orderRepository.Update(o);                           
                         }
                     }
+                    _orderRepository.Flush();
                 }
             }
+            _campaignRepository.Flush();
         }
     }
 }
