@@ -1,9 +1,13 @@
 ﻿.order-tracker {
     margin: 20px 0 40px -15px;
 }
-
+@media screen and (max-width: 1280px) {
+    .order-tracker {
+        margin: 20px 0 40px 0;
+    }
+}
 .lookupNumber {
-    padding-left:0px;
+    padding:0px;
 }
 
 .btnTrack {
@@ -20,8 +24,14 @@ background: #ff4f00 !important;
     color: white;
 }
 .btnTrack:hover {
-    
     background-color: #dbdbdb !important;
+}
+@media (max-width: 767px){
+    input[type="submit"].btnTrack {
+       margin-top:10px;
+       margin-bottom:0px;
+       width: 100%;
+    }
 }
 
 .h1{
