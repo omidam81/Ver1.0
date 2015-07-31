@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Teeyoot.Module.ViewModels.OrderTrackingViewModel
+@{
     Style.Include("bootstrap.min.css");
     Style.Include("track.css");
 }
@@ -6,7 +7,7 @@
 <div class="order-tracker">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="h1">Order Tracker</h1>
+            <h1 class="h1">@T("Order Tracker")</h1>
         </div>
     </div>
 
@@ -14,51 +15,198 @@
     <div class="row">
         <div class="track-bar hidden-xs offset-top offset-top-large">
 
-            <div class="col-sm-3">
-               <!--  <div class="track-position track-order-future" id="track-order"> -->
-                <div class="track-position track-order-past" id="track-order">
-                    <div class="track-state">
-                        <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
-                        <span>1</span>
+            @if(Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
+            {
+                <div class="col-sm-3">          
+                    <div class="track-position track-order-current" id="track-order">
+                        <div class="track-state">
+                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <span>1</span>
+                        </div>
+                        <div class="track-arrow"></div>
                     </div>
-                    <div class="track-arrow"></div>
                 </div>
-            </div>
 
-            <div class="col-sm-3">
-                <div class="track-position track-order-current" id="track-print">
-                    <div class="track-state">
-                        <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
-                        Printing
-                        <span>2</span>
+                <div class="col-sm-3">
+                    <div class="track-position track-order-future" id="track-print">
+                        <div class="track-state">
+                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            @T("Printing")
+                            <span>2</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
                     </div>
-                    <div class="track-arrow"></div>
-                    <div class="track-margin-line"></div>
                 </div>
-            </div>
 
-            <div class="col-sm-3">
-                <div class="track-position track-order-future" id="track-ship">
-                    <div class="track-state">
-                        <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
-                        Shipped
-                        <span>3</span>
+                <div class="col-sm-3">
+                    <div class="track-position track-order-future" id="track-ship">
+                        <div class="track-state">
+                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            @T("Shipped")
+                            <span>3</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
                     </div>
-                    <div class="track-arrow"></div>
-                    <div class="track-margin-line"></div>
                 </div>
-            </div>
 
-            <div class="col-sm-3">
-                <div class="track-position track-order-future" id="track-deliver">
-                    <div class="track-state">
-                        <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
-                        Delivered
-                        <span>4</span>
+                <div class="col-sm-3">
+                    <div class="track-position track-order-future" id="track-deliver">
+                        <div class="track-state">
+                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            @T("Delivered")
+                            <span>4</span>
+                        </div>
+                        <div class="track-margin-line"></div>
                     </div>
-                    <div class="track-margin-line"></div>
                 </div>
-            </div>
+            }
+            
+            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Printing.ToString())
+            {
+                <div class="col-sm-3">
+                    <div class="track-position track-order-past" id="track-order">
+                        <div class="track-state">
+                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <span>1</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-current" id="track-print">
+                        <div class="track-state">
+                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            @T("Printing")
+                            <span>2</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-future" id="track-ship">
+                        <div class="track-state">
+                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            @T("Shipped")
+                            <span>3</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-future" id="track-deliver">
+                        <div class="track-state">
+                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            @T("Delivered")
+                            <span>4</span>
+                        </div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
+            {
+                <div class="col-sm-3">
+                    <div class="track-position track-order-past" id="track-order">
+                        <div class="track-state">
+                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <span>1</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-past" id="track-print">
+                        <div class="track-state">
+                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            @T("Printing")
+                            <span>2</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-current" id="track-ship">
+                        <div class="track-state">
+                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            @T("Shipped")
+                            <span>3</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-future" id="track-deliver">
+                        <div class="track-state">
+                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            @T("Delivered")
+                            <span>4</span>
+                        </div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
+            {
+                <div class="col-sm-3">
+                    <div class="track-position track-order-past" id="track-order">
+                        <div class="track-state">
+                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <span>1</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-past" id="track-print">
+                        <div class="track-state">
+                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            @T("Printing")
+                            <span>2</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-past" id="track-ship">
+                        <div class="track-state">
+                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            @T("Shipped")
+                            <span>3</span>
+                        </div>
+                        <div class="track-arrow"></div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="track-position track-order-current" id="track-deliver">
+                        <div class="track-state">
+                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            @T("Delivered")
+                            <span>4</span>
+                        </div>
+                        <div class="track-margin-line"></div>
+                    </div>
+                </div>
+            }
+            
         </div>
     </div>
 
@@ -75,7 +223,7 @@
             <div class="col-md-8">
                 <div class="track-left">
                     <div class="track-inner">
-                        <span class="badge badge-success">Status</span> Updated 07 Jul 12:13
+                        <span class="badge badge-success">@("Status")</span> Updated 07 Jul 12:13
                         <div class="offset-top offset-top-small offset-top-xs"></div>
                         <h2 class="h2">Your order has been cancelled</h2>
                         <p class="offset-top offset-top-small">
@@ -84,12 +232,12 @@
 
 
                         <hr>
-                        <h4 class="h4">Order history</h4>
+                        <h4 class="h4">@T("Order history")</h4>
                         <ul class="list-unstyled">
 
                             <li>
-                                <span class="badge">07 Jul 12:06</span>
-                                Order for <a href="/gfdfdfg">Title</a> placed
+                                <span class="badge">@Model.CreateDate</span>
+                                Order for <a href="/@Model.CampaignAlias">@Model.CampaignName</a> @T("placed")
                             </li>
 
                             <li>
@@ -109,10 +257,15 @@
             <div class="col-md-4">
                 <div class="track-right track-border-left">
                     <div class="track-inner">
-                        <h4 class="h4">Order summary</h4>
-                        <p>
-                            <strong>( 1 )</strong> M - Teespring Premium Tee<br>
-                        </p>
+                        <h4 class="h4">@T("Order summary")</h4>
+                        
+                            @foreach (var prod in Model.Products)
+                            {
+                                <p>
+                                    <strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name<br>
+                                </p>
+                            }
+                        
 
                     </div>
                     <div class="track-margin-line track-border-none"></div>
