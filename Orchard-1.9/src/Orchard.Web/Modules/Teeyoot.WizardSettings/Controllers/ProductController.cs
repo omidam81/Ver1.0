@@ -39,8 +39,9 @@ namespace Teeyoot.WizardSettings.Controllers
         private const string ProductImagesRelativePath = "~/Modules/Teeyoot.Module/Content/images";
 
         private const string ProductImageFrontFilenameTemplate = "product_type_{0}_front.png";
-        private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
         private const string ProductImageBackFilenameTemplate = "product_type_{0}_back.png";
+
+        private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
 
         public ProductController(
             IOrchardServices orchardServices,
@@ -167,6 +168,7 @@ namespace Teeyoot.WizardSettings.Controllers
             }
 
             SaveProductFrontImage(viewModel.ProductImageFront, product);
+            SaveProductBackImage(viewModel.ProductImageBack, product);
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
         }
@@ -282,6 +284,29 @@ namespace Teeyoot.WizardSettings.Controllers
                 var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFilename);
 
                 smallImageBitmap.Save(smallImagePhysicalPath, ImageFormat.Png);
+            }
+        }
+
+        private void SaveProductBackImage(HttpPostedFileBase imageFile, ProductRecord product)
+        {
+            if (imageFile == null)
+            {
+                return;
+            }
+
+            using (var image = Image.FromStream(imageFile.InputStream, true, true))
+            {
+                if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
+                {
+                    _orchardServices.Notifier.Error(T("Back Image should be {0}x{1}.", ProductImageWidth,
+                        ProductImageHeight));
+                    return;
+                }
+
+                var imageFilename = string.Format(ProductImageBackFilenameTemplate, product.Id);
+                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+
+                image.Save(imagePhysicalPath, ImageFormat.Png);
             }
         }
     }
