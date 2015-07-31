@@ -6,9 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using Orchard;
 using Orchard.Data;
+using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
+using Orchard.Settings;
 using Orchard.UI.Admin;
+using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
@@ -20,6 +23,7 @@ namespace Teeyoot.WizardSettings.Controllers
     [Admin]
     public class ProductController : Controller
     {
+        private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductRecord> _productRepository;
         private readonly IRepository<ProductColorRecord> _productColourRepository;
@@ -44,8 +48,12 @@ namespace Teeyoot.WizardSettings.Controllers
 
         private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
 
+        private dynamic Shape { get; set; }
+
         public ProductController(
+            ISiteService siteService,
             IOrchardServices orchardServices,
+            IShapeFactory shapeFactory,
             IRepository<ProductRecord> productRepository,
             IRepository<ProductColorRecord> productColourRepository,
             IRepository<LinkProductColorRecord> linkProductColorRepository,
@@ -55,7 +63,9 @@ namespace Teeyoot.WizardSettings.Controllers
             IRepository<ProductImageRecord> productImageRepository,
             IimageHelper imageHelper)
         {
+            _siteService = siteService;
             _orchardServices = orchardServices;
+
             _productRepository = productRepository;
             _productColourRepository = productColourRepository;
             _linkProductColorRepository = linkProductColorRepository;
@@ -63,18 +73,32 @@ namespace Teeyoot.WizardSettings.Controllers
             _linkProductGroupRepository = linkProductGroupRepository;
             _productHeadlineRepository = productHeadlineRepository;
             _productImageRepository = productImageRepository;
+
             _imageHelper = imageHelper;
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            Shape = shapeFactory;
         }
 
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index()
+        public ActionResult Index(PagerParameters pagerParameters)
         {
-            return View();
+            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+
+            var products = _productRepository.Table
+                .OrderBy(p => p.Name)
+                .Skip(pager.GetStartIndex())
+                .Take(pager.PageSize);
+
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_productRepository.Table.Count());
+
+            var viewModel = new ProductIndexViewModel(products, pagerShape);
+
+            return View(viewModel);
         }
 
         public ActionResult EditProduct(int? productId)
