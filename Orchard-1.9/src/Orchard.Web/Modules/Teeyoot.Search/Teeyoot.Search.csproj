@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\infiniteScroll.js" />
-    <Content Include="Styles\AdminPayout.css" />
     <Content Include="Styles\Search.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />

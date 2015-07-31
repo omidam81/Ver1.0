@@ -12,8 +12,9 @@ namespace Teeyoot.Dashboard.Controllers
     {
         public ActionResult Payouts()
         {
+            int currentUserId = Services.WorkContext.CurrentUser.Id;
             var payouts = _payoutService.GetAllPayouts();
-            var list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).ToList();
+            var list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(t=>t.UserId == currentUserId).ToList();
             var model = new PayoutsViewModel();
             model.Transactions = list;
             foreach(var item in model.Transactions){
