@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -207,6 +208,36 @@ namespace Teeyoot.WizardSettings.Controllers
             }
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
+        }
+
+        public ActionResult DeleteProduct(int productId)
+        {
+            var product = _productRepository.Get(productId);
+
+            try
+            {
+                var productGroups = _linkProductGroupRepository.Table
+                    .Where(g => g.ProductRecord == product)
+                    .ToList();
+
+                foreach (var productGroup in productGroups)
+                {
+                    _linkProductGroupRepository.Delete(productGroup);
+                }
+
+                _productRepository.Delete(product);
+                _productRepository.Flush();
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(T("Deleting Product \"{0}\" failed: {1}", product.Name, exception.Message).Text);
+                _orchardServices.Notifier.Error(T("Deleting Product \"{0}\" failed: {1}", product.Name,
+                    exception.Message));
+                return RedirectToAction("Index");
+            }
+
+            _orchardServices.Notifier.Information(T("Product \"{0}\" has been deleted.", product.Name));
+            return RedirectToAction("Index");
         }
 
         private void FillProductViewModelWithColours(ProductViewModel viewModel, ProductRecord product)

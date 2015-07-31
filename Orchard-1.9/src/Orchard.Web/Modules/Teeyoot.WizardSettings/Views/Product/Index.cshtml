@@ -18,8 +18,8 @@
                     </div>
                 </div>
                 <div class="related">
-                    <a href="@Url.Action("EditProduct", "Product", new {productId = product.Id})" title="@T("Edit")">@T("Edit")</a>
-
+                    <a href="@Url.Action("EditProduct", "Product", new {productId = product.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("DeleteProduct", "Product", new {productId = product.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                 </div>
             </div>
         </li>

@@ -8,6 +8,10 @@
     Script.Include("jquery.multi-select.js");
 }
 
+<div class="manage">
+    <a class="button primaryAction" href="@Url.Action("Index", "Product")">@T("Back To List")</a>
+</div>
+
 <h2>
     @(Model.Id == null ? T("Add New Product") : T("Edit Product"))
 </h2>
