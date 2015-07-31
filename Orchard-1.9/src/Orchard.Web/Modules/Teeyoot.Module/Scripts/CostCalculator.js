@@ -177,13 +177,13 @@ function estimatedProfitChangeForManuProducts() {
             }
         }
 
-
         var prices = calculatePriceForNewProduct(window.frontColor, window.backColor, parseFloat(cost.toFixed(2)));
         products[i].BaseCost = prices[0];
         result.push(Math.floor(parseFloat(products[i].Price - products[i].BaseCost) * window.count));
         if (i > 0) {
             var profit = parseFloat((products[i].Price - products[i].BaseCost).toFixed(2));
-            document.getElementById("h4ProfSale_" + products[i].ProductId).innerText = "RM " + profit + " profit / sale";
+            var index = "#h4ProfSale_" + parseInt(i + 1);
+            $(index).html("RM " + profit + " profit / sale");
         }
     }
     var min = Math.min.apply(null, result);

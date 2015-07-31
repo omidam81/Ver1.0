@@ -2746,5 +2746,9 @@ a, a:hover {
 }
 
 .load_img {
-    margin-left: -15px !important;
+    top: 10px !important;
+    left:10%!important;
+}
+.image_uploader__subtitle_size{
+    top:65%!important;
 }
