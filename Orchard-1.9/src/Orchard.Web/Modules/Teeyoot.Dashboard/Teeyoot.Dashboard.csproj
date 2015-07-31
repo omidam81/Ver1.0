@@ -74,6 +74,7 @@
     <Content Include="Styles\campaigns.css" />
     <Content Include="Styles\Message.css" />
     <Content Include="Styles\Payouts.css" />
+    <Content Include="Styles\Promotions.css" />
     <Content Include="Styles\Settings.css" />
     <Content Include="Styles\storefonts.css" />
     <Content Include="Web.config" />
