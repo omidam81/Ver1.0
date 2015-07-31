@@ -93,7 +93,8 @@ window.onload = function initWizard() {
         inpPrice.value = "RM " + prdc.Price;
 
         h4Profit.classList.add("h4ProfSale");
-        h4Profit.id = "h4ProfSale_" + prdc.ProductId;
+        var index = app.state.products.length + 1;
+        h4Profit.id = "h4ProfSale_" + parseInt(index);
         var chenges = prdc.Price - prdc.BaseCost;
         h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " profit / sale";
 
