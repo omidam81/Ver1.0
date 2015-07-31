@@ -9,40 +9,63 @@ h1 {
     margin-left:5% !important;
 }
 
-table {
-    width:90% !important;
-    margin:auto !important;
+.tbl-pay {
+    width: 92% !important;
     border: 1px solid #e8eced !important;
+    margin: 0 auto 20px auto;
 }
-
+.tbl-pay tr:hover{
+    background: #e8eced;
+}
 .td1 {
-    width:15%;
-    padding: 5px;
+    width:20%;
+    padding: 5px 10px 5px 20px;
 }
 .td2 {
-    width:55%;
+ 
 }
 .td3 {
-    width:15%;
+    width:10%;
+    padding: 5px 20px 5px 0;
 }
 .td4 {
     width:15%;
 }
 
 
-.main {
-    border: 1px solid #e8eced;
-        font-size: larger;
+.thead {
+    background-color: #dbdbdb
+}
+.thead td{
+    font-weight: bold;
 }
 
 .balance{
     width: 90%;
-    height: 50px;
+    line-height:50px;
+    padding: 0 0 0 20px;
     margin:auto;
     border: 1px solid #e8eced;
+    position: relative;
 }
 
 .btnStartPayout {
-    margin-left: 50% !important;
-        float: none;
+    margin: 5px;
+    float: right;
+    line-height:20px;
+    background-color: #ff4f00 !important;
+    color:white !important;
+    font-size: 16px !important;
+    font-weight: normal !important;
+    border-radius: 5px;
+    border:none;
+    border-width: 0;
+    border: none !important;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+.btnStartPayout:hover {
+    background-color: #dbdbdb !important;
+    text-decoration: none;
 }
