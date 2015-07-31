@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Views\Style\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminWizard\FontList.cshtml" />
