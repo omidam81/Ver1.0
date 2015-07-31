@@ -8,16 +8,16 @@ using Teeyoot.Module.Services;
 
 namespace Teeyoot.Module.Common.ScheduledTasks
 {
-    public class MonitoringCampaignsTaskHandler : IScheduledTaskHandler
+    public class CheckExpiredCampaignsTaskHandler : IScheduledTaskHandler
     {
-        private const string TASK_TYPE = "MonitoringCampaignsTask";
+        private const string TASK_TYPE = "CheckExpiredCampaignsTask";
 
         private readonly IScheduledTaskManager _taskManager;
         private readonly ICampaignService _campaignService;
 
         public ILogger Logger { get; set; }
 
-        public MonitoringCampaignsTaskHandler(IScheduledTaskManager taskManager, ICampaignService campaignService)
+        public CheckExpiredCampaignsTaskHandler(IScheduledTaskManager taskManager, ICampaignService campaignService)
         {
             _taskManager = taskManager;
             _campaignService = campaignService;
