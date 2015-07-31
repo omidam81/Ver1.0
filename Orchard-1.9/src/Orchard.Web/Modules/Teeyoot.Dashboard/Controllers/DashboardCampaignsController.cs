@@ -7,6 +7,7 @@ using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Common.ExtentionMethods;
 using System;
 using System.Threading.Tasks;
+using Orchard.Themes;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -168,6 +169,14 @@ namespace Teeyoot.Dashboard.Controllers
                 //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                 //            .Sum(entry => entry.Profit)
             });
+        }
+
+        [Themed]
+        public ActionResult EditCampaign(int id)
+        {
+            CampaignRecord camp = _campaignService.GetCampaignById(id);
+
+            return View("EditCampaign");
         }
     }
 }
