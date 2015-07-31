@@ -329,7 +329,7 @@
         <div class="store__ftue">
             <h1 class="page__heading">@T("Create your first storefront!")</h1>
             <ol class="list__counter">
-               @if (Model.Campaigns.Count() >= 1)
+               @if (Model.Campaigns.Count() > 3)
                {
                 <li class="list_item__counter list_item__counter--done">@T("Launch 3 campaigns")</li>
                }
@@ -361,7 +361,7 @@
 
         </div>
 
-@if (Model.Campaigns.Count() >= 1)
+@if (Model.Campaigns.Count() > 3)
 {
         <div class="cards__container cards__container--editing">
             <div class="card add_campaigns__card">

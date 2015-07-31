@@ -1946,7 +1946,7 @@ a.button__cta {
 @media only screen and (max-width: 510px) {
     .card__toggle {
         min-height: 230px !important;
-    }
+    }   
 }
 
 @media only screen and (max-width: 470px) {
@@ -2751,4 +2751,10 @@ a, a:hover {
 }
 .image_uploader__subtitle_size{
     top:65%!important;
+}
+
+@media only screen and (max-width: 1010px) {
+    .load_img{
+            left: 45px!important;
+    }
 }
