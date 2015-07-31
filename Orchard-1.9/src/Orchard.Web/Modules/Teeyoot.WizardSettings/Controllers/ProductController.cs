@@ -41,7 +41,6 @@ namespace Teeyoot.WizardSettings.Controllers
         private const string ProductImageFrontFilenameTemplate = "product_type_{0}_front.png";
         private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
         private const string ProductImageBackFilenameTemplate = "product_type_{0}_back.png";
-        //private const string FrontImage
 
         public ProductController(
             IOrchardServices orchardServices,
@@ -255,6 +254,11 @@ namespace Teeyoot.WizardSettings.Controllers
 
         private void SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)
         {
+            if (imageFile == null)
+            {
+                return;
+            }
+
             using (var image = Image.FromStream(imageFile.InputStream, true, true))
             {
                 if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
