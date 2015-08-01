@@ -227,7 +227,9 @@
             <div class="col-md-8">
                 <div class="track-left">
                     <div class="track-inner">
-                        <span class="badge badge-success">@("Status")</span> Updated 07 Jul 12:13
+                        <span class="badge badge-success">@("Status")</span> @T("Updated") @(Model.Events.Count() > 0 ? 
+                        Model.Events.Last().EventDate.ToLocalTime().ToString("dd MMM HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US")) :
+                        Model.CreateDate) 
                         <div class="offset-top offset-top-small offset-top-xs"></div>
 
                         @if(Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
