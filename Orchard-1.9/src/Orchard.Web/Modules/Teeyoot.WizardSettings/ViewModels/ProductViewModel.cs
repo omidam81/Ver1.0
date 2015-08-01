@@ -19,6 +19,8 @@ namespace Teeyoot.WizardSettings.ViewModels
 
             ProductGroups = new List<ProductGroupItemViewModel>();
             SelectedProductGroups = new List<int>();
+
+            SelectedProductSizes = new List<int>();
         }
 
         public int? Id { get; set; }
@@ -32,6 +34,7 @@ namespace Teeyoot.WizardSettings.ViewModels
         public IEnumerable<int> SelectedProductGroups { get; set; }
         public IEnumerable<ProductHeadlineViewModel> ProductHeadlines { get; set; }
         public IEnumerable<ProductSizeItemViewModel> ProductSizes { get; set; }
+        public IEnumerable<int> SelectedProductSizes { get; set; }
 
         [Required]
         public int SelectedProductHeadline { get; set; }

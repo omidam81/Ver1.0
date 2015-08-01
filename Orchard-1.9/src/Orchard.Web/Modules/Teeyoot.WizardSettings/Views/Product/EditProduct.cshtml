@@ -175,15 +175,27 @@
                         @productSize.SleeveInch
                     </td>
                     <td>
-                        <input type="checkbox" @if (productSize.Selected)
-                                               {
-                                                   <text>checked="checked"</text>
-                                               }/>
+                        <input type="hidden" class="size-id" value="@productSize.Id"/>
+                        <input type="hidden" class="size-code-id" value="@productSize.SizeCodeId"/>
+                        <input class="select-product-size" type="checkbox" @if (productSize.Selected)
+                                                                           {
+                                                                               <text>checked="checked"</text>
+                                                                           }/>
                     </td>
                 </tr>
             }
             </tbody>
         </table>
+        <select id="selected-product-sizes" name="SelectedProductSizes" multiple="multiple" style="display: none;">
+            @foreach (var productSize in Model.ProductSizes)
+            {
+                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected)
+                                                                                            {
+                                                                                                <text>selected="selected"</text>
+                                                                                            }>
+                </option>
+            }
+        </select>
     </fieldset>
     <h3>Product Images</h3>
     <hr/>
@@ -325,7 +337,25 @@
                 }
             });
 
-            $('#product-sizes-table').dataTable();
+            var productSizesTable = $('#product-sizes-table').dataTable();
+
+            productSizesTable.on('change', '.select-product-size', function() {
+                var sizeId = $(this).closest('td').find('.size-id').val();
+                var sizeCodeId = $(this).closest('td').find('.size-code-id').val();
+
+                if ($(this).is(':checked')) {
+                    var numberOfSelectedSizesWithTheSameSizeCode = $('#selected-product-sizes option:selected[data-size-code-id=' + sizeCodeId + ']').length;
+
+                    if (numberOfSelectedSizesWithTheSameSizeCode > 0) {
+                        $(this).prop('checked', false);
+                        alert('You have already selected size with such code. There is only one allowed.');
+                        return;
+                    }
+                    $('#selected-product-sizes option[value=' + sizeId + ']').prop('selected', true);
+                } else {
+                    $('#selected-product-sizes option[value=' + sizeId + ']').prop('selected', false);
+                }
+            });
 
             $('#cancel').click(function() {
                 if (confirm('All unsaved changes will be lost. Are you sure?')) {
@@ -350,7 +380,6 @@
                 }
 
                 fixProductColoursIndexing();
-
                 return true;
             });
         });

@@ -111,7 +111,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
         public ActionResult EditProduct(int? productId)
         {
-            var productViewModel = new ProductViewModel(productId);
+            var viewModel = new ProductViewModel(productId);
 
             ProductRecord product = null;
             if (productId != null)
@@ -121,21 +121,21 @@ namespace Teeyoot.WizardSettings.Controllers
 
             if (product != null)
             {
-                productViewModel.Name = product.Name;
-                productViewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
+                viewModel.Name = product.Name;
+                viewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
 
-                productViewModel.ProductImageFrontFilename = CheckProductImageExistence(product,
+                viewModel.ProductImageFrontFilename = CheckProductImageExistence(product,
                     ProductImageFrontFilenameTemplate);
-                productViewModel.ProductImageBackFilename = CheckProductImageExistence(product,
+                viewModel.ProductImageBackFilename = CheckProductImageExistence(product,
                     ProductImageBackFilenameTemplate);
             }
 
-            FillProductViewModelWithHeadlines(productViewModel);
-            FillProductViewModelWithGroups(productViewModel, product);
-            FillProductViewModelWithColours(productViewModel, product);
-            FillProductViewModelWithSizes(productViewModel, product);
+            FillProductViewModelWithHeadlines(viewModel);
+            FillProductViewModelWithGroups(viewModel, product);
+            FillProductViewModelWithColours(viewModel, product);
+            FillProductViewModelWithSizes(viewModel, product);
 
-            return View(productViewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -206,18 +206,44 @@ namespace Teeyoot.WizardSettings.Controllers
                 _linkProductGroupRepository.Create(linkProductGroup);
             }
 
+            var linkProductSizes = _linkProductSizeRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .ToList();
+
+            foreach (var linkProductSize in linkProductSizes)
+            {
+                _linkProductSizeRepository.Delete(linkProductSize);
+            }
+
+            foreach (var productSizeId in viewModel.SelectedProductSizes)
+            {
+                var productSize = _productSizeRepository.Get(productSizeId);
+
+                var linkProductSize = new LinkProductSizeRecord
+                {
+                    ProductRecord = product,
+                    ProductSizeRecord = productSize
+                };
+
+                _linkProductSizeRepository.Create(linkProductSize);
+            }
+
             var frontImageSavingResult = SaveProductFrontImage(viewModel.ProductImageFront, product);
             var backImageSavingResult = SaveProductBackImage(viewModel.ProductImageBack, product);
 
             if (frontImageSavingResult != null)
             {
-                FillProductImageWith(product.ProductImageRecord, frontImageSavingResult.Width,
-                    frontImageSavingResult.Height);
+                FillProductImageWith(product.ProductImageRecord,
+                    frontImageSavingResult.Width,
+                    frontImageSavingResult.Height,
+                    ProductImagePpi);
             }
             else if (backImageSavingResult != null)
             {
-                FillProductImageWith(product.ProductImageRecord, backImageSavingResult.Width,
-                    backImageSavingResult.Height);
+                FillProductImageWith(product.ProductImageRecord,
+                    backImageSavingResult.Width,
+                    backImageSavingResult.Height,
+                    ProductImagePpi);
             }
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
@@ -445,11 +471,11 @@ namespace Teeyoot.WizardSettings.Controllers
             }
         }
 
-        private static void FillProductImageWith(ProductImageRecord productImageRecord, int width, int height)
+        private static void FillProductImageWith(ProductImageRecord productImageRecord, int width, int height, int ppi)
         {
             productImageRecord.Width = width;
             productImageRecord.Height = height;
-            productImageRecord.Ppi = ProductImagePpi;
+            productImageRecord.Ppi = ppi;
         }
 
         private string CheckProductImageExistence(ProductRecord product, string productImageFilenameTemplate)
