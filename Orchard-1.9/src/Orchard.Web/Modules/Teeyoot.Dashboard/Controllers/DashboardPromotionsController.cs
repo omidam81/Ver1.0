@@ -22,13 +22,10 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult AddPromotion(PromotionRecord model)
         {
-            if (TryValidateModel(model)) { 
             string currentUser = Services.WorkContext.CurrentUser.Email;
             var user = _membershipService.GetUser(currentUser);
             _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, user.Id);
             var viewModel = new PromotionViewModel() { };
-            
-        }
             return RedirectToAction("Promotions");
         }
 

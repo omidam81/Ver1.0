@@ -38,6 +38,10 @@ namespace Teeyoot.Module.Services
 
         public void AddPromotion(string promoId, string discountType, int amountSize, string amountType,  DateTime expiration, int userId)
         {
+            if (expiration == DateTime.MinValue)
+            {
+                expiration = DateTime.MaxValue;
+            }
             try
             {
                 var newPromotion = new PromotionRecord()

@@ -16,9 +16,14 @@
 {
     <script>
         $("#datepicker").datepicker({
-            dateFormat: "dd.mm.yy"
-
+            dateFormat: "dd.mm.yy",
+            minDate: 0,
         })
+
+        function showCalendar() {
+            return $("#datepicker").datepicker("show");
+        }
+
 
         function addAntiForgeryToken(data) {
             data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
@@ -72,8 +77,7 @@
     <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
     <div class="share_promotions">
         Share promotions by appending the ID to the end of your campaign URL.<div class="share_promotions__example">
-            (e.g., <span class="share_promotions__url">http://teebay.com/yourcampaign</span>
-            <strong class="share_promotions__query">?promo=PROMOID</strong>)
+            (e.g., <span class="share_promotions__url">http://teebay.com/yourcampaign</span><strong class="share_promotions__query">?promo=PROMOID</strong>)
         </div>
     </div>
 </div>
@@ -88,9 +92,9 @@
         <div class="dashboard_section__content--padded">
             <div class="new_promotion__form">
                 <div class="new_promotion__code">
-                    <div class="label__title">Promo ID (alphanumeric)</div>                   
+                    <div class="label__title">Promo ID</div>                   
                     <div class="input__group new_promotion__field">
-                        @Html.TextBoxFor(m => m.PromoId, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", @value = "" })             
+                        @Html.TextBoxFor(m => m.PromoId, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", @value = "", @required= "true" })             
                         <span class="reload new_promotion__generate_code ts-icon-reload" id="code" maxlength="10" name="code" type="text" value="" onclick="randomString()" />
                     </div>
                     @Html.ValidationMessageFor(m => m.Promotions)
@@ -102,7 +106,7 @@
                 <div class="new_promotion__discount">
                     <div class="label__title">Amount</div>
                     <div class="input__group new_promotion__field">
-                        @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield ", @id = "code", @name = "amountSize", @type = "text", @value = "" })
+                        @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield ", @id = "code", @name = "amountSize", @type = "text", Value = "" })
                         @Html.DropDownListFor(m => m.AmountType, new SelectList(
                   new List<Object>{
                        new { value = "%", text = "%"  },
@@ -115,14 +119,14 @@
                 <div class="new_promotion__expiration">
                     <div class="label__title">Expiration</div>
                     <div class="input__group new_promotion__field">
-                        @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = Model.Expiration.ToString("dd/MM/yyyy") })
-                        <span id="calender" class="new_promotion__clear_expiration" style="border: 1px solid #e8eced;">
+                        @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = "", @placeholder="Never" , @readonly="readonly"})
+                        <span id="calendar" class="new_promotion__clear_expiration clndr_button" style="border: 1px solid #e8eced;" onclick="showCalendar()">
                             <i class="ts-icon-calendar calendar__button"></i>
                         </span>
                     </div>
                 </div>
                 <div class="new_promotion__save__container">
-                    <input name="commit" class="t-button" type="submit" value="Add discount">
+                    <input name="commit" class="add-button" type="submit" value="+">
                 </div>
             </div>
         </div>
@@ -137,7 +141,7 @@
         <h1 class="dashboard_section__heading">All promotions</h1>
 
     </div>
-    <div class="dashboard_section__content--padded">
+    <div id="promotionList" class="dashboard_section__content--padded">
 
 
         <div class="list__container">
@@ -147,14 +151,23 @@
                 <div class="list_item__cell expiration__heading">Expires</div>
                 <div class="list_item__cell used__heading">Redeemed</div>
                 <div class="list_item__cell status__heading">Status</div>
-                <div class="list_item__cell actions__heading">Action</div>
+                <div id="action"  class="list_item__cell actions__heading"></div>
             </div>
             @foreach (var promotion in Model.Promotions)
             {
+                var expiration = "";
+                if (@promotion.Expiration.Year == DateTime.MaxValue.Year)
+                {
+                    expiration = "-";
+                }
+                else
+                {
+                    expiration = @promotion.Expiration.ToString("dd/MM/yyyy");
+                }
                 <div class="list_item" data-id="39431">
                     <div class="list_item__cell list_item__code">@promotion.PromoId</div>
                     <div class="list_item__cell list_item__discount">@promotion.AmountSize@promotion.AmountType</div>
-                    <div class="list_item__cell list_item__expiration">@promotion.Expiration.ToString("dd/MM/yyyy")</div>
+                    <div class="list_item__cell list_item__expiration">@expiration</div>
                     <div class="list_item__cell list_item__redeemed">@promotion.Redeemed</div>
                     <div class="list_item__cell list_item__status">
                         <label class="switch__label">
@@ -163,7 +176,7 @@
                             <div class="switch__el" data-off="Off" data-on="On"></div>
                         </label>
                     </div>
-                    <div class="list_item__cell list_item__actions"><a href="@Url.Action("DeletePromotion", new {id = promotion.Id })" class="ts-icon-close delete_promotion__button"></a></div>
+                    <div id="action" class="list_item__cell list_item__actions"><a href="@Url.Action("DeletePromotion", new {id = promotion.Id })" class="ts-icon-close delete_promotion__button"></a></div>
                 </div>
             }
         </div>
