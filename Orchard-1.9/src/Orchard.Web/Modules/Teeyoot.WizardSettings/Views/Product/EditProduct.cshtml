@@ -3,9 +3,11 @@
     Layout.Title = Model.Id == null ? T("Add New Product") : T("Edit Product");
 
     Style.Include("multi-select/css/multi-select.css");
+    Style.Include("datatables/css/jquery.dataTables.min.css");
 
     Script.Require("jQuery");
     Script.Include("jquery.multi-select.js");
+    Script.Include("jquery.dataTables.min.js");
 }
 
 <div class="manage">
@@ -112,6 +114,74 @@
                     <a href="javascript:;" class="remove-product-colour">Remove</a>
                 </td>
             </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <h3>@T("Product Sizes")</h3>
+    <hr/>
+    <fieldset>
+        <table id="product-sizes-table" class="items">
+            <thead>
+            <tr>
+                <td>
+                    @T("Size Code")
+                </td>
+                <td>
+                    @T("Length (cm)")
+                </td>
+                <td>
+                    @T("Width (cm)")
+                </td>
+                <td>
+                    @T("Sleeve (cm)")
+                </td>
+                <td>
+                    @T("Length (in)")
+                </td>
+                <td>
+                    @T("Width (in)")
+                </td>
+                <td>
+                    @T("Sleeve (in)")
+                </td>
+                <td>
+                    @T("Select")
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var productSize in Model.ProductSizes)
+            {
+                <tr>
+                    <td>
+                        @productSize.SizeCodeName
+                    </td>
+                    <td>
+                        @productSize.LengthCm
+                    </td>
+                    <td>
+                        @productSize.WidthCm
+                    </td>
+                    <td>
+                        @productSize.SleeveCm
+                    </td>
+                    <td>
+                        @productSize.LengthInch
+                    </td>
+                    <td>
+                        @productSize.WidthInch
+                    </td>
+                    <td>
+                        @productSize.SleeveInch
+                    </td>
+                    <td>
+                        <input type="checkbox" @if (productSize.Selected)
+                                               {
+                                                   <text>checked="checked"</text>
+                                               }/>
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     </fieldset>
@@ -254,6 +324,8 @@
                     window.location.href = '/Admin/ProductGroups/Add?returnUrl=' + encodeURIComponent(window.location.href);
                 }
             });
+
+            $('#product-sizes-table').dataTable();
 
             $('#cancel').click(function() {
                 if (confirm('All unsaved changes will be lost. Are you sure?')) {

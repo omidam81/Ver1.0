@@ -33,6 +33,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IRepository<LinkProductGroupRecord> _linkProductGroupRepository;
         private readonly IRepository<ProductHeadlineRecord> _productHeadlineRepository;
         private readonly IRepository<ProductImageRecord> _productImageRepository;
+        private readonly IRepository<ProductSizeRecord> _productSizeRepository;
+        private readonly IRepository<LinkProductSizeRecord> _linkProductSizeRepository;
 
         private readonly IimageHelper _imageHelper;
 
@@ -63,6 +65,8 @@ namespace Teeyoot.WizardSettings.Controllers
             IRepository<LinkProductGroupRecord> linkProductGroupRepository,
             IRepository<ProductHeadlineRecord> productHeadlineRepository,
             IRepository<ProductImageRecord> productImageRepository,
+            IRepository<ProductSizeRecord> productSizeRepository,
+            IRepository<LinkProductSizeRecord> linkProductSizeRepository,
             IimageHelper imageHelper)
         {
             _siteService = siteService;
@@ -75,6 +79,8 @@ namespace Teeyoot.WizardSettings.Controllers
             _linkProductGroupRepository = linkProductGroupRepository;
             _productHeadlineRepository = productHeadlineRepository;
             _productImageRepository = productImageRepository;
+            _productSizeRepository = productSizeRepository;
+            _linkProductSizeRepository = linkProductSizeRepository;
 
             _imageHelper = imageHelper;
 
@@ -124,9 +130,10 @@ namespace Teeyoot.WizardSettings.Controllers
                     ProductImageBackFilenameTemplate);
             }
 
-            FillProductViewModelWithColours(productViewModel, product);
-            FillProductViewModelWithGroups(productViewModel, product);
             FillProductViewModelWithHeadlines(productViewModel);
+            FillProductViewModelWithGroups(productViewModel, product);
+            FillProductViewModelWithColours(productViewModel, product);
+            FillProductViewModelWithSizes(productViewModel, product);
 
             return View(productViewModel);
         }
@@ -325,6 +332,43 @@ namespace Teeyoot.WizardSettings.Controllers
                     Name = h.Name
                 })
                 .ToList();
+        }
+
+        private void FillProductViewModelWithSizes(ProductViewModel viewModel, ProductRecord product)
+        {
+            viewModel.ProductSizes = _productSizeRepository.Table
+                .Fetch(s => s.SizeCodeRecord)
+                .Select(s => new ProductSizeItemViewModel
+                {
+                    Id = s.Id,
+                    LengthCm = s.LengthCm,
+                    WidthCm = s.WidthCm,
+                    SleeveCm = s.SleeveCm,
+                    LengthInch = s.LengthInch,
+                    WidthInch = s.WidthInch,
+                    SleeveInch = s.SleeveInch,
+                    SizeCodeId = s.SizeCodeRecord.Id,
+                    SizeCodeName = s.SizeCodeRecord.Name
+                })
+                .ToList();
+
+            if (product == null)
+            {
+                return;
+            }
+
+            var selectedProductSizeIds = _linkProductSizeRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .Select(it => it.ProductSizeRecord.Id)
+                .ToList();
+
+            viewModel.ProductSizes.ToList().ForEach(s =>
+            {
+                if (selectedProductSizeIds.Contains(s.Id))
+                {
+                    s.Selected = true;
+                }
+            });
         }
 
         private ProductImageSavingResult SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)
