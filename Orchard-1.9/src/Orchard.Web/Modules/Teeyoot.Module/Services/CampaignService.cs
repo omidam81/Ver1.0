@@ -284,6 +284,7 @@ namespace Teeyoot.Module.Services
                             OrderRecord_Id = o.Id,
                             Event = eventStr
                         });
+                        _orderHistoryRepository.Flush();
                     }
                 }
                 _orderRepository.Flush();
