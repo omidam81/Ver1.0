@@ -1,20 +1,31 @@
 ﻿@model IEnumerable<Teeyoot.Module.Models.PromotionRecord>
     @{
         Style.Include("Promotions.css");
+        Style.Include("//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
         Style.Include("Settings.css");
+        Script.Include("promotion.js").AtFoot();
+        Script.Require("jQuery");
+        Script.Require("jQueryUI");
     }
 
-    <div class="dashboard-section-title">
-        @T("Promotions")
-        <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
-        <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
-    </div>
+@using (Script.Foot())
+{
 
-    <div class="dashboard__info_message">
-        <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
-        <div class="share_promotions">
-            Share promotions by appending the ID to the end of your campaign URL. <div class="share_promotions__example">
-                (e.g., <span class="share_promotions__url">http://teespring.com/yourcampaign</span>
+    <script>
+        $("#datepicker").datepicker();
+    </script>
+}
+        <div class="dashboard-section-title">
+            @T("Promotions")
+            <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+            <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+        </div>
+
+        <div class="dashboard__info_message">
+            <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
+            <div class="share_promotions">
+                Share promotions by appending the ID to the end of your campaign URL. <div class="share_promotions__example">
+                    (e.g., <span class="share_promotions__url">http://teespring.com/yourcampaign</span>
                 <strong class="share_promotions__query">?promo=PROMOID</strong>)
             </div>
         </div>
@@ -43,6 +54,7 @@
                         <div class="label__title">Promo ID (alphanumeric)</div>
                         <div class="input__group new_promotion__field">
                             <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
+                            <span class="input__group_addon new_promotion__generate_code ts-icon-reload" id="code" maxlength="10" name="code" type="text" value="" onclick="randomString()"  />
                         </div>
                     </div>
                     <div class="new_promotion__type">
@@ -56,14 +68,13 @@
                             <select class="form__select_menu" id="prefix" name="prefix">
                                 <option value="fixed_value">$</option>
                                 <option value="percentage">%</option>
-                            </select>                           
+                            </select>
                         </div>
                     </div>
                     <div class="new_promotion__expiration">
                         <div class="label__title">Expiration</div>
                         <div class="input__group new_promotion__field">
-                            <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
-                           
+                            <input class="form__textfield " id="datepicker" maxlength="10" name="code" type="text" value=""/>
                         </div>
                     </div>
                     <div class="new_promotion__save__container">
@@ -111,4 +122,4 @@
                     </div>*@
             }
         </div>
-    </section>
+</section>
