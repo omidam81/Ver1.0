@@ -51,6 +51,7 @@ namespace Teeyoot.Module.Models
         public OrderRecord()
         {
             Products = new List<LinkOrderCampaignProductRecord>();
+            Events = new List<OrderHistoryRecord>();
         }
 
     }
