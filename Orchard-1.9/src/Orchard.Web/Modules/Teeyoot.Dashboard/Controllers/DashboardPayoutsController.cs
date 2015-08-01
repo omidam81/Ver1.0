@@ -23,27 +23,37 @@ namespace Teeyoot.Dashboard.Controllers
                 else if (!item.IsPlus && item.Status != "pending")
                     model.Balance = model.Balance - item.Amount;
             }
+
+            if (model.Balance < 0)
+                model.Balance = 0;
+
             return View(model);
         }
 
         public ActionResult StartPayout() {
             return View();
         }
-    
-        public ActionResult sendMail()
+
+       [HttpPost]
+        public ActionResult sendMail(string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
         {
+            int currentUserId = Services.WorkContext.CurrentUser.Id;
+
             var payouts = _payoutService.GetAllPayouts().ToList();
             double balance = 0;
             foreach (var item in payouts)
             {
-                if (item.IsPlus)
+                if (item.IsPlus && item.UserId == currentUserId)
                     balance = balance + item.Amount;
-                else
+                else if (item.UserId == currentUserId)
                     balance = balance - item.Amount;
             }
 
-            _payoutService.AddPayout(new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = Services.WorkContext.CurrentUser.Id, Status = "pending" });
+            if (balance > 0)
+                _payoutService.AddPayout(new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = currentUserId, Status = "pending" });
+          
 
+            
             return RedirectToAction("Payouts");
         }
     

@@ -1,33 +1,52 @@
-﻿<form class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Account number</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Bank Name</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
+﻿@using (Script.Foot())
+{
+    <script type="text/javascript">
+
+      
+
+    </script>
+}
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Account number</label>
+                <div class="col-sm-8">
+                    <input type="text" id="accountNum" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Bank Name</label>
+                <div class="col-sm-8">
+                    <input type="text" id="bankName" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
 
 
-        <label class="col-sm-4 control-label">Account Holder Name</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Contact Number Message for the admin</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
-            <a class="btnStartPayout" href="@Url.Action("sendMail", "Dashboard")">Withdrawal</a>
-        </div>
-    </div>
+                <label class="col-sm-4 control-label">Account Holder Name</label>
+                <div class="col-sm-8">
+                    <input type="text" id="accHoldName" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Contact Number </label>
+                <div class="col-sm-8">
+                    <input type="text" id="contNum" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+
+
+                <label class="col-sm-4 control-label">Message for the admin</label>
+                <div class="col-sm-8">
+                    <textarea style="resize: none;" id="messAdmin" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <a class="btnStartPayout" onclick="sendData()">@T("Withdraw")</a>
+                </div>
+            </div>
 </form>
