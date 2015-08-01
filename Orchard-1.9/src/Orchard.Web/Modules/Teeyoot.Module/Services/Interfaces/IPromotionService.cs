@@ -17,6 +17,8 @@ namespace Teeyoot.Module.Services
 
         void AddPromotion(string promoId, string discountType, int amountSize, string amountType, DateTime expiration, int UserId);
 
+        PromotionRecord GetPromotionByPromoId(string promoId);
+
         PromotionRecord GetPromotion(int id);
     }
 

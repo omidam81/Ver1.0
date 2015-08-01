@@ -6375,4 +6375,16 @@ input{
         font-size: 20px;
     }
 }
+.info-message{
+      background: #21a307 !important;
+
+  border-radius: 3px !important;
+  color: #fff !important;
+  width: 99% !important;
+  padding: 10px !important;
+  margin-top: 1% !important;
+  margin-bottom: 1% !important;
+    font-size: 1.2rem;
+  font-weight: 600;
+}
 
