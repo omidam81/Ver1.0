@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Orchard;
@@ -412,6 +413,16 @@ namespace Teeyoot.WizardSettings.Controllers
                 return null;
             }
 
+            if (!IsImagePng(imageFile))
+            {
+                _orchardServices.Notifier.Error(
+                    T("Front Image file should be *.png.",
+                        ProductImageWidth,
+                        ProductImageHeight));
+
+                return null;
+            }
+
             using (var image = Image.FromStream(imageFile.InputStream, true, true))
             {
                 if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
@@ -424,8 +435,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return null;
                 }
 
-                var imageFilename = string.Format(ProductImageFrontFileNameTemplate, product.Id);
-                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+                var imageFileName = string.Format(ProductImageFrontFileNameTemplate, product.Id);
+                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
                 image.Save(imagePhysicalPath, ImageFormat.Png);
 
@@ -434,8 +445,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     ProductImageFrontSmallWidth,
                     ProductImageFrontSmallHeight);
 
-                var smallImageFilename = string.Format(ProductImageFrontSmallFileNameTemplate, product.Id);
-                var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFilename);
+                var smallImageFileName = string.Format(ProductImageFrontSmallFileNameTemplate, product.Id);
+                var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFileName);
 
                 smallImageBitmap.Save(smallImagePhysicalPath, ImageFormat.Png);
 
@@ -451,6 +462,16 @@ namespace Teeyoot.WizardSettings.Controllers
         {
             if (imageFile == null)
             {
+                return null;
+            }
+
+            if (!IsImagePng(imageFile))
+            {
+                _orchardServices.Notifier.Error(
+                    T("Back Image file should be *.png.",
+                        ProductImageWidth,
+                        ProductImageHeight));
+
                 return null;
             }
 
@@ -492,6 +513,16 @@ namespace Teeyoot.WizardSettings.Controllers
             var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
             return System.IO.File.Exists(imagePhysicalPath) ? imageFileName : null;
+        }
+
+        private static bool IsImagePng(HttpPostedFileBase imageFile)
+        {
+            var imageHeader = new byte[4];
+
+            imageFile.InputStream.Read(imageHeader, 0, 4);
+            var strHeader = Encoding.ASCII.GetString(imageHeader);
+
+            return strHeader.ToLowerInvariant().EndsWith("png");
         }
     }
 }
