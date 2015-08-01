@@ -3,12 +3,12 @@
 }
 
 #no-band {
-    background: white;
-    overflow: inherit;
+    border-radius: 5px;
+    padding-right: 20px;
 }
 
     #no-band > .container {
-        padding-bottom: 30px;
+        padding-bottom: 0px !important;
         width: 100%;
         max-width: 100%;
         padding-left: 0;
@@ -25,7 +25,8 @@
 }
 
 #step-details {
-    min-height: 800px;
+    min-height: 0px !important;
+    position: inherit !important;
 }
 
 .step {
@@ -40,7 +41,7 @@
 
 #step-details > .row {
     display: block;
-    margin: 0 0 20px 0;
+    margin: 0 !important;
     box-sizing: border-box;
 }
 
@@ -171,31 +172,37 @@ ul.wysihtml5-toolbar {
 #designer {
     width: 100% !important;
     height: auto !important;
+    margin: 0 !important;
 }
 
-.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-header {
-
+.modal-header {
+    border-bottom: 0px !important;
 }
 
-.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-header h3 {
-    font-weight: bold;
+    .modal-header h3 {
+        font-weight: bold;
+        margin: 0 !important;
+    }
+
+    .modal-header a {
+        font-weight: bold;
+        font-size: 40px;
+        text-decoration: none;
+    }
+
+.modal-body {
 }
 
-.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-header a {
-    font-weight: bold;
+.modal-footer {
+    margin-left: 0 !important;
+    border: 0 !important;
+    display: inline-block;
 }
 
-.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-body {
-    font-weight: bold;
-}
-
-.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-footer {
-
-}
-
-.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-footer a {
-
-}
+    .modal-footer a {
+        text-decoration: none;
+        font-weight: bold;
+    }
 
 
 
@@ -312,10 +319,6 @@ ul, ol {
         max-width: 970px;
         width: 970px;
     }
-}
-
-#designer {
-    min-height: 920px;
 }
 
 /* Shared properties */
@@ -549,6 +552,8 @@ span.number {
 
 .tb-layout-main-container {
     max-width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
 }
 
 .Slides {
@@ -917,6 +922,7 @@ input[type=range] {
     border-width: 0;
     border: none;
     color: white;
+    margin: 0 !important;
 }
 
     #designer .button--transaction:hover, #designer .button--transaction.hover {
