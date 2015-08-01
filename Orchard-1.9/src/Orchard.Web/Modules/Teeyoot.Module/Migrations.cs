@@ -710,7 +710,7 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.DropColumn("CostOfMaterial"));
             return 26;
         }
-        
+
         public int UpdateFrom26()
         {
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("IsActive", c => c.NotNull().WithDefault(false)));
@@ -735,7 +735,7 @@ namespace Teeyoot.Module
                     .Column<string>("DiscountType", c => c.WithLength(50))
                     .Column<bool>("Status")
                     .Column<int>("Redeemed")
-            ); 
+            );
             return 29;
         }
 
@@ -761,6 +761,23 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("OrderHistory_Order", "OrderHistoryRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
 
             return 31;
+        }
+
+        public int UpdateFrom31()
+        {
+            SchemaBuilder.CreateTable(typeof(PaymentInformationRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("AccountNumber")
+                    .Column<string>("BankName")
+                    .Column<int>("ContactNumber")
+                    .Column<string>("MessAdmin")
+                    .Column<int>("TranzactionId")
+            );
+
+            SchemaBuilder.CreateForeignKey("Tranzaction_Payout_Id", "PaymentInformationRecord", new[] { "TranzactionId" }, "PayoutRecord", new[] { "Id" });
+
+            return 32;
         }
     }
 }
