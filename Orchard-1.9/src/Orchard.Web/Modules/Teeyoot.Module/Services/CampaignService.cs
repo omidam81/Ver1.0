@@ -243,22 +243,21 @@ namespace Teeyoot.Module.Services
                                             .Table
                                             .First(s => s.Name == CampaignStatus.Ended.ToString());
                 _campaignRepository.Update(c);
-                
-                if (c.ProductCountGoal <= c.ProductCountSold)
-                {                  
-                    var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
 
-                    foreach(var o in orders)
+                var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
+                               
+                foreach(var o in orders)
+                {
+                    if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
                     {
-                        if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
-                        {
-                            o.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString());
-                            o.Paid = DateTime.UtcNow;
-                            _orderRepository.Update(o);                           
-                        }
+                        o.OrderStatusRecord = c.ProductCountGoal <= c.ProductCountSold ? 
+                            _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
+                            _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
+                        o.Paid = DateTime.UtcNow;
+                        _orderRepository.Update(o);                           
                     }
-                    _orderRepository.Flush();
                 }
+                _orderRepository.Flush();
             }
             _campaignRepository.Flush();
         }

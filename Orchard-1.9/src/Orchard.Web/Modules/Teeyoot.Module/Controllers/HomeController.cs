@@ -199,7 +199,7 @@ namespace Teeyoot.Module.Controllers
             model.Status = order.OrderStatusRecord;
             model.Products = order.Products.ToArray();
             // TODO: eugene: get culture if needed
-            model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", CultureInfo.CurrentCulture);
+            model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", CultureInfo.GetCultureInfo("en-US"));
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
             model.CampaignName = campaign.Title;
             model.CampaignAlias = campaign.Alias;

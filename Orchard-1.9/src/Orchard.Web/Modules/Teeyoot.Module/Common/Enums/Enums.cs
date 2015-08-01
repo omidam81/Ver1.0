@@ -17,7 +17,8 @@ namespace Teeyoot.Module.Common.Enums
         Reserved,
         Printing,
         Shipped,
-        Delivered
+        Delivered,
+        Cancelled
     }
 
     public enum OverviewType
