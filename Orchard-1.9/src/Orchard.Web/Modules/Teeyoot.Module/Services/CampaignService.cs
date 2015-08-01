@@ -1,5 +1,6 @@
 ﻿using Orchard;
 using Orchard.Data;
+using Orchard.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<LinkOrderCampaignProductRecord> _ocpRepository;
         private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
         private readonly IRepository<OrderRecord> _orderRepository;
+        private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -34,7 +36,8 @@ namespace Teeyoot.Module.Services
                                IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategories,
                                IRepository<LinkOrderCampaignProductRecord> ocpRepository,
                                IRepository<OrderStatusRecord> orderStatusRepository,
-                               IRepository<OrderRecord> orderRepository)
+                               IRepository<OrderRecord> orderRepository,
+                               IRepository<OrderHistoryRecord> orderHistoryRepository)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -48,9 +51,14 @@ namespace Teeyoot.Module.Services
             _ocpRepository = ocpRepository;
             _orderStatusRepository = orderStatusRepository;
             _orderRepository = orderRepository;
+            _orderHistoryRepository = orderHistoryRepository;
+
+            T = NullLocalizer.Instance;
         }
 
         private IOrchardServices Services { get; set; }
+
+        public Localizer T { get; set; }
 
 
         public IQueryable<CampaignCategoriesRecord> GetAllCategories()
@@ -254,7 +262,28 @@ namespace Teeyoot.Module.Services
                             _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
                             _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
                         o.Paid = DateTime.UtcNow;
-                        _orderRepository.Update(o);                           
+                        _orderRepository.Update(o);
+
+                        string eventStr = c.ProductCountGoal <= c.ProductCountSold ?
+                            T("The campaign successfully reached its goal!").ToString() :
+                            T("The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed.").ToString();
+
+                        _orderHistoryRepository.Create(new OrderHistoryRecord { 
+                            EventDate = DateTime.UtcNow,
+                            OrderRecord_Id = o.Id,
+                            Event = eventStr
+                        });
+
+                        eventStr = c.ProductCountGoal <= c.ProductCountSold ?
+                            T("The campaign has ended and your order is now being printed!").ToString() :
+                            T("Your order was cancelled.").ToString();
+
+                        _orderHistoryRepository.Create(new OrderHistoryRecord
+                        {
+                            EventDate = DateTime.UtcNow,
+                            OrderRecord_Id = o.Id,
+                            Event = eventStr
+                        });
                     }
                 }
                 _orderRepository.Flush();

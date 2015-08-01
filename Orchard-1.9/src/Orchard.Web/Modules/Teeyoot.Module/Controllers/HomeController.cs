@@ -203,6 +203,7 @@ namespace Teeyoot.Module.Controllers
                 order.StreetAddress,
                 order.City + ", " + order.State + ", " + order.Country + " " + order.PostalCode
             };
+            model.Events = order.Events.ToArray();
             // TODO: eugene: get culture if needed
             model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", CultureInfo.GetCultureInfo("en-US"));
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);

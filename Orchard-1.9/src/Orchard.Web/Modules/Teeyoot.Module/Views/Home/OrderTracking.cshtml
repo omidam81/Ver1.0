@@ -282,15 +282,14 @@
                                 @T("Order for") <a href="/@Model.CampaignAlias">@Model.CampaignName</a> @T("placed")
                             </li>
 
-                            <li>
-                                <span class="badge">07 Jul 12:13</span>
-                                The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed.
-                            </li>
-
-                            <li>
-                                <span class="badge">07 Jul 12:13</span>
-                                Your order was cancelled
-                            </li>
+                            @foreach(var e in Model.Events)
+                            {
+                                <li>
+                                    <span class="badge">@e.EventDate.ToLocalTime().ToString("dd MMM HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</span>
+                                    @e.Event
+                                </li>    
+                            }
+                            
                         </ul>
                     </div>
                 </div>

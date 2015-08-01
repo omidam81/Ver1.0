@@ -18,6 +18,8 @@ namespace Teeyoot.Module.ViewModels
 
         public LinkOrderCampaignProductRecord[] Products { get; set; }
 
+        public OrderHistoryRecord[] Events { get; set; }
+
         public string[] ShippingTo { get; set; }
     }
 }
