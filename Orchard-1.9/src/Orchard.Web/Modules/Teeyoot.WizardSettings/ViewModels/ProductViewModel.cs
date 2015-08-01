@@ -37,5 +37,7 @@ namespace Teeyoot.WizardSettings.ViewModels
 
         public HttpPostedFileBase ProductImageFront { get; set; }
         public HttpPostedFileBase ProductImageBack { get; set; }
+        public string ProductImageFrontFilename { get; set; }
+        public string ProductImageBackFilename { get; set; }
     }
 }

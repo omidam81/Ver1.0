@@ -1,0 +1,101 @@
+﻿@{
+    Layout.Title = "Teeyoot";
+    Style.Include("EditCampaign.css");
+}
+
+<section id="no-band" class="no-offset">
+    <div class="container container_designer">
+        <div id="designer" class="clearfix" style="min-height: 600px; height: 920.9375px;">
+            <div class="step stepAnimation" id="step-details" style="transform: translateX(0px); opacity: 1;">
+                <!--designer-details-error-->
+                <div class="row">
+                    <div class="span5">
+                        <div id="product-quick-preview" class="product-preview">
+                            <div class="product-view">
+                                <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
+                                <div class="new-editor-container">
+                                    <td style="width:50%">
+
+                                        <div id="card3" style="margin-right:30px">
+                                            <div class="front">
+                                                <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                <img style="position:absolute" id="prodFront3_d" src="">
+                                                <div id="butt1" style="text-align:center; margin-top:-60px !important;">
+                                                    <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">Front</span></div>
+                                                    <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="back">
+                                                <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                <img style="position:absolute" id="prodBack3_d" src="">
+                                                <div id="butt2" style="text-align:center; margin-top:-60px !important;">
+                                                    <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-15px; font-weight: 400; margin-top:10px;">Front</span></div>
+                                                    <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; font-weight: 400; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </div>
+                                <!-- render flip buttons here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span7 aside">
+                        <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
+                            <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
+                                <label class="has-under-text">Campaign title</label>
+                                <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
+                                <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
+                            </div>
+                            <div class="teespring-well designer-well description" data-reactid=".6.0.1">
+                                <label class="has-under-text">Description</label>
+                                <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>
+                                </div>
+                            </div>
+                            <div class="teespring-well designer-well" id="tags" style="display:none">
+                                <label>Tags</label>
+                                <p>
+                                    <label class="display-label">
+                                        <span>Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)</span>
+                                    </label>
+                                </p>
+                                <input type="text" name="name" class="form__textfield " id="inputTags" value="">
+                            </div>
+
+                            <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
+
+                                <div class="teespring-well designer-well">
+                                    <label>Display Options</label>
+                                    <p>
+                                        <label class="checkbox display-label">
+                                            <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
+                                            <span>Show the back side by default</span>
+                                        </label>
+                                    </p>
+                                </div>
+
+                                <div class="teespring-well designer-well">
+                                    <label>For charity</label>
+                                    <p>
+                                        <label class="checkbox display-label">
+                                            <input type="checkbox" name="is_for_charity" id="is_for_charity" value="1">
+                                            <span>Option for verified charity</span>
+                                        </label>
+                                    </p>
+                                </div>
+
+
+                                <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
+                                    <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
+                                    <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

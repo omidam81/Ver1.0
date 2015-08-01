@@ -118,12 +118,64 @@
     <h3>Product Images</h3>
     <hr/>
     <fieldset>
-        @Html.LabelFor(m => m.Name, T("Choose Front Image. 530x630 only allowed."))
-        @Html.TextBoxFor(m => m.ProductImageFront, new {type = "file", accept = "image/png"})
-        @Html.LabelFor(m => m.Name, T("Choose Back Image. 530x630 only allowed."))
-        @Html.TextBoxFor(m => m.ProductImageBack, new {type = "file", accept = "image/png"})
+        <table class="items">
+            <thead>
+            <tr>
+                <td>
+                    Image type
+                </td>
+                <td>
+                    Existing file
+                </td>
+                <td>
+                    @T("Choose Image. 530x630 with *.png format only allowed.")
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Front
+                </td>
+                <td>
+                    @if (Model.ProductImageFrontFilename != null)
+                    {
+                        @Model.ProductImageFrontFilename
+                    }
+                    else
+                    {
+                        <b>@T("Has not been uploaded")</b>
+                    }
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ProductImageFront, new {type = "file", accept = "image/png"})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Back
+                </td>
+                <td>
+                    @if (Model.ProductImageBackFilename != null)
+                    {
+                        @Model.ProductImageBackFilename
+                    }
+                    else
+                    {
+                        <b>@T("Has not been uploaded")</b>
+                    }
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ProductImageBack, new {type = "file", accept = "image/png"})
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        @if (Model.ProductImageFrontFilename != null && Model.ProductImageBackFilename != null)
+        {
+            <button id="edit_image" type="button" class="primaryAction">Edit Image</button>
+        }
     </fieldset>
-    <button id="edit_image" type="button" class="primaryAction">Edit Image</button>
     <hr/>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">Save</button>

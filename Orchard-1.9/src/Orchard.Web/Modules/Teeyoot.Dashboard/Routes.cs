@@ -49,6 +49,20 @@ namespace Teeyoot.Module.Dashboard
                 },
                 new RouteDescriptor {
                     Route = new Route(
+                        "Campaing/Edit/{id}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Dashboard"},
+                            {"controller", "Dashboard"},
+                            {"action", "EditCampaign"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Dashboard"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
                         "Dashboard/{action}",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Dashboard"},

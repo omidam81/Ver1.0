@@ -5,6 +5,7 @@ using Orchard.Themes;
 using Orchard.UI.Notify;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -194,7 +195,16 @@ namespace Teeyoot.Module.Controllers
                 return View("TrackOrder");
             }
 
-            return View();
+            var model = new OrderTrackingViewModel();
+            model.Status = order.OrderStatusRecord;
+            model.Products = order.Products.ToArray();
+            // TODO: eugene: get culture if needed
+            model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", CultureInfo.CurrentCulture);
+            var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
+            model.CampaignName = campaign.Title;
+            model.CampaignAlias = campaign.Alias;
+
+            return View(model);
         }
     }
 }

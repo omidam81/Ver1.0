@@ -1,0 +1,185 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+#no-band {
+    background: white;
+    overflow: inherit;
+}
+
+    #no-band > .container {
+        padding-bottom: 30px;
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+#designer {
+    width: 100%;
+    position: relative;
+    margin-bottom: 4em;
+    transition: height 400ms ease;
+}
+
+#step-details {
+    min-height: 800px;
+}
+
+.step {
+    width: 100%;
+    position: absolute;
+}
+
+.stepAnimation {
+    -webkit-transition: opacity 600ms ease, -webkit-transform 600ms ease;
+    transition: opacity 600ms ease, transform 600ms ease;
+}
+
+#step-details > .row {
+    display: block;
+    margin: 0 0 20px 0;
+    box-sizing: border-box;
+}
+
+    #step-details > .row > .span5 {
+        float: left;
+        width: 370px;
+        margin-left: -10%;
+    }
+
+.product-preview {
+    position: relative;
+}
+
+.product-view {
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    z-index: 1;
+    left: 26.5%;
+    right: 0;
+    text-shadow: 0 0 0;
+}
+
+div.new-editor-container {
+    position: relative;
+    width: 530px;
+    height: 630px;
+    margin: 0 auto;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition: -webkit-transform 400ms ease;
+    transition: transform 400ms ease;
+}
+
+.new-editor-container * {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+    .new-editor-container *:focus {
+        outline-style: none;
+        outline-width: 0;
+    }
+
+.front {
+    z-index: 2;
+}
+
+@media only screen and (min-width: 980px) {
+    #step-details > .row > .span7 {
+        width: 45%;
+    }
+}
+
+@media all and (min-width: 940px) {
+    .product-view {
+        position: absolute;
+    }
+}
+
+#step-details > .row > .span7 {
+    float: right;
+    padding-top: 0;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+#designer-details-aside {
+    padding-bottom: 20px;
+}
+
+.campaign-details-container {
+    float: left;
+    width: 100%;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+.designer-well {
+    padding-bottom: .2em;
+    overflow: visible;
+}
+
+    .designer-well .campaign-title {
+        margin-bottom: 1.4rem;
+    }
+
+.campaign-details-container label {
+    color: #525f66;
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.designer-well label {
+    clear: left;
+    margin: 0 0 .2em 0;
+}
+
+#step-details .under-text {
+    font-size: 12px;
+    color: #8d999e;
+    margin: 0 0 0.5rem 0;
+}
+
+#step-details .form__textfield {
+    width: 100%;
+}
+
+#designer .form__textfield {
+    font: 15px "Open Sans", Helvetica, Arial, sans-serif;
+    padding: 10px;
+}
+
+#step-details .tool_tip__campaign_description {
+    display: block;
+    width: auto;
+    position: relative;
+}
+
+@media only screen and (min-width: 980px) {
+    #campaign_details .wysihtml5-toolbar {
+        right: 13rem;
+    }
+}
+#campaign_details .wysihtml5-toolbar {
+    position: absolute;
+    top: -2.6rem;
+}
+
+#designer ol, #designer ul {
+    list-style: none;
+}
+
+ul.wysihtml5-toolbar {
+    padding: 0;
+    display: block;
+}

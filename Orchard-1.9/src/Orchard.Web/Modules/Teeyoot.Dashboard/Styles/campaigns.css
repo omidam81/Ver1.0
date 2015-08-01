@@ -54,10 +54,17 @@
     margin: 10px 10px 25px 10px;
     height: 300px;
 }
+
 .campaign-card-image a {
-    color:#fff;
-    text-decoration:none;
+    color: #fff;
+    text-decoration: none;
 }
+
+    .campaign-card-image a:hover {
+        color: #39ace6;
+        text-decoration: none;
+    }
+
 .campaign-card-image {
     background-position: center;
     background-size: 75%;
@@ -66,18 +73,20 @@
     height: 85%;
     margin-bottom: 5px;
 }
-.campaign-card-image:hover {
-    background: rgba(41,48,51,1);
-    background-position: center;
-    background-size: 75%;
-    background-repeat: no-repeat;
-    opacity:.5;
-    color:#fff;
-    transition:opacity 300ms;
-}
-.campaign-card-image:hover .campaign-card-profit {
-    background:none;
-}
+
+    .campaign-card-image:hover {
+        background: rgba(41,48,51,1);
+        background-position: center;
+        background-size: 75%;
+        background-repeat: no-repeat;
+        opacity: .5;
+        color: #fff;
+        transition: opacity 300ms;
+    }
+
+        .campaign-card-image:hover .campaign-card-profit {
+            background: none;
+        }
 
 @media all and (max-width: 1670px) {
     .campaign-card {
@@ -136,16 +145,18 @@
         float: none;
         margin-bottom: 30px;
     }
+
     .group-control.filters {
-        display:block;
+        display: block;
     }
+
     .campaign-card-image,
     .campaign-card-image:hover {
         background-size: 52%;
     }
 
     .campaigns-list-container {
-        margin-top:20px;
+        margin-top: 20px;
         display: block;
     }
 
@@ -153,14 +164,14 @@
             padding-left: 0;
         }
 
-        .filter-dropdown-toggle,
-        .filter-dropdown-menu {
-            width:200px !important;
-        }
-         
-        .campaign-status-filter {
-            margin-left: 0 !important;
-        }
+    .filter-dropdown-toggle,
+    .filter-dropdown-menu {
+        width: 200px !important;
+    }
+
+    .campaign-status-filter {
+        margin-left: 0 !important;
+    }
 }
 
 @media all and (max-width: 530px) {
@@ -193,6 +204,7 @@
     height: 9px;
     border-radius: 5px;
     float: left;
+    max-width:100%;
 }
 
 .campaign-card-sold {
@@ -224,17 +236,27 @@
 
 .campaign-card-links {
     float: right;
-    margin-right:8px;
+    margin-right: 8px;
 }
+
 #campaign_list_filter {
-    border:solid 1px #e8eced;
-    border-radius:5px;
-    margin-right:15px;
+    border: solid 1px #e8eced;
+    border-radius: 5px;
+    margin-right: 15px;
     height: 26px;
 }
-#campaign_list_filter:focus::-webkit-input-placeholder  {color:transparent;}
-#campaign_list_filter:focus::-moz-placeholder   {color:transparent;}
-#campaign_list_filter:focus:-moz-placeholder   {color:transparent;}
+
+    #campaign_list_filter:focus::-webkit-input-placeholder {
+        color: transparent;
+    }
+
+    #campaign_list_filter:focus::-moz-placeholder {
+        color: transparent;
+    }
+
+    #campaign_list_filter:focus:-moz-placeholder {
+        color: transparent;
+    }
 
 .campaign-card-profit {
     padding: 2px 5px;
@@ -243,6 +265,7 @@
     background-color: #6c7478;
     float: left;
 }
+
 .campaign-status-filter {
     margin-left: 27px;
 }
