@@ -14,9 +14,9 @@ namespace Teeyoot.Module.Services
             _promotionRepository = promotionRepository;
         }
 
-        public IQueryable<PromotionRecord> GetAllPromotions()
+        public IQueryable<PromotionRecord> GetAllPromotionsForUser(int userId)
         {
-            return _promotionRepository.Table;
+            return _promotionRepository.Table.Where(x=>x.UserId == userId);
         }
 
         public void DeletePromotion(int id)
@@ -36,7 +36,7 @@ namespace Teeyoot.Module.Services
             promotion.Status = true;
         }
 
-        public void AddPromotion(string promoId, string discountType, int amountSize, string amountType,  DateTime expiration)
+        public void AddPromotion(string promoId, string discountType, int amountSize, string amountType,  DateTime expiration, int userId)
         {
             try
             {
@@ -48,7 +48,8 @@ namespace Teeyoot.Module.Services
                     AmountType = amountType,
                     Status = true,
                     Expiration = expiration,
-                    Redeemed = 0
+                    Redeemed = 0,
+                    UserId = userId
                 };
                 _promotionRepository.Create(newPromotion);
             }

@@ -127,6 +127,7 @@
     <Compile Include="ViewModels\EditCampaignViewModel.cs" />
     <Compile Include="ViewModels\MessageContentViewModel.cs" />
     <Compile Include="ViewModels\PayoutsViewModel.cs" />
+    <Compile Include="ViewModels\PromotionViewModel.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
