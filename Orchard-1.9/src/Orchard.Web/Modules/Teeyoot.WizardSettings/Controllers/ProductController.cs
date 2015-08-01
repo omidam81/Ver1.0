@@ -264,6 +264,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             try
             {
+                // Removing ProductImage
+                _productImageRepository.Delete(product.ProductImageRecord);
+
+                // Removing ProductGroups
                 var productGroups = _linkProductGroupRepository.Table
                     .Where(g => g.ProductRecord == product)
                     .ToList();
@@ -271,6 +275,26 @@ namespace Teeyoot.WizardSettings.Controllers
                 foreach (var productGroup in productGroups)
                 {
                     _linkProductGroupRepository.Delete(productGroup);
+                }
+
+                // Removing ProductColours
+                var productColours = _linkProductColorRepository.Table
+                    .Where(c => c.ProductRecord == product)
+                    .ToList();
+
+                foreach (var productColour in productColours)
+                {
+                    _linkProductColorRepository.Delete(productColour);
+                }
+
+                // Removing ProductSizes
+                var productSizes = _linkProductSizeRepository.Table
+                    .Where(s => s.ProductRecord == product)
+                    .ToList();
+
+                foreach (var productSize in productSizes)
+                {
+                    _linkProductSizeRepository.Delete(productSize);
                 }
 
                 _productRepository.Delete(product);
