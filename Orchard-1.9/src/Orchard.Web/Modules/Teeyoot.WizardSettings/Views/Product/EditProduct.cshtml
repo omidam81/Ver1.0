@@ -26,6 +26,10 @@
         @Html.TextBoxFor(m => m.Name, new {@class = "text large", id = "name"})
         @Html.LabelFor(m => m.SelectedProductHeadline, T("Headline"))
         @Html.DropDownListFor(m => m.SelectedProductHeadline, new SelectList(Model.ProductHeadlines, "Id", "Name"), "Select Headline ...", new {id = "headlines"})
+        @Html.LabelFor(m => m.Materials, T("Materials"))
+        @Html.TextBoxFor(m => m.Materials, new {@class = "text large"})
+        @Html.LabelFor(m => m.Details, T("Details"))
+        @Html.TextBoxFor(m => m.Details, new {@class = "text large"})
     </fieldset>
     <h3>Product Groups</h3>
     <hr/>
@@ -220,9 +224,9 @@
                     Front
                 </td>
                 <td>
-                    @if (Model.ProductImageFrontFilename != null)
+                    @if (Model.ProductImageFrontFileName != null)
                     {
-                        @Model.ProductImageFrontFilename
+                        @Model.ProductImageFrontFileName
                     }
                     else
                     {
@@ -238,9 +242,9 @@
                     Back
                 </td>
                 <td>
-                    @if (Model.ProductImageBackFilename != null)
+                    @if (Model.ProductImageBackFileName != null)
                     {
-                        @Model.ProductImageBackFilename
+                        @Model.ProductImageBackFileName
                     }
                     else
                     {
@@ -253,7 +257,7 @@
             </tr>
             </tbody>
         </table>
-        @if (Model.ProductImageFrontFilename != null && Model.ProductImageBackFilename != null)
+        @if (Model.ProductImageFrontFileName != null && Model.ProductImageBackFileName != null)
         {
             <button id="edit_image" type="button" class="primaryAction">Edit Image</button>
         }

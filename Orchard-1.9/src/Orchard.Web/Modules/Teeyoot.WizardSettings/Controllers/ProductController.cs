@@ -47,10 +47,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
         private const string ProductImagesRelativePath = "~/Modules/Teeyoot.Module/Content/images";
 
-        private const string ProductImageFrontFilenameTemplate = "product_type_{0}_front.png";
-        private const string ProductImageBackFilenameTemplate = "product_type_{0}_back.png";
+        private const string ProductImageFrontFileNameTemplate = "product_type_{0}_front.png";
+        private const string ProductImageBackFileNameTemplate = "product_type_{0}_back.png";
 
-        private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
+        private const string ProductImageFrontSmallFileNameTemplate = "product_type_{0}_front_small.png";
 
         private dynamic Shape { get; set; }
 
@@ -124,10 +124,13 @@ namespace Teeyoot.WizardSettings.Controllers
                 viewModel.Name = product.Name;
                 viewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
 
-                viewModel.ProductImageFrontFilename = CheckProductImageExistence(product,
-                    ProductImageFrontFilenameTemplate);
-                viewModel.ProductImageBackFilename = CheckProductImageExistence(product,
-                    ProductImageBackFilenameTemplate);
+                viewModel.ProductImageFrontFileName = GetProductImageFileName(product,
+                    ProductImageFrontFileNameTemplate);
+                viewModel.ProductImageBackFileName = GetProductImageFileName(product,
+                    ProductImageBackFileNameTemplate);
+
+                viewModel.Materials = product.Materials;
+                viewModel.Details = product.Details;
             }
 
             FillProductViewModelWithHeadlines(viewModel);
@@ -141,12 +144,17 @@ namespace Teeyoot.WizardSettings.Controllers
         [HttpPost]
         public ActionResult EditProduct(ProductViewModel viewModel)
         {
-            var product = viewModel.Id == null ? new ProductRecord() : _productRepository.Get(viewModel.Id.Value);
+            var product = viewModel.Id == null
+                ? new ProductRecord()
+                : _productRepository.Get(viewModel.Id.Value);
 
             product.Name = viewModel.Name;
 
             var productHeadline = _productHeadlineRepository.Get(viewModel.SelectedProductHeadline);
             product.ProductHeadlineRecord = productHeadline;
+
+            product.Materials = viewModel.Materials;
+            product.Details = viewModel.Details;
 
             if (product.ProductImageRecord == null)
             {
@@ -416,7 +424,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     return null;
                 }
 
-                var imageFilename = string.Format(ProductImageFrontFilenameTemplate, product.Id);
+                var imageFilename = string.Format(ProductImageFrontFileNameTemplate, product.Id);
                 var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
 
                 image.Save(imagePhysicalPath, ImageFormat.Png);
@@ -426,7 +434,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     ProductImageFrontSmallWidth,
                     ProductImageFrontSmallHeight);
 
-                var smallImageFilename = string.Format(ProductImageFrontSmallFilenameTemplate, product.Id);
+                var smallImageFilename = string.Format(ProductImageFrontSmallFileNameTemplate, product.Id);
                 var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFilename);
 
                 smallImageBitmap.Save(smallImagePhysicalPath, ImageFormat.Png);
@@ -458,8 +466,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return null;
                 }
 
-                var imageFilename = string.Format(ProductImageBackFilenameTemplate, product.Id);
-                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+                var imageFileName = string.Format(ProductImageBackFileNameTemplate, product.Id);
+                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
                 image.Save(imagePhysicalPath, ImageFormat.Png);
 
@@ -478,12 +486,12 @@ namespace Teeyoot.WizardSettings.Controllers
             productImageRecord.Ppi = ppi;
         }
 
-        private string CheckProductImageExistence(ProductRecord product, string productImageFilenameTemplate)
+        private string GetProductImageFileName(ProductRecord product, string productImageFileNameTemplate)
         {
-            var imageFilename = string.Format(productImageFilenameTemplate, product.Id);
-            var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+            var imageFileName = string.Format(productImageFileNameTemplate, product.Id);
+            var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
-            return System.IO.File.Exists(imagePhysicalPath) ? imageFilename : null;
+            return System.IO.File.Exists(imagePhysicalPath) ? imageFileName : null;
         }
     }
 }

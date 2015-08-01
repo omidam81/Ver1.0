@@ -28,6 +28,9 @@ namespace Teeyoot.WizardSettings.ViewModels
         [Required]
         public string Name { get; set; }
 
+        public string Materials { get; set; }
+        public string Details { get; set; }
+
         public IEnumerable<ProductColourItemViewModel> ProductColours { get; set; }
         public List<ProductColourItemViewModel> SelectedProductColours { get; set; }
         public IEnumerable<ProductGroupItemViewModel> ProductGroups { get; set; }
@@ -41,7 +44,7 @@ namespace Teeyoot.WizardSettings.ViewModels
 
         public HttpPostedFileBase ProductImageFront { get; set; }
         public HttpPostedFileBase ProductImageBack { get; set; }
-        public string ProductImageFrontFilename { get; set; }
-        public string ProductImageBackFilename { get; set; }
+        public string ProductImageFrontFileName { get; set; }
+        public string ProductImageBackFileName { get; set; }
     }
 }
