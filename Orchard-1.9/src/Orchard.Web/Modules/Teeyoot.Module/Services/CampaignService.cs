@@ -209,7 +209,7 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<CampaignProductRecord> GetProductsOfCampaign(int campaignId)
         {
-            return _campProdRepository.Table.Where(p => p.ProductRecord.Id == campaignId).OrderBy(p => p.Id);
+            return _campProdRepository.Table.Where(p => p.CampaignRecord_Id == campaignId).OrderBy(p => p.Id);
         }
 
         public IQueryable<CampaignRecord> GetCampaignsOfUser(int userId)

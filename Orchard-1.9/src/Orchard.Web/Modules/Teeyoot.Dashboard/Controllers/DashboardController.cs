@@ -10,6 +10,8 @@ using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
+using Teeyoot.Dashboard.Services;
+using Orchard.Localization;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -26,7 +28,10 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IContentManager _contentManager;
         private readonly IPayoutService _payoutService;
         private readonly IPromotionService _promotionService;
+        private readonly ICampaignCategoriesService _campaignCategoryService;
         private IOrchardServices Services { get; set; }
+
+        public Localizer T { get; set; }
 
         public DashboardController(ICampaignService campaignService, 
                                    IMailChimpSettingsService settingsService, 
@@ -38,7 +43,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    IPayoutService payoutService,
                                    IOrchardServices services,
                                    IContentManager contentManager,
-                                   IPromotionService promotionService)
+                                   IPromotionService promotionService,
+                                   ICampaignCategoriesService campaignCategoryService)
         {
             _campaignService = campaignService;
             _orderService = orderService;
@@ -51,6 +57,7 @@ namespace Teeyoot.Dashboard.Controllers
             _contentManager = contentManager;
             _payoutService = payoutService;
             _promotionService = promotionService;
+            _campaignCategoryService = campaignCategoryService;
             Services = services;
 
             Logger = NullLogger.Instance;

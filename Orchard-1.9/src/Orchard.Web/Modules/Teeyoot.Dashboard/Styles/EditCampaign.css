@@ -89,14 +89,17 @@ div.new-editor-container {
     }
 
 .front {
-    z-index: 2;
+    height: auto !important;
 }
 
+.back {
+    height: auto !important;
+}
 
 #step-details > .row > .span7 {
     float: right;
     padding-top: 0;
-    margin-top: 30px;
+    margin-top: 0 !important;
     margin-bottom: 0;
 }
 
@@ -204,6 +207,22 @@ ul.wysihtml5-toolbar {
         font-weight: bold;
     }
 
+.edit-title {
+}
+
+    .edit-title h1 {
+        font-size: 42px;
+        font-weight: 900;
+    }
+
+.cancel-button {
+    padding: 10px !important;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    margin-right: 30px !important;
+}
 
 
 
@@ -221,6 +240,7 @@ ul.wysihtml5-toolbar {
 @media all and (min-width: 940px) {
     .product-view {
         position: absolute;
+        left: 0px !important;
     }
 }
 
@@ -554,6 +574,7 @@ span.number {
     max-width: 100% !important;
     min-height: auto !important;
     height: auto !important;
+    width: auto !important;
 }
 
 .Slides {
@@ -923,11 +944,12 @@ input[type=range] {
     border: none;
     color: white;
     margin: 0 !important;
+    width: 200px;
 }
 
     #designer .button--transaction:hover, #designer .button--transaction.hover {
-        background: #dbdbdb;
-        background-color: #dbdbdb;
+        background: #e64700;
+        background-color: #e64700;
         font-size: 16px;
         border-radius: 5px;
         font-weight: normal;

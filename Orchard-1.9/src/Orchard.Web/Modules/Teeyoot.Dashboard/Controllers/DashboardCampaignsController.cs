@@ -8,6 +8,7 @@ using Teeyoot.Module.Common.ExtentionMethods;
 using System;
 using System.Threading.Tasks;
 using Orchard.Themes;
+using Orchard;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -24,7 +25,7 @@ namespace Teeyoot.Dashboard.Controllers
 
         //    await FillCampaigns(model, campaignsQuery);
         //    FillOverviews(model, productsOrderedQuery, campaignsQuery);
-           
+
         //    return View(model);
         //}
 
@@ -97,7 +98,7 @@ namespace Teeyoot.Dashboard.Controllers
         }
 
         private void FillOverviews(CampaignsViewModel model, IQueryable<LinkOrderCampaignProductRecord> productsOrderedQuery, IQueryable<CampaignRecord> campaignsQuery)
-        {           
+        {
             model.Overviews.Add(new CampaignsOverview
             {
                 Type = OverviewType.Today,
@@ -172,11 +173,82 @@ namespace Teeyoot.Dashboard.Controllers
         }
 
         [Themed]
+        [Authorize]
         public ActionResult EditCampaign(int id)
         {
             CampaignRecord camp = _campaignService.GetCampaignById(id);
+            var user = Services.WorkContext.CurrentUser;
+            if (camp.TeeyootUserId != user.Id)
+            {
+                return View("EditCampaign", new EditCampaignViewModel { IsError = true });
+            }
 
-            return View("EditCampaign");
+            var tags = _campaignCategoryService.GetCategoryByCampaignId(camp.Id).ToList();
+            string allTags = string.Empty;
+            foreach (var tag in tags)
+            {
+                allTags = allTags + " " + tag.Name;
+            }
+            int product = _campaignService.GetProductsOfCampaign(id).First().Id;
+
+            string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + product.ToString() + "/";
+            string backIMG;
+            string frontIMG;
+            if (camp.BackSideByDefault)
+            {
+                backIMG = path + "normal/front.png";
+                frontIMG = path + "normal/back.png";
+            }
+            else
+            {
+                backIMG = path + "normal/back.png";
+                frontIMG = path + "normal/front.png";
+            }
+
+            return View("EditCampaign", new EditCampaignViewModel { IsError = false, Id = camp.Id, Title = camp.Title, Description = camp.Description, Tags = allTags, Alias = camp.Alias, BackSideByDefault = camp.BackSideByDefault, FrontImagePath = frontIMG, BackImagePath = backIMG });
+        }
+
+        public ActionResult SaveChanges(EditCampaignViewModel editCampaign)
+        {
+            var campaign = _campaignService.GetCampaignById(editCampaign.Id);
+
+            campaign.Title = editCampaign.Title;
+            campaign.Description = editCampaign.Description;
+            campaign.Alias = editCampaign.Alias;
+            campaign.BackSideByDefault = editCampaign.BackSideByDefault;
+
+            var tags = _campaignCategoryService.GetCategoryByCampaignId(editCampaign.Id).ToList();
+
+            List<string> allTags = editCampaign.Tags.Split(' ').ToList();
+
+            foreach (var tag in tags)
+            {
+                var newTag = allTags.Where(c => c.ToLower() == tag.Name.ToLower()).FirstOrDefault();
+                if (newTag != null)
+                {
+                    allTags.Remove(newTag);
+                }
+            }
+
+            List<CampaignCategoriesRecord> newTags = new List<CampaignCategoriesRecord>();
+            foreach (var tag in allTags)
+            {
+                CampaignCategoriesRecord newTag = new CampaignCategoriesRecord
+                {
+                    Name = tag,
+                    IsVisible = false
+                };
+                newTags.Add(newTag);
+            }
+
+            if (_campaignCategoryService.UpdateCampaignAndCreateNewCategories(campaign, newTags))
+            {
+                return RedirectToAction("Campaigns");
+            }
+            else
+            {
+                return RedirectToAction("EditCampaign");
+            }
         }
     }
 }

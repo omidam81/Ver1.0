@@ -49,7 +49,7 @@ namespace Teeyoot.Module.Dashboard
                 },
                 new RouteDescriptor {
                     Route = new Route(
-                        "Campaing/Edit/{id}",
+                        "Campaign/Edit/{id}",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Dashboard"},
                             {"controller", "Dashboard"},

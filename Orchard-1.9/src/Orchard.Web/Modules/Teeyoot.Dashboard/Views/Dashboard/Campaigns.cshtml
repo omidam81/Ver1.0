@@ -4,9 +4,10 @@
     Style.Include("campaigns.css");
 }
 
-<div class="dashboard-section-title">@T("Campaigns") 
-    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
-    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+<div class="dashboard-section-title">
+    @T("Campaigns")
+<span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+<span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
 </div>
 
 <div class="box">
@@ -20,7 +21,7 @@
         {
             var item = Model.Overviews[i];
             if (item.Type == Teeyoot.Module.Common.Enums.OverviewType.Active)
-            { 
+            {
                 <div class="overview-for-period selected">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
                     <div><span>@Model.Currency@item.Profit</span>@T("profit")</div>
@@ -44,7 +45,7 @@
                 </div>
             }
         }
-        
+
         <div class="period-selector">
             @for (int i = 0; i < Model.Overviews.Count; i++)
             {
@@ -136,27 +137,27 @@
             @foreach (var c in Model.Campaigns)
             {
                 var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
-                
-                <div data-Name="@c.Name.ToLower()" class="campaign-card" 
-                     data-campaign-status="@c.Status.Name" 
-                     data-StartDate="@c.StartDate.Ticks"
-                     data-Reservations="1"
-                     data-EndDate="@c.EndDate.Ticks"
-                     data-Sales="@c.Sold">
+
+                <div data-name="@c.Name.ToLower()" class="campaign-card"
+                     data-campaign-status="@c.Status.Name"
+                     data-startdate="@c.StartDate.Ticks"
+                     data-reservations="1"
+                     data-enddate="@c.EndDate.Ticks"
+                     data-sales="@c.Sold">
 
                     <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/@(!c.ShowBack ? "front.png" : "back.png")')">
 
                         <div class="campaign-card-links">
                             <div>
-                                <a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id})" title="@T("Edit")">
-                                    <i class="fa fa-pencil"></i>
+                                <a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
+                                <i class="fa fa-pencil"></i>
                                 </a>
                             </div>
                             <div>
                                 <a href="#" title="@T("Duplicate")">
                                     <i class="fa fa-files-o"></i>
                                 </a>
-                            </div>                                
+                            </div>
                         </div>
 
                         <div class="campaign-card-profit">
@@ -164,7 +165,7 @@
                         </div>
 
                     </div>
-                   
+
                     <div class="campaign-card-progress">
                         <div class="campaign-card-progress-bar">
                             <div class="campaign-card-progress-bar-completed" style="width:@(c.Sold * 100 / @c.Goal)%">
@@ -173,24 +174,24 @@
                     </div>
 
                     <div class="campaign-card-info">
-                        
+
                         <div class="campaign-card-sold">@c.Sold / @c.Goal @T("sold")</div>
 
                         <div class="campaign-card-left" title="@c.EndDate.ToString("dd.MM.yyyy")">
                             <span>
-                                @if(daysRemaining > 0)
+                                @if (daysRemaining > 0)
                                 {
                                     @daysRemaining@:d @T("remaining")
                                 }
-                                else if(daysRemaining <= -1)
+                                else if (daysRemaining <= -1)
                                 {
                                     @Math.Abs(daysRemaining)@:d @T("ago")
-                                } 
+                                }
                                 else
                                 {
                                     var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours;
-                                    
-                                    if(hours > 0)
+
+                                    if (hours > 0)
                                     {
                                         @hours@:h @T("remaining")
                                     }
@@ -198,23 +199,23 @@
                                     {
                                         @Math.Abs(hours)@:h @T("ago")
                                     }
-                                } 
-                                
+                                }
+
                             </span>
                         </div>
-                                              
+
                     </div>
 
                     <div class="campaign-card-title"><a href="/@c.Alias" title="@c.Name">@c.Name</a></div>
 
                 </div>
-                
+
             }
         </div>
     </div>
 </div>
 
-@using(Script.Foot())
+@using (Script.Foot())
 {
     <script>
         var showOverviewForPeriod = function (index) {
@@ -285,9 +286,9 @@
 
         $(document).click(function (e) {
             if (!$(e.target).hasClass("filter-dropdown-toggle") && !$(e.target).parent().parent().hasClass("filter-dropdown-toggle")) {
-                    $(".filter-dropdown").removeClass('open');
-                }
+                $(".filter-dropdown").removeClass('open');
             }
+        }
         );
 
         $(document).ready(function () {
