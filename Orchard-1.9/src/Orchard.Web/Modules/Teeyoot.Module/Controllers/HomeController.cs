@@ -198,6 +198,11 @@ namespace Teeyoot.Module.Controllers
             var model = new OrderTrackingViewModel();
             model.Status = order.OrderStatusRecord;
             model.Products = order.Products.ToArray();
+            model.ShippingTo = new string[] {
+                order.FirstName + " " + order.LastName,
+                order.StreetAddress,
+                order.City + ", " + order.State + ", " + order.Country + " " + order.PostalCode
+            };
             // TODO: eugene: get culture if needed
             model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", CultureInfo.GetCultureInfo("en-US"));
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);

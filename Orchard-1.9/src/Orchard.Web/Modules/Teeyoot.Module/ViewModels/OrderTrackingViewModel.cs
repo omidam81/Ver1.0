@@ -17,5 +17,7 @@ namespace Teeyoot.Module.ViewModels
         public string CreateDate { get; set; }
 
         public LinkOrderCampaignProductRecord[] Products { get; set; }
+
+        public string[] ShippingTo { get; set; }
     }
 }

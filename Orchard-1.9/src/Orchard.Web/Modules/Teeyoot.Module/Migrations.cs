@@ -393,7 +393,17 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("PromotionRecord_UserId", "PromotionRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
 
-            return 30;
+            SchemaBuilder.CreateTable(typeof(OrderHistoryRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<DateTime>("EventDate")
+                    .Column<string>("Event", c => c.Unlimited())
+                    .Column<int>("OrderRecord_Id")
+            );
+
+            SchemaBuilder.CreateForeignKey("OrderHistory_Order", "OrderHistoryRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
+
+            return 31;
 
         }
 
@@ -736,6 +746,21 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("PromotionRecord_UserId", "PromotionRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
 
             return 30;
+        }
+
+        public int UpdateFrom30()
+        {
+            SchemaBuilder.CreateTable(typeof(OrderHistoryRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<DateTime>("EventDate")
+                    .Column<string>("Event", c => c.Unlimited())
+                    .Column<int>("OrderRecord_Id")
+            );
+
+            SchemaBuilder.CreateForeignKey("OrderHistory_Order", "OrderHistoryRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
+
+            return 31;
         }
     }
 }

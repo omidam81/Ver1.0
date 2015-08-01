@@ -46,6 +46,8 @@ namespace Teeyoot.Module.Models
          
         public virtual IList<LinkOrderCampaignProductRecord> Products { get; set; }
 
+        public virtual IList<OrderHistoryRecord> Events { get; set; }
+
         public OrderRecord()
         {
             Products = new List<LinkOrderCampaignProductRecord>();
