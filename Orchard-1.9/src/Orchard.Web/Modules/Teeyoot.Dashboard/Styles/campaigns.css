@@ -193,6 +193,7 @@
     height: 9px;
     border-radius: 5px;
     float: left;
+    max-width:100%;
 }
 
 .campaign-card-sold {
