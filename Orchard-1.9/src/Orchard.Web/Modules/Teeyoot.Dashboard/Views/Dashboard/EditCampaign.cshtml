@@ -13,11 +13,31 @@
     Script.Include("jquery.flip.js");
 }
 
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+
+        $('.textarea').wysihtml5();
+
+        var isFront = true
+        $(function ($) {
+            $("#card").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            });
+        });
+
+    </script>
+}
+
 <body class="page__designs_edit Chrome" data-hasqtip="0">
     <div class="edit-campaign">
         <section id="no-band" class="no-offset">
             <div class="container container_designer">
-                <div id="designer" class="clearfix" style="min-height: 600px; height: 920.9375px;">
+                <div id="designer" class="clearfix">
                     <div class="step stepAnimation" id="step-details">
                         <!--designer-details-error-->
                         <div class="row">
@@ -26,18 +46,18 @@
                                     <div class="product-view">
                                         <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
                                         <div class="new-editor-container">
-
-
-                                            <div id="card3" style="margin-right: 30px; perspective: 1000px; position: relative;">
-                                                <div class="front" style="height: 675px; width: 500px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out; backface-visibility: hidden; transform: rotateY(180deg);">
-                                                    <img style="width: 530px; background-color: rgb(255, 255, 255);" id="prodFront3" src="/Modules/Teeyoot.Module/Content/images/product_type_2_front.png">
+                                            <div id="card" style="margin-right: 30px;">
+                                                <div class="front">
+                                                    <img style="width:530px" id="prodFront" src="/Modules/Teeyoot.Module/Content/images/product_type_2_front.png">
+                                                    <img style="position:absolute" id="prodFront3_d" src="">
                                                     <div id="butt1" style="text-align:center; margin-top:-60px !important;">
                                                         <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">Front</span></div>
                                                         <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
                                                     </div>
                                                 </div>
-                                                <div class="back" style="transform: rotateY(0deg); height: 675px; width: 500px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out; backface-visibility: hidden;">
-                                                    <img id="prodBack3" style="width: 530px; background-color: rgb(255, 255, 255);" src="/Modules/Teeyoot.Module/Content/images/product_type_2_back.png">
+                                                <div class="back">
+                                                    <img id="prodBack" style="width:530px" src="/Modules/Teeyoot.Module/Content/images/product_type_2_back.png">
+                                                    <img style="position:absolute" id="prodBack3_d" src="">
                                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                         <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-15px; font-weight: 400; margin-top:10px;">Front</span></div>
                                                         <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; font-weight: 400; margin-left:-15px; margin-top:10px;">Back</span></div>
@@ -63,7 +83,7 @@
                                             <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="height: 200px"></textarea>
                                         </div>
                                     </div>
-                                    <div class="teespring-well designer-well" id="tags" style="display:none">
+                                    <div class="teespring-well designer-well" id="tags">
                                         <label>Tags</label>
                                         <p>
                                             <label class="display-label">
@@ -111,32 +131,4 @@
         </section>
     </div>
 </body>
-@using (Script.Foot())
-{
-    <script type="text/javascript">
 
-        $('.textarea').wysihtml5();
-        $(".flip-buttons").click(function () {
-            var $elem = $("#view-front");
-
-            if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
-                setTimeout(function () {
-                    $(".flip-button-front").css("background-color", "#6c7478");
-                    $(".flip-button-front").css("color", "white");
-                    $(".flip-button-back").css("background-color", "white");
-                    $(".flip-button-back").css("color", "#6c7478");
-                }, 180);
-            } else
-                if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
-                    setTimeout(function () {
-                        $(".flip-button-back").css("background-color", "#6c7478");
-                        $(".flip-button-back").css("color", "white");
-                        $(".flip-button-front").css("background-color", "white");
-                        $(".flip-button-front").css("color", "#6c7478");
-                    }, 180);
-
-                }
-        });
-
-    </script>
-}
