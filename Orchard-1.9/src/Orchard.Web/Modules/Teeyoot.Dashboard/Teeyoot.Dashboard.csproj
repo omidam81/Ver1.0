@@ -71,9 +71,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\bootstrap-wysihtml5.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.flip.js" />
     <Content Include="Scripts\promotion.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.js" />
+    <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\campaigns.css" />
+    <Content Include="Styles\designer.css" />
     <Content Include="Styles\EditCampaign.css" />
+    <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\Message.css" />
     <Content Include="Styles\Payouts.css" />
     <Content Include="Styles\Promotions.css" />
@@ -120,6 +127,7 @@
     <Compile Include="ViewModels\EditCampaignViewModel.cs" />
     <Compile Include="ViewModels\MessageContentViewModel.cs" />
     <Compile Include="ViewModels\PayoutsViewModel.cs" />
+    <Compile Include="ViewModels\PromotionViewModel.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

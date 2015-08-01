@@ -9,3 +9,5 @@ function randomString() {
     }
     document.getElementById("code").value = randomstring;
 };
+
+

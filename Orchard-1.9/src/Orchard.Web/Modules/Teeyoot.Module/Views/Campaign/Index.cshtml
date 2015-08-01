@@ -9,237 +9,309 @@
 
 
 @using (Script.Foot())
-{ 
-    
+{
+
     <script>
 
-    $(".product__size_chart_link--show").click(function () {
-        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
-    });
-    $(".product__size_chart_link--hide").click(function () {
-        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
-    });
+        $(".product__size_chart_link--show").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+        });
+        $(".product__size_chart_link--hide").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+        });
 
-    $("#js-size-unit-toggle-inches").click(function () {
-        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
-        document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch active";
-        document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm";
+        $(".js-size-unit-toggle-inches").click(function () {
+            var id = $("#product__dropdown option:selected")[0].id;
+            var size_show = document.getElementsByClassName("product__size_chart");
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+        });
+        $(".js-size-unit-toggle-centimeters").click(function () {
+            var id = $("#product__dropdown option:selected")[0].id;
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+        });
 
-    });
-    $("#js-size-unit-toggle-centimeters").click(function () {
-        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
-        document.getElementById("js-size-unit-toggle-inches").className = "size_chart__unit size_chart__unit--inch";
-        document.getElementById("js-size-unit-toggle-centimeters").className = "size_chart__unit size_chart__unit--cm active";
-    });
-
-
-
-    $("#js-circle-nav-item-front").click(function () {
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
-    });
-    $("#js-circle-nav-item-back").click(function () {
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
-        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-    });
+        $("#js-circle-nav-item-front").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+        });
+        $("#js-circle-nav-item-back").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        });
 
 
-    $("#image-stack-arrow-right").click(function () {
-        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
-        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-    });
-    $("#image-stack-arrow-left").click(function () {
-        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
-        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-    });
+        $("#image-stack-arrow-right").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        });
+        $("#image-stack-arrow-left").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        });
 
-    window.onload = VisibleRemove();
-    function VisibleRemove() {
-        var cntRows = document.getElementById('order_item_list_modal').childElementCount;
-        if (cntRows == 2) {
-            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-            var newSize = $(current).find("#precheckout-item-remove")[0];
-            newSize.className = "precheckout_item_remove_button hidden";
-        } else {
-            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-            var newSize = $(current).find("#precheckout-item-remove")[0];
-            newSize.className = "precheckout_item_remove_button";
+        var size_show = document.getElementsByClassName("product__size_chart")[0];
+        $(size_show).addClass("active");
+
+        var details = document.getElementsByClassName("product__details")[0];
+        $(details).addClass("active");
+
+        window.onload = VisibleRemove();
+       
+
+
+        function VisibleRemove() {
+            var cntRows = document.getElementById('order_item_list_modal').childElementCount;
+            if (cntRows == 2) {
+                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+                var newSize = $(current).find("#precheckout-item-remove")[0];
+                newSize.className = "precheckout_item_remove_button hidden";
+            } else {
+                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+                var newSize = $(current).find("#precheckout-item-remove")[0];
+                newSize.className = "precheckout_item_remove_button";
+            }
+        };
+
+        var i = 1;
+        $("#add-row").click(function () {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
+        });
+
+
+        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+
+        function ItemRemove(node) {
+            var el = document.getElementById(node.id);
+            el.parentNode.removeChild(el);
+            VisibleRemove();
         }
-    };
 
-    var i = 1;
-    $("#add-row").click(function () {
-        var rowHtml = document.getElementById('first-line-item').innerHTML;
-        var newRow = document.createElement('tr');
-        $(newRow)
-            .addClass('precheckout_items_table__row')
-            .attr('id', 'js-precheckout-line-item-' + i)
-            .html(rowHtml)
-            .appendTo($("#order_item_list_modal"))
-        i = i + 1;
-        VisibleRemove();
-    });
-
-
-    $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-    $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-
-    function ItemRemove(node) {
-        var el = document.getElementById(node.id);
-        el.parentNode.removeChild(el);
-        VisibleRemove();
-    }
-    var firstBack = "@Model.BackSideByDefault";
+        var firstBack = "@Model.BackSideByDefault";
         var isFront = true;
         $(function ($) {
-        $("#card").flip({
-            trigger: 'manual'
-        }).click(function () {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
-            var id = $("#product__dropdown option:selected")[0].id;
+            $("#card").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+                var id = $("#product__dropdown option:selected")[0].id;
 
-            if(firstBack=="True"){
-                if (isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/"+id+"/big/back.png " + ")");
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/front.png" + ")");
+                    }
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/front.png" + ")");
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/front.png" + ")");
+                    }
                 }
-            }else{
-                if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/back.png " + ")");
-                } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "//big/front.png" + ")");
-                }
-            }
+
+            });
+
         });
 
-    });
 
-
-    function Resrve() {
-        document.getElementById("reserve-it-now").className = "dg-overlay";
-    }
-
-    function CloseReservation() {
-        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-    }
-
-    function ChangeProduct(item) {
-        var id = item[item.selectedIndex].id;
-        if (!isFront) {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
-        }
-        if (firstBack == "True") {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");           
-        } else {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+        function Resrve() {
+            document.getElementById("reserve-it-now").className = "dg-overlay";
         }
 
-        if (firstBack == "True") {
-            if (isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/"+id+"/big/back.png " + ")");
-            } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/front.png" + ")");
-            }
-        } else {
+        function CloseReservation() {
+            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+        }
+
+        function ChangeProduct(item) {
+            var id = item[item.selectedIndex].id;
             if (!isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/back.png " + ")");
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            }
+            if (firstBack == "True") {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
             } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/front.png" + ")");
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Id/" + id + "/normal/back.png");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/front.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Id/" + id + "/big/back.png");
             }
+
+            if (firstBack == "True") {
+                if (isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/front.png" + ")");
+                }
+            } else {
+                if (!isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Id/" + id + "/big/front.png" + ")");
+                }
+            }
+
+
+            var size_show = document.getElementsByClassName("product__size_chart");
+            for (var i = 0; i < size_show.length; i++) {
+                if ($(size_show[i]).attr('data-product-id') == id) {
+                    $(size_show[i]).addClass("active");
+                } else {
+                    $(size_show[i]).removeClass("active");
+                }
+            }
+
+            var details = document.getElementsByClassName("product__details");
+            for (var i = 0; i < details.length; i++) {
+                if ($(details[i]).attr('data-product-id') == id) {
+                    $(details[i]).addClass("active");
+                } else {
+                    $(details[i]).removeClass("active");
+                }
+            }
+
         }
-    }
 
-    function ChangeProductModal(item) {
-        var par = item.parentNode.parentNode.id;
-        var index = item.selectedIndex;
-        var id = item[item.selectedIndex].id;
-        var row = item.parentNode.parentNode;
-        var img = $(row).find('.modal_campaign_img')[0];
-        img.setAttribute("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
+        function ChangeProductModal(item) {
+            var par = item.parentNode.parentNode.id;
+            var index = item.selectedIndex;
+            var id = item[item.selectedIndex].id;
+            var row = item.parentNode.parentNode;
+            var img = $(row).find('.modal_campaign_img')[0];
+            img.setAttribute("src", "/Media/campaigns/@Model.Id/" + id + "/normal/front.png");
 
-        var currentSize = $(row).find('.size-dropdown.shown')[0];
-        var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+            var currentSize = $(row).find('.size-dropdown.shown')[0];
+            var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
 
-        $(currentSize).removeClass('shown').addClass('hidden');
-        $(newSize).removeClass('hidden').addClass('shown');
+            $(currentSize).removeClass('shown').addClass('hidden');
+            $(newSize).removeClass('hidden').addClass('shown');
 
-        var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
+            var currentPrice = $(row).find('.modal-price.shown')[0];
+            var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
 
-        $(currentPrice).removeClass('shown').addClass('hidden');
-        $(newSize).removeClass('hidden').addClass('shown');
-
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newSize).removeClass('hidden').addClass('shown');
 
 
-    }
 
-    function sendData() {
-        var products = [];
-        var tableRows = $('.precheckout_items_table__row');
-        var count;
-        var productId;
-        var sizeId;
+        }
 
-        tableRows.each(function (index, el) {
+        function sendData() {
+            var products = [];
+            var tableRows = $('.precheckout_items_table__row');
+            var count;
+            var productId;
+            var sizeId;
 
-            var items = $(el).find('.product__dropdown')[0];
-            productId = items[items.selectedIndex].value;
-            items = $(el).find('.size-dropdown.shown')[0];
-            sizeId = items[items.selectedIndex].value;
-            count = $(el).find('.product-count')[0].value;
+            tableRows.each(function (index, el) {
 
-            products.push({ ProductId: productId, SizeId: sizeId, Count: count });
-        });
+                var items = $(el).find('.product__dropdown')[0];
+                productId = items[items.selectedIndex].value;
+                items = $(el).find('.size-dropdown.shown')[0];
+                sizeId = items[items.selectedIndex].value;
+                count = $(el).find('.product-count')[0].value;
 
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("CreateOrder", "Home"))",
-            data: addAntiForgeryToken({
-                "products": products
-            }),
-            success: function (data, status, resp) {
-                if (resp.status === 200) {
-                    window.location.href = '/Buy/' + data;
-                } 
-            },
-            error: function (data, status, resp) {
-                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-            }
-        });
+                products.push({ ProductId: productId, SizeId: sizeId, Count: count });
+            });
 
-    }
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("CreateOrder", "Home"))",
+                data: addAntiForgeryToken({
+                    "products": products
+                }),
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        window.location.href = '/Buy/' + data;
+                    }
+                },
+                error: function (data, status, resp) {
+                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                }
+            });
 
-    function addAntiForgeryToken(data) {
-        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-        return data;
-    };
+        }
 
-</script>
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+
+
+
+        function CountdownTimer(elm, tl, mes) {
+            this.initialize.apply(this, arguments);
+        }
+        CountdownTimer.prototype = {
+            initialize: function (elm, tl, mes) {
+                this.elem = document.getElementById(elm);
+                this.tl = tl;
+                this.mes = mes;
+            }, countDown: function () {
+                var timer = '';
+                var today = new Date();
+                var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
+                var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
+                var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
+                var me = this;
+
+                if ((this.tl - today) > 0) {
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
+                    this.elem.innerHTML = timer;
+                    tid = setTimeout(function () { me.countDown(); }, 10);
+                } else {
+                    this.elem.innerHTML = this.mes;
+                    return;
+                }
+            }, addZero: function (num) { return ('0' + num).slice(-2); }
+        }
+        function CDT() {
+            var finishDate = document.getElementById("persistent__timer").value;
+            var tl = new Date(finishDate);
+
+
+            var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
+            timer.countDown();
+        }
+        window.onload = function () {
+            CDT();
+        }
+
+
+    </script>
 
 }
 
-                                                                                            @*Локализацию!!!!! Обвернуть всё в T()*@
+@*Локализацию!!!!! Обвернуть всё в T()*@
 
 
 
@@ -269,95 +341,57 @@
             <div class="image_stack__container js_image_stack">
 
                 <div id="card" style="margin-right:30px">
-                    
-                       
-                   
-                        <div id="front" class="front">
-                            @if (@Model.BackSideByDefault)
-                            {
-                                <img id="prodFront" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
-                                     data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
-                                <div id="butt1" style="text-align:center; ">
-                                    <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
-                                    <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
-                                </div>
-                            }
-                            else
-                            {
-                                <img id="prodFront"
-                                           src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
-                                           data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
 
 
-                             <div id="butt1" style="text-align:center; ">
+
+                    <div id="front" class="front">
+                        @if (@Model.BackSideByDefault)
+                        {
+                            <img id="prodFront" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
+                            <div id="butt1" style="text-align:center; ">
+                                <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
+                                <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <img id="prodFront"
+                                 src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
+
+
+                            <div id="butt1" style="text-align:center; ">
                                 <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
                                 <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
                             </div>
-                            }
-                        </div>
-                        <div id="back" class="back">
-                            @if (@Model.BackSideByDefault)
-                            { <img id="prodBack"
-                                   src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
-                                   data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
-                                <div id="butt2" style="text-align:center;">
-                                    <div class="flip-button flip-button-front"><span>@T("Back")</span></div>
-                                    <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
-                                </div>
-                            }
-                            else
-                            {
-                                  <img id="prodBack"
-                                       src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
-                                       data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
+                        }
+                    </div>
+                    <div id="back" class="back">
+                        @if (@Model.BackSideByDefault)
+                        { <img id="prodBack"
+                               src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png"
+                               data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/front.png">
+                            <div id="butt2" style="text-align:center;">
+                                <div class="flip-button flip-button-front"><span>@T("Back")</span></div>
+                                <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <img id="prodBack"
+                                 src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/back.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Id/@Model.Products[0].Id/big/back.png">
 
                             <div id="butt2" style="text-align:center;">
                                 <div class="flip-button flip-button-front"><span>@T("Front")</span></div>
                                 <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
                             </div>
-                            }
-                        </div>
+                        }
+                    </div>
 
 
                 </div>
-                @*<div class="image_stack__inner js_image_stack_inner">
-
-                        <div class="image_stack__arrows">
-                            <i id="image-stack-arrow-left" class="image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden"></i>
-                            <i id="image-stack-arrow-right" class="image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow"></i>
-                        </div>
-
-                        <div class="image_stack__images">
-                            <div id="image-wrap-front" class="image_stack__image_wrap image_stack__image_wrap--active" data-idx="0">
-                                <img id="zoom-img" class="image_stack__image" src="/Themes/Teebay.Theme/Content/front.png" data-zoom-image="/Themes/Teebay.Theme/Content/front2.png">
-                            </div>
-
-                            <div id="image-wrap-back" class="image_stack__image_wrap" data-idx="1">
-                                <img id="zoom-img-back" class="image_stack__image" src="/Themes/Teebay.Theme/Content/back.png" data-zoom-image="/Themes/Teebay.Theme/Content/back2.png">
-                            </div>
-                        </div>
-
-
-
-                        <nav class="image_stack__nav">
-                            <ul class="image_stack__nav_list">
-                                <li id="js-circle-nav-item-front" class="image_stack__nav_item image_stack__nav_item--active" data-idx="0">
-                                    <img class="image_stack__nav_item_thumb display--desktop"
-                                         src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/front.png?v=2015-07-07-08-01"
-                                         data-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/front.png?v=2015-07-07-08-01"
-                                         data-zoom-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/front.png?v=2015-07-07-08-01">
-                                </li>
-
-                                <li id="js-circle-nav-item-back" class="image_stack__nav_item" data-idx="1">
-                                    <img class="image_stack__nav_item_thumb display--desktop"
-                                         src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/back.png?v=2015-07-07-08-01"
-                                         data-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/back.png?v=2015-07-07-08-01"
-                                         data-zoom-image="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/756x9999/back.png?v=2015-07-07-08-01">
-                                </li>
-                            </ul>
-                        </nav>
-                        <div style="width: 100%; text-align: center; padding: 1rem 2rem 0;"><img style="max-width: 30rem;width: 100%;" src="http://i.imgur.com/Dw8nQJL.png"></div>
-                    </div>*@
             </div>
 
             <div class="campaign__column--product" style="min-height: inherit;">
@@ -377,19 +411,7 @@
 
                     <div class="campaign_stats">
 
-                        <p class="campaign_transaction__subtext display--desktop">
-                            Don't worry, you won't be charged unless the minimum is reached.
-                            <a href="/about">Learn why.</a>
-                        </p>
-
                         <div class="campaign_stats__table">
-
-                            <div class="campaign_stats__column campaign_stats__column--goal">
-
-                                <div class="campaign_stats__value">10</div>
-
-                                <div class="campaign_stats__label">needed to print!</div>
-                            </div>
 
                             <div class="campaign_stats__column campaign_stats__column--timer js_stats_timer_subview">
 
@@ -424,450 +446,90 @@
                     </div>
                 </div>
 
-                @*<div class="product__container hidden">
-
-                        <nav class="product__nav">
-                            <ul class="product__list">
-                                <li class="product__each product__each--active" data-product-id="369">
-                                    <div class="product__img-wrap">
-                                        <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/369/6524/120x9999/front.png?v=2015-07-07-08-01">
-                                    </div>
-                                </li>
-                                <li class="product__each" data-product-id="72">
-                                    <div class="product__img-wrap">
-                                        <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/72/5902/120x9999/front.png?v=2015-07-07-08-01">
-                                    </div>
-                                </li>
-                                <li class="product__each" data-product-id="2">
-                                    <div class="product__img-wrap">
-                                        <img class="product__thumb" src="//vangogh.teespring.com/shirt_pic/2557372/2810635/2/577/120x9999/front.png?v=2015-07-07-08-01">
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>*@
-
                 <div class="product__container">
 
                     <div id="js-product-card" class="product__card_wrap js-product-card product__card_wrap--v2">
 
                         <a class="product__card__expand_link js-card-expand-link">
-                            <span class="product__size_chart_link--show">View Sizing Chart &amp; Product Details</span>
-                            <span class="product__size_chart_link--hide">Hide Details</span>
+                            <span class="product__size_chart_link--show">@T("View Sizing Chart &amp; Product Details")</span>
+                            <span class="product__size_chart_link--hide">@T("Hide Details")</span>
                         </a>
 
                         <div class="product__card">
 
                             <div class="product__details_wrap">
 
-                                <div class="product__details product__details--active" data-product-id="369">
+                                @foreach (var product in Model.Products)
+                                {
 
-                                    <div class="product__row product__row--name-price">
-                                        <div class="product__name">Teespring Premium Tee</div>
-                                        <div class="product__price"></div>
+
+                                    <div class="product__details" data-product-id="@product.Id">
+
+                                        <ul class="product__row product__row--fit-fabric">
+                                            @if (product.ProductRecord.Details != null)
+                                            {
+                                                <li class="product__fit_wrap">
+                                                    <span class="product__fit">@product.ProductRecord.Details</span>
+                                                </li>
+                                            }
+                                            @if (product.ProductRecord.Materials != null)
+                                            {
+                                                <li class="product__fabric_wrap">
+                                                    <span class="product__fabric">@product.ProductRecord.Materials</span>
+                                                </li>
+                                            }
+                                        </ul>
                                     </div>
 
-                                    <div class="product__row product__row--localized-price">
-                                        <div class="product__localized-price"></div>
-                                    </div>
-
-                                    <ul class="product__row product__row--fit-fabric product__row--fit-fabric--hidden">
-                                        <li class="product__fit_wrap product__fit_wrap--hidden">
-                                            <span class="product__fit"></span>
-                                        </li>
-
-                                        <li class="product__fabric_wrap product__fabric_wrap--hidden">
-                                            <span class="product__fabric"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                @*///////////////Описание материала*@
-                                <div class="product__details" data-product-id="72">
-
-                                    <div class="product__row product__row--name-price">
-                                        <div class="product__name">American Apparel Triblend</div>
-                                        <div class="product__price"></div>
-                                    </div>
-
-                                    <div class="product__row product__row--localized-price">
-                                        <div class="product__localized-price"></div>
-                                    </div>
-
-                                    <ul class="product__row product__row--fit-fabric">
-                                        <li class="product__fit_wrap">
-                                            <span class="product__fit">Fitted Unisex Tee</span>
-                                        </li>
-                                        <li class="product__fabric_wrap">
-                                            <span class="product__fabric">50% polyester, 25% ringspun cotton, 25% rayon.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="product__details" data-product-id="2">
-                                    <div class="product__row product__row--name-price">
-                                        <div class="product__name">Hanes Tagless Tee</div>
-                                        <div class="product__price"></div>
-                                    </div>
-
-                                    <div class="product__row product__row--localized-price">
-                                        <div class="product__localized-price"></div>
-                                    </div>
-
-                                    <ul class="product__row product__row--fit-fabric">
-                                        <li class="product__fit_wrap">
-                                            <span class="product__fit">Relaxed Unisex Tee</span>
-                                        </li>
-
-                                        <li class="product__fabric_wrap">
-                                            <span class="product__fabric">100% preshrunk ComfortSoft® cotton.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                @*///////////////Описание материала*@
-
-
+                                }
                             </div>
 
                             <div id="js-size-chart-wrap" class="product__size_chart_wrap product__size_chart_wrap--inch">
-                                <a class="product__size_chart_link js-card-expand-link">
-                                    <span class="product__size_chart_link--show">Size Chart</span>
-                                    <span class="product__size_chart_link--hide">Hide Chart</span>
-                                </a>
-                                <div class="product__size_chart active" data-product-id="369">
 
-                                    <div class="size_chart__units">
-                                        <span id="js-size-unit-toggle-inches" class="size_chart__unit size_chart__unit--inch" data-unit="inch">Inches</span>
-                                        <span id="js-size-unit-toggle-centimeters" class="size_chart__unit size_chart__unit--cm" data-unit="cm">Centimeters</span>
+                                @foreach (var product in Model.Products)
+                                {
+                                    <div class="product__size_chart" data-product-id="@product.Id">
+
+                                        <div class="size_chart__units">
+                                            <span class="js-size-unit-toggle-inches size_chart__unit size_chart__unit--inch" data-unit="inch">@T("Inches")</span>
+                                            <span class="js-size-unit-toggle-centimeters size_chart__unit size_chart__unit--cm" data-unit="cm">@T("Centimeters")</span>
+                                        </div>
+
+                                        <table class="product__size_chart__table">
+                                            <thead>
+                                                <tr class="product__size_chart__row">
+                                                    <th class="product__size_chart__size_label">&nbsp;</th>
+                                                    <th>@T("Length")</th>
+                                                    <th>@T("Sleeve")</th>
+                                                    <th>@T("Width")</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                                @foreach (var size in product.ProductRecord.SizesAvailable)
+                                                {
+                                                    <tr class="product__size_chart__row">
+                                                        <td class="product__size_chart__size_label">@size.ProductSizeRecord.SizeCodeRecord.Name</td>
+                                                        <td>
+                                                            <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.LengthInch"</span>
+                                                            <span class="product__size_chart__size product__size_chart__size--cm">@size.ProductSizeRecord.LengthCm cm</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.SleeveInch"</span>
+                                                            <span class="product__size_chart__size product__size_chart__size--cm">@size.ProductSizeRecord.SleeveCm cm</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.WidthInch"</span>
+                                                            <span class="product__size_chart__size product__size_chart__size--cm">@size.ProductSizeRecord.WidthCm cm</span>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
                                     </div>
-
-                                    <table class="product__size_chart__table">
-                                        <thead>
-                                            <tr class="product__size_chart__row">
-                                                <th class="product__size_chart__size_label">&nbsp;</th>
-                                                <th>Length</th>
-                                                <th>Sleeve</th>
-                                                <th>Width</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">S</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">8"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">20cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">19"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">48cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">M</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">29"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.5"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">20.75"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">52cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">L</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">9"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">22cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">22"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">55cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">31"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">9.5"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">24cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">24.25"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">61cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">2XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">32"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">81cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">10"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">25cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">26"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">66cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">4XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">34"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">86cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">11"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">27cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">30.5"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">77cm</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="product__size_chart" data-product-id="72">
-                                    <div class="size_chart__units">
-                                        <span class="size_chart__unit size_chart__unit--inch" data-unit="inch">Inches</span>
-                                        <span class="size_chart__unit size_chart__unit--cm" data-unit="cm">Centimeters</span>
-                                    </div>
-
-                                    <table class="product__size_chart__table">
-                                        <thead>
-                                            <tr class="product__size_chart__row">
-                                                <th class="product__size_chart__size_label">&nbsp;</th>
-                                                <th>Length</th>
-                                                <th>Width</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">S</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">28.75"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">17.38"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">44cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">M</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">29.75"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">75cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">19.38"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">49cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">L</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">30.75"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">21.38"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">54cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">31.75"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">80cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">23.38"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">59cm</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">2XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">32.75"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">83cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">25.38"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">64cm</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="product__size_chart" data-product-id="2">
-                                    <div class="size_chart__units">
-                                        <span class="size_chart__unit size_chart__unit--inch" data-unit="inch">Inches</span>
-                                        <span class="size_chart__unit size_chart__unit--cm" data-unit="cm">Centimeters</span>
-                                    </div>
-
-                                    <table class="product__size_chart__table">
-                                        <thead>
-                                            <tr class="product__size_chart__row">
-                                                <th class="product__size_chart__size_label">&nbsp;</th>
-                                                <th>Length</th>
-                                                <th>Sleeve</th>
-                                                <th>Width</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">S</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.13"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">20cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">18"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">45cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">M</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">29"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">73cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.38"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">20"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">50cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">L</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.63"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">21cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">22"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">55cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">31"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">78cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">8.88"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">22cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">24"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">60cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">2XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">33"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">83cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">9.63"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">24cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">26"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">66cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">3XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">34"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">86cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">10.13"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">25cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">28"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">71cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">4XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">35"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">88cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">10.63"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">27cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">30"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">76cm</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="product__size_chart__row">
-                                                <td class="product__size_chart__size_label">5XL</td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">36"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">91cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">11.13"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">28cm</span>
-                                                </td>
-                                                <td>
-                                                    <span class="product__size_chart__size product__size_chart__size--inch">32"</span>
-                                                    <span class="product__size_chart__size product__size_chart__size--cm">81cm</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -880,37 +542,7 @@
                             </div>
                         </li>
                     </ul>
-                </div>
-
-                @*<div class="product_size__container hidden">
-                        <ul class="product_size__list">
-                            <li class="product_size__item" data-product-id="369" data-size-id="1906">
-                                <span class="product_size__size">S</span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1907">
-                                <span class="product_size__size">M</span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1908">
-                                <span class="product_size__size">L</span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1909">
-                                <span class="product_size__size">XL</span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1910">
-                                <span class="product_size__size">2XL</span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1912">
-                                <span class="product_size__size">4XL</span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1911">
-                                <span class="product_size__size">3XL </span>
-                            </li>
-                            <li class="product_size__item" data-product-id="369" data-size-id="1913">
-                                <span class="product_size__size">5XL </span>
-                            </li>
-                        </ul>
-                    </div>*@
-
+                </div>                
                 <div class="campaign_transaction js-transaction-button">
                     @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
                         <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>*@
@@ -918,68 +550,11 @@
                     <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
                 </div>
 
-                <div class="persistent_timer__wrap js_persistent_timer display--desktop persistent_timer__wrap--v2">
-                    <div class="presistent_timer__stats">
-                        <span class="persistent_timer__order_count">Only 10 more needed to print!</span>
-                    </div>
-
-                    <p class="campaign_transaction__subtext persistent_timer__subtext">
-                        Don't worry, you won't be charged unless the minimum is reached.
-                        <a href="/about">Learn why.</a>
-                    </p>
-
-                    <div class="persistent__timer">
-                        <span class="persistent_timer__label">
-                            <i class="ts-icon-time"></i> Want this shirt design?
-                        </span>
-
-                        <span class="persistent_timer__countdown">
-                            <div class="persistent_timer__unit_wrap">
-                                <div class="persistent_timer__value persistent_timer__days">
-                                    <span class="ce-days-digit">0</span>
-                                    <span class="ce-days-digit">1</span>
-                                </div>
-
-                                <label class="persistent_timer__unit persistent_timer__unit--days">days</label>
-                            </div>
-
-                            <div class="persistent_timer__unit_wrap">
-                                <div class="persistent_timer__value persistent_timer__hours">
-                                    <span class="ce-hours-digit">1</span>
-                                    <span class="ce-hours-digit">4</span>
-                                </div>
-
-                                <span class="persistent_timer__seperator">:</span>
-
-                                <div class="persistent_timer__unit">hours</div>
-                            </div>
-
-                            <div class="persistent_timer__unit_wrap">
-                                <div class="persistent_timer__value persistent_timer__minutes">
-                                    <span class="ce-minutes-digit">5</span>
-                                    <span class="ce-minutes-digit">0</span>
-                                </div>
-
-                                <span class="persistent_timer__seperator">:</span>
-
-                                <div class="persistent_timer__unit">minutes</div>
-                            </div>
-
-                            <div class="persistent_timer__unit_wrap">
-                                <div class="persistent_timer__value persistent_timer__seconds">
-                                    <span class="ce-seconds-digit">2</span>
-                                    <span class="ce-seconds-digit">0</span>
-                                </div>
-
-                                <div class="persistent_timer__unit">seconds</div>
-                            </div>
-                        </span>
-                    </div>
+                <div>
+                    <input class="hidden" id="persistent__timer" value="@Model.EndDate.ToLocalTime().Year/@Model.EndDate.ToLocalTime().Month/@Model.EndDate.ToLocalTime().Day @Model.EndDate.ToLocalTime().Hour:@Model.EndDate.ToLocalTime().Minute:@Model.EndDate.ToLocalTime().Second">                    
+                    <div id="back_timer"></div>                   
                 </div>
 
-                <p class="campaign_transaction__subtext display--mobile">
-                    Don't worry, you won't be charged unless the minimum is reached. <a href="/about">Learn why.</a>
-                </p>
             </div>
         </div>
 
@@ -990,12 +565,13 @@
 
     <div class="site__wrapper">
         <div class="share__container display--mobile">
-            <h3 class="share__heading">Share this campaign on:</h3>
-            
+            <h3 class="share__heading">@T("Share this campaign on:")</h3>
+
             <ul class="share__buttons">
                 <li class="share__buttons__item">
                     <a href="http://www.facebook.com" target="_blank">
-                        <img src="/Media/Default/images/facebook_ic.png"></a>
+                        <img src="/Media/Default/images/facebook_ic.png">
+                    </a>
                 </li>
                 <li class="share__buttons__item">
                     <a href="http://twitter.com" target="_blank">
@@ -1010,33 +586,16 @@
             </ul>
         </div>
         <div class="campaign__column--description">
-            <div class="campaign__description display--mobile js_campaign_description">There is nothing left but booze</div>
+            <div class="campaign__description display--mobile js_campaign_description">@Model.Description</div>
             <div class="campaign_info__container">
                 <div class="campaign_info__row campaign_info__row--shipping">
                     <div class="campaign_info__header">
-                        Shipping Info
-                        @*<div class="campaign_info__region_dropdown">
-                                <div class="dropdown--popover js-shipping-info-dropdown" data-value="United States">
-                                    <div class="dropdown__toggle campaign_info__region_toggle js-region-toggle">United States</div>
-                                    <div class="dropdown__menu dropdown__menu--hidden">
-                                        <ul class="dropdown__menu_links">
-                                            <li class="dropdown__menu_item js-region-item" data-name="United States" data-value="United States">
-                                                <div class="dropdown__menu_link dropdown__menu_link--nowrap">United States</div>
-                                            </li>
-                                            <li class="dropdown__menu_item js-region-item" data-name="Canada" data-value="Canada">
-                                                <div class="dropdown__menu_link dropdown__menu_link--nowrap">Canada</div>
-                                            </li>
-                                            <li class="dropdown__menu_item js-region-item" data-name="International" data-value="Switzerland">
-                                                <div class="dropdown__menu_link dropdown__menu_link--nowrap">International</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>*@
+                        @T("Shipping Info")
+
                     </div>
                     <div class="campaign_info__content">
                         <div class="campaign_info__content__row">
-                            Orders are printed and shipped when the time expires (<span data-timestamp="2015-07-15T03:00:00Z">July 15th</span>). You can expect your package to arrive around
+                            @T("Orders are printed and shipped when the time expires") (<span>July 15th</span>). @T("You can expect your package to arrive around")
                             <span class="js-delivery-estimate">5</span> business days after printing starts.
                         </div>
                         <div class="campaign_info__content__row js-shipping-info">
@@ -1062,7 +621,7 @@
             </div>
         </div>
         <div class="campaign__column--stats display--desktop">
-            <div class="campaign_stats__container js_stats_countainer display--mobile active">
+            @*<div class="campaign_stats__container js_stats_countainer display--mobile active">
                 <div class="campaign_stats">
                     <p class="campaign_transaction__subtext display--desktop">
                         Don't worry, you won't be charged unless the minimum is reached.
@@ -1091,9 +650,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="share__container">
-                <h3 class="share__heading">Share this campaign on:</h3>
+                <h3 class="share__heading">@T("Share this campaign on:")</h3>
                 <ul class="share__buttons">
                     <li class="share__buttons__item">
                         <a href="http://www.facebook.com" target="_blank">
@@ -1118,8 +677,8 @@
                 <div class="launch_campaign__container">
                     <div class="launch_campaign__statement">Design and sell custom apparel with no risks and at no cost.</div>
                     <div class="launch_campaign__statement">We ship, you keep the profit.</div>
-                    <a class="launch_campaign__button button__cta button__cta--primary" href="/designs">Launch a Campaign</a>
-                    <a class="launch_campaign__button button__cta button__cta--secondary" href="/about">Learn More</a>
+                    <a class="launch_campaign__button button__cta button__cta--primary" href="">Launch a Campaign</a>
+                    <a class="launch_campaign__button button__cta button__cta--secondary" href="">Learn More</a>
                 </div>
             </div>
         </section>
@@ -1140,7 +699,7 @@
                                 <button aria-hidden="true" class="precheckout_close_button" id="close-reservation" onclick="CloseReservation()" type="button">
                                     <i class="ts-icon-close"></i>
                                 </button>
-                                <h2 class="precheckout_modal__title">Your Order</h2>
+                                <h2 class="precheckout_modal__title">@T("Your Order")</h2>
                             </div>
                             <div class="precheckout_modal__image_container">
                                 <div class="precheckout_modal__image" style="background-image: url(/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png);"></div>
@@ -1151,10 +710,10 @@
                                     <thead class="precheckout_items_table__head">
                                         <tr>
                                             <th class="line_items_table__heading precheckout_items_table__item--image"></th>
-                                            <th class="line_items_table__heading">Qty</th>
-                                            <th class="line_items_table__heading">Size</th>
-                                            <th class="line_items_table__heading">Style</th>
-                                            <th class="line_items_table__heading line_items_table__heading--price">Price</th>
+                                            <th class="line_items_table__heading">@T("Qty")</th>
+                                            <th class="line_items_table__heading">@T("Size")</th>
+                                            <th class="line_items_table__heading">@T("Style")</th>
+                                            <th class="line_items_table__heading line_items_table__heading--price">@T("Price")</th>
                                         </tr>
                                     </thead>
                                     <tbody id="order_item_list_modal">
@@ -1202,7 +761,7 @@
                                                 </select>
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--price">
-                                               
+
                                                 @for (var i = 0; i < Model.Products.Count; i++)
                                                 {
                                                     if (i == 0)
@@ -1217,7 +776,7 @@
                                                 <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
                                             </td>
                                         </tr>
-                                    
+
                                         <tr id="js-precheckout-line-item" class="precheckout_items_table__row">
                                             <td class="precheckout_items_table__item precheckout_items_table__item--image">
                                                 <img class="modal_campaign_img" src="/Media/campaigns/@Model.Id/@Model.Products[0].Id/normal/front.png">
@@ -1274,31 +833,16 @@
                                                         <span name="select_size_index_@i" class="modal-price hidden">@Model.Products[i].CurrencyRecord.Code@Model.Products[i].Price</span>
                                                     }
                                                 }
-                                                <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>
+                                                <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">@T("Remove")</div>
                                             </td>
                                         </tr>
-                                    
+
                                     </tbody>
                                 </table>
 
                                 <div class="precheckout_actions">
-                                    <div id="add-row" class="precheckout_actions__button">+ Add another style or color</div>
-                                </div>
-                                <div class="saved_payment_info">
-                                    <div class="saved_payment_info__container">
-                                        <a class="saved_payment_info__edit_link">
-                                            <i class="saved_payment_info__edit_icon ts-icon-edit"></i>
-                                        </a>
-                                        <div class="saved_payment_info__row">
-                                            <span class="saved_payment_info__label">Shipping Address:</span>
-                                            <span class="saved_payment_info__value">460 Bryant St. Suite 200, San Francisco, CA 94611</span>
-                                        </div>
-                                        <div class="saved_payment_info__row">
-                                            <span class="saved_payment_info__label">Pay With:</span>
-                                            <span class="saved_payment_info__value">Visa ending in 3456</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <div id="add-row" class="precheckout_actions__button">@T("+ Add another style or color")</div>
+                                </div>                                
                             </div>
                             <div class="modal-footer">
                                 <div class="payment_options_info">
@@ -1310,14 +854,13 @@
                                         <li class="payment_options__item payment_options__item--border">
                                             <div class="payment_options__item--paypal"></div>
                                         </li>
-                                    </ul>
-                                    <p class="payment_options_caption">We accept all major credit cards and Paypal</p>
+                                    </ul>          
                                 </div>
                                 <div class="payment_options_container">
                                     <div class="payment_options_actions">
 
                                         <div onclick="sendData(); return false;" class="button button--transaction button--precheckout submit--checkout js-precheckout-submit">
-                                            Checkout
+                                            @T("Checkout")
 
                                             @*<input class="button button--transaction button--precheckout submit--saved_payment_info" type="submit" value="Complete Your Order">*@
                                         </div>
@@ -1330,13 +873,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@
 }
 
 .step {
-    width: 100%;
+    width: 100% !important;
     position: absolute;
 }
 
@@ -47,7 +47,7 @@
     #step-details > .row > .span5 {
         float: left;
         width: 370px;
-        margin-left: -10%;
+        margin-left: 0 !important;
     }
 
 .product-preview {
@@ -91,17 +91,6 @@ div.new-editor-container {
     z-index: 2;
 }
 
-@media only screen and (min-width: 980px) {
-    #step-details > .row > .span7 {
-        width: 45%;
-    }
-}
-
-@media all and (min-width: 940px) {
-    .product-view {
-        position: absolute;
-    }
-}
 
 #step-details > .row > .span7 {
     float: right;
@@ -165,11 +154,6 @@ form {
     position: relative;
 }
 
-@media only screen and (min-width: 980px) {
-    #campaign_details .wysihtml5-toolbar {
-        right: 13rem;
-    }
-}
 #campaign_details .wysihtml5-toolbar {
     position: absolute;
     top: -2.6rem;
@@ -182,4 +166,772 @@ form {
 ul.wysihtml5-toolbar {
     padding: 0;
     display: block;
+}
+
+#designer {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-header {
+
+}
+
+.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-header h3 {
+    font-weight: bold;
+}
+
+.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-header a {
+    font-weight: bold;
+}
+
+.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-body {
+    font-weight: bold;
+}
+
+.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-footer {
+
+}
+
+.bootstrap-wysihtml5-insert-image-modal .modal .fade .modWind .in .modal-footer a {
+
+}
+
+
+
+
+
+@media only screen and (min-width: 980px) {
+    #campaign_details .wysihtml5-toolbar {
+        right: 13rem;
+    }
+
+    #step-details > .row > .span7 {
+        width: 45%;
+    }
+}
+
+@media all and (min-width: 940px) {
+    .product-view {
+        position: absolute;
+    }
+}
+
+
+/*--------------- Wizard.css ----------------*/
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+}
+
+table {
+    background-color: transparent;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.flip-button-back {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+
+
+.art-button {
+    border-radius: 45px !important;
+    color: #ff4f00 !important;
+    background: white !important;
+    border-color: #ff4f00 !important;
+}
+
+
+
+.flip-button-back-three {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+
+.flip-button-front {
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+
+
+ul, ol {
+    margin: 0px !important;
+}
+
+.flip-button {
+    padding: 0.5rem 1.4rem;
+    line-height: 1.4rem;
+    border: 1px solid #6c7478;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: right;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 970px;
+        width: 970px;
+    }
+}
+
+#designer {
+    min-height: 920px;
+}
+
+/* Shared properties */
+/* Repeated elements */
+.flow-steps .flow-step {
+    position: relative;
+}
+
+
+#content {
+    min-height: 0;
+}
+
+#designDrop {
+    width: 65px;
+    height: 40px;
+    padding: 8px 6px;
+    border: 1px solid #d8dddf;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 15%;
+}
+
+.designDrop {
+    width: 65px;
+    height: 40px;
+    padding: 8px 6px;
+    border: 1px solid #d8dddf;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 15%;
+}
+
+
+.swatch2 {
+    width: 24px;
+    margin-top: -1%;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0px 0px 0px 1px #d8dddf;
+    margin-bottom: 2px;
+    -webkit-transition: background-color 400ms;
+    transition: background-color 400ms;
+}
+
+#colors {
+    top: 25%;
+    left: 28%;
+}
+
+.colors {
+    top: 25%;
+    left: 28%;
+}
+
+
+
+.flow-steps .flow-step .number {
+    background: #dbdbdb;
+}
+
+.flow-steps .flow-step .dot {
+    background: #dbdbdb;
+    float: left;
+    margin: 0 0 0 16px;
+}
+
+.flow-steps .flow-step strong {
+    color: #dbdbdb;
+}
+
+.flow-steps .flow-step.active .number {
+    background: #ff4f00;
+}
+
+.flow-steps .flow-step.active strong {
+    color: #ff4f00;
+}
+
+.flow-steps .flow-step.active .flow-step-before .dot {
+    background: #dbdbdb;
+}
+
+.flow-steps .flow-step.active .flow-step-after .dot {
+    background: #dbdbdb;
+}
+
+.flow-step-before {
+    left: 0;
+    position: absolute;
+    top: 20px;
+}
+
+.flow-step-after {
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
+.Content > table {
+    width: 100%;
+}
+
+.sell {
+    width: 100%;
+    height: 100px;
+}
+
+.number,
+#sun-circle {
+    background: #56b8ea;
+    border-radius: 50%;
+    color: white;
+    font-size: 48px;
+    font-weight: 900;
+    height: 80px;
+    line-height: 76px;
+    margin: 0 auto;
+    text-align: center;
+    width: 80px;
+}
+
+.number {
+    -webkit-border-radius: 40px;
+}
+
+span.number {
+    display: inline-block;
+}
+
+.dot {
+    background: #56b8ea;
+    border-radius: 2px;
+    height: 4px;
+    margin: 16px auto;
+    width: 4px;
+}
+
+.dots {
+    position: absolute;
+    top: 38px;
+}
+
+    .dots .dot {
+        float: left;
+        margin: 0 0 0 16px;
+    }
+
+
+
+.lab {
+    background: #f5f5f5;
+    padding: 20px 0 80px;
+}
+
+.lab-steps.flow-steps {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+    .lab-steps.flow-steps .flow-step {
+        float: left;
+        width: 33%;
+    }
+
+        .lab-steps.flow-steps .flow-step .number {
+            font-size: 29px;
+            height: 50px;
+            line-height: 48px;
+            width: 50px;
+        }
+
+        .lab-steps.flow-steps .flow-step strong {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+.flow-step-before,
+.flow-step-after {
+    top: 22px;
+}
+
+
+.flow-steps .flow-step.active ~ .flow-step .number {
+    background: #dbdbdb;
+}
+
+.flow-steps .flow-step.active ~ .flow-step .dot {
+    background: #dbdbdb;
+}
+
+.flow-steps .flow-step.active ~ .flow-step strong {
+    color: #dbdbdb;
+}
+
+.profitSale {
+    width: 34%;
+    margin-left: 41%;
+    margin-top: -7%;
+}
+
+.h4ProfSale {
+    color: #ff4f00;
+    font-weight: bold;
+}
+
+.Footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+}
+
+.SlideContainer {
+    position: relative;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.tb-layout-main-container {
+    max-width: 100% !important;
+}
+
+.Slides {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+    .Slides > div {
+        float: left;
+        min-width: 1220px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+@media all and (max-width: 1550px) {
+    .one {
+        display: none;
+    }
+}
+
+
+@media all and (max-width: 1335px) {
+    .two {
+        display: none;
+    }
+}
+
+@media all and (max-width: 1135px) {
+    .three {
+        display: none;
+    }
+}
+
+@media all and (max-width: 950px) {
+    .four {
+        display: none;
+    }
+}
+
+@media all and (max-width: 715px) {
+    .five {
+        display: none;
+    }
+}
+
+@media all and (max-width: 540px) {
+    .six {
+        display: none;
+    }
+}
+
+#descript {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow: scroll;
+    outline: none;
+}
+
+.modWind {
+    background-color: white;
+    width: 560px;
+    top: 25%;
+    left: 35%;
+    border: 1px solid #999;
+    height: 20%;
+    border-radius: 6px;
+}
+
+
+
+@media all and (max-width: 1450px) {
+    .ssp_pricing {
+        margin-left: -5%;
+    }
+
+    .h4ProfSale {
+        width: 99%;
+        margin-left: 20%;
+    }
+}
+
+@media all and (max-width: 1199px) {
+    .design__area {
+        margin-left: -10% !important;
+    }
+}
+
+.Slides .Content {
+    max-width: 1236px;
+    margin: 10px auto 0;
+    padding: 0 60px 0 30px;
+    box-sizing: border-box;
+}
+
+body.page__designs_edit .Slides .container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.Slides #designer {
+    width: 100%;
+}
+
+.Slides .step {
+    width: 100%;
+}
+
+.ssp_vcent {
+    width: 100%;
+    margin-left: 20px;
+}
+
+
+.ssp_block {
+    background: #f5f7f7;
+    border: 1px solid #ebeef0;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    padding: .5rem;
+    width: 100%;
+    overflow: visible;
+}
+
+    .ssp_block.product {
+        overflow: visible;
+    }
+
+    .ssp_block .ssp_heading {
+        font-size: .8rem;
+        margin: .5rem 0 .5rem 0;
+        width: 100%;
+        font-weight: 800;
+        color: #44474d;
+    }
+
+    .ssp_block .ssp_metadata {
+        position: relative;
+        width: 100%;
+    }
+
+
+    .ssp_block .ssp_color {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+
+
+    .ssp_block .ssp_thumbnai# {
+        vertical-align: middle;
+    }
+
+
+
+input[type=range], ::-moz-range-track, ::-ms-track {
+    -webkit-appearance: none;
+    background-color: #3f91e5;
+    width: 250px;
+    height: 20px;
+}
+
+::-webkit-slider-thumb, ::-moz-range-thumb, ::-ms-thumb {
+    -webkit-appearance: none;
+    background-color: #666;
+    width: 10px;
+    height: 20px;
+}
+
+.Left {
+    background: #ff4f00;
+    background-color: #ff4f00;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    height: 44px;
+    width: 200px;
+    border-width: 0;
+    border: none;
+    color: white;
+}
+
+    .Left:hover {
+        background: #dbdbdb;
+        background-color: #dbdbdb;
+    }
+
+input[type=range] {
+    -webkit-appearance: none;
+    border: 1px solid white;
+    width: 300px;
+}
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 300px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF4F00;
+        margin-top: -4px;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ccc;
+        }
+
+    input[type=range]::-moz-range-track {
+        width: 300px;
+        height: 5px;
+        background: #ddd;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF4F00;
+    }
+
+    input[type=range]:-moz-focusring {
+        outline: 1px solid white;
+        outline-offset: -1px;
+    }
+
+    input[type=range]::-ms-track {
+        width: 300px;
+        height: 5px;
+        background: transparent;
+        border-color: transparent;
+        border-width: 6px 0;
+        color: transparent;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+
+    input[type=range]::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF4F00;
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+        background: #888;
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+        background: #ccc;
+    }
+
+.block {
+    background: #f5f7f7;
+    border: 1px solid #ebeef0;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+    padding: .5rem;
+    width: 100%;
+}
+
+    .block .thumbnail_wrapper {
+        height: 73px;
+        width: 64px;
+        border: 1px solid #d8dddf;
+        border-radius: 3px;
+        overflow: hidden;
+        -webkit-transition: background-color 400ms;
+        transition: background-color 400ms;
+        background-size: contain;
+        float: left;
+    }
+
+.widget-anonimousMenu {
+    margin-right: -50px;
+}
+
+.menu-anonimous-menu .last {
+    display: none;
+}
+
+.tb-search-form {
+    height: 31px !important;
+}
+
+@media all and (max-width: 1000px) {
+    .widget-anonimousMenu {
+        margin-right: 0;
+    }
+}
+
+.design__area a {
+    text-decoration: none;
+}
+
+#designer .button--primary {
+    background: #52b8eb;
+    background-color: #52b8eb;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #52b8eb), color-stop(100%, #22a1e0));
+    background-image: -webkit-linear-gradient(#52b8eb, #22a1e0);
+    background-image: linear-gradient(#52b8eb,#22a1e0);
+    border: 1px solid #1592d1;
+    color: white;
+}
+
+    #designer .button--primary:hover, #designer .button--primary.hover, #designer .button--primary:focus {
+        background: #7eb341;
+        background-color: #169adb;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #169adb), color-stop(100%, #1592d1));
+        background-image: -webkit-linear-gradient(#169adb, #1592d1);
+        background-image: linear-gradient(#169adb,#1592d1);
+        border: 1px solid #0884c2;
+        color: white;
+    }
+
+    #designer .design__area .button--primary:active, #designer .button--primary.active {
+        background: #7eb341;
+        background-color: #1592d1;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1592d1), color-stop(100%, #169adb));
+        background-image: -webkit-linear-gradient(#1592d1, #169adb);
+        background-image: linear-gradient(#1592d1,#169adb);
+    }
+
+#designer .button--transaction {
+    background: #ff4f00;
+    background-color: #ff4f00;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 5px;
+    height: 44px;
+    border-width: 0;
+    border: none;
+    color: white;
+}
+
+    #designer .button--transaction:hover, #designer .button--transaction.hover {
+        background: #dbdbdb;
+        background-color: #dbdbdb;
+        font-size: 16px;
+        border-radius: 5px;
+        font-weight: normal;
+        height: 44px;
+        border-width: 0;
+        border: none;
+    }
+
+@-moz-document url-prefix() {
+    #wizardSecondSlide {
+        margin-left: 0% !important;
+    }
 }

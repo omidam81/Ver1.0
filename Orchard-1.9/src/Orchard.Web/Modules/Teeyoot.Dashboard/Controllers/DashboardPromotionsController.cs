@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
+using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
 
 
@@ -7,15 +10,25 @@ namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-        public ActionResult Promotions()
+        public ActionResult Promotions(PromotionViewModel viewModel)
         {
-           var model =  _promotionService.GetAllPromotions().ToList();
+            string currentUser = Services.WorkContext.CurrentUser.Email;
+            var user = _membershipService.GetUser(currentUser);
+            var model = new PromotionViewModel() { };
+           model.Promotions =  _promotionService.GetAllPromotionsForUser(user.Id).ToList();
+           model.Expiration = DateTime.Today;
            return View("Promotions",model);
-        }
+           }
 
         public ActionResult AddPromotion(PromotionRecord model)
         {
-            _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration);
+            if (TryValidateModel(model)) { 
+            string currentUser = Services.WorkContext.CurrentUser.Email;
+            var user = _membershipService.GetUser(currentUser);
+            _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, user.Id);
+            var viewModel = new PromotionViewModel() { };
+            
+        }
             return RedirectToAction("Promotions");
         }
 
@@ -25,10 +38,19 @@ namespace Teeyoot.Dashboard.Controllers
             return RedirectToAction("Promotions");
         }
 
-        public ActionResult ActivatePromotion(int id)
+        [HttpPost]
+        public void ChangeState(int id, bool switchState)
         {
-            _promotionService.ActivatePromotion(id);
-            return RedirectToAction("Promotions");
+            if (switchState)
+            {
+                _promotionService.ActivatePromotion(id);
+            }
+            else
+            {
+                _promotionService.DisablePromotion(id); 
+            }
+
+
         }
 
         public ActionResult DisablePromotion(int id)

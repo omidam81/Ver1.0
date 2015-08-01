@@ -1,125 +1,173 @@
-﻿@model IEnumerable<Teeyoot.Module.Models.PromotionRecord>
-    @{
-        Style.Include("Promotions.css");
-        Style.Include("//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
-        Style.Include("Settings.css");
-        Script.Include("promotion.js").AtFoot();
-        Script.Require("jQuery");
-        Script.Require("jQueryUI");
-    }
+﻿@model Teeyoot.Dashboard.ViewModels.PromotionViewModel
 
+@{
+    Style.Include("Promotions.css");
+    Style.Include("//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+    Style.Include("Settings.css");
+    Script.Include("promotion.js").AtFoot();
+    Script.Require("jQuery");
+    Script.Require("jQueryUI");
+}
+@using (Html.BeginForm(actionName: "ChangeState", controllerName: "Dashboard", routeValues: null, method: FormMethod.Post, htmlAttributes: new { @class = "form-validator" }))
+{
+    @Html.AntiForgeryToken();
+}
 @using (Script.Foot())
 {
-
     <script>
-        $("#datepicker").datepicker();
-    </script>
-}
-        <div class="dashboard-section-title">
-            @T("Promotions")
-            <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
-            <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
-        </div>
+        $("#datepicker").datepicker({
+            dateFormat: "dd.mm.yy"
 
-        <div class="dashboard__info_message">
-            <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
-            <div class="share_promotions">
-                Share promotions by appending the ID to the end of your campaign URL. <div class="share_promotions__example">
-                    (e.g., <span class="share_promotions__url">http://teespring.com/yourcampaign</span>
-                <strong class="share_promotions__query">?promo=PROMOID</strong>)
-            </div>
+        })
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        $.ajaxPrefilter(function (options, originalOptions) {
+            if (options.type.toUpperCase() == "POST") {
+                options.data = $.param($.extend(originalOptions.data, { __RequestVerificationToken: token }));
+            }
+        })
+
+
+        function changeState(id)
+        {
+
+            var args = {};
+            args.switchState = document.getElementById('switchState').checked;
+            args.id = id;
+            var token = $('input[name="__RequestVerificationToken"]').val();
+
+           var headers = {};
+
+            headers['__RequestVerificationToken'] = token;
+
+            $.ajax({
+
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@Url.Action("ChangeState", "Dashboard")",
+                data: addAntiForgeryToken({"id" : args.id, "switchState": args.switchState}),
+                success: function (msg) {
+                    // Something afterwards here
+
+                }
+            });
+
+        }
+</script>
+}
+
+<div class="dashboard-section-title">
+    @T("Promotions")
+    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+</div>
+
+<div class="dashboard__info_message">
+    <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
+    <div class="share_promotions">
+        Share promotions by appending the ID to the end of your campaign URL.<div class="share_promotions__example">
+            (e.g., <span class="share_promotions__url">http://teebay.com/yourcampaign</span>
+            <strong class="share_promotions__query">?promo=PROMOID</strong>)
         </div>
     </div>
-    @using (Html.BeginForm("ChangeUserInfo", "Dashboard", FormMethod.Post, new { model = Model }))
+</div>
+
+<section class="account__email_settings">
+    <div class="dashboard_section__header">
+        <h1 class="dashboard_section__heading">Add New Promotion</h1>
+    </div>
+    @using (Html.BeginForm("AddPromotion", "Dashboard", FormMethod.Post))
     {
-        @*@foreach(var promotion in Model){
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(m => promotion.Id)*@
-
-
-        @*}*@
-    }
-
-
-
-    <section class="account__email_settings">
-        <div class="dashboard_section__header">
-            <h1 class="dashboard_section__heading">Add New Promotion</h1>
-        </div>
-        @using (Html.BeginForm("ChangeEmail", "Dashboard", FormMethod.Post, new { model = Model }))
-        {
-            <div class="dashboard_section__content--padded">
-                <div class="new_promotion__form">
-                    <div class="new_promotion__code">
-                        <div class="label__title">Promo ID (alphanumeric)</div>
-                        <div class="input__group new_promotion__field">
-                            <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
-                            <span class="input__group_addon new_promotion__generate_code ts-icon-reload" id="code" maxlength="10" name="code" type="text" value="" onclick="randomString()"  />
-                        </div>
+        @Html.AntiForgeryToken()
+        <div class="dashboard_section__content--padded">
+            <div class="new_promotion__form">
+                <div class="new_promotion__code">
+                    <div class="label__title">Promo ID (alphanumeric)</div>                   
+                    <div class="input__group new_promotion__field">
+                        @Html.TextBoxFor(m => m.PromoId, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", @value = "" })             
+                        <span class="reload new_promotion__generate_code ts-icon-reload" id="code" maxlength="10" name="code" type="text" value="" onclick="randomString()" />
                     </div>
-                    <div class="new_promotion__type">
-                        <div class="label__title">Type</div>
-                        <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
-                    </div>
-                    <div class="new_promotion__discount">
-                        <div class="label__title">Amount</div>
-                        <div class="input__group new_promotion__field">
-                            <input class="form__textfield " id="code" maxlength="10" name="code" type="text" value="" />
-                            <select class="form__select_menu" id="prefix" name="prefix">
-                                <option value="fixed_value">$</option>
-                                <option value="percentage">%</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="new_promotion__expiration">
-                        <div class="label__title">Expiration</div>
-                        <div class="input__group new_promotion__field">
-                            <input class="form__textfield " id="datepicker" maxlength="10" name="code" type="text" value=""/>
-                        </div>
-                    </div>
-                    <div class="new_promotion__save__container">
-                        <input name="commit" class="t-button" type="submit" value="Add discount">
+                    @Html.ValidationMessageFor(m => m.Promotions)
+                </div>
+                <div class="new_promotion__type">
+                    <div class="label__title">Type</div>
+                    @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = "Discount", @readonly = "true" })
+                </div>
+                <div class="new_promotion__discount">
+                    <div class="label__title">Amount</div>
+                    <div class="input__group new_promotion__field">
+                        @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield ", @id = "code", @name = "amountSize", @type = "text", @value = "" })
+                        @Html.DropDownListFor(m => m.AmountType, new SelectList(
+                  new List<Object>{
+                       new { value = "%", text = "%"  },
+                       new { value = "$" , text = "$" },
+                                          },
+                  "value",
+       "text"), new { @class = "form__select_menu" })
                     </div>
                 </div>
+                <div class="new_promotion__expiration">
+                    <div class="label__title">Expiration</div>
+                    <div class="input__group new_promotion__field">
+                        @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = Model.Expiration.ToString("dd/MM/yyyy") })
+                        <span id="calender" class="new_promotion__clear_expiration" style="border: 1px solid #e8eced;">
+                            <i class="ts-icon-calendar calendar__button"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="new_promotion__save__container">
+                    <input name="commit" class="t-button" type="submit" value="Add discount">
+                </div>
             </div>
-        }
-    </section>
-
-
-    <section class="account__password_settings">
-        <div class="dashboard_section__header">
-            <h1 class="dashboard_section__heading">All promotions</h1>
-
         </div>
-        <div class="dashboard_section__content--padded">
-            @using (Html.BeginForm("ChangePassword", "Dashboard", FormMethod.Post, new { model = Model }))
+    }
+</section>
+
+@using (Html.BeginForm("AddPromotion", "Dashboard", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<section class="account__password_settings">
+    <div class="dashboard_section__header">
+        <h1 class="dashboard_section__heading">All promotions</h1>
+
+    </div>
+    <div class="dashboard_section__content--padded">
+
+
+        <div class="list__container">
+            <div class="list_item list_item--heading">
+                <div class="list_item__cell code__heading">Promo ID</div>
+                <div class="list_item__cell discount__heading">Amount</div>
+                <div class="list_item__cell expiration__heading">Expires</div>
+                <div class="list_item__cell used__heading">Redeemed</div>
+                <div class="list_item__cell status__heading">Status</div>
+                <div class="list_item__cell actions__heading">Action</div>
+            </div>
+            @foreach (var promotion in Model.Promotions)
             {
+                <div class="list_item" data-id="39431">
+                    <div class="list_item__cell list_item__code">@promotion.PromoId</div>
+                    <div class="list_item__cell list_item__discount">@promotion.AmountSize@promotion.AmountType</div>
+                    <div class="list_item__cell list_item__expiration">@promotion.Expiration.ToString("dd/MM/yyyy")</div>
+                    <div class="list_item__cell list_item__redeemed">@promotion.Redeemed</div>
+                    <div class="list_item__cell list_item__status">
+                        <label class="switch__label">
 
-
-                @*@Html.AntiForgeryToken()
-                    @Html.HiddenFor(m => m.Id)
-
-                    <div class="account__password_info">
-                        <label>
-                            <div class="label__title">Current password</div>
-                            @Html.ValidationMessageFor(m => m.CurrentPassword)
-                            @Html.TextBoxFor(m => m.CurrentPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password" })
-
+                            <input id="switchState" checked="@promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@promotion.Id)" />
+                            <div class="switch__el" data-off="Off" data-on="On"></div>
                         </label>
-                        <label>
-                            <div class="label__title">New password</div>
-                            @Html.ValidationMessageFor(m => m.NewPassword)
-                            @Html.TextBoxFor(m => m.NewPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password", @placeholder = "Must be longer than 7 characters" })
-
-                        </label>
-                        <label>
-                            <div class="label__title">Confirm new password</div>
-                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
-                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password" })
-
-                        </label>
-                        <input name="commit" class="t-button" type="submit" value="Update Password">
-                    </div>*@
+                    </div>
+                    <div class="list_item__cell list_item__actions"><a href="@Url.Action("DeletePromotion", new {id = promotion.Id })" class="ts-icon-close delete_promotion__button"></a></div>
+                </div>
             }
         </div>
+
+    </div>
 </section>
+}

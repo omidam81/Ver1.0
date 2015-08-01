@@ -387,9 +387,13 @@ namespace Teeyoot.Module
                     .Column<string>("DiscountType", c => c.WithLength(50))
                     .Column<bool>("Status")
                     .Column<int>("Redeemed")
-            ); 
+            );
 
-            return 29;
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name, table => table.AddColumn<int>("Userid", c => c.NotNull()));
+
+            SchemaBuilder.CreateForeignKey("PromotionRecord_UserId", "PromotionRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+
+            return 30;
 
         }
 
@@ -723,6 +727,15 @@ namespace Teeyoot.Module
                     .Column<int>("Redeemed")
             ); 
             return 29;
+        }
+
+        public int UpdateFrom29()
+        {
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name, table => table.AddColumn<int>("Userid", c => c.NotNull()));
+
+            SchemaBuilder.CreateForeignKey("PromotionRecord_UserId", "PromotionRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+
+            return 30;
         }
     }
 }

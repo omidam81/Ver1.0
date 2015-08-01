@@ -42,7 +42,7 @@ namespace Teeyoot.Dashboard.Controllers
                     balance = balance - item.Amount;
             }
 
-            _payoutService.AddPayout(new PayoutRecord() {Date = DateTime.Now, Amount = balance,Event = "You requested a payout", IsPlus = false, UserId = 451, Status = "pending"});
+            _payoutService.AddPayout(new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = Services.WorkContext.CurrentUser.Id, Status = "pending" });
 
             return RedirectToAction("Payouts");
         }
