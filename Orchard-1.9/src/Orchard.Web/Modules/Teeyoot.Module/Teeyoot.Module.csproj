@@ -707,6 +707,7 @@
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
+    <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
     <Compile Include="Services\PaymentInformationService.cs" />
     <Compile Include="Services\PromotionService.cs" />
     <Compile Include="Services\FontService.cs" />
@@ -721,6 +722,7 @@
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />
+    <Compile Include="ViewModels\CampaignIndexViewModel.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />

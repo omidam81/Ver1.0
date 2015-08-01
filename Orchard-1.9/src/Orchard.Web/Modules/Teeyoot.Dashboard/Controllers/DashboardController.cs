@@ -29,6 +29,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IPayoutService _payoutService;
         private readonly IPromotionService _promotionService;
         private readonly ICampaignCategoriesService _campaignCategoryService;
+        private readonly IPaymentInformationService _paymentInfService;
         private IOrchardServices Services { get; set; }
 
         public Localizer T { get; set; }
@@ -58,6 +59,7 @@ namespace Teeyoot.Dashboard.Controllers
             _payoutService = payoutService;
             _promotionService = promotionService;
             _campaignCategoryService = campaignCategoryService;
+            _paymentInfService = paymentInfService;
             Services = services;
 
             Logger = NullLogger.Instance;

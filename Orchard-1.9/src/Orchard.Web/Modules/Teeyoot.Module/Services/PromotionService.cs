@@ -63,9 +63,14 @@ namespace Teeyoot.Module.Services
             }
         }
 
+        public PromotionRecord GetPromotionByPromoId(string promoId)
+        {
+            return _promotionRepository.Get(f=> f.PromoId == promoId);
+        }
+
         public PromotionRecord GetPromotion(int id)
         {
-            return _promotionRepository.Get(f=> f.Id == id);
+            return _promotionRepository.Get(f => f.Id == id);
         }
     }
 }

@@ -1,7 +1,39 @@
 ﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
 @{
     Style.Include("AdminPayout.css");
+    //Style.Include("bootstrap.min.css");
 }
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.go').click(function (event) {
+                event.preventDefault();
+                console.log(this)
+                $('#overlay').fadeIn(400,
+                    function () {
+                        $('#modal_form')
+                            .css('display', 'block')
+                            .animate({ opacity: 1, top: '50%' }, 200);
+                    });
+            });
+            /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+            $('#modal_close, #overlay').click(function () {
+                $('#modal_form')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () { // пoсле aнимaции
+                            $(this).css('display', 'none');
+                            $('#overlay').fadeOut(400);
+                        }
+                    );
+            });
+        });
+        </script>
+    }
+
+
+
 
 @{
 
@@ -45,6 +77,9 @@
                     <th class="userId">
                         <h3>USERID</h3>
                     </th>
+                    <th class="inf">
+                        <h3></h3>
+                    </th>
                 </tr>
             </thead>
 
@@ -75,21 +110,38 @@
                             @if (@item.Status == "pending")
                             {
                                 @T(" | ")
-                                <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" Completed")">@T("Completed")</a>
+                                <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" completed")">@T("completed")</a>
                             }
 
                         </td>
                         <td class="userId">
                             @item.UserId
                         </td>
-
-
+                        <td class="inf">
+                            <button class="go" type="submit">@T("inf")
+                                @*<input type="hidden" class="name" value="qwert"/>
+                                <input type="hidden" class="name" value="qwert" />
+                                <input type="hidden" class="name" value="qwert" />
+                                <input type="hidden" class="name" value="qwert" />
+                                <input type="hidden" class="name" value="qwert" />*@
+                            </button>
+                        </td>
                     </tr>
+
+
                 }
             </tbody>
         </table>
+
     </fieldset>
     @Display(Model.Pager)
+   <fieldset>
+     <div id="modal_form" style="">
+        @Html.Partial("PaymentUserInformation")
+
+    </div>
+       <div id="overlay"></div><!-- Пoдлoжкa -->
+    </fieldset>
 }
 
 

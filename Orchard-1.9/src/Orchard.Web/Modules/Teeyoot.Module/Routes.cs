@@ -203,7 +203,8 @@ namespace Teeyoot.Module
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},
                             {"controller", "Campaign"},
-                            {"action", "Index"}                           
+                            {"action", "Index"} ,
+                            { "promo", UrlParameter.Optional}
                         },
                         new RouteValueDictionary {
                             {"campaignName", new ExpectedValuesConstraint("Admin")}
