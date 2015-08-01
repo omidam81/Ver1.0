@@ -68,6 +68,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Styles\datatables\css\jquery.dataTables.css" />
+    <Content Include="Styles\datatables\css\jquery.dataTables.min.css" />
+    <Content Include="Styles\datatables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Styles\datatables\images\favicon.ico" />
+    <Content Include="Styles\datatables\images\sort_asc.png" />
+    <Content Include="Styles\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Styles\datatables\images\sort_both.png" />
+    <Content Include="Styles\datatables\images\sort_desc.png" />
+    <Content Include="Styles\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.multi-select.js" />
     <Content Include="Styles\multi-select\img\switch.png" />
     <Content Include="Styles\multi-select\css\multi-select.css" />
@@ -113,6 +123,7 @@
     <Compile Include="ViewModels\ProductHeadlineIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineViewModel.cs" />
     <Compile Include="ViewModels\ProductIndexViewModel.cs" />
+    <Compile Include="ViewModels\ProductSizeItemViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleIndexViewModel.cs" />
     <Compile Include="ViewModels\FontViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleViewModel.cs" />
@@ -122,7 +133,6 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Services\" />
-    <Folder Include="Views\ProductImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminWizard\FontList.cshtml" />

@@ -7,7 +7,7 @@ namespace Teeyoot.Module.Services
 {
     public interface IPromotionService : IDependency
     {
-        IQueryable<PromotionRecord> GetAllPromotions();
+        IQueryable<PromotionRecord> GetAllPromotionsForUser(int userId);
 
         void DeletePromotion(int id);
 
@@ -15,7 +15,7 @@ namespace Teeyoot.Module.Services
 
         void ActivatePromotion(int id);
 
-        void AddPromotion(string promoId, string discountType, int amountSize, string amountType, DateTime expiration);
+        void AddPromotion(string promoId, string discountType, int amountSize, string amountType, DateTime expiration, int UserId);
 
         PromotionRecord GetPromotion(int id);
     }

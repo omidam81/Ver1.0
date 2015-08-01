@@ -19,6 +19,8 @@ namespace Teeyoot.WizardSettings.ViewModels
 
             ProductGroups = new List<ProductGroupItemViewModel>();
             SelectedProductGroups = new List<int>();
+
+            SelectedProductSizes = new List<int>();
         }
 
         public int? Id { get; set; }
@@ -26,18 +28,23 @@ namespace Teeyoot.WizardSettings.ViewModels
         [Required]
         public string Name { get; set; }
 
+        public string Materials { get; set; }
+        public string Details { get; set; }
+
         public IEnumerable<ProductColourItemViewModel> ProductColours { get; set; }
         public List<ProductColourItemViewModel> SelectedProductColours { get; set; }
         public IEnumerable<ProductGroupItemViewModel> ProductGroups { get; set; }
         public IEnumerable<int> SelectedProductGroups { get; set; }
         public IEnumerable<ProductHeadlineViewModel> ProductHeadlines { get; set; }
+        public IEnumerable<ProductSizeItemViewModel> ProductSizes { get; set; }
+        public IEnumerable<int> SelectedProductSizes { get; set; }
 
         [Required]
         public int SelectedProductHeadline { get; set; }
 
         public HttpPostedFileBase ProductImageFront { get; set; }
         public HttpPostedFileBase ProductImageBack { get; set; }
-        public string ProductImageFrontFilename { get; set; }
-        public string ProductImageBackFilename { get; set; }
+        public string ProductImageFrontFileName { get; set; }
+        public string ProductImageBackFileName { get; set; }
     }
 }

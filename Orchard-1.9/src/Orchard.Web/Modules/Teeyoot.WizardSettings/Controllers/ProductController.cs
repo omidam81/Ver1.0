@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Orchard;
@@ -33,6 +34,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IRepository<LinkProductGroupRecord> _linkProductGroupRepository;
         private readonly IRepository<ProductHeadlineRecord> _productHeadlineRepository;
         private readonly IRepository<ProductImageRecord> _productImageRepository;
+        private readonly IRepository<ProductSizeRecord> _productSizeRepository;
+        private readonly IRepository<LinkProductSizeRecord> _linkProductSizeRepository;
 
         private readonly IimageHelper _imageHelper;
 
@@ -45,10 +48,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
         private const string ProductImagesRelativePath = "~/Modules/Teeyoot.Module/Content/images";
 
-        private const string ProductImageFrontFilenameTemplate = "product_type_{0}_front.png";
-        private const string ProductImageBackFilenameTemplate = "product_type_{0}_back.png";
+        private const string ProductImageFrontFileNameTemplate = "product_type_{0}_front.png";
+        private const string ProductImageBackFileNameTemplate = "product_type_{0}_back.png";
 
-        private const string ProductImageFrontSmallFilenameTemplate = "product_type_{0}_front_small.png";
+        private const string ProductImageFrontSmallFileNameTemplate = "product_type_{0}_front_small.png";
 
         private dynamic Shape { get; set; }
 
@@ -63,6 +66,8 @@ namespace Teeyoot.WizardSettings.Controllers
             IRepository<LinkProductGroupRecord> linkProductGroupRepository,
             IRepository<ProductHeadlineRecord> productHeadlineRepository,
             IRepository<ProductImageRecord> productImageRepository,
+            IRepository<ProductSizeRecord> productSizeRepository,
+            IRepository<LinkProductSizeRecord> linkProductSizeRepository,
             IimageHelper imageHelper)
         {
             _siteService = siteService;
@@ -75,6 +80,8 @@ namespace Teeyoot.WizardSettings.Controllers
             _linkProductGroupRepository = linkProductGroupRepository;
             _productHeadlineRepository = productHeadlineRepository;
             _productImageRepository = productImageRepository;
+            _productSizeRepository = productSizeRepository;
+            _linkProductSizeRepository = linkProductSizeRepository;
 
             _imageHelper = imageHelper;
 
@@ -105,7 +112,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
         public ActionResult EditProduct(int? productId)
         {
-            var productViewModel = new ProductViewModel(productId);
+            var viewModel = new ProductViewModel(productId);
 
             ProductRecord product = null;
             if (productId != null)
@@ -115,31 +122,40 @@ namespace Teeyoot.WizardSettings.Controllers
 
             if (product != null)
             {
-                productViewModel.Name = product.Name;
-                productViewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
+                viewModel.Name = product.Name;
+                viewModel.SelectedProductHeadline = product.ProductHeadlineRecord.Id;
 
-                productViewModel.ProductImageFrontFilename = CheckProductImageExistence(product,
-                    ProductImageFrontFilenameTemplate);
-                productViewModel.ProductImageBackFilename = CheckProductImageExistence(product,
-                    ProductImageBackFilenameTemplate);
+                viewModel.ProductImageFrontFileName = GetProductImageFileName(product,
+                    ProductImageFrontFileNameTemplate);
+                viewModel.ProductImageBackFileName = GetProductImageFileName(product,
+                    ProductImageBackFileNameTemplate);
+
+                viewModel.Materials = product.Materials;
+                viewModel.Details = product.Details;
             }
 
-            FillProductViewModelWithColours(productViewModel, product);
-            FillProductViewModelWithGroups(productViewModel, product);
-            FillProductViewModelWithHeadlines(productViewModel);
+            FillProductViewModelWithHeadlines(viewModel);
+            FillProductViewModelWithGroups(viewModel, product);
+            FillProductViewModelWithColours(viewModel, product);
+            FillProductViewModelWithSizes(viewModel, product);
 
-            return View(productViewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult EditProduct(ProductViewModel viewModel)
         {
-            var product = viewModel.Id == null ? new ProductRecord() : _productRepository.Get(viewModel.Id.Value);
+            var product = viewModel.Id == null
+                ? new ProductRecord()
+                : _productRepository.Get(viewModel.Id.Value);
 
             product.Name = viewModel.Name;
 
             var productHeadline = _productHeadlineRepository.Get(viewModel.SelectedProductHeadline);
             product.ProductHeadlineRecord = productHeadline;
+
+            product.Materials = viewModel.Materials;
+            product.Details = viewModel.Details;
 
             if (product.ProductImageRecord == null)
             {
@@ -199,18 +215,44 @@ namespace Teeyoot.WizardSettings.Controllers
                 _linkProductGroupRepository.Create(linkProductGroup);
             }
 
+            var linkProductSizes = _linkProductSizeRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .ToList();
+
+            foreach (var linkProductSize in linkProductSizes)
+            {
+                _linkProductSizeRepository.Delete(linkProductSize);
+            }
+
+            foreach (var productSizeId in viewModel.SelectedProductSizes)
+            {
+                var productSize = _productSizeRepository.Get(productSizeId);
+
+                var linkProductSize = new LinkProductSizeRecord
+                {
+                    ProductRecord = product,
+                    ProductSizeRecord = productSize
+                };
+
+                _linkProductSizeRepository.Create(linkProductSize);
+            }
+
             var frontImageSavingResult = SaveProductFrontImage(viewModel.ProductImageFront, product);
             var backImageSavingResult = SaveProductBackImage(viewModel.ProductImageBack, product);
 
             if (frontImageSavingResult != null)
             {
-                FillProductImageWith(product.ProductImageRecord, frontImageSavingResult.Width,
-                    frontImageSavingResult.Height);
+                FillProductImageWith(product.ProductImageRecord,
+                    frontImageSavingResult.Width,
+                    frontImageSavingResult.Height,
+                    ProductImagePpi);
             }
             else if (backImageSavingResult != null)
             {
-                FillProductImageWith(product.ProductImageRecord, backImageSavingResult.Width,
-                    backImageSavingResult.Height);
+                FillProductImageWith(product.ProductImageRecord,
+                    backImageSavingResult.Width,
+                    backImageSavingResult.Height,
+                    ProductImagePpi);
             }
 
             return RedirectToAction("EditProduct", new {productId = product.Id});
@@ -327,10 +369,57 @@ namespace Teeyoot.WizardSettings.Controllers
                 .ToList();
         }
 
+        private void FillProductViewModelWithSizes(ProductViewModel viewModel, ProductRecord product)
+        {
+            viewModel.ProductSizes = _productSizeRepository.Table
+                .Fetch(s => s.SizeCodeRecord)
+                .Select(s => new ProductSizeItemViewModel
+                {
+                    Id = s.Id,
+                    LengthCm = s.LengthCm,
+                    WidthCm = s.WidthCm,
+                    SleeveCm = s.SleeveCm,
+                    LengthInch = s.LengthInch,
+                    WidthInch = s.WidthInch,
+                    SleeveInch = s.SleeveInch,
+                    SizeCodeId = s.SizeCodeRecord.Id,
+                    SizeCodeName = s.SizeCodeRecord.Name
+                })
+                .ToList();
+
+            if (product == null)
+            {
+                return;
+            }
+
+            var selectedProductSizeIds = _linkProductSizeRepository.Table
+                .Where(it => it.ProductRecord == product)
+                .Select(it => it.ProductSizeRecord.Id)
+                .ToList();
+
+            viewModel.ProductSizes.ToList().ForEach(s =>
+            {
+                if (selectedProductSizeIds.Contains(s.Id))
+                {
+                    s.Selected = true;
+                }
+            });
+        }
+
         private ProductImageSavingResult SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)
         {
             if (imageFile == null)
             {
+                return null;
+            }
+
+            if (!IsImagePng(imageFile))
+            {
+                _orchardServices.Notifier.Error(
+                    T("Front Image file should be *.png.",
+                        ProductImageWidth,
+                        ProductImageHeight));
+
                 return null;
             }
 
@@ -346,8 +435,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return null;
                 }
 
-                var imageFilename = string.Format(ProductImageFrontFilenameTemplate, product.Id);
-                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+                var imageFileName = string.Format(ProductImageFrontFileNameTemplate, product.Id);
+                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
                 image.Save(imagePhysicalPath, ImageFormat.Png);
 
@@ -356,8 +445,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     ProductImageFrontSmallWidth,
                     ProductImageFrontSmallHeight);
 
-                var smallImageFilename = string.Format(ProductImageFrontSmallFilenameTemplate, product.Id);
-                var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFilename);
+                var smallImageFileName = string.Format(ProductImageFrontSmallFileNameTemplate, product.Id);
+                var smallImagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), smallImageFileName);
 
                 smallImageBitmap.Save(smallImagePhysicalPath, ImageFormat.Png);
 
@@ -376,6 +465,16 @@ namespace Teeyoot.WizardSettings.Controllers
                 return null;
             }
 
+            if (!IsImagePng(imageFile))
+            {
+                _orchardServices.Notifier.Error(
+                    T("Back Image file should be *.png.",
+                        ProductImageWidth,
+                        ProductImageHeight));
+
+                return null;
+            }
+
             using (var image = Image.FromStream(imageFile.InputStream, true, true))
             {
                 if (image.Width != ProductImageWidth || image.Height != ProductImageHeight)
@@ -388,8 +487,8 @@ namespace Teeyoot.WizardSettings.Controllers
                     return null;
                 }
 
-                var imageFilename = string.Format(ProductImageBackFilenameTemplate, product.Id);
-                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+                var imageFileName = string.Format(ProductImageBackFileNameTemplate, product.Id);
+                var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
                 image.Save(imagePhysicalPath, ImageFormat.Png);
 
@@ -401,19 +500,29 @@ namespace Teeyoot.WizardSettings.Controllers
             }
         }
 
-        private static void FillProductImageWith(ProductImageRecord productImageRecord, int width, int height)
+        private static void FillProductImageWith(ProductImageRecord productImageRecord, int width, int height, int ppi)
         {
             productImageRecord.Width = width;
             productImageRecord.Height = height;
-            productImageRecord.Ppi = ProductImagePpi;
+            productImageRecord.Ppi = ppi;
         }
 
-        private string CheckProductImageExistence(ProductRecord product, string productImageFilenameTemplate)
+        private string GetProductImageFileName(ProductRecord product, string productImageFileNameTemplate)
         {
-            var imageFilename = string.Format(productImageFilenameTemplate, product.Id);
-            var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFilename);
+            var imageFileName = string.Format(productImageFileNameTemplate, product.Id);
+            var imagePhysicalPath = Path.Combine(Server.MapPath(ProductImagesRelativePath), imageFileName);
 
-            return System.IO.File.Exists(imagePhysicalPath) ? imageFilename : null;
+            return System.IO.File.Exists(imagePhysicalPath) ? imageFileName : null;
+        }
+
+        private static bool IsImagePng(HttpPostedFileBase imageFile)
+        {
+            var imageHeader = new byte[4];
+
+            imageFile.InputStream.Read(imageHeader, 0, 4);
+            var strHeader = Encoding.ASCII.GetString(imageHeader);
+
+            return strHeader.ToLowerInvariant().EndsWith("png");
         }
     }
 }
