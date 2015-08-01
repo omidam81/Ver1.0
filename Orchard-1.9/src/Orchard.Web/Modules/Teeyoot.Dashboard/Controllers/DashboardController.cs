@@ -26,6 +26,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IContentManager _contentManager;
         private readonly IPayoutService _payoutService;
         private readonly IPromotionService _promotionService;
+        private readonly IPaymentInformationService _paymentInfService;
         private IOrchardServices Services { get; set; }
 
         public DashboardController(ICampaignService campaignService, 
@@ -38,7 +39,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    IPayoutService payoutService,
                                    IOrchardServices services,
                                    IContentManager contentManager,
-                                   IPromotionService promotionService)
+                                   IPromotionService promotionService,
+                                   IPaymentInformationService paymentInfService)
         {
             _campaignService = campaignService;
             _orderService = orderService;
@@ -51,6 +53,7 @@ namespace Teeyoot.Dashboard.Controllers
             _contentManager = contentManager;
             _payoutService = payoutService;
             _promotionService = promotionService;
+            _paymentInfService = paymentInfService;
             Services = services;
 
             Logger = NullLogger.Instance;

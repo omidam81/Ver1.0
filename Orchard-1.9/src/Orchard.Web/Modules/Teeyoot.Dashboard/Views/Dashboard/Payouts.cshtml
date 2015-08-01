@@ -42,7 +42,7 @@
                 async: false,
                 cache: false,
                 type: "POST",
-                url: "@(Url.Action("sendMail", "Dashboard"))",
+                url: "@(Url.Action("SendMail", "Dashboard"))",
                 data: addAntiForgeryToken({
                     "accountNumber": accountNumber,
                     "bankName": bankName,
@@ -53,7 +53,7 @@
                 }),
             success: function (data, status, resp) {
                 if (resp.status === 200) {
-                    window.location.href = '/' + data;
+                    window.location.href = '/Dashboard/Payouts';
                 }
             },
             error: function (data, status, resp) {

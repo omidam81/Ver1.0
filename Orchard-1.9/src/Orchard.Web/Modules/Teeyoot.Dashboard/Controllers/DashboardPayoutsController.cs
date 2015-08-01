@@ -35,7 +35,7 @@ namespace Teeyoot.Dashboard.Controllers
         }
 
        [HttpPost]
-        public ActionResult sendMail(string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
+        public ActionResult SendMail(string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
         {
             int currentUserId = Services.WorkContext.CurrentUser.Id;
 
@@ -48,10 +48,13 @@ namespace Teeyoot.Dashboard.Controllers
                 else if (item.UserId == currentUserId)
                     balance = balance - item.Amount;
             }
-
             if (balance > 0)
-                _payoutService.AddPayout(new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = currentUserId, Status = "pending" });
-          
+            {
+                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = currentUserId, Status = "pending" };
+                _payoutService.AddPayout(payout);
+                _paymentInfService.AddPayment(new PaymentInformationRecord { AccountNumber = Convert.ToInt32(accountNumber), BankName = bankName, ContactNumber = Convert.ToInt32(contNum), MessAdmin = messAdmin, TranzactionId = payout.Id});
+            
+            }
 
             
             return RedirectToAction("Payouts");
