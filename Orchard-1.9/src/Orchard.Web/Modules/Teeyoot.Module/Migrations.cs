@@ -419,7 +419,8 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<double>("TotalPriceWithPromo"));
 
-            return 33;
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name, table => table.AddColumn<string>("AccountHolderName"));
+            return 34;
 
         }
 
@@ -803,6 +804,12 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<double>("TotalPriceWithPromo"));
 
             return 33;
+        }
+
+        public int UpdateFrom33()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name, table => table.AddColumn<string>("AccountHolderName"));
+            return 34;
         }
     }
 }

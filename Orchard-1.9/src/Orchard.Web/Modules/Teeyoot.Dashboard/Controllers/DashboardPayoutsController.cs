@@ -52,7 +52,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = currentUserId, Status = "pending" };
                 _payoutService.AddPayout(payout);
-                _paymentInfService.AddPayment(new PaymentInformationRecord { AccountNumber = Convert.ToInt32(accountNumber), BankName = bankName, ContactNumber = Convert.ToInt32(contNum), MessAdmin = messAdmin, TranzactionId = payout.Id});
+                _paymentInfService.AddPayment(new PaymentInformationRecord { AccountNumber = Convert.ToInt32(accountNumber), AccountHolderName = accHoldName, BankName = bankName, ContactNumber = Convert.ToInt32(contNum), MessAdmin = messAdmin, TranzactionId = payout.Id});
             
             }
 

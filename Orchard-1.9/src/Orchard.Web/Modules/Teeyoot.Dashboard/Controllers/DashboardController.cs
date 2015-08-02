@@ -45,6 +45,7 @@ namespace Teeyoot.Dashboard.Controllers
                                    IOrchardServices services,
                                    IContentManager contentManager,
                                    IPromotionService promotionService,
+                                   IPaymentInformationService paymentInfService,
                                    ICampaignCategoriesService campaignCategoryService)
         {
             _campaignService = campaignService;

@@ -99,9 +99,9 @@ namespace Teeyoot.Payouts.Controllers
             var usr = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == userId);
             var tranz = _paymentInformationService.GetAllPayments().FirstOrDefault(t => t.TranzactionId == tranzId);
             if(tranz == null)
-                return Json(new {userName = usr.UserName,email = usr.Email, accountNumber = "", bankName = "", contactNumber = "", mesAdmin = "" }, JsonRequestBehavior.AllowGet);
+                return Json(new {userName = usr.UserName,email = usr.Email, accountNumber = "", accountHolderName = "",bankName = "", contactNumber = "", mesAdmin = "" }, JsonRequestBehavior.AllowGet);
             else
-                return Json(new {userName = usr.UserName,email = usr.Email,accountNumber = tranz.AccountNumber,bankName = tranz.BankName,contactNumber = tranz.ContactNumber,mesAdmin = tranz.MessAdmin},JsonRequestBehavior.AllowGet);
+                return Json(new {userName = usr.UserName,email = usr.Email,accountNumber = tranz.AccountNumber, accountHolderName = tranz.AccountHolderName, bankName = tranz.BankName,contactNumber = tranz.ContactNumber,mesAdmin = tranz.MessAdmin},JsonRequestBehavior.AllowGet);
         }
 
     }

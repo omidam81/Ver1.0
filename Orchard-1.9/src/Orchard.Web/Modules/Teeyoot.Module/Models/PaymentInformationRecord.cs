@@ -12,6 +12,10 @@ namespace Teeyoot.Module.Models
         public virtual string BankName { get; set; }
         public virtual int ContactNumber { get; set; }
         public virtual string MessAdmin{ get; set; }
+        public virtual string AccountHolderName{ get; set; }
         public virtual int TranzactionId { get; set; }
+
+
+        
     }
 }
