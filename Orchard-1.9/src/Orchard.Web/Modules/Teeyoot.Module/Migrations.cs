@@ -403,7 +403,23 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("OrderHistory_Order", "OrderHistoryRecord", new[] { "OrderRecord_Id" }, "OrderRecord", new[] { "Id" });
 
-            return 31;
+            SchemaBuilder.CreateTable(typeof(PaymentInformationRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("AccountNumber")
+                    .Column<string>("BankName")
+                    .Column<int>("ContactNumber")
+                    .Column<string>("MessAdmin")
+                    .Column<int>("TranzactionId")
+            );
+
+            SchemaBuilder.CreateForeignKey("Tranzaction_Payout_Id", "PaymentInformationRecord", new[] { "TranzactionId" }, "PayoutRecord", new[] { "Id" });
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<double>("Promotion"));
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<double>("TotalPriceWithPromo"));
+
+            return 33;
 
         }
 
@@ -778,6 +794,15 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("Tranzaction_Payout_Id", "PaymentInformationRecord", new[] { "TranzactionId" }, "PayoutRecord", new[] { "Id" });
 
             return 32;
+        }
+
+        public int UpdateFrom32()
+        {
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<double>("Promotion"));
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<double>("TotalPriceWithPromo"));
+
+            return 33;
         }
     }
 }
