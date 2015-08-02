@@ -17,6 +17,7 @@ using Orchard.UI.Navigation;
 using Orchard.Settings;
 using Orchard.DisplayManagement.Shapes;
 using Orchard.DisplayManagement;
+using Orchard.Users.Models;
 
 namespace Teeyoot.Payouts.Controllers
 {
@@ -25,21 +26,30 @@ namespace Teeyoot.Payouts.Controllers
     {
         private readonly IPayoutService _payoutService;
         private readonly ISiteService _siteService;
+        private readonly IPaymentInformationService _paymentInformationService;
+        private readonly IContentManager _contentManager;
 
         private dynamic Shape { get; set; }
         // GET: Tranzaction
 
-        public TranzactionController(IPayoutService payoutService, ISiteService siteService, IShapeFactory shapeFactory)                            
+        public TranzactionController(IPayoutService payoutService,
+                                     ISiteService siteService,
+                                     IShapeFactory shapeFactory,
+                                     IMembershipService membershipService,
+                                     IContentManager contentManager,
+                                     IPaymentInformationService paymentInformationService)
         {
             _payoutService = payoutService;
             _siteService = siteService;
+            _paymentInformationService = paymentInformationService;
+            _contentManager = contentManager;
             Shape = shapeFactory;
         }
 
 
 
 
-        public ActionResult Index(PagerParameters pagerParameters, PayoutsViewModel adminViewModel,string filter = "")
+        public ActionResult Index(PagerParameters pagerParameters, PayoutsViewModel adminViewModel, string filter = "")
         {
             var payouts = _payoutService.GetAllPayouts();
             List<History> list;
@@ -71,10 +81,11 @@ namespace Teeyoot.Payouts.Controllers
         }
 
 
-        public ActionResult EditStatus(int id) 
+        public ActionResult EditStatus(int id)
         {
             var payouts = _payoutService.GetAllPayouts().ToList();
-            foreach (var item in payouts) {
+            foreach (var item in payouts)
+            {
                 if (item.Id == id)
                     item.Status = "completed";
                 _payoutService.UpdatePayout(item);
@@ -82,5 +93,16 @@ namespace Teeyoot.Payouts.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public JsonResult GetPayoutInfirmation(int userId, int tranzId)
+        {
+            var usr = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == userId);
+            var tranz = _paymentInformationService.GetAllPayments().FirstOrDefault(t => t.TranzactionId == tranzId);
+            if(tranz == null)
+                return Json(new {userName = usr.UserName,email = usr.Email, accountNumber = "", bankName = "", contactNumber = "", mesAdmin = "" }, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new {userName = usr.UserName,email = usr.Email,accountNumber = tranz.AccountNumber,bankName = tranz.BankName,contactNumber = tranz.ContactNumber,mesAdmin = tranz.MessAdmin},JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

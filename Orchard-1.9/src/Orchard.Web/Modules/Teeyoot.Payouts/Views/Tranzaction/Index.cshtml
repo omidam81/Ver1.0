@@ -6,11 +6,64 @@
 
 @using (Script.Foot())
 {
+    
+    
+    
+    
     <script type="text/javascript">
+
+
+
+
+        @*function getRes(request, response) {
+            var result = new Array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetPayoutInfirmation", "Tranzaction"))",
+                data: { "userId": document.getElementById("inputTags").value },
+            success: function (data) {
+                for (var i = 0; i < data.length ; i++) {
+                    result[i] = data[i];
+                }
+            },
+                    });
+        response(result);
+
+        };*@
+
+
+
         $(document).ready(function () {
             $('.go').click(function (event) {
                 event.preventDefault();
-                console.log(this)
+                /* Запрос на сервак */
+
+                var inf = this.value.split(',');
+                 function getes(request, response) {
+                    var result = new Array();
+                    $.ajax({
+                        async: false,
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.Action("GetPayoutInfirmation", "Tranzaction"))",
+                        data: { "userId": inf[0], "tranzId": inf[1] },
+                        success: function (data) {
+                            $("#userName").html(data.userName);
+                            $("#email").html(data.email);
+                            $("#accNumber").html(data.accountNumber);
+                            $("#bankName").html(data.bankName);
+                            $("#contNumber").html(data.contactNumber);
+                            $("#mesAdmin").html(data.mesAdmin);
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }});
+            };
+
+
+                /* End Запрос на сервак */
+                console.log(getes())
                 $('#overlay').fadeIn(400,
                     function () {
                         $('#modal_form')
@@ -29,6 +82,9 @@
                     );
             });
         });
+
+
+
         </script>
     }
 
@@ -118,12 +174,7 @@
                             @item.UserId
                         </td>
                         <td class="inf">
-                            <button class="go" type="submit">@T("inf")
-                                @*<input type="hidden" class="name" value="qwert"/>
-                                <input type="hidden" class="name" value="qwert" />
-                                <input type="hidden" class="name" value="qwert" />
-                                <input type="hidden" class="name" value="qwert" />
-                                <input type="hidden" class="name" value="qwert" />*@
+                            <button class="go" type="submit" value="@item.UserId,@item.Id">@T("inf")
                             </button>
                         </td>
                     </tr>
@@ -135,14 +186,14 @@
 
     </fieldset>
     @Display(Model.Pager)
-   <fieldset>
-     <div id="modal_form" style="">
-        @Html.Partial("PaymentUserInformation")
 
-    </div>
-       <div id="overlay"></div><!-- Пoдлoжкa -->
-    </fieldset>
 }
 
 
 
+<fieldset>
+    <div id="modal_form" style="">
+        @Html.Partial("PaymentUserInformation")
+    </div>
+    <div id="overlay"></div> 
+</fieldset>

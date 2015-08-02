@@ -1,43 +1,64 @@
-﻿<form class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Account number</label>
-        <div class="col-sm-8">
-            <input type="text" id="accountNum" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Bank Name</label>
-        <div class="col-sm-8">
-            <input type="text" id="bankName" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
+﻿<h1>User information</h1>
+<table class="bord">
+    <tr>
+        <td class="note1">
+            <p class="val">@T("UserName: ")</p>
+        </td>
+        <td>
+            <p class="val" id="userName"></p>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="note1">
+            <p class="val">@T("Email: ")</p>
+        </td>
+        <td>
+            <p class="val" id="email"></p>
+        </td>
+    </tr>
+    </table>
+        <h1 style="margin-top:20px">Payout information</h1>
+<table>
+    <tr>
+        <td class="note">
+            <p class="val">@T("Account number: ")</p>
+        </td>
+        <td>
+            <p class="val" id="accNumber"></p>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="note">
+            <p class="val">@T("Bank name: ")</p>
+        </td>
+        <td>
+            <p class="val" id="bankName"></p>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="note">
+            <p class="val">@T("Contact number: ")</p>
+        </td>
+        <td>
+            <p class="val" id="contNumber"></p>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="note">
+            <p class="val">@T("Message admin: ")</p>
+        </td>
+        <td>
+            <p class="val" id="mesAdmin"></p>
+        </td>
+    </tr>
 
 
-        <label class="col-sm-4 control-label">Account Holder Name</label>
-        <div class="col-sm-8">
-            <input type="text" id="accHoldName" class="form-control">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Contact Number </label>
-        <div class="col-sm-8">
-            <input type="text" id="contNum" class="form-control">
-        </div>
-    </div>
-
-    <div class="form-group">
 
 
-        <label class="col-sm-4 control-label">Message for the admin</label>
-        <div class="col-sm-8">
-            <textarea style="resize: none;" id="messAdmin" class="form-control"></textarea>
-        </div>
-    </div>
+</table>
 
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
-            <a class="btnStartPayout" onclick="sendData()">@T("Withdraw")</a>
-        </div>
-    </div>
-</form>
+
