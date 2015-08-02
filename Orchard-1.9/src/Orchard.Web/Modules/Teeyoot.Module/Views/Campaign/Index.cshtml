@@ -220,6 +220,7 @@
         }
 
         function sendData() {
+            var promoId = '@Model.PromoId';
             var products = [];
             var tableRows = $('.precheckout_items_table__row');
             var count;
@@ -247,7 +248,11 @@
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
-                        window.location.href = '/Buy/' + data;
+                        if(promoId){
+                            window.location.href = '/Buy/' + data + "?promo=" + promoId;
+                        }else {
+                            window.location.href = '/Buy/' + data;
+                        }
                     }
                 },
                 error: function (data, status, resp) {
@@ -312,8 +317,6 @@
 }
 
 @*Локализацию!!!!! Обвернуть всё в T()*@
-
-
 
 
 

@@ -45,6 +45,7 @@ namespace Teeyoot.Module.Controllers
                         PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
                         string infomessage = String.Format("Congratulations, you'll be receiving {0}{1} off your purchase. Discount reflected at checkout!", promotion.AmountSize, promotion.AmountType);
                         model.InfoMessage = infomessage;
+                        model.PromoId = promo;
                     }
                     return View(model);
                 }

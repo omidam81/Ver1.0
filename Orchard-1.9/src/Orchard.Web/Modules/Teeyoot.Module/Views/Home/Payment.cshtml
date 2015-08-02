@@ -64,7 +64,7 @@
                                     @T("Total")
                                 </dt>
                                 <dd>
-                                    <span class="order_summary__total">$27.50</span>
+                                    <span class="order_summary__total">@Model.Order.CurrencyRecord.Code@Model.Order.TotalPrice</span>
                                 </dd>
                             </dl>
                         </div><div class="order_summary--offset js_order_summary--offset"></div>

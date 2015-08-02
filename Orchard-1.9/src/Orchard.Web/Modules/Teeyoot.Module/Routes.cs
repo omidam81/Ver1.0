@@ -25,7 +25,8 @@ namespace Teeyoot.Module
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},
                             {"controller", "Home"},
-                            {"action", "Payment"}                           
+                            {"action", "Payment"}, 
+                            { "promo", UrlParameter.Optional}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
