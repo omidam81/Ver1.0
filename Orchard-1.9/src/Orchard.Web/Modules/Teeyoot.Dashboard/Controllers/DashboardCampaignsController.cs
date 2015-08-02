@@ -218,20 +218,31 @@ namespace Teeyoot.Dashboard.Controllers
             campaign.BackSideByDefault = editCampaign.BackSideByDefault;
 
             var tags = _campaignCategoryService.GetCategoryByCampaignId(editCampaign.Id).ToList();
+            var allTags = _campaignCategoryService.GetAllCategories();
 
-            List<string> allTags = editCampaign.Tags.Split(' ').ToList();
+            List<string> campaignTags = editCampaign.Tags.Split(' ').ToList();
 
-            foreach (var tag in tags)
+            List<string> campaignTagsForeach = campaignTags.ToList();
+            List<CampaignCategoriesRecord> tagsInBD = new List<CampaignCategoriesRecord>();
+
+            foreach (var tag in campaignTagsForeach)
             {
-                var newTag = allTags.Where(c => c.ToLower() == tag.Name.ToLower()).FirstOrDefault();
+                var newTag = tags.Where(c => c.Name.ToLower() == tag.ToLower()).FirstOrDefault();
                 if (newTag != null)
                 {
-                    allTags.Remove(newTag);
+                    campaignTags.Remove(newTag.Name);
+                }
+
+                newTag = allTags.Where(c => c.Name.ToLower() == tag.ToLower()).FirstOrDefault();
+                if (newTag != null)
+                {
+                    campaignTags.Remove(newTag.Name);
+                    tagsInBD.Add(newTag);
                 }
             }
 
             List<CampaignCategoriesRecord> newTags = new List<CampaignCategoriesRecord>();
-            foreach (var tag in allTags)
+            foreach (var tag in campaignTags)
             {
                 CampaignCategoriesRecord newTag = new CampaignCategoriesRecord
                 {
@@ -241,14 +252,28 @@ namespace Teeyoot.Dashboard.Controllers
                 newTags.Add(newTag);
             }
 
-            if (_campaignCategoryService.UpdateCampaignAndCreateNewCategories(campaign, newTags))
+            if (_campaignCategoryService.UpdateCampaignAndCreateNewCategories(campaign, newTags, tagsInBD))
             {
                 return RedirectToAction("Campaigns");
             }
             else
             {
-                return RedirectToAction("EditCampaign");
+                return RedirectToAction("EditCampaign", new { id = editCampaign.Id });
             }
+        }
+
+        public JsonResult GetDetailTags(string filter)
+        {
+            int filterNull = filter.LastIndexOf(' ');
+            if (filterNull == filter.Length - 1)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            string[] filters = filter.Split(' ');
+            string tag = filters[filters.Length - 1];
+
+            var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(tag)).Select(n => n.Name).Take(10).ToList();
+            return Json(entries, JsonRequestBehavior.AllowGet);
         }
     }
 }

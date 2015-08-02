@@ -1,6 +1,6 @@
 ﻿@model Teeyoot.Dashboard.ViewModels.EditCampaignViewModel
 @{
-    Layout.Title = "Teeyoot";
+    Layout.Title = T("Edit ") + Model.Title;
     Style.Include("EditCampaign.css");
     Style.Include("jqueryui.css");
     Style.Include("designer.css");
@@ -31,6 +31,37 @@
             });
         });
 
+        var items = function (request, response) {
+            var result = new Array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetDetailTags", "Dashboard"))",
+                data: { "filter": document.getElementById("inputTags").value },
+                success: function (data) {
+                    for (var i = 0; i < data.length ; i++) {
+                        result[i] = data[i];
+                    }
+                },
+            });
+            response(result);
+
+        };
+
+
+        $("#inputTags").autocomplete({
+            minLength: 0,
+            source: items,
+            select: function (event, ui) {
+                var data = document.getElementById("inputTags").value;
+                var count = data.lastIndexOf(' ');
+                var str = data.substring(0, parseInt(count) + 1);
+                var new_str = str + ui.item.value;
+                ui.item.value = new_str;
+            },
+        });
+
     </script>
 }
 
@@ -50,6 +81,9 @@
                         <div class="step stepAnimation" id="step-details">
                             <!--designer-details-error-->
                             <div class="row">
+                                <div class="edit-title">
+                                    <h1>@T("Edit") @Model.Title</h1>
+                                </div>
                                 <div class="span5">
                                     <div id="product-quick-preview" class="product-preview">
                                         <div class="product-view">
@@ -83,18 +117,18 @@
                                     @using (Html.BeginForm("SaveChanges", "Dashboard", FormMethod.Get))
                                     {
                                         <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
-                                            <div class="edit-title">
-                                                <h1>@T("Edit") @Model.Title</h1>
-                                            </div>
                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                 <label class="has-under-text">Campaign title</label>
                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
-                                                <input type="text" name="name" class="form__textfield " id="name" value="@Model.Title" data-reactid=".6.0.0.2">
+                                                @*<input type="text" name="name" class="form__textfield " id="name" value="@Model.Title" data-reactid=".6.0.0.2">*@
+                                                @Html.HiddenFor(m => m.Id)
+                                                @Html.TextBoxFor(m => m.Title, new { @name="name", @class="form__textfield ", @id="name"})
                                             </div>
                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
                                                 <label class="has-under-text">Description</label>
                                                 <div id="campaign_details" class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
-                                                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="height: 200px">@Model.Description</textarea>
+                                                    @*<textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="height: 200px">@Model.Description</textarea>*@
+                                                    @Html.TextAreaFor(m => m.Description, new { @class="textarea wysiwyg form__textfield", @id="campaign_description_text", @placeholder="Enter text ...", @style="height: 200px" })
                                                 </div>
                                             </div>
                                             <div class="teespring-well designer-well" id="tags">
@@ -104,7 +138,8 @@
                                                         <span>Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)</span>
                                                     </label>
                                                 </p>
-                                                <input type="text" name="name" class="form__textfield " id="inputTags" value="@Model.Tags">
+                                                @*<input type="text" name="name" class="form__textfield " id="inputTags" value="@Model.Tags">*@
+                                                @Html.TextBoxFor(m => m.Tags, new { @name="name", @class="form__textfield ", @id="inputTags" })
                                             </div>
 
                                             <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
@@ -113,7 +148,8 @@
                                                 <p class="inline-input-text  small-bottom" style="display: inline;">
                                                     <strong>teeyoot.com/</strong>
                                                 </p>
-                                                <input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="@Model.Alias">
+                                                @*<input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="@Model.Alias">*@
+                                                @Html.TextBoxFor(m => m.Alias, new { @name="url", @class="form__textfield ", @style="display: inline;", @id="url" })
                                             </div>
 
                                             <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
@@ -122,7 +158,8 @@
                                                     <label>Display Options</label>
                                                     <p>
                                                         <label class="checkbox display-label">
-                                                            <input type="checkbox" name="backdefaultside" id="backdefaultside" checked="@Model.BackSideByDefault.ToString()">
+                                                            @*<input type="checkbox" name="backdefaultside" id="backdefaultside" checked="@Model.BackSideByDefault.ToString()">*@
+                                                            @Html.CheckBoxFor(m => m.BackSideByDefault, new { @name="backdefaultside", @id="backdefaultside" })
                                                             <span>Show the back side by default</span>
                                                         </label>
                                                     </p>

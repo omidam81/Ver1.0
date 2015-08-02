@@ -144,7 +144,15 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetDetailTags(string filter)
         {
-            var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(filter)).Select(n => n.Name).Take(10).ToList();
+            int filterNull = filter.LastIndexOf(' ');
+            if (filterNull == filter.Length - 1)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            string[] filters = filter.Split(' ');
+            string tag = filters[filters.Length - 1];
+
+            var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(tag)).Select(n => n.Name).Take(10).ToList();
             return Json(entries, JsonRequestBehavior.AllowGet);
         }
 
