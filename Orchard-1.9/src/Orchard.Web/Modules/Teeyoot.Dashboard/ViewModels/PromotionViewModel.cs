@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Dashboard.ViewModels
@@ -25,6 +26,8 @@ namespace Teeyoot.Dashboard.ViewModels
         public virtual DateTime Expiration { get; set; }
 
         public virtual int Redeemed { get; set; }
+
+        public IEnumerable<SelectListItem> AvailableCurrencies { get; set; }
 
     }
 }

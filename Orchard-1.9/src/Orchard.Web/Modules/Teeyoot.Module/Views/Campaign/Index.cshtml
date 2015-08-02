@@ -13,214 +13,216 @@
 
     <script>
 
-        $(".product__size_chart_link--show").click(function () {
-            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
-        });
-        $(".product__size_chart_link--hide").click(function () {
-            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
-        });
+    $(".product__size_chart_link--show").click(function () {
+        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+    });
+    $(".product__size_chart_link--hide").click(function () {
+        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+    });
 
-        $(".js-size-unit-toggle-inches").click(function () {
+    $(".js-size-unit-toggle-inches").click(function () {
+        var id = $("#product__dropdown option:selected")[0].id;
+        var size_show = document.getElementsByClassName("product__size_chart");
+        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+    });
+    $(".js-size-unit-toggle-centimeters").click(function () {
+        var id = $("#product__dropdown option:selected")[0].id;
+        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+    });
+
+    $("#js-circle-nav-item-front").click(function () {
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+    });
+    $("#js-circle-nav-item-back").click(function () {
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+    });
+
+
+    $("#image-stack-arrow-right").click(function () {
+        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+    });
+    $("#image-stack-arrow-left").click(function () {
+        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+    });
+
+    var size_show = document.getElementsByClassName("product__size_chart")[0];
+    $(size_show).addClass("active");
+
+    var details = document.getElementsByClassName("product__details")[0];
+    $(details).addClass("active");
+
+    window.onload = VisibleRemove();
+
+
+
+    function VisibleRemove() {
+        var cntRows = document.getElementById('order_item_list_modal').childElementCount;
+        if (cntRows == 2) {
+            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+            var newSize = $(current).find("#precheckout-item-remove")[0];
+            newSize.className = "precheckout_item_remove_button hidden";
+        } else {
+            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+            var newSize = $(current).find("#precheckout-item-remove")[0];
+            newSize.className = "precheckout_item_remove_button";
+        }
+    };
+
+    var i = 1;
+    $("#add-row").click(function () {
+        var rowHtml = document.getElementById('first-line-item').innerHTML;
+        var newRow = document.createElement('tr');
+        $(newRow)
+            .addClass('precheckout_items_table__row')
+            .attr('id', 'js-precheckout-line-item-' + i)
+            .html(rowHtml)
+            .appendTo($("#order_item_list_modal"))
+        i = i + 1;
+        VisibleRemove();
+    });
+
+
+    $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+    $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+
+    function ItemRemove(node) {
+        var el = document.getElementById(node.id);
+        el.parentNode.removeChild(el);
+        VisibleRemove();
+    }
+
+    var firstBack = "@Model.Campaign.BackSideByDefault";
+    var isFront = true;
+    $(function ($) {
+        $("#card").flip({
+            trigger: 'manual'
+        }).click(function () {
+            isFront = !isFront;
+            console.log(isFront);
+            $("#card").flip(!isFront);
             var id = $("#product__dropdown option:selected")[0].id;
-            var size_show = document.getElementsByClassName("product__size_chart");
-            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
-        });
-        $(".js-size-unit-toggle-centimeters").click(function () {
-            var id = $("#product__dropdown option:selected")[0].id;
-            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
-        });
-
-        $("#js-circle-nav-item-front").click(function () {
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
-        });
-        $("#js-circle-nav-item-back").click(function () {
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
-            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-        });
-
-
-        $("#image-stack-arrow-right").click(function () {
-            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
-            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        });
-        $("#image-stack-arrow-left").click(function () {
-            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
-            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
-            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-        });
-
-        var size_show = document.getElementsByClassName("product__size_chart")[0];
-        $(size_show).addClass("active");
-
-        var details = document.getElementsByClassName("product__details")[0];
-        $(details).addClass("active");
-
-        window.onload = VisibleRemove();
-       
-
-
-        function VisibleRemove() {
-            var cntRows = document.getElementById('order_item_list_modal').childElementCount;
-            if (cntRows == 2) {
-                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-                var newSize = $(current).find("#precheckout-item-remove")[0];
-                newSize.className = "precheckout_item_remove_button hidden";
-            } else {
-                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-                var newSize = $(current).find("#precheckout-item-remove")[0];
-                newSize.className = "precheckout_item_remove_button";
-            }
-        };
-
-        var i = 1;
-        $("#add-row").click(function () {
-            var rowHtml = document.getElementById('first-line-item').innerHTML;
-            var newRow = document.createElement('tr');
-            $(newRow)
-                .addClass('precheckout_items_table__row')
-                .attr('id', 'js-precheckout-line-item-' + i)
-                .html(rowHtml)
-                .appendTo($("#order_item_list_modal"))
-            i = i + 1;
-            VisibleRemove();
-        });
-
-
-        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-
-        function ItemRemove(node) {
-            var el = document.getElementById(node.id);
-            el.parentNode.removeChild(el);
-            VisibleRemove();
-        }
-
-        var firstBack = "@Model.Campaign.BackSideByDefault";
-        var isFront = true;
-        $(function ($) {
-            $("#card").flip({
-                trigger: 'manual'
-            }).click(function () {
-                isFront = !isFront;
-                console.log(isFront);
-                $("#card").flip(!isFront);
-                var id = $("#product__dropdown option:selected")[0].id;
-
-                if (firstBack == "True") {
-                    if (isFront) {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-                    } else {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
-                    }
-                } else {
-                    if (!isFront) {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
-                    } else {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
-                    }
-                }
-
-            });
-
-        });
-
-
-        function Resrve() {
-            document.getElementById("reserve-it-now").className = "dg-overlay";
-        }
-
-        function CloseReservation() {
-            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-        }
-
-        function ChangeProduct(item) {
-            var id = item[item.selectedIndex].id;
-            if (!isFront) {
-                isFront = !isFront;
-                console.log(isFront);
-                $("#card").flip(!isFront);
-            }
-            if (firstBack == "True") {
-                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
-                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
-            } else {
-                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
-                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
-            }
 
             if (firstBack == "True") {
                 if (isFront) {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
                 }
             } else {
                 if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
                 }
             }
 
+        });
 
-            var size_show = document.getElementsByClassName("product__size_chart");
-            for (var i = 0; i < size_show.length; i++) {
-                if ($(size_show[i]).attr('data-product-id') == id) {
-                    $(size_show[i]).addClass("active");
-                } else {
-                    $(size_show[i]).removeClass("active");
-                }
-            }
+    });
 
-            var details = document.getElementsByClassName("product__details");
-            for (var i = 0; i < details.length; i++) {
-                if ($(details[i]).attr('data-product-id') == id) {
-                    $(details[i]).addClass("active");
-                } else {
-                    $(details[i]).removeClass("active");
-                }
-            }
 
+    function Resrve() {
+        document.getElementById("reserve-it-now").className = "dg-overlay";
+    }
+
+    function CloseReservation() {
+        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+    }
+
+    function ChangeProduct(item) {
+        var id = item[item.selectedIndex].id;
+        if (!isFront) {
+            isFront = !isFront;
+            console.log(isFront);
+            $("#card").flip(!isFront);
+        }
+        if (firstBack == "True") {
+            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+        } else {
+            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+            $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
         }
 
-        function ChangeProductModal(item) {
-            var par = item.parentNode.parentNode.id;
-            var index = item.selectedIndex;
-            var id = item[item.selectedIndex].id;
-            var row = item.parentNode.parentNode;
-            var img = $(row).find('.modal_campaign_img')[0];
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-
-            var currentSize = $(row).find('.size-dropdown.shown')[0];
-            var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
-
-            $(currentSize).removeClass('shown').addClass('hidden');
-            $(newSize).removeClass('hidden').addClass('shown');
-
-            var currentPrice = $(row).find('.modal-price.shown')[0];
-            var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
-
-            $(currentPrice).removeClass('shown').addClass('hidden');
-            $(newSize).removeClass('hidden').addClass('shown');
-
-
-
+        if (firstBack == "True") {
+            if (isFront) {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+            } else {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+            }
+        } else {
+            if (!isFront) {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+            } else {
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+            }
         }
 
-        function sendData() {
-            var promoId = '@Model.PromoId';
+
+        var size_show = document.getElementsByClassName("product__size_chart");
+        for (var i = 0; i < size_show.length; i++) {
+            if ($(size_show[i]).attr('data-product-id') == id) {
+                $(size_show[i]).addClass("active");
+            } else {
+                $(size_show[i]).removeClass("active");
+            }
+        }
+
+        var details = document.getElementsByClassName("product__details");
+        for (var i = 0; i < details.length; i++) {
+            if ($(details[i]).attr('data-product-id') == id) {
+                $(details[i]).addClass("active");
+            } else {
+                $(details[i]).removeClass("active");
+            }
+        }
+
+    }
+
+    function ChangeProductModal(item) {
+        var par = item.parentNode.parentNode.id;
+        var index = item.selectedIndex;
+        var id = item[item.selectedIndex].id;
+        var row = item.parentNode.parentNode;
+        var img = $(row).find('.modal_campaign_img')[0];
+        img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+
+        var currentSize = $(row).find('.size-dropdown.shown')[0];
+        var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+
+        $(currentSize).removeClass('shown').addClass('hidden');
+        $(newSize).removeClass('hidden').addClass('shown');
+
+        var currentPrice = $(row).find('.modal-price.shown')[0];
+        var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
+
+        $(currentPrice).removeClass('shown').addClass('hidden');
+        $(newSize).removeClass('hidden').addClass('shown');
+
+
+
+    }
+
+    function sendData() {
+        if (('@Model.PromoId') != null) {
+                var promoId = '@Model.PromoId';
+            }
             var products = [];
             var tableRows = $('.precheckout_items_table__row');
             var count;
@@ -243,73 +245,73 @@
                 cache: false,
                 type: "POST",
                 url: "@(Url.Action("CreateOrder", "Home"))",
-                data: addAntiForgeryToken({
-                    "products": products
-                }),
-                success: function (data, status, resp) {
-                    if (resp.status === 200) {
-                        if(promoId){
-                            window.location.href = '/Buy/' + data + "?promo=" + promoId;
-                        }else {
-                            window.location.href = '/Buy/' + data;
-                        }
+            data: addAntiForgeryToken({
+                "products": products
+            }),
+            success: function (data, status, resp) {
+                if (resp.status === 200) {
+                    if (promoId) {
+                        window.location.href = '/Buy/' + data + "?promo=" + promoId;
+                    } else {
+                        window.location.href = '/Buy/' + data;
                     }
-                },
-                error: function (data, status, resp) {
-                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                 }
-            });
+            },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            }
+        });
 
-        }
+    }
 
-        function addAntiForgeryToken(data) {
-            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-            return data;
-        };
-
-
-
-
-        function CountdownTimer(elm, tl, mes) {
-            this.initialize.apply(this, arguments);
-        }
-        CountdownTimer.prototype = {
-            initialize: function (elm, tl, mes) {
-                this.elem = document.getElementById(elm);
-                this.tl = tl;
-                this.mes = mes;
-            }, countDown: function () {
-                var timer = '';
-                var today = new Date();
-                var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
-                var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-                var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
-                var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
-                var me = this;
-
-                if ((this.tl - today) > 0) {
-                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
-                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
-                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
-                    this.elem.innerHTML = timer;
-                    tid = setTimeout(function () { me.countDown(); }, 10);
-                } else {
-                    this.elem.innerHTML = this.mes;
-                    return;
-                }
-            }, addZero: function (num) { return ('0' + num).slice(-2); }
-        }
-        function CDT() {
-            var finishDate = document.getElementById("persistent__timer").value;
-            var tl = new Date(finishDate);
+    function addAntiForgeryToken(data) {
+        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+        return data;
+    };
 
 
-            var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
-            timer.countDown();
-        }
-        window.onload = function () {
-            CDT();
-        }
+
+
+    function CountdownTimer(elm, tl, mes) {
+        this.initialize.apply(this, arguments);
+    }
+    CountdownTimer.prototype = {
+        initialize: function (elm, tl, mes) {
+            this.elem = document.getElementById(elm);
+            this.tl = tl;
+            this.mes = mes;
+        }, countDown: function () {
+            var timer = '';
+            var today = new Date();
+            var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
+            var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+            var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
+            var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
+            var me = this;
+
+            if ((this.tl - today) > 0) {
+                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
+                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
+                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
+                this.elem.innerHTML = timer;
+                tid = setTimeout(function () { me.countDown(); }, 10);
+            } else {
+                this.elem.innerHTML = this.mes;
+                return;
+            }
+        }, addZero: function (num) { return ('0' + num).slice(-2); }
+    }
+    function CDT() {
+        var finishDate = document.getElementById("persistent__timer").value;
+        var tl = new Date(finishDate);
+
+
+        var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
+        timer.countDown();
+    }
+    window.onload = function () {
+        CDT();
+    }
 
 
     </script>

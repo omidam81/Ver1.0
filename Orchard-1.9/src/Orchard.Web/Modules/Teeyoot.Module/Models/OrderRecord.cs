@@ -48,6 +48,10 @@ namespace Teeyoot.Module.Models
 
         public virtual IList<OrderHistoryRecord> Events { get; set; }
 
+        public virtual double Promotion { get; set; }
+
+        public virtual double TotalPriceWithPromo { get; set; }
+
         public OrderRecord()
         {
             Products = new List<LinkOrderCampaignProductRecord>();

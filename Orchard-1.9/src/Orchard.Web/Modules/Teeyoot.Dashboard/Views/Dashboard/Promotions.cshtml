@@ -107,13 +107,7 @@
                     <div class="label__title">Amount</div>
                     <div class="input__group new_promotion__field">
                         @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield ", @id = "code", @name = "amountSize", @type = "text", Value = "" })
-                        @Html.DropDownListFor(m => m.AmountType, new SelectList(
-                  new List<Object>{
-                       new { value = "%", text = "%"  },
-                       new { value = "$" , text = "$" },
-                                          },
-                  "value",
-       "text"), new { @class = "form__select_menu" })
+                        @Html.DropDownListFor(m => m.AmountType, Model.AvailableCurrencies, new { @class = "form__select_menu" })
                     </div>
                 </div>
                 <div class="new_promotion__expiration">
