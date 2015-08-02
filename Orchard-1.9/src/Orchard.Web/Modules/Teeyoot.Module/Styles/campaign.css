@@ -6376,8 +6376,7 @@ input{
     }
 }
 .info-message{
-      background: #21a307 !important;
-
+  background: #ff4f00 !important;
   border-radius: 3px !important;
   color: #fff !important;
   width: 99% !important;

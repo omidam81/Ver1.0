@@ -13,6 +13,8 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public virtual string InfoMessage { get; set; }
 
+        public virtual string PromoId { get; set; }
+
 
         
     }
