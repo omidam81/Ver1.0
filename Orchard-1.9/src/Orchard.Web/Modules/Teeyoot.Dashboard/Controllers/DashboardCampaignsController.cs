@@ -291,7 +291,10 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult DeleteCampaign(int id)
         {
+            if (_campaignService.DeleteCampaign(id))
+            {
 
+            }
 
             return RedirectToAction("Campaigns");
         }

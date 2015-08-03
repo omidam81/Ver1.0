@@ -879,5 +879,12 @@ namespace Teeyoot.Module
 
             return 39;
         }
+
+        public int UpdateFrom39()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("Delete"));
+
+            return 40;
+        }
     }
 }
