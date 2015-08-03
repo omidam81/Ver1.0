@@ -42,10 +42,30 @@ namespace Teeyoot.Module.Controllers
                     model.Campaign = campaign;
                     if (promo != null)
                     {
-                        PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
-                        string infomessage = String.Format("Congratulations, you'll be receiving {0}{1} off your purchase. Discount reflected at checkout!", promotion.AmountSize, promotion.AmountType);
-                        model.InfoMessage = infomessage;
-                        model.PromoId = promo;
+                        try
+                        {
+                            PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
+                            if (promotion.Status)
+                            {
+                                string infomessage = String.Format("Congratulations, you'll be receiving {0}{1} off your purchase. Discount reflected at checkout!", promotion.AmountSize, promotion.AmountType);
+                                model.InfoMessage = infomessage;
+                                model.PromoId = promo;
+                            }
+                            else
+                            {
+                                string infomessage = String.Format("Sorry, this promo is expired!");
+                                model.InfoMessage = infomessage;
+                            }
+                            return View(model);
+                        }
+                        catch (Exception)
+                        {
+
+                            string infomessage = String.Format("You have wrong promo code!");
+                            model.InfoMessage = infomessage;
+                            return View(model);
+                        }
+                                                   
                     }
                     return View(model);
                 }
