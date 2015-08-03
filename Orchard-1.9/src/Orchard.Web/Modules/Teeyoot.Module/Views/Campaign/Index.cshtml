@@ -63,13 +63,10 @@
     var details = document.getElementsByClassName("product__details")[0];
     $(details).addClass("active");
 
-    window.onload = VisibleRemove();
-
-
-
     function VisibleRemove() {
         var cntRows = document.getElementById('order_item_list_modal').childElementCount;
-        if (cntRows == 2) {
+        if (cntRows == 1) {return; }
+        if (cntRows == 2 ) {
             var current = document.getElementsByClassName("precheckout_items_table__row")[0];
             var newSize = $(current).find("#precheckout-item-remove")[0];
             newSize.className = "precheckout_item_remove_button hidden";
@@ -133,12 +130,29 @@
     });
 
 
-    function Resrve() {
+        function Resrve() {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
         document.getElementById("reserve-it-now").className = "dg-overlay";
+
     }
 
-    function CloseReservation() {
-        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+        function CloseReservation() {
+            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+            var el = document.getElementsByClassName("precheckout_items_table__row");
+            var length = el.length;
+            for (var i = 0; i < length; i++) {
+                el[0].parentNode.removeChild(el[0]);
+            }
+
+            VisibleRemove();      
     }
 
     function ChangeProduct(item) {
@@ -148,18 +162,51 @@
             console.log(isFront);
             $("#card").flip(!isFront);
         }
+        var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
+
         if (firstBack == "True") {
             $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
             $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+            $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
         } else {
             $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
             $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+            $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
         }
 
+        var index = item.selectedIndex;
+        var drop_down = document.getElementById("product__dropdown_modal");
+  
+        var row = drop_down.parentNode.parentNode;
+
+        var currentModalSize = $(row).find('.size-dropdown.shown')[0];
+        var newModalSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+
+        $(currentModalSize).removeClass('shown').addClass('hidden');
+        $(newModalSize).removeClass('hidden').addClass('shown');
+
+        var currentPrice = $(row).find('.modal-price.shown')[0];
+        var newPrice = $(row).find('span[name=select_size_index_' + index + ']')[0];
+
+        $(currentPrice).removeClass('shown').addClass('hidden');
+        $(newPrice).removeClass('hidden').addClass('shown');
+
+        document.getElementById('product__dropdown_modal').selectedIndex = index;
+        
+        var options= document.getElementById('product__dropdown_modal').options;
+        for (var i= 0; i < options.length; i++) {
+            if (options[i].value == id) {
+
+                options[i].setAttribute("selected", "selected");
+            } else {
+                options[i].removeAttribute("selected");
+            }
+        }
+       
         if (firstBack == "True") {
             if (isFront) {
                 $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
@@ -201,7 +248,11 @@
         var id = item[item.selectedIndex].id;
         var row = item.parentNode.parentNode;
         var img = $(row).find('.modal_campaign_img')[0];
-        img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+        if (firstBack == "True") {
+            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+        } else {
+            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+        }
 
         var currentSize = $(row).find('.size-dropdown.shown')[0];
         var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
@@ -221,30 +272,30 @@
 
     function sendData() {
         if (('@Model.PromoId') != null) {
-                var promoId = '@Model.PromoId';
-            }
-            var products = [];
-            var tableRows = $('.precheckout_items_table__row');
-            var count;
-            var productId;
-            var sizeId;
+            var promoId = '@Model.PromoId';
+        }
+        var products = [];
+        var tableRows = $('.precheckout_items_table__row');
+        var count;
+        var productId;
+        var sizeId;
 
-            tableRows.each(function (index, el) {
+        tableRows.each(function (index, el) {
 
-                var items = $(el).find('.product__dropdown')[0];
-                productId = items[items.selectedIndex].value;
-                items = $(el).find('.size-dropdown.shown')[0];
-                sizeId = items[items.selectedIndex].value;
-                count = $(el).find('.product-count')[0].value;
+            var items = $(el).find('.product__dropdown')[0];
+            productId = items[items.selectedIndex].value;
+            items = $(el).find('.size-dropdown.shown')[0];
+            sizeId = items[items.selectedIndex].value;
+            count = $(el).find('.product-count')[0].value;
 
-                products.push({ ProductId: productId, SizeId: sizeId, Count: count });
-            });
+            products.push({ ProductId: productId, SizeId: sizeId, Count: count });
+        });
 
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("CreateOrder", "Home"))",
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("CreateOrder", "Home"))",
             data: addAntiForgeryToken({
                 "products": products
             }),
@@ -314,7 +365,7 @@
     }
 
 
-    </script>
+</script>
 
 }
 
@@ -326,14 +377,14 @@
     <section class="site__featured_full">
         <div class="site__wrapper js_fixed_product">
             <div class="message_banner__container js_promo_banner">
-                
-                    @if (@Model.InfoMessage != null)
-                    {
-                        <div class="info-message">
-                            @Model.InfoMessage
-                        </div>
-                    }
-                       
+
+                @if (@Model.InfoMessage != null)
+                {
+                    <div class="info-message">
+                        @Model.InfoMessage
+                    </div>
+                }
+
                 <div class="message_banner">
                     <div class="message_banner__text js_promo_banner_text"></div>
                     <i class="message_banner__close ts-icon-close"></i>
@@ -453,7 +504,7 @@
                         <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
                             @foreach (var prod in Model.Campaign.Products)
                             {
-                                <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                <option id="@prod.Id"  value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
                             }
                         </select>
                     </div>
@@ -555,7 +606,7 @@
                             </div>
                         </li>
                     </ul>
-                </div>                
+                </div>
                 <div class="campaign_transaction js-transaction-button">
                     @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
                         <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>*@
@@ -564,8 +615,8 @@
                 </div>
 
                 <div>
-                    <input class="hidden" id="persistent__timer" value="@Model.Campaign.EndDate.ToLocalTime().Year/@Model.Campaign.EndDate.ToLocalTime().Month/@Model.Campaign.EndDate.ToLocalTime().Day @Model.Campaign.EndDate.ToLocalTime().Hour:@Model.Campaign.EndDate.ToLocalTime().Minute:@Model.Campaign.EndDate.ToLocalTime().Second">                    
-                    <div id="back_timer"></div>                   
+                    <input class="hidden" id="persistent__timer" value="@Model.Campaign.EndDate.ToLocalTime().Year/@Model.Campaign.EndDate.ToLocalTime().Month/@Model.Campaign.EndDate.ToLocalTime().Day @Model.Campaign.EndDate.ToLocalTime().Hour:@Model.Campaign.EndDate.ToLocalTime().Minute:@Model.Campaign.EndDate.ToLocalTime().Second">
+                    <div id="back_timer"></div>
                 </div>
 
             </div>
@@ -634,41 +685,11 @@
             </div>
         </div>
         <div class="campaign__column--stats display--desktop">
-            @*<div class="campaign_stats__container js_stats_countainer display--mobile active">
-                <div class="campaign_stats">
-                    <p class="campaign_transaction__subtext display--desktop">
-                        Don't worry, you won't be charged unless the minimum is reached.
-                        <a href="/about">Learn why.</a>
-                    </p>
-                    <div class="campaign_stats__table">
-                        <div class="campaign_stats__column campaign_stats__column--goal">
-                            <div class="campaign_stats__value">10</div><div class="campaign_stats__label">needed to print!</div>
-                        </div>
-                        <div class="campaign_stats__column campaign_stats__column--timer js_stats_timer_subview">
-                            <div class="campaign_stats__value js_stats_default_time hidden campaign_stats__value--load_animation">10:17:18</div>
-                            <div class="campaign_stats__countdown js_stats_timer_countdown">
-                                <span class="campaign_stats__countdown__hours">
-                                    <span class="ce-hours-digit">1</span>
-                                    <span class="ce-hours-digit">0</span>
-                                </span>:<span class="campaign_stats__countdown__minutes">
-                                    <span class="ce-minutes-digit">0</span>
-                                    <span class="ce-minutes-digit">2</span>
-                                </span>:
-                                <span class="campaign_stats__countdown__seconds">
-                                    <span class="ce-seconds-digit">4</span>
-                                    <span class="ce-seconds-digit">6</span>
-                                </span>
-                            </div>
-                            <span class="campaign_stats__label">left to buy!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
             <div class="share__container">
                 <h3 class="share__heading">@T("Share this campaign on:")</h3>
                 <ul class="share__buttons">
                     <li class="share__buttons__item">
-                        <a href="http://www.facebook.com" target="_blank">
+                        <a class="share__btn share__btn--facebook" data-social-network="facebook" href="http://www.facebook.com/share.php?u=http://teebay.bqt.me/boo" target="_blank">
                             <img src="/Media/Default/images/facebook_ic.png">
                         </a>
                     </li>
@@ -732,7 +753,14 @@
                                     <tbody id="order_item_list_modal">
                                         <tr id="first-line-item" class="hidden">
                                             <td class="precheckout_items_table__item precheckout_items_table__item--image">
-                                                <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+                                                @if (Model.Campaign.BackSideByDefault)
+                                                {
+                                                    <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
+                                                }
+                                                else
+                                                {
+                                                    <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+                                                }
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--qty product-count-item">
                                                 <div class="tooltip tooltip--topleft">
@@ -767,10 +795,13 @@
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--style">
                                                 <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
-                                                    @foreach (var prod in Model.Campaign.Products)
+                                                   
+                                                     @foreach (var prod in Model.Campaign.Products)
                                                     {
-                                                        <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
-                                                    }
+                                                        
+                                                        <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                    
+                                                     }
                                                 </select>
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--price">
@@ -790,72 +821,12 @@
                                             </td>
                                         </tr>
 
-                                        <tr id="js-precheckout-line-item" class="precheckout_items_table__row">
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--image">
-                                                <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
-                                            </td>
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--qty product-count-item">
-                                                <div class="tooltip tooltip--topleft">
-                                                    <input class="form__textfield form__textfield--large product-count" type="text" value="1">
-                                                </div>
-                                            </td>
-                                            <td class="precheckout_items_table__item product-size-item">
-                                                <div class="tooltip tooltip--topleft">
-                                                    @for (var i = 0; i < Model.Campaign.Products.Count; i++)
-                                                    {
-                                                        if (i == 0)
-                                                        {
-                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown">
-                                                                @foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
-                                                                {
-                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
-                                                                }
-                                                            </select>
-                                                        }
-                                                        else
-                                                        {
-                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size hidden">
-                                                                @foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
-                                                                {
-                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
-                                                                }
-                                                            </select>
-                                                        }
-                                                    }
-
-                                                </div>
-                                            </td>
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--style">
-                                                <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
-                                                    @foreach (var prod in Model.Campaign.Products)
-                                                    {
-                                                        <option id="@prod.Id" data-class="localized-price" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
-                                                    }
-                                                </select>
-                                            </td>
-                                            <td class="precheckout_items_table__item precheckout_items_table__item--price">
-
-                                                @for (var i = 0; i < Model.Campaign.Products.Count; i++)
-                                                {
-                                                    if (i == 0)
-                                                    {
-                                                        <span name="select_size_index_@i" class="modal-price shown">@Model.Campaign.Products[i].CurrencyRecord.Code@Model.Campaign.Products[i].Price</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span name="select_size_index_@i" class="modal-price hidden">@Model.Campaign.Products[i].CurrencyRecord.Code@Model.Campaign.Products[i].Price</span>
-                                                    }
-                                                }
-                                                <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">@T("Remove")</div>
-                                            </td>
-                                        </tr>
-
                                     </tbody>
                                 </table>
 
                                 <div class="precheckout_actions">
                                     <div id="add-row" class="precheckout_actions__button">@T("+ Add another style or color")</div>
-                                </div>                                
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <div class="payment_options_info">
@@ -867,7 +838,7 @@
                                         <li class="payment_options__item payment_options__item--border">
                                             <div class="payment_options__item--paypal"></div>
                                         </li>
-                                    </ul>          
+                                    </ul>
                                 </div>
                                 <div class="payment_options_container">
                                     <div class="payment_options_actions">
@@ -891,4 +862,3 @@
     </div>
 
 </div>
-
