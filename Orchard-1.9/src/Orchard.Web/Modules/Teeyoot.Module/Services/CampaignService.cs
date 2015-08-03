@@ -320,6 +320,8 @@ namespace Teeyoot.Module.Services
             try
             {
                 var delCamp = _campaignRepository.Table.Where(c => c.Id == id).First();
+                delCamp.WhenDeleted = DateTime.UtcNow;
+                _campaignRepository.Update(delCamp);
 
                 return true;
             }

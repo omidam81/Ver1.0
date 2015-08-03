@@ -2,8 +2,24 @@
 @{
     @model Teeyoot.Dashboard.ViewModels.CampaignsViewModel
     Style.Include("campaigns.css");
+    Style.Include("EditCampaign.css");
 }
 
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    string classForMessage;
+    if (Model.IsError)
+    {
+        classForMessage = "error-message";
+    }
+    else
+    {
+        classForMessage = "info-message";
+    }
+    <div class="dashboard-section-title @classForMessage">
+        @T(Model.Message)
+    </div>
+}
 <div class="dashboard-section-title">
     @T("Campaigns")
     <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
@@ -165,12 +181,12 @@
                                     </a>
                                 </div>*@
                             @if (!c.IsActive)
-                            {
-                                <div>
-                                    <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
+                                {
+                            <div>
+                                <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
                             }
                         </div>
 

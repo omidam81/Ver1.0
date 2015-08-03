@@ -31,7 +31,7 @@ namespace Teeyoot.Dashboard.Controllers
         //    return View(model);
         //}
 
-        public ActionResult Campaigns()
+        public ActionResult Campaigns(bool? isError, string result)
         {
             var model = new CampaignsViewModel();
             model.Currency = "RM"; //TODO: eugene: implement currency
@@ -43,6 +43,12 @@ namespace Teeyoot.Dashboard.Controllers
 
             FillCampaigns(model, campaignsQuery);
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
+
+            if (isError != null)
+            {
+                model.IsError = (bool)isError;
+                model.Message = (string)result.ToString();
+            }
 
             return View(model);
         }
@@ -291,12 +297,20 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult DeleteCampaign(int id)
         {
+            string result = string.Empty;
+            bool isError = false;
             if (_campaignService.DeleteCampaign(id))
             {
-
+                isError = false;
+                result = "The campaign was deleted successfully!";
+            }
+            else
+            {
+                isError = true;
+                result = "The company could not be removed. Try again!";
             }
 
-            return RedirectToAction("Campaigns");
+            return RedirectToAction("Campaigns", new { isError = isError, result = result });
         }
     }
 }
