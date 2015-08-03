@@ -453,7 +453,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.CreateForeignKey("Message_Campaign_Id", "MessageRecord", new[] { "CampaignId" }, "CampaignRecord", new[] { "Id" });
 
-            return 42;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 43;
         }
 
         public int UpdateFrom2()
@@ -913,6 +915,13 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("Message_Campaign_Id", "MessageRecord", new[] { "CampaignId" }, "CampaignRecord", new[] { "Id" });
 
             return 42;
+        }
+
+        public int UpdateFrom42()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 43;
         }
     }
 }
