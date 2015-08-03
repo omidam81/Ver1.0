@@ -102,7 +102,7 @@
             <div class="campaign-status-filter filter-dropdown">
                 <div class="filter-dropdown-toggle">
                     @T("Show")
-                    
+
                     <span class="filtered-by">
                         <span data-filterby="Active">
                             @T("Active")
@@ -111,7 +111,7 @@
                 </div>
                 <div class="filter-dropdown-menu">
                     <ul>
-                        
+
                         <li onclick="filterByState(this)" class="filter-dropdown-item">
                             <span data-filterby="Active">
                                 @T("Active")
@@ -123,7 +123,7 @@
                                 @T("Ended")
                             </span>
                         </li>
-                        
+
                         <li onclick="filterByState(this)" class="filter-dropdown-item">
                             <span data-filterby="All">
                                 @T("All")
@@ -140,7 +140,7 @@
             @foreach (var c in Model.Campaigns)
             {
                 var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
-                
+
                 var state = c.IsActive ? "Active" : "Ended";
 
                 <div data-name="@c.Name.ToLower()" class="campaign-card"
@@ -160,10 +160,18 @@
                             </div>
                             @*<div>
 
-                                <a href="@Url.Action("Wizard", "Dashboard", new { id = c.Id })" title="@T("Duplicate")">
-                                <i class="fa fa-files-o"></i>
-                                </a>
-                            </div>*@
+                                    <a href="@Url.Action("Wizard", "Dashboard", new { id = c.Id })" title="@T("Duplicate")">
+                                    <i class="fa fa-files-o"></i>
+                                    </a>
+                                </div>*@
+                            @if (!c.IsActive)
+                            {
+                                <div>
+                                    <a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            }
                         </div>
 
                         <div class="campaign-card-profit">
