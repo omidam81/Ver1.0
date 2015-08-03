@@ -76,7 +76,7 @@ namespace Teeyoot.Account
                 new RouteDescriptor
                 {
                     Route = new Route(
-                        "Recover/Request/{*nonce}",
+                        "Recover/Request",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.Account"},

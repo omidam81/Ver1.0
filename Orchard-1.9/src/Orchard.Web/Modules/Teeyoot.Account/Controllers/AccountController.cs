@@ -38,6 +38,7 @@ namespace Teeyoot.Account.Controllers
         private const string FacebookLogOnFailedErrorKey = "FacebookLogOnFailedError";
 
         public AccountController(
+            IOrchardServices orchardServices,
             ITeeyootMembershipService teeyootMembershipService,
             IAuthenticationService authenticationService,
             IMembershipService membershipService,
@@ -194,75 +195,10 @@ namespace Teeyoot.Account.Controllers
             }
             else
             {
-                var baseUri = _workContextAccessor.GetContext().HttpContext.Request.Url;
-                //var recoverUri = new Uri(baseUri, Url.Action("ResetPassword", "Account", new { nonce }));
-
-                _userService.SendLostPasswordEmail(viewModel.Email,
-                    nonce => "http://localhost:30323/Recover/Request/" + Server.UrlEncode(nonce));
-
-                /*
-                _userService.SendLostPasswordEmail(viewModel.Email, 
-                    nonce => "http://localhost:30323/Recover/Request/" + Server.UrlEncode(nonce));
-                 */
-
-
-                //Url.MakeAbsolute()
-                    //new Uri(baseUri, "~/Recover/Request/" + HttpUtility.UrlPathEncode(nonce)).ToString());
-
-                    /*
-                    new Uri(baseUri,
-                        Url.Action("ResetPassword", "Account", new {area = "Teeyoot.Account", nonce = HttpUtility.UrlPathEncode(nonce)})).ToString());
-                     */
-                    
-                    /*
-                    nonce =>
-                    new Uri(baseUri, Url.Action("ResetPassword", "Account", new {nonce})).ToString());
-                     */
-                        
-                        
-                    
-                        
-                        //Url.Action("ResetPassword", "Account", new {nonce})).ToString());
-
-
-                /*
-                var siteUrl = _workContextAccessor.GetContext().CurrentSite.BaseUrl;
-                if (string.IsNullOrWhiteSpace(siteUrl))
-                {
-                    siteUrl = HttpContext.Request.ToRootUrlString();
-                }
-
-                _userService.SendLostPasswordEmail(viewModel.Email,
-                    nonce =>
-                        Url.MakeAbsolute(
-                            Url.Action("ResetPassword", "Account",
-                                new {area = "Teeyoot.Account", nonce = nonce}),
-                            siteUrl));
-
-                */
-
-                //var baseUri = _workContextAccessor.GetContext().HttpContext.Request.Url.ToString();
-                //var recoverUri = new Uri(baseUri, Url.Action("ResetPassword", "Account", new {nonce}));
-
-                //_userService.SendLostPasswordEmail(viewModel.Email,
-                //        nonce => Url.MakeAbsolute(Url.Action("ResetPassword", "Account", new { area="Teeyoot.Account", nonce = nonce }), baseUri));
-
-                /*
-                        new Uri(baseUri,
-                            Url.Action("ResetPassword", "Account",
-                                new {area = "Teeyoot.Account", nonce = nonce})).ToString());
-                         */
-
-
-                //var siteUrl = _workContextAccessor.GetContext().CurrentSite.;
-                /*
-                if (string.IsNullOrEmpty(siteUrl))
-                {
-                    siteUrl = HttpContext.Request.ToRootUrlString();
-                }
-                _userService.SendLostPasswordEmail(viewModel.Email,
-                    nonce => Url.MakeAbsolute(Url.Action("ResetPassword", "Account", new {nonce}), siteUrl));
-                 */
+                var siteUrl = _workContextAccessor.GetContext().HttpContext.Request.Url;
+                _userService.SendLostPasswordEmail(viewModel.Email, nonce =>
+                    new Uri(siteUrl, Url.Action("ResetPassword", "Account", new {area = "Teeyoot.Account", nonce}))
+                        .ToString());
 
                 TempData[RecoverEmailSentKey] = true;
             }
@@ -290,7 +226,6 @@ namespace Teeyoot.Account.Controllers
             return View(viewModel);
         }
 
-        /*
         [HttpPost]
         public ActionResult ResetPassword(ResetPasswordViewModel viewModel)
         {
@@ -311,7 +246,6 @@ namespace Teeyoot.Account.Controllers
 
             return Redirect("~/");
         }
-        */
 
         private bool ValidateRegistration(string email, string password, string confirmPassword)
         {
