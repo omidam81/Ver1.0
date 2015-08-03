@@ -239,6 +239,9 @@
                                 @T("Congratulations, share your recent order to help push the campaign " + 
                                     "over the top and we get to print your great shirt.")
                             </p>
+                            <p>
+                                <a id="cancel_order_link" href="#">@T("Cancel order")</a>
+                            </p>
                         }
                         
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Printing.ToString())
@@ -324,3 +327,40 @@
     </div>
 
 </div>
+
+<div id="modal_form" style="display:none">
+    <h3>@T("Cancel Order") #@Model.OrderPublicId</h3>
+    <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
+    <a class="button" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
+    <button id="btn_not_now">@T("Not now")</button>
+</div>
+<div id="overlay"></div>
+
+@using(Script.Foot())
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#cancel_order_link').click(function (event) {
+                event.preventDefault();
+                $('#overlay').fadeIn(400,
+                    function () {
+                        $('#modal_form')
+                            .css('display', 'block')
+                            .animate({ opacity: 1, top: '50%' }, 200);
+                    });
+            });
+           
+            $('#overlay, #btn_not_now').click(function () {
+                $('#modal_form')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () {
+                            $(this).css('display', 'none');
+                            $('#overlay').fadeOut(400);
+                        }
+                    );
+            });
+        });
+
+    </script>
+}

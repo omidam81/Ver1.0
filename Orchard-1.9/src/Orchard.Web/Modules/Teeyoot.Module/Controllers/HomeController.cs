@@ -113,10 +113,13 @@ namespace Teeyoot.Module.Controllers
                 order.IsActive = true;
 
                 _orderService.UpdateOrder(order, OrderStatus.Reserved);
-                PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
-                promotion.Redeemed = promotion.Redeemed + 1;
+                if (collection["PromoId"] != null)
+                {
+                    PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
+                    promotion.Redeemed = promotion.Redeemed + 1;
+                }
                 var campaign = _campaignService.GetCampaignById(campaignId);
-                campaign.ProductCountSold += order.Products.Sum(p => p.Count);
+                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                 _campaignService.UpdateCampaign(campaign);
 
                 Transaction transaction = result.Target;
@@ -218,6 +221,8 @@ namespace Teeyoot.Module.Controllers
             }
 
             var model = new OrderTrackingViewModel();
+            model.OrderId = order.Id;
+            model.OrderPublicId = orderId;
             model.Status = order.OrderStatusRecord;
             model.Products = order.Products.ToArray();
             model.ShippingTo = new string[] {
@@ -233,6 +238,20 @@ namespace Teeyoot.Module.Controllers
             model.CampaignAlias = campaign.Alias;
 
             return View(model);
+        }
+
+        public ActionResult CancelOrder(int orderId, string publicId)
+        {
+            try
+            {
+                _orderService.DeleteOrder(orderId);
+                return Redirect("/");
+            }
+            catch(Exception ex)
+            {
+                Logger.Error("Error occured when trying to delete an order ---------------> " + ex.ToString());
+                return RedirectToAction("OrderTracking", new { orderId = publicId });
+            }
         }
     }
 }

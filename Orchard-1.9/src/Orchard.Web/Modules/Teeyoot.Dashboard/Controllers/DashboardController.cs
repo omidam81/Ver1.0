@@ -48,8 +48,7 @@ namespace Teeyoot.Dashboard.Controllers
                                    IPromotionService promotionService,
                                    IPaymentInformationService paymentInfService,
                                    ICampaignCategoriesService campaignCategoryService,
-                                    IPaymentInformationService paymentInfService,
-                                    IRepository<CurrencyRecord> currencyRepository
+                                   IRepository<CurrencyRecord> currencyRepository
                                     )
         {
             _campaignService = campaignService;
