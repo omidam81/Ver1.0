@@ -43,6 +43,8 @@ namespace Teeyoot.Module.Models
 
         public virtual bool IsApproved { get; set; }
 
+        public virtual DateTime? WhenDeleted { get; set; }
+
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
         public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; } 

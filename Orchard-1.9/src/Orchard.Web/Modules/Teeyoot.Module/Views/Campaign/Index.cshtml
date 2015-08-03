@@ -3,16 +3,43 @@
     Style.Include("campaign.css");
     Script.Require("jQuery");
     Script.Include("jquery.flip.js");
-    Script.Include("jquery.elevateZoom-3.0.8.min.js");
+    Script.Include("jquery.elevateZoom-3.0.8.min.js"); 
 }
+@using (Script.Head())
+{
 
+	<meta property="og:site_name" content="Teeyoot"/>
+	<meta property="og:title" content="@Model.Campaign.Title" />
+    <meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png" />
+	<meta property="og:image:width" content="530" />
+	<meta property="og:image:height" content="700" />
+	<meta property="og:description" content="@Model.Campaign.Description" />
+    <meta property="og:url" content="http://teebay.bqt.me/@Model.Campaign.Alias"/>
 
+    <meta name="twitter:domain" content="Teeyoot.com">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:description" content="@Model.Campaign.Description">
+    <meta name="twitter:title" content="@Model.Campaign.Title">
+    <meta name="twitter:site" content="teeyoot">
+    <meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+}
 
 @using (Script.Foot())
 {
-
     <script>
-
+    var twitterBtn = document.getElementsByClassName("btn--twitter");
+        for (var k = 0; k < twitterBtn.length; k++) {
+            $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
+        }
+    var pinterestBtn = document.getElementsByClassName("btn--pinterest");
+        for (var k = 0; k < pinterestBtn.length; k++) {
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+        }
+    var facebookBtn = document.getElementsByClassName("btn--facebook");
+    for (var k = 0; k < facebookBtn.length; k++) {
+        $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=http://teebay.bqt.me/@Model.Campaign.Alias");
+        }
+       
     $(".product__size_chart_link--show").click(function () {
         document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
     });
@@ -65,8 +92,8 @@
 
     function VisibleRemove() {
         var cntRows = document.getElementById('order_item_list_modal').childElementCount;
-        if (cntRows == 1) {return; }
-        if (cntRows == 2 ) {
+        if (cntRows == 1) { return; }
+        if (cntRows == 2) {
             var current = document.getElementsByClassName("precheckout_items_table__row")[0];
             var newSize = $(current).find("#precheckout-item-remove")[0];
             newSize.className = "precheckout_item_remove_button hidden";
@@ -130,29 +157,29 @@
     });
 
 
-        function Resrve() {
-            var rowHtml = document.getElementById('first-line-item').innerHTML;
-            var newRow = document.createElement('tr');
-            $(newRow)
-                .addClass('precheckout_items_table__row')
-                .attr('id', 'js-precheckout-line-item-' + i)
-                .html(rowHtml)
-                .appendTo($("#order_item_list_modal"))
-            i = i + 1;
-            VisibleRemove();
+    function Resrve() {
+        var rowHtml = document.getElementById('first-line-item').innerHTML;
+        var newRow = document.createElement('tr');
+        $(newRow)
+            .addClass('precheckout_items_table__row')
+            .attr('id', 'js-precheckout-line-item-' + i)
+            .html(rowHtml)
+            .appendTo($("#order_item_list_modal"))
+        i = i + 1;
+        VisibleRemove();
         document.getElementById("reserve-it-now").className = "dg-overlay";
 
     }
 
-        function CloseReservation() {
-            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-            var el = document.getElementsByClassName("precheckout_items_table__row");
-            var length = el.length;
-            for (var i = 0; i < length; i++) {
-                el[0].parentNode.removeChild(el[0]);
-            }
+    function CloseReservation() {
+        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+        var el = document.getElementsByClassName("precheckout_items_table__row");
+        var length = el.length;
+        for (var i = 0; i < length; i++) {
+            el[0].parentNode.removeChild(el[0]);
+        }
 
-            VisibleRemove();      
+        VisibleRemove();
     }
 
     function ChangeProduct(item) {
@@ -180,7 +207,7 @@
 
         var index = item.selectedIndex;
         var drop_down = document.getElementById("product__dropdown_modal");
-  
+
         var row = drop_down.parentNode.parentNode;
 
         var currentModalSize = $(row).find('.size-dropdown.shown')[0];
@@ -196,9 +223,9 @@
         $(newPrice).removeClass('hidden').addClass('shown');
 
         document.getElementById('product__dropdown_modal').selectedIndex = index;
-        
-        var options= document.getElementById('product__dropdown_modal').options;
-        for (var i= 0; i < options.length; i++) {
+
+        var options = document.getElementById('product__dropdown_modal').options;
+        for (var i = 0; i < options.length; i++) {
             if (options[i].value == id) {
 
                 options[i].setAttribute("selected", "selected");
@@ -206,7 +233,7 @@
                 options[i].removeAttribute("selected");
             }
         }
-       
+
         if (firstBack == "True") {
             if (isFront) {
                 $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
@@ -660,17 +687,18 @@
 
             <ul class="share__buttons">
                 <li class="share__buttons__item">
-                    <a href="http://www.facebook.com" target="_blank">
+                    <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" href="" target="_blank">
                         <img src="/Media/Default/images/facebook_ic.png">
                     </a>
                 </li>
+                
                 <li class="share__buttons__item">
-                    <a href="http://twitter.com" target="_blank">
+                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" href="" target="_blank">
                         <img src="/Media/Default/images/twit_ic.png">
                     </a>
                 </li>
                 <li class="share__buttons__item">
-                    <a href="https://www.pinterest.com" target="_blank">
+                    <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
                         <img src="/Media/Default/images/p_ic.png">
                     </a>
                 </li>
@@ -716,21 +744,22 @@
                 <h3 class="share__heading">@T("Share this campaign on:")</h3>
                 <ul class="share__buttons">
                     <li class="share__buttons__item">
-                        <a class="share__btn share__btn--facebook" data-social-network="facebook" href="http://www.facebook.com/share.php?u=http://teebay.bqt.me/boo" target="_blank">
+                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" href="" target="_blank">
                             <img src="/Media/Default/images/facebook_ic.png">
                         </a>
                     </li>
-                    <li class="share__buttons__item">
-                        <a href="http://twitter.com" target="_blank">
-                            <img src="/Media/Default/images/twit_ic.png">
-                        </a>
-                    </li>
-                    <li class="share__buttons__item">
-                        <a href="https://www.pinterest.com" target="_blank">
-                            <img src="/Media/Default/images/p_ic.png">
-                        </a>
-                    </li>
-                </ul>
+
+                        <li class="share__buttons__item">   
+                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" href="" target="_blank">
+                                <img src="/Media/Default/images/twit_ic.png">
+                            </a>
+                        </li>
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
+                                <img src="/Media/Default/images/p_ic.png">
+                            </a>
+                        </li>
+</ul>
             </div>
         </div>
         <section class="site__featured site__featured--border hidden">

@@ -36,5 +36,7 @@ namespace Teeyoot.Module.Services
         void CheckExpiredCampaigns();
 
         IQueryable<CampaignProductRecord> GetAllCampaignProducts();
+        
+        bool DeleteCampaign(int id);
     }
 }

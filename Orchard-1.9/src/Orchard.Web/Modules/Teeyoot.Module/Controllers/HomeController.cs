@@ -67,7 +67,7 @@ namespace Teeyoot.Module.Controllers
                     PaymentMethodNonce = "fake-valid-nonce",
                     Options = new TransactionOptionsRequest
                     {
-                        SubmitForSettlement = true,
+                        SubmitForSettlement = false,
                         StoreInVault = true
                     }
                 };
@@ -88,11 +88,13 @@ namespace Teeyoot.Module.Controllers
                     },
                     Options = new TransactionOptionsRequest
                     {
-                        StoreInVault = true
+                        StoreInVault = true,
+                        SubmitForSettlement = false
                     }
                 };
+
                 result = Gateway.Transaction.Sale(requestCard);
-                //result = Gateway.Transaction.SubmitForSettlement("the_transaction_id", 1000.0M);
+
             }
 
             if (result.IsSuccess())
@@ -111,6 +113,7 @@ namespace Teeyoot.Module.Controllers
                 order.PhoneNumber = collection["PhoneNumber"];
                 order.Reserved = DateTime.UtcNow;
                 order.IsActive = true;
+                order.TranzactionId = result.Target.Id;
 
                 _orderService.UpdateOrder(order, OrderStatus.Reserved);
                 if (collection["PromoId"] != null)

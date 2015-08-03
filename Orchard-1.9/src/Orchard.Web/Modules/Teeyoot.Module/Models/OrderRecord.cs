@@ -52,6 +52,7 @@ namespace Teeyoot.Module.Models
 
         public virtual double TotalPriceWithPromo { get; set; }
 
+        public virtual string TranzactionId { get; set; }
         public OrderRecord()
         {
             Products = new List<LinkOrderCampaignProductRecord>();
