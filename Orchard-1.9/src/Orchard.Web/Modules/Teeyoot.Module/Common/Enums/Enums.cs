@@ -7,7 +7,7 @@ namespace Teeyoot.Module.Common.Enums
 {
     public enum CampaignStatus
     {
-        Active = 1,
+        Created = 1,
         Ended = 2
     }
 

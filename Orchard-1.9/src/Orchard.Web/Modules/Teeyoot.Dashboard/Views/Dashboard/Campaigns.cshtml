@@ -102,26 +102,29 @@
             <div class="campaign-status-filter filter-dropdown">
                 <div class="filter-dropdown-toggle">
                     @T("Show")
-                    @{
-                        var filterBy = Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)).GetValue(0);
-                    }
+                    
                     <span class="filtered-by">
-                        <span data-filterby="@filterBy">
-                            @T(filterBy.ToString().SplitCamelCase())
+                        <span data-filterby="Active">
+                            @T("Active")
                         </span>
                     </span>
                 </div>
                 <div class="filter-dropdown-menu">
                     <ul>
-                        @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
-                        {
-                            <li onclick="filterByStatus(this)" class="filter-dropdown-item">
-                                <span data-filterby="@item">
-                                    @T(item.ToString().SplitCamelCase())
-                                </span>
-                            </li>
-                        }
-                        <li onclick="filterByStatus(this)" class="filter-dropdown-item">
+                        
+                        <li onclick="filterByState(this)" class="filter-dropdown-item">
+                            <span data-filterby="Active">
+                                @T("Active")
+                            </span>
+                        </li>
+
+                        <li onclick="filterByState(this)" class="filter-dropdown-item">
+                            <span data-filterby="Ended">
+                                @T("Ended")
+                            </span>
+                        </li>
+                        
+                        <li onclick="filterByState(this)" class="filter-dropdown-item">
                             <span data-filterby="All">
                                 @T("All")
                             </span>
@@ -137,9 +140,11 @@
             @foreach (var c in Model.Campaigns)
             {
                 var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
+                
+                var state = c.IsActive ? "Active" : "Ended";
 
                 <div data-name="@c.Name.ToLower()" class="campaign-card"
-                     data-campaign-status="@c.Status.Name"
+                     data-campaign-state="@state"
                      data-startdate="@c.StartDate.Ticks"
                      data-reservations="1"
                      data-enddate="@c.EndDate.Ticks"
@@ -261,7 +266,7 @@
             campaigns.detach().appendTo($('.campaigns-list-container > div'));
         }
 
-        var filterByStatus = function (el) {
+        var filterByState = function (el) {
             var status = $(el).find('span');
 
             $('.filtered-by span').text(status.text()).attr('data-filterby', status.attr('data-filterby'));
@@ -271,7 +276,7 @@
             } else {
                 $('.campaign-card').each(function (index, el) {
                     el = $(el);
-                    if (el.attr('data-campaign-status') !== status.attr('data-filterby')) {
+                    if (el.attr('data-campaign-state') !== status.attr('data-filterby')) {
                         el.addClass('hidden');
                     } else if (el.hasClass('hidden')) {
                         el.removeClass('hidden');
@@ -295,7 +300,7 @@
         $(document).ready(function () {
             var statusFilter = document.getElementsByClassName('filtered-by');
             var sortBy = document.getElementsByClassName('sort-by');
-            filterByStatus(statusFilter);
+            filterByState(statusFilter);
             sortCampaignList(sortBy);
         });
 

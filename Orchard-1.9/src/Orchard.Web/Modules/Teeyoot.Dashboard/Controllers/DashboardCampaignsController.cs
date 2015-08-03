@@ -89,6 +89,7 @@ namespace Teeyoot.Dashboard.Controllers
                     Sold = c.ProductCountSold,
                     StartDate = c.StartDate,
                     Status = c.CampaignStatusRecord,
+                    IsActive = c.IsActive,
                     ShowBack = c.BackSideByDefault,
                     FirstProductId = c.Products[0].Id,
                     Profit = _orderService.GetProductsOrderedOfCampaign(c.Id)

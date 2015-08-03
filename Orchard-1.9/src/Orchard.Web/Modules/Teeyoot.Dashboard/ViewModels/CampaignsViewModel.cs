@@ -43,6 +43,8 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public CampaignStatusRecord Status { get; set; }
 
+        public bool IsActive { get; set; }
+
         public bool ShowBack { get; set; }
     }
 

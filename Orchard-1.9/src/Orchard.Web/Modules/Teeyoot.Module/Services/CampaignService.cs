@@ -128,7 +128,9 @@ namespace Teeyoot.Module.Services
                     ProductCountSold = 0,
                     TeeyootUserId = userId,
                     Title = data.CampaignTitle,
-                    CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Active.ToString())
+                    IsActive = true,
+                    IsApproved = false,
+                    CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Created.ToString())
                 };
                 _campaignRepository.Create(newCampaign);
 
@@ -242,14 +244,16 @@ namespace Teeyoot.Module.Services
         {
             var campaigns = _campaignRepository
                                 .Table
-                                .Where(c => c.EndDate < DateTime.UtcNow && c.CampaignStatusRecord.Name == CampaignStatus.Active.ToString())
+                                .Where(c => c.EndDate < DateTime.UtcNow && c.IsActive)
                                 .ToList();
 
             foreach (var c in campaigns)
             {
-                c.CampaignStatusRecord = _statusRepository
-                                            .Table
-                                            .First(s => s.Name == CampaignStatus.Ended.ToString());
+                //c.CampaignStatusRecord = _statusRepository
+                //                            .Table
+                //                            .First(s => s.Name == CampaignStatus.Ended.ToString());
+
+                c.IsActive = false;
                 _campaignRepository.Update(c);
 
                 var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
