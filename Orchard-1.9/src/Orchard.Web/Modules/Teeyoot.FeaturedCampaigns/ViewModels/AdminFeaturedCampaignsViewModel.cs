@@ -8,16 +8,30 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
 {
     public class AdminFeaturedCampaignsViewModel
     {
-        public Dictionary<CampaignRecord, int> AllInFeatured { get; set; }
-
-        public List<int> Color { get; set; }
+        public FeaturedCampaignViewModel[] Campaigns { get; set; }
 
         public dynamic Pager { get; set; }
 
         public int StartedIndex { get; set; }
+    }
 
-        //public Dictionary<CampaignRecord, int> CampaignsFromOrderForDay { get; set; }
+    public class FeaturedCampaignViewModel
+    {
+        public CampaignViewModel Campaign { get; set; }
 
-        //public List<CampaignRecord> OtherCampaigns { get; set; }
+        public int Last24HoursSold { get; set; }
+    }
+
+    public class CampaignViewModel
+    {
+        public int Id { get; set; }
+
+        public bool IsFeatured { get; set; }
+
+        public int Sold { get; set; }
+
+        public int Goal { get; set; }
+
+        public string Title { get; set; }
     }
 }

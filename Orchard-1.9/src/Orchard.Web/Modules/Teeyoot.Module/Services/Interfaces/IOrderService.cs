@@ -12,6 +12,8 @@ namespace Teeyoot.Module.Services
 {
     public interface IOrderService : IDependency
     {
+        IQueryable<OrderRecord> GetAllOrders();
+
         OrderRecord GetOrderById(int id);
 
         OrderRecord GetOrderByPublicId(string id);
@@ -29,6 +31,8 @@ namespace Teeyoot.Module.Services
         IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaigns(int[] ids);
 
         IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId);
+
+        IQueryable<LinkOrderCampaignProductRecord> GetAllOrderedProducts();
 
         void DeleteOrder(int orderId);
 

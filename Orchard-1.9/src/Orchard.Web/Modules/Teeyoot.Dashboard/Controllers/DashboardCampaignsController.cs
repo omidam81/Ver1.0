@@ -74,6 +74,38 @@ namespace Teeyoot.Dashboard.Controllers
 
         private void FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
         {
+
+
+            //var campaignSummaries = campaignsQuery
+            //    .GroupJoin(_campaignService.GetAllCampaignProducts(),
+            //        c => c.Id,
+            //        p => p.CampaignRecord_Id,
+            //        (Campaign, Products) => new { Campaign, Products })
+            //    .GroupJoin(_orderService.GetAllOrderedProducts(),
+            //        c => c.Campaign.Id,
+            //        p => p.CampaignProductRecord.CampaignRecord_Id,
+            //        (c, p) => new CampaignSummary
+            //            {
+            //                Alias = c.Campaign.Alias,
+            //                EndDate = c.Campaign.EndDate,
+            //                Goal = c.Campaign.ProductCountGoal,
+            //                Id = c.Campaign.Id,
+            //                Name = c.Campaign.Title,
+            //                Sold = c.Campaign.ProductCountSold,
+            //                StartDate = c.Campaign.StartDate,
+            //                Status = c.Campaign.CampaignStatusRecord,
+            //                IsActive = c.Campaign.IsActive,
+            //                ShowBack = c.Campaign.BackSideByDefault,
+            //                //FirstProductId = c.Products.Count() > 0 ? c.Products.First().Id : 0,
+            //                //Profit = p.Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
+            //                //          .Sum(entry => (int?)entry.Profit) ?? 0
+            //            })
+            //    .OrderBy(c => c.StartDate)
+            //    .ToArray();
+
+            //model.Campaigns = campaignSummaries;
+
+
             var campaignSummaries = new List<CampaignSummary>();
             var campaigns = campaignsQuery.OrderBy(c => c.StartDate).ToList();
 
@@ -97,7 +129,7 @@ namespace Teeyoot.Dashboard.Controllers
                                         .Sum(entry => (int?)entry.Profit) ?? 0
                 });
             }
-            model.Campaigns = campaignSummaries;
+            model.Campaigns = campaignSummaries.ToArray();
         }
 
         private void FillOverviews(CampaignsViewModel model, IQueryable<LinkOrderCampaignProductRecord> productsOrderedQuery, IQueryable<CampaignRecord> campaignsQuery)

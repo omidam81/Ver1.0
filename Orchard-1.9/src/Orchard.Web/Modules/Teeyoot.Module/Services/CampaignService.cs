@@ -295,5 +295,11 @@ namespace Teeyoot.Module.Services
             }
             _campaignRepository.Flush();
         }
+
+
+        public IQueryable<CampaignProductRecord> GetAllCampaignProducts()
+        {
+            return _campProdRepository.Table;
+        }
     }
 }
