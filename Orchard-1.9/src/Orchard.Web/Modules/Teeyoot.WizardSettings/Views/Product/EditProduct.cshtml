@@ -2,12 +2,18 @@
 @{
     Layout.Title = Model.Id == null ? T("Add New Product") : T("Edit Product");
 
+    Style.Require("jQueryUI");
     Style.Include("multi-select/css/multi-select.css");
     Style.Include("datatables/css/jquery.dataTables.min.css");
+    Style.Include("WizardSettings.css");
 
     Script.Require("jQuery");
+    Script.Require("jQueryUI_Dialog");
+    Script.Require("jQueryUI_Resizable");
+    Script.Include("jquery.flip.js");
     Script.Include("jquery.multi-select.js");
     Script.Include("jquery.dataTables.min.js");
+    Script.Include("edit-printable-area.js");
 }
 
 <div class="manage">
@@ -267,6 +273,7 @@
         <button type="submit" class="primaryAction">Save</button>
         <a id="cancel" class="button" href="@Url.Action("Index", "Product")">Cancel</a>
     </fieldset>
+    @Html.Partial("Product/SetPrintableArea", Model, ViewData)
 }
 
 @using (Script.Foot())

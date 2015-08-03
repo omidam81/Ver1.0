@@ -19,3 +19,67 @@ h1 {
     width: 33%;
     border: 1px solid #eaeaea;
 }
+
+
+#set-printable-area .image {
+    width:530px;
+    height:630px;
+}
+#set-printable-area .params{
+    position: absolute;
+    top: 0;
+    left: 530px;
+    width:150px
+}
+#set-printable-area input[type=text]{
+    width: 100px;
+}
+.flip-button {
+    padding: 0.5rem 1.4rem;
+    line-height: 1.4rem;
+    border: 1px solid #6c7478;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 100px 100px 100px 100px;
+    height: 60px;
+    width: 60px;
+}
+.flip-button-active {
+    background: #6c7478;
+    color: white;
+}
+#card, #card .front, #card .back {
+    width:680px;
+}
+.flip-buttons {
+    text-align:center;
+}
+.area-design{
+    position:absolute;
+    background-color: rgba(0,0,0,0.4);
+    cursor:pointer;
+}
+.area-design.selected {
+    border: 1px dashed #428BCA;
+}
+#card .selected .ui-resizable-handle {
+    background-color: #FFF;
+    border: 2px solid #428BCA;
+    height: 10px;
+    width: 10px;
+}
+#card .buttons {
+    margin-top: 10px;
+}
+.dialog-printable-area .ui-dialog-titlebar{
+    display: none;
+}
+.chestline {
+    position:absolute;
+    left:9%;
+    width: 60%;
+    border-top: solid #428BCA 1px;
+    height:0;
+}

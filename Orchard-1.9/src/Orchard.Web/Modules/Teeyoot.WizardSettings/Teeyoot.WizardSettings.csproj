@@ -68,6 +68,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\edit-printable-area.js" />
+    <Content Include="Scripts\jquery.flip.js" />
     <Content Include="Styles\datatables\css\jquery.dataTables.css" />
     <Content Include="Styles\datatables\css\jquery.dataTables.min.css" />
     <Content Include="Styles\datatables\css\jquery.dataTables_themeroller.css" />
@@ -179,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\EditProduct.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\SetPrintableArea.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

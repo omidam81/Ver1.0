@@ -1,0 +1,62 @@
+﻿@model Teeyoot.WizardSettings.ViewModels.ProductViewModel
+<div id="set-printable-area" style="display: none;">
+    <div id="card">
+        <div class="front">
+            <div class="image">
+                <div class="area-design"></div>
+                <div class="chestline"></div>
+            </div>
+            <div class="flip-buttons" style="margin-bottom: -2%;">
+                <div class="flip-button flip-button-active">
+                    <span style="position: absolute; font-weight: 300; margin-left: -17px; margin-top: 11px;">Front</span>
+                </div>
+                <div class="flip-button">
+                    <span style="position: absolute; font-weight: 300; margin-left: -14px; margin-top: 11px;">Back</span>
+                </div>
+            </div>
+            <div class="params">
+                <fieldset>
+                    <label>Width (cm)</label>
+                    <input class="width" type="text" name="width" /><input type="checkbox" name="lock-w-f" class="lock-w" />Lock
+                    <label>Height (cm)</label>
+                    <input class="height" type="text" name="height" /><input type="checkbox" name="lock-h-f" class="lock-h" />Lock
+                    <label>Chest line</label>
+                    <input class="area-chest" type="text" name="chest" /><br />
+                    <div class="buttons">
+                        <button type="button" class="save primaryAction">Save</button>
+                        <button type="button" class="docancel primaryAction">Cancel</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="back">
+            <div class="image">
+                <div class="area-design"></div>
+                <div class="chestline"></div>
+            </div>
+            <div class="flip-buttons" style="margin-bottom: -2%;">
+                <div class="flip-button">
+                    <span style="position: absolute; font-weight: 300; margin-left: -17px; margin-top: 11px;">Front</span>
+                </div>
+                <div class="flip-button flip-button-active">
+                    <span style="position: absolute; font-weight: 300; margin-left: -14px; margin-top: 11px;">Back</span>
+                </div>
+            </div>
+            <div class="params">
+                <fieldset>
+                    <label>Width (cm)</label>
+                    <input class="width" type="text" name="width-b" /><input type="checkbox" name="lock-w-b" class="lock-w" />Lock
+                    <label>Height (cm)</label>
+                    <input class="height" type="text" name="height-b" /><input type="checkbox" name="lock-h-b" class="lock-h" />Lock
+                    <label>Chest line</label>
+                    <input class="area-chest" type="text" name="chest" />
+                    <div class="buttons">
+                        <button type="button" class="save primaryAction">Save</button>
+                        <button type="button" class="docancel primaryAction">Cancel</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+</div>
