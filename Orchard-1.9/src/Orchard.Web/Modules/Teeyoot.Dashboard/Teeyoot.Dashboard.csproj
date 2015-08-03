@@ -47,8 +47,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MailChimp">
+    <Reference Include="MailChimp, Version=1.1.75.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\MailChimp.NET.1.1.75.0\lib\net35\MailChimp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mandrill.net">
+      <HintPath>..\..\..\packages\Mandrill.net.1.0.1\lib\net45\Mandrill.net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

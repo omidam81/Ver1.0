@@ -17,6 +17,8 @@ using System.Web.Mvc;
 using Teeyoot.Messaging.Models;
 using Teeyoot.Messaging.Services;
 using Teeyoot.Messaging.ViewModels;
+using Mandrill;
+using Mandrill.Model;
 
 
 using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
