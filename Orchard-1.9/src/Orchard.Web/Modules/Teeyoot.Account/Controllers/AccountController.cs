@@ -397,7 +397,7 @@ namespace Teeyoot.Account.Controllers
 
             if (!validate)
             {
-                TempData[RegistrationValidationSummaryKey] = validationSummary;
+                TempData[ResetPasswordValidationSummaryKey] = validationSummary;
             }
 
             return validate;
