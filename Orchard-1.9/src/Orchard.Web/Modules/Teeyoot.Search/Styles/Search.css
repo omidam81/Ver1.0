@@ -100,6 +100,10 @@
     background-color: #ffffff !important;
 }
 
+.cell {
+    padding-left: 0 !important;
+}
+
 .tee-previewSearch {
     width: 22% !important;
     margin-top: 10px;
@@ -109,7 +113,7 @@
     height: auto;
     padding-top: 15px;
     padding-right: 0px;
-    padding-left: 0px;
+    padding-left: 0px !important;
 }
 
 .tee-previewSearch:nth-child(3) {
@@ -118,7 +122,7 @@
 }
 
 .tee-previewSearch:nth-child(4) {
-    padding-left: 10px !important;
+    padding-left: 0px !important;
 }
 .tee-previewSearch:nth-child(4n) {
     margin-right: 0 !important;
