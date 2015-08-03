@@ -245,6 +245,7 @@ namespace Teeyoot.Module.Controllers
             try
             {
                 _orderService.DeleteOrder(orderId);
+                //TODO: eugene: mail customer if the order was cancelled
                 return Redirect("/");
             }
             catch(Exception ex)

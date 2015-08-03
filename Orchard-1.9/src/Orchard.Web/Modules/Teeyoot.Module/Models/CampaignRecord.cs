@@ -39,6 +39,10 @@ namespace Teeyoot.Module.Models
 
         public virtual bool IsFeatured { get; set; }
 
+        public virtual bool IsActive { get; set; }
+
+        public virtual bool IsApproved { get; set; }
+
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
         public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; } 

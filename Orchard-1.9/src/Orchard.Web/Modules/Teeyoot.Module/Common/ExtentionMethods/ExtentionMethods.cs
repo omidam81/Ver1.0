@@ -20,7 +20,7 @@ namespace Teeyoot.Module.Common.ExtentionMethods
                 case OverviewType.Active:
                     return query
                             .Where(p => campaignsQuery
-                                .Where(c => c.CampaignStatusRecord.Name == CampaignStatus.Active.ToString())
+                                .Where(c => c.IsActive)
                                 .Select(c => c.Id).Contains(p.CampaignProductRecord.CampaignRecord_Id));
                 case OverviewType.Today:
                     var nextDay = today.AddDays(1);
