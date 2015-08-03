@@ -167,7 +167,7 @@
                             @if (!c.IsActive)
                             {
                                 <div>
-                                    <a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
+                                    <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
                                         <i class="fa fa-times"></i>
                                     </a>
                                 </div>

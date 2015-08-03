@@ -288,5 +288,12 @@ namespace Teeyoot.Dashboard.Controllers
                             {"action", "Index"}                           
                         });
         }
+
+        public ActionResult DeleteCampaign(int id)
+        {
+
+
+            return RedirectToAction("Campaigns");
+        }
     }
 }
