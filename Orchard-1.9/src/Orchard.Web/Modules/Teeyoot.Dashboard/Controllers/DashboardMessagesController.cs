@@ -20,15 +20,38 @@ namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-        
+
         // GET: Message
         public ActionResult Messages()
         {
             string currentUser = Services.WorkContext.CurrentUser.Email;
             var user = _membershipService.GetUser(currentUser);
             var campaigns = _campaignService.GetCampaignsOfUser(user.Id).ToList();
-            var model = new MessagesIndexViewModel() { };
-            model.Campaigns = campaigns;
+            List<MessagesIndexViewModel> listModel = new List<MessagesIndexViewModel>();
+            foreach (var item in campaigns)
+            {
+                var tempModel = new MessagesIndexViewModel() { };
+                if (_messageService.GetLatestMessageDateForCampaign(item.Id).Day > DateTime.UtcNow.Day) 
+                {
+                    tempModel.LastSend = "Never";
+                }
+                else
+                {
+                    if (DateTime.UtcNow.Day - _messageService.GetLatestMessageDateForCampaign(item.Id).Day == 0)
+                    {
+                        tempModel.LastSend = "Today";
+                    }
+                    else
+                    {
+                        tempModel.LastSend = (DateTime.UtcNow.Day - _messageService.GetLatestMessageDateForCampaign(item.Id).Day).ToString() + " days ago";
+                    }
+                }
+
+                tempModel.Campaign = item;
+                listModel.Add(tempModel);
+
+            }
+            IEnumerable<MessagesIndexViewModel> model = listModel;
             return View(model);
         }
 
@@ -37,12 +60,14 @@ namespace Teeyoot.Dashboard.Controllers
         {
             MessageContentViewModel model = new MessageContentViewModel() { };
             model.CampaignId = campaignId;
-            model.ProductId = _campaignService.GetCampaignById(campaignId).Products[0].Id;
+            var campaign = _campaignService.GetCampaignById(campaignId);
+            model.ProductId = campaign.Products[0].Id;
+            model.CampaignTitle = campaign.Title;
             return View(model);
         }
 
 
-        public void CreateAndSendMessage(MessageContentViewModel m,  MailChimpManager mc, MailChimpSettingsPart record, string culture = "en", int campaignId = 0)
+        public void CreateAndSendMessage(MessageContentViewModel m, MailChimpManager mc, MailChimpSettingsPart record, string culture = "en", int campaignId = 0)
         {
             CampaignCreateOptions options = new CampaignCreateOptions() { };
             options.FromEmail = m.From;
@@ -66,16 +91,16 @@ namespace Teeyoot.Dashboard.Controllers
             }
         }
 
-        public ActionResult SendMessage(MessageContentViewModel m, int campaignId = 0 ,  string culture = "en")
+        public ActionResult SendMessage(MessageContentViewModel m, int campaignId = 0, string culture = "en")
         {
             if (TryUpdateModel(m))
             {
                 MailChimpSettingsPart record = _settingsService.GetAllSettings().List().Where(x => x.Culture == culture).FirstOrDefault();
                 MailChimpManager mc = new MailChimpManager(record.ApiKey);
                 AddUserToMailChimpList(m.Email);
-                Thread deleteCampaign = new Thread(delegate(){DeleteSentCampaigns(mc);});
+                Thread deleteCampaign = new Thread(delegate() { DeleteSentCampaigns(mc); });
                 deleteCampaign.Start();
-                Thread crAndSend = new Thread(delegate() { CreateAndSendMessage(m,mc, record); });
+                Thread crAndSend = new Thread(delegate() { CreateAndSendMessage(m, mc, record); });
                 crAndSend.Start();
                 ViewBag.Status = "Your message has been sent!";
                 return View("Messages", ViewBag);
@@ -91,17 +116,17 @@ namespace Teeyoot.Dashboard.Controllers
             CampaignListResult sentCampaigns = mc.GetCampaigns(campaignFilter);
             foreach (var campaign in sentCampaigns.Data)
             {
-                if(campaign.Title != "Welcome")
-                mc.DeleteCampaign(campaign.Id);
+                if (campaign.Title != "Welcome")
+                    mc.DeleteCampaign(campaign.Id);
             }
-            
+
         }
-        
-        
-        public int SendMessageToCampaignBuyers(int campaignId , string culture)
+
+
+        public int SendMessageToCampaignBuyers(int campaignId, string culture)
         {
 
-            var record = _settingsService.GetAllSettings().List().Where( x => x.Culture == culture).FirstOrDefault();
+            var record = _settingsService.GetAllSettings().List().Where(x => x.Culture == culture).FirstOrDefault();
             MailChimpManager mc = new MailChimpManager(record.ApiKey);
 
             List<LinkOrderCampaignProductRecord> ordersList = _orderService.GetProductsOrderedOfCampaign(campaignId).ToList();
@@ -111,12 +136,12 @@ namespace Teeyoot.Dashboard.Controllers
                 emails.Add(item.OrderRecord.Email);
             }
             CampaignActionResult response = mc.SendCampaignTest(record.AllBuyersCampaignId, emails, "Text");
-                if (!response.Complete)
-                {
-                    return -1;
-                }
-                return 1;
-            
+            if (!response.Complete)
+            {
+                return -1;
+            }
+            return 1;
+
         }
 
 
@@ -124,11 +149,11 @@ namespace Teeyoot.Dashboard.Controllers
         {
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             MailChimpManager mc = new MailChimpManager(record.ApiKey);
-            EmailParameter emailParam = new EmailParameter(){};
+            EmailParameter emailParam = new EmailParameter() { };
             MergeVar mergeVar = new MergeVar() { };
             mergeVar.Add("FNAME", firstName);
-            mergeVar.Add("LNAME",lastName);
-            mergeVar.Add("CAMPAIGNID", "#"+campaignId+"#");
+            mergeVar.Add("LNAME", lastName);
+            mergeVar.Add("CAMPAIGNID", "#" + campaignId + "#");
             mergeVar.Add("CITY", city);
             mergeVar.Add("STATE", state);
             mergeVar.Add("COUNTRY", country);
@@ -145,13 +170,13 @@ namespace Teeyoot.Dashboard.Controllers
 
         public void SendWelcomeLetter(string userEmail, string culture)
         {
-            var record = _settingsService.GetAllSettings().List().Where( x => x.Culture == culture).FirstOrDefault();
+            var record = _settingsService.GetAllSettings().List().Where(x => x.Culture == culture).FirstOrDefault();
             MailChimpManager mc = new MailChimpManager(record.ApiKey);
             List<string> emails = new List<string>();
             emails.Add(userEmail);
-            
+
             CampaignActionResult response = mc.SendCampaignTest(record.WelcomeCampaignId, emails, "Html");
-            
+
         }
 
         public ActionResult SendMessageUsingMandrill(MessageContentViewModel model)
@@ -175,9 +200,10 @@ namespace Teeyoot.Dashboard.Controllers
                 }
                 message.To = emails;
                 message.Html = TemplateContent.Code;
-                _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.Now, model.CampaignId);
-                //var res = SendTmplMessage(api, message);
-                model.Status = "Your message has been sent!";
+                _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.UtcNow, model.CampaignId);
+                var res = SendTmplMessage(api, message);
+                //var viewModel = new MessagesIndexViewModel(){};
+                //viewModel.InfoMessage = "Your message has been sent!";
                 return RedirectToAction("Messages");
             }
             return View("CreateMessage", model);
@@ -213,9 +239,9 @@ namespace Teeyoot.Dashboard.Controllers
             message.AddRcptMergeVars(record.OrderRecord.Email, "PRODUCTS", products);
         }
 
-         static string SendTmplMessage(MandrillApi mAPI, MandrillMessage message)
+        static string SendTmplMessage(MandrillApi mAPI, MandrillMessage message)
         {
-             //var message = new MandrillMessage();
+            //var message = new MandrillMessage();
             //message.FromEmail = "no-reply@example.com";
             //message.AddTo("kiss-stu@mail.ru");
             ////supports merge var content as string
@@ -246,7 +272,7 @@ namespace Teeyoot.Dashboard.Controllers
             //    Subject = "test",
             //    //Tags = new List<string>() { "test-send-template", "mandrill-net", "handlebars" },
             //    MergeLanguage = MandrillMessageMergeLanguage.Handlebars, //NOTE: обязательно, эта штука позволяет интерпретировать переменные с фигурными скобками
-                
+
             //    To = emails,
             //    Html = TemplateContent.Code,
             //    Text = "this is a text inside message",
@@ -314,7 +340,7 @@ namespace Teeyoot.Dashboard.Controllers
             //message.AddRcptMergeVars("ik@trunk.net.ua", "STATE", "KYIVSKA OBL");
             //message.AddRcptMergeVars("ik@trunk.net.ua", "COUNTRY", "UKRAINE");
             //message.AddRcptMergeVars("ik@trunk.net.ua", "PRODUCTS", data2);
-            
+
             //var result = await mAPI.Messages.SendTemplateAsync(message, TestTemplateName);
             //var result = await mAPI.Messages.SendAsync(message);
             var result = mAPI.Messages.Send(message);

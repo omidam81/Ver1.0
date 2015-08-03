@@ -330,5 +330,11 @@ namespace Teeyoot.Module.Services
                 return false;
             }
         }
+
+
+        public IQueryable<CampaignProductRecord> GetAllCampaignProducts()
+        {
+            return _campProdRepository.Table;
+        }
     }
 }

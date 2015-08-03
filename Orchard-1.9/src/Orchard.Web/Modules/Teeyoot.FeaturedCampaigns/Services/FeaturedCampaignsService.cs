@@ -22,13 +22,6 @@ namespace Teeyoot.FeaturedCampaigns.Services
             _campaignProductRepository = campaignProductRepository;
         }
 
-        public List<CampaignRecord> GetCampaignsFromAdmin()
-        {
-            var campaignsInFeatured = _campaignRepository.Table.Where(c => c.IsFeatured == true);
-
-            return campaignsInFeatured.ToList() ?? null;
-        }
-
         public List<OrderRecord> GetOrderForOneDay()
         {
             DateTime now = DateTime.UtcNow;
@@ -102,27 +95,5 @@ namespace Teeyoot.FeaturedCampaigns.Services
             return campSelect;
         }
 
-        public IQueryable<CampaignRecord> GetAllCampaigns()
-        {
-            return _campaignRepository.Table.OrderByDescending(c => c.ProductCountSold);
-        }
-
-        public CampaignRecord GetCampaignsById(int id)
-        {
-            return _campaignRepository.Table.Where(c => c.Id == id).FirstOrDefault();
-        }
-
-        public bool UpdateCampaigns(CampaignRecord camp)
-        {
-            try
-            {
-                _campaignRepository.Update(camp);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

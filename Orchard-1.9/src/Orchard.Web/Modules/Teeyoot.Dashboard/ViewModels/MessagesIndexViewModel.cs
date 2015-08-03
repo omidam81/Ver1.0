@@ -9,9 +9,11 @@ namespace Teeyoot.Module.Dashboard.ViewModels
 {
     public class MessagesIndexViewModel
     {
+        public string InfoMessage { get; set; }
+        
         public string LastSend { get; set; }
 
-        public IEnumerable<CampaignRecord> Campaigns { get; set; }
+        public CampaignRecord Campaign { get; set; }
 
 
     }

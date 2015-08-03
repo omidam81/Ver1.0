@@ -17,47 +17,29 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.AllInFeatured != null)
+            @if (Model.Campaigns.Length > 0)
             {
                 int colorIndex = Model.StartedIndex == null ? 0 : Model.StartedIndex;
-                foreach (var camp in Model.AllInFeatured)
+                foreach (var camp in Model.Campaigns)
                 {
-                    string isFeatured = camp.Key.IsFeatured ? "Yes" : "No";
-                    string value = camp.Value > 0 ? camp.Value.ToString() : "-";
-                    string color = "#FFFFFF";
-                    switch (Model.Color[colorIndex])
-                    {
-                        case 0:
-                            {
-                                color = colorOther;
-                                break;
-                            }
-                        case 1:
-                            {
-                                color = colorTOP;
-                                break;
-                            }
-                        case 2:
-                            {
-                                color = colorAdmin;
-                                break;
-                            }
-                    }
-                    colorIndex++;
+                    var isFeatured = camp.Campaign.IsFeatured ? "Yes" : "No";
+                    var value = camp.Last24HoursSold > 0 ? camp.Last24HoursSold.ToString() : "-";
 
+                    var color = camp.Campaign.IsFeatured ? colorTOP : (camp.Last24HoursSold > 0 ? colorAdmin : colorOther);
+                    
                     <tr style="background-color: @color">
                         <td>@T(isFeatured)</td>
                         <td>@value</td>
-                        <td>@camp.Key.ProductCountSold / @camp.Key.ProductCountGoal</td>
-                        <td>@camp.Key.Title</td>
+                        <td>@camp.Campaign.Sold / @camp.Campaign.Goal</td>
+                        <td>@camp.Campaign.Title</td>
                         <td>
-                            @if (camp.Key.IsFeatured)
+                            @if (camp.Campaign.IsFeatured)
                             {
-                                <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Key.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
+                                <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
                             }
                             else
                             {
-                                <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Key.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
+                                <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
                             }
                         </td>
                     </tr>
