@@ -8,6 +8,10 @@ namespace Teeyoot.Module.ViewModels
 {
     public class OrderTrackingViewModel
     {
+        public int OrderId { get; set; }
+
+        public string OrderPublicId { get; set; }
+
         public OrderStatusRecord Status { get; set; }
 
         public string CampaignName { get; set; }
