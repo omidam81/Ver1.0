@@ -393,7 +393,9 @@ namespace Teeyoot.Module.Controllers
 
         private void CreateImagesForCampaignProducts(CampaignRecord campaign)
         {
-            var data = new JavaScriptSerializer().Deserialize<DesignInfo>(campaign.Design);
+            var serializer = new JavaScriptSerializer();
+            serializer.MaxJsonLength = int.MaxValue;
+            var data = serializer.Deserialize<DesignInfo>(campaign.Design);
 
             foreach (var p in campaign.Products)
             {
