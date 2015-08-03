@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Teeyoot.Module.Models.CampaignRecord>
+
+@{
     Style.Include("Message.css");
 }
 <div style="height:100%; margin-bottom:20%">
@@ -20,17 +22,19 @@
                 <div class=" row"></div>
             </div>
         </div>
+        @foreach (var campaign in Model) { 
         <div class="divRow" >
-            <div class="row"><img style=" width: 40%;margin-left:9%" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png"></div>
-            <div id="campaignName" class="row">Campaign</div>
-            <div class="row">10</div>
+            <div class="row"><img style=" width: 40%;margin-left:9%" src='/Media/campaigns/@campaign.Id/@campaign.Products[0].Id/normal/@("front.png")'></div>
+            <div id="campaignName" class="row">@campaign.Title</div>
+            <div class="row">@campaign.ProductCountSold</div>
             <div class="row">3 days ago</div>
             <div class="row">2/3</div>
             <div style="align-content:center" class="row">
                 <div>                   
-                    <a href="@Url.Action("CreateMessage")"><button type="button" class="t-button">@T("Message")</button></a>                  
+                    <a href="@Url.Action("CreateMessage", new {campaignId = campaign.Id})"><button type="button" class="t-button">@T("Message")</button></a>                  
                 </div>
             </div>
         </div>
+        }
     </div>
 </div>
