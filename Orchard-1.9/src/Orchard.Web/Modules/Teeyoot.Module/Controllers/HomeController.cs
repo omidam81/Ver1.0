@@ -113,8 +113,11 @@ namespace Teeyoot.Module.Controllers
                 order.IsActive = true;
 
                 _orderService.UpdateOrder(order, OrderStatus.Reserved);
-                PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
-                promotion.Redeemed = promotion.Redeemed + 1;
+                if (collection["PromoId"] != null)
+                {
+                    PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
+                    promotion.Redeemed = promotion.Redeemed + 1;
+                }
                 var campaign = _campaignService.GetCampaignById(campaignId);
                 campaign.ProductCountSold += order.Products.Sum(p => p.Count);
                 _campaignService.UpdateCampaign(campaign);
