@@ -104,8 +104,8 @@
     width: 22% !important;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 2% !important;
-    margin-right: 1% !important;
+    /*margin-left: 2% !important;*/
+    margin-right: 4% !important;
     height: auto;
     padding-top: 15px;
     padding-right: 0px;
@@ -119,6 +119,9 @@
 
 .tee-previewSearch:nth-child(4) {
     padding-left: 10px !important;
+}
+.tee-previewSearch:nth-child(4n) {
+    margin-right: 0 !important;
 }
 
 .categories-row {
