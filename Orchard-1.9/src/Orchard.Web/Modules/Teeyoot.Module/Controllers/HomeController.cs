@@ -218,6 +218,8 @@ namespace Teeyoot.Module.Controllers
             }
 
             var model = new OrderTrackingViewModel();
+            model.OrderId = order.Id;
+            model.OrderPublicId = orderId;
             model.Status = order.OrderStatusRecord;
             model.Products = order.Products.ToArray();
             model.ShippingTo = new string[] {
@@ -233,6 +235,12 @@ namespace Teeyoot.Module.Controllers
             model.CampaignAlias = campaign.Alias;
 
             return View(model);
+        }
+
+        public ActionResult CancelOrder(int orderId)
+        {
+            var order = _orderService.GetActiveOrderById(orderId);
+            return RedirectToAction("OrderTracking", new { orderId = order.OrderPublicId });
         }
     }
 }
