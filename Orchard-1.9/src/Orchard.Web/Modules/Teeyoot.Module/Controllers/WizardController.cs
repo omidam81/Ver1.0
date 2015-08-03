@@ -46,30 +46,34 @@ namespace Teeyoot.Module.Controllers
         public ILogger Logger { get; set; }
 
         // GET: Wizard
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var cost = _costService.GetCost();
+            AdminCostViewModel costViewModel = new AdminCostViewModel();
             if (cost != null)
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel
-                {
-                    AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(),
-                    DTGPrintPrice = cost.DTGPrintPrice.ToString(),
-                    FirstScreenCost = cost.FirstScreenCost.ToString(),
-                    InkCost = cost.InkCost.ToString(),
-                    LabourCost = cost.LabourCost.ToString(),
-                    LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint,
-                    LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint,
-                    PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(),
-                    PrintsPerLitre = cost.PrintsPerLitre
-                };
-
+                costViewModel.AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString();
+                costViewModel.DTGPrintPrice = cost.DTGPrintPrice.ToString();
+                costViewModel.FirstScreenCost = cost.FirstScreenCost.ToString();
+                costViewModel.InkCost = cost.InkCost.ToString();
+                costViewModel.LabourCost = cost.LabourCost.ToString();
+                costViewModel.LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint;
+                costViewModel.LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint;
+                costViewModel.PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString();
+                costViewModel.PrintsPerLitre = cost.PrintsPerLitre;
                 costViewModel = ReplaceAllCost(costViewModel);
-
-                return View(costViewModel);
             }
 
-            return View();
+            if (id != null && id > 0)
+            {
+                int campaignId = (int)id;
+                var campaign = _campaignService.GetCampaignById(campaignId);
+                var products = _campaignService.GetProductsOfCampaign(campaignId).ToList();
+                costViewModel.Campaign = campaign;
+                costViewModel.Products = products;
+            }
+
+            return View(costViewModel);
         }
 
         [HttpPost]
@@ -116,9 +120,9 @@ namespace Teeyoot.Module.Controllers
 
             try
             {
-                var campaign = _campaignService.CreateNewCampiagn(data);                
+                var campaign = _campaignService.CreateNewCampiagn(data);
                 CreateImagesForCampaignProducts(campaign);
-               
+
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             catch (Exception e)
@@ -218,7 +222,7 @@ namespace Teeyoot.Module.Controllers
                 name = p.Name,
                 headline = p.ProductHeadlineRecord.Name,
                 colors_available = p.ColorsAvailable.Select(c => c.ProductColorRecord.Id).ToArray(),
-                list_of_sizes = p.SizesAvailable.Count > 0 ? 
+                list_of_sizes = p.SizesAvailable.Count > 0 ?
                     p.SizesAvailable.First().ProductSizeRecord.SizeCodeRecord.Name + " - " + p.SizesAvailable.Last().ProductSizeRecord.SizeCodeRecord.Name :
                     "",
                 prices = p.ColorsAvailable.Select(c => new ProductPriceViewModel
@@ -234,7 +238,7 @@ namespace Teeyoot.Module.Controllers
         public async Task<JsonResult> GetProductsAsync()
         {
             var model = new WizardProductsViewModel();
-          
+
             var colorTask = GetColorViewModelsAsync();
             var productTask = GetProductViewModelsAsync();
             var groupTask = GetProductGroupViewModelsAsync();
@@ -257,7 +261,8 @@ namespace Teeyoot.Module.Controllers
         private Task<ColorViewModel[]> GetColorViewModelsAsync()
         {
             var tcs = new TaskCompletionSource<ColorViewModel[]>();
-            Task.Run(() => {
+            Task.Run(() =>
+            {
                 try
                 {
                     lock (_locker)
@@ -272,7 +277,7 @@ namespace Teeyoot.Module.Controllers
                         tcs.SetResult(result);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     tcs.SetException(ex);
                 }
@@ -303,7 +308,7 @@ namespace Teeyoot.Module.Controllers
                             }).ToArray();
 
                         tcs.SetResult(result);
-                    }                   
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -375,7 +380,7 @@ namespace Teeyoot.Module.Controllers
                             }).ToArray();
 
                         tcs.SetResult(images);
-                    }                  
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -6,8 +6,8 @@
 
 <div class="dashboard-section-title">
     @T("Campaigns")
-<span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
-<span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
 </div>
 
 <div class="box">
@@ -150,12 +150,13 @@
                         <div class="campaign-card-links">
                             <div>
                                 <a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
-                                <i class="fa fa-pencil"></i>
+                                    <i class="fa fa-pencil"></i>
                                 </a>
                             </div>
                             <div>
-                                <a href="#" title="@T("Duplicate")">
-                                    <i class="fa fa-files-o"></i>
+
+                                <a href="@Url.Action("Wizard", "Dashboard", new { id = c.Id })" title="@T("Duplicate")">
+                                <i class="fa fa-files-o"></i>
                                 </a>
                             </div>
                         </div>

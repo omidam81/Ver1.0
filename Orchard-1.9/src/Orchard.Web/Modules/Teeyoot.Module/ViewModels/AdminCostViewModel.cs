@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Teeyoot.Module.Models;
 
 namespace Teeyoot.Module.ViewModels
 {
@@ -34,5 +35,9 @@ namespace Teeyoot.Module.ViewModels
 
         [Required]
         public string DTGPrintPrice { get; set; }
+
+        public CampaignRecord Campaign { get; set; }
+
+        public List<CampaignProductRecord> Products { get; set; }
     }
 }
