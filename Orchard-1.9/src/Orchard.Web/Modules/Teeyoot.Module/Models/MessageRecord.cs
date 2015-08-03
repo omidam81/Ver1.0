@@ -11,7 +11,7 @@ namespace Teeyoot.Module.Models
 
         public virtual string Text { get; set; }
 
-        public virtual string From { get; set; }
+        public virtual string Sender { get; set; }
 
         public virtual DateTime SendDate { get; set; }
 

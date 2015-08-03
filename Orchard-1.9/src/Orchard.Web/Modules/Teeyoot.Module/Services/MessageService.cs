@@ -35,5 +35,18 @@ namespace Teeyoot.Module.Services
         {
            return _messageRepository.Table.Where(m => m.Id == id).FirstOrDefault();
         }
+
+
+        public void AddMessage(int userId, string text, string from, DateTime sendDate)
+        {
+            var message = new MessageRecord()
+            {
+                UserId = userId,
+                Text = text,
+                Sender = from,
+                SendDate = sendDate
+            };
+            _messageRepository.Create(message);
+        }
     }
 }

@@ -886,5 +886,14 @@ namespace Teeyoot.Module
 
             return 40;
         }
+
+        public int UpdateFrom40()
+        {
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("From"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Sender", c => c.WithLength(50)));
+
+            return 41;
+        }
     }
 }

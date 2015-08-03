@@ -14,6 +14,7 @@ using Teeyoot.Module.Models;
 using System.Threading;
 using Mandrill;
 using Mandrill.Model;
+using System;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -155,8 +156,10 @@ namespace Teeyoot.Dashboard.Controllers
         {
             if (TryUpdateModel(model))
             {
-                string API_KEY = "vqu8T5VCRCGYBfFZ_PVYeQ";
-                var api = new MandrillApi(API_KEY);
+                string currentUser = Services.WorkContext.CurrentUser.Email;
+                var user = _membershipService.GetUser(currentUser);
+                var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+                var api = new MandrillApi(record.ApiKey);
                 var message = new MandrillMessage() { };
                 message.FromEmail = model.From;
                 message.Subject = model.Subject;
@@ -170,7 +173,8 @@ namespace Teeyoot.Dashboard.Controllers
                 }
                 message.To = emails;
                 message.Html = TemplateContent.Code;
-                var res = SendTmplMessage(api, message);
+                _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.Now);
+                //var res = SendTmplMessage(api, message);
                 model.Status = "Your message has been sent!";
                 return RedirectToAction("Messages");
             }
