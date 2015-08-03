@@ -426,7 +426,18 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("TranzactionId", c => c.Nullable()));
 
-            return 36;
+            SchemaBuilder.CreateTable(typeof(MessageRecord).Name,
+               table => table
+                   .Column<int>("Id", column => column.PrimaryKey().Identity())
+                   .Column<int>("UserId")
+                   .Column<string>("Text")
+                   .Column<string>("From")
+                   .Column<DateTime>("SendDate")
+           );
+
+            SchemaBuilder.CreateForeignKey("Message_User_Id", "MessageRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+
+            return 37;
         }
 
         public int UpdateFrom2()
@@ -829,6 +840,22 @@ namespace Teeyoot.Module
         {
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("TranzactionId", c => c.Nullable()));
             return 36;
+        }
+
+        public int UpdateFrom36()
+        {
+            SchemaBuilder.CreateTable(typeof(MessageRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("UserId")
+                    .Column<string>("Text")
+                    .Column<string>("From")
+                    .Column<DateTime>("SendDate")
+            );
+
+            SchemaBuilder.CreateForeignKey("Message_User_Id", "MessageRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+
+            return 37;
         }
     }
 }
