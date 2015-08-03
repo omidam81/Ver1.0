@@ -1,0 +1,53 @@
+﻿@model Teeyoot.WizardSettings.ViewModels.ProductSizeViewModel
+@{
+    Layout.Title = T("Edit Product Size");
+}
+
+<h2>@T("Edit Product Size")</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("EditProductSize", "ProductSize"), FormMethod.Post, new {id = "product_size_form"}))
+{
+    @Html.HiddenFor(m => m.Id)
+    <fieldset>
+        <h4>@T("Width")</h4>
+        <hr/>
+        @Html.DropDownListFor(m => m.WidthDimension, Model.SizeMetricDimensions)
+        @Html.TextBoxFor(m => m.Width, new {@class = "text"})
+        <hr/>
+        <h4>@T("Length")</h4>
+        <hr/>
+        @Html.DropDownListFor(m => m.LengthDimension, Model.SizeMetricDimensions)
+        @Html.TextBoxFor(m => m.Length, new {@class = "text"})
+        <hr/>
+        <h4>@T("Sleeve")</h4>
+        <hr/>
+        @Html.DropDownListFor(m => m.SleeveDimension, Model.SizeMetricDimensions)
+        @Html.TextBoxFor(m => m.Sleeve, new {@class = "text"})
+        <hr/>
+        <h4>@T("Size Code")</h4>
+        <hr/>
+        @Html.DropDownListFor(m => m.SelectedSizeCode, new SelectList(Model.SizeCodes, "Id", "Name"), T("Select Size ...").ToString(), new {id = "product_size_codes"})
+    </fieldset>
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "ProductSize")">@T("Cancel")</a>
+    </fieldset>
+}
+
+@using (Script.Foot())
+{
+    <script>
+        $(document).ready(function() {
+            $('#product_size_form').submit(function() {
+                var selectedProductSize = $('#product_size_codes option:selected').val();
+
+                if (!selectedProductSize) {
+                    alert('Please select Size Code.');
+                    return false;
+                }
+
+                return true;
+            });
+        });
+    </script>
+}

@@ -1,0 +1,75 @@
+﻿@model Teeyoot.WizardSettings.ViewModels.ProductSizeIndexViewModel
+@{
+    Layout.Title = T("Product Sizes");
+}
+
+<div class="manage">
+    <a class="button primaryAction" href="@Url.Action("AddProductSize", "ProductSize")">
+        @T("Add New Product Size")
+    </a>
+</div>
+
+<table class="items">
+    <thead>
+    <tr>
+        <td>
+            @T("Size Code")
+        </td>
+        <td>
+            @T("Width (cm)")
+        </td>
+        <td>
+            @T("Length (cm)")
+        </td>
+        <td>
+            @T("Sleeve (cm)")
+        </td>
+        <td>
+            @T("Width (in)")
+        </td>
+        <td>
+            @T("Length (in)")
+        </td>
+        <td>
+            @T("Sleeve (in)")
+        </td>
+        <td>
+            @T("Command")
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var productSize in Model.ProductSizes)
+    {
+        <tr>
+            <td>
+                @productSize.SizeCodeRecord.Name
+            </td>
+            <td>
+                @productSize.WidthCm
+            </td>
+            <td>
+                @productSize.LengthCm
+            </td>
+            <td>
+                @productSize.SleeveCm
+            </td>
+            <td>
+                @productSize.WidthInch
+            </td>
+            <td>
+                @productSize.LengthInch
+            </td>
+            <td>
+                @productSize.SleeveInch
+            </td>
+            <td>
+                <a href="@Url.Action("EditProductSize", "ProductSize", new {productSizeId = productSize.Id})" title="@T("Edit")">@T("Edit")</a>
+                @T(" | ")
+                <a href="@Url.Action("DeleteProductSize", "ProductSize", new {productSizeId = productSize.Id})" itemprop="RemoveUrl">@T("Delete")</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@Display(Model.Pager)

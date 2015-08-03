@@ -109,11 +109,13 @@
   <ItemGroup>
     <Compile Include="Common\EditImageRequest.cs" />
     <Compile Include="Common\GetImageResponse.cs" />
+    <Compile Include="Common\SizeMetricDimension.cs" />
     <Compile Include="Controllers\AdminWizardController.cs" />
     <Compile Include="Controllers\ColourController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductHeadlineController.cs" />
     <Compile Include="Controllers\ProductImageController.cs" />
+    <Compile Include="Controllers\ProductSizeController.cs" />
     <Compile Include="Controllers\ProductStyleController.cs" />
     <Compile Include="Common\ChooseColourFor.cs" />
     <Compile Include="Common\ProductImageSavingResult.cs" />
@@ -125,7 +127,9 @@
     <Compile Include="ViewModels\ProductHeadlineIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductHeadlineViewModel.cs" />
     <Compile Include="ViewModels\ProductIndexViewModel.cs" />
+    <Compile Include="ViewModels\ProductSizeIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductSizeItemViewModel.cs" />
+    <Compile Include="ViewModels\ProductSizeViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleIndexViewModel.cs" />
     <Compile Include="ViewModels\FontViewModel.cs" />
     <Compile Include="ViewModels\ProductStyleViewModel.cs" />
@@ -184,6 +188,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\SetPrintableArea.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProductSize\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProductSize\AddProductSize.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ProductSize\EditProductSize.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

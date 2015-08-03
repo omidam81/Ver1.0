@@ -241,6 +241,108 @@ namespace Teeyoot.WizardSettings
                             {"area", "Teeyoot.WizardSettings"}
                         },
                         new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductSizes",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductSize"},
+                            {"action", "Index"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductSizes/Add",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductSize"},
+                            {"action", "AddProductSize"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductSizes/Edit/{productSizeId}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductSize"},
+                            {"action", "EditProductSize"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductHeadlines",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductHeadline"},
+                            {"action", "Index"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductHeadlines/Add",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductHeadline"},
+                            {"action", "AddProductHeadline"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/ProductHeadlines/Edit/{productHeadlineId}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "ProductHeadline"},
+                            {"action", "EditProductHeadline"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
                 }
             };
         }
