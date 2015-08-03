@@ -47,6 +47,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mandrill.net">
+      <HintPath>..\..\..\packages\Mandrill.net.1.0.1\lib\net45\Mandrill.net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
