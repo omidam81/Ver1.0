@@ -32,9 +32,9 @@ namespace Teeyoot.FeaturedCampaigns.Services
         public List<OrderRecord> GetOrderForOneDay()
         {
             DateTime now = DateTime.UtcNow;
-            DateTime tomorrow = now.AddDays(-1);
+            DateTime yesterday = now.AddDays(-1);
 
-            var ordersFromOneDay = _orderRecordRepository.Table.Where(c => c.Created <= now && c.Created >= tomorrow);
+            var ordersFromOneDay = _orderRecordRepository.Table.Where(c => c.Created <= now && c.Created >= yesterday);
 
             return ordersFromOneDay.ToList() ?? null;
         }
