@@ -116,7 +116,7 @@ namespace Teeyoot.Module.Controllers
                 PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
                 promotion.Redeemed = promotion.Redeemed + 1;
                 var campaign = _campaignService.GetCampaignById(campaignId);
-                campaign.ProductCountSold += order.Products.Sum(p => p.Count);
+                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                 _campaignService.UpdateCampaign(campaign);
 
                 Transaction transaction = result.Target;
@@ -237,10 +237,18 @@ namespace Teeyoot.Module.Controllers
             return View(model);
         }
 
-        public ActionResult CancelOrder(int orderId)
+        public ActionResult CancelOrder(int orderId, string publicId)
         {
-            var order = _orderService.GetActiveOrderById(orderId);
-            return RedirectToAction("OrderTracking", new { orderId = order.OrderPublicId });
+            try
+            {
+                _orderService.DeleteOrder(orderId);
+                return Redirect("/");
+            }
+            catch(Exception ex)
+            {
+                Logger.Error("Error occured when trying to delete an order ---------------> " + ex.ToString());
+                return RedirectToAction("OrderTracking", new { orderId = publicId });
+            }
         }
     }
 }

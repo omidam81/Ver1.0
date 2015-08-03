@@ -17,6 +17,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IRepository<ProductSizeRecord> _sizeRepository;
         private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
+        private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
         private readonly ICampaignService _campaignService;
 
         public OrderService(IRepository<OrderRecord> orderRepository, 
@@ -24,7 +25,8 @@ namespace Teeyoot.Module.Services
                             IRepository<CurrencyRecord> currencyRepository, 
                             ICampaignService campaignService, 
                             IRepository<ProductSizeRecord> sizeRepository,
-                            IRepository<OrderStatusRecord> orderStatusRepository)
+                            IRepository<OrderStatusRecord> orderStatusRepository,
+                            IRepository<OrderHistoryRecord> orderHistoryRepository)
 	    {
             _orderRepository = orderRepository;
             _ocpRepository = ocpRepository;
@@ -32,6 +34,7 @@ namespace Teeyoot.Module.Services
             _campaignService = campaignService;
             _sizeRepository = sizeRepository;
             _orderStatusRepository = orderStatusRepository;
+            _orderHistoryRepository = orderHistoryRepository;
 	    }
 
         public OrderRecord GetOrderById(int id)
@@ -130,6 +133,38 @@ namespace Teeyoot.Module.Services
         {
             order.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(status.ToString("d")));
             _orderRepository.Update(order);   
+        }
+
+        public void DeleteOrder(int orderId)
+        {
+            var order = GetOrderById(orderId);
+
+            // first, reduce product sold count of campaign
+            var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
+            campaign.ProductCountSold -= order.Products.Sum(p => (int?)p.Count) ?? 0;
+            _campaignService.UpdateCampaign(campaign);
+            
+            // second, delete products
+
+            foreach (var p in order.Products.ToList())
+            {
+                _ocpRepository.Delete(p);
+            }
+            _ocpRepository.Flush();
+
+            // third, delete history
+
+            foreach (var e in order.Events.ToList())
+            {
+                _orderHistoryRepository.Delete(e);
+            }
+            _orderHistoryRepository.Flush();
+
+            // fourth, delete order itself
+
+            _orderRepository.Delete(order);
+
+            _orderRepository.Flush();
         }
     }
 }

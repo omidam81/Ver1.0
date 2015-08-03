@@ -30,6 +30,8 @@ namespace Teeyoot.Module.Services
 
         IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId);
 
+        void DeleteOrder(int orderId);
+
         Task<int> GetProfitOfCampaign(int id);
     }
 }

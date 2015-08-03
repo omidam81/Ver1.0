@@ -331,7 +331,7 @@
 <div id="modal_form" style="display:none">
     <h3>@T("Cancel Order") #@Model.OrderPublicId</h3>
     <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
-    <a class="button" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId })">@T("Cancel order")</a>
+    <a class="button" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
     <button id="btn_not_now">@T("Not now")</button>
 </div>
 <div id="overlay"></div>
