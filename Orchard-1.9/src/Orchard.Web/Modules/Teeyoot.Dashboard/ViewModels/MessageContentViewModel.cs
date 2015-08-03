@@ -9,6 +9,8 @@ namespace Teeyoot.Module.Dashboard.ViewModels
 {
     public class MessageContentViewModel
     {
+        public string CampaignTitle { get; set; }
+        
         public int CampaignId { get; set; }
 
         public int ProductId { get; set; }

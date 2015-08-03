@@ -49,5 +49,16 @@ namespace Teeyoot.Module.Services
             };
             _messageRepository.Create(message);
         }
+
+
+        public DateTime GetLatestMessageDateForCampaign(int campaignId)
+        {
+            List<MessageRecord> messages = _messageRepository.Table.Where(m => m.CampaignId == campaignId).ToList();
+            if (messages.Count > 0)
+            {
+                return messages.OrderByDescending(c => c.SendDate).FirstOrDefault().SendDate;
+            }
+            return DateTime.MaxValue;
+        }
     }
 }

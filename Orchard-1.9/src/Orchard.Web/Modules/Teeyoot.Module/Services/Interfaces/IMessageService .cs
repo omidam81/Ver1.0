@@ -17,6 +17,8 @@ namespace Teeyoot.Module.Services
 
         void AddMessage(int userId, string text, string from, DateTime sendDate, int campaignId);
 
+        DateTime GetLatestMessageDateForCampaign (int campaignId);
+
     }
 
     
