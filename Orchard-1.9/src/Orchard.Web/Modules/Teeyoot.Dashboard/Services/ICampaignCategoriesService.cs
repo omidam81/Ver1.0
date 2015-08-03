@@ -16,6 +16,6 @@ namespace Teeyoot.Dashboard.Services
 
         bool CreateCategoriesToCampaign(List<CampaignCategoriesRecord> categories, int campaignId);
 
-        bool UpdateCampaignAndCreateNewCategories(CampaignRecord campaign, List<CampaignCategoriesRecord> categories);
+        bool UpdateCampaignAndCreateNewCategories(CampaignRecord campaign, List<CampaignCategoriesRecord> newCategories, List<CampaignCategoriesRecord> categoriesInTable);
     }
 }

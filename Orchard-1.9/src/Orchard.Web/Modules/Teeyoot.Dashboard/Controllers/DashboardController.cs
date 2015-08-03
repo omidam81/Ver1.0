@@ -30,12 +30,13 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IPromotionService _promotionService;
         private readonly ICampaignCategoriesService _campaignCategoryService;
         private readonly IPaymentInformationService _paymentInfService;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private IOrchardServices Services { get; set; }
 
         public Localizer T { get; set; }
 
-        public DashboardController(ICampaignService campaignService, 
-                                   IMailChimpSettingsService settingsService, 
+        public DashboardController(ICampaignService campaignService,
+                                   IMailChimpSettingsService settingsService,
                                    IOrderService orderService,
                                    IWorkContextAccessor wca,
                                    IStoreService storeService,
@@ -45,9 +46,14 @@ namespace Teeyoot.Dashboard.Controllers
                                    IOrchardServices services,
                                    IContentManager contentManager,
                                    IPromotionService promotionService,
-                                   ICampaignCategoriesService campaignCategoryService)
+                                   IPaymentInformationService paymentInfService,
+                                   ICampaignCategoriesService campaignCategoryService,
+                                    IPaymentInformationService paymentInfService,
+                                    IRepository<CurrencyRecord> currencyRepository
+                                    )
         {
             _campaignService = campaignService;
+            _currencyRepository = currencyRepository;
             _orderService = orderService;
             _wca = wca;
             this._settingsService = settingsService;

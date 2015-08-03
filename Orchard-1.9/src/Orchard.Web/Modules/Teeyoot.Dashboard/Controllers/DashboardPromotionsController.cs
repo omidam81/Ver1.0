@@ -15,6 +15,17 @@ namespace Teeyoot.Dashboard.Controllers
             string currentUser = Services.WorkContext.CurrentUser.Email;
             var user = _membershipService.GetUser(currentUser);
             var model = new PromotionViewModel() { };
+           var currencies = _currencyRepository.Table.ToList();
+            currencies.Add(new CurrencyRecord() {
+                Code = "%"
+            });
+           model.AvailableCurrencies = from c in currencies
+                                       select new SelectListItem
+                                       {                                   
+                                           Text = c.Code,
+                                           Value = c.Code
+                                       };
+           
            model.Promotions =  _promotionService.GetAllPromotionsForUser(user.Id).ToList();
            model.Expiration = DateTime.Today;
            return View("Promotions",model);

@@ -97,6 +97,10 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Teeyoot.Dashboard\Teeyoot.Dashboard.csproj">
       <Project>{0457a10e-daee-4d0c-8345-3b6ac081b2a6}</Project>
       <Name>Teeyoot.Dashboard</Name>

@@ -11,8 +11,11 @@ namespace Teeyoot.Module.ViewModels
     {
         public OrderRecord Order { get; set; }
 
+        public PromotionRecord Promotion { get; set; }
+
         public string Result { get; set; }
 
         public string ClientToken { get; set; }
+
     }   
 }

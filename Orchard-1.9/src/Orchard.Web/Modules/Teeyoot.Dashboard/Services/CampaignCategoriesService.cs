@@ -29,7 +29,7 @@ namespace Teeyoot.Dashboard.Services
 
         public IQueryable<CampaignCategoriesRecord> GetCategoryByCampaignId(int id)
         {
-            var categoryIds = _linkCampaignAndCetegory.Table.Where( c=> c.CampaignRecord.Id == id).Select(c => c.CampaignCategoriesPartRecord.Id).ToList();
+            var categoryIds = _linkCampaignAndCetegory.Table.Where(c => c.CampaignRecord.Id == id).Select(c => c.CampaignCategoriesPartRecord.Id).ToList();
 
             return GetAllCategories().Where(c => categoryIds.Contains(c.Id));
         }
@@ -40,10 +40,35 @@ namespace Teeyoot.Dashboard.Services
             return false;
         }
 
-
-        public bool UpdateCampaignAndCreateNewCategories(CampaignRecord campaign, List<CampaignCategoriesRecord> categories)
+        public bool UpdateCampaignAndCreateNewCategories(CampaignRecord campaign, List<CampaignCategoriesRecord> newCategories, List<CampaignCategoriesRecord> categoriesInTable)
         {
-            return false;
+            try
+            {
+                _campaign.Update(campaign);
+
+                if (newCategories != null)
+                {
+                    foreach (CampaignCategoriesRecord categ in newCategories)
+                    {
+                        _repository.Create(categ);
+                        _linkCampaignAndCetegory.Create(new LinkCampaignAndCategoriesRecord { CampaignRecord = campaign, CampaignCategoriesPartRecord = categ });
+                    }
+                }
+
+                if (categoriesInTable != null)
+                {
+                    foreach (CampaignCategoriesRecord categ in categoriesInTable)
+                    {
+                        _linkCampaignAndCetegory.Create(new LinkCampaignAndCategoriesRecord { CampaignRecord = campaign, CampaignCategoriesPartRecord = categ });
+                    }
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

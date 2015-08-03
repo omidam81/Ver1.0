@@ -251,7 +251,7 @@
     margin-bottom: 0 !important;
     outline: 0;
     max-width: 100%;
-    min-width: 3rem !important;
+    min-width: 3.2rem !important;
     padding: .2rem 0rem .2rem 0rem;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -360,7 +360,7 @@
 }
 
 .reload {
-    min-width: 3rem;
+    min-width: 3.2rem;
     height: 40px;
     border: 1px solid #e8eced;
     display: table-cell;
@@ -481,7 +481,7 @@ input[readonly] {
 
 .clndr_button {
     height: 40px;
-    min-width: 3rem;
+    min-width: 3.2rem;
     border: 1px solid #e8eced;
 }
 
