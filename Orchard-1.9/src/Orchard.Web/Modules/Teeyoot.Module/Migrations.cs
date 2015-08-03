@@ -438,7 +438,13 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("Message_User_Id", "MessageRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
 
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("Delete", c => c.WithDefault(null)));
-            return 38;
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("Text"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Text", c => c.Unlimited()));
+
+
+            return 39;
         }
 
         public int UpdateFrom2()
@@ -863,6 +869,15 @@ namespace Teeyoot.Module
         {
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("Delete", c => c.WithDefault(null)));
             return 38;
+        }
+
+        public int UpdateFrom38()
+        {
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("Text"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Text", c => c.Unlimited()));
+
+            return 39;
         }
     }
 }
