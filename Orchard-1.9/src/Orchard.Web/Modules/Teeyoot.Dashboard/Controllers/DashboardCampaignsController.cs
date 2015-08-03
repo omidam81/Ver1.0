@@ -9,6 +9,8 @@ using System;
 using System.Threading.Tasks;
 using Orchard.Themes;
 using Orchard;
+using Orchard.Mvc.Routes;
+using System.Web.Routing;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -274,6 +276,16 @@ namespace Teeyoot.Dashboard.Controllers
 
             var entries = _campaignService.GetAllCategories().Where(c => c.Name.Contains(tag)).Select(n => n.Name).Take(10).ToList();
             return Json(entries, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Wizard(int id)
+        {
+            return RedirectToAction("Index", "Wizard", new RouteValueDictionary {
+                            {"id", id},
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Wizard"},
+                            {"action", "Index"}                           
+                        });
         }
     }
 }
