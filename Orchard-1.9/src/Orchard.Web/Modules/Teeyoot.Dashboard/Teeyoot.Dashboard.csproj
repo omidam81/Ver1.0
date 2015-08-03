@@ -131,6 +131,7 @@
     <Compile Include="Services\ICampaignCategoriesService.cs" />
     <Compile Include="ViewModels\CampaignsViewModel.cs" />
     <Compile Include="ViewModels\EditCampaignViewModel.cs" />
+    <Compile Include="ViewModels\MessagesIndexViewModel.cs" />
     <Compile Include="ViewModels\MessageContentViewModel.cs" />
     <Compile Include="ViewModels\PayoutsViewModel.cs" />
     <Compile Include="ViewModels\PromotionViewModel.cs" />

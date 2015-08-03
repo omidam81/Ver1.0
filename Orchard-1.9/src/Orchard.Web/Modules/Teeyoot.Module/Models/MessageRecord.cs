@@ -16,6 +16,8 @@ namespace Teeyoot.Module.Models
         public virtual DateTime SendDate { get; set; }
 
         public virtual int UserId { get; set; }
+
+        public virtual int CampaignId { get; set; }
          
     }
 }

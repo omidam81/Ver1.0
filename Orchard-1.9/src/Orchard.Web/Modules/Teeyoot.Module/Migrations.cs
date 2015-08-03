@@ -443,8 +443,17 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Text", c => c.Unlimited()));
 
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("Delete"));
 
-            return 39;
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("From"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Sender", c => c.WithLength(50)));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<int>("CampaignId"));
+
+            SchemaBuilder.CreateForeignKey("Message_Campaign_Id", "MessageRecord", new[] { "CampaignId" }, "CampaignRecord", new[] { "Id" });
+
+            return 42;
         }
 
         public int UpdateFrom2()
@@ -894,6 +903,16 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Sender", c => c.WithLength(50)));
 
             return 41;
+        }
+
+        public int UpdateFrom41()
+        {
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<int>("CampaignId"));
+
+            SchemaBuilder.CreateForeignKey("Message_Campaign_Id", "MessageRecord", new[] { "CampaignId" }, "CampaignRecord", new[] { "Id" });
+
+            return 42;
         }
     }
 }

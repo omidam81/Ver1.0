@@ -15,7 +15,7 @@ namespace Teeyoot.Module.Services
 
         MessageRecord GetMessage(int id);
 
-        void AddMessage(int userId, string text, string from, DateTime sendDate);
+        void AddMessage(int userId, string text, string from, DateTime sendDate, int campaignId);
 
     }
 

@@ -26,8 +26,10 @@ namespace Teeyoot.Dashboard.Controllers
         {
             string currentUser = Services.WorkContext.CurrentUser.Email;
             var user = _membershipService.GetUser(currentUser);
-            var campaigns = _campaignService.GetCampaignsOfUser(user.Id).ToList(); 
-            return View(campaigns);
+            var campaigns = _campaignService.GetCampaignsOfUser(user.Id).ToList();
+            var model = new MessagesIndexViewModel() { };
+            model.Campaigns = campaigns;
+            return View(model);
         }
 
 
@@ -173,7 +175,7 @@ namespace Teeyoot.Dashboard.Controllers
                 }
                 message.To = emails;
                 message.Html = TemplateContent.Code;
-                _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.Now);
+                _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.Now, model.CampaignId);
                 //var res = SendTmplMessage(api, message);
                 model.Status = "Your message has been sent!";
                 return RedirectToAction("Messages");
@@ -318,6 +320,7 @@ namespace Teeyoot.Dashboard.Controllers
             var result = mAPI.Messages.Send(message);
             return result.ToString();
         }
+
 
         struct TemplateContent
         {

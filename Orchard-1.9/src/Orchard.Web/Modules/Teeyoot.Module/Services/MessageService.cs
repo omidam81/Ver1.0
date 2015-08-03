@@ -37,14 +37,15 @@ namespace Teeyoot.Module.Services
         }
 
 
-        public void AddMessage(int userId, string text, string from, DateTime sendDate)
+        public void AddMessage(int userId, string text, string from, DateTime sendDate, int campaignId)
         {
             var message = new MessageRecord()
             {
                 UserId = userId,
                 Text = text,
                 Sender = from,
-                SendDate = sendDate
+                SendDate = sendDate,
+                CampaignId = campaignId
             };
             _messageRepository.Create(message);
         }
