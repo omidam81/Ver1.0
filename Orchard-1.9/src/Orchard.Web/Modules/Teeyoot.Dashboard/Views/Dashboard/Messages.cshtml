@@ -34,7 +34,7 @@
                     <div>
                         @if (@item.ThisWeekSend == 3)
                         {
-                            <a href="@Url.Action("CreateMessage", new { campaignId = item.Campaign.Id })"><button type="button" class="t-button" disabled>@T("Message")</button></a>
+                            <a href="@Url.Action("CreateMessage", new { campaignId = item.Campaign.Id })"><button type="button" class="t-button" >@T("Message")</button></a>
                         }
                         else
                         {
