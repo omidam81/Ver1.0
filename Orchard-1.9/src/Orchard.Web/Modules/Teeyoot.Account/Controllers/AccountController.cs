@@ -16,6 +16,7 @@ using Teeyoot.Account.Common;
 using Teeyoot.Account.DTOs;
 using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
+using Teeyoot.Module.Controllers;
 using Teeyoot.Module.Services;
 
 namespace Teeyoot.Account.Controllers
@@ -152,7 +153,14 @@ namespace Teeyoot.Account.Controllers
                 return Json(response);
             }
 
-            _campaignService.AttachAnonymousCampaignToUser(request.CampaignId, user.Id);
+            var session = _workContextAccessor.GetContext().HttpContext.Session;
+            var campaignId = session[WizardController.AnonymousCampaignSessionKey];
+
+            if (campaignId != null)
+            {
+                _campaignService.AttachAnonymousCampaignToUser((int) campaignId, user.Id);
+                session[WizardController.AnonymousCampaignSessionKey] = null;
+            }
 
             _authenticationService.SignIn(user, false);
 
@@ -191,7 +199,14 @@ namespace Teeyoot.Account.Controllers
                 return Json(response);
             }
 
-            _campaignService.AttachAnonymousCampaignToUser(request.CampaignId, validRes.User.Id);
+            var session = _workContextAccessor.GetContext().HttpContext.Session;
+            var campaignId = session[WizardController.AnonymousCampaignSessionKey];
+
+            if (campaignId != null)
+            {
+                _campaignService.AttachAnonymousCampaignToUser((int) campaignId, validRes.User.Id);
+                session[WizardController.AnonymousCampaignSessionKey] = null;
+            }
 
             _authenticationService.SignIn(validRes.User, request.RememberMe);
 
