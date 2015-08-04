@@ -6,7 +6,7 @@
     window.nowPrice = parseFloat(res.toFixed(2));
 
     if (document.getElementById('profSale').value.length == 0) {
-        window.sellingPrice = parseFloat(res.toFixed(2)) * ((parseFloat(window.percentageMarkUpRequired) / 100) * 2);
+        window.sellingPrice = Math.round(parseFloat(res.toFixed(2)) * 2);
         app.state.currentProduct.Price = window.sellingPrice;
     }
 
@@ -17,7 +17,7 @@
 function calculatePriceForNewProduct(frontColor, backColor, cost) {
     var res = parseFloat(formula(frontColor, backColor, cost));
 
-    var price = parseFloat(res.toFixed(2)) * ((parseFloat(window.percentageMarkUpRequired) / 100) * 2);
+    var price = Math.round(parseFloat(res.toFixed(2)) * 2);
     var prices = [parseFloat(res.toFixed(2)), price];
 
     return prices;
@@ -32,7 +32,7 @@ function formula(frontColor, backColor, cost) {
     var labourCost = parseFloat(window.labourCost);                                             //B7
     var labourTimePerColourPerPrint = parseInt(window.labourTimePerColourPerPrint);             //B8
     var labourTimePerSidePrintedPerPrint = parseInt(window.labourTimePerSidePrintedPerPrint);   //B9
-    var percentageMarkUpRequired = parseFloat("0");//parseFloat(window.percentageMarkUpRequired) / 100;           //B11
+    var percentageMarkUpRequired = parseFloat(window.percentageMarkUpRequired) / 100;           //B11
     var printsPerLitre = parseInt(window.printsPerLitre);                                       //B6
     var count = parseInt(window.count);                                                         //B16
 
