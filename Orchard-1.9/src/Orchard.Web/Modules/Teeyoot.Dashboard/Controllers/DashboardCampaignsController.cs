@@ -44,12 +44,6 @@ namespace Teeyoot.Dashboard.Controllers
             FillCampaigns(model, campaignsQuery);
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
 
-            if (isError != null)
-            {
-                model.IsError = (bool)isError;
-                model.Message = (string)result.ToString();
-            }
-
             return View(model);
         }
 
@@ -95,7 +89,8 @@ namespace Teeyoot.Dashboard.Controllers
                         StartDate = c.StartDate,
                         Status = c.CampaignStatusRecord,
                         IsActive = c.IsActive,
-                        ShowBack = c.BackSideByDefault
+                        ShowBack = c.BackSideByDefault,
+                        IsPrivate = c.IsPrivate
                     })
                 .OrderBy(c => c.StartDate)
                 .ToArray();
@@ -303,20 +298,30 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult DeleteCampaign(int id)
         {
-            string result = string.Empty;
-            bool isError = false;
             if (_campaignService.DeleteCampaign(id))
             {
-                isError = false;
-                result = "The campaign was deleted successfully!";
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("The campaign was deleted successfully!"));
             }
             else
             {
-                isError = true;
-                result = "The company could not be removed. Try again!";
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("The company could not be removed. Try again!"));
             }
 
-            return RedirectToAction("Campaigns", new { isError = isError, result = result });
+            return RedirectToAction("Campaigns");
+        }
+
+        public ActionResult PrivateCampaign(int id)
+        {
+            if (_campaignService.PrivateCampaign(id))
+            {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Companies set status - private"));
+            }
+            else
+            {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("The company could not be private. Try again!"));
+            }
+
+            return RedirectToAction("Campaigns");
         }
     }
 }

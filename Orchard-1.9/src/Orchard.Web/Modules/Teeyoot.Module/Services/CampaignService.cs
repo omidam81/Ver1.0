@@ -148,7 +148,8 @@ namespace Teeyoot.Module.Services
                     if (_campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault() != null)
                     {
                         var cat = _campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault();
-                        var link = new LinkCampaignAndCategoriesRecord {
+                        var link = new LinkCampaignAndCategoriesRecord
+                        {
                             CampaignRecord = newCampaign,
                             CampaignCategoriesPartRecord = cat
                         };
@@ -208,7 +209,7 @@ namespace Teeyoot.Module.Services
             }
         }
 
-        public void UpdateCampaign(CampaignRecord campiagn) 
+        public void UpdateCampaign(CampaignRecord campiagn)
         {
             _campaignRepository.Update(campiagn);
         }
@@ -266,13 +267,13 @@ namespace Teeyoot.Module.Services
                 _campaignRepository.Update(c);
 
                 var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
-                 
+
                 var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
-                foreach(var o in orders)
+                foreach (var o in orders)
                 {
                     if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
                     {
-                        o.OrderStatusRecord = isSuccesfull ? 
+                        o.OrderStatusRecord = isSuccesfull ?
                             _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
                             _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
                         o.Paid = DateTime.UtcNow;
@@ -282,7 +283,8 @@ namespace Teeyoot.Module.Services
                             T("The campaign successfully reached its goal!").ToString() :
                             T("The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed.").ToString();
 
-                        _orderHistoryRepository.Create(new OrderHistoryRecord { 
+                        _orderHistoryRepository.Create(new OrderHistoryRecord
+                        {
                             EventDate = DateTime.UtcNow,
                             OrderRecord_Id = o.Id,
                             Event = eventStr
@@ -300,12 +302,12 @@ namespace Teeyoot.Module.Services
                         });
                         _orderHistoryRepository.Flush();
 
-                        if (isSuccesfull && o.TranzactionId != null) 
+                        if (isSuccesfull && o.TranzactionId != null)
                             Gateway.Transaction.SubmitForSettlement(o.TranzactionId);
-                        
-                          
 
-                        
+
+
+
 
                     }
                 }
@@ -335,6 +337,22 @@ namespace Teeyoot.Module.Services
         public IQueryable<CampaignProductRecord> GetAllCampaignProducts()
         {
             return _campProdRepository.Table;
+        }
+
+        public bool PrivateCampaign(int id)
+        {
+            try
+            {
+                var camp = GetAllCampaigns().Where(c => c.Id == id).First();
+                camp.IsPrivate = true;
+                _campaignRepository.Update(camp);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
