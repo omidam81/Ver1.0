@@ -93,6 +93,90 @@ ul, ol {
     }
 }
 
+
+.zone.zone-header:after {
+    content: none;
+}
+
+.zone-header .logo-img-row [class*="span"] {
+    margin-left: 0;
+}
+
+.zone-header .menu-for-user {
+    margin-right: 0;
+}
+
+#product-selector #item-options-dropdown {
+    margin-bottom: 4px;
+}
+
+.Content .flip-button {
+    position: relative;
+    vertical-align: top;
+}
+
+#product-selector .item-options .item-option.active:before {
+    height: auto;
+    bottom: -1px;
+}
+
+.flip-button__front,
+.flip-button__back {
+    position: absolute; 
+    font-weight: 300;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    /*margin-left: -17px; 
+    margin-top: 11px;*/
+1}
+
+.flip-button__back {
+    position: absolute; 
+    font-weight: 300; 
+    /*margin-left: -14px; 
+    margin-top: 11px;*/
+}
+
+.Content .labView {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.Content .flip-buttons {
+    transform: none;
+    margin-left: -61.5px;
+}
+
+.Content .tipping-point-slider__point:nth-child(1) {
+    margin-left: 1.3%;
+}
+
+.Content .tipping-point-slider__point:nth-child(2) {
+    margin-left: 17.9%;
+}
+
+.Content .tipping-point-slider__point:nth-child(3) {
+    margin-left: 37.3%;
+}
+
+.Content .tipping-point-slider__point:nth-child(4) {
+    margin-left: 56.8%;
+}
+
+.Content .tipping-point-slider__point:nth-child(5) {
+    margin-left: 76.3%;
+}
+
+.Content .tipping-point-slider__point:nth-child(6) {
+    margin-left: 95.9%;
+}
+
 #designer {
     min-height: 920px;
 }
@@ -463,8 +547,8 @@ span.number {
 .Slides .Content {
     max-width: 1236px;
     margin: 10px auto 0;
-    padding: 0 60px 0 30px;
-    box-sizing: border-box;
+    /*padding: 0 60px 0 30px;
+    box-sizing: border-box;*/
 }
 
 body.page__designs_edit .Slides .container {
@@ -568,11 +652,15 @@ input[type=range] {
     /*fix for FF unable to apply focus style bug */
     border: 1px solid white;
     /*required for proper track sizing in FF*/
-    width: 300px;
+    width: 100%;
+    background: #f5f7f7;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
     input[type=range]::-webkit-slider-runnable-track {
-        width: 300px;
+        width: 100%;
         height: 5px;
         background: #ddd;
         border: none;
@@ -586,7 +674,7 @@ input[type=range] {
         width: 16px;
         border-radius: 50%;
         background: #FF4F00;
-        margin-top: -4px;
+        margin-top: -5px;
     }
 
     input[type=range]:focus {
@@ -598,7 +686,7 @@ input[type=range] {
         }
 
     input[type=range]::-moz-range-track {
-        width: 300px;
+        width: 100%;
         height: 5px;
         background: #ddd;
         border: none;
@@ -620,42 +708,46 @@ input[type=range] {
     }
 
     input[type=range]::-ms-track {
-        width: 300px;
-        height: 5px;
-        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
-        background: transparent;
-        /*leave room for the larger thumb to overflow with a transparent border */
-        border-color: transparent;
-        border-width: 6px 0;
-        /*remove default tick marks*/
-        color: transparent;
-    }
+    width: 100%;
+    height: 5px;
+    background: transparent;
+    border-color: transparent;
+    border-width: 6px 0;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #FF4F00;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #ccc;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
 
-    input[type=range]::-ms-fill-lower {
-        background: #777;
-        border-radius: 10px;
-    }
-
-    input[type=range]::-ms-fill-upper {
-        background: #ddd;
-        border-radius: 10px;
-    }
-
-    input[type=range]::-ms-thumb {
-        border: none;
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        background: #FF4F00;
-    }
-
-    input[type=range]:focus::-ms-fill-lower {
-        background: #888;
-    }
-
-    input[type=range]:focus::-ms-fill-upper {
-        background: #ccc;
-    }
+#trackBarValue {
+    font-size: 1.1rem; 
+    padding: 4px 0;
+    width: 30%; 
+    border:1px solid #ebeef0; 
+    border-radius: 0px 11px 11px 0px;
+    text-align: center;
+    height: 41px;
+    line-height: 31px;
+    box-sizing: border-box;
+}
 
 .block {
     background: #f5f7f7;
@@ -688,6 +780,25 @@ input[type=range] {
 
 .tb-search-form {
     height: 31px !important;
+}
+
+.trackBarValue_box {
+    padding: 10px 0;
+}
+
+.trackBarValue_box .block {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    border-radius: 11px 0 0 11px;
+    width: auto;
+}
+
+.trackBarValue_box #trackBarValue {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    width: 60px;
 }
 
 @media all and (max-width: 1000px) {

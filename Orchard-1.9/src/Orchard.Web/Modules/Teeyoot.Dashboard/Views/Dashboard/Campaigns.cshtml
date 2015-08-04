@@ -2,7 +2,6 @@
 @{
     @model Teeyoot.Dashboard.ViewModels.CampaignsViewModel
     Style.Include("campaigns.css");
-    Style.Include("EditCampaign.css");
 }
 
 @if (!string.IsNullOrEmpty(Model.Message))
@@ -159,6 +158,8 @@
 
                 var state = c.IsActive ? "Active" : "Ended";
 
+                var colorForPrivate = c.IsPrivate ? "private-campaigns-true" : "private-campaigns-false";
+
                 <div data-name="@c.Name.ToLower()" class="campaign-card"
                      data-campaign-state="@state"
                      data-startdate="@c.StartDate.Ticks"
@@ -181,13 +182,19 @@
                                     </a>
                                 </div>*@
                             @if (!c.IsActive)
-                                {
+                            {
+                                <div>
+                                    <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            }
+                            
                             <div>
-                                <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
-                                    <i class="fa fa-times"></i>
+                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id })" title="@T("Private")" class="@colorForPrivate" >
+                                    <i class="fa fa-globe"></i>
                                 </a>
                             </div>
-                            }
                         </div>
 
                         <div class="campaign-card-profit">

@@ -63,7 +63,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         Goal = c.ProductCountGoal,
                         Sold = c.ProductCountSold,
                         IsFeatured = c.IsFeatured,
-                        Title = c.Title
+                        Title = c.Title,
+                        IsActive  = c.IsActive
                     })
                     .Select(c => new FeaturedCampaignViewModel
                     {
@@ -108,6 +109,20 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Logger.Error("Error when tring to update campaign ----------------------------> " + e.ToString());
                     Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Can not update campaign. Try again later!"));
                 }
+            }
+
+            return this.RedirectToAction("Index", new { pagerParameters = pagerParameters });
+        }
+
+        public ActionResult DeleteCampaign(PagerParameters pagerParameters, int id)
+        {
+            if (_campaignService.DeleteCampaign(id))
+            {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Information, T("The campaign was deleted successfully!"));
+            }
+            else
+            {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("The company could not be removed. Try again!"));
             }
 
             return this.RedirectToAction("Index", new { pagerParameters = pagerParameters });

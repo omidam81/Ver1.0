@@ -41,6 +41,11 @@
                             {
                                 <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
                             }
+                            @if (!camp.Campaign.IsActive)
+                            {
+                                @T(" | ")
+                            <a href="@Url.Action("DeleteCampaign", new { pagerParameters = Model.Pager, id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
+                            }
                         </td>
                     </tr>
                 }

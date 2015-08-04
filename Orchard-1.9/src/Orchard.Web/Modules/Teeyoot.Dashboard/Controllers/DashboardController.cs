@@ -12,6 +12,7 @@ using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Dashboard.Services;
 using Orchard.Localization;
+using Orchard.UI.Notify;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -32,6 +33,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IPaymentInformationService _paymentInfService;
         private readonly IMessageService _messageService;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
+        private readonly INotifier _notifier;
         private IOrchardServices Services { get; set; }
 
         public Localizer T { get; set; }
@@ -50,7 +52,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    IPaymentInformationService paymentInfService,
                                    ICampaignCategoriesService campaignCategoryService,
                                    IRepository<CurrencyRecord> currencyRepository,
-                                   IMessageService messageService
+                                   IMessageService messageService,
+                                   INotifier notifier
                                     )
         {
             _campaignService = campaignService;
@@ -68,6 +71,7 @@ namespace Teeyoot.Dashboard.Controllers
             _campaignCategoryService = campaignCategoryService;
             _paymentInfService = paymentInfService;
             _messageService = messageService;
+            _notifier = notifier;
             Services = services;
 
             Logger = NullLogger.Instance;

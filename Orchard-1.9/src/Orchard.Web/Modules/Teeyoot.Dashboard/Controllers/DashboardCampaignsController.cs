@@ -80,62 +80,36 @@ namespace Teeyoot.Dashboard.Controllers
 
         private void FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
         {
+            var campaignProducts = _campaignService.GetAllCampaignProducts();
+            var orderedProducts = _orderService.GetAllOrderedProducts();
 
-
-            //var campaignSummaries = campaignsQuery
-            //    .GroupJoin(_campaignService.GetAllCampaignProducts(),
-            //        c => c.Id,
-            //        p => p.CampaignRecord_Id,
-            //        (Campaign, Products) => new { Campaign, Products })
-            //    .GroupJoin(_orderService.GetAllOrderedProducts(),
-            //        c => c.Campaign.Id,
-            //        p => p.CampaignProductRecord.CampaignRecord_Id,
-            //        (c, p) => new CampaignSummary
-            //            {
-            //                Alias = c.Campaign.Alias,
-            //                EndDate = c.Campaign.EndDate,
-            //                Goal = c.Campaign.ProductCountGoal,
-            //                Id = c.Campaign.Id,
-            //                Name = c.Campaign.Title,
-            //                Sold = c.Campaign.ProductCountSold,
-            //                StartDate = c.Campaign.StartDate,
-            //                Status = c.Campaign.CampaignStatusRecord,
-            //                IsActive = c.Campaign.IsActive,
-            //                ShowBack = c.Campaign.BackSideByDefault,
-            //                //FirstProductId = c.Products.Count() > 0 ? c.Products.First().Id : 0,
-            //                //Profit = p.Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
-            //                //          .Sum(entry => (int?)entry.Profit) ?? 0
-            //            })
-            //    .OrderBy(c => c.StartDate)
-            //    .ToArray();
-
-            //model.Campaigns = campaignSummaries;
-
-
-            var campaignSummaries = new List<CampaignSummary>();
-            var campaigns = campaignsQuery.OrderBy(c => c.StartDate).ToList();
-
-            foreach (var c in campaigns)
+            var campaignSummaries = campaignsQuery
+                .Select(c => new CampaignSummary 
+                    {
+                        Alias = c.Alias,
+                        EndDate = c.EndDate,
+                        Goal = c.ProductCountGoal,
+                        Id = c.Id,
+                        Name = c.Title,
+                        Sold = c.ProductCountSold,
+                        StartDate = c.StartDate,
+                        Status = c.CampaignStatusRecord,
+                        IsActive = c.IsActive,
+                        ShowBack = c.BackSideByDefault
+                    })
+                .OrderBy(c => c.StartDate)
+                .ToArray();
+               
+            foreach (var item in campaignSummaries)
             {
-                campaignSummaries.Add(new CampaignSummary
-                {
-                    Alias = c.Alias,
-                    EndDate = c.EndDate,
-                    Goal = c.ProductCountGoal,
-                    Id = c.Id,
-                    Name = c.Title,
-                    Sold = c.ProductCountSold,
-                    StartDate = c.StartDate,
-                    Status = c.CampaignStatusRecord,
-                    IsActive = c.IsActive,
-                    ShowBack = c.BackSideByDefault,
-                    FirstProductId = c.Products[0].Id,
-                    Profit = _orderService.GetProductsOrderedOfCampaign(c.Id)
-                                        .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                                        .Sum(entry => (int?)entry.Profit) ?? 0
-                });
+                item.FirstProductId = campaignProducts.First(p => p.CampaignRecord_Id == item.Id).Id;
+                item.Profit = orderedProducts
+                                    .Where(p => p.OrderRecord.IsActive && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
+                                    .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
+                                    .Sum(entry => (int?)entry.Profit) ?? 0;
             }
-            model.Campaigns = campaignSummaries.ToArray();
+                                      
+            model.Campaigns = campaignSummaries;
         }
 
         private void FillOverviews(CampaignsViewModel model, IQueryable<LinkOrderCampaignProductRecord> productsOrderedQuery, IQueryable<CampaignRecord> campaignsQuery)

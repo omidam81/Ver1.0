@@ -9,26 +9,26 @@
         <div class="row">
             <div class="col-sm-7">
                 <h1 style="font-weight: bold; font-size: 2.508em;">Track your order</h1>
-                <p>Enter your lookup number (included in your confirmation email) to check the status of your order:</p>
+                <p>Enter your tracking number to check the status of your order. Your tracking number is in your confirmation email when you ordered.</p>
                 
                 @using (Html.BeginFormAntiForgeryPost(Url.Action("SearchForOrder", "Home")))
                 {                 
                     <div class="row">
                         <div class="col-sm-8 lookupNumber">
-                            <input class="form-control input-lg input-inline-with-btn" id="orderId" name="orderId" placeholder="Lookup number" type="text">
+                            <input class="form-control input-lg input-inline-with-btn" id="orderId" name="orderId" placeholder="Tracking number" type="text">
                         </div>
                         <div class="col-sm-2">
-                            <input class="btnTrack" type="submit" value="@T("Track order")" />
+                            <input class="btnTrack" type="submit" value="@T("Track my order")" />
                         </div>
                     </div>
                 }
 
                 <p>
-                    <a href="/track/recover">Forget your order number?</a>
+                    <a href="/track/recover">Forgotten your order number?</a>
                 </p>
             </div>
             <div class="col-sm-3 col-sm-offset-1 hidden-xs">
-                <img alt="Index" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/index-46ae6ccb12e2f60675e10f7146dbe3a7.png">
+                <img alt="Index" src="/Modules/Teeyoot.Module/Content/images/track-order.png">
             </div>
         </div>
     </div>
