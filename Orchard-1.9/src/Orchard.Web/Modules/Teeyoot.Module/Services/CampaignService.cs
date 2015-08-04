@@ -354,5 +354,12 @@ namespace Teeyoot.Module.Services
                 return false;
             }
         }
+
+        public void AttachAnonymousCampaignToUser(int id, int userId)
+        {
+            var campaign = _campaignRepository.Get(id);
+            campaign.TeeyootUserId = userId;
+            _campaignRepository.Update(campaign);
+        }
     }
 }
