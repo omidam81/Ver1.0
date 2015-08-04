@@ -10,9 +10,8 @@
 
 	<meta property="og:site_name" content="Teeyoot"/>
 	<meta property="og:title" content="@Model.Campaign.Title" />
-    <meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png" />
-	<meta property="og:image:width" content="530" />
-	<meta property="og:image:height" content="430" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="627" />
 	<meta property="og:description" content="@Model.Campaign.Description" />
     <meta property="og:url" content="http://teebay.bqt.me/@Model.Campaign.Alias"/>
 
@@ -21,25 +20,25 @@
     <meta name="twitter:description" content="@Model.Campaign.Description">
     <meta name="twitter:title" content="@Model.Campaign.Title">
     <meta name="twitter:site" content="teeyoot">
-    <meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+    @*<meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">*@
 }
 
 @using (Script.Foot())
 {
     <script>
     var twitterBtn = document.getElementsByClassName("btn--twitter");
-        for (var k = 0; k < twitterBtn.length; k++) {
-            $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
-        }
+    for (var k = 0; k < twitterBtn.length; k++) {
+        $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
+    }
     var pinterestBtn = document.getElementsByClassName("btn--pinterest");
-        for (var k = 0; k < pinterestBtn.length; k++) {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
-        }
+    for (var k = 0; k < pinterestBtn.length; k++) {
+        $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+    }
     var facebookBtn = document.getElementsByClassName("btn--facebook");
     for (var k = 0; k < facebookBtn.length; k++) {
         $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=http://teebay.bqt.me/@Model.Campaign.Alias");
-        }
-       
+    }
+
     $(".product__size_chart_link--show").click(function () {
         document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
     });
@@ -341,6 +340,25 @@
         });
 
     }
+
+    function shareCampaign() {
+        var isBack = firstBack;
+        var campaignId = document.getElementById("campaignId").value;
+
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("ShareCampaign", "Home"))",
+            data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
+            success: function () {
+                $('head').append('<meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.png" />');
+                $('head').append('<meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.png" />');              
+            }
+        });
+
+        }
+
 
     function addAntiForgeryToken(data) {
         data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
@@ -687,13 +705,13 @@
 
             <ul class="share__buttons">
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" href="" target="_blank">
+                    <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
                         <img src="/Media/Default/images/facebook_ic.png">
                     </a>
                 </li>
                 
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" href="" target="_blank">
+                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()"  href="" target="_blank">
                         <img src="/Media/Default/images/twit_ic.png">
                     </a>
                 </li>
@@ -744,13 +762,13 @@
                 <h3 class="share__heading">@T("Share this campaign on:")</h3>
                 <ul class="share__buttons">
                     <li class="share__buttons__item">
-                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" href="" target="_blank">
+                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()"  href="" target="_blank">
                             <img src="/Media/Default/images/facebook_ic.png">
                         </a>
                     </li>
 
                         <li class="share__buttons__item">   
-                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" href="" target="_blank">
+                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
                                 <img src="/Media/Default/images/twit_ic.png">
                             </a>
                         </li>
@@ -918,3 +936,4 @@
     </div>
 
 </div>
+<input id="campaignId" class="hidden" type="text" value="@Model.Campaign.Id" />

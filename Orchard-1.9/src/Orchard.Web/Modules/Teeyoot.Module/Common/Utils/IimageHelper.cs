@@ -13,7 +13,8 @@ namespace Teeyoot.Module.Common.Utils
         Bitmap CreateBackground(int width, int height, Color newColor);
         Bitmap ApplyBackground(Bitmap image, Bitmap background, int width = 0, int height = 0);
         Bitmap ApplyDesign(Bitmap image, Bitmap design, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight, int width = 0, int height = 0);
+        Bitmap ApplyDesignNoTransparent(Bitmap image, Bitmap design, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight, int width = 0, int height = 0);     
         Bitmap Base64ToBitmap(string base64String);
-        Bitmap ResizeImage(Image image, int width, int height);
+        Bitmap ResizeImage(Image image, int width, int height);     
     }
 }

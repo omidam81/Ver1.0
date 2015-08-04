@@ -188,12 +188,12 @@ namespace Teeyoot.Dashboard.Controllers
           
             var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), teeyootUser.Id.ToString());
 
-            clearFolder(destForder, id.ToString());
+            ClearFolder(destForder, id.ToString());
             
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        private void clearFolder(string FolderPath, string FolderName)
+        private void ClearFolder(string FolderPath, string FolderName)
         {
             DirectoryInfo dir = new DirectoryInfo(FolderPath);
             if (dir.Exists == true)
