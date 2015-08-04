@@ -47,7 +47,7 @@
                     <div>
                         <div style="vertical-align:central">
                             <img style="width:6%" src='/Media/campaigns/@Model.CampaignId/@Model.ProductId/normal/@("front.png")'>
-                            <div class="campTitle"></div>
+                            <div class="campTitle">@Model.CampaignTitle</div>
                         </div>
                     </div>
                     <div class="emailAttr" style="padding-top:10px !important;">From</div>
@@ -57,11 +57,7 @@
                         @*<div style="font-size:11px;  padding-left: 70%; word-break:normal; padding-top: 5%; width: 40%">(max 50 characters)</div>*@
                     </div>
                     @Html.TextBoxFor(m => m.Subject, new { @class = "subj_inp", @placeholder = "Enter subject here" })
-                    <div style="display:flex">
-                        <div class="emailAttr">Input email address of recipient</div>
-                        @*<div style="font-size:11px;  padding-left: 8%;  padding-top: 5%;width: 40%">(test function)</div>*@
-                    </div>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "subj_inp" })
+
                     <div class="emailAttr">Email template</div>
                     <div>
                         <input id="def" type="radio" name="group1" value="1" checked> Default

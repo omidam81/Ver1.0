@@ -426,7 +426,36 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("TranzactionId", c => c.Nullable()));
 
-            return 36;
+            SchemaBuilder.CreateTable(typeof(MessageRecord).Name,
+               table => table
+                   .Column<int>("Id", column => column.PrimaryKey().Identity())
+                   .Column<int>("UserId")
+                   .Column<string>("Text")
+                   .Column<string>("From")
+                   .Column<DateTime>("SendDate")
+           );
+
+            SchemaBuilder.CreateForeignKey("Message_User_Id", "MessageRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("Delete", c => c.WithDefault(null)));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("Text"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Text", c => c.Unlimited()));
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("Delete"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("From"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Sender", c => c.WithLength(50)));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<int>("CampaignId"));
+
+            SchemaBuilder.CreateForeignKey("Message_Campaign_Id", "MessageRecord", new[] { "CampaignId" }, "CampaignRecord", new[] { "Id" });
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 43;
         }
 
         public int UpdateFrom2()
@@ -829,6 +858,70 @@ namespace Teeyoot.Module
         {
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<string>("TranzactionId", c => c.Nullable()));
             return 36;
+        }
+
+        public int UpdateFrom36()
+        {
+            SchemaBuilder.CreateTable(typeof(MessageRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("UserId")
+                    .Column<string>("Text")
+                    .Column<string>("From")
+                    .Column<DateTime>("SendDate")
+            );
+
+            SchemaBuilder.CreateForeignKey("Message_User_Id", "MessageRecord", new[] { "UserId" }, "TeeyootUserPartRecord", new[] { "Id" });
+
+            return 37;
+        }
+
+        public int UpdateFrom37()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("Delete", c => c.WithDefault(null)));
+            return 38;
+        }
+
+        public int UpdateFrom38()
+        {
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("Text"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Text", c => c.Unlimited()));
+
+            return 39;
+        }
+
+        public int UpdateFrom39()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("Delete"));
+
+            return 40;
+        }
+
+        public int UpdateFrom40()
+        {
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.DropColumn("From"));
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<string>("Sender", c => c.WithLength(50)));
+
+            return 41;
+        }
+
+        public int UpdateFrom41()
+        {
+
+            SchemaBuilder.AlterTable(typeof(MessageRecord).Name, table => table.AddColumn<int>("CampaignId"));
+
+            SchemaBuilder.CreateForeignKey("Message_Campaign_Id", "MessageRecord", new[] { "CampaignId" }, "CampaignRecord", new[] { "Id" });
+
+            return 42;
+        }
+
+        public int UpdateFrom42()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 43;
         }
     }
 }

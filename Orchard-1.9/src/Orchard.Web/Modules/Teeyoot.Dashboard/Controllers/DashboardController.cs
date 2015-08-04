@@ -30,6 +30,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IPromotionService _promotionService;
         private readonly ICampaignCategoriesService _campaignCategoryService;
         private readonly IPaymentInformationService _paymentInfService;
+        private readonly IMessageService _messageService;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private IOrchardServices Services { get; set; }
 
@@ -48,7 +49,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    IPromotionService promotionService,
                                    IPaymentInformationService paymentInfService,
                                    ICampaignCategoriesService campaignCategoryService,
-                                   IRepository<CurrencyRecord> currencyRepository
+                                   IRepository<CurrencyRecord> currencyRepository,
+                                   IMessageService messageService
                                     )
         {
             _campaignService = campaignService;
@@ -65,6 +67,7 @@ namespace Teeyoot.Dashboard.Controllers
             _promotionService = promotionService;
             _campaignCategoryService = campaignCategoryService;
             _paymentInfService = paymentInfService;
+            _messageService = messageService;
             Services = services;
 
             Logger = NullLogger.Instance;

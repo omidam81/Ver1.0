@@ -6,21 +6,24 @@ using System.Web;
 using Teeyoot.Module.Models;
 using Teeyoot.FeaturedCampaigns.Services;
 using Orchard.ContentManagement.Drivers;
+using Teeyoot.Module.Services;
 
 namespace Teeyoot.FeaturedCampaigns.Drivers
 {
     public class FeaturedCampaignsWidget : ContentPartDriver<FeaturedCampaignsWidgetPart>
     {
+        private readonly ICampaignService _campaignsService;
         private readonly IFeaturedCampaignsService _featuredCampaignsService;
 
-        public FeaturedCampaignsWidget(IFeaturedCampaignsService featuredCampaignsService)
+        public FeaturedCampaignsWidget(ICampaignService campaignsService, IFeaturedCampaignsService featuredCampaignsService)
         {
+            _campaignsService = campaignsService;
             _featuredCampaignsService = featuredCampaignsService;
         }
 
         protected override DriverResult Display(FeaturedCampaignsWidgetPart part, string displayType, dynamic shapeHelper)
         {
-            var campaignsInFeatured = _featuredCampaignsService.GetCampaignsFromAdmin().OrderByDescending(c => c.ProductCountSold).ToList();
+            var campaignsInFeatured = _campaignsService.GetAllCampaigns().Where(c => c.IsFeatured).OrderByDescending(c => c.ProductCountSold).ToList();
             var featuredCampaigns = new List<CampaignRecord>();
 
             if (campaignsInFeatured.Count >= 6)
@@ -51,7 +54,7 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
                 if (featuredCampaigns.Count() < 6)
                 {
                     countTopCamp = 6 - featuredCampaigns.Count();
-                    var otherCampaigns = _featuredCampaignsService.GetAllCampaigns().ToList();
+                    var otherCampaigns = _campaignsService.GetAllCampaigns().ToList();
                     foreach (var camp in campaignsInFeatured)
                     {
                         if (otherCampaigns.Exists(c => c.Id == camp.Id) != null)

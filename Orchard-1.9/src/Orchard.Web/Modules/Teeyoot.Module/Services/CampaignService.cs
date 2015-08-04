@@ -313,5 +313,28 @@ namespace Teeyoot.Module.Services
             }
             _campaignRepository.Flush();
         }
+
+
+        public bool DeleteCampaign(int id)
+        {
+            try
+            {
+                var delCamp = _campaignRepository.Table.Where(c => c.Id == id).First();
+                delCamp.WhenDeleted = DateTime.UtcNow;
+                _campaignRepository.Update(delCamp);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public IQueryable<CampaignProductRecord> GetAllCampaignProducts()
+        {
+            return _campProdRepository.Table;
+        }
     }
 }

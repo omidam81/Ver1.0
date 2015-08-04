@@ -38,7 +38,6 @@ namespace Teeyoot.Account.Controllers
         private const string FacebookLogOnFailedErrorKey = "FacebookLogOnFailedError";
 
         public AccountController(
-            IOrchardServices orchardServices,
             ITeeyootMembershipService teeyootMembershipService,
             IAuthenticationService authenticationService,
             IMembershipService membershipService,

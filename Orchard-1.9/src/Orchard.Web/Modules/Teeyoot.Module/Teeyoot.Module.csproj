@@ -275,6 +275,7 @@
     <Content Include="Content\images\scale.png" />
     <Content Include="Content\images\select2.png" />
     <Content Include="Content\images\single_caret.png" />
+    <Content Include="Content\images\track-order.png" />
     <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -694,6 +695,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\MessageRecord.cs" />
     <Compile Include="Models\OrderHistoryRecord.cs" />
     <Compile Include="Models\PaymentInformationRecord.cs" />
     <Compile Include="Models\PromotionRecord.cs" />
@@ -707,7 +709,9 @@
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
+    <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
+    <Compile Include="Services\Interfaces\IMessageService .cs" />
     <Compile Include="Services\PaymentInformationService.cs" />
     <Compile Include="Services\PromotionService.cs" />
     <Compile Include="Services\FontService.cs" />
