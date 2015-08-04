@@ -176,7 +176,7 @@
                             }
                             
                             <div>
-                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id })" title="@T("Private")" class="@colorForPrivate" >
+                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id, change = !c.IsPrivate })" title="@T("Private")" class="@colorForPrivate" >
                                     <i class="fa fa-globe"></i>
                                 </a>
                             </div>

@@ -96,13 +96,13 @@ namespace Teeyoot.Module.Services
             {
                 //var camp = _campaignCategories.Table.Where(c => c.Name.ToLower() == filter).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
                 var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower() == filter).Select(c => c.Id);
-                var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord).Where(c => c.WhenDeleted == null).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
+                var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord).Where(c => c.WhenDeleted == null && !c.IsPrivate).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
                 return campForTags.Skip(skip).Take(take).ToList();
             }
             else
             {
                 var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).Select(c => c.Id);
-                var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord).Where(c => c.WhenDeleted == null);
+                var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord).Where(c => c.WhenDeleted == null && !c.IsPrivate);
                 //List<CampaignRecord> campForTags = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).ToList();
                 IEnumerable<CampaignRecord> camps = GetAllCampaigns().Where(c => c.Title.Contains(filter) || c.Description.Contains(filter));
                 camps = camps.Concat(campForTags).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
@@ -339,12 +339,12 @@ namespace Teeyoot.Module.Services
             return _campProdRepository.Table;
         }
 
-        public bool PrivateCampaign(int id)
+        public bool PrivateCampaign(int id, bool change)
         {
             try
             {
                 var camp = GetAllCampaigns().Where(c => c.Id == id).First();
-                camp.IsPrivate = true;
+                camp.IsPrivate = change;
                 _campaignRepository.Update(camp);
 
                 return true;
