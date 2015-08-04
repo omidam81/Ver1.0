@@ -113,13 +113,16 @@ namespace Teeyoot.Module.Services
 
         public CampaignRecord CreateNewCampiagn(LaunchCampaignData data)
         {
-            var user = Services.WorkContext.CurrentUser;
-            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             int? userId = null;
 
-            if (teeyootUser != null)
+            var user = Services.WorkContext.CurrentUser;
+            if (user != null)
             {
-                userId = teeyootUser.ContentItem.Record.Id;
+                var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+                if (teeyootUser != null)
+                {
+                    userId = teeyootUser.ContentItem.Record.Id;
+                }
             }
 
             try
