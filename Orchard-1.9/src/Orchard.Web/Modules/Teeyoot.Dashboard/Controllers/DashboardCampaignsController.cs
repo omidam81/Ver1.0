@@ -104,7 +104,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 item.FirstProductId = campaignProducts.First(p => p.CampaignRecord_Id == item.Id).Id;
                 item.Profit = orderedProducts
-                                    .Where(p => p.CampaignProductRecord.CampaignRecord_Id == item.Id)
+                                    .Where(p => p.OrderRecord.IsActive && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
                                     .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
                                     .Sum(entry => (int?)entry.Profit) ?? 0;
             }
