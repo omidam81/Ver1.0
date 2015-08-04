@@ -204,7 +204,7 @@ namespace Teeyoot.Dashboard.Controllers
                 string messageText = TemplateContent.Template.Replace("---MessageContent---",model.Content);
                 messageText = messageText.Replace("---SellerEmail---", user.Email);
                 messageText = messageText.Replace("---CampaignTitle---", model.CampaignTitle);
-                string previewUrl = Path.Combine(Server.MapPath("/Media/campaigns/"+model.CampaignId+"/"+campaign.Products[0].Id+"/normal/"), "front.png");
+                string previewUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/')+ "/Media/campaigns/"+model.CampaignId+"/"+campaign.Products[0].Id+"/normal/front.png";
                 messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
                 message.Html = messageText;
                 _messageService.AddMessage(user.Id, model.Content, message.FromEmail, DateTime.UtcNow, model.CampaignId);
