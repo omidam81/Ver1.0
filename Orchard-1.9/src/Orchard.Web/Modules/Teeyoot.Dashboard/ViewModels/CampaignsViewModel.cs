@@ -48,6 +48,8 @@ namespace Teeyoot.Dashboard.ViewModels
         public bool IsActive { get; set; }
 
         public bool ShowBack { get; set; }
+
+        public bool IsPrivate { get; set; }
     }
 
     public class CampaignsOverview
