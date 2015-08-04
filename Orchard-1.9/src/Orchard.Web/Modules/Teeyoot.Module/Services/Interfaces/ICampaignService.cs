@@ -39,6 +39,6 @@ namespace Teeyoot.Module.Services
         
         bool DeleteCampaign(int id);
 
-        bool PrivateCampaign(int id);
+        bool PrivateCampaign(int id, bool change);
     }
 }
