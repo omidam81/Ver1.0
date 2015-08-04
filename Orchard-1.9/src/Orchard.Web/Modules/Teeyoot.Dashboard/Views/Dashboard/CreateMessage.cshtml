@@ -36,7 +36,7 @@
 
 
     <div class="tabl">
-        @using (Html.BeginForm("SendMessageUsingMandrill", "Dashboard", FormMethod.Post, new { model = Model }))
+        @using (Html.BeginForm("SendSellerMessageForApproving", "Dashboard", FormMethod.Post, new { model = Model }))
         {
             @Html.AntiForgeryToken()
             <div class="row">
