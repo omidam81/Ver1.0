@@ -290,19 +290,19 @@
 .private-campaigns-true {
     font-size: 18px;
     margin-left: -2px;
-    color: #39ace6;
+    color: #39ace6 !important;
 }
 
     .private-campaigns-true:hover {
-        color: #39ace6;
+        color: #39ace6 !important;
     }
 
 .private-campaigns-false {
     font-size: 18px;
     margin-left: -2px;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
     .private-campaigns-false:hover {
-        color: #39ace6;
+        color: #39ace6 !important;
     }

@@ -38,5 +38,7 @@ namespace Teeyoot.Module.Services
         IQueryable<CampaignProductRecord> GetAllCampaignProducts();
         
         bool DeleteCampaign(int id);
+
+        bool PrivateCampaign(int id);
     }
 }
