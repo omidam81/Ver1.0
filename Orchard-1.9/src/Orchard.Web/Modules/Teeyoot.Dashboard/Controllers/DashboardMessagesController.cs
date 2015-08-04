@@ -2,19 +2,17 @@
 using MailChimp.Campaigns;
 using MailChimp.Helper;
 using MailChimp.Lists;
-using MailChimp.Templates;
-using Orchard.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Teeyoot.Messaging.Models;
-using Teeyoot.Messaging.Services;
-using Teeyoot.Module.Dashboard.ViewModels;
-using Teeyoot.Module.Models;
-using System.Threading;
 using Mandrill;
 using Mandrill.Model;
+using Orchard.UI.Notify;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Web.Mvc;
+using Teeyoot.Messaging.Models;
+using Teeyoot.Module.Dashboard.ViewModels;
+using Teeyoot.Module.Models;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -29,8 +27,9 @@ namespace Teeyoot.Dashboard.Controllers
             var campaigns = _campaignService.GetCampaignsOfUser(user.Id).ToList();
             List<MessagesIndexViewModel> listModel = new List<MessagesIndexViewModel>();
             foreach (var item in campaigns)
-            {
+            {                
                 var tempModel = new MessagesIndexViewModel() { };
+                tempModel.ThisWeekSend = _messageService.GetAllMessagesForCampaign(item.Id).Where(s => (s.SendDate < DateTime.UtcNow) && (s.SendDate > DateTime.UtcNow.AddDays(-7))).Count();
                 if (_messageService.GetLatestMessageDateForCampaign(item.Id).Day > DateTime.UtcNow.Day) 
                 {
                     tempModel.LastSend = "Never";
@@ -83,7 +82,7 @@ namespace Teeyoot.Dashboard.Controllers
             content.Sections.Add("seller_email", m.From);
             Campaign myCampaign = mc.CreateCampaign("regular", options, content);
             List<string> emails = new List<string>();
-            emails.Add(m.Email);
+            //emails.Add(m.Email);
             CampaignActionResult response = mc.SendCampaign(myCampaign.Id);
             if (response.Complete)
             {
@@ -97,7 +96,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 MailChimpSettingsPart record = _settingsService.GetAllSettings().List().Where(x => x.Culture == culture).FirstOrDefault();
                 MailChimpManager mc = new MailChimpManager(record.ApiKey);
-                AddUserToMailChimpList(m.Email);
+                //AddUserToMailChimpList(m.Email);
                 Thread deleteCampaign = new Thread(delegate() { DeleteSentCampaigns(mc); });
                 deleteCampaign.Start();
                 Thread crAndSend = new Thread(delegate() { CreateAndSendMessage(m, mc, record); });
@@ -202,8 +201,7 @@ namespace Teeyoot.Dashboard.Controllers
                 message.Html = TemplateContent.Code;
                 _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.UtcNow, model.CampaignId);
                 var res = SendTmplMessage(api, message);
-                //var viewModel = new MessagesIndexViewModel(){};
-                //viewModel.InfoMessage = "Your message has been sent!";
+                _notifier.Information(T("Your message has been sent!"));
                 return RedirectToAction("Messages");
             }
             return View("CreateMessage", model);
@@ -228,7 +226,7 @@ namespace Teeyoot.Dashboard.Controllers
             message.AddRcptMergeVars(record.OrderRecord.Email, "CITY", record.OrderRecord.City);
             message.AddRcptMergeVars(record.OrderRecord.Email, "STATE", record.OrderRecord.State);
             message.AddRcptMergeVars(record.OrderRecord.Email, "COUNTRY", record.OrderRecord.Country);
-            if (record.OrderRecord.TotalPriceWithPromo != null)
+            if (record.OrderRecord.TotalPriceWithPromo > 0.0 )
             {
                 message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPriceWithPromo.ToString());
             }

@@ -76,6 +76,12 @@
                 </aside>
             }
             <div class="group tb-layout-content">
+                @if (Model.Messages != null)
+                {
+                    <div id="messages">
+                        @Zone(Model.Messages)
+                    </div>
+                }
                 @if (Model.Content != null)
                 {
                     <div id="content" class="group">
