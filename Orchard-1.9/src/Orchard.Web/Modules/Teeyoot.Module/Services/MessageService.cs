@@ -60,5 +60,11 @@ namespace Teeyoot.Module.Services
             }
             return DateTime.MaxValue;
         }
+
+
+        public IQueryable<MessageRecord> GetAllMessagesForCampaign(int campaignId)
+        {
+            return _messageRepository.Table.Where(m => m.CampaignId == campaignId);
+        }
     }
 }

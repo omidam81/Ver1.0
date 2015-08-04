@@ -19,6 +19,8 @@ namespace Teeyoot.Module.Services
 
         DateTime GetLatestMessageDateForCampaign (int campaignId);
 
+        IQueryable<MessageRecord> GetAllMessagesForCampaign(int campaignId);
+
     }
 
     
