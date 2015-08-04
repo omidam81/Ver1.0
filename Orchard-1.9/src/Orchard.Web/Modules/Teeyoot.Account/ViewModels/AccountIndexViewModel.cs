@@ -19,7 +19,6 @@
         public string RegistrationValidationSummary { get; set; }
         public bool LoggingOnValidationIssueOccurred { get; set; }
         public string LoggingOnValidationSummary { get; set; }
-        public bool FacebookLogOnFailed { get; set; }
-        public string FacebookLogOnFailedError { get; set; }
+        public bool PasswordHasBeenUpdated { get; set; }
     }
 }

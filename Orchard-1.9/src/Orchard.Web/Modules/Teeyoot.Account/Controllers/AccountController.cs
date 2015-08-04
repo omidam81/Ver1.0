@@ -12,6 +12,7 @@ using Orchard.Users.Models;
 using Orchard.Users.Services;
 using RM.QuickLogOn.OAuth.Services;
 using RM.QuickLogOn.OAuth.ViewModels;
+using Teeyoot.Account.Common;
 using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
 
@@ -35,7 +36,7 @@ namespace Teeyoot.Account.Controllers
         private const string RecoverValidationSummaryKey = "RecoverValidationSummary";
         private const string RecoverEmailSentKey = "RecoverEmailSent";
         private const string ResetPasswordValidationSummaryKey = "ResetPasswordValidationSummary";
-        private const string FacebookLogOnFailedErrorKey = "FacebookLogOnFailedError";
+        private const string PasswordHasBeenUpdatedKey = "PasswordHasBeenUpdated";
 
         public AccountController(
             ITeeyootMembershipService teeyootMembershipService,
@@ -66,7 +67,6 @@ namespace Teeyoot.Account.Controllers
             get { return _membershipService.GetSettings().MinRequiredPasswordLength; }
         }
 
-        [HttpGet]
         public ActionResult Index(string logOnReturnUrl, string registerReturnUrl)
         {
             var viewModel = new AccountIndexViewModel
@@ -87,10 +87,9 @@ namespace Teeyoot.Account.Controllers
                 viewModel.LoggingOnValidationSummary = (string) TempData[LoggingOnValidationSummaryKey];
             }
 
-            if (TempData[FacebookLogOnFailedErrorKey] != null)
+            if (TempData[PasswordHasBeenUpdatedKey] != null)
             {
-                viewModel.FacebookLogOnFailed = true;
-                viewModel.FacebookLogOnFailedError = (string) TempData[FacebookLogOnFailedErrorKey];
+                viewModel.PasswordHasBeenUpdated = (bool) TempData[PasswordHasBeenUpdatedKey];
             }
 
             return View(viewModel);
@@ -99,8 +98,10 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         public ActionResult Register(CreateAccountViewModel viewModel)
         {
-            if (!ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword))
+            var validRes = ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword);
+            if (!validRes.IsValid)
             {
+                TempData[RegistrationValidationSummaryKey] = validRes.ValidationSummary;
                 return this.RedirectLocal("~/Login");
             }
 
@@ -120,13 +121,14 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel viewModel)
         {
-            var user = ValidateLogOn(viewModel.Email, viewModel.Password);
-            if (user == null)
+            var validRes = ValidateLogOn(viewModel.Email, viewModel.Password);
+            if (!validRes.IsValid)
             {
+                TempData[LoggingOnValidationSummaryKey] = validRes.ValidationSummary;
                 return this.RedirectLocal("~/Login");
             }
 
-            _authenticationService.SignIn(user, viewModel.RememberMe);
+            _authenticationService.SignIn(validRes.User, viewModel.RememberMe);
 
             return string.IsNullOrEmpty(viewModel.ReturnUrl)
                 ? Redirect("~/")
@@ -141,13 +143,7 @@ namespace Teeyoot.Account.Controllers
                 model.Error,
                 model.State);
 
-            if (response.Error == null)
-            {
-                return Redirect("~/");
-            }
-
-            TempData[FacebookLogOnFailedErrorKey] = response.Error.ToString();
-            return Redirect("~/Login");
+            return Redirect(response.Error == null ? "~/" : "~/Login");
         }
 
         public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
@@ -158,13 +154,7 @@ namespace Teeyoot.Account.Controllers
                 model.Error,
                 model.State);
 
-            if (response.Error == null)
-            {
-                return Redirect("~/");
-            }
-
-            TempData["GoogleLogOnFailedError"] = response.Error.ToString();
-            return Redirect("~/Login");
+            return Redirect(response.Error == null ? "~/" : "~/Login");
         }
 
         public ActionResult Recover()
@@ -205,7 +195,6 @@ namespace Teeyoot.Account.Controllers
             return this.RedirectLocal("~/Recover");
         }
 
-        [HttpGet]
         public ActionResult ResetPassword(string nonce)
         {
             var viewModel = new ResetPasswordViewModel();
@@ -234,21 +223,22 @@ namespace Teeyoot.Account.Controllers
                 return Redirect("~/");
             }
 
-            if (!ValidateNewPassword(viewModel.Password, viewModel.ConfirmPassword))
+            var validRes = ValidateNewPassword(viewModel.Password, viewModel.ConfirmPassword);
+            if (!validRes.IsValid)
             {
+                TempData[ResetPasswordValidationSummaryKey] = validRes.ValidationSummary;
                 return this.RedirectLocal(Url.Action("ResetPassword", "Account", new {nonce = viewModel.Nonce}));
             }
 
             _membershipService.SetPassword(user, viewModel.Password);
 
-            _authenticationService.SignIn(user, false);
-
-            return Redirect("~/");
+            TempData[PasswordHasBeenUpdatedKey] = true;
+            return this.RedirectLocal("~/Login");
         }
 
-        private bool ValidateRegistration(string email, string password, string confirmPassword)
+        private ValidateRegistrationResult ValidateRegistration(string email, string password, string confirmPassword)
         {
-            var validate = true;
+            var res = new ValidateRegistrationResult {IsValid = true};
 
             string emailCantBeBlank = null;
             string emailIsTooLong = null;
@@ -262,48 +252,48 @@ namespace Teeyoot.Account.Controllers
             if (string.IsNullOrEmpty(email))
             {
                 emailCantBeBlank = T("Email can't be blank").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (email.Length >= 255)
             {
                 emailIsTooLong = T("Email is too long").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (!Regex.IsMatch(email, UserPart.EmailPattern, RegexOptions.IgnoreCase))
             {
                 emailIsInvalid = T("Email is invalid").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (!_userService.VerifyUserUnicity(email, email))
             {
                 userAlreadyExists = T("A user already exists with the Email you have given").ToString();
-                validate = false;
+                res.IsValid = false;
             }
 
             if (string.IsNullOrEmpty(password))
             {
                 passwordCantBeBlank = T("Password can't be blank").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (password.Length < MinPasswordLength)
             {
                 passwordIsTooShort =
                     T("Password is too short (minimum is {0} characters)", MinPasswordLength).ToString();
-                validate = false;
+                res.IsValid = false;
             }
 
             if (string.IsNullOrEmpty(confirmPassword))
             {
                 confirmPasswordCantBeBlank = T("Password confirmation can't be blank").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (!string.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
                 passwordDoesntMatch = T("Password confirmation doesn't match Password").ToString();
-                validate = false;
+                res.IsValid = false;
             }
 
-            var validationSummary = string.Join(". ", new[]
+            res.ValidationSummary = string.Join(". ", new[]
             {
                 emailCantBeBlank,
                 emailIsTooLong,
@@ -315,48 +305,43 @@ namespace Teeyoot.Account.Controllers
                 passwordDoesntMatch
             }.Where(it => it != null));
 
-            if (!validate)
-            {
-                TempData[RegistrationValidationSummaryKey] = validationSummary;
-            }
-
-            return validate;
+            return res;
         }
 
-        private IUser ValidateLogOn(string email, string password)
+        private ValidateLogOnResult ValidateLogOn(string email, string password)
         {
-            var validate = true;
-            var validationSummary = T("Sorry, that is not a valid login!").ToString();
+            var res = new ValidateLogOnResult
+            {
+                IsValid = false,
+                ValidationSummary = T("Sorry, that is not a valid login!").ToString()
+            };
 
             if (string.IsNullOrEmpty(email))
             {
-                validate = false;
+                return res;
             }
 
             if (string.IsNullOrEmpty(password))
             {
-                validate = false;
+                return res;
             }
 
             var user = _membershipService.ValidateUser(email, password);
             if (user == null)
             {
-                validate = false;
+                return res;
             }
 
-            if (validate)
+            return new ValidateLogOnResult
             {
-                return user;
-            }
-
-            TempData[LoggingOnValidationSummaryKey] = validationSummary;
-
-            return null;
+                IsValid = true,
+                User = user
+            };
         }
 
-        private bool ValidateNewPassword(string password, string confirmPassword)
+        private ValidateNewPasswordResult ValidateNewPassword(string password, string confirmPassword)
         {
-            var validate = true;
+            var res = new ValidateNewPasswordResult {IsValid = true};
 
             string passwordCantBeBlank = null;
             string passwordIsTooShort = null;
@@ -366,27 +351,27 @@ namespace Teeyoot.Account.Controllers
             if (string.IsNullOrEmpty(password))
             {
                 passwordCantBeBlank = T("Password can't be blank").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (password.Length < MinPasswordLength)
             {
                 passwordIsTooShort =
                     T("Password is too short (minimum is {0} characters)", MinPasswordLength).ToString();
-                validate = false;
+                res.IsValid = false;
             }
 
             if (string.IsNullOrEmpty(confirmPassword))
             {
                 confirmPasswordCantBeBlank = T("Password confirmation can't be blank").ToString();
-                validate = false;
+                res.IsValid = false;
             }
             else if (!string.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
                 passwordDoesntMatch = T("Password confirmation doesn't match Password").ToString();
-                validate = false;
+                res.IsValid = false;
             }
 
-            var validationSummary = string.Join(". ", new[]
+            res.ValidationSummary = string.Join(". ", new[]
             {
                 passwordCantBeBlank,
                 passwordIsTooShort,
@@ -394,12 +379,7 @@ namespace Teeyoot.Account.Controllers
                 passwordDoesntMatch
             }.Where(it => it != null));
 
-            if (!validate)
-            {
-                TempData[ResetPasswordValidationSummaryKey] = validationSummary;
-            }
-
-            return validate;
+            return res;
         }
     }
 }
