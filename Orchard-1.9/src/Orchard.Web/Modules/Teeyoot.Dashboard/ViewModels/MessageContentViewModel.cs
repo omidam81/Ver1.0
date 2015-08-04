@@ -20,8 +20,7 @@ namespace Teeyoot.Module.Dashboard.ViewModels
 
         [StringLength(50), Required(ErrorMessage = "Subject can't be blank")]
         public string Subject { get; set; }
-        [StringLength(50), EmailAddressAttribute, Required(ErrorMessage = "Recipient can't be blank")]
-        public string Email { get; set; }
+
         [Required(ErrorMessage = "Message can't be blank")]
         public string Content { get; set; }
 

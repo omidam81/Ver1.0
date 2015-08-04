@@ -455,7 +455,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
 
-            return 43;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("IsPrivate", c => c.NotNull().WithDefault(false)));
+
+            return 44;
         }
 
         public int UpdateFrom2()
@@ -922,6 +924,13 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
 
             return 43;
+        }
+
+        public int UpdateFrom43()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("IsPrivate", c => c.NotNull().WithDefault(false)));
+
+            return 44;
         }
     }
 }

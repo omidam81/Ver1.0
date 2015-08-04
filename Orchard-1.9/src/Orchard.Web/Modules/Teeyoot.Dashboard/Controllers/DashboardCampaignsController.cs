@@ -11,6 +11,7 @@ using Orchard.Themes;
 using Orchard;
 using Orchard.Mvc.Routes;
 using System.Web.Routing;
+using Orchard.UI.Notify;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -44,12 +45,6 @@ namespace Teeyoot.Dashboard.Controllers
             FillCampaigns(model, campaignsQuery);
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
 
-            if (isError != null)
-            {
-                model.IsError = (bool)isError;
-                model.Message = (string)result.ToString();
-            }
-
             return View(model);
         }
 
@@ -80,62 +75,37 @@ namespace Teeyoot.Dashboard.Controllers
 
         private void FillCampaigns(CampaignsViewModel model, IQueryable<CampaignRecord> campaignsQuery)
         {
+            var campaignProducts = _campaignService.GetAllCampaignProducts();
+            var orderedProducts = _orderService.GetAllOrderedProducts();
 
+            var campaignSummaries = campaignsQuery
+                .Select(c => new CampaignSummary
+                    {
+                        Alias = c.Alias,
+                        EndDate = c.EndDate,
+                        Goal = c.ProductCountGoal,
+                        Id = c.Id,
+                        Name = c.Title,
+                        Sold = c.ProductCountSold,
+                        StartDate = c.StartDate,
+                        Status = c.CampaignStatusRecord,
+                        IsActive = c.IsActive,
+                        ShowBack = c.BackSideByDefault,
+                        IsPrivate = c.IsPrivate
+                    })
+                .OrderBy(c => c.StartDate)
+                .ToArray();
 
-            //var campaignSummaries = campaignsQuery
-            //    .GroupJoin(_campaignService.GetAllCampaignProducts(),
-            //        c => c.Id,
-            //        p => p.CampaignRecord_Id,
-            //        (Campaign, Products) => new { Campaign, Products })
-            //    .GroupJoin(_orderService.GetAllOrderedProducts(),
-            //        c => c.Campaign.Id,
-            //        p => p.CampaignProductRecord.CampaignRecord_Id,
-            //        (c, p) => new CampaignSummary
-            //            {
-            //                Alias = c.Campaign.Alias,
-            //                EndDate = c.Campaign.EndDate,
-            //                Goal = c.Campaign.ProductCountGoal,
-            //                Id = c.Campaign.Id,
-            //                Name = c.Campaign.Title,
-            //                Sold = c.Campaign.ProductCountSold,
-            //                StartDate = c.Campaign.StartDate,
-            //                Status = c.Campaign.CampaignStatusRecord,
-            //                IsActive = c.Campaign.IsActive,
-            //                ShowBack = c.Campaign.BackSideByDefault,
-            //                //FirstProductId = c.Products.Count() > 0 ? c.Products.First().Id : 0,
-            //                //Profit = p.Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
-            //                //          .Sum(entry => (int?)entry.Profit) ?? 0
-            //            })
-            //    .OrderBy(c => c.StartDate)
-            //    .ToArray();
-
-            //model.Campaigns = campaignSummaries;
-
-
-            var campaignSummaries = new List<CampaignSummary>();
-            var campaigns = campaignsQuery.OrderBy(c => c.StartDate).ToList();
-
-            foreach (var c in campaigns)
+            foreach (var item in campaignSummaries)
             {
-                campaignSummaries.Add(new CampaignSummary
-                {
-                    Alias = c.Alias,
-                    EndDate = c.EndDate,
-                    Goal = c.ProductCountGoal,
-                    Id = c.Id,
-                    Name = c.Title,
-                    Sold = c.ProductCountSold,
-                    StartDate = c.StartDate,
-                    Status = c.CampaignStatusRecord,
-                    IsActive = c.IsActive,
-                    ShowBack = c.BackSideByDefault,
-                    FirstProductId = c.Products[0].Id,
-                    Profit = _orderService.GetProductsOrderedOfCampaign(c.Id)
-                                        .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                                        .Sum(entry => (int?)entry.Profit) ?? 0
-                });
+                item.FirstProductId = campaignProducts.First(p => p.CampaignRecord_Id == item.Id).Id;
+                item.Profit = orderedProducts
+                                    .Where(p => p.OrderRecord.IsActive && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
+                                    .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
+                                    .Sum(entry => (int?)entry.Profit) ?? 0;
             }
-            model.Campaigns = campaignSummaries.ToArray();
+
+            model.Campaigns = campaignSummaries;
         }
 
         private void FillOverviews(CampaignsViewModel model, IQueryable<LinkOrderCampaignProductRecord> productsOrderedQuery, IQueryable<CampaignRecord> campaignsQuery)
@@ -295,10 +265,12 @@ namespace Teeyoot.Dashboard.Controllers
 
             if (_campaignCategoryService.UpdateCampaignAndCreateNewCategories(campaign, newTags, tagsInBD))
             {
+                _notifier.Information(T("Campaign was updated successfully"));
                 return RedirectToAction("Campaigns");
             }
             else
             {
+                _notifier.Error(T("An error occurred when updating the campaign. Try again."));
                 return RedirectToAction("EditCampaign", new { id = editCampaign.Id });
             }
         }
@@ -329,20 +301,37 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult DeleteCampaign(int id)
         {
-            string result = string.Empty;
-            bool isError = false;
             if (_campaignService.DeleteCampaign(id))
             {
-                isError = false;
-                result = "The campaign was deleted successfully!";
+                _notifier.Information(T("The campaign was deleted successfully!"));
             }
             else
             {
-                isError = true;
-                result = "The company could not be removed. Try again!";
+                _notifier.Error(T("The company could not be removed. Try again!"));
             }
 
-            return RedirectToAction("Campaigns", new { isError = isError, result = result });
+            return RedirectToAction("Campaigns");
+        }
+
+        public ActionResult PrivateCampaign(int id, bool change)
+        {
+            if (_campaignService.PrivateCampaign(id, change))
+            {
+                if (change)
+                {
+                    _notifier.Information(T("Campaign set status - private"));
+                }
+                else
+                {
+                    _notifier.Information(T("Campaign set status - public"));
+                }
+            }
+            else
+            {
+                _notifier.Error(T("The company could not be changed. Try again!"));
+            }
+
+            return RedirectToAction("Campaigns");
         }
     }
 }

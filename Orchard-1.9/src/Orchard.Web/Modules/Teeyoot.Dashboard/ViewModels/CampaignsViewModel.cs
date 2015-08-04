@@ -18,9 +18,6 @@ namespace Teeyoot.Dashboard.ViewModels
         public CampaignSummary[] Campaigns { get; set; }
 
         public string Currency { get; set; }
-
-        public bool IsError { get; set; }
-        public string Message { get; set; }
     }
 
     public class CampaignSummary
@@ -48,6 +45,8 @@ namespace Teeyoot.Dashboard.ViewModels
         public bool IsActive { get; set; }
 
         public bool ShowBack { get; set; }
+
+        public bool IsPrivate { get; set; }
     }
 
     public class CampaignsOverview

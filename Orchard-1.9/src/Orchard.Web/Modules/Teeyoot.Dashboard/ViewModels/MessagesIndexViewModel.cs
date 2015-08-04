@@ -10,6 +10,8 @@ namespace Teeyoot.Module.Dashboard.ViewModels
     public class MessagesIndexViewModel
     {
         public string InfoMessage { get; set; }
+
+        public int ThisWeekSend { get; set; }
         
         public string LastSend { get; set; }
 
