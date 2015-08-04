@@ -22,6 +22,11 @@ namespace Teeyoot.FeaturedCampaigns.Services
             _campaignProductRepository = campaignProductRepository;
         }
 
+        public IQueryable<CampaignRecord> GetAllCampaigns()
+        {
+            return _campaignRepository.Table.Where(c => c.WhenDeleted == null);
+        }
+
         public List<OrderRecord> GetOrderForOneDay()
         {
             DateTime now = DateTime.UtcNow;
@@ -36,7 +41,7 @@ namespace Teeyoot.FeaturedCampaigns.Services
         {
             var idsCampaignProductFromOneDay = _linkOrderCampaignProductRepository.Table.Where(c => ids.Contains(c.OrderRecord.Id)).Select(c => c.CampaignProductRecord.Id);
             var campaignIdsFromOneDay = _campaignProductRepository.Table.Where(c => idsCampaignProductFromOneDay.Contains(c.Id)).Select(c => c.CampaignRecord_Id);
-            List<CampaignRecord> campaigns = _campaignRepository.Table.Where(c => campaignIdsFromOneDay.Contains(c.Id)).ToList();
+            List<CampaignRecord> campaigns = GetAllCampaigns().Where(c => campaignIdsFromOneDay.Contains(c.Id)).ToList();
             Dictionary<CampaignRecord, int> campSelect = new Dictionary<CampaignRecord, int>();
             foreach (var camp in campaigns)
             {
@@ -69,7 +74,7 @@ namespace Teeyoot.FeaturedCampaigns.Services
                 int[] ids = orders.Select(c => c.Id).ToArray();
                 var idsCampaignProductFromOneDay = _linkOrderCampaignProductRepository.Table.Where(c => ids.Contains(c.OrderRecord.Id)).Select(c => c.CampaignProductRecord.Id);
                 var campaignIdsFromOneDay = _campaignProductRepository.Table.Where(c => idsCampaignProductFromOneDay.Contains(c.Id)).Select(c => c.CampaignRecord_Id);
-                List<CampaignRecord> campaigns = _campaignRepository.Table.Where(c => campaignIdsFromOneDay.Contains(c.Id)).ToList();
+                List<CampaignRecord> campaigns = GetAllCampaigns().Where(c => campaignIdsFromOneDay.Contains(c.Id)).ToList();
 
                 foreach (var cm in camp)
                 {
