@@ -13,8 +13,10 @@ using Orchard.Users.Services;
 using RM.QuickLogOn.OAuth.Services;
 using RM.QuickLogOn.OAuth.ViewModels;
 using Teeyoot.Account.Common;
+using Teeyoot.Account.DTOs;
 using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
+using Teeyoot.Module.Services;
 
 namespace Teeyoot.Account.Controllers
 {
@@ -31,6 +33,8 @@ namespace Teeyoot.Account.Controllers
         private readonly IUserService _userService;
         private readonly IWorkContextAccessor _workContextAccessor;
 
+        private readonly ICampaignService _campaignService;
+
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
         private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
         private const string RecoverValidationSummaryKey = "RecoverValidationSummary";
@@ -45,7 +49,8 @@ namespace Teeyoot.Account.Controllers
             IUserService userService,
             IFacebookOAuthService facebookOAuthService,
             IGoogleOAuthService googleOAuthService,
-            IWorkContextAccessor workContextAccessor)
+            IWorkContextAccessor workContextAccessor,
+            ICampaignService campaignService)
         {
             _teeyootMembershipService = teeyootMembershipService;
             _authenticationService = authenticationService;
@@ -54,6 +59,8 @@ namespace Teeyoot.Account.Controllers
             _facebookOAuthService = facebookOAuthService;
             _googleOAuthService = googleOAuthService;
             _workContextAccessor = workContextAccessor;
+
+            _campaignService = campaignService;
 
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
@@ -119,6 +126,40 @@ namespace Teeyoot.Account.Controllers
         }
 
         [HttpPost]
+        public JsonResult WizardRegister(WizardRegisterJsonRequest request)
+        {
+            var validRes = ValidateRegistration(request.Email, request.Password, request.ConfirmPassword);
+            if (!validRes.IsValid)
+            {
+                var response = new WizardRegisterJsonResponse
+                {
+                    IssueOccurred = true,
+                    IssueSummary = validRes.ValidationSummary
+                };
+
+                return Json(response);
+            }
+
+            var user = _teeyootMembershipService.CreateUser(request.Email, request.Password);
+            if (user == null)
+            {
+                var response = new WizardRegisterJsonResponse
+                {
+                    IssueOccurred = true,
+                    IssueSummary = T("Registration issue occurred.").ToString()
+                };
+
+                return Json(response);
+            }
+
+            _campaignService.AttachAnonymousCampaignToUser(request.CampaignId, user.Id);
+
+            _authenticationService.SignIn(user, false);
+
+            return Json(new WizardRegisterJsonResponse {IssueSummary = "Success"});
+        }
+
+        [HttpPost]
         public ActionResult LogOn(LogOnViewModel viewModel)
         {
             var validRes = ValidateLogOn(viewModel.Email, viewModel.Password);
@@ -133,6 +174,28 @@ namespace Teeyoot.Account.Controllers
             return string.IsNullOrEmpty(viewModel.ReturnUrl)
                 ? Redirect("~/")
                 : this.RedirectLocal(viewModel.ReturnUrl);
+        }
+
+        [HttpPost]
+        public JsonResult WizardLogOn(WizardLogOnJsonRequest request)
+        {
+            var validRes = ValidateLogOn(request.Email, request.Password);
+            if (!validRes.IsValid)
+            {
+                var response = new WizardLogOnJsonResponse
+                {
+                    IssueOccurred = true,
+                    IssueSummary = validRes.ValidationSummary
+                };
+
+                return Json(response);
+            }
+
+            _campaignService.AttachAnonymousCampaignToUser(request.CampaignId, validRes.User.Id);
+
+            _authenticationService.SignIn(validRes.User, request.RememberMe);
+
+            return Json(new WizardRegisterJsonResponse {IssueSummary = "Success"});
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
