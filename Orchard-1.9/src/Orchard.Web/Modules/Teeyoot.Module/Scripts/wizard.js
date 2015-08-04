@@ -373,10 +373,13 @@ function profitSale() {
         $("#mainH4").html("RM " + $price + " profit / sale");
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
+        if (app.state.products.length > 1) {
+            estimatedProfitChangeForManuProducts()
+        } else {
+            estimatedProfitChange();
+        }
     }
 }
-
-
 
 function colorInit() {
 
@@ -498,14 +501,18 @@ function onChangeTrackBar() {
     document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
+
     window.count = parseInt(document.getElementById('trackbar').value);
+    calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
     profitSale();
 
-    if (app.state.products.length > 1) {
-        estimatedProfitChangeForManuProducts()
-    } else {
-        estimatedProfitChange();
+    if (window.nowPrice < window.sellingPrice) {
+        if (app.state.products.length > 1) {
+            estimatedProfitChangeForManuProducts()
+        } else {
+            estimatedProfitChange();
+        }
     }
 }
 
@@ -517,14 +524,17 @@ function onChangeValueForTrackBar() {
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
-    window.count = parseInt(document.getElementById('trackBarValue').value);
 
+    window.count = parseInt(document.getElementById('trackBarValue').value);
+    calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
     profitSale();
 
-    if (app.state.products.length > 1) {
-        estimatedProfitChangeForManuProducts()
-    } else {
-        estimatedProfitChange();
+    if (window.nowPrice < window.sellingPrice) {
+        if (app.state.products.length > 1) {
+            estimatedProfitChangeForManuProducts()
+        } else {
+            estimatedProfitChange();
+        }
     }
 }

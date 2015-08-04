@@ -18,6 +18,10 @@ namespace Teeyoot.Module.Models
         public virtual int UserId { get; set; }
 
         public virtual int CampaignId { get; set; }
+
+        public virtual string Subject { get; set; }
+
+        public virtual bool IsApprowed { get; set; }
          
     }
 }

@@ -3,396 +3,418 @@
     Style.Include("campaign.css");
     Script.Require("jQuery");
     Script.Include("jquery.flip.js");
-    Script.Include("jquery.elevateZoom-3.0.8.min.js"); 
+    Script.Include("jquery.elevateZoom-3.0.8.min.js");
 }
 @using (Script.Head())
 {
 
-	<meta property="og:site_name" content="Teeyoot"/>
-	<meta property="og:title" content="@Model.Campaign.Title" />
-    <meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png" />
-	<meta property="og:image:width" content="530" />
-	<meta property="og:image:height" content="430" />
-	<meta property="og:description" content="@Model.Campaign.Description" />
-    <meta property="og:url" content="http://teebay.bqt.me/@Model.Campaign.Alias"/>
+    <meta property="og:site_name" content="Teeyoot" />
+    <meta property="og:title" content="@Model.Campaign.Title" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="627" />
+    <meta property="og:description" content="@Model.Campaign.Description" />
+    <meta property="og:url" content="http://teebay.bqt.me/@Model.Campaign.Alias" />
 
     <meta name="twitter:domain" content="Teeyoot.com">
     <meta name="twitter:card" content="photo">
     <meta name="twitter:description" content="@Model.Campaign.Description">
     <meta name="twitter:title" content="@Model.Campaign.Title">
     <meta name="twitter:site" content="teeyoot">
-    <meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+    @*<meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">*@
+    if (Model.Campaign.IsPrivate)
+    {
+        <meta name="Robots" content="NOINDEX,NOFOLLOW">
+    }
 }
 
 @using (Script.Foot())
 {
     <script>
-    var twitterBtn = document.getElementsByClassName("btn--twitter");
-        for (var k = 0; k < twitterBtn.length; k++) {
-            $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
-        }
-    var pinterestBtn = document.getElementsByClassName("btn--pinterest");
-        for (var k = 0; k < pinterestBtn.length; k++) {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
-        }
-    var facebookBtn = document.getElementsByClassName("btn--facebook");
-    for (var k = 0; k < facebookBtn.length; k++) {
-        $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=http://teebay.bqt.me/@Model.Campaign.Alias");
-        }
-       
-    $(".product__size_chart_link--show").click(function () {
-        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
-    });
-    $(".product__size_chart_link--hide").click(function () {
-        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
-    });
-
-    $(".js-size-unit-toggle-inches").click(function () {
-        var id = $("#product__dropdown option:selected")[0].id;
-        var size_show = document.getElementsByClassName("product__size_chart");
-        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
-    });
-    $(".js-size-unit-toggle-centimeters").click(function () {
-        var id = $("#product__dropdown option:selected")[0].id;
-        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
-    });
-
-    $("#js-circle-nav-item-front").click(function () {
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
-    });
-    $("#js-circle-nav-item-back").click(function () {
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
-        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-    });
-
-
-    $("#image-stack-arrow-right").click(function () {
-        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
-        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-    });
-    $("#image-stack-arrow-left").click(function () {
-        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
-        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-    });
-
-    var size_show = document.getElementsByClassName("product__size_chart")[0];
-    $(size_show).addClass("active");
-
-    var details = document.getElementsByClassName("product__details")[0];
-    $(details).addClass("active");
-
-    function VisibleRemove() {
-        var cntRows = document.getElementById('order_item_list_modal').childElementCount;
-        if (cntRows == 1) { return; }
-        if (cntRows == 2) {
-            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-            var newSize = $(current).find("#precheckout-item-remove")[0];
-            newSize.className = "precheckout_item_remove_button hidden";
-        } else {
-            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-            var newSize = $(current).find("#precheckout-item-remove")[0];
-            newSize.className = "precheckout_item_remove_button";
-        }
-    };
-
-    var i = 1;
-    $("#add-row").click(function () {
-        var rowHtml = document.getElementById('first-line-item').innerHTML;
-        var newRow = document.createElement('tr');
-        $(newRow)
-            .addClass('precheckout_items_table__row')
-            .attr('id', 'js-precheckout-line-item-' + i)
-            .html(rowHtml)
-            .appendTo($("#order_item_list_modal"))
-        i = i + 1;
-        VisibleRemove();
-    });
-
-
-    $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-    $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-
-    function ItemRemove(node) {
-        var el = document.getElementById(node.id);
-        el.parentNode.removeChild(el);
-        VisibleRemove();
+        var twitterBtn = document.getElementsByClassName("btn--twitter");
+    for (var k = 0; k < twitterBtn.length; k++) {
+        $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
+    }
+        var pinterestBtn = document.getElementsByClassName("btn--pinterest");
+    for (var k = 0; k < pinterestBtn.length; k++) {
+        $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+    }
+        var facebookBtn = document.getElementsByClassName("btn--facebook");
+        for (var k = 0; k < facebookBtn.length; k++) {
+            $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=http://teebay.bqt.me/@Model.Campaign.Alias");
     }
 
-    var firstBack = "@Model.Campaign.BackSideByDefault";
-    var isFront = true;
-    $(function ($) {
-        $("#card").flip({
-            trigger: 'manual'
-        }).click(function () {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
+        $(".product__size_chart_link--show").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+        });
+        $(".product__size_chart_link--hide").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+        });
+
+        $(".js-size-unit-toggle-inches").click(function () {
             var id = $("#product__dropdown option:selected")[0].id;
+            var size_show = document.getElementsByClassName("product__size_chart");
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+        });
+        $(".js-size-unit-toggle-centimeters").click(function () {
+            var id = $("#product__dropdown option:selected")[0].id;
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+        });
+
+        $("#js-circle-nav-item-front").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+        });
+        $("#js-circle-nav-item-back").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        });
+
+
+        $("#image-stack-arrow-right").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        });
+        $("#image-stack-arrow-left").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        });
+
+        var size_show = document.getElementsByClassName("product__size_chart")[0];
+        $(size_show).addClass("active");
+
+        var details = document.getElementsByClassName("product__details")[0];
+        $(details).addClass("active");
+
+        function VisibleRemove() {
+            var cntRows = document.getElementById('order_item_list_modal').childElementCount;
+            if (cntRows == 1) { return; }
+            if (cntRows == 2) {
+                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+                var newSize = $(current).find("#precheckout-item-remove")[0];
+                newSize.className = "precheckout_item_remove_button hidden";
+            } else {
+                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+                var newSize = $(current).find("#precheckout-item-remove")[0];
+                newSize.className = "precheckout_item_remove_button";
+            }
+        };
+
+        var i = 1;
+        $("#add-row").click(function () {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
+        });
+
+
+        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+
+        function ItemRemove(node) {
+            var el = document.getElementById(node.id);
+            el.parentNode.removeChild(el);
+            VisibleRemove();
+        }
+
+        var firstBack = "@Model.Campaign.BackSideByDefault";
+        var isFront = true;
+        $(function ($) {
+            $("#card").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+                var id = $("#product__dropdown option:selected")[0].id;
+
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
+                } else {
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
+                }
+
+            });
+
+        });
+
+
+        function Resrve() {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
+            document.getElementById("reserve-it-now").className = "dg-overlay";
+
+        }
+
+        function CloseReservation() {
+            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+            var el = document.getElementsByClassName("precheckout_items_table__row");
+            var length = el.length;
+            for (var i = 0; i < length; i++) {
+                el[0].parentNode.removeChild(el[0]);
+            }
+
+            VisibleRemove();
+        }
+
+        function ChangeProduct(item) {
+            var id = item[item.selectedIndex].id;
+            if (!isFront) {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            }
+            var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
+
+            if (firstBack == "True") {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+                $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            } else {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+                $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+            }
+
+            var index = item.selectedIndex;
+            var drop_down = document.getElementById("product__dropdown_modal");
+
+            var row = drop_down.parentNode.parentNode;
+
+            var currentModalSize = $(row).find('.size-dropdown.shown')[0];
+            var newModalSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+
+            $(currentModalSize).removeClass('shown').addClass('hidden');
+            $(newModalSize).removeClass('hidden').addClass('shown');
+
+            var currentPrice = $(row).find('.modal-price.shown')[0];
+            var newPrice = $(row).find('span[name=select_size_index_' + index + ']')[0];
+
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newPrice).removeClass('hidden').addClass('shown');
+
+            document.getElementById('product__dropdown_modal').selectedIndex = index;
+
+            var options = document.getElementById('product__dropdown_modal').options;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value == id) {
+
+                    options[i].setAttribute("selected", "selected");
+                } else {
+                    options[i].removeAttribute("selected");
+                }
+            }
 
             if (firstBack == "True") {
                 if (isFront) {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                 }
             } else {
                 if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                 }
             }
 
-        });
 
-    });
-
-
-    function Resrve() {
-        var rowHtml = document.getElementById('first-line-item').innerHTML;
-        var newRow = document.createElement('tr');
-        $(newRow)
-            .addClass('precheckout_items_table__row')
-            .attr('id', 'js-precheckout-line-item-' + i)
-            .html(rowHtml)
-            .appendTo($("#order_item_list_modal"))
-        i = i + 1;
-        VisibleRemove();
-        document.getElementById("reserve-it-now").className = "dg-overlay";
-
-    }
-
-    function CloseReservation() {
-        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-        var el = document.getElementsByClassName("precheckout_items_table__row");
-        var length = el.length;
-        for (var i = 0; i < length; i++) {
-            el[0].parentNode.removeChild(el[0]);
-        }
-
-        VisibleRemove();
-    }
-
-    function ChangeProduct(item) {
-        var id = item[item.selectedIndex].id;
-        if (!isFront) {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
-        }
-        var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
-
-        if (firstBack == "True") {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
-            $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-        } else {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
-            $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-        }
-
-        var index = item.selectedIndex;
-        var drop_down = document.getElementById("product__dropdown_modal");
-
-        var row = drop_down.parentNode.parentNode;
-
-        var currentModalSize = $(row).find('.size-dropdown.shown')[0];
-        var newModalSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
-
-        $(currentModalSize).removeClass('shown').addClass('hidden');
-        $(newModalSize).removeClass('hidden').addClass('shown');
-
-        var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newPrice = $(row).find('span[name=select_size_index_' + index + ']')[0];
-
-        $(currentPrice).removeClass('shown').addClass('hidden');
-        $(newPrice).removeClass('hidden').addClass('shown');
-
-        document.getElementById('product__dropdown_modal').selectedIndex = index;
-
-        var options = document.getElementById('product__dropdown_modal').options;
-        for (var i = 0; i < options.length; i++) {
-            if (options[i].value == id) {
-
-                options[i].setAttribute("selected", "selected");
-            } else {
-                options[i].removeAttribute("selected");
+            var size_show = document.getElementsByClassName("product__size_chart");
+            for (var i = 0; i < size_show.length; i++) {
+                if ($(size_show[i]).attr('data-product-id') == id) {
+                    $(size_show[i]).addClass("active");
+                } else {
+                    $(size_show[i]).removeClass("active");
+                }
             }
-        }
 
-        if (firstBack == "True") {
-            if (isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-            } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+            var details = document.getElementsByClassName("product__details");
+            for (var i = 0; i < details.length; i++) {
+                if ($(details[i]).attr('data-product-id') == id) {
+                    $(details[i]).addClass("active");
+                } else {
+                    $(details[i]).removeClass("active");
+                }
             }
-        } else {
-            if (!isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+
+        }
+
+        function ChangeProductModal(item) {
+            var par = item.parentNode.parentNode.id;
+            var index = item.selectedIndex;
+            var id = item[item.selectedIndex].id;
+            var row = item.parentNode.parentNode;
+            var img = $(row).find('.modal_campaign_img')[0];
+            if (firstBack == "True") {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             }
+
+            var currentSize = $(row).find('.size-dropdown.shown')[0];
+            var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+
+            $(currentSize).removeClass('shown').addClass('hidden');
+            $(newSize).removeClass('hidden').addClass('shown');
+
+            var currentPrice = $(row).find('.modal-price.shown')[0];
+            var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
+
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newSize).removeClass('hidden').addClass('shown');
+
+
+
         }
 
-
-        var size_show = document.getElementsByClassName("product__size_chart");
-        for (var i = 0; i < size_show.length; i++) {
-            if ($(size_show[i]).attr('data-product-id') == id) {
-                $(size_show[i]).addClass("active");
-            } else {
-                $(size_show[i]).removeClass("active");
+        function sendData() {
+            if (('@Model.PromoId') != null) {
+                var promoId = '@Model.PromoId';
             }
+            var products = [];
+            var tableRows = $('.precheckout_items_table__row');
+            var count;
+            var productId;
+            var sizeId;
+
+            tableRows.each(function (index, el) {
+
+                var items = $(el).find('.product__dropdown')[0];
+                productId = items[items.selectedIndex].value;
+                items = $(el).find('.size-dropdown.shown')[0];
+                sizeId = items[items.selectedIndex].value;
+                count = $(el).find('.product-count')[0].value;
+
+                products.push({ ProductId: productId, SizeId: sizeId, Count: count });
+            });
+
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("CreateOrder", "Home"))",
+                data: addAntiForgeryToken({
+                    "products": products
+                }),
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        if (promoId) {
+                            window.location.href = '/Buy/' + data + "?promo=" + promoId;
+                        } else {
+                            window.location.href = '/Buy/' + data;
+                        }
+                    }
+                },
+                error: function (data, status, resp) {
+                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                }
+            });
+
         }
 
-        var details = document.getElementsByClassName("product__details");
-        for (var i = 0; i < details.length; i++) {
-            if ($(details[i]).attr('data-product-id') == id) {
-                $(details[i]).addClass("active");
-            } else {
-                $(details[i]).removeClass("active");
-            }
-        }
-
-    }
-
-    function ChangeProductModal(item) {
-        var par = item.parentNode.parentNode.id;
-        var index = item.selectedIndex;
-        var id = item[item.selectedIndex].id;
-        var row = item.parentNode.parentNode;
-        var img = $(row).find('.modal_campaign_img')[0];
-        if (firstBack == "True") {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-        } else {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-        }
-
-        var currentSize = $(row).find('.size-dropdown.shown')[0];
-        var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
-
-        $(currentSize).removeClass('shown').addClass('hidden');
-        $(newSize).removeClass('hidden').addClass('shown');
-
-        var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
-
-        $(currentPrice).removeClass('shown').addClass('hidden');
-        $(newSize).removeClass('hidden').addClass('shown');
-
-
-
-    }
-
-    function sendData() {
-        if (('@Model.PromoId') != null) {
-            var promoId = '@Model.PromoId';
-        }
-        var products = [];
-        var tableRows = $('.precheckout_items_table__row');
-        var count;
-        var productId;
-        var sizeId;
-
-        tableRows.each(function (index, el) {
-
-            var items = $(el).find('.product__dropdown')[0];
-            productId = items[items.selectedIndex].value;
-            items = $(el).find('.size-dropdown.shown')[0];
-            sizeId = items[items.selectedIndex].value;
-            count = $(el).find('.product-count')[0].value;
-
-            products.push({ ProductId: productId, SizeId: sizeId, Count: count });
-        });
+    function shareCampaign() {
+        var isBack = firstBack;
+        var campaignId = document.getElementById("campaignId").value;
 
         $.ajax({
             async: false,
             cache: false,
             type: "POST",
-            url: "@(Url.Action("CreateOrder", "Home"))",
-            data: addAntiForgeryToken({
-                "products": products
-            }),
-            success: function (data, status, resp) {
-                if (resp.status === 200) {
-                    if (promoId) {
-                        window.location.href = '/Buy/' + data + "?promo=" + promoId;
-                    } else {
-                        window.location.href = '/Buy/' + data;
-                    }
-                }
-            },
-            error: function (data, status, resp) {
-                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            url: "@(Url.Action("ShareCampaign", "Home"))",
+            data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
+            success: function () {
+                $('head').append('<meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.png" />');
+                $('head').append('<meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.png" />');              
             }
         });
 
-    }
-
-    function addAntiForgeryToken(data) {
-        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-        return data;
-    };
+        }
 
 
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
 
 
-    function CountdownTimer(elm, tl, mes) {
-        this.initialize.apply(this, arguments);
-    }
-    CountdownTimer.prototype = {
-        initialize: function (elm, tl, mes) {
-            this.elem = document.getElementById(elm);
-            this.tl = tl;
-            this.mes = mes;
-        }, countDown: function () {
-            var timer = '';
-            var today = new Date();
-            var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
-            var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-            var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
-            var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
-            var me = this;
-
-            if ((this.tl - today) > 0) {
-                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
-                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
-                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
-                this.elem.innerHTML = timer;
-                tid = setTimeout(function () { me.countDown(); }, 10);
-            } else {
-                this.elem.innerHTML = this.mes;
-                return;
-            }
-        }, addZero: function (num) { return ('0' + num).slice(-2); }
-    }
-    function CDT() {
-        var finishDate = document.getElementById("persistent__timer").value;
-        var tl = new Date(finishDate);
 
 
-        var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
-        timer.countDown();
-    }
-    window.onload = function () {
-        CDT();
-    }
+        function CountdownTimer(elm, tl, mes) {
+            this.initialize.apply(this, arguments);
+        }
+        CountdownTimer.prototype = {
+            initialize: function (elm, tl, mes) {
+                this.elem = document.getElementById(elm);
+                this.tl = tl;
+                this.mes = mes;
+            }, countDown: function () {
+                var timer = '';
+                var today = new Date();
+                var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
+                var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
+                var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
+                var me = this;
+
+                if ((this.tl - today) > 0) {
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
+                    this.elem.innerHTML = timer;
+                    tid = setTimeout(function () { me.countDown(); }, 10);
+                } else {
+                    this.elem.innerHTML = this.mes;
+                    return;
+                }
+            }, addZero: function (num) { return ('0' + num).slice(-2); }
+        }
+        function CDT() {
+            var finishDate = document.getElementById("persistent__timer").value;
+            var tl = new Date(finishDate);
 
 
-</script>
+            var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
+            timer.countDown();
+        }
+        window.onload = function () {
+            CDT();
+        }
+
+
+    </script>
 
 }
 
@@ -404,29 +426,29 @@
     @* toDo: script for opening Modal window*@
     @* toDo: send total price with discount to payment form*@
     @*<div aria-hidden="false" aria-labelledby="myModalLabel" class="promo_modal modal modal--inactive js_promo_modal promo_modal--free_shipping" role="dialog" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="promo_modal__content">
-                <div class="promo_modal__body">
-                    <div class="promo__discount js_promo_discount">
-                    </div>
-                    <h2 class="clean title promo_modal__title js_promo_title"></h2>
-                    <div class="promo__description">
-                        <span class="promo__description__first js_promo_description_first">
-                        </span>
-                        <span class="promo__description__last">
-                            <span class="promo__formatted_discount js_promo_formatted_amount">
+            <div class="modal-dialog">
+                <div class="promo_modal__content">
+                    <div class="promo_modal__body">
+                        <div class="promo__discount js_promo_discount">
+                        </div>
+                        <h2 class="clean title promo_modal__title js_promo_title"></h2>
+                        <div class="promo__description">
+                            <span class="promo__description__first js_promo_description_first">
                             </span>
-                            <span class="promo__description__end js_promo_description_end"></span>
-                        </span>
+                            <span class="promo__description__last">
+                                <span class="promo__formatted_discount js_promo_formatted_amount">
+                                </span>
+                                <span class="promo__description__end js_promo_description_end"></span>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="promo_modal__footer modal-footer">
-                    <button aria-hidden="false" class="button__cta button__cta--secondary button--continue js_continue" type="button">Continue</button>
+                    <div class="promo_modal__footer modal-footer">
+                        <button aria-hidden="false" class="button__cta button__cta--secondary button--continue js_continue" type="button">Continue</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal__overlay modal--inactive"></div>*@
+        <div class="modal__overlay modal--inactive"></div>*@
 
     <section class="site__featured_full">
         <div class="site__wrapper js_fixed_product">
@@ -558,7 +580,7 @@
                         <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
                             @foreach (var prod in Model.Campaign.Products)
                             {
-                                <option id="@prod.Id"  value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                <option id="@prod.Id" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
                             }
                         </select>
                     </div>
@@ -687,13 +709,13 @@
 
             <ul class="share__buttons">
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" href="" target="_blank">
+                    <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
                         <img src="/Media/Default/images/facebook_ic.png">
                     </a>
                 </li>
-                
+
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" href="" target="_blank">
+                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()"  href="" target="_blank">
                         <img src="/Media/Default/images/twit_ic.png">
                     </a>
                 </li>
@@ -744,22 +766,22 @@
                 <h3 class="share__heading">@T("Share this campaign on:")</h3>
                 <ul class="share__buttons">
                     <li class="share__buttons__item">
-                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" href="" target="_blank">
+                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()"  href="" target="_blank">
                             <img src="/Media/Default/images/facebook_ic.png">
                         </a>
                     </li>
 
-                        <li class="share__buttons__item">   
-                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" href="" target="_blank">
-                                <img src="/Media/Default/images/twit_ic.png">
-                            </a>
-                        </li>
-                        <li class="share__buttons__item">
-                            <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
-                                <img src="/Media/Default/images/p_ic.png">
-                            </a>
-                        </li>
-</ul>
+                    <li class="share__buttons__item">
+                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
+                            <img src="/Media/Default/images/twit_ic.png">
+                        </a>
+                    </li>
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
+                            <img src="/Media/Default/images/p_ic.png">
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         <section class="site__featured site__featured--border hidden">
@@ -851,13 +873,13 @@
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--style">
                                                 <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
-                                                   
-                                                     @foreach (var prod in Model.Campaign.Products)
+
+                                                    @foreach (var prod in Model.Campaign.Products)
                                                     {
-                                                        
+
                                                         <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
-                                                    
-                                                     }
+
+                                                    }
                                                 </select>
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--price">
@@ -918,3 +940,4 @@
     </div>
 
 </div>
+<input id="campaignId" class="hidden" type="text" value="@Model.Campaign.Id" />

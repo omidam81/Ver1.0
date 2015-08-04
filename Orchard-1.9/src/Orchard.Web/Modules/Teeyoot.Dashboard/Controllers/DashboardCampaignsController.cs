@@ -11,6 +11,7 @@ using Orchard.Themes;
 using Orchard;
 using Orchard.Mvc.Routes;
 using System.Web.Routing;
+using Orchard.UI.Notify;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -43,12 +44,6 @@ namespace Teeyoot.Dashboard.Controllers
 
             FillCampaigns(model, campaignsQuery);
             FillOverviews(model, productsOrderedQuery, campaignsQuery);
-
-            if (isError != null)
-            {
-                model.IsError = (bool)isError;
-                model.Message = (string)result.ToString();
-            }
 
             return View(model);
         }
@@ -84,7 +79,7 @@ namespace Teeyoot.Dashboard.Controllers
             var orderedProducts = _orderService.GetAllOrderedProducts();
 
             var campaignSummaries = campaignsQuery
-                .Select(c => new CampaignSummary 
+                .Select(c => new CampaignSummary
                     {
                         Alias = c.Alias,
                         EndDate = c.EndDate,
@@ -95,11 +90,12 @@ namespace Teeyoot.Dashboard.Controllers
                         StartDate = c.StartDate,
                         Status = c.CampaignStatusRecord,
                         IsActive = c.IsActive,
-                        ShowBack = c.BackSideByDefault
+                        ShowBack = c.BackSideByDefault,
+                        IsPrivate = c.IsPrivate
                     })
                 .OrderBy(c => c.StartDate)
                 .ToArray();
-               
+
             foreach (var item in campaignSummaries)
             {
                 item.FirstProductId = campaignProducts.First(p => p.CampaignRecord_Id == item.Id).Id;
@@ -108,7 +104,7 @@ namespace Teeyoot.Dashboard.Controllers
                                     .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
                                     .Sum(entry => (int?)entry.Profit) ?? 0;
             }
-                                      
+
             model.Campaigns = campaignSummaries;
         }
 
@@ -269,10 +265,12 @@ namespace Teeyoot.Dashboard.Controllers
 
             if (_campaignCategoryService.UpdateCampaignAndCreateNewCategories(campaign, newTags, tagsInBD))
             {
+                _notifier.Information(T("Campaign was updated successfully"));
                 return RedirectToAction("Campaigns");
             }
             else
             {
+                _notifier.Error(T("An error occurred when updating the campaign. Try again."));
                 return RedirectToAction("EditCampaign", new { id = editCampaign.Id });
             }
         }
@@ -303,20 +301,37 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult DeleteCampaign(int id)
         {
-            string result = string.Empty;
-            bool isError = false;
             if (_campaignService.DeleteCampaign(id))
             {
-                isError = false;
-                result = "The campaign was deleted successfully!";
+                _notifier.Information(T("The campaign was deleted successfully!"));
             }
             else
             {
-                isError = true;
-                result = "The company could not be removed. Try again!";
+                _notifier.Error(T("The company could not be removed. Try again!"));
             }
 
-            return RedirectToAction("Campaigns", new { isError = isError, result = result });
+            return RedirectToAction("Campaigns");
+        }
+
+        public ActionResult PrivateCampaign(int id, bool change)
+        {
+            if (_campaignService.PrivateCampaign(id, change))
+            {
+                if (change)
+                {
+                    _notifier.Information(T("Campaign set status - private"));
+                }
+                else
+                {
+                    _notifier.Information(T("Campaign set status - public"));
+                }
+            }
+            else
+            {
+                _notifier.Error(T("The company could not be changed. Try again!"));
+            }
+
+            return RedirectToAction("Campaigns");
         }
     }
 }

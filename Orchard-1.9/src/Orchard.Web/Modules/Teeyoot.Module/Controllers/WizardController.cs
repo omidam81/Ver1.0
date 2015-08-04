@@ -31,14 +31,18 @@ namespace Teeyoot.Module.Controllers
         private readonly IProductService _productService;
         private readonly ISwatchService _swatchService;
         private readonly ITShirtCostService _costService;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
-        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService)
+        public static string AnonymousCampaignSessionKey = "AnonymousCampaignSession";
+
+        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, IWorkContextAccessor workContextAccessor)
         {
             _campaignService = campaignService;
             _imageHelper = imageHelper;
             _fontService = fontService;
             _productService = productService;
             _swatchService = swatchService;
+            _workContextAccessor = workContextAccessor;
             Logger = NullLogger.Instance;
             _costService = costService;
         }
@@ -79,7 +83,7 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public HttpStatusCodeResult LaunchCampaign(LaunchCampaignData data)
+        public ActionResult LaunchCampaign(LaunchCampaignData data)
         {
             if (string.IsNullOrWhiteSpace(data.CampaignTitle))
             {
@@ -123,7 +127,15 @@ namespace Teeyoot.Module.Controllers
                 var campaign = _campaignService.CreateNewCampiagn(data);
                 CreateImagesForCampaignProducts(campaign);
 
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                if (campaign.TeeyootUserId != null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
+
+                // If current user is anonymous
+                var session = _workContextAccessor.GetContext().HttpContext.Session;
+                session[WizardController.AnonymousCampaignSessionKey] = campaign.Id;
+                return Json(new {IsAnonymous = true});
             }
             catch (Exception e)
             {

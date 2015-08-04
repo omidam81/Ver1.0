@@ -138,7 +138,12 @@
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
                     'BackSideByDefault': backSideByDefault, "Tags": tags, "Products": app.state.products
                 }),
+                dataType: 'json',
                 success: function (data, status, resp) {
+                    if (data.IsAnonymous) {
+                        alert('Showing authentication popup here');
+                    }
+
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
                     }
@@ -538,9 +543,9 @@
                                                             <div class="xgridline" style="opacity: 0;"></div>
                                                             <div class="ygridline" style="opacity: 0;"></div>
 
-                                                            <div class="flip-buttons" style="margin-bottom: -2%;">
-                                                                <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span style="position: absolute; font-weight: 300; margin-left: -17px; margin-top: 11px;">Front</span></div>
-                                                                <div class="flip-button flip-button-back" data-element="backButton"><span style="position: absolute; font-weight: 300; margin-left: -14px; margin-top: 11px;">Back</span></div>
+                                                            <div class="flip-buttons">
+                                                                <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span class="flip-button__front">Front</span></div>
+                                                                <div class="flip-button flip-button-back" data-element="backButton"><span class="flip-button__back">Back</span></div>
                                                             </div>
                                                         </div>
                                                         <!-- end front design -->
@@ -575,8 +580,8 @@
                                                             <div class="ygridline" style="opacity: 0;"></div>
 
                                                             <div class="flip-buttons">
-                                                                <div class="flip-button flip-button-front"><span style="position: absolute; margin-left: -15px; font-weight: 400; margin-top: 10px;">Front</span></div>
-                                                                <div class="flip-button flip-button-back no-select flip-button-active"><span style="position: absolute; font-weight: 400; margin-left: -15px; margin-top: 10px;">Back</span></div>
+                                                                <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
+                                                                <div class="flip-button flip-button-back no-select flip-button-active"><span class="flip-button__back">Back</span></div>
                                                             </div>
                                                         </div>
                                                         <!-- end back design -->
@@ -663,21 +668,21 @@
                     <tr>
                         <td style="width:50%">
 
-                            <div id="card" style="margin-right:30px">
+                            <div id="card" style="margin-right:30px; max-width: 530px;">
                                 <div class="front">
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                     <img style="position:absolute" id="prodFront_d" src="">
                                     <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; font-weight: 400; margin-top:10px;">Front</span></div>
-                                        <div class="flip-button flip-button-back-two"><span style="position:absolute; margin-left:-15px; font-weight: 400; margin-top:10px;">Back</span></div>
+                                        <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
+                                        <div class="flip-button flip-button-back-two"><span class="flip-button__back">Back</span></div>
                                     </div>
                                 </div>
                                 <div class="back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
                                     <img style="position:absolute" id="prodBack_d" src="">
                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front-two"><span style="position:absolute; margin-left:-15px; font-weight: 400; margin-top:10px;">Front</span></div>
-                                        <div class="flip-button flip-button-back-two" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-15px; font-weight: 400; margin-top:10px;">Back</span></div>
+                                        <div class="flip-button flip-button-front-two"><span class="flip-button__front">Front</span></div>
+                                        <div class="flip-button flip-button-back-two" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -687,16 +692,16 @@
                             <label style="font-weight: bold;">Sales goal</label>
                             <div class="block">
                                 <div style="display:block">
-                                    <input style="width:100%; background-color:#f5f7f7; height: 22px; border:none" type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
+                                    <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
                                 </div>
 
                                 <div class="tipping-point-slider__points">
-                                    <span class="tipping-point-slider__point" style="margin-left:1.5%">15</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:17.9%">100</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:37.3%">200</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:56.8%">300</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:76.2%">400</span>
-                                    <span class="tipping-point-slider__point" style="margin-left:95.2%">500</span>
+                                    <span class="tipping-point-slider__point">15</span>
+                                    <span class="tipping-point-slider__point">100</span>
+                                    <span class="tipping-point-slider__point">200</span>
+                                    <span class="tipping-point-slider__point">300</span>
+                                    <span class="tipping-point-slider__point">400</span>
+                                    <span class="tipping-point-slider__point">500</span>
 
                                 </div>
 
@@ -710,17 +715,23 @@
                                     <option>100</option>
                                 </datalist>
                             </div>
-                            <table>
+
+                            <div class="trackBarValue_box">
+                                <div class="block">Number of shirts:</div><input onchange="onChangeValueForTrackBar()" id="trackBarValue" value="250">
+                            </div>
+
+                            <!--<table>
                                 <tr>
-                                    <td>
+                                    <td valign="top">
                                         <div class="block" style="width:100%; border-radius: 11px 0px 0px 11px;">Number of shirts:</div>
                                     </td>
-                                    <td>
-                                        <input style="height:100%; font-size: 1.1rem; padding: 4px 0px 2px 1px; width:30%; border:1px solid #ebeef0; border-radius: 0px 11px 11px 0px;" onchange="onChangeValueForTrackBar()" id="trackBarValue" value="250">
+                                    <td valign="top">
+                                        <input onchange="onChangeValueForTrackBar()" id="trackBarValue" value="250">
                                         @* <span >5</span>*@
                                     </td>
                                 </tr>
-                            </table>
+                            </table>-->
+
                             <div>
                                 <span>Your goal is the number of shirts you’re aiming to sell</span>
                             </div>
@@ -847,16 +858,16 @@
                                                                             <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                                                             <img style="position:absolute" id="prodFront3_d" src="">
                                                                             <div id="butt1" style="text-align:center; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">Front</span></div>
-                                                                                <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                                                <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
+                                                                                <div class="flip-button flip-button-back-three"><span class="flip-button__back">Back</span></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="back">
                                                                             <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
                                                                             <img style="position:absolute" id="prodBack3_d" src="">
                                                                             <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-15px; font-weight: 400; margin-top:10px;">Front</span></div>
-                                                                                <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; font-weight: 400; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                                                <div class="flip-button flip-button-front-three"><span class="flip-button__front">Front</span></div>
+                                                                                <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>

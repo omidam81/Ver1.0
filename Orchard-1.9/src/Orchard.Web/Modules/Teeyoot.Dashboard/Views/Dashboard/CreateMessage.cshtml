@@ -36,12 +36,13 @@
 
 
     <div class="tabl">
-        @using (Html.BeginForm("SendMessageUsingMandrill", "Dashboard", FormMethod.Post, new { model = Model }))
+        @using (Html.BeginForm("SendSellerMessageForApproving", "Dashboard", FormMethod.Post, new { model = Model }))
         {
             @Html.AntiForgeryToken()
             <div class="row">
                 <div class="msgCont">
                     @Html.HiddenFor(m => m.CampaignId)
+                    @Html.HiddenFor(m => m.CampaignTitle)
                     @Html.HiddenFor(m => m.ProductId)
                     <div class="recipients">You are sending a message to all buyers of</div>
                     <div>

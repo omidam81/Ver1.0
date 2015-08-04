@@ -2,19 +2,19 @@
 using MailChimp.Campaigns;
 using MailChimp.Helper;
 using MailChimp.Lists;
-using MailChimp.Templates;
-using Orchard.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Teeyoot.Messaging.Models;
-using Teeyoot.Messaging.Services;
-using Teeyoot.Module.Dashboard.ViewModels;
-using Teeyoot.Module.Models;
-using System.Threading;
 using Mandrill;
 using Mandrill.Model;
+using Orchard.UI.Notify;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.Mvc;
+using Teeyoot.Messaging.Models;
+using Teeyoot.Module.Dashboard.ViewModels;
+using Teeyoot.Module.Models;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -29,8 +29,9 @@ namespace Teeyoot.Dashboard.Controllers
             var campaigns = _campaignService.GetCampaignsOfUser(user.Id).ToList();
             List<MessagesIndexViewModel> listModel = new List<MessagesIndexViewModel>();
             foreach (var item in campaigns)
-            {
+            {                
                 var tempModel = new MessagesIndexViewModel() { };
+                tempModel.ThisWeekSend = _messageService.GetAllMessagesForCampaign(item.Id).Where(s => (s.SendDate < DateTime.UtcNow) && (s.SendDate > DateTime.UtcNow.AddDays(-7))).Count();
                 if (_messageService.GetLatestMessageDateForCampaign(item.Id).Day > DateTime.UtcNow.Day) 
                 {
                     tempModel.LastSend = "Never";
@@ -83,7 +84,7 @@ namespace Teeyoot.Dashboard.Controllers
             content.Sections.Add("seller_email", m.From);
             Campaign myCampaign = mc.CreateCampaign("regular", options, content);
             List<string> emails = new List<string>();
-            emails.Add(m.Email);
+            //emails.Add(m.Email);
             CampaignActionResult response = mc.SendCampaign(myCampaign.Id);
             if (response.Complete)
             {
@@ -97,7 +98,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 MailChimpSettingsPart record = _settingsService.GetAllSettings().List().Where(x => x.Culture == culture).FirstOrDefault();
                 MailChimpManager mc = new MailChimpManager(record.ApiKey);
-                AddUserToMailChimpList(m.Email);
+                //AddUserToMailChimpList(m.Email);
                 Thread deleteCampaign = new Thread(delegate() { DeleteSentCampaigns(mc); });
                 deleteCampaign.Start();
                 Thread crAndSend = new Thread(delegate() { CreateAndSendMessage(m, mc, record); });
@@ -179,253 +180,48 @@ namespace Teeyoot.Dashboard.Controllers
 
         }
 
-        public ActionResult SendMessageUsingMandrill(MessageContentViewModel model)
+        public ActionResult SendSellerMessageForApproving(MessageContentViewModel model)
         {
             if (TryUpdateModel(model))
             {
                 string currentUser = Services.WorkContext.CurrentUser.Email;
                 var user = _membershipService.GetUser(currentUser);
-                var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-                var api = new MandrillApi(record.ApiKey);
-                var message = new MandrillMessage() { };
-                message.FromEmail = model.From;
-                message.Subject = model.Subject;
-                message.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-                List<LinkOrderCampaignProductRecord> ordersList = _orderService.GetProductsOrderedOfCampaign(model.CampaignId).ToList();
-                List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
-                foreach (var item in ordersList)
-                {
-                    emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
-                    FillMessageMergeVars(message, item);
-                }
-                message.To = emails;
-                message.Html = TemplateContent.Code;
-                _messageService.AddMessage(user.Id, message.Html, message.FromEmail, DateTime.UtcNow, model.CampaignId);
-                var res = SendTmplMessage(api, message);
-                //var viewModel = new MessagesIndexViewModel(){};
-                //viewModel.InfoMessage = "Your message has been sent!";
+                //var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+                //var api = new MandrillApi(record.ApiKey);
+                //var message = new MandrillMessage() { };
+                //message.FromEmail = model.From;
+                //message.Subject = model.Subject;
+                //message.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+                //List<LinkOrderCampaignProductRecord> ordersList = _orderService.GetProductsOrderedOfCampaign(model.CampaignId).ToList();
+                //var campaign = _campaignService.GetCampaignById(model.CampaignId);
+                //List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+                //foreach (var item in ordersList)
+                //{
+                //    emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
+                //    FillMessageMergeVars(message, item);
+                //}
+                //message.To = emails;
+                //string messageText = TemplateContent.Template.Replace("---MessageContent---",model.Content);
+                //messageText = messageText.Replace("---SellerEmail---", user.Email);
+                //messageText = messageText.Replace("---CampaignTitle---", model.CampaignTitle);
+                //string previewUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/')+ "/Media/campaigns/"+model.CampaignId+"/"+campaign.Products[0].Id+"/normal/front.png";
+                //messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
+                //message.Html = messageText;
+                _messageService.AddMessage(user.Id, model.Content, model.From, DateTime.UtcNow, model.CampaignId, model.Subject, false);
+                //var res = SendTmplMessage(api, message);
+                _notifier.Information(T("Your message has been sent for approving!"));
                 return RedirectToAction("Messages");
             }
             return View("CreateMessage", model);
         }
 
+        
+
+        
 
 
-        static void FillMessageMergeVars(MandrillMessage message, LinkOrderCampaignProductRecord record)
-        {
-
-
-            var products = new Dictionary<string, object>
-                    {
-                        {"quantity", record.Count},
-                        {"name",  record.CampaignProductRecord.ProductRecord.Name},
-                        {"description",  record.CampaignProductRecord.ProductRecord.Details},
-                        {"price",  record.CampaignProductRecord.Price}
-                    };
-
-            message.AddRcptMergeVars(record.OrderRecord.Email, "FNAME", record.OrderRecord.FirstName);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "LNAME", record.OrderRecord.LastName);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "CITY", record.OrderRecord.City);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "STATE", record.OrderRecord.State);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "COUNTRY", record.OrderRecord.Country);
-            if (record.OrderRecord.TotalPriceWithPromo != null)
-            {
-                message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPriceWithPromo.ToString());
-            }
-            else
-            {
-                message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPrice.ToString());
-            }
-            message.AddRcptMergeVars(record.OrderRecord.Email, "PRODUCTS", products);
-        }
-
-        static string SendTmplMessage(MandrillApi mAPI, MandrillMessage message)
-        {
-            //var message = new MandrillMessage();
-            //message.FromEmail = "no-reply@example.com";
-            //message.AddTo("kiss-stu@mail.ru");
-            ////supports merge var content as string
-            //message.AddGlobalMergeVars("invoice_date", DateTime.Now.ToShortDateString());
-            ////or as objects (handlebar templates only)
-            //message.AddRcptMergeVars("recipient@example.com", "invoice_details", new[]
-            //{
-            //    new Dictionary<string, object>
-            //    {
-            //        {"sku", "apples"},
-            //        {"qty", 4},
-            //        {"price", "0.40"}
-            //    },
-            //    new Dictionary<string, object>
-            //    {
-            //        {"sku", "oranges"},
-            //        {"qty", 6},
-            //        {"price", "0.30"}
-
-            //    }
-            //});
-
-            //return await mAPI.Messages.SendTemplateAsync(message, "customer-invoice");
-            //int i = 0;
-            //var message = new MandrillMessage
-            //{
-            //    FromEmail = "mandrill.net@sollutium.com",
-            //    Subject = "test",
-            //    //Tags = new List<string>() { "test-send-template", "mandrill-net", "handlebars" },
-            //    MergeLanguage = MandrillMessageMergeLanguage.Handlebars, //NOTE: обязательно, эта штука позволяет интерпретировать переменные с фигурными скобками
-
-            //    To = emails,
-            //    Html = TemplateContent.Code,
-            //    Text = "this is a text inside message",
-            //};
-
-
-            //var data1 = new[]
-            //    {
-            //        new Dictionary<string, object>
-            //        {
-            //            {"sku", "KISS-STU ORA53"},
-            //            {"name", "Oranges"},
-            //            {"description", "Sunkist Oranges"},
-            //            {"price", 0.20},
-            //            {"qty", 1},
-            //            {"ordPrice", 0.20},
-
-            //        },
-            //        new Dictionary<string, object>
-            //        {
-            //             {"sku", "KISS-STU APL54"},
-            //            {"name", "apples"},
-            //            {"description", "Red Delicious Apples"},
-            //            {"price", 0.22},
-            //            {"qty", 9},
-            //            {"ordPrice", 1.98},
-            //        }
-            //    };
-
-            //var data2 = new[]
-            //    {
-            //         new Dictionary<string, object>
-            //        {
-            //            {"sku", "IK@TRUNK APL43"},
-            //            {"name", "apples"},
-            //            {"description", "Granny Smith Apples"},
-            //            {"price", 0.20},
-            //            {"qty", 8},
-            //            {"ordPrice", 1.60},
-
-            //        },
-            //        new Dictionary<string, object>
-            //        {
-            //            {"sku", "IK@TRUNK ORA44"},
-            //            {"name", "Oranges"},
-            //            {"description", "Blood Oranges"},
-            //            {"price", 0.30},
-            //            {"qty", 3},
-            //            {"ordPrice", 0.93},
-
-            //        }
-            //    };
-
-            ////TODO: раскидать по методам заполнения параметров
-            //message.AddRcptMergeVars("kiss-stu@mail.ru", "FNAME", "Kiss");
-            //message.AddRcptMergeVars("kiss-stu@mail.ru", "LNAME", "Stu");
-            //message.AddRcptMergeVars("kiss-stu@mail.ru", "CITY", "Krakow");
-            //message.AddRcptMergeVars("kiss-stu@mail.ru", "STATE", "Malopolskie");
-            //message.AddRcptMergeVars("kiss-stu@mail.ru", "COUNTRY", "Poland");
-            //message.AddRcptMergeVars("kiss-stu@mail.ru", "PRODUCTS", data1);
-
-            //message.AddRcptMergeVars("ik@trunk.net.ua", "FNAME", "IK");
-            //message.AddRcptMergeVars("ik@trunk.net.ua", "LNAME", "TRUNK");
-            //message.AddRcptMergeVars("ik@trunk.net.ua", "CITY", "KIEV");
-            //message.AddRcptMergeVars("ik@trunk.net.ua", "STATE", "KYIVSKA OBL");
-            //message.AddRcptMergeVars("ik@trunk.net.ua", "COUNTRY", "UKRAINE");
-            //message.AddRcptMergeVars("ik@trunk.net.ua", "PRODUCTS", data2);
-
-            //var result = await mAPI.Messages.SendTemplateAsync(message, TestTemplateName);
-            //var result = await mAPI.Messages.SendAsync(message);
-            var result = mAPI.Messages.Send(message);
-            return result.ToString();
-        }
-
-
-        struct TemplateContent
-        {
-            public const string Code = @"<html>
-<head>
-	<title>a test TeeYoot</title>
-</head>
-<body>
-	
-	<p>Dear {{FNAME}}, your Last name is {{LNAME}}</p>
-   <p>Thank you for your purchase in city {{CITY}} and state {{STATE}} in country {{COUNTRY}} the product {{PRODUCTS}} from ABC Widget Company. <br>
-We appreciate your business and have included a copy of your invoice below. <br>
-
-<!-- BEGIN PRODUCT LOOP // -->
-   {{#each products}}
-   <tr class=""item"">
-        <td valign=""top"" class=""textContent"">
-            <h4 class=""itemName"">{{name}}</h4>
-            <span class=""contentSecondary"">Qty: {{qty}} x ${{price}}/each</span><br />
-            <span class=""contentSecondary sku""><em>{{sku}}</em></span><br />
-            <span class=""contentSecondary itemDescription"">{{description}}</span>
-        </td>
-        <td valign=""top"" class=""textContent alignRight priceWidth"">
-            ${{ordPrice}}
-        </td>
-    </tr>
-    {{/each}}
-<!-- // END PRODUCT LOOP -->
-
-<br>
-The totlal price will be {{TOTALPRICE}}
-<br>
-Please let us know if you have further questions.
-     -- ABC Widget Co.</p>
-
-     <div mc:edit=""footer"">footer</div>
-</body>
-</html>";
-            public const string Text = @"Dear {{FNAME}},
-   Thank you for your purchase in city {{CITY}} and state {{STATE}} in country {{COUNTRY}} the product {{PRODUCTS}} from ABC Widget Company.. 
-We appreciate your business and have included a copy of your invoice below.
-
-Please let us know if you have further questions.
-
-     -- ABC Widget Co.";
-
-            public const string HandleBarCode = @"<html>
-<head>
-	<title>a test</title>
-</head>
-<body>
-	
-	<p>Dear{{fname}},</p>
-   <p>Thank you for your purchase on {{orderdate}} from ABC Widget Company. <br>
-We appreciate your business and have included a copy of your invoice below. <br>
-   <!-- BEGIN PRODUCT LOOP // -->
-   {{#each products}}
-   <tr class=""item"">
-        <td valign=""top"" class=""textContent"">
-            <h4 class=""itemName"">{{name}}</h4>
-            <span class=""contentSecondary"">Qty: {{qty}} x ${{price}}/each</span><br />
-            <span class=""contentSecondary sku""><em>{{sku}}</em></span><br />
-            <span class=""contentSecondary itemDescription"">{{description}}</span>
-        </td>
-        <td valign=""top"" class=""textContent alignRight priceWidth"">
-            ${{ordPrice}}
-        </td>
-    </tr>
-    {{/each}}
-<!-- // END PRODUCT LOOP -->
-Please let us know if you have further questions.
-
-
-     -- ABC Widget Co.</p>
-
-     <div mc:edit=""footer"">footer</div>
-</body>
-</html>";
-        }
+ 
+        
     }
 
 

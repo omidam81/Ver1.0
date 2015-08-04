@@ -58,6 +58,23 @@ namespace Teeyoot.Module.Common.Utils
             return bmp;
         }
 
+        public Bitmap ApplyDesignNoTransparent(Bitmap image, Bitmap design, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight, int width = 0, int height = 0)
+        {
+            if (width == 0)
+                width = image.Width;
+            if (height == 0)
+                height = image.Height;
+            var bmp = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(Color.Transparent);
+                g.DrawImage(image, new Rectangle(0, 0, width, height));
+                g.DrawImage(design, new Rectangle(printableAreaLeft, printableAreaTop, printableAreaWidth, printableAreaHeight));
+            }
+
+            return bmp;
+        }
+
         public Bitmap Base64ToBitmap(string base64String)
         {
             var array = new[] { @"data:image/png;base64,", @"data:image/jpeg;base64,", @"data:image/gif;base64", @"data:image/pjpeg;base64", @"data:image/svg+xml;base64", @"data:image/tiff;base64", @"data:image/vnd.microsoft.icon;base64", @"data:image/vnd.wap.wbmp;base64" };

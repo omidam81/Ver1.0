@@ -70,6 +70,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Styles\AdminContentMessage.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -106,6 +107,7 @@
     <Compile Include="Services\IMailChimpSettingsService.cs" />
     <Compile Include="Services\MailChimpSettingsService.cs" />
     <Compile Include="ViewModels\MailChimpAddSettingViewModel.cs" />
+    <Compile Include="ViewModels\AdminMessagesViewModel.cs" />
     <Compile Include="ViewModels\MailChimpListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

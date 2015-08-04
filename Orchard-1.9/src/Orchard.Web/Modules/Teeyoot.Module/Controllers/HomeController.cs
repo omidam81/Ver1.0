@@ -5,12 +5,15 @@ using Orchard.Themes;
 using Orchard.UI.Notify;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Teeyoot.Module.Common.Enums;
+using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.ViewModels;
@@ -23,12 +26,14 @@ namespace Teeyoot.Module.Controllers
         private readonly IPromotionService _promotionService;
         private readonly ICampaignService _campaignService;
         private readonly INotifier _notifier;
+        private readonly IimageHelper _imageHelper;
 
-        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier, IPromotionService promotionService)
+        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier, IPromotionService promotionService, IimageHelper imageHelper)
         {
             _orderService = orderService;
             _promotionService = promotionService;
             _campaignService = campaignService;
+            _imageHelper = imageHelper;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -256,6 +261,94 @@ namespace Teeyoot.Module.Controllers
                 Logger.Error("Error occured when trying to delete an order ---------------> " + ex.ToString());
                 return RedirectToAction("OrderTracking", new { orderId = publicId });
             }
+        }
+
+
+        [Themed]
+        [HttpPost]
+        public HttpStatusCodeResult ShareCampaign(bool isBack, int campaignId)
+        {
+            CampaignRecord campaign = _campaignService.GetCampaignById(campaignId);
+            int product = _campaignService.GetProductsOfCampaign(campaignId).First().Id;
+
+            string destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
+          
+            if (!Directory.Exists(destForder))
+            {
+                try
+                {
+                    Directory.CreateDirectory(destForder);
+
+                    var serializer = new JavaScriptSerializer();
+                    serializer.MaxJsonLength = int.MaxValue;
+                    var data = serializer.Deserialize<DesignInfo>(campaign.Design);
+
+                    var p = campaign.Products[0];
+
+                    var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                    var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
+
+                    if (!isBack)
+                    {
+                        var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
+                        var imgPath = new Bitmap(frontPath);
+
+                        CreateSocialImg(destForder, campaign, imgPath);
+                    }
+                    else
+                    {
+                        var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+                        var imgPath = new Bitmap(backPath);
+
+                        CreateSocialImg(destForder, campaign, imgPath);
+                    }
+                }
+                catch
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+
+        private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
+        {
+            var background = _imageHelper.CreateBackground(width, height, color);
+            image = _imageHelper.ApplyBackground(image, background, width, height);
+
+            return _imageHelper.ApplyDesignNoTransparent(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
+        }
+
+        public void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath)
+        {
+            var serializer = new JavaScriptSerializer();
+            serializer.MaxJsonLength = int.MaxValue;
+            var data = serializer.Deserialize<DesignInfo>(campaign.Design);
+
+            var p = campaign.Products[0];
+
+            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+            var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
+
+           var frontTemplate = new Bitmap(imgPath);
+
+           var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+           p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+           p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+           var image = _imageHelper.ResizeImage(front, 627, 1200);
+
+           Image backImage = Image.FromFile(Server.MapPath("/Media/Default/images/background.png"));
+           Graphics g = Graphics.FromImage(backImage);
+           g.DrawImage(image, 150, 0, 900, 900);
+           backImage.Save(Path.Combine(destForder, "campaign.png"));
+
+           frontTemplate.Dispose();
+           front.Dispose();
+           backImage.Dispose();
+           
         }
     }
 }

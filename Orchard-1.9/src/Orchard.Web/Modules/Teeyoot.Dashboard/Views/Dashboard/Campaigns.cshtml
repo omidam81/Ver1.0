@@ -4,21 +4,6 @@
     Style.Include("campaigns.css");
 }
 
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-    string classForMessage;
-    if (Model.IsError)
-    {
-        classForMessage = "error-message";
-    }
-    else
-    {
-        classForMessage = "info-message";
-    }
-    <div class="dashboard-section-title @classForMessage">
-        @T(Model.Message)
-    </div>
-}
 <div class="dashboard-section-title">
     @T("Campaigns")
     <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
@@ -191,7 +176,7 @@
                             }
                             
                             <div>
-                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id })" title="@T("Private")" class="@colorForPrivate" >
+                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id, change = !c.IsPrivate })" title="@T("Private")" class="@colorForPrivate" >
                                     <i class="fa fa-globe"></i>
                                 </a>
                             </div>
