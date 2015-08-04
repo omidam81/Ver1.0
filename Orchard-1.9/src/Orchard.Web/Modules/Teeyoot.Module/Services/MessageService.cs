@@ -37,7 +37,7 @@ namespace Teeyoot.Module.Services
         }
 
 
-        public void AddMessage(int userId, string text, string from, DateTime sendDate, int campaignId)
+        public void AddMessage(int userId, string text, string from, DateTime sendDate, int campaignId, string subject, bool isApprowed = false)
         {
             var message = new MessageRecord()
             {
@@ -45,7 +45,9 @@ namespace Teeyoot.Module.Services
                 Text = text,
                 Sender = from,
                 SendDate = sendDate,
-                CampaignId = campaignId
+                CampaignId = campaignId,
+                Subject = subject,
+                IsApprowed = isApprowed
             };
             _messageRepository.Create(message);
         }
@@ -66,5 +68,6 @@ namespace Teeyoot.Module.Services
         {
             return _messageRepository.Table.Where(m => m.CampaignId == campaignId);
         }
+
     }
 }

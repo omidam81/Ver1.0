@@ -207,7 +207,7 @@ namespace Teeyoot.Dashboard.Controllers
                 string previewUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/')+ "/Media/campaigns/"+model.CampaignId+"/"+campaign.Products[0].Id+"/normal/front.png";
                 messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
                 message.Html = messageText;
-                _messageService.AddMessage(user.Id, model.Content, message.FromEmail, DateTime.UtcNow, model.CampaignId);
+                _messageService.AddMessage(user.Id, model.Content, message.FromEmail, DateTime.UtcNow, model.CampaignId, model.Subject, false);
                 var res = SendTmplMessage(api, message);
                 _notifier.Information(T("Your message has been sent!"));
                 return RedirectToAction("Messages");
