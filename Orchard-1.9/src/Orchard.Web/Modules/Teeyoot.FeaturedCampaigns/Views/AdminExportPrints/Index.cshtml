@@ -1,3 +1,69 @@
-﻿<div>
-    Export
+﻿@model Teeyoot.FeaturedCampaigns.ViewModels.ExportPrintsViewModel
+
+<div>
+
+    <div style="margin-bottom:15px;">
+        <fieldset class="bulk-actions">
+            @using (Html.BeginForm("Index", "AdminExportPrints", FormMethod.Get))
+            {
+                <span>
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                </span>
+
+                <button type="submit">@T("Apply")</button>
+                <a href="@Url.Action("Index")">@T("By Default")</a>
+
+                <span style="margin-left:15px;">
+                    <label>@T("Actions"):</label>
+                    <select>
+                        <option>@T("-- Choose action --")</option>
+                        <option value="0">@T("Start printing")</option>
+                    </select>
+
+                    <button onclick="applyAction(); return false;">@T("Apply")</button>
+                </span>
+            }
+
+            
+        </fieldset> 
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    <table class="items">
+        <thead>
+            <tr>
+                <th class="check-box">
+                    <input type="checkbox" class="check-all">
+                </th>
+                <th>@T("Campaign name")</th>
+                <th>@T("Sold/Goal")</th>   
+                <th></th>          
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Campaigns.Length > 0)
+            {
+                foreach (var c in Model.Campaigns)
+                {
+
+                    <tr data-record-text="@c.Id" class="contentItems">
+                        <td class="check-box">
+                            <input type="checkbox">
+                        </td>
+                        <td>@c.Title</td>
+                        <td>@c.Sold / @c.Goal</td>
+                        <td>
+                            <a href="@Url.Action("ExportPrints", new { pagerParameters = Model.Pager, id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>
+@Display(Model.Pager)

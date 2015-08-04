@@ -8,7 +8,7 @@ namespace Teeyoot.Module.Common.Enums
     public enum CampaignStatus
     {
         Created = 1,
-        Ended = 2
+        Printing
     }
 
     public enum OrderStatus

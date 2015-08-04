@@ -54,7 +54,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
-            if (campaigns.Count() > 0)
+            var total = campaigns.Count();
+
+            if (total > 0)
             {
                 featuredCampaigns = campaigns
                     .Select(c => new CampaignViewModel
@@ -82,7 +84,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     .ToArray();
             }
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(featuredCampaigns.Length);
+            var pagerShape = Shape.Pager(pager).TotalItemCount(total);
             return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
         }
 

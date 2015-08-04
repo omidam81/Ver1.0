@@ -99,6 +99,7 @@
     <Compile Include="Services\FeaturedCampaignsService.cs" />
     <Compile Include="Services\IFeaturedCampaignsService.cs" />
     <Compile Include="ViewModels\AdminFeaturedCampaignsViewModel.cs" />
+    <Compile Include="ViewModels\ExportPrintsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

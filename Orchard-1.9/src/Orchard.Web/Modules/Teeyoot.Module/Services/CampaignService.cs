@@ -265,51 +265,51 @@ namespace Teeyoot.Module.Services
                 c.IsActive = false;
                 _campaignRepository.Update(c);
 
-                var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
-                 
-                var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
-                foreach(var o in orders)
+                if (!c.WhenDeleted.HasValue)
                 {
-                    if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
+                    var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
+
+                    var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
+                    foreach (var o in orders)
                     {
-                        o.OrderStatusRecord = isSuccesfull ? 
-                            _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
-                            _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
-                        o.Paid = DateTime.UtcNow;
-                        _orderRepository.Update(o);
-
-                        string eventStr = isSuccesfull ?
-                            T("The campaign successfully reached its goal!").ToString() :
-                            T("The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed.").ToString();
-
-                        _orderHistoryRepository.Create(new OrderHistoryRecord { 
-                            EventDate = DateTime.UtcNow,
-                            OrderRecord_Id = o.Id,
-                            Event = eventStr
-                        });
-
-                        eventStr = isSuccesfull ?
-                            T("The campaign has ended and your order is now being printed!").ToString() :
-                            T("Your order was cancelled.").ToString();
-
-                        _orderHistoryRepository.Create(new OrderHistoryRecord
+                        if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
                         {
-                            EventDate = DateTime.UtcNow,
-                            OrderRecord_Id = o.Id,
-                            Event = eventStr
-                        });
-                        _orderHistoryRepository.Flush();
+                            o.OrderStatusRecord = isSuccesfull ?
+                                _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
+                                _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
+                            o.Paid = DateTime.UtcNow;
+                            _orderRepository.Update(o);
 
-                        if (isSuccesfull && o.TranzactionId != null) 
-                            Gateway.Transaction.SubmitForSettlement(o.TranzactionId);
-                        
-                          
+                            string eventStr = isSuccesfull ?
+                                T("The campaign successfully reached its goal!").ToString() :
+                                T("The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed.").ToString();
 
-                        
+                            _orderHistoryRepository.Create(new OrderHistoryRecord
+                            {
+                                EventDate = DateTime.UtcNow,
+                                OrderRecord_Id = o.Id,
+                                Event = eventStr
+                            });
 
+                            eventStr = isSuccesfull ?
+                                T("The campaign has ended and your order is now being printed!").ToString() :
+                                T("Your order was cancelled.").ToString();
+
+                            _orderHistoryRepository.Create(new OrderHistoryRecord
+                            {
+                                EventDate = DateTime.UtcNow,
+                                OrderRecord_Id = o.Id,
+                                Event = eventStr
+                            });
+                            _orderHistoryRepository.Flush();
+
+                            if (isSuccesfull && o.TranzactionId != null)
+                                Gateway.Transaction.SubmitForSettlement(o.TranzactionId);
+
+                        }
                     }
+                    _orderRepository.Flush();
                 }
-                _orderRepository.Flush();
             }
             _campaignRepository.Flush();
         }
@@ -321,6 +321,7 @@ namespace Teeyoot.Module.Services
             {
                 var delCamp = _campaignRepository.Table.Where(c => c.Id == id).First();
                 delCamp.WhenDeleted = DateTime.UtcNow;
+                delCamp.IsActive = false;
                 _campaignRepository.Update(delCamp);
 
                 return true;

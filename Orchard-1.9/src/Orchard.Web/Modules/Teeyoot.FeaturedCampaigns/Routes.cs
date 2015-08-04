@@ -35,6 +35,21 @@ namespace Teeyoot.FeaturedCampaigns
                         },
                         new MvcRouteHandler())
                 }
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/ExportPrints",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FeaturedCampaigns"},
+                            {"controller", "AdminExportPrints"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FeaturedCampaigns"}
+                        },
+                        new MvcRouteHandler())
+                }
             };
         }
     }
