@@ -32,7 +32,7 @@ namespace Teeyoot.Module
                         .Action("Index", "FaqAdmin", new {area = "Teeyoot.FAQ"})
                     )
                     .Add(subItem => subItem
-                        .Caption(T("Mail Chimp Settings"))
+                        .Caption(T("Mandrill Settings"))
                         .Position("2.3")
                         .Action("Index", "AdminMessage", new {area = "Teeyoot.Messaging"})
                     )
@@ -62,6 +62,10 @@ namespace Teeyoot.Module
                         .Caption(T("Campaigns"))
                         .Position("2.6")
                         .Action("Index", "AdminFeaturedCampaigns", new {area = "Teeyoot.FeaturedCampaigns"})
+                        .Add(T("Featured Campaigns"),
+                            i => i.Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
+                        .Add(T("Export Prints"),
+                            i => i.Action("Index", "AdminExportPrints", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("T-Shirt Cost"))
@@ -72,6 +76,11 @@ namespace Teeyoot.Module
                         .Caption(T("Payouts"))
                         .Position("2.8")
                         .Action("Index", "Tranzaction", new { area = "Teeyoot.Payouts" })
+                    )
+                    .Add(subItem => subItem
+                        .Caption(T("Messages"))
+                        .Position("2.9")
+                        .Action("Index", "AdminMessageContent", new { area = "Teeyoot.Messaging" })
                     )
                 );
         }

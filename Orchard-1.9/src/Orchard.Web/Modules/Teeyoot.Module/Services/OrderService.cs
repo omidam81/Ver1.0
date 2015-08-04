@@ -37,6 +37,11 @@ namespace Teeyoot.Module.Services
             _orderHistoryRepository = orderHistoryRepository;
 	    }
 
+        public IQueryable<OrderRecord> GetAllOrders()
+        {
+            return _orderRepository.Table;
+        }
+
         public OrderRecord GetOrderById(int id)
         {
             return _orderRepository.Table.FirstOrDefault(r => r.Id == id);
@@ -119,6 +124,11 @@ namespace Teeyoot.Module.Services
         public IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId)
         {
             return _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive);
+        }
+
+        public IQueryable<LinkOrderCampaignProductRecord> GetAllOrderedProducts()
+        {
+            return _ocpRepository.Table;
         }
 
         public Task<int> GetProfitOfCampaign(int id)

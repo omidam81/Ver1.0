@@ -1,4 +1,5 @@
-﻿using Orchard;
+﻿using Braintree;
+using Orchard;
 using Orchard.Data;
 using Orchard.Localization;
 using System;
@@ -60,6 +61,14 @@ namespace Teeyoot.Module.Services
 
         public Localizer T { get; set; }
 
+
+        public BraintreeGateway Gateway = new BraintreeGateway
+        {
+            Environment = Braintree.Environment.SANDBOX,
+            PublicKey = "ny4y8s7fkcvnfw9t",
+            PrivateKey = "1532863effa7197329266f7de4837bae",
+            MerchantId = "7qw5pmrj3hqd2hr4"
+        };
 
         public IQueryable<CampaignCategoriesRecord> GetAllCategories()
         {
@@ -257,18 +266,19 @@ namespace Teeyoot.Module.Services
                 _campaignRepository.Update(c);
 
                 var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
-                               
+                 
+                var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
                 foreach(var o in orders)
                 {
                     if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
                     {
-                        o.OrderStatusRecord = c.ProductCountGoal <= c.ProductCountSold ? 
+                        o.OrderStatusRecord = isSuccesfull ? 
                             _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
                             _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
                         o.Paid = DateTime.UtcNow;
                         _orderRepository.Update(o);
 
-                        string eventStr = c.ProductCountGoal <= c.ProductCountSold ?
+                        string eventStr = isSuccesfull ?
                             T("The campaign successfully reached its goal!").ToString() :
                             T("The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed.").ToString();
 
@@ -278,7 +288,7 @@ namespace Teeyoot.Module.Services
                             Event = eventStr
                         });
 
-                        eventStr = c.ProductCountGoal <= c.ProductCountSold ?
+                        eventStr = isSuccesfull ?
                             T("The campaign has ended and your order is now being printed!").ToString() :
                             T("Your order was cancelled.").ToString();
 
@@ -289,11 +299,42 @@ namespace Teeyoot.Module.Services
                             Event = eventStr
                         });
                         _orderHistoryRepository.Flush();
+
+                        if (isSuccesfull && o.TranzactionId != null) 
+                            Gateway.Transaction.SubmitForSettlement(o.TranzactionId);
+                        
+                          
+
+                        
+
                     }
                 }
                 _orderRepository.Flush();
             }
             _campaignRepository.Flush();
+        }
+
+
+        public bool DeleteCampaign(int id)
+        {
+            try
+            {
+                var delCamp = _campaignRepository.Table.Where(c => c.Id == id).First();
+                delCamp.WhenDeleted = DateTime.UtcNow;
+                _campaignRepository.Update(delCamp);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public IQueryable<CampaignProductRecord> GetAllCampaignProducts()
+        {
+            return _campProdRepository.Table;
         }
     }
 }

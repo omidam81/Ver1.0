@@ -1029,3 +1029,19 @@ input[type=range] {
         position: initial !important;
     }
 }
+
+.error-message {
+    background-color: #FF0000;
+    padding-left: 15px;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.info-message {
+    background-color: #FFFF00;
+    padding-left: 15px;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
