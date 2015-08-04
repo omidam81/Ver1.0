@@ -204,7 +204,7 @@
     height: 9px;
     border-radius: 5px;
     float: left;
-    max-width:100%;
+    max-width: 100%;
 }
 
 .campaign-card-sold {
@@ -269,3 +269,40 @@
 .campaign-status-filter {
     margin-left: 27px;
 }
+
+
+.error-message {
+    background-color: #FF0000;
+    padding-left: 15px;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.info-message {
+    background-color: #FFFF00;
+    padding-left: 15px;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.private-campaigns-true {
+    font-size: 18px;
+    margin-left: -2px;
+    color: #39ace6;
+}
+
+    .private-campaigns-true:hover {
+        color: #39ace6;
+    }
+
+.private-campaigns-false {
+    font-size: 18px;
+    margin-left: -2px;
+    color: #ffffff;
+}
+
+    .private-campaigns-false:hover {
+        color: #39ace6;
+    }
