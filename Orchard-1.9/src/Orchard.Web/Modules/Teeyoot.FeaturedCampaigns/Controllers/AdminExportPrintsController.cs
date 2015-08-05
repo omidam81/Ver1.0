@@ -36,21 +36,30 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index(PagerParameters pagerParameters)
+        public ActionResult Index(PagerParameters pagerParameters, string searchString)
         {
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
-                 
-            var total = _campaignService.GetAllCampaigns()
-                                .Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold && c.CampaignStatusRecord.Name != CampaignStatus.Printing.ToString())
-                                .Count();
 
-            var campaigns = _campaignService.GetAllCampaigns()
-                                .Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold && c.CampaignStatusRecord.Name != CampaignStatus.Printing.ToString())
+            var total = (string.IsNullOrWhiteSpace(searchString) ?
+                        _campaignService.GetAllCampaigns()                              
+                                                                 :
+                        _campaignService.GetAllCampaigns()
+                        .Where(c => c.Title.Contains(searchString)))
+                            .Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
+                            .Count();
+
+            var campaigns = (string.IsNullOrWhiteSpace(searchString) ?
+                            _campaignService.GetAllCampaigns()
+                                                                     :
+                            _campaignService.GetAllCampaigns()
+                            .Where(c => c.Title.Contains(searchString)))
+                                .Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
                                 .Select(c => new { 
                                                     Id = c.Id,
                                                     Title = c.Title,
                                                     Sold = c.ProductCountSold,
-                                                    Goal = c.ProductCountGoal
+                                                    Goal = c.ProductCountGoal,
+                                                    Status = c.CampaignStatusRecord
                                                 })
                                 .Skip(pager.GetStartIndex())
                                 .Take(pager.PageSize)
@@ -62,18 +71,25 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Id: e.Id,
                     Title: e.Title,
                     Sold: e.Sold,
-                    Goal: e.Goal
+                    Goal: e.Goal,
+                    Status: e.Status
                     );
             });
 
             var pagerShape = Shape.Pager(pager).TotalItemCount(total);
 
-            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
+            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), SearchString = searchString, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
         }
 
-        public ActionResult ExportPrints()
+        public ActionResult ExportPrints(PagerParameters pagerParameters, string searchString, int id)
         {
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { pagerParameters, searchString });
+        }
+
+        public ActionResult StartPrinting(PagerParameters pagerParameters, string searchString, int id)
+        {
+            _campaignService.SetCampaignStatus(id, CampaignStatus.Printing);
+            return RedirectToAction("Index", new { pagerParameters, searchString });
         }
 	}
 }
