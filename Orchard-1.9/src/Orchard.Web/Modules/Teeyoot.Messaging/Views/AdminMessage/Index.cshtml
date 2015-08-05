@@ -1,64 +1,155 @@
 ﻿@model Teeyoot.Messaging.ViewModels.MailChimpListViewModel
 @{
     Layout.Title = T("Mandrill Settings").ToString();
+    Style.Include("AdminContentMessage.css");
 }
-    <div>
-        @using (Html.BeginForm())
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    @if (Model != null)
+    {
+
+        using (Html.BeginForm("Index", "AdminMessage", FormMethod.Get))
         {
-            @Html.AntiForgeryToken()
-        }
+            <fieldset class="bulk-actions">
 
-        @if (Model != null)
-        {
-
-            using (Html.BeginForm("Index", "AdminMessage", FormMethod.Get))
-            {
-                <fieldset class="bulk-actions">
-
-                    @Html.DropDownListFor(m => m.Culture, Model.AvailableLanguages.Select(l => new SelectListItem
+                @Html.DropDownListFor(m => m.Culture, Model.AvailableLanguages.Select(l => new SelectListItem
                                             {
                                                 Selected = l.Code == Model.Culture,
                                                 Text = l.Name,
                                                 Value = l.Code
                                             }))
 
-                    <button type="submit">@T("Apply")</button>
-                </fieldset>
-            }
-            if(Model.ApiKey!=null){
+                <button type="submit">@T("Apply")</button>
+            </fieldset>
+        }
+        if (Model.ApiKey != null)
+        {
             <div style="width:80%; margin-top:20px; margin-left:10%; margin-left:10%">
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; ">
                     <div style="width:25%;  text-align:center;padding-top:10px ">Api Key</div>
                     <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ApiKey</div>
-                    <div style="width:25%;text-align:center;padding-top:10px">Mail Chimp List Id</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.MailChimpListId</div>
+                    <div class="delete-button">
+                        <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("EditMailChimpSetting", new { id = Model.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top: 10px; ">
+                    <div style=" width:25%;text-align:center;padding-top:10px">Seller Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.SellerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button" href="@Url.Action("Delete", "AdminMessage", new { templateName = "seller-template" ,  returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
                 </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
-                    <div style=" width:25%;  text-align:center;padding-top:10px">WelcomeCampaignId</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.WelcomeCampaignId</div>
-                    <div style="width:25%;  text-align:center;padding-top:10px">WelcomeTemplateId</div>
-                    <div style="width:25%; border: 1px solid #eaeaea; text-align:center;padding-top:10px ">@Model.WelcomeTemplateId</div>
+                    <div style=" width:25%;  text-align:center;padding-top:10px">Welcome Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.WelcomeTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "welcome-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "welcome-template" ,  returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex;  margin-top: 10px;">
+                    <div style=" width:25%; text-align:center;padding-top:10px">Relaunch Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea; text-align:center;padding-top:10px ">@Model.RelaunchTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "relaunch-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "relaunch-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
                 </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
-                    <div style=" width:25%;  text-align:center;padding-top:10px">AllBuyersCampaignId</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.AllBuyersCampaignId</div>
-                    <div style="width:25%;  text-align:center;padding-top:10px">AllByersTemplateId</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.AllBuyersTemplateId</div>
+                    <div style=" width:25%;  text-align:center;padding-top:10px">Change Order Status</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ChangeOrderStatusTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "change-order-status-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "change-order-status-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">All Byers Deadline Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.AllBuyersDeadlineTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "dedline-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "dedline-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Withdraw Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.WithdrawTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "withdraw-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button  primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "withdraw-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Confirm Order Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ConfirmOrderTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "confirm-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "confirm-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.CampaignPromoTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-promote-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "campaign-promote-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
                 </div>
 
             </div>
-            <div style="display:flex; float:right;  margin-top: 20px;  margin-right: 10%;">
-                <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("EditMailChimpSetting", new { id = Model.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>
-                <a class="button primaryAction" href="@Url.Action("Delete", new { id = Model.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
-
-            </div>
-            }
-            else
-            {
-                <div><h3>There are no setting to this language</h3></div>
-                <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { returnUrl = Request.Url.ToString(), language = Model.Culture })" title="@T("Add")">@T("Add")</a>
-            }
         }
-        
-    </div>
+        else
+        {
+            <div><h3>There are no setting to this language</h3></div>
+            <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { returnUrl = Request.Url.ToString(), language = Model.Culture })" title="@T("Add")">@T("Add")</a>
+        }
+    }
+
+</div>
 

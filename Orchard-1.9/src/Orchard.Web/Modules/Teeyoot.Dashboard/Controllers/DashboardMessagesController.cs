@@ -186,41 +186,17 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 string currentUser = Services.WorkContext.CurrentUser.Email;
                 var user = _membershipService.GetUser(currentUser);
-                //var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-                //var api = new MandrillApi(record.ApiKey);
-                //var message = new MandrillMessage() { };
-                //message.FromEmail = model.From;
-                //message.Subject = model.Subject;
-                //message.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-                //List<LinkOrderCampaignProductRecord> ordersList = _orderService.GetProductsOrderedOfCampaign(model.CampaignId).ToList();
-                //var campaign = _campaignService.GetCampaignById(model.CampaignId);
-                //List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
-                //foreach (var item in ordersList)
-                //{
-                //    emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
-                //    FillMessageMergeVars(message, item);
-                //}
-                //message.To = emails;
-                //string messageText = TemplateContent.Template.Replace("---MessageContent---",model.Content);
-                //messageText = messageText.Replace("---SellerEmail---", user.Email);
-                //messageText = messageText.Replace("---CampaignTitle---", model.CampaignTitle);
-                //string previewUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/')+ "/Media/campaigns/"+model.CampaignId+"/"+campaign.Products[0].Id+"/normal/front.png";
-                //messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
-                //message.Html = messageText;
                 _messageService.AddMessage(user.Id, model.Content, model.From, DateTime.UtcNow, model.CampaignId, model.Subject, false);
-                //var res = SendTmplMessage(api, message);
                 _notifier.Information(T("Your message has been sent for approving!"));
                 return RedirectToAction("Messages");
             }
             return View("CreateMessage", model);
         }
 
-        
+        public void SendWelcomeEmail()
+        {
 
-        
-
-
- 
+        }
         
     }
 
