@@ -42,8 +42,6 @@ namespace Teeyoot.Module.Services
 
         bool PrivateCampaign(int id, bool change);
 
-        void AttachAnonymousCampaignToUser(int id, int userId);
-
         void SetCampaignStatus(int id, CampaignStatus status);
     }
 }

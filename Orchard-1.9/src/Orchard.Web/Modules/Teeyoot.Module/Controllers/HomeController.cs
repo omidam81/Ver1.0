@@ -6,6 +6,7 @@ using Orchard.UI.Notify;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -271,17 +272,18 @@ namespace Teeyoot.Module.Controllers
             CampaignRecord campaign = _campaignService.GetCampaignById(campaignId);
             int product = _campaignService.GetProductsOfCampaign(campaignId).First().Id;
 
-            string destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
-          
-            if (!Directory.Exists(destForder))
+            string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
+            var dir = new DirectoryInfo(destFolder);
+           
+            if (dir.Exists == false || ( (dir.Exists == true) && (dir.GetFiles().Count() == 0)))
             {
                 try
                 {
-                    Directory.CreateDirectory(destForder);
+                    Directory.CreateDirectory(destFolder);
 
                     var serializer = new JavaScriptSerializer();
                     serializer.MaxJsonLength = int.MaxValue;
-                    var data = serializer.Deserialize<DesignInfo>(campaign.Design);
+                    DesignInfo data = serializer.Deserialize<DesignInfo>(campaign.Design);
 
                     var p = campaign.Products[0];
 
@@ -293,14 +295,14 @@ namespace Teeyoot.Module.Controllers
                         var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
                         var imgPath = new Bitmap(frontPath);
 
-                        CreateSocialImg(destForder, campaign, imgPath);
+                        CreateSocialImg(destFolder, campaign, imgPath, data.Front);
                     }
                     else
                     {
                         var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
                         var imgPath = new Bitmap(backPath);
 
-                        CreateSocialImg(destForder, campaign, imgPath);
+                        CreateSocialImg(destFolder, campaign, imgPath, data.Back);
                     }
                 }
                 catch
@@ -312,7 +314,39 @@ namespace Teeyoot.Module.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
+        public void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath, String campaignData)
+        {
+           var p = campaign.Products[0];
 
+           var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+           var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
+
+           var campaignImgTemplate = new Bitmap(imgPath);
+
+           var campaignImg = BuildProductImage(campaignImgTemplate, _imageHelper.Base64ToBitmap(campaignData), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+           p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+           p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+          
+           Image backImage = Image.FromFile(Server.MapPath("/Media/Default/images/background.png"));
+           backImage = _imageHelper.ResizeImage(backImage, 1200, 627);
+           Graphics g = Graphics.FromImage(backImage);
+           g.DrawImage(campaignImg, 150, 0, 900, 900);
+
+           ImageCodecInfo imageCodecInfo = _imageHelper.GetEncoderInfo("image/jpeg");
+           Encoder encoder = Encoder.Quality;
+           EncoderParameter encoderParameter = new EncoderParameter(encoder, 75L);
+           EncoderParameters encoderParameters = new EncoderParameters(1);
+           encoderParameters.Param[0] = encoderParameter;
+           
+           Bitmap socialImg =new Bitmap(backImage);
+           socialImg.Save(Path.Combine(destForder, "campaign.jpg"), imageCodecInfo, encoderParameters);
+
+           g.Dispose();
+           campaignImgTemplate.Dispose();
+           campaignImg.Dispose();
+           socialImg.Dispose();
+           backImage.Dispose();          
+        }
 
         private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
         {
@@ -321,34 +355,5 @@ namespace Teeyoot.Module.Controllers
 
             return _imageHelper.ApplyDesignNoTransparent(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
         }
-
-        public void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath)
-        {
-            var serializer = new JavaScriptSerializer();
-            serializer.MaxJsonLength = int.MaxValue;
-            var data = serializer.Deserialize<DesignInfo>(campaign.Design);
-
-            var p = campaign.Products[0];
-
-            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
-            var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
-
-           var frontTemplate = new Bitmap(imgPath);
-
-           var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
-           p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
-           p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
-           var image = _imageHelper.ResizeImage(front, 627, 1200);
-
-           Image backImage = Image.FromFile(Server.MapPath("/Media/Default/images/background.png"));
-           Graphics g = Graphics.FromImage(backImage);
-           g.DrawImage(image, 150, 0, 900, 900);
-           backImage.Save(Path.Combine(destForder, "campaign.png"));
-
-           frontTemplate.Dispose();
-           front.Dispose();
-           backImage.Dispose();
-           
-        }
-    }
+    }    
 }

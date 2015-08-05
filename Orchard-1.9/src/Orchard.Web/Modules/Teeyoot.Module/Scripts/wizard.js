@@ -367,10 +367,12 @@ function profitSale() {
 
     if(selPrice < window.nowPrice){
         $("#mainH4").html("RM " + window.nowPrice + " minimum");
+        $("#mainH4").css('color', '#ff0000');
         app.state.currentProduct.Price = window.sellingPrice;
         $("#total_profit").html("RM 0+");
     }else{
         $("#mainH4").html("RM " + $price + " profit / sale");
+        $("#mainH4").css('color', '#ff4f00');
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
         if (app.state.products.length > 1) {
@@ -413,8 +415,10 @@ function colorInit() {
                 }
                 var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, app.state.currentProduct.BaseCost);
                 app.state.currentProduct.BaseCost = calc[0];
-                var chenges = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
-                $("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+                //var chenges = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
+                //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+                window.nowPrice = pp.state.currentProduct.BaseCost;
+                profitSale();
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
