@@ -134,6 +134,7 @@ namespace Teeyoot.Module.Controllers
                 Transaction transaction = result.Target;
                 ViewData["TransactionId"] = transaction.Id;
                 res = "The transaction is successful";
+
             }
             else
             {

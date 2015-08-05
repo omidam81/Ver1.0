@@ -193,10 +193,7 @@ namespace Teeyoot.Dashboard.Controllers
             return View("CreateMessage", model);
         }
 
-        public void SendWelcomeEmail()
-        {
 
-        }
         
     }
 
