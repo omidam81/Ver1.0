@@ -686,6 +686,29 @@
                 </div>
 
             </div>
+            <div class="campaign__column--stats display--desktop">
+                <div class="share__container">
+                    <h3 class="share__heading">@T("Share this campaign on:")</h3>
+                    <ul class="share__buttons">
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
+                                <img src="/Media/Default/images/facebook_ic.png">
+                            </a>
+                        </li>
+
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
+                                <img src="/Media/Default/images/twit_ic.png">
+                            </a>
+                        </li>
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
+                                <img src="/Media/Default/images/p_ic.png">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </section>
@@ -718,7 +741,7 @@
         </div>
         <div class="campaign__column--description">
             <div class="campaign__description display--mobile js_campaign_description">@Html.Raw(Model.Campaign.Description)</div>
-            <div class="campaign_info__container">
+            @*<div class="campaign_info__container">
                 <div class="campaign_info__row campaign_info__row--shipping">
                     <div class="campaign_info__header">
                         @T("Shipping Info")
@@ -749,31 +772,9 @@
                     <div class="campaign_info__header">Campaign ID</div>
                     <div class="campaign_info__content campaign_info__content--id">letsbooze</div>
                 </div>
-            </div>
+            </div>*@
         </div>
-        <div class="campaign__column--stats display--desktop">
-            <div class="share__container">
-                <h3 class="share__heading">@T("Share this campaign on:")</h3>
-                <ul class="share__buttons">
-                    <li class="share__buttons__item">
-                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
-                            <img src="/Media/Default/images/facebook_ic.png">
-                        </a>
-                    </li>
-
-                    <li class="share__buttons__item">
-                        <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
-                            <img src="/Media/Default/images/twit_ic.png">
-                        </a>
-                    </li>
-                    <li class="share__buttons__item">
-                        <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
-                            <img src="/Media/Default/images/p_ic.png">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        
         <section class="site__featured site__featured--border hidden">
             <div class="site__wrapper">
                 <div class="launch_campaign__container">
