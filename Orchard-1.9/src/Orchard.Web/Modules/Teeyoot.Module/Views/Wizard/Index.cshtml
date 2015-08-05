@@ -257,9 +257,7 @@
                 $.ajax({
                     type: 'POST',
                     url: '/WizardLogOn',
-                    data: JSON.stringify(wizardLogOnJsonRequest),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
+                    data: addAntiForgeryToken(wizardLogOnJsonRequest),
                     success: function(data) {
                         if (!data.IssueOccurred) {
                             refreshToken();
@@ -276,6 +274,41 @@
 
                         $('#login_validation_summary').text(data.IssueSummary);
                         $('#login_validation_summary').show();
+                    }
+                });
+            });
+
+            $('#create_account .create-account').click(function() {
+                var email = $('#create_account .email').val();
+                var password = $('#create_account .password').val();
+                var confirmPassword = $('#create_account .confirm-password').val();
+
+                var wizardRegisterJsonRequest = {
+                    Email: email,
+                    Password: password,
+                    ConfirmPassword: confirmPassword
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/WizardRegister',
+                    data: addAntiForgeryToken(wizardRegisterJsonRequest),
+                    success: function(data) {
+                        if (!data.IssueOccurred) {
+                            refreshToken();
+                            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                                function() {
+                                    $(this).css('display', 'none');
+                                    $('#overlay').fadeOut(400);
+
+                                    sendData();
+                                }
+                            );
+                            return;
+                        }
+
+                        $('#register_validation_summary').text(data.IssueSummary);
+                        $('#register_validation_summary').show();
                     }
                 });
             });
