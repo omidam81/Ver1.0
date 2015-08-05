@@ -466,17 +466,12 @@
             </div>
 
             <div class="campaign__short_description display--mobile">
-                <span>@Model.Campaign.Description</span>
-                <a class="js-description-jump" href="">@T("Read more")</a>
+                @*<span>@Model.Campaign.Description</span>*@
+                @*<a class="js-description-jump" href="">@T("Read more")</a>*@
             </div>
 
-
             <div class="image_stack__container js_image_stack">
-
                 <div id="card" style="margin-right:30px">
-
-
-
                     <div id="front" class="front">
                         @if (@Model.Campaign.BackSideByDefault)
                         {
@@ -492,7 +487,6 @@
                             <img id="prodFront"
                                  src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
                                  data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
-
 
                             <div id="butt1" style="text-align:center; ">
                                 <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
@@ -522,16 +516,12 @@
                             </div>
                         }
                     </div>
-
-
                 </div>
             </div>
 
             <div class="campaign__column--product" style="min-height: inherit;">
 
                 <div class="zoom_window__container .zoomWindowContainer" style="max-width: none;">
-
-
                 </div>
 
                 <h1 class="campaign__name display--desktop hidden">@Model.Campaign.Title</h1>
@@ -724,7 +714,7 @@
             </ul>
         </div>
         <div class="campaign__column--description">
-            <div class="campaign__description display--mobile js_campaign_description">@Model.Campaign.Description</div>
+            <div class="campaign__description display--mobile js_campaign_description">@Html.Raw(Model.Campaign.Description)</div>
             <div class="campaign_info__container">
                 <div class="campaign_info__row campaign_info__row--shipping">
                     <div class="campaign_info__header">
