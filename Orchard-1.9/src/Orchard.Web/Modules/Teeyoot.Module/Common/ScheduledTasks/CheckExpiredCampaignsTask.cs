@@ -42,14 +42,16 @@ namespace Teeyoot.Module.Common.ScheduledTasks
             {
                 try
                 {
+                    Logger.Information("----------------------------- Check Expired campaigns task started --------------------------------");
                     _campaignService.CheckExpiredCampaigns();
                 }
                 catch (Exception e)
                 {
-                    this.Logger.Error(e, e.Message);
+                    this.Logger.Error("Error occured when running Check Expired campaigns task ---------------- >" + e.ToString(), e.Message);
                 }
                 finally
                 {
+                    Logger.Information("----------------------------- Check Expired campaigns task finished --------------------------------");
                     var nextTaskDate = DateTime.Today.Date.AddDays(1).AddMinutes(1);
                     ScheduleNextTask(TimeZoneInfo.ConvertTimeToUtc(nextTaskDate, TimeZoneInfo.Local));
                 }

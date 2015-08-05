@@ -16,8 +16,6 @@ using Teeyoot.Account.Common;
 using Teeyoot.Account.DTOs;
 using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
-using Teeyoot.Module.Controllers;
-using Teeyoot.Module.Services;
 
 namespace Teeyoot.Account.Controllers
 {
@@ -34,8 +32,6 @@ namespace Teeyoot.Account.Controllers
         private readonly IUserService _userService;
         private readonly IWorkContextAccessor _workContextAccessor;
 
-        private readonly ICampaignService _campaignService;
-
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
         private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
         private const string RecoverValidationSummaryKey = "RecoverValidationSummary";
@@ -50,8 +46,7 @@ namespace Teeyoot.Account.Controllers
             IUserService userService,
             IFacebookOAuthService facebookOAuthService,
             IGoogleOAuthService googleOAuthService,
-            IWorkContextAccessor workContextAccessor,
-            ICampaignService campaignService)
+            IWorkContextAccessor workContextAccessor)
         {
             _teeyootMembershipService = teeyootMembershipService;
             _authenticationService = authenticationService;
@@ -60,8 +55,6 @@ namespace Teeyoot.Account.Controllers
             _facebookOAuthService = facebookOAuthService;
             _googleOAuthService = googleOAuthService;
             _workContextAccessor = workContextAccessor;
-
-            _campaignService = campaignService;
 
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
@@ -153,15 +146,6 @@ namespace Teeyoot.Account.Controllers
                 return Json(response);
             }
 
-            var session = _workContextAccessor.GetContext().HttpContext.Session;
-            var campaignId = session[WizardController.AnonymousCampaignSessionKey];
-
-            if (campaignId != null)
-            {
-                _campaignService.AttachAnonymousCampaignToUser((int) campaignId, user.Id);
-                session[WizardController.AnonymousCampaignSessionKey] = null;
-            }
-
             _authenticationService.SignIn(user, false);
 
             return Json(new WizardRegisterJsonResponse {IssueSummary = "Success"});
@@ -197,15 +181,6 @@ namespace Teeyoot.Account.Controllers
                 };
 
                 return Json(response);
-            }
-
-            var session = _workContextAccessor.GetContext().HttpContext.Session;
-            var campaignId = session[WizardController.AnonymousCampaignSessionKey];
-
-            if (campaignId != null)
-            {
-                _campaignService.AttachAnonymousCampaignToUser((int) campaignId, validRes.User.Id);
-                session[WizardController.AnonymousCampaignSessionKey] = null;
             }
 
             _authenticationService.SignIn(validRes.User, request.RememberMe);

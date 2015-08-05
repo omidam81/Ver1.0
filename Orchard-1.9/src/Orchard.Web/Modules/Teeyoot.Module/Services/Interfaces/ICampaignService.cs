@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 
@@ -41,6 +42,6 @@ namespace Teeyoot.Module.Services
 
         bool PrivateCampaign(int id, bool change);
 
-        void AttachAnonymousCampaignToUser(int id, int userId);
+        void SetCampaignStatus(int id, CampaignStatus status);
     }
 }
