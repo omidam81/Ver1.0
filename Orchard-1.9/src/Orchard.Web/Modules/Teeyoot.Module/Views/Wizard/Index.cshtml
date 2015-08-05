@@ -9,6 +9,7 @@
     Style.Include("custom.css");
     Style.Include("bootstrap-responsive.css");
     Style.Include("bootstrap-wysihtml5.css");
+    Style.Include("track.css");
 
 
     Script.Require("jQueryUI");
@@ -58,7 +59,7 @@
     </script>
     <script type="text/javascript">
 
-        var items = function (request, response) {
+        var items = function(request, response) {
             var result = new Array();
             $.ajax({
                 async: false,
@@ -66,8 +67,8 @@
                 type: "GET",
                 url: "@(Url.Action("GetDetailTags", "Wizard"))",
                 data: { "filter": document.getElementById("inputTags").value },
-                success: function (data) {
-                    for (var i = 0; i < data.length ; i++) {
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
                         result[i] = data[i];
                     }
                 },
@@ -80,7 +81,7 @@
         $("#inputTags").autocomplete({
             minLength: 0,
             source: items,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 var data = document.getElementById("inputTags").value;
                 var count = data.lastIndexOf(' ');
                 var str = data.substring(0, parseInt(count) + 1);
@@ -90,29 +91,26 @@
         })
 
 
-
-
         $('.textarea').wysihtml5();
-        $(".flip-buttons").click(function () {
+        $(".flip-buttons").click(function() {
             var $elem = $("#view-front");
 
             if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $(".flip-button-front").css("background-color", "#6c7478");
                     $(".flip-button-front").css("color", "white");
                     $(".flip-button-back").css("background-color", "white");
                     $(".flip-button-back").css("color", "#6c7478");
                 }, 180);
-            } else
-                if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
-                    setTimeout(function () {
-                        $(".flip-button-back").css("background-color", "#6c7478");
-                        $(".flip-button-back").css("color", "white");
-                        $(".flip-button-front").css("background-color", "white");
-                        $(".flip-button-front").css("color", "#6c7478");
-                    }, 180);
+            } else if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
+                setTimeout(function() {
+                    $(".flip-button-back").css("background-color", "#6c7478");
+                    $(".flip-button-back").css("color", "white");
+                    $(".flip-button-front").css("background-color", "white");
+                    $(".flip-button-front").css("color", "#6c7478");
+                }, 180);
 
-                }
+            }
         });
 
         function sendData() {
@@ -133,33 +131,50 @@
                 type: "POST",
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
-                    "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-                    "Design": JSON.stringify(app.state.design), 'IsForCharity': isForCharity,
-                    "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
-                    'BackSideByDefault': backSideByDefault, "Tags": tags, "Products": app.state.products
+                    "ProductCountGoal": countTees,
+                    "profit": profit,
+                    "itemOptions": itemOptions,
+                    "product": product,
+                    "Design": JSON.stringify(app.state.design),
+                    'IsForCharity': isForCharity,
+                    "CampaignTitle": campaignTitle,
+                    "Description": description,
+                    "CampaignLength": campaignLength,
+                    "Alias": alias,
+                    'BackSideByDefault': backSideByDefault,
+                    "Tags": tags,
+                    "Products": app.state.products
                 }),
-                success: function (data, status, resp) {
+                success: function(data, status, resp) {
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
                     }
                 },
-                error: function (data, status, resp) {
+                error: function(data, status, resp) {
+                    if (data.status === 403) {
+                        $('#overlay').fadeIn(400, function() {
+                            $('#modal_auth')
+                                .css('display', 'block')
+                                .animate({ opacity: 1, top: '50%' }, 200);
+                        });
+                        return;
+                    }
                     alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                 }
             });
-
-        }
+        };
 
         function addAntiForgeryToken(data) {
-            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            var antiForgeryTokenValue = $('#anti_forgery_token').val();
+            data.__RequestVerificationToken = antiForgeryTokenValue;
             return data;
         };
 
         var isFront = true
-        $(function ($) {
+        $(function($) {
             $("#card").flip({
                 trigger: 'manual'
-            }).click(function () {
+            }).click(function() {
                 isFront = !isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
@@ -167,16 +182,15 @@
         });
 
         var isFront3 = true
-        $(function ($) {
+        $(function($) {
             $("#card3").flip({
                 trigger: 'manual'
-            }).click(function () {
+            }).click(function() {
                 isFront3 = !isFront3;
                 console.log(isFront3);
                 $("#card3").flip(!isFront3);
             });
         });
-
 
 
         window.additionalScreenCosts = @Model.AdditionalScreenCosts;
@@ -193,10 +207,79 @@
         window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
         document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
         window.sellingPrice = parseFloat("0"); // Цена за футболку, которую будет видеть покупатель на компании. Отображаеться в Set a goal
-        window.frontColor = parseInt("0");  // Переменная для отображения цветов спереди на футболке
-        window.backColor = parseInt("0");   // Переменная для отображения цветов из зади на футюолке
+        window.frontColor = parseInt("0"); // Переменная для отображения цветов спереди на футболке
+        window.backColor = parseInt("0"); // Переменная для отображения цветов из зади на футюолке
         calculatePrice(window.frontColor, window.backColor);
 
+    </script>
+
+    <script>
+        function refreshToken() {
+            $.ajax({
+                async: false,
+                type: 'GET',
+                url: '/RefreshToken',
+                success: function(data) {
+                    $('#anti_forgery_token').val(data);
+                }
+            });
+        };
+
+        $(document).ready(function() {
+            $('#overlay, .close').click(function() {
+                $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                    function() {
+                        $(this).css('display', 'none');
+                        $('#overlay').fadeOut(400);
+                    }
+                );
+            });
+
+            $('.login-with-teeyoot').click(function() {
+                $('.auth-window').hide();
+                $('#login_teeyoot').show();
+            });
+
+            $('.create-new-account').click(function() {
+                $('.auth-window').hide();
+                $('#create_account').show();
+            });
+
+            $('#login_teeyoot .login').click(function() {
+                var email = $('#login_teeyoot .email').val();
+                var password = $('#login_teeyoot .password').val();
+
+                var wizardLogOnJsonRequest = {
+                    Email: email,
+                    Password: password
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/WizardLogOn',
+                    data: JSON.stringify(wizardLogOnJsonRequest),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (!data.IssueOccurred) {
+                            refreshToken();
+                            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                                function() {
+                                    $(this).css('display', 'none');
+                                    $('#overlay').fadeOut(400);
+
+                                    sendData();
+                                }
+                            );
+                            return;
+                        }
+
+                        $('#login_validation_summary').text(data.IssueSummary);
+                        $('#login_validation_summary').show();
+                    }
+                });
+            });
+        });
     </script>
 }
 
@@ -1433,3 +1516,51 @@
         <span style="clear:both;display: block;"></span>
     </div>
 </div>
+
+<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()"/>
+
+<div class="modal-dialog modal fade" id="modal_auth">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="login_selection" class="auth-window">
+                <h2>@T("How would you like to login?")</h2>
+                <h4>You can <a href="javascript:;" class="login-with-teeyoot">login with Teeyoot</a> or use any of the sites below:</h4>
+                <a href="javascript:;">@T("login with facebook")</a>
+                <a href="javascript:;">@T("login with google")</a>
+                @T("or") <a href="javascript:;" class="create-new-account">@T("create a new account with Teeyoot")</a>
+            </div>
+            <div id="login_teeyoot" class="auth-window" style="display: none;">
+                <h2>@T("Login with Teeyoot")</h2>
+                <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
+                <fieldset>
+                    <input type="text" class="email" placeholder="@T("Email")"/>
+                    <br/>
+                    <input type="password" class="password" placeholder="@T("Password")"/>
+                    <br/>
+                    <input type="button" class="login" value="@T("Login to your account >>")"/>
+                </fieldset>
+                <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
+            </div>
+            <div id="create_account" class="auth-window" style="display: none;">
+                <h2>@T("Create an account with Teeyoot")</h2>
+                <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
+                <fieldset>
+                    <input type="text" class="email" placeholder="@T("Email")"/>
+                    <br/>
+                    <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")"/>
+                    <br/>
+                    <input type="password" class="confirm-password" placeholder="@T("Confirm Password")"/>
+                    <br/>
+                    <input type="button" class="create-account" value="@T("Create your account >>")"/>
+                </fieldset>
+                <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
+<div id="overlay"></div>

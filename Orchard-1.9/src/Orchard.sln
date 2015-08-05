@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}"
 EndProject
@@ -1139,10 +1139,13 @@ Global
 		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0457A10E-DAEE-4D0C-8345-3B6AC081B2A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.CodeCoverage|Any CPU.ActiveCfg = Release|Any CPU
+		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.CodeCoverage|Any CPU.Build.0 = Release|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.Coverage|Any CPU.ActiveCfg = Release|Any CPU
+		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.Coverage|Any CPU.Build.0 = Release|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.FxCop|Any CPU.ActiveCfg = Release|Any CPU
+		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.FxCop|Any CPU.Build.0 = Release|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C84695E6-FA40-41DA-83F7-736DFAE19E9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54D5314C-7241-4392-8631-EBE69CC41351}.CodeCoverage|Any CPU.ActiveCfg = Release|Any CPU

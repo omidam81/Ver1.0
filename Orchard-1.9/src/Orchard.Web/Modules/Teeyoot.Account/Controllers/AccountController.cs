@@ -185,7 +185,7 @@ namespace Teeyoot.Account.Controllers
 
             _authenticationService.SignIn(validRes.User, request.RememberMe);
 
-            return Json(new WizardRegisterJsonResponse {IssueSummary = "Success"});
+            return Json(new WizardLogOnJsonResponse());
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
@@ -287,6 +287,11 @@ namespace Teeyoot.Account.Controllers
 
             TempData[PasswordHasBeenUpdatedKey] = true;
             return this.RedirectLocal("~/Login");
+        }
+
+        public ActionResult RefreshToken()
+        {
+            return PartialView("AntiForgeryTokenValue");
         }
 
         private ValidateRegistrationResult ValidateRegistration(string email, string password, string confirmPassword)
