@@ -212,8 +212,7 @@ window.onload = function initWizard() {
                 }
                 var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
                 prdc.BaseCost = calc[0];
-                var chenges = prdc.Price - prdc.BaseCost;
-                h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " profit / sale";
+                var changes = prdc.Price - prdc.BaseCost;
                 estimatedProfitChangeForManuProducts();
 
                 //$divColors.remove();
@@ -274,7 +273,11 @@ window.onload = function initWizard() {
             }
             div.parentNode.removeChild(div);
             app.state.products.pop(prdc);
-
+            if (app.state.products.length > 1) {
+                estimatedProfitChangeForManuProducts();
+            } else {
+                estimatedProfitChange();
+            }
         });
     
         globalPrdc = prdc;
@@ -368,7 +371,8 @@ function profitSale() {
     if(selPrice < window.nowPrice){
         $("#mainH4").html("RM " + window.nowPrice + " minimum");
         $("#mainH4").css('color', '#ff0000');
-        app.state.currentProduct.Price = window.sellingPrice;
+        app.state.currentProduct.Price = window.nowPrice;
+        window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
         $("#mainH4").html("RM " + $price + " profit / sale");
@@ -413,12 +417,20 @@ function colorInit() {
                         app.state.currentProduct.BaseCost = prices[i].price;
                     }
                 }
+                window.costOfMaterial = app.state.currentProduct.BaseCost;
                 var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, app.state.currentProduct.BaseCost);
                 app.state.currentProduct.BaseCost = calc[0];
-                //var chenges = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
+                var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
                 //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
-                window.nowPrice = pp.state.currentProduct.BaseCost;
-                profitSale();
+                window.nowPrice = app.state.currentProduct.BaseCost;
+                updateMinimum(changes);
+                if (window.nowPrice < window.sellingPrice) {
+                    if (app.state.products.length > 1) {
+                        estimatedProfitChangeForManuProducts()
+                    } else {
+                        estimatedProfitChange();
+                    }
+                }
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
@@ -509,7 +521,11 @@ function onChangeTrackBar() {
     window.count = parseInt(document.getElementById('trackbar').value);
     calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
-    profitSale();
+    var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
+    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+    window.nowPrice = app.state.currentProduct.BaseCost;
+    updateMinimum(changes);
+    //profitSale();
 
     if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {
@@ -532,7 +548,11 @@ function onChangeValueForTrackBar() {
     window.count = parseInt(document.getElementById('trackBarValue').value);
     calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
-    profitSale();
+    //profitSale();
+    var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
+    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+    window.nowPrice = app.state.currentProduct.BaseCost;
+    updateMinimum(changes);
 
     if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {

@@ -12,5 +12,7 @@ namespace Teeyoot.Module.Models
         public virtual ProductSizeRecord ProductSizeRecord { get; set; }
 
         public virtual ProductRecord ProductRecord { get; set; }
+
+        public virtual float SizeCost { get; set; }
     }
 }

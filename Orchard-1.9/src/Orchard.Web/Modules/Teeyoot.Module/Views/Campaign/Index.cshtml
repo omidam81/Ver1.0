@@ -11,9 +11,9 @@
 
     <meta property="og:site_name" content="Teeyoot" />
     <meta property="og:title" content="@Model.Campaign.Title" />
-    <meta property="og:image" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.jpg" />              
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="627" />
+    <meta property="og:image" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
     <meta property="og:description" content="@Model.Campaign.Description" />
     <meta property="og:url" content="http://teebay.bqt.me/@Model.Campaign.Alias" />
 
@@ -33,17 +33,17 @@
 {
     <script>
         var twitterBtn = document.getElementsByClassName("btn--twitter");
-    for (var k = 0; k < twitterBtn.length; k++) {
-        $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
-    }
+        for (var k = 0; k < twitterBtn.length; k++) {
+            $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
+        }
         var pinterestBtn = document.getElementsByClassName("btn--pinterest");
-    for (var k = 0; k < pinterestBtn.length; k++) {
-        $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
-    }
+        for (var k = 0; k < pinterestBtn.length; k++) {
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+        }
         var facebookBtn = document.getElementsByClassName("btn--facebook");
         for (var k = 0; k < facebookBtn.length; k++) {
             $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=http://teebay.bqt.me/@Model.Campaign.Alias");
-    }
+        }
 
         $(".product__size_chart_link--show").click(function () {
             document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
@@ -347,20 +347,20 @@
 
         }
 
-    function shareCampaign() {
-        var isBack = firstBack;
-        var campaignId = document.getElementById("campaignId").value;
+        function shareCampaign() {
+            var isBack = firstBack;
+            var campaignId = document.getElementById("campaignId").value;
 
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("ShareCampaign", "Home"))",
-            data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
-            success: function () {
-                          
-            }
-        });
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("ShareCampaign", "Home"))",
+                data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
+                success: function () {
+
+                }
+            });
 
         }
 
@@ -414,6 +414,9 @@
             CDT();
         }
 
+        function changePrice(index_size, index_products) {
+
+        }
 
     </script>
 
@@ -466,17 +469,12 @@
             </div>
 
             <div class="campaign__short_description display--mobile">
-                <span>@Model.Campaign.Description</span>
-                <a class="js-description-jump" href="">@T("Read more")</a>
+                @*<span>@Model.Campaign.Description</span>*@
+                @*<a class="js-description-jump" href="">@T("Read more")</a>*@
             </div>
 
-
             <div class="image_stack__container js_image_stack">
-
                 <div id="card" style="margin-right:30px">
-
-
-
                     <div id="front" class="front">
                         @if (@Model.Campaign.BackSideByDefault)
                         {
@@ -492,7 +490,6 @@
                             <img id="prodFront"
                                  src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
                                  data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
-
 
                             <div id="butt1" style="text-align:center; ">
                                 <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
@@ -522,16 +519,12 @@
                             </div>
                         }
                     </div>
-
-
                 </div>
             </div>
 
             <div class="campaign__column--product" style="min-height: inherit;">
 
                 <div class="zoom_window__container .zoomWindowContainer" style="max-width: none;">
-
-
                 </div>
 
                 <h1 class="campaign__name display--desktop hidden">@Model.Campaign.Title</h1>
@@ -676,18 +669,45 @@
                         </li>
                     </ul>
                 </div>
-                <div class="campaign_transaction js-transaction-button">
-                    @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
-                        <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>*@
-                    <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
-                    <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
-                </div>
+                @if (Model.Campaign.EndDate.ToLocalTime() > DateTime.Now)
+                {
+                    <div class="campaign_transaction js-transaction-button">
+                        @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
+                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>*@
+
+                        <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
+                        <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
+                    </div>
+                }
 
                 <div>
                     <input class="hidden" id="persistent__timer" value="@Model.Campaign.EndDate.ToLocalTime().Year/@Model.Campaign.EndDate.ToLocalTime().Month/@Model.Campaign.EndDate.ToLocalTime().Day @Model.Campaign.EndDate.ToLocalTime().Hour:@Model.Campaign.EndDate.ToLocalTime().Minute:@Model.Campaign.EndDate.ToLocalTime().Second">
                     <div id="back_timer"></div>
                 </div>
 
+            </div>
+            <div class="campaign__column--stats display--desktop">
+                <div class="share__container">
+                    <h3 class="share__heading">@T("Share this campaign on:")</h3>
+                    <ul class="share__buttons">
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
+                                <img src="/Media/Default/images/facebook_ic.png">
+                            </a>
+                        </li>
+
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
+                                <img src="/Media/Default/images/twit_ic.png">
+                            </a>
+                        </li>
+                        <li class="share__buttons__item">
+                            <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
+                                <img src="/Media/Default/images/p_ic.png">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -708,7 +728,7 @@
                 </li>
 
                 <li class="share__buttons__item">
-                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()"  href="" target="_blank">
+                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
                         <img src="/Media/Default/images/twit_ic.png">
                     </a>
                 </li>
@@ -720,8 +740,8 @@
             </ul>
         </div>
         <div class="campaign__column--description">
-            <div class="campaign__description display--mobile js_campaign_description">@Model.Campaign.Description</div>
-            <div class="campaign_info__container">
+            <div class="campaign__description display--mobile js_campaign_description">@Html.Raw(Model.Campaign.Description)</div>
+            @*<div class="campaign_info__container">
                 <div class="campaign_info__row campaign_info__row--shipping">
                     <div class="campaign_info__header">
                         @T("Shipping Info")
@@ -752,31 +772,9 @@
                     <div class="campaign_info__header">Campaign ID</div>
                     <div class="campaign_info__content campaign_info__content--id">letsbooze</div>
                 </div>
-            </div>
+            </div>*@
         </div>
-        <div class="campaign__column--stats display--desktop">
-            <div class="share__container">
-                <h3 class="share__heading">@T("Share this campaign on:")</h3>
-                <ul class="share__buttons">
-                    <li class="share__buttons__item">
-                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()"  href="" target="_blank">
-                            <img src="/Media/Default/images/facebook_ic.png">
-                        </a>
-                    </li>
-
-                    <li class="share__buttons__item">
-                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
-                            <img src="/Media/Default/images/twit_ic.png">
-                        </a>
-                    </li>
-                    <li class="share__buttons__item">
-                        <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
-                            <img src="/Media/Default/images/p_ic.png">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        
         <section class="site__featured site__featured--border hidden">
             <div class="site__wrapper">
                 <div class="launch_campaign__container">
@@ -844,10 +842,10 @@
                                                     {
                                                         if (i == 0)
                                                         {
-                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown">
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown" onchange="changePrice(this.selectedIndex, @i)" id="select_size_index_@i">
                                                                 @foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
                                                                 {
-                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                    <option value="@size.ProductSizeRecord.Id" id="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
                                                                 }
                                                             </select>
                                                         }
@@ -881,7 +879,18 @@
                                                 {
                                                     if (i == 0)
                                                     {
-                                                        <span name="select_size_index_@i" class="modal-price shown">@Model.Campaign.Products[i].CurrencyRecord.Code@Model.Campaign.Products[i].Price</span>
+                                                        foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
+                                                        {
+                                                            float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
+                                                            if (size == Model.Campaign.Products[i].ProductRecord.SizesAvailable.First())
+                                                            {
+                                                                <span name="select_size_index_@i" class="modal-price shown" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @Model.Campaign.Products[i].Price</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span name="select_size_index_@i" class="modal-price hidden" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @Model.Campaign.Products[i].Price</span>
+                                                            }
+                                                        }
                                                     }
                                                     else
                                                     {
