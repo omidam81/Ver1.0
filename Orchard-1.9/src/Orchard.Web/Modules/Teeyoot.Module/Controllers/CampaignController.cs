@@ -45,23 +45,12 @@ namespace Teeyoot.Module.Controllers
                     CampaignIndexViewModel model = new CampaignIndexViewModel() { };
                     model.Campaign = campaign;
 
-
-                    var user = _wca.GetContext().CurrentUser;
-
-                    if (user != null)
-                    {
-                        var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-
-                        if (teeyootUser.Id == campaign.TeeyootUserId)
-                        {
                             if (campaign.ProductCountSold >= campaign.ProductCountGoal)
                             {
                                 string infoMessage = String.Format("The minimum order has been reached, so this shirt will definitely go to print.");
                                 _notifier.Add(NotifyType.Information, T(infoMessage));
                             }
-                        }
-                    }
-
+                 
                     if (promo != null)
                     {
                         try
