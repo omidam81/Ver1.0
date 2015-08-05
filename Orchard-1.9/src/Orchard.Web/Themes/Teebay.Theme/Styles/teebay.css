@@ -1,25 +1,68 @@
-﻿.container:before,
-.container:after {
-  content:"";
-  display:table;
+﻿/* Eric Meyer's CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-.container:after {
-  clear:both;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
-.container {
-  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+body {
+	line-height: 1;
 }
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* End of Eric Meyer's CSS Reset */
 
-* {
-    margin: 0;
-    padding: 0;
+html {
+	height: 100%;
 }
-
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
+}
 
 body {
+	font-size: 15px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    color: #6c7478;
     height: 100%;
-    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    position: relative;
+    background: white;
 }
+
+
+
 .shown {
     display: block !important;
 }
@@ -47,16 +90,7 @@ body {
             text-decoration: none;
         }
 
-.widget-mainSearch {
-    height: 32px;
-    /*width: 36%;*/
-    /*float: left;*/
-    /*text-align: -webkit-center;*/
-    /*text-align: -moz-center;*/
-    margin-left: 8px;
-    width: 100%;
-    max-width: 340px;
-}
+
 
 .orchard-layouts-root {
     margin: 0;
@@ -82,7 +116,7 @@ body {
 }
 
 #content {
-        padding: 0 0 246px;
+       
 }
 .widget-createSearchButtons {
     position: absolute;
@@ -252,51 +286,84 @@ body {
     background-color: #ff4f00;
 }
 
-.tb-search-form {
-    border: solid 1px #e8eced;
-    border-radius: 10px;
-    margin-top: 6px;
-    font-size: 12px;
-    padding-left: 5px;
-    /*max-width: 300px;*/
+/* widget Search */
+
+.widget-mainSearch {
     width: 100%;
-    /*padding-top: 3px;*/
-    height: 29px;
+    margin: 6px;
+    height: 32px;
+    max-width: 340px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
-    .tb-search-form button {
-        cursor: pointer;
-        background: #fff;
-        height: 26px;
-        width: 30px;
-        margin: 0;
-        border-left-width: 0;
-        border-width: 0;
-        padding: 0px;
-        border-radius: 0 10px 10px 0;
-        text-align: right;
-        vertical-align: middle;
-        margin-top: 1px;
-    }
 
-    .tb-search-form img {
-        width: 70%;
-    }
+.tb-search-form {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    font-size: 12px;
+    width: inherit;
+    height: inherit;
+    border: solid 1px #e8eced;
+    -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+            border-radius: 10px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
 
     .tb-search-form input[type=text] {
-        height: 27px;
-        /*width: 88%;*/
-        float: left;
         border: 0;
-        border-right-width: 0;
-        font-size: 14px;
-        padding: 0 0 0 5px;
-        padding-left: 0px;
-        border-radius: 10px 0 0 10px;
-        max-width: 300px;
         width: 100%;
-        vertical-align: middle;
+        height: 30px;
+        padding: 0 10px;
+        font-size: 14px;
+        max-width: 300px;
+        line-height: 28px;
+        vertical-align: top;
+        display: inline-block;
+        background: transparent;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
     }
+
+    .tb-search-form button {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        width: 20px;
+        height: 30px;
+        cursor: pointer;
+        position: relative;
+        vertical-align: top;
+        display: inline-block;
+        background: transparent;
+    }
+
+    .tb-search-form button:before {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: "";
+        margin: auto;
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        background: url(../Content/search-ico.png) center no-repeat;
+        background-size: 20px 20px;
+    }
+
+    .tb-search-form button img {
+        display: none;
+    }
+
+  
+/* end widget Search */
 
 .widget-anonimousMenu,
 .widget-authenticatedMenu {
@@ -2506,6 +2573,7 @@ body {
     max-width: 1236px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 0 246px;
 }
 
 .aside-1 .tb-aside-first {
@@ -3744,18 +3812,7 @@ input[type="radio" i], input[type="checkbox" i] {
 }
 
 
-html, body {
-    background: white;
-    font-size: 15px;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    color: #6c7478;
-    height: 100%;
-    line-height: 1.6;
-    margin: 0;
-    position: relative;
-    text-stroke: 0.05px;
-    width: 100%;
-}
+
 .accordion__label {
     color: #293033;
     cursor: pointer;
@@ -4280,10 +4337,9 @@ input[type="radio" i], input[type="checkbox" i] {
                 color: #c2c9cc;
                 font-size: 14px;
                 text-align: left;
-                /*margin: 0 0 0 15px;*/
                 margin:0;
-                line-height: 0;
-                padding: 5px 0 0 0;
+                line-height: 1;
+                padding: 0;
             }
 .money{
       height: 250px;
@@ -4820,3 +4876,20 @@ input[type="radio" i], input[type="checkbox" i] {
         background-color: #575252 !important;
         border-bottom-color: #575252 !important;
     }
+
+
+
+
+
+
+.container:before,
+.container:after {
+  content:"";
+  display:table;
+}
+.container:after {
+  clear:both;
+}
+.container {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}

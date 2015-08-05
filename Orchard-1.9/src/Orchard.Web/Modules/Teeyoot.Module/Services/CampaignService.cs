@@ -2,6 +2,7 @@
 using Orchard;
 using Orchard.Data;
 using Orchard.Localization;
+using Orchard.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,11 +56,14 @@ namespace Teeyoot.Module.Services
             _orderHistoryRepository = orderHistoryRepository;
 
             T = NullLocalizer.Instance;
+            Logger = NullLogger.Instance;
         }
 
         private IOrchardServices Services { get; set; }
 
         public Localizer T { get; set; }
+
+        public ILogger Logger { get; set; }
 
 
         public BraintreeGateway Gateway = new BraintreeGateway
@@ -113,16 +117,13 @@ namespace Teeyoot.Module.Services
 
         public CampaignRecord CreateNewCampiagn(LaunchCampaignData data)
         {
+            var user = Services.WorkContext.CurrentUser;
+            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             int? userId = null;
 
-            var user = Services.WorkContext.CurrentUser;
-            if (user != null)
+            if (teeyootUser != null)
             {
-                var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-                if (teeyootUser != null)
-                {
-                    userId = teeyootUser.ContentItem.Record.Id;
-                }
+                userId = teeyootUser.ContentItem.Record.Id;
             }
 
             try
@@ -260,6 +261,8 @@ namespace Teeyoot.Module.Services
                                 .Where(c => c.EndDate < DateTime.UtcNow && c.IsActive)
                                 .ToList();
 
+            Logger.Information("Check expired campaign --------------- > {0} expired campaigns found", campaigns.Count);
+
             foreach (var c in campaigns)
             {
                 //c.CampaignStatusRecord = _statusRepository
@@ -358,11 +361,11 @@ namespace Teeyoot.Module.Services
             }
         }
 
-        public void AttachAnonymousCampaignToUser(int id, int userId)
+        public void SetCampaignStatus(int id, CampaignStatus status)
         {
-            var campaign = _campaignRepository.Get(id);
-            campaign.TeeyootUserId = userId;
-            _campaignRepository.Update(campaign);
+            var campaign = GetCampaignById(id);
+            campaign.CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == status.ToString());
+            UpdateCampaign(campaign);
         }
     }
 }

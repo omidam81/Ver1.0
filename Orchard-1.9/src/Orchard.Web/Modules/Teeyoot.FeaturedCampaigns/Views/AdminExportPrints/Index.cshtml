@@ -14,15 +14,15 @@
                 <button type="submit">@T("Apply")</button>
                 <a href="@Url.Action("Index")">@T("By Default")</a>
 
-                <span style="margin-left:15px;">
+                @*<span style="margin-left:15px;">
                     <label>@T("Actions"):</label>
                     <select>
                         <option>@T("-- Choose action --")</option>
                         <option value="0">@T("Start printing")</option>
                     </select>
 
-                    <button onclick="applyAction(); return false;">@T("Apply")</button>
-                </span>
+                    <button onclick="return applyAction()">@T("Apply")</button>
+                </span>*@
             }
 
             
@@ -37,12 +37,13 @@
     <table class="items">
         <thead>
             <tr>
-                <th class="check-box">
+                @*<th class="check-box">
                     <input type="checkbox" class="check-all">
-                </th>
+                </th>*@
                 <th>@T("Campaign name")</th>
-                <th>@T("Sold/Goal")</th>   
-                <th></th>          
+                <th>@T("Sold/Goal")</th>  
+                <th>@T("Status")</th> 
+                <th>@T("Actions")</th>          
             </tr>
         </thead>
         <tbody>
@@ -52,13 +53,23 @@
                 {
 
                     <tr data-record-text="@c.Id" class="contentItems">
-                        <td class="check-box">
-                            <input type="checkbox">
-                        </td>
+                        @*<td class="check-box">
+                            @if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
+                            { 
+                                <input type="checkbox">
+                            }
+                        </td>*@
                         <td>@c.Title</td>
                         <td>@c.Sold / @c.Goal</td>
+                        <td>@c.Status.Name</td>
                         <td>
-                            <a href="@Url.Action("ExportPrints", new { pagerParameters = Model.Pager, id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
+                            <a href="@Url.Action("ExportPrints", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
+
+                            @if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
+                            {
+                                @T(" | ")
+                                <a href="@Url.Action("StartPrinting", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Start printing")">@T("Start printing")</a>
+                            }
                         </td>
                     </tr>
                 }
@@ -67,3 +78,14 @@
     </table>
 </div>
 @Display(Model.Pager)
+
+@using (Script.Foot())
+{
+    <script>
+
+        var applyAction = function () {
+            return false;
+        }
+
+    </script>
+}
