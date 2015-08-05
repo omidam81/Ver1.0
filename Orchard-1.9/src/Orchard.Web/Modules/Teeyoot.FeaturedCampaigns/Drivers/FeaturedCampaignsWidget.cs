@@ -57,7 +57,7 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
                     var otherCampaigns = _campaignsService.GetAllCampaigns().Where(c => c.IsPrivate == false).ToList();
                     foreach (var camp in campaignsInFeatured)
                     {
-                        if (otherCampaigns.Exists(c => c.Id == camp.Id) != null)
+                        if (otherCampaigns.Exists(c => c.Id == camp.Id))
                         {
                             otherCampaigns.Remove(camp);
                         }
