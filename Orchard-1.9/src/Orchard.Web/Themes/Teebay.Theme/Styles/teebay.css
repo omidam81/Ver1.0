@@ -1534,9 +1534,9 @@ body {
 }
 
 @media all and (max-width: 340px) {
-    .orchard-layouts-root .shop-now-banner {
+    /*.orchard-layouts-root .shop-now-banner {
         max-height: 240px;
-    }
+    }*/
 }
 
 @media all and (max-width: 335px) {
@@ -3030,6 +3030,7 @@ body {
 .shop-now-banner {
     background-color: #ff4f00;
     padding: 10px 50px 0 50px;
+    padding-top: 0;
     max-height: 200px;
     border-radius: 5px;
 }
@@ -3052,10 +3053,11 @@ body {
     color: #fff;
     font-size: 26px;
     font-weight: 300;
+    padding-top: 10px;
 }
 
     .shop-now-title button {
-        width: 168px;
+        width: 178px;
         float: left;
         margin: 0;
     }
