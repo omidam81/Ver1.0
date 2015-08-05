@@ -360,12 +360,12 @@ namespace Teeyoot.Module.Services
                 return false;
             }
         }
-        }
 
         public void SetCampaignStatus(int id, CampaignStatus status)
         {
             var campaign = GetCampaignById(id);
             campaign.CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == status.ToString());
             UpdateCampaign(campaign);
+        }
     }
 }
