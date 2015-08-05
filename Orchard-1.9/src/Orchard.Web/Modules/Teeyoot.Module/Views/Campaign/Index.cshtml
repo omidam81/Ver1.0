@@ -4,6 +4,7 @@
     Script.Require("jQuery");
     Script.Include("jquery.flip.js");
     Script.Include("jquery.elevateZoom-3.0.8.min.js");
+    Layout.Title = T("Messages").ToString();
 }
 @using (Script.Head())
 {
@@ -453,14 +454,6 @@
     <section class="site__featured_full">
         <div class="site__wrapper js_fixed_product">
             <div class="message_banner__container js_promo_banner">
-
-                @if (@Model.InfoMessage != null)
-                {
-                    <div class="info-message">
-                        @Model.InfoMessage
-                    </div>
-                }
-
                 <div class="message_banner">
                     <div class="message_banner__text js_promo_banner_text"></div>
                     <i class="message_banner__close ts-icon-close"></i>
