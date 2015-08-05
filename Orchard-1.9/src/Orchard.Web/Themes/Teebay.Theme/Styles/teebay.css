@@ -302,10 +302,10 @@ body {
 .tb-search-form {
     margin: 0;
     padding: 0;
+    width: 100%;
     font-size: 0;
-    font-size: 12px;
-    width: inherit;
     height: inherit;
+    font-size: 12px;
     border: solid 1px #e8eced;
     -webkit-border-radius: 10px;
        -moz-border-radius: 10px;
