@@ -104,7 +104,9 @@
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
     <Compile Include="Routes.cs" />
+    <Compile Include="Services\IMandrillService .cs" />
     <Compile Include="Services\IMailChimpSettingsService.cs" />
+    <Compile Include="Services\MandrillService.cs" />
     <Compile Include="Services\MailChimpSettingsService.cs" />
     <Compile Include="ViewModels\MailChimpAddSettingViewModel.cs" />
     <Compile Include="ViewModels\AdminMessagesViewModel.cs" />

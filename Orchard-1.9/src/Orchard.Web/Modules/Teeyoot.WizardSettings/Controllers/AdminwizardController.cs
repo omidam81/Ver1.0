@@ -219,5 +219,6 @@ namespace Teeyoot.WizardSettings.Controllers
             Services.Notifier.Information(T("The font has been added"));
             return RedirectToAction("FontList");
         }
+
     }
 }

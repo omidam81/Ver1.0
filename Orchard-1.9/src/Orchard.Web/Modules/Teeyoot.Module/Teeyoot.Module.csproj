@@ -762,6 +762,7 @@
     <Compile Include="ViewModels\WizardProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\message-templates\" />
     <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
     <Folder Include="Handlers\" />
