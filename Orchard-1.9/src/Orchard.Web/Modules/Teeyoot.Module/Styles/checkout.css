@@ -743,6 +743,9 @@ checkout__lock_icon {
     .form__select_menu option {
         width: 20% !important;
     }
+    .contLable {
+    height: 320px;
+}
 }
 
 @media only screen and (max-width: 460px) {
@@ -765,4 +768,7 @@ checkout__lock_icon {
         font-size: 10px !important;
     }
    
+}
+.form__textfield.form__textfield--large{
+         margin-bottom: 1rem!important; 
 }
