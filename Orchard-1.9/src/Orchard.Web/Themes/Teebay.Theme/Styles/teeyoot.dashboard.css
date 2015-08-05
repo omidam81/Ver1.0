@@ -1,52 +1,71 @@
-﻿#layout-wrapper,
-.dashboard-layout {
+﻿.dashboard-layout {
     height: 100%;
 }
 
     .dashboard-layout .tb-layout-main-container {
-        max-width: none;
-        padding: 0;
-        background-color: #f5f7f7;
         width: 100%;
+        height: 100%;
+        font-size: 0;
+        display: table;
+        max-width: none;
         min-height: 100%;
-        display:table;
-        height:100%;
+        max-width: 1236px;
+        background-color: #f5f7f7;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
     }
 
     .dashboard-layout .tb-aside-first {
-        width: auto;
-        position: relative;
-        display: table-cell;
-        border-right: 1px solid #e8eced;
-        border-top: solid 1px #f5f7f7;
         float: none;
-        padding: 0 20px 0 10px;
+        width: 20%;
+        font-size: 16px;
+        padding: 0 0 246px;
+        position: relative;
+        vertical-align: top;
+        display: table-cell;
         background-color: #fff;
         transition: padding 400ms;
+        border-top: solid 1px #f5f7f7;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        border-right: 1px solid #e8eced;
     }
 
     .dashboard-layout .tb-layout-content {
-        display: table-cell;
-        width: 100%;
         margin: 0;
-        padding: 30px;
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
         vertical-align: top;
+        display: inline-block;
+        padding: 30px 30px 30px 30px;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
     }
+
+    .dashboard-layout .tb-layout-content #content {
+        height: 100%;
+    }
+
 
 .widget-SellerDashboardMenu ul {
 }
 
     .widget-SellerDashboardMenu ul li {
-        float: none;
-        padding: 15px 0;
-        background-color: #fff;
         margin: 0;
         border: 0;
+        float: none;
+        background-color: #fff;
+
     }
 
         .widget-SellerDashboardMenu ul li a {
             float: none;
             color: #6e6e6e;
+            padding: 15px 15px 15px 25px;
         }
 
         .widget-SellerDashboardMenu ul li span {
@@ -59,8 +78,8 @@
         }
 
         .widget-SellerDashboardMenu ul li a:hover {
-            text-decoration: none;
             color: #e64700;
+            text-decoration: none;
         }
 
 .widget-SellerDashboardMenu .current a {
@@ -81,38 +100,48 @@
 }
 
 .box {
-    background-color: #ffffff;
-    margin-bottom: 30px;
     border-radius: 3px;
+    margin-bottom: 30px;
     border: solid 1px #e8eced;
+    background-color: #ffffff;
 }
 
 .box-header {
-    border-bottom: solid 1px #e8eced;
     padding: 15px 0 15px 20px;
+    border-bottom: solid 1px #e8eced;
 }
 .box-header-title {
     font-size: 20px;
 }
-.collapse-button.fixed {
-    position: fixed;
-}
 
 .collapse-button {
-    cursor: pointer;
-    bottom: 0;
+    width: 100%;
     color: #000;
+    bottom: 10px;
     display: block;
+    cursor: pointer;
     overflow: hidden;
+    line-height: 30px;
     position: absolute;
-    padding: 0 0 10px 30px;
+    padding: 0 0 0 30px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
+.collapse-button:hover {
+    color: #e64700;
+}
+
+.collapse-button.fixed {
+    top: initial;
+    position: fixed;
+}
     .collapse-button span {
         bottom: 4px;
-        position: relative;
-        margin-left: 10px;
         font-weight: 600;
+        margin-left: 10px;
+        position: relative;
     }
 .hidden {
     display: none !important;
@@ -132,29 +161,17 @@
 .menu-closer.shown {
     display: inline !important;
 }
-@media all and (max-width: 980px) {
-    .dashboard-layout .tb-layout-main-container,
-    .dashboard-layout .tb-aside-first,
-    .dashboard-layout .tb-layout-content {
-        display:block;
+
+
+@media screen and (max-width: 750px) {
+    .dashboard-layout .tb-aside-first .menu li a {
+        padding: 15px;
+        
     }
-    .dashboard-layout .tb-layout-main-container {
-        height:auto;
-    }
-    .dashboard-layout .tb-layout-content {
-        padding:0;
-    }
-    .dashboard-section-title {
-        margin-top:15px;
-        margin-left:20px;
+    .dashboard-layout .tb-aside-first .menu li a span {
+        font-size: 0;
     }
     .collapse-button {
-        display:none;
-    }
-    .widget-SellerDashboardMenu {
-        display:none;
-    }
-    .menu-opener {
-        display:inline;
+        display: none;
     }
 }
