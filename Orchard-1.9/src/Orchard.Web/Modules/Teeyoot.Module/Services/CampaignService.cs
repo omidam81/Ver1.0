@@ -113,16 +113,13 @@ namespace Teeyoot.Module.Services
 
         public CampaignRecord CreateNewCampiagn(LaunchCampaignData data)
         {
+            var user = Services.WorkContext.CurrentUser;
+            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             int? userId = null;
 
-            var user = Services.WorkContext.CurrentUser;
-            if (user != null)
+            if (teeyootUser != null)
             {
-                var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-                if (teeyootUser != null)
-                {
-                    userId = teeyootUser.ContentItem.Record.Id;
-                }
+                userId = teeyootUser.ContentItem.Record.Id;
             }
 
             try
@@ -356,13 +353,6 @@ namespace Teeyoot.Module.Services
             {
                 return false;
             }
-        }
-
-        public void AttachAnonymousCampaignToUser(int id, int userId)
-        {
-            var campaign = _campaignRepository.Get(id);
-            campaign.TeeyootUserId = userId;
-            _campaignRepository.Update(campaign);
         }
     }
 }

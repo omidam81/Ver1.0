@@ -138,12 +138,7 @@
                     "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
                     'BackSideByDefault': backSideByDefault, "Tags": tags, "Products": app.state.products
                 }),
-                dataType: 'json',
                 success: function (data, status, resp) {
-                    if (data.IsAnonymous) {
-                        alert('Showing authentication popup here');
-                    }
-
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
                     }

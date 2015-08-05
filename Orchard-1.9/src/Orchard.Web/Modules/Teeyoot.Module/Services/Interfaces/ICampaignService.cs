@@ -40,7 +40,5 @@ namespace Teeyoot.Module.Services
         bool DeleteCampaign(int id);
 
         bool PrivateCampaign(int id, bool change);
-
-        void AttachAnonymousCampaignToUser(int id, int userId);
     }
 }
