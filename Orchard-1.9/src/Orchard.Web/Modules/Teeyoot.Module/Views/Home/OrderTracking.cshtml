@@ -15,9 +15,9 @@
     <div class="row">
         <div class="track-bar hidden-xs offset-top offset-top-large">
 
-            @if(Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
+            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
             {
-                <div class="col-sm-3">          
+                <div class="col-sm-3">
                     <div class="track-position track-order-current" id="track-order">
                         <div class="track-state">
                             <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             }
-            
+
             @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Printing.ToString() || Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Cancelled.ToString())
             {
                 <div class="col-sm-3">
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             }
-            
+
             @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
             {
                 <div class="col-sm-3">
@@ -161,7 +161,7 @@
                     </div>
                 </div>
             }
-            
+
             @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
             {
                 <div class="col-sm-3">
@@ -210,7 +210,7 @@
                     </div>
                 </div>
             }
-            
+
         </div>
     </div>
 
@@ -227,23 +227,23 @@
             <div class="col-md-8">
                 <div class="track-left">
                     <div class="track-inner">
-                        <span class="badge badge-success">@("Status")</span> @T("Updated") @(Model.Events.Count() > 0 ? 
+                        <span class="badge badge-success">@("Status")</span> @T("Updated") @(Model.Events.Count() > 0 ?
                         Model.Events.Last().EventDate.ToLocalTime().ToString("dd MMM HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US")) :
-                        Model.CreateDate) 
+                        Model.CreateDate)
                         <div class="offset-top offset-top-small offset-top-xs"></div>
 
-                        @if(Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
+                        @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
                         {
                             <h2 class="h2">@T("You placed an order")</h2>
                             <p class="offset-top offset-top-small">
-                                @T("Congratulations, share your recent order to help push the campaign " + 
+                                @T("Congratulations, share your recent order to help push the campaign " +
                                     "over the top and we get to print your great shirt.")
                             </p>
                             <p>
                                 <a id="cancel_order_link" href="#">@T("Cancel order")</a>
                             </p>
                         }
-                        
+
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Printing.ToString())
                         {
                             <h2 class="h2">@T("We're printing your order")</h2>
@@ -252,16 +252,16 @@
                                     "We will e-mail you with your USPS tracking number once printing completes and your order ships.")
                             </p>
                         }
-                        
+
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Cancelled.ToString())
                         {
                             <h2 class="h2">@T("Your order has been cancelled")</h2>
                             <p class="offset-top offset-top-small">
-                                @T("Your order has been cancelled and will not be produced. " + 
+                                @T("Your order has been cancelled and will not be produced. " +
                                     "If you were already charged, a refund will automatically be issued.")
                             </p>
                         }
-                        
+
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
                         {
                             <h2 class="h2">@T("Shipped")</h2>
@@ -269,7 +269,7 @@
                                 @T("Shipped")
                             </p>
                         }
-                        
+
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Delivered.ToString())
                         {
                             <h2 class="h2">@T("Delivered")</h2>
@@ -287,14 +287,14 @@
                                 @T("Order for") <a href="/@Model.CampaignAlias">@Model.CampaignName</a> @T("placed")
                             </li>
 
-                            @foreach(var e in Model.Events)
+                            @foreach (var e in Model.Events)
                             {
                                 <li>
                                     <span class="badge">@e.EventDate.ToLocalTime().ToString("dd MMM HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</span>
                                     @e.Event
-                                </li>    
+                                </li>
                             }
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -304,17 +304,17 @@
                 <div class="track-right track-border-left">
                     <div class="track-inner">
                         <h4 class="h4">@T("Order summary")</h4>
-                        
-                            @foreach (var prod in Model.Products)
-                            {
-                                <p>
-                                    <strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name<br>
-                                </p>
-                            }
+
+                        @foreach (var prod in Model.Products)
+                        {
+                            <p>
+                                <strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name<br>
+                            </p>
+                        }
                         <br />
                         <h4 class="h4">@T("Shipping to")</h4>
-                        @foreach(var str in Model.ShippingTo)
-                        { 
+                        @foreach (var str in Model.ShippingTo)
+                        {
                             <div class="shipping-address">@str</div>
                         }
                     </div>
@@ -327,16 +327,34 @@
     </div>
 
 </div>
-
-<div id="modal_form" style="display:none">
-    <h3>@T("Cancel Order") #@Model.OrderPublicId</h3>
-    <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
-    <a class="button" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
-    <button id="btn_not_now">@T("Not now")</button>
+<!--
+<div style="display:none">
+    <h3></h3>
+    <p></p>
+    <a class="button tb-button" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
+    <button class="button tb-button" id="btn_not_now">@T("Not now")</button>
 </div>
-<div id="overlay"></div>
+-->
 
-@using(Script.Foot())
+
+<div class="modal-dialog modal fade" id="modal_form">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            <h4 class="modal-title h4">@T("Cancel Order") #@Model.OrderPublicId</h4>
+        </div>
+        <div class="modal-body">
+            <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-default tb-button-orange" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
+            <button type="button" class="btn btn-primary tb-button-orange" id="btn_not_now">@T("Not now")</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+<div id="overlay"></div>
+@using (Script.Foot())
 {
     <script>
 
@@ -350,8 +368,8 @@
                             .animate({ opacity: 1, top: '50%' }, 200);
                     });
             });
-           
-            $('#overlay, #btn_not_now').click(function () {
+
+            $('#overlay, #btn_not_now, .modal-header .close').click(function () {
                 $('#modal_form')
                     .animate({ opacity: 0, top: '45%' }, 200,
                         function () {

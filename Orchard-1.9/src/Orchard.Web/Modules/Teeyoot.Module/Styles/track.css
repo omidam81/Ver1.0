@@ -215,30 +215,78 @@ background: #ff4f00 !important;
 }
 
 #modal_form {
-	width: 400px; 
-	height: 300px;
-	border-radius: 5px;
-	background: #fff;
-	position: fixed;
-	top: 45%; 
-	left: 50%;
-	margin-top: -205px;
-	margin-left: -400px;
-	display: none;
-	opacity: 0;
+    border: 0;
 	z-index: 5;
-	padding: 20px 10px;
+    display: none;
+    position: fixed;
+    padding: 20px 30px;
+    border-radius: 5px;
+    background: transparent;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+         -o-border-radius: 5px;
+            border-radius: 5px;
+    background-clip: padding-box;
+    
 }
+    #modal_form .modal-content {
+        width: 550px;
+        margin: 0 auto;
+    }
+
+     #modal_form .modal-header h4 {
+        font-size: 22px;
+        color: rgb(108, 116, 120);
+    }
+
+    #modal_form button.close.close {
+        margin: 0;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+    }
+
+    #modal_form .modal-body {
+        padding: 15px 20px;
+    }
+    
+    #modal_form .modal-footer a {
+        margin: 0;
+        padding: 0;
+        line-height: 44px;
+        text-decoration: none;
+        background: transparent;
+        -webkit-transition: 0.3s;
+           -moz-transition: 0.3s;
+             -o-transition: 0.3s;
+                transition: 0.3s;
+        color: rgb(108, 116, 120);
+        border: 1px solid #acb0b8;
+    }
+
+     #modal_form .modal-footer a:hover {
+         color: #5c5f66;
+         background: #edeef0;
+         -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+              -o-transition: 0.3s;
+                 transition: 0.3s;
+     }
+
+    #modal_form .modal-footer .tb-button-orange {
+        margin: 0;
+        width: 160px;
+    }
 
 #overlay {
-	z-index: 3;
-	position: fixed;
-	background-color: #000;
-	opacity: 0.65;
-	width: 100%; 
-	height: 100%;
 	top: 0; 
 	left: 0;
-	cursor: pointer;
+    z-index: 4;
+    width: 100%; 
+	height: 100%;
+    opacity: 0.65;
 	display: none;
+    position: fixed;
+    cursor: pointer;
+    background-color: #000;
 }
