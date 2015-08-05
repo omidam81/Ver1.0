@@ -342,10 +342,10 @@ namespace Teeyoot.Module.Controllers
            socialImg.Save(Path.Combine(destForder, "campaign.jpg"), imageCodecInfo, encoderParameters);
 
            g.Dispose();
-           campaignImg.Dispose();
            campaignImgTemplate.Dispose();
-           backImage.Dispose();
+           campaignImg.Dispose();
            socialImg.Dispose();
+           backImage.Dispose();          
         }
 
         private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
