@@ -12,6 +12,9 @@
 
     document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
     app.state.currentProduct.BaseCost = window.nowPrice;
+
+    var changes = parseFloat(app.state.currentProduct.Price) - window.nowPrice;
+    updateMinimum(changes);
 }
 
 function calculatePriceForNewProduct(frontColor, backColor, cost) {
@@ -184,10 +187,40 @@ function estimatedProfitChangeForManuProducts() {
             var profit = parseFloat((products[i].Price - products[i].BaseCost).toFixed(2));
             var index = "#h4ProfSale_" + parseInt(i + 1);
             $(index).html("RM " + profit + " profit / sale");
+            if (profit < 0) {
+                $(index).html("RM " + products[i].BaseCost + " minimum");
+                $(index).css('color', '#ff0000');
+                //$("#total_profit").html("RM 0+");
+            } else {
+                $(index).html("RM " + parseFloat(profit.toFixed(2)) + " profit / sale");
+                $(index).css('color', '#ff4f00');
+                //if (app.state.products != null & app.state.products.length > 1) {
+                //    estimatedProfitChangeForManuProducts()
+                //} else {
+                //    estimatedProfitChange();
+                //}
+            }
         }
     }
     var min = Math.min.apply(null, result);
     var max = Math.max.apply(null, result);
+    if (min < 0) min = 0;
 
     $("#total_profit").html("RM " + min + "-" + max + "+");
+}
+
+function updateMinimum(changes) {
+    if (changes < 0) {
+        $("#mainH4").html("RM " + window.nowPrice + " minimum");
+        $("#mainH4").css('color', '#ff0000');
+        $("#total_profit").html("RM 0+");
+    } else {
+        $("#mainH4").html("RM " + changes.toFixed(2) + " profit / sale");
+        $("#mainH4").css('color', '#ff4f00');
+        //if (app.state.products != null & app.state.products.length > 1) {
+        //    estimatedProfitChangeForManuProducts()
+        //} else {
+        //    estimatedProfitChange();
+        //}
+    }
 }

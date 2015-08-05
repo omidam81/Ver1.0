@@ -884,7 +884,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 
         #product-selector .item-options .item-option.active {
             border-color: #39ace6 !important;
-            background-color: #e1f3fb;
+            background-color: #FCE5A1;
         }
 
             #product-selector .item-options .item-option.active .item-thumb-container {
@@ -901,7 +901,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
                 height: 82px;
                 left: -16px;
                 top: -1px;
-                background-color: #e1f3fb;
+                background-color: #FCE5A1;
             }
 
         #product-selector .item-options .item-option .item-name {
@@ -3249,18 +3249,18 @@ label.checkbox label.checkbox {
     }
 
 #design-tools .fake-input, #designer select.outline-selector {
-    border-color: #ff4f00;
+    border-color: #d8dddf;
     border-radius: 10px;
 }
 
     #design-tools .fake-input.svg-selector {
-        border-color: #ff4f00;
-            border-radius: 10px;
+        border-color: #d8dddf;
+        border-radius: 10px;
         padding: 7px 10px 10px 10px;
     }
 
 #designer #design-tools .fake-input.color-picker {
-    border-color:  #ff4f00;
+    border-color:  #d8dddf;
 }
 
 #design-tools textarea {
@@ -4647,7 +4647,7 @@ fieldset {
 .switch__el {
     display: block;
     position: relative;
-    cursor: pointer;
+    cursor: pointer; 
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
