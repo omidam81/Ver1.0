@@ -222,7 +222,7 @@
             $(newModalSize).removeClass('hidden').addClass('shown');
 
             var currentPrice = $(row).find('.modal-price.shown')[0];
-            var newPrice = $(row).find('span[name=select_size_index_' + index + ']')[0];
+            var newPrice = $(row).find('span[name=select_size_index_' + index + '_0]')[0];
 
             $(currentPrice).removeClass('shown').addClass('hidden');
             $(newPrice).removeClass('hidden').addClass('shown');
@@ -231,7 +231,7 @@
 
             var options = document.getElementById('product__dropdown_modal').options;
             for (var i = 0; i < options.length; i++) {
-                if (options[i].value == id) {
+                if (options[i].id == id) {
 
                     options[i].setAttribute("selected", "selected");
                 } else {
@@ -278,6 +278,7 @@
             var par = item.parentNode.parentNode.id;
             var index = item.selectedIndex;
             var id = item[item.selectedIndex].id;
+            var value = item[item.selectedIndex].value;
             var row = item.parentNode.parentNode;
             var img = $(row).find('.modal_campaign_img')[0];
             if (firstBack == "True") {
@@ -293,13 +294,21 @@
             $(newSize).removeClass('hidden').addClass('shown');
 
             var currentPrice = $(row).find('.modal-price.shown')[0];
-            var newSize = $(row).find('span[name=select_size_index_' + index + ']')[0];
+            var newPrice = $(row).find('span[name=select_size_index_' + value + "_" + index + ']')[0];
 
             $(currentPrice).removeClass('shown').addClass('hidden');
-            $(newSize).removeClass('hidden').addClass('shown');
+            $(newPrice).removeClass('hidden').addClass('shown');
+        }
 
+        function ChangePriceModal(item) {
+            var rows = item.parentNode.parentNode.parentNode;
+            var index = item.selectedIndex;
+            var id = item[item.selectedIndex].value;
 
-
+            var currentPrice = $(rows).find('.modal-price.shown')[0];
+            var newPrice = $(rows).find('span[name=select_size_index_' + id + '_' + index + ']')[0];
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newPrice).removeClass('hidden').addClass('shown');
         }
 
         function sendData() {
@@ -315,9 +324,9 @@
             tableRows.each(function (index, el) {
 
                 var items = $(el).find('.product__dropdown')[0];
-                productId = items[items.selectedIndex].value;
+                productId = items[items.selectedIndex].id;
                 items = $(el).find('.size-dropdown.shown')[0];
-                sizeId = items[items.selectedIndex].value;
+                sizeId = items[items.selectedIndex].id;
                 count = $(el).find('.product-count')[0].value;
 
                 products.push({ ProductId: productId, SizeId: sizeId, Count: count });
@@ -414,9 +423,7 @@
             CDT();
         }
 
-        function changePrice(index_size, index_products) {
-
-        }
+        
 
     </script>
 
@@ -742,39 +749,39 @@
         <div class="campaign__column--description">
             <div class="campaign__description display--mobile js_campaign_description">@Html.Raw(Model.Campaign.Description)</div>
             @*<div class="campaign_info__container">
-                <div class="campaign_info__row campaign_info__row--shipping">
-                    <div class="campaign_info__header">
-                        @T("Shipping Info")
+                    <div class="campaign_info__row campaign_info__row--shipping">
+                        <div class="campaign_info__header">
+                            @T("Shipping Info")
 
-                    </div>
-                    <div class="campaign_info__content">
-                        <div class="campaign_info__content__row">
-                            @T("Orders are printed and shipped when the time expires") (<span>July 15th</span>). @T("You can expect your package to arrive around")
-                            <span class="js-delivery-estimate">5</span> business days after printing starts.
                         </div>
-                        <div class="campaign_info__content__row js-shipping-info">
-                            Orders are mailed via first-class or priority mail. Shipping costs
-                            <span class="js-base-cost">$3.99</span> for the first item and <span class="js-additional-cost">$2.00</span> for each additional item.
+                        <div class="campaign_info__content">
+                            <div class="campaign_info__content__row">
+                                @T("Orders are printed and shipped when the time expires") (<span>July 15th</span>). @T("You can expect your package to arrive around")
+                                <span class="js-delivery-estimate">5</span> business days after printing starts.
+                            </div>
+                            <div class="campaign_info__content__row js-shipping-info">
+                                Orders are mailed via first-class or priority mail. Shipping costs
+                                <span class="js-base-cost">$3.99</span> for the first item and <span class="js-additional-cost">$2.00</span> for each additional item.
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="campaign_info__row campaign_info__row--returns">
-                    <div class="campaign_info__header">Return Policy</div>
-                    <div class="campaign_info__content campaign_info__content--return_policy">
-                        If you're not 100% satisfied, return it and we'll refund you.
-                        <a href="#">
-                            View Details
-                            <i class="ts-icon-right-arrow"></i>
-                        </a>
+                    <div class="campaign_info__row campaign_info__row--returns">
+                        <div class="campaign_info__header">Return Policy</div>
+                        <div class="campaign_info__content campaign_info__content--return_policy">
+                            If you're not 100% satisfied, return it and we'll refund you.
+                            <a href="#">
+                                View Details
+                                <i class="ts-icon-right-arrow"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="campaign_info__row campaign_info__row--campaign_id">
-                    <div class="campaign_info__header">Campaign ID</div>
-                    <div class="campaign_info__content campaign_info__content--id">letsbooze</div>
-                </div>
-            </div>*@
+                    <div class="campaign_info__row campaign_info__row--campaign_id">
+                        <div class="campaign_info__header">Campaign ID</div>
+                        <div class="campaign_info__content campaign_info__content--id">letsbooze</div>
+                    </div>
+                </div>*@
         </div>
-        
+
         <section class="site__featured site__featured--border hidden">
             <div class="site__wrapper">
                 <div class="launch_campaign__container">
@@ -842,19 +849,19 @@
                                                     {
                                                         if (i == 0)
                                                         {
-                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown" onchange="changePrice(this.selectedIndex, @i)" id="select_size_index_@i">
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown" onchange="ChangePriceModal(this)" id="select_size_index_@i">
                                                                 @foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
                                                                 {
-                                                                    <option value="@size.ProductSizeRecord.Id" id="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                    <option value="@i" id="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
                                                                 }
                                                             </select>
                                                         }
                                                         else
                                                         {
-                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size hidden">
+                                                            <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size hidden" onchange="ChangePriceModal(this)">
                                                                 @foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
                                                                 {
-                                                                    <option value="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
+                                                                    <option value="@i" id="@size.ProductSizeRecord.Id">@size.ProductSizeRecord.SizeCodeRecord.Name</option>
                                                                 }
                                                             </select>
                                                         }
@@ -865,11 +872,14 @@
                                             <td class="precheckout_items_table__item precheckout_items_table__item--style">
                                                 <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
 
-                                                    @foreach (var prod in Model.Campaign.Products)
+                                                    @{int index = 0;
+                                                    foreach (var prod in Model.Campaign.Products)
                                                     {
 
-                                                        <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                        <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@index">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
 
+                                                        index++;
+                                                    }
                                                     }
                                                 </select>
                                             </td>
@@ -879,22 +889,34 @@
                                                 {
                                                     if (i == 0)
                                                     {
+                                                        int count = 0;
                                                         foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
                                                         {
                                                             float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
+                                                            string pos = i + "_" + count;
                                                             if (size == Model.Campaign.Products[i].ProductRecord.SizesAvailable.First())
                                                             {
-                                                                <span name="select_size_index_@i" class="modal-price shown" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @Model.Campaign.Products[i].Price</span>
+                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
                                                             }
                                                             else
                                                             {
-                                                                <span name="select_size_index_@i" class="modal-price hidden" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @Model.Campaign.Products[i].Price</span>
+                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
                                                             }
+                                                            count++;
                                                         }
                                                     }
                                                     else
                                                     {
-                                                        <span name="select_size_index_@i" class="modal-price hidden">@Model.Campaign.Products[i].CurrencyRecord.Code@Model.Campaign.Products[i].Price</span>
+                                                        int count = 0;
+                                                        foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
+                                                        {
+                                                            float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
+                                                            string pos = i + "_" + count;
+
+                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+
+                                                            count++;
+                                                        }
                                                     }
                                                 }
                                                 <div onclick="ItemRemove(this.parentNode.parentNode)" id="precheckout-item-remove" class="precheckout_item_remove_button">Remove</div>

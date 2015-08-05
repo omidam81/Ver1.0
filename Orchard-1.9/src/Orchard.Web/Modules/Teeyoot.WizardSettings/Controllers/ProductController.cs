@@ -224,17 +224,21 @@ namespace Teeyoot.WizardSettings.Controllers
                 _linkProductSizeRepository.Delete(linkProductSize);
             }
 
+            int i = 0;
             foreach (var productSizeId in viewModel.SelectedProductSizes)
             {
+                
                 var productSize = _productSizeRepository.Get(productSizeId);
 
                 var linkProductSize = new LinkProductSizeRecord
                 {
                     ProductRecord = product,
-                    ProductSizeRecord = productSize
+                    ProductSizeRecord = productSize,
+                    SizeCost = viewModel.SelectedProductSizesCost.ElementAt(i)
                 };
 
                 _linkProductSizeRepository.Create(linkProductSize);
+                i++;
             }
 
             var frontImageSavingResult = SaveProductFrontImage(viewModel.ProductImageFront, product);
@@ -418,16 +422,22 @@ namespace Teeyoot.WizardSettings.Controllers
 
             var selectedProductSizeIds = _linkProductSizeRepository.Table
                 .Where(it => it.ProductRecord == product)
-                .Select(it => it.ProductSizeRecord.Id)
+                //.Select(it => it.ProductSizeRecord.Id)
                 .ToList();
 
             viewModel.ProductSizes.ToList().ForEach(s =>
             {
-                if (selectedProductSizeIds.Contains(s.Id))
+                if (selectedProductSizeIds.Exists(c => c.Id == s.Id))
                 {
                     s.Selected = true;
+                    s.CostSize = selectedProductSizeIds.Where(c => c.Id == s.Id).First().SizeCost;
                 }
             });
+
+            //var selectedProductSizeCost = _linkProductSizeRepository.Table
+            //    .Where(it => it.ProductRecord == product)
+            //    .Select(it => it.ProductSizId)
+            //    .ToList();
         }
 
         private ProductImageSavingResult SaveProductFrontImage(HttpPostedFileBase imageFile, ProductRecord product)

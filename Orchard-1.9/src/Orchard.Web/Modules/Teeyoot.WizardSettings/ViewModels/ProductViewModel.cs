@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using Teeyoot.Module.Models;
 
 namespace Teeyoot.WizardSettings.ViewModels
 {
@@ -38,6 +39,7 @@ namespace Teeyoot.WizardSettings.ViewModels
         public IEnumerable<ProductHeadlineViewModel> ProductHeadlines { get; set; }
         public IEnumerable<ProductSizeItemViewModel> ProductSizes { get; set; }
         public IEnumerable<int> SelectedProductSizes { get; set; }
+        public IEnumerable<float> SelectedProductSizesCost { get; set; }
 
         [Required]
         public int SelectedProductHeadline { get; set; }

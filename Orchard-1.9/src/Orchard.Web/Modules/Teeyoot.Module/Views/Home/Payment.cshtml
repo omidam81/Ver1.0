@@ -22,6 +22,10 @@
 
                                 @foreach (var item in Model.Order.Products)
                                 {
+                                    int index = Model.Order.Products.IndexOf(item);
+                                    int idSize = item.OrderRecord.Products[index].ProductSizeRecord.Id;
+                                    float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.Id == idSize).First().SizeCost;
+                                    float price = (float)item.CampaignProductRecord.Price + costSize;
 
                                     <tr>
                                         <td>
@@ -40,10 +44,9 @@
                                             </ul>
                                         </td>
                                         <td class="order_summary__item_price">
-                                            @item.CampaignProductRecord.CurrencyRecord.Code @(item.CampaignProductRecord.Price * item.Count)
+                                            @item.CampaignProductRecord.CurrencyRecord.Code @(price * item.Count)
                                         </td>
                                     </tr>
-
                                 }
 
                             </tbody>
