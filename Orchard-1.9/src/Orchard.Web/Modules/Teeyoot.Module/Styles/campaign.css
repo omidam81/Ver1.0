@@ -35,8 +35,8 @@
     position: relative;
     width: 100%;
     z-index: 200;
-    padding-left: 1.06666rem;
-    padding-right: 1.06666rem;
+    /*padding-left: 1.06666rem;
+    padding-right: 1.06666rem;*/
 }
 
 .message_banner {
@@ -6375,7 +6375,7 @@ input{
         font-size: 20px;
     }
 }
-.info-message{
+.info-message, .message-Information{
   background: #ff4f00 !important;
   border-radius: 3px !important;
   color: #fff !important;
@@ -6385,6 +6385,7 @@ input{
   margin-bottom: 1% !important;
     font-size: 1.2rem;
   font-weight: 600;
+  border: 1px solid #ff4f00!important;
 }
 
 .promo_modal {

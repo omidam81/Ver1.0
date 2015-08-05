@@ -1,10 +1,9 @@
-﻿using Orchard.Logging;
+﻿using Orchard;
+using Orchard.Localization;
+using Orchard.Logging;
 using Orchard.Themes;
+using Orchard.UI.Notify;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
@@ -17,11 +16,16 @@ namespace Teeyoot.Module.Controllers
     {
         private readonly ICampaignService _campaignService;
         private readonly IPromotionService _promotionService;
+        private readonly IWorkContextAccessor _wca;
+        private readonly INotifier _notifier;
+        public Localizer T { get; set; }
 
-        public CampaignController(ICampaignService campaignService, IPromotionService promotionService)
+        public CampaignController(ICampaignService campaignService, IPromotionService promotionService, IWorkContextAccessor wca, INotifier notifier)
         {
             _campaignService = campaignService;
             _promotionService = promotionService;
+            _wca = wca;
+            _notifier = notifier;
             Logger = NullLogger.Instance;
         }
 
@@ -38,8 +42,26 @@ namespace Teeyoot.Module.Controllers
 
                 if (campaign != null)
                 {
-                    CampaignIndexViewModel model = new CampaignIndexViewModel(){};
+                    CampaignIndexViewModel model = new CampaignIndexViewModel() { };
                     model.Campaign = campaign;
+
+
+                    var user = _wca.GetContext().CurrentUser;
+
+                    if (user != null)
+                    {
+                        var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+
+                        if (teeyootUser.Id == campaign.TeeyootUserId)
+                        {
+                            if (campaign.ProductCountSold >= campaign.ProductCountGoal)
+                            {
+                                string infoMessage = String.Format("The minimum order has been reached, so this shirt will definitely go to print.");
+                                _notifier.Add(NotifyType.Information, T(infoMessage));
+                            }
+                        }
+                    }
+
                     if (promo != null)
                     {
                         try
@@ -47,25 +69,25 @@ namespace Teeyoot.Module.Controllers
                             PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
                             if (promotion.Status)
                             {
-                                string infomessage = String.Format("Congratulations, you'll be receiving {0}{1} off your purchase. Discount reflected at checkout!", promotion.AmountSize, promotion.AmountType);
-                                model.InfoMessage = infomessage;
+                                string infoMessage = String.Format("Congratulations, you'll be receiving {0}{1} off your purchase. Discount reflected at checkout!", promotion.AmountSize, promotion.AmountType);
+                                _notifier.Add(NotifyType.Information, T(infoMessage));
                                 model.PromoId = promo;
                             }
                             else
                             {
-                                string infomessage = String.Format("Sorry, this promo is expired!");
-                                model.InfoMessage = infomessage;
+                                string infoMessage = String.Format("Sorry, this promo is expired!");
+                                _notifier.Add(NotifyType.Information, T(infoMessage));                               
                             }
                             return View(model);
                         }
                         catch (Exception)
                         {
 
-                            string infomessage = String.Format("You have wrong promo code!");
-                            model.InfoMessage = infomessage;
+                            string infoMessage = String.Format("You have wrong promo code!");
+                            _notifier.Add(NotifyType.Information, T(infoMessage));
                             return View(model);
                         }
-                                                   
+
                     }
                     return View(model);
                 }
