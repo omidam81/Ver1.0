@@ -10,6 +10,7 @@
 
     <meta property="og:site_name" content="Teeyoot" />
     <meta property="og:title" content="@Model.Campaign.Title" />
+    <meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.jpg" />               
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="627" />
     <meta property="og:description" content="@Model.Campaign.Description" />
@@ -20,7 +21,7 @@
     <meta name="twitter:description" content="@Model.Campaign.Description">
     <meta name="twitter:title" content="@Model.Campaign.Title">
     <meta name="twitter:site" content="teeyoot">
-    @*<meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">*@
+    <meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.jpg" />
     if (Model.Campaign.IsPrivate)
     {
         <meta name="Robots" content="NOINDEX,NOFOLLOW">
@@ -356,8 +357,7 @@
             url: "@(Url.Action("ShareCampaign", "Home"))",
             data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
             success: function () {
-                $('head').append('<meta property="og:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.png" />');
-                $('head').append('<meta name="twitter:image" content="http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.png" />');              
+                          
             }
         });
 

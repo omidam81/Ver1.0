@@ -72,8 +72,8 @@ namespace Teeyoot.Dashboard.Controllers
             var model = new StoreViewModel();
             model.Campaigns = campaigns;
 
-            var destForder = Path.Combine(Server.MapPath("/Media/Storefronts/"), storeFront.TeeyootUserId.ToString(), storeFront.Id.ToString());
-            DirectoryInfo dir = new DirectoryInfo(destForder);
+            var destFolder = Path.Combine(Server.MapPath("/Media/Storefronts/"), storeFront.TeeyootUserId.ToString(), storeFront.Id.ToString());
+            DirectoryInfo dir = new DirectoryInfo(destFolder);
 
             if (dir.Exists == true)
             {
