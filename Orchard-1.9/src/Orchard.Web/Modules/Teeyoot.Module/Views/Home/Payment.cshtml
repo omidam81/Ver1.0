@@ -24,7 +24,7 @@
                                 {
                                     int index = Model.Order.Products.IndexOf(item);
                                     int idSize = item.OrderRecord.Products[index].ProductSizeRecord.Id;
-                                    float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.Id == idSize).First().SizeCost;
+                                    float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
                                     float price = (float)item.CampaignProductRecord.Price + costSize;
 
                                     <tr>
