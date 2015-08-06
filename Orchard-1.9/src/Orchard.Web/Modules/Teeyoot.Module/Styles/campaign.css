@@ -5259,15 +5259,24 @@ thead .product__size_chart__size_label {
 }
 
 .flip-button-back span {
-    margin-left: -15px;
+    margin-left: -16px;
     position: absolute;
     margin-top: 10px;
 }
 
 .flip-button-front span {
-    margin-left: -15px;
+    margin-left: -17px;
     position: absolute;
     margin-top: 10px;
+}
+
+@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+    .flip-button-back span {
+        margin-left: -11px;
+    }
+    .flip-button-front span {
+        margin-left: -11px;
+    }
 }
 
 @media all and (max-width: 1820px) {
@@ -6356,6 +6365,7 @@ input{
     #back_timer {
         padding-top: 20px;
         padding-bottom: 20px;
+        margin-bottom: 20px;
     }
 }
 

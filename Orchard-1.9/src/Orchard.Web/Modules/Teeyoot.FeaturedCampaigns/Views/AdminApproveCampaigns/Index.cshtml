@@ -1,0 +1,64 @@
+﻿@model Teeyoot.FeaturedCampaigns.ViewModels.ExportPrintsViewModel
+
+<div>
+
+    <div style="margin-bottom:15px;">
+        <fieldset class="bulk-actions">
+            @using (Html.BeginForm("Index", "AdminApproveCampaigns", FormMethod.Get))
+            {
+                <span>
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                </span>
+
+                <button type="submit">@T("Apply")</button>
+                <a href="@Url.Action("Index")">@T("By Default")</a>
+            }
+
+            
+        </fieldset> 
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    <table class="items">
+        <thead>
+            <tr>
+                <th>@T("Campaign name")</th>
+                <th>@T("Created date")</th>  
+                <th>@T("Action")</th>          
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Campaigns.Length > 0)
+            {
+                foreach (var c in Model.Campaigns)
+                {
+
+                    <tr data-record-text="@c.Id" class="contentItems">                      
+                        <td><a target="_blank" href="/@c.Alias">@c.Title</a></td> 
+                        <td>@c.StartDate</td>                           
+                        <td>                        
+                             <a href="@Url.Action("Approve", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Approve")">@T("Approve")</a>                            
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@Display(Model.Pager)
+
+@using (Script.Foot())
+{
+    <script>
+
+        var applyAction = function () {
+            return false;
+        }
+
+    </script>
+}
