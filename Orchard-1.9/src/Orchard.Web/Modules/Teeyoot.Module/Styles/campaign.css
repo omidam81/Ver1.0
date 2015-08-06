@@ -657,6 +657,9 @@ display--desktop {
     line-height: 1.7;
     margin: 1rem 0;
 }
+.campaign__description a {
+    white-space: normal;
+}
 
 @media all and (min-width: 980px) {
     .campaign__description {
