@@ -461,10 +461,13 @@ function Goal() {
     if (app.state.products.length < 1) {
         app.state.products.push(app.state.currentProduct);
     }
-
-    slideTo(2);
-    setPriceInGoalFromDesign();
-    profitSale();
+    if (parseInt(app.state.getUsedColorsCount()) == parseInt("0")) {
+        $('#no-content-error').modal('show');
+    } else {
+        slideTo(2);
+        setPriceInGoalFromDesign();
+        profitSale();
+    }
 }
 
 var slideSteps = ['design', 'goal', 'description'];

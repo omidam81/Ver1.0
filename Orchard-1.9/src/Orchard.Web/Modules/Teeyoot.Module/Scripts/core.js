@@ -103,10 +103,10 @@ var app = {
                 }
                 usedColors[color]++;
             }
-            //console.log('colors: ' + this.getUsedColorsCountFront());
-            //console.log('where: ' + this.getView());
-            //console.log('colors: ' + this.getUsedColorsCountBack());
-            //console.log('where: ' + 'back');
+            console.log('colors: ' + this.getUsedColorsCountFront());
+            console.log('where: ' + this.getView());
+            console.log('colors: ' + this.getUsedColorsCountBack());
+            console.log('where: ' + 'back');
             //var elem1111 = document.getElementById("price_preview");
             //elem1111.innerText = "asdasd";
             calculatePrice(this.getUsedColorsCountFront(), this.getUsedColorsCountBack());

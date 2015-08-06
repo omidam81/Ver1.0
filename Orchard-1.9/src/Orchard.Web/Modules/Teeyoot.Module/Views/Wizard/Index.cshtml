@@ -44,54 +44,53 @@
 
     Script.Include("CostCalculator.js");
 }
-
 @using (Script.Head())
 {
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '@Model.FacebookClientId',
-            xfbml: true,
-            version: 'v2.4',
-            status: true
-        });
-    };
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '@Model.FacebookClientId',
+                xfbml: true,
+                version: 'v2.4',
+                status: true
+            });
+        };
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script>
+        window.GoogleClientId = '@Model.GoogleClientId';
+        window.GoogleApiKey = '@Model.GoogleApiKey';
+        window.GoogleScopes = 'https://www.googleapis.com/auth/userinfo.email';
+
+        function handleAuthResult(authResult) {
         }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 
-<script>
-    window.GoogleClientId = '@Model.GoogleClientId';
-    window.GoogleApiKey = '@Model.GoogleApiKey';
-    window.GoogleScopes = 'https://www.googleapis.com/auth/userinfo.email';
+        function checkAuth() {
+            gapi.auth.authorize({
+                client_id: window.GoogleClientId,
+                scope: window.GoogleScopes,
+                immediate: true
+            }, handleAuthResult);
+        };
 
-    function handleAuthResult(authResult) {
-    }
+        function handleClientLoad() {
+            gapi.client.setApiKey(window.GoogleApiKey);
+            window.setTimeout(checkAuth, 1);
+        };
+    </script>
 
-    function checkAuth() {
-        gapi.auth.authorize({
-            client_id: window.GoogleClientId,
-            scope: window.GoogleScopes,
-            immediate: true
-        }, handleAuthResult);
-    };
-
-    function handleClientLoad() {
-        gapi.client.setApiKey(window.GoogleApiKey);
-        window.setTimeout(checkAuth, 1);
-    };
-</script>
-
-<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 }
 
 @using (Script.Foot())
@@ -210,7 +209,15 @@
                         });
                         return;
                     }
-                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    //alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    var errorsData = data.statusText.split('|');
+                    if(errorsData[0]){
+                        var idForData = '#' + errorsData[0];
+                        var idForError = '#' + errorsData[0] + '_error-text';
+                        var error = $(idForError)[0];
+                        $(idForData).addClass('wizard-error');
+                        error.innerHTML = errorsData[1];
+                    }
                 }
             });
         };
@@ -540,29 +547,25 @@
     </div>
     <div class='clearfix'></div>
 </div>
-
 <div class="SlideContainer" style="min-height:1000px; ">
     <div class="Slides">
-
         <div class="Slide">
             <div class="Content" id="Content1">
                 <div class="page__designs_edit">
                     <div class="site__content_container" id="designs_edit">
                         <div id="designer-container">
                             <!-- Designer Subheader ================================================== -->
-
                             <section id="no-band1" class="no-offset">
                                 <div class="container container_designer">
                                     <div id="designer" class="clearfix" style="min-height: 600px; height: 1100px;">
                                         <div class="step stepAnimation" id="step-design" style="opacity: 1; transform: translateX(0px);">
-
 
                                             <div>
                                                 <div id="design-tools" class="aside">
                                                     <div class="design__area">
                                                         <div>
                                                             <ul class="tabs clearfix nav nav-tabs">
-                                                                <li class="tab active" data-name="Text"><a >@("Text")</a></li>
+                                                                <li class="tab active" data-name="Text"><a>@("Text")</a></li>
                                                             </ul>
                                                             <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
                                                                 <div id="text-string" class="control-group">
@@ -572,7 +575,6 @@
                                                                 <div class="edit_tool font">
                                                                     <label class="no-bottom">@("Select font")</label>
                                                                     <div id="font-select" class="fake-input svg-selector designer-dropdown control-group font-selection">
-
                                                                     </div>
                                                                     <div id="font-select-menu" class="containertip">
                                                                         <select class="category-menu">
@@ -592,7 +594,6 @@
                                                                 </div>
                                                                 <div class="edit_tool">
                                                                     <label style="float: left;">@("Select outline")</label>
-
                                                                     <div class="clearfix control-group outline-selection">
                                                                         <div>
                                                                             <select id="outline-select"
@@ -678,7 +679,7 @@
                                                                             </form>
                                                                         </div>
                                                                         <p class="small dropbox-intro">Drag art here or ...</p>
-                                                                        <button class="button button--primary upload select-file">Click here to upload</button>
+                                                                        <button class="button button--primary upload select-file wizard-button">@T("Click here to upload")</button>
                                                                         <p class="dropbox-disclosure">
                                                                             <em>
                                                                                 By uploading an image you agree that you
@@ -691,7 +692,6 @@
                                                                     <div id="art-built-in">
                                                                         <div class="control-group clearfix art-color-selection">
                                                                             <label>Art color </label>
-
                                                                             <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="art">
                                                                                 <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                                 <div class="colors shirt-colors containertip">
@@ -701,7 +701,6 @@
                                                                         </div>
                                                                         <div class="edit_tool">
                                                                             <label style="float: left;">Add an outline</label>
-
                                                                             <div class="clearfix control-group outline-selection">
                                                                                 <div>
                                                                                     <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
@@ -727,7 +726,6 @@
                                                                     </div>
                                                                     <div class="file control-group" style="display: none">
                                                                         <label>Uploaded File</label>
-
                                                                         <div class="fake-input color-picker standard uploaded-file">
                                                                             <div class="remove">Remove</div>
                                                                             <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
@@ -777,7 +775,6 @@
                                                 <!-- design area -->
                                                 <div id="design-area" class="div-design-area product-view">
                                                     <div id="app-wrap" class="div-design-area new-editor-container">
-
                                                         <!-- begin front design -->
                                                         <div id="view-front" class="front labView">
                                                             <div class="product-design"></div>
@@ -807,7 +804,6 @@
                                                             </div>
                                                             <div class="xgridline" style="opacity: 0;"></div>
                                                             <div class="ygridline" style="opacity: 0;"></div>
-
                                                             <div class="flip-buttons">
                                                                 <div class="flip-button flip-button-front no-select flip-button-active" data-element="frontButton"><span class="flip-button__front">Front</span></div>
                                                                 <div class="flip-button flip-button-back" data-element="backButton"><span class="flip-button__back">Back</span></div>
@@ -843,7 +839,6 @@
                                                             </div>
                                                             <div class="xgridline" style="opacity: 0;"></div>
                                                             <div class="ygridline" style="opacity: 0;"></div>
-
                                                             <div class="flip-buttons">
                                                                 <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
                                                                 <div class="flip-button flip-button-back no-select flip-button-active"><span class="flip-button__back">Back</span></div>
@@ -851,11 +846,9 @@
                                                         </div>
                                                         <!-- end back design -->
 
-
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                             <div>
                                                 <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
@@ -881,8 +874,8 @@
                                                                 <p class="base-cost-display" id="price_preview">
                                                                 </p>
                                                             </div>
-                                                            <button class="button button--transaction" id="nextPage">
-                                                                Next Page
+                                                            <button class="button button--transaction wizard-button" id="nextPage">
+                                                                @T("Next Page")
                                                             </button>
                                                         </div>
                                                         <div class="clearfix"></div>
@@ -897,11 +890,11 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">×</button>
-                                                <h3 class="partitioned-header no-bottom">File size too big</h3>
+                                                <h3 class="partitioned-header no-bottom">@T("File size too big")</h3>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Uploaded files must be no more than 5MB.</p>
-                                                <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                                <p>@T("Uploaded files must be no more than 5MB.")</p>
+                                                <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                             </div>
                                         </div>
                                     </div>
@@ -911,11 +904,11 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">×</button>
-                                                <h3 class="partitioned-header no-bottom">Incorrect File Type</h3>
+                                                <h3 class="partitioned-header no-bottom">@T("Incorrect File Type")</h3>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Uploaded files must be either gif, jpeg, jpg, png, or eps.</p>
-                                                <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                                <p>@T("Uploaded files must be either gif, jpeg, jpg, png, or eps.")</p>
+                                                <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                             </div>
                                         </div>
                                     </div>
@@ -1000,6 +993,7 @@
                             <div>
                                 <span>Your goal is the number of shirts you’re aiming to sell</span>
                             </div>
+
                             <div>
                                 <label style="font-weight: bold; margin-top:3%">Set selling price</label>
                             </div>
@@ -1057,7 +1051,7 @@
                             <div id="ui" class="ssp_select_boxes">
                                 <select id="item-options-dropdown-tees" class="form-control form__select_menu"></select>
                                 <select id="product" class="form__select_menu"></select>
-                                <button type="button" id="butAdd" class="button button--primary ssp_add_button" title="Add"></button>
+                                <button type="button" id="butAdd" class="button button--primary ssp_add_button wizard-button" style="color: #ffffff;" title="Add"></button>
                             </div>
 
 
@@ -1071,7 +1065,7 @@
                                 <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px"></span>
                             </div>
                             <div></div>
-                            <button class="Left">NEXT PAGE</button>
+                            <button class="Left wizard-button">NEXT PAGE</button>
                         </td>
                         </>
                 </table>
@@ -1149,6 +1143,7 @@
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                 <label class="has-under-text">Campaign title</label>
                                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
+                                                                <p class="has-under-text text-error" id="name_error-text"></p>
                                                                 <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
                                                             </div>
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
@@ -1225,7 +1220,7 @@
 
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">Launch</button>
+                                                                <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">Launch</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span>
                                                                         <span>By clicking this button, I accept Teeyoot's </span>
@@ -1254,29 +1249,29 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Too many colors.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Too many colors.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Your design has more than <span class="max-colors-count"></span> colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over <span class="max-colors-count"></span> colors. </p>
-                                            <input type="button" value="Make adjustments »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Your design has more than ")<span class="max-colors-count"></span>@T(" colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
+                                            <input type="button" value="@T("Make adjustments") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div id="upload-photo-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog wizard-modal">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Did you try and upload a full color image?</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Did you try and upload a full color image?")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Looks like you tried to upload an image with more than <span class="max-colors-count"></span> colors or shades of gray. Unfortunately, because of the way screen printing works, we aren't able to print images with over <span class="max-colors-count"></span> colors. </p>
+                                            <p>@T("Looks like you tried to upload an image with more than ")<span class="max-colors-count"></span>@T(" colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
                                             <p>
-                                                If you think the system has made a mistake, and your image is under <span class="max-colors-count"></span> colors, please <a href="/contact" target="_blank">contact support for assistance</a>
+                                                @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")<a href="/contact" target="_blank">@T("contact support for assistance")</a>
                                             </p>
-                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1287,25 +1282,25 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Did you upload an artwork with text?</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Did you upload an artwork with text?")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>To ensure that your artwork gets printed correctly, we require it to be outlined. </p>
-                                            <p>Here's how:</p>
+                                            <p>@T("To ensure that your artwork gets printed correctly, we require it to be outlined.")</p>
+                                            <p>@T("Here's how:")</p>
                                             <p>
-                                                <strong>1</strong> In Illustrator, select the entire design.<br>
+                                                <strong>1</strong>@T(" In Illustrator, select the entire design.")<br>
                                                 <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/select_all-364579df01dd5b85aaff06da36a93d7c.png">
                                             </p>
                                             <p>
-                                                <strong>2</strong> Create outlines, using the Type menu.<br>
+                                                <strong>2</strong>@T(" Create outlines, using the Type menu.")<br>
                                                 <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/create_outlines-a36bb6881047287564c1e7be85b6d0c3.png">
                                             </p>
                                             <p>
-                                                Save your artwork and upload it again.<br>
+                                                @T("Save your artwork and upload it again.")<br>
                                                 <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png">
                                             </p>
-                                            <p>If you need more assistance, please <a href="/contact" target="_blank">contact support</a>.</p>
-                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("If you need more assistance, please ")<a href="/contact" target="_blank">@T("contact support")</a>.</p>
+                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1316,11 +1311,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Oops! There was an error.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Oops! There was an error.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!</p>
-                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!")</p>
+                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1332,11 +1327,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">You need to create a design.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("You need to create a design.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. <a href="/contact" target="_blank">Need help?</a></p>
-                                            <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. ")<a href="/contact" target="_blank">@T("Need help?")</a></p>
+                                            <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1347,12 +1342,12 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Server error.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Server error.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Sorry, we were unable to save your design. Please try again. If the problem persist, <a href="/contact" target="_blank">contact our customer support</a> and mention the following error.</p>
-                                            <p>Error: <code></code></p>
-                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Sorry, we were unable to save your design. Please try again. If the problem persist, ")<a href="/contact" target="_blank">@T("contact our customer support")</a> @T("and mention the following error.")</p>
+                                            <p>@T("Error: ")<code></code></p>
+                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1363,11 +1358,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Oops! The design application is still busy.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Oops! The design application is still busy.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Please try again in a few seconds. If the problem persists, <a href="/contact" target="_blank">contact our customer support</a>.</p>
-                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Please try again in a few seconds. If the problem persists, ")<a href="/contact" target="_blank">@T("contact our customer support")</a>.</p>
+                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1378,12 +1373,12 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">File is too small</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("File is too small")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Your artwork should be at least <span class="width"></span> pixels wide by <span class="height"></span> pixels high.</p>
-                                            <p>Need help? <a href="/contact" target="_blank">Contact our design team!</a></p>
-                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Your artwork should be at least ")<span class="width"></span>@T(" pixels wide by ")<span class="height"></span>@T(" pixels high.")</p>
+                                            <p>@T("Need help? ")<a href="/contact" target="_blank">@T("Contact our design team!")</a></p>
+                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1394,10 +1389,10 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Waiting for preview</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Waiting for preview")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Please wait while your preview is generated.</p>
+                                            <p>@T("Please wait while your preview is generated.")</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1408,41 +1403,41 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="modal-title">How would you like to login?</h3>
+                                            <h3 class="modal-title">@T("How would you like to login?")</h3>
                                         </div>
                                         <div class="modal-body">
                                             <div class="errors"></div>
-                                            <p><small>You can <a data-provider="teespring" data-action="sign-in">login with Teespring</a> or use any of the sites below:</small></p>
+                                            <p><small>@T("You can ")<a data-provider="teespring" data-action="sign-in">@T("login with Teespring")</a>@T(" or use any of the sites below:")</small></p>
                                             <ul class="clean-list oauth-options">
                                                 <li>
                                                     <a data-provider="teespring" data-action="sign-in">
-                                                        <p>login with</p>
+                                                        <p>@T("login with")</p>
                                                         <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/teespring-5cded83b348c4a2f89b79324a834a427.png" alt="Teespring"></p>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a data-provider="facebook" data-action="sign-in" id="facebook_signin_button" title="Login with Facebook">
-                                                        <p>login with</p>
+                                                        <p>@T("login with")</p>
                                                         <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/facebook-f8e6f5eb71f877978a489a35a10c6a8c.png" alt="Facebook"></p>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a data-provider="google" data-action="sign-in" id="google_signin_button">
-                                                        <p>login with</p>
+                                                        <p>@T("login with")</p>
                                                         <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/google-298188fc43c3d523b280b3d4901fef81.png" alt="Google"></p>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a data-provider="yahoo" data-action="sign-in">
-                                                        <p>login with</p>
+                                                        <p>@T("login with")</p>
                                                         <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/yahoo-24ea0f8223a097d07794069f2bcadca7.png" alt="Yahoo"></p>
                                                     </a>
                                                 </li>
                                             </ul>
                                             <p class="large-under-link">
-                                                or
+                                                @T("or")
                                                 <a data-provider="teespring" data-action="sign-up">
-                                                    <strong>create a new account with Teespring</strong>
+                                                    <strong>@T("create a new account with Teespring")</strong>
                                                 </a>
                                             </p>
                                         </div>
@@ -1455,13 +1450,13 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Login with Teespring</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Login with Teespring")</h3>
                                         </div>
                                         <div class="modal-body">
                                             <div class="errors"></div>
                                             <form action="#" method="post">
                                                 <label class="input-group">
-                                                    <span class="hidden">Email</span>
+                                                    <span class="hidden">@T("Email")</span>
                                                     <input type="text" class="form-control" name="email" placeholder="Email">
                                                 </label>
                                                 <label class="has-under-text input-group">
@@ -1470,12 +1465,12 @@
                                                 </label>
                                                 <p class="under-text"><a href="/recover" target="_blank">Forgot your password?</a></p>
                                                 <p>
-                                                    <button class="btn btn-large btn-success" data-provider="teespring" data-action="sign-in">
-                                                        Login to your account »
+                                                    <button class="btn btn-large btn-success wizard-button" data-provider="teespring" data-action="sign-in">
+                                                        @T("Login to your account »")
                                                     </button>
                                                     <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
                                                 </p>
-                                                <p><a data-provider="teespring" data-action="sign-up">Want to create a new account?</a></p>
+                                                <p><a data-provider="teespring" data-action="sign-up">@T("Want to create a new account?")</a></p>
                                             </form>
                                         </div>
                                     </div>
@@ -1487,30 +1482,30 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Create an account with Teespring</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Create an account with Teespring")</h3>
                                         </div>
                                         <div class="modal-body">
                                             <div class="errors"></div>
                                             <form action="#" method="post">
                                                 <label class="input-group">
-                                                    <span class="hidden">Email</span>
+                                                    <span class="hidden">@T("Email")</span>
                                                     <input type="text" class="form-control" name="email" placeholder="Email">
                                                 </label>
                                                 <label class="has-under-text input-group">
-                                                    <span class="hidden">Password</span>
+                                                    <span class="hidden">@T("Password")</span>
                                                     <input id="password" type="password" class="form-control" name="password" maxlength="50" placeholder="Password: Must be longer than 6 characters.">
                                                 </label>
                                                 <label class="input-group">
-                                                    <span class="hidden">Confirm Password</span>
+                                                    <span class="hidden">@T("Confirm Password")</span>
                                                     <input type="password" class="form-control" name="password_confirmation" maxlength="50" placeholder="Confirm Password">
                                                 </label>
                                                 <p>
-                                                    <button data-provider="teespring" data-action="sign-up" class="btn btn-large btn-success">
-                                                        Create your account »
+                                                    <button data-provider="teespring" data-action="sign-up" class="btn btn-large btn-success wizard-button">
+                                                        @T("Create your account ")»
                                                     </button>
                                                     <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
                                                 </p>
-                                                <p><a data-provider="teespring" data-action="sign-in">Already have an account?</a></p>
+                                                <p><a data-provider="teespring" data-action="sign-in">@T("Already have an account?")</a></p>
                                             </form>
                                         </div>
                                     </div>
@@ -1522,11 +1517,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Incorrect File Type</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Incorrect File Type")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Uploaded files must be either gif, jpeg, jpg, png, or eps.</p>
-                                            <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Uploaded files must be either gif, jpeg, jpg, png, or eps.")</p>
+                                            <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1537,11 +1532,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">File size too big</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("File size too big")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Uploaded files must be no more than 5MB.</p>
-                                            <input type="button" value="Go back to designer »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Uploaded files must be no more than 5MB.")</p>
+                                            <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1551,7 +1546,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <h5>Saving your design</h5>
+                                            <h5>@T("Saving your design")</h5>
                                             <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
                                         </div>
                                     </div>
@@ -1562,7 +1557,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <h5>Loading...</h5>
+                                            <h5>@T("Loading")...</h5>
                                             <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
                                         </div>
                                     </div>
@@ -1574,24 +1569,26 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Upload Error</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Upload Error")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>An unknown error occurred with your upload. Our support staff have been notified. Please try again.</p>
-                                            <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("An unknown error occurred with your upload. Our support staff have been notified. Please try again.")</p>
+                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div id="one-or-more-invalid-product-option" class="modal modal-teespring hide">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
-                                    <h3 class="partitioned-header no-bottom">Invalid Product</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <p>One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.</p>
-                                    <input type="button" value="Keep designing »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">×</button>
+                                        <h3 class="partitioned-header no-bottom">@T("Invalid Product")</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>@T("One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.")</p>
+                                        <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                    </div>
                                 </div>
                             </div>
 
@@ -1602,11 +1599,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Campaign Error.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Campaign Error.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>An unknown error occurred.</p>
-                                            <input type="button" value="Ok" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("An unknown error occurred.")</p>
+                                            <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1618,11 +1615,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Campaign Error.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Campaign Error.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Invalid Zip Code.</p>
-                                            <input type="button" value="Ok" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Invalid Zip Code.")</p>
+                                            <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1633,63 +1630,63 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Oops! We couldn't find any printable&nbsp;color.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Oops! We couldn't find any printable")&nbsp;@T("color").</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>This might have happened due to a low resolution image or small details that our analysis couldn't perceive.</p>
+                                            <p>@T("This might have happened due to a low resolution image or small details that our analysis couldn't perceive.")</p>
                                             <p>
-                                                Possible solutions are<br>
-                                                a) uploading a bigger artwork,<br>
-                                                b) uploading a vectorized version,<br>
-                                                or c) <a href="/contact" target="_blank">contact our customer support</a> for assistance.
+                                                @T("Possible solutions are")<br>
+                                                a) @T("uploading a bigger artwork"),<br>
+                                                b) @T("uploading a vectorized version"),<br>
+                                                @T("or") c) <a href="/contact" target="_blank">@T("contact our customer support")</a> @T("for assistance").
                                             </p>
-                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <input type="button" value="@T("Return to design") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div id="unknown-art-error" class="modal modal-teespring">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Oops! We ran into an issue.</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Oops! We ran into an issue.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Sorry, we were unable to retrieve this artwork. If it happens again, please <a href="/contact" target="_blank">contact our customer support</a> for assistance.</p>
-                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Sorry, we were unable to retrieve this artwork. If it happens again, please ")<a href="/contact" target="_blank">@T("contact our customer support")</a> @T("for assistance.")</p>
+                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div id="bad-svg" class="modal modal-teespring">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Oops! We have a problem with that artwork</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Oops! We have a problem with that artwork")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.</p>
-                                            <input type="button" value="Return to design »" class="btn btn-large btn-primary" data-dismiss="modal">
+                                            <p>@T("Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.")</p>
+                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div id="product-production-technique-mismatch" class="modal modal-teespring">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">Incompatible Products</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Incompatible Products")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.</p>
-                                            <input id="technique-change" type="button" value="Select product" class="btn btn-large btn-primary" data-dismiss="modal">
-                                            <input id="technique-abort" type="button" value="Cancel" class="btn btn-large" data-dismiss="modal">
+                                            <p>@T("To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.")</p>
+                                            <input id="technique-change" type="button" value="@T("Select product")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            ><input id="technique-abort" type="button" value="Cancel" class="btn btn-large" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -1697,7 +1694,6 @@
                         </div>
                     </div>
                 </body>
-
             </div>
         </div>
         <span style="clear:both;display: block;"></span>

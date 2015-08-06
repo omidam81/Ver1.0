@@ -95,39 +95,39 @@ namespace Teeyoot.Module.Controllers
         {
             if (string.IsNullOrWhiteSpace(data.CampaignTitle))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn Title can't be empty");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty");
             }
 
             if (string.IsNullOrWhiteSpace(data.Description))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn Description can't be empty");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "campaign_description_text|Campiagn Description can't be empty");
             }
 
             if (string.IsNullOrWhiteSpace(data.Alias))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't be empty");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't be empty");
             }
 
             data.Alias = data.Alias.Trim();
 
             if (data.Alias.Any(ch => Char.IsWhiteSpace(ch)))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL can't contain whitespaces");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't contain whitespaces");
             }
 
             if (data.Alias.Contains('&') || data.Alias.Contains('?') || data.Alias.Contains('/') || data.Alias.Contains('\\'))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn URL has wrong format");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL has wrong format");
             }
 
             if (_campaignService.GetCampaignByAlias(data.Alias) != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Campiagn with this URL already exists");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn with this URL already exists");
             }
 
             if (string.IsNullOrWhiteSpace(data.Design))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No design found for your campaign");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Design|No design found for your campaign");
             }
 
             if (_orchardServices.WorkContext.CurrentUser == null)
