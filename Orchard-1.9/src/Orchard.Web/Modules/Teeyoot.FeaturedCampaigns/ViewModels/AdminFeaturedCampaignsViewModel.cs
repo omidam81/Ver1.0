@@ -35,5 +35,7 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public string Title { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string Alias { get; set; }
     }
 }

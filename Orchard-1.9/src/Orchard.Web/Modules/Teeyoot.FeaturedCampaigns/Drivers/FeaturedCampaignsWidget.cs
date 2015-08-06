@@ -23,7 +23,7 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
 
         protected override DriverResult Display(FeaturedCampaignsWidgetPart part, string displayType, dynamic shapeHelper)
         {
-            var campaignsInFeatured = _campaignsService.GetAllCampaigns().Where(c => c.IsFeatured && !c.IsPrivate).OrderByDescending(c => c.ProductCountSold).ToList();
+            var campaignsInFeatured = _campaignsService.GetAllCampaigns().Where(c => c.IsFeatured && !c.IsPrivate && c.IsActive).OrderByDescending(c => c.ProductCountSold).ToList();
             var featuredCampaigns = new List<CampaignRecord>();
 
             if (campaignsInFeatured.Count >= 6)
@@ -54,7 +54,7 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
                 if (featuredCampaigns.Count() < 6)
                 {
                     countTopCamp = 6 - featuredCampaigns.Count();
-                    var otherCampaigns = _campaignsService.GetAllCampaigns().Where(c => c.IsPrivate == false).ToList();
+                    var otherCampaigns = _campaignsService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive).ToList();
                     foreach (var camp in campaignsInFeatured)
                     {
                         if (otherCampaigns.Exists(c => c.Id == camp.Id))
