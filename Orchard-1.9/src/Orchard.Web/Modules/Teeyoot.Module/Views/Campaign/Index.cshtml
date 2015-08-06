@@ -422,11 +422,7 @@
         window.onload = function () {
             CDT();
         }
-
-        
-
     </script>
-
 }
 
 @*Локализацию!!!!! Обвернуть всё в T()*@
@@ -652,7 +648,7 @@
                         </li>
                     </ul>
                 </div>
-                @if (Model.Campaign.EndDate.ToLocalTime() > DateTime.Now)
+                @if (Model.Campaign.EndDate.ToLocalTime() > DateTime.Now && Model.Campaign.IsApproved == true)
                 {
                     <div class="campaign_transaction js-transaction-button">
                         @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
@@ -662,36 +658,41 @@
                         <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
                     </div>
                 }
-
-                <div>
-                    <input class="hidden" id="persistent__timer" value="@Model.Campaign.EndDate.ToLocalTime().Year/@Model.Campaign.EndDate.ToLocalTime().Month/@Model.Campaign.EndDate.ToLocalTime().Day @Model.Campaign.EndDate.ToLocalTime().Hour:@Model.Campaign.EndDate.ToLocalTime().Minute:@Model.Campaign.EndDate.ToLocalTime().Second">
-                    <div id="back_timer"></div>
-                </div>
+                @if (Model.Campaign.IsApproved == true)
+                {
+                    <div>
+                        <input class="hidden" id="persistent__timer" value="@Model.Campaign.EndDate.ToLocalTime().Year/@Model.Campaign.EndDate.ToLocalTime().Month/@Model.Campaign.EndDate.ToLocalTime().Day @Model.Campaign.EndDate.ToLocalTime().Hour:@Model.Campaign.EndDate.ToLocalTime().Minute:@Model.Campaign.EndDate.ToLocalTime().Second">
+                        <div id="back_timer"></div>
+                    </div>
+                }
 
             </div>
-            <div class="campaign__column--stats display--desktop">
-                <div class="share__container">
-                    <h3 class="share__heading">@T("Share this campaign on:")</h3>
-                    <ul class="share__buttons">
-                        <li class="share__buttons__item">
-                            <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
-                                <img src="/Media/Default/images/facebook_ic.png">
-                            </a>
-                        </li>
+            @if (Model.Campaign.IsApproved == true)
+            {
+                <div class="campaign__column--stats display--desktop">
+                    <div class="share__container">
+                        <h3 class="share__heading">@T("Share this campaign on:")</h3>
+                        <ul class="share__buttons">
+                            <li class="share__buttons__item">
+                                <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
+                                    <img src="/Media/Default/images/facebook_ic.png">
+                                </a>
+                            </li>
 
-                        <li class="share__buttons__item">
-                            <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
-                                <img src="/Media/Default/images/twit_ic.png">
-                            </a>
-                        </li>
-                        <li class="share__buttons__item">
-                            <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
-                                <img src="/Media/Default/images/p_ic.png">
-                            </a>
-                        </li>
-                    </ul>
+                            <li class="share__buttons__item">
+                                <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
+                                    <img src="/Media/Default/images/twit_ic.png">
+                                </a>
+                            </li>
+                            <li class="share__buttons__item">
+                                <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
+                                    <img src="/Media/Default/images/p_ic.png">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
 
     </section>
@@ -700,28 +701,31 @@
 <section class="site__main">
 
     <div class="site__wrapper">
-        <div class="share__container display--mobile">
-            <h3 class="share__heading">@T("Share this campaign on:")</h3>
+        @if (Model.Campaign.IsApproved == true)
+        {
+            <div class="share__container display--mobile">
+                <h3 class="share__heading">@T("Share this campaign on:")</h3>
 
-            <ul class="share__buttons">
-                <li class="share__buttons__item">
-                    <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
-                        <img src="/Media/Default/images/facebook_ic.png">
-                    </a>
-                </li>
+                <ul class="share__buttons">
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--facebook btn--facebook" data-social-network="facebook" onclick="shareCampaign()" href="" target="_blank">
+                            <img src="/Media/Default/images/facebook_ic.png">
+                        </a>
+                    </li>
 
-                <li class="share__buttons__item">
-                    <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
-                        <img src="/Media/Default/images/twit_ic.png">
-                    </a>
-                </li>
-                <li class="share__buttons__item">
-                    <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
-                        <img src="/Media/Default/images/p_ic.png">
-                    </a>
-                </li>
-            </ul>
-        </div>
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--twitter btn--twitter" data-social-network="twitter" onclick="shareCampaign()" href="" target="_blank">
+                            <img src="/Media/Default/images/twit_ic.png">
+                        </a>
+                    </li>
+                    <li class="share__buttons__item">
+                        <a class="share__btn share__btn--pinterest btn--pinterest" data-social-network="pinterest" href="" target="_blank">
+                            <img src="/Media/Default/images/p_ic.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
         <div class="campaign__column--description">
             <div class="campaign__description display--mobile js_campaign_description">@Html.Raw(Model.Campaign.Description)</div>
             @*<div class="campaign_info__container">

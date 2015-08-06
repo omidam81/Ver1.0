@@ -710,6 +710,7 @@
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
+    <Compile Include="Permissions.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
     <Compile Include="Services\Interfaces\IMessageService .cs" />
