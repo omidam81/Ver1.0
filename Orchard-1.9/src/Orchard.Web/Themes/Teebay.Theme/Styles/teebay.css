@@ -3051,13 +3051,9 @@ body {
 
 .tb-layout-footer {
     padding: 20px;
-    height: 246px;
     position: relative;
     background: #e8eced;
     margin: -247px auto 0;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
 }
 
 .user-actions a {
