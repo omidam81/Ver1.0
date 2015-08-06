@@ -108,7 +108,7 @@ namespace Teeyoot.Module.Services
                 var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).Select(c => c.Id);
                 var campForTags = _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id)).Select(c => c.CampaignRecord).Where(c => c.WhenDeleted == null && !c.IsPrivate);
                 //List<CampaignRecord> campForTags = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).ToList();
-                IEnumerable<CampaignRecord> camps = GetAllCampaigns().Where(c => c.Title.Contains(filter) || c.Description.Contains(filter));
+                IEnumerable<CampaignRecord> camps = GetAllCampaigns().Where(c => !c.IsPrivate).Where(c => c.Title.Contains(filter) || c.Description.Contains(filter));
                 camps = camps.Concat(campForTags).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
                 //return camps.Skip(skip).Take(take);
                 return camps.Skip(skip).Take(take).ToList();
