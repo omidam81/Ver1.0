@@ -2,64 +2,229 @@
 @{
     Style.Include("AdminOrders.css");
 }
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
 
+
+            $('.go').click(function (event) {
+                event.preventDefault();
+                /* Запрос на сервак */
+                var orderId = this.value;
+                function getes(request, response) {
+                    var result = new Array();
+                    $.ajax({
+                        async: false,
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.Action("GetBuyerInfirmation", "Home"))",
+                        data: { "orderId": orderId },
+                    success: function (data) {
+                        $("#firstName").html(data.firstName);
+                        $("#lastName").html(data.lastName);
+                        $("#streetAdress").html(data.streetAdress);
+                        $("#city").html(data.city);
+                        $("#country").html(data.country);
+                        $("#phoneNumber").html(data.phoneNumber);
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }});
+            };
+                /* End Запрос на сервак */
+                console.log(getes())
+                $('#overlay').fadeIn(400,
+                    function () {
+                        $('#modal_form')
+                            .css('display', 'block')
+                            .animate({ opacity: 1, top: '50%' }, 200);
+                    });
+            });
+
+
+
+
+            $('.ordNumber').click(function (event) {
+                event.preventDefault();
+                /* Запрос на сервак */
+                var orderId = this.innerHTML;
+                function getesOrder(request, response) {
+                    var result = new Array();
+                    $.ajax({
+                        async: false,
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.Action("GetOrderInfirmation", "Home"))",
+                        data: { "publicId": orderId },
+                        success: function (data) {
+                            data.forEach(function (item, i, arr) {
+                                var tr = document.createElement("tr");
+                                var tdName = document.createElement("td")
+                                var tdSize = document.createElement("td");
+                                var tdCount = document.createElement("td");
+                                var tdPrice = document.createElement("td");
+
+                                var pName = document.createElement("p");
+                                pName.innerHTML = item.Name;
+                                var pSize = document.createElement("p");
+                                pSize.innerHTML = item.Size;
+                                var pCount = document.createElement("p");
+                                pCount.innerHTML = item.Count;
+                                var pPrice = document.createElement("p");
+                                pPrice.innerHTML = item.Price;
+
+                                tdName.appendChild(pName);
+                                tdSize.appendChild(pSize);
+                                tdCount.appendChild(pCount);
+                                tdPrice.appendChild(pPrice);
+
+                                tr.appendChild(tdName);
+                                tr.appendChild(tdSize);
+                                tr.appendChild(tdCount);
+                                tr.appendChild(tdPrice);
+
+                                document.getElementById("modalOrderTable").appendChild(tr);
+                            });
+
+                        //$("#firstName").html(data.firstName);
+                        //$("#lastName").html(data.lastName);
+                        //$("#streetAdress").html(data.streetAdress);
+                        //$("#city").html(data.city);
+                        //$("#country").html(data.country);
+                            //$("#phoneNumber").html(data.phoneNumber);
+
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }});
+            };
+            /* End Запрос на сервак */
+            console.log(getesOrder())
+            $('#overlay_order').fadeIn(400,
+                function () {
+                    $('#modal_form_order')
+                        .css('display', 'block')
+                        .animate({ opacity: 1, top: '50%' }, 200);
+                });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+            $('#modal_close, #overlay').click(function () {
+                $('#modal_form')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () { // пoсле aнимaции
+                            $(this).css('display', 'none');
+                            $('#overlay').fadeOut(400);
+                        }
+                    );
+            });
+
+
+
+            /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+            $('#modal_close_order, #overlay_order').click(function () {
+                $('#modal_form_order')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () { // пoсле aнимaции
+                            $(this).css('display', 'none');
+                            $('#overlay_order').fadeOut(400);
+                        }
+                    );
+            });
+        });
+
+    </script>
+}
+
+@{
+    <fieldset>
+        <table class="items">
+            <thead>
+                <tr class="admin-categories">
+                    <th class="publicId">
+                        <h3>Order Number</h3>
+                    </th>
+                    <th class="status">
+                        <h3>Status</h3>
+                    </th>
+                    <th class="buyer">
+                        <h3>Buyer</h3>
+                    </th>
+                    <th class="seller">
+                        <h3>Seller</h3>
+                    </th>
+                    <th class="profit">
+                        <h3>Profit</h3>
+                    </th>
+                    <th class="payout">
+                        <h3>Payout</h3>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.DynamicOrders)
+                {
+                    <tr class="admin-categories-tr">
+                        <td class="publicId">
+                           <a class="ordNumber"> @item.PublicId</a>
+                        </td>
+                        <td class="status">
+                            @item.Status
+                        </td>
+                        <td class="buyer">
+                            @item.EmailBuyer
+                            <button class="go" type="submit" value="@item.Id">
+                                @T("inf")
+                            </button>
+                        </td>
+                        <td class="seller">
+                            @item.UserNameSeller
+                        </td>
+                        <td class="profit">
+                            123
+                        </td>
+                        <td class="payout">
+                            paid
+                        </td>
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+
+    </fieldset>
+    @Display(Model.Pager)
+}
+<fieldset>
+    <div id="modal_form" style="">
+        @Html.Partial("ModalBuyer")
+    </div>
+    <div id="overlay"></div>
+</fieldset>
 
 
 <fieldset>
-    <table class="items">
-        <thead>
-            <tr class="admin-categories">
-                <th class="publicId">
-                    <h3>Order Number</h3>
-                </th>
-                <th class="status">
-                    <h3>Status</h3>
-                </th>
-                <th class="buyer">
-                    <h3>Buyer</h3>
-                </th>
-                <th class="seller">
-                    <h3>Seller</h3>
-                </th>
-                <th class="profit">
-                    <h3>Profit</h3>
-                </th>
-                <th class="payout">
-                    <h3>Payout</h3>
-                </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model.DynamicOrders)
-            {
-                <tr class="admin-categories-tr">
-                    <td class="publicId">
-                        @item.PublicId
-                    </td>
-                    <td class="status">
-                        @item.Status
-                    </td>
-                    <td class="buyer">
-                        @item.EmailBuyer
-                    </td>
-                    <td class="seller">
-                        @item.UserNameSeller
-                    </td>
-                    <td class="profit">
-                        123
-                    </td>
-                    <td class="payout">
-                        paid
-                    </td>
-                </tr>
-
-
-            }
-        </tbody>
-    </table>
-
+    <div id="modal_form_order" style="">
+        @Html.Partial("ModalOrder")
+    </div>
+    <div id="overlay_order"></div>
 </fieldset>
-@Display(Model.Pager)
-
 
