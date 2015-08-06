@@ -63,7 +63,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                     Id = c.Id,
                                                     Title = c.Title,                                                   
                                                     Alias = c.Alias,
-                                                    StartDate = c.StartDate
+                                                    StartDate = c.StartDate.ToLocalTime()
                                                 })
                                 .Skip(pager.GetStartIndex())
                                 .Take(pager.PageSize)
@@ -76,7 +76,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Id: e.Id,
                     Title: e.Title,
                     Alias: e.Alias,
-                    StartDate: e.StartDate
+                    StartDate: e.StartDate.ToLocalTime()
                     );
             });
 
