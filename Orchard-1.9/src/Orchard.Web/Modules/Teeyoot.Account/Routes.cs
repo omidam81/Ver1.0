@@ -180,6 +180,24 @@ namespace Teeyoot.Account
                         },
                         new MvcRouteHandler()
                         )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "WizardGoogleAuth",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "WizardGoogleAuth"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
                 }
             };
         }

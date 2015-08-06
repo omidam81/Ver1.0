@@ -78,7 +78,12 @@ namespace Teeyoot.Module.Controllers
             }
 
             var facebookSettingsPart = _orchardServices.WorkContext.CurrentSite.As<FacebookSettingsPart>();
-            costViewModel.FacebookApplicationId = facebookSettingsPart.ClientId;
+            costViewModel.FacebookClientId = facebookSettingsPart.ClientId;
+
+            var googleSettingsPart = _orchardServices.WorkContext.CurrentSite.As<GoogleSettingsPart>();
+            costViewModel.GoogleClientId = googleSettingsPart.ClientId;
+
+            costViewModel.GoogleApiKey = "AIzaSyCyvcCc6PJL62UNIoVbgsQcznyjpVhOzuo";
 
             return View(costViewModel);
         }

@@ -47,27 +47,51 @@
 
 @using (Script.Head())
 {
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId: '@Model.FacebookApplicationId',
-                xfbml: true,
-                version: 'v2.4',
-                status: true
-            });
-        };
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '@Model.FacebookClientId',
+            xfbml: true,
+            version: 'v2.4',
+            status: true
+        });
+    };
 
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script>
+    window.GoogleClientId = '@Model.GoogleClientId';
+    window.GoogleApiKey = '@Model.GoogleApiKey';
+    window.GoogleScopes = 'https://www.googleapis.com/auth/userinfo.email';
+
+    function handleAuthResult(authResult) {
+    }
+
+    function checkAuth() {
+        gapi.auth.authorize({
+            client_id: window.GoogleClientId,
+            scope: window.GoogleScopes,
+            immediate: true
+        }, handleAuthResult);
+    };
+
+    function handleClientLoad() {
+        gapi.client.setApiKey(window.GoogleApiKey);
+        window.setTimeout(checkAuth, 1);
+    };
+</script>
+
+<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 }
 
 @using (Script.Foot())
@@ -252,6 +276,47 @@
             });
         };
 
+        function googleWizardLogin(token) {
+            $.ajax({
+                type: 'POST',
+                url: '/WizardGoogleAuth',
+                data: addAntiForgeryToken({
+                    token: token
+                }),
+                success: function(data) {
+                    if (data.Success === true) {
+                        refreshToken();
+
+                        $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                            function() {
+                                $(this).css('display', 'none');
+                                $('#overlay').fadeOut(400);
+
+                                sendData();
+                            }
+                        );
+                        return;
+                    }
+                }
+            });
+        };
+
+        function authCallback(authResult) {
+            var token = authResult.access_token;
+            if (token !== undefined) {
+                googleWizardLogin(token);
+            }
+        };
+
+        function handleAuthClick(event) {
+            gapi.auth.authorize({
+                client_id: window.GoogleClientId,
+                scope: window.GoogleScopes,
+                immediate: false
+            }, handleAuthResult);
+            return false;
+        };
+
         function fbWizardLogin(token) {
             $.ajax({
                 type: 'POST',
@@ -396,6 +461,10 @@
 
             $('#login_with_facebook').click(function() {
                 fbGetLoginStatus();
+            });
+
+            $('#login_with_google').click(function(e) {
+                handleAuthClick(e);
             });
         });
     </script>

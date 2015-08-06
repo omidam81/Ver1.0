@@ -40,6 +40,8 @@ namespace Teeyoot.Module.ViewModels
 
         public List<CampaignProductRecord> Products { get; set; }
 
-        public string FacebookApplicationId { get; set; }
+        public string FacebookClientId { get; set; }
+        public string GoogleClientId { get; set; }
+        public string GoogleApiKey { get; set; }
     }
 }

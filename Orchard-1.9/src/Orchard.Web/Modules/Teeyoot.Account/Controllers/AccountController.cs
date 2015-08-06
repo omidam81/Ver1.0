@@ -232,6 +232,26 @@ namespace Teeyoot.Account.Controllers
             });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult WizardGoogleAuth(string token)
+        {
+            var response = _teeyootFacebookOAuthService.WizardAuth(token);
+
+            if (response.Error != null)
+            {
+                return Json(new WizardFacebookAuthJsonResponse
+                {
+                    Message = response.Error.ToString()
+                });
+            }
+
+            return Json(new WizardFacebookAuthJsonResponse
+            {
+                Success = true
+            });
+        }
+
         public ActionResult Recover()
         {
             var viewModel = new RecoverViewModel();
