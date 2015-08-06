@@ -44,7 +44,7 @@ namespace Teebay.Search.Controllers
             }
             else
             {
-                campListAfterSearch = _campService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
+                campListAfterSearch = _campService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
             }
 
             bool notResult = CheckResult();
