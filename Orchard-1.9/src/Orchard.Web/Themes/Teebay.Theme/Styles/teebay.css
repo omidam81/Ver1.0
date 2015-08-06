@@ -73,7 +73,11 @@ body {
 }
 .widget-createSearchButtons {
     position: absolute;
-    top: 44px;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
     width: 100%;
     height: 608px;
     display: table;
@@ -156,6 +160,9 @@ body {
 
 }
 .tb-button-orange {
+        -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
     background: #ff4f00;
     font-size: 14px;
     font-weight: normal;
@@ -1288,6 +1295,15 @@ body {
     }
 }
 
+
+
+
+.layout-content-image, .layout-content-vector {
+    display: block;
+    max-width: 100%;
+    height: inherit;
+    overflow: hidden;
+}
 @media all and (max-width: 970px) {
     .widget-createSearchButtons {
         height: 477px;
@@ -2944,7 +2960,7 @@ body {
     }
 }
 
-@media all and (max-width: 590px) {
+@media all and (max-width: 710) {
     .home-page-review {
         width: 100% !important;
     }
@@ -4207,6 +4223,11 @@ input[type="radio" i], input[type="checkbox" i] {
         max-height: none;
     }
 
+    .shop-now-banner {
+        display: block;
+        padding: 0;
+    }
+
     .shop-now-title {
         width: 100%;
         text-align: center;
@@ -4214,6 +4235,7 @@ input[type="radio" i], input[type="checkbox" i] {
         text-align: -moz-center;
         text-align: -ms-center;
         margin: 0 auto;
+        float: none;
     }
 
     .shop-now-image {
@@ -4226,6 +4248,8 @@ input[type="radio" i], input[type="checkbox" i] {
         margin: 0 auto;
         padding-left: 0;
         margin-left: -10px;
+        display: none;
+        float: none;
     }
 
     .shop-now-button {
@@ -4816,6 +4840,16 @@ input[type="radio" i], input[type="checkbox" i] {
     }
 }
 
+@media only screen and (max-width: 710px) {
+    .shop-now-image {
+        display: none !important;
+    }
+}
+
+
+
+
+
 .video_modal__button--hide {
     border: 1px solid #6c7478 !important;
     background-color: #6c7478 !important;
@@ -4845,3 +4879,44 @@ input[type="radio" i], input[type="checkbox" i] {
 .clearfix {
   zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
+
+
+.tb-layout-before-main.group { 
+    width: 100%;
+}
+
+.button-create-search-container {
+    margin: 0 auto;
+}
+
+.tb-layout-before-main.group .zone.zone-before-main { 
+    width: inherit;
+    position: relative;
+}
+
+.tb-layout-before-main.group .zone.zone-before-main article { 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root { 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .table{ 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .row{ 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .cell{ 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .cell .layout-content-image{ 
+    margin: auto auto;
+    width: 245%;
+    height: inherit;
+ 
+}
+
+.tb-layout-before-main.group .zone.zone-before-main article.chButtons { 
+    position: static;
+}
+
