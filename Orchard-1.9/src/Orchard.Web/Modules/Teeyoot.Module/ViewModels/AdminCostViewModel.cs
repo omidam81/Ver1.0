@@ -39,5 +39,7 @@ namespace Teeyoot.Module.ViewModels
         public CampaignRecord Campaign { get; set; }
 
         public List<CampaignProductRecord> Products { get; set; }
+
+        public string FacebookApplicationId { get; set; }
     }
 }

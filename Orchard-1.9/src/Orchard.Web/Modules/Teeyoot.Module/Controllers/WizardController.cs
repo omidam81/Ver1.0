@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Orchard.ContentManagement;
+using RM.QuickLogOn.OAuth.Models;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
@@ -74,6 +76,9 @@ namespace Teeyoot.Module.Controllers
                 costViewModel.Campaign = campaign;
                 costViewModel.Products = products;
             }
+
+            var facebookSettingsPart = _orchardServices.WorkContext.CurrentSite.As<FacebookSettingsPart>();
+            costViewModel.FacebookApplicationId = facebookSettingsPart.ClientId;
 
             return View(costViewModel);
         }
