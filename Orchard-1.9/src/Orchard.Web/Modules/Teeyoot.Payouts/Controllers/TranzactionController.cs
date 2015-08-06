@@ -35,7 +35,6 @@ namespace Teeyoot.Payouts.Controllers
         public TranzactionController(IPayoutService payoutService,
                                      ISiteService siteService,
                                      IShapeFactory shapeFactory,
-                                     IMembershipService membershipService,
                                      IContentManager contentManager,
                                      IPaymentInformationService paymentInformationService)
         {
