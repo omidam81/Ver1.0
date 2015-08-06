@@ -649,7 +649,7 @@
     <Content Include="Styles\checkout.css" />
     <Content Include="Styles\Cost.css" />
     <Content Include="Styles\custom.css" />
-    <Content Include="Styles\designer.css" />
+    <Content Include="Styles\designerTeeyoot.css" />
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
