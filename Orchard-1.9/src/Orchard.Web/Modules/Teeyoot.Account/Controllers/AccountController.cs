@@ -24,7 +24,7 @@ namespace Teeyoot.Account.Controllers
     public class AccountController : Controller
     {
         private readonly ITeeyootMembershipService _teeyootMembershipService;
-        private readonly IFacebookOAuthService _facebookOAuthService;
+        private readonly ITeeyootFacebookOAuthService _teeyootFacebookOAuthService;
         private readonly IGoogleOAuthService _googleOAuthService;
 
         private readonly IAuthenticationService _authenticationService;
@@ -44,7 +44,7 @@ namespace Teeyoot.Account.Controllers
             IAuthenticationService authenticationService,
             IMembershipService membershipService,
             IUserService userService,
-            IFacebookOAuthService facebookOAuthService,
+            ITeeyootFacebookOAuthService teeyootFacebookOAuthService,
             IGoogleOAuthService googleOAuthService,
             IWorkContextAccessor workContextAccessor)
         {
@@ -52,7 +52,7 @@ namespace Teeyoot.Account.Controllers
             _authenticationService = authenticationService;
             _membershipService = membershipService;
             _userService = userService;
-            _facebookOAuthService = facebookOAuthService;
+            _teeyootFacebookOAuthService = teeyootFacebookOAuthService;
             _googleOAuthService = googleOAuthService;
             _workContextAccessor = workContextAccessor;
 
@@ -192,7 +192,7 @@ namespace Teeyoot.Account.Controllers
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
         {
-            var response = _facebookOAuthService.Auth(
+            var response = _teeyootFacebookOAuthService.Auth(
                 _workContextAccessor.GetContext(),
                 model.Code,
                 model.Error,
@@ -210,6 +210,26 @@ namespace Teeyoot.Account.Controllers
                 model.State);
 
             return Redirect(response.Error == null ? "~/" : "~/Login");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult WizardFacebookAuth(string token)
+        {
+            var response = _teeyootFacebookOAuthService.WizardAuth(token);
+
+            if (response.Error != null)
+            {
+                return Json(new WizardFacebookAuthJsonResponse
+                {
+                    Message = response.Error.ToString()
+                });
+            }
+
+            return Json(new WizardFacebookAuthJsonResponse
+            {
+                Success = true
+            });
         }
 
         public ActionResult Recover()

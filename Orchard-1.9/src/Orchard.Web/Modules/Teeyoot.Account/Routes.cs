@@ -162,6 +162,24 @@ namespace Teeyoot.Account
                         },
                         new MvcRouteHandler()
                         )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "WizardFacebookAuth",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "WizardFacebookAuth"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
                 }
             };
         }

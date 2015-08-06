@@ -45,6 +45,31 @@
     Script.Include("CostCalculator.js");
 }
 
+@using (Script.Head())
+{
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '@Model.FacebookApplicationId',
+                xfbml: true,
+                version: 'v2.4',
+                status: true
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+}
+
 @using (Script.Foot())
 {
 
@@ -227,6 +252,60 @@
             });
         };
 
+        function fbWizardLogin(token) {
+            $.ajax({
+                type: 'POST',
+                url: '/WizardFacebookAuth',
+                data: addAntiForgeryToken({
+                    token: token
+                }),
+                success: function(data) {
+                    if (data.Success === true) {
+                        refreshToken();
+
+                        $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                            function() {
+                                $(this).css('display', 'none');
+                                $('#overlay').fadeOut(400);
+
+                                sendData();
+                            }
+                        );
+                        return;
+                    }
+                }
+            });
+        };
+
+        function fbLoginCallback(response) {
+            if (response.status === 'connected') {
+                var token = response.authResponse.accessToken;
+                fbWizardLogin(token);
+            }
+        };
+
+        function fbLogin() {
+            FB.login(function(response) {
+                fbLoginCallback(response);
+            }, { scope: 'email' });
+        };
+
+        function fbGetLoginStatusCallback(response) {
+            if (response.status === 'connected') {
+                var token = response.authResponse.accessToken;
+                fbWizardLogin(token);
+                return;
+            }
+
+            fbLogin();
+        };
+
+        function fbGetLoginStatus() {
+            FB.getLoginStatus(function(response) {
+                fbGetLoginStatusCallback(response);
+            });
+        };
+
         $(document).ready(function() {
             $('#overlay, .close').click(function() {
                 $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
@@ -314,28 +393,11 @@
                     }
                 });
             });
-        });
-    </script>
-}
 
-@using (Script.Head())
-{
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '@Model.FacebookApplicationId',
-                xfbml      : true,
-                version    : 'v2.4'
+            $('#login_with_facebook').click(function() {
+                fbGetLoginStatus();
             });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        });
     </script>
 }
 
@@ -1584,8 +1646,8 @@
             <div id="login_selection" class="auth-window">
                 <h2>@T("How would you like to login?")</h2>
                 <h4>You can <a href="javascript:;" class="login-with-teeyoot">login with Teeyoot</a> or use any of the sites below:</h4>
-                <a href="javascript:;">@T("login with facebook")</a>
-                <a href="javascript:;">@T("login with google")</a>
+                <a href="javascript:;" id="login_with_facebook">@T("login with facebook")</a>
+                <a href="javascript:;" id="login_with_google">@T("login with google")</a>
                 @T("or") <a href="javascript:;" class="create-new-account">@T("create a new account with Teeyoot")</a>
             </div>
             <div id="login_teeyoot" class="auth-window">

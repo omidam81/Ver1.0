@@ -24,7 +24,7 @@ namespace Teeyoot.Account
             var returnUrl = workContext.HttpContext.Request.Url;
             var redirectUrl = new Uri(
                 returnUrl,
-                urlHelper.Action("FacebookAuth", "Account", new {Area = "Teeyoot.Account"})
+                urlHelper.Action("FacebookAuth", "Account", new {area = "Teeyoot.Account"})
                 ).ToString();
 
             return string.Format(
@@ -42,7 +42,7 @@ namespace Teeyoot.Account
             var returnUrl = workContext.HttpContext.Request.Url;
             var redirectUrl = new Uri(
                 returnUrl,
-                urlHelper.Action("GoogleAuth", "Account", new {Area = "Teeyoot.Account"})
+                urlHelper.Action("GoogleAuth", "Account", new {area = "Teeyoot.Account"})
                 ).ToString();
             return string.Format(
                 GoogleUrl,
