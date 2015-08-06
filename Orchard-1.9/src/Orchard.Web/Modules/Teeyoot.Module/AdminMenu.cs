@@ -82,6 +82,11 @@ namespace Teeyoot.Module
                         .Position("2.9")
                         .Action("Index", "AdminMessageContent", new { area = "Teeyoot.Messaging" })
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("Orders"))
+                        .Position("3")
+                        .Action("Index", "Home", new { area = "Teeyoot.Orders" })
+                    )
                 );
         }
     }
