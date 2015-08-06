@@ -6,11 +6,11 @@
 }
 
 h1 {
-    margin-left:5% !important;
+    margin-left: 2% !important;
 }
 
 .tbl-pay {
-    width: 92% !important;
+    width: 96% !important;
     border: 1px solid #e8eced !important;
     margin: 0 auto 20px auto;
 }
@@ -41,7 +41,7 @@ h1 {
 }
 
 .balance{
-    width: 92%;
+    width: 96%;
     line-height:50px;
     padding: 0 0 0 20px;
     margin:auto;
