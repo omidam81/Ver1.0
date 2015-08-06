@@ -10,7 +10,6 @@ using Orchard.Security;
 using Orchard.Themes;
 using Orchard.Users.Models;
 using Orchard.Users.Services;
-using RM.QuickLogOn.OAuth.Services;
 using RM.QuickLogOn.OAuth.ViewModels;
 using Teeyoot.Account.Common;
 using Teeyoot.Account.DTOs;
@@ -25,7 +24,7 @@ namespace Teeyoot.Account.Controllers
     {
         private readonly ITeeyootMembershipService _teeyootMembershipService;
         private readonly ITeeyootFacebookOAuthService _teeyootFacebookOAuthService;
-        private readonly IGoogleOAuthService _googleOAuthService;
+        private readonly ITeeyootGoogleOAuthService _teeyootGoogleOAuthService;
 
         private readonly IAuthenticationService _authenticationService;
         private readonly IMembershipService _membershipService;
@@ -45,7 +44,7 @@ namespace Teeyoot.Account.Controllers
             IMembershipService membershipService,
             IUserService userService,
             ITeeyootFacebookOAuthService teeyootFacebookOAuthService,
-            IGoogleOAuthService googleOAuthService,
+            ITeeyootGoogleOAuthService teeyootGoogleOAuthService,
             IWorkContextAccessor workContextAccessor)
         {
             _teeyootMembershipService = teeyootMembershipService;
@@ -53,7 +52,7 @@ namespace Teeyoot.Account.Controllers
             _membershipService = membershipService;
             _userService = userService;
             _teeyootFacebookOAuthService = teeyootFacebookOAuthService;
-            _googleOAuthService = googleOAuthService;
+            _teeyootGoogleOAuthService = teeyootGoogleOAuthService;
             _workContextAccessor = workContextAccessor;
 
             Logger = NullLogger.Instance;
@@ -203,7 +202,7 @@ namespace Teeyoot.Account.Controllers
 
         public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
         {
-            var response = _googleOAuthService.Auth(
+            var response = _teeyootGoogleOAuthService.Auth(
                 _workContextAccessor.GetContext(),
                 model.Code,
                 model.Error,
@@ -236,17 +235,17 @@ namespace Teeyoot.Account.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult WizardGoogleAuth(string token)
         {
-            var response = _teeyootFacebookOAuthService.WizardAuth(token);
+            var response = _teeyootGoogleOAuthService.WizardAuth(token);
 
             if (response.Error != null)
             {
-                return Json(new WizardFacebookAuthJsonResponse
+                return Json(new WizardGoogleAuthJsonResponse
                 {
                     Message = response.Error.ToString()
                 });
             }
 
-            return Json(new WizardFacebookAuthJsonResponse
+            return Json(new WizardGoogleAuthJsonResponse
             {
                 Success = true
             });

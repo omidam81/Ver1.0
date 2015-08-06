@@ -1,12 +1,13 @@
 ﻿using System.Runtime.Serialization;
 
+// ReSharper disable InconsistentNaming
+
 namespace Teeyoot.Account.Common
 {
     [DataContract]
     public class FacebookTokenInspectionJsonViewModel
     {
         [DataMember]
-        // ReSharper disable once InconsistentNaming
         public TokenData data { get; set; }
     }
 
@@ -14,7 +15,6 @@ namespace Teeyoot.Account.Common
     public class TokenData
     {
         [DataMember]
-        // ReSharper disable once InconsistentNaming
         public string app_id { get; set; }
     }
 }

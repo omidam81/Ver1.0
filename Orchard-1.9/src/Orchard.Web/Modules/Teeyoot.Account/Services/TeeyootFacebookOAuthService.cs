@@ -34,13 +34,13 @@ namespace Teeyoot.Account.Services
         private readonly IEncryptionService _oauthHelper;
         private readonly IWorkContextAccessor _workContextAccessor;
 
-        public Localizer T { get; set; }
-        public ILogger Logger { get; set; }
-
         public WorkContext WorkContext
         {
             get { return _workContextAccessor.GetContext(); }
         }
+
+        public Localizer T { get; set; }
+        public ILogger Logger { get; set; }
 
         public TeeyootFacebookOAuthService(
             IEncryptionService oauthHelper,

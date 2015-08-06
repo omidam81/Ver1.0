@@ -110,12 +110,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\FacebookTokenInspectionJsonViewModel.cs" />
+    <Compile Include="Common\GoogleTokenVerifyingJsonViewModel.cs" />
     <Compile Include="Common\ValidateLogOnResult.cs" />
     <Compile Include="Common\ValidateNewPasswordResult.cs" />
     <Compile Include="Common\ValidateRegistrationResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="DTOs\JsonResponseBase.cs" />
     <Compile Include="DTOs\WizardFacebookAuthJsonResponse.cs" />
+    <Compile Include="DTOs\WizardGoogleAuthJsonResponse.cs" />
     <Compile Include="DTOs\WizardLogOnJsonRequest.cs" />
     <Compile Include="DTOs\WizardLogOnJsonResponse.cs" />
     <Compile Include="DTOs\WizardRegisterJsonRequest.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Services\ITeeyootFacebookOAuthService.cs" />
+    <Compile Include="Services\ITeeyootGoogleOAuthService.cs" />
     <Compile Include="Services\ITeeyootMembershipService.cs" />
     <Compile Include="Services\ITeeyootSocialLogOnService.cs" />
     <Compile Include="Services\TeeyootFacebookOAuthService.cs" />
