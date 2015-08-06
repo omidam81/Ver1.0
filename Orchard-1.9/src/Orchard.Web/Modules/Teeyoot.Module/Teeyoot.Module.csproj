@@ -727,6 +727,7 @@
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />
+    <Compile Include="ViewModels\AdminOrderViewModel.cs" />
     <Compile Include="ViewModels\CampaignIndexViewModel.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
