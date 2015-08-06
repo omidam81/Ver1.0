@@ -2727,7 +2727,7 @@ body {
 @media all and (max-width: 840px) {
 
     .intro-video-container {
-        height: 600px !important;
+        height: 610px !important;
     }
 
     .intro-video-holder {
@@ -2738,7 +2738,7 @@ body {
 @media all and (max-width: 800px) {
 
     .intro-video-container {
-        height: 600px !important;
+        height: 610px !important;
     }
 
     .intro-video-holder {
@@ -2747,10 +2747,6 @@ body {
 }
 
 @media all and (max-width: 770px) {
-
-    .intro-video-container {
-        height: 580px !important;
-    }
 
     .intro-video-holder {
         height: 380px;
@@ -2763,7 +2759,7 @@ body {
 
 @media all and (max-width: 750px) {
     .intro-video-container {
-        height: 590px !important;
+        height: 600px !important;
     }
 
     .intro-video-holder {
@@ -2794,7 +2790,7 @@ body {
 
 @media all and (max-width: 690px) {
     .intro-video-container {
-        height: 580px !important;
+        height: 590px !important;
     }
 
     .intro-video-holder {
@@ -2822,7 +2818,7 @@ body {
 
 @media all and (max-width: 600px) {
     .intro-video-container {
-        height: 540px !important;
+        height: 550px !important;
     }
 
     .intro-video-holder {
@@ -2917,7 +2913,7 @@ body {
 
 @media all and (max-width: 320px) {
     .intro-video-container {
-        height: 630px !important;
+        height: 600px !important;
     }
 }
 
@@ -4203,6 +4199,7 @@ input[type="radio" i], input[type="checkbox" i] {
     border-radius: 50px;
     padding-top: 5px;
     margin: 0 auto;
+    line-height: 40px;
 }
 
 .easy-steps-text {
@@ -4271,6 +4268,7 @@ input[type="radio" i], input[type="checkbox" i] {
         width: 100%;
         text-align: left;
         font-size: 15px;
+        line-height: 1.5;
     }
 
     .review .reviews-text {

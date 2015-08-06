@@ -66,7 +66,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         Sold = c.ProductCountSold,
                         IsFeatured = c.IsFeatured,
                         Title = c.Title,
-                        IsActive  = c.IsActive
+                        IsActive  = c.IsActive,
+                        Alias = c.Alias
                     })
                     .Select(c => new FeaturedCampaignViewModel
                     {

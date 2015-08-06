@@ -41,7 +41,7 @@ namespace Teeyoot.FeaturedCampaigns.Services
         {
             var idsCampaignProductFromOneDay = _linkOrderCampaignProductRepository.Table.Where(c => ids.Contains(c.OrderRecord.Id)).Select(c => c.CampaignProductRecord.Id);
             var campaignIdsFromOneDay = _campaignProductRepository.Table.Where(c => idsCampaignProductFromOneDay.Contains(c.Id)).Select(c => c.CampaignRecord_Id);
-            List<CampaignRecord> campaigns = GetAllCampaigns().Where(c => !c.IsPrivate && campaignIdsFromOneDay.Contains(c.Id)).ToList();
+            List<CampaignRecord> campaigns = GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved && campaignIdsFromOneDay.Contains(c.Id)).ToList();
             Dictionary<CampaignRecord, int> campSelect = new Dictionary<CampaignRecord, int>();
             foreach (var camp in campaigns)
             {

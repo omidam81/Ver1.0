@@ -14,10 +14,12 @@ namespace Teeyoot.Module.ViewModels
         }
 
         public IList<AdminOrder> Orders { get; set; }
+        public dynamic[] DynamicOrders { get; set; }
+        public dynamic Pager { get; set; }
     }
 
     public class AdminOrder {
-        public int PublicId { get; set; }
+        public string PublicId { get; set; }
         public  IList<LinkOrderCampaignProductRecord> Products { get; set; }
         public string Status { get; set; }
         
@@ -27,7 +29,6 @@ namespace Teeyoot.Module.ViewModels
         public string LastName { get; set; }
         public string StreetAdress { get; set; }
         public string City { get; set; }
-        public string Province { get; set; }
         public string Country { get; set; }
         public string PhoneNumber { get; set; }
 
