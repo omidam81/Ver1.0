@@ -43,7 +43,7 @@
         <select id="groups" name="SelectedProductGroups" multiple="multiple">
             @foreach (var productGroup in Model.ProductGroups)
             {
-                <option value="@productGroup.Id" @if (productGroup.Selected) { <text> selected="selected" </text>          }>
+                <option value="@productGroup.Id" @if (productGroup.Selected) { <text> selected="selected" </text>           }>
                     @productGroup.Name
                 </option>
             }
@@ -57,7 +57,7 @@
         <select id="colours" multiple="multiple">
             @foreach (var productColour in Model.ProductColours)
             {
-                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected) { <text> selected="selected" disabled="disabled" </text>          }
+                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected) { <text> selected="selected" disabled="disabled" </text>           }
                         data-name="@productColour.Name" data-colour="@productColour.HexValue">
                     @productColour.Name
                 </option>
@@ -184,16 +184,16 @@
                         <td>
                             <input type="hidden" class="size-id" value="@productSize.Id" />
                             <input type="hidden" class="size-code-id" value="@productSize.SizeCodeId" />
-                            <input class="select-product-size" type="checkbox" @if (productSize.Selected) { <text> checked="checked" </text>          } />
+                            <input class="select-product-size" type="checkbox" @if (productSize.Selected) { <text> checked="checked" </text>           } />
                         </td>
                         <td>
                             @if (productSize.Selected)
                             {
-                                <input id="product-sizes-cost-@productSize.Id" type="text" value="@productSize.CostSize" class="row-base-cost" />
+                                <input id="product-sizes-cost-@productSize.Id" type="text" value="@productSize.CostSize" class="row-base-cost product-sizes-cost" />
                             }
                             else
                             {
-                                <input id="product-sizes-cost-@productSize.Id" type="text" value="0" class="row-base-cost" style="display: none" />
+                                <input id="product-sizes-cost-@productSize.Id" type="text" value="0" class="row-base-cost product-sizes-cost" style="display: none" />
                             }
                         </td>
                     </tr>
@@ -203,13 +203,13 @@
         <select id="selected-product-sizes" name="SelectedProductSizes" multiple="multiple" style="display: none;">
             @foreach (var productSize in Model.ProductSizes)
             {
-                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>          }></option>
+                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>           }></option>
             }
         </select>
         <select id="selected-product-sizes-cost" name="SelectedProductSizesCost" multiple="multiple" style="display: none;">
             @foreach (var productSize in Model.ProductSizes)
             {
-                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>               }></option>
+                <option value="@productSize.CostSize" id="product-sizes-cost-@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>                  }></option>
             }
         </select>
     </fieldset>
@@ -370,38 +370,46 @@
                     }
                     $('#product-sizes-cost-' + sizeId).css('display', 'block');
                     $('#selected-product-sizes option[value=' + sizeId + ']').prop('selected', true);
-                    $('#selected-product-sizes-cost option[value=' + sizeId + ']').prop('selected', true);
+                    $('#selected-product-sizes-cost option[id=product-sizes-cost-' + sizeId + ']').prop('selected', true);
                 } else {
                     $('#selected-product-sizes option[value=' + sizeId + ']').prop('selected', false);
                     $('#product-size-cost-' + sizeId).css('display', 'none');
+                    $('#selected-product-sizes-cost option[id=product-sizes-cost-' + sizeId + ']').prop('selected', false);
                 }
             });
 
-            $('#cancel').click(function () {
-                if (confirm('All unsaved changes will be lost. Are you sure?')) {
-                    return true;
-                }
-                return false;
+            productSizesTable.on('change', '.product-sizes-cost', function () {
+                var costId = this.id;
+
+                var cost = $('#selected-product-sizes-cost option[id=' + costId + ']')[0];
+                cost.value = this.value;
             });
 
-            $('#product_form').submit(function () {
-                var name = $('#name').val();
-
-                if ($.trim(name) === '') {
-                    alert('Please enter Product Name.');
-                    return false;
-                }
-
-                var selectedHeadline = $('#headlines option:selected').val();
-
-                if (!selectedHeadline) {
-                    alert('Please select Product Headline.');
-                    return false;
-                }
-
-                fixProductColoursIndexing();
+        $('#cancel').click(function () {
+            if (confirm('All unsaved changes will be lost. Are you sure?')) {
                 return true;
-            });
+            }
+            return false;
+        });
+
+        $('#product_form').submit(function () {
+            var name = $('#name').val();
+
+            if ($.trim(name) === '') {
+                alert('Please enter Product Name.');
+                return false;
+            }
+
+            var selectedHeadline = $('#headlines option:selected').val();
+
+            if (!selectedHeadline) {
+                alert('Please select Product Headline.');
+                return false;
+            }
+
+            fixProductColoursIndexing();
+            return true;
+        });
         });
     </script>
 }
