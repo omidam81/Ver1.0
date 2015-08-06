@@ -427,10 +427,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             viewModel.ProductSizes.ToList().ForEach(s =>
             {
-                if (selectedProductSizeIds.Exists(c => c.Id == s.Id))
+                if (selectedProductSizeIds.Exists(c => c.ProductSizeRecord.Id == s.Id))
                 {
                     s.Selected = true;
-                    s.CostSize = selectedProductSizeIds.Where(c => c.Id == s.Id).First().SizeCost;
+                    s.CostSize = selectedProductSizeIds.Where(c => c.ProductSizeRecord.Id == s.Id).First().SizeCost;
                 }
             });
 
