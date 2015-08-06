@@ -3,12 +3,13 @@
 
     Style.Include("bootstrap.min.css");
     Style.Include("jqueryui.css");
-    Style.Include("designer.css");
+    Style.Include("designerTeeyoot.css");
     Style.Include("bootstrap-theme.min.css");
     Style.Include("Wizard.css");
     Style.Include("custom.css");
     Style.Include("bootstrap-responsive.css");
     Style.Include("bootstrap-wysihtml5.css");
+    Style.Include("track.css");
 
 
     Script.Require("jQueryUI");
@@ -37,7 +38,7 @@
     Script.Include("jquery.hotkeys.js");
 
 
-
+    Script.Include("history.js");
     Script.Include("wizard.js");
     Script.Include("bootstrap-wysihtml5.js");
 
@@ -58,7 +59,7 @@
     </script>
     <script type="text/javascript">
 
-        var items = function (request, response) {
+        var items = function(request, response) {
             var result = new Array();
             $.ajax({
                 async: false,
@@ -66,8 +67,8 @@
                 type: "GET",
                 url: "@(Url.Action("GetDetailTags", "Wizard"))",
                 data: { "filter": document.getElementById("inputTags").value },
-                success: function (data) {
-                    for (var i = 0; i < data.length ; i++) {
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
                         result[i] = data[i];
                     }
                 },
@@ -80,7 +81,7 @@
         $("#inputTags").autocomplete({
             minLength: 0,
             source: items,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 var data = document.getElementById("inputTags").value;
                 var count = data.lastIndexOf(' ');
                 var str = data.substring(0, parseInt(count) + 1);
@@ -90,29 +91,26 @@
         })
 
 
-
-
         $('.textarea').wysihtml5();
-        $(".flip-buttons").click(function () {
+        $(".flip-buttons").click(function() {
             var $elem = $("#view-front");
 
             if (($elem[0].attributes.style.value.indexOf("rotateY(0deg)")) > -1) {
-                setTimeout(function () {
+                setTimeout(function() {
                     $(".flip-button-front").css("background-color", "#6c7478");
                     $(".flip-button-front").css("color", "white");
                     $(".flip-button-back").css("background-color", "white");
                     $(".flip-button-back").css("color", "#6c7478");
                 }, 180);
-            } else
-                if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
-                    setTimeout(function () {
-                        $(".flip-button-back").css("background-color", "#6c7478");
-                        $(".flip-button-back").css("color", "white");
-                        $(".flip-button-front").css("background-color", "white");
-                        $(".flip-button-front").css("color", "#6c7478");
-                    }, 180);
+            } else if (($elem[0].attributes.style.value.indexOf("rotateY(180deg)")) > -1) {
+                setTimeout(function() {
+                    $(".flip-button-back").css("background-color", "#6c7478");
+                    $(".flip-button-back").css("color", "white");
+                    $(".flip-button-front").css("background-color", "white");
+                    $(".flip-button-front").css("color", "#6c7478");
+                }, 180);
 
-                }
+            }
         });
 
         function sendData() {
@@ -133,33 +131,52 @@
                 type: "POST",
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
-                    "ProductCountGoal": countTees, "profit": profit, "itemOptions": itemOptions, "product": product,
-                    "Design": JSON.stringify(app.state.design), 'IsForCharity': isForCharity,
-                    "CampaignTitle": campaignTitle, "Description": description, "CampaignLength": campaignLength, "Alias": alias,
-                    'BackSideByDefault': backSideByDefault, "Tags": tags, "Products": app.state.products
+                    "ProductCountGoal": countTees,
+                    "profit": profit,
+                    "itemOptions": itemOptions,
+                    "product": product,
+                    "Design": JSON.stringify(app.state.design),
+                    'IsForCharity': isForCharity,
+                    "CampaignTitle": campaignTitle,
+                    "Description": description,
+                    "CampaignLength": campaignLength,
+                    "Alias": alias,
+                    'BackSideByDefault': backSideByDefault,
+                    "Tags": tags,
+                    "Products": app.state.products
                 }),
-                success: function (data, status, resp) {
+                success: function(data, status, resp) {
                     if (resp.status === 200) {
                         window.location.href = '/' + alias;
                     }
                 },
-                error: function (data, status, resp) {
+                error: function(data, status, resp) {
+                    if (data.status === 403) {
+                        $('#overlay').fadeIn(400, function() {
+                            $('.auth-window').hide();
+                            $('#login_selection').show();
+                            $('#modal_auth')
+                                .css('display', 'block')
+                                .animate({ opacity: 1, top: '50%' }, 200);
+                        });
+                        return;
+                    }
                     alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                 }
             });
-
-        }
+        };
 
         function addAntiForgeryToken(data) {
-            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            var antiForgeryTokenValue = $('#anti_forgery_token').val();
+            data.__RequestVerificationToken = antiForgeryTokenValue;
             return data;
         };
 
         var isFront = true
-        $(function ($) {
+        $(function($) {
             $("#card").flip({
                 trigger: 'manual'
-            }).click(function () {
+            }).click(function() {
                 isFront = !isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
@@ -167,16 +184,15 @@
         });
 
         var isFront3 = true
-        $(function ($) {
+        $(function($) {
             $("#card3").flip({
                 trigger: 'manual'
-            }).click(function () {
+            }).click(function() {
                 isFront3 = !isFront3;
                 console.log(isFront3);
                 $("#card3").flip(!isFront3);
             });
         });
-
 
 
         window.additionalScreenCosts = @Model.AdditionalScreenCosts;
@@ -189,14 +205,116 @@
         window.labourTimePerSidePrintedPerPrint = @Model.LabourTimePerSidePrintedPerPrint;
         window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
         window.printsPerLitre = @Model.PrintsPerLitre;
-        window.count = 50; // Первоначальное количество элементов, должно будет изменяться
+        window.count = 30; // Первоначальное количество элементов, должно будет изменяться
         window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
-        document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
+        document.getElementById('count_preview').innerHTML = "Base price &#64; " + window.count + " shirts";
         window.sellingPrice = parseFloat("0"); // Цена за футболку, которую будет видеть покупатель на компании. Отображаеться в Set a goal
-        window.frontColor = parseInt("0");  // Переменная для отображения цветов спереди на футболке
-        window.backColor = parseInt("0");   // Переменная для отображения цветов из зади на футюолке
+        window.frontColor = parseInt("0"); // Переменная для отображения цветов спереди на футболке
+        window.backColor = parseInt("0"); // Переменная для отображения цветов из зади на футюолке
         calculatePrice(window.frontColor, window.backColor);
 
+    </script>
+
+    <script>
+        function refreshToken() {
+            $.ajax({
+                async: false,
+                type: 'GET',
+                url: '/RefreshToken',
+                success: function(data) {
+                    $('#anti_forgery_token').val(data);
+                }
+            });
+        };
+
+        $(document).ready(function() {
+            $('#overlay, .close').click(function() {
+                $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                    function() {
+                        $(this).css('display', 'none');
+                        $('#overlay').fadeOut(400);
+                    }
+                );
+            });
+
+            $('.login-with-teeyoot').click(function() {
+                $('.auth-window').hide();
+                $('#login_teeyoot').show();
+            });
+
+            $('.create-new-account').click(function() {
+                $('.auth-window').hide();
+                $('#create_account').show();
+            });
+
+            $('#login_teeyoot .login').click(function() {
+                var email = $('#login_teeyoot .email').val();
+                var password = $('#login_teeyoot .password').val();
+
+                var wizardLogOnJsonRequest = {
+                    Email: email,
+                    Password: password
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/WizardLogOn',
+                    data: addAntiForgeryToken(wizardLogOnJsonRequest),
+                    success: function(data) {
+                        if (!data.IssueOccurred) {
+                            refreshToken();
+                            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                                function() {
+                                    $(this).css('display', 'none');
+                                    $('#overlay').fadeOut(400);
+
+                                    sendData();
+                                }
+                            );
+                            return;
+                        }
+
+                        $('#login_validation_summary').text(data.IssueSummary);
+                        $('#login_validation_summary').show();
+                    }
+                });
+            });
+
+            $('#create_account .create-account').click(function() {
+                var email = $('#create_account .email').val();
+                var password = $('#create_account .password').val();
+                var confirmPassword = $('#create_account .confirm-password').val();
+
+                var wizardRegisterJsonRequest = {
+                    Email: email,
+                    Password: password,
+                    ConfirmPassword: confirmPassword
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/WizardRegister',
+                    data: addAntiForgeryToken(wizardRegisterJsonRequest),
+                    success: function(data) {
+                        if (!data.IssueOccurred) {
+                            refreshToken();
+                            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                                function() {
+                                    $(this).css('display', 'none');
+                                    $('#overlay').fadeOut(400);
+
+                                    sendData();
+                                }
+                            );
+                            return;
+                        }
+
+                        $('#create_account_validation_summary').text(data.IssueSummary);
+                        $('#create_account_validation_summary').show();
+                    }
+                });
+            });
+        });
     </script>
 }
 
@@ -228,7 +346,7 @@
             </span>
             <br>
             <strong>
-                Set a Goal
+                @("Target")
             </strong>
             <div class='flow-step-before'>
                 <div class='dot six'></div>
@@ -292,15 +410,15 @@
                                                     <div class="design__area">
                                                         <div>
                                                             <ul class="tabs clearfix nav nav-tabs">
-                                                                <li class="tab active" data-name="Text"><a style="text-decoration: underline;">Text</a></li>
+                                                                <li class="tab active" data-name="Text"><a >@("Text")</a></li>
                                                             </ul>
                                                             <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
                                                                 <div id="text-string" class="control-group">
-                                                                    <label>Enter text below</label>
-                                                                    <textarea id="enter-text" class="form__textfield" placeholder="Add your text here"></textarea>
+                                                                    <label>@T("Enter custom text below")</label>
+                                                                    <textarea id="enter-text" class="form__textfield" placeholder="Add custom text here"></textarea>
                                                                 </div>
                                                                 <div class="edit_tool font">
-                                                                    <label class="no-bottom">Choose a font</label>
+                                                                    <label class="no-bottom">@("Select font")</label>
                                                                     <div id="font-select" class="fake-input svg-selector designer-dropdown control-group font-selection">
 
                                                                     </div>
@@ -321,16 +439,16 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="edit_tool">
-                                                                    <label style="float: left;">Add an outline</label>
+                                                                    <label style="float: left;">@("Select outline")</label>
 
                                                                     <div class="clearfix control-group outline-selection">
                                                                         <div>
                                                                             <select id="outline-select"
                                                                                     class="form-control outline-selector designer-select form__select_menu">
                                                                                 <option value="0">No outline</option>
-                                                                                <option value="0.33">Thin outline</option>
-                                                                                <option value="0.66">Medium outline</option>
-                                                                                <option value="1">Thick outline</option>
+                                                                                <option value="0.33">Thin</option>
+                                                                                <option value="0.66">Medium</option>
+                                                                                <option value="1">Thick</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -380,12 +498,12 @@
                                                                 </div>
                                                             </div>
                                                             <ul class="tabs clearfix nav nav-tabs">
-                                                                <li class="tab active" data-name="Art"><a style="text-decoration:underline; height: 51px;">Art</a></li>
+                                                                <li class="tab active" data-name="Art"><a style=" height: 51px;">@("Artwork")</a></li>
                                                             </ul>
                                                             <div id="tab2-content" style="margin-top: -6%;" class="tab-content teespring-well designer-well tab-Art">
                                                                 <div id="designer-art-choseType">
                                                                     <div class="search_container">
-                                                                        <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">Browse Artwork</button>
+                                                                        <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">@T("Use our images")</button>
                                                                         <div class="design-art-search containertip">
                                                                             <form action="." method="get" role="form" id="artwork-search-form">
                                                                                 <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
@@ -397,7 +515,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="hr"><span>OR</span></div>
-                                                                    <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">Upload your own</button>
+                                                                    <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">@T("Upload your images")</button>
                                                                 </div>
                                                                 <div id="dropbox" class="control-group" style="display: none">
                                                                     <div class="upload">
@@ -436,9 +554,9 @@
                                                                                 <div>
                                                                                     <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
                                                                                         <option value="0">No outline</option>
-                                                                                        <option value="0.33">Thin outline</option>
-                                                                                        <option value="0.66">Medium outline</option>
-                                                                                        <option value="1">Thick outline</option>
+                                                                                        <option value="0.33">Thin</option>
+                                                                                        <option value="0.66">Medium</option>
+                                                                                        <option value="1">Thick</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -526,7 +644,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="printable-area-toolbar">
-                                                                    <span>Printable Area</span>
+                                                                    <span>Print Area</span>
                                                                     <div class="design-area-zoom printable-area-zoom">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
@@ -594,7 +712,7 @@
                                                 <div id="choices" class="aside">
                                                     <div>
                                                         <div id="product-selector" class="teespring-well designer-well ">
-                                                            <label>Style &amp; design</label>
+                                                            <label>@T("Style")</label>
                                                             <select id="item-options-dropdown" class="form-control form__select_menu"></select>
                                                             <ul class="options item-options active nav" id="products-list">
                                                                 <!-- list of tees -->
@@ -1433,3 +1551,51 @@
         <span style="clear:both;display: block;"></span>
     </div>
 </div>
+
+<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+
+<div class="modal-dialog modal fade" id="modal_auth">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="login_selection" class="auth-window">
+                <h2>@T("How would you like to login?")</h2>
+                <h4>You can <a href="javascript:;" class="login-with-teeyoot">login with Teeyoot</a> or use any of the sites below:</h4>
+                <a href="javascript:;">@T("login with facebook")</a>
+                <a href="javascript:;">@T("login with google")</a>
+                @T("or") <a href="javascript:;" class="create-new-account">@T("create a new account with Teeyoot")</a>
+            </div>
+            <div id="login_teeyoot" class="auth-window">
+                <h2>@T("Login with Teeyoot")</h2>
+                <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
+                <fieldset>
+                    <input type="text" class="email" placeholder="@T("Email")" />
+                    <br />
+                    <input type="password" class="password" placeholder="@T("Password")" />
+                    <br />
+                    <input type="button" class="login" value="@T("Login to your account >>")" />
+                </fieldset>
+                <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
+            </div>
+            <div id="create_account" class="auth-window">
+                <h2>@T("Create an account with Teeyoot")</h2>
+                <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
+                <fieldset>
+                    <input type="text" class="email" placeholder="@T("Email")" />
+                    <br />
+                    <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")" />
+                    <br />
+                    <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
+                    <br />
+                    <input type="button" class="create-account" value="@T("Create your account >>")" />
+                </fieldset>
+                <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
+<div id="overlay"></div>

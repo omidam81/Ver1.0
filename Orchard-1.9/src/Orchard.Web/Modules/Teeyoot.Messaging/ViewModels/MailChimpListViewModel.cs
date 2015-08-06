@@ -12,15 +12,21 @@ namespace Teeyoot.Messaging.ViewModels
         
         public virtual string ApiKey { get; set; }
 
-        public virtual string MailChimpListId { get; set; }
+        public virtual string SellerTemplate { get; set; }
 
-        public virtual string WelcomeCampaignId { get; set; }
+        public virtual string WelcomeTemplate { get; set; }
 
-        public virtual int WelcomeTemplateId { get; set; }
+        public virtual string RelaunchTemplate { get; set; }
 
-        public virtual string AllBuyersCampaignId { get; set; }
+        public virtual string ChangeOrderStatusTemplate { get; set; }
 
-        public virtual int AllBuyersTemplateId { get; set; }
+        public virtual string AllBuyersDeadlineTemplate { get; set; }
+
+        public virtual string WithdrawTemplate { get; set; }
+
+        public virtual string ConfirmOrderTemplate { get; set; }
+
+        public virtual string CampaignPromoTemplate { get; set; }
 
         public virtual string Culture { get; set; }
 

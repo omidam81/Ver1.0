@@ -108,6 +108,60 @@ namespace Teeyoot.Account
                         },
                         new MvcRouteHandler()
                         )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "WizardLogOn",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "WizardLogOn"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "WizardRegister",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "WizardRegister"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "RefreshToken",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"},
+                            {"controller", "Account"},
+                            {"action", "RefreshToken"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Account"}
+                        },
+                        new MvcRouteHandler()
+                        )
                 }
             };
         }

@@ -10,6 +10,7 @@ using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +22,9 @@ using Mandrill;
 using Mandrill.Model;
 
 
-using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
+using Teeyoot.FAQ.Services;
+using System.IO;
+namespace Teeyoot.Module.Controllers
 {
     [Admin]
     public class AdminMessageController : Controller, IUpdateModel
@@ -48,15 +51,19 @@ using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
                     culture = _languageService.GetLanguages().FirstOrDefault(l => l.Code == DEFAULT_LANGUAGE_CODE).Code;
             }
             var availableLanguages = _languageService.GetLanguages().ToList();
+            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var settings = _settingsService.GetSettingByCulture(culture).List().Select(s => new MailChimpListViewModel
             {
                 Id = s.Id,
                 ApiKey = s.ApiKey,
-                MailChimpListId = s.MailChimpListId,
-                WelcomeCampaignId = s.WelcomeCampaignId,
-                WelcomeTemplateId = s.WelcomeTemplateId,
-                AllBuyersCampaignId = s.AllBuyersCampaignId,
-                AllBuyersTemplateId = s.AllBuyersTemplateId,
+                SellerTemplate = System.IO.File.Exists(pathToTemplates + "seller-template.html") ? "seller-template.html" : "No file!",
+                WelcomeTemplate = System.IO.File.Exists(pathToTemplates + "welcome-template.html") ? "welcome-template.html" : "No file!",
+                RelaunchTemplate = System.IO.File.Exists(pathToTemplates + "relaunch-template.html") ? "relaunch-template.html" : "No file!",
+                ChangeOrderStatusTemplate = System.IO.File.Exists(pathToTemplates + "change-order-status-template.html") ? "change-order-status-template.html" : "No file!",
+                AllBuyersDeadlineTemplate = System.IO.File.Exists(pathToTemplates + "deadline-template.html") ? "deadline-template.html" : "No file!",
+                WithdrawTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-template.html") ? "withdraw-template.html" : "No file!",
+                ConfirmOrderTemplate = System.IO.File.Exists(pathToTemplates + "confirm-order-template.html") ? "confirm-order-template.html" : "No file!",
+                CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promote-template.html") ? "campaign-promote-template.html" : "No file!",
                 Culture = s.Culture,
                 AvailableLanguages = availableLanguages,
 
@@ -149,10 +156,10 @@ using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
             return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
         }
 
-        public ActionResult Delete(int id, string returnUrl)
+        public ActionResult Delete(string templateName, string returnUrl)
         {
-            _settingsService.DeleteMailChimpSettingsPart(id);
-            Services.Notifier.Information(T("The setting has been deleted."));
+            System.IO.File.Delete(Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/") + templateName + ".html");
+            Services.Notifier.Information(T("File has been deleted."));
             return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
         }
 
@@ -165,5 +172,26 @@ using Teeyoot.FAQ.Services;namespace Teeyoot.Module.Controllers
         {
             ModelState.AddModelError(key, errorMessage.ToString());
         }
+
+        [HttpPost]
+        public RedirectToRouteResult UploadTemplate(HttpPostedFileBase file, string templateName)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                string[] allowed = { ".html" };
+                var extension = System.IO.Path.GetExtension(file.FileName);
+                if (allowed.Contains(extension))
+                {
+                    string fileExt = Path.GetExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/"), templateName + fileExt);
+                    file.SaveAs(path);
+                    Services.Notifier.Information(T("File has been added!"));
+                    return RedirectToAction("Index");
+                }
+            }
+            Services.Notifier.Error(T("Wrong file extention!"));
+            return RedirectToAction("Index");
+        }
+        
     }
 }

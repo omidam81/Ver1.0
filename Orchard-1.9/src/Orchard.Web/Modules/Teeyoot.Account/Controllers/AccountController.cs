@@ -120,6 +120,7 @@ namespace Teeyoot.Account.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult WizardRegister(WizardRegisterJsonRequest request)
         {
             var validRes = ValidateRegistration(request.Email, request.Password, request.ConfirmPassword);
@@ -148,7 +149,7 @@ namespace Teeyoot.Account.Controllers
 
             _authenticationService.SignIn(user, false);
 
-            return Json(new WizardRegisterJsonResponse {IssueSummary = "Success"});
+            return Json(new WizardRegisterJsonResponse());
         }
 
         [HttpPost]
@@ -169,6 +170,7 @@ namespace Teeyoot.Account.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult WizardLogOn(WizardLogOnJsonRequest request)
         {
             var validRes = ValidateLogOn(request.Email, request.Password);
@@ -185,7 +187,7 @@ namespace Teeyoot.Account.Controllers
 
             _authenticationService.SignIn(validRes.User, request.RememberMe);
 
-            return Json(new WizardRegisterJsonResponse {IssueSummary = "Success"});
+            return Json(new WizardLogOnJsonResponse());
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
@@ -287,6 +289,11 @@ namespace Teeyoot.Account.Controllers
 
             TempData[PasswordHasBeenUpdatedKey] = true;
             return this.RedirectLocal("~/Login");
+        }
+
+        public ActionResult RefreshToken()
+        {
+            return PartialView("AntiForgeryTokenValue");
         }
 
         private ValidateRegistrationResult ValidateRegistration(string email, string password, string confirmPassword)

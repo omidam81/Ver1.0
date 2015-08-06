@@ -23,7 +23,9 @@
     width:5%;
 }
 
-
+.delete-button{
+    margin-left:20px !important;
+}
 
 #modal_form {
 	width: 600px; 

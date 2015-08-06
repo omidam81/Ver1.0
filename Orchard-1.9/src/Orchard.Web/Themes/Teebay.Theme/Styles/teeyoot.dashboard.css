@@ -3,6 +3,7 @@
     height: 100%;
 }
 
+
     .dashboard-layout .tb-layout-main-container {
         max-width: none;
         padding: 0;
@@ -32,6 +33,11 @@
         padding: 30px;
         vertical-align: top;
     }
+
+
+.tb-layout-footer.group.dashboard {
+    margin: 40px 0 0 0;
+}
 
 .widget-SellerDashboardMenu ul {
 }
@@ -132,6 +138,9 @@
 .menu-closer.shown {
     display: inline !important;
 }
+
+
+
 @media all and (max-width: 980px) {
     .dashboard-layout .tb-layout-main-container,
     .dashboard-layout .tb-aside-first,

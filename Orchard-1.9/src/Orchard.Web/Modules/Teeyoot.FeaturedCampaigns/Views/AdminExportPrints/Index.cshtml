@@ -59,11 +59,12 @@
                                 <input type="checkbox">
                             }
                         </td>*@
-                        <td>@c.Title</td>
+                        <td><a target="_blank" href="/@c.Alias">@c.Title</a></td>
                         <td>@c.Sold / @c.Goal</td>
                         <td>@c.Status.Name</td>
                         <td>
-                            <a href="@Url.Action("ExportPrints", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
+                          
+                            <a href="@Url.Action("ExportPrints", new { id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
 
                             @if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
                             {

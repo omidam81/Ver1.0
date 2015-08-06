@@ -12,5 +12,6 @@
         public int SizeCodeId { get; set; }
         public string SizeCodeName { get; set; }
         public bool Selected { get; set; }
+        public float CostSize { get; set; }
     }
 }

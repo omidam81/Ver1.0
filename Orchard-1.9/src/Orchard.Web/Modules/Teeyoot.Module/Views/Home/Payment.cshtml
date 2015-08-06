@@ -22,6 +22,10 @@
 
                                 @foreach (var item in Model.Order.Products)
                                 {
+                                    int index = Model.Order.Products.IndexOf(item);
+                                    int idSize = item.OrderRecord.Products[index].ProductSizeRecord.Id;
+                                    float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
+                                    float price = (float)item.CampaignProductRecord.Price + costSize;
 
                                     <tr>
                                         <td>
@@ -40,10 +44,9 @@
                                             </ul>
                                         </td>
                                         <td class="order_summary__item_price">
-                                            @item.CampaignProductRecord.CurrencyRecord.Code @(item.CampaignProductRecord.Price * item.Count)
+                                            @item.CampaignProductRecord.CurrencyRecord.Code @(price * item.Count)
                                         </td>
                                     </tr>
-
                                 }
 
                             </tbody>
@@ -182,11 +185,11 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="accordion__item" style="margin-top:10px">
+                                                <div class="accordion__item" style="margin-top:30px">
 
                                                     <label class="accordion__label" for="paypal">
                                                         <p>
-                                                            <div id="paypal-container" style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"></div>
+                                                            <div id="paypal-container" @*style="margin-left:-30px; margin-top: -20px; margin-bottom: -20px;"*@></div>
                                                         </p>
                                                     </label>
                                                 </div>

@@ -1,36 +1,9 @@
 ﻿@model Teeyoot.Messaging.Models.MailChimpSettingsPart
 
-<h2>@Model.TypeDefinition.DisplayName</h2>
-
 <fieldset>
     @Html.LabelFor(m => m.ApiKey, T("Api Key"))
     @Html.TextBoxFor(m => m.ApiKey, new { @class = "text large" })
     @Html.ValidationMessageFor(m => m.ApiKey)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.MailChimpListId, T("List ID"))
-    @Html.TextBoxFor(m => m.MailChimpListId, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.MailChimpListId)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.WelcomeCampaignId, T("Welcome Campaign Id"))
-    @Html.TextBoxFor(m => m.WelcomeCampaignId, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.WelcomeCampaignId)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.WelcomeTemplateId, T("Welcome Template Id"))
-    @Html.TextBoxFor(m => m.WelcomeTemplateId, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.WelcomeTemplateId)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.AllBuyersCampaignId, T("AllBuyers Campaign Id"))
-    @Html.TextBoxFor(m => m.AllBuyersCampaignId, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.AllBuyersCampaignId)
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.AllBuyersTemplateId, T("AllBuyers Template Id"))
-    @Html.TextBoxFor(m => m.AllBuyersTemplateId, new { @class = "text large" })
-    @Html.ValidationMessageFor(m => m.AllBuyersTemplateId)
 </fieldset>
 <fieldset>
     @Html.LabelFor(m => m.Culture, T("Language"))

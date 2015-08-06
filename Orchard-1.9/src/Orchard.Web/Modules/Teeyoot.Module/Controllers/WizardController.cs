@@ -25,6 +25,7 @@ namespace Teeyoot.Module.Controllers
     [Themed]
     public class WizardController : Controller
     {
+        private readonly IOrchardServices _orchardServices;
         private readonly ICampaignService _campaignService;
         private readonly IimageHelper _imageHelper;
         private readonly IFontService _fontService;
@@ -32,8 +33,9 @@ namespace Teeyoot.Module.Controllers
         private readonly ISwatchService _swatchService;
         private readonly ITShirtCostService _costService;
 
-        public WizardController(ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService)
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService)
         {
+            _orchardServices = orchardServices;
             _campaignService = campaignService;
             _imageHelper = imageHelper;
             _fontService = fontService;
@@ -116,6 +118,11 @@ namespace Teeyoot.Module.Controllers
             if (string.IsNullOrWhiteSpace(data.Design))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No design found for your campaign");
+            }
+
+            if (_orchardServices.WorkContext.CurrentUser == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
             try

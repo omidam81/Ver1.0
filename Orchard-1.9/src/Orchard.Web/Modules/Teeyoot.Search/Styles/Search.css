@@ -196,6 +196,13 @@
     }
 }
 
+@media all and (max-width: 1280px) {
+    .tee-previewSearch {
+        margin-left: 2% !important;
+        margin-right: 1% !important;
+    }
+}
+
 @media all and (max-width: 1000px) {
     .tb-return-result {
         padding: 0;
@@ -207,6 +214,8 @@
     .tee-previewSearch:nth-child(4) {
         width: 46% !important;
         float: left !important;
+        margin-left: 2% !important;
+        margin-right: 2% !important;
     }
 
         .tee-previewSearch img,
