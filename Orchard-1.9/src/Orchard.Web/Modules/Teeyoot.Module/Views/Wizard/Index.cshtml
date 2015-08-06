@@ -38,7 +38,7 @@
     Script.Include("jquery.hotkeys.js");
 
 
-
+    Script.Include("history.js");
     Script.Include("wizard.js");
     Script.Include("bootstrap-wysihtml5.js");
 
@@ -51,11 +51,11 @@
     <script type="text/javascript">
         var maxDesignColors = 11;
 
-        //history.pushState(null, null, 'GetStarted');
-        //window.addEventListener('popstate', function (event) {
-        //    history.pushState(null, null, 'GetStarted');
-        //    NextPage();
-        //});
+        history.pushState(null, null, 'GetStarted');
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, 'GetStarted');
+            NextPage();
+        });
     </script>
     <script type="text/javascript">
 
