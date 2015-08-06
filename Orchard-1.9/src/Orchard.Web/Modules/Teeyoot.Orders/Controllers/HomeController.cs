@@ -57,12 +57,13 @@ namespace Teeyoot.Orders.Controllers
                     Products = item.Products,
                     Status = item.OrderStatusRecord.Name,
                     EmailBuyer = item.Email,
-                    FirstName = item.FirstName,
-                    LastName = item.LastName,
-                    StreetAdress = item.StreetAddress,
-                    City = item.City,
-                    Country = item.Country,
-                    PhoneNumber = item.PhoneNumber,
+                    Id = item.Id,
+                    //FirstName = item.FirstName,
+                    //LastName = item.LastName,
+                    //StreetAdress = item.StreetAddress,
+                    //City = item.City,
+                    //Country = item.Country,
+                    //PhoneNumber = item.PhoneNumber,
                     UserNameSeller = seller.UserName
                    });
             }
@@ -74,22 +75,39 @@ namespace Teeyoot.Orders.Controllers
                     Products: e.Products,
                     Status: e.Status,
                     EmailBuyer: e.EmailBuyer,
-                    FirstName: e.FirstName,
-                    LastName: e.LastName,
-                    StreetAdress: e.StreetAdress,
-                    City: e.City,
-                    Country: e.Country,
-                    PhoneNumber: e.PhoneNumber,
+                    Id : e.Id,
                     UserNameSeller: e.UserNameSeller
                     );
             });
-
-
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
             var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
             var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
 
             return View("Index", new AdminOrderViewModel { DynamicOrders = entries.ToArray(), Pager = pagerShape });
         }
+
+        public JsonResult GetOrderInfirmation(string publicId)
+        {
+            var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
+            var orders = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name, Count = o.Count, Price = o.CampaignProductRecord.Price, Size = o.ProductSizeRecord.SizeCodeRecord.Name });
+            return Json(orders , JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetBuyerInfirmation(int orderId)
+        {
+            var order = _orderService.GetOrderById(orderId);
+            return Json(new
+            {
+                firstName = order.FirstName,
+                lastName = order.LastName,
+                streetAdress = order.StreetAddress,
+                city = order.City,
+                country = order.Country,
+                phoneNumber = order.PhoneNumber
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        
     }
 }
