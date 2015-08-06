@@ -1,0 +1,65 @@
+﻿@model  Teeyoot.Module.ViewModels.AdminOrderViewModel
+@{
+    Style.Include("AdminOrders.css");
+}
+
+
+
+<fieldset>
+    <table class="items">
+        <thead>
+            <tr class="admin-categories">
+                <th class="publicId">
+                    <h3>Order Number</h3>
+                </th>
+                <th class="status">
+                    <h3>Status</h3>
+                </th>
+                <th class="buyer">
+                    <h3>Buyer</h3>
+                </th>
+                <th class="seller">
+                    <h3>Seller</h3>
+                </th>
+                <th class="profit">
+                    <h3>Profit</h3>
+                </th>
+                <th class="payout">
+                    <h3>Payout</h3>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.DynamicOrders)
+            {
+                <tr class="admin-categories-tr">
+                    <td class="publicId">
+                        @item.PublicId
+                    </td>
+                    <td class="status">
+                        @item.Status
+                    </td>
+                    <td class="buyer">
+                        @item.EmailBuyer
+                    </td>
+                    <td class="seller">
+                        @item.UserNameSeller
+                    </td>
+                    <td class="profit">
+                        123
+                    </td>
+                    <td class="payout">
+                        paid
+                    </td>
+                </tr>
+
+
+            }
+        </tbody>
+    </table>
+
+</fieldset>
+@Display(Model.Pager)
+
+

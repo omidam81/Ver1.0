@@ -1,50 +1,4 @@
-﻿/* Eric Meyer's CSS Reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/* End of Eric Meyer's CSS Reset */
-
-html {
+﻿html {
 	height: 100%;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
@@ -55,10 +9,9 @@ body {
 	font-size: 15px;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     color: #6c7478;
-    height: 100%;
-    line-height: 1.6;
     position: relative;
     background: white;
+    height: 100%
 }
 
 
@@ -120,7 +73,11 @@ body {
 }
 .widget-createSearchButtons {
     position: absolute;
-    top: 44px;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
     width: 100%;
     height: 608px;
     display: table;
@@ -199,9 +156,13 @@ body {
     width: 100%;
     height: 100%;
     min-height: 100%;
-    height: auto !important;
+    display: table;
+
 }
 .tb-button-orange {
+        -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
     background: #ff4f00;
     font-size: 14px;
     font-weight: normal;
@@ -1334,6 +1295,15 @@ body {
     }
 }
 
+
+
+
+.layout-content-image, .layout-content-vector {
+    display: block;
+    max-width: 100%;
+    height: inherit;
+    overflow: hidden;
+}
 @media all and (max-width: 970px) {
     .widget-createSearchButtons {
         height: 477px;
@@ -2757,7 +2727,7 @@ body {
 @media all and (max-width: 840px) {
 
     .intro-video-container {
-        height: 600px !important;
+        height: 610px !important;
     }
 
     .intro-video-holder {
@@ -2768,7 +2738,7 @@ body {
 @media all and (max-width: 800px) {
 
     .intro-video-container {
-        height: 600px !important;
+        height: 610px !important;
     }
 
     .intro-video-holder {
@@ -2777,10 +2747,6 @@ body {
 }
 
 @media all and (max-width: 770px) {
-
-    .intro-video-container {
-        height: 580px !important;
-    }
 
     .intro-video-holder {
         height: 380px;
@@ -2793,7 +2759,7 @@ body {
 
 @media all and (max-width: 750px) {
     .intro-video-container {
-        height: 590px !important;
+        height: 600px !important;
     }
 
     .intro-video-holder {
@@ -2824,7 +2790,7 @@ body {
 
 @media all and (max-width: 690px) {
     .intro-video-container {
-        height: 580px !important;
+        height: 590px !important;
     }
 
     .intro-video-holder {
@@ -2852,7 +2818,7 @@ body {
 
 @media all and (max-width: 600px) {
     .intro-video-container {
-        height: 540px !important;
+        height: 550px !important;
     }
 
     .intro-video-holder {
@@ -2947,7 +2913,7 @@ body {
 
 @media all and (max-width: 320px) {
     .intro-video-container {
-        height: 630px !important;
+        height: 600px !important;
     }
 }
 
@@ -2990,7 +2956,7 @@ body {
     }
 }
 
-@media all and (max-width: 590px) {
+@media all and (max-width: 710) {
     .home-page-review {
         width: 100% !important;
     }
@@ -3097,13 +3063,9 @@ body {
 
 .tb-layout-footer {
     padding: 20px;
-    height: 246px;
     position: relative;
     background: #e8eced;
     margin: -247px auto 0;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
 }
 
 .user-actions a {
@@ -4237,6 +4199,7 @@ input[type="radio" i], input[type="checkbox" i] {
     border-radius: 50px;
     padding-top: 5px;
     margin: 0 auto;
+    line-height: 40px;
 }
 
 .easy-steps-text {
@@ -4257,6 +4220,11 @@ input[type="radio" i], input[type="checkbox" i] {
         max-height: none;
     }
 
+    .shop-now-banner {
+        display: block;
+        padding: 0;
+    }
+
     .shop-now-title {
         width: 100%;
         text-align: center;
@@ -4264,6 +4232,7 @@ input[type="radio" i], input[type="checkbox" i] {
         text-align: -moz-center;
         text-align: -ms-center;
         margin: 0 auto;
+        float: none;
     }
 
     .shop-now-image {
@@ -4276,6 +4245,8 @@ input[type="radio" i], input[type="checkbox" i] {
         margin: 0 auto;
         padding-left: 0;
         margin-left: -10px;
+        display: none;
+        float: none;
     }
 
     .shop-now-button {
@@ -4297,6 +4268,7 @@ input[type="radio" i], input[type="checkbox" i] {
         width: 100%;
         text-align: left;
         font-size: 15px;
+        line-height: 1.5;
     }
 
     .review .reviews-text {
@@ -4866,6 +4838,16 @@ input[type="radio" i], input[type="checkbox" i] {
     }
 }
 
+@media only screen and (max-width: 710px) {
+    .shop-now-image {
+        display: none !important;
+    }
+}
+
+
+
+
+
 .video_modal__button--hide {
     border: 1px solid #6c7478 !important;
     background-color: #6c7478 !important;
@@ -4884,14 +4866,55 @@ input[type="radio" i], input[type="checkbox" i] {
 
 
 
-.container:before,
-.container:after {
+.clearfix:before,
+.clearfix:after {
   content:"";
   display:table;
 }
-.container:after {
+.clearfix:after {
   clear:both;
 }
-.container {
+.clearfix {
   zoom:1; /* For IE 6/7 (trigger hasLayout) */
 }
+
+
+.tb-layout-before-main.group { 
+    width: 100%;
+}
+
+.button-create-search-container {
+    margin: 0 auto;
+}
+
+.tb-layout-before-main.group .zone.zone-before-main { 
+    width: inherit;
+    position: relative;
+}
+
+.tb-layout-before-main.group .zone.zone-before-main article { 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root { 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .table{ 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .row{ 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .cell{ 
+    width: inherit;
+}
+.tb-layout-before-main.group .zone.zone-before-main article .orchard-layouts-root  .cell .layout-content-image{ 
+    margin: auto auto;
+    width: 245%;
+    height: inherit;
+ 
+}
+
+.tb-layout-before-main.group .zone.zone-before-main article.chButtons { 
+    position: static;
+}
+

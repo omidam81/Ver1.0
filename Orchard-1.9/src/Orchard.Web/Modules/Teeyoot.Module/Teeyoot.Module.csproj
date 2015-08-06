@@ -621,6 +621,7 @@
     <Content Include="Scripts\design.js" />
     <Content Include="Scripts\design_upload.js" />
     <Content Include="Scripts\fontdetect.js" />
+    <Content Include="Scripts\history.js" />
     <Content Include="Scripts\image_analysis_model.js" />
     <Content Include="Scripts\jquery.color.js" />
     <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
@@ -649,7 +650,7 @@
     <Content Include="Styles\checkout.css" />
     <Content Include="Styles\Cost.css" />
     <Content Include="Styles\custom.css" />
-    <Content Include="Styles\designer.css" />
+    <Content Include="Styles\designerTeeyoot.css" />
     <Content Include="Styles\bootstrap-responsive.css" />
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
@@ -713,6 +714,7 @@
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
+    <Compile Include="Permissions.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
     <Compile Include="Services\Interfaces\IMessageService .cs" />
@@ -730,6 +732,7 @@
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />
+    <Compile Include="ViewModels\AdminOrderViewModel.cs" />
     <Compile Include="ViewModels\CampaignIndexViewModel.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />

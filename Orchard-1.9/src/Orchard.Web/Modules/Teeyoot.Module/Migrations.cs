@@ -463,7 +463,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(LinkProductSizeRecord).Name, table => table.AddColumn<float>("SizeCost", c => c.NotNull().WithDefault(float.Parse("0"))));
 
-            return 46;
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("ProfitPaid", c => c.NotNull().WithDefault(false)));
+
+            return 47;
         }
 
         public int UpdateFrom2()
@@ -953,6 +955,13 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(LinkProductSizeRecord).Name, table => table.AddColumn<float>("SizeCost", c => c.NotNull().WithDefault(float.Parse("0"))));
 
             return 46;
+        }
+
+        public int UpdateFrom46()
+        {
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("ProfitPaid", c => c.NotNull().WithDefault(false)));
+
+            return 47;
         }
     }
 }

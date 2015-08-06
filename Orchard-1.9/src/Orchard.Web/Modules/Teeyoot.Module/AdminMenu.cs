@@ -66,6 +66,8 @@ namespace Teeyoot.Module
                             i => i.Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
                         .Add(T("Export Prints"),
                             i => i.Action("Index", "AdminExportPrints", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
+                        .Add(T("Approve Campaigns"),
+                            i => i.Action("Index", "AdminApproveCampaigns", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("T-Shirt Cost"))
@@ -81,6 +83,11 @@ namespace Teeyoot.Module
                         .Caption(T("Messages"))
                         .Position("2.9")
                         .Action("Index", "AdminMessageContent", new { area = "Teeyoot.Messaging" })
+                    )
+                    .Add(subItem => subItem
+                        .Caption(T("Orders"))
+                        .Position("3")
+                        .Action("Index", "Home", new { area = "Teeyoot.Orders" })
                     )
                 );
         }

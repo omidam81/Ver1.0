@@ -50,6 +50,21 @@ namespace Teeyoot.FeaturedCampaigns
                         },
                         new MvcRouteHandler())
                 }
+                ,
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/ApproveCampaigns",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FeaturedCampaigns"},
+                            {"controller", "AdminAdminApproveCampaigns"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.FeaturedCampaigns"}
+                        },
+                        new MvcRouteHandler())
+                }
             };
         }
     }
