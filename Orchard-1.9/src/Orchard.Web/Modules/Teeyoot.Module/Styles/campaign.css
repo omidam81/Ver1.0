@@ -23,8 +23,7 @@
     .site__wrapper {
         margin-left: auto;
         margin-right: auto;
-    }
-    
+    }  
 }
 
 .site__search_results .site__wrapper {
@@ -4725,6 +4724,9 @@ thead .product__size_chart__size_label {
     .site__featured_container{
         padding-bottom:0 !important;
     }
+     .front, .back {
+            margin-left: 20px!important;
+    }
 }
 
 .campaign_info__header {
@@ -5193,6 +5195,7 @@ thead .product__size_chart__size_label {
 
 .front {
     z-index: 2;
+
 }
 
 
