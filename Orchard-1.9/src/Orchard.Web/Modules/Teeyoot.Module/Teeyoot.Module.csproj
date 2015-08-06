@@ -621,6 +621,7 @@
     <Content Include="Scripts\design.js" />
     <Content Include="Scripts\design_upload.js" />
     <Content Include="Scripts\fontdetect.js" />
+    <Content Include="Scripts\history.js" />
     <Content Include="Scripts\image_analysis_model.js" />
     <Content Include="Scripts\jquery.color.js" />
     <Content Include="Scripts\jquery.elevateZoom-3.0.8.min.js" />
