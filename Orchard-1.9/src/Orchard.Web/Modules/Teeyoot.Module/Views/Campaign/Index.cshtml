@@ -320,6 +320,7 @@
         var count;
         var productId;
         var sizeId;
+        var price;
 
         tableRows.each(function (index, el) {
 
@@ -328,8 +329,9 @@
             items = $(el).find('.size-dropdown.shown')[0];
             sizeId = items[items.selectedIndex].id;
             count = $(el).find('.product-count')[0].value;
+            price = $(el).find('.modal-price.shown')[0].title;
 
-            products.push({ ProductId: productId, SizeId: sizeId, Count: count });
+            products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price:price });
         });
 
         $.ajax({
@@ -879,11 +881,11 @@
                                                             string pos = i + "_" + count;
                                                             if (size == Model.Campaign.Products[i].ProductRecord.SizesAvailable.First())
                                                             {
-                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
                                                             }
                                                             else
                                                             {
-                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
                                                             }
                                                             count++;
                                                         }
@@ -896,7 +898,7 @@
                                                             float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
                                                             string pos = i + "_" + count;
 
-                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@Model.Campaign.Products[i].Price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
 
                                                             count++;
                                                         }
