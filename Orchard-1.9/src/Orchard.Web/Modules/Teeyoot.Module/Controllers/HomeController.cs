@@ -252,6 +252,12 @@ namespace Teeyoot.Module.Controllers
                 return View("TrackOrder");
             }
 
+            if (order.OrderStatusRecord.Name == OrderStatus.New.ToString())
+            {
+                _notifier.Error(T("Your order has not been yet approved"));
+                return View("TrackOrder");
+            }
+
             var model = new OrderTrackingViewModel();
             model.OrderId = order.Id;
             model.OrderPublicId = orderId;

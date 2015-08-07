@@ -43,8 +43,9 @@ namespace Teeyoot.Messaging.Services
         }
 
 
-        public void SendLaunchCampaignMessage(string pathToTemplates, string pathToMedia, CampaignRecord campaign)
+        public void SendLaunchCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId)
         {
+            var campaign = _campaignService.GetCampaignById(campaignId);
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
@@ -54,22 +55,23 @@ namespace Teeyoot.Messaging.Services
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>()
             {
-                new MandrillMailAddress()
+                new MandrillMailAddress(seller.Email)
             };
-            FillCampaignMergeVars(mandrillMessage, campaign, seller.Email, pathToMedia, pathToTemplates);
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");
+            FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "launch-template.html");
             SendTmplMessage(api, mandrillMessage);
 
 
 
         }
 
-        private void FillCampaignMergeVars(MandrillMessage message, CampaignRecord campaign, string email, string pathToMedia, string pathToTemplates)
+        private void FillCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
         {
 
+            var campaign = _campaignService.GetCampaignById(campaignId);
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
-            message.AddRcptMergeVars(email, "preview_url", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First().Id + "/normal/front.png");
+            message.AddRcptMergeVars(email, "preview_url", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/front.png");
 
         }
 
