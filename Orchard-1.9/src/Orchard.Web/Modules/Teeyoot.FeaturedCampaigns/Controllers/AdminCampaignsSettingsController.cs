@@ -71,7 +71,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                     Status = c.CampaignStatusRecord.Name,
                                                     UserId = c.TeeyootUserId,
                                                     IsApproved = c.IsApproved,
-                                                    EndDate = c.EndDate
+                                                    EndDate = c.EndDate,
+                                                    Profit = c.CampaignProfit
                                                 })
                                 .Skip(pager.GetStartIndex())
                                 .Take(pager.PageSize)
@@ -89,7 +90,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Seller: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId),
                     TeeyootSeller: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId).ContentItem.Get(typeof(TeeyootUserPart)),
                     IsApproved: e.IsApproved,
-                    EndDate : e.EndDate
+                    EndDate : e.EndDate,
+                    Profit : e.Profit
                     );
             });
 
