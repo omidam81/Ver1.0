@@ -660,6 +660,7 @@
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
+    <Content Include="Styles\reservationcomplete.css" />
     <Content Include="Styles\track.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Web.config" />
@@ -677,6 +678,7 @@
     <Content Include="Views\AdminCost\Edit.cshtml" />
     <Content Include="Views\Home\OrderTracking.cshtml" />
     <Content Include="Views\EditorTemplates\Parts\MailChimpSettings.cshtml" />
+    <Content Include="Views\Home\ReservationComplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -690,7 +692,7 @@
     <ProjectReference Include="..\RM.QuickLogOn.OAuth\RM.QuickLogOn.OAuth.csproj">
       <Project>{4055acbb-280e-4bf7-9706-e5598521a684}</Project>
       <Name>RM.QuickLogOn.OAuth</Name>
-	</ProjectReference>
+    </ProjectReference>
     <ProjectReference Include="..\Teeyoot.FAQ\Teeyoot.FAQ.csproj">
       <Project>{c1227a9d-ebe0-4776-af87-d2f677ce2200}</Project>
       <Name>Teeyoot.FAQ</Name>
@@ -780,6 +782,7 @@
     <Compile Include="Services\Interfaces\IOrderService.cs" />
     <Compile Include="Services\Interfaces\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
+    <Compile Include="ViewModels\ReservationCompleteViewModel.cs" />
     <Compile Include="ViewModels\WizardProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

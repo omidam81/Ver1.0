@@ -1,0 +1,72 @@
+﻿@{
+    @model Teeyoot.Module.ViewModels.ReservationCompleteViewModel
+    Style.Include("reservationcomplete.css");
+}
+
+<div class="reservation-complete-page">
+    
+
+    <h1>@Model.Message</h1>
+
+    <div class="campaigns-list-container">
+        <div>
+            @foreach (var c in Model.Campaigns)
+            {
+                var daysRemaining = c.EndDate.Subtract(DateTime.UtcNow).Days;
+
+                <div class="campaign-card">
+
+                    <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/@(!c.ShowBack ? "front.png" : "back.png")')">
+
+                    </div>
+
+                    <div class="campaign-card-progress">
+                        <div class="campaign-card-progress-bar">
+                            <div class="campaign-card-progress-bar-completed" style="width:@(c.Sold * 100 / @c.Goal)%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card-info">
+
+                        <div class="campaign-card-sold">@c.Sold / @c.Goal @T("sold")</div>
+
+                        <div class="campaign-card-left" title="@c.EndDate.ToString("dd.MM.yyyy")">
+                            <span>
+                                @if (daysRemaining > 0)
+                                {
+                                    @daysRemaining@:d @T("remaining")
+                                }
+                                else if (daysRemaining <= -1)
+                                {
+                                    @Math.Abs(daysRemaining)@:d @T("ago")
+                                }
+                                else
+                                {
+                                    var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours;
+
+                                    if (hours > 0)
+                                    {
+                                        @hours@:h @T("remaining")
+                                    }
+                                    else
+                                    {
+                                        @Math.Abs(hours)@:h @T("ago")
+                                    }
+                                }
+
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="campaign-card-title"><a href="/@c.Alias" title="@c.Title">@c.Title</a></div>
+
+                </div>
+
+            }
+        </div>
+    </div>
+
+</div>
+

@@ -2,6 +2,7 @@
 using Mandrill;
 using Mandrill.Model;
 using Orchard.Data;
+using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
@@ -37,7 +38,13 @@ namespace Teeyoot.Module.Controllers
         private readonly IMessageService _messageService;
 
 
-        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier, IPromotionService promotionService, IimageHelper imageHelper, IMailChimpSettingsService settingsService)
+        public HomeController(IOrderService orderService, 
+                              ICampaignService campaignService, 
+                              INotifier notifier, 
+                              IPromotionService promotionService, 
+                              IimageHelper imageHelper, 
+                              IMailChimpSettingsService settingsService,
+                              IShapeFactory shapeFactory)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -48,10 +55,13 @@ namespace Teeyoot.Module.Controllers
             Logger = NullLogger.Instance;
             _notifier = notifier;
             T = NullLocalizer.Instance;
+            Shape = shapeFactory;
         }
 
         private ILogger Logger { get; set; }
         private Localizer T { get; set; }
+
+        private dynamic Shape { get; set; }
 
         public static BraintreeGateway Gateway = new BraintreeGateway
         {
@@ -92,7 +102,7 @@ namespace Teeyoot.Module.Controllers
 
 
         [Themed]
-        public ActionResult Payment(string orderId, string promo, string result = "")
+        public ActionResult Payment(string orderId, string promo)
         {
             var order = _orderService.GetOrderByPublicId(orderId);
 
@@ -100,7 +110,6 @@ namespace Teeyoot.Module.Controllers
             {
                 var model = new PaymentViewModel();
                 model.Order = order;
-                model.Result = result;
                 model.ClientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==";
                 if (promo != null)
                 {
@@ -132,7 +141,6 @@ namespace Teeyoot.Module.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateTransaction(FormCollection collection)
         {
-            string res = "";
             Result<Transaction> result;
             var nonceId = Request.Form["payment_method_nonce"];
             if (Request.Form["payment_method_nonce"] != "")
@@ -214,7 +222,7 @@ namespace Teeyoot.Module.Controllers
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
                 SendTmplMessage(api, mandrillMessage);
                 _notifier.Information(T("The transaction is successful"));
-                return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"] });
+                return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             }
             else
             {
@@ -223,6 +231,44 @@ namespace Teeyoot.Module.Controllers
             }          
         }
 
+        [Themed]
+        public ActionResult ReservationComplete(int campaignId, int sellerId)
+        {
+            var campaigns = _campaignService.GetAllCampaigns()
+                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId)
+                                .Select(c => new
+                                {
+                                    Id = c.Id,
+                                    Alias = c.Alias,
+                                    Title = c.Title,
+                                    Goal = c.ProductCountGoal,
+                                    Sold = c.ProductCountSold,
+                                    ShowBack = c.BackSideByDefault,
+                                    EndDate = c.EndDate
+                                })
+                                .Take(5)
+                                .ToArray();
+
+            var entriesProjection = campaigns.Select(e =>
+            {
+                return Shape.campaign(
+                    Id: e.Id,
+                    Title: e.Title,
+                    Sold: e.Sold,
+                    Goal: e.Goal,
+                    ShowBack: e.ShowBack,
+                    Alias: e.Alias,
+                    EndDate: e.EndDate,
+                    FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id).Id
+                    );
+            });
+
+            var model = new ReservationCompleteViewModel();
+            model.Message = T("Your tee is reserved, we will notify you once the tee is ready. Meanwhile you may choose other designs from the same seller.").ToString();
+            model.Campaigns = entriesProjection.ToArray();
+
+            return View(model);
+        }
 
         [Themed]
         public ActionResult TrackOrder()
