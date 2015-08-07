@@ -2,6 +2,7 @@
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
+using Orchard.Logging;
 using Orchard.Roles.Models;
 using Orchard.Roles.Services;
 using Orchard.Security;
@@ -17,6 +18,11 @@ namespace Teeyoot.Account.Services
         private readonly IRoleService _roleService;
         private readonly IRepository<UserRolesPartRecord> _userRolesRepository;
 
+        // ReSharper disable once InconsistentNaming
+        private const string PBKDF2 = "PBKDF2";
+
+        public ILogger Logger { get; set; }
+
         public TeeyootMembershipService(
             IOrchardServices orchardServices,
             IMembershipService membershipService,
@@ -27,10 +33,14 @@ namespace Teeyoot.Account.Services
             _membershipService = membershipService;
             _roleService = roleService;
             _userRolesRepository = userRolesRepository;
+
+            Logger = NullLogger.Instance;
         }
 
         public IUser CreateUser(string email, string password)
         {
+            Logger.Information("CreateUser {0} {1}", email, password);
+
             var teeyootUser = _orchardServices.ContentManager.New("TeeyootUser");
 
             var userPart = teeyootUser.As<UserPart>();
@@ -38,7 +48,7 @@ namespace Teeyoot.Account.Services
             userPart.UserName = email;
             userPart.Email = email;
             userPart.NormalizedUserName = email.ToLowerInvariant();
-            userPart.HashAlgorithm = "SHA1";
+            userPart.HashAlgorithm = PBKDF2;
             _membershipService.SetPassword(userPart, password);
             userPart.RegistrationStatus = UserStatus.Approved;
             userPart.EmailStatus = UserStatus.Approved;

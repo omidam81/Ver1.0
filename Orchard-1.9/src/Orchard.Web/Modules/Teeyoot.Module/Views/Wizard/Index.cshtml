@@ -74,6 +74,7 @@
         window.GoogleScopes = 'https://www.googleapis.com/auth/userinfo.email';
 
         function handleAuthResult(authResult) {
+            window.GoogleAccessToken = authResult.access_token;
         }
 
         function checkAuth() {
@@ -214,9 +215,13 @@
                     if(errorsData[0]){
                         var idForData = '#' + errorsData[0];
                         var idForError = '#' + errorsData[0] + '_error-text';
-                        var error = $(idForError)[0];
-                        $(idForData).addClass('wizard-error');
-                        error.innerHTML = errorsData[1];
+                        if(errorsData[0] == 'campaign_description_text'){
+                            idForData = '.wysihtml5-sandbox';
+                        }
+                        var error = $(idForData);
+                        var error_text = $(idForError)[0];
+                        error.addClass('wizard-error');
+                        error_text.innerHTML = errorsData[1];
                     }
                 }
             });
@@ -412,7 +417,7 @@
                     url: '/WizardLogOn',
                     data: addAntiForgeryToken(wizardLogOnJsonRequest),
                     success: function(data) {
-                        if (!data.IssueOccurred) {
+                        if (data.Success === true) {
                             refreshToken();
                             $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
                                 function() {
@@ -425,7 +430,7 @@
                             return;
                         }
 
-                        $('#login_validation_summary').text(data.IssueSummary);
+                        $('#login_validation_summary').text(data.Message);
                         $('#login_validation_summary').show();
                     }
                 });
@@ -447,7 +452,7 @@
                     url: '/WizardRegister',
                     data: addAntiForgeryToken(wizardRegisterJsonRequest),
                     success: function(data) {
-                        if (!data.IssueOccurred) {
+                        if (data.Success === true) {
                             refreshToken();
                             $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
                                 function() {
@@ -460,7 +465,7 @@
                             return;
                         }
 
-                        $('#create_account_validation_summary').text(data.IssueSummary);
+                        $('#create_account_validation_summary').text(data.Message);
                         $('#create_account_validation_summary').show();
                     }
                 });
@@ -1149,6 +1154,7 @@
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
                                                                 <label class="has-under-text">Description</label>
                                                                 <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                                                                    <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
                                                                     <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>
                                                                 </div>
                                                             </div>
@@ -1269,7 +1275,7 @@
                                         <div class="modal-body">
                                             <p>@T("Looks like you tried to upload an image with more than ")<span class="max-colors-count"></span>@T(" colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
                                             <p>
-                                                @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")<a href="/contact" target="_blank">@T("contact support for assistance")</a>
+                                                @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")<a href="/FAQ" target="_blank">@T("contact support for assistance")</a>
                                             </p>
                                             <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
@@ -1299,7 +1305,7 @@
                                                 @T("Save your artwork and upload it again.")<br>
                                                 <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png">
                                             </p>
-                                            <p>@T("If you need more assistance, please ")<a href="/contact" target="_blank">@T("contact support")</a>.</p>
+                                            <p>@T("If you need more assistance, please ")<a href="/FAQ" target="_blank">@T("contact support")</a>.</p>
                                             <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
@@ -1330,7 +1336,7 @@
                                             <h3 class="partitioned-header no-bottom">@T("You need to create a design.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>@T("Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. ")<a href="/contact" target="_blank">@T("Need help?")</a></p>
+                                            <p>@T("Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. ")<a href="/FAQ" target="_blank">@T("Need help?")</a></p>
                                             <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
@@ -1345,7 +1351,7 @@
                                             <h3 class="partitioned-header no-bottom">@T("Server error.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>@T("Sorry, we were unable to save your design. Please try again. If the problem persist, ")<a href="/contact" target="_blank">@T("contact our customer support")</a> @T("and mention the following error.")</p>
+                                            <p>@T("Sorry, we were unable to save your design. Please try again. If the problem persist, ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("and mention the following error.")</p>
                                             <p>@T("Error: ")<code></code></p>
                                             <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
@@ -1361,7 +1367,7 @@
                                             <h3 class="partitioned-header no-bottom">@T("Oops! The design application is still busy.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>@T("Please try again in a few seconds. If the problem persists, ")<a href="/contact" target="_blank">@T("contact our customer support")</a>.</p>
+                                            <p>@T("Please try again in a few seconds. If the problem persists, ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a>.</p>
                                             <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
@@ -1377,7 +1383,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>@T("Your artwork should be at least ")<span class="width"></span>@T(" pixels wide by ")<span class="height"></span>@T(" pixels high.")</p>
-                                            <p>@T("Need help? ")<a href="/contact" target="_blank">@T("Contact our design team!")</a></p>
+                                            <p>@T("Need help? ")<a href="/FAQ" target="_blank">@T("Contact our design team!")</a></p>
                                             <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
@@ -1638,7 +1644,7 @@
                                                 @T("Possible solutions are")<br>
                                                 a) @T("uploading a bigger artwork"),<br>
                                                 b) @T("uploading a vectorized version"),<br>
-                                                @T("or") c) <a href="/contact" target="_blank">@T("contact our customer support")</a> @T("for assistance").
+                                                @T("or") c) <a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance").
                                             </p>
                                             <input type="button" value="@T("Return to design") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                             >
@@ -1654,7 +1660,7 @@
                                             <h3 class="partitioned-header no-bottom">@T("Oops! We ran into an issue.")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>@T("Sorry, we were unable to retrieve this artwork. If it happens again, please ")<a href="/contact" target="_blank">@T("contact our customer support")</a> @T("for assistance.")</p>
+                                            <p>@T("Sorry, we were unable to retrieve this artwork. If it happens again, please ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance.")</p>
                                             <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                             >
                                         </div>
