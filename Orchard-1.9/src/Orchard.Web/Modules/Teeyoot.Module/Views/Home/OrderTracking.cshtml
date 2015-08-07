@@ -15,7 +15,7 @@
     <div class="row">
         <div class="track-bar hidden-xs offset-top offset-top-large">
 
-            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
+            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Approved.ToString())
             {
                 <div class="col-sm-3">
                     <div class="track-position track-order-current" id="track-order">
@@ -162,7 +162,7 @@
                 </div>
             }
 
-            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
+            @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Delivered.ToString())
             {
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-order">
@@ -232,7 +232,7 @@
                         Model.CreateDate)
                         <div class="offset-top offset-top-small offset-top-xs"></div>
 
-                        @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Reserved.ToString())
+                        @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Approved.ToString())
                         {
                             <h2 class="h2">@T("You placed an order")</h2>
                             <p class="offset-top offset-top-small">

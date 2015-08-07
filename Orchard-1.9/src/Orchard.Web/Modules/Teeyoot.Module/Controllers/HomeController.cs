@@ -69,6 +69,67 @@ namespace Teeyoot.Module.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public HttpStatusCodeResult CreateOrder(IEnumerable<OrderProductViewModel> products)
+        {
+            if (products.Count() == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Please, select at least one product to place your order");
+            }
+
+            try
+            {
+                var id = _orderService.CreateOrder(products).OrderPublicId;
+
+                Response.Write(id);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Error occured when trying to create new order ---------------> " + e.ToString());
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new order");
+            }
+        }
+
+
+        [Themed]
+        public ActionResult Payment(string orderId, string promo, string result = "")
+        {
+            var order = _orderService.GetOrderByPublicId(orderId);
+
+            if (order != null)
+            {
+                var model = new PaymentViewModel();
+                model.Order = order;
+                model.Result = result;
+                model.ClientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==";
+                if (promo != null)
+                {
+                    PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
+                    model.Promotion = promotion;
+                    if (promotion.AmountType == "%")
+                    {
+                        model.Order.Promotion = (model.Order.TotalPrice / 100) * promotion.AmountSize;
+                        model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
+                    }
+                    else
+                    {
+                        if (promotion.AmountType == order.CurrencyRecord.Code)
+                        {
+                            model.Order.Promotion = promotion.AmountSize;
+                            model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
+                        }
+                    }
+                }
+                return View(model);
+            }
+            else
+            {
+                return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateTransaction(FormCollection collection)
         {
             string res = "";
@@ -130,7 +191,7 @@ namespace Teeyoot.Module.Controllers
                 order.IsActive = true;
                 order.TranzactionId = result.Target.Id;
 
-                _orderService.UpdateOrder(order, OrderStatus.Reserved);
+                //_orderService.UpdateOrder(order, OrderStatus.Approved);
                 if (collection["PromoId"] != null)
                 {
                     PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
@@ -174,108 +235,6 @@ namespace Teeyoot.Module.Controllers
 
             return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"], result = res });
         }
-
-        public void FillUserMergeVars(MandrillMessage message, OrderRecord record)
-        {
-            
-            message.AddRcptMergeVars(record.Email, "FNAME", record.FirstName);
-            message.AddRcptMergeVars(record.Email, "LNAME", record.LastName);
-            message.AddRcptMergeVars(record.Email, "CITY", record.City);
-            message.AddRcptMergeVars(record.Email, "STATE", record.State);
-            message.AddRcptMergeVars(record.Email, "COUNTRY", record.Country);
-            if (record.TotalPriceWithPromo > 0.0)
-            {
-                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPriceWithPromo.ToString());
-            }
-            else
-            {
-                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPrice.ToString());
-            }
-           
-        }
-
-
-        public void FillProductsMergeVars(MandrillMessage message, LinkOrderCampaignProductRecord order, int index , string pathToMedia)
-        {
-
-            int idSize = order.ProductSizeRecord.Id;
-            float costSize = order.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
-            float price = (float)order.CampaignProductRecord.Price + costSize;
-            var products = new Dictionary<string, object>{                 
-                        {"quantity", order.Count},
-                        {"name",  order.CampaignProductRecord.ProductRecord.Name},
-                        {"description",  order.CampaignProductRecord.ProductRecord.Details},
-                        {"price", price},
-                        {"preview_url", pathToMedia + "/Media/campaigns/" + order.CampaignProductRecord.CampaignRecord_Id + "/" + order.CampaignProductRecord.Id + "/normal/front.png"}
-                     };
-            message.AddRcptMergeVars(order.OrderRecord.Email, "PRODUCTS", products);
-        }
-
-
-
-        public string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
-        {
-            var result = mAPI.Messages.Send(message);
-            return result.ToString();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public HttpStatusCodeResult CreateOrder(IEnumerable<OrderProductViewModel> products)
-        {
-            try
-            {
-                var id = _orderService.CreateOrder(products).OrderPublicId;
-
-                Response.Write(id);
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Error occured when trying to create new order ---------------> " + e.ToString());
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new order");
-            }
-        }
-
-
-        [Themed]
-        public ActionResult Payment(string orderId, string promo, string result = "")
-        {
-            var order = _orderService.GetOrderByPublicId(orderId);
-
-            if (order != null)
-            {
-                var model = new PaymentViewModel();
-                model.Order = order;
-                model.Result = result;
-                model.ClientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==";
-                if (promo != null)
-                {
-                    PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
-                    model.Promotion = promotion;
-                    if (promotion.AmountType == "%")
-                    {
-                        model.Order.Promotion = (model.Order.TotalPrice / 100) * promotion.AmountSize;
-                        model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
-                    }
-                    else
-                    {
-                        if (promotion.AmountType == order.CurrencyRecord.Code)
-                        {
-                            model.Order.Promotion = promotion.AmountSize;
-                            model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
-                        }
-                    }
-                }
-                return View(model);
-            }
-            else
-            {
-                return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
-            }
-        }
-
 
         [Themed]
         public ActionResult TrackOrder()
@@ -390,7 +349,7 @@ namespace Teeyoot.Module.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        public void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath, String campaignData)
+        private void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath, String campaignData)
         {
            var p = campaign.Products[0];
 
@@ -430,6 +389,47 @@ namespace Teeyoot.Module.Controllers
             image = _imageHelper.ApplyBackground(image, background, width, height);
 
             return _imageHelper.ApplyDesignNoTransparent(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
+        }
+
+        private void FillUserMergeVars(MandrillMessage message, OrderRecord record)
+        {
+
+            message.AddRcptMergeVars(record.Email, "FNAME", record.FirstName);
+            message.AddRcptMergeVars(record.Email, "LNAME", record.LastName);
+            message.AddRcptMergeVars(record.Email, "CITY", record.City);
+            message.AddRcptMergeVars(record.Email, "STATE", record.State);
+            message.AddRcptMergeVars(record.Email, "COUNTRY", record.Country);
+            if (record.TotalPriceWithPromo > 0.0)
+            {
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPriceWithPromo.ToString());
+            }
+            else
+            {
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPrice.ToString());
+            }
+
+        }
+
+        private void FillProductsMergeVars(MandrillMessage message, LinkOrderCampaignProductRecord order, int index, string pathToMedia)
+        {
+
+            int idSize = order.ProductSizeRecord.Id;
+            float costSize = order.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
+            float price = (float)order.CampaignProductRecord.Price + costSize;
+            var products = new Dictionary<string, object>{                 
+                        {"quantity", order.Count},
+                        {"name",  order.CampaignProductRecord.ProductRecord.Name},
+                        {"description",  order.CampaignProductRecord.ProductRecord.Details},
+                        {"price", price},
+                        {"preview_url", pathToMedia + "/Media/campaigns/" + order.CampaignProductRecord.CampaignRecord_Id + "/" + order.CampaignProductRecord.Id + "/normal/front.png"}
+                     };
+            message.AddRcptMergeVars(order.OrderRecord.Email, "PRODUCTS", products);
+        }
+
+        private string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
+        {
+            var result = mAPI.Messages.Send(message);
+            return result.ToString();
         }
 
         //public void SendOrderMessage(int campaignId, string pathToTemplates, string pathToMedia){

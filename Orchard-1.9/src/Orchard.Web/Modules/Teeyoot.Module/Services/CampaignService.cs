@@ -279,7 +279,7 @@ namespace Teeyoot.Module.Services
                     var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
                     foreach (var o in orders)
                     {
-                        if (o.OrderStatusRecord.Name == OrderStatus.Reserved.ToString())
+                        if (o.OrderStatusRecord.Name == OrderStatus.Approved.ToString())
                         {
                             o.OrderStatusRecord = isSuccesfull ?
                                 _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :

@@ -14,11 +14,12 @@ namespace Teeyoot.Module.Common.Enums
 
     public enum OrderStatus
     {
-        Created = 1,
-        Reserved,
+        New = 1,
+        Approved,
         Printing,
         Shipped,
         Delivered,
+        Paid, 
         Cancelled
     }
 
