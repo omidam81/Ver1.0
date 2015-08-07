@@ -141,48 +141,48 @@ namespace Teeyoot.Module.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateTransaction(FormCollection collection)
         {
-            Result<Transaction> result;
-            var nonceId = Request.Form["payment_method_nonce"];
-            if (Request.Form["payment_method_nonce"] != "")
-            {
-                TransactionRequest requestPayPal = new TransactionRequest
-                {
-                    Amount = 1000.0M,
-                    PaymentMethodNonce = "fake-valid-nonce",
-                    Options = new TransactionOptionsRequest
-                    {
-                        SubmitForSettlement = false,
-                        StoreInVault = true
-                    }
-                };
+            //Result<Transaction> result;
+            //var nonceId = Request.Form["payment_method_nonce"];
+            //if (Request.Form["payment_method_nonce"] != "")
+            //{
+            //    TransactionRequest requestPayPal = new TransactionRequest
+            //    {
+            //        Amount = 1000.0M,
+            //        PaymentMethodNonce = "fake-valid-nonce",
+            //        Options = new TransactionOptionsRequest
+            //        {
+            //            SubmitForSettlement = false,
+            //            StoreInVault = true
+            //        }
+            //    };
 
-                result = Gateway.Transaction.Sale(requestPayPal);
-            }
-            else
-            {
-                TransactionRequest requestCard = new TransactionRequest
-                {
-                    Amount = 1000.0M, //Здесь указывается сумма транзакции в USD
-                    CreditCard = new TransactionCreditCardRequest
-                    {
-                        Number = collection["number"],
-                        CVV = collection["cvv"],
-                        ExpirationMonth = collection["month"],
-                        ExpirationYear = collection["year"]
-                    },
-                    Options = new TransactionOptionsRequest
-                    {
-                        StoreInVault = true,
-                        SubmitForSettlement = false
-                    }
-                };
+            //    result = Gateway.Transaction.Sale(requestPayPal);
+            //}
+            //else
+            //{
+            //    TransactionRequest requestCard = new TransactionRequest
+            //    {
+            //        Amount = 1000.0M, //Здесь указывается сумма транзакции в USD
+            //        CreditCard = new TransactionCreditCardRequest
+            //        {
+            //            Number = collection["number"],
+            //            CVV = collection["cvv"],
+            //            ExpirationMonth = collection["month"],
+            //            ExpirationYear = collection["year"]
+            //        },
+            //        Options = new TransactionOptionsRequest
+            //        {
+            //            StoreInVault = true,
+            //            SubmitForSettlement = false
+            //        }
+            //    };
 
-                result = Gateway.Transaction.Sale(requestCard);
+            //    result = Gateway.Transaction.Sale(requestCard);
 
-            }
+            //}
 
-            if (result.IsSuccess())
-            {
+            //if (result.IsSuccess())
+            //{
                 int id = int.Parse(collection["OrderId"]);
                 var order = _orderService.GetOrderById(id);
                 var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
@@ -197,7 +197,7 @@ namespace Teeyoot.Module.Controllers
                 order.PhoneNumber = collection["PhoneNumber"];
                 order.Reserved = DateTime.UtcNow;
                 order.IsActive = true;
-                order.TranzactionId = result.Target.Id;
+                //order.TranzactionId = result.Target.Id;
 
                 var campaign = _campaignService.GetCampaignById(campaignId);
                 campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
@@ -209,8 +209,8 @@ namespace Teeyoot.Module.Controllers
                     PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
                     promotion.Redeemed = promotion.Redeemed + 1;
                 }
-                Transaction transaction = result.Target;
-                ViewData["TransactionId"] = transaction.Id;
+                //Transaction transaction = result.Target;
+                //ViewData["TransactionId"] = transaction.Id;
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                 var record = _settingsService.GetAllSettings().List().FirstOrDefault();
@@ -221,14 +221,14 @@ namespace Teeyoot.Module.Controllers
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);      
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "place-order-template.html");                               
                 SendTmplMessage(api, mandrillMessage);
-                _notifier.Information(T("The transaction is successful"));
+                //_notifier.Information(T("The transaction is successful"));
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
-            }
-            else
-            {
-                _notifier.Information(T("The transaction is failed"));
-                return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"] });
-            }          
+            //}
+            //else
+            //{
+            //    _notifier.Information(T("The transaction is failed"));
+            //    return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"] });
+            //}          
         }
 
         [Themed]
@@ -246,7 +246,6 @@ namespace Teeyoot.Module.Controllers
                                     ShowBack = c.BackSideByDefault,
                                     EndDate = c.EndDate
                                 })
-                                .Take(5)
                                 .ToArray();
 
             var entriesProjection = campaigns.Select(e =>

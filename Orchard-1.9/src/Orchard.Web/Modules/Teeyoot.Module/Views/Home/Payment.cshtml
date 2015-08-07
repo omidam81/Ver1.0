@@ -112,6 +112,7 @@
 
 
                                     <form action="@Url.Action("CreateTransaction")" method="POST" id="braintree-payment-form">
+                                        @Html.AntiForgeryToken()
                                         @if (Model.Promotion != null) { 
                                         <input type="hidden" id="PromoId" name="PromoId" value=@Model.Promotion.PromoId>
                                         }
@@ -148,7 +149,7 @@
                                                             </ul>
                                                         </div>
                                                     </label>
-                                                    @Html.AntiForgeryToken()
+                                                   
                                                     <div class="accordion__content">
                                                        
                                                         <div>
