@@ -62,7 +62,7 @@ namespace Teeyoot.Module.Controllers
                 ChangeOrderStatusTemplate = System.IO.File.Exists(pathToTemplates + "change-order-status-template.html") ? "change-order-status-template.html" : "No file!",
                 AllBuyersDeadlineTemplate = System.IO.File.Exists(pathToTemplates + "deadline-template.html") ? "deadline-template.html" : "No file!",
                 WithdrawTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-template.html") ? "withdraw-template.html" : "No file!",
-                ConfirmOrderTemplate = System.IO.File.Exists(pathToTemplates + "confirm-order-template.html") ? "confirm-order-template.html" : "No file!",
+                PlaceOrderTemplate = System.IO.File.Exists(pathToTemplates + "place-order-template.html") ? "place-order-template.html" : "No file!",
                 CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promote-template.html") ? "campaign-promote-template.html" : "No file!",
                 Culture = s.Culture,
                 AvailableLanguages = availableLanguages,

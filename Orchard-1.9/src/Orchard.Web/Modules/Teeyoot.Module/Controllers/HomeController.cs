@@ -211,7 +211,7 @@ namespace Teeyoot.Module.Controllers
                 FillUserMergeVars(mandrillMessage, order);
                 FillCampaignMergeVars(mandrillMessage, campaign, order.Email);           
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);      
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "place-order-template.html");                               
                 SendTmplMessage(api, mandrillMessage);
                 _notifier.Information(T("The transaction is successful"));
                 return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"] });
