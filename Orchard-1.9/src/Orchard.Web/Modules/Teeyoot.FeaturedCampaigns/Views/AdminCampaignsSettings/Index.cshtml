@@ -1,0 +1,73 @@
+﻿@model Teeyoot.FeaturedCampaigns.ViewModels.ExportPrintsViewModel
+
+<div>
+
+    <div style="margin-bottom:15px;">
+        <fieldset class="bulk-actions">
+            @using (Html.BeginForm("Index", "AdminCampaignsSettings", FormMethod.Get))
+            {
+                <span>
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                </span>
+
+                <button type="submit">@T("Apply")</button>
+                <a href="@Url.Action("Index")">@T("By Default")</a>
+            }
+
+            
+        </fieldset> 
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    <table class="items">
+        <thead>
+            <tr>
+                <th>@T("Campaign name")</th>
+                <th>@T("Current Status")</th>
+                <th>@T("Is Approved")</th> 
+                <th>@T("Seller name")</th> 
+                <th>@T("Seller email")</th> 
+                <th>@T("Profit")</th>  
+                <th>@T("Change Status")</th>          
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Campaigns.Length > 0)
+            {
+                foreach (var c in Model.Campaigns)
+                {
+
+                    <tr data-record-text="@c.Id" class="contentItems">                      
+                        <td><a target="_blank" href="/@c.Alias">@c.Title</a></td> 
+                        <td>@c.Status</td>
+                        <td>@c.IsApproved</td>
+                        <td>@c.Seller.UserName</td>
+                        <td>@c.Seller.Email</td> 
+                        <td></td>                                
+                        <td>                        
+                             @*<a href="@Url.Action("ChangeStatus", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Approve")">@T("Approve")</a>*@   
+                            <a>Unpaid</a>                         
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@Display(Model.Pager)
+
+@using (Script.Foot())
+{
+    <script>
+
+        var applyAction = function () {
+            return false;
+        }
+
+    </script>
+}

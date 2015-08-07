@@ -66,11 +66,11 @@
                           
                             <a href="@Url.Action("ExportPrints", new { id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
 
-                            @if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
+                            @*@if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
                             {
                                 @T(" | ")
                                 <a href="@Url.Action("StartPrinting", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Start printing")">@T("Start printing")</a>
-                            }
+                            }*@
                         </td>
                     </tr>
                 }
