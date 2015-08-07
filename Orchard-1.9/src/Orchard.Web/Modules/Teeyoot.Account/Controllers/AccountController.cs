@@ -125,30 +125,24 @@ namespace Teeyoot.Account.Controllers
             var validRes = ValidateRegistration(request.Email, request.Password, request.ConfirmPassword);
             if (!validRes.IsValid)
             {
-                var response = new WizardRegisterJsonResponse
+                return Json(new JsonResponseBase
                 {
-                    IssueOccurred = true,
-                    IssueSummary = validRes.ValidationSummary
-                };
-
-                return Json(response);
+                    Message = validRes.ValidationSummary
+                });
             }
 
             var user = _teeyootMembershipService.CreateUser(request.Email, request.Password);
             if (user == null)
             {
-                var response = new WizardRegisterJsonResponse
+                return Json(new JsonResponseBase
                 {
-                    IssueOccurred = true,
-                    IssueSummary = T("Registration issue occurred.").ToString()
-                };
-
-                return Json(response);
+                    Message = T("Registration issue occurred.").ToString()
+                });
             }
 
             _authenticationService.SignIn(user, false);
 
-            return Json(new WizardRegisterJsonResponse());
+            return Json(new JsonResponseBase {Success = true});
         }
 
         [HttpPost]
@@ -175,18 +169,15 @@ namespace Teeyoot.Account.Controllers
             var validRes = ValidateLogOn(request.Email, request.Password);
             if (!validRes.IsValid)
             {
-                var response = new WizardLogOnJsonResponse
+                return Json(new JsonResponseBase
                 {
-                    IssueOccurred = true,
-                    IssueSummary = validRes.ValidationSummary
-                };
-
-                return Json(response);
+                    Message = validRes.ValidationSummary
+                });
             }
 
             _authenticationService.SignIn(validRes.User, request.RememberMe);
 
-            return Json(new WizardLogOnJsonResponse());
+            return Json(new JsonResponseBase {Success = true});
         }
 
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
@@ -219,13 +210,13 @@ namespace Teeyoot.Account.Controllers
 
             if (response.Error != null)
             {
-                return Json(new WizardFacebookAuthJsonResponse
+                return Json(new JsonResponseBase
                 {
                     Message = response.Error.ToString()
                 });
             }
 
-            return Json(new WizardFacebookAuthJsonResponse
+            return Json(new JsonResponseBase
             {
                 Success = true
             });
@@ -239,13 +230,13 @@ namespace Teeyoot.Account.Controllers
 
             if (response.Error != null)
             {
-                return Json(new WizardGoogleAuthJsonResponse
+                return Json(new JsonResponseBase
                 {
                     Message = response.Error.ToString()
                 });
             }
 
-            return Json(new WizardGoogleAuthJsonResponse
+            return Json(new JsonResponseBase
             {
                 Success = true
             });

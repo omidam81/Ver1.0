@@ -116,12 +116,8 @@
     <Compile Include="Common\ValidateRegistrationResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="DTOs\JsonResponseBase.cs" />
-    <Compile Include="DTOs\WizardFacebookAuthJsonResponse.cs" />
-    <Compile Include="DTOs\WizardGoogleAuthJsonResponse.cs" />
     <Compile Include="DTOs\WizardLogOnJsonRequest.cs" />
-    <Compile Include="DTOs\WizardLogOnJsonResponse.cs" />
     <Compile Include="DTOs\WizardRegisterJsonRequest.cs" />
-    <Compile Include="DTOs\WizardRegisterJsonResponse.cs" />
     <Compile Include="Handlers\TeeyootUserPartHandler.cs" />
     <Compile Include="Drivers\TeeyootUserPartDriver.cs" />
     <Compile Include="Migrations.cs" />
