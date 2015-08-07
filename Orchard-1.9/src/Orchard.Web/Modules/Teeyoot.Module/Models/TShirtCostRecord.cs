@@ -25,5 +25,7 @@ namespace Teeyoot.Module.Models
         public virtual float PercentageMarkUpRequired { get; set; }
 
         public virtual float DTGPrintPrice { get; set; }
+
+        public virtual int SalesGoal { get; set; }
     }
 }
