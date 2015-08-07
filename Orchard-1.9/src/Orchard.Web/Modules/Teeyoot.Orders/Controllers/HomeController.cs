@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
@@ -85,7 +86,8 @@ namespace Teeyoot.Orders.Controllers
                     UserNameSeller = seller.UserName
                    });
             }
-
+            //var qwe = new List<SelectListItem>();
+            
             var entriesProjection = orderEntities.Orders.Select(e =>
             {
                 return Shape.FaqEntry(
@@ -93,11 +95,11 @@ namespace Teeyoot.Orders.Controllers
                     Products: e.Products,
                     Status: e.Status,
                     EmailBuyer: e.EmailBuyer,
-                    Id : e.Id,
-                    Profit : e.Profit,
+                    Id: e.Id,
+                    Profit: e.Profit,
                     UserNameSeller: e.UserNameSeller,
-                    Payout : e.Payout,
-                    SellerId : e.SellerId
+                    Payout: e.Payout,
+                    SellerId: e.SellerId
                     );
             });
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
@@ -138,6 +140,12 @@ namespace Teeyoot.Orders.Controllers
             order.ProfitPaid = true;
             _orderService.UpdateOrder(order);
             _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
+            return RedirectToAction("Index");
+        }
+
+         [HttpGet]
+        public ActionResult ApplyStatus(int orderId, string orderStatus)
+        {
             return RedirectToAction("Index");
         }
 

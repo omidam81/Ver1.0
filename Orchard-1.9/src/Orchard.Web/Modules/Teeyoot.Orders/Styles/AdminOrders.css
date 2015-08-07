@@ -6,11 +6,11 @@
 }
 
 .publicId {
-    width: 20%;
+    width: 10%;
 }
 
 .status {
-    width: 10%;
+    width: 15%;
 }
 
 .buyer {
@@ -22,7 +22,7 @@
 }
 
 .profit {
-    width: 15%;
+    width: 20%;
 }
 
 .payout {
@@ -131,4 +131,8 @@
 
 .go {
     float: right;
+}
+
+.apply {
+    margin-left:5%;
 }

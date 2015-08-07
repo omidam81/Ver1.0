@@ -474,7 +474,9 @@ namespace Teeyoot.Module
            
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("CampaignProfit", c => c.NotNull().WithDefault(string.Empty)));
 
-            return 49;
+            SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("SalesGoal", c => c.NotNull().WithDefault(500)));
+
+            return 50;
         }
 
         public int UpdateFrom2()
@@ -989,6 +991,13 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("CampaignProfit", c => c.NotNull().WithDefault(string.Empty)));
 
             return 49;
+        }
+
+        public int UpdateFrom49()
+        {
+            SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("SalesGoal", c => c.NotNull().WithDefault(500)));
+
+            return 50;
         }
     }
 }

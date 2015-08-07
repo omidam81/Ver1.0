@@ -230,7 +230,34 @@
 .tb-button-warning {
     background-color: #ff4f00;
 }
+.recover.row {
+    margin-top: 20px;
+}
 
+.recover .msg {
+    background-color: #ff4f00;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.recover .tb-button{
+    background: #ff4f00;
+    font-size: 16px;
+    width: 100%;
+    margin-left: -15px;
+}
+.recover input{
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 100%;
+    margin-left: -15px;
+}
+}
 .tb-search-form {
     border: solid 1px #e8eced;
     border-radius: 10px;

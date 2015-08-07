@@ -15,6 +15,7 @@ namespace Teeyoot.Account.Services
         private readonly IOrchardServices _orchardServices;
         private readonly IAuthenticationService _authenticationService;
         private readonly ITeeyootMembershipService _teeyootMembershipService;
+        private readonly ITeeyootUserService _teeyootUserService;
 
         public ILogger Logger { get; set; }
         public Localizer T { get; set; }
@@ -22,11 +23,13 @@ namespace Teeyoot.Account.Services
         public TeeyootSocialLogOnService(
             IAuthenticationService authenticationService,
             IOrchardServices orchardServices,
-            ITeeyootMembershipService teeyootMembershipService)
+            ITeeyootMembershipService teeyootMembershipService,
+            ITeeyootUserService teeyootUserService)
         {
             _authenticationService = authenticationService;
             _orchardServices = orchardServices;
             _teeyootMembershipService = teeyootMembershipService;
+            _teeyootUserService = teeyootUserService;
 
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
@@ -58,6 +61,7 @@ namespace Teeyoot.Account.Services
                         Error = T("User can not be created to assign to Quick LogOn credentials")
                     };
                 }
+                _teeyootUserService.SendWelcomeEmail(user);
             }
 
             _authenticationService.SignIn(user, request.RememberMe);
