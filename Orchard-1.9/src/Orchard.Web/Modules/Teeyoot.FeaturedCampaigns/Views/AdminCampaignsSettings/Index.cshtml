@@ -15,8 +15,8 @@
                 <a href="@Url.Action("Index")">@T("By Default")</a>
             }
 
-            
-        </fieldset> 
+
+        </fieldset>
     </div>
 
     @using (Html.BeginForm())
@@ -27,13 +27,16 @@
     <table class="items">
         <thead>
             <tr>
-                <th>@T("Campaign name")</th>
+                <th>@T("Campaign Name")</th>
                 <th>@T("Current Status")</th>
-                <th>@T("Is Approved")</th> 
-                <th>@T("Seller name")</th> 
-                <th>@T("Seller email")</th> 
-                <th>@T("Profit")</th>  
-                <th>@T("Change Status")</th>          
+                <th>@T("Is Approved")</th>
+                <th>@T("Sold/Goal")</th>
+                <th>@T("End Date")</th>
+                <th>@T("Seller Name")</th>
+                <th>@T("Seller Email")</th>
+                <th>@T("Phone Number")</th>
+                <th>@T("Profit")</th>
+                <th>@T("Change Status")</th>
             </tr>
         </thead>
         <tbody>
@@ -42,16 +45,24 @@
                 foreach (var c in Model.Campaigns)
                 {
 
-                    <tr data-record-text="@c.Id" class="contentItems">                      
-                        <td><a target="_blank" href="/@c.Alias">@c.Title</a></td> 
+                    <tr data-record-text="@c.Id" class="contentItems">
+                        <td><a target="_blank" href="/@c.Alias">@c.Title</a></td>
                         <td>@c.Status</td>
                         <td>@c.IsApproved</td>
+                        <td>@c.Sold/@c.Goal</td>
+                        <td>@c.EndDate</td>
                         <td>@c.Seller.UserName</td>
-                        <td>@c.Seller.Email</td> 
-                        <td></td>                                
-                        <td>                        
-                             @*<a href="@Url.Action("ChangeStatus", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Approve")">@T("Approve")</a>*@   
-                            <a>Unpaid</a>                         
+                        <td>@c.Seller.Email</td>
+                        <td>@c.TeeyootSeller.PhoneNumber</td>
+                        <td></td>
+                        <td><text> | </text>
+                            @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
+                            {
+                                if(item.ToString() != c.Status)
+                                {
+                                    <a href="@Url.Action("ChangeStatus", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id, status = item })">@item</a> <text> | </text>
+                                }
+                            }
                         </td>
                     </tr>
                 }
@@ -68,6 +79,5 @@
         var applyAction = function () {
             return false;
         }
-
     </script>
 }
