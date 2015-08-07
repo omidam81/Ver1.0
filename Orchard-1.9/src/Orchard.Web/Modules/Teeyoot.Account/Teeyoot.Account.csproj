@@ -134,10 +134,12 @@
     <Compile Include="Services\ITeeyootGoogleOAuthService.cs" />
     <Compile Include="Services\ITeeyootMembershipService.cs" />
     <Compile Include="Services\ITeeyootSocialLogOnService.cs" />
+    <Compile Include="Services\ITeeyootUserService.cs" />
     <Compile Include="Services\TeeyootFacebookOAuthService.cs" />
     <Compile Include="Services\TeeyootGoogleOAuthService.cs" />
     <Compile Include="Services\TeeyootMembershipService.cs" />
     <Compile Include="Services\TeeyootSocialLogOnService.cs" />
+    <Compile Include="Services\TeeyootUserService.cs" />
     <Compile Include="SocialLogOnUrlCreator.cs" />
     <Compile Include="ViewModels\AccountIndexViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
