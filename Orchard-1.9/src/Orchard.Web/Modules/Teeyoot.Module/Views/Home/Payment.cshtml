@@ -59,27 +59,27 @@
                                     </dt>
                                     <dd><span><span class="order_summary__total">-@Model.Order.CurrencyRecord.Code @Model.Order.Promotion</span></dd>
                                 }
-                                    <dt>
+                                    @*<dt>
                                         
                                         @T("Shipping")
                                         <a class="order_summary__help_link" href="#" target="_new">
                                             <i class="ss-icon ss-standards">Help</i>
                                         </a>
                                     </dt>
-                                    <dd>$12.50</dd>
+                                    <dd>$12.50</dd>*@
                                 </dl>
                                     <dl class="order_summary__breakdown">
                                         <dt class="order_summary__total_label">
                                             @T("Total")
                                         </dt>
                                         <dd>
-                                            @if (Model.Order.TotalPriceWithPromo != null)
+                                            @if (Model.Order.TotalPriceWithPromo != 0)
                                     {
-                                                <span class="order_summary__total">@Model.Order.CurrencyRecord.Code@Model.Order.TotalPriceWithPromo</span>
+                                                <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPriceWithPromo</span>
                                     }
                                     else
                                     {
-                                                <span class="order_summary__total">@Model.Order.CurrencyRecord.Code@Model.Order.TotalPrice</span>
+                                                <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPrice</span>
                                     }
 
                                         </dd>
