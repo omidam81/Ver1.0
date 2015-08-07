@@ -478,6 +478,10 @@ function slideTo(slideNumber) {
         $('#too-many-colors-error').modal('show');
         return;
     }
+    if (app.state.getUsedColorsCount() < 1) {
+        $('#no-content-error').modal('show');
+        return;
+    }
     if (slideTimeout) {
         window.clearTimeout(slideTimeout);
     }

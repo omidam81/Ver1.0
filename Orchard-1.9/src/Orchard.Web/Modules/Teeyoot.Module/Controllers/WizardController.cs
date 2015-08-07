@@ -93,41 +93,63 @@ namespace Teeyoot.Module.Controllers
         [ValidateInput(false)]
         public HttpStatusCodeResult LaunchCampaign(LaunchCampaignData data)
         {
+            //if (string.IsNullOrWhiteSpace(data.CampaignTitle) && string.IsNullOrWhiteSpace(data.Description) && )
+            string error = string.Empty;
+            bool hasError = false;
             if (string.IsNullOrWhiteSpace(data.CampaignTitle))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty");
+                error = "name|Campiagn Title can't be empty";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty");
             }
 
             if (string.IsNullOrWhiteSpace(data.Description))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "campaign_description_text|Campiagn Description can't be empty");
+                error = hasError ? error + "|" + "campaign_description_text|Campiagn Description can't be empty" : "campaign_description_text|Campiagn Description can't be empty";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "campaign_description_text|Campiagn Description can't be empty");
             }
 
             if (string.IsNullOrWhiteSpace(data.Alias))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't be empty");
+                error = hasError ? error + "|" + "url|Campiagn URL can't be empty" : "url|Campiagn URL can't be empty";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't be empty");
             }
 
             data.Alias = data.Alias.Trim();
 
             if (data.Alias.Any(ch => Char.IsWhiteSpace(ch)))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't contain whitespaces");
+                error = hasError ? error + "|" + "url|Campiagn URL can't contain whitespaces" : "url|Campiagn URL can't contain whitespaces";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't contain whitespaces");
             }
 
             if (data.Alias.Contains('&') || data.Alias.Contains('?') || data.Alias.Contains('/') || data.Alias.Contains('\\'))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL has wrong format");
+                error = hasError ? error + "|" + "url|Campiagn URL has wrong format" : "url|Campiagn URL has wrong format";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL has wrong format");
             }
 
             if (_campaignService.GetCampaignByAlias(data.Alias) != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn with this URL already exists");
+                error = hasError ? error + "|" + "url|Campiagn with this URL already exists" : "url|Campiagn with this URL already exists";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn with this URL already exists");
             }
 
             if (string.IsNullOrWhiteSpace(data.Design))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Design|No design found for your campaign");
+                error = hasError ? error + "|" + "url|No design found for your campaign" : "url|No design found for your campaign";
+                hasError = true;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Design|No design found for your campaign");
+            }
+
+            if (hasError)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (_orchardServices.WorkContext.CurrentUser == null)

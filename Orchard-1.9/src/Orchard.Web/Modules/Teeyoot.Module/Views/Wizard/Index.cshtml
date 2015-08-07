@@ -212,17 +212,17 @@
                     }
                     //alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                     var errorsData = data.statusText.split('|');
-                    if(errorsData[0]){
-                        var idForData = '#' + errorsData[0];
-                        var idForError = '#' + errorsData[0] + '_error-text';
-                        if(errorsData[0] == 'campaign_description_text'){
-                            idForData = '.wysihtml5-sandbox';
-                        }
-                        var error = $(idForData);
-                        var error_text = $(idForError)[0];
-                        error.addClass('wizard-error');
-                        error_text.innerHTML = errorsData[1];
-                    }
+                    //if(errorsData[0]){
+                    //    var idForData = '#' + errorsData[0];
+                    //    var idForError = '#' + errorsData[0] + '_error-text';
+                    //    if(errorsData[0] == 'campaign_description_text'){
+                    //        idForData = '.wysihtml5-sandbox';
+                    //    }
+                    //    var error = $(idForData);
+                    //    var error_text = $(idForError)[0];
+                    //    error.addClass('wizard-error');
+                    //    error_text.innerHTML = errorsData[1];
+                    //}
                 }
             });
         };
@@ -1180,7 +1180,7 @@
                                                                 </p>
                                                                 <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
                                                                     <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">
-                                                                        <span>8 Days</span>
+                                                                        <span>3 Days</span>
                                                                         <span> </span>
                                                                         <span> </span>
                                                                         <span>(</span><span>Ending</span>
@@ -1197,6 +1197,7 @@
                                                             <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
                                                                 <label>URL</label>
                                                                 <p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>
+                                                                <p class="has-under-text text-error" id="url_error-text"></p>
                                                                 <p class="inline-input-text  small-bottom" style="display: inline;">
                                                                     <strong>teeyoot.com/</strong>
                                                                 </p>
