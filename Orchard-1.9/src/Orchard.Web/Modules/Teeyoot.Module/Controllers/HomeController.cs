@@ -207,18 +207,12 @@ namespace Teeyoot.Module.Controllers
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                 var record = _settingsService.GetAllSettings().List().FirstOrDefault();
                 var api = new MandrillApi(record.ApiKey);
-                var mandrillMessage = new MandrillMessage() { };
-                mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-                mandrillMessage.FromEmail = "admin@teeyoot.com";
-                mandrillMessage.Subject = "Your order";
-                List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
-                emails.Add(new MandrillMailAddress(order.Email));
-                mandrillMessage.To = emails;
+                MandrillMessage mandrillMessage = InitMandrillMessage(order);
                 FillUserMergeVars(mandrillMessage, order);
                 FillCampaignMergeVars(mandrillMessage, campaign, order.Email);           
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);      
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
-                var resss = SendTmplMessage(api, mandrillMessage);
+                SendTmplMessage(api, mandrillMessage);
                 _notifier.Information(T("The transaction is successful"));
 
             }
@@ -448,6 +442,18 @@ namespace Teeyoot.Module.Controllers
         {
             var result = mAPI.Messages.Send(message);
             return result.ToString();
+        }
+
+        private MandrillMessage InitMandrillMessage(OrderRecord order)
+        {
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "admin@teeyoot.com";
+            mandrillMessage.Subject = "Your order";
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            emails.Add(new MandrillMailAddress(order.Email));
+            mandrillMessage.To = emails;
+            return mandrillMessage;
         }
 
     }    
