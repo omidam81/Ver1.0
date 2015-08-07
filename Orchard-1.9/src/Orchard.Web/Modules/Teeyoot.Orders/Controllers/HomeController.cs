@@ -10,7 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Orders.Controllers
@@ -22,6 +24,7 @@ namespace Teeyoot.Orders.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IContentManager _contentManager;
         private readonly ISiteService _siteService;
+        private readonly IPayoutService _payoutService;
 
         private dynamic Shape { get; set; }
         // GET: Home
@@ -30,27 +33,39 @@ namespace Teeyoot.Orders.Controllers
                               ICampaignService campaignService,
                               IShapeFactory shapeFactory,
                               IContentManager contentManager,
-                              ISiteService siteService)
+                              ISiteService siteService,
+                              IPayoutService payoutService )
         {
             _orderService = orderService;
             _campaignService = campaignService;
             _contentManager = contentManager;
             _siteService = siteService;
+            _payoutService = payoutService;
             Shape = shapeFactory; 
         }
 
         public ActionResult Index(PagerParameters pagerParameters, AdminOrderViewModel adminViewModel)
         {
-            var orders = _orderService.GetAllOrders().ToList();
+            var orders = _orderService.GetAllOrders().Where(o => o.IsActive).ToList();
             var orderEntities = new AdminOrderViewModel();
-            //_campaignService.GetAllCampaignProducts
             foreach (var item in orders)
             {
-
                 var campaignId = item.Products.First().CampaignProductRecord.CampaignRecord_Id;
                 var campaign = _campaignService.GetCampaignById(campaignId);
-                
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+                double orderProfit = 0;
+                //Profit
+                foreach (var product in item.Products)
+                {
+                    var prof = product.CampaignProductRecord.Price - product.CampaignProductRecord.BaseCost;
+                    foreach (var size in product.CampaignProductRecord.ProductRecord.SizesAvailable)
+                    {
+                        if (size.Id == product.ProductSizeRecord.Id)
+                            prof = prof - size.SizeCost;
+                    }
+                    orderProfit = orderProfit + prof;
+                }
+
 
                 orderEntities.Orders.Add(new AdminOrder  {
                     PublicId = item.OrderPublicId,
@@ -58,12 +73,15 @@ namespace Teeyoot.Orders.Controllers
                     Status = item.OrderStatusRecord.Name,
                     EmailBuyer = item.Email,
                     Id = item.Id,
+                    Profit = orderProfit,
+                    SellerId = seller.Id,
                     //FirstName = item.FirstName,
                     //LastName = item.LastName,
                     //StreetAdress = item.StreetAddress,
                     //City = item.City,
                     //Country = item.Country,
                     //PhoneNumber = item.PhoneNumber,
+                    Payout = item.ProfitPaid,
                     UserNameSeller = seller.UserName
                    });
             }
@@ -76,7 +94,10 @@ namespace Teeyoot.Orders.Controllers
                     Status: e.Status,
                     EmailBuyer: e.EmailBuyer,
                     Id : e.Id,
-                    UserNameSeller: e.UserNameSeller
+                    Profit : e.Profit,
+                    UserNameSeller: e.UserNameSeller,
+                    Payout : e.Payout,
+                    SellerId : e.SellerId
                     );
             });
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
@@ -106,6 +127,18 @@ namespace Teeyoot.Orders.Controllers
                 country = order.Country,
                 phoneNumber = order.PhoneNumber
             }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult EditStatusPayout(string publicId, double profit, int sellerId) 
+        {
+            var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
+            var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
+            var campaign = _campaignService.GetCampaignById(campaignId);
+            order.ProfitPaid = true;
+            _orderService.UpdateOrder(order);
+            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
+            return RedirectToAction("Index");
         }
 
         

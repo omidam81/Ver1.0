@@ -15,26 +15,6 @@
 
 
 
-        @*function getRes(request, response) {
-            var result = new Array();
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "GET",
-                url: "@(Url.Action("GetPayoutInfirmation", "Tranzaction"))",
-                data: { "userId": document.getElementById("inputTags").value },
-            success: function (data) {
-                for (var i = 0; i < data.length ; i++) {
-                    result[i] = data[i];
-                }
-            },
-                    });
-        response(result);
-
-        };*@
-
-
-
         $(document).ready(function () {
             $('.go').click(function (event) {
                 event.preventDefault();

@@ -51,7 +51,7 @@
 	display: block;
 }
 /* Пoдлoжкa */
-#overlay #overlay_order {
+#overlay {
 	z-index: 3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
 	position: fixed; /* всегдa перекрывaет весь сaйт */
 	background-color: #000; /* чернaя */

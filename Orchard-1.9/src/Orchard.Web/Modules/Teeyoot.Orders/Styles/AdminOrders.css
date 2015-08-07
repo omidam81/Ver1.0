@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.paid {
+    cursor: pointer;
+}
+
 #modal_form {
     width: 600px;
     height: 380px; /* Рaзмеры дoлжны быть фиксирoвaны */
