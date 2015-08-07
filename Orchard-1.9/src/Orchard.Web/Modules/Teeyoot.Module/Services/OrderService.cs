@@ -79,6 +79,7 @@ namespace Teeyoot.Module.Services
                     OrderPublicId = "",
                     IsActive = false
                 };
+
                 _orderRepository.Create(order);
 
                 var ticks = DateTime.Now.Date.Ticks;
@@ -92,7 +93,7 @@ namespace Teeyoot.Module.Services
                 _orderRepository.Update(order);
 
                 List<LinkOrderCampaignProductRecord> productsList = new List<LinkOrderCampaignProductRecord>();
-
+                var totalPrice = 0;
                 foreach (var product in products)
                 {
                     var campaignProduct = _campaignService.GetCampaignProductById(product.ProductId);
@@ -103,10 +104,16 @@ namespace Teeyoot.Module.Services
                         CampaignProductRecord = campaignProduct,
                         OrderRecord = order
                     };
+
+                    totalPrice = totalPrice + product.Price * product.Count;
+
+
                     _ocpRepository.Create(orderProduct);
                     productsList.Add(orderProduct);
                 }
 
+                order.TotalPrice = totalPrice;
+                _orderRepository.Update(order);
                 order.Products = productsList;
                 return order;
             }

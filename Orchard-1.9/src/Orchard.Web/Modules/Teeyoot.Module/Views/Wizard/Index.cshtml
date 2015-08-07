@@ -74,6 +74,7 @@
         window.GoogleScopes = 'https://www.googleapis.com/auth/userinfo.email';
 
         function handleAuthResult(authResult) {
+            window.GoogleAccessToken = authResult.access_token;
         }
 
         function checkAuth() {
@@ -416,7 +417,7 @@
                     url: '/WizardLogOn',
                     data: addAntiForgeryToken(wizardLogOnJsonRequest),
                     success: function(data) {
-                        if (!data.IssueOccurred) {
+                        if (data.Success === true) {
                             refreshToken();
                             $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
                                 function() {
@@ -429,7 +430,7 @@
                             return;
                         }
 
-                        $('#login_validation_summary').text(data.IssueSummary);
+                        $('#login_validation_summary').text(data.Message);
                         $('#login_validation_summary').show();
                     }
                 });
@@ -451,7 +452,7 @@
                     url: '/WizardRegister',
                     data: addAntiForgeryToken(wizardRegisterJsonRequest),
                     success: function(data) {
-                        if (!data.IssueOccurred) {
+                        if (data.Success === true) {
                             refreshToken();
                             $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
                                 function() {
@@ -464,7 +465,7 @@
                             return;
                         }
 
-                        $('#create_account_validation_summary').text(data.IssueSummary);
+                        $('#create_account_validation_summary').text(data.Message);
                         $('#create_account_validation_summary').show();
                     }
                 });

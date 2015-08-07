@@ -50,7 +50,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                                  :
                         _campaignService.GetAllCampaigns()
                         .Where(c => c.Title.Contains(searchString)))
-                            .Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
+                            //.Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
                             .Count();
 
             var campaigns = (string.IsNullOrWhiteSpace(searchString) ?
@@ -58,7 +58,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                                      :
                             _campaignService.GetAllCampaigns()
                             .Where(c => c.Title.Contains(searchString)))
-                                .Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
+                                //.Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
                                 .Select(c => new { 
                                                     Id = c.Id,
                                                     Title = c.Title,

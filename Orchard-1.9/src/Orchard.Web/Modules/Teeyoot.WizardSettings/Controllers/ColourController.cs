@@ -181,7 +181,8 @@ namespace Teeyoot.WizardSettings.Controllers
             catch (Exception exception)
             {
                 Logger.Error(T("Deleting Product Colour failed: {0}", exception.Message).Text);
-                _orchardServices.Notifier.Error(T("Deleting Product Colour failed: {0}", exception.Message));
+                _orchardServices.Notifier.Error(
+                    T("Deleting Product Colour failed. There are references to another objects."));
                 return RedirectToAction("Index",
                     new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)});
             }
@@ -283,7 +284,8 @@ namespace Teeyoot.WizardSettings.Controllers
             catch (Exception exception)
             {
                 Logger.Error(T("Deleting Swatch Colour failed: {0}", exception.Message).Text);
-                _orchardServices.Notifier.Error(T("Deleting Swatch Colour failed: {0}", exception.Message));
+                _orchardServices.Notifier.Error(
+                    T("Deleting Swatch Colour failed. There are references to another objects."));
                 return RedirectToAction("Index",
                     new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)});
             }
