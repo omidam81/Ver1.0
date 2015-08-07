@@ -89,12 +89,17 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Teeyoot.Module\Teeyoot.Module.csproj">
       <Project>{a11fb407-2b62-42d2-97b6-895056579905}</Project>
       <Name>Teeyoot.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdminCampaignsSettingsController.cs" />
     <Compile Include="Controllers\AdminApproveCampaignsController.cs" />
     <Compile Include="Controllers\AdminExportPrintsController.cs" />
     <Compile Include="Controllers\AdminFeaturedCampaignsController.cs" />
@@ -122,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminApproveCampaigns\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AdminCampaignsSettings\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

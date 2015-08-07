@@ -925,6 +925,10 @@ input[type=range] {
     color: #FF0000 !important;
 }
 
+.slide_active {
+    display: block !important;
+}
+
 @media screen and (max-width: 1240px) {
     #layout-wrapper {
         display: block !important;
@@ -978,6 +982,16 @@ input[type=range] {
             float: none;
             width: 100% !important;
             clear: both;
+            position: absolute;
+            top: -9999px;
+            width: 100%;
+            visibility: hidden;
+        }
+
+        .Slides .Slide.slide_active {
+            position: relative;
+            top: 0;
+            visibility: visible;
         }
 
         .Slides #designer {

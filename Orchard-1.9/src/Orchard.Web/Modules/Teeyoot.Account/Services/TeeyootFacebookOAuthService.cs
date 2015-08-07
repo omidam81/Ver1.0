@@ -202,11 +202,11 @@ namespace Teeyoot.Account.Services
             };
         }
 
-        public bool InspectToken(string token, string tokenToInspect)
+        public bool InspectToken(string inputToken, string accessToken)
         {
             try
             {
-                var wr = WebRequest.Create(string.Format(InspectTokenUrl, token, tokenToInspect));
+                var wr = WebRequest.Create(string.Format(InspectTokenUrl, inputToken, accessToken));
                 wr.Method = "GET";
                 wr.Proxy = OAuthHelper.GetProxy();
                 var wres = wr.GetResponse();
@@ -241,7 +241,7 @@ namespace Teeyoot.Account.Services
                 var token = GetAccessToken();
                 if (!string.IsNullOrEmpty(token))
                 {
-                    var tokenInspection = InspectToken(token, tokenToInspect);
+                    var tokenInspection = InspectToken(tokenToInspect, token);
                     if (tokenInspection)
                     {
                         var email = GetEmailAddress(tokenToInspect);

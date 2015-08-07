@@ -486,16 +486,20 @@ function slideTo(slideNumber) {
         window.clearTimeout(slideTimeout);
     }
     setDesign();
+
+    var $slides = $('.Slides .Slide');
+
     slideTimeout = window.setTimeout(function() {
         $('.flow-step.active').removeClass('active');
         $('#' + slideSteps[slideNumber - 1]).addClass('active');
         app.state.pos = 1 - slideNumber;
-        $('.Slides').stop().animate(
-            {
-                left: -100 * (slideNumber - 1) + '%'
-            });
+        $('.Slides').stop().animate({
+            left: -100 * (slideNumber - 1) + '%'
+        });
 
         //$('.Slides').stop().animate({ left: (app.state.pos * app.state.w) + 'px' });
+
+        $slides.eq(slideNumber - 1).addClass("slide_active").siblings(".Slide.slide_active").removeClass("slide_active");
     }, 200);//delay to render design
 }
 
