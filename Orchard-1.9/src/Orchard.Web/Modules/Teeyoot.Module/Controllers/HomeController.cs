@@ -430,6 +430,7 @@ namespace Teeyoot.Module.Controllers
                         {"description",  item.CampaignProductRecord.ProductRecord.Details},
                         {"price", price},
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
+                        {"currency", item.OrderRecord.CurrencyRecord.Code},
                         {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/front.png"}
                      });
 
