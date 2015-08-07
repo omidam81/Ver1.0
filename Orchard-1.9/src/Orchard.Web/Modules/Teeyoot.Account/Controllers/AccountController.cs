@@ -31,6 +31,11 @@ namespace Teeyoot.Account.Controllers
         private readonly IUserService _userService;
         private readonly IWorkContextAccessor _workContextAccessor;
 
+        private WorkContext WorkContext
+        {
+            get { return _workContextAccessor.GetContext(); }
+        }
+
         private const string RegistrationValidationSummaryKey = "RegistrationValidationSummary";
         private const string LoggingOnValidationSummaryKey = "LoggingOnValidationSummary";
         private const string RecoverValidationSummaryKey = "RecoverValidationSummary";
@@ -125,19 +130,13 @@ namespace Teeyoot.Account.Controllers
             var validRes = ValidateRegistration(request.Email, request.Password, request.ConfirmPassword);
             if (!validRes.IsValid)
             {
-                return Json(new JsonResponseBase
-                {
-                    Message = validRes.ValidationSummary
-                });
+                return Json(new JsonResponseBase {Message = validRes.ValidationSummary});
             }
 
             var user = _teeyootMembershipService.CreateUser(request.Email, request.Password);
             if (user == null)
             {
-                return Json(new JsonResponseBase
-                {
-                    Message = T("Registration issue occurred.").ToString()
-                });
+                return Json(new JsonResponseBase {Message = T("Registration issue occurred.").ToString()});
             }
 
             _authenticationService.SignIn(user, false);
@@ -169,10 +168,7 @@ namespace Teeyoot.Account.Controllers
             var validRes = ValidateLogOn(request.Email, request.Password);
             if (!validRes.IsValid)
             {
-                return Json(new JsonResponseBase
-                {
-                    Message = validRes.ValidationSummary
-                });
+                return Json(new JsonResponseBase {Message = validRes.ValidationSummary});
             }
 
             _authenticationService.SignIn(validRes.User, request.RememberMe);
@@ -183,7 +179,7 @@ namespace Teeyoot.Account.Controllers
         public ActionResult FacebookAuth(FacebookOAuthAuthViewModel model)
         {
             var response = _teeyootFacebookOAuthService.Auth(
-                _workContextAccessor.GetContext(),
+                WorkContext,
                 model.Code,
                 model.Error,
                 model.State);
@@ -194,7 +190,7 @@ namespace Teeyoot.Account.Controllers
         public ActionResult GoogleAuth(GoogleOAuthAuthViewModel model)
         {
             var response = _teeyootGoogleOAuthService.Auth(
-                _workContextAccessor.GetContext(),
+                WorkContext,
                 model.Code,
                 model.Error,
                 model.State);
@@ -210,16 +206,10 @@ namespace Teeyoot.Account.Controllers
 
             if (response.Error != null)
             {
-                return Json(new JsonResponseBase
-                {
-                    Message = response.Error.ToString()
-                });
+                return Json(new JsonResponseBase {Message = response.Error.ToString()});
             }
 
-            return Json(new JsonResponseBase
-            {
-                Success = true
-            });
+            return Json(new JsonResponseBase {Success = true});
         }
 
         [HttpPost]
@@ -230,16 +220,10 @@ namespace Teeyoot.Account.Controllers
 
             if (response.Error != null)
             {
-                return Json(new JsonResponseBase
-                {
-                    Message = response.Error.ToString()
-                });
+                return Json(new JsonResponseBase {Message = response.Error.ToString()});
             }
 
-            return Json(new JsonResponseBase
-            {
-                Success = true
-            });
+            return Json(new JsonResponseBase {Success = true});
         }
 
         public ActionResult Recover()
