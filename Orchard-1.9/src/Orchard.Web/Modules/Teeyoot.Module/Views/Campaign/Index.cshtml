@@ -32,13 +32,19 @@
 @using (Script.Foot())
 {
     <script>
+        var firstBack = "@Model.Campaign.BackSideByDefault";
+
     var twitterBtn = document.getElementsByClassName("btn--twitter");
     for (var k = 0; k < twitterBtn.length; k++) {
         $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
     }
     var pinterestBtn = document.getElementsByClassName("btn--pinterest");
     for (var k = 0; k < pinterestBtn.length; k++) {
-        $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+        if (firstBack == "True") {
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+        } else {
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+        }
     }
     var facebookBtn = document.getElementsByClassName("btn--facebook");
     for (var k = 0; k < facebookBtn.length; k++) {
@@ -131,8 +137,7 @@
         el.parentNode.removeChild(el);
         VisibleRemove();
     }
-
-    var firstBack = "@Model.Campaign.BackSideByDefault";
+  
     var isFront = true;
     $(function ($) {
         $("#card").flip({

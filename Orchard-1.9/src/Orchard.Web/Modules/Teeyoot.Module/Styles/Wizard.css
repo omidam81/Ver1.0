@@ -985,7 +985,7 @@ input[type=range] {
             position: absolute;
             top: -9999px;
             width: 100%;
-            visibility: hidden;
+            /*visibility: hidden;*/
         }
 
         .Slides .Slide.slide_active {
