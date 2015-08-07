@@ -160,8 +160,8 @@ namespace Teeyoot.Orders.Controllers
         public ActionResult ApplyStatus(int orderId, string orderStatus)
         {
             var order = _orderService.GetOrderById(orderId);
-            order.OrderStatusRecord.Name = orderStatus;
-            _orderService.UpdateOrder(order);
+            OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
+            _orderService.UpdateOrder(order, newStatus);
             //_notifierService.Information();
 
 
