@@ -1907,14 +1907,14 @@ var design={
 					o.change_color = 0;
 
 					var content = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink">'
-								 + '<g><image x="1" y="1" width="' + (o.width-2) + '" height="' + (o.height-2) + '" xlink:href="' + item.url + '" preserveAspectRatio="none"/></g>'
+								 + '<g><image x="0" y="0" width="' + (o.width) + '" height="' + (o.height) + '" xlink:href="' + item.url + '" preserveAspectRatio="none"/></g>'
 								 + '</svg>';
 					o.svg 		= $.parseHTML(content);					
 					var $div = design.item.create(o);
 				    var svg = $div.find('svg:first')[0];
 				    svg.setAttributeNS(null, 'width', o.width);
 				    svg.setAttributeNS(null, 'height', o.height);
-				    //svg.setAttributeNS(null, 'viewBox', '0 0 ' + o.width + ' ' + o.height);
+				    svg.setAttributeNS(null, 'viewBox', '0 0 ' + o.width + ' ' + o.height);
 					svg.setAttributeNS(null, 'preserveAspectRatio', 'none');
 					design.mask(false);
 				}
@@ -2583,12 +2583,12 @@ var design={
             if(e.data('type') == 'clipart')
             {
                 var file = e.data('file');
-                if(file.type === 'image')
+                /*if(file.type === 'image')
                 {
                     var img = e.find('image');
                     img[0].setAttributeNS(null, 'width', width-2);
                     img[0].setAttributeNS(null, 'height', height-2);
-                }
+                }*/
             }
 
             if(e.data('type') == 'text')
@@ -2711,7 +2711,7 @@ var design={
 		unselect: function(e){
 			$('#app-wrap .drag-item-selected').each(function(){
 				$(this).removeClass('drag-item-selected');
-				$(this).css('border', 0);
+				//$(this).css('border', 0);
 				$(this).resizable({ disabled: true, handles: 'e' });
 				$(this).draggable({ disabled: true });
 			});
