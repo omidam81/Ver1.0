@@ -211,18 +211,32 @@
                         return;
                     }
                     //alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    $('#name').removeClass('wizard-error');
+                    $('.wysihtml5-sandbox').removeClass('wizard-error');
+                    $('#url').removeClass('wizard-error');
+                    //$('#name_error-text')[0].hidden = false;
+                    //$('#name_error-text').css('display', 'none');
+                    //$('#campaign_description_text_error-text')[0].hidden = false;
+                    //$('#url_error-text')[0].hidden = false;
+                    $('#name_error-text').css('display', 'none');
+                    $('#campaign_description_text_error-text').css('display', 'none');
+                    $('#url_error-text').css('display', 'none');
                     var errorsData = data.statusText.split('|');
-                    //if(errorsData[0]){
-                    //    var idForData = '#' + errorsData[0];
-                    //    var idForError = '#' + errorsData[0] + '_error-text';
-                    //    if(errorsData[0] == 'campaign_description_text'){
-                    //        idForData = '.wysihtml5-sandbox';
-                    //    }
-                    //    var error = $(idForData);
-                    //    var error_text = $(idForError)[0];
-                    //    error.addClass('wizard-error');
-                    //    error_text.innerHTML = errorsData[1];
-                    //}
+                    for(var i = 0; i < errorsData.length; i++){
+                        if(errorsData[i]){
+                            var idForData = '#' + errorsData[i];
+                            var idForError = '#' + errorsData[i] + '_error-text';
+                            if(errorsData[i] == 'campaign_description_text'){
+                                idForData = '.wysihtml5-sandbox';
+                            }
+                            var error = $(idForData);
+                            var error_text = $(idForError)[0];
+                            error.addClass('wizard-error');
+                            i++;
+                            $(idForError).css('display', 'block');
+                            error_text.innerHTML = errorsData[i];
+                        }
+                    }
                 }
             });
         };
@@ -616,7 +630,7 @@
                                                                             <div class="swatch" title="Black" style="background-color: #000000;"></div>
                                                                             <div class="colors shirt-colors containertip">
                                                                                 <!-- <ul class="colors-in-use"></ul>
-                                                                            <hr class="color-picker__divider">-->
+                                                                                <hr class="color-picker__divider">-->
                                                                                 <ul class="all-colors"></ul>
                                                                             </div>
                                                                         </div>
