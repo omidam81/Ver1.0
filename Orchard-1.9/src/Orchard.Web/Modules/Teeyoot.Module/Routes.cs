@@ -34,7 +34,21 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 },
-                
+                new RouteDescriptor {
+                    Route = new Route(
+                        "ReservationComplete/{campaignId}/{sellerId}",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Home"},
+                            {"action", "ReservationComplete"}, 
+                            { "promo", UrlParameter.Optional}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
                 new RouteDescriptor {
                     Route = new Route(
                         "GetStarted",

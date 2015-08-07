@@ -29,6 +29,7 @@ namespace Teeyoot.Orders.Controllers
         private readonly ISiteService _siteService;
         private readonly IPayoutService _payoutService;
         private readonly INotifier _notifierService;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
         private dynamic Shape { get; set; }
         // GET: Home
@@ -39,7 +40,8 @@ namespace Teeyoot.Orders.Controllers
                               IContentManager contentManager,
                               ISiteService siteService,
                               IPayoutService payoutService,
-                              INotifier notifierService)
+                              INotifier notifierService,
+                              ITeeyootMessagingService teeyootMessagingService)
         {
             _orderService = orderService;
             _campaignService = campaignService;
@@ -47,6 +49,7 @@ namespace Teeyoot.Orders.Controllers
             _siteService = siteService;
             _payoutService = payoutService;
             _notifierService = notifierService;
+            _teeyootMessagingService = teeyootMessagingService;
             Shape = shapeFactory;
 
             T = NullLocalizer.Instance;
@@ -162,9 +165,12 @@ namespace Teeyoot.Orders.Controllers
             var order = _orderService.GetOrderById(orderId);
             OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
             _orderService.UpdateOrder(order, newStatus);
-            //_notifierService.Information();
-
-
+            if (orderStatus == "Approved")
+            {
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                _teeyootMessagingService.SendApproveOrderMessage(pathToTemplates, pathToMedia, orderId);
+            }
             _notifierService.Information(T("Successfully updated order status "));
             return RedirectToAction("Index");
         }

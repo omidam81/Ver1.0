@@ -1,0 +1,207 @@
+﻿.tb-layout-main-container {   
+    min-height: 100%;  
+}
+.reservation-complete-page {
+    text-align:center;
+    padding:40px 20px;   
+}
+.campaigns-list-container {
+    display: table;
+    margin-bottom: 50px;
+}
+
+    .campaigns-list-container > div {
+        padding-left: 30px;
+    }
+
+.campaign-card {
+    float: left;
+    min-width: 250px;
+    width: 18%;
+    margin: 10px 10px 25px 10px;
+    height: 300px;
+}
+
+.campaign-card-image a {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    height: 100%;
+}
+
+    .campaign-card-image a:hover {
+        color: #39ace6;
+        text-decoration: none;
+    }
+
+.campaign-card-image {
+    background-position: center;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    min-width: 250px;
+    height: 85%;
+    margin-bottom: 5px;
+}
+
+    .campaign-card-image:hover {
+        background: rgba(41,48,51,1);
+        background-position: center;
+        background-size: 75%;
+        background-repeat: no-repeat;
+        opacity: .5;
+        color: #fff;
+        transition: opacity 300ms;
+    }
+
+        .campaign-card-image:hover .campaign-card-profit {
+            background: none;
+        }
+
+@media all and (max-width: 1670px) {
+    .campaign-card {
+        width: 23%;
+    }
+}
+
+@media all and (max-width: 1390px) {
+    .campaign-card {
+        width: 30%;
+    }
+
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 70%;
+    }
+}
+
+@media all and (max-width: 1120px) {
+    .campaign-card {
+        width: 45%;
+    }
+
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 65%;
+    }
+}
+
+@media all and (max-width: 980px) {
+    .campaign-card {
+        width: 30%;
+    }
+
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 75%;
+    }
+}
+
+@media all and (max-width: 870px) {
+    .campaign-card {
+        width: 45%;
+    }
+
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 65%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .campaign-card {
+        width: 75%;
+        margin: 0 auto;
+        float: none;
+        margin-bottom: 30px;
+    }
+
+    .group-control.filters {
+        display: block;
+    }
+
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 52%;
+    }
+
+    .campaigns-list-container {
+        margin-top: 20px;
+        display: block;
+    }
+
+        .campaigns-list-container > div {
+            padding-left: 0;
+        }
+
+    .filter-dropdown-toggle,
+    .filter-dropdown-menu {
+        width: 200px !important;
+    }
+
+    .campaign-status-filter {
+        margin-left: 0 !important;
+    }
+}
+
+@media all and (max-width: 530px) {
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 60%;
+    }
+
+    .overview-period {
+        padding: 0 8px 0 10px;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .campaign-card-image,
+    .campaign-card-image:hover {
+        background-size: 70%;
+    }
+}
+
+.campaign-card-progress-bar {
+    background-color: #e8eced;
+    height: 9px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.campaign-card-progress-bar-completed {
+    background-color: #ff4f00;
+    height: 9px;
+    border-radius: 5px;
+    float: left;
+    max-width: 100%;
+}
+
+.campaign-card-sold {
+    float: left;
+}
+
+.campaign-card-left {
+    float: right;
+}
+
+.campaign-card-info {
+    display: table;
+    width: 100%;
+}
+
+.campaign-card-title {
+    line-height: 15px;
+    text-align: left;
+}
+
+    .campaign-card-title a {
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .campaign-card-title a:hover {
+            text-decoration: none;
+            color: #e64700;
+        }
+
