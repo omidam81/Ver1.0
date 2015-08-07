@@ -56,7 +56,7 @@ namespace Teeyoot.FeaturedCampaigns
                         "Admin/ApproveCampaigns",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.FeaturedCampaigns"},
-                            {"controller", "AdminAdminApproveCampaigns"},
+                            {"controller", "AdminApproveCampaigns"},
                             {"action", "Index"}                           
                         },
                         new RouteValueDictionary(),
