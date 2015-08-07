@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Teeyoot.Messaging.Models;
+using Teeyoot.Module.Models;
 
-namespace Teeyoot.Messaging.Services
+
+namespace Teeyoot.Module.Services
 {
     public interface IMailChimpSettingsService : IDependency
     {
@@ -16,7 +17,7 @@ namespace Teeyoot.Messaging.Services
 
         IContentQuery<MailChimpSettingsPart> GetSettingByCulture(string culture);
 
-        MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpListId, string welcomeCampaignId, int welcomeTemplateId, string allBuyersCampaignId, int allBuyersTemplateId, string culture);
+        MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey,  string culture);
 
         void DeleteMailChimpSettingsPart(int id);
     }

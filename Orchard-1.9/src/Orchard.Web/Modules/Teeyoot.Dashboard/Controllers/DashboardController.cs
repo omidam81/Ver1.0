@@ -5,7 +5,6 @@ using Orchard.Logging;
 using Orchard.Security;
 using Orchard.Themes;
 using System.Web.Mvc;
-using Teeyoot.Messaging.Services;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;

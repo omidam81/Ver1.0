@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Teeyoot.Messaging.Models;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Messaging.Services
@@ -15,7 +14,7 @@ namespace Teeyoot.Messaging.Services
     {
         void SendSellerMessage(int messageId, string pathToTemplates, string pathToMedia);
 
-        void SendWelcomeMessage(string userEmail, string pathToTemplates, string pathToMedia);
+        void SendWelcomeMessage(string userEmail, string pathToTemplates);
 
         void SendOrderMessage(int campaignId, string pathToTemplates, string pathToMedia);
 

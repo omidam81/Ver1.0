@@ -1,4 +1,7 @@
 ﻿using Braintree;
+using Mandrill;
+using Mandrill.Model;
+using Orchard.Data;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
@@ -19,6 +22,7 @@ using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.ViewModels;
 
+
 namespace Teeyoot.Module.Controllers
 {
     public class HomeController : Controller
@@ -28,13 +32,18 @@ namespace Teeyoot.Module.Controllers
         private readonly ICampaignService _campaignService;
         private readonly INotifier _notifier;
         private readonly IimageHelper _imageHelper;
+        private readonly IMailChimpSettingsService _settingsService;
+        //private readonly IRepository<MailChimpSettingsPartRecord> _mailChimpSettingsRepository;
+        private readonly IMessageService _messageService;
 
-        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier, IPromotionService promotionService, IimageHelper imageHelper)
+
+        public HomeController(IOrderService orderService, ICampaignService campaignService, INotifier notifier, IPromotionService promotionService, IimageHelper imageHelper, IMailChimpSettingsService settingsService)
         {
             _orderService = orderService;
             _promotionService = promotionService;
             _campaignService = campaignService;
             _imageHelper = imageHelper;
+            _settingsService = settingsService;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -127,13 +136,34 @@ namespace Teeyoot.Module.Controllers
                     PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
                     promotion.Redeemed = promotion.Redeemed + 1;
                 }
-                var campaign = _campaignService.GetCampaignById(campaignId);
-                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
-                _campaignService.UpdateCampaign(campaign);
-
                 Transaction transaction = result.Target;
                 ViewData["TransactionId"] = transaction.Id;
                 res = "The transaction is successful";
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+                var api = new MandrillApi(record.ApiKey);
+                var mandrillMessage = new MandrillMessage() { };
+                mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+                mandrillMessage.FromEmail = "admin@teeyoot.com";
+                mandrillMessage.Subject = "Your order";
+                List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+                emails.Add(new MandrillMailAddress(order.Email));
+                mandrillMessage.To = emails;
+                FillUserMergeVars(mandrillMessage, order);
+                var orderedProducts = order.Products;
+                foreach (var item in orderedProducts)
+                {
+                    int index = orderedProducts.IndexOf(item);
+                    FillProductsMergeVars(mandrillMessage, item, index, pathToMedia);
+                }
+                string text = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");
+                var campaign = _campaignService.GetCampaignById(campaignId);
+                string previewUrl = pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/front.png";
+                //messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
+                mandrillMessage.Html = text;
+                //var resss = SendTmplMessage(api, mandrillMessage);
+                _notifier.Information(T("Message has been sent!"));
 
             }
             else
@@ -144,6 +174,51 @@ namespace Teeyoot.Module.Controllers
 
             return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"], result = res });
         }
+
+        public void FillUserMergeVars(MandrillMessage message, OrderRecord record)
+        {
+            
+            message.AddRcptMergeVars(record.Email, "FNAME", record.FirstName);
+            message.AddRcptMergeVars(record.Email, "LNAME", record.LastName);
+            message.AddRcptMergeVars(record.Email, "CITY", record.City);
+            message.AddRcptMergeVars(record.Email, "STATE", record.State);
+            message.AddRcptMergeVars(record.Email, "COUNTRY", record.Country);
+            if (record.TotalPriceWithPromo > 0.0)
+            {
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPriceWithPromo.ToString());
+            }
+            else
+            {
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPrice.ToString());
+            }
+           
+        }
+
+
+        public void FillProductsMergeVars(MandrillMessage message, LinkOrderCampaignProductRecord order, int index , string pathToMedia)
+        {
+
+            int idSize = order.ProductSizeRecord.Id;
+            float costSize = order.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
+            float price = (float)order.CampaignProductRecord.Price + costSize;
+            var products = new Dictionary<string, object>{                 
+                        {"quantity", order.Count},
+                        {"name",  order.CampaignProductRecord.ProductRecord.Name},
+                        {"description",  order.CampaignProductRecord.ProductRecord.Details},
+                        {"price", price},
+                        {"preview_url", pathToMedia + "/Media/campaigns/" + order.CampaignProductRecord.CampaignRecord_Id + "/" + order.CampaignProductRecord.Id + "/normal/front.png"}
+                     };
+            message.AddRcptMergeVars(order.OrderRecord.Email, "PRODUCTS", products);
+        }
+
+
+
+        public string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
+        {
+            var result = mAPI.Messages.Send(message);
+            return result.ToString();
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -356,5 +431,64 @@ namespace Teeyoot.Module.Controllers
 
             return _imageHelper.ApplyDesignNoTransparent(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
         }
+
+        //public void SendOrderMessage(int campaignId, string pathToTemplates, string pathToMedia){
+        //    var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+        //    var api = new MandrillApi(record.ApiKey);
+        //    var mandrillMessage = new MandrillMessage() { };
+        //    mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+        //    mandrillMessage.FromEmail = "admin@teeyoot.com";
+        //    mandrillMessage.Subject = "Teeyoot order";
+        //    List<LinkOrderCampaignProductRecord> ordersList = _orderService.GetProductsOrderedOfCampaign(campaignId).ToList();
+        //    var campaign = _campaignService.GetCampaignById(campaignId);
+        //    List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+        //    foreach (var item in ordersList)
+        //    {
+        //        emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
+        //        FillMessageMergeVars(mandrillMessage, item);
+        //    }
+        //    mandrillMessage.To = emails;
+        //    string text = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");
+        //    //string messageText = text.Replace("---MessageContent---", message.Text);
+        //    //messageText = messageText.Replace("---SellerEmail---", message.Sender);
+        //    //messageText = messageText.Replace("---CampaignTitle---", campaign.Title);
+        //    string previewUrl = pathToMedia + "/Media/campaigns/" + campaignId + "/" + campaign.Products[0].Id + "/normal/front.png";
+        //    //messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
+        //    mandrillMessage.Html = text;
+        //    var res = SendTmplMessage(api, mandrillMessage);
+        //}
+
+        //public void FillMessageMergeVars(MandrillMessage message, Module.Models.LinkOrderCampaignProductRecord record)
+        //{
+        //    var products = new Dictionary<string, object>
+        //            {
+        //                {"quantity", record.Count},
+        //                {"name",  record.CampaignProductRecord.ProductRecord.Name},
+        //                {"description",  record.CampaignProductRecord.ProductRecord.Details},
+        //                {"price",  record.CampaignProductRecord.Price},
+        //                {"total_price", record.OrderRecord.TotalPrice}
+        //            };
+
+        //    message.AddRcptMergeVars(record.OrderRecord.Email, "FNAME", record.OrderRecord.FirstName);
+        //    message.AddRcptMergeVars(record.OrderRecord.Email, "LNAME", record.OrderRecord.LastName);
+        //    message.AddRcptMergeVars(record.OrderRecord.Email, "CITY", record.OrderRecord.City);
+        //    message.AddRcptMergeVars(record.OrderRecord.Email, "STATE", record.OrderRecord.State);
+        //    message.AddRcptMergeVars(record.OrderRecord.Email, "COUNTRY", record.OrderRecord.Country);
+        //    if (record.OrderRecord.TotalPriceWithPromo > 0.0)
+        //    {
+        //        message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPriceWithPromo.ToString());
+        //    }
+        //    else
+        //    {
+        //        message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPrice.ToString());
+        //    }
+        //    message.AddRcptMergeVars(record.OrderRecord.Email, "PRODUCTS", products);
+        //}
+
+        //public string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
+        //{
+        //    var result = mAPI.Messages.Send(message);
+        //    return result.ToString();
+        //}
     }    
 }
