@@ -690,6 +690,7 @@
     <ProjectReference Include="..\RM.QuickLogOn.OAuth\RM.QuickLogOn.OAuth.csproj">
       <Project>{4055acbb-280e-4bf7-9706-e5598521a684}</Project>
       <Name>RM.QuickLogOn.OAuth</Name>
+	</ProjectReference>
     <ProjectReference Include="..\Teeyoot.FAQ\Teeyoot.FAQ.csproj">
       <Project>{c1227a9d-ebe0-4776-af87-d2f677ce2200}</Project>
       <Name>Teeyoot.FAQ</Name>
