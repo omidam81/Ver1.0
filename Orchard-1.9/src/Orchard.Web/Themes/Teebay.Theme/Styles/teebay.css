@@ -2544,6 +2544,7 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
+    height:auto;
 }
 
 @media all and (max-width: 1660px) {
@@ -2608,18 +2609,13 @@
 }
 
 @media all and (max-width: 900px) {
-     .intro-video-container .cell {
-        /*float: none;*/
-        padding-right: 0;
-    }
-
-    .intro-video-container {
-        height: 640px !important;
-    }
-
+     
     .intro-video-holder {
         width: 100%;
         height: 450px;
+    }
+    .intro-video-container {
+        text-align:center;
     }
 
     .promo_video__thumbnail {
@@ -2645,28 +2641,16 @@
         padding: 0px 30px 0px 30px !important;
         height: 100%;
     }
-
-    .intro-video-container {
-        padding-left: 40px !important;
-    }
 }
 
 @media all and (max-width: 890px) {
 
-    .intro-video-container {
-        height: 620px !important;
-    }
-
     .intro-video-holder {
-        height: 420px;
+        height: 440px;
     }
 }
 
 @media all and (max-width: 840px) {
-
-    .intro-video-container {
-        height: 610px !important;
-    }
 
     .intro-video-holder {
         height: 400px;
@@ -2675,10 +2659,6 @@
 
 @media all and (max-width: 800px) {
 
-    .intro-video-container {
-        height: 610px !important;
-    }
-
     .intro-video-holder {
         height: 400px;
     }
@@ -2686,24 +2666,13 @@
 
 @media all and (max-width: 770px) {
 
-    /*.intro-video-container {
-        height: 580px !important;
-    }*/
-
     .intro-video-holder {
         height: 380px;
-    }
-
-    .intro-video-container {
-        padding-left: 30px !important;
     }
 }
 
 @media all and (max-width: 750px) {
-    .intro-video-container {
-        height: 600px !important;
-    }
-
+ 
     .intro-video-holder {
         height: 360px;
     }
@@ -2731,24 +2700,14 @@
 
 
 @media all and (max-width: 690px) {
-    .intro-video-container {
-        height: 590px !important;
-    }
-
+  
     .intro-video-holder {
         height: 350px;
-    }
-
-    .intro-video-container {
-        padding-left: 20px !important;
     }
 }
 
 @media all and (max-width: 660px) {
-    .intro-video-container {
-        height: 580px !important;
-    }
-
+   
     .intro-video-holder {
         height: 320px;
     }
@@ -2759,20 +2718,9 @@
 }
 
 @media all and (max-width: 600px) {
-    .intro-video-container {
-        height: 550px !important;
-    }
-
+   
     .intro-video-holder {
         height: 280px;
-    }
-
-    .intro-video-container {
-        padding-left: 0 !important;
-    }
-
-    .intro-video-container {
-        padding-left: 10px !important;
     }
 }
 
@@ -2781,30 +2729,20 @@
         margin-top: -160px !important;
     }
 
-    .intro-video-container {
-        height: 520px !important;
-    }
-
     .intro-video-holder {
         height: 250px;
     }
 }
 
 @media all and (max-width: 480px) {
-    .intro-video-container {
-        height: 510px !important;
-    }
-
+    
     .intro-video-holder {
         height: 220px;
     }
 }
 
 @media all and (max-width: 440px) {
-    .intro-video-container {
-        height: 540px !important;
-    }
-
+   
     .intro-video-holder {
         height: 200px;
     }
@@ -2814,27 +2752,14 @@
     }
 }
 
-@media all and (max-width: 430px) {
-    .intro-video-container {
-        height: 560px !important;
-    }
-}
-
 @media all and (max-width: 400px) {
-    .intro-video-container {
-        height: 560px !important;
-    }
-
+   
     .intro-video-holder {
         height: 180px;
     }
 
     .promo_video__play_container {
         margin-top: -130px !important;
-    }
-
-    .intro-video-container {
-        padding-left: 10px !important;
     }
 }
 @media all and (max-width: 350px) {
@@ -2843,26 +2768,15 @@
     }
 }
 @media all and (max-width: 330px) {
-    .intro-video-container {
-        height: 560px !important;
-        padding-left: 5px !important;
-    }
-
+   
     .intro-video-holder {
         height: 140px;
     }
 }
-
-@media all and (max-width: 320px) {
-    .intro-video-container {
-        height: 600px !important;
-    }
-}
-
 .intro-video-text {
-    padding: 20px;
+    padding-top: 15px;
+    padding-right: 15px !important;
 }
-
     .intro-video-text h3 {
         font-size: 26px;
         font-weight: 500;
@@ -4565,24 +4479,12 @@ html, body {
     .promo_video__thumbnail {
         margin-top: 5px;
     }
-
-    .intro-video-container {
-        padding: 0;
-        padding-left: 15px;
-    }
 }
 
 @media only screen and (max-width: 1000px) {
 
     .promo_video__thumbnail {
         margin-top: 10px;
-    }
-}
-
-@media only screen and (max-width: 910px) {
-
-    .intro-video-container {
-        height: 270px;
     }
 }
 
