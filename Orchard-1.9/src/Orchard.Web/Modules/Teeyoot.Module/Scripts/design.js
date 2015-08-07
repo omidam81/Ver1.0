@@ -1982,8 +1982,8 @@ var design={
 							var imageData = app.state.getImage();
 							var view = app.state.getView();
 							var prefix = 'printable_' + view + '_';
-							var width = imageData[prefix + 'width'];
-							var height = imageData[prefix + 'height'];
+							var width = imageData[prefix + 'width']-2;
+							var height = imageData[prefix + 'height']-2;
 
 							//if (imgWidth > width) {
 							    o.width = width;
@@ -2416,9 +2416,9 @@ var design={
                 var view = app.state.getView();
                 var prefix = 'printable_'+view+'_';
 				var align 	= {};
-				align.left 	= (imageData[prefix+'width'] - item.width)/2;
+				align.left 	= (imageData[prefix+'width'] - item.width-2)/2;
 				align.left 	= parseInt(align.left);
-				align.top 	= (imageData[prefix+'height'] - item.height)/2;
+				align.top 	= (imageData[prefix+'height'] - item.height-2)/2;
 				align.top	= parseInt(align.top);
 				return align;
 			}

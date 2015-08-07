@@ -243,23 +243,21 @@
         };
 
         var isFront = true
+        var isFront3 = true
         $(function($) {
             $("#card").flip({
                 trigger: 'manual'
-            }).click(function() {
+            });
+            $("#card3").flip({
+                trigger: 'manual'
+            });
+            $('#card .flip-button:not(.flip-button-active)').on('click', function(){
                 isFront = !isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
             });
-        });
-
-        var isFront3 = true
-        $(function($) {
-            $("#card3").flip({
-                trigger: 'manual'
-            }).click(function() {
+            $('#card3 .flip-button:not(.flip-button-active)').on('click', function(){
                 isFront3 = !isFront3;
-                console.log(isFront3);
                 $("#card3").flip(!isFront3);
             });
         });
