@@ -1,6 +1,9 @@
 ﻿body {
     font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
+#layout-wrapper {
+    height: 100%;
+}
 .shown {
     display: block !important;
 }
