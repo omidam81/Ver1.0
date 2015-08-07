@@ -465,7 +465,16 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<bool>("ProfitPaid", c => c.NotNull().WithDefault(false)));
 
-            return 47;
+            SchemaBuilder.CreateTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .ContentPartRecord()
+                    .Column<string>("ApiKey", c => c.WithLength(50))
+                    .Column<string>("Culture", c => c.WithLength(50)));
+
+           
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("CampaignProfit", c => c.NotNull().WithDefault(string.Empty)));
+
+            return 49;
         }
 
         public int UpdateFrom2()
@@ -975,5 +984,11 @@ namespace Teeyoot.Module
               return 48;
         }
 
+        public int UpdateFrom48()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("CampaignProfit", c => c.NotNull().WithDefault(string.Empty)));
+
+            return 49;
+        }
     }
 }

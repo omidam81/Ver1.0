@@ -47,6 +47,8 @@ namespace Teeyoot.Module.Models
 
         public virtual bool IsPrivate { get; set; }
 
+        public virtual string CampaignProfit { get; set; }
+
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
         public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; } 
