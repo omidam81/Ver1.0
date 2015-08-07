@@ -109,7 +109,7 @@ namespace Teeyoot.Messaging.Controllers
 
         }
 
-         public void FillMessageMergeVars(MandrillMessage message, Module.Models.LinkOrderCampaignProductRecord record)
+         private void FillMessageMergeVars(MandrillMessage message, Module.Models.LinkOrderCampaignProductRecord record)
         {
             var products = new Dictionary<string, object>
                     {
@@ -136,7 +136,7 @@ namespace Teeyoot.Messaging.Controllers
             message.AddRcptMergeVars(record.OrderRecord.Email, "PRODUCTS", products);
         }
 
-        public string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
+        private string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
         {
             var result = mAPI.Messages.Send(message);
             return result.ToString();

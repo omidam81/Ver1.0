@@ -154,7 +154,27 @@
 
     </script>
 }
+<div style="margin-bottom:15px;">
+    <fieldset class="bulk-actions">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <span>
+                @Html.LabelFor(m => m.SearchString, T("Campaign name")):
+                @Html.TextBoxFor(m => m.SearchString)
+            </span>
 
+            <button type="submit">@T("Apply")</button>
+            <a href="@Url.Action("Index")">@T("By Default")</a>
+        }
+
+
+    </fieldset>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
 @{
     <fieldset>
         <table class="items">
@@ -168,6 +188,9 @@
                     </th>
                     <th class="buyer">
                         <h3>Buyer</h3>
+                    </th>
+                    <th class="campaign">
+                        <h3>Campaign</h3>
                     </th>
                     <th class="seller">
                         <h3>Seller</h3>
@@ -222,6 +245,9 @@
                             <button class="go" type="submit" value="@item.Id">
                                 @T("inf")
                             </button>
+                        </td>
+                        <td class="campaign">
+                             @item.CampaignName 
                         </td>
                         <td class="seller">
                             @item.UserNameSeller

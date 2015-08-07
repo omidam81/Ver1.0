@@ -25,12 +25,14 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly ICampaignService _campaignService;
         private readonly ISiteService _siteService;
         private readonly IimageHelper _imageHelper;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
-        public AdminApproveCampaignsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper)
+        public AdminApproveCampaignsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper, ITeeyootMessagingService teeyootMessagingService)
         {
             _campaignService = campaignService;
             _siteService = siteService;
             _imageHelper = imageHelper;
+            _teeyootMessagingService = teeyootMessagingService;
 
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
@@ -90,7 +92,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var campaign = _campaignService.GetCampaignById(id);
             campaign.IsApproved = true;
             _campaignService.UpdateCampaign(campaign);
-
+            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+            var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+            _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
             return RedirectToAction("Index", new { PagerParameters=pagerParameters, SearchString=searchString });
         }
 

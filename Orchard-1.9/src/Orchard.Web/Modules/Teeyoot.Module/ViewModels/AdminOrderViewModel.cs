@@ -16,13 +16,19 @@ namespace Teeyoot.Module.ViewModels
         public IList<AdminOrder> Orders { get; set; }
         public dynamic[] DynamicOrders { get; set; }
         public dynamic Pager { get; set; }
+        public string SearchString { get; set; }
     }
 
     public class AdminOrder {
         public string PublicId { get; set; }
         public  IList<LinkOrderCampaignProductRecord> Products { get; set; }
         public string Status { get; set; }
+
+
         
+
+        public string CampaignName { get; set; }
+
         //information buyuer
         public string EmailBuyer { get; set; }
         public int Id{ get; set; }

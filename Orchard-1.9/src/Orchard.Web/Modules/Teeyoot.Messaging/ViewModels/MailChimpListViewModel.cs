@@ -24,6 +24,8 @@ namespace Teeyoot.Messaging.ViewModels
 
         public virtual string WithdrawTemplate { get; set; }
 
+        public virtual string LaunchTemplate { get; set; }
+
         public virtual string ConfirmOrderTemplate { get; set; }
 
         public virtual string CampaignPromoTemplate { get; set; }
