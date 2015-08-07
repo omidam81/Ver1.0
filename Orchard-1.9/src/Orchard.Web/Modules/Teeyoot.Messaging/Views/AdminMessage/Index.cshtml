@@ -75,6 +75,19 @@
                         <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "relaunch-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                 </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex;  margin-top: 10px;">
+                    <div style=" width:25%; text-align:center;padding-top:10px">Launch Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea; text-align:center;padding-top:10px ">@Model.LaunchTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "launch-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "launch-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
                     <div style=" width:25%;  text-align:center;padding-top:10px">Change Order Status</div>
                     <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ChangeOrderStatusTemplate</div>
@@ -116,16 +129,16 @@
                     </div>
                 </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
-                    <div style="width:25%;  text-align:center;padding-top:10px">Confirm Order Template</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ConfirmOrderTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "confirm-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    <div style="width:25%;  text-align:center;padding-top:10px">Place Order Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.PlaceOrderTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "place-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <input style="margin-left:55px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "confirm-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "place-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                 </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">

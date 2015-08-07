@@ -860,8 +860,8 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
     #product-selector .item-options .item-option {
         padding: 10px 0 14px 9px;
         border: 1px solid transparent;
-        border-left-color: #d8dddf;
-        border-right-color: #d8dddf;
+        border-left-color: #afafaf;
+        border-right-color: #afafaf;
         cursor: pointer;
         background: white;
     }
@@ -871,13 +871,13 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
         }
 
         #product-selector .item-options .item-option:first-child {
-            border-top-color: #d8dddf;
+            border-top-color: #afafaf;
             /*border-top-left-radius: 5px;*/
             border-top-right-radius: 5px;
         }
 
         #product-selector .item-options .item-option:last-child {
-            border-bottom-color: #d8dddf;
+            border-bottom-color: #afafaf;
             /*border-bottom-left-radius: 5px;*/
             border-bottom-right-radius: 5px;
         }
@@ -1761,13 +1761,13 @@ button#save-shirt {
     #designer-art-choseType .hr {
         height: 0;
         text-align: center;
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #afafaf;
         margin: 1.5em 0;
         color: #555;
     }
 
         #designer-art-choseType .hr span {
-            background: #F3F5F6;
+            background: #dbdbdb;
             color: gray;
             font-size: 11px;
             font-weight: 600;
@@ -2101,7 +2101,7 @@ tspan {
     left: 100%;
     width: 234px;
     background: white;
-    border: 1px solid #CCC;
+    border: 1px solid #afafaf;
     border-radius: 3px;
     box-shadow: 0px 0px 2px 0px rgba(144,150,153,0.8);
     padding: 8px;
@@ -2273,7 +2273,7 @@ tspan {
     }
 
         #design-tools #panel-context-menu .ts-icon:hover {
-            color: #39ace6;
+            color: #ff4f00;
         }
 
 #enter-text, .mirroredTextarea {
@@ -2878,6 +2878,7 @@ tspan {
 
 .ssp_pricing .form__textfield {
     margin-bottom: 0;
+    border-color: #afafaf;
 }
 
 [data-tooltip], [data-notice] {
@@ -3042,7 +3043,7 @@ html {
     }
 
 select.form-control {
-    border: 1px solid #ddd;
+    border: 1px solid #afafaf;
     box-shadow: none;
 }
 
@@ -3196,8 +3197,8 @@ label.checkbox label.checkbox {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 1rem;
-    border: 1px solid #d8dddf;
-    background: #f3f5f6;
+    border: 1px solid #afafaf;
+    background: #dbdbdb;
     border-top: 0;
 }
 
@@ -3207,7 +3208,8 @@ label.checkbox label.checkbox {
 }
 
     #designs_edit .nav-tabs > li.active > a {
-        background: #f3f5f7;
+        background: #dbdbdb;
+        cursor: context-menu;
     }
 
     #designs_edit .nav-tabs > li:not(.active) > a {
@@ -3219,8 +3221,8 @@ label.checkbox label.checkbox {
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         padding: 10px 0;
-        border-color: #d8dddf;
-        border-bottom: 1px solid #f3f5f7;
+        border-color: #afafaf;
+        border-bottom: 1px solid #dbdbdb;
     }
 
         #designs_edit .nav-tabs > li > a i {
@@ -3249,22 +3251,22 @@ label.checkbox label.checkbox {
     }
 
 #design-tools .fake-input, #designer select.outline-selector {
-    border-color: #d8dddf;
+    border-color: #afafaf;
     border-radius: 10px;
 }
 
     #design-tools .fake-input.svg-selector {
-        border-color: #d8dddf;
+        border-color: #afafaf;
         border-radius: 10px;
         padding: 7px 10px 10px 10px;
     }
 
 #designer #design-tools .fake-input.color-picker {
-    border-color:  #d8dddf;
+    border-color: #afafaf;
 }
 
 #design-tools textarea {
-    border-color: #d8dddf;
+    border-color: #afafaf;
 }
 
 .control-group {
@@ -3284,7 +3286,7 @@ label.checkbox label.checkbox {
     }
 
 #choices {
-    border: 1px solid #d8dddf;
+    border: 1px solid #afafaf;
     padding: 10px;
 }
 
@@ -3450,7 +3452,7 @@ label.checkbox label.checkbox {
 }
 
 #choices {
-    background: #f5f6f7;
+    background: #dbdbdb;
     border-radius: 5px;
 }
 
@@ -3494,6 +3496,8 @@ ul.horizontal-list li, ol.horizontal-list li {
 .wysihtml5-sandbox {
     min-height: 90px;
     width: 100% !important;
+    border-color: #afafaf !important;
+    border: 1px solid #afafaf !important;
 }
 
 .inline-input-text {
@@ -4397,7 +4401,7 @@ select.region_selector__eu {
     background-repeat: no-repeat;
     background-position: right .3rem top 50%;
     background-size: 14px 16px;
-    border: 1px solid #e8eced;
+    border: 1px solid #afafaf;
     border-radius: 5px;
     color: #293033;
     font-size: 1rem;
@@ -4647,7 +4651,7 @@ fieldset {
 .switch__el {
     display: block;
     position: relative;
-    cursor: pointer; 
+    cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -4772,7 +4776,7 @@ fieldset {
 }
 
 #designer .form__select_menu {
-    border: 1px solid #e8eced;
+    border: 1px solid #afafaf;
     line-height: normal;
 }
 
@@ -4857,15 +4861,15 @@ fieldset {
 }
 
 #step-details .url-input .inline-input-text {
-    background: #f5f7f7;
+    background: #dbdbdb;
     color: #6c7478;
-    border: 1px solid #e8eced;
+    border: 1px solid #afafaf;
     border-right: 0;
     border-radius: 5px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     font-weight: bold;
-    padding: 8px 8px 7px 8px;
+    padding: 9px 8px 8px 8px;
     margin-right: 0;
 }
 
@@ -5630,8 +5634,8 @@ div.flip-container {
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
-          font-size: 1rem;
-  font-weight: 300;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 .flip-button-active {

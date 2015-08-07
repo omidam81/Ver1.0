@@ -592,7 +592,7 @@
                                                                     </div>
                                                                     <div id="font-select-menu" class="containertip">
                                                                         <select class="category-menu">
-                                                                            <option value="Popular">Popular</option>
+                                                                            <option value="Futuristic / Digital">Futuristic / Digital</option>
                                                                         </select>
                                                                         <ul class="options"></ul>
                                                                     </div>
@@ -673,8 +673,8 @@
                                                                         <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">@T("Use our images")</button>
                                                                         <div class="design-art-search containertip">
                                                                             <form action="." method="get" role="form" id="artwork-search-form">
-                                                                                <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork">
-                                                                                <button style="margin-top: -1%;" class="button button--primary search">Search</button>
+                                                                                <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork" style="border-color: #ff4f00;">
+                                                                                <button style="margin-top: -1%;" class="button button--primary search wizard-button">Search</button>
                                                                             </form>
                                                                             <div class="art-search-container">
                                                                                 <!-- list of artworks -->
@@ -684,7 +684,7 @@
                                                                     <div class="hr"><span>OR</span></div>
                                                                     <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">@T("Upload your images")</button>
                                                                 </div>
-                                                                <div id="dropbox" class="control-group" style="display: none">
+                                                                <div id="dropbox" class="control-group" style="display: none; border: none;">
                                                                     <div class="upload">
                                                                         <div hidden="" class="form">
                                                                             <form enctype="multipart/form-data" id="s3-uploader" method="post">
@@ -692,8 +692,8 @@
                                                                                        type="file">
                                                                             </form>
                                                                         </div>
-                                                                        <p class="small dropbox-intro">Drag art here or ...</p>
-                                                                        <button class="button button--primary upload select-file wizard-button">@T("Click here to upload")</button>
+                                                                        <p class="small dropbox-intro">@T("Drag file here or")...</p>
+                                                                        <button class="button button--primary upload select-file wizard-button">@T("Click to upload image")</button>
                                                                         <p class="dropbox-disclosure">
                                                                             <em>
                                                                                 By uploading an image you agree that you
@@ -945,16 +945,16 @@
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                     <img style="position:absolute" id="prodFront_d" src="">
                                     <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front-two" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
-                                        <div class="flip-button flip-button-back-two"><span class="flip-button__back">Back</span></div>
+                                        <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
+                                        <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
                                     </div>
                                 </div>
                                 <div class="back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
                                     <img style="position:absolute" id="prodBack_d" src="">
                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front-two"><span class="flip-button__front">Front</span></div>
-                                        <div class="flip-button flip-button-back-two" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
+                                        <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
+                                        <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -1158,7 +1158,7 @@
                                                                 <label class="has-under-text">Campaign title</label>
                                                                 <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
                                                                 <p class="has-under-text text-error" id="name_error-text"></p>
-                                                                <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2">
+                                                                <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2" style="border-color: #afafaf;">
                                                             </div>
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
                                                                 <label class="has-under-text">Description</label>

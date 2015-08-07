@@ -219,7 +219,7 @@ namespace Teeyoot.Module.Controllers
                 FillUserMergeVars(mandrillMessage, order);
                 FillCampaignMergeVars(mandrillMessage, campaign, order.Email);           
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);      
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "place-order-template.html");                               
                 SendTmplMessage(api, mandrillMessage);
                 _notifier.Information(T("The transaction is successful"));
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
@@ -295,6 +295,12 @@ namespace Teeyoot.Module.Controllers
             if (order == null)
             {
                 _notifier.Error(T("Could not find order with that lookup number"));
+                return View("TrackOrder");
+            }
+
+            if (order.OrderStatusRecord.Name == OrderStatus.New.ToString())
+            {
+                _notifier.Error(T("Your order has not been yet approved"));
                 return View("TrackOrder");
             }
 
@@ -470,6 +476,7 @@ namespace Teeyoot.Module.Controllers
                         {"description",  item.CampaignProductRecord.ProductRecord.Details},
                         {"price", price},
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
+                        {"currency", item.OrderRecord.CurrencyRecord.Code},
                         {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/front.png"}
                      });
 

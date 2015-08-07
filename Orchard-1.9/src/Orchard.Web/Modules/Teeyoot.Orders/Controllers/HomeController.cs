@@ -1,9 +1,11 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
+using Orchard.Localization;
 using Orchard.Security;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
+using Orchard.UI.Notify;
 using Orchard.Users.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,7 @@ namespace Teeyoot.Orders.Controllers
         private readonly IContentManager _contentManager;
         private readonly ISiteService _siteService;
         private readonly IPayoutService _payoutService;
+        private readonly INotifier _notifierService;
 
         private dynamic Shape { get; set; }
         // GET: Home
@@ -35,17 +38,23 @@ namespace Teeyoot.Orders.Controllers
                               IShapeFactory shapeFactory,
                               IContentManager contentManager,
                               ISiteService siteService,
-                              IPayoutService payoutService )
+                              IPayoutService payoutService,
+                              INotifier notifierService)
         {
             _orderService = orderService;
             _campaignService = campaignService;
             _contentManager = contentManager;
             _siteService = siteService;
             _payoutService = payoutService;
-            Shape = shapeFactory; 
+            _notifierService = notifierService;
+            Shape = shapeFactory;
+
+            T = NullLocalizer.Instance;
         }
 
-        public ActionResult Index(PagerParameters pagerParameters, AdminOrderViewModel adminViewModel)
+
+        public Localizer T { get; set; }
+        public ActionResult Index(PagerParameters pagerParameters, string searchString)
         {
             var orders = _orderService.GetAllOrders().Where(o => o.IsActive).ToList();
             var orderEntities = new AdminOrderViewModel();
@@ -67,12 +76,14 @@ namespace Teeyoot.Orders.Controllers
                     orderProfit = orderProfit + prof;
                 }
 
-
-                orderEntities.Orders.Add(new AdminOrder  {
+                if (string.IsNullOrWhiteSpace(searchString) || campaign.Title.ToLower().Contains(searchString.ToLower()))
+                {
+                    orderEntities.Orders.Add(new AdminOrder  {
                     PublicId = item.OrderPublicId,
                     Products = item.Products,
                     Status = item.OrderStatusRecord.Name,
                     EmailBuyer = item.Email,
+                    CampaignName = campaign.Title,
                     Id = item.Id,
                     Profit = orderProfit,
                     SellerId = seller.Id,
@@ -85,6 +96,7 @@ namespace Teeyoot.Orders.Controllers
                     Payout = item.ProfitPaid,
                     UserNameSeller = seller.UserName
                    });
+            }
             }
             //var qwe = new List<SelectListItem>();
             
@@ -99,6 +111,7 @@ namespace Teeyoot.Orders.Controllers
                     Profit: e.Profit,
                     UserNameSeller: e.UserNameSeller,
                     Payout: e.Payout,
+                    CampaignName: e.CampaignName,
                     SellerId: e.SellerId
                     );
             });
@@ -113,7 +126,7 @@ namespace Teeyoot.Orders.Controllers
         {
             var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
             var orders = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name, Count = o.Count, Price = o.CampaignProductRecord.Price, Size = o.ProductSizeRecord.SizeCodeRecord.Name });
-            return Json(orders , JsonRequestBehavior.AllowGet);
+            return Json(orders, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -132,7 +145,7 @@ namespace Teeyoot.Orders.Controllers
         }
 
 
-        public ActionResult EditStatusPayout(string publicId, double profit, int sellerId) 
+        public ActionResult EditStatusPayout(string publicId, double profit, int sellerId)
         {
             var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
             var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
@@ -143,12 +156,19 @@ namespace Teeyoot.Orders.Controllers
             return RedirectToAction("Index");
         }
 
-         [HttpGet]
+        [HttpGet]
         public ActionResult ApplyStatus(int orderId, string orderStatus)
         {
+            var order = _orderService.GetOrderById(orderId);
+            order.OrderStatusRecord.Name = orderStatus;
+            _orderService.UpdateOrder(order);
+            //_notifierService.Information();
+
+
+            _notifierService.Information(T("Successfully updated order status "));
             return RedirectToAction("Index");
         }
 
-        
+
     }
 }
