@@ -1,4 +1,5 @@
-﻿@model  Teeyoot.Module.ViewModels.AdminOrderViewModel
+﻿@using Teeyoot.Module.Common.ExtentionMethods
+@model  Teeyoot.Module.ViewModels.AdminOrderViewModel
 @{
     Style.Include("AdminOrders.css");
 }
@@ -188,7 +189,33 @@
                             <a class="ordNumber"> @item.PublicId</a>
                         </td>
                         <td class="status">
-                            @item.Status
+                           @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
+                           {
+                                <input type="hidden" value="@item.Id" name="orderId"/>
+                                
+                                <select name="orderStatus">
+                                    @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.OrderStatus)))
+                                    {
+                                        if (s.ToString() == item.Status)
+                                        {
+                                            <option selected value="@s">
+                                                @s.ToString().SplitCamelCase()
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@s">
+                                                @s.ToString().SplitCamelCase()
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                                <button class="apply" type="submit">
+                                    @T("Apply")
+                                </button>
+                           }
+
+
                         </td>
                         <td class="buyer">
                             @item.EmailBuyer
