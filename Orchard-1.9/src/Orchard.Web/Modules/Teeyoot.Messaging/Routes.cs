@@ -60,6 +60,20 @@ namespace Teeyoot.Messaging
                             {"area", "Teeyoot.Messaging"}
                         },
                         new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "Admin/Messages",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Messaging"},
+                            {"controller", "AdminMessageContent"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Messaging"}
+                        },
+                        new MvcRouteHandler())
                 }
             };
         }
