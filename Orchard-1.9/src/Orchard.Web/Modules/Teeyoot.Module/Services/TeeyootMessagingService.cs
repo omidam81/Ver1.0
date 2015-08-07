@@ -71,7 +71,7 @@ namespace Teeyoot.Messaging.Services
             var campaign = _campaignService.GetCampaignById(campaignId);
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
-            message.AddRcptMergeVars(email, "preview_url", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/front.png");
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/front.png");
 
         }
 

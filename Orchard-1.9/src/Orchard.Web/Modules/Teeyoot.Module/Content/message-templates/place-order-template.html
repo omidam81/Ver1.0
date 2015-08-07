@@ -547,11 +547,11 @@
                 <tr>
                     <td align="center" valign="top" id="bodyCell">
                         <!-- BEGIN TEMPLATE // -->
-                        <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">
+                        <table border="0" cellpadding="0" cellspacing="0" width="800" id="templateContainer">
                             <tr>
                                 <td align="center" valign="top">
                                     <!-- BEGIN PREHEADER // -->
-                                    <table border="0" cellpadding="0" cellspacing="0" width="600" id="templatePreheader">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="800" id="templatePreheader">
                                         <tr>
                                         	<td valign="top" class="preheaderContainer" style="padding-top:9px;"></td>
                                         </tr>
@@ -562,7 +562,7 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <!-- BEGIN HEADER // -->
-                                    <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="800" id="templateHeader">
                                         <tr>
                                             <td valign="top" class="headerContainer"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageBlock">
     <tbody class="mcnImageBlockOuter">
@@ -591,14 +591,14 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <!-- BEGIN BODY // -->
-                                    <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="800" id="templateBody">
                                         <tr>
                                             <td valign="top" class="bodyContainer"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
     <tbody class="mcnTextBlockOuter">
         <tr>
             <td valign="top" class="mcnTextBlockInner">
                 
-                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
+                <table align="left" border="0" cellpadding="0" cellspacing="0" width="800" class="mcnTextContentContainer">
                     <tbody><tr>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
@@ -709,7 +709,7 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <!-- BEGIN FOOTER // -->
-                                    <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateFooter">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="800" id="templateFooter">
                                         <tr>
                                             <td valign="top" class="footerContainer" style="padding-bottom:9px;"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCaptionBlock">
     <tbody class="mcnCaptionBlockOuter">
@@ -727,11 +727,11 @@
             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightImageContentContainer">
                 <tbody><tr>
                     <td class="mcnCaptionRightImageContent" valign="top">
-                        <img alt="" src="{{preview_url}}" width="264" style="max-width:530px;" class="mcnImage" />
+                        <img alt="" src="{{preview_url}}" width="364" style="max-width:530px;" class="mcnImage" />
                     </td>
                 </tr>
             </tbody></table>
-            <table class="mcnCaptionRightTextContentContainer" align="right" border="0" cellpadding="0" cellspacing="0" width="264">
+            <table class="mcnCaptionRightTextContentContainer" align="right" border="0" cellpadding="0" cellspacing="0" width="364">
                 <tbody>
            <tr>
                     <td valign="top" class="mcnTextContent">
@@ -750,7 +750,7 @@
 					<tr>
 						<td><span style="font-size:15px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{quantity}}x{{name}}<br>
 						&nbsp; &nbsp; &nbsp;</span></span></td>
-						<td><span style="font-size:15px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{price}}</span></span><br>
+						<td><span style="font-size:15px; margin-left:10px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{price}}{{currency}}</span></span><br>
 						&nbsp;</td>
 					</tr>
                     <tr>
@@ -759,20 +759,20 @@
                             &nbsp;
                         </td>
                         <td>
-                            <span style="font-size:15px"><strong><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{size}}</span></strong></span><br />
+                            <span style="font-size:15px; margin-left:10px"><strong><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{size}}</span></strong></span><br />
                             &nbsp;
                         </td>
                     </tr>
 					<tr>
 						<td><span style="font-size:15px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">Order #</span></span><br>
 						&nbsp;</td>
-						<td><span style="font-size:15px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{orderPublicId}}</span></span><br>
+						<td><span style="font-size:15px; margin-left:10px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{orderPublicId}}</span></span><br>
 						&nbsp;</td>
 					</tr>
 					<tr>
 						<td><span style="font-size:15px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">Total</span></span><br>
 						&nbsp;</td>
-						<td><span style="font-size:15px"><strong><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{total_price}}</span></strong></span><br>
+						<td><span style="font-size:15px; margin-left:10px"><strong><span style="font-family:arial,helvetica neue,helvetica,sans-serif">{{total_price}}</span></strong></span><br>
 						&nbsp;</td>
 					</tr>
 				</tbody>
@@ -800,7 +800,7 @@
         <tr>
             <td valign="top" class="mcnTextBlockInner">
                 
-                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
+                <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextContentContainer">
                     <tbody><tr>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
@@ -832,7 +832,7 @@
         <tr>
             <td valign="top" class="mcnTextBlockInner">
                 
-                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
+                <table align="left" border="0" cellpadding="0" cellspacing="0" width="80%" class="mcnTextContentContainer">
                     <tbody><tr>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
@@ -870,7 +870,7 @@
         <tr>
             <td valign="top" class="mcnTextBlockInner">
                 
-                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
+                <table align="left" border="0" cellpadding="0" cellspacing="0" width="80%" class="mcnTextContentContainer">
                     <tbody><tr>
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
