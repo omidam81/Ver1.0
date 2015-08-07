@@ -15,10 +15,6 @@ using Teeyoot.Account.Common;
 using Teeyoot.Account.DTOs;
 using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
-using Teeyoot.Module.Services;
-using Mandrill;
-using Mandrill.Model;
-using System.Collections.Generic;
 
 namespace Teeyoot.Account.Controllers
 {
@@ -34,8 +30,7 @@ namespace Teeyoot.Account.Controllers
         private readonly IMembershipService _membershipService;
         private readonly IUserService _userService;
         private readonly IWorkContextAccessor _workContextAccessor;
-        private readonly IMailChimpSettingsService _settingsService;
-        
+        private readonly ITeeyootUserService _teeyootUserService;
 
         private WorkContext WorkContext
         {
@@ -57,8 +52,7 @@ namespace Teeyoot.Account.Controllers
             ITeeyootFacebookOAuthService teeyootFacebookOAuthService,
             ITeeyootGoogleOAuthService teeyootGoogleOAuthService,
             IWorkContextAccessor workContextAccessor,
-            IMailChimpSettingsService settingsService
-            )
+            ITeeyootUserService teeyootUserService)
         {
             _teeyootMembershipService = teeyootMembershipService;
             _authenticationService = authenticationService;
@@ -67,8 +61,7 @@ namespace Teeyoot.Account.Controllers
             _teeyootFacebookOAuthService = teeyootFacebookOAuthService;
             _teeyootGoogleOAuthService = teeyootGoogleOAuthService;
             _workContextAccessor = workContextAccessor;
-            _settingsService = settingsService;
-            
+            _teeyootUserService = teeyootUserService;
 
             Logger = NullLogger.Instance;
             T = NullLocalizer.Instance;
@@ -125,31 +118,15 @@ namespace Teeyoot.Account.Controllers
             {
                 return this.RedirectLocal("~/Login");
             }
+
+            _teeyootUserService.SendWelcomeEmail(user);
+
             _authenticationService.SignIn(user, false);
-            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-            var api = new MandrillApi(record.ApiKey);
-            var mandrillMessage = new MandrillMessage() { };
-            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "admin@teeyoot.com";
-            mandrillMessage.Subject = "Welcome to teeyoot!";
-            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
-            emails.Add(new MandrillMailAddress(viewModel.Email, "user"));
-            mandrillMessage.To = emails;
-            string text = System.IO.File.ReadAllText(pathToTemplates + "welcome-template.html");
-            mandrillMessage.Html = text;
-            var res = SendTmplMessage(api, mandrillMessage);
 
             return string.IsNullOrEmpty(viewModel.ReturnUrl)
                 ? Redirect("~/")
                 : this.RedirectLocal(viewModel.ReturnUrl);
         }
-         public string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
-        {
-            var result = mAPI.Messages.Send(message);
-            return result.ToString();
-        }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -166,6 +143,8 @@ namespace Teeyoot.Account.Controllers
             {
                 return Json(new JsonResponseBase {Message = T("Registration issue occurred.").ToString()});
             }
+
+            _teeyootUserService.SendWelcomeEmail(user);
 
             _authenticationService.SignIn(user, false);
 

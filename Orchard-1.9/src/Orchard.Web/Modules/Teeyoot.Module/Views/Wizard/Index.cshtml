@@ -181,7 +181,7 @@
                 url: "@(Url.Action("LaunchCampaign", "Wizard"))",
                 data: addAntiForgeryToken({
                     "ProductCountGoal": countTees,
-                    "profit": profit,
+                    "CampaignProfit": profit,
                     "itemOptions": itemOptions,
                     "product": product,
                     "Design": JSON.stringify(app.state.design),
@@ -210,14 +210,9 @@
                         });
                         return;
                     }
-                    //alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                     $('#name').removeClass('wizard-error');
                     $('.wysihtml5-sandbox').removeClass('wizard-error');
                     $('#url').removeClass('wizard-error');
-                    //$('#name_error-text')[0].hidden = false;
-                    //$('#name_error-text').css('display', 'none');
-                    //$('#campaign_description_text_error-text')[0].hidden = false;
-                    //$('#url_error-text')[0].hidden = false;
                     $('#name_error-text').css('display', 'none');
                     $('#campaign_description_text_error-text').css('display', 'none');
                     $('#url_error-text').css('display', 'none');
