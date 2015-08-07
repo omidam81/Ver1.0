@@ -220,18 +220,15 @@ namespace Teeyoot.Module.Controllers
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
                 var resss = SendTmplMessage(api, mandrillMessage);
                 _notifier.Information(T("The transaction is successful"));
-
+                return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"] });
             }
             else
             {
                 _notifier.Information(T("The transaction is failed"));
-                ViewData["Message"] = result.Message;
-            }
-
-            return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"], result = res });
+                return RedirectToAction("Payment", new { orderId = collection["OrderPublicId"], promo = collection["PromoId"] });
+            }          
         }
 
-  
 
         [Themed]
         public ActionResult TrackOrder()
