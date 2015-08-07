@@ -191,6 +191,10 @@ namespace Teeyoot.Module.Controllers
                 order.IsActive = true;
                 order.TranzactionId = result.Target.Id;
 
+                var campaign = _campaignService.GetCampaignById(campaignId);
+                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                _campaignService.UpdateCampaign(campaign);
+
                 //_orderService.UpdateOrder(order, OrderStatus.Approved);
                 if (collection["PromoId"] != null)
                 {
@@ -219,7 +223,6 @@ namespace Teeyoot.Module.Controllers
                     FillProductsMergeVars(mandrillMessage, item, index, pathToMedia);
                 }
                 string text = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");
-                var campaign = _campaignService.GetCampaignById(campaignId);
                 string previewUrl = pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/front.png";
                 //messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
                 mandrillMessage.Html = text;
