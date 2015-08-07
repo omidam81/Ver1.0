@@ -18,17 +18,20 @@
 }
 
 .seller {
-    width: 20%;
-}
-
-.profit {
-    width: 20%;
-}
-
-.payout {
     width: 15%;
 }
 
+.profit {
+    width: 15%;
+}
+
+.payout {
+    width: 10%;
+}
+
+.campaign {
+  width: 15%;   
+}
 .val {
     font-size: large;
 }
