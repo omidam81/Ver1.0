@@ -26,6 +26,7 @@ namespace Teeyoot.Module.ViewModels
         //information buyuer
         public string EmailBuyer { get; set; }
         public int Id{ get; set; }
+        public int SellerId { get; set; }
         //public string FirstName { get; set; }
         //public string LastName { get; set; }
         //public string StreetAdress { get; set; }
@@ -34,7 +35,7 @@ namespace Teeyoot.Module.ViewModels
         //public string PhoneNumber { get; set; }
 
         public string UserNameSeller { get; set; }
-        public string Profit { get; set; }
+        public double Profit { get; set; }
         public bool Payout { get; set; }
 
     }

@@ -20,17 +20,18 @@
                         type: "GET",
                         url: "@(Url.Action("GetBuyerInfirmation", "Home"))",
                         data: { "orderId": orderId },
-                    success: function (data) {
-                        $("#firstName").html(data.firstName);
-                        $("#lastName").html(data.lastName);
-                        $("#streetAdress").html(data.streetAdress);
-                        $("#city").html(data.city);
-                        $("#country").html(data.country);
-                        $("#phoneNumber").html(data.phoneNumber);
-                    }, error: function (data, status, resp) {
-                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-                    }});
-            };
+                        success: function (data) {
+                            $("#firstName").html(data.firstName);
+                            $("#lastName").html(data.lastName);
+                            $("#streetAdress").html(data.streetAdress);
+                            $("#city").html(data.city);
+                            $("#country").html(data.country);
+                            $("#phoneNumber").html(data.phoneNumber);
+                        }, error: function (data, status, resp) {
+                            alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                        }
+                    });
+                };
                 /* End Запрос на сервак */
                 console.log(getes())
                 $('#overlay').fadeIn(400,
@@ -86,26 +87,27 @@
                                 document.getElementById("modalOrderTable").appendChild(tr);
                             });
 
-                        //$("#firstName").html(data.firstName);
-                        //$("#lastName").html(data.lastName);
-                        //$("#streetAdress").html(data.streetAdress);
-                        //$("#city").html(data.city);
-                        //$("#country").html(data.country);
+                            //$("#firstName").html(data.firstName);
+                            //$("#lastName").html(data.lastName);
+                            //$("#streetAdress").html(data.streetAdress);
+                            //$("#city").html(data.city);
+                            //$("#country").html(data.country);
                             //$("#phoneNumber").html(data.phoneNumber);
 
-                    }, error: function (data, status, resp) {
-                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-                    }});
-            };
-            /* End Запрос на сервак */
-            console.log(getesOrder())
-            $('#overlay_order').fadeIn(400,
-                function () {
-                    $('#modal_form_order')
-                        .css('display', 'block')
-                        .animate({ opacity: 1, top: '50%' }, 200);
-                });
-        });
+                        }, error: function (data, status, resp) {
+                            alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                        }
+                    });
+                };
+                /* End Запрос на сервак */
+                console.log(getesOrder())
+                $('#overlay_order').fadeIn(400,
+                    function () {
+                        $('#modal_form_order')
+                            .css('display', 'block')
+                            .animate({ opacity: 1, top: '50%' }, 200);
+                    });
+            });
 
 
 
@@ -183,7 +185,7 @@
                 {
                     <tr class="admin-categories-tr">
                         <td class="publicId">
-                           <a class="ordNumber"> @item.PublicId</a>
+                            <a class="ordNumber"> @item.PublicId</a>
                         </td>
                         <td class="status">
                             @item.Status
@@ -198,10 +200,19 @@
                             @item.UserNameSeller
                         </td>
                         <td class="profit">
-                            123
+                            @T("RM ")
+                            @item.Profit
                         </td>
                         <td class="payout">
-                            paid
+                            @if (item.Payout)
+                            {
+                                @T("Paid")
+                            }
+                            else
+                            {
+                                @T("Not paid | ")
+                                <a href="@Url.Action("EditStatusPayout", new { publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId })" class="paid">@T("Paid")</a>
+                            }
                         </td>
                     </tr>
 
