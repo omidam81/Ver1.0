@@ -1914,7 +1914,7 @@ var design={
 				    var svg = $div.find('svg:first')[0];
 				    svg.setAttributeNS(null, 'width', o.width);
 				    svg.setAttributeNS(null, 'height', o.height);
-				    svg.setAttributeNS(null, 'viewBox', '0 0 ' + o.width + ' ' + o.height);
+				    //svg.setAttributeNS(null, 'viewBox', '0 0 ' + o.width + ' ' + o.height);
 					svg.setAttributeNS(null, 'preserveAspectRatio', 'none');
 					design.mask(false);
 				}
@@ -2606,30 +2606,53 @@ var design={
             }
             this.placeSizeBox(e, null, keep);
         },
-		resize: function(e, handles){
+        resize: function (e, handles, keep) {
+            var $e = $(e);
+            var id = $e.attr('id');
             var me = this;
+            var auto = keep || false;//keep ratio
+            var resizing = false;
+            if ($e.hasClass('ui-resizable')) {
+                $e.resizable('destroy');
+            }
+            $e.off('mouseenter', '.ui-resizable-e, .ui-resizable-w, .ui-resizable-s, .ui-resizable-n')
+                .on('mouseenter', '.ui-resizable-e, .ui-resizable-w, .ui-resizable-s, .ui-resizable-n', function () {
+                if (auto && !resizing) {
+                    me.resize(e, handles, false)
+                }
+            });
+
+            $e.off('mouseenter', '.ui-resizable-se').on('mouseenter', '.ui-resizable-se', function () {
+                if (!auto &&!resizing) {
+                    me.resize(e, handles, true)
+                }
+            });
+
 			if(typeof handles == 'undefined') handles = 'n, s, w, e, se';
-			
-			if(handles == 'se') {var auto = true; e = e;}
-			else {var auto = false;}
+
+
 			if(!e) e = $jd('.drag-item-selected');
 						
 			var oldwidth = 0, oldsize=0;		
 			e.resizable({minHeight: 15, minWidth: 15,				
 				aspectRatio: auto,
 				handles: handles,
-				start: function( event, ui ){
+				start: function (event, ui) {
+				    resizing = true;
 					oldwidth = ui.size.width;
 					oldsize = $('#dg-font-size').text();
 				},
-				stop: function( event, ui ) {
+				stop: function (event, ui) {
+				    resizing = false;
 					design.print.size();
 				},
-				resize: function(event,ui){
+				resize: function (event, ui) {
 					var e = ui.element;
 
 					var $width = parseInt(ui.size.width),
 						$height = parseInt(ui.size.height);
+
+				    //$(event.target).data('ui-resizable').axis === 'se'
 					me.resizeTo(e, $width, $height, false, false);
 				}
 			});
@@ -3594,6 +3617,4 @@ $(document).ready(function () {
 	});
 	
 	$('.drag-item').click(function () { alert(23); });
-
-
 });
