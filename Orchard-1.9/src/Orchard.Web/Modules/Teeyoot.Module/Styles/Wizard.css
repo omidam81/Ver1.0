@@ -948,6 +948,10 @@ input[type=range] {
     }
 }
 
+.Content #butAdd {
+    margin-top: 0;
+}
+
 @media (max-width: 1199px) {
     .Slides .design__area {
         margin-left: 0 !important;
@@ -1070,5 +1074,177 @@ input[type=range] {
         margin: auto !important;
         float: none !important;
         display: block;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #design-tools {
+        width: auto;
+        float: none;
+    }
+
+    #designer .nav-tabs,
+    #designer .tab-content {
+        width: auto;
+    }
+
+    .tab-content .edit_tool > label {
+        float: none !important;
+    }
+
+    #designer select.outline-selector {
+        width: 100% !important;
+    }
+
+    #designs_edit #tab2-content {
+        margin-top: 0 !important;
+    }
+
+    .Slides .product-view {
+        float: none !important;
+        margin: auto !important;
+        display: block;
+        width: 530px !important;
+    }
+
+    .Slides .Content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .Slides .product-view {
+        width: 380px !important;
+    }
+
+    .Slides .product-view div.new-editor-container {
+        transform: scale(.8);
+        margin: -50px auto;
+        left: 50%;
+        margin-left: -265px;
+    }
+
+    .slide-2__table #card {
+        transform: scale(.8);
+        left: 50%;
+        margin-left: -265px !important;
+        margin-top: -90px !important;
+        margin-bottom: -100px !important;
+        height: 600px;
+    }
+
+    .slide-2__table > tr > td + td, 
+    .slide-2__table > tbody > tr > td + td {
+        padding: 0 15px;
+    }
+
+    .tipping-point-slider__points {
+        position: relative;
+    }
+
+    .Content .tipping-point-slider__point:nth-child(1) {
+        margin-left: 2.2%;
+    }
+
+    .Content .tipping-point-slider__point:nth-child(2) {
+        margin-left: 18.5%;
+    }
+
+    .Content .tipping-point-slider__point:nth-child(3) {
+        margin-left: 38.5%;
+    }
+
+    .Content .tipping-point-slider__point:nth-child(4) {
+        margin-left: 58.25%;
+    }
+
+    .Content .tipping-point-slider__point:nth-child(5) {
+        margin-left: 78.2%;
+    }
+
+    .Content .tipping-point-slider__point:nth-child(6) {
+        margin-left: 97.9%;
+    }
+
+    .color-picker .containertip {
+        left: auto;
+        top: 100%;
+        right: 0;
+    }
+
+    .color-picker .containertip:before {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .Slides .product-view div.new-editor-container {
+        transform: scale(.6);
+        margin-top: -80px;
+        height: 520px;
+        top: -40px;
+    }
+
+    .slide-2__table #card {
+        transform: scale(.6);
+        margin-top: -125px !important;
+        height: 500px;
+    }
+
+    .slide-2__table > tr > td, 
+    .slide-2__table > tbody > tr > td {
+        height: 490px;
+    }
+
+    .Content .flip-buttons {
+        margin-bottom: -120px;
+    }
+
+    .Content .profitSale {
+        margin-left: 0;
+        clear: both;
+        width: auto;
+    }
+
+    .Content .profitSale .h4ProfSale {
+        width: auto;
+        margin-left: 0;
+    }
+
+    #primary .block.ssp_block  {
+        height: 140px !important;
+    }
+
+    .lab-steps.flow-steps .flow-step strong {
+        display: block;
+        width: 140px;
+        left: 50%;
+        position: relative;
+        margin-left: -70px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    #designs_edit .nav-tabs > li > a {
+        margin-right: -1px;
+    }
+
+    .Slides .product-view {
+        width: 280px !important;
+    }
+
+    .ssp_block .ssp_pricing {
+        display: block;
+        margin: 0;
+    }
+
+    .Content .profitSale {
+        margin: 0;
+    }
+
+    #primary .block.ssp_block  {
+        height: 170px !important;
     }
 }
