@@ -203,7 +203,6 @@ namespace Teeyoot.Module.Controllers
                 }
                 Transaction transaction = result.Target;
                 ViewData["TransactionId"] = transaction.Id;
-                res = "The transaction is successful";
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                 var record = _settingsService.GetAllSettings().List().FirstOrDefault();
@@ -218,15 +217,14 @@ namespace Teeyoot.Module.Controllers
                 FillUserMergeVars(mandrillMessage, order);
                 FillCampaignMergeVars(mandrillMessage, campaign, order.Email);           
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);      
-                string text = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
-                mandrillMessage.Html = text;
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "confirm-order-template.html");                               
                 var resss = SendTmplMessage(api, mandrillMessage);
-                _notifier.Information(T("Message has been sent!"));
+                _notifier.Information(T("The transaction is successful"));
 
             }
             else
             {
-                res = "The transaction is failed";
+                _notifier.Information(T("The transaction is failed"));
                 ViewData["Message"] = result.Message;
             }
 
