@@ -54,6 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\MailChimp.NET.1.1.75.0\lib\net35\MailChimp.dll</HintPath>
     </Reference>
+    <Reference Include="Mandrill.net">
+      <HintPath>..\..\..\packages\Mandrill.net.1.0.1\lib\net45\Mandrill.net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -673,6 +676,7 @@
     <Content Include="Views\Home\TrackOrder.cshtml" />
     <Content Include="Views\AdminCost\Edit.cshtml" />
     <Content Include="Views\Home\OrderTracking.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\MailChimpSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -686,6 +690,9 @@
     <ProjectReference Include="..\RM.QuickLogOn.OAuth\RM.QuickLogOn.OAuth.csproj">
       <Project>{4055acbb-280e-4bf7-9706-e5598521a684}</Project>
       <Name>RM.QuickLogOn.OAuth</Name>
+    <ProjectReference Include="..\Teeyoot.FAQ\Teeyoot.FAQ.csproj">
+      <Project>{c1227a9d-ebe0-4776-af87-d2f677ce2200}</Project>
+      <Name>Teeyoot.FAQ</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -699,7 +706,11 @@
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
+    <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
+    <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\MailChimpSettingsPart.cs" />
+    <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
     <Compile Include="Models\MessageRecord.cs" />
     <Compile Include="Models\OrderHistoryRecord.cs" />
     <Compile Include="Models\PaymentInformationRecord.cs" />
@@ -715,6 +726,8 @@
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Permissions.cs" />
+    <Compile Include="Services\Interfaces\IMailChimpSettingsService.cs" />
+    <Compile Include="Services\MailChimpSettingsService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
     <Compile Include="Services\Interfaces\IMessageService .cs" />
@@ -770,13 +783,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\message-templates\" />
-    <Folder Include="Drivers\" />
     <Folder Include="fonts\" />
-    <Folder Include="Handlers\" />
     <Folder Include="Views\Promotion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -815,7 +829,7 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
+          <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>

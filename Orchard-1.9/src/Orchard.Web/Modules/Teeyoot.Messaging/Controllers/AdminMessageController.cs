@@ -15,15 +15,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Teeyoot.Messaging.Models;
-using Teeyoot.Messaging.Services;
+using Teeyoot.Module.Models;
+using Teeyoot.Module.Services;
 using Teeyoot.Messaging.ViewModels;
 using Mandrill;
 using Mandrill.Model;
-
-
 using Teeyoot.FAQ.Services;
-using System.IO;
+
+
 namespace Teeyoot.Module.Controllers
 {
     [Admin]
@@ -104,7 +103,7 @@ namespace Teeyoot.Module.Controllers
         [HttpPost, ActionName("AddSetting")]
         public ActionResult AddSettingPOST(string returnUrl)
         {
-            var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("", "", "" , 0, "", 0 , "en");
+            var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("", "en");
             if (mailChimpSettingPart == null)
                 return HttpNotFound();
 

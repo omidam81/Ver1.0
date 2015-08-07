@@ -6,12 +6,12 @@ using System.Linq;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Orchard.UI.Notify;
-using Teeyoot.Messaging.Models;
 using Orchard.Localization;
 using Orchard.ContentManagement;
 using Orchard.Data;
 using System.Web;
 using System.Web.Mvc;
+using Teeyoot.Messaging.Models;
 
 
 namespace Teeyoot.Messaging.Services
@@ -107,9 +107,21 @@ namespace Teeyoot.Messaging.Services
         }
 
 
-        public void SendWelcomeMessage(string userEmail, string pathToTemplates, string pathToMedia)
+        public void SendWelcomeMessage(string userEmail, string pathToTemplates)
         {
-            throw new NotImplementedException();
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "admin@teeyoot.com";
+            mandrillMessage.Subject = "Welcome to teeyoot!";
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            emails.Add(new MandrillMailAddress(userEmail, "user"));
+            mandrillMessage.To = emails;
+            string text = System.IO.File.ReadAllText(pathToTemplates + "welcome-template.html");
+            mandrillMessage.Html = text;
+            var res = SendTmplMessage(api, mandrillMessage);
+            var result = res;
         }
 
 

@@ -47,6 +47,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mandrill.net, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Mandrill.net.1.0.1\lib\net45\Mandrill.net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -102,6 +106,10 @@
     <ProjectReference Include="..\RM.QuickLogOn\RM.QuickLogOn.csproj">
       <Project>{809c09ed-f637-4c25-8ad6-65e4775e8dfe}</Project>
       <Name>RM.QuickLogOn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Teeyoot.Messaging\Teeyoot.Messaging.csproj">
+      <Project>{8ab824c5-2480-4572-929a-9d4d4081aeba}</Project>
+      <Name>Teeyoot.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Teeyoot.Module\Teeyoot.Module.csproj">
       <Project>{a11fb407-2b62-42d2-97b6-895056579905}</Project>

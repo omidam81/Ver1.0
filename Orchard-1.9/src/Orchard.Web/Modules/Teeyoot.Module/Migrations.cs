@@ -963,5 +963,17 @@ namespace Teeyoot.Module
 
             return 47;
         }
+
+        public int UpdateFrom47()
+        {
+            SchemaBuilder.CreateTable(typeof(MailChimpSettingsPartRecord).Name,
+                table => table
+                    .ContentPartRecord()
+                    .Column<string>("ApiKey", c => c.WithLength(50))
+                    .Column<string>("Culture", c => c.WithLength(50)));
+
+              return 48;
+        }
+
     }
 }

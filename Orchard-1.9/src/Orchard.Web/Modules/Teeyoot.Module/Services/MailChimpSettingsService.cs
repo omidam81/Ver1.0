@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Teeyoot.Messaging.Models;
+using Teeyoot.Module.Models;
 
-namespace Teeyoot.Messaging.Services
+namespace Teeyoot.Module.Services
 {
     public class MailChimpSettingsService : IMailChimpSettingsService
     {
@@ -29,18 +29,14 @@ namespace Teeyoot.Messaging.Services
             _contentManager.Remove(_contentManager.Get<MailChimpSettingsPart>(id).ContentItem);
         }
 
-        public MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string mailChimpListId, string welcomeCampaignId, int welcomeTemplateId, string allBuyersCampaignId, int allBuyersTemplateId, string culture)
+        public MailChimpSettingsPart CreateMailChimpSettingsPart(string apiKey, string culture)
         {
             var MailChimpSettingsPart = _contentManager.Create<MailChimpSettingsPart>("MailChimpSettings",
                 se =>
                 {
                     se.ApiKey = apiKey;
                     se.Culture = culture;
-                    se.MailChimpListId = mailChimpListId;
-                    se.WelcomeCampaignId = welcomeCampaignId;
-                    se.WelcomeTemplateId = welcomeTemplateId;
-                    se.AllBuyersCampaignId = allBuyersCampaignId;
-                    se.AllBuyersTemplateId = allBuyersTemplateId;                  
+                                  
                 });
 
             return MailChimpSettingsPart;

@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Teeyoot.FAQ.Services;
-using Teeyoot.Messaging.Models;
-using Teeyoot.Messaging.Services;
+using Teeyoot.Module.Models;
+using Teeyoot.Module.Services;
 
-namespace Teeyoot.Messaging.Drivers
+namespace Teeyoot.Module.Drivers
 {
     public class MailChimpSettingsPartDriver : ContentPartDriver<MailChimpSettingsPart>
     {

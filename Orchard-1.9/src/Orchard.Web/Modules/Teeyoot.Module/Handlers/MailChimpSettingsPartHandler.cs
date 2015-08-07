@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Teeyoot.Messaging.Models;
+using Teeyoot.Module.Models;
 
-namespace Teeyoot.Messaging.Handlers
+
+namespace Teeyoot.Module.Handlers
 {
     public class MailChimpSettingsPartHandler : ContentHandler 
     {
