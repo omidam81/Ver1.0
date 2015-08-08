@@ -10,6 +10,10 @@ namespace Teeyoot.Module.Services
     {
         void SendLaunchCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId);
 
-        void SendApproveOrderMessage(string pathToTemplates, string pathToMedia, int orderId);
+        void SendOrderStatusMessage(string pathToTemplates, string pathToMedia, int orderId, string orderStatus);
+
+        void SendExpiredCampaignMessageToSeller(int campaignId, bool isSuccesfull);
+
+        void SendExpiredCampaignMessageToBuyers(int campaignId, bool isSuccesfull);
     }
 }
