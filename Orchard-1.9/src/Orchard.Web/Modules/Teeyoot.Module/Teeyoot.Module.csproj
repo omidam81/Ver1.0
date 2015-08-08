@@ -660,6 +660,7 @@
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designerTeeyoot.css" />
     <Content Include="Styles\bootstrap-responsive.css" />
+    <Content Include="Content\images\busy.gif" />
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />
