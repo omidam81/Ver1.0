@@ -204,4 +204,9 @@
             text-decoration: none;
             color: #e64700;
         }
-
+.reservation-complete-message {
+    background-color:#ff4f00;
+    padding:5px;
+    color:#fff;
+    border-radius:3px;
+}
