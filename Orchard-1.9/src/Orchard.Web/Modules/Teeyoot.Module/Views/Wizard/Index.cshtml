@@ -410,7 +410,7 @@
                 $('#create_account').show();
             });
 
-            $('#login_teeyoot .login').click(function() {
+            $('#login_form').submit(function() {
                 var email = $('#login_teeyoot .email').val();
                 var password = $('#login_teeyoot .password').val();
 
@@ -443,7 +443,7 @@
                 });
             });
 
-            $('#create_account .create-account').click(function() {
+            $('#create_account_form').submit(function() {
                 var email = $('#create_account .email').val();
                 var password = $('#create_account .password').val();
                 var confirmPassword = $('#create_account .confirm-password').val();
@@ -1714,7 +1714,7 @@
     </div>
 </div>
 
-<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()"/>
 
 <div class="modal-dialog modal fade" id="modal_auth">
     <div class="modal-content">
@@ -1732,32 +1732,35 @@
             <div id="login_teeyoot" class="auth-window">
                 <h2>@T("Login with Teeyoot")</h2>
                 <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
-                <fieldset>
-                    <input type="text" class="email" placeholder="@T("Email")" />
-                    <br />
-                    <input type="password" class="password" placeholder="@T("Password")" />
-                    <br />
-                    <input type="button" class="login" value="@T("Login to your account >>")" />
-                </fieldset>
+                <form id="login_form" action="javascript:;">
+                    <fieldset>
+                        <input type="text" class="email" placeholder="@T("Email")"/>
+                        <br/>
+                        <input type="password" class="password" placeholder="@T("Password")"/>
+                        <br/>
+                        <input type="submit" value="@T("Login to your account >>")"/>
+                    </fieldset>
+                </form>
                 <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
             </div>
             <div id="create_account" class="auth-window">
                 <h2>@T("Create an account with Teeyoot")</h2>
                 <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
-                <fieldset>
-                    <input type="text" class="email" placeholder="@T("Email")" />
-                    <br />
-                    <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")" />
-                    <br />
-                    <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
-                    <br />
-                    <input type="button" class="create-account" value="@T("Create your account >>")" />
-                </fieldset>
+                <form id="create_account_form" action="javascript:;">
+                    <fieldset>
+                        <input type="text" class="email" placeholder="@T("Email")"/>
+                        <br/>
+                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")"/>
+                        <br/>
+                        <input type="password" class="confirm-password" placeholder="@T("Confirm Password")"/>
+                        <br/>
+                        <input type="submit" value="@T("Create your account >>")"/>
+                    </fieldset>
+                </form>
                 <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
             </div>
         </div>
-        <div class="modal-footer">
-        </div>
     </div>
 </div>
+
 <div id="overlay"></div>
