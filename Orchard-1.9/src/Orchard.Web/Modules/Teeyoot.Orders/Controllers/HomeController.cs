@@ -128,8 +128,13 @@ namespace Teeyoot.Orders.Controllers
         public JsonResult GetOrderInfirmation(string publicId)
         {
             var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
-            var orders = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name, Count = o.Count, Price = o.CampaignProductRecord.Price, Size = o.ProductSizeRecord.SizeCodeRecord.Name });
-            return Json(orders, JsonRequestBehavior.AllowGet);
+            var products = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name,
+                Count = o.Count,
+                Price = o.CampaignProductRecord.Price,
+                Size = o.ProductSizeRecord.SizeCodeRecord.Name });
+            var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
+            var result = new { products, totalPrice };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
 
