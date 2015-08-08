@@ -663,6 +663,7 @@
     <Content Include="Content\images\busy.gif" />
     <Content Include="Styles\images\menu.teeyoot.png" />
     <Content Include="Styles\jqueryui.css" />
+    <Content Include="Styles\login-modal.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
