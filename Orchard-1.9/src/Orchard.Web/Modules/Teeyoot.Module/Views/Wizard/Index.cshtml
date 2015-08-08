@@ -173,7 +173,7 @@
             var alias = document.getElementById('url').value.trim();
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tags = document.getElementById("inputTags").value.split(" ");
-            var isForCharity = document.getElementById('is_for_charity').checked;
+            //var isForCharity = document.getElementById('is_for_charity').checked;
             $.ajax({
                 async: false,
                 cache: false,
@@ -185,7 +185,7 @@
                     "itemOptions": itemOptions,
                     "product": product,
                     "Design": JSON.stringify(app.state.design),
-                    'IsForCharity': isForCharity,
+                    //'IsForCharity': isForCharity,
                     "CampaignTitle": campaignTitle,
                     "Description": description,
                     "CampaignLength": campaignLength,
