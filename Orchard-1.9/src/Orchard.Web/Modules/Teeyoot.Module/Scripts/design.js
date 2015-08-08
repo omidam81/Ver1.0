@@ -1091,7 +1091,7 @@ var design={
                 var rgb = background.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
                 var yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
                 isDarkBorder = yiq >= 128;
-                newColor = isDarkBorder?'rgba(0,0,0,0.3)':'rgba(255,255,255,0.3)';
+                newColor = isDarkBorder?'rgba(0,0,0,0.5)':'rgba(255,255,255,0.3)';
                 textColor = !isDarkBorder?'rgba(0,0,0)':'rgba(255,255,255)';
                 isDarkText = !isDarkBorder;
             }else{

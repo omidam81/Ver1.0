@@ -790,8 +790,8 @@
                                                         <!-- begin front design -->
                                                         <div id="view-front" class="front labView">
                                                             <div class="product-design"></div>
-                                                            <div class="design-area printable-area-box">
-                                                                <div class="content-inner"></div>
+                                                            <div class="design-area printable-area-box" style="border-color: rgba(0, 0, 0, 0.5) !important;">
+                                                                <div class=" content-inner"></div>
                                                                 <div class="size-dialog aspect-ratio" style="display: none">
                                                                     <div class="aspect-ratio__field width">
                                                                         <span>Width</span>
@@ -804,7 +804,7 @@
                                                                         <span>in.</span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="printable-area-toolbar">
+                                                                <div class="printable-area-toolbar" style="background-color: rgba(0, 0, 0, 0.5) !important;">
                                                                     <span>Print Area</span>
                                                                     <div class="design-area-zoom printable-area-zoom">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
@@ -863,11 +863,12 @@
                                             </div>
 
                                             <div class="slide-1__choosing">
-                                                <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
-                                                    <!-- colors list -->
-                                                </ul>
-                                                <div id="choices" class="aside">
-                                                    <div>
+                                                
+                                                <div class="slide-1-right-box">
+                                                    <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
+                                                        <!-- colors list -->
+                                                    </ul>
+                                                    <div id="choices" class="aside">
                                                         <div id="product-selector" class="teespring-well designer-well ">
                                                             <label>@T("Style")</label>
                                                             <select id="item-options-dropdown" class="form-control form__select_menu"></select>
@@ -886,11 +887,13 @@
                                                                 <p class="base-cost-display" id="price_preview">
                                                                 </p>
                                                             </div>
-                                                            <button class="button button--transaction wizard-button" id="nextPage">
-                                                                @T("Next Page")
-                                                            </button>
                                                         </div>
                                                         <div class="clearfix"></div>
+                                                    </div>
+                                                    <div style="z-index: 4; position: relative;">
+                                                        <button class="button button--transaction wizard-button" id="nextPage">
+                                                            @T("Next Page")
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -959,7 +962,7 @@
                             @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
                         </td>
                         <td style="width:50%; vertical-align:top; position:relative;">
-                            <label style="font-weight: bold;">Sales goal</label>
+                            <label style="font-weight: bold;">Sales Target</label>
                             <div class="block">
                                 <div style="display:block">
                                     <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
@@ -1003,761 +1006,739 @@
                             </table>-->
 
                             <div>
-                                <span>Your goal is the number of shirts you’re aiming to sell</span>
-                            </div>
+                                <span>Your target is the number of shirts you are aiming to sell. If you sell less the campaign may not go ahead and your profit per sale will be reduced.</span>
+                                </div>
 
-                            <div>
-                                <label style="font-weight: bold; margin-top:3%">Set selling price</label>
-                            </div>
+                                <div>
+                                    <label style="font-weight: bold; margin-top:3%">Set selling price</label>
+                                </div>
 
-
-
-
-
-
-
-
-                            <div id="primary">
-                                <div class="block ssp_block " style="width:100%; height:100px">
-                                    <div class="thumbnail_wrapper">
-                                        <img id="minImg" style=" width: 100%;  height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
-                                    </div>
-                                    <div class="ssp_metadata">
-                                        <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
-                                            <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teespring Premium Tee</h4>
+                                <div id="primary">
+                                    <div class="block ssp_block " style="width:100%; height:115px">
+                                        <div class="thumbnail_wrapper">
+                                            <img id="minImg" style=" width: 100%;  height: 100%;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front_small.png">
                                         </div>
-                                    </div>
-
-
-                                    <div class="clearfix control-group font-color-selection" id="colPick">
-                                        <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="Change color" data-value="text">
-                                            <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
-                                            <div class="colors shirt-colors containertip" id="colors">
-                                                <ul class="all-colorsTwo" id="allColorsTwo"></ul>
+                                        <div class="ssp_metadata">
+                                            <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
+                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teespring Premium Tee</h4>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                    </div>
 
-                                    <div class="ssp_pricing" style="margin-left:-8%">
-                                        <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()">
-                                    </div>
 
-                                    <div class="profitSale">
-                                        <h4 class="h4ProfSale" id="mainH4"></h4>
+                                        <div class="clearfix control-group font-color-selection" id="colPick">
+                                            <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="Change color" data-value="text">
+                                                <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
+                                                <div class="colors shirt-colors containertip" id="colors">
+                                                    <ul class="all-colorsTwo" id="allColorsTwo"></ul>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div class="ssp_pricing" style="margin-left:-8%; display: -webkit-inline-box; display: -moz-inline-box; height: 40px;">
+                                            <span class="rm-for-price">RM </span>
+                                            <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()">
+                                        </div>
+
+                                        <div class="profitSale">
+                                            <h4 class="h4ProfSale" id="mainH4"></h4>
+                                        </div>
+                                        <div style="font-weight: bold; padding-top: 10px;">
+                                            <span>This is your sale price</span>
+                                        </div>
+                                    </div>
+                                    <div style="height:40px; margin-top: 1.0rem; font-weight: bold;">
+                                        <span style="font-size:15px;">Add some more styles of t-shirts your customers can buy.</span>
                                     </div>
                                 </div>
-                                <div style="height:40px">
-                                    <span style="font-size:13px;">Add some more styles of t-shirts your customers can buy.</span>
+
+                                <div id="ui" class="ssp_select_boxes">
+                                    <select id="item-options-dropdown-tees" class="form-control form__select_menu"></select>
+                                    <select id="product" class="form__select_menu"></select>
+                                    <button type="button" id="butAdd" class="button button--primary ssp_add_button wizard-button" style="color: #ffffff;" title="Add"></button>
                                 </div>
-                            </div>
 
+                                <div>
+                                    <label style="font-weight: bold;">Estimated profit</label>
+                                </div>
+                                <div>
+                                    <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px"></span>
+                                    <button class="Left wizard-button" style="float: right;">NEXT PAGE</button>
+                                </div>
+                                <div></div>
 
-
-
-
-
-
-
-
-                            <div id="ui" class="ssp_select_boxes">
-                                <select id="item-options-dropdown-tees" class="form-control form__select_menu"></select>
-                                <select id="product" class="form__select_menu"></select>
-                                <button type="button" id="butAdd" class="button button--primary ssp_add_button wizard-button" style="color: #ffffff;" title="Add"></button>
-                            </div>
-
-
-
-
-
-                            <div>
-                                <label style="font-weight: bold;">Estimated profit</label>
-                            </div>
-                            <div>
-                                <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px"></span>
-                            </div>
-                            <div></div>
-                            <button class="Left wizard-button">NEXT PAGE</button>
-                        </td>
-                        </>
-                </table>
+                            </td>
+                            </>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="Slide">
-            <div class="Content" id="Content3">
-                <body class="page__designs_edit Chrome" data-hasqtip="0">
-                    <div class="site__content_container" id="designs_edit">
+            <div class="Slide">
+                <div class="Content" id="Content3">
+                    <body class="page__designs_edit Chrome" data-hasqtip="0">
+                        <div class="site__content_container" id="designs_edit">
 
 
-                        <div id="designer-container">
-                            <aside class="disclaimer_designer disclaimer-show">
-                                <article class="disclaimer_designer-message">
-                                    <h1>Welcome to our Designer!</h1>
-                                    <p>It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?</p>
-                                    <form class="disclaimer_form" action="" method="POST" novalidate="novalidate">
-                                        <input type="hidden" name="oid" value="00DG0000000iMxy">
-                                        <label for="last_name"></label><input id="last_name" value="Teespringer" maxlength="80" name="last_name" size="20" type="hidden"><br>
-                                        <label for="email">Email</label><input class="disclaimer_input-email form__textfield" id="email" maxlength="80" name="email" size="20" type="email" required="">
-                                        <label for="lead_source"></label><input id="lead_source" value="Mobile Designer" name="lead_source" size="20" type="hidden">
-                                        <input type="submit" name="submit" value="Remind Me" class="button button--primary">
-                                    </form>
-                                    <a class="disclaimer_cancel">Nah, let's continue!</a>
-                                </article>
-                                <article class="disclaimer_designer-success">
-                                    <h1>Awesome!</h1>
-                                    <p>We'll remind you to come back and design soon.</p>
-                                    <p class="disclaimer_cancel">Check out the designer now.</p>
-                                </article>
-                            </aside>
-                            <!-- Designer Subheader ================================================== -->
+                            <div id="designer-container">
+                                <aside class="disclaimer_designer disclaimer-show">
+                                    <article class="disclaimer_designer-message">
+                                        <h1>Welcome to our Designer!</h1>
+                                        <p>It's much easier to use the Teespring designer on a larger screen, would you like us to email you a reminder to try it later?</p>
+                                        <form class="disclaimer_form" action="" method="POST" novalidate="novalidate">
+                                            <input type="hidden" name="oid" value="00DG0000000iMxy">
+                                            <label for="last_name"></label><input id="last_name" value="Teespringer" maxlength="80" name="last_name" size="20" type="hidden"><br>
+                                            <label for="email">Email</label><input class="disclaimer_input-email form__textfield" id="email" maxlength="80" name="email" size="20" type="email" required="">
+                                            <label for="lead_source"></label><input id="lead_source" value="Mobile Designer" name="lead_source" size="20" type="hidden">
+                                            <input type="submit" name="submit" value="Remind Me" class="button button--primary">
+                                        </form>
+                                        <a class="disclaimer_cancel">Nah, let's continue!</a>
+                                    </article>
+                                    <article class="disclaimer_designer-success">
+                                        <h1>Awesome!</h1>
+                                        <p>We'll remind you to come back and design soon.</p>
+                                        <p class="disclaimer_cancel">Check out the designer now.</p>
+                                    </article>
+                                </aside>
+                                <!-- Designer Subheader ================================================== -->
 
-                            <section id="no-band" class="no-offset">
-                                <div class="container container_designer">
-                                    <div id="designer" class="clearfix" style="min-height: 600px; height: 920.9375px;">
-                                        <div class="step stepAnimation" id="step-details" style="transform: translateX(0px); opacity: 1;">
-                                            <!--designer-details-error-->
-                                            <div class="row">
-                                                <div class="span5">
-                                                    <div id="product-quick-preview" class="product-preview">
-                                                        <div class="product-view">
-                                                            <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
-                                                            <div class="new-editor-container">
-                                                                <td style="width:50%">
+                                <section id="no-band" class="no-offset">
+                                    <div class="container container_designer">
+                                        <div id="designer" class="clearfix" style="min-height: 600px; height: 920.9375px;">
+                                            <div class="step stepAnimation" id="step-details" style="transform: translateX(0px); opacity: 1;">
+                                                <!--designer-details-error-->
+                                                <div class="row">
+                                                    <div class="span5">
+                                                        <div id="product-quick-preview" class="product-preview">
+                                                            <div class="product-view">
+                                                                <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
+                                                                <div class="new-editor-container">
+                                                                    <td style="width:50%">
 
-                                                                    <div id="card3" style="margin-right:30px">
-                                                                        <div class="front">
-                                                                            <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                                                            <img style="position:absolute" id="prodFront3_d" src="">
-                                                                            <div id="butt1" style="text-align:center; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
-                                                                                <div class="flip-button flip-button-back-three"><span class="flip-button__back">Back</span></div>
+                                                                        <div id="card3" style="margin-right:30px">
+                                                                            <div class="front">
+                                                                                <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                                <img style="position:absolute" id="prodFront3_d" src="">
+                                                                                <div id="butt1" style="text-align:center; margin-top:-60px !important;">
+                                                                                    <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
+                                                                                    <div class="flip-button flip-button-back-three"><span class="flip-button__back">Back</span></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="back">
+                                                                                <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                                <img style="position:absolute" id="prodBack3_d" src="">
+                                                                                <div id="butt2" style="text-align:center; margin-top:-60px !important;">
+                                                                                    <div class="flip-button flip-button-front-three"><span class="flip-button__front">Front</span></div>
+                                                                                    <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="back">
-                                                                            <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                                                            <img style="position:absolute" id="prodBack3_d" src="">
-                                                                            <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front-three"><span class="flip-button__front">Front</span></div>
-                                                                                <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
+                                                                    </td>
+                                                                </div>
+                                                                <!-- render flip buttons here -->
                                                             </div>
-                                                            <!-- render flip buttons here -->
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="span7 aside">
-                                                    <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
-                                                        @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { onsubmit = "sendData();return false;", id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
-                                                        {
-                                                            <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
-                                                                <label class="has-under-text">Campaign title</label>
-                                                                <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
-                                                                <p class="has-under-text text-error" id="name_error-text"></p>
-                                                                <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2" style="border-color: #afafaf;">
-                                                            </div>
-                                                            <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                                <label class="has-under-text">Description</label>
-                                                                <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
-                                                                    <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
-                                                                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>
+                                                    <div class="span7 aside">
+                                                        <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
+                                                            @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { onsubmit = "sendData();return false;", id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
+                                                            {
+                                                                <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
+                                                                    <label class="has-under-text">Title of campaign</label>
+                                                                    <p class="has-under-text text-error" id="name_error-text"></p>
+                                                                    <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2" style="border-color: #afafaf;">
                                                                 </div>
-                                                            </div>
-                                                            <a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>
+                                                                <div class="teespring-well designer-well description" data-reactid=".6.0.1">
+                                                                    <label class="has-under-text">Description</label>
+                                                                    <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                                                                        <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
+                                                                        <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Decribe your campaign here…" style="width: 810px; height: 200px"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>
 
-                                                            <div class="teespring-well designer-well" id="tags" style="display:none">
-                                                                <label>Tags</label>
-                                                                <p>
-                                                                    <label class="display-label">
-                                                                        <span>Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)</span>
-                                                                    </label>
-                                                                </p>
-                                                                <input type="text" name="name" class="form__textfield " id="inputTags" value="">
-                                                            </div>
+                                                                <div class="teespring-well designer-well" id="tags" style="display:none">
+                                                                    <label>Tags</label>
+                                                                    <p>
+                                                                        <label class="display-label">
+                                                                            <span>Enter up to 6 words to describe your campaign so buyers can find it</span>
+                                                                        </label>
+                                                                    </p>
+                                                                    <input type="text" name="name" class="form__textfield " id="inputTags" value="">
+                                                                </div>
 
-                                                            <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
-                                                                <label>Campaign length</label>
-                                                                <p class="under-text">
-                                                                    <span id="arrive-by-estimate">US orders will arrive 10-14 days after the end of the campaign.</span>
-                                                                    <span data-reactid=".6.0.3.1.1"> </span>
-                                                                    <a href="http://answers.teespring.com/customer/portal/articles/1710948" target="_new" class="nowrap">
-                                                                    </a>
-                                                                </p>
-                                                                <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
-                                                                    <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">
-                                                                        <span>3 Days</span>
-                                                                        <span> </span>
-                                                                        <span> </span>
-                                                                        <span>(</span><span>Ending</span>
-                                                                        <span> </span><span> </span>
-                                                                        <span>Thursday, July 23, 2015</span>
-                                                                        <span>)</span>
-                                                                    </option>
-                                                                    <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 Days  (Ending  Monday, July 20, 2015)</option>
-                                                                    <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 Days  (Ending  Wednesday, July 22, 2015)</option>
-                                                                    <option data-attr-delay="0" value="14" data-reactid=".6.0.3.2.$14">14 Days  (Ending  Wednesday, July 29, 2015)</option>
-                                                                    <option data-attr-delay="0" value="21" data-reactid=".6.0.3.2.$21">21 Days  (Ending  Wednesday, August 5, 2015)</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
-                                                                <label>URL</label>
-                                                                <p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>
-                                                                <p class="has-under-text text-error" id="url_error-text"></p>
-                                                                <p class="inline-input-text  small-bottom" style="display: inline;">
-                                                                    <strong>teeyoot.com/</strong>
-                                                                </p>
-                                                                <input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="">
-                                                            </div>
+                                                                <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
+                                                                    <label>Campaign duration</label>
+                                                                    <p class="under-text">
+                                                                        @*<span id="arrive-by-estimate">US orders will arrive 10-14 days after the end of the campaign.</span>*@
+                                                                        <span data-reactid=".6.0.3.1.1"> </span>
+                                                                        <a href="http://answers.teespring.com/customer/portal/articles/1710948" target="_new" class="nowrap">
+                                                                        </a>
+                                                                    </p>
+                                                                    <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
+                                                                        <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">3 Days  (Ending  @DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")))</option>
+                                                                        <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 Days  (Ending  @DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")))</option>
+                                                                        <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 Days  (Ending  @DateTime.Now.AddDays(7).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")))</option>
+                                                                        <option data-attr-delay="0" value="14" data-reactid=".6.0.3.2.$14">14 Days  (Ending  @DateTime.Now.AddDays(14).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")))</option>
+                                                                        <option data-attr-delay="0" value="21" data-reactid=".6.0.3.2.$21">21 Days  (Ending  @DateTime.Now.AddDays(21).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")))</option>
+                                                                        <option data-attr-delay="0" value="28" data-reactid=".6.0.3.2.$21">21 Days  (Ending  @DateTime.Now.AddDays(28).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")))</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
+                                                                    <label>Campaign URL</label>
+                                                                    @*<p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>*@
+                                                                    <p class="has-under-text text-error" id="url_error-text"></p>
+                                                                    <p class="inline-input-text  small-bottom" style="display: inline;">
+                                                                        <strong>teeyoot.com/</strong>
+                                                                    </p>
+                                                                    <input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="">
+                                                                </div>
 
-                                                            <div class="teespring-well designer-well">
-                                                                <label>Display Options</label>
-                                                                <p>
-                                                                    <label class="checkbox display-label">
-                                                                        <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
-                                                                        <span>Show the back side by default</span>
-                                                                    </label>
-                                                                </p>
-                                                            </div>
+                                                                <div class="teespring-well designer-well">
+                                                                    <label>Other Options</label>
+                                                                    <p>
+                                                                        <label class="checkbox display-label">
+                                                                            <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
+                                                                            <span>By default show the back of the shirt</span>
+                                                                        </label>
+                                                                    </p>
+                                                                </div>
 
-                                                            <div class="teespring-well designer-well">
-                                                                <label>For charity</label>
-                                                                <p>
-                                                                    <label class="checkbox display-label">
-                                                                        <input type="checkbox" name="is_for_charity" id="is_for_charity" value="1">
-                                                                        <span>Option for verified charity</span>
-                                                                    </label>
-                                                                </p>
-                                                            </div>
+                                                                @*<div class="teespring-well designer-well">
+                                                                        <label>For charity</label>
+                                                                        <p>
+                                                                            <label class="checkbox display-label">
+                                                                                <input type="checkbox" name="is_for_charity" id="is_for_charity" value="1">
+                                                                                <span>Option for verified charity</span>
+                                                                            </label>
+                                                                        </p>
+                                                                    </div>*@
 
 
-                                                            <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
-                                                                <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">Launch</button>
-                                                                <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
-                                                                    <span>
-                                                                        <span>By clicking this button, I accept Teeyoot's </span>
+                                                                <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
+                                                                    <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
+                                                                    <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">Launch Campaign</button>
+                                                                    <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
+                                                                        <span>
+                                                                            <span>By clicking this button, I accept Teeyoot's </span>
 
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-                                                        }
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            }
+                                                        </div>
                                                     </div>
+
                                                 </div>
-
+                                            </div>
+                                        </div>
+                                        <div id="preview" class="" style="display: none;">
+                                            <div class="subheader">
+                                                <div class="container">
+                                                    This is a preview of your campaign. <a>Click here to go back and continue launching your campaign »</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="preview" class="" style="display: none;">
-                                        <div class="subheader">
-                                            <div class="container">
-                                                This is a preview of your campaign. <a>Click here to go back and continue launching your campaign »</a>
+                                </section>
+                                <div id="too-many-colors-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Too many colors.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Your design has more than ")<span class="max-colors-count"></span>@T(" colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
+                                                <input type="button" value="@T("Make adjustments") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>
-                            <div id="too-many-colors-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Too many colors.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Your design has more than ")<span class="max-colors-count"></span>@T(" colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
-                                            <input type="button" value="@T("Make adjustments") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div id="upload-photo-error" class="modal modal-teespring">
-                                <div class="modal-dialog wizard-modal">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Did you try and upload a full color image?")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Looks like you tried to upload an image with more than ")<span class="max-colors-count"></span>@T(" colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
-                                            <p>
-                                                @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")<a href="/FAQ" target="_blank">@T("contact support for assistance")</a>
-                                            </p>
-                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="upload-text-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Did you upload an artwork with text?")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("To ensure that your artwork gets printed correctly, we require it to be outlined.")</p>
-                                            <p>@T("Here's how:")</p>
-                                            <p>
-                                                <strong>1</strong>@T(" In Illustrator, select the entire design.")<br>
-                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/select_all-364579df01dd5b85aaff06da36a93d7c.png">
-                                            </p>
-                                            <p>
-                                                <strong>2</strong>@T(" Create outlines, using the Type menu.")<br>
-                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/create_outlines-a36bb6881047287564c1e7be85b6d0c3.png">
-                                            </p>
-                                            <p>
-                                                @T("Save your artwork and upload it again.")<br>
-                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png">
-                                            </p>
-                                            <p>@T("If you need more assistance, please ")<a href="/FAQ" target="_blank">@T("contact support")</a>.</p>
-                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="upload-image-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Oops! There was an error.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!")</p>
-                                            <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div id="no-content-error" class="modal modal-teespring" aria-hidden="true" style="display: none;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("You need to create a design.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. ")<a href="/FAQ" target="_blank">@T("Need help?")</a></p>
-                                            <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="could-not-save-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Server error.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Sorry, we were unable to save your design. Please try again. If the problem persist, ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("and mention the following error.")</p>
-                                            <p>@T("Error: ")<code></code></p>
-                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="missing-colors-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Oops! The design application is still busy.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Please try again in a few seconds. If the problem persists, ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a>.</p>
-                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="upload-resolution-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("File is too small")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Your artwork should be at least ")<span class="width"></span>@T(" pixels wide by ")<span class="height"></span>@T(" pixels high.")</p>
-                                            <p>@T("Need help? ")<a href="/FAQ" target="_blank">@T("Contact our design team!")</a></p>
-                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="waiting-for-preview" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Waiting for preview")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Please wait while your preview is generated.")</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal modal-teespring" id="default-sign-in">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="modal-title">@T("How would you like to login?")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="errors"></div>
-                                            <p><small>@T("You can ")<a data-provider="teespring" data-action="sign-in">@T("login with Teespring")</a>@T(" or use any of the sites below:")</small></p>
-                                            <ul class="clean-list oauth-options">
-                                                <li>
-                                                    <a data-provider="teespring" data-action="sign-in">
-                                                        <p>@T("login with")</p>
-                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/teespring-5cded83b348c4a2f89b79324a834a427.png" alt="Teespring"></p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a data-provider="facebook" data-action="sign-in" id="facebook_signin_button" title="Login with Facebook">
-                                                        <p>@T("login with")</p>
-                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/facebook-f8e6f5eb71f877978a489a35a10c6a8c.png" alt="Facebook"></p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a data-provider="google" data-action="sign-in" id="google_signin_button">
-                                                        <p>@T("login with")</p>
-                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/google-298188fc43c3d523b280b3d4901fef81.png" alt="Google"></p>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a data-provider="yahoo" data-action="sign-in">
-                                                        <p>@T("login with")</p>
-                                                        <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/yahoo-24ea0f8223a097d07794069f2bcadca7.png" alt="Yahoo"></p>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <p class="large-under-link">
-                                                @T("or")
-                                                <a data-provider="teespring" data-action="sign-up">
-                                                    <strong>@T("create a new account with Teespring")</strong>
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal modal-teespring" id="teespring-sign-in">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Login with Teespring")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="errors"></div>
-                                            <form action="#" method="post">
-                                                <label class="input-group">
-                                                    <span class="hidden">@T("Email")</span>
-                                                    <input type="text" class="form-control" name="email" placeholder="Email">
-                                                </label>
-                                                <label class="has-under-text input-group">
-                                                    <span class="hidden">Password</span>
-                                                    <input type="password" class="form-control" name="password" maxlength="50" placeholder="Password">
-                                                </label>
-                                                <p class="under-text"><a href="/recover" target="_blank">Forgot your password?</a></p>
+                                <div id="upload-photo-error" class="modal modal-teespring">
+                                    <div class="modal-dialog wizard-modal">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Did you try and upload a full color image?")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Looks like you tried to upload an image with more than ")<span class="max-colors-count"></span>@T(" colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
                                                 <p>
-                                                    <button class="btn btn-large btn-success wizard-button" data-provider="teespring" data-action="sign-in">
-                                                        @T("Login to your account »")
-                                                    </button>
-                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                    @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")<a href="/FAQ" target="_blank">@T("contact support for assistance")</a>
                                                 </p>
-                                                <p><a data-provider="teespring" data-action="sign-up">@T("Want to create a new account?")</a></p>
-                                            </form>
+                                                <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="modal modal-teespring" id="teespring-sign-up">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Create an account with Teespring")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="errors"></div>
-                                            <form action="#" method="post">
-                                                <label class="input-group">
-                                                    <span class="hidden">@T("Email")</span>
-                                                    <input type="text" class="form-control" name="email" placeholder="Email">
-                                                </label>
-                                                <label class="has-under-text input-group">
-                                                    <span class="hidden">@T("Password")</span>
-                                                    <input id="password" type="password" class="form-control" name="password" maxlength="50" placeholder="Password: Must be longer than 6 characters.">
-                                                </label>
-                                                <label class="input-group">
-                                                    <span class="hidden">@T("Confirm Password")</span>
-                                                    <input type="password" class="form-control" name="password_confirmation" maxlength="50" placeholder="Confirm Password">
-                                                </label>
+                                <div id="upload-text-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Did you upload an artwork with text?")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("To ensure that your artwork gets printed correctly, we require it to be outlined.")</p>
+                                                <p>@T("Here's how:")</p>
                                                 <p>
-                                                    <button data-provider="teespring" data-action="sign-up" class="btn btn-large btn-success wizard-button">
-                                                        @T("Create your account ")»
-                                                    </button>
-                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                    <strong>1</strong>@T(" In Illustrator, select the entire design.")<br>
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/select_all-364579df01dd5b85aaff06da36a93d7c.png">
                                                 </p>
-                                                <p><a data-provider="teespring" data-action="sign-in">@T("Already have an account?")</a></p>
-                                            </form>
+                                                <p>
+                                                    <strong>2</strong>@T(" Create outlines, using the Type menu.")<br>
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/create_outlines-a36bb6881047287564c1e7be85b6d0c3.png">
+                                                </p>
+                                                <p>
+                                                    @T("Save your artwork and upload it again.")<br>
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/modals/outlined_text-7770223df395d40de89162845985569a.png">
+                                                </p>
+                                                <p>@T("If you need more assistance, please ")<a href="/FAQ" target="_blank">@T("contact support")</a>.</p>
+                                                <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="incorrect-file-type" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
+                                <div id="upload-image-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Oops! There was an error.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!")</p>
+                                                <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="no-content-error" class="modal modal-teespring" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("You need to create a design.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. ")<a href="/FAQ" target="_blank">@T("Need help?")</a></p>
+                                                <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="could-not-save-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Server error.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Sorry, we were unable to save your design. Please try again. If the problem persist, ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("and mention the following error.")</p>
+                                                <p>@T("Error: ")<code></code></p>
+                                                <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="missing-colors-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Oops! The design application is still busy.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Please try again in a few seconds. If the problem persists, ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a>.</p>
+                                                <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="upload-resolution-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("File is too small")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Your artwork should be at least ")<span class="width"></span>@T(" pixels wide by ")<span class="height"></span>@T(" pixels high.")</p>
+                                                <p>@T("Need help? ")<a href="/FAQ" target="_blank">@T("Contact our design team!")</a></p>
+                                                <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="waiting-for-preview" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Waiting for preview")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Please wait while your preview is generated.")</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal modal-teespring" id="default-sign-in">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="modal-title">@T("How would you like to login?")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="errors"></div>
+                                                <p><small>@T("You can ")<a data-provider="teespring" data-action="sign-in">@T("login with Teespring")</a>@T(" or use any of the sites below:")</small></p>
+                                                <ul class="clean-list oauth-options">
+                                                    <li>
+                                                        <a data-provider="teespring" data-action="sign-in">
+                                                            <p>@T("login with")</p>
+                                                            <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/teespring-5cded83b348c4a2f89b79324a834a427.png" alt="Teespring"></p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-provider="facebook" data-action="sign-in" id="facebook_signin_button" title="Login with Facebook">
+                                                            <p>@T("login with")</p>
+                                                            <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/facebook-f8e6f5eb71f877978a489a35a10c6a8c.png" alt="Facebook"></p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-provider="google" data-action="sign-in" id="google_signin_button">
+                                                            <p>@T("login with")</p>
+                                                            <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/google-298188fc43c3d523b280b3d4901fef81.png" alt="Google"></p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-provider="yahoo" data-action="sign-in">
+                                                            <p>@T("login with")</p>
+                                                            <p><img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/session/yahoo-24ea0f8223a097d07794069f2bcadca7.png" alt="Yahoo"></p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <p class="large-under-link">
+                                                    @T("or")
+                                                    <a data-provider="teespring" data-action="sign-up">
+                                                        <strong>@T("create a new account with Teespring")</strong>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal modal-teespring" id="teespring-sign-in">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Login with Teespring")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="errors"></div>
+                                                <form action="#" method="post">
+                                                    <label class="input-group">
+                                                        <span class="hidden">@T("Email")</span>
+                                                        <input type="text" class="form-control" name="email" placeholder="Email">
+                                                    </label>
+                                                    <label class="has-under-text input-group">
+                                                        <span class="hidden">Password</span>
+                                                        <input type="password" class="form-control" name="password" maxlength="50" placeholder="Password">
+                                                    </label>
+                                                    <p class="under-text"><a href="/recover" target="_blank">Forgot your password?</a></p>
+                                                    <p>
+                                                        <button class="btn btn-large btn-success wizard-button" data-provider="teespring" data-action="sign-in">
+                                                            @T("Login to your account »")
+                                                        </button>
+                                                        <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                    </p>
+                                                    <p><a data-provider="teespring" data-action="sign-up">@T("Want to create a new account?")</a></p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal modal-teespring" id="teespring-sign-up">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Create an account with Teespring")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="errors"></div>
+                                                <form action="#" method="post">
+                                                    <label class="input-group">
+                                                        <span class="hidden">@T("Email")</span>
+                                                        <input type="text" class="form-control" name="email" placeholder="Email">
+                                                    </label>
+                                                    <label class="has-under-text input-group">
+                                                        <span class="hidden">@T("Password")</span>
+                                                        <input id="password" type="password" class="form-control" name="password" maxlength="50" placeholder="Password: Must be longer than 6 characters.">
+                                                    </label>
+                                                    <label class="input-group">
+                                                        <span class="hidden">@T("Confirm Password")</span>
+                                                        <input type="password" class="form-control" name="password_confirmation" maxlength="50" placeholder="Confirm Password">
+                                                    </label>
+                                                    <p>
+                                                        <button data-provider="teespring" data-action="sign-up" class="btn btn-large btn-success wizard-button">
+                                                            @T("Create your account ")»
+                                                        </button>
+                                                        <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                    </p>
+                                                    <p><a data-provider="teespring" data-action="sign-in">@T("Already have an account?")</a></p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="incorrect-file-type" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Incorrect File Type")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Uploaded files must be either gif, jpeg, jpg, png, or eps.")</p>
+                                                <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="file-size-too-big" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("File size too big")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Uploaded files must be no more than 5MB.")</p>
+                                                <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal modal-teespring" id="modal-saving-design" data-backdrop="static">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <h5>@T("Saving your design")</h5>
+                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal modal-teespring" id="designer-is-loading" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <h5>@T("Loading")...</h5>
+                                                <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="unknown-s3-upload-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Upload Error")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("An unknown error occurred with your upload. Our support staff have been notified. Please try again.")</p>
+                                                <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="one-or-more-invalid-product-option" class="modal modal-teespring hide">
+                                    <div class="modal-dialog">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Incorrect File Type")</h3>
+                                            <h3 class="partitioned-header no-bottom">@T("Invalid Product")</h3>
                                         </div>
                                         <div class="modal-body">
-                                            <p>@T("Uploaded files must be either gif, jpeg, jpg, png, or eps.")</p>
-                                            <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="file-size-too-big" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("File size too big")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Uploaded files must be no more than 5MB.")</p>
-                                            <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal modal-teespring" id="modal-saving-design" data-backdrop="static">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <h5>@T("Saving your design")</h5>
-                                            <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal modal-teespring" id="designer-is-loading" style="display: none;" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <h5>@T("Loading")...</h5>
-                                            <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/loader-dfb10d978273a518109107c4fa8767e3.gif">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="unknown-s3-upload-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Upload Error")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("An unknown error occurred with your upload. Our support staff have been notified. Please try again.")</p>
+                                            <p>@T("One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.")</p>
                                             <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div id="one-or-more-invalid-product-option" class="modal modal-teespring hide">
-                                <div class="modal-dialog">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">×</button>
-                                        <h3 class="partitioned-header no-bottom">@T("Invalid Product")</h3>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>@T("One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching.")</p>
-                                        <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                    </div>
-                                </div>
-                            </div>
 
 
-                            <!--generic error during campaign launch in designer_details_view-->
-                            <div id="launch-generic-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Campaign Error.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("An unknown error occurred.")</p>
-                                            <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                <!--generic error during campaign launch in designer_details_view-->
+                                <div id="launch-generic-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Campaign Error.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("An unknown error occurred.")</p>
+                                                <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!--zip code error during campaign launch in designer_details_view-->
-                            <div id="launch-zip-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Campaign Error.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Invalid Zip Code.")</p>
-                                            <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                <!--zip code error during campaign launch in designer_details_view-->
+                                <div id="launch-zip-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Campaign Error.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Invalid Zip Code.")</p>
+                                                <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="no-printable-colors-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Oops! We couldn't find any printable")&nbsp;@T("color").</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("This might have happened due to a low resolution image or small details that our analysis couldn't perceive.")</p>
-                                            <p>
-                                                @T("Possible solutions are")<br>
-                                                a) @T("uploading a bigger artwork"),<br>
-                                                b) @T("uploading a vectorized version"),<br>
-                                                @T("or") c) <a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance").
-                                            </p>
-                                            <input type="button" value="@T("Return to design") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="unknown-art-error" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Oops! We ran into an issue.")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Sorry, we were unable to retrieve this artwork. If it happens again, please ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance.")</p>
-                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            >
+                                <div id="no-printable-colors-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Oops! We couldn't find any printable")&nbsp;@T("color").</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("This might have happened due to a low resolution image or small details that our analysis couldn't perceive.")</p>
+                                                <p>
+                                                    @T("Possible solutions are")<br>
+                                                    a) @T("uploading a bigger artwork"),<br>
+                                                    b) @T("uploading a vectorized version"),<br>
+                                                    @T("or") c) <a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance").
+                                                </p>
+                                                <input type="button" value="@T("Return to design") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                                >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="bad-svg" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Oops! We have a problem with that artwork")</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>@T("Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.")</p>
-                                            <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            >
+                                <div id="unknown-art-error" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Oops! We ran into an issue.")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Sorry, we were unable to retrieve this artwork. If it happens again, please ")<a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance.")</p>
+                                                <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                                >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="product-production-technique-mismatch" class="modal modal-teespring">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                            <h3 class="partitioned-header no-bottom">@T("Incompatible Products")</h3>
+                                <div id="bad-svg" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Oops! We have a problem with that artwork")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.")</p>
+                                                <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                                >
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            <p>@T("To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.")</p>
-                                            <input id="technique-change" type="button" value="@T("Select product")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            ><input id="technique-abort" type="button" value="Cancel" class="btn btn-large" data-dismiss="modal">
+                                    </div>
+                                </div>
+                                <div id="product-production-technique-mismatch" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                <h3 class="partitioned-header no-bottom">@T("Incompatible Products")</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.")</p>
+                                                <input id="technique-change" type="button" value="@T("Select product")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                                ><input id="technique-abort" type="button" value="Cancel" class="btn btn-large" data-dismiss="modal">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </body>
+                    </body>
+                </div>
             </div>
-        </div>
-        <span style="clear:both;display: block;"></span>
-    </div>
-</div>
-
-<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
-
-<div class="modal-dialog modal fade" id="modal_auth">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-        </div>
-        <div class="modal-body">
-            <div id="login_selection" class="auth-window">
-                <h2>@T("How would you like to login?")</h2>
-                <h4>You can <a href="javascript:;" class="login-with-teeyoot">login with Teeyoot</a> or use any of the sites below:</h4>
-                <a href="javascript:;" id="login_with_facebook">@T("login with facebook")</a>
-                <a href="javascript:;" id="login_with_google">@T("login with google")</a>
-                @T("or") <a href="javascript:;" class="create-new-account">@T("create a new account with Teeyoot")</a>
-            </div>
-            <div id="login_teeyoot" class="auth-window">
-                <h2>@T("Login with Teeyoot")</h2>
-                <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
-                <fieldset>
-                    <input type="text" class="email" placeholder="@T("Email")" />
-                    <br />
-                    <input type="password" class="password" placeholder="@T("Password")" />
-                    <br />
-                    <input type="button" class="login" value="@T("Login to your account >>")" />
-                </fieldset>
-                <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
-            </div>
-            <div id="create_account" class="auth-window">
-                <h2>@T("Create an account with Teeyoot")</h2>
-                <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
-                <fieldset>
-                    <input type="text" class="email" placeholder="@T("Email")" />
-                    <br />
-                    <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")" />
-                    <br />
-                    <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
-                    <br />
-                    <input type="button" class="create-account" value="@T("Create your account >>")" />
-                </fieldset>
-                <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
-            </div>
-        </div>
-        <div class="modal-footer">
+            <span style="clear:both;display: block;"></span>
         </div>
     </div>
-</div>
-<div id="overlay"></div>
+
+    <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+
+    <div class="modal-dialog modal fade" id="modal_auth">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="login_selection" class="auth-window">
+                    <h2>@T("How would you like to login?")</h2>
+                    <h4>You can <a href="javascript:;" class="login-with-teeyoot">login with Teeyoot</a> or use any of the sites below:</h4>
+                    <a href="javascript:;" id="login_with_facebook">@T("login with facebook")</a>
+                    <a href="javascript:;" id="login_with_google">@T("login with google")</a>
+                    @T("or") <a href="javascript:;" class="create-new-account">@T("create a new account with Teeyoot")</a>
+                </div>
+                <div id="login_teeyoot" class="auth-window">
+                    <h2>@T("Login with Teeyoot")</h2>
+                    <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
+                    <fieldset>
+                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <br />
+                        <input type="password" class="password" placeholder="@T("Password")" />
+                        <br />
+                        <input type="button" class="login" value="@T("Login to your account >>")" />
+                    </fieldset>
+                    <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
+                </div>
+                <div id="create_account" class="auth-window">
+                    <h2>@T("Create an account with Teeyoot")</h2>
+                    <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
+                    <fieldset>
+                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <br />
+                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")" />
+                        <br />
+                        <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
+                        <br />
+                        <input type="button" class="create-account" value="@T("Create your account >>")" />
+                    </fieldset>
+                    <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+    <div id="overlay"></div>

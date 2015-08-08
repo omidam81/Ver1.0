@@ -79,38 +79,46 @@ window.onload = function initWizard() {
         //----------- profit/sale ----------------------------------
         var divPricing = document.createElement("div");
         var divProfit = document.createElement("div");
+        var spanPrice = document.createElement("span");
         var inpPrice = document.createElement("input");
         var h4Profit = document.createElement("h4");
 
         divPricing.classList.add("ssp_pricing");
         divPricing.style.marginLeft = "-8%";
+        divPricing.style.height = "40px";
+        divPricing.style.display = "-webkit-inline-box";
+        divPricing.style.display = "-moz-inline-box";
 
         divProfit.classList.add("profitSale");
+        spanPrice.classList.add("rm-for-price");
+        spanPrice.innerHTML = "RM"
         inpPrice.classList.add("ssp_input");
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
         inpPrice.style.padding = "0.3em";
-        inpPrice.value = "RM " + prdc.Price;
+        inpPrice.style.marginLeft = "10px";
+        inpPrice.value = prdc.Price;
 
         h4Profit.classList.add("h4ProfSale");
         var index = app.state.products.length + 1;
         h4Profit.id = "h4ProfSale_" + parseInt(index);
         var chenges = prdc.Price - prdc.BaseCost;
-        h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " profit / sale";
+        h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale";
 
         $inp = $(inpPrice);
-
+        $span = $(spanPrice);
 
 
         // Ивент на остаток прибыли от суммы одной футболки -------------------
         $inp.change(function () {
             var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost).toFixed(2);
             prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
-            h4Profit.innerHTML = "RM " + price + " profit / sale";
+            h4Profit.innerHTML = "RM " + price + " Profit per sale";
             estimatedProfitChangeForManuProducts();
         });
 
         var $divPricing = $(divPricing);
+        $divPricing.append($span);
         $divPricing.append($inp);
         divProfit.appendChild(h4Profit);
         var $divProfit = $(divProfit);
@@ -375,7 +383,7 @@ function profitSale() {
         window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
-        $("#mainH4").html("RM " + $price + " profit / sale");
+        $("#mainH4").html("RM " + $price + " Profit per sale");
         $("#mainH4").css('color', '#ff4f00');
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
@@ -421,7 +429,7 @@ function colorInit() {
                 var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, app.state.currentProduct.BaseCost);
                 app.state.currentProduct.BaseCost = calc[0];
                 var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
-                //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+                //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
                 window.nowPrice = app.state.currentProduct.BaseCost;
                 updateMinimum(changes);
                 if (window.nowPrice < window.sellingPrice) {
@@ -533,7 +541,7 @@ function onChangeTrackBar() {
     calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
     var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
-    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
     window.nowPrice = app.state.currentProduct.BaseCost;
     updateMinimum(changes);
     //profitSale();
@@ -561,7 +569,7 @@ function onChangeValueForTrackBar() {
     setPriceInDesignFromGoal();
     //profitSale();
     var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
-    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " profit / sale");
+    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
     window.nowPrice = app.state.currentProduct.BaseCost;
     updateMinimum(changes);
 

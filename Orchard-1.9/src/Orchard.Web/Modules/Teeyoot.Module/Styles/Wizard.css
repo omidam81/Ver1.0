@@ -385,7 +385,7 @@ span.number {
 
 .profitSale {
     width: 34%;
-    margin-left: 41%;
+    margin-left: 50%;
     margin-top: -7%;
 }
 
@@ -668,6 +668,11 @@ input[type=range] {
         border-radius: 3px;
     }
 
+    /*input[type=range]:hover::-webkit-slider-runnable-track,
+    input[type=range]:active::-webkit-slider-runnable-track {
+        background: #afafaf;
+    }*/
+
     input[type=range]::-webkit-slider-thumb {
         -webkit-appearance: none;
         border: none;
@@ -683,7 +688,7 @@ input[type=range] {
     }
 
         input[type=range]:focus::-webkit-slider-runnable-track {
-            background: #ccc;
+            background: #afafaf;
         }
 
     input[type=range]::-moz-range-track {
@@ -812,6 +817,7 @@ input[type=range] {
 
 #profSale {
     height: 40px;
+    margin-left: 10px;
 }
 
 @media all and (max-width: 1000px) {
@@ -929,6 +935,17 @@ input[type=range] {
     display: block !important;
 }
 
+.slide-1-right-box {
+    display: table;
+    float: right;
+}
+
+.rm-for-price {
+    font-size: 21px;
+    /*vertical-align: text-top;*/
+    font-weight: 600;
+}
+
 @media screen and (max-width: 1240px) {
     #layout-wrapper {
         display: block !important;
@@ -988,11 +1005,11 @@ input[type=range] {
             /*visibility: hidden;*/
         }
 
-        .Slides .Slide.slide_active {
-            position: relative;
-            top: 0;
-            visibility: visible;
-        }
+            .Slides .Slide.slide_active {
+                position: relative;
+                top: 0;
+                visibility: visible;
+            }
 
         .Slides #designer {
             height: auto !important;
@@ -1027,6 +1044,8 @@ input[type=range] {
         clear: both;
         width: auto;
         margin-left: 42px;
+        margin-top: 0px;
+        float: none;
     }
 
     .slide-1__choosing .lab-colors {
@@ -1089,6 +1108,11 @@ input[type=range] {
         float: none !important;
         display: block;
     }
+
+    .slide-1-right-box {
+        display: block;
+        float: none;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1132,12 +1156,12 @@ input[type=range] {
         width: 380px !important;
     }
 
-    .Slides .product-view div.new-editor-container {
-        transform: scale(.8);
-        margin: -50px auto;
-        left: 50%;
-        margin-left: -265px;
-    }
+        .Slides .product-view div.new-editor-container {
+            transform: scale(.8);
+            margin: -50px auto;
+            left: 50%;
+            margin-left: -265px;
+        }
 
     .slide-2__table #card {
         transform: scale(.8);
@@ -1148,7 +1172,7 @@ input[type=range] {
         height: 600px;
     }
 
-    .slide-2__table > tr > td + td, 
+    .slide-2__table > tr > td + td,
     .slide-2__table > tbody > tr > td + td {
         padding: 0 15px;
     }
@@ -1187,9 +1211,9 @@ input[type=range] {
         right: 0;
     }
 
-    .color-picker .containertip:before {
-        display: none;
-    }
+        .color-picker .containertip:before {
+            display: none;
+        }
 }
 
 @media screen and (max-width: 560px) {
@@ -1206,7 +1230,7 @@ input[type=range] {
         height: 500px;
     }
 
-    .slide-2__table > tr > td, 
+    .slide-2__table > tr > td,
     .slide-2__table > tbody > tr > td {
         height: 490px;
     }
@@ -1221,12 +1245,12 @@ input[type=range] {
         width: auto;
     }
 
-    .Content .profitSale .h4ProfSale {
-        width: auto;
-        margin-left: 0;
-    }
+        .Content .profitSale .h4ProfSale {
+            width: auto;
+            margin-left: 0;
+        }
 
-    #primary .block.ssp_block  {
+    #primary .block.ssp_block {
         height: 140px !important;
     }
 
@@ -1258,7 +1282,7 @@ input[type=range] {
         margin: 0;
     }
 
-    #primary .block.ssp_block  {
+    #primary .block.ssp_block {
         height: 170px !important;
     }
 }

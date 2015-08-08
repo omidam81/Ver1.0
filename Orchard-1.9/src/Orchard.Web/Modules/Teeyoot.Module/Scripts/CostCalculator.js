@@ -10,7 +10,7 @@
         app.state.currentProduct.Price = window.sellingPrice;
     }
 
-    document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
+    document.getElementById("price_preview").innerText = res.toFixed(2);
     app.state.currentProduct.BaseCost = window.nowPrice;
 
     var changes = parseFloat(app.state.currentProduct.Price) - window.nowPrice;
@@ -141,7 +141,7 @@ function formula(frontColor, backColor, cost) {
 }
 
 function setPriceInGoalFromDesign() {
-    document.getElementById('profSale').value = "RM " + window.sellingPrice;
+    document.getElementById('profSale').value = window.sellingPrice;
     document.getElementById('trackBarValue').value = window.count;
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
 
@@ -186,13 +186,13 @@ function estimatedProfitChangeForManuProducts() {
         if (i > 0) {
             var profit = parseFloat((products[i].Price - products[i].BaseCost).toFixed(2));
             var index = "#h4ProfSale_" + parseInt(i + 1);
-            $(index).html("RM " + profit + " profit / sale");
+            $(index).html("RM " + profit + " Profit per sale");
             if (profit < 0) {
                 $(index).html("RM " + products[i].BaseCost + " minimum");
                 $(index).css('color', '#ff0000');
                 //$("#total_profit").html("RM 0+");
             } else {
-                $(index).html("RM " + parseFloat(profit.toFixed(2)) + " profit / sale");
+                $(index).html("RM " + parseFloat(profit.toFixed(2)) + " Profit per sale");
                 $(index).css('color', '#ff4f00');
                 //if (app.state.products != null & app.state.products.length > 1) {
                 //    estimatedProfitChangeForManuProducts()
@@ -215,7 +215,7 @@ function updateMinimum(changes) {
         $("#mainH4").css('color', '#ff0000');
         $("#total_profit").html("RM 0+");
     } else {
-        $("#mainH4").html("RM " + changes.toFixed(2) + " profit / sale");
+        $("#mainH4").html("RM " + changes.toFixed(2) + " Profit per sale");
         $("#mainH4").css('color', '#ff4f00');
         //if (app.state.products != null & app.state.products.length > 1) {
         //    estimatedProfitChangeForManuProducts()
