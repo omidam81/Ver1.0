@@ -305,15 +305,8 @@
                 success: function(data) {
                     if (data.Success === true) {
                         refreshToken();
-
-                        $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
-                            function() {
-                                $(this).css('display', 'none');
-                                $('#overlay').fadeOut(400);
-
-                                sendData();
-                            }
-                        );
+                        closeAuthModal();
+                        sendData();
                         return;
                     }
                 }
@@ -346,15 +339,8 @@
                 success: function(data) {
                     if (data.Success === true) {
                         refreshToken();
-
-                        $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
-                            function() {
-                                $(this).css('display', 'none');
-                                $('#overlay').fadeOut(400);
-
-                                sendData();
-                            }
-                        );
+                        closeAuthModal();
+                        sendData();
                         return;
                     }
                 }
@@ -380,7 +366,6 @@
                 fbWizardLogin(token);
                 return;
             }
-
             fbLogin();
         };
 
@@ -390,14 +375,18 @@
             });
         };
 
+        function closeAuthModal() {
+            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
+                function() {
+                    $(this).css('display', 'none');
+                    $('#overlay').fadeOut(400);
+                }
+            );
+        };
+
         $(document).ready(function() {
             $('#overlay, .close').click(function() {
-                $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
-                    function() {
-                        $(this).css('display', 'none');
-                        $('#overlay').fadeOut(400);
-                    }
-                );
+                closeAuthModal();
             });
 
             $('.login-with-teeyoot').click(function() {
@@ -435,14 +424,8 @@
                     success: function(data) {
                         if (data.Success === true) {
                             refreshToken();
-                            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
-                                function() {
-                                    $(this).css('display', 'none');
-                                    $('#overlay').fadeOut(400);
-
-                                    sendData();
-                                }
-                            );
+                            closeAuthModal();
+                            sendData();
                             return;
                         }
 
@@ -485,14 +468,8 @@
                     success: function(data) {
                         if (data.Success === true) {
                             refreshToken();
-                            $('#modal_auth').animate({ opacity: 0, top: '45%' }, 200,
-                                function() {
-                                    $(this).css('display', 'none');
-                                    $('#overlay').fadeOut(400);
-
-                                    sendData();
-                                }
-                            );
+                            closeAuthModal();
+                            sendData();
                             return;
                         }
 
