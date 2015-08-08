@@ -24,6 +24,16 @@
         </div>
         @foreach (var item in Model)
         {
+            <div class="divRow divRow-mobile" >
+                <div class="divRow" style="margin-top:2%; ">
+                    <div id="campaignPrintRow" class=" row">Print</div>
+                    <div class=" row">Name</div>
+                    <div class=" row">Size</div>
+                    <div class=" row">Last Send</div>
+                    <div id="sentThisWeek" class=" row">Send This Week</div>
+                    <div class=" row"></div>
+                </div>
+            </div>
             <div class="divRow">
                 <div class="row"><img style=" width: 40%;margin-left:9%" src='/Media/campaigns/@item.Campaign.Id/@item.Campaign.Products[0].Id/normal/@("front.png")'></div>
                 <div id="campaignName" class="row">@item.Campaign.Title</div>
