@@ -411,6 +411,11 @@
             });
 
             $('#login_form').submit(function() {
+                var busy = $(this).data('busy');
+                if (busy === true) {
+                    return false;
+                }
+
                 var email = $('#login_teeyoot .email').val();
                 var password = $('#login_teeyoot .password').val();
 
@@ -424,6 +429,7 @@
                     url: '/WizardLogOn',
                     data: addAntiForgeryToken(wizardLogOnJsonRequest),
                     beforeSend: function() {
+                        $('#login_form').data('busy', true);
                         $('#login_busy').show();
                     },
                     success: function(data) {
@@ -444,12 +450,20 @@
                         $('#login_validation_summary').show();
                     },
                     complete: function() {
+                        $('#login_form').data('busy', false);
                         $('#login_busy').hide();
                     }
                 });
+
+                return true;
             });
 
             $('#create_account_form').submit(function() {
+                var busy = $(this).data('busy');
+                if (busy === true) {
+                    return false;
+                }
+
                 var email = $('#create_account .email').val();
                 var password = $('#create_account .password').val();
                 var confirmPassword = $('#create_account .confirm-password').val();
@@ -465,6 +479,7 @@
                     url: '/WizardRegister',
                     data: addAntiForgeryToken(wizardRegisterJsonRequest),
                     beforeSend: function() {
+                        $('#create_account_form').data('busy', true);
                         $('#create_account_busy').show();
                     },
                     success: function(data) {
@@ -485,9 +500,12 @@
                         $('#create_account_validation_summary').show();
                     },
                     complete: function() {
+                        $('#create_account_form').data('busy', false);
                         $('#create_account_busy').hide();
                     }
                 });
+
+                return true;
             });
 
             $('#login_with_facebook').click(function() {
@@ -1726,7 +1744,7 @@
     </div>
 </div>
 
-<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()"/>
+<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
 
 <div class="modal-dialog modal fade" id="modal_auth">
     <div class="modal-content">
@@ -1746,12 +1764,12 @@
                 <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
                 <form id="login_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" placeholder="@T("Email")"/>
-                        <br/>
-                        <input type="password" class="password" placeholder="@T("Password")"/>
-                        <br/>
-                        <input type="submit" value="@T("Login to your account >>")"/>
-                        <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")"/>
+                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <br />
+                        <input type="password" class="password" placeholder="@T("Password")" />
+                        <br />
+                        <input type="submit" value="@T("Login to your account >>")" />
+                        <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
                     </fieldset>
                 </form>
                 <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
@@ -1761,14 +1779,14 @@
                 <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
                 <form id="create_account_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" placeholder="@T("Email")"/>
-                        <br/>
-                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")"/>
-                        <br/>
-                        <input type="password" class="confirm-password" placeholder="@T("Confirm Password")"/>
-                        <br/>
-                        <input type="submit" value="@T("Create your account >>")"/>
-                        <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")"/>
+                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <br />
+                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")" />
+                        <br />
+                        <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
+                        <br />
+                        <input type="submit" value="@T("Create your account >>")" />
+                        <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
                     </fieldset>
                 </form>
                 <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
