@@ -49,9 +49,15 @@ window.onload = function initWizard() {
         var image = document.createElement("img");
         var imageDel = document.createElement("img");
         var text = document.createElement("h4");
+        var salePriceTextDiv = document.createElement("div");
+        var salePriceTextH4 = document.createElement("h4");
 
-
-
+        salePriceTextDiv.classList.add("sale-price-for-one-product");
+        salePriceTextH4.innerHTML = "This is your sale price";
+        salePriceTextDiv.appendChild(salePriceTextH4);
+        //var $salePriceTextDiv = $(salePriceTextDiv);
+        //var $salePriceTextH4 = $(salePriceTextH4);
+        //$salePriceTextDiv.append($salePriceTextH4);
 
         image.src = assetsUrls.products + 'product_type_' + document.getElementById("product").value + '_front_small.png';
         image.classList.add("sell");
@@ -274,7 +280,9 @@ window.onload = function initWizard() {
         div.appendChild(divPricing);
         div.appendChild(divProfit);
         div.appendChild(divDelete);
-        div.style.height = "90px";
+        div.appendChild(salePriceTextDiv);
+        //div.appendChild();
+        div.style.height = "115px";
 
 
         var primDiv = document.getElementById("primary");
@@ -303,8 +311,8 @@ window.onload = function initWizard() {
 function setDesign() {
     if (!app.state.pos) {
         var src = assetsUrls.products + 'product_type_' + app.state.product.id + '_front_small.png';
-        $('#primary .thumbnail_wrapper img').attr('src', src).css('background-color', app.state.color.value);
-        $('#primary .swatch2').css('background-color', app.state.color.value);
+        $('#first-product .thumbnail_wrapper img').attr('src', src).css('background-color', app.state.color.value);
+        $('#first-product .swatch2').css('background-color', app.state.color.value);
         design.save(function(data) {
             var srcFront = assetsUrls.products + 'product_type_' + app.state.product.id + '_front.png';
             var srcBack = assetsUrls.products + 'product_type_' + app.state.product.id + '_back.png';
