@@ -189,6 +189,41 @@
         height: auto;
         padding-left: 15px;
     }
+    
+.password input{
+    height: 32px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 30%;
+    margin-left: 10px;
+}
+.password h4{
+    margin-left:15px;
+}
+.recover-title{
+font-size: 20px;
+}
+.btn-recover{
+    background: #ff4f00;
+    font-size: 16px;
+    width: 31%;
+    margin-left:12px;
+    font-weight: normal;
+    border-radius: 5px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    height: 45px;
+    border-color: #ff4f00;
+    margin-top: 30px;
+}
+.btn-recover:hover {
+    background: #e64700;
+}
+
 
 @media all and (max-width: 1000px) {
     .login {
@@ -213,7 +248,14 @@
             padding-bottom: 20px;
         }
 }
-
+@media all and (max-width: 700px) {
+    .password input {
+        width: 50%;
+    }
+    .btn-recover {
+        width: 52%;
+    }
+}
 @media all and (max-width: 580px) {
     .login .login-and-create .login-into-teeyoot .title,
     .login .login-and-create .create-account .title,
@@ -237,4 +279,14 @@
     .button-google, .button-facebook{
         width:100%!important;
     }
+     .password input {
+        width: 90%;
+    }
+     .btn-recover {
+        width: 92%;
+    }
+}
+
+.tb-layout-main-container {
+    min-height: 100%;
 }
