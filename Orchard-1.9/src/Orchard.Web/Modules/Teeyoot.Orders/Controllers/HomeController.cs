@@ -184,12 +184,9 @@ namespace Teeyoot.Orders.Controllers
             var order = _orderService.GetOrderById(orderId);
             OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
             _orderService.UpdateOrder(order, newStatus);
-            if (orderStatus == "Approved")
-            {
-                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                _teeyootMessagingService.SendApproveOrderMessage(pathToTemplates, pathToMedia, orderId);
-            }
+            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+            var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+            _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, orderId, orderStatus);
             _notifierService.Information(T("Successfully updated order status "));
             return RedirectToAction("Index");
         }

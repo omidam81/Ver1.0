@@ -151,7 +151,7 @@ table > tr > td {
     padding-left: 10px !important;
 }
 .divRow-mobile{
-    display:none;
+    display:none!important;
 }
 @media all and (max-width: 830px) {
     .divRow {

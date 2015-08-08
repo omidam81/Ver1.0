@@ -3,7 +3,7 @@
     padding: 20px 20px 0px 20px;
     max-width: 1216px;
     display: -webkit-box;
-    display: -moz-box;
+    display: flex;
     display: -ms-flexbox;
     display: -webkit-flex;
     background: #edeef0;
@@ -37,7 +37,7 @@
             .login .login-and-create .create-account .title,
             .login .login-with-social-network .title {
                 display: -webkit-box;
-                display: -moz-box;
+                display: flex;
                 display: -ms-flexbox;
                 display: -webkit-flex;
                 width: 100%;
@@ -97,10 +97,12 @@
             .login .login-and-create .create-account .button-login:hover {
                 background: #e64700;
             }
-
+.button-login {
+    padding:0!important;
+}
         .login .login-and-create .login-into-teeyoot .remember {
             display: -webkit-box;
-            display: -moz-box;
+            display: flex;
             display: -ms-flexbox;
             display: -webkit-flex;
         }
@@ -113,7 +115,7 @@
         .login .login-and-create .login-into-teeyoot .title .name,
         .login .login-and-create .create-account .title .name,
         .login .login-with-social-network .title .name {
-            width: 50%;
+            width: 49%;
             font-size: 22px;
             font-weight: 700;
             color: #000;
@@ -187,6 +189,41 @@
         height: auto;
         padding-left: 15px;
     }
+    
+.password input{
+    height: 32px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    width: 30%;
+    margin-left: 10px;
+}
+.password h4{
+    margin-left:15px;
+}
+.recover-title{
+font-size: 20px;
+}
+.btn-recover{
+    background: #ff4f00;
+    font-size: 16px;
+    width: 31%;
+    margin-left:12px;
+    font-weight: normal;
+    border-radius: 5px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    height: 45px;
+    border-color: #ff4f00;
+    margin-top: 30px;
+}
+.btn-recover:hover {
+    background: #e64700;
+}
+
 
 @media all and (max-width: 1000px) {
     .login {
@@ -211,7 +248,14 @@
             padding-bottom: 20px;
         }
 }
-
+@media all and (max-width: 700px) {
+    .password input {
+        width: 50%;
+    }
+    .btn-recover {
+        width: 52%;
+    }
+}
 @media all and (max-width: 580px) {
     .login .login-and-create .login-into-teeyoot .title,
     .login .login-and-create .create-account .title,
@@ -228,4 +272,21 @@
         .login .login-with-social-network .title .link {
             width: 100%;
         }
+}
+
+
+@media all and (max-width: 400px) {
+    .button-google, .button-facebook{
+        width:100%!important;
+    }
+     .password input {
+        width: 90%;
+    }
+     .btn-recover {
+        width: 92%;
+    }
+}
+
+.tb-layout-main-container {
+    min-height: 100%;
 }
