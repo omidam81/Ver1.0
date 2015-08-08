@@ -423,6 +423,9 @@
                     type: 'POST',
                     url: '/WizardLogOn',
                     data: addAntiForgeryToken(wizardLogOnJsonRequest),
+                    beforeSend: function() {
+                        $('#login_busy').show();
+                    },
                     success: function(data) {
                         if (data.Success === true) {
                             refreshToken();
@@ -439,6 +442,9 @@
 
                         $('#login_validation_summary').text(data.Message);
                         $('#login_validation_summary').show();
+                    },
+                    complete: function() {
+                        $('#login_busy').hide();
                     }
                 });
             });
@@ -458,6 +464,9 @@
                     type: 'POST',
                     url: '/WizardRegister',
                     data: addAntiForgeryToken(wizardRegisterJsonRequest),
+                    beforeSend: function() {
+                        $('#create_account_busy').show();
+                    },
                     success: function(data) {
                         if (data.Success === true) {
                             refreshToken();
@@ -474,6 +483,9 @@
 
                         $('#create_account_validation_summary').text(data.Message);
                         $('#create_account_validation_summary').show();
+                    },
+                    complete: function() {
+                        $('#create_account_busy').hide();
                     }
                 });
             });
@@ -1739,6 +1751,7 @@
                         <input type="password" class="password" placeholder="@T("Password")"/>
                         <br/>
                         <input type="submit" value="@T("Login to your account >>")"/>
+                        <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")"/>
                     </fieldset>
                 </form>
                 <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
@@ -1755,6 +1768,7 @@
                         <input type="password" class="confirm-password" placeholder="@T("Confirm Password")"/>
                         <br/>
                         <input type="submit" value="@T("Create your account >>")"/>
+                        <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")"/>
                     </fieldset>
                 </form>
                 <a href="javascript:;" class="login-with-teeyoot">@T("Already have an account?")</a>
