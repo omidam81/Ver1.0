@@ -2768,22 +2768,26 @@ tspan {
     transform: translateY(-50%);
 }
 
-    .ssp_block .ssp_delete button {
-        display: inline-block;
-        width: 15px;
-        height: 18px;
-        cursor: pointer;
-        border: 0;
-        /*background: url(https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png);*/
-        margin: 0.6rem 0 0.6rem 4.2rem;
-        opacity: .8;
-        -webkit-transition: all 400ms ease;
-        transition: all 400ms ease;
-    }
+.ssp_delete {
+    top: 28px !important;
+}
 
-        .ssp_block .ssp_delete button:hover {
-            opacity: 1;
-        }
+.ssp_block .ssp_delete button {
+    display: inline-block;
+    width: 15px;
+    height: 18px;
+    cursor: pointer;
+    border: 0;
+    /*background: url(https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png);*/
+    margin: 0.6rem 0 0.6rem 4.2rem;
+    opacity: .8;
+    -webkit-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+
+    .ssp_block .ssp_delete button:hover {
+        opacity: 1;
+    }
 
 .ssp_general_shrink_notice {
     font-size: 12px;

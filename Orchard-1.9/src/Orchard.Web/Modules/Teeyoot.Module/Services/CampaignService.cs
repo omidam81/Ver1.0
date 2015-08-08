@@ -26,6 +26,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
         private readonly IRepository<OrderRecord> _orderRepository;
         private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -39,7 +40,8 @@ namespace Teeyoot.Module.Services
                                IRepository<LinkOrderCampaignProductRecord> ocpRepository,
                                IRepository<OrderStatusRecord> orderStatusRepository,
                                IRepository<OrderRecord> orderRepository,
-                               IRepository<OrderHistoryRecord> orderHistoryRepository)
+                               IRepository<OrderHistoryRecord> orderHistoryRepository,
+                               ITeeyootMessagingService teeyootMessagingService)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -54,6 +56,7 @@ namespace Teeyoot.Module.Services
             _orderStatusRepository = orderStatusRepository;
             _orderRepository = orderRepository;
             _orderHistoryRepository = orderHistoryRepository;
+            _teeyootMessagingService = teeyootMessagingService;
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
@@ -278,6 +281,8 @@ namespace Teeyoot.Module.Services
                     var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
 
                     var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
+                    _teeyootMessagingService.SendExpiredCampaignMessageToSeller( c.Id, isSuccesfull);
+                    _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(c.Id, isSuccesfull);
                     foreach (var o in orders)
                     {
                         if (o.OrderStatusRecord.Name == OrderStatus.Approved.ToString())

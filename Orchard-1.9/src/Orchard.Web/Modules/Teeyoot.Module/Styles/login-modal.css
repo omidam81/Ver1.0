@@ -1,0 +1,134 @@
+﻿
+.modal-title {
+    margin: 0;
+    line-height: 1.6;
+    margin: 0 25px 0 0;
+    font-size: 28px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    box-sizing: border-box;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    color: #44474d;
+}
+
+.modal-login {
+    overflow: hidden !important;
+    margin:0!important;
+}
+
+.login_modal_close {
+    margin-bottom: 0;
+}
+
+.modal-body {
+    padding-top: 0;
+}
+
+#login_selection small a {
+    color: #ff4f00;
+    text-decoration: none;
+    cursor: pointer;
+}
+ .modal-list > li > a {
+    display: block;
+    padding: 10px 0 14px 0;
+    height: 78px;
+    width: 90%;
+    background: white;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 13px;
+    color: #c2c9cc;
+    text-decoration: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
+
+    .modal-list > li > a:hover {
+        text-decoration: none;
+        color: #ff4f00;
+        border-color: #ff4f00;
+    }
+
+.modal-list p {
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.modal-list li {
+    width: 33%;
+    list-style: none;
+    float: left;
+}
+
+.modal-create-new-account{
+    margin-top: 40px;
+    font-size: 18px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #44474d;
+    
+}
+.login-with-teeyoot,
+.create-new-account,
+.modal-create-new-account a{
+color: #ff4f00!important;
+text-decoration:none;
+font-size: 16px;
+}
+
+.modal-login{
+        min-height: 470px;
+}
+
+@media all and (max-width: 1000px) {
+    .modal-login {
+        min-width: 98%;
+    }
+}
+@media all and (max-width: 640px) {
+     .modal-login {
+        min-width: 50%!important;
+        min-height: 500px;
+    }
+    .modal-list li {
+    width: 100%;
+    margin-left:20px!important;
+ 
+}
+}
+
+@media all and (max-width: 450px) {
+    .modal-title{
+        font-size:18px;
+    }
+   
+}
+
+
+.email, .password, .confirm-password{
+    width:70%;
+    margin:0 auto;
+    border: 1px solid;
+     border-radius:  3px !important;
+}
+.email:focus, .password:focus{
+   border-color: #ff4f00!important;
+}
+.btn-modal-login{
+        background: #ff4f00!important;
+        border: 1px solid #ff4f00!important;
+        color:white!important;
+        border-radius: 3px !important;
+    border-width: 0;
+    font-size: 16px;
+    margin: 0 10px 10px 10px;
+
+}
+.btn-modal-login:hover {
+    background: #e64700!important;
+}
