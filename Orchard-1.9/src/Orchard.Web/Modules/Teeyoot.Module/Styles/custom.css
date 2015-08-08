@@ -163,7 +163,7 @@ div.xgridline {
     top:0
 }
 .modal.in .modal-dialog {
-    position: initial;
+    position: static;
 }
 .modal.in h3 {
     font-size: 28px;

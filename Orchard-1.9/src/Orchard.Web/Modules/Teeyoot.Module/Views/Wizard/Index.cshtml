@@ -897,7 +897,7 @@
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
-                                                    <div style="position: relative;">
+                                                    <div class="button-next-page">
                                                         <button class="button button--transaction wizard-button" id="nextPage">
                                                             @T("Next Page")
                                                         </button>
@@ -1027,12 +1027,12 @@
                                         </div>
                                         <div class="ssp_metadata">
                                             <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
-                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teespring Premium Tee</h4>
+                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teesyoot Premium Tee</h4>
                                             </div>
                                         </div>
 
 
-                                        <div class="clearfix control-group font-color-selection" id="colPick">
+                                        <div class="clearfix control-group font-color-selection" id="colPick" style="width: 100px">
                                             <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="Change color" data-value="text">
                                                 <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                 <div class="colors shirt-colors containertip" id="colors">
@@ -1042,7 +1042,7 @@
                                             <div class="clearfix"></div>
                                         </div>
 
-                                        <div class="ssp_pricing" style="margin-left:-8%; display: -webkit-inline-box; display: -moz-inline-box; height: 40px;">
+                                        <div class="ssp_pricing" style="display: inline-flex; display: -webkit-inline-box; display: -ms-inline-flexbox; height: 40px;">
                                             <span class="rm-for-price">RM </span>
                                             <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()">
                                         </div>
@@ -1050,11 +1050,11 @@
                                         <div class="profitSale">
                                             <h4 class="h4ProfSale" id="mainH4"></h4>
                                         </div>
-                                        <div style="font-weight: bold; padding-top: 10px;">
-                                            <span>This is your sale price</span>
+                                        <div style="padding-top: 10px; font-size: 12px; margin-left: 207px;" class="sale-price-for-one-product">
+                                            <h4>This is your sale price</h4>
                                         </div>
                                     </div>
-                                    <div style="height:40px; margin-top: 1.0rem; font-weight: bold;">
+                                    <div style="height:40px; margin-top: 1.0rem;">
                                         <span style="font-size:15px;">Add some more styles of t-shirts your customers can buy.</span>
                                     </div>
                                 </div>
@@ -1120,7 +1120,7 @@
                                                                 <div class="new-editor-container">
                                                                     <td style="width:50%">
 
-                                                                        <div id="card3" style="margin-right:30px">
+                                                                        @*<div id="card3" style="margin-right:30px">
                                                                             <div class="front">
                                                                                 <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                                                                 <img style="position:absolute" id="prodFront3_d" src="">
@@ -1135,6 +1135,24 @@
                                                                                 <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                                                     <div class="flip-button flip-button-front-three"><span class="flip-button__front">Front</span></div>
                                                                                     <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>*@
+                                                                        <div id="card3" style="margin-right:30px; max-width: 530px;">
+                                                                            <div class="front">
+                                                                                <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                                <img style="position:absolute" id="prodFront3_d" src="">
+                                                                                <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
+                                                                                    <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
+                                                                                    <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="back">
+                                                                                <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                                <img style="position:absolute" id="prodBack3_d" src="">
+                                                                                <div id="butt2" style="text-align:center; margin-top:-60px !important;">
+                                                                                    <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
+                                                                                    <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

@@ -2879,6 +2879,7 @@ tspan {
 .ssp_pricing .form__textfield {
     margin-bottom: 0;
     border-color: #afafaf;
+    text-align: center;
 }
 
 [data-tooltip], [data-notice] {

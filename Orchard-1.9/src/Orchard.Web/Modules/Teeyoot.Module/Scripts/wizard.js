@@ -84,12 +84,15 @@ window.onload = function initWizard() {
         var h4Profit = document.createElement("h4");
 
         divPricing.classList.add("ssp_pricing");
-        divPricing.style.marginLeft = "-8%";
+        //divPricing.style.marginLeft = "-8%";
         divPricing.style.height = "40px";
         divPricing.style.display = "-webkit-inline-box";
-        divPricing.style.display = "-moz-inline-box";
+        //divPricing.style.display = "-moz-inline-box";
+        divPricing.style.display = "-ms-inline-flexbox";
+        divPricing.style.display = "inline-flex";
 
         divProfit.classList.add("profitSale");
+        divProfit.style.marginLeft = "5px"
         spanPrice.classList.add("rm-for-price");
         spanPrice.innerHTML = "RM"
         inpPrice.classList.add("ssp_input");
@@ -97,6 +100,8 @@ window.onload = function initWizard() {
         inpPrice.classList.add("form__textfield");
         inpPrice.style.padding = "0.3em";
         inpPrice.style.marginLeft = "10px";
+        inpPrice.style.width = "70px";
+        inpPrice.style.height = "40px";
         inpPrice.value = prdc.Price;
 
         h4Profit.classList.add("h4ProfSale");
@@ -138,6 +143,7 @@ window.onload = function initWizard() {
         divCol.classList.add("clearfix");
         divCol.classList.add("control-group");
         divCol.classList.add("font-color-selection");
+        divCol.style.width = "100px";
 
         divColPick.classList.add("fake-input");
         divColPick.classList.add("color-picker");
@@ -210,7 +216,7 @@ window.onload = function initWizard() {
                 $image.css("background-color", color.value);
                 $divSwatch.css("background-color", color.value);
                 prdc.ColorId = parseInt(color.id);
-
+                
                 var product = design.products.productsData[prdc.ProductId];
                 var prices = product.prices;
                 for (var i = 0; i < prices.length; i++) {
@@ -414,8 +420,16 @@ function colorInit() {
             var $colorHtml = $(colorHtml);
             $colorHtml.click(function () {
                 $("#minImg").css("background-color", color.value);
-                $("#swatch2").css("background-color", color.value);
+                $("#swatch2").css("background-color", color.value); 
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $("#prodFront3").css("background-color", color.value);
+                $("#prodBack3").css("background-color", color.value);
+                $(".product_images").css("background-color", color.value);
                 $('.containertip--open').removeClass('containertip--open');
+                design.products.changeColor(color);
+                app.state.currentProduct.ColorId = parseInt(color.id);
+
                 app.state.currentProduct.ColorId = parseInt(color.id);
 
                 var product = design.products.productsData[app.state.currentProduct.ProductId];
