@@ -59,7 +59,17 @@
                         url: "@(Url.Action("GetOrderInfirmation", "Home"))",
                         data: { "publicId": orderId },
                         success: function (data) {
-                            data.forEach(function (item, i, arr) {
+                            var modal = document.getElementById("modalOrderTable");
+                            var trs = modal.querySelectorAll("tr");
+                            if (trs.length > 1) {
+                                for (var i = 1; i < trs.length; i++) {
+                                    trs[i].parentNode.removeChild(trs[i]);
+                                }
+
+                            }
+
+                            data.products.forEach(function (item, i, arr) {
+
                                 var tr = document.createElement("tr");
                                 var tdName = document.createElement("td")
                                 var tdSize = document.createElement("td");
@@ -85,8 +95,11 @@
                                 tr.appendChild(tdCount);
                                 tr.appendChild(tdPrice);
 
-                                document.getElementById("modalOrderTable").appendChild(tr);
+                                modal.appendChild(tr);
                             });
+                            var totalPrice = document.getElementById("totalPrice");
+                            totalPrice.innerHTML = "Total price : ";
+                            totalPrice.innerHTML = totalPrice.innerHTML + data.totalPrice;
 
                             //$("#firstName").html(data.firstName);
                             //$("#lastName").html(data.lastName);

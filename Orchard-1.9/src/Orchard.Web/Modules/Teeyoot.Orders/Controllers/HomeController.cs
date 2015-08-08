@@ -128,8 +128,27 @@ namespace Teeyoot.Orders.Controllers
         public JsonResult GetOrderInfirmation(string publicId)
         {
             var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
-            var orders = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name, Count = o.Count, Price = o.CampaignProductRecord.Price, Size = o.ProductSizeRecord.SizeCodeRecord.Name });
-            return Json(orders, JsonRequestBehavior.AllowGet);
+
+            var products = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name,
+                Count = o.Count,
+                Price = o.CampaignProductRecord.Price + Pricing(o.CampaignProductRecord.ProductRecord.SizesAvailable,o.ProductSizeRecord.Id),
+                Size = o.ProductSizeRecord.SizeCodeRecord.Name });
+            var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
+            var result = new { products, totalPrice };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        private float Pricing(IList<LinkProductSizeRecord> SizesAvailable, int productSizeRecord)
+        {
+            float sizeC = 0;
+            foreach (var size in SizesAvailable)
+            {
+                if (size.Id == productSizeRecord)
+                    sizeC = size.SizeCost;
+            }
+            return sizeC;
+            
         }
 
 
@@ -152,7 +171,7 @@ namespace Teeyoot.Orders.Controllers
         {
             var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
             var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
-            var campaign = _campaignService.GetCampaignById(campaignId);
+            var campaign = _campaignService.GetCampaignById(campaignId) ;
             order.ProfitPaid = true;
             _orderService.UpdateOrder(order);
             _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
