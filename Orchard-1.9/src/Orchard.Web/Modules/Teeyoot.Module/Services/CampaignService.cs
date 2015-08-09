@@ -293,6 +293,7 @@ namespace Teeyoot.Module.Services
                                 _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
                             o.Paid = DateTime.UtcNow;
                             _orderRepository.Update(o);
+                            _orderRepository.Flush();
 
                             string eventStr = isSuccesfull ?
                                 T("The campaign successfully reached its goal!").ToString() :
@@ -322,7 +323,6 @@ namespace Teeyoot.Module.Services
 
                         }
                     }
-                    _orderRepository.Flush();
                 }
             }
         }
