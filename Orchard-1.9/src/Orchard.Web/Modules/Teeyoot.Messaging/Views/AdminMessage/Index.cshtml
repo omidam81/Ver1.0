@@ -117,14 +117,14 @@
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
                     <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
                     <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.CampaignPromoTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-promote-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-promo-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <input style="margin-left:55px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "campaign-promote-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "campaign-promo-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                 </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
