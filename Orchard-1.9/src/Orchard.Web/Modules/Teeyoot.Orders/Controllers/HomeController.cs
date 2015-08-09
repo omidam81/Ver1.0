@@ -186,6 +186,7 @@ namespace Teeyoot.Orders.Controllers
             _orderService.UpdateOrder(order, newStatus);
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+            //ToDo: delete order if new status is "Cancelled"
             _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, orderId, orderStatus);
             _notifierService.Information(T("Successfully updated order status "));
             return RedirectToAction("Index");
