@@ -21,5 +21,7 @@ namespace Teeyoot.Module.Services
         void SendNewOrderMessageToAdmin(int orderId);
 
         void SendChangedCampaignStatusMessage(int campaignId, string campaignStatus);
+
+        void SendPayoutRequestMessageToAdmin(int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin);
     }
 }
