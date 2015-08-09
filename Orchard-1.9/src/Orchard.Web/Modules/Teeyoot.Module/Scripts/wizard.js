@@ -19,10 +19,10 @@ window.onload = function initWizard() {
 
     //if (document.querySelector(".user-email") == null) {
 
-    $("#openTags").click(function () {
-        document.getElementById("tags").style.display = "inline"; 
-        document.getElementById("openTags").style.display = "none";
-    });
+    //$("#openTags").click(function () {
+    //    document.getElementById("tags").style.display = "inline"; 
+    //    document.getElementById("openTags").style.display = "none";
+    //});
 
     $("#butAdd").click(function addElement() {
 
@@ -491,7 +491,7 @@ function Goal() {
     if (app.state.products.length < 1) {
         app.state.products.push(app.state.currentProduct);
     }
-    if (parseInt(app.state.getUsedColorsCount()) == parseInt("0")) {
+    if (parseInt(app.state.getUsedColorsCountFront()) == parseInt("0") && parseInt(app.state.getUsedColorsCountBack()) == parseInt("0")) {
         $('#no-content-error').modal('show');
     } else {
         slideTo(2);
@@ -508,7 +508,7 @@ function slideTo(slideNumber) {
         $('#too-many-colors-error').modal('show');
         return;
     }
-    if (app.state.getUsedColorsCount() < 1) {
+    if (app.state.getUsedColorsCountFront() < 1 && app.state.getUsedColorsCountBack() < 1) {
         $('#no-content-error').modal('show');
         return;
     }

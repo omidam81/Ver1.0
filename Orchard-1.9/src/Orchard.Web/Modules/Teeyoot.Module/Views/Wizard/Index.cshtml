@@ -493,6 +493,11 @@
                 handleAuthClick(e);
             });
         });
+
+        function openTags() {
+            document.getElementById("tags").style.display = "inline"; 
+            document.getElementById("openTagsButton").style.display = "none";
+        };
     </script>
 }
 
@@ -583,7 +588,7 @@
                                                 <div id="design-tools" class="aside">
                                                     <div class="design__area">
                                                         <div>
-                                                            <ul class="tabs clearfix nav nav-tabs">
+                                                            <ul class="tabs clearfix nav nav-tabs" style="border-bottom: none;">
                                                                 <li class="tab active" data-name="Text"><a>@("Text")</a></li>
                                                             </ul>
                                                             <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
@@ -1178,7 +1183,8 @@
                                                                         <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Decribe your campaign here…" style="width: 810px; height: 200px"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>
+                                                                @*<a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>*@
+    <button type="button" id="openTagsButton" onclick="openTags();" style="border: none; text-decoration: none; color: rgb(44, 98, 176); background: none; padding: 0; margin: 0;">Tag your campaign »</button>
 
                                                                 <div class="teespring-well designer-well" id="tags" style="display:none">
                                                                     <label>Tags</label>
