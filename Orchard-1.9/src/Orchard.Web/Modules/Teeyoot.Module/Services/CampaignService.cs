@@ -275,6 +275,7 @@ namespace Teeyoot.Module.Services
 
                 c.IsActive = false;
                 _campaignRepository.Update(c);
+                _campaignRepository.Flush();
 
                 if (!c.WhenDeleted.HasValue)
                 {
@@ -324,7 +325,6 @@ namespace Teeyoot.Module.Services
                     _orderRepository.Flush();
                 }
             }
-            _campaignRepository.Flush();
         }
 
 
