@@ -494,7 +494,7 @@
             });
         });
 
-        function openTags() {
+        function openTagsAll() {
             document.getElementById("tags").style.display = "inline"; 
             document.getElementById("openTagsButton").style.display = "none";
         };
@@ -1144,16 +1144,16 @@
                                                                             </div>
                                                                         </div>*@
                                                                         <div id="card3" style="margin-right:30px; max-width: 530px;">
-                                                                            <div class="front">
-                                                                                <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                            <div class="front" style="height: auto !important;">
+                                                                                <img style="width:530px;" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                                                                 <img style="position:absolute" id="prodFront3_d" src="">
                                                                                 <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
                                                                                     <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
                                                                                     <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="back">
-                                                                                <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                            <div class="back" style="height: auto !important;">
+                                                                                <img id="prodBack3" style="width:530px;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
                                                                                 <img style="position:absolute" id="prodBack3_d" src="">
                                                                                 <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                                                     <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
@@ -1184,7 +1184,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @*<a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>*@
-    <button type="button" id="openTagsButton" onclick="openTags();" style="border: none; text-decoration: none; color: rgb(44, 98, 176); background: none; padding: 0; margin: 0;">Tag your campaign »</button>
+                                                            <input type="button" id="openTagsButton" onclick="javascript:openTagsAll();" style="border: none; text-decoration: none; color: rgb(44, 98, 176); background: none; padding: 0; margin: 0; width: 150px;" value="Tag your campaign »"/>
 
                                                                 <div class="teespring-well designer-well" id="tags" style="display:none">
                                                                     <label>Tags</label>
