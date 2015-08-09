@@ -506,6 +506,11 @@
                 handleAuthClick(e);
             });
         });
+
+        function openTagsAll() {
+            document.getElementById("tags").style.display = "inline"; 
+            document.getElementById("openTagsButton").style.display = "none";
+        };
     </script>
 }
 
@@ -596,7 +601,7 @@
                                                 <div id="design-tools" class="aside">
                                                     <div class="design__area">
                                                         <div>
-                                                            <ul class="tabs clearfix nav nav-tabs">
+                                                            <ul class="tabs clearfix nav nav-tabs" style="border-bottom: none;">
                                                                 <li class="tab active" data-name="Text"><a>@("Text")</a></li>
                                                             </ul>
                                                             <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
@@ -985,7 +990,7 @@
                             <label style="font-weight: bold;">Sales Target</label>
                             <div class="block">
                                 <div style="display:block">
-                                    <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" list="volsettings" />
+                                    <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" onchange="onChangeTrackBar()" list="volsettings" />
                                 </div>
 
                                 <div class="tipping-point-slider__points">
@@ -1152,16 +1157,16 @@
                                                                             </div>
                                                                         </div>*@
                                                                         <div id="card3" style="margin-right:30px; max-width: 530px;">
-                                                                            <div class="front">
-                                                                                <img style="width:530px" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
+                                                                            <div class="front" style="height: auto !important;">
+                                                                                <img style="width:530px;" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
                                                                                 <img style="position:absolute" id="prodFront3_d" src="">
                                                                                 <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
                                                                                     <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
                                                                                     <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="back">
-                                                                                <img id="prodBack3" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
+                                                                            <div class="back" style="height: auto !important;">
+                                                                                <img id="prodBack3" style="width:530px;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
                                                                                 <img style="position:absolute" id="prodBack3_d" src="">
                                                                                 <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                                                     <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
@@ -1182,7 +1187,7 @@
                                                                 <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
                                                                     <label class="has-under-text">Title of campaign</label>
                                                                     <p class="has-under-text text-error" id="name_error-text"></p>
-                                                                    <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2" style="border-color: #afafaf;">
+                                                                    <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2" style="border-color: #afafaf; width: 100%;">
                                                                 </div>
                                                                 <div class="teespring-well designer-well description" data-reactid=".6.0.1">
                                                                     <label class="has-under-text">Description</label>
@@ -1191,7 +1196,8 @@
                                                                         <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Decribe your campaign here…" style="width: 810px; height: 200px"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>
+                                                                @*<a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>*@
+                                                            <input type="button" id="openTagsButton" onclick="javascript:openTagsAll();" style="border: none; text-decoration: none; color: rgb(44, 98, 176); background: none; padding: 0; margin: 0; width: 150px;" value="Tag your campaign »"/>
 
                                                                 <div class="teespring-well designer-well" id="tags" style="display:none">
                                                                     <label>Tags</label>

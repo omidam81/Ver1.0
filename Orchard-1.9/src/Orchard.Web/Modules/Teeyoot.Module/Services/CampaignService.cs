@@ -275,6 +275,7 @@ namespace Teeyoot.Module.Services
 
                 c.IsActive = false;
                 _campaignRepository.Update(c);
+                _campaignRepository.Flush();
 
                 if (!c.WhenDeleted.HasValue)
                 {
@@ -283,6 +284,7 @@ namespace Teeyoot.Module.Services
                     var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
                     _teeyootMessagingService.SendExpiredCampaignMessageToSeller( c.Id, isSuccesfull);
                     _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(c.Id, isSuccesfull);
+                    
                     foreach (var o in orders)
                     {
                         if (o.OrderStatusRecord.Name == OrderStatus.Approved.ToString())
@@ -290,8 +292,23 @@ namespace Teeyoot.Module.Services
                             o.OrderStatusRecord = isSuccesfull ?
                                 _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
                                 _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
-                            o.Paid = DateTime.UtcNow;
+
+                            
+                            if (isSuccesfull && o.TranzactionId != null)
+                            {
+                                try
+                                {
+                                    Gateway.Transaction.SubmitForSettlement(o.TranzactionId);
+                                    o.Paid = DateTime.UtcNow;
+                                }
+                                catch (Exception e)
+                                {
+                                    Logger.Error("Error when trying to make transaction ---------------------- > {0}", e.ToString());
+                                }
+                            }
+                          
                             _orderRepository.Update(o);
+                            _orderRepository.Flush();
 
                             string eventStr = isSuccesfull ?
                                 T("The campaign successfully reached its goal!").ToString() :
@@ -315,16 +332,10 @@ namespace Teeyoot.Module.Services
                                 Event = eventStr
                             });
                             _orderHistoryRepository.Flush();
-
-                            if (isSuccesfull && o.TranzactionId != null)
-                                Gateway.Transaction.SubmitForSettlement(o.TranzactionId);
-
                         }
                     }
-                    _orderRepository.Flush();
                 }
             }
-            _campaignRepository.Flush();
         }
 
 

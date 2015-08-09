@@ -32,7 +32,7 @@
 @using (Script.Foot())
 {
     <script>
-        var firstBack = "@Model.Campaign.BackSideByDefault";
+    var firstBack = "@Model.Campaign.BackSideByDefault";
 
     var twitterBtn = document.getElementsByClassName("btn--twitter");
     for (var k = 0; k < twitterBtn.length; k++) {
@@ -137,17 +137,43 @@
         el.parentNode.removeChild(el);
         VisibleRemove();
     }
-  
+
     var isFront = true;
     $(function ($) {
+        @*$("#card").flip({
+                trigger: 'manual'
+            }).click(function () {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+                var id = $("#product__dropdown option:selected")[0].id;
+
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
+                } else {
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
+                }
+
+            });*@
         $("#card").flip({
             trigger: 'manual'
-        }).click(function () {
+        });
+        $("#card3").flip({
+            trigger: 'manual'
+        });
+        $('#card .flip-button:not(.flip-button-active)').on('click', function () {
+            var id = $("#product__dropdown option:selected")[0].id;
             isFront = !isFront;
             console.log(isFront);
             $("#card").flip(!isFront);
-            var id = $("#product__dropdown option:selected")[0].id;
-
             if (firstBack == "True") {
                 if (isFront) {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
@@ -159,50 +185,66 @@
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
                 } else {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
                 }
-            }
+            });
+            $('#card3 .flip-button:not(.flip-button-active)').on('click', function(){
+                isFront3 = !isFront3;
+                $("#card3").flip(!isFront3);
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
+                } else {
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    }
+                }
+            });
 
         });
 
-    });
 
+        function Resrve() {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
+            document.getElementById("reserve-it-now").className = "dg-overlay";
 
-    function Resrve() {
-        var rowHtml = document.getElementById('first-line-item').innerHTML;
-        var newRow = document.createElement('tr');
-        $(newRow)
-            .addClass('precheckout_items_table__row')
-            .attr('id', 'js-precheckout-line-item-' + i)
-            .html(rowHtml)
-            .appendTo($("#order_item_list_modal"))
-        i = i + 1;
-        VisibleRemove();
-        document.getElementById("reserve-it-now").className = "dg-overlay";
-
-    }
-
-    function CloseReservation() {
-        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-        var el = document.getElementsByClassName("precheckout_items_table__row");
-        var length = el.length;
-        for (var i = 0; i < length; i++) {
-            el[0].parentNode.removeChild(el[0]);
         }
 
-        VisibleRemove();
-    }
+        function CloseReservation() {
+            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+            var el = document.getElementsByClassName("precheckout_items_table__row");
+            var length = el.length;
+            for (var i = 0; i < length; i++) {
+                el[0].parentNode.removeChild(el[0]);
+            }
 
-    function ChangeProduct(item) {
-        var id = item[item.selectedIndex].id;
-        if (!isFront) {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
+            VisibleRemove();
         }
-        var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
 
-        if (firstBack == "True") {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+        function ChangeProduct(item) {
+            var id = item[item.selectedIndex].id;
+            if (!isFront) {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            }
+            var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
+
+            if (firstBack == "True") {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
             $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
@@ -336,7 +378,7 @@
             count = $(el).find('.product-count')[0].value;
             price = $(el).find('.modal-price.shown')[0].title;
 
-            products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price:price });
+            products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price });
         });
 
         $.ajax({
@@ -424,13 +466,13 @@
 
 
         var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
-            timer.countDown();
-        }
-        window.onload = function () {
-            if ("@Model.Campaign.IsApproved" == "True") { 
+        timer.countDown();
+    }
+    window.onload = function () {
+        if ("@Model.Campaign.IsApproved" == "True") {
             CDT();
-            }
         }
+    }
     </script>
 }
 
@@ -490,44 +532,43 @@
                     <div id="front" class="front">
                         @if (@Model.Campaign.BackSideByDefault)
                         {
-                            <img id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
-                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/back.png">
-                            <div id="butt1" style="text-align:center; ">
-                                <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
+                            <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/back.png"><img style="position:absolute" id="prodFront_d" src="">
+                            <div id="butt1" style="text-align:center; font-weight: 400;">
+                                <div class="flip-button flip-button-front flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Back")</span></div>
                                 <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
                             </div>
                         }
                         else
                         {
-                            <img id="prodFront"
-                                 src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
+                            <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
                                  data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
-
-                            <div id="butt1" style="text-align:center; ">
-                                <div class="flip-button flip-button-front" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
+                            <img style="position:absolute" id="prodFront_d" src="">
+                            <div id="butt1" style="text-align:center; font-weight: 400;">
+                                <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Front")</span></div>
                                 <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
                             </div>
                         }
                     </div>
                     <div id="back" class="back">
                         @if (@Model.Campaign.BackSideByDefault)
-                        { <img id="prodBack"
-                               src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
-                               data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
+                        {
+                            <img id="prodBack3" style="width:530px" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
+                            <img style="position:absolute" id="prodBack3_d" src="">
                             <div id="butt2" style="text-align:center;">
-                                <div class="flip-button flip-button-front"><span>@T("Back")</span></div>
-                                <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Front")</span></div>
+                                <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Back")</span></div>
+                                <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span class="flip-button__back">@("Front")</span></div>
                             </div>
                         }
                         else
                         {
-                            <img id="prodBack"
-                                 src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
+                            <img id="prodBack3" style="width:530px" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
                                  data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/back.png">
-
+                            <img style="position:absolute" id="prodBack3_d" src="">
                             <div id="butt2" style="text-align:center;">
-                                <div class="flip-button flip-button-front"><span>@T("Front")</span></div>
-                                <div class="flip-button flip-button-back" style="background-color:#6c7478; color: white;"><span>@("Back")</span></div>
+                                <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>
+                                <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span class="flip-button__back">@T("Back")</span></div>
                             </div>
                         }
                     </div>
@@ -670,7 +711,7 @@
                 @if (Model.Campaign.IsApproved == true)
                 {
                     <div>
-               
+
                         <input class="hidden" id="persistent__timer" value="@Model.Campaign.EndDate.ToLocalTime().Year/@Model.Campaign.EndDate.ToLocalTime().Month/@Model.Campaign.EndDate.ToLocalTime().Day @Model.Campaign.EndDate.ToLocalTime().Hour:@Model.Campaign.EndDate.ToLocalTime().Minute:@Model.Campaign.EndDate.ToLocalTime().Second">
                         <div id="back_timer"></div>
                     </div>

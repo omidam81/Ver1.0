@@ -6308,9 +6308,13 @@ input {
 
 
 .widget-usermenu .menu-user-menu {
-    margin-left: -33px !important;
-    margin-right: -14px !important;
+    /*margin-left: -33px !important;
+    margin-right: -14px !important;*/
 }
+
+    .widget-usermenu .menu-user-menu li {
+        border-right: solid 1px #e8eced !important;
+    }
 
 .form__textfield.form__textfield--large {
     margin-bottom: 0 !important;

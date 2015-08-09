@@ -34,7 +34,7 @@ namespace Teeyoot.Module.Controllers
         private readonly INotifier _notifier;
         private readonly IimageHelper _imageHelper;
         private readonly IMailChimpSettingsService _settingsService;
-        //private readonly IRepository<MailChimpSettingsPartRecord> _mailChimpSettingsRepository;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IMessageService _messageService;
 
 
@@ -44,13 +44,15 @@ namespace Teeyoot.Module.Controllers
                               IPromotionService promotionService, 
                               IimageHelper imageHelper, 
                               IMailChimpSettingsService settingsService,
-                              IShapeFactory shapeFactory)
+                              IShapeFactory shapeFactory,
+            ITeeyootMessagingService teeyootMessagingService)
         {
             _orderService = orderService;
             _promotionService = promotionService;
             _campaignService = campaignService;
             _imageHelper = imageHelper;
             _settingsService = settingsService;
+            _teeyootMessagingService = teeyootMessagingService;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -212,6 +214,7 @@ namespace Teeyoot.Module.Controllers
                 //Transaction transaction = result.Target;
                 //ViewData["TransactionId"] = transaction.Id;
                 //_notifier.Information(T("The transaction is successful"));
+                _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id);
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             //}
             //else
@@ -317,8 +320,10 @@ namespace Teeyoot.Module.Controllers
         {
             try
             {
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, orderId, "Cancelled");
                 _orderService.DeleteOrder(orderId);
-                //TODO: eugene: mail customer if the order was cancelled
                 return Redirect("/");
             }
             catch(Exception ex)

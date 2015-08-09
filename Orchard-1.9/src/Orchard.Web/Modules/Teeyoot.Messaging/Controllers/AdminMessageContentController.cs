@@ -30,6 +30,7 @@ namespace Teeyoot.Messaging.Controllers
         private readonly IMailChimpSettingsService _settingsService;
         private readonly IOrderService _orderService;
         private readonly IWorkContextAccessor _wca;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
@@ -38,8 +39,8 @@ namespace Teeyoot.Messaging.Controllers
             ICampaignService campaignService,
             IMailChimpSettingsService settingsService,
             IOrderService orderService,
-            IWorkContextAccessor wca
-
+            IWorkContextAccessor wca,
+            ITeeyootMessagingService teeyootMessagingService
             )
         {
             _messageService = messageService;
@@ -49,6 +50,7 @@ namespace Teeyoot.Messaging.Controllers
             _settingsService = settingsService;
             _orderService = orderService;
             _wca = wca;
+            _teeyootMessagingService = teeyootMessagingService;
 
             Shape = shapeFactory;
         }
@@ -79,67 +81,10 @@ namespace Teeyoot.Messaging.Controllers
         {
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-            var api = new MandrillApi(record.ApiKey);
-            var mandrillMessage = new MandrillMessage() { };
-            var message = _messageService.GetMessage(messageId);
-            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = message.Sender;
-            mandrillMessage.Subject = message.Subject;
-            List<LinkOrderCampaignProductRecord> ordersList = _orderService.GetProductsOrderedOfCampaign(message.CampaignId).ToList();
-            var campaign = _campaignService.GetCampaignById(message.CampaignId);
-            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
-            foreach (var item in ordersList)
-            {
-                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
-                FillMessageMergeVars(mandrillMessage, item);
-            }
-            mandrillMessage.To = emails;
-            string text = System.IO.File.ReadAllText(pathToTemplates+"seller-template.html");
-            string messageText = text.Replace("---MessageContent---", message.Text);
-            messageText = messageText.Replace("---SellerEmail---", message.Sender);
-            messageText = messageText.Replace("---CampaignTitle---", campaign.Title);
-            string previewUrl = pathToMedia + "/Media/campaigns/" + message.CampaignId + "/" + campaign.Products[0].Id + "/normal/front.png";
-            messageText = messageText.Replace("---CampaignPreviewUrl---", previewUrl);
-            mandrillMessage.Html = messageText;
-            var res = SendTmplMessage(api, mandrillMessage);
+            _teeyootMessagingService.SendSellerMessage(messageId, pathToMedia, pathToTemplates);
             _notifier.Information(T("Message has been sent!"));
-            message.IsApprowed = true;
             return RedirectToAction("Index", "AdminMessageContent");
 
-        }
-
-         private void FillMessageMergeVars(MandrillMessage message, Module.Models.LinkOrderCampaignProductRecord record)
-        {
-            var products = new Dictionary<string, object>
-                    {
-                        {"quantity", record.Count},
-                        {"name",  record.CampaignProductRecord.ProductRecord.Name},
-                        {"description",  record.CampaignProductRecord.ProductRecord.Details},
-                        {"price",  record.CampaignProductRecord.Price},
-                        {"total_price", record.OrderRecord.TotalPrice}
-                    };
-
-            message.AddRcptMergeVars(record.OrderRecord.Email, "FNAME", record.OrderRecord.FirstName);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "LNAME", record.OrderRecord.LastName);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "CITY", record.OrderRecord.City);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "STATE", record.OrderRecord.State);
-            message.AddRcptMergeVars(record.OrderRecord.Email, "COUNTRY", record.OrderRecord.Country);
-            if (record.OrderRecord.TotalPriceWithPromo > 0.0)
-            {
-                message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPriceWithPromo.ToString());
-            }
-            else
-            {
-                message.AddRcptMergeVars(record.OrderRecord.Email, "TOTALPRICE", record.OrderRecord.TotalPrice.ToString());
-            }
-            message.AddRcptMergeVars(record.OrderRecord.Email, "PRODUCTS", products);
-        }
-
-        private string SendTmplMessage(MandrillApi mAPI, Mandrill.Model.MandrillMessage message)
-        {
-            var result = mAPI.Messages.Send(message);
-            return result.ToString();
         }
 
 
