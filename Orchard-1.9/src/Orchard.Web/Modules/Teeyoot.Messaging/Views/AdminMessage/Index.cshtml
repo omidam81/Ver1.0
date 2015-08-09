@@ -89,33 +89,6 @@
                     </div>
                 </div>
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
-                    <div style=" width:25%;  text-align:center;padding-top:10px">Change Order Status</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ChangeOrderStatusTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "change-order-status-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
-                        <input class="button primaryAction" type="submit" value="Upload File">
-                    }
-                    <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "change-order-status-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
-                    </div>
-                </div>
-                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
-                    <div style="width:25%;  text-align:center;padding-top:10px">All Byers Deadline Template</div>
-                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.AllBuyersDeadlineTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "dedline-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
-                        <input class="button primaryAction" type="submit" value="Upload File">
-                    }
-                    <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "dedline-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
-                    </div>
-                </div>
-
-                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
                     <div style="width:25%;  text-align:center;padding-top:10px">Withdraw Template</div>
                     <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.WithdrawTemplate</div>
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "withdraw-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -152,6 +125,136 @@
                     }
                     <div>
                         <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "campaign-promote-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.UnpaidCampaignTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "unpaid-campaign-template-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "unpaid-campaign-template-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.PartiallyPaidCampaignTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "partially-paid-campaign-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "partially-paid-campaign-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.PaidCampaignTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "paid-campaign-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "paid-campaign-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.CampaignNotReachGoalBuyerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "not-reach-goal-buyer-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "not-reach-goal-buyer-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.CampaignNotReachGoalSellerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "not-reach-goal-seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "not-reach-goal-seller-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.DeliveredOrderTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "delivered-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "delivered-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ShippedOrderTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "shipped-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "shipped-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.CancelledOrderTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "cancelled-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "cancelled-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.OrderIsPrintingBuyerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "order-is-printing-buyer-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "order-is-printing-buyer-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                </div>
+                <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; margin-top:10px">
+                    <div style="width:25%;  text-align:center;padding-top:10px">Campaign Promo Template</div>
+                    <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.CampaignIsPrintingSellerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-is-printing-seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="Upload File">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "campaign-is-printing-seller-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                 </div>
 
