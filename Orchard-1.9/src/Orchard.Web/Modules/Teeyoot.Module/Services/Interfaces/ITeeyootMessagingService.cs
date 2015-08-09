@@ -19,5 +19,7 @@ namespace Teeyoot.Module.Services
         void SendSellerMessage(int messageId, string pathToMedia, string pathToTemplates);
 
         void SendNewOrderMessageToAdmin(int orderId);
+
+        void SendChangedCampaignStatusMessage(int campaignId, string campaignStatus);
     }
 }

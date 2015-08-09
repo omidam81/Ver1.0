@@ -138,6 +138,46 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendChangedCampaignStatusMessage(int campaignId, string campaignStatus)
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = ADMIN_EMAIL;
+            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+            mandrillMessage.To = new List<MandrillMailAddress>(){
+                new MandrillMailAddress(seller.Email)
+            };
+            FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
+            switch (campaignStatus)
+            {
+                case "Unpaid":
+                    {
+                        mandrillMessage.Subject = "Your campaign has been unpaid!";
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "unpaid-campaign-template.html");
+                        break;
+                    };
+                case "Paid":
+                    {
+                        mandrillMessage.Subject = "Your campaign has been paid!";
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "paid-campaign-template.html");
+                        break;
+                    };
+                case "PartiallyPaid":
+                    {
+                        mandrillMessage.Subject = "Your campaign has been partially paid!";
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "partially-paid-campaign-template.html");
+                        break;
+                    };
+            }
+            SendTmplMessage(api, mandrillMessage);
+
+        }
+
         public void SendSellerMessage(int messageId, string pathToMedia, string pathToTemplates)
         {
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
