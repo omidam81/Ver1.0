@@ -295,6 +295,7 @@
     <Content Include="Content\message-templates\cancelled-order-template.html" />
     <Content Include="Content\message-templates\delivered-order-template.html" />
     <Content Include="Content\message-templates\launch-template.html" />
+    <Content Include="Content\message-templates\new-order-template.html" />
     <Content Include="Content\message-templates\not-reach-goal-buyer-template.html" />
     <Content Include="Content\message-templates\not-reach-goal-seller-template.html" />
     <Content Include="Content\message-templates\order-is-printing-buyer-template.html" />
@@ -702,6 +703,10 @@
     <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Roles\Orchard.Roles.csproj">
+      <Project>{d10ad48f-407d-4db5-a328-173ec7cb010f}</Project>
+      <Name>Orchard.Roles</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
       <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>

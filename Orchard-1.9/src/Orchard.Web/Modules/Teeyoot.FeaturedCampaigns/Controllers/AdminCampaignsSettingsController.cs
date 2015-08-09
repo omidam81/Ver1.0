@@ -30,13 +30,16 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly ISiteService _siteService;
         private readonly IimageHelper _imageHelper;
         private readonly IContentManager _contentManager;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
-        public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper,  IContentManager contentManager)
+        public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper,  IContentManager contentManager,
+            ITeeyootMessagingService teeyootMessagingService)
         {
             _campaignService = campaignService;
             _siteService = siteService;
             _imageHelper = imageHelper;
             _contentManager = contentManager;
+            _teeyootMessagingService = teeyootMessagingService;
 
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
@@ -103,7 +106,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public ActionResult ChangeStatus(PagerParameters pagerParameters, string searchString, int id, CampaignStatus status)
         { 
             _campaignService.SetCampaignStatus(id, status);
-            
+            _teeyootMessagingService.SendChangedCampaignStatusMessage(id, status.ToString()); 
             return RedirectToAction("Index", new { PagerParameters=pagerParameters, SearchString=searchString });
         }
 

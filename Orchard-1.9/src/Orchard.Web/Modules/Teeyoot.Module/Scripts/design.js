@@ -2001,8 +2001,8 @@ var design={
 							svg[0].setAttributeNS(null, 'width', o.width);
 							svg[0].setAttributeNS(null, 'height', o.height);
 							svg[0].setAttributeNS(null, 'preserveAspectRatio', 'none');
-					        var html = $(svg[0]).html();
-							$(svg[0]).html('<g>' + html + '</g>');
+					        var html = $(svg[0]).innerHTML;
+					        $(svg[0]).innerHTML = '<g>' + html + '</g>';
 							design.text.update('outline-width', $('#outline-select-art').val());
 							design.text.update('art-color');
 							design.text.update('art-outline');
