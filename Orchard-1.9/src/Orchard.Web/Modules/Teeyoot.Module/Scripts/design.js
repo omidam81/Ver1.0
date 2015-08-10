@@ -1196,6 +1196,8 @@ var design={
                     $(this).addClass('active');
                     me.changeDesign(product);
                     app.state.currentProduct.ProductId = parseInt(product.id);
+                    
+                    $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
                 } );
                 var html = '<p class="item-name">'+product.name+'</p><div class="item-overview">'+
                     '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="' + assetsUrls.products + 'product_type_' + product.id + '_front_small.png"></div>' +
@@ -1218,8 +1220,9 @@ var design={
                 options += '<option value="'+category.id+'">'+category.name+'</option>';
                 me.categoryProducts[category.id] = category.products;
 			});
-            $('#item-options-dropdown').html(options).on('change', function(e){
-                var idList = me.categoryProducts[e.target.value];
+    	    $('#item-options-dropdown').html(options).on('change', function (e) {
+    	        var value = e.target.value;
+    	        var idList = me.categoryProducts[value];
                 me.addProduct(idList);
             }).val(firstCategory).change();
 		}

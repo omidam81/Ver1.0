@@ -988,6 +988,14 @@ input[type=range] {
     width: 220px;
 }
 
+.slide-1-right-box {
+    position: relative;
+}
+
+#choices {
+    z-index: 12;
+}
+
 @media screen and (max-width: 1240px) {
     #layout-wrapper {
         display: block !important;
@@ -1097,7 +1105,7 @@ input[type=range] {
         float: none;
     }
 
-    .slide-1__choosing .lab-colors {
+    .slide-1__choosing .lab-colors-block {
         top: 0;
         right: auto;
         left: 0;
