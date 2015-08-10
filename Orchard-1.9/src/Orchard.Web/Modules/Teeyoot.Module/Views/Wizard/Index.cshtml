@@ -98,12 +98,14 @@
 @using (Script.Foot())
 {
     <script>
-        $("#name").click(function () {
+        $("#name").keydown(function () {
             $("#name").removeClass('wizard-error');
-            $("#name_error-text").attr("style","display: none;");          
+            $("#name_error-text").attr("style","display: none;");
+            $("#url").removeClass('wizard-error');
+            $("#url_error-text").attr("style","display: none;"); 
         });
 
-        $("#url").click(function () {
+        $("#url").keydown(function () {
             $("#url").removeClass('wizard-error');
             $("#url_error-text").attr("style","display: none;");          
         });

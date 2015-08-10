@@ -5756,7 +5756,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     };
 
     return function(composer) {
-      dom.observe(composer.element, "keydown", function(event) {
+        dom.observe(composer.element, "keydown", function (event) {           
         if (event.keyCode !== wysihtml5.BACKSPACE_KEY) {
           return;
         }
@@ -5827,6 +5827,8 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     }
 
     function keyDown(event) {
+        $('.wysihtml5-sandbox').removeClass('wizard-error');
+        $('#campaign_description_text_error-text').attr("style", "display: none;");
       var keyCode = event.keyCode;
       if (event.shiftKey || (keyCode !== wysihtml5.ENTER_KEY && keyCode !== wysihtml5.BACKSPACE_KEY)) {
         return;
@@ -8162,7 +8164,7 @@ wysihtml5.views.View = Base.extend(
             return textContent;
           };
 
-      dom.observe(this.element, "keydown", function(event) {
+      dom.observe(this.element, "keydown", function (event) {      
         if (!links.length) {
           return;
         }
