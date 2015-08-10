@@ -6602,3 +6602,9 @@ td, tr {
     -webkit-transition: opacity .3s linear;
     transition: opacity .3s linear;
 }
+.tb-search-form input[type=text] {    
+    height:24px!important;
+}
+.tb-search-form button{
+height:24px!important;
+}
