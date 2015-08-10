@@ -883,7 +883,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
         }
 
         #product-selector .item-options .item-option.active {
-            border-color: #39ace6 !important;
+            border-color: #ff4f00 !important;
             background-color: #FCE5A1;
         }
 
@@ -894,8 +894,8 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
             #product-selector .item-options .item-option.active:before {
                 display: block;
                 content: " ";
-                border-top: solid #39ace6 1px;
-                border-bottom: solid #39ace6 1px;
+                border-top: solid #ff4f00 1px;
+                border-bottom: solid #ff4f00 1px;
                 position: absolute;
                 width: 16px;
                 height: 82px;
