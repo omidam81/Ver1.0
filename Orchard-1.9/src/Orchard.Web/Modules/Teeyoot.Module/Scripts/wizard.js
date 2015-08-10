@@ -49,12 +49,7 @@ window.onload = function initWizard() {
         var image = document.createElement("img");
         var imageDel = document.createElement("img");
         var text = document.createElement("h4");
-        var salePriceTextDiv = document.createElement("div");
-        var salePriceTextH4 = document.createElement("h4");
 
-        salePriceTextDiv.classList.add("sale-price-for-one-product");
-        salePriceTextH4.innerHTML = "This is your sale price";
-        salePriceTextDiv.appendChild(salePriceTextH4);
         //var $salePriceTextDiv = $(salePriceTextDiv);
         //var $salePriceTextH4 = $(salePriceTextH4);
         //$salePriceTextDiv.append($salePriceTextH4);
@@ -114,7 +109,7 @@ window.onload = function initWizard() {
         var index = app.state.products.length + 1;
         h4Profit.id = "h4ProfSale_" + parseInt(index);
         var chenges = prdc.Price - prdc.BaseCost;
-        h4Profit.innerHTML = "RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale";
+        h4Profit.innerHTML = parseFloat(chenges.toFixed(2));
 
         $inp = $(inpPrice);
         $span = $(spanPrice);
@@ -254,6 +249,10 @@ window.onload = function initWizard() {
 
         divThumb.classList.add("thumbnail_wrapper");
 
+        var divColorPicAndMeta = document.createElement("div");
+        divColorPicAndMeta.classList.add("ssp-ssp-metadata-and-col-pick");
+        divColorPicAndMeta.appendChild(divMeta);
+
         divMeta.classList.add("ssp_metadata");
 
         divVcent.classList.add("ssp_vcent");
@@ -275,12 +274,11 @@ window.onload = function initWizard() {
         divMeta.appendChild(divVcent);
         divThumb.appendChild(image);
         div.appendChild(divThumb);
-        div.appendChild(divMeta);
-        div.appendChild(divCol);
+        div.appendChild(divColorPicAndMeta);
+        divColorPicAndMeta.appendChild(divCol);
         div.appendChild(divPricing);
         div.appendChild(divProfit);
         div.appendChild(divDelete);
-        div.appendChild(salePriceTextDiv);
         //div.appendChild();
         div.style.height = "115px";
 
@@ -305,6 +303,17 @@ window.onload = function initWizard() {
         globalPrdc = prdc;
         app.state.products.push(prdc);
         estimatedProfitChangeForManuProducts();
+    });
+
+    // Изменение количества в инпуте #trackBarValue
+
+    $("#trackBarValue").on({
+        change: onChangeValueForTrackBar,
+        keydown: function (e) {
+            if (e.which == 13) {
+                onChangeValueForTrackBar();
+            }
+        }
     });
 }
 
@@ -397,7 +406,7 @@ function profitSale() {
         window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
-        $("#mainH4").html("RM " + $price + " Profit per sale");
+        $("#mainH4").html($price);
         $("#mainH4").css('color', '#ff4f00');
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;

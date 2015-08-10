@@ -1,0 +1,46 @@
+﻿.ssp-ssp-metadata-and-col-pick {
+    width: 185px;
+    overflow: hidden;
+}
+
+.h6Sale {
+    font-size: 0.8em;
+    margin-left: 5px;
+    margin-top: 11px;
+    color: #ff4f00;
+    font-weight: normal;
+}
+
+.price-calculator {
+    height: auto;
+}
+
+.costH4Rm {
+}
+
+.costH4Float {
+    margin-left: 10px;
+    width: 68px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.costH4Text {
+}
+
+.profit {
+    font-weight: 600 !important;
+}
+
+.profit-calculator {
+}
+
+.cost-calculator {
+    border-bottom: 3px solid #afafaf;
+    margin-left: -10px;
+    padding-left: 10px;
+}
+
+.all-price-calculator {
+
+}

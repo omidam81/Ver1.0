@@ -10,7 +10,7 @@
         app.state.currentProduct.Price = window.sellingPrice;
     }
 
-    document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
+    document.getElementById("price_preview").innerHTML = "RM " + res.toFixed(2);
     app.state.currentProduct.BaseCost = window.nowPrice;
 
     var changes = parseFloat(app.state.currentProduct.Price) - window.nowPrice;
@@ -218,7 +218,7 @@ function updateMinimum(changes) {
         $("#mainH4").css('color', '#ff0000');
         $("#total_profit").html("RM 0+");
     } else {
-        $("#mainH4").html("RM " + changes.toFixed(2) + " Profit per sale");
+        $("#mainH4").html(changes.toFixed(2));
         $("#mainH4").css('color', '#ff4f00');
         //if (app.state.products != null & app.state.products.length > 1) {
         //    estimatedProfitChangeForManuProducts()

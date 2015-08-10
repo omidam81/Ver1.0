@@ -98,7 +98,9 @@
         top: 50px;
     }
 
-        .button-create-search-container button:hover {
+        .button-create-search-container button:hover,
+        .button-create-search-container button:focus,
+        .button-create-search-container button:visited {
             background: #e64700;
         }
 
@@ -1569,7 +1571,9 @@
     margin: 0;
 }
 
-    .logo-button:hover {
+    .logo-button:hover,
+    .logo-button:focus,
+    .logo-button:visited {
         background: url("../Content/TEEYOOT_LOGO_Full_Color.png") no-repeat;
         background-size: 280px 44px;
         border: 0px;

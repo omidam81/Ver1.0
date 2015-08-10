@@ -1,85 +1,145 @@
 ﻿body {
 }
+
 .admin-categories-tr {
     font-size: 16px;
 }
 
-.date{
-    width:9%;
-}
-.userId{
-    width:4%;
-}
-.subject{
-    width:12%;
-}
-.sender{
-    width:12%;
-}
-.text{
-    width:37%;
-}
-.inf{
-    width:5%;
+.date {
+    width: 9%;
 }
 
-.delete-button{
-    margin-left:20px !important;
+.userId {
+    width: 4%;
+}
+
+.subject {
+    width: 12%;
+}
+
+.sender {
+    width: 12%;
+}
+
+.text {
+    width: 37%;
+}
+
+.inf {
+    width: 5%;
+}
+
+.delete-button {
+    margin-left: 20px !important;
 }
 
 #modal_form {
-	width: 600px; 
-	height: 380px; /* Рaзмеры дoлжны быть фиксирoвaны */
-	border-radius: 5px;
-	background: #fff;
-	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
-	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
-	left: 50%; /* пoлoвинa экрaнa слевa */
-	margin-top: -190px;
-	margin-left: -300px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
-	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
-	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
-	z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
-	padding: 20px 10px;
+    width: 600px;
+    height: 380px; /* Рaзмеры дoлжны быть фиксирoвaны */
+    border-radius: 5px;
+    background: #fff;
+    position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+    top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+    left: 50%; /* пoлoвинa экрaнa слевa */
+    margin-top: -190px;
+    margin-left: -300px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
+    display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+    opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+    z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+    padding: 20px 10px;
 }
 /* Кнoпкa зaкрыть для тех ктo в тaнке) */
- #modal_close {
-	width: 21px;
-	height: 21px;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
-	display: block;
+#modal_close {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: block;
 }
 /* Пoдлoжкa */
 #overlay {
-	z-index: 3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
-	position: fixed; /* всегдa перекрывaет весь сaйт */
-	background-color: #000; /* чернaя */
-	opacity: 0.65; /* нo немнoгo прoзрaчнa */
-	width: 100%; 
-	height: 100%; /* рaзмерoм вo весь экрaн */
-	top: 0; 
-	left: 0; /* сверху и слевa 0, oбязaтельные свoйствa! */
-	cursor: pointer;
-	display: none; /* в oбычнoм сoстoянии её нет) */
+    z-index: 3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+    position: fixed; /* всегдa перекрывaет весь сaйт */
+    background-color: #000; /* чернaя */
+    opacity: 0.65; /* нo немнoгo прoзрaчнa */
+    width: 100%;
+    height: 100%; /* рaзмерoм вo весь экрaн */
+    top: 0;
+    left: 0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+    cursor: pointer;
+    display: none; /* в oбычнoм сoстoянии её нет) */
 }
 
 .val {
     font-size: large;
 }
+
 .note {
-    width:50%;
-    padding:5px;
+    width: 50%;
+    padding: 5px;
 }
+
 .note1 {
-    width:20%;
-    padding:5px;
+    width: 20%;
+    padding: 5px;
 }
 
 
-.bord{
+.bord {
+    width: 100%;
+}
 
-        width:100%;
+.alias {
+    width: 25%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.fileNameInput {
+    width: 25%;
+    border: 1px solid #eaeaea;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.fileRow {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    margin-top: 10px;
+     display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.apiKeyRow {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+     display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.mandrillForm {
+    width: 100%;
+    margin-top: 20px;
 }
