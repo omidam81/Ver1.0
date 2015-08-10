@@ -1110,7 +1110,7 @@ var design={
             var selector = '.zoom-'+(!isDarkText?'light':'dark')+'-'+(isZoomed?'out':'in');
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
-            $('.design-area').css('border-color', newColor + " !important");
+            $('.design-area').css('border-color', newColor);
             
         },
 		changeDesign: function(product){
@@ -3611,14 +3611,16 @@ $('#design-area').mouseup(function (e) {
 $(document).ready(function () {
     $('.max-colors-count').html(maxDesignColors);
 	design.ini();
-	$('#design-area').click(function(e){
+	$('#design-area').mousedown(function(e){
 		var topCurso=!document.all ? e.clientY: event.clientY;
 		var leftCurso=!document.all ? e.clientX: event.clientX;
         var view = app.state.getView();
         var mouseDownAt = document.elementFromPoint(leftCurso, topCurso);
         if (isResizing && wasMouseUp) {
-            wasMouseUp = false;
-            isResizing = false;
+            if (isResizing || wasMouseUp) {
+                wasMouseUp = false;
+                isResizing = false;
+            }
         } else {
             if (mouseDownAt.parentNode.className == 'product-design'
                         || mouseDownAt.parentNode.className == 'div-design-area'
@@ -3635,8 +3637,8 @@ $(document).ready(function () {
         
 		
 	});
-	
-
-
-	$('.drag-item').click(function () { alert(23); });
+	$('.number').mousedown(function (e) {
+	    design.item.unselect();
+	});
+    	$('.drag-item').click(function () { alert(23); });
 });
