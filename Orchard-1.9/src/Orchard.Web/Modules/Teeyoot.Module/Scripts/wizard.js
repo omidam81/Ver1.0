@@ -78,38 +78,113 @@ window.onload = function initWizard() {
         var $image = $(image);
 
         //----------- profit/sale ----------------------------------
+        
+        
+        var divAllPriceCalcul = document.createElement("div");
+        divAllPriceCalcul.classList.add("all-price-calculator");
+        var divPriceCalcul = document.createElement("div");
+        var divCostCalcul = document.createElement("div");
+        var divProfitCalcul = document.createElement("div");
+        divPriceCalcul.classList.add("price-calculator");
+        divCostCalcul.classList.add("cost-calculator");
+        divProfitCalcul.classList.add("profit-calculator");
+        
+
+
         var divPricing = document.createElement("div");
         var divProfit = document.createElement("div");
         var spanPrice = document.createElement("span");
         var inpPrice = document.createElement("input");
         var h4Profit = document.createElement("h4");
 
-        divPricing.classList.add("ssp_pricing");
-        //divPricing.style.marginLeft = "-8%";
-        divPricing.style.height = "40px";
-        divPricing.style.display = "-webkit-inline-box";
-        //divPricing.style.display = "-moz-inline-box";
-        divPricing.style.display = "-ms-inline-flexbox";
-        divPricing.style.display = "inline-flex";
 
+        var h4Price = document.createElement("h4");
+        h4Price.classList.add("h4ProfSale");
+        h4Price.innerHTML = "Sale Price";
+        var h6Price = document.createElement("h6");
+        h6Price.classList.add("h6Sale");
+        h6Price.innerHTML = "(per shirt)";
+        
+        var divCostProf = document.createElement("div");
+        var h4CostProfRm = document.createElement("h4");
+        var h4CostProfFloat = document.createElement("h4");
+        var h4CostProfText = document.createElement("h4");
+        var h6Cost = document.createElement("h6");
+        divCostProf.classList.add("profitSale");
+        h4CostProfRm.classList.add("h4ProfSale");
+        h4CostProfRm.classList.add("costH4Rm");
+        h4CostProfText.classList.add("h4ProfSale");
+        h4CostProfText.classList.add("costH4Text");
+        h4CostProfFloat.classList.add("h4ProfSale");
+        h4CostProfFloat.classList.add("costH4Float");
+        h6Cost.classList.add("h6Sale");
+        h6Cost.innerHTML = "(per shirt)";
+        h4CostProfRm.innerHTML = "RM";
+        h4CostProfText.innerHTML = "Cost Price";
+        h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
+        divCostProf.appendChild(h4CostProfRm);
+        divCostProf.appendChild(h4CostProfFloat);
+        divCostProf.appendChild(h4CostProfText);
+        divCostProf.appendChild(h6Cost);
+        divCostCalcul.appendChild(divCostProf);
+
+        var divProf = document.createElement("div");
+        var h4ProfRm = document.createElement("h4");
+        var h4ProfText = document.createElement("h4");
+        var h6 = document.createElement("h6");
+        divProf.classList.add("profitSale");
+        h4ProfRm.classList.add("h4ProfSale");
+        h4ProfRm.classList.add("costH4Rm");
+        h4ProfRm.classList.add("profit");
+        h4ProfText.classList.add("h4ProfSale");
+        h4ProfText.classList.add("costH4Text");
+        h4ProfText.classList.add("profit");
+        h6.classList.add("h6Sale");
+        h6.classList.add("profit");
+        h6.innerHTML = "(per shirt)";
+        h4ProfRm.innerHTML = "RM";
+        h4ProfText.innerHTML = "Your Profit";
+        divProf.appendChild(h4ProfRm);
+        divProf.appendChild(h4Profit);
+        divProf.appendChild(h4ProfText);
+        divProf.appendChild(h6);
+        divProfitCalcul.appendChild(divProf);
+
+
+        divPricing.classList.add("ssp_pricing");
+        divPricing.classList.add("ssp_pricing_new");
+        //divPricing.style.marginLeft = "-8%";
+        //divPricing.style.height = "40px";
+        //divPricing.style.display = "-webkit-inline-box";
+        ////divPricing.style.display = "-moz-inline-box";
+        //divPricing.style.display = "-ms-inline-flexbox";
+        //divPricing.style.display = "inline-flex";
         divProfit.classList.add("profitSale");
-        divProfit.style.marginLeft = "5px"
         spanPrice.classList.add("rm-for-price");
+        spanPrice.style.fontWeight = "normal";
         spanPrice.innerHTML = "RM"
-        inpPrice.classList.add("ssp_input");
+        inpPrice.classList.add("ssp_input"); 
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
-        inpPrice.style.padding = "0.3em";
-        inpPrice.style.marginLeft = "10px";
-        inpPrice.style.width = "70px";
-        inpPrice.style.height = "40px";
+        inpPrice.classList.add("profSale");
         inpPrice.value = prdc.Price;
 
         h4Profit.classList.add("h4ProfSale");
+        h4Profit.classList.add("costH4Float");
+        h4Profit.classList.add("profit");
+
         var index = app.state.products.length + 1;
         h4Profit.id = "h4ProfSale_" + parseInt(index);
-        var chenges = prdc.Price - prdc.BaseCost;
-        h4Profit.innerHTML = parseFloat(chenges.toFixed(2));
+        h4CostProfFloat.id = "h4CostSale_" + parseInt(index);
+        h4CostProfRm.id = "h4CostProfRm_" + parseInt(index);
+        divProfitCalcul.id = "divProfitCalcul_" + parseInt(index);
+        h4CostProfText.id = "h4CostProfText_" + parseInt(index);
+        h6Cost.id = "h6Cost_" + parseInt(index);
+        h4Price.id = "h4Price_" + parseInt(index);
+        h6Price.id = "h6Price_" + parseInt(index);
+
+        var chenges = prdc.Price - prdc.BaseCost.toFixed(2);
+        h4Profit.innerHTML = chenges.toFixed(2);
 
         $inp = $(inpPrice);
         $span = $(spanPrice);
@@ -117,17 +192,28 @@ window.onload = function initWizard() {
 
         // Ивент на остаток прибыли от суммы одной футболки -------------------
         $inp.change(function () {
-            var price = (parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost).toFixed(2);
+            var price = parseFloat(parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost);
             prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
-            h4Profit.innerHTML = "RM " + price + " Profit per sale";
+            h4Profit.innerHTML = price.toFixed(2);
+            h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
             estimatedProfitChangeForManuProducts();
         });
 
         var $divPricing = $(divPricing);
         $divPricing.append($span);
         $divPricing.append($inp);
-        divProfit.appendChild(h4Profit);
-        var $divProfit = $(divProfit);
+        //divProfit.appendChild(h4Profit); // TODO 
+        //var $divProfit = $(divProfit);
+
+        divProfit.appendChild(h4Price);
+        divProfit.appendChild(h6Price);
+        divPriceCalcul.appendChild(divPricing);
+        divPriceCalcul.appendChild(divProfit);
+        divAllPriceCalcul.appendChild(divPriceCalcul);
+        divAllPriceCalcul.appendChild(divCostCalcul);
+        divAllPriceCalcul.appendChild(divProfitCalcul);
+
+
         //----------- profit/sale ----------------------------------
 
 
@@ -227,9 +313,10 @@ window.onload = function initWizard() {
                 }
                 var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
                 prdc.BaseCost = calc[0];
-                var changes = prdc.Price - prdc.BaseCost;
+                var changes = prdc.Price - prdc.BaseCost.toFixed(2);
                 estimatedProfitChangeForManuProducts();
-
+                h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
+                h4Profit.innerHTML = changes.toFixed(2);
                 //$divColors.remove();
                 $divColors.removeClass('containertip--open');
             }).hover(function () {
@@ -273,11 +360,12 @@ window.onload = function initWizard() {
         divVcent.appendChild(text);
         divMeta.appendChild(divVcent);
         divThumb.appendChild(image);
-        div.appendChild(divThumb);
-        div.appendChild(divColorPicAndMeta);
         divColorPicAndMeta.appendChild(divCol);
-        div.appendChild(divPricing);
-        div.appendChild(divProfit);
+        div.appendChild(divThumb);
+        div.appendChild(divColorPicAndMeta); 
+        div.appendChild(divAllPriceCalcul);
+        //div.appendChild(divPricing);
+        //div.appendChild(divProfit);
         div.appendChild(divDelete);
         //div.appendChild();
         div.style.height = "115px";
@@ -400,14 +488,16 @@ function profitSale() {
     
 
     if(selPrice < window.nowPrice){
-        $("#mainH4").html("RM " + window.nowPrice + " minimum");
-        $("#mainH4").css('color', '#ff0000');
+        //$("#mainH4").html("RM " + window.nowPrice + " minimum");
+        //$("#mainH4").css('color', '#ff0000');
+        updateMinimum($price);
         app.state.currentProduct.Price = window.nowPrice;
         window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
-        $("#mainH4").html($price);
-        $("#mainH4").css('color', '#ff4f00');
+        //$("#mainH4").html($price);
+        //$("#mainH4").css('color', '#ff4f00');
+        updateMinimum($price);
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
         if (app.state.products.length > 1) {
@@ -572,7 +662,8 @@ function onChangeTrackBar() {
     calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
     var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
-    //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
+    //$("#mainH4").innerHTML = chenges.toFixed(2);
+    document.getElementById("base-cost-for-first-product").innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
     window.nowPrice = app.state.currentProduct.BaseCost;
     updateMinimum(changes);
     //profitSale();
@@ -601,6 +692,7 @@ function onChangeValueForTrackBar() {
     //profitSale();
     var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
     //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
+    document.getElementById("base-cost-for-first-product").innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
     window.nowPrice = app.state.currentProduct.BaseCost;
     updateMinimum(changes);
 

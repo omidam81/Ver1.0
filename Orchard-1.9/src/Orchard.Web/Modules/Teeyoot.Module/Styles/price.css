@@ -29,7 +29,7 @@
 }
 
 .profit {
-    font-weight: 600 !important;
+    font-weight: 700 !important;
 }
 
 .profit-calculator {
@@ -42,5 +42,50 @@
 }
 
 .all-price-calculator {
+    width: 310px;
+}
 
+.ssp_pricing_new {
+    display: inline-flex !important;
+    display: -webkit-inline-box !important;
+    display: -ms-inline-flexbox !important;
+    height: auto;
+    vertical-align: sub !important;
+}
+
+.profSale {
+    height: 1.7em;
+    margin-left: 10px;
+    width: 65px !important;
+    font-size: 1.077em !important;
+    margin-right: 10px;
+    line-height: 1.6em;
+    padding: 0;
+}
+
+
+@media all and (max-width: 375px) {
+    .ssp_delete {
+        left: 130px;
+    }
+
+    .all-price-calculator {
+        width: 270px;
+    }
+
+    .cost-calculator {
+        margin-left: -5px;
+        padding-left: 5px;
+    }
+}
+
+@media all and (max-width: 375px) {
+    .ssp_delete {
+        left: 120px;
+    }
+
+    .slide-2__table > tr > td + td,
+    .slide-2__table > tbody > tr > td + td {
+        padding: 0 10px;
+    }
 }

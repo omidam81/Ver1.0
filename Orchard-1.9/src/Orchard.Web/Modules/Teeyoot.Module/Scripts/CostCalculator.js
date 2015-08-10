@@ -144,6 +144,7 @@ function setPriceInGoalFromDesign() {
     document.getElementById('profSale').value = window.sellingPrice;
     document.getElementById('trackBarValue').value = window.count;
     document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+    document.getElementById('base-cost-for-first-product').innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
 
     if (app.state.products.length > 1) {
         estimatedProfitChangeForManuProducts();
@@ -185,15 +186,46 @@ function estimatedProfitChangeForManuProducts() {
         result.push(Math.floor(parseFloat(products[i].Price - products[i].BaseCost) * window.count));
         if (i > 0) {
             var profit = parseFloat((products[i].Price - products[i].BaseCost).toFixed(2));
-            var index = "#h4ProfSale_" + parseInt(i + 1);
-            $(index).html("RM " + profit + " Profit per sale");
+            var indexCost = "#h4CostSale_" + parseInt(i + 1);
+            var indexProf = "#h4ProfSale_" + parseInt(i + 1);
+
+            var h4CostProfRm = "#h4CostProfRm_" + parseInt(i + 1);
+            var divProfitCalcul = "#divProfitCalcul_" + parseInt(i + 1);
+            var h4CostProfText = "#h4CostProfText_" + parseInt(i + 1);
+            var h6Cost = "#h6Cost_" + parseInt(i + 1);
+            var h4Price = "#h4Price_" + parseInt(i + 1);
+            var h6Price = "#h6Price_" + parseInt(i + 1);
+
+
+            $(indexProf).html(profit.toFixed(2));
+            $(indexCost).html(products[i].BaseCost.toFixed(2));
             if (profit < 0) {
-                $(index).html("RM " + products[i].BaseCost + " minimum");
-                $(index).css('color', '#ff0000');
+                $(divProfitCalcul).css('display', 'none');
+                $(h6Cost).css('display', 'none');
+                $(h6Price).css('display', 'none');
+                $(h4Price).css('display', 'none');
+                $(h4CostProfText).html("minimum");
+                $(indexCost).html(products[i].BaseCost.toFixed(2));
+                $(h4CostProfText).css('color', '#ff0000');
+                $(indexCost).css('color', '#ff0000');
+                $(h4CostProfRm).css('color', '#ff0000');
+
+                //$(indexProf).html("RM " + products[i].BaseCost.toFixed(2) + " minimum");
+                //$(indexProf).css('color', '#ff0000');
                 //$("#total_profit").html("RM 0+");
             } else {
-                $(index).html("RM " + parseFloat(profit.toFixed(2)) + " Profit per sale");
-                $(index).css('color', '#ff4f00');
+                $(divProfitCalcul).css('display', 'block');
+                $(h6Cost).css('display', 'block');
+                $(h6Price).css('display', 'block');
+                $(h4Price).css('display', 'block');
+                $(h4CostProfText).html("Cost Price");
+                $(h4CostProfText).css('color', '#ff4f00');
+                $(indexCost).css('color', '#ff4f00');
+                $(h4CostProfRm).css('color', '#ff4f00');
+
+                $(indexProf).html(profit.toFixed(2));
+                $(indexProf).css('color', '#ff4f00');
+                $(indexCost).html(products[i].BaseCost.toFixed(2));
                 //if (app.state.products != null & app.state.products.length > 1) {
                 //    estimatedProfitChangeForManuProducts()
                 //} else {
@@ -214,10 +246,32 @@ function estimatedProfitChangeForManuProducts() {
 
 function updateMinimum(changes) {
     if (changes < 0) {
-        $("#mainH4").html("RM " + window.nowPrice + " minimum");
-        $("#mainH4").css('color', '#ff0000');
-        $("#total_profit").html("RM 0+");
+        $("#profit-calculator").css('display', 'none');
+        $("#price-for-first-product-text").css('display', 'none');
+        $("#base-cost-for-first-product-text-smoll").css('display', 'none');
+        //$("#").css('display', 'none');
+        $("#base-cost-for-first-product-text").html("minimum");
+        $("#base-cost-for-first-product").html(app.state.currentProduct.BaseCost.toFixed(2));
+        $("#base-cost-for-first-product-rm").css('color', '#ff0000');
+        $("#base-cost-for-first-product").css('color', '#ff0000');
+        $("#base-cost-for-first-product-text").css('color', '#ff0000');
+
+
+        //$("#mainH4").html("RM " + window.nowPrice + " minimum");
+        //$("#mainH4").css('color', '#ff0000');
+        //$("#total_profit").html("RM 0+");
     } else {
+        $("#profit-calculator").css('display', 'block');
+        $("#price-for-first-product-text").css('display', '-webkit-inline-box');
+        $("#price-for-first-product-text").css('display', '-moz-inline-box');
+        $("#price-for-first-product-text").css('display', '-ms-inline-flexbox');
+        $("#base-cost-for-first-product-text-smoll").css('display', 'block');
+        //$("#").css('display', 'block');
+        $("#base-cost-for-first-product-text").html("Cost Price");
+        $("#base-cost-for-first-product-rm").css('color', '#ff4f00');
+        $("#base-cost-for-first-product").css('color', '#ff4f00');
+        $("#base-cost-for-first-product-text").css('color', '#ff4f00');
+        $("#base-cost-for-first-product").html(app.state.currentProduct.BaseCost.toFixed(2));
         $("#mainH4").html(changes.toFixed(2));
         $("#mainH4").css('color', '#ff4f00');
         //if (app.state.products != null & app.state.products.length > 1) {

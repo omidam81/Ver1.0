@@ -1079,23 +1079,23 @@
 
                                     <div id="all-price-calculator" class="all-price-calculator">
                                         <div class="price-calculator">
-                                            <div class="ssp_pricing" style="display: inline-flex; display: -webkit-inline-box; display: -ms-inline-flexbox; height: auto; vertical-align: sub;">
+                                            <div class="ssp_pricing ssp_pricing_new">
                                                 <span class="rm-for-price" style="font-weight: normal !important">RM </span>
                                                 <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()">
                                             </div>
-                                            <div class="profitSale">
+                                            <div class="profitSale" id="price-for-first-product-text">
                                                 <h4 class="h4ProfSale">@T("Sale Price ")</h4><h6 class="h6Sale">@T("(per shirt)")</h6>
                                             </div>
                                         </div>
                                         <div class="cost-calculator">
                                             <div class="profitSale">
-                                                <h4 class="h4ProfSale costH4Rm">RM</h4>
-                                                <h4 class="h4ProfSale costH4Float">32.80</h4>
-                                                <h4 class="h4ProfSale costH4Text">@T("Cost Price")</h4>
-                                                <h6 class="h6Sale">@T("(per shirt)")</h6>
+                                                <h4 class="h4ProfSale costH4Rm" id="base-cost-for-first-product-rm">RM</h4>
+                                                <h4 class="h4ProfSale costH4Float" id="base-cost-for-first-product"></h4>
+                                                <h4 class="h4ProfSale costH4Text" id="base-cost-for-first-product-text">@T("Cost Price")</h4>
+                                                <h6 class="h6Sale" id="base-cost-for-first-product-text-smoll">@T("(per shirt)")</h6>
                                             </div>
                                         </div>
-                                        <div class="profit-calculator">
+                                        <div class="profit-calculator" id="profit-calculator">
                                             <div class="profitSale">
                                                 <h4 class="h4ProfSale costH4Rm profit">RM</h4>
                                                 <h4 class="h4ProfSale costH4Float profit" id="mainH4"></h4>

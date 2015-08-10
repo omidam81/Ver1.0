@@ -2761,11 +2761,12 @@ tspan {
 
 .ssp_block .ssp_delete {
     position: absolute;
-    right: 1.5rem;
+    /*right: 1.5rem;*/
     top: 63%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    margin-left: 5px;
 }
 
 .ssp_delete {
