@@ -199,6 +199,23 @@ window.onload = function initWizard() {
             estimatedProfitChangeForManuProducts();
         });
 
+        $inp.on({
+            change: profSaleProd,
+            keydown: function (e) {
+                if (e.which == 13) {
+                    profSaleProd();
+                }
+            }
+        });
+
+        function profSaleProd() {
+            var price = parseFloat(parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost);
+            prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
+            h4Profit.innerHTML = price.toFixed(2);
+            h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
+            estimatedProfitChangeForManuProducts();
+        }
+
         var $divPricing = $(divPricing);
         $divPricing.append($span);
         $divPricing.append($inp);
@@ -400,6 +417,15 @@ window.onload = function initWizard() {
         keydown: function (e) {
             if (e.which == 13) {
                 onChangeValueForTrackBar();
+            }
+        }
+    });
+
+    $("#profSale").on({
+        change: profitSale,
+        keydown: function (e) {
+            if (e.which == 13) {
+                profitSale();
             }
         }
     });
