@@ -386,17 +386,21 @@ span.number {
 }
 
 .profitSale {
-    width: 200px;
+    /*width: 200px;*/
     /*margin-left: -15%;*/
     /*margin-top: -7%;*/
     display: -webkit-inline-box;
     display: -moz-inline-box;
     display: -ms-inline-flexbox;
+    vertical-align: sub;
+    height: auto;
 }
 
 .h4ProfSale {
     color: #ff4f00;
     font-weight: bold;
+    margin-bottom: 0;
+    font-weight: normal;
 }
 
 .Footer {
@@ -606,6 +610,8 @@ body.page__designs_edit .Slides .container {
     padding: .5rem;
     width: 100%;
     overflow: visible;
+    display: flex;
+    display: -ms-flexbox;
 }
 
     .ssp_block.product {
@@ -843,9 +849,11 @@ input[type=range] {
     }
 
 #profSale {
-    height: 40px;
+    height: 1.7em;
     margin-left: 10px;
-    width: 70px;
+    width: 65px;
+    font-size: 1.077em;
+    margin-right: 10px;
 }
 
 @media all and (max-width: 1000px) {
@@ -969,9 +977,10 @@ input[type=range] {
 }
 
 .rm-for-price {
-    font-size: 21px;
+    font-size: 1.077em;
     vertical-align: text-top !important;
     font-weight: 600;
+    color: #ff4f00;
 }
 
 .button-next-page {

@@ -675,6 +675,7 @@
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
+    <Content Include="Styles\price.css" />
     <Content Include="Styles\reservationcomplete.css" />
     <Content Include="Styles\track.css" />
     <Content Include="Styles\Wizard.css" />
