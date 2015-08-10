@@ -201,6 +201,19 @@ namespace Teeyoot.Module.Controllers
             Services.Notifier.Error(T("Wrong file extention!"));
             return RedirectToAction("Index");
         }
+
+        public void Download(string fileName)
+        {
+            fileName += ".html";
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            Response.ContentType = "text/HTML";
+            String Header = "Attachment; Filename=" + fileName;
+            Response.AppendHeader("Content-Disposition", Header);
+            System.IO.FileInfo Dfile = new System.IO.FileInfo(pathToTemplates+fileName);
+            Response.WriteFile(Dfile.FullName);
+            Response.End();
+        }
         
     }
 }

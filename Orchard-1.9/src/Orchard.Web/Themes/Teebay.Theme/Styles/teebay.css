@@ -98,7 +98,9 @@
         top: 50px;
     }
 
-        .button-create-search-container button:hover {
+        .button-create-search-container button:hover,
+        .button-create-search-container button:focus,
+        .button-create-search-container button:visited {
             background: #e64700;
         }
 

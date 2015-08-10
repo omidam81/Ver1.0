@@ -292,6 +292,7 @@
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
     <Content Include="Content\message-templates\campaign-is-printing-seller-template.html" />
+    <Content Include="Content\message-templates\campaign-promo-template.html" />
     <Content Include="Content\message-templates\cancelled-order-template.html" />
     <Content Include="Content\message-templates\delivered-order-template.html" />
     <Content Include="Content\message-templates\launch-template.html" />
@@ -299,11 +300,15 @@
     <Content Include="Content\message-templates\not-reach-goal-buyer-template.html" />
     <Content Include="Content\message-templates\not-reach-goal-seller-template.html" />
     <Content Include="Content\message-templates\order-is-printing-buyer-template.html" />
+    <Content Include="Content\message-templates\paid-campaign-template.html" />
+    <Content Include="Content\message-templates\partially-paid-campaign-template.html" />
     <Content Include="Content\message-templates\place-order-template.html" />
     <Content Include="Content\message-templates\relaunch-template.html" />
     <Content Include="Content\message-templates\seller-template.html" />
     <Content Include="Content\message-templates\shipped-order-template.html" />
+    <Content Include="Content\message-templates\unpaid-campaign-template.html" />
     <Content Include="Content\message-templates\welcome-template.html" />
+    <Content Include="Content\message-templates\withdraw-template.html" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\uploads\readme.txt" />
     <Content Include="Content\vector\Aces.png" />

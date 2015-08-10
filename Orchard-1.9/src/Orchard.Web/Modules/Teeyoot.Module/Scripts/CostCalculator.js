@@ -10,7 +10,7 @@
         app.state.currentProduct.Price = window.sellingPrice;
     }
 
-    document.getElementById("price_preview").innerText = "RM " + res.toFixed(2);
+    document.getElementById("price_preview").innerHTML = "RM " + res.toFixed(2);
     app.state.currentProduct.BaseCost = window.nowPrice;
 
     var changes = parseFloat(app.state.currentProduct.Price) - window.nowPrice;

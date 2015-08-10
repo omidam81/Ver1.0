@@ -97,9 +97,15 @@
 
 @using (Script.Foot())
 {
-
+    <script>
+        $("#name").keyup(function () {
+            var name = document.getElementById("name").value;
+            name = name.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
+            var url = document.getElementById("url").value = name;
+        });
+    </script>
     <script type="text/javascript">
-        var maxDesignColors = 11;
+        var maxDesignColors = 10;
 
         history.pushState(null, null, 'GetStarted');
         window.addEventListener('popstate', function (event) {
@@ -276,6 +282,14 @@
         window.backColor = parseInt("0"); // Переменная для отображения цветов из зади на футюолке
         calculatePrice(window.frontColor, window.backColor);
 
+        $("#backdefaultside").click(function(){           
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+
+                isFront3 = !isFront3;
+                $("#card3").flip(!isFront3);            
+        });
     </script>
 
     <script>
@@ -1015,7 +1029,7 @@
                             </div>
 
                             <div class="trackBarValue_box">
-                                <div class="block">Number of shirts:</div><input onchange="onChangeValueForTrackBar()" id="trackBarValue" value="250">
+                                <div class="block">Number of shirts:</div><input id="trackBarValue" value="250">
                             </div>
 
                             <!--<table>
