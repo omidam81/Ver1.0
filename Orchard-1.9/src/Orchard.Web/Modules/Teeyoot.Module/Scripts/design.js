@@ -2093,12 +2093,14 @@ var design={
             var top;
             var box;
             var left;
+            var item;
             if ($item[0] == null)
             {
                 item = document.getElementById('item-0');
-                box = item.getBoundingClientRect();
+                //box = item.getBoundingClientRect();
                 top = item.offsetTop;
                 left = item.offsetLeft;
+                return { top: top, left: left, width: item.offsetWidth, height: item.offsetHeight };
                 
             }
             else
@@ -2107,9 +2109,10 @@ var design={
                 box = $item[0].getBoundingClientRect();
                 top = box.top + scrollTop - clientTop - parentBox.top;
                 left = scrollLeft - clientLeft + box.left - parentBox.left;
+                return { top: top, left: left, width: box.width, height: box.height };
             }
 
-            return {top: top, left:left, width:box.width, height:box.height};
+            //return {top: top, left:left, width:box.width, height:box.height};
         },
         placeSizeBox:function($item, $sizeBox, keep){
             $item = $($item);
