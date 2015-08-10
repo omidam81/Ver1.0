@@ -98,12 +98,15 @@ namespace Teeyoot.Dashboard.Controllers
 
             foreach (var item in campaignSummaries)
             {
-                item.FirstProductId = campaignProducts.First(p => p.CampaignRecord_Id == item.Id).Id;
+                var prods = campaignProducts.FirstOrDefault(p => p.CampaignRecord_Id == item.Id);
+                item.FirstProductId = prods != null ? prods.Id : 0;
                 item.Profit = orderedProducts
                                     .Where(p => p.OrderRecord.IsActive && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
                                     .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
                                     .Sum(entry => (int?)entry.Profit) ?? 0;
             }
+
+            campaignSummaries = campaignSummaries.Where(c => c.FirstProductId > 0).ToArray();
 
             model.Campaigns = campaignSummaries;
         }
