@@ -1194,10 +1194,13 @@ var design={
 				$item.click(function(){
                     $('#products-list li').removeClass('active');
                     $(this).addClass('active');
-                    me.changeDesign(product);
-                    app.state.currentProduct.ProductId = parseInt(product.id);
-                    
+                    me.changeDesign(product);                   
+                    app.state.currentProduct.ProductId = parseInt(product.id);                   
                     $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
+                    if (design.item.get().length == 0) { } else {
+                        design.item.checkBorders(design.item.get());
+                    };
+                    
                 } );
                 var html = '<p class="item-name">'+product.name+'</p><div class="item-overview">'+
                     '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="' + assetsUrls.products + 'product_type_' + product.id + '_front_small.png"></div>' +
@@ -2081,10 +2084,26 @@ var design={
             var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
             var clientTop = docElem.clientTop || body.clientTop || 0;
             var clientLeft = docElem.clientLeft || body.clientLeft || 0;
-            var parentBox = $item.parents(':first').offset();
-            var box = $item[0].getBoundingClientRect();
-            var top = box.top +  scrollTop - clientTop -parentBox.top;
-            var left =  scrollLeft - clientLeft +box.left - parentBox.left;
+            var parentBox;
+            var top;
+            var box;
+            var left;
+            if ($item[0] == null)
+            {
+                item = document.getElementById('item-0');
+                box = item.getBoundingClientRect();
+                top = item.offsetTop;
+                left = item.offsetLeft;
+                
+            }
+            else
+            {
+                parentBox = $item.parents(':first').offset();
+                box = $item[0].getBoundingClientRect();
+                top = box.top + scrollTop - clientTop - parentBox.top;
+                left = scrollLeft - clientLeft + box.left - parentBox.left;
+            }
+
             return {top: top, left:left, width:box.width, height:box.height};
         },
         placeSizeBox:function($item, $sizeBox, keep){
@@ -3641,6 +3660,9 @@ $(document).ready(function () {
 		
 	});
 	$('.number').mousedown(function (e) {
+	    design.item.unselect();
+	});
+	$('#nextPage').mousedown(function (e) {
 	    design.item.unselect();
 	});
     	$('.drag-item').click(function () { alert(23); });

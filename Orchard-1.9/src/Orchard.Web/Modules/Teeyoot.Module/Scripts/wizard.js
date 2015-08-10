@@ -664,7 +664,7 @@ function onChangeTrackBar() {
     //$("#mainH4").innerHTML = chenges.toFixed(2);
     document.getElementById("base-cost-for-first-product").innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
     window.nowPrice = app.state.currentProduct.BaseCost;
-    updateMinimum(changes);
+    updateMinimum(changes.toFixed(2));
     //profitSale();
 
     if (window.nowPrice < window.sellingPrice) {
@@ -693,7 +693,7 @@ function onChangeValueForTrackBar() {
     //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
     document.getElementById("base-cost-for-first-product").innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
     window.nowPrice = app.state.currentProduct.BaseCost;
-    updateMinimum(changes);
+    updateMinimum(changes.toFixed(2));
 
     if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {
