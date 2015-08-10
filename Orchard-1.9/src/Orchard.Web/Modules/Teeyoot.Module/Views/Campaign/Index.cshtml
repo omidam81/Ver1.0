@@ -41,9 +41,9 @@
     var pinterestBtn = document.getElementsByClassName("btn--pinterest");
     for (var k = 0; k < pinterestBtn.length; k++) {
         if (firstBack == "True") {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
         } else {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
         }
     }
     var facebookBtn = document.getElementsByClassName("btn--facebook");
