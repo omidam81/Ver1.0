@@ -1157,6 +1157,11 @@ input[type=range] {
     .button-next-page {
         width: 100%;
     }
+
+    div.new-editor-container {
+        left: 50%;
+        margin-left: -265px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1168,6 +1173,15 @@ input[type=range] {
     #designer .nav-tabs,
     #designer .tab-content {
         width: auto;
+    }
+
+    #designs_edit .nav-tabs>li {
+        float: none;
+        width: 100%;
+    }
+
+    #designs_edit .nav-tabs>li > a {
+        margin-right: 0;
     }
 
     .tab-content .edit_tool > label {
@@ -1192,6 +1206,31 @@ input[type=range] {
     .Slides .Content {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .color-picker .containertip {
+        left: auto;
+        top: 100%;
+        right: 0;
+    }
+
+        .color-picker .containertip:before {
+            display: none;
+        }
+
+    #designs_edit div.design-art-search {
+        left: 50%;
+        width: 300px;
+        margin-left: -150px;
+    }
+
+    #designs_edit div.design-art-search:before {
+        content: none;
+        display: none;
+    }
+
+    #designer div.design-art-search .button--primary {
+        margin: 0 !important;
     }
 }
 
@@ -1248,16 +1287,6 @@ input[type=range] {
     .Content .tipping-point-slider__point:nth-child(6) {
         margin-left: 97.9%;
     }
-
-    .color-picker .containertip {
-        left: auto;
-        top: 100%;
-        right: 0;
-    }
-
-        .color-picker .containertip:before {
-            display: none;
-        }
 }
 
 @media screen and (max-width: 560px) {

@@ -306,6 +306,17 @@ window.onload = function initWizard() {
         app.state.products.push(prdc);
         estimatedProfitChangeForManuProducts();
     });
+
+    // Изменение количества в инпуте #trackBarValue
+
+    $("#trackBarValue").on({
+        change: onChangeValueForTrackBar,
+        keydown: function (e) {
+            if (e.which == 13) {
+                onChangeValueForTrackBar();
+            }
+        }
+    });
 }
 
 function setDesign() {
