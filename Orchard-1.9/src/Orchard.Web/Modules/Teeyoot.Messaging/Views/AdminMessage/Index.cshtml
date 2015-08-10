@@ -28,7 +28,7 @@
         }
         if (Model.ApiKey != null)
         {
-            <div style="width:80%; margin-top:20px; margin-left:10%; margin-left:10%">
+            <div style="width:100%; margin-top:20px;">
                 <div style="width:100%; height:40px; font-size:15px; font-weight:500; display:flex; ">
                     <div style="width:25%;  text-align:center;padding-top:10px ">Api Key</div>
                     <div style="width:25%; border: 1px solid #eaeaea;text-align:center;padding-top:10px ">@Model.ApiKey</div>
@@ -42,7 +42,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -55,7 +55,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "welcome-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -68,7 +68,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "relaunch-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -81,7 +81,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "launch-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -94,7 +94,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "withdraw-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button  primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -107,7 +107,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "place-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -120,7 +120,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-promo-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -133,7 +133,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "unpaid-campaign-template-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -146,7 +146,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "partially-paid-campaign-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -159,7 +159,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "paid-campaign-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -172,7 +172,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "not-reach-goal-buyer-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -185,7 +185,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "not-reach-goal-seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -198,7 +198,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "delivered-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -211,7 +211,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "shipped-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -224,7 +224,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "cancelled-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -237,7 +237,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "order-is-printing-buyer-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
@@ -250,7 +250,7 @@
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-is-printing-seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <input style="margin-left:55px" type="file" name="file" id="name" />
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="Upload File">
                     }
                     <div>
