@@ -167,9 +167,9 @@
             var alias = document.getElementById('url').value.trim();
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tagsElems = document.querySelectorAll(".item");
-            var tags = "";
+            var tags = [];
             for (var i = 0; i < tagsElems.length; i++) {
-                tags = tags + " " + tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1);
+                tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
             }
             //var isForCharity = document.getElementById('is_for_charity').checked;
             $.ajax({
