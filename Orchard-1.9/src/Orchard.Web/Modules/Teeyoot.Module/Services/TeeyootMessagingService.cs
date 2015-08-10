@@ -336,9 +336,10 @@ namespace Teeyoot.Messaging.Services
 
         private void FillCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
         {
-
+            var request = HttpContext.Current.Request;
             var campaign = _campaignRepository.Get(campaignId);
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
+            message.AddRcptMergeVars(email, "Url", request.Url.Scheme+"://"+request.Url.Authority+request.ApplicationPath.TrimEnd('/')+"/");
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
             message.AddRcptMergeVars(email, "ReservedCount", campaign.ProductCountSold.ToString());
             message.AddRcptMergeVars(email, "Goal", campaign.ProductCountGoal.ToString());
