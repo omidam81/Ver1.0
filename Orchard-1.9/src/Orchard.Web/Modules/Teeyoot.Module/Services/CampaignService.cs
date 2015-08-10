@@ -151,32 +151,35 @@ namespace Teeyoot.Module.Services
                 };
                 _campaignRepository.Create(newCampaign);
 
-                foreach (var tag in data.Tags)
+                if (data.Tags != null)
                 {
-                    if (_campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault() != null)
+                    foreach (var tag in data.Tags)
                     {
-                        var cat = _campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault();
-                        var link = new LinkCampaignAndCategoriesRecord
+                        if (_campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault() != null)
                         {
-                            CampaignRecord = newCampaign,
-                            CampaignCategoriesPartRecord = cat
-                        };
-                        _linkCampaignAndCategories.Create(link);
-                    }
-                    else
-                    {
-                        var cat = new CampaignCategoriesRecord
+                            var cat = _campaignCategories.Table.Where(c => c.Name.ToLower() == tag).FirstOrDefault();
+                            var link = new LinkCampaignAndCategoriesRecord
+                            {
+                                CampaignRecord = newCampaign,
+                                CampaignCategoriesPartRecord = cat
+                            };
+                            _linkCampaignAndCategories.Create(link);
+                        }
+                        else
                         {
-                            Name = tag,
-                            IsVisible = false
-                        };
-                        _campaignCategories.Create(cat);
-                        var link = new LinkCampaignAndCategoriesRecord
-                        {
-                            CampaignRecord = newCampaign,
-                            CampaignCategoriesPartRecord = cat
-                        };
-                        _linkCampaignAndCategories.Create(link);
+                            var cat = new CampaignCategoriesRecord
+                            {
+                                Name = tag,
+                                IsVisible = false
+                            };
+                            _campaignCategories.Create(cat);
+                            var link = new LinkCampaignAndCategoriesRecord
+                            {
+                                CampaignRecord = newCampaign,
+                                CampaignCategoriesPartRecord = cat
+                            };
+                            _linkCampaignAndCategories.Create(link);
+                        }
                     }
                 }
 
