@@ -12,6 +12,7 @@
     Style.Include("track.css");
     Style.Include("login-modal.css");
     Style.Include("price.css");
+    Style.Include("selectize.css");
 
     Script.Require("jQueryUI");
     Script.Include("bootstrap.min.js");
@@ -44,6 +45,9 @@
     Script.Include("bootstrap-wysihtml5.js");
 
     Script.Include("CostCalculator.js");
+
+
+    Script.Include("selectize.js");
 }
 @using (Script.Head())
 {
@@ -127,36 +131,7 @@
     </script>
     <script type="text/javascript">
 
-        var items = function(request, response) {
-            var result = new Array();
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "GET",
-                url: "@(Url.Action("GetDetailTags", "Wizard"))",
-                data: { "filter": document.getElementById("inputTags").value },
-                success: function(data) {
-                    for (var i = 0; i < data.length; i++) {
-                        result[i] = data[i];
-                    }
-                },
-            });
-            response(result);
 
-        };
-
-
-        $("#inputTags").autocomplete({
-            minLength: 0,
-            source: items,
-            select: function(event, ui) {
-                var data = document.getElementById("inputTags").value;
-                var count = data.lastIndexOf(' ');
-                var str = data.substring(0, parseInt(count) + 1);
-                var new_str = str + ui.item.value;
-                ui.item.value = new_str;
-            },
-        })
 
 
         $('.textarea').wysihtml5();
@@ -191,7 +166,11 @@
             var campaignLength = document.getElementById('length').value;
             var alias = document.getElementById('url').value.trim();
             var backSideByDefault = document.getElementById('backdefaultside').checked;
-            var tags = document.getElementById("inputTags").value.split(" ");
+            var tagsElems = document.querySelectorAll(".item");
+            var tags = "";
+            for (var i = 0; i < tagsElems.length; i++) {
+                tags = tags + " " + tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1);
+            }
             //var isForCharity = document.getElementById('is_for_charity').checked;
             $.ajax({
                 async: false,
@@ -480,6 +459,55 @@
 
                 return true;
             });
+
+
+
+
+         
+            var result = new Array();
+            function res(request, response) {
+      
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.Action("GetDetailTags", "Wizard"))",
+                    data: { "filter": document.getElementById("inputTags").value },
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            result[i] = data[i];
+                            console.log(result[i]);
+
+                        }
+                    }, 
+                    error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
+                  
+                });
+
+            }
+            res();
+
+            var rest = [];
+
+
+            $('#inputTags').selectize({
+                plugins: ['remove_button'],
+                delimiter: ',',
+                persist: false,
+                valueField: 'name',
+                labelField: 'name',
+                searchField: ['name'],
+                create: function(input) {
+                    return {
+                        name: input
+                    }
+                },
+                options: result,
+            });
+
+
 
             $('#create_account_form').submit(function() {
                 var busy = $(this).data('busy');
@@ -1255,7 +1283,8 @@
                                                                         <span>Enter up to 6 words to describe your campaign so buyers can find it</span>
                                                                     </label>
                                                                 </p>
-                                                                <input type="text" name="name" class="form__textfield " id="inputTags" value="">
+                                                              @*  <input type="text" name="name" class="form__textfield " id="inputTags" value="">*@
+                                                                <div id="inputTags"></div>
                                                             </div>
 
                                                             <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
