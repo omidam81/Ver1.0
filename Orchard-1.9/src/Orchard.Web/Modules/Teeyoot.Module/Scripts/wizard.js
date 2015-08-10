@@ -484,20 +484,20 @@ function initProducts() {
 function profitSale() {
     var $val = document.getElementById("profSale").value;
     var selPrice = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
-    var $price = (selPrice - window.nowPrice).toFixed(2);
+    var price = (selPrice - window.nowPrice).toFixed(2);
     
 
     if(selPrice < window.nowPrice){
         //$("#mainH4").html("RM " + window.nowPrice + " minimum");
         //$("#mainH4").css('color', '#ff0000');
-        updateMinimum($price);
+        updateMinimum(price);
         app.state.currentProduct.Price = window.nowPrice;
         window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
         //$("#mainH4").html($price);
         //$("#mainH4").css('color', '#ff4f00');
-        updateMinimum($price);
+        updateMinimum(price);
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
         if (app.state.products.length > 1) {

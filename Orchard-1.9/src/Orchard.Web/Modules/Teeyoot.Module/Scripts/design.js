@@ -1108,7 +1108,7 @@ var design={
             var selector = '.zoom-'+(!isDarkText?'light':'dark')+'-'+(isZoomed?'out':'in');
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
-            $('.design-area').css('border-color', newColor);
+            $('.design-area').css('border-color', newColor + " !important");
         },
 		changeDesign: function(product){
             app.state.product = product;
