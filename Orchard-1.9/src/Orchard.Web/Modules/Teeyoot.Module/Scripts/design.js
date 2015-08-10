@@ -1197,7 +1197,12 @@ var design={
                     me.changeDesign(product);                   
                     app.state.currentProduct.ProductId = parseInt(product.id);                   
                     $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
-                    if (design.item.get().length == 0) { } else {
+                    if (design.item.get().length == 0) {
+                        var elem = document.getElementById('item-0');
+                        if (elem != null) {
+                            design.item.checkBorders(design.item.get());
+                        }
+                    } else {
                         design.item.checkBorders(design.item.get());
                     };
                     
@@ -2088,12 +2093,14 @@ var design={
             var top;
             var box;
             var left;
+            var item;
             if ($item[0] == null)
             {
                 item = document.getElementById('item-0');
-                box = item.getBoundingClientRect();
+                //box = item.getBoundingClientRect();
                 top = item.offsetTop;
                 left = item.offsetLeft;
+                return { top: top, left: left, width: item.offsetWidth, height: item.offsetHeight };
                 
             }
             else
@@ -2102,9 +2109,10 @@ var design={
                 box = $item[0].getBoundingClientRect();
                 top = box.top + scrollTop - clientTop - parentBox.top;
                 left = scrollLeft - clientLeft + box.left - parentBox.left;
+                return { top: top, left: left, width: box.width, height: box.height };
             }
 
-            return {top: top, left:left, width:box.width, height:box.height};
+            //return {top: top, left:left, width:box.width, height:box.height};
         },
         placeSizeBox:function($item, $sizeBox, keep){
             $item = $($item);
