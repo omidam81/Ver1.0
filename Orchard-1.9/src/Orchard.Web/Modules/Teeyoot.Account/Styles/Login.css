@@ -211,8 +211,16 @@
 
 .recover-title {
     font-size: 20px;
+    margin-left: 20px!important;
 }
-
+.input-email input{
+    margin-left: 5px!important;
+}
+.password h4,
+.btn-recover,
+.input-paswd input{
+     margin-left: 20px!important;
+}
 .btn-recover {
     background: #ff4f00;
     font-size: 16px;
@@ -294,11 +302,11 @@
     }
 
     .password input {
-        width: 90%;
+        width: 87%;
     }
 
     .btn-recover {
-        width: 92%;
+        width: 91%;
     }
 }
 
