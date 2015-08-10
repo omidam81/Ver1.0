@@ -96,7 +96,13 @@
 
 @using (Script.Foot())
 {
-
+    <script>
+        $("#name").keyup(function () {
+            var name = document.getElementById("name").value;
+            name = name.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
+            var url = document.getElementById("url").value = name;
+        });
+    </script>
     <script type="text/javascript">
         var maxDesignColors = 10;
 
@@ -275,6 +281,14 @@
         window.backColor = parseInt("0"); // Переменная для отображения цветов из зади на футюолке
         calculatePrice(window.frontColor, window.backColor);
 
+        $("#backdefaultside").click(function(){           
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+
+                isFront3 = !isFront3;
+                $("#card3").flip(!isFront3);            
+        });
     </script>
 
     <script>
