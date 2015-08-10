@@ -7,6 +7,8 @@ app.state.currentProduct = {
     CurrencyId:1
 
 };
+var wasMouseUp = false;
+var isResizing = false;
 var design={
 	zIndex: 1,
 	design_id: null,
@@ -1109,6 +1111,7 @@ var design={
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
             $('.design-area').css('border-color', newColor + " !important");
+            
         },
 		changeDesign: function(product){
             app.state.product = product;
@@ -1144,9 +1147,11 @@ var design={
                         function() {
                             $('.product-design img').stop().animate({backgroundColor: color.value}, aniSpeed);
                             me.setDesignAreaContrastColor(color);
+                            design.item.checkBorders(design.item.get());
                         }, function() {
                             $('.product-design img').stop().animate({backgroundColor: app.state.color.value},aniSpeed);
                             me.setDesignAreaContrastColor(app.state.color);
+                            design.item.checkBorders(design.item.get());
                         });
                 list_color.append($color);
             });
@@ -2605,6 +2610,7 @@ var design={
                 e.data('ratio', width/height);
             }
             this.placeSizeBox(e, null, keep);
+            isResizing = true;
         },
         resize: function (e, handles, keep) {
             var $e = $(e);
@@ -2656,6 +2662,7 @@ var design={
 					me.resizeTo(e, $width, $height, false, false);
 				}
 			});
+			
 		},
 		rotate: function(e, angle){
             var me = this;
@@ -3597,6 +3604,10 @@ var design={
 	}
 };
 
+$('#design-area').mouseup(function (e) {
+    wasMouseUp = !wasMouseUp;
+});
+
 $(document).ready(function () {
     $('.max-colors-count').html(maxDesignColors);
 	design.ini();
@@ -3604,19 +3615,28 @@ $(document).ready(function () {
 		var topCurso=!document.all ? e.clientY: event.clientY;
 		var leftCurso=!document.all ? e.clientX: event.clientX;
         var view = app.state.getView();
-		var mouseDownAt = document.elementFromPoint(leftCurso,topCurso);
-		if( mouseDownAt.parentNode.className == 'product-design'
-			|| mouseDownAt.parentNode.className == 'div-design-area'			
-			|| mouseDownAt.parentNode.className == '#view'+view
-			|| mouseDownAt.parentNode.className == 'content-inner'
-            || mouseDownAt.parentNode.className == 'front labView')
-		{
-			design.item.unselect(); 
-            $('#enter-text').val('');
-			e.preventDefault();
-			$('.drag-item').click(function(){design.item.select(this)});
-		}
+        var mouseDownAt = document.elementFromPoint(leftCurso, topCurso);
+        if (isResizing && wasMouseUp) {
+            wasMouseUp = false;
+            isResizing = false;
+        } else {
+            if (mouseDownAt.parentNode.className == 'product-design'
+                        || mouseDownAt.parentNode.className == 'div-design-area'
+                        || mouseDownAt.parentNode.className == '#view' + view
+                        || mouseDownAt.parentNode.className == 'content-inner'
+                        || mouseDownAt.parentNode.className == 'front labView') {
+                design.item.unselect();
+                $('#enter-text').val('');
+                e.preventDefault();
+                $('.drag-item').click(function () { design.item.select(this) });
+            }
+            
+        }
+        
+		
 	});
 	
+
+
 	$('.drag-item').click(function () { alert(23); });
 });
