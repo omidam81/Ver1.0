@@ -15,7 +15,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="627" />
     <meta property="og:description" content="@Model.Campaign.Description" />
-    <meta property="og:url" content="http://teebay.bqt.me/@Model.Campaign.Alias" />
+    <meta property="og:url" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias" />
 
     <meta name="twitter:domain" content="Teeyoot.com">
     <meta name="twitter:card" content="photo">
@@ -36,19 +36,19 @@
 
     var twitterBtn = document.getElementsByClassName("btn--twitter");
     for (var k = 0; k < twitterBtn.length; k++) {
-        $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via http://teebay.bqt.me/@Model.Campaign.Alias");
+        $(twitterBtn[k]).attr("href", "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title available to @Model.Campaign.EndDate.ToLocalTime() via @Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias");
     }
     var pinterestBtn = document.getElementsByClassName("btn--pinterest");
     for (var k = 0; k < pinterestBtn.length; k++) {
         if (firstBack == "True") {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
         } else {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url= http://teebay.bqt.me/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=http://teebay.bqt.me/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;description=@Model.Campaign.Description;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
         }
     }
     var facebookBtn = document.getElementsByClassName("btn--facebook");
     for (var k = 0; k < facebookBtn.length; k++) {
-        $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=http://teebay.bqt.me/@Model.Campaign.Alias");
+        $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias");
     }
 
     $(".product__size_chart_link--show").click(function () {
@@ -185,66 +185,66 @@
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
                 } else {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
-                    }
                 }
-            });
-            $('#card3 .flip-button:not(.flip-button-active)').on('click', function(){
-                isFront3 = !isFront3;
-                $("#card3").flip(!isFront3);
-                if (firstBack == "True") {
-                    if (isFront) {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-                    } else {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
-                    }
+            }
+        });
+        $('#card3 .flip-button:not(.flip-button-active)').on('click', function () {
+            isFront3 = !isFront3;
+            $("#card3").flip(!isFront3);
+            if (firstBack == "True") {
+                if (isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    if (!isFront) {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
-                    } else {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
-                    }
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
                 }
-            });
-
+            } else {
+                if (!isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                }
+            }
         });
 
+    });
 
-        function Resrve() {
-            var rowHtml = document.getElementById('first-line-item').innerHTML;
-            var newRow = document.createElement('tr');
-            $(newRow)
-                .addClass('precheckout_items_table__row')
-                .attr('id', 'js-precheckout-line-item-' + i)
-                .html(rowHtml)
-                .appendTo($("#order_item_list_modal"))
-            i = i + 1;
-            VisibleRemove();
-            document.getElementById("reserve-it-now").className = "dg-overlay";
 
+    function Resrve() {
+        var rowHtml = document.getElementById('first-line-item').innerHTML;
+        var newRow = document.createElement('tr');
+        $(newRow)
+            .addClass('precheckout_items_table__row')
+            .attr('id', 'js-precheckout-line-item-' + i)
+            .html(rowHtml)
+            .appendTo($("#order_item_list_modal"))
+        i = i + 1;
+        VisibleRemove();
+        document.getElementById("reserve-it-now").className = "dg-overlay";
+
+    }
+
+    function CloseReservation() {
+        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+        var el = document.getElementsByClassName("precheckout_items_table__row");
+        var length = el.length;
+        for (var i = 0; i < length; i++) {
+            el[0].parentNode.removeChild(el[0]);
         }
 
-        function CloseReservation() {
-            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-            var el = document.getElementsByClassName("precheckout_items_table__row");
-            var length = el.length;
-            for (var i = 0; i < length; i++) {
-                el[0].parentNode.removeChild(el[0]);
-            }
+        VisibleRemove();
+    }
 
-            VisibleRemove();
+    function ChangeProduct(item) {
+        var id = item[item.selectedIndex].id;
+        if (!isFront) {
+            isFront = !isFront;
+            console.log(isFront);
+            $("#card").flip(!isFront);
         }
+        var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
 
-        function ChangeProduct(item) {
-            var id = item[item.selectedIndex].id;
-            if (!isFront) {
-                isFront = !isFront;
-                console.log(isFront);
-                $("#card").flip(!isFront);
-            }
-            var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
-
-            if (firstBack == "True") {
-                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+        if (firstBack == "True") {
+            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
             $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
@@ -473,7 +473,7 @@
             CDT();
         }
     }
-    </script>
+</script>
 }
 
 @*Локализацию!!!!! Обвернуть всё в T()*@
