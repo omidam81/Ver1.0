@@ -201,13 +201,7 @@
                 },
                 error: function(data, status, resp) {
                     if (data.status === 403) {
-                        $('#overlay').fadeIn(400, function() {
-                            $('.auth-window').hide();
-                            $('#login_selection').show();
-                            $('#modal_auth')
-                                .css('display', 'block')
-                                .animate({ opacity: 1, top: '50%' }, 200);
-                        });
+                        showAuthModal();
                         return;
                     }
                     $('#name').removeClass('wizard-error');
@@ -309,6 +303,7 @@
                         sendData();
                         return;
                     }
+                    showAuthModal(data.Message);
                 }
             });
         };
@@ -343,6 +338,7 @@
                         sendData();
                         return;
                     }
+                    showAuthModal(data.Message);
                 }
             });
         };
@@ -372,6 +368,23 @@
         function fbGetLoginStatus() {
             FB.getLoginStatus(function(response) {
                 fbGetLoginStatusCallback(response);
+            });
+        };
+
+        function showAuthModal(socialLoginFailMessage) {
+            if (socialLoginFailMessage !== undefined) {
+                $('#social_login_failed').text(socialLoginFailMessage);
+                $('#social_login_failed').show();
+            } else {
+                $('#social_login_failed').hide();
+            }
+
+            $('#overlay').fadeIn(400, function() {
+                $('.auth-window').hide();
+                $('#login_selection').show();
+                $('#modal_auth')
+                    .css('display', 'block')
+                    .animate({ opacity: 1, top: '50%' }, 200);
             });
         };
 
@@ -1726,9 +1739,9 @@
         </div>
     </div>
 
-    <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+<input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
 
-  <div class="modal-dialog modal fade modal-login" id="modal_auth">
+<div class="modal-dialog modal fade modal-login" id="modal_auth">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close login_modal_close" data-dismiss="modal" aria-label="Close">&times;</button>
@@ -1736,25 +1749,36 @@
         <div class="modal-body">
             <div id="login_selection" class="auth-window">
                 <h2 class="modal-title">@T("How would you like to login?")</h2>
-                <p> <small>@T("You can") <a href="javascript:;" class="login-with-teeyoot">@T("login with Teeyoot")</a> @T("or use any of the sites below:")</small></p>
+                <h3 id="social_login_failed" style="display: none; color: red;"></h3>
+                <p>
+                    <small>
+                        @T("You can") <a href="javascript:;" class="login-with-teeyoot">@T("login with Teeyoot")</a> @T("or use any of the sites below:")
+                    </small>
+                </p>
                 <div>
                     <ul class="modal-list">
                         <li>
                             <a href="javascript:;" class="login-with-teeyoot">
                                 <p>@T("login with")</p>
-                                <p><img src="/Media/Default/images/icon_teeyoot.png" alt="Teeyoot"></p>
+                                <p>
+                                    <img src="/Media/Default/images/icon_teeyoot.png" alt="Teeyoot">
+                                </p>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" id="login_with_facebook">
                                 <p>@T("login with")</p>
-                                <p><img src="/Media/Default/images/facebook.png" alt="Facebook"></p>
+                                <p>
+                                    <img src="/Media/Default/images/facebook.png" alt="Facebook">
+                                </p>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;" id="login_with_google">
                                 <p>@T("login with")</p>
-                                <p><img src="/Media/Default/images/google.png" alt="Google"></p>
+                                <p>
+                                    <img src="/Media/Default/images/google.png" alt="Google">
+                                </p>
                             </a>
                         </li>
                     </ul><br /><br /><br />
@@ -1785,7 +1809,7 @@
                     <fieldset>
                         <input type="text" class="email" placeholder="@T("Email")" />
                         <br />
-                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 6 characters.")" />
+                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 7 characters.")" />
                         <br />
                         <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
                         <br />
@@ -1801,4 +1825,4 @@
     </div>
 </div>
 
-    <div id="overlay"></div>
+<div id="overlay"></div>
