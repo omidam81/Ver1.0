@@ -216,8 +216,7 @@
 .btn-recover {
     background: #ff4f00;
     font-size: 16px;
-    width: 31%;
-    margin-left: 12px;
+    width: 31%;   
     font-weight: normal;
     border-radius: 5px;
     display: inline-block;
@@ -309,4 +308,8 @@
 
 #RememberMe{
         margin-top: 7px!important;
+}
+
+.tb-btn-recover{
+    margin-top:0;
 }
