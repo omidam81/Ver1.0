@@ -98,6 +98,18 @@
 @using (Script.Foot())
 {
     <script>
+        $("#name").keydown(function () {
+            $("#name").removeClass('wizard-error');
+            $("#name_error-text").attr("style","display: none;");
+            $("#url").removeClass('wizard-error');
+            $("#url_error-text").attr("style","display: none;"); 
+        });
+
+        $("#url").keydown(function () {
+            $("#url").removeClass('wizard-error');
+            $("#url_error-text").attr("style","display: none;");          
+        });
+
         $("#name").keyup(function () {
             var name = document.getElementById("name").value;
             name = name.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");

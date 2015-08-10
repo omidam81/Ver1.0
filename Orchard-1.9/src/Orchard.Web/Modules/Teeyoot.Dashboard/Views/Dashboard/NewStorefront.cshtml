@@ -102,8 +102,9 @@
             var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;            
         });
 
-        $("#title").change(function () {
+        $("#title").keyup(function () {
             var title = document.getElementById("title").value;
+            title = title.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             var url = document.getElementById("Url_store").value = title;
         });
         
@@ -152,6 +153,7 @@
             var countCheckedCheckboxes = $(boxes).filter(':checked').length;
             var title = document.getElementById("title").value;
             var url = document.getElementById("Url_store").value;
+            url = url.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             
             if ( title == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];

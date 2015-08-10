@@ -356,7 +356,7 @@ var design={
 			}
 			design.mask(true);
 			design.ajax.active = 'back';
-			design.svg.items('front', design.ajax.save);
+			design.svg.items('front', design.ajax.save); //этот метод рендерит фронт и бек. В нем где-то косячит, если решим править Blur - то это сюда же, рендерить в больших размерах
 		},
 		active: 'back',
 		save: function(){
@@ -2533,7 +2533,7 @@ var design={
             if($left < 0 || $top < 0 || ($left+$width) > width || ($top+$height) > height){
                 e.data('block', true);
                 //set error border
-                design.products.setDesignAreaContrastColor('rgba(255, 0, 0, 0.298039)', true);
+                design.products.setDesignAreaContrastColor('rgba(255, 79, 0, 0.298039)', true);
             }else{
                 e.data('block', false);
                 var block = false;
@@ -2669,7 +2669,8 @@ var design={
 					if(deg < 0) deg = 360 + deg;
 					$('#' + e.data('type') + '-rotate-value').val(deg);
 					o.data('rotate', deg);
-                    me.placeSizeBox(e);
+					me.checkBorders(e);
+					me.placeSizeBox(e);
 
                 }
 			});	
@@ -3607,9 +3608,10 @@ $(document).ready(function () {
 		if( mouseDownAt.parentNode.className == 'product-design'
 			|| mouseDownAt.parentNode.className == 'div-design-area'			
 			|| mouseDownAt.parentNode.className == '#view'+view
-			|| mouseDownAt.parentNode.className == 'content-inner' )
+			|| mouseDownAt.parentNode.className == 'content-inner'
+            || mouseDownAt.parentNode.className == 'front labView')
 		{
-			design.item.unselect();
+			design.item.unselect(); 
             $('#enter-text').val('');
 			e.preventDefault();
 			$('.drag-item').click(function(){design.item.select(this)});

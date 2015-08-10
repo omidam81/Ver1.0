@@ -2176,10 +2176,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 26px;
 }
 
-.tb-search-form button {
-    height: 26px !important;
-}
-
 @media all and (min-width: 980px) {
     h1 {
         font-size: 2.4rem;
@@ -6266,10 +6262,6 @@ input {
     }
 }
 
-.tb-search-form input[type=text] {
-    height: 27px !important;
-}
-
 @media all and (max-width: 500px) {
     .menu-anonimous-menu {
         width: 60% !important;
@@ -6601,4 +6593,10 @@ td, tr {
     height: 100%;
     -webkit-transition: opacity .3s linear;
     transition: opacity .3s linear;
+}
+.tb-search-form input[type=text] {    
+    height:24px!important;
+}
+.tb-search-form button{
+height:24px!important;
 }

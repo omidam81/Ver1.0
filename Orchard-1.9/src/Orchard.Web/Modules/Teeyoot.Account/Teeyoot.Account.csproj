@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Social_OAuth_Credentials.txt" />
+    <Content Include="Social_OAuth_Credentials_Production.txt" />
     <Content Include="Styles\Login.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
