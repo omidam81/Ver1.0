@@ -1,11 +1,19 @@
 #designs_edit .nav-tabs>li{
     margin-left: -2px;
 }
-.lab-colors {
+.lab-colors-block {
     position: absolute;
-    width: 20px;
-    right: 240px;
+    right: 100%;
+    margin-right: 3px;
     top: 30px;
+    display: table;
+    z-index: 11;
+}
+.lab-colors-inner {
+    display: table-cell;
+    vertical-align: bottom;
+}
+.lab-colors {
     padding: 0;
     border: solid #ff4f00 1px;
     border-radius: 5px;
@@ -13,6 +21,7 @@
     width: 39px;
     right: 223px;
     background-color: #FCE5A1;
+    min-height: 93px;
 }
 .lab-colors li {
     border-radius: 50%;

@@ -431,7 +431,6 @@ function setDesign() {
     }
 }
 
-
 function initProducts() {
     var list = document.getElementById("item-options-dropdown-tees");
     var listProd = document.getElementById("product");
