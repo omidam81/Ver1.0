@@ -219,6 +219,8 @@
             var countCheckedCheckboxes = $(boxes).filter(':checked').length;
             var title = document.getElementById("title").value;
             var url = document.getElementById("Url").value;
+            url = url.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
+
             if (title == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
