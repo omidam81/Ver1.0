@@ -12,6 +12,6 @@
             }
         </span>
     } else {
-        <span class="user-actions">@Html.ActionLink(T("Sign In").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl) }, new { rel = "nofollow" })</span>
+        <span class="user-actions">@Html.ActionLink(T("Sign In").ToString(), "Index", new { Controller = "Account", Area = "Teeyoot.Account", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl) }, new { rel = "nofollow" })</span>
     }
 </div>
