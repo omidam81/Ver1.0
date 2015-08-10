@@ -2176,10 +2176,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 26px;
 }
 
-.tb-search-form button {
-    height: 26px !important;
-}
-
 @media all and (min-width: 980px) {
     h1 {
         font-size: 2.4rem;
@@ -6264,10 +6260,6 @@ input {
     to {
         opacity: 1;
     }
-}
-
-.tb-search-form input[type=text] {
-    height: 27px !important;
 }
 
 @media all and (max-width: 500px) {
