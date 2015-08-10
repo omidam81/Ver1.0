@@ -272,7 +272,7 @@ function updateMinimum(changes) {
         $("#base-cost-for-first-product").css('color', '#ff4f00');
         $("#base-cost-for-first-product-text").css('color', '#ff4f00');
         $("#base-cost-for-first-product").html(app.state.currentProduct.BaseCost.toFixed(2));
-        $("#mainH4").html(changes.toFixed(2));
+        $("#mainH4").html(changes);
         $("#mainH4").css('color', '#ff4f00');
         //if (app.state.products != null & app.state.products.length > 1) {
         //    estimatedProfitChangeForManuProducts()

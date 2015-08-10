@@ -482,7 +482,7 @@ function initProducts() {
 
 
 function profitSale() {
-    var $val = document.getElementById("profSale").value;
+    var $val = document.getElementById("profSale").value.replace(',', '.');
     var selPrice = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
     var price = (selPrice - window.nowPrice).toFixed(2);
     
