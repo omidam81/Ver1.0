@@ -1197,7 +1197,12 @@ var design={
                     me.changeDesign(product);                   
                     app.state.currentProduct.ProductId = parseInt(product.id);                   
                     $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
-                    if (design.item.get().length == 0) { } else {
+                    if (design.item.get().length == 0) {
+                        var elem = document.getElementById('item-0');
+                        if (elem != null) {
+                            design.item.checkBorders(design.item.get());
+                        }
+                    } else {
                         design.item.checkBorders(design.item.get());
                     };
                     
