@@ -83,7 +83,7 @@ namespace Teeyoot.Module.Controllers
             var googleSettingsPart = _orchardServices.WorkContext.CurrentSite.As<GoogleSettingsPart>();
             costViewModel.GoogleClientId = googleSettingsPart.ClientId;
 
-            costViewModel.GoogleApiKey = "AIzaSyCyvcCc6PJL62UNIoVbgsQcznyjpVhOzuo";
+            costViewModel.GoogleApiKey = "AIzaSyBijPOV5bUKPNRKTE8areEVNi81ji7sS1I";
 
             return View(costViewModel);
         }
