@@ -104,6 +104,7 @@
 
         $("#title").change(function () {
             var title = document.getElementById("title").value;
+            title = title.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             var url = document.getElementById("Url_store").value = title;
         });
         
