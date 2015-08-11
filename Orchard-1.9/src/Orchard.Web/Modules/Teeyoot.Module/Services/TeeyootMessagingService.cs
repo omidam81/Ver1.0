@@ -193,7 +193,7 @@ namespace Teeyoot.Messaging.Services
             {
                 emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
                 FillUserMergeVars(mandrillMessage, item.OrderRecord);
-                FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
+                FillSellerToBuyersProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, message.CampaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
             mandrillMessage.To = emails;
@@ -431,6 +431,24 @@ namespace Teeyoot.Messaging.Services
             }
             var arr = products.ToArray();
             message.AddRcptMergeVars(email, "PRODUCTS", products.ToArray());
+            message.AddRcptMergeVars(email, "orderPublicId", orderPublicId);
+        }
+
+        private void FillSellerToBuyersProductsMergeVars(MandrillMessage message, IList<LinkOrderCampaignProductRecord> orderedProducts, string pathToMedia, string email, string orderPublicId)
+        {
+            string products = "";
+            //List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
+            foreach (var item in orderedProducts)
+            {
+
+                int index = orderedProducts.IndexOf(item);
+                int idSize = item.ProductSizeRecord.Id;
+                float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
+                float price = (float)item.CampaignProductRecord.Price + costSize;
+                products += item.Count.ToString() + " x " + item.ProductSizeRecord.SizeCodeRecord.Name + " " + item.CampaignProductRecord.ProductRecord.Name + Environment.NewLine;                 
+
+            }
+            message.AddRcptMergeVars(email, "PRODUCTS", products);
             message.AddRcptMergeVars(email, "orderPublicId", orderPublicId);
         }
 
