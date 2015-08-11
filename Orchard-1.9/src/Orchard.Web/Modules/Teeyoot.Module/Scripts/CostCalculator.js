@@ -14,7 +14,7 @@
     app.state.currentProduct.BaseCost = window.nowPrice;
 
     var changes = parseFloat(app.state.currentProduct.Price) - window.nowPrice;
-    updateMinimum(changes);
+    updateMinimum(changes.toFixed(2));
 }
 
 function calculatePriceForNewProduct(frontColor, backColor, cost) {
