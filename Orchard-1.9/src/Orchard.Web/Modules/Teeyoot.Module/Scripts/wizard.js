@@ -516,8 +516,8 @@ function profitSale() {
         //$("#mainH4").html("RM " + window.nowPrice + " minimum");
         //$("#mainH4").css('color', '#ff0000');
         updateMinimum(price);
-        app.state.currentProduct.Price = window.nowPrice;
-        window.sellingPrice = app.state.currentProduct.Price;
+        app.state.currentProduct.Price = selPrice;
+        //window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
         //$("#mainH4").html($price);
