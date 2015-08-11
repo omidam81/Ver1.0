@@ -1,6 +1,6 @@
 ﻿.ssp-ssp-metadata-and-col-pick {
     width: 185px;
-    overflow: hidden;
+    float: left;
 }
 
 .h6Sale {
@@ -43,6 +43,9 @@
 
 .all-price-calculator {
     width: 310px;
+    overflow: hidden;
+    position: relative;
+    top: -4px;
 }
 
 .ssp_pricing_new {

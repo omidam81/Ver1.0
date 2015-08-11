@@ -152,6 +152,8 @@ ul, ol {
 }
 
 .Content .flip-buttons {
+    -webkit-transform: none;
+    -ms-transform: none;
     transform: none;
     margin-left: -61.5px;
 }
@@ -854,6 +856,7 @@ input[type=range] {
     width: 65px;
     font-size: 1.077em;
     margin-right: 10px;
+    line-height: 1;
 }
 
 @media all and (max-width: 1000px) {
@@ -1260,6 +1263,12 @@ input[type=range] {
 
     .ssp_delete {
         left: 140px;
+    }
+
+    .Content .all-price-calculator {
+        width: auto;
+        top: 0;
+        clear: both;
     }
 }
 
