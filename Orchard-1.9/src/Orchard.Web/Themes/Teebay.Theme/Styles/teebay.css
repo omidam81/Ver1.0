@@ -275,22 +275,24 @@
     /*max-width: 300px;*/
     width: 100%;
     /*padding-top: 3px;*/
+    min-width: 200px;
     height: 29px;
 }
 
     .tb-search-form button {
         cursor: pointer;
         background: #fff;
-        height: 26px;
+        height: 28px;
+        float: right;
         width: 30px;
-        margin: 0;
+        margin: 1px 4px 0 -30px;
         border-left-width: 0;
         border-width: 0;
         padding: 0px;
         border-radius: 0 10px 10px 0;
         text-align: right;
         vertical-align: middle;
-        margin-top: 1px;
+        /*margin-top: 1px;*/
     }
 
     .tb-search-form img {

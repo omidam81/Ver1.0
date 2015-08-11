@@ -156,6 +156,9 @@ ul, ol {
     -ms-transform: none;
     transform: none;
     margin-left: -61.5px;
+    bottom: auto;
+    top: 100%;
+    margin-top: -60px;
 }
 
 .Content .tipping-point-slider__point:nth-child(1) {
@@ -1184,6 +1187,10 @@ input[type=range] {
         left: 50%;
         margin-left: -265px;
     }
+
+    #Content1 .button-next-page {
+        padding-left: 42px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -1280,6 +1287,9 @@ input[type=range] {
     }
 
         .Slides .product-view div.new-editor-container {
+            -webkit-transform: scale(.8);
+            -moz-transform: scale(.8);
+            -ms-transform: scale(.8);
             transform: scale(.8);
             margin: -50px auto;
             left: 50%;
@@ -1287,6 +1297,9 @@ input[type=range] {
         }
 
     .slide-2__table #card {
+        -webkit-transform: scale(.8);
+        -moz-transform: scale(.8);
+        -ms-transform: scale(.8);
         transform: scale(.8);
         left: 50%;
         margin-left: -265px !important;
@@ -1331,6 +1344,9 @@ input[type=range] {
 
 @media screen and (max-width: 560px) {
     .Slides .product-view div.new-editor-container {
+        -webkit-transform: scale(.6);
+        -moz-transform: scale(.6);
+        -ms-transform: scale(.6);
         transform: scale(.6);
         margin-top: -80px;
         height: 520px;
@@ -1338,6 +1354,9 @@ input[type=range] {
     }
 
     .slide-2__table #card {
+        -webkit-transform: scale(.6);
+        -moz-transform: scale(.6);
+        -ms-transform: scale(.6);
         transform: scale(.6);
         margin-top: -125px !important;
         height: 500px;
