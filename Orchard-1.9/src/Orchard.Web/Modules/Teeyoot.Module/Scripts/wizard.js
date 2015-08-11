@@ -435,6 +435,12 @@ window.onload = function initWizard() {
             }
         }
     });
+
+    $('#preloader').animate({ opacity: 1, top: '120%' }, 100,
+				function () { // пoсле aнимaции
+				    // $(this).css('display', 'none'); 
+				}
+			);
 }
 
 function setDesign() {

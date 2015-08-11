@@ -215,11 +215,13 @@
 }
 .input-email input{
     margin-left: 5px!important;
+    margin-top: 10px!important;
 }
 .password h4,
 .btn-recover,
 .input-paswd input{
      margin-left: 20px!important;
+     margin-top: 10px!important;
 }
 .btn-recover {
     background: #ff4f00;
