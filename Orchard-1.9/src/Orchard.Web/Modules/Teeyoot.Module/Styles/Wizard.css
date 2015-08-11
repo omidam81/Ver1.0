@@ -910,6 +910,8 @@ input[type=range] {
     background-image: linear-gradient(#7ac445,#5eba1c);*/
     border: none;
     color: white;
+    position: relative;
+    z-index: 10;
 }
 
     #designer .button--transaction:hover, #designer .button--transaction.hover {
@@ -1042,14 +1044,14 @@ input[type=range] {
     }
 }
 
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1023px) {
     .widget-usermenu .menu-user-menu {
         margin-left: -33px !important;
         margin-right: -8px !important;
     }
 }
 
-@media (max-width: 999px) {
+@media (max-width: 1023px) {
     .Slides {
         width: 100% !important;
         left: 0 !important;
@@ -1080,7 +1082,7 @@ input[type=range] {
     }
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 1023px) {
     #design-tools {
         float: left;
         width: 287px;
