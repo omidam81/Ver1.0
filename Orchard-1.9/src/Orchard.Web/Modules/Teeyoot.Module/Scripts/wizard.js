@@ -435,6 +435,12 @@ window.onload = function initWizard() {
             }
         }
     });
+
+    $('#preloader').animate({ opacity: 1, top: '120%' }, 100,
+				function () { // пoсле aнимaции
+				    // $(this).css('display', 'none'); 
+				}
+			);
 }
 
 function setDesign() {
@@ -474,11 +480,13 @@ function initProducts() {
 
         
         var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+        var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
         $.each(design.products.categoriesList, function (i) {
             var z = 0;
             for (var k = 0; k < this.products.length; k++) {
-                var rr = (design.products.images[this.products[k]].printable_front_height / design.products.images[this.products[k]].printable_front_width).toFixed(1);
-                if ( rr == coeff.toFixed(1)) {
+                var front = (design.products.images[this.products[k]].printable_front_height / design.products.images[this.products[k]].printable_front_width).toFixed(1);
+                var back = (design.products.images[this.products[k]].printable_back_height / design.products.images[this.products[k]].printable_back_width).toFixed(1);
+                if ((front == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
                     z++;
                 }
             }
@@ -496,9 +504,11 @@ function initProducts() {
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
             var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+            var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
             $.each(design.products.productsData, function (i, el) {
                 var ww = (parseFloat(design.products.images[el.id].printable_front_height) / parseFloat(design.products.images[el.id].printable_front_width)).toFixed(1);
-                if (ww == coeff.toFixed(1)) {
+                var back = (parseFloat(design.products.images[el.id].printable_back_height) / parseFloat(design.products.images[el.id].printable_back_width)).toFixed(1);
+                if ((ww == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
                     //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
                     if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
                         var option = document.createElement("option");
@@ -514,9 +524,11 @@ function initProducts() {
         $(list).change(function () {
             listProd.innerHTML = "";
             var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+            var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
             $.each(design.products.categoriesList[this.value].products, function (i, element) {
                 var qq = (parseFloat(design.products.images[element].printable_front_height) / parseFloat(design.products.images[element].printable_front_width)).toFixed(1);
-                if ( qq == coeff.toFixed(1)) {
+                var back = (parseFloat(design.products.images[element].printable_back_height) / parseFloat(design.products.images[element].printable_back_width)).toFixed(1);
+                if ((qq == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
                     var option = document.createElement("option");
                     option.value = i;
                     option.id = i;

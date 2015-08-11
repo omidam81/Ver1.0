@@ -485,6 +485,26 @@ namespace Teeyoot.Module.Controllers
                 backTemplate.Dispose();
                 front.Dispose();
                 back.Dispose();
+
+                int product = _campaignService.GetProductsOfCampaign(campaign.Id).First().Id;
+                string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
+                Directory.CreateDirectory(destFolder);
+
+                var imageSocialFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                if (!campaign.BackSideByDefault)
+                {
+                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
+                    var imgPath = new Bitmap(frontSocialPath);
+
+                    _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Front);
+                }
+                else
+                {
+                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+                    var imgPath = new Bitmap(backSocialPath);
+
+                    _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Back);
+                }
             }
         }
 

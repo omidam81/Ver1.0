@@ -6,6 +6,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Teeyoot.Module.Models;
+using System.Web.Mvc;
 
 namespace Teeyoot.Module.Common.Utils
 {
@@ -133,5 +135,48 @@ namespace Teeyoot.Module.Common.Utils
             }
             return null;
         }
+
+        public void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath, String campaignData)
+        {
+            var p = campaign.Products[0];
+
+            var imageFolder = System.Web.Hosting.HostingEnvironment.MapPath("/Modules/Teeyoot.Module/Content/images/");
+            var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
+
+            var campaignImgTemplate = new Bitmap(imgPath);
+
+            var campaignImg = BuildProductImage(campaignImgTemplate, Base64ToBitmap(campaignData), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+            p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+            p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+
+            Image backImage = Image.FromFile(System.Web.Hosting.HostingEnvironment.MapPath("/Media/Default/images/background.png"));
+            backImage = ResizeImage(backImage, 1200, 627);
+            Graphics g = Graphics.FromImage(backImage);
+            g.DrawImage(campaignImg, 150, 0, 900, 900);
+
+            ImageCodecInfo imageCodecInfo = GetEncoderInfo("image/jpeg");
+            Encoder encoder = Encoder.Quality;
+            EncoderParameter encoderParameter = new EncoderParameter(encoder, 75L);
+            EncoderParameters encoderParameters = new EncoderParameters(1);
+            encoderParameters.Param[0] = encoderParameter;
+
+            Bitmap socialImg = new Bitmap(backImage);
+            socialImg.Save(Path.Combine(destForder, "campaign.jpg"), imageCodecInfo, encoderParameters);
+
+            g.Dispose();
+            campaignImgTemplate.Dispose();
+            campaignImg.Dispose();
+            socialImg.Dispose();
+            backImage.Dispose();
+        }
+
+        private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
+        {
+            var background = CreateBackground(width, height, color);
+            image = ApplyBackground(image, background, width, height);
+
+            return ApplyDesignNoTransparent(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
+        }
+
     }
 }

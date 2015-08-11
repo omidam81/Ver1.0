@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Teeyoot.Module.Models;
 
 namespace Teeyoot.Module.Common.Utils
 {
@@ -18,5 +19,7 @@ namespace Teeyoot.Module.Common.Utils
         Bitmap Base64ToBitmap(string base64String);
         Bitmap ResizeImage(Image image, int width, int height);
         ImageCodecInfo GetEncoderInfo(String mimeType);
+        void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath, String campaignData);
+
     }
 }
