@@ -816,9 +816,9 @@ input[type=range] {
         float: left;
     }
 
-.widget-anonimousMenu {
+/*.widget-anonimousMenu {
     margin-right: -50px;
-}
+}*/
 
 .menu-anonimous-menu .last {
     display: none;
