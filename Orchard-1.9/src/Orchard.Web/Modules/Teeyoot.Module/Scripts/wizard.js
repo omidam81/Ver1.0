@@ -413,9 +413,15 @@ window.onload = function initWizard() {
     // Изменение количества в инпуте #trackBarValue
 
     $("#trackBarValue").on({
-        change: onChangeValueForTrackBar,
+        change: function () {
+            var slider = document.getElementById('trackbar');
+            slider.noUiSlider.set(parseInt(document.getElementById('trackBarValue').value));
+            onChangeValueForTrackBar();
+        },
         keydown: function (e) {
             if (e.which == 13) {
+                var slider = document.getElementById('trackbar');
+                slider.noUiSlider.set(parseInt(document.getElementById('trackBarValue').value));
                 onChangeValueForTrackBar();
             }
         }
@@ -517,7 +523,7 @@ function profitSale() {
         //$("#mainH4").css('color', '#ff0000');
         updateMinimum(price);
         app.state.currentProduct.Price = selPrice;
-        //window.sellingPrice = app.state.currentProduct.Price;
+        window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
         //$("#mainH4").html($price);
@@ -679,11 +685,11 @@ function slide() {
 }
 
 function onChangeTrackBar() {
-    document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
+    //document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
 
-    window.count = parseInt(document.getElementById('trackbar').value);
+    window.count = document.getElementById('trackBarValue').value;//parseInt(document.getElementById('trackbar').value);
     calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
     var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
@@ -693,21 +699,25 @@ function onChangeTrackBar() {
     updateMinimum(changes.toFixed(2));
     //profitSale();
 
-    if (window.nowPrice < window.sellingPrice) {
+    //if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {
             estimatedProfitChangeForManuProducts()
         } else {
-            estimatedProfitChange();
+            if (window.nowPrice < window.sellingPrice) {
+                estimatedProfitChange();
+            }
         }
-    }
+    //}
 }
 
 function onChangeValueForTrackBar() {
-    if (document.getElementById('trackBarValue').value < 15)
-        document.getElementById('trackBarValue').value = "15";
-    else if (document.getElementById('trackBarValue').value > 500)
-        document.getElementById('trackBarValue').value = "500";
-    document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+    //var slider = document.getElementById('trackbar');
+    //slider.noUiSlider.set([null, parseInt(document.getElementById('trackBarValue').value)]);
+    //if (document.getElementById('trackBarValue').value < 15)
+    //    document.getElementById('trackBarValue').value = "15";
+    //else if (document.getElementById('trackBarValue').value > 500)
+    //    document.getElementById('trackBarValue').value = "500";
+    //document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
 
@@ -721,11 +731,13 @@ function onChangeValueForTrackBar() {
     window.nowPrice = app.state.currentProduct.BaseCost;
     updateMinimum(changes.toFixed(2));
 
-    if (window.nowPrice < window.sellingPrice) {
+    //if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {
             estimatedProfitChangeForManuProducts()
         } else {
-            estimatedProfitChange();
+            if (window.nowPrice < window.sellingPrice) {
+                estimatedProfitChange();
+            }
         }
-    }
+    //}
 }

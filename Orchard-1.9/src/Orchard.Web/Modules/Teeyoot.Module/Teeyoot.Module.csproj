@@ -659,6 +659,7 @@
     <Content Include="Scripts\language.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\nouislider.js" />
     <Content Include="Scripts\quantize.js" />
     <Content Include="Scripts\selectize.js" />
     <Content Include="Scripts\upload.js" />
@@ -679,6 +680,8 @@
     <Content Include="Styles\jqueryui.css" />
     <Content Include="Styles\login-modal.css" />
     <Content Include="Styles\menu.teeyoot-admin.css" />
+    <Content Include="Styles\nouislider.css" />
+    <Content Include="Styles\nouislider.min.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
     <Content Include="Styles\price.css" />

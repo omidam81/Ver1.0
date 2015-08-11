@@ -143,7 +143,7 @@ function formula(frontColor, backColor, cost) {
 function setPriceInGoalFromDesign() {
     document.getElementById('profSale').value = window.sellingPrice;
     document.getElementById('trackBarValue').value = window.count;
-    document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+    //document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
     document.getElementById('base-cost-for-first-product').innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
 
     if (app.state.products.length > 1) {
@@ -154,7 +154,7 @@ function setPriceInGoalFromDesign() {
 }
 
 function setPriceInDesignFromGoal() {
-    window.count = document.getElementById('trackbar').value;
+    window.count = document.getElementById('trackBarValue').value;
 
     calculatePrice(window.frontColor, window.backColor);
 
@@ -259,7 +259,9 @@ function updateMinimum(changes) {
 
         //$("#mainH4").html("RM " + window.nowPrice + " minimum");
         //$("#mainH4").css('color', '#ff0000');
-        //$("#total_profit").html("RM 0+");
+        if (app.state.products.length < 2) {
+            $("#total_profit").html("RM 0+");
+        }
     } else {
         $("#profit-calculator").css('display', 'block');
         $("#price-for-first-product-text").css('display', '-webkit-inline-box');
