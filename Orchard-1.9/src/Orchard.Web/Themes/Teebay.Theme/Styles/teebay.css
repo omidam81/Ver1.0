@@ -127,6 +127,7 @@
     margin-right:5px;
 }
 .zone-header {
+    -webkit-justify-content: space-between;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
