@@ -1110,7 +1110,9 @@ var design={
             var selector = '.zoom-'+(!isDarkText?'light':'dark')+'-'+(isZoomed?'out':'in');
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
-            $('.design-area').css({ 'display': 'none' });
+            if (document.querySelector('.design-area').offsetLeft < 0) {
+                $('.design-area').css({ 'display': 'none' });
+            }
             $('.design-area').css('border-color', newColor);           
             
         },
