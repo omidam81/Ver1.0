@@ -437,6 +437,7 @@ namespace Teeyoot.Messaging.Services
         private void FillSellerToBuyersProductsMergeVars(MandrillMessage message, IList<LinkOrderCampaignProductRecord> orderedProducts, string pathToMedia, string email, string orderPublicId)
         {
             string products = "";
+            var i = 0;
             //List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
             foreach (var item in orderedProducts)
             {
@@ -445,7 +446,16 @@ namespace Teeyoot.Messaging.Services
                 int idSize = item.ProductSizeRecord.Id;
                 float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
                 float price = (float)item.CampaignProductRecord.Price + costSize;
-                products += item.Count.ToString() + " x " + item.ProductSizeRecord.SizeCodeRecord.Name + " " + item.CampaignProductRecord.ProductRecord.Name + Environment.NewLine;                 
+                if (i > 0)
+                {
+                    products += item.Count.ToString() + " x " + item.ProductSizeRecord.SizeCodeRecord.Name + " " + item.CampaignProductRecord.ProductRecord.Name + ", " + Environment.NewLine;
+                }
+                else
+                {
+                    products += item.Count.ToString() + " x " + item.ProductSizeRecord.SizeCodeRecord.Name + " " + item.CampaignProductRecord.ProductRecord.Name + Environment.NewLine;
+                }
+                i++;
+              
 
             }
             message.AddRcptMergeVars(email, "PRODUCTS", products);
