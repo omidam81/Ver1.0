@@ -65,6 +65,7 @@ namespace Teeyoot.Module.Controllers
                 costViewModel.LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint;
                 costViewModel.PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString();
                 costViewModel.PrintsPerLitre = cost.PrintsPerLitre;
+                costViewModel.SalesGoal = cost.SalesGoal;
                 costViewModel = ReplaceAllCost(costViewModel);
             }
 
@@ -161,6 +162,25 @@ namespace Teeyoot.Module.Controllers
 
             try
             {
+                foreach (var prod in data.Products)
+                {
+                    double price = 0;
+                    if (!double.TryParse(prod.Price, out price))
+                    {
+                        double.TryParse(prod.Price.Replace('.', ','), out price);
+                    }
+                    double cost = 0;
+                    if (!double.TryParse(prod.BaseCost, out cost))
+                    {
+                        double.TryParse(prod.BaseCost.Replace('.', ','), out cost);
+                    }
+
+                    if (price < cost)
+                    {
+                        prod.Price = prod.BaseCost;
+                    }
+                }
+
                 var campaign = _campaignService.CreateNewCampiagn(data);
                 CreateImagesForCampaignProducts(campaign);
 

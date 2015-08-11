@@ -626,7 +626,7 @@ function colorInit() {
                 var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
                 //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
                 window.nowPrice = app.state.currentProduct.BaseCost;
-                updateMinimum(changes);
+                updateMinimum(changes.toFixed(2));
                 if (window.nowPrice < window.sellingPrice) {
                     if (app.state.products.length > 1) {
                         estimatedProfitChangeForManuProducts()

@@ -269,6 +269,7 @@
         window.labourTimePerSidePrintedPerPrint = @Model.LabourTimePerSidePrintedPerPrint;
         window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
         window.printsPerLitre = @Model.PrintsPerLitre;
+        window.salesTarget = @Model.SalesGoal;
         window.count = 30; // Первоначальное количество элементов, должно будет изменяться
         window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
         document.getElementById('count_preview').innerHTML = "Base price &#64; " + window.count + " shirts";
@@ -285,9 +286,7 @@
             isFront3 = !isFront3;
             $("#card3").flip(!isFront3);
         });
-    </script>
-
-    <script>
+    
         function refreshToken() {
             $.ajax({
                 async: false,
@@ -575,18 +574,26 @@
         var slider = document.getElementById('trackbar');
         var input = document.getElementById('trackBarValue');
 
+        var maxRange = window.salesTarget;
+        var step = parseFloat(maxRange) / parseFloat("5");
+        var minSteps = step.toFixed(0);
+        var step1 = minSteps;
+        var step2 = minSteps * 2;
+        var step3 = minSteps * 3;
+        var step4 = minSteps * 4;
+
         noUiSlider.create(slider, {
             start: window.count,
             orientation: 'horizontal',
             step: 1,
             range: {
                 'min': 15,
-                '50%': [250, 1],
-                'max': 500
+                '50%': [maxRange/2, 1],
+                'max': maxRange
             },
             pips: {
                 mode: 'values',
-                values: [15, 100, 200, 300, 400, 500],
+                values: [15, step1, step2, step3, step4, maxRange],
                 density: 4
             }
         });
