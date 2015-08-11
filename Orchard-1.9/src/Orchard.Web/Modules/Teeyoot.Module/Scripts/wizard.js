@@ -465,7 +465,19 @@ function initProducts() {
     //Если лист категорий пустой то мы его инициализируем
     if (list.value == "")
     {
+
+        
+        var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
         $.each(design.products.categoriesList, function (i) {
+            var z = 0;
+            for (var k = 0; k < this.products.length; k++) {
+                var rr = (design.products.images[this.products[k]].printable_front_height / design.products.images[this.products[k]].printable_front_width).toFixed(1);
+                if ( rr == coeff.toFixed(1)) {
+                    z++;
+                }
+            }
+            var gfgf = z;
+            if(z>=1){
             var option = document.createElement("option");
             option.value = i;
             option.id = this.id;
@@ -473,34 +485,53 @@ function initProducts() {
             list.appendChild(option);
             //Запихиваем айдишники продуктов по обьектам в массив
             mas.push(this.products);
+        }
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
+            var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
             $.each(design.products.productsData, function (i, el) {
-                //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
-                if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
-                    var option = document.createElement("option");
-                    option.value = i;
-                    option.id = i;
-                    option.innerHTML = el.name;
-                    listProd.appendChild(option);
-                }
-            });
-        }
-
-        $(list).change(function () {
-            listProd.innerHTML = "";
-            $.each((mas[this.value]), function (i, id) {
-                $.each(design.products.productsData, function (i, el) {
-                    if (el.id == id) {
+                var ww = (parseFloat(design.products.images[el.id].printable_front_height) / parseFloat(design.products.images[el.id].printable_front_width)).toFixed(1);
+                if (ww == coeff.toFixed(1)) {
+                    //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
+                    if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
                         var option = document.createElement("option");
                         option.value = i;
                         option.id = i;
                         option.innerHTML = el.name;
                         listProd.appendChild(option);
                     }
-                });
+                };
             });
+        }
+
+        $(list).change(function () {
+            listProd.innerHTML = "";
+            var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+            $.each(design.products.categoriesList[this.value].products, function (i, element) {
+                var qq = (parseFloat(design.products.images[element].printable_front_height) / parseFloat(design.products.images[element].printable_front_width)).toFixed(1);
+                if ( qq == coeff.toFixed(1)) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.id = i;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                };
+            });
+           
+            //$.each((mas[this.value]), function (i, id) {
+            //    $.each(design.products.productsData, function (i, el) {
+                   
+            //            if (el.id == id) {
+            //                var option = document.createElement("option");
+            //                option.value = i;
+            //                option.id = i;
+            //                option.innerHTML = el.name;
+            //                listProd.appendChild(option);
+            //            }
+                  
+            //    });
+            //});
         });
     }
 }
