@@ -214,7 +214,9 @@ namespace Teeyoot.Module.Controllers
                 //Transaction transaction = result.Target;
                 //ViewData["TransactionId"] = transaction.Id;
                 //_notifier.Information(T("The transaction is successful"));
-                _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id);
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             //}
             //else

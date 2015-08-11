@@ -203,11 +203,11 @@ namespace Teeyoot.Messaging.Services
             var res = SendTmplMessage(api, mandrillMessage);
         }
 
-        public void SendNewOrderMessageToAdmin(int orderId)
+        public void SendNewOrderMessageToAdmin(int orderId, string pathToMedia, string pathToTemplates)
         {
             var order = _orderRepository.Get(orderId);
-            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
-            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            //string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            //string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
