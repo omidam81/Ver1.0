@@ -1,7 +1,65 @@
-﻿
+﻿@model Teeyoot.Module.ViewModels.PaymentSettingsViewModel
 @{
-    ViewBag.Title = "Index";
+    Layout.Title = T("Payment Settings").ToString();
+    Style.Include("PaymentSettings.css");
 }
 
-<h2>Index</h2>
 
+@if (Model != null)
+{
+    using (Html.BeginForm("Index", "Payment", FormMethod.Get))
+    {
+        <fieldset class="bulk-actions">
+            @Html.DropDownListFor(m => m.Culture, Model.Languages.Select(l => new SelectListItem
+                                            {
+                                                Selected = l.Code == Model.Culture.Code,
+                                                Text = l.Name,
+                                                Value = l.Code
+                                            }))
+
+            <button type="submit">@T("Apply")</button>
+        </fieldset>
+    }
+
+    if (Model.PaumentMethod != 0)
+    {
+        <div style="margin-top:1%">
+            @if (Model.PaumentMethod == 1)
+            {
+                @*@Html.ActionLink(T("manual mode / ").ToString(), "EditSetting", new { Model.Culture, Model.PaumentMethod }, new { @class = "method" })*@
+                <font class="method black">
+                    @T("manual mode")
+                </font>
+
+                @Html.ActionLink(T("/ braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
+
+
+                @Html.ActionLink(T("molpay ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
+            }
+            else if (Model.PaumentMethod == 2)
+            {
+                @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
+
+                <font class="method black">
+                    @T("braintree")
+                </font>
+                 @Html.ActionLink(T(" / molpay").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
+            }
+            else if (Model.PaumentMethod == 3)
+            {
+                @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
+
+                @Html.ActionLink(T(" braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
+                <font class="method black">
+                    @T("  molpay")
+                </font>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div><h3>There are no setting to this language</h3></div>
+        <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { language = Model.Culture.Code })" title="@T("Add")">@T("Add")</a>
+    }
+}

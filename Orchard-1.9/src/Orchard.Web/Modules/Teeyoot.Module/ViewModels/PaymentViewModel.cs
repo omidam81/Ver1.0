@@ -17,5 +17,7 @@ namespace Teeyoot.Module.ViewModels
 
         public string ClientToken { get; set; }
 
+        public int PaumentMethod { get; set; }
+
     }   
 }

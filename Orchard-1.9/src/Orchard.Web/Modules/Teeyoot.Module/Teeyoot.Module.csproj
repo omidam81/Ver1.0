@@ -770,12 +770,14 @@
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Services\Interfaces\IMailChimpSettingsService.cs" />
+    <Compile Include="Services\Interfaces\IPaymentSettingsService.cs" />
     <Compile Include="Services\Interfaces\ITeeyootMessagingService.cs" />
     <Compile Include="Services\MailChimpSettingsService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
     <Compile Include="Services\Interfaces\IMessageService .cs" />
     <Compile Include="Services\PaymentInformationService.cs" />
+    <Compile Include="Services\PaymentSettingsService.cs" />
     <Compile Include="Services\PromotionService.cs" />
     <Compile Include="Services\FontService.cs" />
     <Compile Include="Services\Interfaces\IPromotionService.cs" />
@@ -803,6 +805,7 @@
     <Compile Include="Services\Interfaces\IStoreService.cs" />
     <Compile Include="Services\StoreService.cs" />
     <Compile Include="ViewModels\OrderTrackingViewModel.cs" />
+    <Compile Include="ViewModels\PaymentSettingsViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\OrderProductViewModel.cs" />
     <Compile Include="Models\OrderRecord.cs" />
