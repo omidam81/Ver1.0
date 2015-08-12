@@ -2115,6 +2115,7 @@ var design={
             var box;
             var left;
             var item;
+            var view = app.state.getView();
             if ((app.state.checkAll == true) && ($item[0] != null)) {
                 $item[0] = null
             }
@@ -2128,25 +2129,27 @@ var design={
                 var objName = "item-0";
                 while (document.getElementById(objName) != null) {
                     item = document.getElementById(objName);
-                    if (Math.abs(item.offsetLeft) > Math.abs(maxLeftOffset)) {
-                        maxLeftOffset = item.offsetLeft;
-                    } else {
-                        if (item.offsetLeft < 0) {
+                    if (item.parentNode.parentNode.id == "view-" + view + "-design-area") {
+                        if (Math.abs(item.offsetLeft) > Math.abs(maxLeftOffset)) {
                             maxLeftOffset = item.offsetLeft;
+                        } else {
+                            if (item.offsetLeft < 0) {
+                                maxLeftOffset = item.offsetLeft;
+                            }
                         }
-                    }
-                    if (Math.abs(item.offsetTop) > Math.abs(maxTopOffset)) {
-                        maxTopOffset = item.offsetTop;
-                    } else {
-                        if (item.offsetTop < 0) {
+                        if (Math.abs(item.offsetTop) > Math.abs(maxTopOffset)) {
                             maxTopOffset = item.offsetTop;
+                        } else {
+                            if (item.offsetTop < 0) {
+                                maxTopOffset = item.offsetTop;
+                            }
                         }
-                    }
-                    if(item.offsetWidth > maxWidthOffset) {
-                        maxWidthOffset = item.offsetWidth;
-                    };
-                    if(item.offsetHeight > maxHeightOffset){
-                        maxHeightOffset = item.offsetHeight;
+                        if (item.offsetWidth > maxWidthOffset) {
+                            maxWidthOffset = item.offsetWidth;
+                        };
+                        if (item.offsetHeight > maxHeightOffset) {
+                            maxHeightOffset = item.offsetHeight;
+                        };
                     };
                     i++;
                     objName = "item-" + i;

@@ -1193,7 +1193,7 @@ input[type=range] {
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 800px) {
     #design-tools {
         width: auto;
         float: none;

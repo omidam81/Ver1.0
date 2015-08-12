@@ -507,14 +507,14 @@ function setDesign() {
                 document.querySelector('#step-2-front').removeChild(document.querySelector('#stp2frArea'));
             }
             $('#view-front-design-area').clone().attr("id", "stp2frArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-2-front');
-            $('#stp2frArea').children()[2].remove();
+            document.querySelector('#stp2frArea').removeChild(document.querySelector('#stp2frArea').childNodes[5]);
             $('#stp2frArea').css({ "overflow": "hidden" });
 
             while (document.querySelector('#stp2BackArea') != null) {
                 document.querySelector('#step-2-back').removeChild(document.querySelector('#stp2BackArea'));
             }
             $('#view-back-design-area').clone().attr("id", "stp2BackArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-2-back');
-            $('#stp2BackArea').children()[2].remove();
+            document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
             $('#stp2BackArea').css({ "overflow": "hidden" });
         });
     } else {
@@ -522,14 +522,14 @@ function setDesign() {
             document.querySelector('#step-3-front').removeChild(document.querySelector('#stp3frArea'));
         }
         $('#view-front-design-area').clone().attr("id", "stp3frArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-3-front');
-        $('#stp3frArea').children()[2].remove();
+        document.querySelector('#stp3frArea').removeChild(document.querySelector('#stp3frArea').childNodes[5]);
         $('#stp3frArea').css({ "overflow": "hidden" });
 
         while (document.querySelector('#stp3BackArea') != null) {
             document.querySelector('#step-3-back').removeChild(document.querySelector('#stp3BackArea'));
         }
         $('#view-back-design-area').clone().attr("id", "stp3BackArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-3-back');
-        $('#stp3BackArea').children()[2].remove();
+        document.querySelector('#stp3BackArea').removeChild(document.querySelector('#stp3BackArea').childNodes[5]);
         $('#stp3BackArea').css({ "overflow": "hidden" });
     }
 }
