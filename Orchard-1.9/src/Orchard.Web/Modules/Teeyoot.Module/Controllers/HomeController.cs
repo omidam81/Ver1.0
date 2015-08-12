@@ -330,7 +330,7 @@ namespace Teeyoot.Module.Controllers
             if (orders.Count() == 0)
             {
                 string infoMessage = String.Format("No orders found during last 60 days");
-                _notifier.Add(NotifyType.Warning, T(infoMessage));
+                _notifier.Add(NotifyType.Information, T(infoMessage));
             }
             else
             {
