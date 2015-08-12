@@ -282,12 +282,8 @@
 
         $("#backdefaultside").click(function(){
             if(app.state.isFront){
-                //isFront = !isFront;
-                //console.log(isFront);
                 design.products.changeView(app.state.getView(!app.state.isFront));
                 $("#card").flip(true);
-
-                //isFront3 = !isFront3;
                 $("#card3").flip(true);
             }else{
 
