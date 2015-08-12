@@ -25,7 +25,17 @@ namespace Teeyoot.Dashboard.Controllers
         {
             string currentUser = Services.WorkContext.CurrentUser.Email;
             var user = _membershipService.GetUser(currentUser);
-            var campaigns = _campaignService.GetCampaignsOfUser(user.Id).ToList();
+            var campaigns = _campaignService.GetCampaignsOfUser(user.Id)
+                .Select(c => new MessagesCampaignViewModel
+                {
+                    Title = c.Title,
+                    Id = c.Id,
+                    Sold = c.ProductCountSold
+                })
+                .ToList();
+
+            var campaignProducts = _campaignService.GetAllCampaignProducts();
+
             List<MessagesIndexViewModel> listModel = new List<MessagesIndexViewModel>();
             foreach (var item in campaigns)
             {                
@@ -47,12 +57,15 @@ namespace Teeyoot.Dashboard.Controllers
                     }
                 }
 
+                var prods = campaignProducts.FirstOrDefault(p => p.CampaignRecord_Id == item.Id);
+                item.FirstProductId = prods != null ? prods.Id : 0;
+
                 tempModel.Campaign = item;
                 listModel.Add(tempModel);
 
             }
-            IEnumerable<MessagesIndexViewModel> model = listModel;
-            return View(model);
+            //IEnumerable<MessagesIndexViewModel> model = listModel;
+            return View(listModel);
         }
 
 

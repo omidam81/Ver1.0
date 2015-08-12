@@ -9,14 +9,21 @@ namespace Teeyoot.Module.Dashboard.ViewModels
 {
     public class MessagesIndexViewModel
     {
-        public string InfoMessage { get; set; }
-
         public int ThisWeekSend { get; set; }
         
         public string LastSend { get; set; }
 
-        public CampaignRecord Campaign { get; set; }
+        public MessagesCampaignViewModel Campaign { get; set; }
+    }
 
+    public class MessagesCampaignViewModel
+    {
+        public int Id { get; set; }
 
+        public string Title { get; set; }
+
+        public int Sold { get; set; }
+
+        public int FirstProductId { get; set; }
     }
 }
