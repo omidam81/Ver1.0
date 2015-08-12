@@ -2078,11 +2078,8 @@ var design={
                 var $designArea = $('.design-area', $view);
                 var prefix = 'printable_' + view + '_';
                 
-                $designArea.css({'top':image[prefix+'top']});
-                $designArea.css({'left': image[prefix + 'left']});
-                $designArea.css({'width': image[prefix+'width']});
-                $designArea.css({ 'height': image[prefix+'height']});
-                $designArea.css({'display': ''});
+                $designArea.css({ 'height': image[prefix + 'height'] }, { 'width': image[prefix + 'width'] }, { 'left': image[prefix + 'left'] }, { 'top': image[prefix + 'top'] });
+                $designArea.css({'display': 'block'});
             });
 		},
         getNodeRect: function($item){
