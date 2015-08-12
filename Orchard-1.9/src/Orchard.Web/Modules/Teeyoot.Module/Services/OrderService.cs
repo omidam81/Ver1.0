@@ -53,9 +53,9 @@ namespace Teeyoot.Module.Services
         }
 
         public IQueryable<OrderRecord> GetActiveOrdersByEmailForLastTwoMoth(string email)
-        {
-            //return _orderRepository.Table.Where(r => r.Email == email && r.IsActive && r.Created.ToLocalTime() >= DateTime.Today.AddDays(-60));
-            return _orderRepository.Table.Where(r => r.Email == email && r.IsActive);
+        {           
+            return _orderRepository.Table.Where(r => r.Email == email && r.IsActive && r.Created >= DateTime.Now.AddDays(-60));
+            
         }
 
         public OrderRecord GetActiveOrderById(int id)
