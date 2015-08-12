@@ -1,10 +1,9 @@
-﻿@model IEnumerable<Teeyoot.Module.Dashboard.ViewModels.MessagesIndexViewModel>
+﻿@model List<Teeyoot.Module.Dashboard.ViewModels.MessagesIndexViewModel>
 
 @{
     Style.Include("Message.css");
 }
 <div style="height:100%; margin-bottom:20%">
-    <div class="status">@ViewBag.Status</div>
     <div class="dashboard-section-title">
         @T("Messages")
         <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
@@ -22,8 +21,9 @@
                 <div class=" row"></div>
             </div>
         </div>
-        @foreach (var item in Model)
+        @for (int i = 0; i < Model.Count; i++ )
         {
+            var item = Model[i];
             <div class="divRow divRow-mobile" >
                 <div class="divRow" style="margin-top:2%; ">
                     <div id="campaignPrintRow" class=" row">Print</div>

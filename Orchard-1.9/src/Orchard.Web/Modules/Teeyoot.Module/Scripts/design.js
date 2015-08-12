@@ -1103,17 +1103,33 @@ var design={
                 isDarkText = false;
             }
 
-            $('.printable-area-toolbar')
-                .toggleClass('dark', isDarkBorder)
-                .css({'background-color': newColor, color: textColor});
+           
             var isZoomed = !!app.state.zoomed;
             var selector = '.zoom-'+(!isDarkText?'light':'dark')+'-'+(isZoomed?'out':'in');
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
             if (document.querySelector('.design-area').offsetLeft < 0) {
                 $('.design-area').css({ 'display': 'none' });
+                $('.design-area').css('border-color', newColor);
+                $('.printable-area-toolbar')
+               .toggleClass('dark', isDarkBorder)
+               .css({ 'background-color': newColor, color: textColor });
+            } else {
+                if (app.state.isFront) {
+                    $('#view-front-design-area').css('border-color', newColor);
+                    $('#printable-area-front')
+               .toggleClass('dark', isDarkBorder)
+               .css({ 'background-color': newColor, color: textColor });
+                }
+                else {
+                    $('#view-back-design-area').css('border-color', newColor);
+                    $('#printable-area-back')
+               .toggleClass('dark', isDarkBorder)
+               .css({ 'background-color': newColor, color: textColor });
+                }
             }
-            $('.design-area').css('border-color', newColor);           
+
+                      
             
         },
 		changeDesign: function(product){
@@ -1147,13 +1163,17 @@ var design={
                         calculatePrice(window.frontColor, window.backColor);
                     })
                     .hover(
-                        function() {
+                        function () {
+                            
                             $('.product-design img').stop().animate({backgroundColor: color.value}, aniSpeed);
                             me.setDesignAreaContrastColor(color);
+                            app.state.checkAll = true;
                             design.item.checkBorders(design.item.get());
-                        }, function() {
+                        }, function () {
+                           
                             $('.product-design img').stop().animate({backgroundColor: app.state.color.value},aniSpeed);
                             me.setDesignAreaContrastColor(app.state.color);
+                            app.state.checkAll = true;
                             design.item.checkBorders(design.item.get());
                         });
                 list_color.append($color);
@@ -1200,6 +1220,7 @@ var design={
                     me.changeDesign(product);                   
                     app.state.currentProduct.ProductId = parseInt(product.id);                   
                     $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
+                    design.item.unselect();
                     if (design.item.get().length == 0) {
                         var elem = document.getElementById('item-0');
                         if (elem != null) {
@@ -2094,13 +2115,48 @@ var design={
             var box;
             var left;
             var item;
+            if ((app.state.checkAll == true) && ($item[0] != null)) {
+                $item[0] = null
+            }
             if ($item[0] == null)
             {
-                item = document.getElementById('item-0');
+                var i = 0;
+                var maxLeftOffset = 0;
+                var maxWidthOffset = 0;
+                var maxTopOffset = 0;
+                var maxHeightOffset = 0;
+                var objName = "item-0";
+                while (document.getElementById(objName) != null) {
+                    item = document.getElementById(objName);
+                    if (Math.abs(item.offsetLeft) > Math.abs(maxLeftOffset)) {
+                        maxLeftOffset = item.offsetLeft;
+                    } else {
+                        if (item.offsetLeft < 0) {
+                            maxLeftOffset = item.offsetLeft;
+                        }
+                    }
+                    if (Math.abs(item.offsetTop) > Math.abs(maxTopOffset)) {
+                        maxTopOffset = item.offsetTop;
+                    } else {
+                        if (item.offsetTop < 0) {
+                            maxTopOffset = item.offsetTop;
+                        }
+                    }
+                    if(item.offsetWidth > maxWidthOffset) {
+                        maxWidthOffset = item.offsetWidth;
+                    };
+                    if(item.offsetHeight > maxHeightOffset){
+                        maxHeightOffset = item.offsetHeight;
+                    };
+                    i++;
+                    objName = "item-" + i;
+                    }                 
+                              
                 //box = item.getBoundingClientRect();
-                top = item.offsetTop;
-                left = item.offsetLeft;
-                return { top: top, left: left, width: item.offsetWidth, height: item.offsetHeight };
+                //top = item.offsetTop;
+                //left = item.offsetLeft;
+                //return { top: top, left: left, width: item.offsetWidth, height: item.offsetHeight };
+                return { top: maxTopOffset, left: maxLeftOffset, width: maxWidthOffset, height: maxHeightOffset };
                 
             }
             else
@@ -2112,7 +2168,7 @@ var design={
                 return { top: top, left: left, width: box.width, height: box.height };
             }
 
-            //return {top: top, left:left, width:box.width, height:box.height};
+            return {top: top, left:left, width:box.width, height:box.height};
         },
         placeSizeBox:function($item, $sizeBox, keep){
             $item = $($item);
@@ -2579,7 +2635,7 @@ var design={
                     design.products.setDesignAreaContrastColor(app.state.color);
                 }
             }
-
+            app.state.checkAll = false;
         },
         resizeTo: function(e, width, height, isInches, keepRatio){
             design.item.checkBorders(e);
