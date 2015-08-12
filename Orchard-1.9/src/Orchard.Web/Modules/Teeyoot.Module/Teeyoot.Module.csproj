@@ -756,6 +756,7 @@
     <Compile Include="Models\MessageRecord.cs" />
     <Compile Include="Models\OrderHistoryRecord.cs" />
     <Compile Include="Models\PaymentInformationRecord.cs" />
+    <Compile Include="Models\PaymentSettingsRecord.cs" />
     <Compile Include="Models\PromotionRecord.cs" />
     <Compile Include="Models\ArtUpload.cs" />
     <Compile Include="Models\CampaignCategoriesPart.cs" />
