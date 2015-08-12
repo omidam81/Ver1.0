@@ -705,6 +705,7 @@
     <Content Include="Views\Home\OrderTracking.cshtml" />
     <Content Include="Views\EditorTemplates\Parts\MailChimpSettings.cshtml" />
     <Content Include="Views\Home\ReservationComplete.cshtml" />
+    <Content Include="Views\AdminCommonSettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -739,6 +740,7 @@
     <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
     <Compile Include="Common\Utils\ImageHelper.cs" />
+    <Compile Include="Controllers\AdminCommonSettingsController.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -746,6 +748,7 @@
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\CommonSettingsRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
     <Compile Include="Models\MessageRecord.cs" />
@@ -786,6 +789,7 @@
     <Compile Include="Services\SwatchService.cs" />
     <Compile Include="ViewModels\AdminOrderViewModel.cs" />
     <Compile Include="ViewModels\CampaignIndexViewModel.cs" />
+    <Compile Include="ViewModels\CommonSettingsIndexViewModel.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
