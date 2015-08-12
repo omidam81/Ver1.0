@@ -1,5 +1,5 @@
 ﻿.ssp-ssp-metadata-and-col-pick {
-    width: 185px;
+    width: 165px;
     float: left;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .all-price-calculator {
-    width: 310px;
+    width: auto;
     overflow: hidden;
     position: relative;
     top: -4px;
