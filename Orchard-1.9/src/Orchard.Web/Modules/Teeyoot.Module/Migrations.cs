@@ -2,12 +2,20 @@
 using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
 using System;
+using Orchard.Data;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Module
 {
     public class Migrations : DataMigrationImpl
     {
+        private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+
+        public Migrations(IRepository<CommonSettingsRecord> commonSettingsRepository)
+        {
+            _commonSettingsRepository = commonSettingsRepository;
+        }
+
         public int Create()
         {
             SchemaBuilder.CreateTable(typeof(ProductImageRecord).Name,
@@ -998,6 +1006,19 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("SalesGoal", c => c.NotNull().WithDefault(500)));
 
             return 50;
+        }
+
+        public int UpdateFrom50()
+        {
+            SchemaBuilder.CreateTable(typeof (CommonSettingsRecord).Name, table => table
+                .Column<int>("Id", column => column.PrimaryKey().Identity())
+                .Column<bool>("DoNotAcceptAnyNewCampaigns", column => column.NotNull().WithDefault(false))
+                .Column<int>("ColoursPerPrint", column => column.NotNull().WithDefault(0)));
+
+            var commonSettings = new CommonSettingsRecord();
+            _commonSettingsRepository.Create(commonSettings);
+
+            return 51;
         }
     }
 }

@@ -183,6 +183,20 @@ namespace Teeyoot.Module
                 },
                 new RouteDescriptor {
                     Route = new Route(
+                        "Admin/CommonSettings",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCommonSettings"},
+                            {"action", "Index"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
                         "Admin/Cost",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Module"},
