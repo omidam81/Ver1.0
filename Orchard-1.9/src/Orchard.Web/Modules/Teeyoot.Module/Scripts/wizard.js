@@ -397,17 +397,17 @@ window.onload = function initWizard() {
                 document.getElementById("ui").style.display = "inline";
             }
             div.parentNode.removeChild(div);
-
-            //var leng = products.e;
-            var count;
+            
             var products = app.state.products;
-            for (var i = 1; i < products.length; i++) {
-                if (products[i] == prdc) {
-                    //leng = products.length - i - 1;
-                    count = i+1;
-                }
+            var leng = products.length;
+            var id = h4Price.id;
+            var splitIndex = id.split('h4Price_');
+            var count = parseInt(splitIndex[1]);
+            app.state.products.pop(prdc);
+            if (count == 0) {
+                count = 1;
             }
-            for (var k = count; k < products.length; k++) {
+            for (var k = count; k < leng; k++) {
                 var h4PriceOld = document.getElementById("h4Price_" + (k + 1));
                 var h6PriceOld = document.getElementById("h6Price_" + (k + 1));
                 var h4CostProfRmOld = document.getElementById("h4CostProfRm_" + (k + 1));
@@ -427,8 +427,6 @@ window.onload = function initWizard() {
                 h4ProfSaleOld.id = "h4ProfSale_" + k;
             }
 
-            
-            app.state.products.pop(prdc);
             if (app.state.products.length > 1) {
                 estimatedProfitChangeForManuProducts();
             } else {

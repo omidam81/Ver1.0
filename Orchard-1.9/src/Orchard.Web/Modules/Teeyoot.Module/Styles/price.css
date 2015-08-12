@@ -102,8 +102,8 @@
 
 .noUi-handle {
     background: #ff4f00 !important;
-    cursor: -webkit-grab;
-    cursor: pointer;
+    cursor: -webkit-grab !important;
+    cursor: pointer !important;
 }
 
 .noUi-base {
