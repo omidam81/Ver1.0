@@ -18,6 +18,8 @@ namespace Teeyoot.Module.Services
 
         OrderRecord GetOrderByPublicId(string id);
 
+         IQueryable<OrderRecord> GetActiveOrdersByEmailForLastTwoMoth(string email);
+
         OrderRecord GetActiveOrderById(int id);
 
         OrderRecord GetActiveOrderByPublicId(string id);

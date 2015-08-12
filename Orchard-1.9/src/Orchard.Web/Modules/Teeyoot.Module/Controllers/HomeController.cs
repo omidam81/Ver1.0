@@ -318,6 +318,30 @@ namespace Teeyoot.Module.Controllers
             return View(model);
         }
 
+        [Themed]      
+        public ActionResult RecoverOrder(string email)
+        {
+            if (email == null)
+            {
+                return View("RecoverOrder");
+            }
+            var orders = _orderService.GetActiveOrdersByEmailForLastTwoMoth(email);
+
+            if (orders.Count() == 0)
+            {
+                string infoMessage = String.Format("No orders found during last 60 days");
+                _notifier.Add(NotifyType.Warning, T(infoMessage));
+            }
+            else
+            {
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                _teeyootMessagingService.SendRecoverOrderMessage(pathToTemplates, orders.ToList(), email);
+                string infoMessage = String.Format("Success! We have sent an email to " + email + " detailing your orders during the past 60 days.");
+                _notifier.Add(NotifyType.Information, T(infoMessage));
+            }
+            return View("RecoverOrder");
+        }
+
         public ActionResult CancelOrder(int orderId, string publicId)
         {
             try

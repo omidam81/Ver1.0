@@ -1,0 +1,32 @@
+﻿@{
+    Style.Include("designerTeeyoot.css");
+    Style.Include("bootstrap.min.css");
+    Style.Include("track.css");
+    Layout.Title = T("Messages").ToString();
+}
+
+<div class="track-order-page content">
+    <div class="row">       
+        <div class="col-sm-7" style="padding-left:0;">
+            <h1 style="font-weight: bold; font-size: 2.508em;">@T("Order Tracker")</h1>
+            @*<div class="col-sm-3 col-sm-offset-1 hidden-xs">
+                <img alt="Index" src="/Modules/Teeyoot.Module/Content/images/track-order.png">
+            </div>*@
+            <p>@T("RECOVER RECENT ORDERS")</p>
+            <p>@T("Enter the email address you used to place your order to recover all orders placed in the last 60 days.")</p>
+
+            @using (Html.BeginFormAntiForgeryPost(Url.Action("RecoverOrder", "Home")))
+            {
+                <div class="row">
+                    <div class="col-sm-8 lookupNumber">
+                        <input class="form-control input-lg input-inline-with-btn" id="email" name="email" placeholder="Email" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="btnTrack" type="submit" value="@T("Recover orders")" />
+                    </div>
+                </div>
+            }           
+        </div>        
+    </div>
+</div>
+
