@@ -303,6 +303,7 @@
     <Content Include="Content\message-templates\paid-campaign-template.html" />
     <Content Include="Content\message-templates\partially-paid-campaign-template.html" />
     <Content Include="Content\message-templates\place-order-template.html" />
+    <Content Include="Content\message-templates\recover_orders_for_buyer.html" />
     <Content Include="Content\message-templates\relaunch-template.html" />
     <Content Include="Content\message-templates\seller-template.html" />
     <Content Include="Content\message-templates\shipped-order-template.html" />
@@ -705,6 +706,7 @@
     <Content Include="Views\Home\OrderTracking.cshtml" />
     <Content Include="Views\EditorTemplates\Parts\MailChimpSettings.cshtml" />
     <Content Include="Views\Home\ReservationComplete.cshtml" />
+    <Content Include="Views\Home\RecoverOrder.cshtml" />
     <Content Include="Views\AdminCommonSettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

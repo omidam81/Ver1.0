@@ -52,6 +52,12 @@ namespace Teeyoot.Module.Services
             return _orderRepository.Table.FirstOrDefault(r => r.OrderPublicId == id);
         }
 
+        public IQueryable<OrderRecord> GetActiveOrdersByEmailForLastTwoMoth(string email)
+        {
+            //return _orderRepository.Table.Where(r => r.Email == email && r.IsActive && r.Created.ToLocalTime() >= DateTime.Today.AddDays(-60));
+            return _orderRepository.Table.Where(r => r.Email == email && r.IsActive);
+        }
+
         public OrderRecord GetActiveOrderById(int id)
         {
             return _orderRepository.Table.FirstOrDefault(r => r.Id == id && r.IsActive);

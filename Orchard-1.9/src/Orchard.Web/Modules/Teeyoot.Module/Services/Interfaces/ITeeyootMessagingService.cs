@@ -3,6 +3,7 @@ using Orchard;
 using Teeyoot.Module.Models;
 using Mandrill.Model;
 using Mandrill;
+using System.Collections.Generic;
 
 namespace Teeyoot.Module.Services
 {
@@ -23,5 +24,7 @@ namespace Teeyoot.Module.Services
         void SendChangedCampaignStatusMessage(int campaignId, string campaignStatus);
 
         void SendPayoutRequestMessageToAdmin(int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin);
+
+        void SendRecoverOrderMessage(string pathToTemplates, IList<OrderRecord> orders, string email);
     }
 }

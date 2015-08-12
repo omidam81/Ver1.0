@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-sm-7" style="padding-left:0;">
             <h1 style="font-weight: bold; font-size: 2.508em;">
-            Track your order</h1>
-            <p>Enter your tracking number to check the status of your order. Your tracking number is in your confirmation email when you ordered.</p>
+            @T("Track your order")</h1>
+            <p>@T("Enter your tracking number to check the status of your order. Your tracking number is in your confirmation email when you ordered.")</p>
 
             @using (Html.BeginFormAntiForgeryPost(Url.Action("SearchForOrder", "Home")))
             {
@@ -23,7 +23,7 @@
                 </div>
             }
             <p>
-                <a href="/track/recover">Forgotten your order number?</a>
+                <a href="@Url.Action("RecoverOrder")">@T("Forgotten your order number?")</a>
             </p>
         </div>
         <div class="col-sm-3 col-sm-offset-1 hidden-xs">

@@ -334,6 +334,45 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendRecoverOrderMessage(string pathToTemplates, IList<OrderRecord> orders, string email)
+        {
+           
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = ADMIN_EMAIL;
+            mandrillMessage.Subject = "Recover Order on Teeyoot";           
+            mandrillMessage.To = new List<MandrillMailAddress>(){
+                new MandrillMailAddress(email)
+            };
+            FillOrdersMergeVars(mandrillMessage, orders, email, pathToTemplates);
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "recover_orders_for_buyer.html");
+            SendTmplMessage(api, mandrillMessage);
+
+        }
+
+        private void FillOrdersMergeVars(MandrillMessage message, IList<OrderRecord> orders, string email, string orderPublicId)
+        {
+            List<Dictionary<string, object>> ordersList = new List<Dictionary<string, object>>();
+            foreach (var item in orders)
+            {
+                int index = orders.IndexOf(item);
+                int quantity = item.Products.Sum(m => m.Count);
+                var campaign = _campaignRepository.Get(item.Products.First().CampaignProductRecord.CampaignRecord_Id);
+                
+                ordersList.Add(new Dictionary<string, object>{                 
+                        {"id", item.OrderPublicId},
+                        {"quantity",  quantity},
+                        {"campaign", campaign.Title},
+                        {"created",  item.Created.ToLocalTime().ToString()}
+                     });
+
+            }
+            var arr = ordersList.ToArray();
+            message.AddRcptMergeVars(email, "ORDERS", ordersList.ToArray());           
+        }
+
         private void FillCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
         {
             var request = HttpContext.Current.Request;
