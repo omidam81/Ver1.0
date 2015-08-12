@@ -193,7 +193,7 @@ namespace Teeyoot.Messaging.Services
             {
                 emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
                 FillUserMergeVars(mandrillMessage, item.OrderRecord);
-                FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
+                FillSellerToBuyersProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, message.CampaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
             mandrillMessage.To = emails;
@@ -203,11 +203,11 @@ namespace Teeyoot.Messaging.Services
             var res = SendTmplMessage(api, mandrillMessage);
         }
 
-        public void SendNewOrderMessageToAdmin(int orderId)
+        public void SendNewOrderMessageToAdmin(int orderId, string pathToMedia, string pathToTemplates)
         {
             var order = _orderRepository.Get(orderId);
-            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
-            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            //string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            //string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
@@ -431,6 +431,34 @@ namespace Teeyoot.Messaging.Services
             }
             var arr = products.ToArray();
             message.AddRcptMergeVars(email, "PRODUCTS", products.ToArray());
+            message.AddRcptMergeVars(email, "orderPublicId", orderPublicId);
+        }
+
+        private void FillSellerToBuyersProductsMergeVars(MandrillMessage message, IList<LinkOrderCampaignProductRecord> orderedProducts, string pathToMedia, string email, string orderPublicId)
+        {
+            string products = "";
+            var i = 0;
+            //List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
+            foreach (var item in orderedProducts)
+            {
+
+                int index = orderedProducts.IndexOf(item);
+                int idSize = item.ProductSizeRecord.Id;
+                float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
+                float price = (float)item.CampaignProductRecord.Price + costSize;
+                if (i > 0)
+                {
+                    products += item.Count.ToString() + " x " + item.ProductSizeRecord.SizeCodeRecord.Name + " " + item.CampaignProductRecord.ProductRecord.Name + ", " + Environment.NewLine;
+                }
+                else
+                {
+                    products += item.Count.ToString() + " x " + item.ProductSizeRecord.SizeCodeRecord.Name + " " + item.CampaignProductRecord.ProductRecord.Name + Environment.NewLine;
+                }
+                i++;
+              
+
+            }
+            message.AddRcptMergeVars(email, "PRODUCTS", products);
             message.AddRcptMergeVars(email, "orderPublicId", orderPublicId);
         }
 

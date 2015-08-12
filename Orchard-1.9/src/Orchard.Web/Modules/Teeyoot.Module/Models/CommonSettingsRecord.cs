@@ -1,4 +1,4 @@
-﻿namespace Teeyoot.Module.Models
+namespace Teeyoot.Module.Models
 {
     public class CommonSettingsRecord
     {

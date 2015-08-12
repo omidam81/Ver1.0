@@ -1110,7 +1110,10 @@ var design={
             var selector = '.zoom-'+(!isDarkText?'light':'dark')+'-'+(isZoomed?'out':'in');
             $('.printable-area-zoom-image').hide();
             $(selector).stop().show();
-            $('.design-area').css('border-color', newColor);
+            if (document.querySelector('.design-area').offsetLeft < 0) {
+                $('.design-area').css({ 'display': 'none' });
+            }
+            $('.design-area').css('border-color', newColor);           
             
         },
 		changeDesign: function(product){
@@ -2073,13 +2076,13 @@ var design={
                     .css({'background': color.value, 'width':image.width, 'height': image.height});
                 $images.append($img);
                 var $designArea = $('.design-area', $view);
-                var prefix = 'printable_'+view+'_';
-                $designArea.css({
-                    'top':image[prefix+'top'],
-                    'left':image[prefix+'left'],
-                    'width': image[prefix+'width'],
-                    'height': image[prefix+'height']
-                });
+                var prefix = 'printable_' + view + '_';
+                
+                $designArea.css({'top':image[prefix+'top']});
+                $designArea.css({'left': image[prefix + 'left']});
+                $designArea.css({'width': image[prefix+'width']});
+                $designArea.css({ 'height': image[prefix+'height']});
+                $designArea.css({'display': ''});
             });
 		},
         getNodeRect: function($item){

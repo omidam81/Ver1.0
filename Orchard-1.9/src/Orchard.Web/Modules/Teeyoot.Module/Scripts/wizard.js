@@ -413,9 +413,15 @@ window.onload = function initWizard() {
     // Изменение количества в инпуте #trackBarValue
 
     $("#trackBarValue").on({
-        change: onChangeValueForTrackBar,
+        change: function () {
+            var slider = document.getElementById('trackbar');
+            slider.noUiSlider.set(parseInt(document.getElementById('trackBarValue').value));
+            onChangeValueForTrackBar();
+        },
         keydown: function (e) {
             if (e.which == 13) {
+                var slider = document.getElementById('trackbar');
+                slider.noUiSlider.set(parseInt(document.getElementById('trackBarValue').value));
                 onChangeValueForTrackBar();
             }
         }
@@ -429,6 +435,12 @@ window.onload = function initWizard() {
             }
         }
     });
+
+    $('#preloader').animate({ opacity: 1, top: '120%' }, 100,
+				function () { // пoсле aнимaции
+				    // $(this).css('display', 'none'); 
+				}
+			);
 }
 
 function setDesign() {
@@ -465,7 +477,21 @@ function initProducts() {
     //Если лист категорий пустой то мы его инициализируем
     if (list.value == "")
     {
+
+        
+        var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+        var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
         $.each(design.products.categoriesList, function (i) {
+            var z = 0;
+            for (var k = 0; k < this.products.length; k++) {
+                var front = (design.products.images[this.products[k]].printable_front_height / design.products.images[this.products[k]].printable_front_width).toFixed(1);
+                var back = (design.products.images[this.products[k]].printable_back_height / design.products.images[this.products[k]].printable_back_width).toFixed(1);
+                if ((front == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
+                    z++;
+                }
+            }
+            var gfgf = z;
+            if(z>=1){
             var option = document.createElement("option");
             option.value = i;
             option.id = this.id;
@@ -473,34 +499,57 @@ function initProducts() {
             list.appendChild(option);
             //Запихиваем айдишники продуктов по обьектам в массив
             mas.push(this.products);
+        }
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
+            var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+            var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
             $.each(design.products.productsData, function (i, el) {
-                //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
-                if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
-                    var option = document.createElement("option");
-                    option.value = i;
-                    option.id = i;
-                    option.innerHTML = el.name;
-                    listProd.appendChild(option);
-                }
-            });
-        }
-
-        $(list).change(function () {
-            listProd.innerHTML = "";
-            $.each((mas[this.value]), function (i, id) {
-                $.each(design.products.productsData, function (i, el) {
-                    if (el.id == id) {
+                var ww = (parseFloat(design.products.images[el.id].printable_front_height) / parseFloat(design.products.images[el.id].printable_front_width)).toFixed(1);
+                var back = (parseFloat(design.products.images[el.id].printable_back_height) / parseFloat(design.products.images[el.id].printable_back_width)).toFixed(1);
+                if ((ww == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
+                    //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
+                    if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
                         var option = document.createElement("option");
                         option.value = i;
                         option.id = i;
                         option.innerHTML = el.name;
                         listProd.appendChild(option);
                     }
-                });
+                };
             });
+        }
+
+        $(list).change(function () {
+            listProd.innerHTML = "";
+            var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
+            var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
+            $.each(design.products.categoriesList[this.value].products, function (i, element) {
+                var qq = (parseFloat(design.products.images[element].printable_front_height) / parseFloat(design.products.images[element].printable_front_width)).toFixed(1);
+                var back = (parseFloat(design.products.images[element].printable_back_height) / parseFloat(design.products.images[element].printable_back_width)).toFixed(1);
+                if ((qq == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.id = i;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                };
+            });
+           
+            //$.each((mas[this.value]), function (i, id) {
+            //    $.each(design.products.productsData, function (i, el) {
+                   
+            //            if (el.id == id) {
+            //                var option = document.createElement("option");
+            //                option.value = i;
+            //                option.id = i;
+            //                option.innerHTML = el.name;
+            //                listProd.appendChild(option);
+            //            }
+                  
+            //    });
+            //});
         });
     }
 }
@@ -517,7 +566,7 @@ function profitSale() {
         //$("#mainH4").css('color', '#ff0000');
         updateMinimum(price);
         app.state.currentProduct.Price = selPrice;
-        //window.sellingPrice = app.state.currentProduct.Price;
+        window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
     }else{
         //$("#mainH4").html($price);
@@ -577,7 +626,7 @@ function colorInit() {
                 var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
                 //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
                 window.nowPrice = app.state.currentProduct.BaseCost;
-                updateMinimum(changes);
+                updateMinimum(changes.toFixed(2));
                 if (window.nowPrice < window.sellingPrice) {
                     if (app.state.products.length > 1) {
                         estimatedProfitChangeForManuProducts()
@@ -679,11 +728,11 @@ function slide() {
 }
 
 function onChangeTrackBar() {
-    document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
+    //document.getElementById('trackBarValue').value = document.getElementById('trackbar').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
 
-    window.count = parseInt(document.getElementById('trackbar').value);
+    window.count = document.getElementById('trackBarValue').value;//parseInt(document.getElementById('trackbar').value);
     calculatePrice(window.frontColor, window.backColor);
     setPriceInDesignFromGoal();
     var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
@@ -693,21 +742,25 @@ function onChangeTrackBar() {
     updateMinimum(changes.toFixed(2));
     //profitSale();
 
-    if (window.nowPrice < window.sellingPrice) {
+    //if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {
             estimatedProfitChangeForManuProducts()
         } else {
-            estimatedProfitChange();
+            if (window.nowPrice < window.sellingPrice) {
+                estimatedProfitChange();
+            }
         }
-    }
+    //}
 }
 
 function onChangeValueForTrackBar() {
-    if (document.getElementById('trackBarValue').value < 15)
-        document.getElementById('trackBarValue').value = "15";
-    else if (document.getElementById('trackBarValue').value > 500)
-        document.getElementById('trackBarValue').value = "500";
-    document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
+    //var slider = document.getElementById('trackbar');
+    //slider.noUiSlider.set([null, parseInt(document.getElementById('trackBarValue').value)]);
+    //if (document.getElementById('trackBarValue').value < 15)
+    //    document.getElementById('trackBarValue').value = "15";
+    //else if (document.getElementById('trackBarValue').value > 500)
+    //    document.getElementById('trackBarValue').value = "500";
+    //document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
     //document.getElementById('total_profit').innerHTML = "RM " + (document.getElementById('trackbar').value) * 10;
 
 
@@ -721,11 +774,13 @@ function onChangeValueForTrackBar() {
     window.nowPrice = app.state.currentProduct.BaseCost;
     updateMinimum(changes.toFixed(2));
 
-    if (window.nowPrice < window.sellingPrice) {
+    //if (window.nowPrice < window.sellingPrice) {
         if (app.state.products.length > 1) {
             estimatedProfitChangeForManuProducts()
         } else {
-            estimatedProfitChange();
+            if (window.nowPrice < window.sellingPrice) {
+                estimatedProfitChange();
+            }
         }
-    }
+    //}
 }

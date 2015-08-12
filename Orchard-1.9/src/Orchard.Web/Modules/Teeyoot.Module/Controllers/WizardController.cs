@@ -65,6 +65,8 @@ namespace Teeyoot.Module.Controllers
                 costViewModel.LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint;
                 costViewModel.PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString();
                 costViewModel.PrintsPerLitre = cost.PrintsPerLitre;
+                costViewModel.SalesGoal = cost.SalesGoal;
+                costViewModel.MaxColors = cost.MaxColors;
                 costViewModel = ReplaceAllCost(costViewModel);
             }
 
@@ -161,6 +163,25 @@ namespace Teeyoot.Module.Controllers
 
             try
             {
+                foreach (var prod in data.Products)
+                {
+                    double price = 0;
+                    if (!double.TryParse(prod.Price, out price))
+                    {
+                        double.TryParse(prod.Price.Replace('.', ','), out price);
+                    }
+                    double cost = 0;
+                    if (!double.TryParse(prod.BaseCost, out cost))
+                    {
+                        double.TryParse(prod.BaseCost.Replace('.', ','), out cost);
+                    }
+
+                    if (price < cost)
+                    {
+                        prod.Price = prod.BaseCost;
+                    }
+                }
+
                 var campaign = _campaignService.CreateNewCampiagn(data);
                 CreateImagesForCampaignProducts(campaign);
 
@@ -465,6 +486,26 @@ namespace Teeyoot.Module.Controllers
                 backTemplate.Dispose();
                 front.Dispose();
                 back.Dispose();
+
+                int product = _campaignService.GetProductsOfCampaign(campaign.Id).First().Id;
+                string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
+                Directory.CreateDirectory(destFolder);
+
+                var imageSocialFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                if (!campaign.BackSideByDefault)
+                {
+                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
+                    var imgPath = new Bitmap(frontSocialPath);
+
+                    _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Front);
+                }
+                else
+                {
+                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+                    var imgPath = new Bitmap(backSocialPath);
+
+                    _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Back);
+                }
             }
         }
 

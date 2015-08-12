@@ -49,6 +49,10 @@
                 <th>@T("Sales goal")</th>
                 <td>@Html.TextBoxFor(m => m.SalesGoal, new { required = "required", type = "number" })</td>
             </tr>
+            <tr>
+                <th>@T("Amount of colors per print")</th>
+                <td>@Html.TextBoxFor(m => m.MaxColors, new { required = "required", type = "number" })</td>
+            </tr>
         </table>
     </fieldset>
     <div class="button-cost">

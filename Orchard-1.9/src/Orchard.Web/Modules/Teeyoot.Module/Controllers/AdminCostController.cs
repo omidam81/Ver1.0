@@ -37,7 +37,7 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre, SalesGoal = cost.SalesGoal };
+                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre, SalesGoal = cost.SalesGoal, MaxColors = cost.MaxColors };
 
                 return View("Index", costViewModel);
             }
@@ -52,7 +52,7 @@ namespace Teeyoot.Module.Controllers
             }
             else
             {
-                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre, SalesGoal = cost.SalesGoal };
+                AdminCostViewModel costViewModel = new AdminCostViewModel { AdditionalScreenCosts = cost.AdditionalScreenCosts.ToString(), DTGPrintPrice = cost.DTGPrintPrice.ToString(), FirstScreenCost = cost.FirstScreenCost.ToString(), InkCost = cost.InkCost.ToString(), LabourCost = cost.LabourCost.ToString(), LabourTimePerColourPerPrint = cost.LabourTimePerColourPerPrint, LabourTimePerSidePrintedPerPrint = cost.LabourTimePerSidePrintedPerPrint, PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString(), PrintsPerLitre = cost.PrintsPerLitre, SalesGoal = cost.SalesGoal, MaxColors = cost.MaxColors };
 
                 return View("Edit", costViewModel);
             }
@@ -153,7 +153,8 @@ namespace Teeyoot.Module.Controllers
                     LabourTimePerSidePrintedPerPrint = costViewModel.LabourTimePerSidePrintedPerPrint,
                     PercentageMarkUpRequired = Convert.ToSingle(costViewModel.PercentageMarkUpRequired, new CultureInfo("en-US")),
                     PrintsPerLitre = costViewModel.PrintsPerLitre,
-                    SalesGoal = costViewModel.SalesGoal
+                    SalesGoal = costViewModel.SalesGoal,
+                    MaxColors = costViewModel.MaxColors
                 };
 
                 if (_costService.InsertCost(newCost))
@@ -177,6 +178,7 @@ namespace Teeyoot.Module.Controllers
                 cost.PercentageMarkUpRequired = Convert.ToSingle(costViewModel.PercentageMarkUpRequired, new CultureInfo("en-US"));
                 cost.PrintsPerLitre = costViewModel.PrintsPerLitre;
                 cost.SalesGoal = costViewModel.SalesGoal;
+                cost.MaxColors = costViewModel.MaxColors;
 
                 if (_costService.UpdateCost(cost))
                 {

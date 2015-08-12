@@ -13,6 +13,8 @@
     Style.Include("login-modal.css");
     Style.Include("price.css");
     Style.Include("selectize.css");
+    Style.Include("nouislider.css");
+    Style.Include("nouislider.min.css");
 
     Script.Require("jQueryUI");
     Script.Include("bootstrap.min.js");
@@ -48,6 +50,8 @@
 
 
     Script.Include("selectize.js");
+
+    Script.Include("nouislider.js");
 }
 @using (Script.Head())
 {
@@ -106,12 +110,12 @@
             $("#name").removeClass('wizard-error');
             $("#name_error-text").attr("style","display: none;");
             $("#url").removeClass('wizard-error');
-            $("#url_error-text").attr("style","display: none;"); 
+            $("#url_error-text").attr("style","display: none;");
         });
 
         $("#url").keydown(function () {
             $("#url").removeClass('wizard-error');
-            $("#url_error-text").attr("style","display: none;");          
+            $("#url_error-text").attr("style","display: none;");
         });
 
         $("#name").keyup(function () {
@@ -121,7 +125,8 @@
         });
     </script>
     <script type="text/javascript">
-        var maxDesignColors = 10;
+        var colors = @Model.MaxColors;
+        var maxDesignColors = parseInt(colors);
 
         history.pushState(null, null, 'GetStarted');
         window.addEventListener('popstate', function (event) {
@@ -265,6 +270,8 @@
         window.labourTimePerSidePrintedPerPrint = @Model.LabourTimePerSidePrintedPerPrint;
         window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
         window.printsPerLitre = @Model.PrintsPerLitre;
+        window.salesTarget = @Model.SalesGoal;
+        //window.maxColors = @Model.MaxColors;
         window.count = 30; // Первоначальное количество элементов, должно будет изменяться
         window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
         document.getElementById('count_preview').innerHTML = "Base price &#64; " + window.count + " shirts";
@@ -273,17 +280,15 @@
         window.backColor = parseInt("0"); // Переменная для отображения цветов из зади на футюолке
         calculatePrice(window.frontColor, window.backColor);
 
-        $("#backdefaultside").click(function(){           
-                isFront = !isFront;
-                console.log(isFront);
-                $("#card").flip(!isFront);
+        $("#backdefaultside").click(function(){
+            isFront = !isFront;
+            console.log(isFront);
+            $("#card").flip(!isFront);
 
-                isFront3 = !isFront3;
-                $("#card3").flip(!isFront3);            
+            isFront3 = !isFront3;
+            $("#card3").flip(!isFront3);
         });
-    </script>
-
-    <script>
+    
         function refreshToken() {
             $.ajax({
                 async: false,
@@ -463,10 +468,10 @@
 
 
 
-         
+
             var result = new Array();
             function res(request, response) {
-      
+
                 $.ajax({
                     async: false,
                     cache: false,
@@ -479,11 +484,11 @@
                             console.log(result[i]);
 
                         }
-                    }, 
+                    },
                     error: function (data, status, resp) {
                         alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                     }
-                  
+
                 });
 
             }
@@ -566,8 +571,76 @@
             document.getElementById("tags").style.display = "inline";
             document.getElementById("openTagsButton").style.display = "none";
         };
+
+
+        var slider = document.getElementById('trackbar');
+        var input = document.getElementById('trackBarValue');
+
+        var maxRange = window.salesTarget;
+        var step = parseFloat(maxRange) / parseFloat("5");
+        var minSteps = step.toFixed(0);
+        var step1 = minSteps;
+        var step2 = minSteps * 2;
+        var step3 = minSteps * 3;
+        var step4 = minSteps * 4;
+
+        noUiSlider.create(slider, {
+            start: window.count,
+            orientation: 'horizontal',
+            step: 1,
+            range: {
+                'min': 15,
+                '50%': [maxRange/2, 1],
+                'max': maxRange
+            },
+            pips: {
+                mode: 'values',
+                values: [15, step1, step2, step3, step4, maxRange],
+                density: 4
+            }
+        });
+
+        slider.noUiSlider.on('update', function( values, handle ) {
+            var goal = parseFloat(values[handle]);
+            input.value = goal.toFixed(0);
+            onChangeTrackBar();
+        });
+
+        input.addEventListener('change', function(){
+            slider.noUiSlider.set(this.value);
+        });
+
+        // Listen to keydown events on the input field.
+        input.addEventListener('keydown', function( e ) {
+
+            // Convert the string to a number.
+            var value = Number( slider.noUiSlider.get() ),
+                sliderStep = slider.noUiSlider.steps()
+
+            // Select the stepping for the first handle.
+            sliderStep = sliderStep[0];
+
+            // 13 is enter,
+            // 38 is key up,
+            // 40 is key down.
+            switch ( e.which ) {
+                case 13:
+                    slider.noUiSlider.set(this.value);
+                    break;
+                case 38: slider.noUiSlider.set( value + sliderStep[1] );
+                    break;
+                case 40: slider.noUiSlider.set( value - sliderStep[0] );
+                    break;
+            }
+        });
+
     </script>
 }
+<div id="preloader">
+    <div class="preloader__body">
+        @*<div class="preloader__logo"></div>*@
+    </div>
+</div>
 
 <div class='lab-steps flow-steps' style="width:60%; margin-left: 20%;">
     <div id="design" class='flow-step active' tee-step-tab-select-title='item'>
@@ -1046,34 +1119,64 @@
                         </td>
                         <td style="width:50%; vertical-align:top; position:relative;">
                             <label style="font-weight: bold;">Sales Target</label>
-                            <div class="block">
+                            @*<div class="block">
+                                    <div style="display:block">
+                                        <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" onchange="onChangeTrackBar()" list="volsettings" />
+                                    </div>
+
+                                    <div class="tipping-point-slider__points">
+                                        <span class="tipping-point-slider__point">15</span>
+                                        <span class="tipping-point-slider__point">100</span>
+                                        <span class="tipping-point-slider__point">200</span>
+                                        <span class="tipping-point-slider__point">300</span>
+                                        <span class="tipping-point-slider__point">400</span>
+                                        <span class="tipping-point-slider__point">500</span>
+
+                                    </div>
+
+
+                                    <datalist id=volsettings>
+                                        <option>0</option>
+                                        <option>20</option>
+                                        <option>40</option>
+                                        <option>60</option>
+                                        <option>80</option>
+                                        <option>100</option>
+                                    </datalist>
+                                </div>*@
+
+                            @*<div class="trackBarValue_box">
+                                    <div class="block">Number of shirts:</div><input id="trackBarValue" value="250">
+                                </div>*@
+
+                            <div class="block" style="height: 73px; padding-left: 15px; padding-right: 15px;">
                                 <div style="display:block">
-                                    <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" onchange="onChangeTrackBar()" list="volsettings" />
+                                    @*<input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" onchange="onChangeTrackBar()" list="volsettings" />*@
+                                    <div id="trackbar" class="noUi-target noUi-ltr noUi-horizontal noUi-background"></div>
                                 </div>
 
-                                <div class="tipping-point-slider__points">
-                                    <span class="tipping-point-slider__point">15</span>
-                                    <span class="tipping-point-slider__point">100</span>
-                                    <span class="tipping-point-slider__point">200</span>
-                                    <span class="tipping-point-slider__point">300</span>
-                                    <span class="tipping-point-slider__point">400</span>
-                                    <span class="tipping-point-slider__point">500</span>
+                                @*<div class="tipping-point-slider__points">
+                                        <span class="tipping-point-slider__point">15</span>
+                                        <span class="tipping-point-slider__point">100</span>
+                                        <span class="tipping-point-slider__point">200</span>
+                                        <span class="tipping-point-slider__point">300</span>
+                                        <span class="tipping-point-slider__point">400</span>
+                                        <span class="tipping-point-slider__point">500</span>
 
-                                </div>
+                                    </div>*@
 
 
-                                <datalist id=volsettings>
-                                    <option>0</option>
-                                    <option>20</option>
-                                    <option>40</option>
-                                    <option>60</option>
-                                    <option>80</option>
-                                    <option>100</option>
-                                </datalist>
+                                @*<datalist id=volsettings>
+                                        <option>0</option>
+                                        <option>20</option>
+                                        <option>40</option>
+                                        <option>60</option>
+                                        <option>80</option>
+                                        <option>100</option>
+                                    </datalist>*@
                             </div>
-
                             <div class="trackBarValue_box">
-                                <div class="block">Number of shirts:</div><input id="trackBarValue" value="250">
+                                <div class="block">Number of shirts:</div><input type="text" id="trackBarValue">
                             </div>
 
                             <!--<table>
@@ -1105,7 +1208,7 @@
                                     <div class="ssp-ssp-metadata-and-col-pick">
                                         <div class="ssp_metadata">
                                             <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
-                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teesyoot Premium Tee</h4>
+                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teeyoot Premium Tee</h4>
                                             </div>
                                         </div>
 
@@ -1283,7 +1386,7 @@
                                                                         <span>Enter up to 6 words to describe your campaign so buyers can find it</span>
                                                                     </label>
                                                                 </p>
-                                                              @*  <input type="text" name="name" class="form__textfield " id="inputTags" value="">*@
+                                                                @*  <input type="text" name="name" class="form__textfield " id="inputTags" value="">*@
                                                                 <div id="inputTags"></div>
                                                             </div>
 

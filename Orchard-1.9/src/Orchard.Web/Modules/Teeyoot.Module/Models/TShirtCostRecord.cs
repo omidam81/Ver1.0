@@ -27,5 +27,7 @@ namespace Teeyoot.Module.Models
         public virtual float DTGPrintPrice { get; set; }
 
         public virtual int SalesGoal { get; set; }
+
+        public virtual int MaxColors { get; set; }
     }
 }
