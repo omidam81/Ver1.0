@@ -32,6 +32,8 @@ namespace Teeyoot.Account.Services
             };
             var emails = new List<MandrillMailAddress> {new MandrillMailAddress(user.Email, "user")};
             mandrillMessage.To = emails;
+            var request = HttpContext.Current.Request;
+            mandrillMessage.AddRcptMergeVars(user.Email, "Url", request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/");
             var text = System.IO.File.ReadAllText(pathToTemplates + "welcome-template.html");
             mandrillMessage.Html = text;
             var res = SendTmplMessage(api, mandrillMessage);
