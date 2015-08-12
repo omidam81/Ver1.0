@@ -2078,7 +2078,7 @@ var design={
                 var $designArea = $('.design-area', $view);
                 var prefix = 'printable_' + view + '_';
                 
-                $designArea.css({ 'height': image[prefix + 'height'] }, { 'width': image[prefix + 'width'] }, { 'left': image[prefix + 'left'] }, { 'top': image[prefix + 'top'] });
+                $designArea.css({ 'height': image[prefix + 'height'], 'width': image[prefix + 'width'], 'left': image[prefix + 'left'], 'top': image[prefix + 'top'] });
                 $designArea.css({'display': 'block'});
             });
 		},
