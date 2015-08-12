@@ -471,14 +471,20 @@ namespace Teeyoot.Module
                     .Column<string>("ApiKey", c => c.WithLength(50))
                     .Column<string>("Culture", c => c.WithLength(50)));
 
-           
+
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<string>("CampaignProfit", c => c.NotNull().WithDefault(string.Empty)));
 
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("SalesGoal", c => c.NotNull().WithDefault(500)));
 
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("MaxColors", c => c.NotNull().WithDefault(10)));
 
-            return 51;
+            SchemaBuilder.CreateTable(typeof(CommonSettingsRecord).Name,
+              table => table
+             .Column<int>("Id", column => column.PrimaryKey().Identity())
+             .Column<string>("Name", c => c.WithLength(50))
+             .Column<bool>("Value"));
+
+            return 52;
         }
 
         public int UpdateFrom2()
@@ -985,7 +991,7 @@ namespace Teeyoot.Module
                     .Column<string>("ApiKey", c => c.WithLength(50))
                     .Column<string>("Culture", c => c.WithLength(50)));
 
-              return 48;
+            return 48;
         }
 
         public int UpdateFrom48()
@@ -1007,6 +1013,17 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("MaxColors", c => c.NotNull().WithDefault(10)));
 
             return 51;
+        }
+
+        public int UpdateFrom51()
+        {
+            SchemaBuilder.CreateTable(typeof(CommonSettingsRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Name", c => c.WithLength(50))
+                    .Column<bool>("Value"));
+
+            return 52;
         }
     }
 }
