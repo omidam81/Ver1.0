@@ -5337,10 +5337,10 @@ div.printable-area-box {
     border-right: 2px solid white;
     border-bottom: 0;
     color: white;
-    -webkit-transition: all 400ms ease;
-    transition: all 400ms ease;
     -webkit-backface-visibility:hidden;
     -webkit-transform: translateZ(0);
+    -webkit-transition: all 400ms ease;
+    transition: all 400ms ease;    
 }
 
 div.printable-area-toolbar {
