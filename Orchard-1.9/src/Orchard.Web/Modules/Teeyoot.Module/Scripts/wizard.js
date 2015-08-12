@@ -758,6 +758,16 @@ function slideTo(slideNumber) {
 
     var $slides = $('.Slides .Slide');
 
+    if (app.state.isFront) {
+        design.products.changeView(app.state.getView(true));
+        $("#card").flip(false);
+        $("#card3").flip(false);
+    } else {
+        design.products.changeView(app.state.getView(false));
+        $("#card").flip(true);
+        $("#card3").flip(true);
+    }
+
     slideTimeout = window.setTimeout(function() {
         $('.flow-step.active').removeClass('active');
         $('#' + slideSteps[slideNumber - 1]).addClass('active');
