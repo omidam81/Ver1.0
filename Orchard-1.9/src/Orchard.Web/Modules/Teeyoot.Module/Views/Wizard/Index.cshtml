@@ -239,8 +239,8 @@
             return data;
         };
 
-        var isFront = true
-        var isFront3 = true
+        var isFront = true;
+        var isFront3 = true;
         $(function($) {
             $("#card").flip({
                 trigger: 'manual'
@@ -249,12 +249,12 @@
                 trigger: 'manual'
             });
             $('#card .flip-button:not(.flip-button-active)').on('click', function(){
-                isFront = !isFront;
+                isFront = app.state.isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
             });
             $('#card3 .flip-button:not(.flip-button-active)').on('click', function(){
-                isFront3 = !isFront3;
+                isFront3 = app.state.isFront;
                 $("#card3").flip(!isFront3);
             });
         });
@@ -281,12 +281,17 @@
         calculatePrice(window.frontColor, window.backColor);
 
         $("#backdefaultside").click(function(){
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
+            if(app.state.isFront){
+                //isFront = !isFront;
+                //console.log(isFront);
+                design.products.changeView(app.state.getView(!app.state.isFront));
+                $("#card").flip(true);
 
-            isFront3 = !isFront3;
-            $("#card3").flip(!isFront3);
+                //isFront3 = !isFront3;
+                $("#card3").flip(true);
+            }else{
+
+            }
         });
     
         function refreshToken() {
@@ -481,8 +486,6 @@
                     success: function(data) {
                         for (var i = 0; i < data.length; i++) {
                             result[i] = data[i];
-                            console.log(result[i]);
-
                         }
                     },
                     error: function (data, status, resp) {
