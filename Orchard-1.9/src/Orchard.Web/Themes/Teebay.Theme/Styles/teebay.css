@@ -37,7 +37,7 @@
     /*float: left;*/
     /*text-align: -webkit-center;*/
     /*text-align: -moz-center;*/
-    margin-left: 8px;
+    /*margin-left: 8px;*/
     width: 100%;
     max-width: 340px;
 }
@@ -275,7 +275,7 @@
     /*max-width: 300px;*/
     width: 100%;
     /*padding-top: 3px;*/
-    min-width: 200px;
+    min-width: 165px;
     height: 29px;
 }
 
@@ -309,7 +309,7 @@
         padding: 0 0 0 5px;
         padding-left: 0px;
         border-radius: 10px 0 0 10px;
-        max-width: 300px;
+        max-width: 320px;
         width: 100%;
         vertical-align: middle;
     }
@@ -342,7 +342,7 @@
 }
 
 .menu-for-user {
-    width: 220px;
+    width: 200px;
     height: 44px;
     background: #ffffff;
     margin-right: -30px;
@@ -384,7 +384,9 @@
     .user-email-button:hover {
         background: #ffffff;
     }
-
+.widget-usermenu{
+        margin-left: -20px;
+}
 .widget-usermenu .menu-user-menu ul {
     background: #ffffff;
 }
@@ -432,10 +434,6 @@
     }
 
 @media all and (max-width: 1870px) {
-    .widget-mainSearch {
-        /*width: 29%;*/
-    }
-
     .widget-anonimousMenu,
     .widget-authenticatedMenu {
         padding: 11px 0 0 0;
@@ -443,29 +441,7 @@
     }
 }
 
-@media all and (max-width: 1880px) {
-    .widget-mainSearch {
-        /*width: 35%;*/
-    }
-}
-
-@media all and (max-width: 1851px) {
-    .widget-mainSearch {
-        /*width: 34%;*/
-    }
-}
-
-@media all and (max-width: 1823px) {
-    .widget-mainSearch {
-        /*width: 34%;*/
-    }
-}
-
 @media all and (max-width: 1800px) {
-    .widget-mainSearch {
-        /*width: 33%;*/
-    }
-
     .widget-createSearchButtons {
         height: 585px;
     }
@@ -477,233 +453,19 @@
     }
 }
 
-@media all and (max-width: 1775px) {
-    .widget-mainSearch {
-        /*width: 31%;*/
-    }
-}
-
-@media all and (max-width: 1745px) {
-    .widget-mainSearch {
-        /*width: 30%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
-}
-
-@media all and (max-width: 1720px) {
-    .widget-mainSearch {
-        /*width: 29%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 84%;*/
-    }
-}
-
-@media all and (max-width: 1696px) {
-    .widget-mainSearch {
-        /*width: 28%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 83%;*/
-    }
-}
-
 @media all and (max-width: 1671px) {
-    .widget-mainSearch {
-        /*width: 27%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 83%;*/
-    }
-
     .widget-createSearchButtons {
         height: 537px;
     }
 }
 
-@media all and (max-width: 1616px) {
-    .widget-mainSearch {
-        /*width: 26%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 82%;*/
-    }
-}
-
-@media all and (max-width: 1594px) {
-    .widget-mainSearch {
-        /*width: 25%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 82%;*/
-    }
-}
-
-@media all and (max-width: 1581px) {
-    .widget-mainSearch {
-        /*width: 24%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
-    }
-}
-
 @media all and (max-width: 1553px) {
-    .widget-mainSearch {
-        /*width: 24%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
-    }
-
     .widget-createSearchButtons {
         height: 504px;
     }
 }
 
-@media all and (max-width: 1542px) {
-    .widget-mainSearch {
-        /*width: 23%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
-}
-
-@media all and (max-width: 1532px) {
-    .widget-mainSearch {
-        /*width: 22%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
-}
-
-@media all and (max-width: 1513px) {
-    .widget-mainSearch {
-        /*width: 21%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-    }
-}
-
-@media all and (max-width: 1505px) {
-    .widget-mainSearch {
-        /*width: 20%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-    }
-}
-
-@media all and (max-width: 1474px) {
-    .widget-mainSearch {
-        /*width: 20%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 72%;*/
-    }
-}
-
-@media all and (max-width: 1468px) {
-    .widget-mainSearch {
-        /*width: 18%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-    }
-}
-
-@media all and (max-width: 1438px) {
-    .widget-mainSearch {
-        /*width: 18%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 70%;*/
-    }
-}
-
-@media all and (max-width: 1432px) {
-    .widget-mainSearch {
-        /*width: 17%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 68%;*/
-    }
-}
-
-@media all and (max-width: 1417px) {
-    .widget-mainSearch {
-        /*width: 16%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 65%;*/
-    }
-}
-
-@media all and (max-width: 1415px) {
-    .widget-mainSearch {
-        /*width: 28%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 83%;*/
-    }
-}
-
-@media all and (max-width: 1410px) {
-    .widget-mainSearch {
-        /*width: 27%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 82%;*/
-    }
-
-    .widget-createSearchButtons {
-        /*height: 454px;*/
-    }
-}
-
-@media all and (max-width: 1392px) {
-    .widget-mainSearch {
-        /*width: 26%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
-    }
-}
-
 @media all and (max-width: 1385px) {
-    .widget-mainSearch {
-        /*width: 25%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
-    }
-
     .widget-createSearchButtons {
         height: 446px;
     }
@@ -716,84 +478,20 @@
 }
 
 @media all and (max-width: 1355px) {
-    .widget-mainSearch {
-        /*width: 23%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
-
     .widget-createSearchButtons {
         height: 430px;
     }
 }
 
-@media all and (max-width: 1329px) {
-    .widget-mainSearch {
-        /*width: 23%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
-
+@media all and (max-width: 1329px) {   
     .widget-createSearchButtons {
         height: 442px;
     }
 }
 
 @media all and (max-width: 1322px) {
-    .widget-mainSearch {
-        /*width: 22%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-    }
-
     .widget-createSearchButtons {
         height: 428px;
-    }
-}
-
-@media all and (max-width: 1307px) {
-    .widget-mainSearch {
-        /*width: 21%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-    }
-}
-
-@media all and (max-width: 1300px) {
-    .widget-mainSearch {
-        /*width: 24%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
-}
-
-@media all and (max-width: 1293px) {
-    .widget-mainSearch {
-        /*width: 23%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
-}
-
-@media all and (max-width: 1280px) {
-    .widget-mainSearch {
-        /*width: 22%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
     }
 }
 
@@ -807,35 +505,7 @@
     }
 }
 
-@media all and (max-width: 1230px) {
-    .widget-mainSearch {
-        /*width: 19%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 70%;*/
-    }
-}
-
-@media all and (max-width: 1215px) {
-    .widget-mainSearch {
-        /*width: 32%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
-}
-
 @media all and (max-width: 1200px) {
-    .widget-mainSearch {
-        /*width: 32%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
-
     .widget-createSearchButtons {
         height: 377px;
     }
@@ -853,11 +523,7 @@
 
 @media all and (max-width: 1160px) {
     .widget-mainSearch {
-        width: 22%;
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
+        width: 20%;
     }
 }
 
@@ -867,49 +533,21 @@
     }
 }
 
-@media all and (max-width: 1140px) {
-    .widget-mainSearch {
-        width: 20%;
-        /*width: 300px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        width: 83%;
-        /*width: 265px;*/
-    }
-}
-
 @media all and (max-width: 1115px) {
     .widget-mainSearch {
         width: 18%;
     }
-
+    .tb-search-form{
+        width:80%;
+    }
     .tb-search-form input[type=text] {
         width: 80%;
     }
 }
 
-@media all and (max-width: 1120px) {
-    .widget-mainSearch {
-        /*width: 27%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
-    }
-
+@media all and (max-width: 1120px) {  
     .widget-createSearchButtons {
         height: 354px;
-    }
-}
-
-@media all and (max-width: 1100px) {
-    .widget-mainSearch {
-        /*width: 290px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 255px;*/
     }
 }
 
@@ -923,16 +561,6 @@
     }
 }
 
-@media all and (max-width: 1070px) {
-    .widget-mainSearch {
-        /*width: 270px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 235px;*/
-    }
-}
-
 @media all and (max-width: 1060px) {
     .widget-mainSearch {
         width: 14%;
@@ -943,63 +571,6 @@
     }
 }
 
-@media all and (max-width: 1050px) {
-    .widget-mainSearch {
-        /*width: 250px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 215px;*/
-    }
-}
-
-@media all and (max-width: 1035px) {
-    .widget-mainSearch {
-        width: 12%;
-        /*width: 240px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        width: 69%;
-        /*width: 205px;*/
-    }
-}
-
-@media all and (max-width: 1030px) {
-    .widget-mainSearch {
-        /*width: 20%;*/
-        /*width: 230px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-        /*width: 195px;*/
-    }
-}
-
-@media all and (max-width: 1020px) {
-    .widget-mainSearch {
-        /*width: 20%;*/
-        /*width: 220px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-        /*width: 185px;*/
-    }
-}
-
-@media all and (max-width: 1010px) {
-    .widget-mainSearch {
-        /*width: 20%;*/
-        /*width: 210px;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-        /*width: 175px;*/
-    }
-}
 
 @media all and (max-width: 950px) {
     .zone-footer-quad-second {
@@ -1033,10 +604,6 @@
 }
 
 @media all and (max-width: 1415px) {
-    /*.tb-search-form input[type=text] {
-        width: 250px;
-    }*/
-
     .banner-title {
         font-size: 48px !important;
         /*width: 70%;*/
@@ -1057,13 +624,7 @@
         .banner-title .title-logo {
             font-size: 42px !important;
         }
-    /*.tb-layout-before-main {
-  margin-bottom: -280px;
-}*/
-    /*.tb-search-form input[type=text] {
-        width: 200px;
-    }*/
-
+  
     .get-started-button button {
         padding: 7px 20px !important;
     }
@@ -1081,13 +642,9 @@
             font-size: 38px !important;
         }
 
-    .tb-search-form input[type=text] {
-        /*width: 180px;*/
-    }
-
     .widget-authenticatedMenu,
     .widget-anonimousMenu {
-        padding-left: 0 !important;
+        padding-left: 20px !important;
     }
 
     .widget-getStartedButton {
@@ -1296,26 +853,9 @@
 }
 
 @media all and (max-width: 930px) {
-    .widget-mainSearch {
-        /*width: 55%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 88%;*/
-    }
 
     .widget-createSearchButtons {
         height: 458px;
-    }
-}
-
-@media all and (max-width: 840px) {
-    .widget-mainSearch {
-        /*width: 55%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 88%;*/
     }
 }
 
@@ -1323,49 +863,11 @@
     .widget-mainSearch {
         width: 55%;
     }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
 }
 
 @media all and (max-width: 775px) {
     .widget-mainSearch {
         width: 50%;
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
-}
-
-@media all and (max-width: 770px) {
-    .widget-mainSearch {
-        /*width: 50%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
-}
-
-@media all and (max-width: 750px) {
-    .widget-mainSearch {
-        /*width: 55%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 88%;*/
-    }
-}
-
-@media all and (max-width: 745px) {
-    .widget-mainSearch {
-        /*width: 53%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
     }
 }
 
@@ -1373,29 +875,17 @@
     .widget-mainSearch {
         width: 58%;
     }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
 }
 
 @media all and (max-width: 720px) {
     .widget-mainSearch {
         width: 56%;
     }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
-    }
 }
 
 @media all and (max-width: 715px) {
     .widget-mainSearch {
         width: 54%;
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
     }
 }
 
@@ -1482,12 +972,6 @@
     }
 }
 
-@media all and (max-width: 340px) {
-    /*.orchard-layouts-root .shop-now-banner {
-        max-height: 240px;
-    }*/
-}
-
 @media all and (max-width: 335px) {
     .orchard-layouts-root h1 a img {
         width: 260px;
@@ -1513,16 +997,6 @@
         .tb-search-form input[type=text] {
             width: 170px;
         }
-}
-
-@media all and (max-width: 593px) {
-    .widget-mainSearch {
-        /*width: 40%;*/
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 78%;*/
-    }
 }
 
 @media all and (max-width: 580px) {
@@ -1660,29 +1134,17 @@
     .widget-mainSearch {
         width: 70%;
     }
-
-    .tb-search-form input[type=text] {
-        /*width: 75%;*/
-    }
 }
 
 @media all and (max-width: 532px) {
     .widget-mainSearch {
         width: 70%;
     }
-
-    .tb-search-form input[type=text] {
-        /*width: 87%;*/
-    }
 }
 
 @media all and (max-width: 516px) {
     .widget-mainSearch {
         width: 70%;
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 85%;*/
     }
 }
 
@@ -1737,34 +1199,16 @@
             width: 220px;
         }
 
-    .widget-anonimousMenu {
-        /*position: absolute;
-        float: right;*/
-        /*width: %;*/
-    }
-
         .widget-anonimousMenu a {
             float: right;
         }
-
-    /*.tb-layout-before-main group {
-        margin-top: 0px;
-    }*/
 
     .tb-search-form input[type=text] {
         width: 82%;
     }
 
-    /*.tb-search-form {
-        width: 99%;
-    }*/
-
     .widget-anonimousMenu nav ul li a {
         float: left;
-    }
-
-    .tb-layout-before-main {
-        /*margin-top: 44px;*/
     }
 }
 
@@ -1814,10 +1258,6 @@
     .widget-mainSearch {
         width: 64%;
         padding: 0;
-    }
-
-    .tb-search-form input[type=text] {
-        /*width: 80%;*/
     }
 }
 
@@ -1946,22 +1386,10 @@
 }
 
 @media all and (max-width: 770px) {
-    /*.tb-search-form input[type=text] {
-        width: 80% !important;
-    }*/
-
     .widget-createSearchButtons {
         /*position: absolute;*/
         height: 379px;
     }
-
-    /*.tb-layout-before-main {
-        margin-bottom: -200px;
-    }*/
-
-    /*.widget-mainSearch {
-        width: 50% !important;
-    }*/
 
     .banner-title {
         /*padding-top: 3%;*/
@@ -2052,19 +1480,6 @@
 }
 
 @media all and (max-width: 620px) {
-    /*.tb-layout-before-main {
-        margin-bottom: -220px;
-    }*/
-
-    /*.tb-search-form input[type=text] {
-        width: 45% !important;
-        font-size: 10px;
-    }
-
-    .widget-mainSearch {
-        width: 20% !important;
-    }*/
-
     .widget-footerMenuRight {
         width: 200px;
     }
@@ -2078,29 +1493,9 @@
         padding-left: 0 !important;
         margin-right: -10px;
     }
-
-    .tb-search-form input[type=text]::-webkit-input-placeholder {
-        /*color: transparent;*/
-    }
-
-    .tb-search-form input[type=text]::-moz-placeholder {
-        /*color: transparent;*/
-    }
-
-    .tb-search-form input[type=text]:-moz-placeholder {
-        /*color: transparent;*/
-    }
-
-    /*.logo-img {
-        margin-left: -15px;
-    }*/
 }
 
 @media all and (max-width: 600px) {
-    /*.tb-layout-before-main {
-        margin-bottom: -210px;
-    }*/
-
     .widget-createSearchButtons {
         /*position: absolute;*/
         height: 295px;
@@ -2599,30 +1994,12 @@
         }
 }
 
-/*@media all and (max-width: 1590px) {
-    .tb-search-form input[type=text] {
-        width: 80%;
-    }
-}*/
-
 @media all and (max-width: 1660px) {
     .get-started-button button, .get-started-button a {
         padding: 7px 25px;
         margin-left: 0px;
     }
 }
-
-/*@media all and (max-width: 1490px) {
-    .tb-search-form input[type=text] {
-        width: 120px;
-    }
-}
-
-@media all and (max-width: 1460px) {
-    .tb-search-form input[type=text] {
-        width: 100px;
-    }
-}*/
 
 @media all and (max-width: 1415px) {
     .aside-1 .tb-layout-content {
