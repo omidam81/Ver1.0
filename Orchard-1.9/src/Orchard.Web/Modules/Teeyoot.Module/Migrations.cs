@@ -476,7 +476,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("SalesGoal", c => c.NotNull().WithDefault(500)));
 
-            return 50;
+            SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("MaxColors", c => c.NotNull().WithDefault(10)));
+
+            return 51;
         }
 
         public int UpdateFrom2()
@@ -998,6 +1000,13 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("SalesGoal", c => c.NotNull().WithDefault(500)));
 
             return 50;
+        }
+
+        public int UpdateFrom50()
+        {
+            SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<int>("MaxColors", c => c.NotNull().WithDefault(10)));
+
+            return 51;
         }
     }
 }

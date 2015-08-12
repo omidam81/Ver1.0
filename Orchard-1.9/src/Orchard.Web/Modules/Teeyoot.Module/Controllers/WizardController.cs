@@ -66,6 +66,7 @@ namespace Teeyoot.Module.Controllers
                 costViewModel.PercentageMarkUpRequired = cost.PercentageMarkUpRequired.ToString();
                 costViewModel.PrintsPerLitre = cost.PrintsPerLitre;
                 costViewModel.SalesGoal = cost.SalesGoal;
+                costViewModel.MaxColors = cost.MaxColors;
                 costViewModel = ReplaceAllCost(costViewModel);
             }
 

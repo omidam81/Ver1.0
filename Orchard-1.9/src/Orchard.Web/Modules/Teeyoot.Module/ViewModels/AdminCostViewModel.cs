@@ -42,6 +42,8 @@ namespace Teeyoot.Module.ViewModels
 
         public int SalesGoal { get; set; }
 
+        public int MaxColors { get; set; }
+
         public string FacebookClientId { get; set; }
         public string GoogleClientId { get; set; }
         public string GoogleApiKey { get; set; }
