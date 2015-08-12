@@ -5339,8 +5339,8 @@ div.printable-area-box {
     color: white;
     /*-webkit-backface-visibility:hidden;*/
     /*-webkit-transform: translateZ(0);*/
-    -webkit-transition: all 400ms ease;
-    transition: all 400ms ease;    
+    /*-webkit-transition: all 400ms ease;*/
+    /*transition: all 400ms ease;*/    
 }
 
 div.printable-area-toolbar {
