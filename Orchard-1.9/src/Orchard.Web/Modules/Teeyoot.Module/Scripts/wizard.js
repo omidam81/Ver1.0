@@ -397,6 +397,37 @@ window.onload = function initWizard() {
                 document.getElementById("ui").style.display = "inline";
             }
             div.parentNode.removeChild(div);
+
+            //var leng = products.e;
+            var count;
+            var products = app.state.products;
+            for (var i = 1; i < products.length; i++) {
+                if (products[i] == prdc) {
+                    //leng = products.length - i - 1;
+                    count = i+1;
+                }
+            }
+            for (var k = count; k < products.length; k++) {
+                var h4PriceOld = document.getElementById("h4Price_" + (k + 1));
+                var h6PriceOld = document.getElementById("h6Price_" + (k + 1));
+                var h4CostProfRmOld = document.getElementById("h4CostProfRm_" + (k + 1));
+                var h4CostSaleOld = document.getElementById("h4CostSale_" + (k + 1));
+                var h4CostProfTextOld = document.getElementById("h4CostProfText_" + (k + 1));
+                var h6CostOld = document.getElementById("h6Cost_" + (k + 1));
+                var divProfitCalculOld = document.getElementById("divProfitCalcul_" + (k + 1));
+                var h4ProfSaleOld = document.getElementById("h4ProfSale_" + (k + 1));
+
+                h4PriceOld.id = "h4Price_" + k;
+                h6PriceOld.id = "h6Price_" + k;
+                h4CostProfRmOld.id = "h4CostProfRm_" + k;
+                h4CostSaleOld.id = "h4CostSale_" + k;
+                h4CostProfTextOld.id = "h4CostProfText_" + k;
+                h6CostOld.id = "h6Cost_" + k;
+                divProfitCalculOld.id = "divProfitCalcul_" + k;
+                h4ProfSaleOld.id = "h4ProfSale_" + k;
+            }
+
+            
             app.state.products.pop(prdc);
             if (app.state.products.length > 1) {
                 estimatedProfitChangeForManuProducts();
@@ -441,6 +472,16 @@ window.onload = function initWizard() {
 				    // $(this).css('display', 'none'); 
 				}
 			);
+
+    var elem = document.querySelector(".noUi-pips")
+    elem.addEventListener("click", function (event) {
+        if (event.target.className == "noUi-value noUi-value-horizontal noUi-value-large") {
+            var slider = document.getElementById('trackbar');
+            var val = parseInt(event.target.innerHTML);
+            slider.noUiSlider.set(val);
+            onChangeValueForTrackBar();
+        }
+    });
 }
 
 function setDesign() {
@@ -634,6 +675,7 @@ function colorInit() {
                         estimatedProfitChange();
                     }
                 }
+                document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);

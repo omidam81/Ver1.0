@@ -102,12 +102,16 @@
 
 .noUi-handle {
     background: #ff4f00 !important;
+    cursor: -webkit-grab;
+    cursor: pointer;
 }
 
 .noUi-base {
     background: #afafaf !important;
     height: 6px !important;
     border-radius: 5px !important;
+    cursor: -webkit-grab;
+    cursor: pointer;
 }
 
 .noUi-horizontal .noUi-handle {
@@ -130,4 +134,9 @@
 
 .noUi-target {
     margin-top: 10px;
+}
+
+.noUi-value {
+    cursor: -webkit-grab;
+    cursor: pointer;
 }
