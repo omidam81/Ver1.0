@@ -91,10 +91,17 @@ namespace Teeyoot.Module
                         .Position("3")
                         .Action("Index", "Home", new { area = "Teeyoot.Orders" })
                     )
+                     .Add(subItem => subItem
+                        .Caption(T("PaymentSettings"))
+                        .Position("3.1")
+                        .Action("Index", "Payment", new { area = "Teeyoot.PaymentSettings" })
+                        )
+
                     .Add(subItem => subItem
                         .Caption(T("Common Settings"))
                         .Action("Index", "AdminCommonSettings", new { area = "Teeyoot.Module" })
                     )
+                    
                 );
         }
     }

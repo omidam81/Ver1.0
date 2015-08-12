@@ -502,7 +502,14 @@ namespace Teeyoot.Module
             var commonSettings = new CommonSettingsRecord();
             _commonSettingsRepository.Create(commonSettings);
 
-            return 53;
+
+            SchemaBuilder.CreateTable(typeof(PaymentSettingsRecord).Name,
+         table => table
+        .Column<int>("Id", column => column.PrimaryKey().Identity())
+        .Column<string>("Culture", c => c.WithLength(50))
+        .Column<int>("PaymentMethod"));
+
+            return 54;
         }
 
         public int UpdateFrom2()
@@ -1057,6 +1064,17 @@ namespace Teeyoot.Module
             _commonSettingsRepository.Create(commonSettings);
 
             return 53;
+        }
+
+        public int UpdateFrom53()
+        {
+            SchemaBuilder.CreateTable(typeof(PaymentSettingsRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Culture", c => c.WithLength(50))
+                    .Column<int>("PaymentMethod"));
+
+            return 54;
         }
     }
 }
