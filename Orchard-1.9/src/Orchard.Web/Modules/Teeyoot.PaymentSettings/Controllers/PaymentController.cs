@@ -1,4 +1,6 @@
-﻿using Orchard.UI.Admin;
+﻿using Orchard;
+using Orchard.Localization;
+using Orchard.UI.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +19,15 @@ namespace Teeyoot.PaymentSettings.Controllers
     {
         private readonly ILanguageService _languageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
+        private IOrchardServices Services { get; set; }
 
-        public PaymentController(ILanguageService languageService, IPaymentSettingsService paymentSettingsService)
+        public Localizer T { get; set; }
+
+        public PaymentController(ILanguageService languageService, IPaymentSettingsService paymentSettingsService, IOrchardServices services)
         {
             _languageService = languageService;
             _paymentSettingsService = paymentSettingsService;
+            Services = services;
         }
 
         private const string DEFAULT_LANGUAGE_CODE = "en";
@@ -37,15 +43,20 @@ namespace Teeyoot.PaymentSettings.Controllers
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(p => p.Culture == culture);
             if (setting == null)
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture),Payment1 = true,  PaumentMethod = 3 });
+                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture),Payment1 = true,  PaumentMethod = 0 });
 		    else
                 return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), Payment1 = true, PaumentMethod = setting.PaymentMethod });         
         }
 
-        [HttpPost]
-        public ActionResult SaveSettings(PaymentSettingsViewModel Payment1, bool Payment2)
+        public ActionResult SaveSettings(string PaymentMethod,string PrivateKey, string PublicKey, string MerchantId, string ClientToken, string Language)
         {
-
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == Language);
+            setting.PaymentMethod = Convert.ToInt32(PaymentMethod);
+            setting.PublicKey = PublicKey;
+            setting.PrivateKey = PrivateKey;
+            setting.MerchantId = MerchantId;
+            setting.ClientToken = ClientToken;
+            _paymentSettingsService.UpdateSettings(setting);
            return RedirectToAction("Index","Payment", new { culture = "en" });
         }
 
@@ -58,14 +69,14 @@ namespace Teeyoot.PaymentSettings.Controllers
                 return RedirectToAction("Index");
         }
 
-        public ActionResult EditSetting(string language, int paumentMethod)
-        {
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == language);
-            setting.PaymentMethod = paumentMethod;
-            _paymentSettingsService.UpdateSettings(setting);
-            //_paymentSettingsService.AddSettings(new PaymentSettingsRecord() { Culture = language, PaymentMethod = 1 });
-            return RedirectToAction("Index", "Payment", new { culture = language });
-        }
+        //public ActionResult EditSetting(string language, int paumentMethod)
+        //{
+        //    var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == language);
+        //    setting.PaymentMethod = paumentMethod;
+        //    _paymentSettingsService.UpdateSettings(setting);
+        //    //_paymentSettingsService.AddSettings(new PaymentSettingsRecord() { Culture = language, PaymentMethod = 1 });
+        //    return RedirectToAction("Index", "Payment", new { culture = language });
+        //}
 
 
     }

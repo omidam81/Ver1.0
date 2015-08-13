@@ -163,7 +163,7 @@ function setPriceInDesignFromGoal() {
 }
 
 function estimatedProfitChange() {
-    var est = Math.floor(parseFloat((window.sellingPrice - window.nowPrice) * window.count));
+    var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(2);
     $("#total_profit").html("RM " + est + "+");
 }
 
@@ -200,20 +200,22 @@ function estimatedProfitChangeForManuProducts() {
             $(indexProf).html(profit.toFixed(2));
             $(indexCost).html(products[i].BaseCost.toFixed(2));
             if (profit < 0) {
-                $(divProfitCalcul).css('display', 'none');
-                $(h6Cost).css('display', 'none');
-                $(h6Price).css('display', 'none');
-                $(h4Price).css('display', 'none');
-                $(h4CostProfText).html("minimum");
-                $(indexCost).html(products[i].BaseCost.toFixed(2));
-                $(h4CostProfText).css('color', '#ff0000');
-                $(indexCost).css('color', '#ff0000');
-                $(h4CostProfRm).css('color', '#ff0000');
+                app.state.isNegativeProfit = true;
+               // $(divProfitCalcul).css('display', 'none');
+               // $(h6Cost).css('display', 'none');
+               // $(h6Price).css('display', 'none');
+               // $(h4Price).css('display', 'none');
+                //$(h4CostProfText).html("minimum");
+                //$(indexCost).html(products[i].BaseCost.toFixed(2));
+                //$(h4CostProfText).css('color', '#ff0000');
+                //$(indexCost).css('color', '#ff0000');
+                //$(h4CostProfRm).css('color', '#ff0000');
 
-                //$(indexProf).html("RM " + products[i].BaseCost.toFixed(2) + " minimum");
+                $(indexProf).html(profit);
                 //$(indexProf).css('color', '#ff0000');
                 //$("#total_profit").html("RM 0+");
             } else {
+                app.state.isNegativeProfit = false;
                 $(divProfitCalcul).css('display', 'block');
                 $(h6Cost).css('display', 'block');
                 $(h6Price).css('display', 'block');
@@ -234,8 +236,8 @@ function estimatedProfitChangeForManuProducts() {
             }
         }
     }
-    var min = Math.min.apply(null, result);
-    var max = Math.max.apply(null, result);
+    var min = Math.min.apply(null, result).toFixed(2);
+    var max = Math.max.apply(null, result).toFixed(2);
     if (min < 0) min = 0;
     if (min == max) {
         $("#total_profit").html("RM " + min + "+");
