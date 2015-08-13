@@ -18,7 +18,7 @@ namespace Teeyoot.Module.Models
 
         public virtual string Materials { get; set; }
 
-        public virtual DateTime WhenDeleted { get; set; }
+        public virtual DateTime? WhenDeleted { get; set; }
 
         public virtual IList<LinkProductColorRecord> ColorsAvailable { get; set; }
 
