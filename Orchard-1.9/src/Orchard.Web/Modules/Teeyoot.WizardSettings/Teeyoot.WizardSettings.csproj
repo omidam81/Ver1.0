@@ -111,6 +111,7 @@
     <Compile Include="Common\GetImageResponse.cs" />
     <Compile Include="Common\SizeMetricDimension.cs" />
     <Compile Include="Controllers\AdminWizardController.cs" />
+    <Compile Include="Controllers\ArtworkController.cs" />
     <Compile Include="Controllers\ColourController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductHeadlineController.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Common\ChooseColourFor.cs" />
     <Compile Include="Common\ProductImageSavingResult.cs" />
     <Compile Include="Routes.cs" />
+    <Compile Include="ViewModels\ArtworkViewModel.cs" />
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductColourItemViewModel.cs" />
     <Compile Include="ViewModels\ProductColourViewModel.cs" />
@@ -197,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ProductSize\EditProductSize.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Artwork\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Artwork\AddArtwork.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

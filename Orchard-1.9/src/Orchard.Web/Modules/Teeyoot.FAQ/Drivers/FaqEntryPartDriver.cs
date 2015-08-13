@@ -1,6 +1,7 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Localization;
+using Orchard.Localization.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,14 @@ namespace Teeyoot.FAQ.Drivers
         private readonly ILanguageService _languageService;
         private readonly IContentManager _contentManager;
         private readonly ITeeyootFaqService _faqService;
-       
-        public FaqEntryPartDriver(ILanguageService languageService, ITeeyootFaqService faqService, IContentManager contentManager)
+        private readonly ICultureManager _cultureManager;
+
+        public FaqEntryPartDriver(ILanguageService languageService, ITeeyootFaqService faqService, IContentManager contentManager, ICultureManager cultureManager)
         {
             _languageService = languageService;
             _contentManager = contentManager;
             _faqService = faqService;
+            _cultureManager = cultureManager;
 
             T = NullLocalizer.Instance;
         }
@@ -34,7 +37,7 @@ namespace Teeyoot.FAQ.Drivers
 
         protected override DriverResult Editor(FaqEntryPart part, dynamic shapeHelper)
         {
-            part.AvailableLanguages = _languageService.GetLanguages();
+            part.AvailableLanguages = _cultureManager.ListCultures();
             part.AvailableSections = _faqService.GetFaqSections();
 
             return ContentShape("Parts_FaqEntry_Edit", () => shapeHelper

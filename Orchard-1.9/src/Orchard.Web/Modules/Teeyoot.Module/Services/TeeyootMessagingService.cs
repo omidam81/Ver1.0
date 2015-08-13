@@ -33,7 +33,7 @@ namespace Teeyoot.Messaging.Services
         private readonly IRepository<UserRolesPartRecord> _userRolesPartRepository;
         private readonly INotifier _notifier;
         public Localizer T { get; set; }
-        private const string ADMIN_EMAIL = "admin@teeyoot.com";
+        private const string ADMIN_EMAIL = "noreply@teeyoot.com";
 
         public TeeyootMessagingService(IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
             IMailChimpSettingsService settingsService,
@@ -212,7 +212,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "teeyoot@teeyoot.com";
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.Subject = "New order";
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
@@ -238,7 +238,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "teeyoot@teeyoot.com";
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.Subject = "Payout Request";
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);

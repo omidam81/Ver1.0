@@ -8,7 +8,7 @@ window.onload = function initWizard() {
     
 
     app.state.products = [];
-    app.state.isNegativeProfit = false;
+    app.state.isNegativeProfit = [];
     app.state.w = $(window).width();
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
@@ -169,6 +169,7 @@ window.onload = function initWizard() {
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
         inpPrice.classList.add("profSale");
+        
         inpPrice.value = prdc.Price.toFixed(2);
 
         h4Profit.classList.add("h4ProfSale");
@@ -184,6 +185,7 @@ window.onload = function initWizard() {
         h6Cost.id = "h6Cost_" + parseInt(index);
         h4Price.id = "h4Price_" + parseInt(index);
         h6Price.id = "h6Price_" + parseInt(index);
+        inpPrice.id = "Input_" + parseInt(index);
 
         var chenges = prdc.Price - prdc.BaseCost.toFixed(2);
         h4Profit.innerHTML = chenges.toFixed(2);
@@ -206,6 +208,7 @@ window.onload = function initWizard() {
             keydown: function (e) {
                 if (e.which == 13) {
                     profSaleProd();
+                    document.querySelector('#' + inpPrice.id).value = Number($('#' + inpPrice.id).val()).toFixed(2);
                 }
             }
         });
@@ -410,6 +413,7 @@ window.onload = function initWizard() {
                 count = 1;
             }
             for (var k = count; k < leng; k++) {
+                var input = document.getElementById("Input_" + (k + 1));
                 var h4PriceOld = document.getElementById("h4Price_" + (k + 1));
                 var h6PriceOld = document.getElementById("h6Price_" + (k + 1));
                 var h4CostProfRmOld = document.getElementById("h4CostProfRm_" + (k + 1));
@@ -419,6 +423,7 @@ window.onload = function initWizard() {
                 var divProfitCalculOld = document.getElementById("divProfitCalcul_" + (k + 1));
                 var h4ProfSaleOld = document.getElementById("h4ProfSale_" + (k + 1));
 
+                input.id = "Input_" + k;
                 h4PriceOld.id = "h4Price_" + k;
                 h6PriceOld.id = "h6Price_" + k;
                 h4CostProfRmOld.id = "h4CostProfRm_" + k;
@@ -463,6 +468,8 @@ window.onload = function initWizard() {
         keydown: function (e) {
             if (e.which == 13) {
                 profitSale();
+                document.querySelector('#profSale').value = Number($("#profSale").val()).toFixed(2);
+                
             }
         }
     });
@@ -763,9 +770,14 @@ function slideTo(slideNumber) {
         return;
     }
 
-    if (app.state.isNegativeProfit && slideNumber == 3) {
-        $('#negative-profit-error').modal('show');
-        return;
+    if (slideNumber == 3) {
+        for (i = 0; i < app.state.isNegativeProfit.length; i++) {
+            if (app.state.isNegativeProfit[i]) {
+                $('#negative-profit-error').modal('show');
+                return;
+            }
+        }
+        
     }
     if (slideTimeout) {
         window.clearTimeout(slideTimeout);

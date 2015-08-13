@@ -200,7 +200,8 @@ function estimatedProfitChangeForManuProducts() {
             $(indexProf).html(profit.toFixed(2));
             $(indexCost).html(products[i].BaseCost.toFixed(2));
             if (profit < 0) {
-                app.state.isNegativeProfit = true;
+                
+                app.state.isNegativeProfit[i+1] = true;
                // $(divProfitCalcul).css('display', 'none');
                // $(h6Cost).css('display', 'none');
                // $(h6Price).css('display', 'none');
@@ -215,7 +216,7 @@ function estimatedProfitChangeForManuProducts() {
                 //$(indexProf).css('color', '#ff0000');
                 //$("#total_profit").html("RM 0+");
             } else {
-                app.state.isNegativeProfit = false;
+                app.state.isNegativeProfit[i+1] = false;
                 $(divProfitCalcul).css('display', 'block');
                 $(h6Cost).css('display', 'block');
                 $(h6Price).css('display', 'block');
@@ -257,15 +258,18 @@ function updateMinimum(changes) {
         //$("#base-cost-for-first-product-rm").css('color', '#ff0000');
         //$("#base-cost-for-first-product").css('color', '#ff0000');
         //$("#base-cost-for-first-product-text").css('color', '#ff0000');
-
-        app.state.isNegativeProfit = true;
+        if (app.state.isNegativeProfit != null) {
+            app.state.isNegativeProfit[0] = true;
+        }
         $("#mainH4").html(changes);
         //$("#mainH4").css('color', '#ff0000');
         if (app.state.products.length < 2) {
             $("#total_profit").html("RM 0+");
         }
     } else {
-        app.state.isNegativeProfit = false;
+        if (app.state.isNegativeProfit != null) {
+            app.state.isNegativeProfit[0] = false;
+        }
         $("#profit-calculator").css('display', 'block');
         $("#price-for-first-product-text").css('display', '-webkit-inline-box');
         $("#price-for-first-product-text").css('display', '-moz-inline-box');

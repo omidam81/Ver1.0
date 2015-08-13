@@ -343,6 +343,40 @@ namespace Teeyoot.WizardSettings
                             {"area", "Teeyoot.WizardSettings"}
                         },
                         new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Artworks",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "Artwork"},
+                            {"action", "Index"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Artworks/Add",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "Artwork"},
+                            {"action", "AddArtwork"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
                 }
             };
         }
