@@ -163,7 +163,7 @@ function setPriceInDesignFromGoal() {
 }
 
 function estimatedProfitChange() {
-    var est = Math.floor(parseFloat((window.sellingPrice - window.nowPrice) * window.count));
+    var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(2);
     $("#total_profit").html("RM " + est + "+");
 }
 
