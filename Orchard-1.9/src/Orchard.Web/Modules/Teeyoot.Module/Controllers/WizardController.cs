@@ -91,7 +91,7 @@ namespace Teeyoot.Module.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken] Temporary turned off because of not issuing __RequestVerificationToken cookie
         [ValidateInput(false)]
         public HttpStatusCodeResult LaunchCampaign(LaunchCampaignData data)
         {
