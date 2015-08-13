@@ -79,11 +79,11 @@ namespace Teeyoot.Orders.Controllers
                 var campaignId = item.Products.First().CampaignProductRecord.CampaignRecord_Id;
                 if (campaignId == null)
                     continue;
-                try
-                {
+              
                 var campaign = _campaignService.GetCampaignById(campaignId);
 
-                
+                try
+                {
 
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
 
