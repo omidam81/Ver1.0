@@ -17,6 +17,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IOrchardServices _orchardServices;
 
         private const string ArtworksImagesRelativePath = "~/Modules/Teeyoot.Module/Content/vector";
+        private const string ArtworkImageFileNameTemplate = "{0}.png";
 
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
@@ -45,34 +46,41 @@ namespace Teeyoot.WizardSettings.Controllers
         [HttpPost]
         public ActionResult AddArtwork(ArtworkViewModel viewModel)
         {
-            SaveArtworkImage(viewModel.ArtworkImage, viewModel.Name);
+            var success = SaveArtworkImage(viewModel.ArtworkImage, viewModel.Name);
+            if (success)
+            {
+                _orchardServices.Notifier.Information(T("Artwork has been successfully added."));
+            }
 
-            _orchardServices.Notifier.Information(T("Artwork has been successfully added."));
             return RedirectToAction("Index");
         }
 
-        private void SaveArtworkImage(HttpPostedFileBase imageFile, string imageFileName)
+        private bool SaveArtworkImage(HttpPostedFileBase imageFile, string fileName)
         {
             if (imageFile == null)
             {
                 _orchardServices.Notifier.Error(T("Image file was not provided"));
-                return;
+                return false;
             }
 
-            if (CheckIfAlreadyExists(imageFileName) != null)
+            if (CheckIfAlreadyExists(fileName) != null)
             {
                 _orchardServices.Notifier.Error(T("Image with the same name already exist"));
-                return;
+                return false;
             }
 
             if (!IsImagePng(imageFile))
             {
                 _orchardServices.Notifier.Error(T("Image file should be *.png"));
-                return;
+                return false;
             }
 
+            var imageFileName = string.Format(ArtworkImageFileNameTemplate, fileName);
             var imagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), imageFileName);
+
             imageFile.SaveAs(imagePhysicalPath);
+
+            return true;
         }
 
         private static bool IsImagePng(HttpPostedFileBase imageFile)
@@ -85,8 +93,9 @@ namespace Teeyoot.WizardSettings.Controllers
             return strHeader.ToLowerInvariant().EndsWith("png");
         }
 
-        private string CheckIfAlreadyExists(string imageFileName)
+        private string CheckIfAlreadyExists(string fileName)
         {
+            var imageFileName = string.Format(ArtworkImageFileNameTemplate, fileName);
             var imagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), imageFileName);
 
             return System.IO.File.Exists(imagePhysicalPath) ? imageFileName : null;
