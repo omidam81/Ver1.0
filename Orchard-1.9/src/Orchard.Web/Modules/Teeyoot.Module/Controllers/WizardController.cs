@@ -277,7 +277,15 @@ namespace Teeyoot.Module.Controllers
                 headline = p.ProductHeadlineRecord.Name,
                 colors_available = p.ColorsAvailable.Select(c => c.ProductColorRecord.Id).ToArray(),
                 list_of_sizes = p.SizesAvailable.Count > 0 ?
-                    p.SizesAvailable.First().ProductSizeRecord.SizeCodeRecord.Name + " - " + p.SizesAvailable.Last().ProductSizeRecord.SizeCodeRecord.Name :
+                    p.SizesAvailable
+                    .OrderBy(s => s.ProductSizeRecord.SizeCodeRecord.Id)
+                    .First()
+                    .ProductSizeRecord
+                    .SizeCodeRecord.Name + " - " + 
+                    p.SizesAvailable
+                    .OrderBy(s => s.ProductSizeRecord.SizeCodeRecord.Id)
+                    .Last()
+                    .ProductSizeRecord.SizeCodeRecord.Name :
                     "",
                 prices = p.ColorsAvailable.Select(c => new ProductPriceViewModel
                 {

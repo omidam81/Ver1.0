@@ -789,6 +789,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\TeeyootMessagingService.cs" />
     <Compile Include="Services\TShirtCostService.cs" />
+    <Compile Include="Common\TeeyootCultureSelector.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />
