@@ -509,7 +509,19 @@ namespace Teeyoot.Module
         .Column<string>("Culture", c => c.WithLength(50))
         .Column<int>("PaymentMethod"));
 
-            return 54;
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<int>("Environment", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("PublicKey", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("PrivateKey", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("MerchantId", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("ClientToken", c => c.Nullable()));
+
+
+
+            return 55;
         }
 
         public int UpdateFrom2()
@@ -1075,6 +1087,21 @@ namespace Teeyoot.Module
                     .Column<int>("PaymentMethod"));
 
             return 54;
+        }
+
+        public int UpdateFrom54()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<int>("Environment", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("PublicKey", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("PrivateKey", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("MerchantId", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("ClientToken", c => c.Nullable()));
+
+            return 55;
         }
     }
 }
