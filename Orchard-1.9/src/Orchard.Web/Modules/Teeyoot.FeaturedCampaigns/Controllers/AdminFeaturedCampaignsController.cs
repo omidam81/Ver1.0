@@ -24,6 +24,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IOrderService _orderService;
         private IOrchardServices Services { get; set; }
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
 
@@ -33,20 +34,26 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                 IShapeFactory shapeFactory, 
                                                 IOrchardServices services, 
                                                 ICampaignService campaignService,
-                                                IOrderService orderService)
+                                                IOrderService orderService,
+                                                ITeeyootMessagingService teeyootMessagingService)
         {
             _siteService = siteService;
             _campaignService = campaignService;
             _orderService = orderService;
+            _teeyootMessagingService = teeyootMessagingService;
             Shape = shapeFactory;
             Services = services;
             Logger = NullLogger.Instance;
         }
 
         // GET: Admin
-        public ActionResult Index(PagerParameters pagerParameters)
+        public ActionResult Index(PagerParameters pagerParameters, string searchString)
         {
-            var campaigns = _campaignService.GetAllCampaigns();
+            var campaigns = string.IsNullOrWhiteSpace(searchString) ?
+                            _campaignService.GetAllCampaigns()
+                                                                     :
+                            _campaignService.GetAllCampaigns()
+                            .Where(c => c.Title.Contains(searchString));
             var yesterday = DateTime.UtcNow.AddDays(-1);
             var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
 
@@ -54,7 +61,12 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
-            var total = campaigns.Count();
+            var total = (string.IsNullOrWhiteSpace(searchString) ?
+                        _campaignService.GetAllCampaigns()
+                                                                 :
+                        _campaignService.GetAllCampaigns()
+                        .Where(c => c.Title.Contains(searchString)))
+                            .Count();
 
             if (total > 0)
             {
@@ -67,7 +79,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         IsFeatured = c.IsFeatured,
                         Title = c.Title,
                         IsActive  = c.IsActive,
-                        Alias = c.Alias
+                        Alias = c.Alias,
+                        CreatedDate = c.StartDate.ToLocalTime(),
+                        IsApproved = c.IsApproved,
+                        Minimum = c.ProductMinimumGoal
                     })
                     .Select(c => new FeaturedCampaignViewModel
                     {
@@ -86,10 +101,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             }
 
             var pagerShape = Shape.Pager(pager).TotalItemCount(total);
-            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
+            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns, SearchString = searchString, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
         }
 
-        public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)
+        public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible, string searchString)
         {
             var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured);
 
@@ -113,11 +128,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Can not update campaign. Try again later!"));
                 }
             }
-
-            return this.RedirectToAction("Index", new { pagerParameters = pagerParameters });
+            return RedirectToAction("Index", new { PagerParameters = pagerParameters, SearchString = searchString });
         }
 
-        public ActionResult DeleteCampaign(PagerParameters pagerParameters, int id)
+        public ActionResult DeleteCampaign(PagerParameters pagerParameters, int id, string searchString)
         {
             if (_campaignService.DeleteCampaign(id))
             {
@@ -128,7 +142,18 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("The company could not be removed. Try again!"));
             }
 
-            return this.RedirectToAction("Index", new { pagerParameters = pagerParameters });
+            return this.RedirectToAction("Index", new { pagerParameters = pagerParameters, SearchString = searchString });
+        }
+
+        public ActionResult Approve(PagerParameters pagerParameters, int id, string searchString)
+        {
+            var campaign = _campaignService.GetCampaignById(id);
+            campaign.IsApproved = true;
+            _campaignService.UpdateCampaign(campaign);
+            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+            var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+            _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
+            return RedirectToAction("Index", new { PagerParameters = pagerParameters, SearchString = searchString });
         }
     }
 }

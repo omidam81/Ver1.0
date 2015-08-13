@@ -13,6 +13,8 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public dynamic Pager { get; set; }
 
         public int StartedIndex { get; set; }
+
+        public string SearchString { get; set; }
     }
 
     public class FeaturedCampaignViewModel
@@ -32,10 +34,16 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
 
         public int Goal { get; set; }
 
+        public int Minimum { get; set; }
+
         public string Title { get; set; }
 
         public bool IsActive { get; set; }
 
+        public bool IsApproved { get; set; }
+
         public string Alias { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }
