@@ -39,12 +39,62 @@
                 disableInputs();
             })
 
-            document.getElementById("sendData").addEventListener("click", function () {
+            document.getElementById("SendData").addEventListener("click", function () {
                 if (checked == 2) {
+                    var publicKey = document.getElementById("textPublic").value;
+                    var privateKey = document.getElementById("textPrivate").value;
+                    var merchantId = document.getElementById("textMerchant").value;
+                    var clientToken = document.getElementById("textToken").value;
 
+                    var result = new Array();
+                    $.ajax({
+                        async: false,
+                        cache: false,
+                        type: "POST",
+                        url: "@(Url.Action("SaveSettings", "Payment"))",
+                        data: addAntiForgeryToken({
+                            "PaymentMethod": checked.toString(),
+                            "PrivateKey": privateKey.toString(),
+                            "PublicKey": publicKey.toString(),
+                            "MerchantId": merchantId.toString(),
+                            "ClientToken": clientToken.toString(),
+                            "Language" : document.getElementById("Culture").value
+                        }),
+                        success: function (data) {
+                            alert("Settings updated");
+                        }, error: function (data, status, resp) {
+                            alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                        }
+                    });
+
+
+
+
+                } else {
+                    var result = new Array();
+                    $.ajax({
+                        async: false,
+                        cache: false,
+                        type: "GET",
+                        url: "@(Url.Action("SaveSettings", "Payment"))",
+                        data: {
+                            "PaymentMethod": checked.toString(),
+                            "Language": document.getElementById("Culture").value
+                        },
+                    success: function (data) {
+                        alert("Settings updated");
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
+                });
                 }
             })
 
+            function addAntiForgeryToken(data) {
+                var antiForgeryTokenValue = $('#anti_forgery_token').val();
+                data.__RequestVerificationToken = antiForgeryTokenValue;
+                return data;
+            };
 
             function enableInputs() {
                 document.getElementById("textPublic").removeAttribute("disabled");
@@ -81,7 +131,7 @@
             <button type="submit">@T("Apply")</button>
         </fieldset>
     }
-
+    <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
     if (Model.PaumentMethod != 0)
     {
         <div style="margin-top:1%">
@@ -188,4 +238,5 @@
         <div><h3>There are no setting to this language</h3></div>
         <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { language = Model.Culture.Code })" title="@T("Add")">@T("Add")</a>
     }
+    <input type="hidden" id="Culture" value="@Model.Culture.Code"/>
 }
