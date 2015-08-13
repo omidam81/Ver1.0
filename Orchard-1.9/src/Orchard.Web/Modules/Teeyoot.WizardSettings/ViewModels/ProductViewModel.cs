@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
-using Teeyoot.Module.Models;
 
 namespace Teeyoot.WizardSettings.ViewModels
 {

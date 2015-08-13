@@ -1,0 +1,22 @@
+﻿@model Teeyoot.WizardSettings.ViewModels.ArtworkViewModel
+@{
+    Layout.Title = T("Add New Artwork");
+}
+
+<h2>@T("Add New Artwork")</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("AddArtwork", "Artwork"), FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Name"))
+        @Html.TextBoxFor(m => m.Name, new {@class = "text large"})
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.ArtworkImage, T("Artwork Image (only *.png allowed)"))
+        @Html.TextBoxFor(m => m.ArtworkImage, new {type = "file", accept = "image/png"})
+    </fieldset>
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "Artwork")">Cancel</a>
+    </fieldset>
+}
