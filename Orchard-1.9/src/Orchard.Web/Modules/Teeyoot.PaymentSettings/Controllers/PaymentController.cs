@@ -37,10 +37,16 @@ namespace Teeyoot.PaymentSettings.Controllers
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(p => p.Culture == culture);
             if (setting == null)
-	              return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), PaumentMethod = 0 });
+                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture),Payment1 = true,  PaumentMethod = 3 });
 		    else
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), PaumentMethod = setting.PaymentMethod });
-	                  
+                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), Payment1 = true, PaumentMethod = setting.PaymentMethod });         
+        }
+
+        [HttpPost]
+        public ActionResult SaveSettings(PaymentSettingsViewModel Payment1, bool Payment2)
+        {
+
+           return RedirectToAction("Index","Payment", new { culture = "en" });
         }
 
 
