@@ -100,6 +100,7 @@ window.onload = function initWizard() {
 
         var h4Price = document.createElement("h4");
         h4Price.classList.add("h4ProfSale");
+        h4Price.classList.add("sales_price_text_area");
         h4Price.innerHTML = "Sale Price";
         var h6Price = document.createElement("h6");
         h6Price.classList.add("h6Sale");
@@ -167,7 +168,7 @@ window.onload = function initWizard() {
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
         inpPrice.classList.add("profSale");
-        inpPrice.value = prdc.Price;
+        inpPrice.value = prdc.Price.toFixed(2);
 
         h4Profit.classList.add("h4ProfSale");
         h4Profit.classList.add("costH4Float");
@@ -366,7 +367,7 @@ window.onload = function initWizard() {
         text.classList.add("ssp_heading");
         text.style.color = "#44474d";
         text.style.fontWeight = "800";
-        text.textContent = "Teespring Premium Tee";
+        text.textContent = "Teeyoot Premium Tee";
 
         divDelete.classList.add("ssp_delete");
 
