@@ -463,6 +463,8 @@ window.onload = function initWizard() {
         keydown: function (e) {
             if (e.which == 13) {
                 profitSale();
+                document.querySelector('#profSale').value = Number($("#profSale").val()).toFixed(2);
+                
             }
         }
     });
