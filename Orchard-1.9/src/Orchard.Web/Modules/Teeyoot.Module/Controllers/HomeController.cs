@@ -1,6 +1,7 @@
 ﻿using Braintree;
 using Mandrill;
 using Mandrill.Model;
+using Orchard;
 using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
@@ -38,6 +39,7 @@ namespace Teeyoot.Module.Controllers
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IMessageService _messageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
 
         public HomeController(IOrderService orderService, 
@@ -48,7 +50,8 @@ namespace Teeyoot.Module.Controllers
                               IMailChimpSettingsService settingsService,
                               IPaymentSettingsService paymentSettingsService,
                               IShapeFactory shapeFactory,
-            ITeeyootMessagingService teeyootMessagingService)
+                              ITeeyootMessagingService teeyootMessagingService,
+                              IWorkContextAccessor workContextAccessor)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -57,6 +60,7 @@ namespace Teeyoot.Module.Controllers
             _settingsService = settingsService;
             _teeyootMessagingService = teeyootMessagingService;
             _paymentSettingsService = paymentSettingsService;
+            _workContextAccessor = workContextAccessor;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -314,9 +318,9 @@ namespace Teeyoot.Module.Controllers
                 order.StreetAddress,
                 order.City + ", " + order.State + ", " + order.Country + " " + order.PostalCode
             };
-            model.Events = order.Events.ToArray();
-            // TODO: eugene: get culture if needed
-            model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", CultureInfo.GetCultureInfo("en-US"));
+            model.Events = order.Events.ToArray();     
+            model.CultureInfo = CultureInfo.GetCultureInfo(_workContextAccessor.GetContext().CurrentCulture);
+            model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", model.CultureInfo);
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
             model.CampaignName = campaign.Title;
             model.CampaignAlias = campaign.Alias;
