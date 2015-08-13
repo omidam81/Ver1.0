@@ -17,6 +17,8 @@ namespace Teeyoot.Module.Models
 
         public virtual int ProductCountSold { get; set; }
 
+        public virtual int ProductMinimumGoal { get; set; }
+
         [StringLengthMax]
         public virtual string Design { get; set; }
 
