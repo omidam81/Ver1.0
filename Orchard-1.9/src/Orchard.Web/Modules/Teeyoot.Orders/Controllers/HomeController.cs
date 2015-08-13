@@ -1,6 +1,7 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
+using Orchard.Logging;
 using Orchard.Security;
 using Orchard.Settings;
 using Orchard.UI.Admin;
@@ -31,6 +32,7 @@ namespace Teeyoot.Orders.Controllers
         private readonly INotifier _notifierService;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
 
+        public ILogger Logger { get; set; }
         private dynamic Shape { get; set; }
         // GET: Home
 
@@ -68,9 +70,12 @@ namespace Teeyoot.Orders.Controllers
                     continue;
 
                 var campaign = _campaignService.GetCampaignById(campaignId);
-                
+
+                try
+                {
 
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+
                 double orderProfit = 0;
 
 
@@ -109,6 +114,15 @@ namespace Teeyoot.Orders.Controllers
                     UserNameSeller = seller != null ? seller.UserName : ""
                    });
             }
+                                }
+                catch (Exception ex)
+                {
+
+                    Logger.Error(ex,campaign.TeeyootUserId + "  ERROOORRRRRRRRRRRR " );
+                    throw;
+                }
+
+
             }
             //var qwe = new List<SelectListItem>();
             
