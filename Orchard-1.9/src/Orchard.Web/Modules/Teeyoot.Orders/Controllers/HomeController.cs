@@ -63,16 +63,27 @@ namespace Teeyoot.Orders.Controllers
         {
             var orders = _orderService.GetAllOrders().Where(o => o.IsActive).ToList();
             var orderEntities = new AdminOrderViewModel();
+          
+            
             foreach (var item in orders)
             {
+                try
+                {
+                   var it = item.Products.First().CampaignProductRecord.CampaignRecord_Id;
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
                 var campaignId = item.Products.First().CampaignProductRecord.CampaignRecord_Id;
                 if (campaignId == null)
                     continue;
-
-                var campaign = _campaignService.GetCampaignById(campaignId);
-
                 try
                 {
+                var campaign = _campaignService.GetCampaignById(campaignId);
+
+                
 
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
 
