@@ -523,7 +523,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("ProductMinimumGoal", c => c.NotNull().WithDefault(0)));
 
-            return 56;
+            SchemaBuilder.AlterTable(typeof(ProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 57;
         }
 
         public int UpdateFrom2()
@@ -1111,6 +1113,13 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("ProductMinimumGoal", c => c.NotNull().WithDefault(0)));
 
             return 56;
+        }
+
+        public int UpdateFrom56()
+        {
+            SchemaBuilder.AlterTable(typeof(ProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 57;
         }
     }
 }
