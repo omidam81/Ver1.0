@@ -8,7 +8,7 @@ window.onload = function initWizard() {
     
 
     app.state.products = [];
-    app.state.isNegativeProfit = false;
+    app.state.isNegativeProfit = [];
     app.state.w = $(window).width();
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
@@ -770,9 +770,14 @@ function slideTo(slideNumber) {
         return;
     }
 
-    if (app.state.isNegativeProfit && slideNumber == 3) {
-        $('#negative-profit-error').modal('show');
-        return;
+    if (slideNumber == 3) {
+        for (i = 0; i < app.state.isNegativeProfit.length; i++) {
+            if (app.state.isNegativeProfit[i]) {
+                $('#negative-profit-error').modal('show');
+                return;
+            }
+        }
+        
     }
     if (slideTimeout) {
         window.clearTimeout(slideTimeout);
