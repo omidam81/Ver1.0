@@ -1,0 +1,10 @@
+﻿@model RM.Localization.Models.ShadowCulturePart
+@using Orchard.Utility.Extensions;
+
+<div>
+    <label for="@Html.FieldIdFor(m => m.Rules)">@T("Shadow Culture Rules")</label>
+    @Html.TextAreaFor(m=>m.Rules)
+    @Html.ValidationMessage("Rules", "*")
+    <span class="hint">@T("Example: 'ru-RU:^uk-UA|be-BY$'")</span>
+    <br />
+</div>
