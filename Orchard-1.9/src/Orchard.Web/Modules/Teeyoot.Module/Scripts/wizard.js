@@ -467,6 +467,15 @@ window.onload = function initWizard() {
         }
     });
 
+    document.addEventListener('keydown', function (e) {
+        if (e.which == 46) {
+            if (design.item.get() != null) {
+                item = design.item.get();
+                design.item.remove(item[0].childNodes[1]);
+            }
+        }
+    }, false);
+
     $('#preloader').animate({ opacity: 1, top: '200%' }, 100,
 				function () { // пoсле aнимaции
 				    // $(this).css('display', 'none'); 
