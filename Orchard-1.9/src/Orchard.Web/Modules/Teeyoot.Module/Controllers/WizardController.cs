@@ -267,7 +267,7 @@ namespace Teeyoot.Module.Controllers
                 id = g.Id,
                 name = g.Name,
                 singular = g.Name.ToLower(),
-                products = g.Products.Select(pr => pr.ProductRecord.Id).ToArray()
+                products = g.Products.Where(c => c.ProductRecord.WhenDeleted == null).Select(pr => pr.ProductRecord.Id).ToArray()
             }).ToArray();
 
             model.products = products.Select(p => new ProductViewModel

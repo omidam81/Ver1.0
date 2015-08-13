@@ -1083,6 +1083,9 @@ input[type=range] {
     .site__content_container {
         margin-bottom: 0 !important;
     }
+    .ssp_delete {
+        right: 1.2rem !important;
+    }
 }
 
 @media screen and (max-width: 1023px) {
@@ -1270,9 +1273,9 @@ input[type=range] {
         height: auto !important;
     }
 
-    .ssp_delete {
+    /*.ssp_delete {
         left: 140px;
-    }
+    }*/
 
     .Content .all-price-calculator {
         width: auto;

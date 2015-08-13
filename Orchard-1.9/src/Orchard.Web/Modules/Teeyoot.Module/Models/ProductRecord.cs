@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Orchard.Data.Conventions;
+using System;
 
 namespace Teeyoot.Module.Models
 {
@@ -16,6 +17,8 @@ namespace Teeyoot.Module.Models
         public virtual string Details { get; set; }
 
         public virtual string Materials { get; set; }
+
+        public virtual DateTime? WhenDeleted { get; set; }
 
         public virtual IList<LinkProductColorRecord> ColorsAvailable { get; set; }
 

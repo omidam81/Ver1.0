@@ -99,11 +99,12 @@ namespace Teeyoot.WizardSettings.Controllers
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
             var products = _productRepository.Table
+                .Where(c => c.WhenDeleted == null)
                 .OrderBy(p => p.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_productRepository.Table.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_productRepository.Table.Where(c => c.WhenDeleted == null).Count());
 
             var viewModel = new ProductIndexViewModel(products, pagerShape);
 
@@ -156,6 +157,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
             product.Materials = viewModel.Materials;
             product.Details = viewModel.Details;
+            product.WhenDeleted = null;
 
             if (product.ProductImageRecord == null)
             {
@@ -268,41 +270,43 @@ namespace Teeyoot.WizardSettings.Controllers
 
             try
             {
+                product.WhenDeleted = DateTime.UtcNow;
+
                 // Removing ProductImage
-                _productImageRepository.Delete(product.ProductImageRecord);
+                //_productImageRepository.Delete(product.ProductImageRecord);
 
-                // Removing ProductGroups
-                var productGroups = _linkProductGroupRepository.Table
-                    .Where(g => g.ProductRecord == product)
-                    .ToList();
+                //// Removing ProductGroups
+                //var productGroups = _linkProductGroupRepository.Table
+                //    .Where(g => g.ProductRecord == product)
+                //    .ToList();
 
-                foreach (var productGroup in productGroups)
-                {
-                    _linkProductGroupRepository.Delete(productGroup);
-                }
+                //foreach (var productGroup in productGroups)
+                //{
+                //    _linkProductGroupRepository.Delete(productGroup);
+                //}
 
-                // Removing ProductColours
-                var productColours = _linkProductColorRepository.Table
-                    .Where(c => c.ProductRecord == product)
-                    .ToList();
+                //// Removing ProductColours
+                //var productColours = _linkProductColorRepository.Table
+                //    .Where(c => c.ProductRecord == product)
+                //    .ToList();
 
-                foreach (var productColour in productColours)
-                {
-                    _linkProductColorRepository.Delete(productColour);
-                }
+                //foreach (var productColour in productColours)
+                //{
+                //    _linkProductColorRepository.Delete(productColour);
+                //}
 
-                // Removing ProductSizes
-                var productSizes = _linkProductSizeRepository.Table
-                    .Where(s => s.ProductRecord == product)
-                    .ToList();
+                //// Removing ProductSizes
+                //var productSizes = _linkProductSizeRepository.Table
+                //    .Where(s => s.ProductRecord == product)
+                //    .ToList();
 
-                foreach (var productSize in productSizes)
-                {
-                    _linkProductSizeRepository.Delete(productSize);
-                }
+                //foreach (var productSize in productSizes)
+                //{
+                //    _linkProductSizeRepository.Delete(productSize);
+                //}
 
-                _productRepository.Delete(product);
-                _productRepository.Flush();
+                //_productRepository.Delete(product);
+                //_productRepository.Flush();
             }
             catch (Exception exception)
             {

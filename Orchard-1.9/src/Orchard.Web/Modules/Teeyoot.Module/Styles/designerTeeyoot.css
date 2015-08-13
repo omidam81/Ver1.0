@@ -2761,7 +2761,8 @@ tspan {
 
 .ssp_block .ssp_delete {
     position: absolute;
-    /*right: 1.5rem;*/
+    right: 0.2rem;
+    
     top: 63%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);

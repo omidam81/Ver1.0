@@ -24,7 +24,7 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<ProductRecord> GetAllProducts()
         {
-            return _productRepository.Table;
+            return _productRepository.Table.Where(c => c.WhenDeleted == null);
         }
 
         public IQueryable<ProductGroupRecord> GetAllProductGroups()

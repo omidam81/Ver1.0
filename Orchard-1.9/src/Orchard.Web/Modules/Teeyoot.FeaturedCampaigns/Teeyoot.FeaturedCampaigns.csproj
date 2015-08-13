@@ -100,7 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AdminCampaignsSettingsController.cs" />
-    <Compile Include="Controllers\AdminApproveCampaignsController.cs" />
     <Compile Include="Controllers\AdminExportPrintsController.cs" />
     <Compile Include="Controllers\AdminFeaturedCampaignsController.cs" />
     <Compile Include="Drivers\FeaturedCampaignsWidget.cs" />
@@ -124,9 +123,6 @@
     <Content Include="Placement.info">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\AdminApproveCampaigns\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AdminCampaignsSettings\Index.cshtml" />

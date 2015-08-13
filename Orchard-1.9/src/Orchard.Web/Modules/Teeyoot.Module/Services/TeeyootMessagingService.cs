@@ -359,7 +359,7 @@ namespace Teeyoot.Messaging.Services
             {
                 int index = orders.IndexOf(item);
                 int quantity = item.Products.Sum(m => m.Count);
-                var campaign = _campaignRepository.Get(item.Products.First().CampaignProductRecord.CampaignRecord_Id);
+                var campaign = _campaignRepository.Get(item.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
                 
                 ordersList.Add(new Dictionary<string, object>{                 
                         {"id", item.OrderPublicId},

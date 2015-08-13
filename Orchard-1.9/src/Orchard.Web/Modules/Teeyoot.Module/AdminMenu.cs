@@ -62,12 +62,10 @@ namespace Teeyoot.Module
                         .Caption(T("Campaigns"))
                         .Position("2.6")
                         .Action("Index", "AdminFeaturedCampaigns", new {area = "Teeyoot.FeaturedCampaigns"})
-                        .Add(T("Featured Campaigns"),
+                        .Add(T("Campaign Details"),
                             i => i.Action("Index", "AdminFeaturedCampaigns", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
                         .Add(T("Export Prints"),
-                            i => i.Action("Index", "AdminExportPrints", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
-                        .Add(T("Approve Campaigns"),
-                            i => i.Action("Index", "AdminApproveCampaigns", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
+                            i => i.Action("Index", "AdminExportPrints", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())                       
                         .Add(T("Campaigns Settings"),
                             i => i.Action("Index", "AdminCampaignsSettings", new { area = "Teeyoot.FeaturedCampaigns" }).LocalNav())
                     )
