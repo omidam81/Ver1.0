@@ -52,7 +52,7 @@ namespace Teeyoot.Account.Services
 
             if (user == null)
             {
-                user = _teeyootMembershipService.CreateUser(lowerEmail, Guid.NewGuid().ToString()).As<UserPart>();
+                user = _teeyootMembershipService.CreateUser(lowerEmail, Guid.NewGuid().ToString(), request.Email, null).As<UserPart>();
                 if (user == null)
                 {
                     return new QuickLogOnResponse

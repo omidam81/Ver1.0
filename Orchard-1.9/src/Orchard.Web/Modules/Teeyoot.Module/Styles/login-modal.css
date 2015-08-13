@@ -82,7 +82,7 @@ font-size: 16px;
 }
 
 .modal-login{
-        min-height: 470px;
+        min-height: 610px;
 }
 
 @media all and (max-width: 1000px) {
@@ -110,13 +110,12 @@ font-size: 16px;
 }
 
 
-.email, .password, .confirm-password{
+.email, .password, .confirm-password, .name, .phone{
     width:70%;
-    margin:0 auto;
     border: 1px solid;
      border-radius:  3px !important;
 }
-.email:focus, .password:focus{
+.email:focus, .password:focus, .name:focus, .phone:focus{
    border-color: #ff4f00!important;
 }
 .btn-modal-login{
@@ -131,4 +130,14 @@ font-size: 16px;
 }
 .btn-modal-login:hover {
     background: #e64700!important;
+}
+.mandatory{
+    color:red;
+}
+.mandatory_wizard{
+    color:red;
+    width:15%;
+    float:left;
+    text-align: right;
+    margin-right:10px;
 }

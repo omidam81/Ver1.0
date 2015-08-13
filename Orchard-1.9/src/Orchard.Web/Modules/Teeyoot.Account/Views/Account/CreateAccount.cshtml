@@ -10,16 +10,24 @@
             </legend>
         </div>
         <div class="password">
-            <label>@T("Email address")</label>
+          <label><span class="mandatory">@T("* ")</span>@T("Name")</label>
+            @Html.TextBoxFor(model => model.Name)
+        </div>
+        <div class="password">
+           <label><span class="mandatory">@T("* ")</span>@T("Email address")</label>
             @Html.TextBoxFor(model => model.Email)
         </div>
         <div class="password">
-            <label>@T("Password")</label>
+            <label>@T("Phone Number")</label>
+            @Html.TextBoxFor(model => model.Phone)
+        </div>
+        <div class="password">
+           <label><span class="mandatory">@T("* ")</span>@T("Password")</label>
             @Html.PasswordFor(model => model.Password)
             <p>@T("Must be longer than 7 characters!")</p>
         </div>
         <div class="password">
-            <label>@T("Confirm Password")</label>
+            <label><span class="mandatory">@T("* ")</span>@T("Confirm Password")</label>
             @Html.PasswordFor(model => model.ConfirmPassword)
         </div>
         <div>

@@ -522,11 +522,15 @@
                 var email = $('#create_account .email').val();
                 var password = $('#create_account .password').val();
                 var confirmPassword = $('#create_account .confirm-password').val();
+                var name = $('#create_account .name').val();
+                var phone = $('#create_account .phone').val();
 
                 var wizardRegisterJsonRequest = {
                     Email: email,
                     Password: password,
-                    ConfirmPassword: confirmPassword
+                    ConfirmPassword: confirmPassword,
+                    Name: name,
+                    Phone: phone
                 };
 
                 $.ajax({
@@ -1971,9 +1975,9 @@
                 <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
                 <form id="login_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <input type="text" class="email" style="margin:0 auto;" placeholder="@T("Email")" />
                         <br />
-                        <input type="password" class="password" placeholder="@T("Password")" />
+                        <input type="password" class="password" style="margin:0 auto;" placeholder="@T("Password")" />
                         <br />
                         <input type="submit" class="btn-modal-login" value="@T("Login to your account >>")" />
                         <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
@@ -1986,11 +1990,15 @@
                 <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
                 <form id="create_account_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <span class="mandatory_wizard">* </span><input type="text" class="name" placeholder="@T("Name")" />
                         <br />
-                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 7 characters.")" />
+                        <span class="mandatory_wizard">* </span> <input type="text" class="email" placeholder="@T("Email")" />
                         <br />
-                        <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
+                        <span class="mandatory_wizard"> &nbsp; </span><input type="text" class="phone" placeholder="@T("Phone Number")" />
+                        <br />
+                        <span class="mandatory_wizard">* </span> <input type="password" class="password" placeholder="@T("Password: Must be longer than 7 characters.")" />
+                        <br />
+                        <span class="mandatory_wizard">* </span><input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
                         <br />
                         <input type="submit" class="btn-modal-login" value="@T("Create your account >>")" />
                         <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
