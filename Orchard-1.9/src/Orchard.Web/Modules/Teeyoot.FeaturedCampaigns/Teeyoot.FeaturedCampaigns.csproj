@@ -72,7 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Styles\FeaturedCampaigns.css" />
+    <Content Include="Styles\jquery.dataTables.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />

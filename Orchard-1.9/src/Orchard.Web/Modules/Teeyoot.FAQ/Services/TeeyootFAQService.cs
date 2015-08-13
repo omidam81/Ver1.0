@@ -13,13 +13,11 @@ namespace Teeyoot.FAQ.Services
     {
         private readonly IRepository<FaqSectionRecord> _sectionRepository;
         private readonly IContentManager _contentManager;
-        private readonly ILanguageService _languageService;
-
-        public TeeyootFAQService(IRepository<FaqSectionRecord> sectionRepository, IContentManager contentManager, ILanguageService languageService)
+       
+        public TeeyootFAQService(IRepository<FaqSectionRecord> sectionRepository, IContentManager contentManager)
         {
             _sectionRepository = sectionRepository;
             _contentManager = contentManager;
-            _languageService = languageService;
         }
 
         public IEnumerable<FaqSectionRecord> GetFaqSections()
@@ -41,15 +39,14 @@ namespace Teeyoot.FAQ.Services
         public FaqEntryPart CreateFaqEntry(string question, int sectionId, string languageCode, string answer = "")
         {
             var section = GetFaqSectionById(sectionId);
-            var language = _languageService.GetLanguageByCode(languageCode);
-
+           
             var faqEntryPart = _contentManager.Create<FaqEntryPart>("FaqEntry",
                 fe =>
                 {
                     fe.Question = question;
                     fe.Answer = answer;
                     fe.Section = section;
-                    fe.Language = language;
+                    fe.Language = languageCode;
                 });
 
             return faqEntryPart;
@@ -72,7 +69,7 @@ namespace Teeyoot.FAQ.Services
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(string language)
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.LanguageRecord.Code == language);
+            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.Language == language);
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(int section)
@@ -86,7 +83,7 @@ namespace Teeyoot.FAQ.Services
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(string language, int section)
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.LanguageRecord.Code == language && fe.FaqSectionRecord.Id == section);
+            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest).Where(fe => fe.Language == language && fe.FaqSectionRecord.Id == section);
         }
     }
 }

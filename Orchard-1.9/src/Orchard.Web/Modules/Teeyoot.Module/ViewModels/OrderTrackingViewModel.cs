@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Teeyoot.Module.Models;
@@ -25,5 +26,7 @@ namespace Teeyoot.Module.ViewModels
         public OrderHistoryRecord[] Events { get; set; }
 
         public string[] ShippingTo { get; set; }
+
+        public CultureInfo CultureInfo { get; set; }
     }
 }

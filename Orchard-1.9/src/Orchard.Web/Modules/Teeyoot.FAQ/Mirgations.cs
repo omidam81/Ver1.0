@@ -59,5 +59,25 @@ namespace Teeyoot.FAQ
 
             return 2;
         }
+
+        public int UpdateFrom2()
+        {
+            SchemaBuilder.DropForeignKey(typeof(FaqEntryPartRecord).Name, "FaqEntry_Language");
+
+            SchemaBuilder.AlterTable(typeof(FaqEntryPartRecord).Name,
+                table => table
+                    .DropColumn("LanguageRecord_Id"));
+
+            SchemaBuilder.AlterTable(typeof(FaqEntryPartRecord).Name,
+                table => table
+                    .AddColumn<string>("Language", c => c
+                        .WithLength(10)
+                        .NotNull()
+                        .WithDefault("en-MY"))
+                    
+            );
+
+            return 3;
+        }
     }
 }

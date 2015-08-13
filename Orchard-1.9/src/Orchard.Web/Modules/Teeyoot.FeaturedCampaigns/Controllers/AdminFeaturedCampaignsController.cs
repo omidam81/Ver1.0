@@ -47,26 +47,15 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         }
 
         // GET: Admin
-        public ActionResult Index(PagerParameters pagerParameters, string searchString)
+        public ActionResult Index(PagerParameters pagerParameters)
         {
-            var campaigns = string.IsNullOrWhiteSpace(searchString) ?
-                            _campaignService.GetAllCampaigns()
-                                                                     :
-                            _campaignService.GetAllCampaigns()
-                            .Where(c => c.Title.Contains(searchString));
+            var campaigns = _campaignService.GetAllCampaigns();
             var yesterday = DateTime.UtcNow.AddDays(-1);
             var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
 
             var featuredCampaigns = new FeaturedCampaignViewModel[] { };
 
-            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
-
-            var total = (string.IsNullOrWhiteSpace(searchString) ?
-                        _campaignService.GetAllCampaigns()
-                                                                 :
-                        _campaignService.GetAllCampaigns()
-                        .Where(c => c.Title.Contains(searchString)))
-                            .Count();
+            var total =_campaignService.GetAllCampaigns().Count();
 
             if (total > 0)
             {
@@ -94,17 +83,14 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                         .Sum(p => (int?)p.Count) ?? 0
                     })
                     .OrderByDescending(c => c.Campaign.IsFeatured)
-                    .OrderByDescending(c => c.Last24HoursSold)
-                    .Skip(pager.GetStartIndex())
-                    .Take(pager.PageSize)
+                    .OrderByDescending(c => c.Last24HoursSold)                   
                     .ToArray();
             }
-
-            var pagerShape = Shape.Pager(pager).TotalItemCount(total);
-            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns, SearchString = searchString, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
+          
+            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns });
         }
 
-        public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible, string searchString)
+        public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)
         {
             var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured);
 
@@ -128,10 +114,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("Can not update campaign. Try again later!"));
                 }
             }
-            return RedirectToAction("Index", new { PagerParameters = pagerParameters, SearchString = searchString });
+            return RedirectToAction("Index", new { PagerParameters = pagerParameters });
         }
 
-        public ActionResult DeleteCampaign(PagerParameters pagerParameters, int id, string searchString)
+        public ActionResult DeleteCampaign(PagerParameters pagerParameters, int id)
         {
             if (_campaignService.DeleteCampaign(id))
             {
@@ -142,10 +128,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("The company could not be removed. Try again!"));
             }
 
-            return this.RedirectToAction("Index", new { pagerParameters = pagerParameters, SearchString = searchString });
+            return this.RedirectToAction("Index", new { pagerParameters = pagerParameters});
         }
 
-        public ActionResult Approve(PagerParameters pagerParameters, int id, string searchString)
+        public ActionResult Approve(PagerParameters pagerParameters, int id)
         {
             var campaign = _campaignService.GetCampaignById(id);
             campaign.IsApproved = true;
@@ -153,7 +139,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
             _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
-            return RedirectToAction("Index", new { PagerParameters = pagerParameters, SearchString = searchString });
+            return RedirectToAction("Index", new { PagerParameters = pagerParameters });
         }
     }
 }

@@ -19,10 +19,10 @@
 }
 
 .costH4Float {
-    margin-left: 10px;
+    margin-left: -4px;
     width: 68px;
-    margin-right: 10px;
-    text-align: center;
+    margin-right: 24px;
+    text-align: right;
 }
 
 .costH4Text {
