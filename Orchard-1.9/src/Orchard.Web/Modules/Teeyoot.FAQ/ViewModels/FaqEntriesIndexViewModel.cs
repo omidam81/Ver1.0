@@ -13,13 +13,13 @@ namespace Teeyoot.FAQ.ViewModels
         public FaqEntrySearchViewModel Search { get; set; }
 
         public FaqSectionRecord[] Sections { get; set; }
-        public LanguageRecord[] Languages { get; set; }
+        public LanguageViewModel[] Languages { get; set; }
  
         public FaqEntriesIndexViewModel() {
             Search = new FaqEntrySearchViewModel();
         }
 
-        public FaqEntriesIndexViewModel(IEnumerable<dynamic> entries, IEnumerable<FaqSectionRecord> sections, IEnumerable<LanguageRecord> languages, FaqEntrySearchViewModel search, dynamic pager)
+        public FaqEntriesIndexViewModel(IEnumerable<dynamic> entries, IEnumerable<FaqSectionRecord> sections, IEnumerable<LanguageViewModel> languages, FaqEntrySearchViewModel search, dynamic pager)
         {
             Sections = sections.ToArray();
             Languages = languages.ToArray();
@@ -27,5 +27,11 @@ namespace Teeyoot.FAQ.ViewModels
             Search = search;
             Pager = pager;
         }
+    }
+
+    public class LanguageViewModel
+    {
+        public virtual string Name { get; set; }
+        public virtual string Code { get; set; }
     }
 }

@@ -4,9 +4,13 @@
     string colorAdmin = "#FFEBCD";
     string colorTOP = "#00FFFF";
     string colorOther = "#FFFFFF";
+    Style.Include("jquery.dataTables.css");
+    Script.Require("jQuery");
+    Script.Include("jquery.dataTables.min.js");
 }
+
 <div>
-    <div style="margin-bottom:15px;">
+    @*<div style="margin-bottom:15px;">
         <fieldset class="bulk-actions">
             @using (Html.BeginForm("Index", "AdminFeaturedCampaigns", FormMethod.Get))
             {
@@ -18,17 +22,15 @@
                 <button type="submit">@T("Apply")</button>
                 <a href="@Url.Action("Index")">@T("By Default")</a>
             }
-
-
         </fieldset>
-    </div>
+    </div>*@
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
     }
     <fieldset>
-        <table class="items">
+        <table class="items" id="campaign-table">
             <thead>
                 <tr>
                     <th>@T("Campaign date")</th>
@@ -39,7 +41,6 @@
                     <th>@T("Sold / Minimum / Goal")</th>
                     <th>@T("Campaign name")</th>
                     <th>@T("Action")</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -67,22 +68,22 @@
                                 {
                                     if (camp.Campaign.IsFeatured)
                                     {
-                                        <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
+                                        <a href="@Url.Action("ChangeVisible", new {  id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
+                                        <a href="@Url.Action("ChangeVisible", new { id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
                                     }
                                 }
                                 @if (!camp.Campaign.IsActive)
                                 {
                                     @*@T(" | ")*@
-                                    <a href="@Url.Action("DeleteCampaign", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
+                                    <a href="@Url.Action("DeleteCampaign", new { id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
                                 }
                                 @if (!camp.Campaign.IsApproved)
                                 {
                                     <span>|</span>
-                                    <a href="@Url.Action("Approve", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id })" title="@T("Approve")">@T("Approve")</a>
+                                    <a href="@Url.Action("Approve", new {  id = camp.Campaign.Id })" title="@T("Approve")">@T("Approve")</a>
                                 }
                             </td>
                         </tr>
@@ -92,4 +93,12 @@
         </table>
     </fieldset>
 </div>
-@Display(Model.Pager)
+@*@Display(Model.Pager)*@
+
+
+@using (Script.Foot())
+{
+    <script>
+        var campaignTable = $('#campaign-table').dataTable();
+    </script>
+}

@@ -525,7 +525,13 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(ProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
 
-            return 57;
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("ClientToken"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("ClientToken", c => c.Unlimited()));
+
+            return 59;
+
         }
 
         public int UpdateFrom2()
@@ -1118,8 +1124,25 @@ namespace Teeyoot.Module
         public int UpdateFrom56()
         {
             SchemaBuilder.AlterTable(typeof(ProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
-
             return 57;
         }
+
+        public int UpdateFrom57()
+        {
+            //SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AlterColumn("ClientToken", c => c.Unlimited()));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("ClientToken"));
+            return 58;
+        }
+
+         public int UpdateFrom58()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("ClientToken", c => c.Unlimited()));
+            return 59;
+        }
+
+
+
+
+                    
     }
 }

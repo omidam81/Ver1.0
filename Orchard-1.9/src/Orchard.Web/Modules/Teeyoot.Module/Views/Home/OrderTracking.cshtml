@@ -228,7 +228,7 @@
                 <div class="track-left">
                     <div class="track-inner">
                         <span class="badge badge-success">@("Status")</span> @T("Updated") @(Model.Events.Count() > 0 ?
-                        Model.Events.Last().EventDate.ToLocalTime().ToString("dd MMM HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US")) :
+                        Model.Events.Last().EventDate.ToLocalTime().ToString("dd MMM HH:mm", Model.CultureInfo) :
                         Model.CreateDate)
                         <div class="offset-top offset-top-small offset-top-xs"></div>
 
@@ -290,7 +290,7 @@
                             @foreach (var e in Model.Events)
                             {
                                 <li>
-                                    <span class="badge">@e.EventDate.ToLocalTime().ToString("dd MMM HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</span>
+                                    <span class="badge">@e.EventDate.ToLocalTime().ToString("dd MMM HH:mm", Model.CultureInfo)</span>
                                     @e.Event
                                 </li>
                             }

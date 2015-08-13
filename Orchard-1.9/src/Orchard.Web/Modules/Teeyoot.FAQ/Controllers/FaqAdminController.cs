@@ -3,6 +3,7 @@ using Orchard.ContentManagement;
 using Orchard.Core.Common.Models;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
+using Orchard.Localization.Services;
 using Orchard.Logging;
 using Orchard.Mvc.Extensions;
 using Orchard.Settings;
@@ -22,21 +23,26 @@ namespace Teeyoot.FAQ.Controllers
     [ValidateInput(false), Admin]
     public class FaqAdminController : Controller, IUpdateModel
     {
-        private readonly ILanguageService _languageService;
         private readonly ITeeyootFaqService _faqService;
         private readonly ISiteService _siteService;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly ICultureManager _cultureManager;
 
-        private const string DEFAULT_LANGUAGE_CODE = "en";
-
-        public FaqAdminController(IOrchardServices services, ILanguageService languageService, IShapeFactory shapeFactory, ITeeyootFaqService faqService, ISiteService siteService)
+        public FaqAdminController(IOrchardServices services, 
+                                  IShapeFactory shapeFactory, 
+                                  ITeeyootFaqService faqService, 
+                                  ISiteService siteService, 
+                                  IWorkContextAccessor workContextAccessor,
+                                  ICultureManager cultureManager)
         {
-            _languageService = languageService;
             _faqService = faqService;
             _siteService = siteService;
             Services = services;
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
             Shape = shapeFactory;
+            _workContextAccessor = workContextAccessor;
+            _cultureManager = cultureManager;
         }
 
         private IOrchardServices Services { get; set; }
@@ -47,19 +53,18 @@ namespace Teeyoot.FAQ.Controllers
         public ActionResult Index(PagerParameters pagerParameters, FaqEntrySearchViewModel search)
         {
             var sections = _faqService.GetFaqSections();
-            var languages = _languageService.GetLanguages();
+            var languages = _cultureManager.ListCultures();
 
             if (string.IsNullOrWhiteSpace(search.LanguageCode))
             {
-                var culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                var currLanguage = languages.FirstOrDefault(l => l.Code == culture);
+                var currLanguage = languages.FirstOrDefault(l => l == _workContextAccessor.GetContext().CurrentCulture);
                 if (currLanguage == null)
-                    currLanguage = languages.FirstOrDefault(l => l.Code == DEFAULT_LANGUAGE_CODE);
+                    currLanguage = languages.FirstOrDefault(l => l == _cultureManager.GetSiteCulture());
 
-                search.LanguageCode = currLanguage.Code;
+                search.LanguageCode = currLanguage;
             }
 
-            var faqQuery = _faqService.GetFaqEntries(search.SectionId).Join<BodyPartRecord>().List().Where(fe => fe.Language.Code == search.LanguageCode);
+            var faqQuery = _faqService.GetFaqEntries(search.SectionId).Join<BodyPartRecord>().List().Where(fe => fe.Language == search.LanguageCode);
 
             if (!string.IsNullOrWhiteSpace(search.SearchString))
             {
@@ -77,7 +82,12 @@ namespace Teeyoot.FAQ.Controllers
             var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
            
             var pagerShape = Shape.Pager(pager).TotalItemCount(faqQuery.Count());
-            var model = new FaqEntriesIndexViewModel(entries, sections, languages, search, pagerShape);
+            var langs = languages.Select(l => new LanguageViewModel
+            {
+                Code = l,
+                Name = new CultureInfo(l).DisplayName
+            });
+            var model = new FaqEntriesIndexViewModel(entries, sections, langs, search, pagerShape);
 
             return View(model);
         }
@@ -90,11 +100,6 @@ namespace Teeyoot.FAQ.Controllers
 
             try
             {
-                var culture = DEFAULT_LANGUAGE_CODE;
-                var cultureInfo = CultureInfo.GetCultureInfo(culture);
-                // var cultureInfo = CultureInfo.CurrentCulture; 
-                // TODO: eugene: implement when supporting localization
-                faqEntryPart.Language = _languageService.GetLanguageByCode(cultureInfo.Name);
                 faqEntryPart.Section = _faqService.GetDefaultSection();
                 var model = Services.ContentManager.BuildEditor(faqEntryPart);
                 return View(model);
@@ -110,7 +115,7 @@ namespace Teeyoot.FAQ.Controllers
         [HttpPost, ActionName("AddFaqEntry")]
         public ActionResult AddFaqEntryPOST([Bind(Prefix = "FaqEntryPart.SectionId")] int section, 
             [Bind(Prefix = "Body.Text")] string text,
-            [Bind(Prefix = "FaqEntryPart.LanguageCode")] string language, string returnUrl)
+            [Bind(Prefix = "FaqEntryPart.Language")] string language, string returnUrl)
         {
             var faqEntryPart = _faqService.CreateFaqEntry("", section, language);
             if (faqEntryPart == null)
@@ -147,7 +152,6 @@ namespace Teeyoot.FAQ.Controllers
         {
             var faqEntryPart = _faqService.GetFaqEntry(id);
 
-            faqEntryPart.Language = _languageService.GetLanguageByCode(input["FaqEntryPart.LanguageCode"]);
             faqEntryPart.Section = _faqService.GetFaqSectionById(int.Parse(input["FaqEntryPart.SectionId"]));
 
             var model = Services.ContentManager.UpdateEditor(faqEntryPart, this);

@@ -23,22 +23,16 @@ namespace Teeyoot.FAQ.Models
             set { Store(p => p.Answer, value); }
         }
 
-        public LanguageRecord Language
+        public string Language
         {
-            get { return Record.LanguageRecord; }
-            set { Record.LanguageRecord = value; }
+            get { return Retrieve(p => p.Language); }
+            set { Store(p => p.Language, value); }
         }
 
         public FaqSectionRecord Section
         {
             get { return Record.FaqSectionRecord; }
             set { Record.FaqSectionRecord = value; }
-        }
-
-        public string LanguageCode 
-        {
-            get { return Language.Code; }
-            set { Language.Code = value; }
         }
 
         public int SectionId 
@@ -53,7 +47,7 @@ namespace Teeyoot.FAQ.Models
         }
 
         [HiddenInput(DisplayValue = false)]
-        public IEnumerable<LanguageRecord> AvailableLanguages { get; set; }
+        public IEnumerable<string> AvailableLanguages { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public IEnumerable<FaqSectionRecord> AvailableSections { get; set; }
