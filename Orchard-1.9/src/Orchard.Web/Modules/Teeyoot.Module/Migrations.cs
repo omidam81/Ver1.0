@@ -521,7 +521,9 @@ namespace Teeyoot.Module
 
 
 
-            return 55;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("ProductMinimumGoal", c => c.NotNull().WithDefault(0)));
+
+            return 56;
         }
 
         public int UpdateFrom2()
@@ -1102,6 +1104,13 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("ClientToken", c => c.Nullable()));
 
             return 55;
+        }
+
+        public int UpdateFrom55()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("ProductMinimumGoal", c => c.NotNull().WithDefault(0)));
+
+            return 56;
         }
     }
 }
