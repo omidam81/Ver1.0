@@ -8,6 +8,7 @@ window.onload = function initWizard() {
     
 
     app.state.products = [];
+    app.state.isNegativeProfit = false;
     app.state.w = $(window).width();
     app.state.h = $(window).height();
     document.getElementById('trackbar').value = 250;
@@ -750,6 +751,11 @@ function slideTo(slideNumber) {
     }
     if (app.state.getUsedColorsCountFront() < 1 && app.state.getUsedColorsCountBack() < 1) {
         $('#no-content-error').modal('show');
+        return;
+    }
+
+    if (app.state.isNegativeProfit && slideNumber == 3) {
+        $('#negative-profit-error').modal('show');
         return;
     }
     if (slideTimeout) {

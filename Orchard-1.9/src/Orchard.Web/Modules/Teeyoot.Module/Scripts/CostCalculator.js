@@ -256,13 +256,14 @@ function updateMinimum(changes) {
         //$("#base-cost-for-first-product").css('color', '#ff0000');
         //$("#base-cost-for-first-product-text").css('color', '#ff0000');
 
-
+        app.state.isNegativeProfit = true;
         $("#mainH4").html(changes);
         //$("#mainH4").css('color', '#ff0000');
         if (app.state.products.length < 2) {
             $("#total_profit").html("RM 0+");
         }
     } else {
+        app.state.isNegativeProfit = false;
         $("#profit-calculator").css('display', 'block');
         $("#price-for-first-product-text").css('display', '-webkit-inline-box');
         $("#price-for-first-product-text").css('display', '-moz-inline-box');
