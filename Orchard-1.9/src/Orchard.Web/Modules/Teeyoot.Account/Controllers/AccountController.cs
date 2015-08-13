@@ -106,14 +106,14 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         public ActionResult Register(CreateAccountViewModel viewModel)
         {
-            var validRes = ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword);
+            var validRes = ValidateRegistration(viewModel.Email, viewModel.Password, viewModel.ConfirmPassword, viewModel.Name);
             if (!validRes.IsValid)
             {
                 TempData[RegistrationValidationSummaryKey] = validRes.ValidationSummary;
                 return this.RedirectLocal("~/Login");
             }
 
-            var user = _teeyootMembershipService.CreateUser(viewModel.Email, viewModel.Password);
+            var user = _teeyootMembershipService.CreateUser(viewModel.Email, viewModel.Password, viewModel.Name, viewModel.Phone);
             if (user == null)
             {
                 return this.RedirectLocal("~/Login");
@@ -132,13 +132,13 @@ namespace Teeyoot.Account.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult WizardRegister(WizardRegisterJsonRequest request)
         {
-            var validRes = ValidateRegistration(request.Email, request.Password, request.ConfirmPassword);
+            var validRes = ValidateRegistration(request.Email, request.Password, request.ConfirmPassword, request.Name);
             if (!validRes.IsValid)
             {
                 return Json(new JsonResponseBase {Message = validRes.ValidationSummary});
             }
 
-            var user = _teeyootMembershipService.CreateUser(request.Email, request.Password);
+            var user = _teeyootMembershipService.CreateUser(request.Email, request.Password, request.Name, request.Phone);
             if (user == null)
             {
                 return Json(new JsonResponseBase {Message = T("Registration issue occurred.").ToString()});
@@ -317,7 +317,7 @@ namespace Teeyoot.Account.Controllers
             return PartialView("AntiForgeryTokenValue");
         }
 
-        private ValidateRegistrationResult ValidateRegistration(string email, string password, string confirmPassword)
+        private ValidateRegistrationResult ValidateRegistration(string email, string password, string confirmPassword, string name)
         {
             var res = new ValidateRegistrationResult {IsValid = true};
 
@@ -329,8 +329,13 @@ namespace Teeyoot.Account.Controllers
             string passwordIsTooShort = null;
             string passwordDoesntMatch = null;
             string confirmPasswordCantBeBlank = null;
+            string nameCantBeBlank = null;
 
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(name))
+            {
+                nameCantBeBlank = T("Name can't be blank").ToString();
+                res.IsValid = false;
+            }else if (string.IsNullOrEmpty(email))
             {
                 emailCantBeBlank = T("Email can't be blank").ToString();
                 res.IsValid = false;
@@ -372,7 +377,7 @@ namespace Teeyoot.Account.Controllers
             {
                 passwordDoesntMatch = T("Password confirmation doesn't match Password").ToString();
                 res.IsValid = false;
-            }
+            }           
 
             res.ValidationSummary = string.Join(". ", new[]
             {
@@ -383,7 +388,8 @@ namespace Teeyoot.Account.Controllers
                 passwordCantBeBlank,
                 passwordIsTooShort,
                 confirmPasswordCantBeBlank,
-                passwordDoesntMatch
+                passwordDoesntMatch,
+                nameCantBeBlank
             }.Where(it => it != null));
 
             return res;

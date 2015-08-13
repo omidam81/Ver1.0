@@ -10,3 +10,20 @@ color:black;
 .pointer {
 cursor:pointer
 }
+
+.inp {
+    width:50%;
+}
+
+.marg1 {
+    margin-left:1%;
+}
+.marg2 {
+    margin-left:1.2%;
+}
+.marg3 {
+    margin-left:0.6%;
+}
+.marg4 {
+    margin-left:0.4%;
+}

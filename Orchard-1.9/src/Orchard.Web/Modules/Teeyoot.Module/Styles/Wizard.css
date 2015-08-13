@@ -1511,3 +1511,7 @@ input[type=range] {
   background-position: 50% 0;
   background-repeat: no-repeat;
 }
+
+.sales_price_text_area{
+    margin-left:4px;
+}

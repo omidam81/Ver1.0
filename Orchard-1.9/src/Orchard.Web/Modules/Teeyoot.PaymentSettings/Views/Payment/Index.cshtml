@@ -3,7 +3,68 @@
     Layout.Title = T("Payment Settings").ToString();
     Style.Include("PaymentSettings.css");
 }
+@using (Script.Head())
+{
+    <script>
+        window.addEventListener("load", function () {
+            var checked;
 
+
+            var inp1 = document.getElementById("manual");
+            var inp2 = document.getElementById("brain");
+            var inp3 = document.getElementById("mol");
+    
+            if (inp1.hasAttribute("checked")) {
+                checked = 1;
+                disableInputs();
+            }
+            else if (inp2.hasAttribute("checked")) {
+                checked = 2;
+            }
+            else if (inp3.hasAttribute("checked")) {
+                checked = 3;
+                disableInputs();
+            }
+
+            inp1.addEventListener("click", function () {
+                checked = 1;
+                disableInputs();
+            })
+            inp2.addEventListener("click", function () {
+                checked = 2;
+                enableInputs()
+            })
+            inp3.addEventListener("click", function () {
+                checked = 3;
+                disableInputs();
+            })
+
+            document.getElementById("sendData").addEventListener("click", function () {
+                if (checked == 2) {
+
+                }
+            })
+
+
+            function enableInputs() {
+                document.getElementById("textPublic").removeAttribute("disabled");
+                document.getElementById("textPrivate").removeAttribute("disabled");
+                document.getElementById("textMerchant").removeAttribute("disabled");
+                document.getElementById("textToken").removeAttribute("disabled");
+            }
+
+            function disableInputs() {
+                document.getElementById("textPublic").disabled = "disabled";
+                document.getElementById("textPrivate").disabled = "disabled";
+                document.getElementById("textMerchant").disabled = "disabled";
+                document.getElementById("textToken").disabled = "disabled";
+            }
+
+
+        })
+        </script>
+
+}
 
 @if (Model != null)
 {
@@ -24,36 +85,101 @@
     if (Model.PaumentMethod != 0)
     {
         <div style="margin-top:1%">
+            @*@if (Model.PaumentMethod == 1)
+                {
+                    <font class="method black">
+                        @T("manual mode")
+                    </font>
+
+                    @Html.ActionLink(T("/ braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
+
+
+                    @Html.ActionLink(T("molpay ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
+                }
+                else if (Model.PaumentMethod == 2)
+                {
+                    @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
+
+                    <font class="method black">
+                        @T("braintree")
+                    </font>
+                     @Html.ActionLink(T(" / molpay").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
+                }
+                else if (Model.PaumentMethod == 3)
+                {
+                    @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
+
+                    @Html.ActionLink(T(" braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
+                    <font class="method black">
+                        @T("  molpay")
+                    </font>
+                }*@
+
             @if (Model.PaumentMethod == 1)
             {
-                @*@Html.ActionLink(T("manual mode / ").ToString(), "EditSetting", new { Model.Culture, Model.PaumentMethod }, new { @class = "method" })*@
-                <font class="method black">
-                    @T("manual mode")
-                </font>
-
-                @Html.ActionLink(T("/ braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
-
-
-                @Html.ActionLink(T("molpay ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
-            }
-            else if (Model.PaumentMethod == 2)
+                <input type="radio" id ="manual" name="vehicle" value="1" checked>}
+            else
             {
-                @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
-
-                <font class="method black">
-                    @T("braintree")
-                </font>
-                 @Html.ActionLink(T(" / molpay").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
+                <input type="radio" id="manual" name="vehicle" value="1">
             }
-            else if (Model.PaumentMethod == 3)
+
+            <font class="method black">
+                @T("manual mode")
+            </font>
+            <br>
+
+            @if (Model.PaumentMethod == 2)
             {
-                @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
+                <input type="radio" id="brain" name="vehicle" value="2" checked>}
+            else
+            {
+                <input type="radio" id="brain" name="vehicle" value="2">}
+            <font class="method black">
+                @T("braintree")
+            </font>
+            <hr>
 
-                @Html.ActionLink(T(" braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
-                <font class="method black">
-                    @T("  molpay")
-                </font>
-            }
+            <br>
+            <font style="margin-left:20px" class="method black">
+                @T("Publick Key")
+            </font>
+            <input type="text" id="textPublic" class="inp marg1"  value="@Model.PaumentMethod"/>
+            <br>
+            <br>
+            <font style="margin-left:20px" class="method black">
+                @T("Private Key ")
+            </font>
+            <input type="text" id="textPrivate" class="inp marg2" />
+            <br>
+            <br>
+            <font style="margin-left:20px" class="method black">
+                @T("Merchant Id")
+            </font>
+            <input type="text" id="textMerchant" class="inp marg3" />
+            <br>
+            <br>
+            <font style="margin-left:20px" class="method black">
+                @T("Client Token  ")
+            </font>
+            <input type="text" id="textToken" class="inp marg4" />
+            <br>
+
+
+            <br>
+            <hr>
+            @if (Model.PaumentMethod == 3)
+            {
+                <input type="radio" id="mol" name="vehicle" value="3" checked>}
+            else
+            {
+                <input type="radio" id="mol" value="3" name="vehicle">}
+
+            <font class="method black">
+                @T("  molpay")
+            </font>
+            <br>
+
+            <button id="SendData">Apply</button>
 
         </div>
     }

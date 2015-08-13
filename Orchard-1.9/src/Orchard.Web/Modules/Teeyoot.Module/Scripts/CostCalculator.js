@@ -6,7 +6,7 @@
     window.nowPrice = parseFloat(res.toFixed(2));
 
     if (document.getElementById('profSale').value.length == 0) {
-        window.sellingPrice = Math.round(parseFloat(res.toFixed(2)) * 2);
+        window.sellingPrice = Math.round(parseFloat(res.toFixed(2)) * 2).toFixed(2);
         app.state.currentProduct.Price = window.sellingPrice;
     }
 
@@ -246,18 +246,18 @@ function estimatedProfitChangeForManuProducts() {
 
 function updateMinimum(changes) {
     if (changes < 0) {
-        $("#profit-calculator").css('display', 'none');
-        $("#price-for-first-product-text").css('display', 'none');
-        $("#base-cost-for-first-product-text-smoll").css('display', 'none');
+       // $("#profit-calculator").css('display', 'none');
+        //$("#price-for-first-product-text").css('display', 'none');
+        //$("#base-cost-for-first-product-text-smoll").css('display', 'none');
         //$("#").css('display', 'none');
-        $("#base-cost-for-first-product-text").html("minimum");
-        $("#base-cost-for-first-product").html(app.state.currentProduct.BaseCost.toFixed(2));
-        $("#base-cost-for-first-product-rm").css('color', '#ff0000');
-        $("#base-cost-for-first-product").css('color', '#ff0000');
-        $("#base-cost-for-first-product-text").css('color', '#ff0000');
+        //$("#base-cost-for-first-product-text").html("minimum");
+        //$("#base-cost-for-first-product").html(app.state.currentProduct.BaseCost.toFixed(2));
+        //$("#base-cost-for-first-product-rm").css('color', '#ff0000');
+        //$("#base-cost-for-first-product").css('color', '#ff0000');
+        //$("#base-cost-for-first-product-text").css('color', '#ff0000');
 
 
-        //$("#mainH4").html("RM " + window.nowPrice + " minimum");
+        $("#mainH4").html(changes);
         //$("#mainH4").css('color', '#ff0000');
         if (app.state.products.length < 2) {
             $("#total_profit").html("RM 0+");

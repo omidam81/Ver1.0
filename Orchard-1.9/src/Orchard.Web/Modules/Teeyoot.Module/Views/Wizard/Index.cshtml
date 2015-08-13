@@ -289,7 +289,7 @@
 
             }
         });
-    
+
         function refreshToken() {
             $.ajax({
                 async: false,
@@ -522,11 +522,15 @@
                 var email = $('#create_account .email').val();
                 var password = $('#create_account .password').val();
                 var confirmPassword = $('#create_account .confirm-password').val();
+                var name = $('#create_account .name').val();
+                var phone = $('#create_account .phone').val();
 
                 var wizardRegisterJsonRequest = {
                     Email: email,
                     Password: password,
-                    ConfirmPassword: confirmPassword
+                    ConfirmPassword: confirmPassword,
+                    Name: name,
+                    Phone: phone
                 };
 
                 $.ajax({
@@ -636,7 +640,7 @@
 }
 <div id="preloader">
     <div class="preloader__body">
-       
+
     </div>
 </div>
 
@@ -1098,7 +1102,7 @@
                             <div id="card" style="margin-right:30px; max-width: 530px;">
                                 <div class="front" id="step-2-front">
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                    
+
                                     <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
                                         <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
                                         <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
@@ -1106,7 +1110,7 @@
                                 </div>
                                 <div class="back" id="step-2-back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                    
+
                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                         <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
                                         <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
@@ -1174,7 +1178,7 @@
                                     </datalist>*@
                             </div>
                             <div class="trackBarValue_box">
-                                <div class="block">Number of shirts:</div><input type="text" id="trackBarValue">
+                                <div class="block">Target:</div><input type="text" id="trackBarValue">
                             </div>
 
                             <!--<table>
@@ -1190,7 +1194,10 @@
                             </table>-->
 
                             <div>
-                                <span>Your target is the number of shirts you are aiming to sell. If you sell less the campaign may not go ahead and your profit per sale will be reduced.</span>
+                                <span>Your target is the number of shirts you are aiming to sell. You must sell at least the minimum for your campaign to proceed. </span>
+                            </div>
+                            <div>
+                                <span>IMPORTANT: if you sell less than your target your profit per sale will be reduced. </span>
                             </div>
 
                             <div>
@@ -1256,13 +1263,13 @@
                             </div>
 
                             <div id="ui" class="ssp_select_boxes">
-                                <select id="item-options-dropdown-tees" class="form-control form__select_menu"></select>
+                                <select id="item-options-dropdown-tees" class="form__select_menu"></select>
                                 <select id="product" class="form__select_menu"></select>
                                 <button type="button" id="butAdd" class="button button--primary ssp_add_button wizard-button" style="color: #ffffff;" title="Add"></button>
                             </div>
 
                             <div>
-                                <label style="font-weight: bold;">Estimated profit</label>
+                                <label style="font-weight: bold;">Estimated profit if you achieve your target</label>
                             </div>
                             <div>
                                 <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px"></span>
@@ -1337,7 +1344,7 @@
                                                                     <div id="card3" style="margin-right:30px; max-width: 530px;">
                                                                         <div class="front" id="step-3-front" style="height: auto !important;">
                                                                             <img style="width:530px;" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
-                                                                            
+
                                                                             <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
                                                                                 <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
                                                                                 <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
@@ -1345,7 +1352,7 @@
                                                                         </div>
                                                                         <div class="back" id="step-3-back" style="height: auto !important;">
                                                                             <img id="prodBack3" style="width:530px;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
-                                                                            
+
                                                                             <div id="butt2" style="text-align:center; margin-top:-60px !important;">
                                                                                 <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
                                                                                 <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
@@ -1971,9 +1978,9 @@
                 <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
                 <form id="login_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <input type="text" class="email" style="margin:0 auto;" placeholder="@T("Email")" />
                         <br />
-                        <input type="password" class="password" placeholder="@T("Password")" />
+                        <input type="password" class="password" style="margin:0 auto;" placeholder="@T("Password")" />
                         <br />
                         <input type="submit" class="btn-modal-login" value="@T("Login to your account >>")" />
                         <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
@@ -1986,11 +1993,15 @@
                 <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
                 <form id="create_account_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" placeholder="@T("Email")" />
+                        <span class="mandatory_wizard">* </span><input type="text" class="name" placeholder="@T("Name")" />
                         <br />
-                        <input type="password" class="password" placeholder="@T("Password: Must be longer than 7 characters.")" />
+                        <span class="mandatory_wizard">* </span> <input type="text" class="email" placeholder="@T("Email")" />
                         <br />
-                        <input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
+                        <span class="mandatory_wizard"> &nbsp; </span><input type="text" class="phone" placeholder="@T("Phone Number")" />
+                        <br />
+                        <span class="mandatory_wizard">* </span> <input type="password" class="password" placeholder="@T("Password: Must be longer than 7 characters.")" />
+                        <br />
+                        <span class="mandatory_wizard">* </span><input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
                         <br />
                         <input type="submit" class="btn-modal-login" value="@T("Create your account >>")" />
                         <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />

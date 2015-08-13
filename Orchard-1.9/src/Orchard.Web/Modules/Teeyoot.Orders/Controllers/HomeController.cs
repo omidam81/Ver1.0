@@ -64,19 +64,28 @@ namespace Teeyoot.Orders.Controllers
             foreach (var item in orders)
             {
                 var campaignId = item.Products.First().CampaignProductRecord.CampaignRecord_Id;
+                if (campaignId == null)
+                    continue;
+
                 var campaign = _campaignService.GetCampaignById(campaignId);
+                
+
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
                 double orderProfit = 0;
-                //Profit
-                foreach (var product in item.Products)
+
+
+                if (item.Products != null)
                 {
-                    var prof = product.CampaignProductRecord.Price - product.CampaignProductRecord.BaseCost;
-                    foreach (var size in product.CampaignProductRecord.ProductRecord.SizesAvailable)
+                    foreach (var product in item.Products)
                     {
-                        if (size.Id == product.ProductSizeRecord.Id)
-                            prof = prof - size.SizeCost;
+                        var prof = product.CampaignProductRecord.Price - product.CampaignProductRecord.BaseCost;
+                        foreach (var size in product.CampaignProductRecord.ProductRecord.SizesAvailable)
+                        {
+                            if (size.Id == product.ProductSizeRecord.Id)
+                                prof = prof - size.SizeCost;
+                        }
+                        orderProfit = orderProfit + prof;
                     }
-                    orderProfit = orderProfit + prof;
                 }
 
                 if (string.IsNullOrWhiteSpace(searchString) || campaign.Title.ToLower().Contains(searchString.ToLower()))
@@ -89,7 +98,7 @@ namespace Teeyoot.Orders.Controllers
                     CampaignName = campaign.Title,
                     Id = item.Id,
                     Profit = orderProfit,
-                    SellerId = seller.Id,
+                    SellerId = seller != null ? seller.Id : 0,
                     //FirstName = item.FirstName,
                     //LastName = item.LastName,
                     //StreetAdress = item.StreetAddress,
@@ -97,7 +106,7 @@ namespace Teeyoot.Orders.Controllers
                     //Country = item.Country,
                     //PhoneNumber = item.PhoneNumber,
                     Payout = item.ProfitPaid,
-                    UserNameSeller = seller.UserName
+                    UserNameSeller = seller != null ? seller.UserName : ""
                    });
             }
             }
