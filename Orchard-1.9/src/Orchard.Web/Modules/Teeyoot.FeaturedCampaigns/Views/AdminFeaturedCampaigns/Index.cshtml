@@ -5,58 +5,91 @@
     string colorTOP = "#00FFFF";
     string colorOther = "#FFFFFF";
 }
-<fieldset>
-    <table class="items">
-        <thead>
-            <tr>
-                <th>@T("Featured")</th>
-                <th>@T("Active")</th>
-                <th>@T("Sold last 24 hours")</th>
-                <th>@T("Sold/Goal")</th>
-                <th>@T("Campaign name")</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Campaigns.Length > 0)
+<div>
+    <div style="margin-bottom:15px;">
+        <fieldset class="bulk-actions">
+            @using (Html.BeginForm("Index", "AdminFeaturedCampaigns", FormMethod.Get))
             {
-                int colorIndex = Model.StartedIndex == null ? 0 : Model.StartedIndex;
-                foreach (var camp in Model.Campaigns)
-                {
-                    var isFeatured = camp.Campaign.IsFeatured ? "Yes" : "No";
-                    var isActive = camp.Campaign.IsActive ? "Yes" : "No";
-                    var value = camp.Last24HoursSold > 0 ? camp.Last24HoursSold.ToString() : "-";
+                <span>
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                </span>
 
-                    var color = camp.Campaign.IsFeatured ? colorTOP : (camp.Last24HoursSold > 0 ? colorAdmin : colorOther);
-
-                    <tr style="background-color: @color">
-                        <td>@T(isFeatured)</td>
-                        <td>@T(isActive)</td>
-                        <td>@value</td>
-                        <td>@camp.Campaign.Sold / @camp.Campaign.Goal</td>
-                        <td><a href="~/@camp.Campaign.Alias">@camp.Campaign.Title</a></td>
-                        <td>
-                            @if (camp.Campaign.IsActive)
-                            {
-                                if (camp.Campaign.IsFeatured)
-                                {
-                                    <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
-                                }
-                                else
-                                {
-                                    <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
-                                }
-                            }
-                            @if (!camp.Campaign.IsActive)
-                            {
-                                @*@T(" | ")*@
-                                <a href="@Url.Action("DeleteCampaign", new { pagerParameters = Model.Pager, id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
-                            }
-                        </td>
-                    </tr>
-                }
+                <button type="submit">@T("Apply")</button>
+                <a href="@Url.Action("Index")">@T("By Default")</a>
             }
-        </tbody>
-    </table>
-</fieldset>
+
+
+        </fieldset>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    }
+    <fieldset>
+        <table class="items">
+            <thead>
+                <tr>
+                    <th>@T("Campaign date")</th>
+                    <th>@T("Featured")</th>
+                    <th>@T("Is Approved")</th>
+                    <th>@T("Active")</th>
+                    <th>@T("Sold last 24 hours")</th>
+                    <th>@T("Sold / Minimum / Goal")</th>
+                    <th>@T("Campaign name")</th>
+                    <th>@T("Action")</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Campaigns.Length > 0)
+                {
+                    int colorIndex = Model.StartedIndex == null ? 0 : Model.StartedIndex;
+                    foreach (var camp in Model.Campaigns)
+                    {
+                        var isFeatured = camp.Campaign.IsFeatured ? "Yes" : "No";
+                        var isActive = camp.Campaign.IsActive ? "Yes" : "No";
+                        var value = camp.Last24HoursSold > 0 ? camp.Last24HoursSold.ToString() : "-";
+
+                        var color = camp.Campaign.IsFeatured ? colorTOP : (camp.Last24HoursSold > 0 ? colorAdmin : colorOther);
+
+                        <tr style="background-color: @color">
+                            <td>@camp.Campaign.CreatedDate</td>
+                            <td>@T(isFeatured)</td>
+                            <td>@camp.Campaign.IsApproved</td>
+                            <td>@T(isActive)</td>
+                            <td>@value</td>
+                            <td>@camp.Campaign.Sold / @camp.Campaign.Minimum / @camp.Campaign.Goal</td>
+                            <td><a href="~/@camp.Campaign.Alias">@camp.Campaign.Title</a></td>
+                            <td>
+                                @if (camp.Campaign.IsActive)
+                                {
+                                    if (camp.Campaign.IsFeatured)
+                                    {
+                                        <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ChangeVisible", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
+                                    }
+                                }
+                                @if (!camp.Campaign.IsActive)
+                                {
+                                    @*@T(" | ")*@
+                                    <a href="@Url.Action("DeleteCampaign", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
+                                }
+                                @if (!camp.Campaign.IsApproved)
+                                {
+                                    <span>|</span>
+                                    <a href="@Url.Action("Approve", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = camp.Campaign.Id })" title="@T("Approve")">@T("Approve")</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </fieldset>
+</div>
 @Display(Model.Pager)
