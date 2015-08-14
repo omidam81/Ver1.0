@@ -15,9 +15,8 @@ namespace Teeyoot.Dashboard.Controllers
         {
             if (viewModel.ErrorMessage == null)
             {
-                string currentUser = Services.WorkContext.CurrentUser.Email;
-                var user = _membershipService.GetUser(currentUser);
-                var teeUser = _contentManager.Get<TeeyootUserPart>(user.Id, VersionOptions.Latest);
+                int currentUser = Services.WorkContext.CurrentUser.Id;
+                var teeUser = _contentManager.Get<TeeyootUserPart>(currentUser, VersionOptions.Latest);
                 UserSettingsViewModel model = new UserSettingsViewModel() { };
                 model.Id = teeUser.Id;
                 model.PublicName = teeUser.PublicName;
@@ -31,9 +30,8 @@ namespace Teeyoot.Dashboard.Controllers
             }
             else
             {
-                string currentUser = Services.WorkContext.CurrentUser.Email;
-                var user = _membershipService.GetUser(currentUser);
-                var teeUser = _contentManager.Get<TeeyootUserPart>(user.Id, VersionOptions.Latest);
+                int currentUser = Services.WorkContext.CurrentUser.Id;
+                var teeUser = _contentManager.Get<TeeyootUserPart>(currentUser, VersionOptions.Latest);
                 UserSettingsViewModel model = new UserSettingsViewModel() { };
                 model.Id = teeUser.Id;
                 model.PublicName = teeUser.PublicName;

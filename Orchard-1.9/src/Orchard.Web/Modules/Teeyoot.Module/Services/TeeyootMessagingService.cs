@@ -264,16 +264,11 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.Subject = "New order";
-            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
-            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
-            foreach (var user in users)
-            {
-                emails.Add(new MandrillMailAddress(user.Email, "Buyer"));
-                FillUserMergeVars(mandrillMessage, order, user.Email);
-                FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, user.Email, order.OrderPublicId);
-                FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, user.Email, pathToMedia, pathToTemplates);
-            }
+                emails.Add(new MandrillMailAddress(order.Email, "Buyer"));
+                FillUserMergeVars(mandrillMessage, order, order.Email);
+                FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
+                FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
             mandrillMessage.To = emails;
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-order-buyer-template.html");
             SendTmplMessage(api, mandrillMessage);
