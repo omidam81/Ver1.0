@@ -3231,6 +3231,48 @@ html, body {
     width: 97%;
 }
 
+
+.form__textfield.form__textfield--whole-width {
+    margin-bottom: 1rem;
+    width: 100%;
+    color: black;
+}
+
+.form__textfield.form__textfield--whole-width[placeholder]                     {text-overflow: ellipsis;}
+.form__textfield.form__textfield--whole-width ::-webkit-input-placeholder      {color: #888888; text-overflow: ellipsis;}
+.form__textfield.form__textfield--whole-width :-moz-placeholder                {color: #888888; text-overflow: ellipsis;}
+.form__textfield.form__textfield--whole-width ::-moz-placeholder               {color: #888888; text-overflow: ellipsis;}
+.form__textfield.form__textfield--whole-width :-ms-input-placeholder           {color: #888888; text-overflow: ellipsis;}
+.form__textfield.form__textfield--whole-width:focus::-webkit-input-placeholder {opacity: 0;}
+.form__textfield.form__textfield--whole-width:focus::-moz-placeholder          {opacity: 0;}
+.form__textfield.form__textfield--whole-width:focus:-moz-placeholder           {opacity: 0;}
+.form__textfield.form__textfield--whole-width:focus:-ms-input-placeholder      {opacity: 0;}
+
+@media all and (max-width: 360px) {
+    .form__textfield.form__textfield--whole-width[placeholder]                     {font-size: 0.85rem; font-weight: 300;}
+    .form__textfield.form__textfield--whole-width ::-webkit-input-placeholder      {font-size: 0.85em; font-weight: 300;}
+    .form__textfield.form__textfield--whole-width ::-o-input-placeholder           {font-size: 0.85rem; font-weight: 300;}
+    .form__textfield.form__textfield--whole-width :-moz-placeholder                {font-size: 0.85rem; font-weight: 300;}
+    .form__textfield.form__textfield--whole-width ::-moz-placeholder               {font-size: 0.85rem; font-weight: 300;}
+    .form__textfield.form__textfield--whole-width :-ms-input-placeholder           {font-size: 0.85rem; font-weight: 300;}
+}
+
+
+.modal-body-central-block {
+    width: 90%;
+    margin: 0 auto;
+    color: #888888;
+    text-align: center;
+    padding: 10px 0;
+    opacity: 0.7;
+}
+
+.modal-body-central-block span {
+    color: #ff4f00;
+    font-weight: bold;
+}
+
+
 .form__textfield {
     border-color: #c2c9cc;
     font-size: 1.1rem;
@@ -3692,6 +3734,10 @@ html, body {
     .modal {
         border-radius: 4px;
         max-width: 51.2rem;
+    }
+    .request-to-bring-back-the-campaign {
+        max-width: 33.68rem;
+        overflow:  hidden; 
     }
 }
 

@@ -183,7 +183,7 @@ function estimatedProfitChangeForManuProducts() {
 
         var prices = calculatePriceForNewProduct(window.frontColor, window.backColor, parseFloat(cost.toFixed(2)));
         products[i].BaseCost = prices[0];
-        result.push(Math.floor(parseFloat(products[i].Price - products[i].BaseCost) * window.count));
+        result.push(parseFloat(products[i].Price - products[i].BaseCost) * window.count);
         if (i > 0) {
             var profit = parseFloat((products[i].Price - products[i].BaseCost).toFixed(2));
             var indexCost = "#h4CostSale_" + parseInt(i + 1);
@@ -201,7 +201,7 @@ function estimatedProfitChangeForManuProducts() {
             $(indexCost).html(products[i].BaseCost.toFixed(2));
             if (profit < 0) {
                 
-                app.state.isNegativeProfit[i+1] = true;
+                app.state.isNegativeProfit[i] = true;
                // $(divProfitCalcul).css('display', 'none');
                // $(h6Cost).css('display', 'none');
                // $(h6Price).css('display', 'none');
@@ -216,7 +216,7 @@ function estimatedProfitChangeForManuProducts() {
                 //$(indexProf).css('color', '#ff0000');
                 //$("#total_profit").html("RM 0+");
             } else {
-                app.state.isNegativeProfit[i+1] = false;
+                app.state.isNegativeProfit[i] = false;
                 $(divProfitCalcul).css('display', 'block');
                 $(h6Cost).css('display', 'block');
                 $(h6Price).css('display', 'block');

@@ -214,10 +214,14 @@ window.onload = function initWizard() {
         });
 
         function profSaleProd() {
+            var asd = inpPrice.id.split("Input_");
+            var dsadasd = app.state.products[asd[1]-1];
+
             var price = parseFloat(parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost);
             prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
             h4Profit.innerHTML = price.toFixed(2);
             h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
+            dsadasd.Price = inpPrice.value;
             estimatedProfitChangeForManuProducts();
         }
 
@@ -408,7 +412,10 @@ window.onload = function initWizard() {
             var id = h4Price.id;
             var splitIndex = id.split('h4Price_');
             var count = parseInt(splitIndex[1]);
-            app.state.products.pop(prdc);
+            var spliceIndex = count - 1;
+            app.state.products.splice(spliceIndex, 1);
+            app.state.isNegativeProfit[count-1] = false;
+            //app.state.products.pop(prdc);
             if (count == 0) {
                 count = 1;
             }
