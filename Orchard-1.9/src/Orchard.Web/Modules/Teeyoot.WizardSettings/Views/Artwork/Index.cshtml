@@ -19,6 +19,7 @@
                     </div>
                 </div>
                 <div class="related">
+                    <a href="@Url.Action("EditArtwork", "Artwork", new {name = artwork.Name})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
                     <a href="@Url.Action("DeleteArtwork", "Artwork", new {name = artwork.Name})" itemprop="RemoveUrl">@T("Delete")</a>
                 </div>
             </div>
@@ -26,10 +27,3 @@
     }
 </ul>
 @Display(Model.Pager)
-
-@*
-    <div class="related">
-        <a href="@Url.Action("EditProductStyle", "ProductStyle", new {productStyleId = productStyle.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-        <a href="@Url.Action("DeleteProductStyle", "ProductStyle", new {productStyleId = productStyle.Id})" itemprop="RemoveUrl">@T("Delete")</a>
-    </div>
-*@

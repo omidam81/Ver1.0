@@ -98,6 +98,59 @@ namespace Teeyoot.WizardSettings.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EditArtwork(string name)
+        {
+            var artworkName = Path.GetFileNameWithoutExtension(CheckIfAlreadyExists(name));
+
+            var viewModel = new ArtworkViewModel
+            {
+                CurrentName = artworkName,
+                Name = artworkName
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditArtwork(ArtworkViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage))
+                {
+                    _orchardServices.Notifier.Error(T(error));
+                }
+                return RedirectToAction("EditArtwork");
+            }
+
+            var imagePhysicalPath = CheckIfAlreadyExists(viewModel.CurrentName);
+
+            if (viewModel.ArtworkImage != null)
+            {
+                System.IO.File.Delete(imagePhysicalPath);
+                SaveArtworkImage(viewModel.ArtworkImage, viewModel.Name);
+            }
+            else
+            {
+                var existingImagePhysicalPath = CheckIfAlreadyExists(viewModel.Name);
+                if (existingImagePhysicalPath == null)
+                {
+                    var newImageFileName = string.Format(ArtworkImageFileNameTemplate, viewModel.Name);
+                    var newImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), newImageFileName);
+
+                    System.IO.File.Move(imagePhysicalPath, newImagePhysicalPath);
+                }
+                else if (Path.GetFileNameWithoutExtension(existingImagePhysicalPath) != viewModel.Name)
+                {
+                    _orchardServices.Notifier.Error(T("Image with the same name already exist"));
+                    return RedirectToAction("EditArtwork", new {name = viewModel.CurrentName});
+                }
+            }
+
+            _orchardServices.Notifier.Information(T("Artwork has been edited."));
+            return RedirectToAction("Index");
+        }
+
         public ActionResult DeleteArtwork(string name)
         {
             try
@@ -156,12 +209,12 @@ namespace Teeyoot.WizardSettings.Controllers
             return strHeader.ToLowerInvariant().EndsWith("png");
         }
 
-        private string CheckIfAlreadyExists(string fileName)
+        private string CheckIfAlreadyExists(string name)
         {
-            var imageFileName = string.Format(ArtworkImageFileNameTemplate, fileName);
+            var imageFileName = string.Format(ArtworkImageFileNameTemplate, name);
             var imagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), imageFileName);
 
-            return System.IO.File.Exists(imagePhysicalPath) ? imageFileName : null;
+            return System.IO.File.Exists(imagePhysicalPath) ? imagePhysicalPath : null;
         }
     }
 }
