@@ -3,6 +3,14 @@
 @{
     Style.Include("Message.css");
 }
+
+@using (Script.Foot())
+{
+  <script>
+      document.title = "Messages | Teeyoot";
+       </script>
+}
+
 <div style="height:100%; margin-bottom:20%">
     <div class="dashboard-section-title">
         @T("Messages")

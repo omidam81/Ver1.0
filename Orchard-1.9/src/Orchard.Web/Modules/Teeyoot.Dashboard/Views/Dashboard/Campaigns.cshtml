@@ -241,6 +241,8 @@
 @using (Script.Foot())
 {
     <script>
+
+
         var showOverviewForPeriod = function (index) {
             $('.overview-for-period.selected').removeClass('selected');
             $('.overview-period.current').removeClass('current');
@@ -315,6 +317,8 @@
         );
 
         $(document).ready(function () {
+
+            document.title = "Campaigns | Teeyoot";
             var statusFilter = document.getElementsByClassName('filtered-by');
             var sortBy = document.getElementsByClassName('sort-by');
             filterByState(statusFilter);

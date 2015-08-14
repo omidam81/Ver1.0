@@ -3,7 +3,14 @@
    
     Style.Include("track.css");
 }
-
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        document.title = "Track order | Teeyoot";
+    }
+    </script>
+}
 <div class="track-order-page content">
     <div class="row">
         <div class="col-sm-7" style="padding-left:0;">

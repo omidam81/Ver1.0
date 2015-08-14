@@ -11,6 +11,7 @@ using System;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Mime;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -31,8 +32,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly IimageHelper _imageHelper;
         private readonly IContentManager _contentManager;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly IOrderService _orderService;
 
-        public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper,  IContentManager contentManager,
+        public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper, IOrderService orderService, IContentManager contentManager,
             ITeeyootMessagingService teeyootMessagingService)
         {
             _campaignService = campaignService;
@@ -40,6 +42,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             _imageHelper = imageHelper;
             _contentManager = contentManager;
             _teeyootMessagingService = teeyootMessagingService;
+            _orderService = orderService;
 
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
@@ -50,23 +53,11 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index(PagerParameters pagerParameters, string searchString)
-        {
-            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+        public ActionResult Index(PagerParameters pagerParameters)
+        {          
+            var total = _campaignService.GetAllCampaigns().Count();
 
-            var total = (string.IsNullOrWhiteSpace(searchString) ?
-                        _campaignService.GetAllCampaigns()                              
-                                                                 :
-                        _campaignService.GetAllCampaigns()
-                        .Where(c => c.Title.Contains(searchString)))
-                            .Count();
-
-            var campaigns = (string.IsNullOrWhiteSpace(searchString) ?
-                            _campaignService.GetAllCampaigns()
-                                                                     :
-                            _campaignService.GetAllCampaigns()
-                            .Where(c => c.Title.Contains(searchString)))                                
-                                .Select(c => new { 
+            var campaigns = _campaignService.GetAllCampaigns().Select(c => new { 
                                                     Id = c.Id,
                                                     Title = c.Title, 
                                                     Goal = c.ProductCountGoal,
@@ -75,13 +66,17 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                     UserId = c.TeeyootUserId,
                                                     IsApproved = c.IsApproved,
                                                     EndDate = c.EndDate,
-                                                    Profit = c.CampaignProfit
-                                                })
-                                .Skip(pager.GetStartIndex())
-                                .Take(pager.PageSize)
+                                                    Profit = c.CampaignProfit,
+                                                    Alias =c.Alias,
+                                                    IsActive = c.IsActive,
+                                                    Minimum = c.ProductMinimumGoal,
+                                                    CreateDate=c.StartDate
+                                                })                               
                                 .ToList()
                                 .OrderBy(e => e.Title);
-           
+            var yesterday = DateTime.UtcNow.AddDays(-1);
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
+
             var entriesProjection = campaigns.Select(e =>
             {
                 return Shape.campaign(
@@ -93,21 +88,39 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Seller: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId),
                     TeeyootSeller: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId).ContentItem.Get(typeof(TeeyootUserPart)),
                     IsApproved: e.IsApproved,
-                    EndDate : e.EndDate,
-                    Profit : e.Profit
+                    EndDate: e.EndDate.ToLocalTime().ToString("dd/MM/yyyy"),
+                    Profit : e.Profit,
+                    Alias : e.Alias,
+                    IsActive: e.IsActive,
+                    Minimum: e.Minimum,
+                    CreatedDate: e.CreateDate.ToLocalTime().ToString("dd/MM/yyyy"),
+                    Last24HoursSold : last24hoursOrders
+                                        .SelectMany(o => o.Products)
+                                        .Where(p => p.CampaignProductRecord.CampaignRecord_Id == e.Id)
+                                        .Sum(p => (int?)p.Count) ?? 0
                     );
             });
-
-            var pagerShape = Shape.Pager(pager).TotalItemCount(total);
-
-            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), SearchString = searchString, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
+          
+            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray() });
         }
 
-        public ActionResult ChangeStatus(PagerParameters pagerParameters, string searchString, int id, CampaignStatus status)
+        public ActionResult ChangeStatus(PagerParameters pagerParameters, int id, CampaignStatus status)
         { 
             _campaignService.SetCampaignStatus(id, status);
             _teeyootMessagingService.SendChangedCampaignStatusMessage(id, status.ToString()); 
-            return RedirectToAction("Index", new { PagerParameters=pagerParameters, SearchString=searchString });
+            return RedirectToAction("Index", new { PagerParameters=pagerParameters });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public HttpStatusCodeResult ChangeEndDate(int campaignId, int day, int month, int year )
+        {
+            DateTime date = new DateTime(year,month, day);
+            var campaign = _campaignService.GetCampaignById(campaignId);
+            campaign.EndDate = date.ToUniversalTime();
+
+            Response.Write(campaign.EndDate.ToLocalTime().ToString("dd/MM/yyyy"));
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
 	}
