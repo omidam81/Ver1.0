@@ -996,3 +996,45 @@
 
 </div>
 <input id="campaignId" class="hidden" type="text" value="@Model.Campaign.Id" />
+
+
+<div class="dg-overlay-not-show" id="bringBackCampaign">
+    <div class="dg-table">
+        <div class="dg-cell">
+            <div class="dg-modal">
+                <div aria-hidden="true" aria-labelledby="myModalLabel" class="dm-overlay precheckout_modal modal request-to-bring-back-the-campaign central-modal-block" role="dialog" tabindex="1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" class="precheckout_close_button" id="close-reservation" onclick="CloseReservation()" type="button">
+                                    <i class="ts-icon-close"></i>
+                                </button>
+                                <h2 class="reservation_modal__title">@T("Your Reservation")</h2>
+                            </div>
+
+                            <div class="modal-body-central-block">
+                                If just <span>10</span> more items are reserved, we can bring this design back! Leave your email and reserve your order now!
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="tooltip tooltip--topleft">
+                                    <input class="form__textfield form__textfield--whole-width" type="text" placeholder="Email address (so we can notify you)">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="payment_options_container">
+                                    <div class="reserve-yours-now">
+                                        <div onclick="" class="button-reserve-yours-now">
+                                            @T("RESERVE YOURS NOW!")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

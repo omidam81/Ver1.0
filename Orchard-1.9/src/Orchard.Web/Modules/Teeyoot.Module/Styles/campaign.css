@@ -5547,6 +5547,44 @@ input {
     }
 }
 
+.central-modal-block {
+     height: auto;
+     border-radius: 4px;
+     overflow: hidden;
+}
+
+@media all and (max-width: 620px) {
+    .central-modal-block {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.central-modal-block .modal-header {
+    padding: 1.5rem 2.5rem 0 2.5rem;
+}
+
+.central-modal-block .precheckout_close_button {
+    background: none;
+    border-radius: 0;
+    color: #293033;
+    right: 1rem;
+    top: 1rem;
+    line-height: 0;
+    padding: .5rem;
+    position: absolute;
+    z-index: 1;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.central-modal-block .modal-footer {
+    background: #f5f7f7;
+}
+
 .precheckout_modal.modal--inactive {
     height: 0;
     overflow-y: hidden;
@@ -5617,6 +5655,11 @@ input {
     padding: 0 1rem 1rem;
 }
 
+.central-modal-block  .modal-body {
+    overflow: hidden;
+    padding: 1rem;
+}
+
     .precheckout_modal .modal-body::-webkit-scrollbar {
         width: 0;
     }
@@ -5646,6 +5689,10 @@ input {
     .precheckout_modal .modal-header {
         padding: 1.5rem;
     }
+
+    .central-modal-block .modal-header {
+        padding: 1.5rem 2.5rem 0 2.5rem;
+}
 }
 
 .precheckout_modal .modal-footer {
@@ -5680,6 +5727,15 @@ input {
     .precheckout_modal__title {
         display: block;
     }
+}
+
+.reservation_modal__title {
+    display: block;
+    line-height: 1.2;
+    margin: 0;
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 1.9rem;
 }
 
 .precheckout_modal__image_container {
@@ -5822,6 +5878,26 @@ input {
     .payment_options_actions {
         float: right;
     }
+}
+
+
+.reserve-yours-now {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.button-reserve-yours-now {
+    color: #fff !important;
+    background-color: #ff4f00;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.button-reserve-yours-now:hover {
+    color: #fff !important;
+    background-color: rgb(229, 71, 0);
 }
 
 .payment_options_actions a:hover {
