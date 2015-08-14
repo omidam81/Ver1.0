@@ -15,6 +15,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Orchard.ContentManagement;
+using Orchard.Data;
+using Orchard.Mvc.Extensions;
 using RM.QuickLogOn.OAuth.Models;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
@@ -34,8 +36,17 @@ namespace Teeyoot.Module.Controllers
         private readonly IProductService _productService;
         private readonly ISwatchService _swatchService;
         private readonly ITShirtCostService _costService;
+        private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService)
+        public WizardController(
+            IOrchardServices orchardServices, 
+            ICampaignService campaignService, 
+            IimageHelper imageHelper, 
+            IFontService fontService, 
+            IProductService productService, 
+            ISwatchService swatchService, 
+            ITShirtCostService costService,
+            IRepository<CommonSettingsRecord> commonSettingsRepository)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -45,6 +56,7 @@ namespace Teeyoot.Module.Controllers
             _swatchService = swatchService;
             Logger = NullLogger.Instance;
             _costService = costService;
+            _commonSettingsRepository = commonSettingsRepository;
         }
 
         public ILogger Logger { get; set; }
@@ -52,6 +64,12 @@ namespace Teeyoot.Module.Controllers
         // GET: Wizard
         public ActionResult Index(int? id)
         {
+            var commonSettings = _commonSettingsRepository.Table.First();
+            if (commonSettings.DoNotAcceptAnyNewCampaigns)
+            {
+                return Redirect("~/CanNotCreateNewCampaign");
+            }
+
             var cost = _costService.GetCost();
             AdminCostViewModel costViewModel = new AdminCostViewModel();
             if (cost != null)
