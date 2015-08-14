@@ -1,18 +1,17 @@
 ﻿@{
     Style.Include("designerTeeyoot.css");
     Style.Include("track.css");
-    Layout.Title = T("Messages").ToString();
+    Layout.Title = T("Recover Order").ToString();
 }
 
 <div class="track-order-page content">
-    <div class="row">       
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1 hidden-xs img-car">
+            <img alt="Index" src="/Media/Default/images/RecoverOrder.jpg">
+        </div>
         <div class="col-sm-7" style="padding-left:0;">
-            <h1 style="font-weight: bold; font-size: 2.508em;">@T("Order Tracker")</h1>
-            @*<div class="col-sm-3 col-sm-offset-1 hidden-xs">
-                <img alt="Index" src="/Modules/Teeyoot.Module/Content/images/track-order.png">
-            </div>*@
-            <p>@T("RECOVER RECENT ORDERS")</p>
-            <p>@T("Enter the email address you used to place your order to recover all orders placed in the last 60 days.")</p>
+            <h1 style="font-weight: bold; font-size: 2.508em;">@T("Recover Your Order")</h1>
+            <p>@T("Enter your email address to see all the orders you placed using this email address for the past 60 days.")</p>
 
             @using (Html.BeginFormAntiForgeryPost(Url.Action("RecoverOrder", "Home")))
             {
@@ -24,8 +23,8 @@
                         <input class="btnTrack" type="submit" value="@T("Recover orders")" />
                     </div>
                 </div>
-            }           
-        </div>        
+            }
+        </div>
     </div>
 </div>
 
