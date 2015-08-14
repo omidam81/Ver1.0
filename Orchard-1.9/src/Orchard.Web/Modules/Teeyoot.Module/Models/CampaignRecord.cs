@@ -45,6 +45,8 @@ namespace Teeyoot.Module.Models
 
         public virtual bool IsApproved { get; set; }
 
+        public bool Rejected { get; set; }
+
         public virtual DateTime? WhenDeleted { get; set; }
 
         public virtual bool IsPrivate { get; set; }
