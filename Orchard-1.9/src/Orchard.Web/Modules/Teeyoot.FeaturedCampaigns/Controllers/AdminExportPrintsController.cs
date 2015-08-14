@@ -75,7 +75,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Goal: e.Goal,
                     Status: e.Status,
                     Alias: e.Alias,
-                    CreatedDate: e.CreatedDate,
+                    CreatedDate: e.CreatedDate.ToLocalTime().ToString("dd/MM/yyyy"),
                     IsApproved: e.IsApproved,
                     IsActive : e.IsActive,
                     Minimum: e.Minimum,

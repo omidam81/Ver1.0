@@ -1,41 +1,33 @@
 ﻿@model Teeyoot.FeaturedCampaigns.ViewModels.ExportPrintsViewModel
+@{
+    Style.Include("FeaturedCampaigns.css");
+    Style.Include("jquery.dataTables.css");
+    Script.Require("jQuery");
+    Script.Include("jquery.dataTables.min.js");
+}
 
 <div>
-
-    <div style="margin-bottom:15px;">
-        <fieldset class="bulk-actions">
-            @using (Html.BeginForm("Index", "AdminCampaignsSettings", FormMethod.Get))
-            {
-                <span>
-                    @Html.LabelFor(m => m.SearchString, T("Filter")):
-                    @Html.TextBoxFor(m => m.SearchString)
-                </span>
-
-                <button type="submit">@T("Apply")</button>
-                <a href="@Url.Action("Index")">@T("By Default")</a>
-            }
-
-
-        </fieldset>
-    </div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
     }
 
-    <table class="items">
+    <table class="items" id="campaign-table">
         <thead>
             <tr>
+                <th>@T("Campaign Id")</th>
                 <th>@T("Campaign Name")</th>
-                <th>@T("Current Status")</th>
-                <th>@T("Is Approved")</th>
-                <th>@T("Sold/Goal")</th>
+                <th>@T("Create date")</th>
+                <th>@T("Active")</th>
+                <th>@T("Sold last 24 hours")</th>
+                <th>@T("Sold / Minimum / Goal")</th>
+                <th>@T("Profit")</th>
+                <th>@T("Payment Status")</th>
                 <th>@T("End Date")</th>
                 <th>@T("Seller Name")</th>
                 <th>@T("Seller Email")</th>
-                <th>@T("Phone Number")</th>
-                <th>@T("Profit")</th>
+                <th>@T("Phone Number")</th>                
                 <th>@T("Change Status")</th>
             </tr>
         </thead>
@@ -44,40 +36,109 @@
             {
                 foreach (var c in Model.Campaigns)
                 {
+                    var isActive = c.IsActive ? "Yes" : "No";
+                    var value = c.Last24HoursSold > 0 ? c.Last24HoursSold.ToString() : "-";
 
                     <tr data-record-text="@c.Id" class="contentItems">
+                        <td>@c.Id</td>
                         <td><a target="_blank" href="/@c.Alias">@c.Title</a></td>
+                        <td>@c.CreatedDate</td>
+                        <td>@T(isActive)</td>
+                        <td>@value</td>
+                        <td>@c.Sold / @c.Minimum / @c.Goal</td>
+                        <td>@c.Profit</td>
                         <td>@c.Status</td>
-                        <td>@c.IsApproved</td>
-                        <td>@c.Sold/@c.Goal</td>
-                        <td>@c.EndDate</td>
+                        <td><span id="date_@c.Id">@c.EndDate</span> <button type="submit" onclick="openModal(@c.Id)" value="@c.Id">Change</button></td>
                         <td>@c.Seller.UserName</td>
                         <td>@c.Seller.Email</td>
-                        <td>@c.TeeyootSeller.PhoneNumber</td>
-                        <td>@c.Profit</td>
-                        <td><text> | </text>
+                        <td>@c.TeeyootSeller.PhoneNumber</td>         
+                        <td>
+                            <text> | </text>
                             @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
                             {
-                                if(item.ToString() != c.Status)
+                                if (item.ToString() != c.Status)
                                 {
-                                    <a href="@Url.Action("ChangeStatus", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id, status = item })">@item</a> <text> | </text>
+                                    <a href="@Url.Action("ChangeStatus", new { id = c.Id, status = item })">@item</a> <text> | </text>
                                 }
                             }
                         </td>
                     </tr>
                 }
+
+
             }
         </tbody>
     </table>
 </div>
-@Display(Model.Pager)
+<div class="dg-overlay-not-show" id="modal_date_change">
+    <div class="dg-table">
+        <div class="dg-cell">
+            <div class="dg-modal">
+                <div class="close">X</div>
+                <h1>Change End Date</h1>
+                <span class="inp_date">Day</span>
+                <select id="day">
+                    @for (int i = 1; i <= 31; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <span class="inp_date">Month</span>
+                <select id="month">
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <span class="inp_date">Year</span><input type="text" placeholder="YYYY" id="year" />
+                </br>
+                <button type="submit" id="change_date_btn" onclick="changeData(this)">Change</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @using (Script.Foot())
 {
-    <script>
+    <script type="text/javascript">
 
-        var applyAction = function () {
-            return false;
-        }
+        function openModal(id) {
+            document.getElementById("change_date_btn").value = id;
+            document.getElementById("modal_date_change").className = "dg-overlay";
+        };
+
+
+        $('.close').click(function () {
+            document.getElementById("modal_date_change").className = "dg-overlay-not-show";
+        });
+
+        function changeData(item) {
+            var campaignId = item.value;
+            var day = document.getElementById("day").value;
+            var month = document.getElementById("month").value;
+            var year = document.getElementById("year").value;
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("ChangeEndDate", "AdminCampaignsSettings"))",
+                data: addAntiForgeryToken({ "campaignId": campaignId, "day": day, "month": month, "year": year }),
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        document.getElementById("date_" + campaignId).innerText = data;
+                        document.getElementById("modal_date_change").className = "dg-overlay-not-show";
+                    }
+                }
+            });
+        };
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+    </script>
+    <script>
+        var campaignTable = $('#campaign-table').dataTable();
     </script>
 }

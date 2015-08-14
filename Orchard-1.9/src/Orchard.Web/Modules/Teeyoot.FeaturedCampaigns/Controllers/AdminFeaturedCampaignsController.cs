@@ -57,6 +57,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             var total =_campaignService.GetAllCampaigns().Count();
 
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false).Count();
+
             if (total > 0)
             {
                 featuredCampaigns = campaigns
@@ -71,10 +73,12 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         Alias = c.Alias,
                         CreatedDate = c.StartDate.ToLocalTime(),
                         IsApproved = c.IsApproved,
-                        Minimum = c.ProductMinimumGoal
+                        Minimum = c.ProductMinimumGoal,
+                        Rejected = c.Rejected
                     })
                     .Select(c => new FeaturedCampaignViewModel
                     {
+                        
                         Campaign = c,
                         Last24HoursSold =
                                     last24hoursOrders
@@ -87,7 +91,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     .ToArray();
             }
           
-            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns });
+            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns,NotApprovedTotal= totalNotApproved });
         }
 
         public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)
@@ -135,10 +139,21 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         {
             var campaign = _campaignService.GetCampaignById(id);
             campaign.IsApproved = true;
-            _campaignService.UpdateCampaign(campaign);
+            campaign.Rejected = false;
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
             _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
+            return RedirectToAction("Index", new { PagerParameters = pagerParameters });
+        }
+
+        public ActionResult Reject(PagerParameters pagerParameters, int id)
+        {
+            var campaign = _campaignService.GetCampaignById(id);
+            campaign.Rejected = true;
+            campaign.IsApproved = false;
+            //var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+            //var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+            //_teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
             return RedirectToAction("Index", new { PagerParameters = pagerParameters });
         }
     }
