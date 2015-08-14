@@ -5,6 +5,7 @@ using Orchard.Logging;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
+using System;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -25,12 +26,14 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly ICampaignService _campaignService;
         private readonly ISiteService _siteService;
         private readonly IimageHelper _imageHelper;
+        private readonly IOrderService _orderService;
 
-        public AdminExportPrintsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper)
+        public AdminExportPrintsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IOrderService orderService, IimageHelper imageHelper)
         {
             _campaignService = campaignService;
             _siteService = siteService;
             _imageHelper = imageHelper;
+            _orderService = orderService;
 
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
@@ -41,36 +44,27 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index(PagerParameters pagerParameters, string searchString)
+        public ActionResult Index(PagerParameters pagerParameters)
         {
-            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+            var total =  _campaignService.GetAllCampaigns().Count();
 
-            var total = (string.IsNullOrWhiteSpace(searchString) ?
-                        _campaignService.GetAllCampaigns()                              
-                                                                 :
-                        _campaignService.GetAllCampaigns()
-                        .Where(c => c.Title.Contains(searchString)))
-                            //.Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
-                            .Count();
-
-            var campaigns = (string.IsNullOrWhiteSpace(searchString) ?
-                            _campaignService.GetAllCampaigns()
-                                                                     :
-                            _campaignService.GetAllCampaigns()
-                            .Where(c => c.Title.Contains(searchString)))
-                                //.Where(c => !c.IsActive && c.ProductCountGoal <= c.ProductCountSold)
-                                .Select(c => new { 
+            var campaigns =  _campaignService.GetAllCampaigns().Select(c => new { 
                                                     Id = c.Id,
                                                     Title = c.Title,
                                                     Sold = c.ProductCountSold,
                                                     Goal = c.ProductCountGoal,
                                                     Status = c.CampaignStatusRecord,
-                                                    Alias = c.Alias
-                                                })
-                                .Skip(pager.GetStartIndex())
-                                .Take(pager.PageSize)
+                                                    Alias = c.Alias,
+                                                    CreatedDate = c.StartDate,
+                                                    IsApproved = c.IsApproved,
+                                                    IsActive = c.IsActive,
+                                                    Minimum = c.ProductMinimumGoal
+                                                })                               
                                 .ToList()
                                 .OrderBy(e => e.Status.Id);
+
+            var yesterday = DateTime.UtcNow.AddDays(-1);
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
 
             var entriesProjection = campaigns.Select(e =>
             {
@@ -80,16 +74,22 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Sold: e.Sold,
                     Goal: e.Goal,
                     Status: e.Status,
-                    Alias: e.Alias
+                    Alias: e.Alias,
+                    CreatedDate: e.CreatedDate,
+                    IsApproved: e.IsApproved,
+                    IsActive : e.IsActive,
+                    Minimum: e.Minimum,
+                    Last24HoursSold : last24hoursOrders
+                                        .SelectMany(o => o.Products)
+                                        .Where(p => p.CampaignProductRecord.CampaignRecord_Id == e.Id)
+                                        .Sum(p => (int?)p.Count) ?? 0
                     );
             });
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(total);
-
-            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), SearchString = searchString, Pager = pagerShape, StartedIndex = pager.GetStartIndex() });
+            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray() });
         }
 
-        public ActionResult ExportPrints(PagerParameters pagerParameters, string searchString, int id)
+        public ActionResult ExportPrints(PagerParameters pagerParameters, int id)
         {
             var campaign = _campaignService.GetCampaignById(id);
 
@@ -123,10 +123,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             return File(zipBytes, MediaTypeNames.Application.Zip, "campaign_" + id + "_" + campaign.Alias + "_" + "_prints.zip");
         }
 
-        public ActionResult StartPrinting(PagerParameters pagerParameters, string searchString, int id)
+        public ActionResult StartPrinting(PagerParameters pagerParameters, int id)
         {
             _campaignService.SetCampaignStatus(id, CampaignStatus.Paid);
-            return RedirectToAction("Index", new { pagerParameters, searchString });
+            return RedirectToAction("Index", new { pagerParameters});
         }
 	}
 }

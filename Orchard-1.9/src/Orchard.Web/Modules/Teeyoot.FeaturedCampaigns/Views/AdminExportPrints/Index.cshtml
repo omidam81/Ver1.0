@@ -1,10 +1,13 @@
 ﻿@{
     @model Teeyoot.FeaturedCampaigns.ViewModels.ExportPrintsViewModel
+    Style.Include("jquery.dataTables.css");
+    Script.Require("jQuery");
+    Script.Include("jquery.dataTables.min.js");
 }
 
 <div>
 
-    <div style="margin-bottom:15px;">
+    @*<div style="margin-bottom:15px;">
         <fieldset class="bulk-actions">
             @using (Html.BeginForm("Index", "AdminExportPrints", FormMethod.Get))
             {
@@ -14,38 +17,32 @@
                 </span>
 
                 <button type="submit">@T("Apply")</button>
-                <a href="@Url.Action("Index")">@T("By Default")</a>
-
-                @*<span style="margin-left:15px;">
-                    <label>@T("Actions"):</label>
-                    <select>
-                        <option>@T("-- Choose action --")</option>
-                        <option value="0">@T("Start printing")</option>
-                    </select>
-
-                    <button onclick="return applyAction()">@T("Apply")</button>
-                </span>*@
+                <a href="@Url.Action("Index")">@T("By Default")</a> 
             }
 
             
         </fieldset> 
-    </div>
+    </div>*@
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
     }
 
-    <table class="items">
+    <table class="items" id="campaign-table">
         <thead>
             <tr>
                 @*<th class="check-box">
-                    <input type="checkbox" class="check-all">
-                </th>*@
+                        <input type="checkbox" class="check-all">
+                    </th>*@
+                <th>@T("Campaign date")</th>
                 <th>@T("Campaign name")</th>
-                <th>@T("Sold/Goal")</th>  
-                <th>@T("Payment Status")</th> 
-                <th>@T("Actions")</th>          
+                <th>@T("Is Approved")</th>
+                <th>@T("Active")</th>
+                <th>@T("Sold last 24 hours")</th>
+                <th>@T("Sold / Minimum / Goal")</th>
+                <th>@T("Payment Status")</th>
+                <th>@T("Actions")</th>
             </tr>
         </thead>
         <tbody>
@@ -53,26 +50,32 @@
             {
                 foreach (var c in Model.Campaigns)
                 {
+                    var isActive = c.IsActive ? "Yes" : "No";
+                    var value = c.Last24HoursSold > 0 ? c.Last24HoursSold.ToString() : "-";
 
                     <tr data-record-text="@c.Id" class="contentItems">
                         @*<td class="check-box">
-                            @if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
-                            { 
-                                <input type="checkbox">
-                            }
-                        </td>*@
+                                @if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
+                                {
+                                    <input type="checkbox">
+                                }
+                            </td>*@
+                        <td>@c.CreatedDate</td>
                         <td><a target="_blank" href="/@c.Alias">@c.Title</a></td>
-                        <td>@c.Sold / @c.Goal</td>
+                        <td>@c.IsApproved</td>
+                        <td>@T(isActive)</td>
+                        <td>@value</td>
+                        <td>@c.Sold / @c.Minimum / @c.Goal</td>
                         <td>@c.Status.Name</td>
                         <td>
-                          
+
                             <a href="@Url.Action("ExportPrints", new { id = c.Id })" title="@T("Export prints")">@T("Export prints")</a>
 
                             @*@if (c.Status.Name != Teeyoot.Module.Common.Enums.CampaignStatus.Printing.ToString())
-                            {
-                                @T(" | ")
-                                <a href="@Url.Action("StartPrinting", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Start printing")">@T("Start printing")</a>
-                            }*@
+                                {
+                                    @T(" | ")
+                                    <a href="@Url.Action("StartPrinting", new { pagerParameters = Model.Pager, searchString = Model.SearchString, id = c.Id })" title="@T("Start printing")">@T("Start printing")</a>
+                                }*@
                         </td>
                     </tr>
                 }
@@ -80,7 +83,7 @@
         </tbody>
     </table>
 </div>
-@Display(Model.Pager)
+@*@Display(Model.Pager)*@
 
 @using (Script.Foot())
 {
@@ -90,5 +93,9 @@
             return false;
         }
 
+    </script>
+
+    <script>
+    var campaignTable = $('#campaign-table').dataTable();
     </script>
 }
