@@ -78,7 +78,7 @@ namespace Teeyoot.Messaging.Services
 
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
-                new MandrillMailAddress(seller.Email)
+                new MandrillMailAddress(seller.Email, "Seller")
             };
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
             SendTmplMessage(api, mandrillMessage);
@@ -109,7 +109,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var item in ordersList)
             {
-                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
+                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "Buyer"));
                 FillUserMergeVars(mandrillMessage, item.OrderRecord);
                 FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
@@ -130,7 +130,7 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.Subject = "New Campaign on Teeyoot";
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
-                new MandrillMailAddress(seller.Email)
+                new MandrillMailAddress(seller.Email, "Seller")
             };
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "launch-template.html");
@@ -150,7 +150,7 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
-                new MandrillMailAddress(seller.Email)
+                new MandrillMailAddress(seller.Email, "Seller")
             };
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
             switch (campaignStatus)
@@ -191,7 +191,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var item in ordersList)
             {
-                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "user"));
+                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "Seller"));
                 FillUserMergeVars(mandrillMessage, item.OrderRecord);
                 FillSellerToBuyersProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, message.CampaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
@@ -219,7 +219,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var user in users)
             {
-                emails.Add(new MandrillMailAddress(user.Email, "user"));
+                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
                 FillUserMergeVars(mandrillMessage, order, user.Email);
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, user.Email, order.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, user.Email, pathToMedia, pathToTemplates);
@@ -245,7 +245,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var user in users)
             {
-                emails.Add(new MandrillMailAddress(user.Email, "user"));
+                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
                 FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin);
             }
             mandrillMessage.To = emails;
@@ -272,7 +272,7 @@ namespace Teeyoot.Messaging.Services
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                         mandrillMessage.To = new List<MandrillMailAddress>(){
-                         new MandrillMailAddress(order.Email)
+                         new MandrillMailAddress(order.Email, "Buyer")
                                                          };
                         SendTmplMessage(api, mandrillMessage);
                         break;
@@ -285,7 +285,7 @@ namespace Teeyoot.Messaging.Services
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                         mandrillMessage.To = new List<MandrillMailAddress>(){
-                                             new MandrillMailAddress(order.Email)
+                                             new MandrillMailAddress(order.Email, "Buyer")
                                                             };
                         SendTmplMessage(api, mandrillMessage);
                         break;
@@ -298,7 +298,7 @@ namespace Teeyoot.Messaging.Services
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                         mandrillMessage.To = new List<MandrillMailAddress>(){
-                                                                 new MandrillMailAddress(order.Email)
+                                                                 new MandrillMailAddress(order.Email, "Buyer")
                                                                  };
                         SendTmplMessage(api, mandrillMessage);
                         break;
@@ -311,7 +311,7 @@ namespace Teeyoot.Messaging.Services
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                         mandrillMessage.To = new List<MandrillMailAddress>(){
-                                                         new MandrillMailAddress(order.Email)
+                                                         new MandrillMailAddress(order.Email, "Buyer")
                                                      };
                         SendTmplMessage(api, mandrillMessage);
                         break;
@@ -324,7 +324,7 @@ namespace Teeyoot.Messaging.Services
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                         mandrillMessage.To = new List<MandrillMailAddress>(){
-                                                     new MandrillMailAddress(order.Email)
+                                                     new MandrillMailAddress(order.Email, "Buyer")
                                             };
                         SendTmplMessage(api, mandrillMessage);
                         break;
@@ -344,7 +344,7 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.Subject = "Recover Order on Teeyoot";           
             mandrillMessage.To = new List<MandrillMailAddress>(){
-                new MandrillMailAddress(email)
+                new MandrillMailAddress(email, "Buyer")
             };
             FillOrdersMergeVars(mandrillMessage, orders, email, pathToTemplates);
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "recover_orders_for_buyer.html");
