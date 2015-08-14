@@ -4,6 +4,13 @@
     Style.Include("track.css");
 }
 
+@using (Script.Foot()) { 
+<script type="text/javascript">
+    window.onload = function () {
+        document.title = "Track order | Teeyoot";
+    }
+</script>
+}
 <div class="order-tracker">
     <div class="row">
         <div class="col-md-12">
@@ -334,51 +341,51 @@
     <a class="button tb-button" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
     <button class="button tb-button" id="btn_not_now">@T("Not now")</button>
 </div>
--->
+    -->
 
 
-<div class="modal-dialog modal fade" id="modal_form">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-            <h4 class="modal-title h4">@T("Cancel Order") #@Model.OrderPublicId</h4>
-        </div>
-        <div class="modal-body">
-            <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
-        </div>
-        <div class="modal-footer">
-            <a class="btn btn-default tb-button-orange" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
-            <button type="button" class="btn btn-primary tb-button-orange" id="btn_not_now">@T("Not now")</button>
-        </div>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+    <div class="modal-dialog modal fade" id="modal_form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <h4 class="modal-title h4">@T("Cancel Order") #@Model.OrderPublicId</h4>
+            </div>
+            <div class="modal-body">
+                <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default tb-button-orange" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
+                <button type="button" class="btn btn-primary tb-button-orange" id="btn_not_now">@T("Not now")</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 
-<div id="overlay"></div>
-@using (Script.Foot())
+    <div id="overlay"></div>
+    @using (Script.Foot())
 {
     <script>
 
-        $(document).ready(function () {
-            $('#cancel_order_link').click(function (event) {
-                event.preventDefault();
-                $('#overlay').fadeIn(400,
-                    function () {
-                        $('#modal_form')
-                            .css('display', 'block')
-                            .animate({ opacity: 1, top: '50%' }, 200);
-                    });
-            });
-
-            $('#overlay, #btn_not_now, .modal-header .close').click(function () {
-                $('#modal_form')
-                    .animate({ opacity: 0, top: '45%' }, 200,
+            $(document).ready(function () {
+                $('#cancel_order_link').click(function (event) {
+                    event.preventDefault();
+                    $('#overlay').fadeIn(400,
                         function () {
-                            $(this).css('display', 'none');
-                            $('#overlay').fadeOut(400);
-                        }
-                    );
-            });
-        });
+                            $('#modal_form')
+                                .css('display', 'block')
+                                .animate({ opacity: 1, top: '50%' }, 200);
+                        });
+                });
 
-    </script>
+                $('#overlay, #btn_not_now, .modal-header .close').click(function () {
+                    $('#modal_form')
+                        .animate({ opacity: 0, top: '45%' }, 200,
+                            function () {
+                                $(this).css('display', 'none');
+                                $('#overlay').fadeOut(400);
+                            }
+                        );
+                });
+            });
+
+</script>
 }

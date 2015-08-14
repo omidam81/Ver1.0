@@ -3,6 +3,13 @@
     Style.Include("Settings.css");
 }
 
+@using (Script.Foot())
+{
+    <script>
+        document.title = "Settings | Teeyoot";
+    </script>
+}
+
 <div class="dashboard-section-title">
     @T("Settings")
     @if (Model.ErrorMessage != null)
