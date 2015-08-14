@@ -26,7 +26,7 @@ function calculatePriceForNewProduct(frontColor, backColor, cost) {
     return prices;
 }
 
-function formula(frontColor, backColor, cost) {
+function formula(frontColor, backColor, cost, newCount) {
     var additionalScreenCosts = parseFloat(window.additionalScreenCosts);                       //B4
     var costOfMaterial = parseFloat(window.costOfMaterial);                                     //B10
     var dTGPrintPrice = parseFloat(window.dTGPrintPrice);                                       //B12 
@@ -39,8 +39,12 @@ function formula(frontColor, backColor, cost) {
     var printsPerLitre = parseInt(window.printsPerLitre);                                       //B6
     var count = parseInt(window.count);                                                         //B16
 
-    if (cost != null) {
+    if (cost) {
         costOfMaterial = parseFloat(cost.toFixed(2));
+    }
+
+    if (newCount) {
+        count = newCount;
     }
 
     // argument1
@@ -165,6 +169,7 @@ function setPriceInDesignFromGoal() {
 function estimatedProfitChange() {
     var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(2);
     $("#total_profit").html("RM " + est + "+");
+    minimumGoal();
 }
 
 function estimatedProfitChangeForManuProducts() {
@@ -245,6 +250,7 @@ function estimatedProfitChangeForManuProducts() {
     } else {
         $("#total_profit").html("RM " + min + "-" + max + "+");
     }
+    minimumGoal();
 }
 
 function updateMinimum(changes) {
@@ -289,4 +295,34 @@ function updateMinimum(changes) {
         //    estimatedProfitChange();
         //}
     }
+}
+
+function minimumGoal() {
+    //if (app.state.products != null) {
+    //    var products = app.state.products;
+    //    var price = 0;
+    //    var baseCost = 0;
+
+    //    for (var i = 0; i < products.length; i++) {
+    //        if (price < products[i].Price) {
+    //            price = products[i].Price;
+    //            baseCost = products[i].BaseCost;
+    //        }
+    //    }
+
+    //    var nowCount = Math.ceil(window.count / 2);
+    //    var newPrice = 0;
+    //    while (price > newPrice) {
+    //        newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
+    //        nowCount--;
+    //    }
+
+
+    //    if (nowCount <= 0) {
+    //        nowCount = 1;
+    //    }
+
+    //    count = Math.floor(nowCount);
+    //    document.getElementById("minimmumGoal").value = count;
+    //}
 }
