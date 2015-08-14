@@ -28,5 +28,7 @@ namespace Teeyoot.Module.Services
         void SendRecoverOrderMessage(string pathToTemplates, IList<OrderRecord> orders, string email);
 
         void SendCompletedPayoutMessage(string pathToTemplates, string pathToMedia, PayoutRecord payout);
+
+        void SendNewOrderMessageToBuyer(int orderId, string pathToMedia, string pathToTemplates);
     }
 }

@@ -255,6 +255,32 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendNewOrderMessageToBuyer(int orderId, string pathToMedia, string pathToTemplates)
+        {
+            var order = _orderRepository.Get(orderId);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.Subject = "New order";
+            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            foreach (var user in users)
+            {
+                emails.Add(new MandrillMailAddress(user.Email, "Buyer"));
+                FillUserMergeVars(mandrillMessage, order, user.Email);
+                FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, user.Email, order.OrderPublicId);
+                FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, user.Email, pathToMedia, pathToTemplates);
+            }
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-order-buyer-template.html");
+            SendTmplMessage(api, mandrillMessage);
+
+        }
+
+
         public void SendPayoutRequestMessageToAdmin(int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
