@@ -121,6 +121,8 @@
     <Compile Include="Common\ChooseColourFor.cs" />
     <Compile Include="Common\ProductImageSavingResult.cs" />
     <Compile Include="Routes.cs" />
+    <Compile Include="ViewModels\ArtworkIndexViewModel.cs" />
+    <Compile Include="ViewModels\ArtworkItemViewModel.cs" />
     <Compile Include="ViewModels\ArtworkViewModel.cs" />
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductColourItemViewModel.cs" />
