@@ -18,6 +18,8 @@ using Orchard.Settings;
 using Orchard.DisplayManagement.Shapes;
 using Orchard.DisplayManagement;
 using Orchard.Users.Models;
+using System.IO;
+using System;
 
 namespace Teeyoot.Payouts.Controllers
 {
@@ -28,6 +30,7 @@ namespace Teeyoot.Payouts.Controllers
         private readonly ISiteService _siteService;
         private readonly IPaymentInformationService _paymentInformationService;
         private readonly IContentManager _contentManager;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
         private dynamic Shape { get; set; }
         // GET: Tranzaction
@@ -36,12 +39,14 @@ namespace Teeyoot.Payouts.Controllers
                                      ISiteService siteService,
                                      IShapeFactory shapeFactory,
                                      IContentManager contentManager,
-                                     IPaymentInformationService paymentInformationService)
+                                     IPaymentInformationService paymentInformationService,
+                                     ITeeyootMessagingService teeyootMessagingService)
         {
             _payoutService = payoutService;
             _siteService = siteService;
             _paymentInformationService = paymentInformationService;
             _contentManager = contentManager;
+            _teeyootMessagingService = teeyootMessagingService;
             Shape = shapeFactory;
         }
 
@@ -82,14 +87,12 @@ namespace Teeyoot.Payouts.Controllers
 
         public ActionResult EditStatus(int id)
         {
-            var payouts = _payoutService.GetAllPayouts().ToList();
-            foreach (var item in payouts)
-            {
-                if (item.Id == id)
-                    item.Status = "completed";
-                _payoutService.UpdatePayout(item);
-            }
-
+            var item = _payoutService.GetAllPayouts().Where(payout => payout.Id == id).First();
+            item.Status = "completed";
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            _payoutService.UpdatePayout(item);
+            _teeyootMessagingService.SendCompletedPayoutMessage(pathToTemplates, pathToMedia, item);
             return RedirectToAction("Index");
         }
 

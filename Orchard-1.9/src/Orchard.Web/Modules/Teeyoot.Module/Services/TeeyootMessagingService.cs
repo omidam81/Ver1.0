@@ -31,6 +31,8 @@ namespace Teeyoot.Messaging.Services
         private readonly IRepository<OrderRecord> _orderRepository;
         private readonly IRepository<LinkOrderCampaignProductRecord> _ocpRepository;
         private readonly IRepository<UserRolesPartRecord> _userRolesPartRepository;
+        private readonly IRepository<PayoutRecord> _payoutsRepository;
+        private readonly IRepository<PaymentInformationRecord> _payoutInformRepository;
         private readonly INotifier _notifier;
         public Localizer T { get; set; }
         private const string ADMIN_EMAIL = "noreply@teeyoot.com";
@@ -41,7 +43,9 @@ namespace Teeyoot.Messaging.Services
              INotifier notifier,
             IRepository<OrderRecord> orderRepository,
             IRepository<LinkOrderCampaignProductRecord> ocpRepository,
-            IRepository<UserRolesPartRecord> userRolesPartRepository)
+            IRepository<UserRolesPartRecord> userRolesPartRepository,
+            IRepository<PayoutRecord> payoutsRepository,
+            IRepository<PaymentInformationRecord> payoutInformRepository)
         {
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
@@ -52,6 +56,8 @@ namespace Teeyoot.Messaging.Services
             _ocpRepository = ocpRepository;
             _campaignRepository = campaignRepository;
             _userRolesPartRepository = userRolesPartRepository;
+            _payoutsRepository = payoutsRepository;
+            _payoutInformRepository = payoutInformRepository;
         }
 
 
@@ -134,6 +140,25 @@ namespace Teeyoot.Messaging.Services
             };
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "launch-template.html");
+            SendTmplMessage(api, mandrillMessage);
+
+        }
+
+        public void SendCompletedPayoutMessage(string pathToTemplates, string pathToMedia, PayoutRecord payout)
+        {
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.Subject = "Payout completed";
+            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == payout.UserId);
+            var payoutInf = _payoutInformRepository.Table.Where(inf => inf.TranzactionId == payout.Id).FirstOrDefault();
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
+            FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "");
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-completed-template.html");
             SendTmplMessage(api, mandrillMessage);
 
         }
