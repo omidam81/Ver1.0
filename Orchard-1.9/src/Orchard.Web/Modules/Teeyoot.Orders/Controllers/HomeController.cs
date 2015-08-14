@@ -208,7 +208,7 @@ namespace Teeyoot.Orders.Controllers
             var campaign = _campaignService.GetCampaignById(campaignId) ;
             order.ProfitPaid = true;
             _orderService.UpdateOrder(order);
-            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
+            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Amount = profit, IsPlus = true, Status = "completed", UserId = sellerId, Event = campaign.Alias });
             return RedirectToAction("Index");
         }
 
