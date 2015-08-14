@@ -530,7 +530,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("ClientToken", c => c.Unlimited()));
 
-            return 59;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("Rejected", c => c.NotNull().WithDefault(false)));
+
+            return 60;
 
         }
 
@@ -1140,9 +1142,12 @@ namespace Teeyoot.Module
             return 59;
         }
 
+         public int UpdateFrom59()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("Rejected", c => c.NotNull().WithDefault(false)));
 
-
-
+            return 60;
+        }
                     
     }
 }
