@@ -395,3 +395,7 @@ button, input, optgroup, select, textarea {
         width: 95%;
     }
 }
+
+.img-car img{
+    width:100%;
+}

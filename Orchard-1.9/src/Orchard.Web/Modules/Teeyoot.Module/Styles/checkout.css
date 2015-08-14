@@ -682,6 +682,7 @@ checkout__lock_icon {
 
 .error {
     color: red;
+    margin-bottom:7px !important;
 }
 
 .checkout_cell {
@@ -771,4 +772,22 @@ checkout__lock_icon {
 }
 .form__textfield.form__textfield--large{
          margin-bottom: 1rem!important; 
+}
+
+.checkout_form__textfield {
+    border: 1px solid #e8eced;
+    border-radius: 5px;
+    color: #293033;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    outline: 0;
+    padding: .6rem .867rem;
+    -webkit-transition: border-color .15s;
+    transition: border-color .15s;
+    -webkit-appearance: none;
+}
+
+.country_select{
+     margin-bottom: 33px;
 }
