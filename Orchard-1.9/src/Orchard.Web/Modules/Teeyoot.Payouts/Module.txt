@@ -1,4 +1,4 @@
-﻿Name: Teeyoot.Payouts
+﻿Name: Teeyoot Payouts
 AntiForgery: enabled
 Author: The Orchard Team
 Website: http://orchardproject.net

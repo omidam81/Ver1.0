@@ -377,6 +377,7 @@
     <Content Include="Content\vector\Woman 7.png" />
     <Content Include="Content\vector\Woman 7.svg" />
     <Content Include="Scripts\add-ons.js" />
+    <Content Include="Scripts\additional-methods.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
