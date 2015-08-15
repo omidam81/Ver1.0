@@ -144,6 +144,29 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendNewCampaignAdminMessage(string pathToTemplates, string pathToMedia, int campaignId)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = ADMIN_EMAIL;
+            mandrillMessage.Subject = "New Campaign on Teeyoot";
+            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            foreach (var user in users)
+            {
+                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
+                FillCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
+            }
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-campaign-admin-template.html");
+            SendTmplMessage(api, mandrillMessage);
+
+        }
+
         public void SendCompletedPayoutMessage(string pathToTemplates, string pathToMedia, PayoutRecord payout)
         {
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
