@@ -532,7 +532,15 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("Rejected", c => c.NotNull().WithDefault(false)));
 
-            return 60;
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<DateTime>("WhenApproved", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<DateTime>("WhenSentOut", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.DropColumn("WhenApproved"));
+
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenApproved", c => c.Nullable()));
+
+            return 62;
 
         }
 
@@ -1148,6 +1156,22 @@ namespace Teeyoot.Module
 
             return 60;
         }
+
+         public int UpdateFrom60()
+         {
+             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<DateTime>("WhenApproved", c => c.Nullable()));
+             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.AddColumn<DateTime>("WhenSentOut", c => c.Nullable()));
+
+             return 61;
+         }
+
+         public int UpdateFrom61()
+         {
+             SchemaBuilder.AlterTable(typeof(OrderRecord).Name, table => table.DropColumn("WhenApproved"));
+             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<DateTime>("WhenApproved", c => c.Nullable()));
+
+             return 62;
+         }
                     
     }
 }
