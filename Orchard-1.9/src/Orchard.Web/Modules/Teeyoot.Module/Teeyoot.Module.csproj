@@ -295,6 +295,7 @@
     <Content Include="Content\message-templates\campaign-promo-template.html" />
     <Content Include="Content\message-templates\cancelled-order-template.html" />
     <Content Include="Content\message-templates\delivered-order-template.html" />
+    <Content Include="Content\message-templates\edited-campaign-template.html" />
     <Content Include="Content\message-templates\launch-template.html" />
     <Content Include="Content\message-templates\new-campaign-admin-template.html" />
     <Content Include="Content\message-templates\new-order-buyer-template.html" />
@@ -306,9 +307,11 @@
     <Content Include="Content\message-templates\partially-paid-campaign-template.html" />
     <Content Include="Content\message-templates\place-order-template.html" />
     <Content Include="Content\message-templates\recover_orders_for_buyer.html" />
+    <Content Include="Content\message-templates\reject-template.html" />
     <Content Include="Content\message-templates\relaunch-template.html" />
     <Content Include="Content\message-templates\seller-template.html" />
     <Content Include="Content\message-templates\shipped-order-template.html" />
+    <Content Include="Content\message-templates\terms-conditions-template.html" />
     <Content Include="Content\message-templates\unpaid-campaign-template.html" />
     <Content Include="Content\message-templates\welcome-template.html" />
     <Content Include="Content\message-templates\withdraw-completed-template.html" />
@@ -743,6 +746,7 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
+    <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
     <Compile Include="Common\Utils\ImageHelper.cs" />

@@ -147,6 +147,29 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendTermsAndConditionsMessageToSeller()
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var campaigns = _campaignRepository.Table.Where(camp => camp.WhenApproved < DateTime.UtcNow.AddDays(-1));
+            foreach (var campaign in campaigns)
+            {
+                var mandrillMessage = new MandrillMessage() { };
+                mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+                mandrillMessage.FromEmail = ADMIN_EMAIL;
+                mandrillMessage.Subject = "Teeyoot Terms and Conditions";
+                var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+                mandrillMessage.To = new List<MandrillMailAddress>(){
+                new MandrillMailAddress(seller.Email, "Seller")};
+                FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "terms-conditions-template.html");
+                SendTmplMessage(api, mandrillMessage);
+            }
+
+        }
+
         public void SendRejectedCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId)
         {
             var campaign = _campaignRepository.Get(campaignId);
