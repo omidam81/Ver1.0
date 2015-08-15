@@ -30,6 +30,7 @@ namespace Teeyoot.Messaging.Services
         private readonly IRepository<UserRolesPartRecord> _userRolesPartRepository;
         private readonly IRepository<PayoutRecord> _payoutsRepository;
         private readonly IRepository<PaymentInformationRecord> _payoutInformRepository;
+        private readonly IRepository<CampaignProductRecord> _campaignProductRepository;
         private readonly INotifier _notifier;
         private readonly IWorkContextAccessor _wca;
         public Localizer T { get; set; }
@@ -44,7 +45,8 @@ namespace Teeyoot.Messaging.Services
             IRepository<UserRolesPartRecord> userRolesPartRepository,
             IRepository<PayoutRecord> payoutsRepository,
             IRepository<PaymentInformationRecord> payoutInformRepository,
-            IWorkContextAccessor wca)
+            IWorkContextAccessor wca,
+            IRepository<CampaignProductRecord> campaignProductRepository)
         {
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
@@ -58,6 +60,7 @@ namespace Teeyoot.Messaging.Services
             _payoutsRepository = payoutsRepository;
             _payoutInformRepository = payoutInformRepository;
             _wca = wca;
+            _campaignProductRepository = campaignProductRepository;
         }
 
 
@@ -317,6 +320,27 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendEditedCampaignMessageToSeller(int campaignId, string pathToMedia, string pathToTemplates)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.Subject = "Your campaign has been changed";
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+            emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
+            List<CampaignProductRecord> orderedProducts = _campaignProductRepository.Table.Where(prod => prod.CampaignRecord_Id == campaign.Id).ToList();
+            FillCampaignProductsMergeVars(mandrillMessage, orderedProducts, pathToMedia, seller.Email);
+            FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
+            FillAdditionalCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "edited-campaign-template.html");
+            SendTmplMessage(api, mandrillMessage);
+
+        }
 
         public void SendPayoutRequestMessageToAdmin(int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
         {
@@ -486,6 +510,14 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        private void FillAdditionalCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+            message.AddRcptMergeVars(email, "Description", campaign.Description);
+            message.AddRcptMergeVars(email, "Expiration", campaign.EndDate.ToShortDateString());
+            message.AddRcptMergeVars(email, "Profit", campaign.CampaignProfit);
+
+        }
 
         private void FillUserMergeVars(MandrillMessage message, OrderRecord record)
         {
@@ -570,6 +602,24 @@ namespace Teeyoot.Messaging.Services
             var arr = products.ToArray();
             message.AddRcptMergeVars(email, "PRODUCTS", products.ToArray());
             message.AddRcptMergeVars(email, "orderPublicId", orderPublicId);
+        }
+
+        private void FillCampaignProductsMergeVars(MandrillMessage message, IList<CampaignProductRecord> campaignProducts, string pathToMedia, string email)
+        {
+            List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
+            foreach (var item in campaignProducts)
+            {
+           
+                products.Add(new Dictionary<string, object>{                 
+                        {"name",  item.ProductRecord.Name},
+                        {"price", item.Price},
+                        {"currency", item.CurrencyRecord.Code},
+                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignRecord_Id + "/" + item.Id + "/normal/front.png"}
+                     });
+
+            }
+            var arr = products.ToArray();
+            message.AddRcptMergeVars(email, "PRODUCTS", products.ToArray());
         }
 
         private void FillSellerToBuyersProductsMergeVars(MandrillMessage message, IList<LinkOrderCampaignProductRecord> orderedProducts, string pathToMedia, string email, string orderPublicId)
