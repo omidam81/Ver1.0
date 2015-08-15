@@ -61,7 +61,8 @@
             int countPrice = 0;
             foreach (CampaignRecord camp in Model.CampList)
             {
-                string sold = camp.ProductCountSold.ToString() + "/" + camp.ProductMinimumGoal.ToString() + " sold";
+                int min = camp.ProductMinimumGoal == 0 ? 1 : camp.ProductMinimumGoal;
+                string sold = camp.ProductCountSold.ToString() + "/" + min.ToString() + " sold";
 
                 DateTime now = DateTime.Now;
                 TimeSpan dif = camp.EndDate.Subtract(now);
@@ -77,7 +78,7 @@
 
                 float widthResult = 0;
                 string width = string.Empty;
-                if ((camp.ProductCountGoal - camp.ProductCountSold) <= 0)
+                if ((min - camp.ProductCountSold) <= 0)
                 {
                     widthResult = 100;
                 }
@@ -85,7 +86,7 @@
                 {
                     if (camp.ProductCountSold != 0)
                     {
-                        float procent = (float)camp.ProductCountGoal / 100;
+                        float procent = (float)min / 100;
                         widthResult = camp.ProductCountSold / procent;
                     }
                     else
