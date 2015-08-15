@@ -12,7 +12,8 @@
     {
         float widthResult = 0;
         string width = string.Empty;
-        if ((camp.ProductCountGoal - camp.ProductCountSold) <= 0)
+        int min = camp.ProductMinimumGoal == 0 ? 1 : camp.ProductMinimumGoal;
+        if ((min - camp.ProductCountSold) <= 0)
         {
             widthResult = 100;
         }
@@ -20,7 +21,7 @@
         {
             if (camp.ProductCountSold != 0)
             {
-                float procent = (float)camp.ProductCountGoal / 100;
+                float procent = (float)min / 100;
                 widthResult = camp.ProductCountSold / procent;
             }
             else
@@ -44,7 +45,7 @@
             frontIMG = path + "normal/front.png";
         }
 
-        string sold = camp.ProductCountSold.ToString() + " of " + camp.ProductCountGoal.ToString() + " sold";
+        string sold = camp.ProductCountSold.ToString() + " of " + min.ToString() + " sold";
 
         <div class=" span-1 cell tee-preview">
             <div>

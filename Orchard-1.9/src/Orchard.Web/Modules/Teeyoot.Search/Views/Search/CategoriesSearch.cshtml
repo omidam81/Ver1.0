@@ -61,7 +61,7 @@
             int countPrice = 0;
             foreach (CampaignRecord camp in Model.CampList)
             {
-                string sold = camp.ProductCountSold.ToString() + "/" + camp.ProductCountGoal.ToString() + " sold";
+                string sold = camp.ProductCountSold.ToString() + "/" + camp.ProductMinimumGoal.ToString() + " sold";
 
                 DateTime now = DateTime.Now;
                 TimeSpan dif = camp.EndDate.Subtract(now);

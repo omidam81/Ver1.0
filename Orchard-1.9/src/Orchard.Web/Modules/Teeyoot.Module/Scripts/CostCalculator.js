@@ -146,6 +146,8 @@ function formula(frontColor, backColor, cost, newCount) {
 
 function setPriceInGoalFromDesign() {
     document.getElementById('profSale').value = window.sellingPrice;
+    var slider = document.getElementById('trackbar');
+    window.count = parseInt(slider.noUiSlider.get());
     document.getElementById('trackBarValue').value = window.count;
     //document.getElementById('trackbar').value = document.getElementById('trackBarValue').value;
     document.getElementById('base-cost-for-first-product').innerHTML = app.state.currentProduct.BaseCost.toFixed(2);
@@ -158,7 +160,8 @@ function setPriceInGoalFromDesign() {
 }
 
 function setPriceInDesignFromGoal() {
-    window.count = document.getElementById('trackBarValue').value;
+    var slider = document.getElementById('trackbar');
+    window.count = parseInt(slider.noUiSlider.get());
 
     calculatePrice(window.frontColor, window.backColor);
 
@@ -173,6 +176,8 @@ function estimatedProfitChange() {
 }
 
 function estimatedProfitChangeForManuProducts() {
+    var slider = document.getElementById('trackbar');
+    window.count = parseInt(slider.noUiSlider.get());
     var products = app.state.products;
 
     var result = [];
@@ -298,31 +303,37 @@ function updateMinimum(changes) {
 }
 
 function minimumGoal() {
-    //if (app.state.products != null) {
-    //    var products = app.state.products;
-    //    var price = 0;
-    //    var baseCost = 0;
+    if (app.state.products != null) {
+        var slider = document.getElementById('trackbar');
+        window.count = parseInt(slider.noUiSlider.get());
+        var products = app.state.products;
+        var price = 0;
+        var baseCost = 0;
 
-    //    for (var i = 0; i < products.length; i++) {
-    //        if (price < products[i].Price) {
-    //            price = products[i].Price;
-    //            baseCost = products[i].BaseCost;
-    //        }
-    //    }
+        for (var i = 0; i < products.length; i++) {
+            if (price < products[i].Price) {
+                price = products[i].Price;
+            }
+            if (baseCost < products[i].BaseCost) {
+                baseCost = products[i].BaseCost;
+            }
+        }
 
-    //    var nowCount = Math.ceil(window.count / 2);
-    //    var newPrice = 0;
-    //    while (price > newPrice) {
-    //        newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
-    //        nowCount--;
-    //    }
+        var nowCount = Math.ceil(window.count / 2) + 1;
+        var newPrice = 0;
+        while (price > newPrice) {
+            if (nowCount == 0) break;
+            nowCount--;
+            newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
+        }
+        window.count = parseInt(slider.noUiSlider.get());
 
 
-    //    if (nowCount <= 0) {
-    //        nowCount = 1;
-    //    }
+        if (nowCount <= 0) {
+            nowCount = 1;
+        }
 
-    //    count = Math.floor(nowCount);
-    //    document.getElementById("minimmumGoal").value = count;
-    //}
+        count = Math.floor(nowCount);
+        document.getElementById("minimmumGoal").value = count;
+    }
 }

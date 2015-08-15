@@ -17,6 +17,7 @@ namespace Teeyoot.Module.ViewModels
         public bool BackSideByDefault { get; set; }
         public bool IsForCharity { get; set; }
         public string CampaignProfit { get; set; }
+        public int ProductMinimumGoal { get; set; }
 
         // needed as well
         [AllowHtml]

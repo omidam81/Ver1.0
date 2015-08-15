@@ -173,6 +173,7 @@
             var alias = document.getElementById('url').value.trim();
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tagsElems = document.querySelectorAll(".item");
+            var productMinimumGoal = document.getElementById("minimmumGoal").value;
             var tags = [];
             for (var i = 0; i < tagsElems.length; i++) {
                 tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
@@ -196,7 +197,8 @@
                     "Alias": alias,
                     'BackSideByDefault': backSideByDefault,
                     "Tags": tags,
-                    "Products": app.state.products
+                    "Products": app.state.products,
+                    "ProductMinimumGoal" : productMinimumGoal
                 }),
                 success: function(data, status, resp) {
                     if (resp.status === 200) {
