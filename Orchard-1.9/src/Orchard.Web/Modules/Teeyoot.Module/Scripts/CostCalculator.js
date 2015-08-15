@@ -51,20 +51,10 @@ function formula(frontColor, backColor, cost, newCount) {
     var argument1 = 1 + percentageMarkUpRequired;
 
     // argument2
-    var argument2;
-    if (backColor > 0) {
-        argument2 = parseInt("1");
-    } else {
-        argument2 = parseInt("0");
-    }
+    var argument2 = backColor > 0 ? parseInt("1") : parseInt("0");
 
     // argument3
-    var argument3;
-    if (frontColor > 0) {
-        argument3 = parseInt("1");
-    } else {
-        argument3 = parseInt("0");
-    }
+    var argument3 = frontColor > 0 ? parseInt("1") : parseInt("0");
 
     // argument4
     var argument4 = parseFloat(labourTimePerSidePrintedPerPrint / 3600);
@@ -76,38 +66,16 @@ function formula(frontColor, backColor, cost, newCount) {
     var argument6 = costOfMaterial + dTGPrintPrice;
 
     // argument7
-    var argument7;
-    if (frontColor > 1) {
-        argument7 = parseInt("1");
-    } else {
-        argument7 = parseInt(frontColor);
-    }
+    var argument7 = Math.min(frontColor, parseInt("1"));
 
     // argument8
-    var argument8;
-    var argument8_1 = parseInt(frontColor - 1);
-    if (argument8_1 > 0) {
-        argument8 = parseInt(argument8_1);
-    } else {
-        argument8 = parseInt("0");
-    }
+    var argument8 = Math.max(parseInt("0"), parseInt(frontColor - 1));
 
     // argument9
-    var argument9;
-    if (backColor > 1) {
-        argument9 = parseInt("1");
-    } else {
-        argument9 = parseInt(backColor);
-    }
+    var argument9 = Math.min(backColor, parseInt("1"));
 
     // argument10
-    var argument10;
-    var argument10_1 = parseInt(backColor - 1);
-    if (argument10_1 > 0) {
-        argument10 = parseInt(argument10_1);
-    } else {
-        argument10 = parseInt("0");
-    }
+    var argument10 = Math.max(parseInt("0"), parseInt(backColor - 1));
 
     // argument11
     var argument11 = costOfMaterial * count;
@@ -132,12 +100,7 @@ function formula(frontColor, backColor, cost, newCount) {
     var function4 = additionalScreenCosts * function3;
     var function5 = function2 + function4 + argument13 + argument14 + argument15 + argument11;
     var function6 = function5 / count;
-    var function7;
-    if (argument6 > function6) {
-        function7 = parseFloat(function6);
-    } else {
-        function7 = parseFloat(argument6);
-    }
+    var function7 = argument6 > function6 ? parseFloat(function6) : parseFloat(argument6);
 
     var result = function7 * argument1;
 
@@ -311,11 +274,11 @@ function minimumGoal() {
         var baseCost = 0;
 
         for (var i = 0; i < products.length; i++) {
-            if (price < products[i].Price) {
-                price = products[i].Price;
+            if (price < parseFloat(products[i].Price)) {
+                price = parseFloat(products[i].Price);
             }
-            if (baseCost < products[i].BaseCost) {
-                baseCost = products[i].BaseCost;
+            if (baseCost < parseFloat(products[i].BaseCost)) {
+                baseCost = parseFloat(products[i].BaseCost);
             }
         }
 
