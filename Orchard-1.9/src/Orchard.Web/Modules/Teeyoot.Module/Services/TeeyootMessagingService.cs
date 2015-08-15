@@ -193,6 +193,32 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendOrderShipped3DaysToBuyer()
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+           
+            var orders = _orderRepository.Table.Where(order => order.WhenSentOut < DateTime.UtcNow.AddDays(-1) && order.WhenSentOut > DateTime.UtcNow.AddDays(-3));
+            foreach (var order in orders)
+            {
+                var mandrillMessage = new MandrillMessage() { };
+                mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+                mandrillMessage.FromEmail = ADMIN_EMAIL;
+                mandrillMessage.Subject = "Order has been shipped!";
+                List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+                emails.Add(new MandrillMailAddress(order.Email, "Buyer"));
+                mandrillMessage.To = emails;
+                FillUserMergeVars(mandrillMessage, order, order.Email);
+                FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
+                FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "shipped-order-3day-after-template.html");
+                SendTmplMessage(api, mandrillMessage);
+            }
+
+        }
+
         public void SendRejectedCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId)
         {
             var campaign = _campaignRepository.Get(campaignId);

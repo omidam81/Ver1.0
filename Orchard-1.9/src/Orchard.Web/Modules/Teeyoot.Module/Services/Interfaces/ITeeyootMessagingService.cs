@@ -40,5 +40,7 @@ namespace Teeyoot.Module.Services
         void SendTermsAndConditionsMessageToSeller();
 
         void SendCampaignFinished1DayMessageToSeller();
+
+        void SendOrderShipped3DaysToBuyer();
     }
 }

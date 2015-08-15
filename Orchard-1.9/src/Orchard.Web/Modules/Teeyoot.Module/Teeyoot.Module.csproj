@@ -291,6 +291,7 @@
     <Content Include="Content\images\zoom_in_light.svg" />
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
+    <Content Include="Content\message-templates\campaign-is-finished-template.html" />
     <Content Include="Content\message-templates\campaign-is-printing-seller-template.html" />
     <Content Include="Content\message-templates\campaign-promo-template.html" />
     <Content Include="Content\message-templates\cancelled-order-template.html" />
@@ -310,6 +311,7 @@
     <Content Include="Content\message-templates\reject-template.html" />
     <Content Include="Content\message-templates\relaunch-template.html" />
     <Content Include="Content\message-templates\seller-template.html" />
+    <Content Include="Content\message-templates\shipped-order-3day-after-template.html" />
     <Content Include="Content\message-templates\shipped-order-template.html" />
     <Content Include="Content\message-templates\terms-conditions-template.html" />
     <Content Include="Content\message-templates\unpaid-campaign-template.html" />
@@ -746,6 +748,8 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
+    <Compile Include="Common\ScheduledTasks\SendShippedOrderAfter3DayToBuyerTask.cs" />
+    <Compile Include="Common\ScheduledTasks\SendFinishedCampaignafter1DayToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
