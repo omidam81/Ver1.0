@@ -1,23 +1,20 @@
 ﻿using Mandrill;
 using Mandrill.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Teeyoot.Module.Models;
-using Teeyoot.Module.Services;
-using Orchard.UI.Notify;
-using Orchard.Localization;
+using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
-using System.Web;
-using Orchard.Users.Models;
-using System.Web.Mvc;
-using System.IO;
-using System.Reflection;
+using Orchard.Localization;
 using Orchard.Roles.Models;
-using Orchard.Roles.Services;
 using Orchard.Security;
-
+using Orchard.UI.Notify;
+using Orchard.Users.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using Teeyoot.Module.Models;
+using Teeyoot.Module.Services;
 
 namespace Teeyoot.Messaging.Services
 {
@@ -34,6 +31,7 @@ namespace Teeyoot.Messaging.Services
         private readonly IRepository<PayoutRecord> _payoutsRepository;
         private readonly IRepository<PaymentInformationRecord> _payoutInformRepository;
         private readonly INotifier _notifier;
+        private readonly IWorkContextAccessor _wca;
         public Localizer T { get; set; }
         private const string ADMIN_EMAIL = "noreply@teeyoot.com";
 
@@ -45,7 +43,8 @@ namespace Teeyoot.Messaging.Services
             IRepository<LinkOrderCampaignProductRecord> ocpRepository,
             IRepository<UserRolesPartRecord> userRolesPartRepository,
             IRepository<PayoutRecord> payoutsRepository,
-            IRepository<PaymentInformationRecord> payoutInformRepository)
+            IRepository<PaymentInformationRecord> payoutInformRepository,
+            IWorkContextAccessor wca)
         {
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
@@ -58,6 +57,7 @@ namespace Teeyoot.Messaging.Services
             _userRolesPartRepository = userRolesPartRepository;
             _payoutsRepository = payoutsRepository;
             _payoutInformRepository = payoutInformRepository;
+            _wca = wca;
         }
 
 
@@ -421,10 +421,21 @@ namespace Teeyoot.Messaging.Services
 
         private void FillCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
         {
-            var request = HttpContext.Current.Request;
+            var baseUrl = "";
+
+            if (HttpContext.Current != null)
+            {
+                var request = HttpContext.Current.Request;
+                baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
+            }
+            else
+            {
+                baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
+            }
+
             var campaign = _campaignRepository.Get(campaignId);
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
-            message.AddRcptMergeVars(email, "Url", request.Url.Scheme+"://"+request.Url.Authority+request.ApplicationPath.TrimEnd('/')+"/");
+            message.AddRcptMergeVars(email, "Url", baseUrl);
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
             message.AddRcptMergeVars(email, "ReservedCount", campaign.ProductCountSold.ToString());
             message.AddRcptMergeVars(email, "Goal", campaign.ProductCountGoal.ToString());
