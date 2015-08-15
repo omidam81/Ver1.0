@@ -42,6 +42,8 @@ namespace Teeyoot.Module.Models
 
         public virtual DateTime? Paid { get; set; }
 
+        public virtual DateTime? WhenSentOut { get; set; }
+
         public virtual CurrencyRecord CurrencyRecord { get; set; }
 
         public virtual OrderStatusRecord OrderStatusRecord { get; set; }

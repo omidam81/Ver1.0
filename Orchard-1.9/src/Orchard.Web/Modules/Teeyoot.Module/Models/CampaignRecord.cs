@@ -49,6 +49,8 @@ namespace Teeyoot.Module.Models
 
         public virtual DateTime? WhenDeleted { get; set; }
 
+        public virtual DateTime? WhenApproved { get; set; }
+
         public virtual bool IsPrivate { get; set; }
 
         public virtual string CampaignProfit { get; set; }
