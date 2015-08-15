@@ -48,8 +48,15 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult ChangeUserInfo(UserSettingsViewModel model)
         {
-            if (TryValidateModel(model))
+            if (model.PhoneNumber == null && model.City == null && model.PublicName == null && model.State == null && model.Street == null && model.Zip == null)
             {
+                UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
+                viewModel.Id = model.Id;
+                viewModel.ErrorMessage += "There is nothing to update!";
+                return RedirectToAction("Settings", viewModel);
+            }
+            if (TryValidateModel(model))
+            {               
                 var user = _contentManager.Get<TeeyootUserPart>(model.Id, VersionOptions.Latest);
                 if (user != null)
                 {

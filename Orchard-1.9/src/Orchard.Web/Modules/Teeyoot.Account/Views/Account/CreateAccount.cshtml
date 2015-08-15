@@ -1,6 +1,16 @@
-﻿@model Teeyoot.Account.ViewModels.CreateAccountViewModel
-
-@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account", new {area = "Teeyoot.Account", returnUrl = Model.ReturnUrl})))
+﻿@{
+    Script.Require("jQuery");
+    Script.Include("jquery.validate.min.js");
+    Script.Include("additional-methods.min.js");
+    @model Teeyoot.Account.ViewModels.CreateAccountViewModel
+}
+<style>
+    .password label.error{
+        color:red!important;
+        margin:0!important;
+    }
+</style>
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Register", "Account", new { area = "Teeyoot.Account", returnUrl = Model.ReturnUrl }), FormMethod.Post, new { @id = "registration_form" }))
 {
     <fieldset>
         <div class="title">
@@ -24,7 +34,7 @@
         <div class="password">
            <label><span class="mandatory">@T("* ")</span>@T("Password")</label>
             @Html.PasswordFor(model => model.Password)
-            <p>@T("Must be longer than 7 characters!")</p>
+            <p>@T("Must be longer than 8 characters!")</p>
         </div>
         <div class="password">
             <label><span class="mandatory">@T("* ")</span>@T("Confirm Password")</label>
@@ -34,4 +44,39 @@
             <button class="button-login" type="submit">@T("Register")</button>
         </div>
     </fieldset>
+}
+
+
+@using (Script.Foot())
+{
+    
+    <script>
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#registration_form").validate({
+            rules: {
+                Email: {
+                    required: true,
+                    email: true
+                },
+                Name: {
+                    required: true
+                },
+                Password: {
+                    required: true,
+                    minlength: 8
+                },
+                ConfirmPassword: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#Password"
+                }
+            },
+            submitHandler: function (form) { form.submit(); }
+        });
+
+
+    </script>
 }
