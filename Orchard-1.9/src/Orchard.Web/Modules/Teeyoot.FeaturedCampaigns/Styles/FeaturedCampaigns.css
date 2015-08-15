@@ -1,3 +1,88 @@
 ﻿a {
     text-decoration: none;
 }
+
+.dg-overlay-not-show {
+    display: none;
+}
+
+.dg-overlay { /* слой затемнения */
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    display: block;
+    -webkit-animation: fade .6s;
+    -moz-animation: fade .6s;
+    animation: fade .6s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 8000;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+}
+
+
+
+.dg-table {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.dg-cell {
+    display: table-cell;
+    padding: 0 1em;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+.dg-modal {
+    text-align: center;
+    height: 200px;
+    display: inline-block;
+    padding: 20px;
+    max-width: 50em;
+    background: #fff;
+    -webkit-box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.22), 0px 19px 60px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.22), 0px 19px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.22), 0px 19px 60px rgba(0, 0, 0, 0.3);
+    color: black;
+    -webkit-animation: fade .8s;
+    -moz-animation: fade .8s;
+    animation: fade .8s;
+}
+
+.close {
+    text-align: right;
+    font-weight: 700;
+    font-size: 20px;
+    width: 20px;
+    float: right;
+    cursor: pointer;
+}
+
+.inp_date {
+    color: black;
+    font-size: 16px;
+    padding-right: 10px;
+}
+
+#day,
+#month,
+#year {
+    width: 100px;
+}
+
+#change_date_btn {
+    margin-top: 50px;
+    width: 150px;
+}

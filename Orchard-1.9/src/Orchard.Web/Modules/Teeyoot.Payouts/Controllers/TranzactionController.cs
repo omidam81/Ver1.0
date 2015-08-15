@@ -60,7 +60,7 @@ namespace Teeyoot.Payouts.Controllers
             if (filter == "1")
                 list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending").ToList();
             else if (filter == "2")
-                list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "completed").ToList();
+                list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed").ToList();
             else
                 list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).ToList();
 
@@ -88,7 +88,7 @@ namespace Teeyoot.Payouts.Controllers
         public ActionResult EditStatus(int id)
         {
             var item = _payoutService.GetAllPayouts().Where(payout => payout.Id == id).First();
-            item.Status = "completed";
+            item.Status = "Completed";
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             _payoutService.UpdatePayout(item);

@@ -23,9 +23,8 @@ namespace Teeyoot.Dashboard.Controllers
         // GET: Message
         public ActionResult Messages()
         {
-            string currentUser = Services.WorkContext.CurrentUser.Email;
-            var user = _membershipService.GetUser(currentUser);
-            var campaigns = _campaignService.GetCampaignsOfUser(user.Id)
+            int currentUser = Services.WorkContext.CurrentUser.Id;
+            var campaigns = _campaignService.GetCampaignsOfUser(currentUser)
                 .Select(c => new MessagesCampaignViewModel
                 {
                     Title = c.Title,
@@ -83,9 +82,8 @@ namespace Teeyoot.Dashboard.Controllers
         {
             if (TryUpdateModel(model))
             {
-                string currentUser = Services.WorkContext.CurrentUser.Email;
-                var user = _membershipService.GetUser(currentUser);
-                _messageService.AddMessage(user.Id, model.Content, model.From, DateTime.UtcNow, model.CampaignId, model.Subject, false);
+                int currentUser = Services.WorkContext.CurrentUser.Id;
+                _messageService.AddMessage(currentUser, model.Content, model.From, DateTime.UtcNow, model.CampaignId, model.Subject, false);
                 _notifier.Information(T("Your message has been sent for approving!"));
                 return RedirectToAction("Messages");
             }

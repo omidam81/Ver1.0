@@ -10,21 +10,6 @@
 }
 
 <div>
-    @*<div style="margin-bottom:15px;">
-        <fieldset class="bulk-actions">
-            @using (Html.BeginForm("Index", "AdminFeaturedCampaigns", FormMethod.Get))
-            {
-                <span>
-                    @Html.LabelFor(m => m.SearchString, T("Filter")):
-                    @Html.TextBoxFor(m => m.SearchString)
-                </span>
-
-                <button type="submit">@T("Apply")</button>
-                <a href="@Url.Action("Index")">@T("By Default")</a>
-            }
-        </fieldset>
-    </div>*@
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -33,13 +18,14 @@
         <table class="items" id="campaign-table">
             <thead>
                 <tr>
-                    <th>@T("Campaign date")</th>
-                    <th>@T("Featured")</th>
-                    <th>@T("Is Approved")</th>
+                    <th>@T("Campaign Id")</th>
+                    <th>@T("Campaign name")</th>
+                    <th>@T("Create date")</th>
                     <th>@T("Active")</th>
                     <th>@T("Sold last 24 hours")</th>
                     <th>@T("Sold / Minimum / Goal")</th>
-                    <th>@T("Campaign name")</th>
+                    <th>@T("Approved")</th>
+                    <th>@T("Featured")</th>
                     <th>@T("Action")</th>
                 </tr>
             </thead>
@@ -56,35 +42,62 @@
                         var color = camp.Campaign.IsFeatured ? colorTOP : (camp.Last24HoursSold > 0 ? colorAdmin : colorOther);
 
                         <tr style="background-color: @color">
-                            <td>@camp.Campaign.CreatedDate</td>
-                            <td>@T(isFeatured)</td>
-                            <td>@camp.Campaign.IsApproved</td>
+                            <td>@camp.Campaign.Id</td>
+                            <td><a href="~/@camp.Campaign.Alias">@camp.Campaign.Title</a></td>
+                            <td>@camp.Campaign.CreatedDate.ToString("dd/MM/yyyy")</td>
                             <td>@T(isActive)</td>
                             <td>@value</td>
                             <td>@camp.Campaign.Sold / @camp.Campaign.Minimum / @camp.Campaign.Goal</td>
-                            <td><a href="~/@camp.Campaign.Alias">@camp.Campaign.Title</a></td>
+                            <td>
+                                @if (camp.Campaign.IsApproved)
+                                {
+                                    <span style="font-weight:600">@T("Yes")</span>
+                                }
+                                else
+                                {
+                                    <a style="text-decoration:underline" href="@Url.Action("Approve", new {  id = camp.Campaign.Id })" title="@T("Approve")">@T("Yes")</a>
+                                }
+                                <span> / </span>
+                                @if (camp.Campaign.Rejected)
+                                {
+                                    <span style="font-weight:600">@T("No")</span>
+                                }
+                                else
+                                {
+                                    <a style="text-decoration:underline" href="@Url.Action("Reject", new {  id = camp.Campaign.Id })" title="@T("Reject")">@T("No")</a>
+                                }
+
+                            </td>
                             <td>
                                 @if (camp.Campaign.IsActive)
                                 {
                                     if (camp.Campaign.IsFeatured)
                                     {
-                                        <a href="@Url.Action("ChangeVisible", new {  id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("Unmark as featured")</a>
+                                        <span style="font-weight:600">@T("Yes")</span>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("ChangeVisible", new { id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Mark as featured")</a>
+                                        <a href="@Url.Action("ChangeVisible", new { id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Yes")</a>
+                                    }
+                                    <span> / </span>
+                                    if (!camp.Campaign.IsFeatured)
+                                    {
+                                        <span style="font-weight:600">@T("No")</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ChangeVisible", new {  id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("No")</a>
                                     }
                                 }
+
+                            </td>
+                            <td>                              
                                 @if (!camp.Campaign.IsActive)
                                 {
                                     @*@T(" | ")*@
                                     <a href="@Url.Action("DeleteCampaign", new { id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
                                 }
-                                @if (!camp.Campaign.IsApproved)
-                                {
-                                    <span>|</span>
-                                    <a href="@Url.Action("Approve", new {  id = camp.Campaign.Id })" title="@T("Approve")">@T("Approve")</a>
-                                }
+
                             </td>
                         </tr>
                     }
@@ -93,12 +106,20 @@
         </table>
     </fieldset>
 </div>
-@*@Display(Model.Pager)*@
-
 
 @using (Script.Foot())
 {
     <script>
         var campaignTable = $('#campaign-table').dataTable();
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            var textnode = document.createTextNode(" @Model.NotApprovedTotal");     
+            var node = document.createElement("text");                 
+                  
+            node.appendChild(textnode);
+            document.getElementsByClassName("local-section-status")[0].appendChild(node);
+        });
     </script>
 }

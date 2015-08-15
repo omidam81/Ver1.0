@@ -458,3 +458,8 @@ table.dataTable td {
 .sorting_desc{
           font-weight: 400!important;
 }
+
+.local-section-status text{
+    color:red;
+    font-weight:600;
+}

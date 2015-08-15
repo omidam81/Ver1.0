@@ -14,6 +14,8 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
 
         public int StartedIndex { get; set; }
 
+        public int NotApprovedTotal { get; set; }
+
     }
 
     public class FeaturedCampaignViewModel
@@ -40,6 +42,8 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public bool IsActive { get; set; }
 
         public bool IsApproved { get; set; }
+
+        public bool Rejected { get; set; }
 
         public string Alias { get; set; }
 
