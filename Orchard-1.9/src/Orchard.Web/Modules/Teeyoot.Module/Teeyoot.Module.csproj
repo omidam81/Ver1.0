@@ -752,6 +752,7 @@
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\CheckoutCreateCampaignForbiddenRequest.cs" />
     <Compile Include="Models\CommonSettingsRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />

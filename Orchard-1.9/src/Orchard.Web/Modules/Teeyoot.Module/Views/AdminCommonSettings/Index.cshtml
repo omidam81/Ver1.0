@@ -22,6 +22,7 @@
         <td >
             @using (Html.BeginFormAntiForgeryPost(Url.Action("EditDoNotAcceptAnyNewCampaigns", "AdminCommonSettings")))
             {
+                <input type="hidden" name="sendEmails" value="@Html.Raw(Json.Encode(false))"/>
                 @Html.CheckBoxFor(model => model.DoNotAcceptAnyNewCampaigns, new {id = "do_not_accept_any_new_campaigns"})
             }
         </td>
@@ -38,6 +39,14 @@
             }
         </td>
     </tr>
+    <tr>
+        <td>
+            @T("Number of not sent emails checkout requests")
+        </td>
+        <td>
+            @Model.NumberOfNotSentEmailCheckoutRequests
+        </td>
+    </tr>
     </tbody>
 </table>
 
@@ -48,10 +57,17 @@
             return !isNaN(value) &&
                 parseInt(Number(value)) == value &&
                 !isNaN(parseInt(value, 10));
-        }
+        };
 
         $(document).ready(function() {
             $('#do_not_accept_any_new_campaigns').change(function() {
+                if (!$(this).is(':checked')) {
+                    if (confirm('@T("Do you want to send {0} emails to clients?", Model.NumberOfNotSentEmailCheckoutRequests)')) {
+                        $('input[name="sendEmails"]').val(true);
+                    } else {
+                        $('input[name="sendEmails"]').val(false);
+                    }
+                }
                 $(this).closest('form').submit();
             });
 

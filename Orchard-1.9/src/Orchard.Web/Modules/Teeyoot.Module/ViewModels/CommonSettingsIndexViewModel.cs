@@ -2,7 +2,8 @@
 {
     public class CommonSettingsIndexViewModel
     {
-        public virtual bool DoNotAcceptAnyNewCampaigns { get; set; }
-        public virtual int ColoursPerPrint { get; set; }
+        public bool DoNotAcceptAnyNewCampaigns { get; set; }
+        public int ColoursPerPrint { get; set; }
+        public int NumberOfNotSentEmailCheckoutRequests { get; set; }
     }
 }

@@ -39,6 +39,9 @@ namespace Teeyoot.Module.Controllers
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IMessageService _messageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
+        private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+
+        private readonly IRepository<CheckoutCreateCampaignForbiddenRequest> _checkoutRequestRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
 
 
@@ -51,6 +54,8 @@ namespace Teeyoot.Module.Controllers
                               IPaymentSettingsService paymentSettingsService,
                               IShapeFactory shapeFactory,
                               ITeeyootMessagingService teeyootMessagingService,
+                              IRepository<CommonSettingsRecord> commonSettingsRepository,
+                              IRepository<CheckoutCreateCampaignForbiddenRequest> checkoutRequestRepository,
                               IWorkContextAccessor workContextAccessor)
         {
             _orderService = orderService;
@@ -60,6 +65,8 @@ namespace Teeyoot.Module.Controllers
             _settingsService = settingsService;
             _teeyootMessagingService = teeyootMessagingService;
             _paymentSettingsService = paymentSettingsService;
+            _commonSettingsRepository = commonSettingsRepository;
+            _checkoutRequestRepository = checkoutRequestRepository;
             _workContextAccessor = workContextAccessor;
 
             Logger = NullLogger.Instance;
@@ -243,7 +250,15 @@ namespace Teeyoot.Module.Controllers
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                 _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
                 _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
-                return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
+
+            var commonSettings = _commonSettingsRepository.Table.First();
+            if (commonSettings.DoNotAcceptAnyNewCampaigns)
+            {
+                var request = new CheckoutCreateCampaignForbiddenRequest {RequestUtcDate = DateTime.UtcNow};
+                _checkoutRequestRepository.Create(request);
+            }
+
+            return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             //}
             //else
             //{

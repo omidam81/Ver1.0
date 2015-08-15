@@ -532,8 +532,14 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("Rejected", c => c.NotNull().WithDefault(false)));
 
-            return 60;
+            SchemaBuilder.CreateTable(typeof(CheckoutCreateCampaignForbiddenRequest).Name,
+                 table => table
+                     .Column<int>("Id", column => column.PrimaryKey().Identity())
+                     .Column<DateTime>("RequestUtcDate", column => column.NotNull())
+                     .Column<bool>("EmailSent", column => column.NotNull().WithDefault(false))
+                     .Column<DateTime>("EmailSentUtcDate"));
 
+            return 61;
         }
 
         public int UpdateFrom2()
@@ -1148,6 +1154,17 @@ namespace Teeyoot.Module
 
             return 60;
         }
-                    
+
+         public int UpdateFrom60()
+         {
+             SchemaBuilder.CreateTable(typeof(CheckoutCreateCampaignForbiddenRequest).Name,
+                 table => table
+                     .Column<int>("Id", column => column.PrimaryKey().Identity())
+                     .Column<DateTime>("RequestUtcDate", column => column.NotNull())
+                     .Column<bool>("EmailSent", column => column.NotNull().WithDefault(false))
+                     .Column<DateTime>("EmailSentUtcDate"));
+
+             return 61;
+         }    
     }
 }

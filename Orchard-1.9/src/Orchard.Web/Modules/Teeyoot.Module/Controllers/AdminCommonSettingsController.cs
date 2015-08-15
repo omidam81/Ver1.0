@@ -16,13 +16,16 @@ namespace Teeyoot.Module.Controllers
     {
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+        private readonly IRepository<CheckoutCreateCampaignForbiddenRequest> _checkoutRequestRepository;
 
         public AdminCommonSettingsController(
             IOrchardServices orchardServices,
-            IRepository<CommonSettingsRecord> commonSettingsRepository)
+            IRepository<CommonSettingsRecord> commonSettingsRepository,
+            IRepository<CheckoutCreateCampaignForbiddenRequest> checkoutRequestRepository)
         {
             _orchardServices = orchardServices;
             _commonSettingsRepository = commonSettingsRepository;
+            _checkoutRequestRepository = checkoutRequestRepository;
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
@@ -34,18 +37,21 @@ namespace Teeyoot.Module.Controllers
         public ActionResult Index()
         {
             var commonSettings = _commonSettingsRepository.Table.First();
+            var numberOfNotSentEmailCheckoutRequests = _checkoutRequestRepository.Table
+                .Count(r => !r.EmailSent);
 
             var commonSettingsIndexViewModel = new CommonSettingsIndexViewModel
             {
                 DoNotAcceptAnyNewCampaigns = commonSettings.DoNotAcceptAnyNewCampaigns,
-                ColoursPerPrint = commonSettings.ColoursPerPrint
+                ColoursPerPrint = commonSettings.ColoursPerPrint,
+                NumberOfNotSentEmailCheckoutRequests = numberOfNotSentEmailCheckoutRequests
             };
 
             return View(commonSettingsIndexViewModel);
         }
 
         [HttpPost]
-        public ActionResult EditDoNotAcceptAnyNewCampaigns(bool doNotAcceptAnyNewCampaigns)
+        public ActionResult EditDoNotAcceptAnyNewCampaigns(bool doNotAcceptAnyNewCampaigns, bool sendEmails)
         {
             var commonSettings = _commonSettingsRepository.Table.First();
             commonSettings.DoNotAcceptAnyNewCampaigns = doNotAcceptAnyNewCampaigns;
