@@ -192,12 +192,12 @@ namespace Teeyoot.Messaging.Services
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "paid-campaign-template.html");
                         break;
                     };
-                case "PartiallyPaid":
-                    {
-                        mandrillMessage.Subject = "Your campaign has been partially paid!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "partially-paid-campaign-template.html");
-                        break;
-                    };
+                //case "PartiallyPaid":
+                //    {
+                //        mandrillMessage.Subject = "Your campaign has been partially paid!";
+                //        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "partially-paid-campaign-template.html");
+                //        break;
+                //    };
             }
             SendTmplMessage(api, mandrillMessage);
 
