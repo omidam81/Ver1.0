@@ -153,7 +153,7 @@ namespace Teeyoot.Messaging.Services
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             var api = new MandrillApi(record.ApiKey);
-            var campaigns = _campaignRepository.Table.Where(camp => camp.WhenApproved < DateTime.UtcNow.AddDays(-1));
+            var campaigns = _campaignRepository.Table.Where(camp => camp.WhenApproved < DateTime.UtcNow.AddDays(-1) && camp.WhenApproved > DateTime.UtcNow.AddDays(-3));
             foreach (var campaign in campaigns)
             {
                 var mandrillMessage = new MandrillMessage() { };
@@ -165,6 +165,29 @@ namespace Teeyoot.Messaging.Services
                 new MandrillMailAddress(seller.Email, "Seller")};
                 FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "terms-conditions-template.html");
+                SendTmplMessage(api, mandrillMessage);
+            }
+
+        }
+
+        public void SendCampaignFinished1DayMessageToSeller()
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var campaigns = _campaignRepository.Table.Where(camp => camp.EndDate < DateTime.UtcNow.AddDays(-1) && camp.EndDate > DateTime.UtcNow.AddDays(-3));
+            foreach (var campaign in campaigns)
+            {
+                var mandrillMessage = new MandrillMessage() { };
+                mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+                mandrillMessage.FromEmail = ADMIN_EMAIL;
+                mandrillMessage.Subject = "Campaing is finished!";
+                var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+                mandrillMessage.To = new List<MandrillMailAddress>(){
+                new MandrillMailAddress(seller.Email, "Seller")};
+                FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-finished-template.html");
                 SendTmplMessage(api, mandrillMessage);
             }
 

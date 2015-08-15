@@ -38,5 +38,7 @@ namespace Teeyoot.Module.Services
         void SendEditedCampaignMessageToSeller(int campaignId, string pathToMedia, string pathToTemplates);
 
         void SendTermsAndConditionsMessageToSeller();
+
+        void SendCampaignFinished1DayMessageToSeller();
     }
 }
