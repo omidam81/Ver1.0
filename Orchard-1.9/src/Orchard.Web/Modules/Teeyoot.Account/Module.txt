@@ -1,4 +1,4 @@
-﻿Name: Teeyoot.Account
+﻿Name: Teeyoot Account
 AntiForgery: enabled
 Author: The Orchard Team
 Website: http://orchardproject.net

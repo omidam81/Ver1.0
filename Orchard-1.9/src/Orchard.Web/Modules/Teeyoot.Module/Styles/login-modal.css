@@ -82,7 +82,7 @@ font-size: 16px;
 }
 
 .modal-login{
-        min-height: 610px;
+        min-height: 680px;
 }
 
 @media all and (max-width: 1000px) {
@@ -140,4 +140,11 @@ font-size: 16px;
     float:left;
     text-align: right;
     margin-right:10px;
+}
+#login_form label.error{
+    color:red!important;
+}
+
+#create_account_form label.error{
+    color:red!important;
 }

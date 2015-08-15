@@ -2,12 +2,14 @@
 using Mandrill;
 using Mandrill.Model;
 using Orchard;
+using Orchard.ContentManagement;
 using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
 using Orchard.UI.Notify;
+using Orchard.Users.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -40,6 +42,8 @@ namespace Teeyoot.Module.Controllers
         private readonly IMessageService _messageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
         private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly IRepository<TeeyootUserPartRecord> _userRepository;
+        private readonly IContentManager _contentManager;
 
 
         public HomeController(IOrderService orderService, 
@@ -51,7 +55,8 @@ namespace Teeyoot.Module.Controllers
                               IPaymentSettingsService paymentSettingsService,
                               IShapeFactory shapeFactory,
                               ITeeyootMessagingService teeyootMessagingService,
-                              IWorkContextAccessor workContextAccessor)
+                              IWorkContextAccessor workContextAccessor, IRepository<TeeyootUserPartRecord> userRepository,
+                            IContentManager contentManager)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -61,6 +66,8 @@ namespace Teeyoot.Module.Controllers
             _teeyootMessagingService = teeyootMessagingService;
             _paymentSettingsService = paymentSettingsService;
             _workContextAccessor = workContextAccessor;
+            _userRepository = userRepository;
+            _contentManager = contentManager;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -241,8 +248,9 @@ namespace Teeyoot.Module.Controllers
                 //_notifier.Information(T("The transaction is successful"));
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                var users = _userRepository.Table.ToList();
                 _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-                _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
+               _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             //}
             //else

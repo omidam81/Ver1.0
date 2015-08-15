@@ -3,6 +3,7 @@
     Style.Include("checkout.css");
     Script.Require("jQuery");
     Script.Include("jquery.validate.min.js");
+    Script.Include("additional-methods.min.js");
     @model Teeyoot.Module.ViewModels.PaymentViewModel
 }
 
@@ -274,7 +275,6 @@
         braintree.onSubmitEncryptForm('braintree-payment-form');
     </script>
     <script type="text/javascript" src="https://js.braintreegateway.com/v2/braintree.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
     <script>
         jQuery.validator.setDefaults({
             debug: true,
