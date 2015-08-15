@@ -472,9 +472,18 @@ window.onload = function initWizard() {
 
     $("#profSale").on({
         change: profitSale,
+        keyup: function(){
+            var price = $("#profSale").val();
+            if (isNaN(price)) {
+                price = price.substring(0, price.length-1);
+                $("#profSale").val(price);
+            }
+        },
         keydown: function (e) {
             if (e.which == 13) {
                 profitSale();
+                var price = $("#profSale").val();
+
                 document.querySelector('#profSale').value = Number($("#profSale").val()).toFixed(2);
                 
             }
