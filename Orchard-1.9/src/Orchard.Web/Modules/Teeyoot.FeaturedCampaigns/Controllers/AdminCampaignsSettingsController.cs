@@ -123,5 +123,25 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
+
+        public ActionResult ChangeInformation(int Id) {
+            var campaign = _campaignService.GetCampaignById(Id);
+            var day = campaign.EndDate.ToString().Split('.')[0];
+            var mounth = campaign.EndDate.ToString().Split('.')[1];
+            var year = campaign.EndDate.ToString().Split('.')[2].Substring(0,4);
+            var model = new CampaignInfViewModel()
+            {
+                Title = campaign.Title,
+                Alias = campaign.Alias,
+                Target = campaign.ProductCountGoal,
+                Day = Convert.ToInt32(day),
+                Mounth = Convert.ToInt32(mounth),
+                Year = Convert.ToInt32(year),
+                Description = campaign.Description,
+                Products = campaign.Products
+            };
+            return View(model);
+        }
+
 	}
 }
