@@ -12,8 +12,7 @@ namespace Teeyoot.Dashboard.Controllers
     {
         public ActionResult Promotions(PromotionViewModel viewModel)
         {
-            string currentUser = Services.WorkContext.CurrentUser.Email;
-            var user = _membershipService.GetUser(currentUser);
+            int currentUser = Services.WorkContext.CurrentUser.Id;
             var model = new PromotionViewModel() { };
            var currencies = _currencyRepository.Table.ToList();
             currencies.Add(new CurrencyRecord() {
@@ -26,16 +25,15 @@ namespace Teeyoot.Dashboard.Controllers
                                            Value = c.Code
                                        };
            
-           model.Promotions =  _promotionService.GetAllPromotionsForUser(user.Id).ToList();
+           model.Promotions =  _promotionService.GetAllPromotionsForUser(currentUser).ToList();
            model.Expiration = DateTime.Today;
            return View("Promotions",model);
            }
 
         public ActionResult AddPromotion(PromotionRecord model)
         {
-            string currentUser = Services.WorkContext.CurrentUser.Email;
-            var user = _membershipService.GetUser(currentUser);
-            _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, user.Id);
+            int currentUser = Services.WorkContext.CurrentUser.Id;
+            _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, currentUser);
             var viewModel = new PromotionViewModel() { };
             return RedirectToAction("Promotions");
         }
