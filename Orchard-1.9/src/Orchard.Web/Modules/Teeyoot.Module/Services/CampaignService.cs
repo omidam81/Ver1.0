@@ -147,7 +147,8 @@ namespace Teeyoot.Module.Services
                     IsActive = true,
                     IsApproved = false,
                     CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Unpaid.ToString()),
-                    CampaignProfit = data.CampaignProfit != null ? data.CampaignProfit : string.Empty
+                    CampaignProfit = data.CampaignProfit != null ? data.CampaignProfit : string.Empty,
+                    ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal
                 };
                 _campaignRepository.Create(newCampaign);
 

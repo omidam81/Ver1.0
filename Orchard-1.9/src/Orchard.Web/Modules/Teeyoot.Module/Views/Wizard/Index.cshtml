@@ -52,6 +52,9 @@
     Script.Include("selectize.js");
 
     Script.Include("nouislider.js");
+
+    Script.Include("jquery.validate.min.js");
+    Script.Include("additional-methods.min.js");
 }
 @using (Script.Head())
 {
@@ -173,6 +176,7 @@
             var alias = document.getElementById('url').value.trim();
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tagsElems = document.querySelectorAll(".item");
+            var productMinimumGoal = document.getElementById("minimmumGoal").value;
             var tags = [];
             for (var i = 0; i < tagsElems.length; i++) {
                 tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
@@ -196,7 +200,8 @@
                     "Alias": alias,
                     'BackSideByDefault': backSideByDefault,
                     "Tags": tags,
-                    "Products": app.state.products
+                    "Products": app.state.products,
+                    "ProductMinimumGoal" : productMinimumGoal
                 }),
                 success: function(data, status, resp) {
                     if (resp.status === 200) {
@@ -638,6 +643,55 @@
             }
         });
     </script>
+
+
+    <script>
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#login_form").validate({
+        rules: {
+            loginEmail: {
+                required: true,
+                email: true
+            },
+            loginPassword: {
+                required: true,
+                minlength: 8
+            }
+        },
+        submitHandler: function (form) { form.submit(); }
+    });
+
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#create_account_form").validate({
+        rules: {
+            registrEmail: {
+                required: true,
+                email: true
+            },
+            registrName: {
+                required: true
+            },
+            registerPassword: {
+                required: true,
+                minlength: 8
+            },
+            registerConfirmPassword: {
+                required: true,
+                minlength: 8,
+                equalTo: "#registerPassword"
+            }
+        },
+        submitHandler: function (form) { form.submit(); }
+    });
+    
+    </script>
+
 }
 <div id="preloader">
     <div class="preloader__body">
@@ -1066,10 +1120,10 @@
                                                 <button type="button" class="close" data-dismiss="modal">×</button>
                                                 <h3 class="partitioned-header no-bottom">@T("File size too big")</h3>
                                             </div>
-                                            <div class="modal-body">
+                                            @*<div class="modal-body">
                                                 <p>@T("Uploaded files must be no more than 5MB.")</p>
                                                 <input type="button" value="@T("Go back to designer ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -1997,9 +2051,9 @@
                 <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
                 <form id="login_form" action="javascript:;">
                     <fieldset>
-                        <input type="text" class="email" style="margin:0 auto;" placeholder="@T("Email")" />
+                        <input type="text" class="email" id="loginEmail" name="loginEmail" style="margin:0 auto;" placeholder="@T("Email")" />
                         <br />
-                        <input type="password" class="password" style="margin:0 auto;" placeholder="@T("Password")" />
+                        <input type="password" class="password" id="loginPassword" name="loginPassword" style="margin:0 auto;" placeholder="@T("Password")" />
                         <br />
                         <input type="submit" class="btn-modal-login" value="@T("Login to your account >>")" />
                         <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
@@ -2009,18 +2063,18 @@
             </div>
             <div id="create_account" class="auth-window">
                 <h2 class="modal-title">@T("Create an account with Teeyoot")</h2>
-                <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
+                @*<h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>*@
                 <form id="create_account_form" action="javascript:;">
                     <fieldset>
-                        <span class="mandatory_wizard">* </span><input type="text" class="name" placeholder="@T("Name")" />
+                        <span class="mandatory_wizard">* </span><input type="text" id="registrName" name="registrName" class="name" placeholder="@T("Name")" />
                         <br />
-                        <span class="mandatory_wizard">* </span> <input type="text" class="email" placeholder="@T("Email")" />
+                        <span class="mandatory_wizard">* </span> <input type="text" id="registrEmail" name="registrEmail" class="email" placeholder="@T("Email")" />
                         <br />
                         <span class="mandatory_wizard"> &nbsp; </span><input type="text" class="phone" placeholder="@T("Phone Number")" />
                         <br />
-                        <span class="mandatory_wizard">* </span> <input type="password" class="password" placeholder="@T("Password: Must be longer than 7 characters.")" />
+                        <span class="mandatory_wizard">* </span> <input type="password" id="registerPassword" name="registerPassword" class="password" placeholder="@T("Password: Must be longer than 8 characters.")" />
                         <br />
-                        <span class="mandatory_wizard">* </span><input type="password" class="confirm-password" placeholder="@T("Confirm Password")" />
+                        <span class="mandatory_wizard">* </span><input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="confirm-password" placeholder="@T("Confirm Password")" />
                         <br />
                         <input type="submit" class="btn-modal-login" value="@T("Create your account >>")" />
                         <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />

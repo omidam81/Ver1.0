@@ -355,6 +355,7 @@
 }
 
     .user-email:after {
+        cursor:pointer;
         content: "";
         height: 0;
         position: absolute;

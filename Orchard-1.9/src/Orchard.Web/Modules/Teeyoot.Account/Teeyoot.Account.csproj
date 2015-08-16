@@ -74,6 +74,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Social_OAuth_Credentials.txt" />
     <Content Include="Social_OAuth_Credentials_Production.txt" />
     <Content Include="Styles\Login.css" />

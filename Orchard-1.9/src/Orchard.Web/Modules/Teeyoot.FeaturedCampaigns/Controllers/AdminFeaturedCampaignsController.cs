@@ -140,6 +140,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var campaign = _campaignService.GetCampaignById(id);
             campaign.IsApproved = true;
             campaign.Rejected = false;
+            campaign.WhenApproved = DateTime.UtcNow;
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
             _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
@@ -151,9 +152,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var campaign = _campaignService.GetCampaignById(id);
             campaign.Rejected = true;
             campaign.IsApproved = false;
-            //var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-            //var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-            //_teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
+            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+            var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+            _teeyootMessagingService.SendRejectedCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
             return RedirectToAction("Index", new { PagerParameters = pagerParameters });
         }
     }

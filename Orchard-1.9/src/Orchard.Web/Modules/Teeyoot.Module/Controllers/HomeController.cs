@@ -2,12 +2,14 @@
 using Mandrill;
 using Mandrill.Model;
 using Orchard;
+using Orchard.ContentManagement;
 using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
 using Orchard.UI.Notify;
+using Orchard.Users.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -41,8 +43,10 @@ namespace Teeyoot.Module.Controllers
         private readonly IPaymentSettingsService _paymentSettingsService;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
 
-        private readonly IRepository<CheckoutCreateCampaignForbiddenRequest> _checkoutRequestRepository;
+        private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly IRepository<TeeyootUserPartRecord> _userRepository;
+        private readonly IContentManager _contentManager;
 
 
         public HomeController(IOrderService orderService, 
@@ -54,9 +58,11 @@ namespace Teeyoot.Module.Controllers
                               IPaymentSettingsService paymentSettingsService,
                               IShapeFactory shapeFactory,
                               ITeeyootMessagingService teeyootMessagingService,
+                              IWorkContextAccessor workContextAccessor, 
+                              IRepository<TeeyootUserPartRecord> userRepository,
+                              IContentManager contentManager,
                               IRepository<CommonSettingsRecord> commonSettingsRepository,
-                              IRepository<CheckoutCreateCampaignForbiddenRequest> checkoutRequestRepository,
-                              IWorkContextAccessor workContextAccessor)
+                              IRepository<CheckoutCampaignRequest> checkoutRequestRepository)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -68,6 +74,8 @@ namespace Teeyoot.Module.Controllers
             _commonSettingsRepository = commonSettingsRepository;
             _checkoutRequestRepository = checkoutRequestRepository;
             _workContextAccessor = workContextAccessor;
+            _userRepository = userRepository;
+            _contentManager = contentManager;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -248,13 +256,14 @@ namespace Teeyoot.Module.Controllers
                 //_notifier.Information(T("The transaction is successful"));
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                var users = _userRepository.Table.ToList();
                 _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-                _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
+               _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
 
             var commonSettings = _commonSettingsRepository.Table.First();
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
-                var request = new CheckoutCreateCampaignForbiddenRequest {RequestUtcDate = DateTime.UtcNow};
+                var request = new CheckoutCampaignRequest {RequestUtcDate = DateTime.UtcNow};
                 _checkoutRequestRepository.Create(request);
             }
 

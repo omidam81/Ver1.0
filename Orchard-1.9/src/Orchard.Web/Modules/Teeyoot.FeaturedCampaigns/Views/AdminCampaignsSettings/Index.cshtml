@@ -1,6 +1,7 @@
 ﻿@model Teeyoot.FeaturedCampaigns.ViewModels.ExportPrintsViewModel
 @{
     Style.Include("FeaturedCampaigns.css");
+    Style.Include("SettingsTable.css");
     Style.Include("jquery.dataTables.css");
     Script.Require("jQuery");
     Script.Include("jquery.dataTables.min.js");
@@ -29,6 +30,7 @@
                 <th>@T("Seller Email")</th>
                 <th>@T("Phone Number")</th>                
                 <th>@T("Change Status")</th>
+                <th>@T("Action")</th>
             </tr>
         </thead>
         <tbody>
@@ -62,6 +64,7 @@
                                 }
                             }
                         </td>
+                        <td>@Html.ActionLink(T("Change").Text, "ChangeInformation", new { Id = @c.Id }, new { @class = "button" }) </td>
                     </tr>
                 }
 
@@ -91,7 +94,7 @@
                     }
                 </select>
                 <span class="inp_date">Year</span><input type="text" placeholder="YYYY" id="year" />
-                </br>
+                <br>
                 <button type="submit" id="change_date_btn" onclick="changeData(this)">Change</button>
             </div>
         </div>

@@ -8,7 +8,7 @@ namespace Teeyoot.Module.Common.Enums
     public enum CampaignStatus
     {
         Unpaid = 1,
-        PartiallyPaid,
+        //PartiallyPaid,
         Paid
     }
 

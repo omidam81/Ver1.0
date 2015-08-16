@@ -2,7 +2,7 @@
 
 namespace Teeyoot.Module.Models
 {
-    public class CheckoutCreateCampaignForbiddenRequest
+    public class CheckoutCampaignRequest
     {
         public virtual int Id { get; protected set; }
         public virtual DateTime RequestUtcDate { get; set; }

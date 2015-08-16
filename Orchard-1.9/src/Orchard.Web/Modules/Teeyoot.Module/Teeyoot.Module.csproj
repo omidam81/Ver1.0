@@ -291,10 +291,12 @@
     <Content Include="Content\images\zoom_in_light.svg" />
     <Content Include="Content\images\zoom_out.svg" />
     <Content Include="Content\images\zoom_out_light.svg" />
+    <Content Include="Content\message-templates\campaign-is-finished-template.html" />
     <Content Include="Content\message-templates\campaign-is-printing-seller-template.html" />
     <Content Include="Content\message-templates\campaign-promo-template.html" />
     <Content Include="Content\message-templates\cancelled-order-template.html" />
     <Content Include="Content\message-templates\delivered-order-template.html" />
+    <Content Include="Content\message-templates\edited-campaign-template.html" />
     <Content Include="Content\message-templates\launch-template.html" />
     <Content Include="Content\message-templates\new-campaign-admin-template.html" />
     <Content Include="Content\message-templates\new-order-buyer-template.html" />
@@ -306,9 +308,12 @@
     <Content Include="Content\message-templates\partially-paid-campaign-template.html" />
     <Content Include="Content\message-templates\place-order-template.html" />
     <Content Include="Content\message-templates\recover_orders_for_buyer.html" />
+    <Content Include="Content\message-templates\reject-template.html" />
     <Content Include="Content\message-templates\relaunch-template.html" />
     <Content Include="Content\message-templates\seller-template.html" />
+    <Content Include="Content\message-templates\shipped-order-3day-after-template.html" />
     <Content Include="Content\message-templates\shipped-order-template.html" />
+    <Content Include="Content\message-templates\terms-conditions-template.html" />
     <Content Include="Content\message-templates\unpaid-campaign-template.html" />
     <Content Include="Content\message-templates\welcome-template.html" />
     <Content Include="Content\message-templates\withdraw-completed-template.html" />
@@ -377,6 +382,7 @@
     <Content Include="Content\vector\Woman 7.png" />
     <Content Include="Content\vector\Woman 7.svg" />
     <Content Include="Scripts\add-ons.js" />
+    <Content Include="Scripts\additional-methods.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -742,6 +748,9 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
+    <Compile Include="Common\ScheduledTasks\SendShippedOrderAfter3DayToBuyerTask.cs" />
+    <Compile Include="Common\ScheduledTasks\SendFinishedCampaignafter1DayToSellerTask.cs" />
+    <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
     <Compile Include="Common\Utils\ImageHelper.cs" />
@@ -753,7 +762,7 @@
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
-    <Compile Include="Models\CheckoutCreateCampaignForbiddenRequest.cs" />
+    <Compile Include="Models\CheckoutCampaignRequest.cs" />
     <Compile Include="Models\CommonSettingsRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />

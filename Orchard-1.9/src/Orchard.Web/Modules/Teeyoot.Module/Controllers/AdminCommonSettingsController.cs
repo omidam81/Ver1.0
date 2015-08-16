@@ -16,12 +16,12 @@ namespace Teeyoot.Module.Controllers
     {
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
-        private readonly IRepository<CheckoutCreateCampaignForbiddenRequest> _checkoutRequestRepository;
+        private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
 
         public AdminCommonSettingsController(
             IOrchardServices orchardServices,
             IRepository<CommonSettingsRecord> commonSettingsRepository,
-            IRepository<CheckoutCreateCampaignForbiddenRequest> checkoutRequestRepository)
+            IRepository<CheckoutCampaignRequest> checkoutRequestRepository)
         {
             _orchardServices = orchardServices;
             _commonSettingsRepository = commonSettingsRepository;

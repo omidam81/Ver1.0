@@ -9,7 +9,7 @@ namespace Orchard.Security {
             RequiresUniqueEmail = true;
             MaxInvalidPasswordAttempts = 5;
             PasswordAttemptWindow = 10;
-            MinRequiredPasswordLength = 7;
+            MinRequiredPasswordLength = 8;
             MinRequiredNonAlphanumericCharacters = 1;
             PasswordStrengthRegularExpression = "";
             PasswordFormat = MembershipPasswordFormat.Hashed;

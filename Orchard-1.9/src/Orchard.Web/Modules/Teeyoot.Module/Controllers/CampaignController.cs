@@ -64,7 +64,7 @@ namespace Teeyoot.Module.Controllers
                         CampaignIndexViewModel model = new CampaignIndexViewModel() { };
                         model.Campaign = campaign;
 
-                        if (campaign.ProductCountSold >= campaign.ProductCountGoal)
+                        if (campaign.ProductCountSold >= campaign.ProductMinimumGoal)
                         {
                             string infoMessage = String.Format("The minimum order has been reached, so this shirt will definitely go to print.");
                             _notifier.Add(NotifyType.Information, T(infoMessage));

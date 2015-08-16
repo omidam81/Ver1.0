@@ -1,0 +1,113 @@
+﻿@model Teeyoot.FeaturedCampaigns.ViewModels.CampaignInfViewModel
+@{
+    Style.Include("bootstrap.min.css");
+    Style.Include("jqueryui.css");
+    Style.Include("ChangeInformation.css");
+    Style.Include("bootstrap-wysihtml5.css");
+    Style.Include("designerTeeyootCampaign.css");
+
+    Script.Require("jQueryUI");
+    Script.Include("bootstrap.min.js");
+
+    Script.Include("wysihtml5-0.3.0.js");
+    Script.Include("bootstrap-wysihtml5.js");
+
+}
+@using (Script.Foot())
+{
+    <script>
+        $('.textarea').wysihtml5();
+        $(document).ready(function () {
+            $("#campaign_description_text").val($("#desc").val());
+        });
+    </script>
+}
+
+<input type="hidden" id="desc" value='@Model.Description' />
+<fieldset>
+    <font class="title">Title of campaign : </font>
+    <input class="titleOfCampaign" value="@Model.Title" style="width:353px" />
+</fieldset>
+
+<fieldset>
+    <font class="title">URL : </font>
+    <input class="URL" value="@Model.Alias" />
+</fieldset>
+<fieldset>
+    <font class="title">End Date : </font>
+    <span class="inp_date">Day</span>
+
+    <select id="day">
+        @for (int i = 1; i <= 31; i++)
+        {
+            if (i == Model.Day)
+            {
+                <option value="@i" selected>@i</option>
+            }
+            else
+            {
+                <option value="@i">@i</option>
+            }
+
+        }
+    </select>
+    <span class="inp_date">Month</span>
+    <select id="month">
+        @for (int i = 1; i <= 12; i++)
+        {
+            if (i == Model.Mounth)
+            {
+                <option value="@i" selected>@i</option>
+            }
+            else
+            {
+                <option value="@i">@i</option>
+            }
+        }
+    </select>
+    <span class="inp_date">Year</span><input type="text" maxlength="4" value="@Model.Year" placeholder="YYYY" id="year" />
+
+</fieldset>
+<fieldset>
+    <font class="title">Target : </font>
+    <input class="Goal" value="@Model.Target" type="number" />
+</fieldset>
+
+<fieldset>
+    <font class="title">Description : </font>
+    <form id="campaign_details">
+
+        <div class="teespring-well designer-well description">
+            <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
+                <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Decribe your campaign here…" style="height: 200px"></textarea>
+            </div>
+        </div>
+    </form>
+</fieldset>
+
+<fieldset>
+    <table class="items">
+        <thead>
+            <tr>
+                <td>Name product</td>
+                <td>Cost Price</td>
+                <td>Sell Price</td>
+                <td>Profit</td>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>@item.ProductRecord.Name</td>
+                <td>@item.BaseCost</td>
+                <td><input type="text" /></td>
+                <td>Profit</td>
+            </tr>
+        }
+
+
+
+    </table>
+</fieldset>
+@* @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })*@

@@ -217,6 +217,10 @@ namespace Teeyoot.Orders.Controllers
         {
             var order = _orderService.GetOrderById(orderId);
             OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
+            if (orderStatus == "Shipped")
+            {
+                order.WhenSentOut = DateTime.UtcNow;
+            }
             _orderService.UpdateOrder(order, newStatus);
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');

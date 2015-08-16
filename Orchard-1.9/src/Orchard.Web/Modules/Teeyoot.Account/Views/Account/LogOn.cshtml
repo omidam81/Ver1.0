@@ -1,6 +1,10 @@
-﻿@model Teeyoot.Account.ViewModels.LogOnViewModel
-
-@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {area = "Teeyoot.Account", returnUrl = Model.ReturnUrl})))
+﻿@{
+    Script.Require("jQuery");
+    Script.Include("jquery.validate.min.js");
+    Script.Include("additional-methods.min.js");
+    @model Teeyoot.Account.ViewModels.LogOnViewModel
+}
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new {area = "Teeyoot.Account", returnUrl = Model.ReturnUrl}), FormMethod.Post, new { @id = "login_form" }))
 {
     <fieldset>
         <div class="title">
@@ -30,4 +34,29 @@
             <label>@T("Remember me on this computer")</label>
         </div>
     </fieldset>
+}
+@using (Script.Foot())
+{
+
+    <script>
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#login_form").validate({
+            rules: {
+                Email: {
+                    required: true,
+                    email: true
+                },               
+                Password: {
+                    required: true,
+                    minlength: 8
+                }
+            },
+            submitHandler: function (form) { form.submit(); }
+        });
+
+
+    </script>
 }

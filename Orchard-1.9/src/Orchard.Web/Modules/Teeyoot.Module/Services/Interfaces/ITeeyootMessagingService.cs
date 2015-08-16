@@ -30,5 +30,17 @@ namespace Teeyoot.Module.Services
         void SendCompletedPayoutMessage(string pathToTemplates, string pathToMedia, PayoutRecord payout);
 
         void SendNewOrderMessageToBuyer(int orderId, string pathToMedia, string pathToTemplates);
+
+        void SendNewCampaignAdminMessage(string pathToTemplates, string pathToMedia, int campaignId);
+
+        void SendRejectedCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId);
+
+        void SendEditedCampaignMessageToSeller(int campaignId, string pathToMedia, string pathToTemplates);
+
+        void SendTermsAndConditionsMessageToSeller();
+
+        void SendCampaignFinished1DayMessageToSeller();
+
+        void SendOrderShipped3DaysToBuyer();
     }
 }

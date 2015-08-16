@@ -472,9 +472,18 @@ window.onload = function initWizard() {
 
     $("#profSale").on({
         change: profitSale,
+        keyup: function(){
+            var price = $("#profSale").val();
+            if (isNaN(price)) {
+                price = price.substring(0, price.length-1);
+                $("#profSale").val(price);
+            }
+        },
         keydown: function (e) {
             if (e.which == 13) {
                 profitSale();
+                var price = $("#profSale").val();
+
                 document.querySelector('#profSale').value = Number($("#profSale").val()).toFixed(2);
                 
             }
@@ -646,6 +655,9 @@ function initProducts() {
 
 
 function profitSale() {
+    //window.count = parseInt(document.getElementById('trackBarValue').value);
+    var slider = document.getElementById('trackbar');
+    window.count = parseInt(slider.noUiSlider.get());
     var $val = document.getElementById("profSale").value.replace(',', '.');
     var selPrice = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
     var price = (selPrice - window.nowPrice).toFixed(2);
@@ -655,10 +667,10 @@ function profitSale() {
         //$("#mainH4").html("RM " + window.nowPrice + " minimum");
         //$("#mainH4").css('color', '#ff0000');
         updateMinimum(price);
-        minimumGoal();
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
+        minimumGoal();
     }else{
         //$("#mainH4").html($price);
         //$("#mainH4").css('color', '#ff4f00');
@@ -791,6 +803,9 @@ function slideTo(slideNumber) {
         window.clearTimeout(slideTimeout);
     }
     setDesign();
+
+    setPriceInGoalFromDesign();
+    setPriceInDesignFromGoal();
 
     var $slides = $('.Slides .Slide');
 

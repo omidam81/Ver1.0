@@ -1,4 +1,4 @@
-﻿Name: Teeyoot.Orders
+﻿Name: Teeyoot Orders
 AntiForgery: enabled
 Author: The Orchard Team
 Website: http://orchardproject.net
