@@ -43,7 +43,6 @@ namespace Teeyoot.Module.Controllers
             var commonSettingsIndexViewModel = new CommonSettingsIndexViewModel
             {
                 DoNotAcceptAnyNewCampaigns = commonSettings.DoNotAcceptAnyNewCampaigns,
-                ColoursPerPrint = commonSettings.ColoursPerPrint,
                 NumberOfNotSentEmailCheckoutRequests = numberOfNotSentEmailCheckoutRequests
             };
 
@@ -59,18 +58,6 @@ namespace Teeyoot.Module.Controllers
 
             _orchardServices.Notifier.Information(T("\"Do not accept any new campaign\" setting changed to {0}.",
                 doNotAcceptAnyNewCampaigns ? T("\"Yes\"") : T("\"No\"")));
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult EditColoursPerPrint(int coloursPerPrint)
-        {
-            var commonSettings = _commonSettingsRepository.Table.First();
-            commonSettings.ColoursPerPrint = coloursPerPrint;
-            _commonSettingsRepository.Update(commonSettings);
-
-            _orchardServices.Notifier.Information(T("\"Colours per print\" setting changed to {0}.", coloursPerPrint));
 
             return RedirectToAction("Index");
         }

@@ -263,7 +263,11 @@ namespace Teeyoot.Module.Controllers
             var commonSettings = _commonSettingsRepository.Table.First();
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
-                var request = new CheckoutCampaignRequest {RequestUtcDate = DateTime.UtcNow};
+                var request = new CheckoutCampaignRequest
+                {
+                    RequestUtcDate = DateTime.UtcNow,
+                    Email = order.Email
+                };
                 _checkoutRequestRepository.Create(request);
             }
 

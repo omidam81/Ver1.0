@@ -3,7 +3,6 @@
     public class CommonSettingsIndexViewModel
     {
         public bool DoNotAcceptAnyNewCampaigns { get; set; }
-        public int ColoursPerPrint { get; set; }
         public int NumberOfNotSentEmailCheckoutRequests { get; set; }
     }
 }

@@ -29,19 +29,7 @@
     </tr>
     <tr>
         <td>
-            @T("Number of colours per print")
-        </td>
-        <td>
-            @using (Html.BeginFormAntiForgeryPost(Url.Action("EditColoursPerPrint", "AdminCommonSettings"), FormMethod.Post, new {id = "edit_colours_per_print_form"}))
-            {
-                @Html.TextBoxFor(model => model.ColoursPerPrint, new {id = "colours_per_print", @class = "text"})
-                <button type="submit">@T("Edit")</button>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            @T("Number of not sent emails checkout requests")
+            @T("Number of checkout requests with not sent emails.")
         </td>
         <td>
             @Model.NumberOfNotSentEmailCheckoutRequests
@@ -53,12 +41,6 @@
 @using (Script.Foot())
 {
     <script>
-        function isInt(value) {
-            return !isNaN(value) &&
-                parseInt(Number(value)) == value &&
-                !isNaN(parseInt(value, 10));
-        };
-
         $(document).ready(function() {
             $('#do_not_accept_any_new_campaigns').change(function() {
                 if (!$(this).is(':checked')) {
@@ -69,15 +51,6 @@
                     }
                 }
                 $(this).closest('form').submit();
-            });
-
-            $('#edit_colours_per_print_form').submit(function() {
-                var coloursPerPrintValue = $('#colours_per_print').val();
-                if (!isInt(coloursPerPrintValue)) {
-                    alert('@T("Please provide integer number")');
-                    return false;
-                }
-                return true;
             });
         });
     </script>
