@@ -261,7 +261,7 @@ namespace Teeyoot.Module.Controllers
 
             arts = arts.Take(ArtsPageSize);
 
-            return Json(arts.Select(a => new
+            return Json(arts.ToList().Select(a => new
             {
                 id = a.Id,
                 name = a.Name,
@@ -271,10 +271,9 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetRandomArts()
         {
-            var arts = _artRepository.Table
-                .Take(ArtsPageSize);
+            var arts = _artRepository.Table.Take(ArtsPageSize);
 
-            return Json(arts.Select(a => new
+            return Json(arts.ToList().Select(a => new
             {
                 id = a.Id,
                 name = a.Name,

@@ -381,7 +381,7 @@ namespace Teeyoot.WizardSettings
                 new RouteDescriptor
                 {
                     Route = new Route(
-                        "Admin/Artworks/Edit/{name}",
+                        "Admin/Artworks/Edit/{artworkId}",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.WizardSettings"},

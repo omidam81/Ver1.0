@@ -21,8 +21,8 @@
                     </div>
                 </div>
                 <div class="related">
-                    <a href="@Url.Action("EditArtwork", "Artwork", new {name = art.Name})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("DeleteArtwork", "Artwork", new {name = art.Name})" itemprop="RemoveUrl">@T("Delete")</a>
+                    <a href="@Url.Action("EditArtwork", "Artwork", new {artworkId = art.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("DeleteArtwork", "Artwork", new {artworkId = art.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                 </div>
             </div>
         </li>

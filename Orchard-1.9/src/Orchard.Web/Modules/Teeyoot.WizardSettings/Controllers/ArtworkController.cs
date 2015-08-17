@@ -87,29 +87,30 @@ namespace Teeyoot.WizardSettings.Controllers
             }
 
             var success = SaveArtworkImages(viewModel.ArtworkSvgImage, viewModel.ArtworkPngImage, viewModel.Name);
-            if (success)
+            if (!success)
             {
-                var art = new ArtRecord
-                {
-                    Name = viewModel.Name,
-                    FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name)
-                };
-                _artRepository.Create(art);
-                _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been added", viewModel.Name));
+                return RedirectToAction("AddArtwork");
             }
 
+            var art = new ArtRecord
+            {
+                Name = viewModel.Name,
+                FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name)
+            };
+            _artRepository.Create(art);
+
+            _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been added", viewModel.Name));
             return RedirectToAction("Index");
         }
 
-        public ActionResult EditArtwork(string name)
+        public ActionResult EditArtwork(int artworkId)
         {
-            var artworkName =
-                Path.GetFileNameWithoutExtension(CheckIfAlreadyExists(name, ArtworkSvgImageFileNameTemplate));
+            var artwork = _artRepository.Get(artworkId);
 
             var viewModel = new ArtworkViewModel
             {
-                CurrentName = artworkName,
-                Name = artworkName
+                Id = artwork.Id,
+                Name = artwork.Name
             };
 
             return View(viewModel);
@@ -127,38 +128,52 @@ namespace Teeyoot.WizardSettings.Controllers
                 return RedirectToAction("EditArtwork");
             }
 
+            var artwork = _artRepository.Get(viewModel.Id);
+
             var success = UpdateArtworkImages(viewModel.ArtworkSvgImage,
                 viewModel.ArtworkPngImage,
                 viewModel.Name,
-                viewModel.CurrentName);
+                artwork.Name);
 
-            return !success
-                ? RedirectToAction("EditArtwork", new {name = viewModel.CurrentName})
-                : RedirectToAction("Index");
+            if (!success)
+            {
+                RedirectToAction("EditArtwork", new {artworkId = artwork.Id});
+            }
+
+            artwork.Name = viewModel.Name;
+            artwork.FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name);
+
+            _artRepository.Update(artwork);
+
+            return RedirectToAction("Index");
         }
 
-        public ActionResult DeleteArtwork(string name)
+        public ActionResult DeleteArtwork(int artworkId)
         {
+            var artwork = _artRepository.Get(artworkId);
+
             try
             {
-                var svgImageFileName = string.Format(ArtworkSvgImageFileNameTemplate, name);
+                var svgImageFileName = string.Format(ArtworkSvgImageFileNameTemplate, artwork.Name);
                 var svgImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), svgImageFileName);
 
                 System.IO.File.Delete(svgImagePhysicalPath);
 
-                var pngImageFileName = string.Format(ArtworkPngImageFileNameTemplate, name);
+                var pngImageFileName = string.Format(ArtworkPngImageFileNameTemplate, artwork.Name);
                 var pngImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), pngImageFileName);
 
                 System.IO.File.Delete(pngImagePhysicalPath);
+
+                _artRepository.Delete(artwork);
             }
             catch (Exception exception)
             {
-                Logger.Error(T("Deleting artwork \"{0}\" failed: {1}", name, exception.Message).Text);
-                _orchardServices.Notifier.Error(T("Deleting artwork \"{0}\" failed.", name));
+                Logger.Error(T("Deleting artwork \"{0}\" failed: {1}", artwork.Name, exception.Message).Text);
+                _orchardServices.Notifier.Error(T("Deleting artwork \"{0}\" failed.", artwork.Name));
                 return RedirectToAction("Index");
             }
 
-            _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been deleted.", name));
+            _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been deleted.", artwork.Name));
             return RedirectToAction("Index");
         }
 
