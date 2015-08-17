@@ -23,6 +23,7 @@ using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
+using Orchard.Localization;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -51,9 +52,12 @@ namespace Teeyoot.Module.Controllers
             _costService = costService;
             _teeyootMessagingService = teeyootMessagingService;
             _commonSettingsRepository = commonSettingsRepository;
+            T = NullLocalizer.Instance;
         }
 
         public ILogger Logger { get; set; }
+
+        private Localizer T { get; set; }
 
         // GET: Wizard
         public ActionResult Index(int? id)
@@ -109,63 +113,75 @@ namespace Teeyoot.Module.Controllers
         {
             if (string.IsNullOrWhiteSpace(data.CampaignTitle) && string.IsNullOrWhiteSpace(data.Description) && string.IsNullOrWhiteSpace(data.Alias))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty|campaign_description_text|Campiagn Description can't be empty|url|Campiagn URL can't be empty");
+                string error = "name|" + T("Campiagn Title can't be empty").ToString() + "|campaign_description_text|" + T("Campiagn Description can't be empty").ToString() + "|url|" + T("Campiagn URL can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.CampaignTitle) && string.IsNullOrWhiteSpace(data.Description))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty|campaign_description_text|Campiagn Description can't be empty");
+                string error = "name|" + T("Campiagn Title can't be empty").ToString() + "|campaign_description_text|" + T("Campiagn Description can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.CampaignTitle) && string.IsNullOrWhiteSpace(data.Alias))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty|url|Campiagn URL can't be empty");
+                string error = "name|" + T("Campiagn Title can't be empty").ToString() + "|url|" + T("Campiagn URL can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.Description) && string.IsNullOrWhiteSpace(data.Alias))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "campaign_description_text|Campiagn Description can't be empty|url|Campiagn URL can't be empty");
+                string error = "campaign_description_text|" + T("Campiagn Description can't be empty").ToString() + "|url|" + T("Campiagn URL can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.CampaignTitle))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "name|Campiagn Title can't be empty");
+                string error = "name|" + T("Campiagn Title can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.Description))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "campaign_description_text|Campiagn Description can't be empty");
+                string error = "campaign_description_text|" + T("Campiagn Description can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.Alias))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't be empty");
+                string error = "url|" + T("Campiagn URL can't be empty").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             data.Alias = data.Alias.Trim();
 
             if (data.Alias.Any(ch => Char.IsWhiteSpace(ch)))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL can't contain whitespaces");
+                string error = "url|" + T("Campiagn URL can't contain whitespaces").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (data.Alias.Contains('&') || data.Alias.Contains('?') || data.Alias.Contains('/') || data.Alias.Contains('\\'))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL has wrong format");
+                string error = "url|" + T("Campiagn URL has wrong format").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (_campaignService.GetCampaignByAlias(data.Alias) != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn with this URL already exists");
+                string error = "url|" + T("Campiagn with this URL already exists").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
             if (data.Alias.Length < 4)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "url|Campiagn URL must be at least 4 characters long");
+                string error = "url|" + T("Campiagn URL must be at least 4 characters long").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (string.IsNullOrWhiteSpace(data.Design))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Design|No design found for your campaign");
+                string error = "Design|" + T("No design found for your campaign").ToString();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, error);
             }
 
             if (_orchardServices.WorkContext.CurrentUser == null)
@@ -205,7 +221,7 @@ namespace Teeyoot.Module.Controllers
             catch (Exception e)
             {
                 Logger.Error("Error occured when trying to create new campaign ---------------> " + e.ToString());
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new campaign");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, T("Error occured when trying to create new campaign").ToString());
             }
         }
 

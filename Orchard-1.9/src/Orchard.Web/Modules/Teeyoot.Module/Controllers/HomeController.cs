@@ -102,7 +102,7 @@ namespace Teeyoot.Module.Controllers
         // GET: /Home/
         public string Index()
         {
-            return "Welcome to Teeyoot!";
+            return T("Welcome to Teeyoot!").ToString();
         }
 
         [HttpPost]
@@ -111,7 +111,7 @@ namespace Teeyoot.Module.Controllers
         {
             if (products.Count() == 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Please, select at least one product to place your order");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, T("Please, select at least one product to place your order").ToString());
             }
 
             try
@@ -124,7 +124,7 @@ namespace Teeyoot.Module.Controllers
             catch (Exception e)
             {
                 Logger.Error("Error occured when trying to create new order ---------------> " + e.ToString());
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Error occured when trying to create new order");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, T("Error occured when trying to create new order").ToString());
             }
         }
 
@@ -382,15 +382,15 @@ namespace Teeyoot.Module.Controllers
 
             if (orders.Count() == 0)
             {
-                string infoMessage = String.Format("No orders found during last 60 days");
-                _notifier.Add(NotifyType.Information, T(infoMessage));
+                var infoMessage = T("No orders found during last 60 days");
+                _notifier.Add(NotifyType.Information, infoMessage);
             }
             else
             {
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 _teeyootMessagingService.SendRecoverOrderMessage(pathToTemplates, orders.ToList(), email);
-                string infoMessage = String.Format("Success! We have sent an email to " + email + " detailing your orders during the past 60 days.");
-                _notifier.Add(NotifyType.Information, T(infoMessage));
+                var infoMessage = T("Success! We have sent an email to " + email + " detailing your orders during the past 60 days.");
+                _notifier.Add(NotifyType.Information, infoMessage);
             }
             return View("RecoverOrder");
         }
