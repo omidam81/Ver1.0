@@ -10,7 +10,7 @@
 <div class="text-area">
 
     <div class="faq-nav-div">
-        <a class="faq-navigation" href="@Url.Action("Index")">Home</a> > <a class="faq-navigation"  href="@Url.Action("ViewSection", new { sectionId = @Model.Section.Id })"> @Model.Section.Name</a> > <span class="faq-navigation faq-current-navigation"> @Model.Question</span>
+        <a class="faq-navigation" href="@Url.Action("Index")">@T("Home")</a> > <a class="faq-navigation"  href="@Url.Action("ViewSection", new { sectionId = @Model.Section.Id })"> @Model.Section.Name</a> > <span class="faq-navigation faq-current-navigation"> @Model.Question</span>
     </div>
     <div class="question-topic">
         @Model.Question

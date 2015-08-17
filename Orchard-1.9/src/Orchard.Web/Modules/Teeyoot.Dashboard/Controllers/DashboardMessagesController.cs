@@ -42,17 +42,17 @@ namespace Teeyoot.Dashboard.Controllers
                 tempModel.ThisWeekSend = _messageService.GetAllMessagesForCampaign(item.Id).Where(s => (s.SendDate < DateTime.UtcNow) && (s.SendDate > DateTime.UtcNow.AddDays(-7))).Count();
                 if (_messageService.GetLatestMessageDateForCampaign(item.Id).Day > DateTime.UtcNow.Day) 
                 {
-                    tempModel.LastSend = "Never";
+                    tempModel.LastSend = T("Never").ToString();
                 }
                 else
                 {
                     if (DateTime.UtcNow.Day - _messageService.GetLatestMessageDateForCampaign(item.Id).Day == 0)
                     {
-                        tempModel.LastSend = "Today";
+                        tempModel.LastSend = T("Today").ToString();
                     }
                     else
                     {
-                        tempModel.LastSend = (DateTime.UtcNow.Day - _messageService.GetLatestMessageDateForCampaign(item.Id).Day).ToString() + " days ago";
+                        tempModel.LastSend = (DateTime.UtcNow.Day - _messageService.GetLatestMessageDateForCampaign(item.Id).Day).ToString() + T(" days ago").ToString();
                     }
                 }
 

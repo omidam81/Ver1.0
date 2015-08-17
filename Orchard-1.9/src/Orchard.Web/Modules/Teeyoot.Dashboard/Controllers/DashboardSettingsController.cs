@@ -52,7 +52,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "There is nothing to update!";
+                viewModel.ErrorMessage += T("There is nothing to update!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
             if (TryValidateModel(model))
@@ -67,14 +67,14 @@ namespace Teeyoot.Dashboard.Controllers
                     user.Street = model.Street;
                     user.Zip = model.Zip;
                     
-                    model.InfoMessage = "Your info has been changed sucessfully!";
+                    model.InfoMessage = T("Your info has been changed sucessfully!").ToString();
                     return RedirectToAction("Settings", model);
                 }
                 else
                 {
                     UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                     viewModel.Id = model.Id;
-                    viewModel.ErrorMessage += "Sorry, it is some error, try later!";
+                    viewModel.ErrorMessage += T("Sorry, it is some error, try later!").ToString();
                     return RedirectToAction("Settings", viewModel);
                 }
             }
@@ -82,7 +82,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "Please, input valid phone number!";
+                viewModel.ErrorMessage += T("Please, input valid phone number!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
 
@@ -96,21 +96,21 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "Password is required!";
+                viewModel.ErrorMessage += T("Password is required!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
             if (!(model.NewPassword.Length > 6))
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "Password must be at least 7 characters!";
+                viewModel.ErrorMessage += T("Password must be at least 7 characters!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
             if (model.NewPassword != model.ConfirmPassword)
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "Confirmation did not match new password!";
+                viewModel.ErrorMessage += T("Confirmation did not match new password!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
             var user = _membershipService.ValidateUser(currentUser, model.CurrentPassword);
@@ -122,11 +122,11 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "Password incorrect!";
+                viewModel.ErrorMessage += T("Password incorrect!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
             UserSettingsViewModel infoModel = new UserSettingsViewModel() { };
-            infoModel.InfoMessage = "Your password has been changed sucessfully!";
+            infoModel.InfoMessage = T("Your password has been changed sucessfully!").ToString();
             return RedirectToAction("Settings", infoModel);
         }
 
@@ -138,14 +138,14 @@ namespace Teeyoot.Dashboard.Controllers
                 {
                     UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                     viewModel.Id = model.Id;
-                    viewModel.ErrorMessage += "New email address is required!";
+                    viewModel.ErrorMessage += T("New email address is required!").ToString();
                     return RedirectToAction("Settings", viewModel);
                 }
                 if (model.NewEmailAddress != model.ConfirmNewEmailAddress)
                 {
                     UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                     viewModel.Id = model.Id;
-                    viewModel.ErrorMessage += "Confirmation did not match new email!";
+                    viewModel.ErrorMessage += T("Confirmation did not match new email!").ToString();
                     return RedirectToAction("Settings", viewModel);
 
                 }
@@ -155,24 +155,24 @@ namespace Teeyoot.Dashboard.Controllers
                     user.As<UserPart>().Email = model.NewEmailAddress;
                     user.As<UserPart>().UserName = model.NewEmailAddress;
                     user.As<UserPart>().NormalizedUserName = model.NewEmailAddress.ToLower();
-                    model.InfoMessage = "Your email has been changed sucessfully!";
+                    model.InfoMessage = T("Your email has been changed sucessfully!").ToString();
                 }
                 catch
                 {
                     UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                     viewModel.Id = model.Id;
-                    viewModel.ErrorMessage += "Sorry, it is some error, try later!";
+                    viewModel.ErrorMessage += T("Sorry, it is some error, try later!").ToString();
                     return RedirectToAction("Settings", viewModel);
                 }
                 UserSettingsViewModel infoModel = new UserSettingsViewModel() { };
-                infoModel.InfoMessage = "Your email has been changed sucessfully!";
+                infoModel.InfoMessage = T("Your email has been changed sucessfully!").ToString();
                 return RedirectToAction("Settings", infoModel);
             }
             else
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += "Please, input valid email address!";
+                viewModel.ErrorMessage += T("Please, input valid email address!").ToString();
                 return RedirectToAction("Settings", viewModel);
             }
             
