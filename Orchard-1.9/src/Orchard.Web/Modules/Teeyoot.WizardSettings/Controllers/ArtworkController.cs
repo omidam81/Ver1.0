@@ -28,6 +28,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private const string ArtworksImagesRelativePath = "~/Modules/Teeyoot.Module/Content/vector";
         private const string ArtworkSvgImageFileNameTemplate = "{0}.svg";
         private const string ArtworkPngImageFileNameTemplate = "{0}.png";
+        private const string ArtworkFileNameTemplate = "{0}_{1}";
 
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
@@ -86,7 +87,21 @@ namespace Teeyoot.WizardSettings.Controllers
                 return RedirectToAction("AddArtwork");
             }
 
-            var success = SaveArtworkImages(viewModel.ArtworkSvgImage, viewModel.ArtworkPngImage, viewModel.Name);
+            // If art file with the name already exist we are adding GUID ending
+            var fileName = viewModel.Name;
+            var existingArtwork = _artRepository.Table
+                .FirstOrDefault(a => a.Name == viewModel.Name);
+
+            if (existingArtwork != null)
+            {
+                fileName = string.Format(ArtworkFileNameTemplate, viewModel.Name, Guid.NewGuid());
+            }
+
+            var success = SaveArtworkImages(
+                viewModel.ArtworkSvgImage,
+                viewModel.ArtworkPngImage,
+                fileName);
+
             if (!success)
             {
                 return RedirectToAction("AddArtwork");
@@ -130,9 +145,20 @@ namespace Teeyoot.WizardSettings.Controllers
 
             var artwork = _artRepository.Get(viewModel.Id);
 
-            var success = UpdateArtworkImages(viewModel.ArtworkSvgImage,
+            // If art file with the name already exist we are adding GUID ending
+            var fileName = viewModel.Name;
+            var existingArtwork = _artRepository.Table
+                .FirstOrDefault(a => a.Name == viewModel.Name && a != artwork);
+
+            if (existingArtwork != null)
+            {
+                fileName = string.Format(ArtworkFileNameTemplate, viewModel.Name, Guid.NewGuid());
+            }
+
+            var success = UpdateArtworkImages(
+                viewModel.ArtworkSvgImage,
                 viewModel.ArtworkPngImage,
-                viewModel.Name,
+                fileName,
                 artwork.Name);
 
             if (!success)
@@ -142,9 +168,9 @@ namespace Teeyoot.WizardSettings.Controllers
 
             artwork.Name = viewModel.Name;
             artwork.FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name);
-
             _artRepository.Update(artwork);
 
+            _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been edited.", artwork.Name));
             return RedirectToAction("Index");
         }
 
@@ -177,7 +203,10 @@ namespace Teeyoot.WizardSettings.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool SaveArtworkImages(HttpPostedFileBase svgImageFile, HttpPostedFileBase pngImageFile, string fileName)
+        private bool SaveArtworkImages(
+            HttpPostedFileBase svgImageFile,
+            HttpPostedFileBase pngImageFile,
+            string fileName)
         {
             if (svgImageFile == null)
             {
@@ -188,12 +217,6 @@ namespace Teeyoot.WizardSettings.Controllers
             if (pngImageFile == null)
             {
                 _orchardServices.Notifier.Error(T("PNG image file was not provided"));
-                return false;
-            }
-
-            if (CheckIfAlreadyExists(fileName, ArtworkSvgImageFileNameTemplate) != null)
-            {
-                _orchardServices.Notifier.Error(T("Images with the same name already exist"));
                 return false;
             }
 
