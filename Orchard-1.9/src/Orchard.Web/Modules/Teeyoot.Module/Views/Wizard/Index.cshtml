@@ -707,7 +707,7 @@
             </span>
             <br>
             <strong>
-                Design
+                @T("Design")
             </strong>
             <div class='flow-step-after'>
                 <div class='dot one'></div>
@@ -755,7 +755,7 @@
             </span>
             <br>
             <strong>
-                Description
+                @T("Description")
             </strong>
             <div class='flow-step-before'>
                 <div class='dot one'></div>
@@ -792,7 +792,7 @@
                                                             <div id="tab1-content" class="tab-content teespring-well designer-well active tab-Text">
                                                                 <div id="text-string" class="control-group">
                                                                     <label>@T("Enter custom text below")</label>
-                                                                    <textarea id="enter-text" class="form__textfield" placeholder="Add custom text here"></textarea>
+                                                                    <textarea id="enter-text" class="form__textfield" placeholder="@T("Add custom text here")"></textarea>
                                                                 </div>
                                                                 <div class="edit_tool font">
                                                                     <label class="no-bottom">@("Select font")</label>
@@ -800,12 +800,12 @@
                                                                     </div>
                                                                     <div id="font-select-menu" class="containertip">
                                                                         <select class="category-menu">
-                                                                            <option value="Futuristic / Digital">Futuristic / Digital</option>
+                                                                            <option value="@T("Futuristic / Digital")">@T("Futuristic / Digital")</option>
                                                                         </select>
                                                                         <ul class="options"></ul>
                                                                     </div>
                                                                     <div class="clearfix control-group font-color-selection">
-                                                                        <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="text">
+                                                                        <div class="fake-input color-picker standard designer-dropdown" title="@T("Change color")" data-value="text">
                                                                             <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                             <div class="colors shirt-colors containertip">
                                                                                 <ul class="all-colors"></ul>
@@ -820,17 +820,17 @@
                                                                         <div>
                                                                             <select id="outline-select"
                                                                                     class="form-control outline-selector designer-select form__select_menu">
-                                                                                <option value="0">No outline</option>
-                                                                                <option value="0.33">Thin</option>
-                                                                                <option value="0.66">Medium</option>
-                                                                                <option value="1">Thick</option>
+                                                                                <option value="0">@T("No outline")</option>
+                                                                                <option value="0.33">@T("Thin")</option>
+                                                                                <option value="0.66">@T("Medium")</option>
+                                                                                <option value="1">@T("Thick")</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix control-group outline-color-selection">
                                                                         <div class="fake-input color-picker standard designer-dropdown"
                                                                              title="Change color" data-value="outline">
-                                                                            <div class="swatch" title="Black" style="background-color: #000000;"></div>
+                                                                            <div class="swatch" title="@T("Black")" style="background-color: #000000;"></div>
                                                                             <div class="colors shirt-colors containertip">
                                                                                 <!-- <ul class="colors-in-use"></ul>
                                                                                 <hr class="color-picker__divider">-->
@@ -845,27 +845,27 @@
                                                                         <ul id="canvas-options" class="nav">
                                                                             <li>
                                                                                 <input id="snap-to-center" type="checkbox" checked="">
-                                                                                <label>Snap to center</label>
+                                                                                <label>@T("Snap to center")</label>
                                                                             </li>
                                                                         </ul>
                                                                         <div id="panel-context-menu" class="btn-group control-group">
-                                                                            <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                            <span id="duplicate-text" class="tooltip_composer__position" data-tooltip="@T("Duplicate")">
                                                                                 <i class="ts-icon ts-icon-composer-copy"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                                            <span id="item-center" class="tooltip_composer__position" data-tooltip="@T("Center")">
                                                                                 <i class="ts-icon ts-icon-composer-center"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                            <span id="push-back" class="tooltip_composer__position" data-tooltip="@T("Push Behind")">
                                                                                 <i class="ts-icon ts-icon-composer-sendtoback"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                                            <span id="flip-h" class="tooltip_composer__position" data-tooltip="@T("Flip Horizontally")">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
                                                                             </span>
                                                                             <span class="separator"></span>
-                                                                            <span id="flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                                            <span id="flip-v" class="tooltip_composer__position" data-tooltip="@T("Flip Vertically")">
                                                                                 <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
                                                                             </span>
                                                                         </div>
@@ -881,15 +881,15 @@
                                                                         <button id="browse-artwork" style="margin-bottom: -1%;" class="button button--primary search art-button">@T("Use our images")</button>
                                                                         <div class="design-art-search containertip">
                                                                             <form action="." method="get" role="form" id="artwork-search-form">
-                                                                                <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="Search Artwork" style="border-color: #ff4f00;">
-                                                                                <button style="margin-top: -1%;" class="button button--primary search wizard-button">Search</button>
+                                                                                <input id="artwork-query" name="query" class="query form__textfield" type="text" placeholder="@T("Search Artwork")" style="border-color: #ff4f00;">
+                                                                                <button style="margin-top: -1%;" class="button button--primary search wizard-button">@T("Search")</button>
                                                                             </form>
                                                                             <div class="art-search-container">
                                                                                 <!-- list of artworks -->
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="hr"><span>OR</span></div>
+                                                                    <div class="hr"><span>@T("OR")</span></div>
                                                                     <button id="artwork-upload" style="border-radius:45px;" class="button button--primary upload art-button">@T("Upload your images")</button>
                                                                 </div>
                                                                 <div id="dropbox" class="control-group" style="display: none; border: none;">
@@ -912,8 +912,8 @@
                                                                 <div id="art-style" class="design-area__art--edit" style="display: none;">
                                                                     <div id="art-built-in">
                                                                         <div class="control-group clearfix art-color-selection">
-                                                                            <label>Art color </label>
-                                                                            <div class="fake-input color-picker standard designer-dropdown" title="Change color" data-value="art">
+                                                                            <label>@T("Art color ")</label>
+                                                                            <div class="fake-input color-picker standard designer-dropdown" title="@T("Change color")" data-value="art">
                                                                                 <div class="swatch" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                                                 <div class="colors shirt-colors containertip">
                                                                                     <ul class="all-colors"></ul>
@@ -921,21 +921,21 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="edit_tool">
-                                                                            <label style="float: left;">Add an outline</label>
+                                                                            <label style="float: left;">@T("Add an outline")</label>
                                                                             <div class="clearfix control-group outline-selection">
                                                                                 <div>
                                                                                     <select id="outline-select-art" class="form-control outline-selector designer-select form__select_menu" value="0">
-                                                                                        <option value="0">No outline</option>
-                                                                                        <option value="0.33">Thin</option>
-                                                                                        <option value="0.66">Medium</option>
-                                                                                        <option value="1">Thick</option>
+                                                                                        <option value="0">@T("No outline")</option>
+                                                                                        <option value="0.33">@T("Thin")</option>
+                                                                                        <option value="0.66">@T("Medium")</option>
+                                                                                        <option value="1">@T("Thick")</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="clearfix control-group outline-color-selection">
                                                                                 <div class="fake-input color-picker standard designer-dropdown"
-                                                                                     title="Change color" data-value="art-outline">
-                                                                                    <div class="swatch" title="Black"
+                                                                                     title="@T("Change color")" data-value="art-outline">
+                                                                                    <div class="swatch" title="@T("Black")"
                                                                                          style="background-color: #000000;"></div>
                                                                                     <div class="colors shirt-colors containertip">
                                                                                         <ul class="all-colors"></ul>
@@ -946,9 +946,9 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="file control-group" style="display: none">
-                                                                        <label>Uploaded File</label>
+                                                                        <label>@T("Uploaded File")</label>
                                                                         <div class="fake-input color-picker standard uploaded-file">
-                                                                            <div class="remove">Remove</div>
+                                                                            <div class="remove">@T("Remove")</div>
                                                                             <span>4bu4tt-uploads/a0sxhqes2zczbyb9-bea9ca511cc0a0180e5648acf0c062cb</span>
                                                                         </div>
                                                                     </div>
@@ -957,27 +957,27 @@
                                                                             <ul id="art-canvas-options" class="nav">
                                                                                 <li>
                                                                                     <input id="art-snap-to-center" type="checkbox" checked="">
-                                                                                    <label>Snap to center</label>
+                                                                                    <label>@T("Snap to center")</label>
                                                                                 </li>
                                                                             </ul>
                                                                             <div id="art-panel-context-menu" class="btn-group control-group">
-                                                                                <span id="art-duplicate" class="tooltip_composer__position" data-tooltip="Duplicate">
+                                                                                <span id="art-duplicate" class="tooltip_composer__position" data-tooltip="@T("Duplicate")">
                                                                                     <i class="ts-icon ts-icon-composer-copy"></i>
                                                                                 </span>
                                                                                 <span class="separator"></span>
-                                                                                <span id="art-item-center" class="tooltip_composer__position" data-tooltip="Center">
+                                                                                <span id="art-item-center" class="tooltip_composer__position" data-tooltip="@T("Center")">
                                                                                     <i class="ts-icon ts-icon-composer-center"></i>
                                                                                 </span>
                                                                                 <span class="separator"></span>
-                                                                                <span id="art-push-back" class="tooltip_composer__position" data-tooltip="Push Behind">
+                                                                                <span id="art-push-back" class="tooltip_composer__position" data-tooltip="@T("Push Behind")">
                                                                                     <i class="ts-icon ts-icon-composer-sendtoback"></i>
                                                                                 </span>
                                                                                 <span class="separator"></span>
-                                                                                <span id="art-flip-h" class="tooltip_composer__position" data-tooltip="Flip Horizontally">
+                                                                                <span id="art-flip-h" class="tooltip_composer__position" data-tooltip="@T("Flip Horizontally")">
                                                                                     <i class="ts-icon ts-icon-composer-reflect-horizontal"></i>
                                                                                 </span>
                                                                                 <span class="separator"></span>
-                                                                                <span id="art-flip-v" class="tooltip_composer__position" data-tooltip="Flip Vertically">
+                                                                                <span id="art-flip-v" class="tooltip_composer__position" data-tooltip="@T("Flip Vertically")">
                                                                                     <i class="ts-icon ts-icon-composer-reflect-vertical"></i>
                                                                                 </span>
                                                                             </div>
@@ -986,7 +986,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="teespring-well designer-well" id="clientArts">
-                                                                <label id="labArt" style="display:none">Recently Used Artwork</label>
+                                                                <label id="labArt" style="display:none">@T("Recently Used Artwork")</label>
                                                                 <ul class="nav"></ul>
                                                             </div>
                                                         </div>
@@ -1003,18 +1003,18 @@
                                                                 <div class=" content-inner"></div>
                                                                 <div class="size-dialog aspect-ratio" style="display: none">
                                                                     <div class="aspect-ratio__field width">
-                                                                        <span>Width</span>
+                                                                        <span>@T("Width")</span>
                                                                         <input class="aspect-ratio__field--width width" value="5.58">
-                                                                        <span>in.</span>
+                                                                        <span>@T("in.")</span>
                                                                     </div>
                                                                     <div class="aspect-ratio__field height">
-                                                                        <span>Height</span>
+                                                                        <span>@T("Height")</span>
                                                                         <input class="height" value="1.49">
-                                                                        <span>in.</span>
+                                                                        <span>@T("in.")</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="printable-area-toolbar" id="printable-area-front">
-                                                                    <span>Print Area</span>
+                                                                    <span>@T("Print Area")</span>
                                                                     <div class="design-area-zoom printable-area-zoom">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
@@ -1038,18 +1038,18 @@
                                                                 <div class="content-inner"></div>
                                                                 <div class="size-dialog aspect-ratio" style="display: none">
                                                                     <div class="aspect-ratio__field width">
-                                                                        <span>Width</span>
+                                                                        <span>@T("Width")</span>
                                                                         <input class="aspect-ratio__field--width width" value="5.58">
-                                                                        <span>in.</span>
+                                                                        <span>@T("in.")</span>
                                                                     </div>
                                                                     <div class="aspect-ratio__field height">
-                                                                        <span>Height</span>
+                                                                        <span>@T("Height")</span>
                                                                         <input class="height" value="1.49">
-                                                                        <span>in.</span>
+                                                                        <span>@T("in.")</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="printable-area-toolbar" id="printable-area-back">
-                                                                    <span>Printable Area</span>
+                                                                    <span>@T("Printable Area")</span>
                                                                     <div class="design-area-zoom printable-area-zoom">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-in" src="/Modules/Teeyoot.Module/Content/images/zoom_in_light.svg">
                                                                         <img class="printable-area-zoom-image no-select zoom-light-out" src="/Modules/Teeyoot.Module/Content/images/zoom_out_light.svg">
@@ -1061,8 +1061,8 @@
                                                             <div class="xgridline" style="opacity: 0;"></div>
                                                             <div class="ygridline" style="opacity: 0;"></div>
                                                             <div class="flip-buttons">
-                                                                <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
-                                                                <div class="flip-button flip-button-back no-select flip-button-active"><span class="flip-button__back">Back</span></div>
+                                                                <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>
+                                                                <div class="flip-button flip-button-back no-select flip-button-active"><span class="flip-button__back">@T("Back")</span></div>
                                                             </div>
                                                         </div>
                                                         <!-- end back design -->
@@ -1076,7 +1076,7 @@
                                                 <div class="slide-1-right-box">
                                                     <div class="lab-colors-block">
                                                         <div class="lab-colors-inner">
-                                                            <ul class="lab-colors" data-intro="Choose the colour of your product" id="lab-product-colors">
+                                                            <ul class="lab-colors" data-intro="@T("Choose the colour of your product")" id="lab-product-colors">
                                                                 <!-- colors list -->
                                                             </ul>
                                                         </div>
@@ -1092,7 +1092,7 @@
                                                         <div id="price-display" class="teespring-well designer-well ">
                                                             <div id="color-warning" class="alert alert-error"
                                                                  style="display: none;">
-                                                                Please reduce the amount of colors you are using
+                                                                @T("Please reduce the amount of colors you are using")
                                                             </div>
                                                             <div id="quote">
                                                                 <p class="base-cost-intro" id="count_preview">
@@ -1159,23 +1159,23 @@
                                     <img style="width:530px" id="prodFront" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
 
                                     <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
-                                        <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
+                                        <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">@T("Front")</span></div>
+                                        <div class="flip-button flip-button-back"><span class="flip-button__back">@T("Back")</span></div>
                                     </div>
                                 </div>
                                 <div class="back" id="step-2-back">
                                     <img id="prodBack" style="width:530px" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
 
                                     <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                        <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
-                                        <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
+                                        <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>
+                                        <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">@T("Back")</span></div>
                                     </div>
                                 </div>
                             </div>
                             @*<img  src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">*@
                         </td>
                         <td style="width:50%; vertical-align:top; position:relative;">
-                            <label style="font-weight: bold;">Sales Target</label>
+                            <label style="font-weight: bold;">@T("Sales Target")</label>
                             @*<div class="block">
                                     <div style="display:block">
                                         <input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" onchange="onChangeTrackBar()" list="volsettings" />
@@ -1252,14 +1252,14 @@
                             </table>-->
 
                             <div>
-                                <span>Your target is the number of shirts you are aiming to sell. You must sell at least the minimum for your campaign to proceed. </span>
+                                <span>@T("Your target is the number of shirts you are aiming to sell. You must sell at least the minimum for your campaign to proceed. ")</span>
                             </div>
                             <div>
-                                <span>IMPORTANT: if you sell less than your target your profit per sale will be reduced. </span>
+                                <span>@T("IMPORTANT: if you sell less than your target your profit per sale will be reduced. ")</span>
                             </div>
 
                             <div>
-                                <label style="font-weight: bold; margin-top:3%">Set selling price</label>
+                                <label style="font-weight: bold; margin-top:3%">@T("Set selling price")</label>
                             </div>
 
                             <div id="primary">
@@ -1271,13 +1271,13 @@
                                     <div class="ssp-ssp-metadata-and-col-pick">
                                         <div class="ssp_metadata">
                                             <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
-                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">Teeyoot Premium Tee</h4>
+                                                <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">@T("Teeyoot Premium Tee")</h4>
                                             </div>
                                         </div>
 
 
                                         <div class="clearfix control-group font-color-selection" id="colPick" style="width: 100px">
-                                            <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="Change color" data-value="text">
+                                            <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="@T("Change color")" data-value="text">
                                                 <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
                                                 <div class="colors shirt-colors containertip" id="colors">
                                                     <ul class="all-colorsTwo" id="allColorsTwo"></ul>
@@ -1316,7 +1316,7 @@
                                     </div>
                                 </div>
                                 <div style="height:40px; margin-top: 1.0rem;" class="slide-2-text-after-first-product">
-                                    <span style="font-size:15px;">Add some more styles of t-shirts your customers can buy.</span>
+                                    <span style="font-size:15px;">@T("Add some more styles of t-shirts your customers can buy.")</span>
                                 </div>
                             </div>
 
@@ -1327,11 +1327,11 @@
                             </div>
 
                             <div>
-                                <label style="font-weight: bold;">Estimated profit if you achieve your target</label>
+                                <label style="font-weight: bold;">@T("Estimated profit if you achieve your target")</label>
                             </div>
                             <div>
                                 <span id="total_profit" style="width:20%; color:#FF4F00; font-size:40px"></span>
-                                <button class="Left wizard-button" style="float: right;">Next</button>
+                                <button class="Left wizard-button" style="float: right;">@T("Next")</button>
                             </div>
                             <div></div>
 
@@ -1404,16 +1404,16 @@
                                                                             <img style="width:530px;" id="prodFront3" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_front.png">
 
                                                                             <div id="butt1" style="text-align:center; font-weight: 400; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">Front</span></div>
-                                                                                <div class="flip-button flip-button-back"><span class="flip-button__back">Back</span></div>
+                                                                                <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__front">@T("Front")</span></div>
+                                                                                <div class="flip-button flip-button-back"><span class="flip-button__back">@T("Back")</span></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="back" id="step-3-back" style="height: auto !important;">
                                                                             <img id="prodBack3" style="width:530px;" src="http://d1b2zzpxewkr9z.cloudfront.net/images/products/apparel/product_type_1_back.png">
 
                                                                             <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                                                                <div class="flip-button flip-button-front"><span class="flip-button__front">Front</span></div>
-                                                                                <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">Back</span></div>
+                                                                                <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>
+                                                                                <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white;"><span class="flip-button__back">@T("Back")</span></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1428,25 +1428,25 @@
                                                         @using (Html.BeginFormAntiForgeryPost("LaunchCampaign", FormMethod.Post, new { onsubmit = "sendData();return false;", id = "campaign_details", name = "campaign_form", data_reactid = ".6.0" }))
                                                         {
                                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
-                                                                <label class="has-under-text">Title of campaign</label>
+                                                                <label class="has-under-text">@T("Title of campaign")</label>
                                                                 <p class="has-under-text text-error" id="name_error-text"></p>
                                                                 <input type="text" name="name" class="form__textfield " id="name" value="" data-reactid=".6.0.0.2" style="border-color: #afafaf; width: 100%;">
                                                             </div>
                                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                                <label class="has-under-text">Description</label>
-                                                                <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                                                                <label class="has-under-text">@T("Description")</label>
+                                                                <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
                                                                     <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
-                                                                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Decribe your campaign here…" style="width: 810px; height: 200px"></textarea>
+                                                                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="@T("Decribe your campaign here…")" style="width: 810px; height: 200px"></textarea>
                                                                 </div>
                                                             </div>
                                                             @*<a style="text-decoration:none; color:#2c62b0;" id="openTags"><span>Tag your campaign »</span></a>*@
-                                                            <input type="button" id="openTagsButton" onclick="javascript:openTagsAll();" style="border: none; text-decoration: none; color: rgb(44, 98, 176); background: none; padding: 0; margin: 0; width: 150px;" value="Tag your campaign »" />
+                                                        <input type="button" id="openTagsButton" onclick="javascript:openTagsAll();" style="border: none; text-decoration: none; color: rgb(44, 98, 176); background: none; padding: 0; margin: 0; width: 150px;" value="@T("Tag your campaign") »" />
 
                                                             <div class="teespring-well designer-well" id="tags" style="display:none">
-                                                                <label>Tags</label>
+                                                                <label>@T("Tags")</label>
                                                                 <p>
                                                                     <label class="display-label">
-                                                                        <span>Enter up to 6 words to describe your campaign so buyers can find it</span>
+                                                                        <span>@T("Enter up to 6 words to describe your campaign so buyers can find it")</span>
                                                                     </label>
                                                                 </p>
                                                                 @*  <input type="text" name="name" class="form__textfield " id="inputTags" value="">*@
@@ -1454,7 +1454,7 @@
                                                             </div>
 
                                                             <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
-                                                                <label>Campaign duration</label>
+                                                                <label>@T("Campaign duration")</label>
                                                                 <p class="under-text">
                                                                     @*<span id="arrive-by-estimate">US orders will arrive 10-14 days after the end of the campaign.</span>*@
                                                                     <span data-reactid=".6.0.3.1.1"> </span>
@@ -1462,16 +1462,16 @@
                                                                     </a>
                                                                 </p>
                                                                 <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
-                                                                    <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">3 Days  (Ending  @DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
-                                                                    <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 Days  (Ending  @DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
-                                                                    <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 Days  (Ending  @DateTime.Now.AddDays(7).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
-                                                                    <option data-attr-delay="0" value="14" data-reactid=".6.0.3.2.$14">14 Days  (Ending  @DateTime.Now.AddDays(14).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
-                                                                    <option data-attr-delay="0" value="21" data-reactid=".6.0.3.2.$21">21 Days  (Ending  @DateTime.Now.AddDays(21).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
-                                                                    <option data-attr-delay="0" value="28" data-reactid=".6.0.3.2.$28">28 Days  (Ending  @DateTime.Now.AddDays(28).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                    <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">3 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                    <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                    <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(7).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                    <option data-attr-delay="0" value="14" data-reactid=".6.0.3.2.$14">14 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(14).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                    <option data-attr-delay="0" value="21" data-reactid=".6.0.3.2.$21">21 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(21).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                    <option data-attr-delay="0" value="28" data-reactid=".6.0.3.2.$28">28 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(28).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
                                                                 </select>
                                                             </div>
                                                             <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
-                                                                <label>Campaign URL</label>
+                                                                <label>@T("Campaign URL")</label>
                                                                 @*<p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>*@
                                                                 <p class="has-under-text text-error" id="url_error-text"></p>
                                                                 <p class="inline-input-text  small-bottom" style="display: inline;">
@@ -1481,11 +1481,11 @@
                                                             </div>
 
                                                             <div class="teespring-well designer-well">
-                                                                <label>Other Options</label>
+                                                                <label>@T("Other Options")</label>
                                                                 <p>
                                                                     <label class="checkbox display-label">
                                                                         <input type="checkbox" name="backdefaultside" id="backdefaultside" value="1">
-                                                                        <span>By default show the back of the shirt</span>
+                                                                        <span>@T("By default show the back of the shirt")</span>
                                                                     </label>
                                                                 </p>
                                                             </div>
@@ -1503,10 +1503,10 @@
 
                                                             <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">Launch Campaign</button>
+                                                                <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">@T("Launch Campaign")</button>
                                                                 <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                     <span>
-                                                                        <span>By clicking this button, I accept Teeyoot's </span>
+                                                                        <span>@T("By clicking this button, I accept Teeyoot's ")</span>
 
                                                                     </span>
                                                                 </p>
@@ -1521,7 +1521,7 @@
                                     <div id="preview" class="" style="display: none;">
                                         <div class="subheader">
                                             <div class="container">
-                                                This is a preview of your campaign. <a>Click here to go back and continue launching your campaign »</a>
+                                                @T("This is a preview of your campaign. ")<a>@T("Click here to go back and continue launching your campaign »")</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1552,7 +1552,7 @@
                                         <div class="modal-body">
                                             <p>@T("Looks like you tried to upload an image with more than ")<span class="max-colors-count"></span>@T(" colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over ")<span class="max-colors-count"></span>@T(" colors. ")</p>
                                             <p>
-                                                @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")<a href="/FAQ" target="_blank">@T("contact support for assistance")</a>
+                                                @T("If you think the system has made a mistake, and your image is under ")<span class="max-colors-count">@T("</span> colors, please ")</span><a href="/FAQ" target="_blank">@T("contact support for assistance")</a>
                                             </p>
                                             <input type="button" value="@T("Keep designing ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                         </div>
@@ -1755,18 +1755,18 @@
                                             <form action="#" method="post">
                                                 <label class="input-group">
                                                     <span class="hidden">@T("Email")</span>
-                                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                                    <input type="text" class="form-control" name="email" placeholder="@T("Email")">
                                                 </label>
                                                 <label class="has-under-text input-group">
                                                     <span class="hidden">Password</span>
-                                                    <input type="password" class="form-control" name="password" maxlength="50" placeholder="Password">
+                                                    <input type="password" class="form-control" name="password" maxlength="50" placeholder="@T("Password")">
                                                 </label>
                                                 <p class="under-text"><a href="/recover" target="_blank">Forgot your password?</a></p>
                                                 <p>
                                                     <button class="btn btn-large btn-success wizard-button" data-provider="teespring" data-action="sign-in">
                                                         @T("Login to your account »")
                                                     </button>
-                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="@T("Loading...")">
                                                 </p>
                                                 <p><a data-provider="teespring" data-action="sign-up">@T("Want to create a new account?")</a></p>
                                             </form>
@@ -1787,21 +1787,21 @@
                                             <form action="#" method="post">
                                                 <label class="input-group">
                                                     <span class="hidden">@T("Email")</span>
-                                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                                    <input type="text" class="form-control" name="email" placeholder="@T("Email")">
                                                 </label>
                                                 <label class="has-under-text input-group">
                                                     <span class="hidden">@T("Password")</span>
-                                                    <input id="password" type="password" class="form-control" name="password" maxlength="50" placeholder="Password: Must be longer than 6 characters.">
+                                                    <input id="password" type="password" class="form-control" name="password" maxlength="50" placeholder="@T("Password: Must be longer than 8 characters.")">
                                                 </label>
                                                 <label class="input-group">
                                                     <span class="hidden">@T("Confirm Password")</span>
-                                                    <input type="password" class="form-control" name="password_confirmation" maxlength="50" placeholder="Confirm Password">
+                                                    <input type="password" class="form-control" name="password_confirmation" maxlength="50" placeholder="@T("Confirm Password")">
                                                 </label>
                                                 <p>
                                                     <button data-provider="teespring" data-action="sign-up" class="btn btn-large btn-success wizard-button">
                                                         @T("Create your account ")»
                                                     </button>
-                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="Loading...">
+                                                    <img src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/spinner-2a5f9e0222cbc6924d6ddaece61fb6ff.gif" class="spinner" alt="@T("Loading...")">
                                                 </p>
                                                 <p><a data-provider="teespring" data-action="sign-in">@T("Already have an account?")</a></p>
                                             </form>
@@ -1934,13 +1934,16 @@
                                             <p>@T("This might have happened due to a low resolution image or small details that our analysis couldn't perceive.")</p>
                                             <p>
                                                 @T("Possible solutions are")<br>
-                                                a) @T("uploading a bigger artwork"),<br>
-                                                b) @T("uploading a vectorized version"),<br>
-                                                @T("or") c) <a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance").
-                                            </p>
-                                            <input type="button" value="@T("Return to design") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            >
-                                        </div>
+                                                a) @T("uploading a bigger artwork"),>
+                                                                        <br>
+                                                                        b) @T("uploading a vectorized version"),
+                                                                        <br>
+                                                                        @T("or") c)
+                                                                        <a href="/FAQ" target="_blank">@T("contact our customer support")</a> @T("for assistance").
+                                                </p>
+                                                                        <input type="button" value="@T("Return to design") »" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+                                                >
+</div>
                                     </div>
                                 </div>
                             </div>
@@ -1969,7 +1972,6 @@
                                         <div class="modal-body">
                                             <p>@T("Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another.")</p>
                                             <input type="button" value="@T("Return to design ")»" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            >
                                         </div>
                                     </div>
                                 </div>
@@ -1984,7 +1986,7 @@
                                         <div class="modal-body">
                                             <p>@T("To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.")</p>
                                             <input id="technique-change" type="button" value="@T("Select product")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
-                                            ><input id="technique-abort" type="button" value="Cancel" class="btn btn-large" data-dismiss="modal">
+                                            <input id="technique-abort" type="button" value="@T("Cancel")" class="btn btn-large" data-dismiss="modal">
                                         </div>
                                     </div>
                                 </div>
@@ -2003,7 +2005,7 @@
 <div class="modal-dialog modal fade modal-login" id="modal_auth">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close login_modal_close" data-dismiss="modal" aria-label="Close">&times;</button>
+            <button type="button" class="close login_modal_close" data-dismiss="modal" aria-label="@T("Close")">&times;</button>
         </div>
         <div class="modal-body">
             <div id="login_selection" class="auth-window">

@@ -4,12 +4,13 @@
     Style.Include("track.css");
 }
 
-@using (Script.Foot()) { 
-<script type="text/javascript">
-    window.onload = function () {
-        document.title = "Track order | Teeyoot";
-    }
-</script>
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            document.title = "Track order | Teeyoot";
+        }
+    </script>
 }
 <div class="order-tracker">
     <div class="row">
@@ -27,9 +28,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-current" id="track-order">
                         <div class="track-state">
-                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <img alt="@T("Order")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
                             @T("Order placed")
-                            <span>1</span>
+                            ><span>1</span>
                         </div>
                         <div class="track-arrow"></div>
                     </div>
@@ -38,9 +39,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-future" id="track-print">
                         <div class="track-state">
-                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            <img alt="@T("Print")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
                             @T("Printing")
-                            <span>2</span>
+                            ><span>2</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -50,9 +51,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-future" id="track-ship">
                         <div class="track-state">
-                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            <img alt="@T("Ship")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
                             @T("Shipped")
-                            <span>3</span>
+                            ><span>3</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -62,9 +63,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-future" id="track-deliver">
                         <div class="track-state">
-                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            <img alt="@T("Deliver")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
                             @T("Delivered")
-                            <span>4</span>
+                            ><span>4</span>
                         </div>
                         <div class="track-margin-line"></div>
                     </div>
@@ -76,9 +77,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-order">
                         <div class="track-state">
-                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <img alt="@T("Order")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
                             @T("Order placed")
-                            <span>1</span>
+                            ><span>1</span>
                         </div>
                         <div class="track-arrow"></div>
                     </div>
@@ -87,9 +88,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-current" id="track-print">
                         <div class="track-state">
-                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            <img alt="@T("Print")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
                             @T(Model.Status.Name)
-                            <span>2</span>
+                            ><span>2</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -99,9 +100,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-future" id="track-ship">
                         <div class="track-state">
-                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            <img alt="@T("Ship")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
                             @T("Shipped")
-                            <span>3</span>
+                            ><span>3</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -111,9 +112,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-future" id="track-deliver">
                         <div class="track-state">
-                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            <img alt="@T("Deliver")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
                             @T("Delivered")
-                            <span>4</span>
+                            ><span>4</span>
                         </div>
                         <div class="track-margin-line"></div>
                     </div>
@@ -125,9 +126,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-order">
                         <div class="track-state">
-                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <img alt="@T("Order")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
                             @T("Order placed")
-                            <span>1</span>
+                            ><span>1</span>
                         </div>
                         <div class="track-arrow"></div>
                     </div>
@@ -136,9 +137,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-print">
                         <div class="track-state">
-                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            <img alt="@T("Print")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
                             @T("Printing")
-                            <span>2</span>
+                            ><span>2</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -148,9 +149,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-current" id="track-ship">
                         <div class="track-state">
-                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            <img alt="@T("Ship")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
                             @T("Shipped")
-                            <span>3</span>
+                            ><span>3</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -160,9 +161,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-future" id="track-deliver">
                         <div class="track-state">
-                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            <img alt="@T("Deliver")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
                             @T("Delivered")
-                            <span>4</span>
+                            ><span>4</span>
                         </div>
                         <div class="track-margin-line"></div>
                     </div>
@@ -174,9 +175,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-order">
                         <div class="track-state">
-                            <img alt="Order" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
+                            <img alt="@T("Order")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/order-1cafc063faffc3ee4e2ec8fc8bff8572.png">
                             @T("Order placed")
-                            <span>1</span>
+                            ><span>1</span>
                         </div>
                         <div class="track-arrow"></div>
                     </div>
@@ -185,9 +186,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-print">
                         <div class="track-state">
-                            <img alt="Print" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
+                            <img alt="@T("Print")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/print-b7289e70dccefac91318aae2b79684ca.png">
                             @T("Printing")
-                            <span>2</span>
+                            ><span>2</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -197,9 +198,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-past" id="track-ship">
                         <div class="track-state">
-                            <img alt="Ship" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
+                            <img alt="@T("Ship")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/ship-9952054f10dbebebbbb7e64a0fc16bcc.png">
                             @T("Shipped")
-                            <span>3</span>
+                            ><span>3</span>
                         </div>
                         <div class="track-arrow"></div>
                         <div class="track-margin-line"></div>
@@ -209,9 +210,9 @@
                 <div class="col-sm-3">
                     <div class="track-position track-order-current" id="track-deliver">
                         <div class="track-state">
-                            <img alt="Deliver" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
+                            <img alt="@T("Deliver")" src="https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/v2/web/track/deliver-0e278f07a2750522b9d74324b271d90a.png">
                             @T("Delivered")
-                            <span>4</span>
+                            ><span>4</span>
                         </div>
                         <div class="track-margin-line"></div>
                     </div>
@@ -344,48 +345,48 @@
     -->
 
 
-    <div class="modal-dialog modal fade" id="modal_form">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                <h4 class="modal-title h4">@T("Cancel Order") #@Model.OrderPublicId</h4>
-            </div>
-            <div class="modal-body">
-                <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default tb-button-orange" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
-                <button type="button" class="btn btn-primary tb-button-orange" id="btn_not_now">@T("Not now")</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+<div class="modal-dialog modal fade" id="modal_form">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+            <h4 class="modal-title h4">@T("Cancel Order") #@Model.OrderPublicId</h4>
+        </div>
+        <div class="modal-body">
+            <p>@T("Are you sure you want to cancel your order? You will not be able to re-open this order.")</p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-default tb-button-orange" href="@Url.Action("CancelOrder", new { orderId = Model.OrderId, publicId = Model.OrderPublicId })">@T("Cancel order")</a>
+            <button type="button" class="btn btn-primary tb-button-orange" id="btn_not_now">@T("Not now")</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 
-    <div id="overlay"></div>
-    @using (Script.Foot())
+<div id="overlay"></div>
+@using (Script.Foot())
 {
     <script>
 
-            $(document).ready(function () {
-                $('#cancel_order_link').click(function (event) {
-                    event.preventDefault();
-                    $('#overlay').fadeIn(400,
-                        function () {
-                            $('#modal_form')
-                                .css('display', 'block')
-                                .animate({ opacity: 1, top: '50%' }, 200);
-                        });
-                });
-
-                $('#overlay, #btn_not_now, .modal-header .close').click(function () {
-                    $('#modal_form')
-                        .animate({ opacity: 0, top: '45%' }, 200,
-                            function () {
-                                $(this).css('display', 'none');
-                                $('#overlay').fadeOut(400);
-                            }
-                        );
-                });
+        $(document).ready(function () {
+            $('#cancel_order_link').click(function (event) {
+                event.preventDefault();
+                $('#overlay').fadeIn(400,
+                    function () {
+                        $('#modal_form')
+                            .css('display', 'block')
+                            .animate({ opacity: 1, top: '50%' }, 200);
+                    });
             });
 
-</script>
+            $('#overlay, #btn_not_now, .modal-header .close').click(function () {
+                $('#modal_form')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () {
+                            $(this).css('display', 'none');
+                            $('#overlay').fadeOut(400);
+                        }
+                    );
+            });
+        });
+
+    </script>
 }
