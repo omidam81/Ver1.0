@@ -692,6 +692,7 @@
     <Content Include="Styles\menu.teeyoot-admin.css" />
     <Content Include="Styles\nouislider.css" />
     <Content Include="Styles\nouislider.min.css" />
+    <Content Include="Styles\oops.css" />
     <Content Include="Styles\Payment.css" />
     <Content Include="Styles\campaign.css" />
     <Content Include="Styles\price.css" />
@@ -699,6 +700,9 @@
     <Content Include="Styles\selectize.css" />
     <Content Include="Styles\track.css" />
     <Content Include="Styles\Wizard.css" />
+    <Content Include="Views\Wizard\Oops.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
