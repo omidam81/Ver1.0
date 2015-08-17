@@ -12,8 +12,12 @@
         @Html.TextBoxFor(m => m.Name, new {@class = "text large"})
     </fieldset>
     <fieldset>
-        @Html.LabelFor(m => m.ArtworkImage, T("Artwork Image (only *.png allowed)"))
-        @Html.TextBoxFor(m => m.ArtworkImage, new {type = "file", accept = "image/png"})
+        @Html.LabelFor(m => m.ArtworkSvgImage, T("Artwork SVG Image (only *.svg allowed)"))
+        @Html.TextBoxFor(m => m.ArtworkSvgImage, new {type = "file", accept = "image/svg"})
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.ArtworkPngImage, T("Artwork PNG Image (only *.png allowed)"))
+        @Html.TextBoxFor(m => m.ArtworkPngImage, new {type = "file", accept = "image/png"})
     </fieldset>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">@T("Save")</button>

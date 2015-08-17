@@ -10,6 +10,7 @@ namespace Teeyoot.WizardSettings.ViewModels
         [Required]
         public string Name { get; set; }
 
-        public HttpPostedFileBase ArtworkImage { get; set; }
+        public HttpPostedFileBase ArtworkSvgImage { get; set; }
+        public HttpPostedFileBase ArtworkPngImage { get; set; }
     }
 }

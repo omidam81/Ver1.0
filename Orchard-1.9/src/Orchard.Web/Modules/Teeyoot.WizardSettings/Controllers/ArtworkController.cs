@@ -25,7 +25,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IOrchardServices _orchardServices;
 
         private const string ArtworksImagesRelativePath = "~/Modules/Teeyoot.Module/Content/vector";
-        private const string ArtworkImageFileNameTemplate = "{0}.png";
+        private const string ArtworkSvgImageFileNameTemplate = "{0}.svg";
+        private const string ArtworkPngImageFileNameTemplate = "{0}.png";
 
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
@@ -89,10 +90,10 @@ namespace Teeyoot.WizardSettings.Controllers
                 return RedirectToAction("AddArtwork");
             }
 
-            var success = SaveArtworkImage(viewModel.ArtworkImage, viewModel.Name);
+            var success = SaveArtworkImages(viewModel.ArtworkSvgImage, viewModel.ArtworkPngImage, viewModel.Name);
             if (success)
             {
-                _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been added.", viewModel.Name));
+                _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been added", viewModel.Name));
             }
 
             return RedirectToAction("Index");
@@ -100,7 +101,8 @@ namespace Teeyoot.WizardSettings.Controllers
 
         public ActionResult EditArtwork(string name)
         {
-            var artworkName = Path.GetFileNameWithoutExtension(CheckIfAlreadyExists(name));
+            var artworkName =
+                Path.GetFileNameWithoutExtension(CheckIfAlreadyExists(name, ArtworkSvgImageFileNameTemplate));
 
             var viewModel = new ArtworkViewModel
             {
@@ -123,42 +125,29 @@ namespace Teeyoot.WizardSettings.Controllers
                 return RedirectToAction("EditArtwork");
             }
 
-            var imagePhysicalPath = CheckIfAlreadyExists(viewModel.CurrentName);
+            var success = UpdateArtworkImages(viewModel.ArtworkSvgImage,
+                viewModel.ArtworkPngImage,
+                viewModel.Name,
+                viewModel.CurrentName);
 
-            if (viewModel.ArtworkImage != null)
-            {
-                System.IO.File.Delete(imagePhysicalPath);
-                SaveArtworkImage(viewModel.ArtworkImage, viewModel.Name);
-            }
-            else
-            {
-                var existingImagePhysicalPath = CheckIfAlreadyExists(viewModel.Name);
-                if (existingImagePhysicalPath == null)
-                {
-                    var newImageFileName = string.Format(ArtworkImageFileNameTemplate, viewModel.Name);
-                    var newImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), newImageFileName);
-
-                    System.IO.File.Move(imagePhysicalPath, newImagePhysicalPath);
-                }
-                else if (Path.GetFileNameWithoutExtension(existingImagePhysicalPath) != viewModel.Name)
-                {
-                    _orchardServices.Notifier.Error(T("Image with the same name already exist"));
-                    return RedirectToAction("EditArtwork", new {name = viewModel.CurrentName});
-                }
-            }
-
-            _orchardServices.Notifier.Information(T("Artwork has been edited."));
-            return RedirectToAction("Index");
+            return !success
+                ? RedirectToAction("EditArtwork", new {name = viewModel.CurrentName})
+                : RedirectToAction("Index");
         }
 
         public ActionResult DeleteArtwork(string name)
         {
             try
             {
-                var imageFileName = string.Format(ArtworkImageFileNameTemplate, name);
-                var imagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), imageFileName);
+                var svgImageFileName = string.Format(ArtworkSvgImageFileNameTemplate, name);
+                var svgImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), svgImageFileName);
 
-                System.IO.File.Delete(imagePhysicalPath);
+                System.IO.File.Delete(svgImagePhysicalPath);
+
+                var pngImageFileName = string.Format(ArtworkPngImageFileNameTemplate, name);
+                var pngImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), pngImageFileName);
+
+                System.IO.File.Delete(pngImagePhysicalPath);
             }
             catch (Exception exception)
             {
@@ -171,32 +160,91 @@ namespace Teeyoot.WizardSettings.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool SaveArtworkImage(HttpPostedFileBase imageFile, string fileName)
+        private bool SaveArtworkImages(HttpPostedFileBase svgImageFile, HttpPostedFileBase pngImageFile, string fileName)
         {
-            if (imageFile == null)
+            if (svgImageFile == null)
             {
-                _orchardServices.Notifier.Error(T("Image file was not provided"));
+                _orchardServices.Notifier.Error(T("SVG image file was not provided"));
                 return false;
             }
 
-            if (CheckIfAlreadyExists(fileName) != null)
+            if (pngImageFile == null)
             {
-                _orchardServices.Notifier.Error(T("Image with the same name already exist"));
+                _orchardServices.Notifier.Error(T("PNG image file was not provided"));
                 return false;
             }
 
-            if (!IsImagePng(imageFile))
+            if (CheckIfAlreadyExists(fileName, ArtworkSvgImageFileNameTemplate) != null)
             {
-                _orchardServices.Notifier.Error(T("Image file should be *.png"));
+                _orchardServices.Notifier.Error(T("Images with the same name already exist"));
                 return false;
             }
 
-            var imageFileName = string.Format(ArtworkImageFileNameTemplate, fileName);
-            var imagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), imageFileName);
+            if (!IsImageSvg(svgImageFile))
+            {
+                _orchardServices.Notifier.Error(T("SVG image file should be *.svg"));
+                return false;
+            }
 
-            imageFile.SaveAs(imagePhysicalPath);
+            if (!IsImagePng(pngImageFile))
+            {
+                _orchardServices.Notifier.Error(T("PNG image file should be *.png"));
+                return false;
+            }
+
+            var svgImageFileName = string.Format(ArtworkSvgImageFileNameTemplate, fileName);
+            var svgImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), svgImageFileName);
+
+            svgImageFile.SaveAs(svgImagePhysicalPath);
+
+            var pngImageFileName = string.Format(ArtworkPngImageFileNameTemplate, fileName);
+            var pngImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), pngImageFileName);
+
+            pngImageFile.SaveAs(pngImagePhysicalPath);
 
             return true;
+        }
+
+        private bool UpdateArtworkImages(
+            HttpPostedFileBase svgImageFile,
+            HttpPostedFileBase pngImageFile,
+            string newFileName,
+            string currentFileName)
+        {
+            var currentSvgImagePhysicalPath = CheckIfAlreadyExists(currentFileName, ArtworkSvgImageFileNameTemplate);
+            var newSvgImageFileName = string.Format(ArtworkSvgImageFileNameTemplate, newFileName);
+            var newSvgImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), newSvgImageFileName);
+
+            if (svgImageFile != null)
+            {
+                System.IO.File.Delete(currentSvgImagePhysicalPath);
+                svgImageFile.SaveAs(newSvgImagePhysicalPath);
+            }
+            else
+            {
+                System.IO.File.Move(currentSvgImagePhysicalPath, newSvgImagePhysicalPath);
+            }
+
+            var currentPngImagePhysicalPath = CheckIfAlreadyExists(currentFileName, ArtworkPngImageFileNameTemplate);
+            var newPngImageFileName = string.Format(ArtworkPngImageFileNameTemplate, newFileName);
+            var newPngImagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), newPngImageFileName);
+
+            if (pngImageFile != null)
+            {
+                System.IO.File.Delete(currentPngImagePhysicalPath);
+                pngImageFile.SaveAs(newPngImagePhysicalPath);
+            }
+            else
+            {
+                System.IO.File.Move(currentPngImagePhysicalPath, newPngImagePhysicalPath);
+            }
+
+            return true;
+        }
+
+        private static bool IsImageSvg(HttpPostedFileBase imageFile)
+        {
+            return Path.GetExtension(imageFile.FileName) == ".svg";
         }
 
         private static bool IsImagePng(HttpPostedFileBase imageFile)
@@ -209,9 +257,9 @@ namespace Teeyoot.WizardSettings.Controllers
             return strHeader.ToLowerInvariant().EndsWith("png");
         }
 
-        private string CheckIfAlreadyExists(string name)
+        private string CheckIfAlreadyExists(string name, string template)
         {
-            var imageFileName = string.Format(ArtworkImageFileNameTemplate, name);
+            var imageFileName = string.Format(template, name);
             var imagePhysicalPath = Path.Combine(Server.MapPath(ArtworksImagesRelativePath), imageFileName);
 
             return System.IO.File.Exists(imagePhysicalPath) ? imagePhysicalPath : null;
