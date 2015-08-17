@@ -638,7 +638,17 @@ namespace Teeyoot.Module
                 table => table
                     .DropColumn("ColoursPerPrint"));
 
-            return 64;
+            SchemaBuilder.CreateTable(typeof(BringBackCampaignRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("CampaignRecord_Id")
+                    .Column<string>("Email", c => c.NotNull())
+                );
+
+            SchemaBuilder.CreateForeignKey("BringBackCampaign_Order", "BringBackCampaignRecord",
+                new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+
+            return 65;
         }
 
         public int UpdateFrom2()
@@ -1368,6 +1378,21 @@ namespace Teeyoot.Module
                     .DropColumn("ColoursPerPrint"));
 
             return 64;
+        }
+
+        public int UpdateFrom64()
+        {
+            SchemaBuilder.CreateTable(typeof(BringBackCampaignRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("CampaignRecord_Id")
+                    .Column<string>("Email", c => c.NotNull())                  
+                );
+
+            SchemaBuilder.CreateForeignKey("BringBackCampaign_Order", "BringBackCampaignRecord",
+                new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+           
+            return 65;
         }
     }
 }

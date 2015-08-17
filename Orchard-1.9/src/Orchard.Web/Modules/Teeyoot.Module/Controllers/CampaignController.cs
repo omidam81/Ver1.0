@@ -54,11 +54,18 @@ namespace Teeyoot.Module.Controllers
 
                     if (campaign.IsApproved == true || Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId)
                     {
-
-                        if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.IsApproved == false)
+                        if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.Rejected == true)
                         {
-                            string infoMessage = String.Format("Your design has been sent, wait for confirmation.");
+                            string infoMessage = String.Format("Your campaign have been rejected!");
                             _notifier.Add(NotifyType.Information, T(infoMessage));
+                        }
+                        else
+                        {
+                            if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.IsApproved == false)
+                            {
+                                string infoMessage = String.Format("Your design has been sent, wait for confirmation.");
+                                _notifier.Add(NotifyType.Information, T(infoMessage));
+                            }
                         }
 
                         CampaignIndexViewModel model = new CampaignIndexViewModel() { };

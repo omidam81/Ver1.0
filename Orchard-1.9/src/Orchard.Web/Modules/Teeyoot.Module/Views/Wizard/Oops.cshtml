@@ -1,0 +1,30 @@
+﻿@{
+    Style.Include("designerTeeyoot.css");
+   
+    Style.Include("oops.css");
+}
+
+<div class="oops-page content">
+    <div class="row">
+        <div class="col-sm-7" style="padding-left:0;">
+            <h1 style="font-weight: bold; font-size: 2.508em;">
+                @T("Sorry")
+            </h1>
+            <p>@T("Sorry, due to excess demand we are not accepting any new campaigns. Please try again in a few days or add your name to our mailing list and we’ll let you know when we are ready to take orders.")</p>
+
+
+            <div class="row">
+                <div class="col-sm-8 lookupMail">
+                    <input class="form-control input-lg input-inline-with-btn" id="clientMail" name="clientMail" placeholder="Indicate your mail" type="text">
+                </div>
+                <div class="col-sm-2">
+                    <input class="trackMail" type="submit" value="@T("Send mail")" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 hidden-xs img-oops">
+            <img alt="Index" src="/Modules/Teeyoot.Module/Content/images/oops.jpg">
+        </div>
+    </div>
+</div>

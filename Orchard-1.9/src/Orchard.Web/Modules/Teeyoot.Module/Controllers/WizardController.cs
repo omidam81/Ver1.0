@@ -552,5 +552,6 @@ namespace Teeyoot.Module.Controllers
 
             return cost;
         }
+        public ActionResult Oops() { return View(); }
     }
 }

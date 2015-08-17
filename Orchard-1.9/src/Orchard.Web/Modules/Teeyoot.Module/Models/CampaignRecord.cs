@@ -57,12 +57,15 @@ namespace Teeyoot.Module.Models
 
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
-        public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; } 
+        public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; }
+
+        public virtual IList<BringBackCampaignRecord> BackCampaign { get; set; }
 
         public CampaignRecord()
         {
             Products = new List<CampaignProductRecord>();
             Categories = new List<LinkCampaignAndCategoriesRecord>();
+            BackCampaign = new List<BringBackCampaignRecord>();
         }
     }
 }
