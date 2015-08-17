@@ -31,58 +31,58 @@
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.TextBoxFor(m => m.Name, new { @class = "text large", id = "name" })
         @Html.LabelFor(m => m.SelectedProductHeadline, T("Headline"))
-        @Html.DropDownListFor(m => m.SelectedProductHeadline, new SelectList(Model.ProductHeadlines, "Id", "Name"), "Select Headline ...", new { id = "headlines" })
+        @Html.DropDownListFor(m => m.SelectedProductHeadline, new SelectList(Model.ProductHeadlines, "Id", "Name"), T("Select Headline ...").ToString(), new { id = "headlines" })
         @Html.LabelFor(m => m.Materials, T("Materials"))
         @Html.TextBoxFor(m => m.Materials, new { @class = "text large" })
         @Html.LabelFor(m => m.Details, T("Details"))
         @Html.TextBoxFor(m => m.Details, new { @class = "text large" })
     </fieldset>
-    <h3>Product Groups</h3>
+    <h3>@T("Product Groups")</h3>
     <hr />
     <fieldset>
         <select id="groups" name="SelectedProductGroups" multiple="multiple">
             @foreach (var productGroup in Model.ProductGroups)
             {
-                <option value="@productGroup.Id" @if (productGroup.Selected) { <text> selected="selected" </text>           }>
+                <option value="@productGroup.Id" @if (productGroup.Selected) { <text> selected="selected" </text>            }>
                     @productGroup.Name
                 </option>
             }
         </select>
         <hr />
-        <button id="add_group" type="button" class="primaryAction">Add New Group</button>
+        <button id="add_group" type="button" class="primaryAction">@T("Add New Group")</button>
     </fieldset>
-    <h3>Colours</h3>
+    <h3>@T("Colours")</h3>
     <hr />
     <fieldset>
         <select id="colours" multiple="multiple">
             @foreach (var productColour in Model.ProductColours)
             {
-                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected) { <text> selected="selected" disabled="disabled" </text>           }
+                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected) { <text> selected="selected" disabled="disabled" </text>            }
                         data-name="@productColour.Name" data-colour="@productColour.HexValue">
                     @productColour.Name
                 </option>
             }
         </select>
         <hr />
-        <button id="add_colour" type="button" class="primaryAction">Add New Colour</button>
+        <button id="add_colour" type="button" class="primaryAction">@T("Add New Colour")</button>
     </fieldset>
-    <h3>Selected Colours</h3>
+    <h3>@T("Selected Colours")</h3>
     <hr />
     <fieldset>
         <table id="selected-colours-table" class="items">
             <thead>
                 <tr>
                     <td>
-                        Color
+                        @T("Color")
                     </td>
                     <td>
-                        Name
+                        @T("Name")
                     </td>
                     <td>
-                        Base Cost
+                        @T("Base Cost")
                     </td>
                     <td>
-                        Action
+                        @T("Action")
                     </td>
                 </tr>
             </thead>
@@ -101,7 +101,7 @@
                             @Html.TextBoxFor(m => Model.SelectedProductColours[i].BaseCost, new { @class = "row-base-cost" })
                         </td>
                         <td>
-                            <a href="javascript:;" class="remove-product-colour">Remove</a>
+                            <a href="javascript:;" class="remove-product-colour">@T("Remove")</a>
                         </td>
                     </tr>
                 }
@@ -115,7 +115,7 @@
                         <input type="text" value="0" class="row-base-cost" />
                     </td>
                     <td>
-                        <a href="javascript:;" class="remove-product-colour">Remove</a>
+                        <a href="javascript:;" class="remove-product-colour">@T("Remove")</a>
                     </td>
                 </tr>
             </tbody>
@@ -184,7 +184,7 @@
                         <td>
                             <input type="hidden" class="size-id" value="@productSize.Id" />
                             <input type="hidden" class="size-code-id" value="@productSize.SizeCodeId" />
-                            <input class="select-product-size" type="checkbox" @if (productSize.Selected) { <text> checked="checked" </text>           } />
+                            <input class="select-product-size" type="checkbox" @if (productSize.Selected) { <text> checked="checked" </text>            } />
                         </td>
                         <td>
                             @if (productSize.Selected)
@@ -203,27 +203,27 @@
         <select id="selected-product-sizes" name="SelectedProductSizes" multiple="multiple" style="display: none;">
             @foreach (var productSize in Model.ProductSizes)
             {
-                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>           }></option>
+                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>            }></option>
             }
         </select>
         <select id="selected-product-sizes-cost" name="SelectedProductSizesCost" multiple="multiple" style="display: none;">
             @foreach (var productSize in Model.ProductSizes)
             {
-                <option value="@productSize.CostSize" id="product-sizes-cost-@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>                  }></option>
+                <option value="@productSize.CostSize" id="product-sizes-cost-@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>                    }></option>
             }
         </select>
     </fieldset>
-    <h3>Product Images</h3>
+    <h3>@T("Product Images")</h3>
     <hr />
     <fieldset>
         <table class="items">
             <thead>
                 <tr>
                     <td>
-                        Image type
+                        @T("Image type")
                     </td>
                     <td>
-                        Existing file
+                        @T("Existing file")
                     </td>
                     <td>
                         @T("Choose Image. 530x630 with *.png format only allowed.")
@@ -233,7 +233,7 @@
             <tbody>
                 <tr>
                     <td>
-                        Front
+                        @T("Front")
                     </td>
                     <td>
                         @if (Model.ProductImageFrontFileName != null)
@@ -251,7 +251,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Back
+                        @T("Back")
                     </td>
                     <td>
                         @if (Model.ProductImageBackFileName != null)
@@ -271,13 +271,13 @@
         </table>
         @if (Model.ProductImageFrontFileName != null && Model.ProductImageBackFileName != null)
         {
-            <button id="edit_image" type="button" class="primaryAction">Edit Image</button>
+            <button id="edit_image" type="button" class="primaryAction">@T("Edit Image")</button>
         }
     </fieldset>
     <hr />
     <fieldset class="save-button">
-        <button type="submit" class="primaryAction">Save</button>
-        <a id="cancel" class="button" href="@Url.Action("Index", "Product")">Cancel</a>
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a id="cancel" class="button" href="@Url.Action("Index", "Product")">@T("Cancel")</a>
     </fieldset>
     @Html.Partial("Product/SetPrintableArea", Model, ViewData)
 }
@@ -339,7 +339,8 @@
             });
 
             $('#add_colour').click(function () {
-                if (confirm('All unsaved changes will be lost. Are you sure?')) {
+                var conf = @T("All unsaved changes will be lost. Are you sure?");
+                if (confirm(conf)) {
                     window.location.href = '/Admin/Colours/Product/Add?returnUrl=' + encodeURIComponent(window.location.href);
                 }
             });
@@ -349,7 +350,8 @@
             });
 
             $('#add_group').click(function () {
-                if (confirm('All unsaved changes will be lost. Are you sure?')) {
+                var conf = @T("All unsaved changes will be lost. Are you sure?");
+                if (confirm(conf)) {
                     window.location.href = '/Admin/ProductGroups/Add?returnUrl=' + encodeURIComponent(window.location.href);
                 }
             });
@@ -365,7 +367,8 @@
 
                     if (numberOfSelectedSizesWithTheSameSizeCode > 0) {
                         $(this).prop('checked', false);
-                        alert('You have already selected size with such code. There is only one allowed.');
+                        var text = @T("You have already selected size with such code. There is only one allowed.");
+                        alert(text);
                         return;
                     }
                     $('#product-sizes-cost-' + sizeId).css('display', 'block');
@@ -385,31 +388,32 @@
                 cost.value = this.value;
             });
 
-        $('#cancel').click(function () {
-            if (confirm('All unsaved changes will be lost. Are you sure?')) {
+            $('#cancel').click(function () {
+                var text = @T("All unsaved changes will be lost. Are you sure?");
+                if (confirm(text)) {
+                    return true;
+                }
+                return false;
+            });
+
+            $('#product_form').submit(function () {
+                var name = $('#name').val();
+
+                if ($.trim(name) === '') {
+                    alert('Please enter Product Name.');
+                    return false;
+                }
+
+                var selectedHeadline = $('#headlines option:selected').val();
+
+                if (!selectedHeadline) {
+                    alert('Please select Product Headline.');
+                    return false;
+                }
+
+                fixProductColoursIndexing();
                 return true;
-            }
-            return false;
-        });
-
-        $('#product_form').submit(function () {
-            var name = $('#name').val();
-
-            if ($.trim(name) === '') {
-                alert('Please enter Product Name.');
-                return false;
-            }
-
-            var selectedHeadline = $('#headlines option:selected').val();
-
-            if (!selectedHeadline) {
-                alert('Please select Product Headline.');
-                return false;
-            }
-
-            fixProductColoursIndexing();
-            return true;
-        });
+            });
         });
     </script>
 }

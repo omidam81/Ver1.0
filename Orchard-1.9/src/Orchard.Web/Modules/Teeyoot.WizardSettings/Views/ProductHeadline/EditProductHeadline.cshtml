@@ -3,7 +3,7 @@
     Layout.Title = T("Edit Product Headline");
 }
 
-<h2>Edit Product Headline</h2>
+<h2>@T("Edit Product Headline")</h2>
 
 @using (Html.BeginFormAntiForgeryPost())
 {
@@ -13,7 +13,7 @@
         @Html.TextBoxFor(m => m.Name, new {@class = "text large"})
     </fieldset>
     <fieldset class="save-button">
-        <button type="submit" class="primaryAction">Save</button>
-        <a class="button" href="@Url.Action("Index", "ProductHeadline")">Cancel</a>
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "ProductHeadline")">@T("Cancel")</a>
     </fieldset>
 }

@@ -21,8 +21,8 @@
         @Html.TextBoxFor(m => m.Value, new {id = "colour", @class = "text large"})
     </fieldset>
     <fieldset class="save-button">
-        <button type="submit" class="primaryAction">Save</button>
-        <a class="button" href="@Url.Action("Index", "Colour", new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)})">Cancel</a>
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "Colour", new {chooseColourFor = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Product)})">@T("Cancel")</a>
     </fieldset>
 }
 

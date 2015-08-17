@@ -39,7 +39,7 @@
             @using (Html.BeginForm("AddNewCategory", "AdminSearch", FormMethod.Get))
             {
                 <fieldset class="bulk-actions">
-                    @Html.TextBoxFor(m => m.NewCategory, new { @placeholder = @T("New Category") })
+                    @Html.TextBoxFor(m => m.NewCategory, new { @placeholder = T("New Category") })
                     <button type="submit">@T("Add new category")</button>
                 </fieldset>
             }
@@ -61,10 +61,10 @@
                         <input type="checkbox" class="check-all">
                     </th>
                     <th class="visible">
-                        <h3>Visible</h3>
+                        <h3>@T("Visible")</h3>
                     </th>
                     <th class="name">
-                        <h3>Name</h3>
+                        <h3>@T("Name")</h3>
                     </th>
                     <th class="related"></th>
                 </tr>

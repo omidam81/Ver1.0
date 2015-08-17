@@ -13,7 +13,7 @@
 {
     <ul class="menu menu-tags">
         <li class="first">
-            <span class="raw"><h1>See more from:</h1></span>
+            <span class="raw"><h1>@T("See more from:")</h1></span>
         </li>
         @foreach (CampaignCategoriesRecord p in providers)
         {
@@ -30,5 +30,5 @@
 }
 else
 {
-    <div>Sorry, but there is no category</div>
+    <div>@T("Sorry, but there is no category")</div>
 }

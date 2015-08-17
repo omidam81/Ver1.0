@@ -8,11 +8,11 @@
     @if (Model.NotFoundCategories)
     {
 
-        <h1>Сategory "@Model.Filter" does not exist!</h1>
+        <h1>@T("Сategory ")@Model.Filter@T(" does not exist!")</h1>
 
         <div class="row categories-row">
             <div class="title-categories">
-                <h2>Browse Other Categories:</h2>
+                <h2>@T("Browse Other Categories:")</h2>
             </div>
             <div class="categories">
                 <ul class="menu menu-tags">
@@ -34,7 +34,7 @@
 
         <div class="row categories-row">
             <div class="title-categories">
-                <h2>Browse Other Categories:</h2>
+                <h2>@T("Browse Other Categories:")</h2>
             </div>
             <div class="categories">
                 <ul class="menu menu-tags">
@@ -53,7 +53,7 @@
 
         if (Model.NotResult)
         {
-            <h1>No search results for the category "@Model.Filter"!</h1>
+            <h1>@T("No search results for the category") "@Model.Filter"!</h1>
         }
         else
         {
@@ -69,11 +69,11 @@
                 string dateLeft = string.Empty;
                 if (dif.Days < 0)
                 {
-                    dateLeft = "Ended";
+                    dateLeft = T("Ended").ToString();
                 }
                 else
                 {
-                    dateLeft = dif.Days + "d left";
+                    dateLeft = dif.Days + T("d left").ToString();
                 }
 
                 float widthResult = 0;
@@ -145,7 +145,7 @@
                 {
                     <div class="row categories-row">
                         <div class="title-categories">
-                            <h2>Browse Other Categories:</h2>
+                            <h2>@T("Browse Other Categories:")</h2>
                         </div>
                         <div class="categories">
                             <ul class="menu menu-tags">

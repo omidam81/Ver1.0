@@ -8,7 +8,7 @@
 <div class="tb-return-result">
     @if (Model.NotResult)
     {
-        <h1>No search results for the word "@Model.Filter"!</h1>
+        <h1>@T("No search results for the word ")"@Model.Filter"!</h1>
 
     }
     else
@@ -27,7 +27,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            document.title = "Search | Teeyoot";
+            document.title = @T("Search | Teeyoot").ToString();
         });
         //$(function () {
         //    $("div#loading").hide();
@@ -73,5 +73,5 @@
             var heightNew = $('.tee-preview:first-child img').height();
             $('.tee-preview img').css("height", heightNew + "px !important");
         }
-</script>
+    </script>
 }
