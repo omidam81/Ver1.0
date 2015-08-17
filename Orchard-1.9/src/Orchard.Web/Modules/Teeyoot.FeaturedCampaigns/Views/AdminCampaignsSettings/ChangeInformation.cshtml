@@ -16,98 +16,209 @@
 @using (Script.Foot())
 {
     <script>
-        $('.textarea').wysihtml5();
-        $(document).ready(function () {
-            $("#campaign_description_text").val($("#desc").val());
-        });
-    </script>
+        var el = $('.textarea').wysihtml5();
+
+        window.onload = function () {
+        
+            var elems = document.querySelectorAll(".price");
+
+            for (var i = 0; i < elems.length; i++) {
+                var sell = document.getElementById("sell "+i).value;
+                var profit = sell -  document.getElementById("base "+i).innerHTML;
+                document.getElementById(i).innerHTML = profit.toFixed(2);
+            }
+
+            upd();
+        }
+     
+        function profit(i, val) {
+            var id = "base "+i;
+            var costPrice = document.getElementById(id).innerHTML;
+            var profit = val - costPrice.replace(',', '.');
+            document.getElementById(i).innerHTML = profit.toFixed(2);
+        }
+
+
+        function parsePrice() {
+            var elems = document.querySelectorAll(".prices");
+            var prices=elems[0].value;
+            for (var i = 1; i < elems.length; i++) {
+                prices = prices + "," + elems[i].value 
+            }
+            return prices;
+        
+        }
+
+        //function upd() {
+        //    var elem = document.getElementById("updating");
+        //    for (var i = 0; i < 999; i++) {
+        //        setInterval(function () {
+        //            if (elem.innerText == "Updating") {
+        //                elem.innerText = elem.innerText + ".";
+        //            } else if (elem.innerText == "Updating.") {
+        //                elem.innerText = elem.innerText + ".";
+        //            } else if (elem.innerText == "Updating..") {
+        //                elem.innerText = elem.innerText + ".";
+        //            } else if (elem.innerText == "Updating...") {
+        //                elem.innerText = "Updating";
+        //            }
+        //        }, 20000);
+        //    }
+        //}
+
+        function sendData() {
+            var title = document.querySelector('.titleOfCampaign').value;
+            var campaignId = document.getElementById("campaignId").value;
+            var URL = document.querySelector('.URL').value;
+            var day = document.getElementById("day").value;
+            var month = document.getElementById("month").value;
+            var year = document.getElementById("year").value;
+
+            var target = document.querySelector('.Goal').value;
+            var description = document.getElementById("campaign_description_text").value;
+            var prices = parsePrice();
+        
+            
+
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("SaveInfo", "AdminCampaignsSettings"))",
+                data: addAntiForgeryToken({
+                    "CampaignId": campaignId,
+                    "Title": title,
+                    "URL": URL,
+                    "Day": day,
+                    "Mounth": month,
+                    "Year": year,
+                    "Target": target,
+                    "Description": description,
+                    "Prices": prices
+                }),
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        alert("Updated successfully");
+                        window.location.href = '/' + alias;
+                    }
+                },
+                error: function (data, status, resp) {
+                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+
+                }
+            });}
+
+
+            function addAntiForgeryToken(data) {
+                var antiForgeryTokenValue = $('#anti_forgery_token').val();
+                data.__RequestVerificationToken = antiForgeryTokenValue;
+                return data;
+            };
+
+
+
+
+
+
+
+</script>
+
 }
 
-<input type="hidden" id="desc" value='@Model.Description' />
-<fieldset>
+@{
+    <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+    <input type="hidden" id="campaignId" value='@Model.CampaignId' />
+    @*<div id="#desc">@Html.Raw(@Model.Description)</div>*@
+    <fieldset>
     <font class="title">@T("Title of campaign : ")</font>
-    <input class="titleOfCampaign" value="@Model.Title" style="width:353px" />
-</fieldset>
+        <input class="titleOfCampaign" value="@Model.Title" style="width:353px" />
+    </fieldset>
 
-<fieldset>
+    <fieldset>
     <font class="title">@T("URL : ")</font>
-    <input class="URL" value="@Model.Alias" />
-</fieldset>
-<fieldset>
+        <input class="URL" value="@Model.Alias" />
+    </fieldset>
+    <fieldset>
     <font class="title">@T("End Date : ")</font>
     <span class="inp_date">@T("Day")</span>
 
-    <select id="day">
-        @for (int i = 1; i <= 31; i++)
-        {
-            if (i == Model.Day)
+        <select id="day">
+            @for (int i = 1; i <= 31; i++)
             {
-                <option value="@i" selected>@i</option>
-            }
-            else
-            {
-                <option value="@i">@i</option>
-            }
+                if (i == Model.Day)
+                {
+                    <option value="@i" selected>@i</option>
+                }
+                else
+                {
+                    <option value="@i">@i</option>
+                }
 
-        }
-    </select>
+            }
+        </select>
     <span class="inp_date">@T("Month")</span>
-    <select id="month">
-        @for (int i = 1; i <= 12; i++)
-        {
-            if (i == Model.Mounth)
+        <select id="month">
+            @for (int i = 1; i <= 12; i++)
             {
-                <option value="@i" selected>@i</option>
+                if (i == Model.Mounth)
+                {
+                    <option value="@i" selected>@i</option>
+                }
+                else
+                {
+                    <option value="@i">@i</option>
+                }
             }
-            else
-            {
-                <option value="@i">@i</option>
-            }
-        }
-    </select>
+        </select>
     <span class="inp_date">@T("Year")</span><input type="text" maxlength="4" value="@Model.Year" placeholder="YYYY" id="year" />
 
-</fieldset>
-<fieldset>
+    </fieldset>
+    <fieldset>
     <font class="title">@T("Target : ")</font>
-    <input class="Goal" value="@Model.Target" type="number" />
-</fieldset>
+        <input class="Goal" value="@Model.Target" type="number" />
+    </fieldset>
 
-<fieldset>
+    <fieldset>
     <font class="title">@T("Description : ")</font>
-    <form id="campaign_details">
+        <form id="campaign_details">
 
-        <div class="teespring-well designer-well description">
+            <div class="teespring-well designer-well description">
             <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
-                <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
+                    <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
                 <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="@T("Decribe your campaign here…")" style="height: 200px"></textarea>
+                </div>
             </div>
-        </div>
-    </form>
-</fieldset>
+        </form>
+    </fieldset>
 
-<fieldset>
-    <table class="items">
-        <thead>
-            <tr>
+    <fieldset>
+        <table class="items">
+            <thead>
+                <tr>
                 <td>@T("Name product")</td>
                 <td>@T("Cost Price")</td>
                 <td>@T("Sell Price")</td>
                 <td>@T("Profit")</td>
-            </tr>
-        </thead>
-        @foreach (var item in Model.Products)
-        {
-            <tr>
-                <td>@item.ProductRecord.Name</td>
-                <td>@item.BaseCost</td>
-                <td><input type="text" /></td>
+                </tr>
+            </thead>
+            @for (int i = 0; i < Model.Products.Count(); i++)
+            {
+                <tr>
+                    <td>@Model.Products.ElementAt(i).ProductRecord.Name</td>
+                    <td id="base @i">@Model.Products.ElementAt(i).BaseCost.ToString().Replace(",",".")</td>
+                    <td><input id="sell @i" type="text"class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
                 <td>@T("Profit")</td>
-            </tr>
-        }
+                </tr>
+            }
 
 
 
-    </table>
-</fieldset>
-@* @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })*@
+
+
+        </table>
+    </fieldset>
+}
+
+ <button type="submit" onclick="sendData()">Save</button>
+ @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })
+<img src="\media\default\images\loading.gif" class="loader"></img>

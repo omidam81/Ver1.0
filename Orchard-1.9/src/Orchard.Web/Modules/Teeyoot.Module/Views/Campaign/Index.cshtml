@@ -578,8 +578,7 @@
                     <div id="back" class="back">
                         @if (@Model.Campaign.BackSideByDefault)
                         {
-                            <img id="prodBack" style="width:530px" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
-                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
+                            <img id="prodBack" style="width:530px" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
                             <img style="position:absolute" id="prodBack3_d" src="">
                             <div id="butt2" style="text-align:center;">
                                 <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Back")</span></div>
@@ -588,8 +587,7 @@
                         }
                         else
                         {
-                            <img id="prodBack" style="width:530px" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
-                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/back.png">
+                            <img id="prodBack" style="width:530px" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
                             <img style="position:absolute" id="prodBack3_d" src="">
                             <div id="butt2" style="text-align:center;">
                                 <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>

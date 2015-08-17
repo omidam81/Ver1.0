@@ -3896,7 +3896,8 @@ wysihtml5.browser = (function() {
        *    wysihtml5.lang.string("Hello #{name}").interpolate({ name: "Christopher" });
        *    // => "Hello Christopher"
        */
-      interpolate: function(vars) {
+      interpolate: function (vars) {
+          //sdocument.getElementById("qq"));
         for (var i in vars) {
           str = this.replace("#{" + i + "}").by(vars[i]);
         }
@@ -5508,11 +5509,14 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
       }
       templateVars.stylesheets = html;
 
+
+
       return wysihtml5.lang.string(
         '<!DOCTYPE html><html><head>'
         + '<meta charset="#{charset}">#{stylesheets}</head>'
-        + '<body></body></html>'
+        + '<body id=\"qqq\"></body></html>'
       ).interpolate(templateVars);
+      alert(document.getElementById("qqq"));
     },
 
     /**
@@ -5543,6 +5547,9 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
     }
   });
 })(wysihtml5);
+
+
+
 (function() {
   var mapping = {
     "className": "class"

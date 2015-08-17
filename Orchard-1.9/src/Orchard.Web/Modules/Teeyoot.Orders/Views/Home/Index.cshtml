@@ -194,25 +194,25 @@
             <thead>
                 <tr class="admin-categories">
                     <th class="publicId">
-                        <h3>Order Number</h3>
+                        <h3>@T("Order Number")</h3>
                     </th>
                     <th class="status">
-                        <h3>Status</h3>
+                        <h3>@T("Status")</h3>
                     </th>
                     <th class="buyer">
-                        <h3>Buyer</h3>
+                        <h3>@T("Buyer")</h3>
                     </th>
                     <th class="campaign">
-                        <h3>Campaign</h3>
+                        <h3>@T("Campaign")</h3>
                     </th>
                     <th class="seller">
-                        <h3>Seller</h3>
+                        <h3>@T("Seller")</h3>
                     </th>
                     <th class="profit">
-                        <h3>Profit</h3>
+                        <h3>@T("Profit")</h3>
                     </th>
                     <th class="payout">
-                        <h3>Payout</h3>
+                        <h3>@T("Payout")</h3>
                     </th>
                 </tr>
             </thead>
@@ -225,10 +225,10 @@
                             <a class="ordNumber"> @item.PublicId</a>
                         </td>
                         <td class="status">
-                           @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
-                           {
-                                <input type="hidden" value="@item.Id" name="orderId"/>
-                                
+                            @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
+                            {
+                                <input type="hidden" value="@item.Id" name="orderId" />
+
                                 <select name="orderStatus">
                                     @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.OrderStatus)))
                                     {
@@ -249,7 +249,7 @@
                                 <button class="apply" type="submit">
                                     @T("Apply")
                                 </button>
-                           }
+                            }
 
 
                         </td>
@@ -260,7 +260,7 @@
                             </button>
                         </td>
                         <td class="campaign">
-                             @item.CampaignName 
+                            @item.CampaignName
                         </td>
                         <td class="seller">
                             @item.UserNameSeller

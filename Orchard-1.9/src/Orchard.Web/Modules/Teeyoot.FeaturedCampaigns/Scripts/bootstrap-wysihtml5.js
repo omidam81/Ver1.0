@@ -27,7 +27,7 @@
                   "<input  value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
                 "</div>" +
                 "<div class='modal-footer' style = 'margin-left: 40%;'>" +
-                  "<a href='#' class='button' data-dismiss='modal'>" + locale.link.insert + "</a>" +
+                  "<a href='#' class='button btn-primaryInsert' data-dismiss='modal'>" + locale.link.insert + "</a>" +
                 "</div>" +
               "</div>" +
               "<a class='btn" + size + "' data-wysihtml5-command='createLink' title='" + locale.link.insert + "' tabindex='-1'><i class='icon-share'></i></a>" +
@@ -46,7 +46,7 @@
                   "<input value='http://' class='bootstrap-wysihtml5-insert-image-url input-xlarge'>" +
                 "</div>" +
                 "<div class='modal-footer' style = 'margin-left: 38%;'>" +
-                  "<a href='#'  class='button' data-dismiss='modal'>" + locale.image.insert + "</a>" +
+                  "<a href='#'  class='button btn-primaryInsert' data-dismiss='modal'>" + locale.image.insert + "</a>" +
                 "</div>" +
               "</div>" +
               "<a class='btn" + size + "' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
@@ -170,7 +170,7 @@
             var self = this;
             var insertImageModal = toolbar.find('.bootstrap-wysihtml5-insert-image-modal');
             var urlInput = insertImageModal.find('.bootstrap-wysihtml5-insert-image-url');
-            var insertButton = insertImageModal.find('a.btn-primary');
+            var insertButton = insertImageModal.find('a.btn-primaryInsert');
             var initialValue = urlInput.val();
             var caretBookmark;
 
@@ -226,7 +226,7 @@
             var insertLinkModal = toolbar.find('.bootstrap-wysihtml5-insert-link-modal');
             var urlInput = insertLinkModal.find('.bootstrap-wysihtml5-insert-link-url');
             var targetInput = insertLinkModal.find('.bootstrap-wysihtml5-insert-link-target');
-            var insertButton = insertLinkModal.find('a.btn-primary');
+            var insertButton = insertLinkModal.find('a.btn-primaryInsert');
             var initialValue = urlInput.val();
             var caretBookmark;
 
