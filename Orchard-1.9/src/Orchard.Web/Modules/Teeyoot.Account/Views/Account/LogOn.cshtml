@@ -13,11 +13,11 @@
                 <a href="#" onclick="changeLogAndCreate('create-account', 'login-into-teeyoot')">@T("Create a new account")</a>
             </legend>
         </div>
-        <div class="password">
+        <div class="password tb-height">
             <label>@T("Email address")</label>
             @Html.TextBoxFor(model => model.Email)
         </div>
-        <div class="password">
+        <div class="password tb-height">
             <label>@T("Password")</label>
             @Html.PasswordFor(model => model.Password)
         </div>
@@ -59,4 +59,8 @@
 
 
     </script>
+  
+        <script>
+            document.title = "@T("Login | Teeyoot")";
+        </script> 
 }
