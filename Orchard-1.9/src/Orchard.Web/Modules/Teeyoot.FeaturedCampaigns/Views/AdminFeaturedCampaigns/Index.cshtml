@@ -35,8 +35,8 @@
                     int colorIndex = Model.StartedIndex == null ? 0 : Model.StartedIndex;
                     foreach (var camp in Model.Campaigns)
                     {
-                        var isFeatured = camp.Campaign.IsFeatured ? "Yes" : "No";
-                        var isActive = camp.Campaign.IsActive ? "Yes" : "No";
+                        var isFeatured = camp.Campaign.IsFeatured ? T("Yes").ToString() : T("No").ToString();
+                        var isActive = camp.Campaign.IsActive ? T("Yes").ToString() : T("No").ToString();
                         var value = camp.Last24HoursSold > 0 ? camp.Last24HoursSold.ToString() : "-";
 
                         var color = camp.Campaign.IsFeatured ? colorTOP : (camp.Last24HoursSold > 0 ? colorAdmin : colorOther);

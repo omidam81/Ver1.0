@@ -50,7 +50,7 @@
                         <td>@c.Sold / @c.Minimum / @c.Goal</td>
                         <td>@c.Profit</td>
                         <td>@c.Status</td>
-                        <td><span id="date_@c.Id">@c.EndDate</span> <button type="submit" onclick="openModal(@c.Id)" value="@c.Id">Change</button></td>
+                        <td><span id="date_@c.Id">@c.EndDate</span> <button type="submit" onclick="openModal(@c.Id)" value="@c.Id">@T("Change")</button></td>
                         <td>@c.Seller.UserName</td>
                         <td>@c.Seller.Email</td>
                         <td>@c.TeeyootSeller.PhoneNumber</td>         
@@ -78,24 +78,24 @@
         <div class="dg-cell">
             <div class="dg-modal">
                 <div class="close">X</div>
-                <h1>Change End Date</h1>
-                <span class="inp_date">Day</span>
+                <h1>@T("Change End Date")</h1>
+                <span class="inp_date">@T("Day")</span>
                 <select id="day">
                     @for (int i = 1; i <= 31; i++)
                     {
                         <option value="@i">@i</option>
                     }
                 </select>
-                <span class="inp_date">Month</span>
+                <span class="inp_date">@T("Month")</span>
                 <select id="month">
                     @for (int i = 1; i <= 12; i++)
                     {
                         <option value="@i">@i</option>
                     }
                 </select>
-                <span class="inp_date">Year</span><input type="text" placeholder="YYYY" id="year" />
+                <span class="inp_date">@T("Year")</span><input type="text" placeholder="YYYY" id="year" />
                 <br>
-                <button type="submit" id="change_date_btn" onclick="changeData(this)">Change</button>
+                <button type="submit" id="change_date_btn" onclick="changeData(this)">@T("Change")</button>
             </div>
         </div>
     </div>

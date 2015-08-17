@@ -25,17 +25,17 @@
 
 <input type="hidden" id="desc" value='@Model.Description' />
 <fieldset>
-    <font class="title">Title of campaign : </font>
+    <font class="title">@T("Title of campaign : ")</font>
     <input class="titleOfCampaign" value="@Model.Title" style="width:353px" />
 </fieldset>
 
 <fieldset>
-    <font class="title">URL : </font>
+    <font class="title">@T("URL : ")</font>
     <input class="URL" value="@Model.Alias" />
 </fieldset>
 <fieldset>
-    <font class="title">End Date : </font>
-    <span class="inp_date">Day</span>
+    <font class="title">@T("End Date : ")</font>
+    <span class="inp_date">@T("Day")</span>
 
     <select id="day">
         @for (int i = 1; i <= 31; i++)
@@ -51,7 +51,7 @@
 
         }
     </select>
-    <span class="inp_date">Month</span>
+    <span class="inp_date">@T("Month")</span>
     <select id="month">
         @for (int i = 1; i <= 12; i++)
         {
@@ -65,22 +65,22 @@
             }
         }
     </select>
-    <span class="inp_date">Year</span><input type="text" maxlength="4" value="@Model.Year" placeholder="YYYY" id="year" />
+    <span class="inp_date">@T("Year")</span><input type="text" maxlength="4" value="@Model.Year" placeholder="YYYY" id="year" />
 
 </fieldset>
 <fieldset>
-    <font class="title">Target : </font>
+    <font class="title">@T("Target : ")</font>
     <input class="Goal" value="@Model.Target" type="number" />
 </fieldset>
 
 <fieldset>
-    <font class="title">Description : </font>
+    <font class="title">@T("Description : ")</font>
     <form id="campaign_details">
 
         <div class="teespring-well designer-well description">
-            <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+            <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
                 <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
-                <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Decribe your campaign here…" style="height: 200px"></textarea>
+                <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="@T("Decribe your campaign here…")" style="height: 200px"></textarea>
             </div>
         </div>
     </form>
@@ -90,10 +90,10 @@
     <table class="items">
         <thead>
             <tr>
-                <td>Name product</td>
-                <td>Cost Price</td>
-                <td>Sell Price</td>
-                <td>Profit</td>
+                <td>@T("Name product")</td>
+                <td>@T("Cost Price")</td>
+                <td>@T("Sell Price")</td>
+                <td>@T("Profit")</td>
             </tr>
         </thead>
         @foreach (var item in Model.Products)
@@ -102,7 +102,7 @@
                 <td>@item.ProductRecord.Name</td>
                 <td>@item.BaseCost</td>
                 <td><input type="text" /></td>
-                <td>Profit</td>
+                <td>@T("Profit")</td>
             </tr>
         }
 
