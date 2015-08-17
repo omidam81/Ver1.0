@@ -43,7 +43,13 @@
                 </div>
             </div>
             <div class="divRow">
-                <div class="row"><img style=" width: 40%;margin-left:9%" src='/Media/campaigns/@item.Campaign.Id/@item.Campaign.FirstProductId/normal/@("front.png")'></div>
+                @if (item.Campaign.BackByDefault) { 
+                <div class="row"><img style=" width: 40%;margin-left:9%" src='/Media/campaigns/@item.Campaign.Id/@item.Campaign.FirstProductId/normal/@("back.png")'></div>
+                }
+                else
+                {
+                    <div class="row"><img style=" width: 40%;margin-left:9%" src='/Media/campaigns/@item.Campaign.Id/@item.Campaign.FirstProductId/normal/@("front.png")'></div>
+                }
                 <div id="campaignName" class="row">@item.Campaign.Title</div>
                 <div class="row">@item.Campaign.Sold</div>
                 <div class="row">@item.LastSend</div>

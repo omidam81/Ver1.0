@@ -21,6 +21,7 @@ using Teeyoot.Messaging.ViewModels;
 using Mandrill;
 using Mandrill.Model;
 using Teeyoot.FAQ.Services;
+using System.Collections.Specialized;
 
 
 namespace Teeyoot.Module.Controllers
@@ -113,7 +114,9 @@ namespace Teeyoot.Module.Controllers
         [HttpPost, ActionName("AddSetting")]
         public ActionResult AddSettingPOST(string returnUrl)
         {
-            var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("", "en");
+            Uri myUri = new Uri(returnUrl);
+            var culture = HttpUtility.ParseQueryString(myUri.Query).Get("Culture");
+            var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("",culture);
             if (mailChimpSettingPart == null)
                 return HttpNotFound();
 

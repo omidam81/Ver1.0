@@ -29,7 +29,8 @@ namespace Teeyoot.Dashboard.Controllers
                 {
                     Title = c.Title,
                     Id = c.Id,
-                    Sold = c.ProductCountSold
+                    Sold = c.ProductCountSold,
+                    BackByDefault = c.BackSideByDefault
                 })
                 .ToList();
 
