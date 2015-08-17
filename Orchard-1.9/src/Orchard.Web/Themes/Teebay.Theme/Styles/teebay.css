@@ -2705,7 +2705,7 @@
             text-decoration: underline;
         }
 
-@media all and (min-width: 1700px) {
+/*@media all and (min-width: 1700px) {
     .tee-preview img,
     .tee-preview:first-child img,
     .tee-preview:last-child img {
@@ -2807,7 +2807,7 @@
     .tee-preview:last-child img {
         height: 120px;
     }
-}
+}*/
 
 .row-campaigns {
     margin-bottom: 0;

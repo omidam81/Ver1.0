@@ -540,8 +540,8 @@ img {
 
 
     .store_owner__banner .button {
-        font-size: .75rem;
-        padding: .8rem 1.8rem;
+        font-size: .8rem;
+        padding: .89rem 1.8rem;
     }
 
 
@@ -557,6 +557,7 @@ img {
     float: right;
     margin-right: 1rem;
     text-align: left;
+    padding-top: 3px;
 }
 
 @media only screen and (min-width: 660px) {
@@ -774,7 +775,7 @@ img {
         font-size: 0.7333333333rem;
         letter-spacing: 1px;
         position: absolute;
-        top: 0.6rem;
+        top: 0.3rem;
         left: 2.4rem;
     }
 

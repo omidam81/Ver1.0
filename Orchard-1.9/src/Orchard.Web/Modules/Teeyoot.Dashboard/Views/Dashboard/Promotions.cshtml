@@ -76,9 +76,8 @@
 <div class="dashboard__info_message">
     <p class="promotions__explanation">@T("Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.")</p>
     <div class="share_promotions">
-        @T("Share promotions by appending the ID to the end of your campaign URL.")<div class="share_promotions__example">
-            @T("(e.g., ")<span class="share_promotions__url">http://teebay.com/yourcampaign</span><strong class="share_promotions__query">?promo=PROMOID</strong>)
-        </div>
+        @T("Share promotions by appending the ID to the end of your campaign URL.")
+            @T("(e.g., ")<span class="share_promotions__url">http://teebay.com/yourcampaign</span><strong class="share_promotions__query">?promo=PROMOID</strong>)       
     </div>
 </div>
 
@@ -130,7 +129,7 @@
 @using (Html.BeginForm("AddPromotion", "Dashboard", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-<section class="account__password_settings">
+<section class="account__password_settings account_settings">
     <div id="allPromotions" class="dashboard_section__header">
         <h1 class="dashboard_section__heading">@T("All promotions")</h1>
 

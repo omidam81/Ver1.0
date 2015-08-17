@@ -86,9 +86,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                         .Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id)
                                         .Sum(p => (int?)p.Count) ?? 0
                     })
-                    .OrderByDescending(c => c.Campaign.IsFeatured)
-                    .OrderByDescending(c => c.Last24HoursSold)                   
+                     
+                    .OrderBy(c => c.Campaign.Id)              
                     .ToArray();
+                campaigns.OrderByDescending(c => c.Id);
             }
           
             return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns,NotApprovedTotal= totalNotApproved });

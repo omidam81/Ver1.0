@@ -3,14 +3,17 @@
     Style.Include("teebay.css");
     Style.Include("Login.css");
 }
-
+@using (Script.Foot())
+{
+    <script>
+        document.title = "@T("Request a Password Reset | Teeyoot")";
+    </script>
+}
 @model Teeyoot.Account.ViewModels.RecoverViewModel
-
 @if (Model.RecoverFailed)
 {
     @Model.RecoverIssueSummary
 }
-
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("Recover", "Account")))
 {

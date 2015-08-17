@@ -124,7 +124,7 @@
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
                     <div>
-                        <input autofocus="autofocus" class="form__textfield " id="Email" name="Email" placeholder="Email address" tabindex="1" type="text">
+                        <input autofocus="autofocus" class="form__textfield " id="Email" name="Email" placeholder="@T("Email address")" tabindex="1" type="text">
                         <label id="Email-error" class="error valid" for="Email"></label>
                     </div>
 
@@ -133,7 +133,7 @@
 
 
                         <div class="checkout__legend">
-                            <div class="checkout__tool_tip--lock" data-tooltip="All transactions are secure and encrypted.">
+                            <div class="checkout__tool_tip--lock" data-tooltip="@T("All transactions are secure and encrypted.")">
                                 <i class="checkout__lock_icon"></i>
                             </div>@T("Payment Info")
                         </div>
@@ -160,7 +160,7 @@
                                 <div class="accordion__content">
 
                                     <div>
-                                        <input class="form__textfield  js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="Credit card number" tabindex="9" type="text">
+                                        <input class="form__textfield  js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="@T("Credit card number")" tabindex="9" type="text">
                                         <label id="cc-number-error" class="error valid" for="cc-number"></label>
                                     </div>
                                     <div class="checkout_form__row">
@@ -183,7 +183,7 @@
                                         </div>
                                         <div class="checkout__input--small">
                                             <div class="checkout__tool_tip_container">
-                                                <div class="checkout__tool_tip--cvc" data-tooltip="3 or 4 digit security code usually located on the back of the card.">
+                                                <div class="checkout__tool_tip--cvc" data-tooltip="@T("3 or 4 digit security code usually located on the back of the card.")">
                                                     <i class="ss-icon ss-standard tool_tip__toggle"></i>
                                                 </div>
 
@@ -207,28 +207,28 @@
                     <div class="form__group js-checkout-shipping">
                         <div class="checkout__legend">@T("Shipping Info")</div>
                         <div class="checkout__input--half">
-                            <input class="form__textfield " data-default="" data-type="name" id="FirstName" maxlength="30" name="FirstName" placeholder="First name" size="30" tabindex="2" type="text">
+                            <input class="form__textfield " data-default="" data-type="name" id="FirstName" maxlength="30" name="FirstName" placeholder="@T("First name")" size="30" tabindex="2" type="text">
                         </div>
                         <div class="checkout__input--half">
-                            <input class="form__textfield " data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="Last name" size="30" tabindex="3" type="text">
+                            <input class="form__textfield " data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="@T("Last name")" size="30" tabindex="3" type="text">
                         </div>
-                        <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="Street address" size="50" tabindex="4" type="text">
-                        <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="Address line 2" size="50" tabindex="5" type="text">
+                        <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T("Street address")" size="50" tabindex="4" type="text">
+                        <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
                         <div class="checkout_form__row">
                             <div class="checkout__input--half">
-                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="City" size="30" tabindex="6" type="text">
+                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="6" type="text">
                                 <label id="City-error" class="error valid" for="City"></label>
                             </div>
                             <div class="checkout__input--half">
 
-                                <input class="form__textfield " data-default="43" id="State" placeholder="Province" name="State" abindex="7" type="text">
+                                <input class="form__textfield " data-default="43" id="State" placeholder="@T("Province")" name="State" abindex="7" type="text">
                                 <label id="State-error" class="error valid" for="State"></label>
                             </div>
                         </div>
                         <div class="checkout_form__row">
                             <div>
                                 <div class="checkout__input--half smarty-streets-container">
-                                    <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="Postal code" tabindex="8" type="text">
+                                    <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="8" type="text">
                                     <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
                                 </div>
                                 <div class="checkout__input--half">
@@ -240,14 +240,14 @@
                         </div>
                         <div class="checkout_form__row">
                             <div class="checkout__input--half">
-                                <input class="form__textfield  js-shipping-phone" id="PhoneNumber" placeholder="Phone number" tabindex="9" type="text" value="" name="PhoneNumber">
+                                <input class="form__textfield  js-shipping-phone" id="PhoneNumber" placeholder="@T("Phone number")" tabindex="9" type="text" value="" name="PhoneNumber">
                                 <label id="PhoneNumber-error" class="error valid" for="PhoneNumber"></label>
                             </div>
                         </div>
                     </div>
                     <div class="checkout_form_footer" style="margin-top:10px">
                         <div class="checkout_form_footer__submit_wrap js_submit_wrap_cc">
-                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="Place Your Order">@T("Place Your Order")</button>
+                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="@T("Place Your Order")">@T("Place Your Order")</button>
 
                             <p class="tos_agreement">
                                 @T("By clicking 'Place Your Order' you agree to our")
