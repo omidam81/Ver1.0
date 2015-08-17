@@ -110,12 +110,15 @@
 @using (Script.Foot())
 {
     <script>
-        var campaignTable = $('#campaign-table').dataTable();
+        $(document).ready(function () {
+            var campaignTable = $('#campaign-table').dataTable({ "aaSorting": [[0, 'desc']] });
+        })
+        
     </script>
     
     <script>
         $(document).ready(function () {
-            var textnode = document.createTextNode(" @Model.NotApprovedTotal");     
+            var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");     
             var node = document.createElement("text");                 
                   
             node.appendChild(textnode);
