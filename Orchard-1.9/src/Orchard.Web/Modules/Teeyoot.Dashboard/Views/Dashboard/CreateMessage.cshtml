@@ -29,7 +29,7 @@
 
 <div class="block" style="padding-bottom:10%">
 
-    <div class="ttl">Create message</div>
+    <div class="ttl">@T("Create message")</div>
     <div class="ttl">@ViewBag.status</div>
     <div>@Html.ValidationSummary()</div>
 
@@ -44,44 +44,45 @@
                     @Html.HiddenFor(m => m.CampaignId)
                     @Html.HiddenFor(m => m.CampaignTitle)
                     @Html.HiddenFor(m => m.ProductId)
-                    <div class="recipients">You are sending a message to all buyers of</div>
+                    <div class="recipients">@T("You are sending a message to all buyers of")</div>
                     <div>
                         <div style="vertical-align:central">
                             <img style="width:6%" src='/Media/campaigns/@Model.CampaignId/@Model.ProductId/normal/@("front.png")'>
                             <div class="campTitle">@Model.CampaignTitle</div>
                         </div>
                     </div>
-                    <div class="emailAttr" style="padding-top:10px !important;">From</div>
+                    <div class="emailAttr" style="padding-top:10px !important;">@("From")</div>
                     @Html.TextBoxFor(m => m.From, new { @class = "email_inp" })
                     <div style="display:flex; width:88%">
-                        <div class="emailAttr">Subject</div>
+                        <div class="emailAttr">@T("Subject")</div>
                         @*<div style="font-size:11px;  padding-left: 70%; word-break:normal; padding-top: 5%; width: 40%">(max 50 characters)</div>*@
                     </div>
                     @Html.TextBoxFor(m => m.Subject, new { @class = "subj_inp", @placeholder = "Enter subject here" })
 
-                    <div class="emailAttr">Email template</div>
+                    <div class="emailAttr">@T("Email template")</div>
                     <div>
-                        <input id="def" type="radio" name="group1" value="1" checked> Default
-                        <input id="newCamp" type="radio" name="group1" value="2">New Campaign Launch
+                        <input id="def" type="radio" name="group1" value="1" checked> @T("Default")
+                        <input id="newCamp" type="radio" name="group1" value="2">@T("New Campaign Launch")
                     </div>
                     <div id="campUrl">
-                        <div class="campUrlTitle">Campaign URL</div>
+                        <div class="campUrlTitle">@T("Campaign URL")</div>
                         <div class="flexDiv">
                             <input class="urlInp" type="text" readonly value="teeyoot.com/" />
-                            <input class="campUrl" type="text" placeholder="campaign" />
+                            <input class="campUrl" type="text" placeholder="@T("campaign")" />
                         </div>
-                        <div style="font-size:12px">Type Campaign URL to generate template</div>
+                        <div style="font-size:12px">
+                            @T("Type Campaign URL to generate template")/div>
                     </div>
                     <div class="divEmail">
                         <div class="customEmail">
-                            <div><a class="aEmail" href="">Learn how to further customize your emails</a></div>
+                            <div><a class="aEmail" href="">@T("Learn how to further customize your emails")</a></div>
                             <div id="hidden">
                                 <div>
-                                    <div>You can personalize your emails to your customers! Just use any of the following placeholders and they will be replaced with each specific buyer's info.</div>
+                                    <div>@T("You can personalize your emails to your customers! Just use any of the following placeholders and they will be replaced with each specific buyer's info.")</div>
                                     <div class="flexDiv">
                                         <div>
                                             <div>
-                                                <h1>Variable</h1>
+                                                <h1>@T("Variable")</h1>
                                             </div>
                                             <div>
                                                 {{FNAME}}
@@ -107,22 +108,22 @@
                                         </div>
                                         <div class="exampleDiv">
                                             <div>
-                                                <h1>Example</h1>
+                                                <h1>@T("Example")</h1>
                                             </div>
-                                            <div>John</div>
-                                            <div>Smith</div>
-                                            <div>San Francisco</div>
+                                            <div>@T("John")</div>
+                                            <div>@T("Smith")</div>
+                                            <div>@T("San Francisco")</div>
                                             <div>
-                                                CA
+                                                @T("CA")
                                             </div>
-                                            <div>United States</div>
+                                            <div>@T("United States")</div>
                                             <div>$101.43</div>
-                                            <div>1x XL Red Hanes Tagless Tee</div>
+                                            <div>1x XL @T("Red Hanes Tagless Tee")</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div style="margin-top:6%">
-                                    You can also format your email using HTML by switching to the HTML view.
+                                    @T("You can also format your email using HTML by switching to the HTML view.")
                                 </div>
                             </div>
 
@@ -131,20 +132,19 @@
                 </div>
                 <div class="msgCont" style="padding-bottom:20px">
 
-                    <div class="msgContTitle">Message Content</div>
-                    @Html.TextAreaFor(m => m.Content, new { @class = "msgText", @placeholder = "Write something nice to your buyers..." })
+                    <div class="msgContTitle">@T("Message Content")</div>
+                    @Html.TextAreaFor(m => m.Content, new { @class = "msgText", @placeholder = T("Write something nice to your buyers...") })
                     @*<div><textarea class="txtArea" type="text"></textarea></div>*@
                     <div class="msgFooterDiv">
-                        <div style="font-size:11px; width:90%; margin-right: 4%;">You may send buyers from a single campaign up to 3 emails in a 7-day period.</div>
+                        <div style="font-size:11px; width:90%; margin-right: 4%;">@T("You may send buyers from a single campaign up to 3 emails in a 7-day period.")</div>
                         <div style="text-align:center; width:90%">
                             <a class="cancel-button" href="@Url.Action("Messages")">@T("Cancel")</a>
-                            <button class="send-button" type="submit">Send Message</button>
+                            <button class="send-button" type="submit">@T("Send Message")</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         }
-
     </div>
-
 </div>

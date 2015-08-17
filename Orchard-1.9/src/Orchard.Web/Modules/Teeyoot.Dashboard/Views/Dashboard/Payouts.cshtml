@@ -75,32 +75,38 @@
             var contNum = document.getElementById("contNum").value;
             var messAdmin = document.getElementById("messAdmin").value;
 
+            var text;
             if (accountNumber == "" || bankName == "" || accHoldName == "" || contNum == "" || !isNumeric(contNum)) {
                 if (accountNumber == "") {
                     document.getElementById("accountNum").style.borderColor = "red";
-                    document.getElementById("lblAccountNum").innerHTML = "This field is required.";
+                    text = @T("This field is required.");
+                    document.getElementById("lblAccountNum").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 }
 
                 if (bankName == "") {
                     document.getElementById("bankName").style.borderColor = "red";
-                    document.getElementById("lblBankName").innerHTML = "This field is required.";
+                    text = @T("This field is required.");
+                    document.getElementById("lblBankName").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 }
 
                 if (accHoldName == "") {
                     document.getElementById("accHoldName").style.borderColor = "red";
-                    document.getElementById("lblAccHoldName").innerHTML = "This field is required.";
+                    text = @T("This field is required.");
+                    document.getElementById("lblAccHoldName").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 }
 
                 if (contNum == "") {
                     document.getElementById("contNum").style.borderColor = "red";
-                    document.getElementById("lblContNum").innerHTML = "This field is required.";
+                    text = @T("This field is required.");
+                    document.getElementById("lblContNum").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 } else if (!isNumeric(contNum)) {
                     document.getElementById("contNum").style.borderColor = "red";
-                    document.getElementById("lblContNum").innerHTML = "Please input corect number.";
+                    text = @T("Please input corect number.");
+                    document.getElementById("lblContNum").innerHTML = text;
                 }
             } else {
 
@@ -145,19 +151,19 @@
 </div>
 <section class="general_border">
     <div class="main">
-        <h1>Current Payout Amount</h1>
+        <h1>@T("Current Payout Amount")</h1>
         <div class="balance">
-            You currently have RM <b>@Model.Balance</b> ready to be paid out
-            <a class="btnStartPayout" id="go">Start a payout</a>
+            @T("You currently have ") RM<b>@Model.Balance</b>@T(" ready to be paid out")
+            <a class="btnStartPayout" id="go">@T("Start a payout")</a>
             <div style="clear:both;"></div>
         </div>
-        <h1>Payout History</h1>
+        <h1>@T("Payout History")</h1>
         <table class="tbl-pay">
             <tr class="thead">
-                <td class="td1">DATE</td>
-                <td class="td2">EVENT</td>
-                <td class="td3">AMOUNT</td>
-                <td class="td4 main">STATUS</td>
+                <td class="td1">@T("DATE")</td>
+                <td class="td2">@T("EVENT")</td>
+                <td class="td3">@T("AMOUNT")</td>
+                <td class="td4 main">@T("STATUS")</td>
             </tr>
             @foreach (var elem in @Model.Transactions)
             {

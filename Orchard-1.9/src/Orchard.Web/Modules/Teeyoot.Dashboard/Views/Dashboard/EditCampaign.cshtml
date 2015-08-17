@@ -94,16 +94,16 @@
                                                         <img style="width:530px" id="prodFront" src="@Model.FrontImagePath">
                                                         <img style="position:absolute" id="prodFront3_d" src="">
                                                         <div id="butt1" style="text-align:center; margin-top:-60px !important;">
-                                                            <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">Front</span></div>
-                                                            <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                            <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">@T("Front")</span></div>
+                                                            <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">@T("Back")</span></div>
                                                         </div>
                                                     </div>
                                                     <div class="back">
                                                         <img id="prodBack" style="width:530px" src="@Model.BackImagePath">
                                                         <img style="position:absolute" id="prodBack3_d" src="">
                                                         <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                                            <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-18px; font-weight: 400; margin-top:10px;">Front</span></div>
-                                                            <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; font-weight: 400; margin-left:-15px; margin-top:10px;">Back</span></div>
+                                                            <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-18px; font-weight: 400; margin-top:10px;">@T("Front")</span></div>
+                                                            <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; font-weight: 400; margin-left:-15px; margin-top:10px;">@T("Back")</span></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,24 +118,24 @@
                                     {
                                         <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
                                             <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
-                                                <label class="has-under-text">Campaign title</label>
-                                                <p class="under-text" data-reactid=".6.0.0.1">Summarize your campaign in 40 characters or less.</p>
+                                                <label class="has-under-text">@T("Campaign title")</label>
+                                                <p class="under-text" data-reactid=".6.0.0.1">@T("Summarize your campaign in 40 characters or less.")</p>
                                                 @*<input type="text" name="name" class="form__textfield " id="name" value="@Model.Title" data-reactid=".6.0.0.2">*@
                                                 @Html.HiddenFor(m => m.Id)
                                                 @Html.TextBoxFor(m => m.Title, new { @name="name", @class="form__textfield ", @id="name"})
                                             </div>
                                             <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                <label class="has-under-text">Description</label>
-                                                <div id="campaign_details" class="tool_tip--focus tool_tip__campaign_description " data-tooltip="Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum." data-reactid=".6.0.1.1">
+                                                <label class="has-under-text">@T("Description")</label>
+                                                <div id="campaign_details" class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
                                                     @*<textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="height: 200px">@Model.Description</textarea>*@
-                                                    @Html.TextAreaFor(m => m.Description, new { @class="textarea wysiwyg form__textfield", @id="campaign_description_text", @placeholder="Enter text ...", @style="height: 200px" })
+                                                    @Html.TextAreaFor(m => m.Description, new { @class="textarea wysiwyg form__textfield", @id="campaign_description_text", @placeholder= T("Enter text ..."), @style="height: 200px" })
                                                 </div>
                                             </div>
                                             <div class="teespring-well designer-well" id="tags">
-                                                <label>Tags</label>
+                                                <label>@T("Tags")</label>
                                                 <p>
                                                     <label class="display-label">
-                                                        <span>Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)</span>
+                                                        <span>@T("Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)")</span>
                                                     </label>
                                                 </p>
                                                 @*<input type="text" name="name" class="form__textfield " id="inputTags" value="@Model.Tags">*@
@@ -143,8 +143,8 @@
                                             </div>
 
                                             <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
-                                                <label>URL</label>
-                                                <p class="under-text" data-reactid=".6.0.4.1">This is where you will send buyers to view your campaign.</p>
+                                                <label>@T("URL")</label>
+                                                <p class="under-text" data-reactid=".6.0.4.1">@T("This is where you will send buyers to view your campaign.")</p>
                                                 <p class="inline-input-text  small-bottom" style="display: inline;">
                                                     <strong>teeyoot.com/</strong>
                                                 </p>
@@ -155,12 +155,12 @@
                                             <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
 
                                                 <div class="teespring-well designer-well">
-                                                    <label>Display Options</label>
+                                                    <label>@T("Display Options")</label>
                                                     <p>
                                                         <label class="checkbox display-label">
                                                             @*<input type="checkbox" name="backdefaultside" id="backdefaultside" checked="@Model.BackSideByDefault.ToString()">*@
                                                             @Html.CheckBoxFor(m => m.BackSideByDefault, new { @name="backdefaultside", @id="backdefaultside" })
-                                                            <span>Show the back side by default</span>
+                                                            <span>@T("Show the back side by default")</span>
                                                         </label>
                                                     </p>
                                                 </div>

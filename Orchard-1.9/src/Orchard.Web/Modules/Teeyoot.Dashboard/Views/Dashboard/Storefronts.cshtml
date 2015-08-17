@@ -66,11 +66,11 @@
                        if (store.Campaigns.Count > i) {
                     <div class="thumbnail__block">
                        @if (store.Campaigns[i].CampaignRecord.BackSideByDefault) {
-                         <img alt="Back" src="/Media/campaigns/@store.Campaigns[i].CampaignRecord.Id/@store.Campaigns[i].CampaignRecord.Products[0].Id/normal/back.png">
+                         <img alt="@T("Back")" src="/Media/campaigns/@store.Campaigns[i].CampaignRecord.Id/@store.Campaigns[i].CampaignRecord.Products[0].Id/normal/back.png">
                        }
                        else
                        {
-                        <img alt="Front" src="/Media/campaigns/@store.Campaigns[i].CampaignRecord.Id/@store.Campaigns[i].CampaignRecord.Products[0].Id/normal/front.png">
+                        <img alt="@T("Front")" src="/Media/campaigns/@store.Campaigns[i].CampaignRecord.Id/@store.Campaigns[i].CampaignRecord.Products[0].Id/normal/front.png">
                        }
                     </div>
                        }

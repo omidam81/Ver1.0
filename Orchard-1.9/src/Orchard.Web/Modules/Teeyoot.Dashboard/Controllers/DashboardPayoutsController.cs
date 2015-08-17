@@ -50,7 +50,7 @@ namespace Teeyoot.Dashboard.Controllers
             }
             if (balance > 0)
             {
-                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = "You requested a payout", IsPlus = false, UserId = currentUserId, Status = "pending" };
+                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = T("You requested a payout").ToString(), IsPlus = false, UserId = currentUserId, Status = "pending" };
                 _payoutService.AddPayout(payout);
                 _paymentInfService.AddPayment(new PaymentInformationRecord { AccountNumber = Convert.ToInt32(accountNumber),
                     AccountHolderName = accHoldName,

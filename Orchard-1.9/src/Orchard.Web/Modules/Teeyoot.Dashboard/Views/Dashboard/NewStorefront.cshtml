@@ -11,20 +11,21 @@
     .tb-aside-first {
         display: none !important;
     }
+
     .dashboard-layout .tb-layout-content {
         padding: 0 !important;
         background-color: white !important;
     }
-    .zone-content {
-    background-color: white;
-}
 
+    .zone-content {
+        background-color: white;
+    }
 </style>
 @using (Script.Foot())
 {
     <script type="text/javascript">
         var press;
-        
+
         $("#btn-settings").click(function () {
             if (!press) {
                 document.getElementById("settings-menu").className = "store_settings__menu";
@@ -34,21 +35,23 @@
                 press = false;
             }
         });
-      
+
         $(".close_message").click(function () {
             var messageDiv = document.getElementsByClassName("form__message--error")[0];
             $(messageDiv).addClass("hidden");
             var message = document.getElementsByClassName("form__message_list")[0];
             message.innerHTML = "";
         });
-      
+
         function onFileSelected(event) {
             var selectedFile = event.target.files[0];
+            var text;
             if (selectedFile.type !== 'image/png') {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                $(message).append(" Only .png files allowed!");
+                text = @T(" Only .png files allowed!");
+                $(message).append(text);
 
                 var imgtag = document.getElementsByClassName("site__featured_full")[0];
                 $(imgtag).attr("style", "");
@@ -58,9 +61,9 @@
 
             var reader = new FileReader();
             var imgtag = document.getElementsByClassName("site__featured_full")[0];
-           
+
             var img = document.getElementById("banner-image");
-      
+
             var form = document.getElementById("img-load-form");
             $(form).addClass('s3-uploader store_banner--custom');
 
@@ -90,16 +93,16 @@
             $(window).addClass('hidden');
             document.getElementById("dg-overlay").className = "dg-overlay-not-show";
         }
-       
+
         $(".checkbox__select_all").click(function () {
             var value = document.getElementsByClassName("checkbox__select_all")[0].checked;
             var boxes = document.getElementsByClassName("list_item__select");
             for (var i = 0; i < boxes.length; i++) {
                 boxes[i].checked = value;
-            }            
+            }
         });
         $(".list_item__select").click(function () {
-            var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;            
+            var value = document.getElementsByClassName("checkbox__select_all")[0].checked = false;
         });
 
         $("#title").keyup(function () {
@@ -107,7 +110,7 @@
             title = title.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             var url = document.getElementById("Url_store").value = title;
         });
-        
+
         function UpdateCampaings() {
             var boxes = document.getElementsByClassName("list_item__select");
             var value;
@@ -120,7 +123,7 @@
                     id = boxes[i].getAttribute("id");
                     campaign = document.getElementById("card_" + id);
                     $(campaign).removeClass('hidden');
-                   
+
                 } else {
                     id = boxes[i].getAttribute("id");
                     campaign = document.getElementById("card_" + id);
@@ -128,14 +131,14 @@
                 }
 
             }
-            CloseModal();    
+            CloseModal();
         }
         function DeleteItem(item){
             var idItem = item.getAttribute("id");
             var id;
             var campaigns = document.getElementsByClassName("card-campaign");
             var boxes = document.getElementsByClassName("list_item__select");
-          
+
             for (var i = 0; i < boxes.length; i++) {
                 id = boxes[i].getAttribute("id");
                 if (id == idItem) {
@@ -144,7 +147,7 @@
             }
 
             campaign = document.getElementById("card_" + idItem);
-            $(campaign).addClass('hidden');     
+            $(campaign).addClass('hidden');
         }
 
 
@@ -154,25 +157,29 @@
             var title = document.getElementById("title").value;
             var url = document.getElementById("Url_store").value;
             url = url.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
-            
+
+            var text;
             if ( title == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                $(message).append("Title can't be empty!");
+                text = @T("Title can't be empty!");
+                $(message).append(text);
                 return;
             } if (url == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                $(message).append("Url can't be empty!");
+                text = @T("Url can't be empty!");
+                $(message).append(text);
                 return;
             }
             if (countCheckedCheckboxes <= 2) {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                $(message).append("You must add at least 3 campaigns to your storefront.");
+                text = @T("You must add at least 3 campaigns to your storefront.");
+                $(message).append(text);
                 return;
             } else {
                 var img = document.getElementById("banner-image");
@@ -252,8 +259,8 @@
     </div>
     <div class="store__details_container">
         <div class="store__details--edit">
-            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="Store Title" type="text" value="@Model.Title">
-            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="Store Description (optional)" value="@Model.Description"></textarea>
+            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="@T("Store Title")" type="text" value="@Model.Title">
+            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="@T("Store Description (optional)")" value="@Model.Description"></textarea>
         </div>
     </div>
 </div>
@@ -331,14 +338,14 @@
         <div class="store__ftue">
             <h1 class="page__heading">@T("Create your first storefront!")</h1>
             <ol class="list__counter">
-               @if (Model.Campaigns.Count() >= 3)
-               {
-                <li class="list_item__counter list_item__counter--done">@T("Launch 3 campaigns")</li>
-               }
-               else
-               {
-                <li class="list_item__counter">@T("Launch 3 campaigns (2 more needed)")</li>
-               }
+                @if (Model.Campaigns.Count() >= 3)
+                {
+                    <li class="list_item__counter list_item__counter--done">@T("Launch 3 campaigns")</li>
+                }
+                else
+                {
+                    <li class="list_item__counter">@T("Launch 3 campaigns (2 more needed)")</li>
+                }
                 <li class="list_item__counter">@T("Pick a name &amp; write a description")</li>
                 <li class="list_item__counter">@T("Upload a cover photo")</li>
                 <li class="list_item__counter">@T("Add campaigns to your storefront")</li>
@@ -346,110 +353,99 @@
 
             @if (Model.Campaigns.Count() < 3)
             {
-            <div>
-                <p>@T("You need at least 3 campaigns to create a storefront.")</p>
-                <p>
-                    <a class="button__cta" href="/GetStarted">@T("Launch one now")</a>
-                </p>
-            </div>
+                <div>
+                    <p>@T("You need at least 3 campaigns to create a storefront.")</p>
+                    <p>
+                        <a class="button__cta" href="/GetStarted">@T("Launch one now")</a>
+                    </p>
+                </div>
             }
             else
             {
                 <p>
                     <div class="button__cta" onclick="AddCampaigns()">@T("Add Campaigns")</div>
-                    <div class="href_to_start_campaign"> or <a href="/GetStarted">@T("launch a new campaign")</a></div>
+                    <div class="href_to_start_campaign">@T(" or ")<a href="/GetStarted">@T("launch a new campaign")</a></div>
                 </p>
             }
 
         </div>
 
-@if (Model.Campaigns.Count() >= 3)
-{
-        <div class="cards__container cards__container--editing">
-            <div class="card add_campaigns__card">
-                <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">@T("Add Campaigns +")</div>
+        @if (Model.Campaigns.Count() >= 3)
+        {
+            <div class="cards__container cards__container--editing">
+                <div class="card add_campaigns__card">
+                    <div class="card__image_container card__toggle hidden" onclick="AddCampaigns()">@T("Add Campaigns +")</div>
 
-             @foreach (var prod in Model.Campaigns)
-             {
-                 var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
-                <div class="card card-campaign hidden" id="card_@prod.Id">
-                    <div class="image_container">
-                        <a href="@prod.URL" title="@prod.Title">
-                            @if (prod.BackSideByDefault)
-                            {
-                                <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
-                            }
-                            else
-                            {
-                                <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
-                            }
-                        </a>
-                    </div>
-                    <div class="card__options_container">
-                        <ul class="card__options">
-                            <li class="options__item options__item_view">
-                                <a href="/@prod.Alias" class="option__link" title="View @prod.Title">
-                                    <div class="option__name"><span>@T("View")</span></div>
-                                </a>
-                            </li>
-                            <div class="options__item" id="@prod.Id" onclick="DeleteItem(this)">
-                                <a class="store_remove_campaign option__link"  data-tooltip="Remove" href="#" title="Remove @prod.Title">
-                                    <i class="fa fa-trash fa-2x"></i>
+                    @foreach (var prod in Model.Campaigns)
+                    {
+                        var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+                        <div class="card card-campaign hidden" id="card_@prod.Id">
+                            <div class="image_container">
+                                <a href="@prod.URL" title="@prod.Title">
+                                    @if (prod.BackSideByDefault)
+                                    {
+                                        <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
+                                    }
+                                    else
+                                    {
+                                        <img alt="@prod.Title" src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
+                                    }
                                 </a>
                             </div>
-                        </ul>
-                    </div>
-                    <div class="card__progress_container">
-                        <div class="progress_bar">
-                            <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)%"></div>
-                        </div>
-                    </div>
-                    <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
-                    <div class="card__content_container">
-                        <div class="card__campaign_stats">
-                            <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal @T("sold")</div>
-                            <div class="card__campaign_time">
-                                <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
-                                    <span>
-                                        @if (daysRemaining > 0)
-                                        {
-                                            @daysRemaining@:d @T("remaining")
-                                            }
-                                        else if (daysRemaining <= -1)
-                                        {
-                                            @Math.Abs(daysRemaining)@:d @T("ago")
-                                            }
-                                        else
-                                        {
-                                            var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours;
-
-                                            if (hours > 0)
-                                            {
-                                                @hours@:h @T("remaining")
-                                                }
-                                            else
-                                            {
-                                                @Math.Abs(hours)@:h @T("ago")
-                                                }
-                                        }
-                                    </span>
+                            <div class="card__options_container">
+                                <ul class="card__options">
+                                    <li class="options__item options__item_view">
+                                        <a href="/@prod.Alias" class="option__link" title="@T("View ") @prod.Title">
+                                            <div class="option__name"><span>@T("View")</span></div>
+                                        </a>
+                                    </li>
+                                    <div class="options__item" id="@prod.Id" onclick="DeleteItem(this)">
+                                        <a class="store_remove_campaign option__link" data-tooltip="Remove" href="#" title="@T("Remove ") @prod.Title">
+                                            <i class="fa fa-trash fa-2x"></i>
+                                        </a>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="card__progress_container">
+                                <div class="progress_bar">
+                                    <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)%"></div>
                                 </div>
                             </div>
+                            <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
+                            <div class="card__content_container">
+                                <div class="card__campaign_stats">
+                                    <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal @T("sold")</div>
+                                    <div class="card__campaign_time">
+                                        <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
+                                            <span>
+                                                @if (daysRemaining > 0)
+                                                {
+                                                    @daysRemaining@:d @T("remaining")
+                                                                                                                                                                      }
+                                                else if (daysRemaining <= -1)
+                                                { @Math.Abs(daysRemaining) @: d @T("ago")
+                                                                                                                                                                      }
+                                                else
+                                                {
+                                                    var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours; if (hours > 0)
+                                                    { @hours @: h @T("remaining")
+                                                                                                                                                                          }
+                                                    else
+                                                    { @Math.Abs(hours) @: h @T("ago")
+                                                                                                                                                                          }
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div> <h1 class="card__title"> <a href="/@prod.Alias" title="@prod.Title">@prod.Title</a> </h1>
+                            </div>
                         </div>
-                        <h1 class="card__title">
-                            <a href="/@prod.Alias" title="@prod.Title">@prod.Title</a>
-                        </h1>
-                    </div>
+                    }
                 </div>
-                }
-            </div>
-        </div>
-
-            <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
-
+            </div>  <div id="modal-campaigns-choose" class="cards__container cards__container--editable hidden">
                 <div class="choose_campaigns_modal modal">
                     <div class="modal__header">
-                        <h3 class="modal__heading">Add Campaigns to </h3>
+                        <h3 class="modal__heading">@T("Add Campaigns to ")</h3>
                         <i onclick="CloseModal()" class="fa fa-times  fa-2x"></i>
                     </div>
                     <div class="campaigns__filter_options">
@@ -458,15 +454,15 @@
                         </div>
                         <div class="filter_option__search_container">
                             <div class="searchbox__container">
-                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="Filter by search" oninput="filterCampaignList(this);">
+                                <input class="searchbox__input" id="search_campaigns_stores" placeholder="@T("Filter by search")" oninput="filterCampaignList(this);">
                             </div>
                         </div>
                     </div>
                     <div class="campaigns__list_container">
                         <div class="campaigns__list store__campaign_results" id="search_results">
                             @foreach (var prod in Model.Campaigns)
-                        {
-                            var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
+                            {
+                                var daysRemaining = prod.EndDate.Subtract(DateTime.UtcNow).Days;
                                 <div class="search_filter" data-name="@prod.Title">
                                     <label class="list_item">
                                         <div class="list_item__cell list_item__select_container">
@@ -474,13 +470,9 @@
                                         </div>
                                         <div class="list_item__cell list_item__thumbnail">
                                             @if (prod.BackSideByDefault)
-                                        {
-                                                <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png">
-                                        }
-                                        else
-                                        {
-                                                <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png">
-                                        }
+                                            { <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/back.png"> }
+                                            else
+                                            { <img src="/Media/campaigns/@prod.Id/@prod.Products[0].Id/normal/front.png"> }
                                         </div>
                                         <div class="list_item__cell list_item__title">   @prod.Title       </div>
                                         <div class="list_item__cell list_item__campaign_reserved">
@@ -488,50 +480,42 @@
                                             <div class="campaign_reserved__caption">reserved</div>
                                             <div class="progress_container">
                                                 <div class="progress_bar">
-                                                    <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)% !important">            </div>
+                                                    <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)% !important">
+                                                    </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="list_item__cell list_item__campaign_time">
-
                                             <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
                                                 <span>
                                                     @if (daysRemaining > 0)
-                                            {
-                                                        @daysRemaining@:d @T("remaining")
-                                            }
-                                            else if (daysRemaining <= -1)
-                                            {
-                                                @Math.Abs(daysRemaining)@:d @T("ago")
-                                            }
-                                            else
-                                            {
-                                                var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours;
-
-                                                if (hours > 0)
-                                                {
-                                                    @hours@:h @T("remaining")
-                                                }
-                                                else
-                                                {
-                                                    @Math.Abs(hours)@:h @T("ago")
-                                                }
-                                            }
-
+                                                    { @daysRemaining @: d @T("remaining")
+                                                                                                                                                                             }
+                                                    else if (daysRemaining <= -1)
+                                                    { @Math.Abs(daysRemaining) @: d @T("ago")
+                                                                                                                                                                             }
+                                                    else
+                                                    {
+                                                        var hours = prod.EndDate.Subtract(DateTime.UtcNow).Hours; if (hours > 0)
+                                                        { @hours @: h @T("remaining")
+                                                                                                                                                                                 }
+                                                        else
+                                                        { @Math.Abs(hours) @: h @T("ago")
+                                                                                                                                                                                 }
+                                                    }  >
                                                 </span>
                                             </div>
                                         </div>
                                     </label>
-                                    </div>
-                                    }
                                 </div>
+                            }
+                        </div>
                     </div>
                     <div class="modal__footer">
                         <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">Update Store</button>
-                    </div>                  
+                    </div>
                 </div>
             </div>
-        }       
+        }
     </div>
 </div>

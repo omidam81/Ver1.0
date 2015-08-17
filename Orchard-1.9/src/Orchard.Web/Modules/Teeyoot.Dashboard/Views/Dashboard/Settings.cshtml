@@ -29,7 +29,7 @@
 </div>
 <section class="general_settings">
     <div class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">Change Your Info</h1>
+        <h1 class="dashboard_section__heading">@T("Change Your Info")</h1>
     </div>
     <div class="dashboard_section__content--padded">
 
@@ -39,32 +39,32 @@
             @Html.HiddenFor(m => m.Id)
             <div class="account__user_info">
                 <label>
-                    <div class="label__title">Public name</div>
+                    <div class="label__title">@T("Public name")</div>
                     @Html.TextBoxFor(m => m.PublicName, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
                 <label>
-                    <div class="label__title">Phone number</div>
+                    <div class="label__title">@T("Phone number")</div>
                     @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
             </div>
             <div class="address__info">
 
-                <div class="label__title label__mailing_address">Change your default address</div>
+                <div class="label__title label__mailing_address">@T("Change your default address")</div>
                 <div class="address__group">
                     <div class="address__group_row">
                         <label class="address__field address__field_street">
                             @Html.TextBoxFor(m => m.Street, new { @class = "form__textfield" })
-                            <div class="label__subtitle">Street</div>
+                            <div class="label__subtitle">@T("Street")</div>
                         </label>
                         <label class="address__field address__field_apt">
                             @Html.TextBoxFor(m => m.Suit, new { @class = "form__textfield" })
-                            <div class="label__subtitle">Apt / Suite</div>
+                            <div class="label__subtitle">@T("Apt / Suite")</div>
                         </label>
                     </div>
                     <div class="address__group_row">
                         <label class="address__field address__field_city">
                             @Html.TextBoxFor(m => m.City, new { @class = "form__textfield" })
-                            <div class="label__subtitle">City</div>
+                            <div class="label__subtitle">@T("City")</div>
                         </label>
                         <label class="address__field address__field_state" id="states">
                             
@@ -74,7 +74,7 @@
                         </label>
                         <label class="address__field address__field_zip">
                             @Html.TextBoxFor(m => m.Zip, new { @class = "form__textfield" })
-                            <div class="label__subtitle">Zip</div>
+                            <div class="label__subtitle">@T("Zip")</div>
                         </label>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
 </section>
 <section class="account__email_settings">
     <div class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">Change Your Email</h1>
+        <h1 class="dashboard_section__heading">@T("Change Your Email")</h1>
     </div>
     <div class="dashboard_section__content--padded">
         @using (Html.BeginForm("ChangeEmail", "Dashboard", FormMethod.Post, new { model = Model }))
@@ -98,21 +98,21 @@
             @Html.HiddenFor(m => m.Id)
             <div class="account__email_info">
                 <label>
-                    <div class="label__title">New email address</div>
+                    <div class="label__title">@T("New email address")</div>
                     @Html.TextBoxFor(m => m.NewEmailAddress, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
                 <label>
-                    <div class="label__title">Confirm new email address</div>
+                    <div class="label__title">@T("Confirm new email address")</div>
                     @Html.TextBoxFor(m => m.ConfirmNewEmailAddress, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
-                <input name="commit" class="t-button" type="submit" value="Update Email">
-            </div>
+                <input name="commit" class="t-button" type="submit" value="@T("Update Email")">
+            ></div>
         }
     </div>
 </section>
 <section class="account__password_settings">
     <div class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">Change Your Password</h1>
+        <h1 class="dashboard_section__heading">@T("Change Your Password")</h1>
 
     </div>
     <div class="dashboard_section__content--padded">
@@ -123,24 +123,24 @@
            
             <div class="account__password_info">
                 <label>
-                    <div class="label__title">Current password</div>
+                    <div class="label__title">@T("Current password")</div>
                     @Html.ValidationMessageFor(m => m.CurrentPassword)
                     @Html.TextBoxFor(m => m.CurrentPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password" })
 
                 </label>
                 <label>
-                    <div class="label__title">New password</div>
+                    <div class="label__title">@T("New password")</div>
                     @Html.ValidationMessageFor(m => m.NewPassword)
-                    @Html.TextBoxFor(m => m.NewPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password", @placeholder = "Must be longer than 7 characters" })
+                    @Html.TextBoxFor(m => m.NewPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password", @placeholder = T("Must be longer than 7 characters") })
 
                 </label>
                 <label>
-                    <div class="label__title">Confirm new password</div>
+                    <div class="label__title">@T("Confirm new password")</div>
                     @Html.ValidationMessageFor(m => m.ConfirmPassword)
                     @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password" })
 
                 </label>
-                <input name="commit" class="t-button" type="submit" value="Update Password">
+                <input name="commit" class="t-button" type="submit" value="@T("Update Password")">
             </div>
         }
     </div>

@@ -72,7 +72,7 @@
 <div class="box">
     <div class="box-header">
         <div class="group-control filters">
-            <input type="text" id="campaign_list_filter" oninput="filterCampaignList(this);" placeholder="Search by filter" />
+            <input type="text" id="campaign_list_filter" oninput="filterCampaignList(this);" placeholder="@T("Search by filter")" />
 
             <div class="campaign-sort filter-dropdown">
                 <div class="filter-dropdown-toggle">
@@ -175,7 +175,7 @@
                                     </a>
                                 </div>
                             }
-                            
+
                             <div>
                                 <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id, change = !c.IsPrivate })" title="@T("Private")" class="@colorForPrivate" >
                                     <i class="fa fa-globe"></i>
@@ -205,26 +205,10 @@
                                 @if (daysRemaining > 0)
                                 {
                                     @daysRemaining@:d @T("remaining")
-                                }
-                                else if (daysRemaining <= -1)
-                                {
-                                    @Math.Abs(daysRemaining)@:d @T("ago")
-                                }
-                                else
-                                {
-                                    var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours;
-
-                                    if (hours > 0)
-                                    {
-                                        @hours@:h @T("remaining")
-                                    }
-                                    else
-                                    {
-                                        @Math.Abs(hours)@:h @T("ago")
-                                    }
-                                }
-
-                            </span>
+                                                   } else if (daysRemaining <= -1) { @Math.Abs(daysRemaining) @: d @T("ago")
+                                                   } else { var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours;  if (hours > 0) { @hours @: h @T("remaining")
+                                                       } else { @Math.Abs(hours) @: h @T("ago")
+                                                       } }  </span>
                         </div>
 
                     </div>

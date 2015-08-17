@@ -74,17 +74,17 @@
 </div>
 
 <div class="dashboard__info_message">
-    <p class="promotions__explanation">Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.</p>
+    <p class="promotions__explanation">@T("Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.")</p>
     <div class="share_promotions">
-        Share promotions by appending the ID to the end of your campaign URL.<div class="share_promotions__example">
-            (e.g., <span class="share_promotions__url">http://teebay.com/yourcampaign</span><strong class="share_promotions__query">?promo=PROMOID</strong>)
+        @T("Share promotions by appending the ID to the end of your campaign URL.")<div class="share_promotions__example">
+            @T("(e.g., ")<span class="share_promotions__url">http://teebay.com/yourcampaign</span><strong class="share_promotions__query">?promo=PROMOID</strong>)
         </div>
     </div>
 </div>
 
 <section class="account__email_settings">
     <div class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">Add New Promotion</h1>
+        <h1 class="dashboard_section__heading">@T("Add New Promotion")</h1>
     </div>
     @using (Html.BeginForm("AddPromotion", "Dashboard", FormMethod.Post))
     {
@@ -92,7 +92,7 @@
         <div class="dashboard_section__content--padded">
             <div class="new_promotion__form">
                 <div class="new_promotion__code">
-                    <div class="label__title">Promo ID</div>                   
+                    <div class="label__title">@T("Promo ID")</div>
                     <div class="input__group new_promotion__field">
                         @Html.TextBoxFor(m => m.PromoId, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", @value = "", @required= "true" })             
                         <span class="reload new_promotion__generate_code ts-icon-reload" id="code" maxlength="10" name="code" type="text" value="" onclick="randomString()" />
@@ -101,7 +101,7 @@
                 </div>
                 <div class="new_promotion__type">
                     <div class="label__title">Type</div>
-                    @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = "Discount", @readonly = "true" })
+                    @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = T("Discount"), @readonly = "true" })
                 </div>
                 <div class="new_promotion__discount">
                     <div class="label__title">Amount</div>
@@ -113,7 +113,7 @@
                 <div class="new_promotion__expiration">
                     <div class="label__title">Expiration</div>
                     <div class="input__group new_promotion__field">
-                        @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = "", @placeholder="Never" , @readonly="readonly"})
+                        @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = "", @placeholder=T("Never") , @readonly="readonly"})
                         <span id="calendar" class="new_promotion__clear_expiration clndr_button" style="border: 1px solid #e8eced;" onclick="showCalendar()">
                             <i class="ts-icon-calendar calendar__button"></i>
                         </span>
@@ -132,7 +132,7 @@
     @Html.AntiForgeryToken()
 <section class="account__password_settings">
     <div id="allPromotions" class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">All promotions</h1>
+        <h1 class="dashboard_section__heading">@T("All promotions")</h1>
 
     </div>
     <div id="promotionList" class="dashboard_section__content--padded">
@@ -140,11 +140,11 @@
 
         <div class="list__container">
             <div class="list_item list_item--heading">
-                <div class="list_item__cell code__heading">Promo ID</div>
-                <div class="list_item__cell discount__heading">Amount</div>
-                <div class="list_item__cell expiration__heading">Expires</div>
-                <div class="list_item__cell used__heading">Redeemed</div>
-                <div class="list_item__cell status__heading">Status</div>
+                <div class="list_item__cell code__heading">@T("Promo ID")</div>
+                <div class="list_item__cell discount__heading">@T("Amount")</div>
+                <div class="list_item__cell expiration__heading">@T("Expires")</div>
+                <div class="list_item__cell used__heading">@T("Redeemed")</div>
+                <div class="list_item__cell status__heading">@T("Status")</div>
                 <div id="action"  class="list_item__cell actions__heading"></div>
             </div>
             @foreach (var promotion in Model.Promotions)

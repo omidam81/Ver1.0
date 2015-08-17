@@ -39,7 +39,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 if (store.Url == url)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Such url exists! It must be unique.");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, T("Such url exists! It must be unique.").ToString());
                 }
             }
             var user = _wca.GetContext().CurrentUser;
@@ -144,7 +144,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 if (store.Url == url & store.Id != id)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Such url exists! It must be unique.");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, T("Such url exists! It must be unique.").ToString());
                 }
             }
             var user = _wca.GetContext().CurrentUser;
