@@ -5,15 +5,15 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Orchard;
+using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
-using Orchard.Mvc.Extensions;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
-using Orchard.Utility.Extensions;
+using Teeyoot.Module.Models;
 using Teeyoot.WizardSettings.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers
@@ -23,6 +23,7 @@ namespace Teeyoot.WizardSettings.Controllers
     {
         private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
+        private readonly IRepository<ArtRecord> _artRepository;
 
         private const string ArtworksImagesRelativePath = "~/Modules/Teeyoot.Module/Content/vector";
         private const string ArtworkSvgImageFileNameTemplate = "{0}.svg";
@@ -35,10 +36,12 @@ namespace Teeyoot.WizardSettings.Controllers
         public ArtworkController(
             ISiteService siteService,
             IOrchardServices orchardServices,
+            IRepository<ArtRecord> artRepository,
             IShapeFactory shapeFactory)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
+            _artRepository = artRepository;
             Shape = shapeFactory;
 
             T = NullLocalizer.Instance;
@@ -50,22 +53,15 @@ namespace Teeyoot.WizardSettings.Controllers
             var viewModel = new ArtworkIndexViewModel();
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
-            var artworkImageFiles = Directory.GetFiles(Server.MapPath(ArtworksImagesRelativePath), "*.png");
 
-            var artworks = artworkImageFiles.Select(it => new ArtworkItemViewModel
-            {
-                Name = Path.GetFileNameWithoutExtension(it),
-                ImageUrl =
-                    Url.MakeAbsolute(ArtworksImagesRelativePath + "/" + Path.GetFileName(it),
-                        HttpContext.Request.ToRootUrlString())
-            })
-                .OrderBy(it => it.Name);
+            viewModel.ArtworksImagesRelativePath = ArtworksImagesRelativePath;
 
-            viewModel.Artworks = artworks
+            viewModel.Arts = _artRepository.Table
+                .OrderBy(a => a.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(artworkImageFiles.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_artRepository.Table.Count());
             viewModel.Pager = pagerShape;
 
             return View(viewModel);
@@ -93,6 +89,12 @@ namespace Teeyoot.WizardSettings.Controllers
             var success = SaveArtworkImages(viewModel.ArtworkSvgImage, viewModel.ArtworkPngImage, viewModel.Name);
             if (success)
             {
+                var art = new ArtRecord
+                {
+                    Name = viewModel.Name,
+                    FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name)
+                };
+                _artRepository.Create(art);
                 _orchardServices.Notifier.Information(T("Artwork \"{0}\" has been added", viewModel.Name));
             }
 

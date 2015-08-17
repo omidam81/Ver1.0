@@ -38,11 +38,11 @@ namespace Teeyoot.Module.Controllers
         private readonly ITShirtCostService _costService;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
-        private readonly IRepository<ArtRecord> _artRecordRepository;
+        private readonly IRepository<ArtRecord> _artRepository;
 
         private const int ArtsPageSize = 10;
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRecordRepository)
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -54,7 +54,7 @@ namespace Teeyoot.Module.Controllers
             _costService = costService;
             _teeyootMessagingService = teeyootMessagingService;
             _commonSettingsRepository = commonSettingsRepository;
-            _artRecordRepository = artRecordRepository;
+            _artRepository = artRepository;
         }
 
         public ILogger Logger { get; set; }
@@ -247,7 +247,7 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetArts(string query, int page)
         {
-            var arts = _artRecordRepository.Table;
+            var arts = _artRepository.Table;
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -266,31 +266,20 @@ namespace Teeyoot.Module.Controllers
                 id = a.Id,
                 name = a.Name,
                 filename = a.FileName
-            }));
+            }), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetRandomArts(string query, int page)
+        public JsonResult GetRandomArts()
         {
-            var arts = _artRecordRepository.Table;
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                arts = arts.Where(a => a.Name.Contains(query.ToLowerInvariant()));
-            }
-
-            if (page > 0)
-            {
-                arts = arts.Skip((page - 1) * ArtsPageSize);
-            }
-
-            arts = arts.Take(ArtsPageSize);
+            var arts = _artRepository.Table
+                .Take(ArtsPageSize);
 
             return Json(arts.Select(a => new
             {
                 id = a.Id,
                 name = a.Name,
                 filename = a.FileName
-            }));
+            }), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetProducts()
