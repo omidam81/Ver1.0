@@ -27,6 +27,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<OrderRecord> _orderRepository;
         private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly IRepository<BringBackCampaignRecord> _backCampaignRepository;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -41,7 +42,8 @@ namespace Teeyoot.Module.Services
                                IRepository<OrderStatusRecord> orderStatusRepository,
                                IRepository<OrderRecord> orderRepository,
                                IRepository<OrderHistoryRecord> orderHistoryRepository,
-                               ITeeyootMessagingService teeyootMessagingService)
+                               ITeeyootMessagingService teeyootMessagingService,
+                               IRepository<BringBackCampaignRecord> backCampaignRepository)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -57,6 +59,7 @@ namespace Teeyoot.Module.Services
             _orderRepository = orderRepository;
             _orderHistoryRepository = orderHistoryRepository;
             _teeyootMessagingService = teeyootMessagingService;
+            _backCampaignRepository = backCampaignRepository;
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
@@ -387,6 +390,23 @@ namespace Teeyoot.Module.Services
             var campaign = GetCampaignById(id);
             campaign.CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == status.ToString());
             UpdateCampaign(campaign);
+        }
+
+        public void ReservCampaign(int id, string email)
+        {
+            var backCampaignRecord = new BringBackCampaignRecord();
+            backCampaignRecord.Email = email;
+            try
+            {
+                var campaign = GetCampaignById(id);
+                backCampaignRecord.CampaignRecord = campaign;
+                
+                _backCampaignRepository.Create(backCampaignRecord);  
+            }
+             catch (Exception e)
+             {
+                   Logger.Error("Error when trying to make reservation of campaign ---------------------- > {0}", e.ToString());
+             }
         }
     }
 }

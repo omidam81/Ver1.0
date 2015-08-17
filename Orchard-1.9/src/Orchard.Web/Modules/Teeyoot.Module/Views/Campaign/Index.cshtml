@@ -235,6 +235,14 @@
         VisibleRemove();
     }
 
+    function BackCampaignReserv() {       
+        document.getElementById("bringBackCampaign").className = "dg-overlay";
+    }
+
+    function CloseModalBackReserv() {
+        document.getElementById("bringBackCampaign").className = "dg-overlay-not-show";
+    }
+
     function ChangeProduct(item) {
         var id = item[item.selectedIndex].id;
         if (!isFront) {
@@ -405,6 +413,23 @@
         });
 
     }
+        function ReservCampaign() {
+            var email = document.getElementById("email_for_reserv").value;
+            var campaignId = document.getElementById("campaignId").value;
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("ReservCampaign", "Home"))",
+                data: addAntiForgeryToken({
+                    "Email": email, "Id": campaignId
+                }),
+            success: function (data, status, resp) {
+                $("#reserv_container").addClass("hidden");
+               document.getElementById("reservation-result").innerText = "@T("Your request has been sent!")";
+            }
+        });
+        }
 
     function shareCampaign() {
         var isBack = firstBack;
@@ -699,14 +724,19 @@
                         </li>
                     </ul>
                 </div>
-                @if (Model.Campaign.EndDate.ToLocalTime() > DateTime.Now && Model.Campaign.IsApproved == true)
+                @if (Model.Campaign.IsApproved == true)
                 {
                     <div class="campaign_transaction js-transaction-button">
-                        @*<a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>
-                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#pre-checkout-modal" onclick="dataLayer.push({'event': 'buy_now_clicked'});">Reserve it now</a>*@
-
+                        @if (Model.Campaign.EndDate.ToLocalTime() < DateTime.Now)
+                        {
+                            <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">Request to bring back the campaign</a>
+    <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">Request to bring back the campaign</a>
+                        }
+                        else
+                        {
                         <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
                         <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">Reserve it now</a>
+                        }
                     </div>
                 }
                 @if (Model.Campaign.IsApproved == true)
@@ -1007,31 +1037,35 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button aria-hidden="true" class="precheckout_close_button" id="close-reservation" onclick="CloseReservation()" type="button">
+                                <button aria-hidden="true" class="precheckout_close_button" id="close-reservation" onclick="CloseModalBackReserv()" type="button">
                                     <i class="ts-icon-close"></i>
                                 </button>
                                 <h2 class="reservation_modal__title">@T("Your Reservation")</h2>
                             </div>
 
                             <div class="modal-body-central-block">
-                                If just <span>10</span> more items are reserved, we can bring this design back! Leave your email and reserve your order now!
+                                @T("If just") <span>@T("10")</span> @T("more items are reserved, we can bring this design back! Leave your email and reserve your order now!")
                             </div>
-
-                            <div class="modal-body">
-                                <div class="tooltip tooltip--topleft">
-                                    <input class="form__textfield form__textfield--whole-width" type="text" placeholder="Email address (so we can notify you)">
+                            <div id="reserv_container">
+                                <div class="modal-body">
+                                    <div class="tooltip tooltip--topleft">
+                                        <input id="email_for_reserv" class="form__textfield form__textfield--whole-width" type="text" placeholder="@T("Email address (so we can notify you)")">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="modal-footer">
-                                <div class="payment_options_container">
-                                    <div class="reserve-yours-now">
-                                        <div onclick="" class="button-reserve-yours-now">
-                                            @T("RESERVE YOURS NOW!")
+                                <div class="modal-footer">
+                                    <div class="payment_options_container">
+                                        <div class="reserve-yours-now">
+                                            <div onclick="ReservCampaign(); return false;" class="button-reserve-yours-now">
+                                                @T("RESERVE YOURS NOW!")
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <span id="reservation-result"></span>
                         </div>
                     </div>
                 </div>

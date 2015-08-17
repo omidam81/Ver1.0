@@ -43,5 +43,7 @@ namespace Teeyoot.Module.Services
         bool PrivateCampaign(int id, bool change);
 
         void SetCampaignStatus(int id, CampaignStatus status);
+
+        void ReservCampaign(int id, string email);
     }
 }

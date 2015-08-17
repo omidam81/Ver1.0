@@ -461,5 +461,14 @@ namespace Teeyoot.Module.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-    }    
+   
+   
+        [HttpPost]
+        public HttpStatusCodeResult ReservCampaign(string email, int id)
+        {
+            _campaignService.ReservCampaign(id, email);
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);            
+        }
+     } 
 }

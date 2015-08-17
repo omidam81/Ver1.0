@@ -9,7 +9,7 @@ namespace Teeyoot.Module.Models
     {
         public virtual int Id { get; set; }
 
-        public virtual CampaignRecord CampaignId { get; set; }
+        public virtual CampaignRecord CampaignRecord { get; set; }
 
         public virtual string Email { get; set; }       
     }

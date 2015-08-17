@@ -6676,3 +6676,8 @@ td, tr {
 .tb-search-form button{
 height:24px!important;
 }
+
+#reservation-result{
+    color: #ff4f00;
+    font-size: 24px;
+}
