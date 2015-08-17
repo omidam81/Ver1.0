@@ -38,9 +38,12 @@ namespace Teeyoot.Module.Controllers
         private readonly ISwatchService _swatchService;
         private readonly ITShirtCostService _costService;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
-        private IRepository<CommonSettingsRecord> _commonSettingsRepository;
+        private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+        private readonly IRepository<ArtRecord> _artRepository;
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository)
+        private const int ArtsPageSize = 10;
+
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -53,6 +56,7 @@ namespace Teeyoot.Module.Controllers
             _teeyootMessagingService = teeyootMessagingService;
             _commonSettingsRepository = commonSettingsRepository;
             T = NullLocalizer.Instance;
+            _artRepository = artRepository;
         }
 
         public ILogger Logger { get; set; }
@@ -255,6 +259,42 @@ namespace Teeyoot.Module.Controllers
         {
             var swatches = _swatchService.GetAllSwatches();
             return Json(swatches.ToList().Select(s => new { id = s.Id, name = s.Name, inStock = s.InStock, rgb = new[] { s.Red, s.Green, s.Blue } }), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetArts(string query, int page)
+        {
+            var arts = _artRepository.Table;
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                arts = arts.Where(a => a.Name.Contains(query.ToLowerInvariant()));
+            }
+
+            if (page > 0)
+            {
+                arts = arts.Skip((page - 1)*ArtsPageSize);
+            }
+
+            arts = arts.Take(ArtsPageSize);
+
+            return Json(arts.ToList().Select(a => new
+            {
+                id = a.Id,
+                name = a.Name,
+                filename = a.FileName
+            }), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetRandomArts()
+        {
+            var arts = _artRepository.Table.Take(ArtsPageSize);
+
+            return Json(arts.ToList().Select(a => new
+            {
+                id = a.Id,
+                name = a.Name,
+                filename = a.FileName
+            }), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetProducts()

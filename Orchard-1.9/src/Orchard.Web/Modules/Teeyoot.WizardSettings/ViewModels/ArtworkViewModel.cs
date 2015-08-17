@@ -5,7 +5,7 @@ namespace Teeyoot.WizardSettings.ViewModels
 {
     public class ArtworkViewModel
     {
-        public string CurrentName { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }

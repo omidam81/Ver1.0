@@ -6,8 +6,8 @@ var dataUrls = {
     products: '/GetAllProducts',
     productPricing: 'product_pricing.json',
     swatches: '/GetAllSwatches',
-    randomArt: 'random.json',
-    searchArt: 'search.json',
+    randomArt: '/GetRandomArts',
+    searchArt: '/GetArts',
     searchNoun: 'searchNoun.json',
     fileUpload: '/UpoadArtFile'
 };

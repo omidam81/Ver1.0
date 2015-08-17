@@ -7,7 +7,7 @@
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("EditArtwork", "Artwork"), FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
-    @Html.HiddenFor(m => m.CurrentName)
+    @Html.HiddenFor(m => m.Id)
     <fieldset>
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.TextBoxFor(m => m.Name, new {@class = "text large"})

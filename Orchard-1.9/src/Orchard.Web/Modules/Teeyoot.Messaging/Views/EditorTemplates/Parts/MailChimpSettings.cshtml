@@ -5,16 +5,7 @@
     @Html.TextBoxFor(m => m.ApiKey, new { @class = "text large" })
     @Html.ValidationMessageFor(m => m.ApiKey)
 </fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.Culture, T("Language"))
-    @Html.DropDownListFor(m => m.Culture, Model.AvailableLanguages.Select(l => new SelectListItem
-                                            {
-                                                Selected = l.Code == Model.Culture,
-                                                Text = l.Name,
-                                                Value = l.Code
-                                            }))
-    @Html.ValidationMessageFor(m => m.Culture)
-</fieldset>
+
 
 
 

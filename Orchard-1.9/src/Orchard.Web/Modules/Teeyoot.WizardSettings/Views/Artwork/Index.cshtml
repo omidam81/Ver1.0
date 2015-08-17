@@ -1,4 +1,6 @@
-﻿@model Teeyoot.WizardSettings.ViewModels.ArtworkIndexViewModel
+﻿@using Orchard.Mvc.Extensions
+@using Orchard.Utility.Extensions
+@model Teeyoot.WizardSettings.ViewModels.ArtworkIndexViewModel
 @{
     Layout.Title = T("Artworks");
 }
@@ -8,19 +10,19 @@
 </div>
 
 <ul class="contentItems">
-    @foreach (var artwork in Model.Artworks)
+    @foreach (var art in Model.Arts)
     {
         <li>
             <div class="summary">
                 <div class="properties">
                     <div>
-                        <h3>@artwork.Name</h3>
-                        <img src="@artwork.ImageUrl" alt="@artwork.Name"/>
+                        <h3>@art.Name</h3>
+                        <img src="@Url.MakeAbsolute(Model.ArtworksImagesRelativePath + "/" + Path.GetFileNameWithoutExtension(art.FileName) + ".png", HttpContext.Current.Request.ToRootUrlString())" alt="@art.Name"/>
                     </div>
                 </div>
                 <div class="related">
-                    <a href="@Url.Action("EditArtwork", "Artwork", new {name = artwork.Name})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("DeleteArtwork", "Artwork", new {name = artwork.Name})" itemprop="RemoveUrl">@T("Delete")</a>
+                    <a href="@Url.Action("EditArtwork", "Artwork", new {artworkId = art.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                    <a href="@Url.Action("DeleteArtwork", "Artwork", new {artworkId = art.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                 </div>
             </div>
         </li>

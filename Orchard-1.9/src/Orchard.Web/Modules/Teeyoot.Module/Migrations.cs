@@ -638,7 +638,7 @@ namespace Teeyoot.Module
                 table => table
                     .DropColumn("ColoursPerPrint"));
 
-            SchemaBuilder.CreateTable(typeof(BringBackCampaignRecord).Name,
+            SchemaBuilder.CreateTable(typeof (BringBackCampaignRecord).Name,
                 table => table
                     .Column<int>("Id", column => column.PrimaryKey().Identity())
                     .Column<int>("CampaignRecord_Id")
@@ -646,9 +646,16 @@ namespace Teeyoot.Module
                 );
 
             SchemaBuilder.CreateForeignKey("BringBackCampaign_Order", "BringBackCampaignRecord",
-                new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
+                new[] {"CampaignRecord_Id"}, "CampaignRecord", new[] {"Id"});
 
-            return 65;
+            SchemaBuilder.CreateTable(typeof (ArtRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Name")
+                    .Column<string>("FileName")
+                );
+
+            return 66;
         }
 
         public int UpdateFrom2()
@@ -1382,17 +1389,29 @@ namespace Teeyoot.Module
 
         public int UpdateFrom64()
         {
-            SchemaBuilder.CreateTable(typeof(BringBackCampaignRecord).Name,
+            SchemaBuilder.CreateTable(typeof (BringBackCampaignRecord).Name,
                 table => table
                     .Column<int>("Id", column => column.PrimaryKey().Identity())
                     .Column<int>("CampaignRecord_Id")
-                    .Column<string>("Email", c => c.NotNull())                  
+                    .Column<string>("Email", c => c.NotNull())
                 );
 
             SchemaBuilder.CreateForeignKey("BringBackCampaign_Order", "BringBackCampaignRecord",
-                new[] { "CampaignRecord_Id" }, "CampaignRecord", new[] { "Id" });
-           
+                new[] {"CampaignRecord_Id"}, "CampaignRecord", new[] {"Id"});
+
             return 65;
+        }
+
+        public int UpdateFrom65()
+        {
+            SchemaBuilder.CreateTable(typeof (ArtRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Name")
+                    .Column<string>("FileName")
+                );
+
+            return 66;
         }
     }
 }

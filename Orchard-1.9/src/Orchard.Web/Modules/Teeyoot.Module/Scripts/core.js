@@ -13,13 +13,15 @@ var app = {
     },
     loadRandomArt: function(){
         return jQuery.ajax({
-            url: this.urlPrefix+this.urls.randomArt
+            //url: this.urlPrefix+this.urls.randomArt
+            url: this.urls.randomArt
         });
     },
     searchArt: function(query, page){
         page = page||0;
         return jQuery.ajax({
-            url: this.urlPrefix + this.urls.searchArt,
+            //url: this.urlPrefix + this.urls.searchArt,
+			url: this.urls.searchArt,
             data: {query: query, page: page}
         })
     },

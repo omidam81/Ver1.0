@@ -25,5 +25,7 @@ namespace Teeyoot.Module.Dashboard.ViewModels
         public int Sold { get; set; }
 
         public int FirstProductId { get; set; }
+
+        public bool BackByDefault { get; set; }
     }
 }
