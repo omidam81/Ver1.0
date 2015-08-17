@@ -8,6 +8,7 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
 {
     public class CampaignInfViewModel
     {
+        public int CampaignId { get; set; }
         public string Title { get; set; }
         public string Alias { get; set; }
         public int Day { get; set; }
