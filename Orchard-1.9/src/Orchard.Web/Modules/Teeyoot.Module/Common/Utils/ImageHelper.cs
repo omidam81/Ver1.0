@@ -149,7 +149,7 @@ namespace Teeyoot.Module.Common.Utils
             p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
             p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
 
-            Image backImage = Image.FromFile(System.Web.Hosting.HostingEnvironment.MapPath("/Media/Default/images/background.png"));
+            Image backImage = Image.FromFile(System.Web.Hosting.HostingEnvironment.MapPath("/Media/Default/images/facebook_background.jpg"));
             backImage = ResizeImage(backImage, 1200, 627);
             Graphics g = Graphics.FromImage(backImage);
             g.DrawImage(campaignImg, 150, 0, 900, 900);
