@@ -444,9 +444,13 @@ window.onload = function initWizard() {
                 h4ProfSaleOld.id = "h4ProfSale_" + k;
             }
 
+
             if (app.state.products.length > 1) {
                 estimatedProfitChangeForManuProducts();
             } else {
+                var slider = document.getElementById('trackbar');
+                window.count = parseInt(slider.noUiSlider.get());
+                calculatePrice(window.frontColor, window.backColor)
                 estimatedProfitChange();
             }
         });
