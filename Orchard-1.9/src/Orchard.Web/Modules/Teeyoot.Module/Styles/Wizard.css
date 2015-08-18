@@ -1527,3 +1527,50 @@ body.page-ready #preloader {
 .sales_price_text_area {
     margin-left: 4px;
 }
+
+.many-colors {
+    overflow: auto;
+    height: 240px;
+}
+
+.upload-photo-wizard {
+    overflow: auto;
+        height: 350px;
+}
+.too-many {
+     padding-top:30px!important;
+    width:auto!important;
+}
+.upload-photo-wizard-modal{
+    /*padding-top:0!important;*/
+    width:auto!important;
+
+}
+
+.modal-btn-wizzard {
+    margin-bottom:0!important;
+}
+@media only screen and (max-width: 980px){
+.upload-photo-wizard {
+        height: 460px;
+}
+    .many-colors {
+         height: 270px;
+    }
+}
+
+@media only screen and (max-width: 430px){
+.upload-photo-wizard {
+        height: 490px;
+}
+
+}
+
+@media only screen and (max-width: 370px){
+.upload-photo-wizard {
+        height: 540px;
+}
+.many-colors {
+         height: 300px;
+    }
+}
