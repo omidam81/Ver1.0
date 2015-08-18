@@ -86,7 +86,7 @@
                                 var pCount = document.createElement("p");
                                 pCount.innerHTML = item.Count;
                                 var pPrice = document.createElement("p");
-                                pPrice.innerHTML = item.Price;
+                                pPrice.innerHTML = item.Currency+" "+ item.Price;
 
                                 tdName.appendChild(pName);
                                 tdSize.appendChild(pSize);
@@ -102,7 +102,7 @@
                             });
                             var totalPrice = document.getElementById("totalPrice");
                             totalPrice.innerHTML = "Total price : ";
-                            totalPrice.innerHTML = totalPrice.innerHTML + data.totalPrice;
+                            totalPrice.innerHTML = totalPrice.innerHTML + data.products[0].Currency+ " "+ data.totalPrice;
 
                             //$("#firstName").html(data.firstName);
                             //$("#lastName").html(data.lastName);

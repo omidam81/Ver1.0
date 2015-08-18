@@ -139,3 +139,6 @@
 .apply {
     margin-left:5%;
 }
+#modal_form_order{
+    overflow-y: scroll;
+}

@@ -155,11 +155,11 @@ namespace Teeyoot.Orders.Controllers
                     CreateDate: e.CreateDate.ToString("dd/MM/yyyy")
                     );
             });
-            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
-            var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
-            var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
+            //var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+           
+            //var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
 
-            return View("Index", new AdminOrderViewModel { DynamicOrders = entries.ToArray(), Pager = pagerShape });
+            return View("Index", new AdminOrderViewModel { DynamicOrders = entriesProjection.ToArray() });
         }
 
         public JsonResult GetOrderInfirmation(string publicId)
@@ -168,6 +168,7 @@ namespace Teeyoot.Orders.Controllers
 
             var products = order.Products.Select(o => new { Name = o.CampaignProductRecord.ProductRecord.Name,
                 Count = o.Count,
+                Currency = o.CampaignProductRecord.CurrencyRecord.Code,
                 Price = o.CampaignProductRecord.Price + Pricing(o.CampaignProductRecord.ProductRecord.SizesAvailable,o.ProductSizeRecord.Id),
                 Size = o.ProductSizeRecord.SizeCodeRecord.Name });
             var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
@@ -181,7 +182,7 @@ namespace Teeyoot.Orders.Controllers
             float sizeC = 0;
             foreach (var size in SizesAvailable)
             {
-                if (size.Id == productSizeRecord)
+                if (size.ProductSizeRecord.Id == productSizeRecord)
                     sizeC = size.SizeCost;
             }
             return sizeC;
