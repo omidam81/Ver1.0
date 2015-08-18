@@ -157,7 +157,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 campaign.Title = Title;
                 campaign.Alias = URL;
                 campaign.ProductCountGoal = Target;
-                campaign.Description = Description;
+                //campaign.Description = Description;
                 campaign.EndDate = date.ToUniversalTime();
                 var prices = Prices.Split(',');
                 for (int i = 0; i < campaign.Products.Count; i++)
