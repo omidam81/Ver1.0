@@ -15,13 +15,14 @@ namespace Teeyoot.Dashboard.Controllers
         {
             if (viewModel.ErrorMessage == null)
             {
-                int currentUser = Services.WorkContext.CurrentUser.Id;
-                var teeUser = _contentManager.Get<TeeyootUserPart>(currentUser, VersionOptions.Latest);
+                var currentUser = Services.WorkContext.CurrentUser;
+                var teeUser = _contentManager.Get<TeeyootUserPart>(currentUser.Id, VersionOptions.Latest);
                 UserSettingsViewModel model = new UserSettingsViewModel() { };
                 model.Id = teeUser.Id;
                 model.PublicName = teeUser.PublicName;
                 model.PhoneNumber = teeUser.PhoneNumber;
                 model.City = teeUser.City;
+                model.CurrentEmail = currentUser.Email;
                 model.State = teeUser.State;
                 model.Street = teeUser.Street;
                 model.InfoMessage = viewModel.InfoMessage;
@@ -30,13 +31,14 @@ namespace Teeyoot.Dashboard.Controllers
             }
             else
             {
-                int currentUser = Services.WorkContext.CurrentUser.Id;
-                var teeUser = _contentManager.Get<TeeyootUserPart>(currentUser, VersionOptions.Latest);
+                var currentUser = Services.WorkContext.CurrentUser;
+                var teeUser = _contentManager.Get<TeeyootUserPart>(currentUser.Id, VersionOptions.Latest);
                 UserSettingsViewModel model = new UserSettingsViewModel() { };
                 model.Id = teeUser.Id;
                 model.PublicName = teeUser.PublicName;
                 model.PhoneNumber = teeUser.PhoneNumber;
                 model.City = teeUser.City;
+                model.CurrentEmail = currentUser.Email;
                 model.State = teeUser.State;
                 model.Street = teeUser.Street;
                 model.ErrorMessage = viewModel.ErrorMessage;
