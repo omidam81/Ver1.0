@@ -825,6 +825,7 @@
     <Compile Include="Models\StoreRecord.cs" />
     <Compile Include="Services\Interfaces\IStoreService.cs" />
     <Compile Include="Services\StoreService.cs" />
+    <Compile Include="ViewModels\OopsViewModel.cs" />
     <Compile Include="ViewModels\OrderTrackingViewModel.cs" />
     <Compile Include="ViewModels\PaymentSettingsViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
