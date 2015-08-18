@@ -59,7 +59,7 @@ namespace Teeyoot.Orders.Controllers
 
 
         public Localizer T { get; set; }
-        public ActionResult Index(PagerParameters pagerParameters, string searchString)
+        public ActionResult Index(PagerParameters pagerParameters)
         {
             var orders = _orderService.GetAllOrders().Where(o => o.IsActive).ToList();
             var orderEntities = new AdminOrderViewModel();
@@ -101,11 +101,12 @@ namespace Teeyoot.Orders.Controllers
                                 prof = prof - size.SizeCost;
                         }
                         orderProfit = orderProfit + prof;
+                        orderProfit = Math.Round(orderProfit, 2);
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(searchString) || campaign.Title.ToLower().Contains(searchString.ToLower()))
-                {
+                //if (string.IsNullOrWhiteSpace(searchString) || campaign.Title.ToLower().Contains(searchString.ToLower()))
+                //{
                     orderEntities.Orders.Add(new AdminOrder  {
                     PublicId = item.OrderPublicId,
                     Products = item.Products,
@@ -122,9 +123,10 @@ namespace Teeyoot.Orders.Controllers
                     //Country = item.Country,
                     //PhoneNumber = item.PhoneNumber,
                     Payout = item.ProfitPaid,
+                    CreateDate = item.Created,
                     UserNameSeller = seller != null ? seller.UserName : ""
                    });
-            }
+            //}
                                 }
                 catch (Exception ex)
                 {
@@ -149,7 +151,8 @@ namespace Teeyoot.Orders.Controllers
                     UserNameSeller: e.UserNameSeller,
                     Payout: e.Payout,
                     CampaignName: e.CampaignName,
-                    SellerId: e.SellerId
+                    SellerId: e.SellerId,
+                    CreateDate: e.CreateDate.ToString("dd/MM/yyyy")
                     );
             });
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
