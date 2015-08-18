@@ -1,8 +1,8 @@
 ﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
 @{
-    //Style.Include("bootstrap.min.css");
-    Style.Include("Payouts.css");
 
+    Style.Include("Payouts.css");
+    //Style.Include("bootstrap.min.css");
     Script.Require("jQuery");
     //Script.Include("bootstrap.min.js");
 }
@@ -183,6 +183,8 @@
             }
         </table>
     </div>
+
+
     <div id="modal_form" style="display:none">
         @Html.Partial("StartPayout")
     </div>
