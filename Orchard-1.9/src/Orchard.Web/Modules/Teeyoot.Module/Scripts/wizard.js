@@ -62,7 +62,7 @@ window.onload = function initWizard() {
         prdc.ProductId = parseInt(document.getElementById("product").value);
          
         var product = design.products.productsData[prdc.ProductId];
-        prdc.ColorId = product.colors_available[0];
+        prdc.ColorId = app.state.currentProduct.ColorId;//product.colors_available[0];
         var prices = product.prices;
         for (var i = 0; i < prices.length; i++) {
             if (prices[i].color_id == prdc.ColorId) {
@@ -78,6 +78,7 @@ window.onload = function initWizard() {
         imageDel.style.cursor = "pointer";
 
         var $image = $(image);
+        $image.css("background-color", app.state.color.value);
 
         //----------- profit/sale ----------------------------------
         
