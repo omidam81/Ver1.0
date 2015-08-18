@@ -146,20 +146,30 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target,string Description, string Prices)
+        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string Prices)
         {
-            DateTime date = new DateTime(Year, Mounth, Day);
             var campaign = _campaignService.GetCampaignById(campaignId);
-            campaign.Title = Title;
-            campaign.Alias = URL;
-            campaign.ProductCountGoal = Target;
-            campaign.Description = Description;
-            campaign.EndDate = date.ToUniversalTime();
-            var prices = Prices.Split(',');
-            for (int i = 0; i < campaign.Products.Count; i++)
-                campaign.Products[i].Price = Convert.ToDouble(prices[i]);
-            _campaignService.UpdateCampaign(campaign);
-            return RedirectToAction("Index");
+            var campaigns = _campaignService.GetAllCampaigns();
+            if (!campaigns.Select(c=>c.Alias).ToList().Contains(URL) || campaign.Alias == URL)
+            {
+                DateTime date = new DateTime(Year, Mounth, Day);
+
+                campaign.Title = Title;
+                campaign.Alias = URL;
+                campaign.ProductCountGoal = Target;
+                campaign.Description = Description;
+                campaign.EndDate = date.ToUniversalTime();
+                var prices = Prices.Split(',');
+                for (int i = 0; i < campaign.Products.Count; i++)
+                    campaign.Products[i].Price = Convert.ToDouble(prices[i]);
+                _campaignService.UpdateCampaign(campaign);
+                Response.Write(true);
+            }
+            else {
+                Response.Write(false);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
 	}

@@ -83,9 +83,15 @@
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
-                        loader.style.display = "none";
-                        alert("Updated successfully");
-                        window.location.href = '/' + alias;
+                        if (data == "True") {
+                            loader.style.display = "none";
+                            alert("Updated successfully");
+                            window.location.href = '/' + alias;
+                        } else if (data == "False") {
+                            loader.style.display = "none";
+                            alert("This URL has been already used");
+                            window.location.href = '/' + alias;
+                        }
                     }
                 },
                 error: function (data, status, resp) {
