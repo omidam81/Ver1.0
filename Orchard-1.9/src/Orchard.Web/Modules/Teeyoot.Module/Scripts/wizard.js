@@ -26,7 +26,8 @@ window.onload = function initWizard() {
     //});
 
     $("#butAdd").click(function addElement() {
-
+        var slider = document.getElementById('trackbar');
+        window.count = parseInt(slider.noUiSlider.get());
 
         if (document.querySelectorAll(".ssp_block").length >= 7)
         {
