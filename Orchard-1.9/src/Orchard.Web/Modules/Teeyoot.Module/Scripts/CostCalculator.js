@@ -134,7 +134,7 @@ function setPriceInDesignFromGoal() {
 
 function estimatedProfitChange() {
     var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(2);
-    $("#total_profit").html("RM " + est + "+");
+    $("#total_profit").html("RM " + est);
     minimumGoal();
 }
 
@@ -214,9 +214,9 @@ function estimatedProfitChangeForManuProducts() {
     var max = Math.max.apply(null, result).toFixed(2);
     if (min < 0) min = 0;
     if (min == max) {
-        $("#total_profit").html("RM " + min + "+");
+        $("#total_profit").html("RM " + min);
     } else {
-        $("#total_profit").html("RM " + min + "-" + max + "+");
+        $("#total_profit").html("RM " + min + "-" + max);
     }
     minimumGoal();
 }
@@ -238,7 +238,7 @@ function updateMinimum(changes) {
         $("#mainH4").html(changes);
         //$("#mainH4").css('color', '#ff0000');
         if (app.state.products.length < 2) {
-            $("#total_profit").html("RM 0+");
+            $("#total_profit").html("RM 0");
         }
     } else {
         if (app.state.isNegativeProfit != null) {
