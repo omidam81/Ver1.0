@@ -17,22 +17,54 @@
 {
     <script>
         var loader = document.querySelector(".loader");
-        var el = $('.textarea').wysihtml5();
+        var wysihtml5ParserRules = {
+            tags: {
+                strong: {},
+                b: {},
+                i: {},
+                em: {},
+                br: {},
+                p: {},
+                div: {},
+                span: {},
+                ul: {},
+                ol: {},
+                li: {},
+                img: {
+                    "check_attributes": {
+                        "width": "numbers",
+                        "alt": "alt",
+                        "src": "url", // if you compiled master manually then change this from 'url' to 'src'
+                        "height": "numbers"
+                    },
+                },
+                a: {
+                    set_attributes: {
+                        target: "_blank",
+                        rel: "nofollow"
+                    },
+                    check_attributes: {
+                        href: "url" // important to avoid XSS
+                    }
+                }
+            }
+        };
+        var el = $('.textarea').wysihtml5({ parserRules: wysihtml5ParserRules });
 
         window.onload = function () {
-        
+
             var elems = document.querySelectorAll(".price");
 
             for (var i = 0; i < elems.length; i++) {
-                var sell = document.getElementById("sell "+i).value;
-                var profit = sell -  document.getElementById("base "+i).innerHTML;
+                var sell = document.getElementById("sell " + i).value;
+                var profit = sell - document.getElementById("base " + i).innerHTML;
                 document.getElementById(i).innerHTML = profit.toFixed(2);
             }
-    
+
         }
-     
+
         function profit(i, val) {
-            var id = "base "+i;
+            var id = "base " + i;
             var costPrice = document.getElementById(id).innerHTML;
             var profit = val - costPrice.replace(',', '.');
             document.getElementById(i).innerHTML = profit.toFixed(2);
@@ -41,15 +73,15 @@
 
         function parsePrice() {
             var elems = document.querySelectorAll(".prices");
-            var prices=elems[0].value;
+            var prices = elems[0].value;
             for (var i = 1; i < elems.length; i++) {
-                prices = prices + "," + elems[i].value 
+                prices = prices + "," + elems[i].value
             }
             return prices;
-        
+
         }
 
-        
+
         function sendData() {
             loader.style.display = "";
             var title = document.querySelector('.titleOfCampaign').value;
@@ -62,8 +94,8 @@
             var target = document.querySelector('.Goal').value;
             var description = document.getElementById("campaign_description_text").value;
             var prices = parsePrice();
-        
-            
+
+
 
             $.ajax({
                 async: false,
@@ -99,22 +131,23 @@
                     alert('Status: ' + data.status + '. Error message: ' + data.statusText);
 
                 }
-            });}
+            });
+        }
 
 
-            function addAntiForgeryToken(data) {
-                var antiForgeryTokenValue = $('#anti_forgery_token').val();
-                data.__RequestVerificationToken = antiForgeryTokenValue;
-                return data;
-            };
-
-
-
-
+        function addAntiForgeryToken(data) {
+            var antiForgeryTokenValue = $('#anti_forgery_token').val();
+            data.__RequestVerificationToken = antiForgeryTokenValue;
+            return data;
+        };
 
 
 
-</script>
+
+
+
+
+    </script>
 
 }
 
@@ -123,17 +156,17 @@
     <input type="hidden" id="campaignId" value='@Model.CampaignId' />
     @*<div id="#desc">@Html.Raw(@Model.Description)</div>*@
     <fieldset>
-    <font class="title">@T("Title of campaign : ")</font>
+        <font class="title">@T("Title of campaign : ")</font>
         <input class="titleOfCampaign" value="@Model.Title" style="width:353px" />
     </fieldset>
 
     <fieldset>
-    <font class="title">@T("URL : ")</font>
+        <font class="title">@T("URL : ")</font>
         <input class="URL" value="@Model.Alias" />
     </fieldset>
     <fieldset>
-    <font class="title">@T("End Date : ")</font>
-    <span class="inp_date">@T("Day")</span>
+        <font class="title">@T("End Date : ")</font>
+        <span class="inp_date">@T("Day")</span>
 
         <select id="day">
             @for (int i = 1; i <= 31; i++)
@@ -149,7 +182,7 @@
 
             }
         </select>
-    <span class="inp_date">@T("Month")</span>
+        <span class="inp_date">@T("Month")</span>
         <select id="month">
             @for (int i = 1; i <= 12; i++)
             {
@@ -163,22 +196,22 @@
                 }
             }
         </select>
-    <span class="inp_date">@T("Year")</span><input type="text" maxlength="4" value="@Model.Year" placeholder="YYYY" id="year" />
+        <span class="inp_date">@T("Year")</span><input type="text" maxlength="4" value="@Model.Year" placeholder="YYYY" id="year" />
 
     </fieldset>
     <fieldset>
-    <font class="title">@T("Target : ")</font>
+        <font class="title">@T("Target : ")</font>
         <input class="Goal" value="@Model.Target" type="number" />
     </fieldset>
 
     <fieldset>
-    <font class="title">@T("Description : ")</font>
+        <font class="title">@T("Description : ")</font>
         <form id="campaign_details">
 
             <div class="teespring-well designer-well description">
-            <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
+                <div class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
                     <p class="has-under-text text-error" id="campaign_description_text_error-text"></p>
-                <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="@T("Decribe your campaign here…")" style="height: 200px"></textarea>
+                    <textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="@T("Decribe your campaign here…")" style="height: 200px">@Html.Raw(@Model.Description)</textarea>
                 </div>
             </div>
         </form>
@@ -188,19 +221,19 @@
         <table class="items">
             <thead>
                 <tr>
-                <td>@T("Name product")</td>
-                <td>@T("Cost Price")</td>
-                <td>@T("Sell Price")</td>
-                <td>@T("Profit")</td>
+                    <td>@T("Name product")</td>
+                    <td>@T("Cost Price")</td>
+                    <td>@T("Sell Price")</td>
+                    <td>@T("Profit")</td>
                 </tr>
             </thead>
             @for (int i = 0; i < Model.Products.Count(); i++)
             {
                 <tr>
                     <td>@Model.Products.ElementAt(i).ProductRecord.Name</td>
-                    <td id="base @i">@Model.Products.ElementAt(i).BaseCost.ToString().Replace(",",".")</td>
-                    <td><input id="sell @i" type="text"class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
-               <td class="price" id=@i></td>
+                    <td id="base @i">@Model.Products.ElementAt(i).BaseCost.ToString().Replace(",", ".")</td>
+                    <td><input id="sell @i" type="text" class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
+                    <td class="price" id=@i></td>
                 </tr>
             }
 
@@ -212,6 +245,6 @@
     </fieldset>
 }
 
- <button type="submit" onclick="sendData()">@T("Save").ToString()</button>
- @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })
+<button type="submit" onclick="sendData()">@T("Save").ToString()</button>
+@Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })
 <img src="\media\default\images\loading.gif" style="display:none;" class="loader" />
