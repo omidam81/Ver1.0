@@ -144,6 +144,7 @@ window.onload = function initWizard() {
         h6.classList.add("h6Sale");
         h6.classList.add("profit");
         h6.innerHTML = "(per shirt)";
+        h6.style.paddingTop = "2px";
         h4ProfRm.innerHTML = "RM";
         h4ProfText.innerHTML = "Your Profit";
         divProf.appendChild(h4ProfRm);
