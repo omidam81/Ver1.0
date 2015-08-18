@@ -589,15 +589,23 @@ namespace Teeyoot.Messaging.Services
             {
                 baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
             }
-
+            string side = "";
             var campaign = _campaignRepository.Get(campaignId);
+            if (campaign.BackSideByDefault)
+            {
+                side = "back";
+            }
+            else
+            {
+                side = "front";
+            }
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
             message.AddRcptMergeVars(email, "Url", baseUrl);
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
             message.AddRcptMergeVars(email, "ReservedCount", campaign.ProductCountSold.ToString());
             message.AddRcptMergeVars(email, "Goal", campaign.ProductCountGoal.ToString());
             message.AddRcptMergeVars(email, "SellerEmail", _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId).Email);
-            message.AddRcptMergeVars(email, "CampaignPreviewUrl", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/front.png");
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/"+side+".png");
 
         }
 
@@ -673,7 +681,16 @@ namespace Teeyoot.Messaging.Services
             List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
             foreach (var item in orderedProducts)
             {
-
+                string side = "";
+                var campaign = _campaignRepository.Get(item.CampaignProductRecord.CampaignRecord_Id);
+                if (campaign.BackSideByDefault)
+                {
+                    side = "back";
+                }
+                else
+                {
+                    side = "front";
+                }
                 int index = orderedProducts.IndexOf(item);
                 int idSize = item.ProductSizeRecord.Id;
                 float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
@@ -686,7 +703,7 @@ namespace Teeyoot.Messaging.Services
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
                         {"currency", item.OrderRecord.CurrencyRecord.Code},
                         {"total_price", price* item.Count},
-                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/front.png"}
+                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/"+side+".png"}
                      });
 
             }
@@ -700,12 +717,21 @@ namespace Teeyoot.Messaging.Services
             List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
             foreach (var item in campaignProducts)
             {
-           
+                string side = "";
+                var campaign = _campaignRepository.Get(item.CampaignRecord_Id);
+                if (campaign.BackSideByDefault)
+                {
+                    side = "back";
+                }
+                else
+                {
+                    side = "front";
+                }
                 products.Add(new Dictionary<string, object>{                 
                         {"name",  item.ProductRecord.Name},
                         {"price", item.Price},
                         {"currency", item.CurrencyRecord.Code},
-                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignRecord_Id + "/" + item.Id + "/normal/front.png"}
+                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignRecord_Id + "/" + item.Id + "/normal/"+side+".png"}
                      });
 
             }

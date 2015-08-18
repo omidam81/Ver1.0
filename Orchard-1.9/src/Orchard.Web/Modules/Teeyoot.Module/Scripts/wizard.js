@@ -26,7 +26,8 @@ window.onload = function initWizard() {
     //});
 
     $("#butAdd").click(function addElement() {
-
+        var slider = document.getElementById('trackbar');
+        window.count = parseInt(slider.noUiSlider.get());
 
         if (document.querySelectorAll(".ssp_block").length >= 7)
         {
@@ -144,6 +145,7 @@ window.onload = function initWizard() {
         h6.classList.add("h6Sale");
         h6.classList.add("profit");
         h6.innerHTML = "(per shirt)";
+        h6.style.paddingTop = "2px";
         h4ProfRm.innerHTML = "RM";
         h4ProfText.innerHTML = "Your Profit";
         divProf.appendChild(h4ProfRm);

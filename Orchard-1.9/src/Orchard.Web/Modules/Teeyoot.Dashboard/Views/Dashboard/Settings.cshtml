@@ -106,7 +106,7 @@
                     @Html.TextBoxFor(m => m.ConfirmNewEmailAddress, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
                 <input name="commit" class="t-button" type="submit" value="@T("Update Email")">
-            ></div>
+            </div>
         }
     </div>
 </section>
@@ -131,7 +131,7 @@
                 <label>
                     <div class="label__title">@T("New password")</div>
                     @Html.ValidationMessageFor(m => m.NewPassword)
-                    @Html.TextBoxFor(m => m.NewPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password", @placeholder = T("Must be longer than 7 characters") })
+                    @Html.TextBoxFor(m => m.NewPassword, new { @class = "form__textfield", @maxlength = "50", @size = "30", @type = "password", @placeholder = T("Must be longer than 8 characters") })
 
                 </label>
                 <label>
