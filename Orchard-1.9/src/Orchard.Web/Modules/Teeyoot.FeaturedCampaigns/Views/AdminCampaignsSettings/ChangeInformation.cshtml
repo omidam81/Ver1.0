@@ -212,6 +212,6 @@
     </fieldset>
 }
 
- <button type="submit" onclick="sendData()">Save</button>
+ <button type="submit" onclick="sendData()">@T("Save").ToString()</button>
  @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })
 <img src="\media\default\images\loading.gif" style="display:none;" class="loader" />

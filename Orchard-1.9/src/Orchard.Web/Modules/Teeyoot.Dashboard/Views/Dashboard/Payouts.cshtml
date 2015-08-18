@@ -79,33 +79,33 @@
             if (accountNumber == "" || bankName == "" || accHoldName == "" || contNum == "" || !isNumeric(contNum)) {
                 if (accountNumber == "") {
                     document.getElementById("accountNum").style.borderColor = "red";
-                    text = @T("This field is required.");
+                    text = "@T("This field is required.")";
                     document.getElementById("lblAccountNum").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 }
 
                 if (bankName == "") {
                     document.getElementById("bankName").style.borderColor = "red";
-                    text = @T("This field is required.");
+                    text = "@T("This field is required.")";
                     document.getElementById("lblBankName").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 }
 
                 if (accHoldName == "") {
                     document.getElementById("accHoldName").style.borderColor = "red";
-                    text = @T("This field is required.");
+                    text = "@T("This field is required.")";
                     document.getElementById("lblAccHoldName").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 }
 
                 if (contNum == "") {
                     document.getElementById("contNum").style.borderColor = "red";
-                    text = @T("This field is required.");
+                    text = "@T("This field is required.")";
                     document.getElementById("lblContNum").innerHTML = text;
                     //$("#modal_form").height($("#modal_form").height() + 15);
                 } else if (!isNumeric(contNum)) {
                     document.getElementById("contNum").style.borderColor = "red";
-                    text = @T("Please input corect number.");
+                    text = "@T("Please input corect number.")";
                     document.getElementById("lblContNum").innerHTML = text;
                 }
             } else {

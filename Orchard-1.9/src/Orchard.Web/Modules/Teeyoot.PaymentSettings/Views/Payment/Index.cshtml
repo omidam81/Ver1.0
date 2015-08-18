@@ -229,13 +229,13 @@
             </font>
             <br>
 
-            <button class="margb" id="SendData">Apply</button>
+            <button class="margb" id="SendData">@T("Apply")</button>
 
         </div>
     }
     else
     {
-        <div><h3>There are no setting to this language</h3></div>
+        <div><h3>@T("There are no setting to this language")</h3></div>
         <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { language = Model.Culture.Code })" title="@T("Add")">@T("Add")</a>
     }
     <input type="hidden" id="Culture" value="@Model.Culture.Code"/>

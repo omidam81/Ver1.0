@@ -30,7 +30,7 @@
             {
                 foreach (var c in Model.Campaigns)
                 {
-                    var isActive = c.IsActive ? "Yes" : "No";
+                    var isActive = c.IsActive ? T("Yes").ToString() : T("No").ToString();
                     var value = c.Last24HoursSold > 0 ? c.Last24HoursSold.ToString() : "-";
 
                     <tr data-record-text="@c.Id" class="contentItems">  

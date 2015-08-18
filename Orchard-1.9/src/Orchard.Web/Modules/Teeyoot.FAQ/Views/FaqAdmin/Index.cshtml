@@ -21,7 +21,7 @@
                                                 Selected = Model.Search.SectionId > 1 ? l.Id == Model.Search.SectionId : false,
                                                 Text = l.Name,
                                                 Value = l.Id.ToString()
-                                            }), "-- show all --")
+                                            }), T("-- show all --").ToString())
 
             @Html.LabelFor(m => m.Search.LanguageCode, T("Language")):
             @Html.DropDownListFor(m => m.Search.LanguageCode, Model.Languages.Select(l => new SelectListItem

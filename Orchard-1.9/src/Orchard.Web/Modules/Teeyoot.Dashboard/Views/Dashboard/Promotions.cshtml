@@ -99,18 +99,18 @@
                     @Html.ValidationMessageFor(m => m.Promotions)
                 </div>
                 <div class="new_promotion__type">
-                    <div class="label__title">Type</div>
+                    <div class="label__title">@T("Type")</div>
                     @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = T("Discount"), @readonly = "true" })
                 </div>
                 <div class="new_promotion__discount">
-                    <div class="label__title">Amount</div>
+                    <div class="label__title">@("Amount")</div>
                     <div class="input__group new_promotion__field">
                         @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield ", @id = "code", @name = "amountSize", @type = "text", Value = "" })
                         @Html.DropDownListFor(m => m.AmountType, Model.AvailableCurrencies, new { @class = "form__select_menu" })
                     </div>
                 </div>
                 <div class="new_promotion__expiration">
-                    <div class="label__title">Expiration</div>
+                    <div class="label__title">@T("Expiration")</div>
                     <div class="input__group new_promotion__field">
                         @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = "", @placeholder=T("Never") , @readonly="readonly"})
                         <span id="calendar" class="new_promotion__clear_expiration clndr_button" style="border: 1px solid #e8eced;" onclick="showCalendar()">
