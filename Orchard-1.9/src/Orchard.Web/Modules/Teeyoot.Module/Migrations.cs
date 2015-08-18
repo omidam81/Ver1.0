@@ -655,7 +655,11 @@ namespace Teeyoot.Module
                     .Column<string>("FileName")
                 );
 
-            return 66;
+            SchemaBuilder.AlterTable(typeof (CheckoutCampaignRequest).Name,
+                table => table
+                    .DropColumn("EmailSent"));
+
+            return 67;
         }
 
         public int UpdateFrom2()
@@ -1412,6 +1416,15 @@ namespace Teeyoot.Module
                 );
 
             return 66;
+        }
+
+        public int UpdateFrom66()
+        {
+            SchemaBuilder.AlterTable(typeof (CheckoutCampaignRequest).Name,
+                table => table
+                    .DropColumn("EmailSent"));
+
+            return 67;
         }
     }
 }
