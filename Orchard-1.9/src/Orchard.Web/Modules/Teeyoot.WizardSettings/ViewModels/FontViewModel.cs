@@ -10,8 +10,6 @@
 
         public string Tags { get; set; }
 
-        public int? Priority { get; set; }
-
         public string TtfFile { get; set; }
 
         public string WoffFile { get; set; }

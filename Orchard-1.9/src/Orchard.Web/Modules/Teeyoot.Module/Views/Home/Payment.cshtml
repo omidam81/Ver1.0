@@ -212,24 +212,23 @@
                         <div class="checkout__input--half">
                             <input class="form__textfield " data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="@T("Last name")" size="30" tabindex="3" type="text">
                         </div>
-                        <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T("Street address")" size="50" tabindex="4" type="text">
+                        <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T("Address line 1")" size="50" tabindex="4" type="text">
                         <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
                         <div class="checkout_form__row">
                             <div class="checkout__input--half">
-                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="6" type="text">
-                                <label id="City-error" class="error valid" for="City"></label>
+                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="8" type="text">
+                                <label id="PostalCode-error" class="error valid" for="PostalCode"></label>                               
                             </div>
                             <div class="checkout__input--half">
-
-                                <input class="form__textfield " data-default="43" id="State" placeholder="@T("Province")" name="State" abindex="7" type="text">
-                                <label id="State-error" class="error valid" for="State"></label>
+                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="6" type="text">
+                                <label id="City-error" class="error valid" for="City"></label>                            
                             </div>
                         </div>
                         <div class="checkout_form__row">
                             <div>
                                 <div class="checkout__input--half smarty-streets-container">
-                                    <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="8" type="text">
-                                    <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
+                                    <input class="form__textfield " data-default="43" id="State" placeholder="@T("State")" name="State" abindex="7" type="text">
+                                    <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="checkout__input--half">
                                     <select class="form__select_menu  form__textfield " id="Country" name="Country" tabindex="8"></select>
@@ -239,7 +238,7 @@
                             </div>
                         </div>
                         <div class="checkout_form__row">
-                            <div class="checkout__input--half">
+                            <div class="form-phone checkout__input--half">
                                 <input class="form__textfield  js-shipping-phone" id="PhoneNumber" placeholder="@T("Phone number")" tabindex="9" type="text" value="" name="PhoneNumber">
                                 <label id="PhoneNumber-error" class="error valid" for="PhoneNumber"></label>
                             </div>

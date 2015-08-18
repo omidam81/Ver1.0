@@ -6681,3 +6681,17 @@ height:24px!important;
     color: #ff4f00;
     font-size: 24px;
 }
+ .form-phone{
+        width:100%!important;
+    }
+    .form-phone input{
+        width:48%!important;
+    }
+.checkout_form__row{
+    height:90px!important;
+}
+@media only screen and (max-width: 580px) {
+     .form-phone input{
+        width:100%!important;
+    }
+}

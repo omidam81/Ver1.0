@@ -59,7 +59,6 @@ namespace Teeyoot.WizardSettings.Controllers
             editRecord.Id = record.Id;
             editRecord.Family = record.Family;
             editRecord.FileName = record.FileName;
-            editRecord.Priority = record.Priority;
             string[] stringSeparators = new string[] { ","};
             string[] separatedTags;
             string Tags = record.Tags.Trim(new Char[] { '[', '*', ',', ']',' ', '.' });          
@@ -145,7 +144,7 @@ namespace Teeyoot.WizardSettings.Controllers
             newFont.Id = model.Id;
             newFont.Family = model.Family;
             newFont.FileName = model.FileName;
-            newFont.Priority = model.Priority;
+            newFont.Priority = 0;
             int i = 0;
             if (model.Tags != null)
             {
@@ -195,7 +194,7 @@ namespace Teeyoot.WizardSettings.Controllers
             FontRecord newFont = new FontRecord() { };
             newFont.Family = model.Family;
             newFont.FileName = model.FileName;
-            newFont.Priority = model.Priority;
+            newFont.Priority = 0;
             int i = 0;
             if (model.Tags != null)
             {

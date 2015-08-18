@@ -39,7 +39,7 @@
             @Html.HiddenFor(m => m.Id)
             <div class="account__user_info">
                 <label>
-                    <div class="label__title">@T("Public name")</div>
+                    <div class="label__title">@T("Name (Public)")</div>
                     @Html.TextBoxFor(m => m.PublicName, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
                 <label>
@@ -97,6 +97,10 @@
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.Id)
             <div class="account__email_info">
+                <label>
+                    <div class="label__title">@T("Current email address")</div>
+                    @Html.TextBoxFor(m => m.CurrentEmail, new { @class = "form__textfield", @maxlength = "50", @size = "30" , @readonly = true})
+                </label>
                 <label>
                     <div class="label__title">@T("New email address")</div>
                     @Html.TextBoxFor(m => m.NewEmailAddress, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
