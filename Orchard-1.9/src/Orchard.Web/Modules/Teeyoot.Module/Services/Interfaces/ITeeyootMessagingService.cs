@@ -9,6 +9,8 @@ namespace Teeyoot.Module.Services
 {
     public interface ITeeyootMessagingService : IDependency
     {
+        void SendCheckoutRequestEmails(IEnumerable<CheckoutCampaignRequest> checkoutCampaignRequests);
+
         void SendLaunchCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId);
 
         void SendOrderStatusMessage(string pathToTemplates, string pathToMedia, int orderId, string orderStatus);

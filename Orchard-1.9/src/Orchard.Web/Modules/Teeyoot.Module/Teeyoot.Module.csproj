@@ -298,6 +298,7 @@
     <Content Include="Content\message-templates\delivered-order-template.html" />
     <Content Include="Content\message-templates\edited-campaign-template.html" />
     <Content Include="Content\message-templates\launch-template.html" />
+    <Content Include="Content\message-templates\make_the_order_buyer.html" />
     <Content Include="Content\message-templates\new-campaign-admin-template.html" />
     <Content Include="Content\message-templates\new-order-buyer-template.html" />
     <Content Include="Content\message-templates\new-order-template.html" />

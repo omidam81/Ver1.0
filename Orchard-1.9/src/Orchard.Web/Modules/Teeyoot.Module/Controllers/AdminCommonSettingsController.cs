@@ -7,6 +7,7 @@ using Orchard.Logging;
 using Orchard.UI.Admin;
 using Orchard.UI.Notify;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.Services;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers
@@ -17,15 +18,18 @@ namespace Teeyoot.Module.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
         private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
         public AdminCommonSettingsController(
             IOrchardServices orchardServices,
             IRepository<CommonSettingsRecord> commonSettingsRepository,
-            IRepository<CheckoutCampaignRequest> checkoutRequestRepository)
+            IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
+            ITeeyootMessagingService teeyootMessagingService)
         {
             _orchardServices = orchardServices;
             _commonSettingsRepository = commonSettingsRepository;
             _checkoutRequestRepository = checkoutRequestRepository;
+            _teeyootMessagingService = teeyootMessagingService;
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
@@ -55,6 +59,15 @@ namespace Teeyoot.Module.Controllers
             var commonSettings = _commonSettingsRepository.Table.First();
             commonSettings.DoNotAcceptAnyNewCampaigns = doNotAcceptAnyNewCampaigns;
             _commonSettingsRepository.Update(commonSettings);
+
+            if (sendEmails)
+            {
+                var checkoutCampaignRequests = _checkoutRequestRepository.Table
+                    .Where(r => r.EmailSentUtcDate == null)
+                    .ToList();
+
+                _teeyootMessagingService.SendCheckoutRequestEmails(checkoutCampaignRequests);
+            }
 
             _orchardServices.Notifier.Information(T("\"Do not accept any new campaign\" setting changed to {0}.",
                 doNotAcceptAnyNewCampaigns ? T("\"Yes\"") : T("\"No\"")));
