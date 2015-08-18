@@ -76,10 +76,10 @@ namespace Teeyoot.Module.Controllers
                             var infoMessage = T("The minimum order has been reached, so this shirt will definitely go to print.");
                             _notifier.Add(NotifyType.Information, infoMessage);
                         }
-                        else
-                        {
-                            var infoMessage = T(String.Format("The minimum number of orders for this campaign to be printed is {0}", campaign.ProductMinimumGoal - campaign.ProductCountSold));
-                            _notifier.Add(NotifyType.Information, infoMessage);
+                        if (campaign.IsApproved == true && campaign.ProductCountSold <= campaign.ProductMinimumGoal)
+                        {                           
+                                var infoMessage = T(String.Format("The minimum number of orders for this campaign to be printed is {0}", campaign.ProductMinimumGoal - campaign.ProductCountSold));
+                                _notifier.Add(NotifyType.Information, infoMessage);                          
                         }
 
                         if (promo != null)
