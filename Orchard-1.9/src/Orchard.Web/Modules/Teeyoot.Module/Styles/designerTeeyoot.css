@@ -5803,3 +5803,7 @@ img.art-search-preview {
 }
 
 /*test*/
+
+.small {
+    font-size: 1.0em !important;
+}
