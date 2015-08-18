@@ -38,7 +38,7 @@ namespace Teeyoot.Module.Controllers
         {
             var commonSettings = _commonSettingsRepository.Table.First();
             var numberOfNotSentEmailCheckoutRequests = _checkoutRequestRepository.Table
-                .Count(r => !r.EmailSent);
+                .Count(r => r.EmailSentUtcDate == null);
 
             var commonSettingsIndexViewModel = new CommonSettingsIndexViewModel
             {
