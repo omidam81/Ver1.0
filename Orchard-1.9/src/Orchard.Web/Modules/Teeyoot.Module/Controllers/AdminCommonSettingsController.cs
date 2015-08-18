@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Orchard;
 using Orchard.Data;
@@ -67,6 +68,13 @@ namespace Teeyoot.Module.Controllers
                     .ToList();
 
                 _teeyootMessagingService.SendCheckoutRequestEmails(checkoutCampaignRequests);
+
+                var emailSentUtcDate = DateTime.UtcNow;
+                checkoutCampaignRequests.ForEach(r =>
+                {
+                    r.EmailSentUtcDate = emailSentUtcDate;
+                    _checkoutRequestRepository.Update(r);
+                });
             }
 
             _orchardServices.Notifier.Information(T("\"Do not accept any new campaign\" setting changed to {0}.",
