@@ -4767,7 +4767,7 @@ fieldset {
 
 #designer .form__textfield {
     font: 15px "Open Sans", Helvetica, Arial, sans-serif;
-    padding: 5px;
+    padding: 15px;
 }
 
 #designer .designer-dropdown, #designer .uploaded-file {

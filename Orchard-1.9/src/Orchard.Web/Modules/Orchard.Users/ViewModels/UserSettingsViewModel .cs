@@ -21,6 +21,8 @@ namespace Orchard.Users.ViewModels {
 
         public string Zip { get; set; }
 
+        public string CurrentEmail { get; set; }
+
         [EmailAddress]
         public string NewEmailAddress { get; set; }
 
