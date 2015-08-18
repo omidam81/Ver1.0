@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -40,10 +41,13 @@ namespace Teeyoot.Module.Controllers
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
         private readonly IRepository<ArtRecord> _artRepository;
+        private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
 
         private const int ArtsPageSize = 10;
+        private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
+        private const string InvalidEmailKey = "InvalidEmail";
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository)
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -55,6 +59,7 @@ namespace Teeyoot.Module.Controllers
             _costService = costService;
             _teeyootMessagingService = teeyootMessagingService;
             _commonSettingsRepository = commonSettingsRepository;
+            _checkoutCampaignRequestRepository = checkoutCampaignRequestRepository;
             T = NullLocalizer.Instance;
             _artRepository = artRepository;
         }
@@ -69,7 +74,7 @@ namespace Teeyoot.Module.Controllers
             var commonSettings = _commonSettingsRepository.Table.First();
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
-                return Redirect("~/CanNotAcceptNewCampaign");
+                return RedirectToAction("Oops");
             }
 
             var cost = _costService.GetCost();
@@ -608,6 +613,44 @@ namespace Teeyoot.Module.Controllers
 
             return cost;
         }
-        public ActionResult Oops() { return View(); }
+
+        public ActionResult Oops()
+        {
+            var viewModel = new OopsViewModel();
+
+            if (TempData[InvalidEmailKey] != null)
+            {
+                viewModel.InvalidEmail = (bool) TempData[InvalidEmailKey];
+            }
+
+            if (TempData[SendEmailRequestAcceptedKey] != null)
+            {
+                viewModel.RequestAccepted = (bool) TempData[SendEmailRequestAcceptedKey];
+            }
+            
+            return View(viewModel);
+        }
+        
+        [HttpPost]
+        public ActionResult Oops(OopsViewModel viewModel)
+        {
+            var commonSettings = _commonSettingsRepository.Table.First();
+            if (!commonSettings.DoNotAcceptAnyNewCampaigns)
+            {
+                return RedirectToAction("Oops");
+            }
+
+            if (!ModelState.IsValidField("Email"))
+            {
+                TempData[InvalidEmailKey] = true;
+                return RedirectToAction("Oops");
+            }
+
+            var request = new CheckoutCampaignRequest {RequestUtcDate = DateTime.UtcNow, Email = viewModel.Email};
+            _checkoutCampaignRequestRepository.Create(request);
+
+            TempData[SendEmailRequestAcceptedKey] = true;
+            return RedirectToAction("Oops");
+        }
     }
 }

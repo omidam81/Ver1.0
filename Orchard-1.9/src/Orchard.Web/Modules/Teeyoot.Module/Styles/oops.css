@@ -136,3 +136,23 @@ button, input, optgroup, select, textarea {
 .img-oops img{
     width:100%;
 }
+
+.request-accepted-message {
+    background-color: #ff4f00;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.invalid-email-message {
+    background-color: red;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 20px;
+}
