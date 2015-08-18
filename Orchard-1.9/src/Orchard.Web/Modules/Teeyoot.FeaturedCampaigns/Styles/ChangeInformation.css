@@ -32,8 +32,9 @@
 }
 
 .loader {
-        width: 100px;
-    margin-bottom: -45px;
+    width: 100px;
     height: 100px;
     MARGIN-LEFT: -20px;
+    position: absolute;
+    margin-top: -1.9%;
 }

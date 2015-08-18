@@ -16,6 +16,7 @@
 @using (Script.Foot())
 {
     <script>
+        var loader = document.querySelector(".loader");
         var el = $('.textarea').wysihtml5();
 
         window.onload = function () {
@@ -27,8 +28,7 @@
                 var profit = sell -  document.getElementById("base "+i).innerHTML;
                 document.getElementById(i).innerHTML = profit.toFixed(2);
             }
-
-            upd();
+    
         }
      
         function profit(i, val) {
@@ -49,24 +49,9 @@
         
         }
 
-        //function upd() {
-        //    var elem = document.getElementById("updating");
-        //    for (var i = 0; i < 999; i++) {
-        //        setInterval(function () {
-        //            if (elem.innerText == "Updating") {
-        //                elem.innerText = elem.innerText + ".";
-        //            } else if (elem.innerText == "Updating.") {
-        //                elem.innerText = elem.innerText + ".";
-        //            } else if (elem.innerText == "Updating..") {
-        //                elem.innerText = elem.innerText + ".";
-        //            } else if (elem.innerText == "Updating...") {
-        //                elem.innerText = "Updating";
-        //            }
-        //        }, 20000);
-        //    }
-        //}
-
+        
         function sendData() {
+            loader.style.display = "";
             var title = document.querySelector('.titleOfCampaign').value;
             var campaignId = document.getElementById("campaignId").value;
             var URL = document.querySelector('.URL').value;
@@ -98,11 +83,13 @@
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
+                        loader.style.display = "none";
                         alert("Updated successfully");
                         window.location.href = '/' + alias;
                     }
                 },
                 error: function (data, status, resp) {
+                    loader.style.display = "none";
                     alert('Status: ' + data.status + '. Error message: ' + data.statusText);
 
                 }
@@ -207,7 +194,7 @@
                     <td>@Model.Products.ElementAt(i).ProductRecord.Name</td>
                     <td id="base @i">@Model.Products.ElementAt(i).BaseCost.ToString().Replace(",",".")</td>
                     <td><input id="sell @i" type="text"class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
-                <td>@T("Profit")</td>
+               <td class="price" id=@i></td>
                 </tr>
             }
 
@@ -221,4 +208,4 @@
 
  <button type="submit" onclick="sendData()">Save</button>
  @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })
-<img src="\media\default\images\loading.gif" class="loader"></img>
+<img src="\media\default\images\loading.gif" style="display:none;" class="loader" />
