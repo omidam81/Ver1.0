@@ -23,6 +23,10 @@
     width:8%;
 }
 
+.btnEdit {
+    width:60px;
+    margin-left: 5%;
+}
 
 
 #modal_form {

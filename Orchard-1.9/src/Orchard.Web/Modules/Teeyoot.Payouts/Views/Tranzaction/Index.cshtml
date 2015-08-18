@@ -6,10 +6,10 @@
 
 @using (Script.Foot())
 {
-    
-    
-    
-    
+
+
+
+
     <script type="text/javascript">
 
 
@@ -21,7 +21,7 @@
                 /* Запрос на сервак */
 
                 var inf = this.value.split(',');
-                 function getes(request, response) {
+                function getes(request, response) {
                     var result = new Array();
                     $.ajax({
                         async: false,
@@ -37,10 +37,11 @@
                             $("#contNumber").html(data.contactNumber);
                             $("#mesAdmin").html(data.mesAdmin);
                             $("#accHoldName").html(data.accountHolderName);
-                    }, error: function (data, status, resp) {
-                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-                    }});
-            };
+                        }, error: function (data, status, resp) {
+                            alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                        }
+                    });
+                };
 
 
                 /* End Запрос на сервак */
@@ -64,16 +65,63 @@
             });
         });
 
+        function editNode(Id){
+            var elem = document.getElementById(Id);
+            var sp = elem.querySelector("span");
+            var butt = elem.querySelector("button");
+            var valueSpan = sp.innerHTML;
+            sp.parentNode.removeChild(sp);
+            var inp = document.createElement("input");
+            inp.type = "text";
+            inp.style.width = "40px";
+            inp.value = valueSpan;
+            elem.insertBefore(inp, butt);
+            butt.style.display = "none";
 
 
-        </script>
-    }
+            var butSave = document.createElement("button");
+            butSave.innerHTML = "save";
+            butSave.classList.add("btnEdit");
+            elem.appendChild(butSave);
+
+            butSave.addEventListener("click", function () {
+                var span2 = document.createElement("span");
+                span2.innerHTML = inp.value;
+                inp.parentNode.removeChild(inp);
+                butSave.parentNode.removeChild(butSave);
+                butt.style.display = "";
+                elem.insertBefore(span2, butt);
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("EditPayout", "Tranzaction"))",
+                    data:addAntiForgeryToken( { "Id": Id, "Cost": span2.innerHTML}),
+                success: function (data) {
+                }, error: function (data, status, resp) {
+                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                }
+            });
+
+
+            });     
+        }
+
+    function addAntiForgeryToken(data) {
+        var antiForgeryTokenValue = $('#anti_forgery_token').val();
+        data.__RequestVerificationToken = antiForgeryTokenValue;
+        return data;
+    };
+
+
+    </script>
+}
 
 
 
 
 @{
-
+    <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
     <div>
         @using (Html.BeginForm("Index", "Tranzaction", FormMethod.Get))
         {
@@ -130,15 +178,19 @@
                         <td class="event">
                             @item.Event
                         </td>
-                        <td class="amount">
+                        <td class="amount" id="@item.Id">
                             @if (@item.IsPlus)
                             {
-                                @T("+ ")@item.Amount
+                                @T("+ ")<span>@item.Amount</span>
 
                             }
                             else
                             {
-                                @T("- ")@item.Amount
+                                @T("- ")<span> @item.Amount</span>
+                                if (@item.Status == "pending")
+                                {
+                                    <button class="btnEdit" type="submit" onclick="editNode(@item.Id)">@T("edit")</button>
+                                }
 
                             }
                         </td>
@@ -155,10 +207,11 @@
                             @item.UserId
                         </td>
                         <td class="inf">
-                            <button class="go" type="submit" value="@item.UserId,@item.Id">@T("inf")
-                            </button>
-                        </td>
-                    </tr>
+                            <button class="go" type="submit" value="@item.UserId,@item.Id">
+                                @T("inf")
+                        </button>
+                    </td>
+                </tr>
 
 
                 }
@@ -176,5 +229,5 @@
     <div id="modal_form" style="">
         @Html.Partial("PaymentUserInformation")
     </div>
-    <div id="overlay"></div> 
+    <div id="overlay"></div>
 </fieldset>

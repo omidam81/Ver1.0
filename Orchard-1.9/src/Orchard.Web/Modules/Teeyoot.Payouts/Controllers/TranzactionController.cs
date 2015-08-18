@@ -20,6 +20,7 @@ using Orchard.DisplayManagement;
 using Orchard.Users.Models;
 using System.IO;
 using System;
+using System.Net;
 
 namespace Teeyoot.Payouts.Controllers
 {
@@ -82,6 +83,15 @@ namespace Teeyoot.Payouts.Controllers
             var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
 
             return View("Index", new PayoutsViewModel { Transacts = entries.ToArray(), Pager = pagerShape });
+        }
+
+        [HttpPost]
+        public HttpStatusCodeResult EditPayout(int Id, double Cost) 
+        {
+            var payout = _payoutService.GetAllPayouts().FirstOrDefault(p => p.Id == Id);
+            payout.Amount = Cost;
+            _payoutService.UpdatePayout(payout);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
 
