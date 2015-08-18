@@ -145,7 +145,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string Prices)
         {
             var campaign = _campaignService.GetCampaignById(campaignId);
@@ -157,7 +157,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 campaign.Title = Title;
                 campaign.Alias = URL;
                 campaign.ProductCountGoal = Target;
-                //campaign.Description = Description;
+                campaign.Description = Description;
                 campaign.EndDate = date.ToUniversalTime();
                 var prices = Prices.Split(',');
                 for (int i = 0; i < campaign.Products.Count; i++)
