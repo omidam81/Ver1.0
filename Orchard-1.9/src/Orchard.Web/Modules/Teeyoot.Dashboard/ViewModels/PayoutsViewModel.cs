@@ -18,6 +18,7 @@ namespace Teeyoot.Dashboard.ViewModels
         public double Balance { get; set; }
         public string filter { get; set;}
         public dynamic Pager { get; set; }
+        public string Currency { get; set; }
     }
 
     public class History {
@@ -35,6 +36,7 @@ namespace Teeyoot.Dashboard.ViewModels
         public int UserId { get; set; }
 
         public String Status { get; set; }
+
     
     }
 
