@@ -33,6 +33,7 @@ namespace Teeyoot.Module.ViewModels
         public string EmailBuyer { get; set; }
         public int Id{ get; set; }
         public int SellerId { get; set; }
+        public DateTime CreateDate { get; set; }
         //public string FirstName { get; set; }
         //public string LastName { get; set; }
         //public string StreetAdress { get; set; }

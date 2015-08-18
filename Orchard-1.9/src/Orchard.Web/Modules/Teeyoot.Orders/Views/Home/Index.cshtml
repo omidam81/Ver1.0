@@ -2,6 +2,9 @@
 @model  Teeyoot.Module.ViewModels.AdminOrderViewModel
 @{
     Style.Include("AdminOrders.css");
+    Style.Include("jquery.dataTables.css");
+    Script.Require("jQuery");
+    Script.Include("jquery.dataTables.min.js");
 }
 @using (Script.Foot())
 {
@@ -167,7 +170,7 @@
 
     </script>
 }
-<div style="margin-bottom:15px;">
+@*<div style="margin-bottom:15px;">
     <fieldset class="bulk-actions">
         @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
@@ -182,7 +185,7 @@
 
 
     </fieldset>
-</div>
+</div>*@
 
 @using (Html.BeginForm())
 {
@@ -190,11 +193,14 @@
 }
 @{
     <fieldset>
-        <table class="items">
+        <table class="items" id="order-table">
             <thead>
                 <tr class="admin-categories">
                     <th class="publicId">
                         <h3>@T("Order Number")</h3>
+                    </th>
+                    <th class="publicId">
+                        <h3>@T("Create date")</h3>
                     </th>
                     <th class="status">
                         <h3>@T("Status")</h3>
@@ -212,7 +218,7 @@
                         <h3>@T("Profit")</h3>
                     </th>
                     <th class="payout">
-                        <h3>@T("Payout")</h3>
+                        <h3>@T("Action")</h3>
                     </th>
                 </tr>
             </thead>
@@ -223,6 +229,9 @@
                     <tr class="admin-categories-tr">
                         <td class="publicId">
                             <a class="ordNumber"> @item.PublicId</a>
+                        </td>
+                        <td>
+                            @item.CreateDate
                         </td>
                         <td class="status">
                             @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
@@ -288,7 +297,7 @@
         </table>
 
     </fieldset>
-    @Display(Model.Pager)
+    @*@Display(Model.Pager)*@
 }
 <fieldset>
     <div id="modal_form" style="">
@@ -305,3 +314,12 @@
     <div id="overlay_order"></div>
 </fieldset>
 
+@using (Script.Foot())
+{
+    <script>
+        $(document).ready(function () {
+            var campaignTable = $('#order-table').dataTable({ "aaSorting": [[1, 'desc']] });
+        })
+
+    </script>
+}
