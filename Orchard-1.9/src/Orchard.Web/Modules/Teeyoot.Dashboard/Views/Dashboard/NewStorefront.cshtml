@@ -50,7 +50,7 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T(" Only .png files allowed!");
+                text = "@T(" Only .png files allowed!")";
                 $(message).append(text);
 
                 var imgtag = document.getElementsByClassName("site__featured_full")[0];
@@ -163,14 +163,14 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T("Title can't be empty!");
+                text = "@T("Title can't be empty!")";
                 $(message).append(text);
                 return;
             } if (url == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T("Url can't be empty!");
+                text = "@T("Url can't be empty!")";
                 $(message).append(text);
                 return;
             }
@@ -178,7 +178,7 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T("You must add at least 3 campaigns to your storefront.");
+                text = "@T("You must add at least 3 campaigns to your storefront.")";
                 $(message).append(text);
                 return;
             } else {
@@ -477,7 +477,7 @@
                                         <div class="list_item__cell list_item__title">   @prod.Title       </div>
                                         <div class="list_item__cell list_item__campaign_reserved">
                                             <div class="campaign_reserved">@prod.ProductCountSold / @prod.ProductCountGoal </div>
-                                            <div class="campaign_reserved__caption">reserved</div>
+                                            <div class="campaign_reserved__caption">@T("reserved")</div>
                                             <div class="progress_container">
                                                 <div class="progress_bar">
                                                     <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)% !important">
@@ -512,7 +512,7 @@
                         </div>
                     </div>
                     <div class="modal__footer">
-                        <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">Update Store</button>
+                        <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Store")</button>
                     </div>
                 </div>
             </div>

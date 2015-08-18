@@ -124,7 +124,7 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T(" Only .png files allowed!");
+                text = "@T(" Only .png files allowed!")";
                 $(message).append(text);
 
                 var imgtag = document.getElementsByClassName("site__featured_full")[0];
@@ -228,14 +228,14 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T("Title can't be empty!");
+                text = "@T("Title can't be empty!")";
                 $(message).append(text);
                 return;
             } if (url == "") {
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T("Url can't be empty!");
+                text = "@T("Url can't be empty!")";
                 $(message).append(text);
                 return;
             }
@@ -243,7 +243,7 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = @T("You must add at least 3 campaigns to your storefront.");
+                text = "@T("You must add at least 3 campaigns to your storefront.")";
                 $(message).append(text);
                 return;
             } else {
@@ -308,7 +308,7 @@
         }
 
         function DeleteStore() {
-            var text = @T("Are you sure you want to delete this store? (This action cannot be undone)");
+            var text = "@T("Are you sure you want to delete this store? (This action cannot be undone)")";
             if (confirm(text)) {
                 var id_storeFront = document.getElementById("id_storeFront").value;
                 $.ajax({
