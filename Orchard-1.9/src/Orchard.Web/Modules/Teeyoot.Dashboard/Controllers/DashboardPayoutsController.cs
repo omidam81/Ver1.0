@@ -16,6 +16,8 @@ namespace Teeyoot.Dashboard.Controllers
             var payouts = _payoutService.GetAllPayouts();
             var list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(t=>t.UserId == currentUserId).ToList();
             var model = new PayoutsViewModel();
+            //Вытаскивать валюту по культуре 
+            model.Currency = _currencyRepository.Table.ToList().ElementAt(0).Code;
             model.Transactions = list;
             foreach(var item in model.Transactions){
                 if (item.IsPlus && item.Status != "pending")

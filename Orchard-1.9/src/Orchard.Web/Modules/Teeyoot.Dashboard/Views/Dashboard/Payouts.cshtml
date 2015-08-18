@@ -1,6 +1,6 @@
 ﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
 @{
-    Style.Include("bootstrap.min.css");
+    //Style.Include("bootstrap.min.css");
     Style.Include("Payouts.css");
 
     Script.Require("jQuery");
@@ -11,7 +11,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             document.title = "Payouts | Teeyoot";
-            $('#go').click(function (event) {
+            $("#go").click(function (event) {
                 event.preventDefault();
                 $('#overlay').fadeIn(400,
                     function () {
@@ -153,7 +153,7 @@
     <div class="main">
         <h1>@T("Current Payout Amount")</h1>
         <div class="balance">
-            @T("You currently have ") RM<b>@Model.Balance</b>@T(" ready to be paid out")
+            @T("You currently have ") @Model.Currency <b>@Model.Balance</b>@T(" ready to be paid out")
             <a class="btnStartPayout" id="go">@T("Start a payout")</a>
             <div style="clear:both;"></div>
         </div>
@@ -172,11 +172,11 @@
                     <td class="td2">@elem.Event</td>
                     @if (@elem.IsPlus)
                     {
-                        <td class="td3">+ RM @elem.Amount</td>
+                        <td class="td3">+ @Model.Currency @elem.Amount</td>
                     }
                     else
                     {
-                        <td class="td3">- RM @elem.Amount</td>
+                        <td class="td3">- @Model.Currency @elem.Amount</td>
                     }
                     <td class="td4">@elem.Status</td>
                 </tr>
