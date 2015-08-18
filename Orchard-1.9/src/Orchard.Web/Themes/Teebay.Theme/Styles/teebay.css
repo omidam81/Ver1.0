@@ -755,6 +755,7 @@
         width: 50%;
         border-radius: 4px 0 0 0;
         z-index: 100;
+        box-sizing: content-box;
     }
 
     .widget-anonimousMenu nav li,
@@ -784,6 +785,7 @@
         z-index: 101;
         margin-right: 0px;
         text-align: left;
+        box-sizing: content-box;
     }
 
     .user-email:after {
@@ -804,6 +806,7 @@
         .widget-usermenu .menu-user-menu li {
             border-left: 3px solid #0089B6;
             border-right: 3px solid #0089B6;
+                box-sizing: content-box;
         }
 
             .widget-usermenu .menu-user-menu li:last-child {
