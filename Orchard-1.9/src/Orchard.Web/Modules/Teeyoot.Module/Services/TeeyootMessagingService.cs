@@ -35,6 +35,7 @@ namespace Teeyoot.Messaging.Services
         private readonly IWorkContextAccessor _wca;
         public Localizer T { get; set; }
         private const string ADMIN_EMAIL = "noreply@teeyoot.com";
+        private const string MessageTemplatesPath = "/Modules/Teeyoot.Module/Content/message-templates/";
 
         public TeeyootMessagingService(IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
             IMailChimpSettingsService settingsService,
@@ -63,6 +64,24 @@ namespace Teeyoot.Messaging.Services
             _campaignProductRepository = campaignProductRepository;
         }
 
+        public void SendCheckoutRequestEmails(IEnumerable<CheckoutCampaignRequest> checkoutCampaignRequests)
+        {
+            var pathToTemplates = HttpContext.Current.Server.MapPath(MessageTemplatesPath);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage
+            {
+                MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
+                FromEmail = "noreply@teeyoot.com",
+                Subject = "Notification"
+            };
+
+            var emails = checkoutCampaignRequests.Select(r => new MandrillMailAddress {Email = r.Email}).ToList();
+            mandrillMessage.To = emails;
+            var text = File.ReadAllText(pathToTemplates + "make_the_order_buyer.html");
+            mandrillMessage.Html = text;
+            var res = SendTmplMessage(api, mandrillMessage);
+        }
 
         public void SendExpiredCampaignMessageToSeller(int campaignId, bool isSuccesfull)
         {
