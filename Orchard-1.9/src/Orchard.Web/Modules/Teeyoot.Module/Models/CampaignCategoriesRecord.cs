@@ -12,12 +12,5 @@ namespace Teeyoot.Module.Models
         public virtual string Name { get; set; }
 
         public virtual bool IsVisible { get; set; }
-
-        public virtual IList<LinkCampaignAndCategoriesRecord> Campaigns { get; set; }
-
-        public CampaignCategoriesRecord()
-        {
-            Campaigns = new List<LinkCampaignAndCategoriesRecord>();
-        }
     }
 }
