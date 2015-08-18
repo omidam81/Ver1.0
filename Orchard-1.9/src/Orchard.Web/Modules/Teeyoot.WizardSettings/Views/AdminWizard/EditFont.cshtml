@@ -23,11 +23,6 @@
         @Html.ValidationMessageFor(m => m.Tags)
     </fieldset>
     <fieldset>
-        @Html.LabelFor(m => m.Priority, T("Priority"))
-        @Html.TextBoxFor(m => m.Priority, new { @class = "text large" })
-        @Html.ValidationMessageFor(m => m.Priority)
-    </fieldset>
-    <fieldset>
         @Html.HiddenFor(m => m.Id, new { @class = "text large" })
     </fieldset>
     <input class="button primaryAction" type="submit" value="@T("Edit font")">

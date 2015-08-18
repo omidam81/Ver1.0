@@ -53,11 +53,6 @@
         @Html.TextBoxFor(m => m.Tags, (((Model.FileName == null) || (Model.Thumbnail == null)) ? (object)new { @class = "text large", disabled = "disabled" } : (object)new { @class = "text large" }))
         @Html.ValidationMessageFor(m => m.Tags)
     </fieldset>
-    <fieldset>
-        @Html.LabelFor(m => m.Priority, T("Priority"))
-        @Html.TextBoxFor(m => m.Priority, (((Model.FileName == null) || (Model.Thumbnail == null)) ? (object)new { @class = "text large", disabled = "disabled" } : (object)new { @class = "text large" }))
-        @Html.ValidationMessageFor(m => m.Priority)
-    </fieldset>
     if (Model.FileName != null)
     {
         <fieldset>
