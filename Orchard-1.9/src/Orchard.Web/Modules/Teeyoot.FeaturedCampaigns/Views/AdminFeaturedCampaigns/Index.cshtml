@@ -26,6 +26,7 @@
                     <th>@T("Sold / Minimum / Goal")</th>
                     <th>@T("Approved")</th>
                     <th>@T("Featured")</th>
+                    <th>@T("Ready to print")</th>
                     <th>@T("Action")</th>
                 </tr>
             </thead>
@@ -88,6 +89,18 @@
                                     {
                                         <a href="@Url.Action("ChangeVisible", new {  id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("No")</a>
                                     }
+                                }
+
+                            </td>
+                            <td>
+                                @if (camp.Campaign.Minimum <= camp.Campaign.Sold)
+                                {
+
+                                    <span>@T("Yes")</span>
+                                }
+                                else
+                                {
+                                    <span>@T("No")</span>
                                 }
 
                             </td>
