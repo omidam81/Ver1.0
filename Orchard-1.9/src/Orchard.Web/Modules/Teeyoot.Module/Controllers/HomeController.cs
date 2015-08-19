@@ -290,7 +290,7 @@ namespace Teeyoot.Module.Controllers
                                     Id = c.Id,
                                     Alias = c.Alias,
                                     Title = c.Title,
-                                    Goal = c.ProductCountGoal,
+                                    Goal = c.ProductMinimumGoal,
                                     Sold = c.ProductCountSold,
                                     ShowBack = c.BackSideByDefault,
                                     EndDate = c.EndDate
