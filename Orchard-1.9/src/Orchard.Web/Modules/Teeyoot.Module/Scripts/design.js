@@ -1069,7 +1069,9 @@ var design={
 			});
 			//document.getElementById('quantity').value = sizes;
 		},
-		changeView: function(position){
+		changeView: function (position) {
+		    //Очищение значиения value 19/08/15
+		    document.getElementById("file").value = "";
             app.state.isFront = position ==='front';
             $("#app-wrap").flip(!app.state.isFront);
 
@@ -1084,7 +1086,9 @@ var design={
 			design.item.designini();
 			//design.products.changeView('front');
 		},
-        setDesignAreaContrastColor: function(color, isError){
+		setDesignAreaContrastColor: function (color, isError) {
+            //Очищение значиения value 19/08/15
+		    document.getElementById("file").value = "";
             var newColor, isDarkBorder, textColor, isDarkText;
             if(!isError){
                 var hex = color.value || color;
