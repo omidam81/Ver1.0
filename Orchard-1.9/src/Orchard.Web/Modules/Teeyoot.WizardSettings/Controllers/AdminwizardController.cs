@@ -32,28 +32,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
         public ActionResult FontList()
         {
-            var dbFonts = _fontService.GetAllfonts().ToArray();
-            var fonts = dbFonts;
-            foreach (var font in fonts)
-            {
-                string[] stringSeparators = new string[] { "," };
-                string[] separatedTags;
-                string Tags = font.Tags.Trim(new Char[] { '[', '*', ',', ']', ' ', '.' });
-                Tags = Tags.Replace("\"", "");
-                string resultTags = "";
-                separatedTags = Tags.Split(stringSeparators, StringSplitOptions.None);
-                int i = 0;
-                foreach (var item in separatedTags)
-                {
-                    if (i != 0)
-                    {
-                        resultTags = resultTags + "," + " ";
-                    }
-                    resultTags = resultTags + item;
-                    i++;
-                }
-                font.Tags = resultTags;
-            }
+            var fonts = _fontService.GetAllfonts().ToArray();
             return View(fonts);
         }
 
