@@ -811,6 +811,7 @@ input[type=range] {
     margin-bottom: .5rem;
     padding: .5rem;
     width: 100%;
+    cursor: pointer;
 }
 
     .block .thumbnail_wrapper {
@@ -1582,17 +1583,18 @@ body.page-ready #preloader {
     }
 
     .negative-profit-modal {
-    height: 250px;
-}
+        height: 250px;
+    }
 }
 
 @media only screen and (max-width: 430px) {
     .upload-photo-wizard {
         height: 490px;
     }
+
     .negative-profit-modal {
-    height: 280px;
-}
+        height: 280px;
+    }
 }
 
 @media only screen and (max-width: 370px) {

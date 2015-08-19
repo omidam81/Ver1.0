@@ -52,6 +52,11 @@ window.onload = function initWizard() {
         var imageDel = document.createElement("img");
         var text = document.createElement("h4");
 
+        var $div = $(div);
+        $div.click(function () {
+            //alert("   sdasd");
+        });
+
         //var $salePriceTextDiv = $(salePriceTextDiv);
         //var $salePriceTextH4 = $(salePriceTextH4);
         //$salePriceTextDiv.append($salePriceTextH4);
