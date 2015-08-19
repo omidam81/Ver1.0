@@ -220,6 +220,9 @@ background: #ff4f00 !important;
 }
 
 #modal_form {
+    top: 60% !important;
+    height:60%;
+    overflow: hidden;
     border: 0;
 	z-index: 5;
     display: none;
@@ -235,7 +238,7 @@ background: #ff4f00 !important;
     
 }
     #modal_form .modal-content {
-        width: 550px;
+        width: 100%;
         margin: 0 auto;
     }
 

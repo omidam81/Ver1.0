@@ -290,7 +290,7 @@ namespace Teeyoot.Module.Controllers
                                     Id = c.Id,
                                     Alias = c.Alias,
                                     Title = c.Title,
-                                    Goal = c.ProductCountGoal,
+                                    Goal = c.ProductMinimumGoal,
                                     Sold = c.ProductCountSold,
                                     ShowBack = c.BackSideByDefault,
                                     EndDate = c.EndDate
@@ -312,7 +312,7 @@ namespace Teeyoot.Module.Controllers
             });
 
             var model = new ReservationCompleteViewModel();
-            model.Message = T("Your tee is reserved, we will notify you once the tee is ready. Meanwhile you may choose other designs from the same seller.").ToString();
+            model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
             model.Campaigns = entriesProjection.ToArray();
 
             return View(model);

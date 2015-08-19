@@ -399,7 +399,7 @@ namespace Teeyoot.Messaging.Services
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
-            mandrillMessage.Subject = "New order";
+            mandrillMessage.Subject = "You just reserved a t-shirt with Teeyoot";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
                 emails.Add(new MandrillMailAddress(order.Email, "Buyer"));
                 FillUserMergeVars(mandrillMessage, order, order.Email);
@@ -667,11 +667,11 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "COUNTRY", record.Country);
             if (record.TotalPriceWithPromo > 0.0)
             {
-                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPriceWithPromo.ToString());
+                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPriceWithPromo.ToString("F"));
             }
             else
             {
-                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPrice.ToString());
+                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPrice.ToString("F"));
             }
 
         }
@@ -702,7 +702,7 @@ namespace Teeyoot.Messaging.Services
                         {"price", price},
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
                         {"currency", item.OrderRecord.CurrencyRecord.Code},
-                        {"total_price", price* item.Count},
+                        {"total_price", (price* item.Count).ToString("F")},
                         {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/"+side+".png"}
                      });
 

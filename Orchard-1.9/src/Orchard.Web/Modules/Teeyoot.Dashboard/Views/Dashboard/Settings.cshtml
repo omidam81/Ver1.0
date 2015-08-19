@@ -40,45 +40,40 @@
             <div class="account__user_info">
                 <label>
                     <div class="label__title">@T("Name (Public)")</div>
-                    @Html.TextBoxFor(m => m.PublicName, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
+                    @Html.TextBoxFor(m => m.PublicName, new { @class = "label__title_large form__textfield", @maxlength = "50", @size = "30" })
                 </label>
-                <label>
+
+                <label class="address__field">
+                    <div class="label__title">@T("Postal code")</div>
+                    @Html.TextBoxFor(m => m.Zip, new { @class = "form__textfield" })
+                </label>
+
+                <label class="address__field_right">
+                    <div class="label__title">@T("City")</div>
+                    @Html.TextBoxFor(m => m.City, new { @class = "form__textfield" })
+                </label>
+
+                <label class="address__field" id="states">
+                    <div class="label__title">@T("State")</div>
+                    @Html.TextBoxFor(m => m.State, new { @class = "form__textfield" })
+                </label>
+
+                <label class="address__field_right">
+                    <div class="label__title">@T("Street")</div>
+                    @Html.TextBoxFor(m => m.Street, new { @class = "form__textfield" })
+                </label>
+
+                <label class="address__field">
                     <div class="label__title">@T("Phone number")</div>
                     @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form__textfield", @maxlength = "50", @size = "30" })
                 </label>
-            </div>
-            <div class="address__info">
 
-                <div class="label__title label__mailing_address">@T("Change your default address")</div>
-                <div class="address__group">
-                    <div class="address__group_row">
-                        <label class="address__field address__field_street">
-                            @Html.TextBoxFor(m => m.Street, new { @class = "form__textfield" })
-                            <div class="label__subtitle">@T("Street")</div>
-                        </label>
-                        <label class="address__field address__field_apt">
-                            @Html.TextBoxFor(m => m.Suit, new { @class = "form__textfield" })
-                            <div class="label__subtitle">@T("Apt / Suite")</div>
-                        </label>
-                    </div>
-                    <div class="address__group_row">
-                        <label class="address__field address__field_city">
-                            @Html.TextBoxFor(m => m.City, new { @class = "form__textfield" })
-                            <div class="label__subtitle">@T("City")</div>
-                        </label>
-                        <label class="address__field address__field_state" id="states">
-                            
-                            @Html.TextBoxFor(m => m.State, new { @class = "form__textfield" })
-                           
-                            <div class="label__subtitle label__subtitle_state">State</div>
-                        </label>
-                        <label class="address__field address__field_zip">
-                            @Html.TextBoxFor(m => m.Zip, new { @class = "form__textfield" })
-                            <div class="label__subtitle">@T("Zip")</div>
-                        </label>
-                    </div>
-                </div>
+                <label class="address__field_right">
+                    <div class="label__title">@T("Apt / Suite")</div>
+                    @Html.TextBoxFor(m => m.Suit, new { @class = "form__textfield" })    
+                </label>
             </div>
+           
             <div class="account__user_info--submit">
                 <input name="commit" class="t-button" type="submit" value="@T("Update Info")">
             </div>

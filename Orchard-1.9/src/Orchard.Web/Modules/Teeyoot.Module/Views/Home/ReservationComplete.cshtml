@@ -23,14 +23,14 @@
 
                     <div class="campaign-card-progress">
                         <div class="campaign-card-progress-bar">
-                            <div class="campaign-card-progress-bar-completed" style="width:@(c.Sold * 100 / @c.Goal)%">
+                            <div class="campaign-card-progress-bar-completed" style="width:@(c.Goal != 0 ? c.Sold * 100 / @c.Goal : "0")%">
                             </div>
                         </div>
                     </div>
 
                     <div class="campaign-card-info">
 
-                        <div class="campaign-card-sold">@c.Sold / @c.Goal @T("sold")</div>
+                        <div class="campaign-card-sold">@c.Sold / @(c.Goal == 0 ? "1" : c.Goal) @T("sold")</div>
 
                         <div class="campaign-card-left" title="@c.EndDate.ToString("dd.MM.yyyy")">
                             <span>
