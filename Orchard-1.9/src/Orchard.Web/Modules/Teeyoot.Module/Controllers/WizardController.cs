@@ -308,7 +308,7 @@ namespace Teeyoot.Module.Controllers
                     {
                         command.Transaction = transaction;
                         command.CommandType = CommandType.Text;
-                        command.CommandText = " SELECT TOP (@artsPageSize) PERCENT * FROM Teeyoot_Module_ArtRecord" +
+                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord" +
                                               " ORDER BY NEWID()";
 
                         var artsPageSizeParameter = new SqlParameter("@artsPageSize", SqlDbType.Int)
