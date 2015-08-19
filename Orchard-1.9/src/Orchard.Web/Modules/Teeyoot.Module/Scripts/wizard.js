@@ -5,7 +5,7 @@
 };
 var globalPrdc = '';
 window.onload = function initWizard() {
-    
+
 
     app.state.products = [];
     app.state.isNegativeProfit = [];
@@ -29,8 +29,7 @@ window.onload = function initWizard() {
         var slider = document.getElementById('trackbar');
         window.count = parseInt(slider.noUiSlider.get());
 
-        if (document.querySelectorAll(".ssp_block").length >= 7)
-        {
+        if (document.querySelectorAll(".ssp_block").length >= 7) {
             document.getElementById("ui").style.display = "none";
         }
 
@@ -53,9 +52,6 @@ window.onload = function initWizard() {
         var text = document.createElement("h4");
 
         var $div = $(div);
-        $div.click(function () {
-            //alert("   sdasd");
-        });
 
         //var $salePriceTextDiv = $(salePriceTextDiv);
         //var $salePriceTextH4 = $(salePriceTextH4);
@@ -65,7 +61,7 @@ window.onload = function initWizard() {
         image.classList.add("sell");
         image.style.height = "73px";
         prdc.ProductId = parseInt(document.getElementById("product").value);
-         
+
         var product = design.products.productsData[prdc.ProductId];
         prdc.ColorId = app.state.currentProduct.ColorId;//product.colors_available[0];
         var prices = product.prices;
@@ -78,6 +74,43 @@ window.onload = function initWizard() {
         prdc.BaseCost = calc[0];
         prdc.Price = calc[1];
 
+        $div.click(function () {
+            if (app.state.products.indexOf(prdc) >= 0) {
+                var newColor = design.products.colors[prdc.ColorId];
+                var src = assetsUrls.products + 'product_type_' + product.id + '_front_small.png';
+                design.save(function (data) {
+                    var srcFront = assetsUrls.products + 'product_type_' + product.id + '_front.png';
+                    var srcBack = assetsUrls.products + 'product_type_' + product.id + '_back.png';
+                    var imageData = app.state.getImage();
+                    var front = {
+                        top: imageData['printable_front_top'],
+                        left: imageData['printable_front_left']
+                    };
+                    var back = {
+                        top: imageData['printable_front_top'],
+                        left: imageData['printable_front_left']
+                    };
+
+                    $('#prodFront').attr('src', srcFront).css('background-color', newColor.value);
+                    $('#prodBack').attr('src', srcBack).css('background-color', newColor.value);
+                    design.item.unselect();
+                    while (document.querySelector('#stp2frArea') != null) {
+                        document.querySelector('#step-2-front').removeChild(document.querySelector('#stp2frArea'));
+                    }
+                    $('#view-front-design-area').clone().attr("id", "stp2frArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-2-front');
+                    document.querySelector('#stp2frArea').removeChild(document.querySelector('#stp2frArea').childNodes[5]);
+                    $('#stp2frArea').css({ "overflow": "hidden" });
+
+                    while (document.querySelector('#stp2BackArea') != null) {
+                        document.querySelector('#step-2-back').removeChild(document.querySelector('#stp2BackArea'));
+                    }
+                    $('#view-back-design-area').clone().attr("id", "stp2BackArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-2-back');
+                    document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
+                    $('#stp2BackArea').css({ "overflow": "hidden" });
+                });
+            }
+        });
+
         imageDel.classList.add("ssp_delete");
         imageDel.src = "https://d1b2zzpxewkr9z.cloudfront.net/compiled_assets/designer/ssp_del-4d7ed20752fe1fbe0917e4e4d605aa16.png";
         imageDel.style.cursor = "pointer";
@@ -86,8 +119,8 @@ window.onload = function initWizard() {
         $image.css("background-color", app.state.color.value);
 
         //----------- profit/sale ----------------------------------
-        
-        
+
+
         var divAllPriceCalcul = document.createElement("div");
         divAllPriceCalcul.classList.add("all-price-calculator");
         var divPriceCalcul = document.createElement("div");
@@ -96,7 +129,7 @@ window.onload = function initWizard() {
         divPriceCalcul.classList.add("price-calculator");
         divCostCalcul.classList.add("cost-calculator");
         divProfitCalcul.classList.add("profit-calculator");
-        
+
 
 
         var divPricing = document.createElement("div");
@@ -113,7 +146,7 @@ window.onload = function initWizard() {
         var h6Price = document.createElement("h6");
         h6Price.classList.add("h6Sale");
         h6Price.innerHTML = "(per shirt)";
-        
+
         var divCostProf = document.createElement("div");
         var h4CostProfRm = document.createElement("h4");
         var h4CostProfFloat = document.createElement("h4");
@@ -173,11 +206,11 @@ window.onload = function initWizard() {
         spanPrice.classList.add("rm-for-price");
         spanPrice.style.fontWeight = "normal";
         spanPrice.innerHTML = "RM"
-        inpPrice.classList.add("ssp_input"); 
+        inpPrice.classList.add("ssp_input");
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
         inpPrice.classList.add("profSale");
-        
+
         inpPrice.value = prdc.Price.toFixed(2);
 
         h4Profit.classList.add("h4ProfSale");
@@ -223,7 +256,7 @@ window.onload = function initWizard() {
 
         function profSaleProd() {
             var asd = inpPrice.id.split("Input_");
-            var dsadasd = app.state.products[asd[1]-1];
+            var dsadasd = app.state.products[asd[1] - 1];
 
             var price = parseFloat(parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10) - prdc.BaseCost);
             prdc.Price = parseFloat(String(inpPrice.value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
@@ -300,6 +333,7 @@ window.onload = function initWizard() {
 
         // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
         $divColPick.on('click', function (event) {
+            $div.click();
             event.preventDefault();
             event.stopPropagation();
 
@@ -311,9 +345,8 @@ window.onload = function initWizard() {
         // Из общего списка цветов по айдишникам выбираем только те цвета которые соответствуют данному продукту
         var masColors = [];
         $.each(design.products.productsData, function (i, elemProd) {
-            if (elemProd.id == document.getElementById("product").value)
-            {
-                $.each(design.products.colors, function (i,elem) {
+            if (elemProd.id == document.getElementById("product").value) {
+                $.each(design.products.colors, function (i, elem) {
                     if (elemProd.colors_available.indexOf(elem.id) >= 0) {
                         masColors.push(elem);
                     }
@@ -332,12 +365,14 @@ window.onload = function initWizard() {
 
 
             $colorHtml.click(function (event) {
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
                 event.preventDefault();
                 event.stopPropagation();
                 $image.css("background-color", color.value);
                 $divSwatch.css("background-color", color.value);
                 prdc.ColorId = parseInt(color.id);
-                
+
                 var product = design.products.productsData[prdc.ProductId];
                 var prices = product.prices;
                 for (var i = 0; i < prices.length; i++) {
@@ -396,7 +431,7 @@ window.onload = function initWizard() {
         divThumb.appendChild(image);
         divColorPicAndMeta.appendChild(divCol);
         div.appendChild(divThumb);
-        div.appendChild(divColorPicAndMeta); 
+        div.appendChild(divColorPicAndMeta);
         div.appendChild(divAllPriceCalcul);
         //div.appendChild(divPricing);
         //div.appendChild(divProfit);
@@ -414,7 +449,7 @@ window.onload = function initWizard() {
                 document.getElementById("ui").style.display = "inline";
             }
             div.parentNode.removeChild(div);
-            
+
             var products = app.state.products;
             var leng = products.length;
             var id = h4Price.id;
@@ -422,7 +457,7 @@ window.onload = function initWizard() {
             var count = parseInt(splitIndex[1]);
             var spliceIndex = count - 1;
             app.state.products.splice(spliceIndex, 1);
-            app.state.isNegativeProfit[count-1] = false;
+            app.state.isNegativeProfit[count - 1] = false;
             //app.state.products.pop(prdc);
             if (count == 0) {
                 count = 1;
@@ -458,10 +493,12 @@ window.onload = function initWizard() {
                 calculatePrice(window.frontColor, window.backColor)
                 estimatedProfitChange();
             }
+            $("#first-product").click();
         });
-    
+
         globalPrdc = prdc;
         app.state.products.push(prdc);
+        $div.click();
         estimatedProfitChangeForManuProducts();
     });
 
@@ -482,12 +519,52 @@ window.onload = function initWizard() {
         }
     });
 
+    $("#swatch2").click(function () {
+        $("#first-product").click();
+    });
+
+    $("#first-product").click(function () {
+        var newColor = app.state.color;
+        var product = app.state.currentProduct;
+        var src = assetsUrls.products + 'product_type_' + product.ProductId + '_front_small.png';
+        design.save(function (data) {
+            var srcFront = assetsUrls.products + 'product_type_' + product.ProductId + '_front.png';
+            var srcBack = assetsUrls.products + 'product_type_' + product.ProductId + '_back.png';
+            var imageData = app.state.getImage();
+            var front = {
+                top: imageData['printable_front_top'],
+                left: imageData['printable_front_left']
+            };
+            var back = {
+                top: imageData['printable_front_top'],
+                left: imageData['printable_front_left']
+            };
+
+            $('#prodFront').attr('src', srcFront).css('background-color', newColor.value);
+            $('#prodBack').attr('src', srcBack).css('background-color', newColor.value);
+            design.item.unselect();
+            while (document.querySelector('#stp2frArea') != null) {
+                document.querySelector('#step-2-front').removeChild(document.querySelector('#stp2frArea'));
+            }
+            $('#view-front-design-area').clone().attr("id", "stp2frArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-2-front');
+            document.querySelector('#stp2frArea').removeChild(document.querySelector('#stp2frArea').childNodes[5]);
+            $('#stp2frArea').css({ "overflow": "hidden" });
+
+            while (document.querySelector('#stp2BackArea') != null) {
+                document.querySelector('#step-2-back').removeChild(document.querySelector('#stp2BackArea'));
+            }
+            $('#view-back-design-area').clone().attr("id", "stp2BackArea").css({ "border": "none" }, { "margin-left": "2px" }, { "overflow": "hidden !important" }).appendTo('#step-2-back');
+            document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
+            $('#stp2BackArea').css({ "overflow": "hidden" });
+        });
+    });
+
     $("#profSale").on({
         change: profitSale,
-        keyup: function(){
+        keyup: function () {
             var price = $("#profSale").val();
             if (isNaN(price)) {
-                price = price.substring(0, price.length-1);
+                price = price.substring(0, price.length - 1);
                 $("#profSale").val(price);
             }
         },
@@ -497,7 +574,7 @@ window.onload = function initWizard() {
                 var price = $("#profSale").val();
 
                 document.querySelector('#profSale').value = Number($("#profSale").val()).toFixed(2);
-                
+
             }
         }
     });
@@ -533,7 +610,7 @@ function setDesign() {
         var src = assetsUrls.products + 'product_type_' + app.state.product.id + '_front_small.png';
         $('#first-product .thumbnail_wrapper img').attr('src', src).css('background-color', app.state.color.value);
         $('#first-product .swatch2').css('background-color', app.state.color.value);
-        design.save(function(data) {
+        design.save(function (data) {
             var srcFront = assetsUrls.products + 'product_type_' + app.state.product.id + '_front.png';
             var srcBack = assetsUrls.products + 'product_type_' + app.state.product.id + '_back.png';
             var imageData = app.state.getImage();
@@ -586,10 +663,9 @@ function initProducts() {
     var mas = [];
 
     //Если лист категорий пустой то мы его инициализируем
-    if (list.value == "")
-    {
+    if (list.value == "") {
 
-        
+
         var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
         var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
         $.each(design.products.categoriesList, function (i) {
@@ -602,15 +678,15 @@ function initProducts() {
                 }
             }
             var gfgf = z;
-            if(z>=1){
-            var option = document.createElement("option");
-            option.value = i;
-            option.id = this.id;
-            option.innerHTML = this.name;
-            list.appendChild(option);
-            //Запихиваем айдишники продуктов по обьектам в массив
-            mas.push(this.products);
-        }
+            if (z >= 1) {
+                var option = document.createElement("option");
+                option.value = i;
+                option.id = this.id;
+                option.innerHTML = this.name;
+                list.appendChild(option);
+                //Запихиваем айдишники продуктов по обьектам в массив
+                mas.push(this.products);
+            }
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
@@ -647,10 +723,10 @@ function initProducts() {
                     listProd.appendChild(option);
                 };
             });
-           
+
             //$.each((mas[this.value]), function (i, id) {
             //    $.each(design.products.productsData, function (i, el) {
-                   
+
             //            if (el.id == id) {
             //                var option = document.createElement("option");
             //                option.value = i;
@@ -658,7 +734,7 @@ function initProducts() {
             //                option.innerHTML = el.name;
             //                listProd.appendChild(option);
             //            }
-                  
+
             //    });
             //});
         });
@@ -673,9 +749,9 @@ function profitSale() {
     var $val = document.getElementById("profSale").value.replace(',', '.');
     var selPrice = parseFloat(String($val).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2);
     var price = (selPrice - window.nowPrice).toFixed(2);
-    
 
-    if(selPrice < window.nowPrice){
+
+    if (selPrice < window.nowPrice) {
         //$("#mainH4").html("RM " + window.nowPrice + " minimum");
         //$("#mainH4").css('color', '#ff0000');
         updateMinimum(price);
@@ -683,7 +759,7 @@ function profitSale() {
         window.sellingPrice = app.state.currentProduct.Price;
         $("#total_profit").html("RM 0+");
         minimumGoal();
-    }else{
+    } else {
         //$("#mainH4").html($price);
         //$("#mainH4").css('color', '#ff4f00');
         updateMinimum(price);
@@ -716,7 +792,7 @@ function colorInit() {
             var $colorHtml = $(colorHtml);
             $colorHtml.click(function () {
                 $("#minImg").css("background-color", color.value);
-                $("#swatch2").css("background-color", color.value); 
+                $("#swatch2").css("background-color", color.value);
                 $("#prodFront").css("background-color", color.value);
                 $("#prodBack").css("background-color", color.value);
                 $("#prodFront3").css("background-color", color.value);
@@ -809,7 +885,7 @@ function slideTo(slideNumber) {
                 return;
             }
         }
-        
+
     }
     if (slideTimeout) {
         window.clearTimeout(slideTimeout);
@@ -831,7 +907,7 @@ function slideTo(slideNumber) {
         $("#card3").flip(true);
     }
 
-    slideTimeout = window.setTimeout(function() {
+    slideTimeout = window.setTimeout(function () {
         $('.flow-step.active').removeClass('active');
         $('#' + slideSteps[slideNumber - 1]).addClass('active');
         app.state.pos = 1 - slideNumber;
@@ -882,13 +958,13 @@ function onChangeTrackBar() {
     //profitSale();
 
     //if (window.nowPrice < window.sellingPrice) {
-        if (app.state.products.length > 1) {
-            estimatedProfitChangeForManuProducts()
-        } else {
-            if (window.nowPrice < window.sellingPrice) {
-                estimatedProfitChange();
-            }
+    if (app.state.products.length > 1) {
+        estimatedProfitChangeForManuProducts()
+    } else {
+        if (window.nowPrice < window.sellingPrice) {
+            estimatedProfitChange();
         }
+    }
     //}
 }
 
@@ -914,12 +990,12 @@ function onChangeValueForTrackBar() {
     updateMinimum(changes.toFixed(2));
 
     //if (window.nowPrice < window.sellingPrice) {
-        if (app.state.products.length > 1) {
-            estimatedProfitChangeForManuProducts()
-        } else {
-            if (window.nowPrice < window.sellingPrice) {
-                estimatedProfitChange();
-            }
+    if (app.state.products.length > 1) {
+        estimatedProfitChangeForManuProducts()
+    } else {
+        if (window.nowPrice < window.sellingPrice) {
+            estimatedProfitChange();
         }
+    }
     //}
 }
