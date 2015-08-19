@@ -5,8 +5,9 @@
 
 
 .empty_storefront__img {
-    margin: 2rem auto 3.5rem;
+    margin: 2rem auto;
     width: 60%;
+    margin-bottom: 0;
 }
 
 
