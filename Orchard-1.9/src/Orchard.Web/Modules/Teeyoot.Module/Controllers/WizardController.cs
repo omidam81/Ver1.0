@@ -4,6 +4,8 @@ using Orchard.Themes;
 using Orchard.UI.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -17,6 +19,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Orchard.ContentManagement;
 using Orchard.Data;
+using Orchard.Environment.Configuration;
 using Orchard.Mvc.Extensions;
 using RM.QuickLogOn.OAuth.Models;
 using Teeyoot.Module.Common.Utils;
@@ -42,12 +45,13 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
         private readonly IRepository<ArtRecord> _artRepository;
         private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
+        private readonly ShellSettings _shellSettings;
 
         private const int ArtsPageSize = 10;
         private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
         private const string InvalidEmailKey = "InvalidEmail";
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository)
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository, ShellSettings shellSettings)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -60,6 +64,7 @@ namespace Teeyoot.Module.Controllers
             _teeyootMessagingService = teeyootMessagingService;
             _commonSettingsRepository = commonSettingsRepository;
             _checkoutCampaignRequestRepository = checkoutCampaignRequestRepository;
+            _shellSettings = shellSettings;
             T = NullLocalizer.Instance;
             _artRepository = artRepository;
         }
@@ -282,7 +287,7 @@ namespace Teeyoot.Module.Controllers
 
             arts = arts.Take(ArtsPageSize);
 
-            return Json(arts.ToList().Select(a => new
+            return Json(arts.ToList().Select(a => new ArtItemDto
             {
                 id = a.Id,
                 name = a.Name,
@@ -292,14 +297,46 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetRandomArts()
         {
-            var arts = _artRepository.Table.Take(ArtsPageSize);
+            var arts = new List<ArtItemDto>();
 
-            return Json(arts.ToList().Select(a => new
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
-                id = a.Id,
-                name = a.Name,
-                filename = a.FileName
-            }), JsonRequestBehavior.AllowGet);
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord" +
+                                              " ORDER BY NEWID()";
+
+                        var artsPageSizeParameter = new SqlParameter("@artsPageSize", SqlDbType.Int)
+                        {
+                            Value = ArtsPageSize
+                        };
+                        command.Parameters.Add(artsPageSizeParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var artItem = new ArtItemDto
+                                {
+                                    id = (int) reader["Id"],
+                                    name = (string) reader["Name"],
+                                    filename = (string) reader["FileName"]
+                                };
+
+                                arts.Add(artItem);
+                            }
+                        }
+                    }
+                    transaction.Commit();
+                }
+            }
+
+            return Json(arts, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetProducts()

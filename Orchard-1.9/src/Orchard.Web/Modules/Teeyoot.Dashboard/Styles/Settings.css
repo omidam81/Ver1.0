@@ -31,11 +31,15 @@
     box-shadow: 0 2px 3px -2px rgba(194,201,204,0.5);
 }
 
-.account__user_info, .account__email_info, .account__password_info {
+ .account__email_info, .account__password_info {
     max-width: 25rem;
     margin-right: 6.25rem;
     float: left;
 }
+ .account__user_info{
+ width: 560px;
+    float: left;
+ }
 
 .form__textfield, .form__textarea {
     border: 1px solid #e8eced !important;
@@ -69,7 +73,12 @@
 
 .account__user_info .label__title + input, .account__email_info .label__title + input, .account__password_info .label__title + input {
     margin-bottom: 2rem;
-    width: 100%;
+    width: 90%;
+}
+
+.label__title_large{
+    margin-bottom: 2rem;
+    width: 95%!important;
 }
 
 .address__field .form__textfield, .address__field .form__select_menu {
@@ -112,8 +121,14 @@
     width: 47.46%;
 }
 
-.address__field_street {
-    width: 72.7%;
+.address__field {
+    width: 48%;
+    float: left;
+}
+
+.address__field_right {
+    width: 48%;
+    float: right;
 }
 
 .address__field_apt {
@@ -171,33 +186,34 @@
     float: left;
     width: 100%;
 }
-.field-validation-error
-{
+
+.field-validation-error {
     color: #ff0000;
 }
-.validation-summary-errors {
-  background: #ed673e !important;
-    border: 1px solid #ed673e !important;
-  border-radius: 3px !important;
-  color: #fff !important;
-  width: 99% !important;
-  padding: 3px !important;
-  margin-top: 1% !important;
-  margin-bottom: 1% !important;
-    font-size: 1rem;
-  font-weight: 600;
-}
-.info-message{
-      background: #21a307 !important;
 
-  border-radius: 3px !important;
-  color: #fff !important;
-  width: 99% !important;
-  padding: 3px !important;
-  margin-top: 1% !important;
-  margin-bottom: 1% !important;
+.validation-summary-errors {
+    background: #ed673e !important;
+    border: 1px solid #ed673e !important;
+    border-radius: 3px !important;
+    color: #fff !important;
+    width: 99% !important;
+    padding: 3px !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
     font-size: 1rem;
-  font-weight: 600;
+    font-weight: 600;
+}
+
+.info-message {
+    background: #21a307 !important;
+    border-radius: 3px !important;
+    color: #fff !important;
+    width: 97% !important;
+    padding: 3px !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .t-button {
@@ -247,4 +263,32 @@
         margin-right: 0.6rem;
         height: 2.05rem;
     }
+}
+
+@media all and (max-width: 725px) {
+    .account__user_info{
+        width:100%;
+    }
+}
+@media all and (max-width: 600px) {
+    .address__field,
+    input#Zip,input#City,input#State,input#Street,input#PhoneNumber,input#Suit,
+    .address__field_right{
+        width:97%;
+    }
+    .address__field_right{
+        float:left;
+    }
+}
+@media all and (max-width: 370px) {
+    .dashboard_section__content--padded{
+        padding-right:0!important;
+        padding-left:10px;
+    }
+   
+   
+}
+
+.dashboard-settings-title{
+    text-align:center;
 }

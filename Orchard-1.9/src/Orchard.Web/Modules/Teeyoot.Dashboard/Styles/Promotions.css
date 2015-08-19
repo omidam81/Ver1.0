@@ -550,3 +550,6 @@ input[readonly] {
 .account_settings{
     background: white;
 }
+.dashboard-promotion-title{
+    text-align:center;
+}
