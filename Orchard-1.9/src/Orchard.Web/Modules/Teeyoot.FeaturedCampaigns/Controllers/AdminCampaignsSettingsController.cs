@@ -126,9 +126,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult ChangeInformation(int Id) {
             var campaign = _campaignService.GetCampaignById(Id);
-            var day = campaign.EndDate.ToString().Split('.')[0];
-            var mounth = campaign.EndDate.ToString().Split('.')[1];
-            var year = campaign.EndDate.ToString().Split('.')[2].Substring(0,4);
+            
+            var day = campaign.EndDate.Day;
+            var mounth = campaign.EndDate.Month;
+            var year = campaign.EndDate.Year;
             var model = new CampaignInfViewModel()
             {
                 CampaignId = campaign.Id,
