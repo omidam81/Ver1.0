@@ -164,7 +164,11 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 for (int i = 0; i < campaign.Products.Count; i++)
                     campaign.Products[i].Price = Convert.ToDouble(prices[i]);
                 _campaignService.UpdateCampaign(campaign);
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                _teeyootMessagingService.SendEditedCampaignMessageToSeller(campaign.Id, pathToMedia, pathToTemplates);
                 Response.Write(true);
+            
             }
             else {
                 Response.Write(false);
