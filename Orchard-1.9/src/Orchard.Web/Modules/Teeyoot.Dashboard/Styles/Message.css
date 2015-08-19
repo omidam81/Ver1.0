@@ -153,6 +153,10 @@ table > tr > td {
 .divRow-mobile{
     display:none!important;
 }
+
+.messages-title{
+    text-align:center!important;
+}
 @media all and (max-width: 830px) {
     .divRow {
         text-align: center;
@@ -632,9 +636,10 @@ html, body {
      margin-left: 6%;
 }
 @media all and (max-width: 475px) {
-    #campaignPrintRow{
-        margin-bottom:78% !important;
+    #campaignPrintRow {
+        margin-bottom: 78% !important;
     }
+}
 @media all and (max-width: 380px) {
     .exampleDiv {
         margin-top: 25px;
@@ -642,10 +647,12 @@ html, body {
         margin-left: 4%;
     }
 }
+
 @media all and (max-width: 300px) {
-    #campaignPrintRow{
-        margin-bottom:93% !important;
+    #campaignPrintRow {
+        margin-bottom: 93% !important;
     }
+}
 /*
     Legacy Firefox implementation treats all flex containers
     as inline-block elements.
