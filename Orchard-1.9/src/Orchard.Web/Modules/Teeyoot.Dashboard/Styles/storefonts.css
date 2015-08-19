@@ -541,8 +541,9 @@ img {
 
 
     .store_owner__banner .button {
+        height: 40px;
         font-size: .8rem;
-        padding: .89rem 1.8rem;
+        padding: 11px 25px;
     }
 
 
@@ -575,6 +576,7 @@ img {
 }
 
 .store_settings .store_settings__toggle {
+    height:40px;
     background: white;
     border-radius: 5px;
     border: 1px solid #e8eced;
