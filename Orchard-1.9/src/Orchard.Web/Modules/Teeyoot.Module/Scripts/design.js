@@ -1629,6 +1629,9 @@ var design={
 			item.outlineW = o.outlineW;
 			text.setAttributeNS(null, 'fill', o.color);
 			text.setAttributeNS(null, 'stroke', o.outlineC);
+			if (o.color == o.outlineC) {
+			    text.style.color = o.color;
+			}
 			text.setAttributeNS(null, 'stroke-width', o.outlineW);
 			text.setAttributeNS(null, 'stroke-linecap', 'round');
 			text.setAttributeNS(null, 'stroke-linejoin', 'round');
@@ -1792,6 +1795,7 @@ var design={
 						txt[0].setAttributeNS(null, 'stroke-width', value);
 						txt[0].setAttributeNS(null, 'stroke-linecap', 'round');
 						txt[0].setAttributeNS(null, 'stroke-linejoin', 'round');
+						    txt[0].style.color = txt[0].getAttribute('stroke');
 						obj.item.outlineW = value;
 						if (parseFloat(value) && obj.item.outlineC) {
 						    app.state.useColors(obj.item.outlineC);
@@ -1801,6 +1805,7 @@ var design={
 				        var oWidth = parseFloat(txt[0].getAttributeNS(null, 'stroke-width'));
 				        rgb = design.designer.toRgbColor(app.state['color-outline']);
 				        txt[0].setAttributeNS(null, 'stroke', rgb);
+				        txt[0].style.color = txt[0].getAttribute('stroke');
 				        //txt[0].setAttributeNS(null, 'stroke-width', $jd('.outline-value').html()/50);
 				        if (oWidth && obj.item.outlineC) {
 				            app.state.unuseColors(obj.item.outlineC);
