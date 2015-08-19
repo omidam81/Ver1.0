@@ -310,3 +310,6 @@
     .private-campaigns-false:hover {
         color: #39ace6 !important;
     }
+    .campaign-title-dashboard{
+        text-align:center;
+    }
