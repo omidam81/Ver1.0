@@ -126,9 +126,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult ChangeInformation(int Id) {
             var campaign = _campaignService.GetCampaignById(Id);
-            var day = campaign.EndDate.ToString().Split('.')[0];
-            var mounth = campaign.EndDate.ToString().Split('.')[1];
-            var year = campaign.EndDate.ToString().Split('.')[2].Substring(0,4);
+            
+            var day = campaign.EndDate.Day;
+            var mounth = campaign.EndDate.Month;
+            var year = campaign.EndDate.Year;
             var model = new CampaignInfViewModel()
             {
                 CampaignId = campaign.Id,
@@ -163,7 +164,11 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 for (int i = 0; i < campaign.Products.Count; i++)
                     campaign.Products[i].Price = Convert.ToDouble(prices[i]);
                 _campaignService.UpdateCampaign(campaign);
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                _teeyootMessagingService.SendEditedCampaignMessageToSeller(campaign.Id, pathToMedia, pathToTemplates);
                 Response.Write(true);
+            
             }
             else {
                 Response.Write(false);

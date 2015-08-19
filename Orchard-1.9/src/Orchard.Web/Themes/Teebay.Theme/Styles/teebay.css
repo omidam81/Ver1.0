@@ -799,13 +799,13 @@
     }
 
     .widget-usermenu .menu-user-menu {
-        margin-left: -33px;
-        margin-right: -8px;
+       margin-left: -33px !important;
+       margin-right: -8px !important;
     }
 
         .widget-usermenu .menu-user-menu li {
             border-left: 3px solid #0089B6;
-            border-right: 3px solid #0089B6;
+            border-right: 3px solid #0089B6 !important;
                 box-sizing: content-box;
         }
 

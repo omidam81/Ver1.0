@@ -88,7 +88,7 @@ h1 {
 
 @media all and (max-width: 767px) {
     #modal_form {
-        height: 700px !important; 
+        height: 750px !important; 
     }
     .form-group {
         margin-bottom: 0;

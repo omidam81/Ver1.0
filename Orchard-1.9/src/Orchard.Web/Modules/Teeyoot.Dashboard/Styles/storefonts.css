@@ -5,8 +5,9 @@
 
 
 .empty_storefront__img {
-    margin: 2rem auto 3.5rem;
+    margin: 2rem auto;
     width: 60%;
+    margin-bottom: 0;
 }
 
 
@@ -2758,4 +2759,8 @@ a, a:hover {
     .load_img{
             left: 45px!important;
     }
+}
+
+.storefront-title{
+    text-align:center;
 }

@@ -25,15 +25,15 @@
     </script>
         }
 <div>
-    <div class="dashboard-section-title">
-        @T("Storefronts")
+    <div class="storefront-title dashboard-section-title">
+        @T("Shop")
         <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
         <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
     </div>
     @if (Model.Count() == 0) {
     <div class="empty_storefront">
-        <img alt="Empty store" class="empty_storefront__img" src="/Media/Default/images/shop.png">
-        <p class="empty_storefront__explanation">@T("Use storefronts to group related campaigns together. You'll have a single page to show customers and we'll even help you cross-promote to encourage multiple purchases!")</p>
+        <img alt="Empty store" class="empty_storefront__img" src="/Media/Default/images/Storefront_1.png">
+        <p class="empty_storefront__explanation">@T("Group all your campaigns together! On this page, you can organise all your campaigns together and show them in a single page to encourage more purchases from your customers!")</p>
         <a class="getstarted_btn_storefront" href="@Url.Action("NewStorefront")">@T("Get Started")</a>
     </div>
     }
@@ -43,7 +43,7 @@
 
     <div class="dashboard__info_message">
         <div class="cart-arrow-down-div"><i class="fa fa-cart-arrow-down fa-2x"></i></div>
-        <p>@T("Use storefronts to group related campaigns together. You'll have a single page to show customers and we'll even help you cross-promote to encourage multiple purchases!")</p>
+        <p>@T("Group all your campaigns together! On this page, you can organise all your campaigns together and show them in a single page to encourage more purchases from your customers!")</p>
     </div>
 
     <div class="dashboard_section__header">

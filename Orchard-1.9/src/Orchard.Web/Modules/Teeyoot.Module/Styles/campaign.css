@@ -6402,9 +6402,9 @@ td, tr {
 }
 
 #back_timer {
-    font-size: 60px;
+    font-size: 50px;
     color: #eee;
-    padding-top: 40px;
+    padding-top: 35px;
     font-weight: bold;
     text-align: center;
 }
