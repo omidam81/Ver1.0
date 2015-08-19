@@ -75,6 +75,8 @@
             var contNum = document.getElementById("contNum").value;
             var messAdmin = document.getElementById("messAdmin").value;
 
+            var currId = document.getElementById("currId").value;
+
             var text;
             if (accountNumber == "" || bankName == "" || accHoldName == "" || contNum == "" || !isNumeric(contNum)) {
                 if (accountNumber == "") {
@@ -120,7 +122,8 @@
                     "bankName": bankName,
                     "accHoldName": accHoldName,
                     "contNum": contNum,
-                    "messAdmin": messAdmin
+                    "messAdmin": messAdmin,
+                    "currId": currId
 
                 }),
             success: function (data, status, resp) {
@@ -183,7 +186,7 @@
             }
         </table>
     </div>
-
+    <input type="hidden" id="currId" value="@Model.CurrencyId"/>
 
     <div id="modal_form" style="display:none">
         @Html.Partial("StartPayout")

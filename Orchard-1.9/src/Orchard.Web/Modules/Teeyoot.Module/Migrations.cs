@@ -659,7 +659,18 @@ namespace Teeyoot.Module
                 table => table
                     .DropColumn("EmailSent"));
 
-            return 67;
+
+
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+        table => table
+        .AddColumn<int>("Currency_Id", column => column.NotNull().WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CurrencyKey", "PayoutRecord", new[] { "Currency_Id" },
+         "CurrencyRecord", new[] { "Id" });
+
+
+
+            return 68;
         }
 
         public int UpdateFrom2()
@@ -1426,5 +1437,18 @@ namespace Teeyoot.Module
 
             return 67;
         }
+
+        public int UpdateFrom67()
+        {
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+        table => table
+        .AddColumn<int>("Currency_Id", column => column.NotNull().WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CurrencyKey", "PayoutRecord", new[] { "Currency_Id" },
+         "CurrencyRecord", new[] { "Id" });
+            return 68;
+        }
+      
+
     }
 }
