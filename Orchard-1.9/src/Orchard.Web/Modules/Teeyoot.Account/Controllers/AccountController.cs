@@ -333,11 +333,11 @@ namespace Teeyoot.Account.Controllers
 
             if (string.IsNullOrEmpty(name))
             {
-                nameCantBeBlank = T("Name can't be blank").ToString();
+                //nameCantBeBlank = T("Name can't be blank").ToString();
                 res.IsValid = false;
             }else if (string.IsNullOrEmpty(email))
             {
-                emailCantBeBlank = T("Email can't be blank").ToString();
+               // emailCantBeBlank = T("Email can't be blank").ToString();
                 res.IsValid = false;
             }
             else if (email.Length >= 255)
@@ -347,7 +347,7 @@ namespace Teeyoot.Account.Controllers
             }
             else if (!Regex.IsMatch(email, UserPart.EmailPattern, RegexOptions.IgnoreCase))
             {
-                emailIsInvalid = T("Email is invalid").ToString();
+                //emailIsInvalid = T("Email is invalid").ToString();
                 res.IsValid = false;
             }
             else if (!_userService.VerifyUserUnicity(email, email))
@@ -358,24 +358,23 @@ namespace Teeyoot.Account.Controllers
 
             if (string.IsNullOrEmpty(password))
             {
-                passwordCantBeBlank = T("Password can't be blank").ToString();
+                //passwordCantBeBlank = T("Password can't be blank").ToString();
                 res.IsValid = false;
             }
             else if (password.Length < MinPasswordLength)
             {
-                passwordIsTooShort =
-                    T("Password is too short (minimum is {0} characters)", MinPasswordLength).ToString();
+               // passwordIsTooShort = T("Password is too short (minimum is {0} characters)", MinPasswordLength).ToString();
                 res.IsValid = false;
             }
 
             if (string.IsNullOrEmpty(confirmPassword))
             {
-                confirmPasswordCantBeBlank = T("Password confirmation can't be blank").ToString();
+                //confirmPasswordCantBeBlank = T("Password confirmation can't be blank").ToString();
                 res.IsValid = false;
             }
             else if (!string.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
-                passwordDoesntMatch = T("Password confirmation doesn't match Password").ToString();
+                //passwordDoesntMatch = T("Password confirmation doesn't match Password").ToString();
                 res.IsValid = false;
             }           
 
