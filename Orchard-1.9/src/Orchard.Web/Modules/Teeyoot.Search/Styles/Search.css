@@ -3,7 +3,9 @@
     padding: 0px;
     padding-top: 20px;
 }
-
+  .tb-layout-main-container{
+        min-height:100%;
+    }
 /*.tb-return-result .row .tee-previewSearch-search:first-of-type {
         padding-right: 15px !important;
     }
