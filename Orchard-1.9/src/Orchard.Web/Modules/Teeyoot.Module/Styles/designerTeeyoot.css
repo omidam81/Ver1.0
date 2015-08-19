@@ -5807,3 +5807,9 @@ img.art-search-preview {
 .small {
     font-size: 1.0em !important;
 }
+
+@media all and (max-width: 400px) {
+    .url-wizard-input {
+        width:60%!important;
+    }
+}
