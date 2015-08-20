@@ -583,7 +583,7 @@ namespace Teeyoot.Messaging.Services
         private void FillCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
         {
             var baseUrl = "";
-
+            string remaining = "";
             if (HttpContext.Current != null)
             {
                 var request = HttpContext.Current.Request;
@@ -595,6 +595,28 @@ namespace Teeyoot.Messaging.Services
             }
             string side = "";
             var campaign = _campaignRepository.Get(campaignId);
+
+             if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days > 0)
+            {
+           remaining = campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days + " days";
+             }
+             else if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days <= -1)
+             { 
+            remaining = Math.Abs(campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days) + "days ago";
+                 }
+                 else
+             {
+             if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours > 0)
+            { 
+                remaining = campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours + "hours";
+            }
+            else
+            {
+                remaining = Math.Abs(campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours) + "hours ago";
+            }
+        }
+
+
             if (campaign.BackSideByDefault)
             {
                 side = "back";
@@ -604,6 +626,7 @@ namespace Teeyoot.Messaging.Services
                 side = "front";
             }
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
+            message.AddRcptMergeVars(email, "Campaignremaining", remaining);
             message.AddRcptMergeVars(email, "Url", baseUrl);
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
             message.AddRcptMergeVars(email, "ReservedCount", campaign.ProductCountSold.ToString());
