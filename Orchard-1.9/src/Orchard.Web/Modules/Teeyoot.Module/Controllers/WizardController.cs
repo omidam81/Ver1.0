@@ -47,7 +47,7 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
         private readonly ShellSettings _shellSettings;
 
-        private const int ArtsPageSize = 10;
+        private const int ArtsPageSize = 30;
         private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
         private const string InvalidEmailKey = "InvalidEmail";
 
