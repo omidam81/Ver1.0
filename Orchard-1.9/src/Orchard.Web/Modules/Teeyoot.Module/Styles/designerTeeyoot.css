@@ -5813,3 +5813,7 @@ img.art-search-preview {
         width:60%!important;
     }
 }
+
+#artwork-query{
+    padding:5px!important;
+}
