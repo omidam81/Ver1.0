@@ -1,0 +1,8 @@
+﻿@if (Model.Text.ToString().ToLower() == T("Get Started").ToString().ToLower())
+{
+    <div class="get-started-button"><a href="@Model.Href">@Model.Text</a></div>
+}
+else
+{
+    <a href="@Model.Href">@Model.Text</a>
+}
