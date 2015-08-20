@@ -49,7 +49,7 @@ FontDetect = function()
         var div = document.createElement('div');
         div.id = 'fontdetectHelper';
         span = document.createElement('span');
-        span.innerText = aChars[eLang];
+        $(span).text(aChars[eLang]);
         div.appendChild(span);
 
         body.insertBefore(div,firstChild);

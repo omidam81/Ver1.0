@@ -128,7 +128,7 @@
                 data: addAntiForgeryToken({ "campaignId": campaignId, "day": day, "month": month, "year": year }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
-                        document.getElementById("date_" + campaignId).innerText = data;
+                        $(document.getElementById("date_" + campaignId)).text(data);
                         document.getElementById("modal_date_change").className = "dg-overlay-not-show";
                     }
                 }

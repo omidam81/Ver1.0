@@ -843,7 +843,8 @@ function colorInit() {
                         estimatedProfitChange();
                     }
                 }
-                document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+                //document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+                $(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
