@@ -128,7 +128,7 @@ function setPriceInDesignFromGoal() {
 
     calculatePrice(window.frontColor, window.backColor);
 
-    document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+    $(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
     document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
 }
 
