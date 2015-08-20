@@ -2736,10 +2736,9 @@ var design={
 
 
 			if(!e) e = $jd('.drag-item-selected');
-						
 			var oldwidth = 0, oldsize=0;		
 			e.resizable({minHeight: 15, minWidth: 15,				
-				aspectRatio: auto,
+			    aspectRatio: auto,
 				handles: handles,
 				start: function (event, ui) {
 				    resizing = true;

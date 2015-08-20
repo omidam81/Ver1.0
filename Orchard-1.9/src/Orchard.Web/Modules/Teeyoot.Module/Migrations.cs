@@ -669,8 +669,27 @@ namespace Teeyoot.Module
          "CurrencyRecord", new[] { "Id" });
 
 
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+             table => table
+        .DropColumn("AccountNumber"));
 
-            return 68;
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+              table => table
+              .DropColumn("ContactNumber"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("AccountNumber", column => column.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("ContactNumber", column => column.Nullable()));
+
+
+
+
+
+            return 70;
         }
 
         public int UpdateFrom2()
@@ -1447,6 +1466,33 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("CurrencyKey", "PayoutRecord", new[] { "Currency_Id" },
          "CurrencyRecord", new[] { "Id" });
             return 68;
+        }
+
+        public int UpdateFrom68()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+                table => table
+                    .DropColumn("AccountNumber"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+              table => table
+              .DropColumn("ContactNumber"));
+
+            return 69;
+        }
+
+
+        public int UpdateFrom69()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("AccountNumber", column => column.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("ContactNumber", column => column.Nullable()));
+
+            return 70;
         }
       
 
