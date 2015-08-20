@@ -12,22 +12,24 @@
 @model Teeyoot.Account.ViewModels.RecoverViewModel
 @if (Model.RecoverFailed)
 {
-    @Model.RecoverIssueSummary
+    <div class="recover-login login-valid">
+        @Model.RecoverIssueSummary
+    </div>
 }
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("Recover", "Account")))
+        @using (Html.BeginFormAntiForgeryPost(Url.Action("Recover", "Account")))
 {
-    <div class="row recover">
-        @if (Model.RecoverEmailSent)
+            <div class="row recover">
+                @if (Model.RecoverEmailSent)
         {
-            <p class="msg"> @T("An email containing a link that will allow you to change your password has been sent to you. If you do not receive an email in the next ten minutes, please email us.")</p>
+                    <p class="msg"> @T("An email containing a link that will allow you to change your password has been sent to you. If you do not receive an email in the next ten minutes, please email us.")</p>
         }
-        <h4>@T("Request a Password Reset")</h4>
-        <div class="col-sm-3 lookupNumber input-email">
-            @Html.TextBoxFor(model => model.Email, new { placeholder = "Email" })
-        </div>
-        <div class="col-sm-2">
-            <button class="tb-button tb-btn-recover btn-recover" type="submit">@T("Request")</button>
-        </div>
-    </div>
+                <h4>@T("Request a Password Reset")</h4>
+                <div class="col-sm-3 lookupNumber input-email">
+                    @Html.TextBoxFor(model => model.Email, new { placeholder = "Email" })
+                </div>
+                <div class="col-sm-2">
+                    <button class="tb-button tb-btn-recover btn-recover" type="submit">@T("Request")</button>
+                </div>
+            </div>
 }
