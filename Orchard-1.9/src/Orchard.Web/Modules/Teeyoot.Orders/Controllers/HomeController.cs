@@ -220,6 +220,21 @@ namespace Teeyoot.Orders.Controllers
         public ActionResult ApplyStatus(int orderId, string orderStatus)
         {
             var order = _orderService.GetOrderById(orderId);
+
+            if (order.OrderStatusRecord.Name == OrderStatus.Cancelled.ToString() && orderStatus != OrderStatus.Cancelled.ToString())
+            {
+                var sum = order.Products.Select(o => o.Count).Sum();
+                var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
+                campaign.ProductCountSold = campaign.ProductCountSold + sum;
+            }
+
+            if (order.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && orderStatus == OrderStatus.Cancelled.ToString())
+            {
+                var sum = order.Products.Select(o => o.Count).Sum();
+                var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
+                campaign.ProductCountSold = campaign.ProductCountSold - sum;
+            }
+
             OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
             if (orderStatus == "Shipped")
             {

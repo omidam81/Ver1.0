@@ -40,7 +40,7 @@ function formula(frontColor, backColor, cost, newCount) {
     var count = parseInt(window.count);                                                         //B16
 
     if (cost) {
-        costOfMaterial = parseFloat(cost).toFixed(2);
+        costOfMaterial = parseFloat(cost);
     }
 
     if (newCount) {
