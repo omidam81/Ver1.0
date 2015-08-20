@@ -108,6 +108,15 @@ window.onload = function initWizard() {
                     document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
                     $('#stp2BackArea').css({ "overflow": "hidden" });
                 });
+
+                var el = $('#primary')[0];
+                var newSize = $(el).find('.block.ssp_block');
+
+                if (newSize.hasClass('design-active')) {
+                    newSize.removeClass('design-active');
+                }
+
+                div.classList.add('design-active');
             }
         });
 
@@ -557,6 +566,15 @@ window.onload = function initWizard() {
             document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
             $('#stp2BackArea').css({ "overflow": "hidden" });
         });
+
+        var el = $('#primary')[0];
+        var newSize = $(el).find('.block.ssp_block');
+
+        if (newSize.hasClass('design-active')) {
+            newSize.removeClass('design-active');
+        }
+
+        $("#first-product").addClass('design-active');
     });
 
     $("#profSale").on({
@@ -864,6 +882,8 @@ function Goal() {
         setPriceInGoalFromDesign();
         profitSale();
     }
+
+    $("#first-product").click();
 }
 
 var slideSteps = ['design', 'goal', 'description'];

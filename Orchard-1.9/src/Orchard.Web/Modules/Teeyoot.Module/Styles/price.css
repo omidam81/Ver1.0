@@ -141,3 +141,7 @@
     cursor: -webkit-grab;
     cursor: pointer;
 }
+
+.design-active {
+    border-color: #ff4f00 !important;
+}
