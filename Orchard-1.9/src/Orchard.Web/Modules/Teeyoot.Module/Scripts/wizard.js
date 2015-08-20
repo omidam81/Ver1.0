@@ -979,7 +979,7 @@ function onChangeTrackBar() {
     //profitSale();
 
     //if (window.nowPrice < window.sellingPrice) {
-    if (app.state.products.length > 1) {
+    if (app.state.products != null && app.state.products.length > 1) {
         estimatedProfitChangeForManuProducts()
     } else {
         if (window.nowPrice < window.sellingPrice) {
