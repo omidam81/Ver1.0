@@ -10,7 +10,7 @@ namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-        public ActionResult Payouts()
+        public ActionResult Accounts()
         {
             int currentUserId = Services.WorkContext.CurrentUser.Id;
             var payouts = _payoutService.GetAllPayouts();
@@ -64,8 +64,8 @@ namespace Teeyoot.Dashboard.Controllers
             
             }
             _teeyootMessagingService.SendPayoutRequestMessageToAdmin(currentUserId, accountNumber, bankName, accHoldName, contNum, messAdmin);
-            
-            return RedirectToAction("Payouts");
+
+            return RedirectToAction("Accounts");
         }
     
     
