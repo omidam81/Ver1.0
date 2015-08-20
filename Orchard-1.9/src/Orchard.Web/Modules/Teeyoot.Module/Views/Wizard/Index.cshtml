@@ -180,7 +180,8 @@
             var productMinimumGoal = document.getElementById("minimmumGoal").value;
             var tags = [];
             for (var i = 0; i < tagsElems.length; i++) {
-                tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
+                //tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
+                tags.push($(tagsElems[i]).text().substring(0, $(tagsElems[i]).text().length - 1));
             }
             //var isForCharity = document.getElementById('is_for_charity').checked;
             $.ajax({
