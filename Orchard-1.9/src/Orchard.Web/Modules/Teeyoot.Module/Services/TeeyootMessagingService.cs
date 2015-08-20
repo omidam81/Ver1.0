@@ -21,6 +21,7 @@ namespace Teeyoot.Messaging.Services
     public class TeeyootMessagingService : ITeeyootMessagingService
     {
         private readonly IRepository<MailChimpSettingsPartRecord> _mailChimpSettingsRepository;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IContentManager _contentManager;
         private readonly IMessageService _messageService;
         private readonly IMailChimpSettingsService _settingsService;
@@ -47,7 +48,8 @@ namespace Teeyoot.Messaging.Services
             IRepository<PayoutRecord> payoutsRepository,
             IRepository<PaymentInformationRecord> payoutInformRepository,
             IWorkContextAccessor wca,
-            IRepository<CampaignProductRecord> campaignProductRepository)
+            IRepository<CampaignProductRecord> campaignProductRepository,
+            IRepository<CurrencyRecord> currencyRepository)
         {
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
@@ -56,6 +58,7 @@ namespace Teeyoot.Messaging.Services
             _notifier = notifier;
             _orderRepository = orderRepository;
             _ocpRepository = ocpRepository;
+            _currencyRepository = currencyRepository;
             _campaignRepository = campaignRepository;
             _userRolesPartRepository = userRolesPartRepository;
             _payoutsRepository = payoutsRepository;
@@ -290,9 +293,10 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.Subject = "Payout completed";
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == payout.UserId);
             var payoutInf = _payoutInformRepository.Table.Where(inf => inf.TranzactionId == payout.Id).FirstOrDefault();
+            var currency = _currencyRepository.Get(payout.Currency_Id).Code;
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
-            FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "");
+            FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "", payout.Amount, currency);
             mandrillMessage.To = emails;
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-completed-template.html");
             SendTmplMessage(api, mandrillMessage);
@@ -449,7 +453,7 @@ namespace Teeyoot.Messaging.Services
             foreach (var user in users)
             {
                 emails.Add(new MandrillMailAddress(user.Email, "Admin"));
-                FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin);
+                FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin, 0.00, "");
             }
             mandrillMessage.To = emails;
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-template.html");
@@ -639,7 +643,7 @@ namespace Teeyoot.Messaging.Services
 
         }
 
-        private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
+        private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)
         {
 
             var requester = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);;
@@ -650,6 +654,9 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "AccHolderName", accHoldName);
             message.AddRcptMergeVars(adminEmail, "ContactNumber", contNum);
             message.AddRcptMergeVars(adminEmail, "Text", messAdmin);
+            message.AddRcptMergeVars(adminEmail, "Amount", amount.ToString("F"));
+            message.AddRcptMergeVars(adminEmail, "Currency", currencyCode);
+
          
 
         }
