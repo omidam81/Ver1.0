@@ -10,7 +10,7 @@ namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
-        public ActionResult Promotions(PromotionViewModel viewModel)
+        public ActionResult MarketingCampaigns(PromotionViewModel viewModel)
         {
             int currentUser = Services.WorkContext.CurrentUser.Id;
             var model = new PromotionViewModel() { };
@@ -35,13 +35,13 @@ namespace Teeyoot.Dashboard.Controllers
             int currentUser = Services.WorkContext.CurrentUser.Id;
             _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, currentUser);
             var viewModel = new PromotionViewModel() { };
-            return RedirectToAction("Promotions");
+            return RedirectToAction("MarketingCampaigns");
         }
 
         public ActionResult DeletePromotion(int id)
         {
             _promotionService.DeletePromotion(id);
-            return RedirectToAction("Promotions");
+            return RedirectToAction("MarketingCampaigns");
         }
 
         [HttpPost]
@@ -62,7 +62,7 @@ namespace Teeyoot.Dashboard.Controllers
         public ActionResult DisablePromotion(int id)
         {
             _promotionService.DisablePromotion(id);
-            return RedirectToAction("Promotions");
+            return RedirectToAction("MarketingCampaigns");
         }
 
     }

@@ -13,7 +13,7 @@ namespace Teeyoot.Dashboard.Controllers
     public partial class DashboardController : Controller
     {
 
-        public ActionResult Storefronts()
+        public ActionResult Shop()
         {
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));

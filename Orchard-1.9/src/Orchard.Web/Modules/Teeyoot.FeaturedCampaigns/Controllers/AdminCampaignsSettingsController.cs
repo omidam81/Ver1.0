@@ -154,6 +154,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             if (!campaigns.Select(c=>c.Alias).ToList().Contains(URL) || campaign.Alias == URL)
             {
                 DateTime date = new DateTime(Year, Mounth, Day);
+                if (date < DateTime.Now)
+                    campaign.IsActive = false;
 
                 campaign.Title = Title;
                 campaign.Alias = URL;

@@ -47,7 +47,7 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
         private readonly ShellSettings _shellSettings;
 
-        private const int ArtsPageSize = 10;
+        private const int ArtsPageSize = 30;
         private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
         private const string InvalidEmailKey = "InvalidEmail";
 
@@ -308,7 +308,7 @@ namespace Teeyoot.Module.Controllers
                     {
                         command.Transaction = transaction;
                         command.CommandType = CommandType.Text;
-                        command.CommandText = " SELECT TOP (@artsPageSize) PERCENT * FROM Teeyoot_Module_ArtRecord" +
+                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord" +
                                               " ORDER BY NEWID()";
 
                         var artsPageSizeParameter = new SqlParameter("@artsPageSize", SqlDbType.Int)
