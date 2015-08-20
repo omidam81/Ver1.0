@@ -35,7 +35,7 @@ namespace Teeyoot.Module.Dashboard
                 },
                 new RouteDescriptor {
                     Route = new Route(
-                        "Dashboard/Storefronts/New",
+                        "Dashboard/Shop/New",
                         new RouteValueDictionary {
                             {"area", "Teeyoot.Dashboard"},
                             {"controller", "Dashboard"},

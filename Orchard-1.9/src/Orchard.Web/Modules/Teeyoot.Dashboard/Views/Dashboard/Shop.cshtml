@@ -8,7 +8,7 @@
 {
     <script type="text/javascript">
 
-        document.title = "Storefronts| Teeyoot";
+        document.title = "Shop | Teeyoot";
         var i = true;
         function ViewOption(elem) {
             if (i) {
@@ -47,9 +47,9 @@
     </div>
 
     <div class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">@T("All Storefronts")</h1>
+        <h1 class="dashboard_section__heading">@T("All Shops")</h1>
         <div class="dashboard_section__header_button">
-            <a class="add_storefront" href="@Url.Action("NewStorefront")">@T("Create New Storefront")</a>
+            <a class="add_storefront" href="@Url.Action("NewStorefront")">@T("Create New Shop")</a>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
                             <li class="options__item">
                                 <a class="option__link" href="/Stores/@store.Url">
                                     <i class="option__icon ts-icon-view"></i>
-                                    <div class="option__name_slide">@T("View Store")</div>
+                                    <div class="option__name_slide">@T("View Shop")</div>
                                 </a>
                             </li>
 
@@ -99,7 +99,7 @@
                             </li>*@
                             <li class="options__item options__item_view">
                                 <a class="option__link" href="/Stores/@store.Url">
-                                    <div class="option__name">@T("View Store")</div>
+                                    <div class="option__name">@T("View Shop")</div>
                                 </a>
                             </li>
 
