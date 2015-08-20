@@ -116,7 +116,7 @@ h1 {
 }*/
 
 
-label.error {
+.error {
     color: red;
     font-style: italic;
     margin-left: 5px;
