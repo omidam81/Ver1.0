@@ -45,8 +45,8 @@ namespace Teeyoot.Account.Services
 
             var userPart = teeyootUser.As<UserPart>();
 
-            userPart.Email = email;
             userPart.UserName = email; 
+            userPart.Email = email;
             userPart.NormalizedUserName = email.ToLowerInvariant();
             userPart.HashAlgorithm = PBKDF2;
             _membershipService.SetPassword(userPart, password);

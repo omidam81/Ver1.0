@@ -273,12 +273,13 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetArts(string query, int page)
         {
-            var arts = _artRepository.Table;
-
-            if (!string.IsNullOrEmpty(query))
+            if (string.IsNullOrWhiteSpace(query))
             {
-                arts = arts.Where(a => a.Name.Contains(query.ToLowerInvariant()));
+                return Json(new List<ArtItemDto>(), JsonRequestBehavior.AllowGet);
             }
+
+            var arts = _artRepository.Table
+                .Where(a => a.Name.Contains(query.ToLowerInvariant()));
 
             if (page > 0)
             {
@@ -287,12 +288,15 @@ namespace Teeyoot.Module.Controllers
 
             arts = arts.Take(ArtsPageSize);
 
-            return Json(arts.ToList().Select(a => new ArtItemDto
-            {
-                id = a.Id,
-                name = a.Name,
-                filename = a.FileName
-            }), JsonRequestBehavior.AllowGet);
+            var artDtos = arts.ToList()
+                .Select(a => new ArtItemDto
+                {
+                    id = a.Id,
+                    name = a.Name,
+                    filename = a.FileName
+                });
+
+            return Json(artDtos, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetRandomArts()
