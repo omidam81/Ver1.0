@@ -12,7 +12,7 @@ namespace Teeyoot.Module.Models
 
         public virtual string DiscountType { get; set; }
 
-        public virtual int AmountSize { get; set; }
+        public virtual double AmountSize { get; set; }
 
         public virtual string AmountType { get; set; }
 
