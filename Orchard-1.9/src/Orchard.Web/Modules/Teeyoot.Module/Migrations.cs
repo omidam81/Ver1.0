@@ -686,10 +686,15 @@ namespace Teeyoot.Module
             .AddColumn<string>("ContactNumber", column => column.Nullable()));
 
 
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                           table => table
+                               .DropColumn("AmountSize"));
 
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+               table => table
+               .AddColumn<double>("AmountSize"));
 
-
-            return 70;
+            return 71;
         }
 
         public int UpdateFrom2()
@@ -1494,7 +1499,18 @@ namespace Teeyoot.Module
 
             return 70;
         }
-      
 
+         public int UpdateFrom70()
+        {
+             SchemaBuilder.AlterTable(typeof (PromotionRecord).Name,
+                table => table
+                    .DropColumn("AmountSize"));
+
+             SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table
+                .AddColumn<double>("AmountSize"));
+
+         return 71;
+        }
     }
 }
