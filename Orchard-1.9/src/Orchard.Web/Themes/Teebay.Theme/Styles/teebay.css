@@ -4268,3 +4268,15 @@ html, body {
         padding: 0 10px;
     }
 }
+.inp-half {
+    display: inline;
+    float: left;
+    margin-right: 15px;
+    width: 48.6348122596%;
+}
+
+.inp-half-right {
+    display: inline;
+    float: left;
+   width: 48.6348122596%;
+}
