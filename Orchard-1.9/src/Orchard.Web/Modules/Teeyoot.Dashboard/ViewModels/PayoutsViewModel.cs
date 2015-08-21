@@ -19,6 +19,7 @@ namespace Teeyoot.Dashboard.ViewModels
         public string filter { get; set;}
         public dynamic Pager { get; set; }
         public string Currency { get; set; }
+        public int CurrencyId { get; set; }
     }
 
     public class History {

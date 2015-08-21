@@ -24,6 +24,8 @@
 @using (Script.Foot())
 {
     <script type="text/javascript">
+        document.title = "New Shop | Teeyoot";
+
         var press;
 
         $("#btn-settings").click(function () {
@@ -178,7 +180,7 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = "@T("You must add at least 3 campaigns to your storefront.")";
+                text = "@T("You must add at least 3 campaigns to your shop.")";
                 $(message).append(text);
                 return;
             } else {
@@ -259,8 +261,8 @@
     </div>
     <div class="store__details_container">
         <div class="store__details--edit">
-            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="@T("Store Title")" type="text" value="@Model.Title">
-            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="@T("Store Description (optional)")" value="@Model.Description"></textarea>
+            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="@T("Shop Title")" type="text" value="@Model.Title">
+            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="@T("Shop Description (optional)")" value="@Model.Description"></textarea>
         </div>
     </div>
 </div>
@@ -268,7 +270,7 @@
 <section class="site__sub_header">
     <div class="site__wrapper">
         <header class="store_owner__banner">
-            <button onclick="PublishStore()" class="store_publish__button button button--primary">@T("Publish Store")</button>
+            <button onclick="PublishStore()" class="store_publish__button button button--primary">@T("Publish Shop")</button>
             <div class="store_settings">
                 <div id="btn-settings" class="store_settings__toggle">
                     <i class="fa fa-cog fa-1x"></i>@T("Settings")
@@ -285,8 +287,8 @@
                         </li>
                         <li class="store_settings__menu_item">
                             <div class="store_settings__description">
-                                <div class="store_settings__header">@T("Hide store")</div>
-                                <div class="store_settings__details">@T("Hide this store from internet search engines")</div>
+                                <div class="store_settings__header">@T("Hide shop")</div>
+                                <div class="store_settings__details">@T("Hide this shop from internet search engines")</div>
                             </div><label class="switch__label">
                                 <input class="switch__input hide_from_search__checkbox" name="hide" type="checkbox">
                                 <div class="switch__el" data-off="Off" data-on="On"></div>
@@ -299,7 +301,7 @@
                                     <a class="cross_sell__info ts-icon-tip" href="" target="_blank">
                                     </a>
                                 </div>
-                                <div class="store_settings__details">@T("Suggests other campaigns from this store after a customer’s initial purchase")</div>
+                                <div class="store_settings__details">@T("Suggests other campaigns from this shop after a customer’s initial purchase")</div>
                             </div>
                             <label class="switch__label">
                                 <input checked="" class="switch__input cross_sell__toggle" name="hide" type="checkbox">
@@ -336,7 +338,7 @@
             <i class="form__message_close ts-icon-close"></i>
         </div>
         <div class="store__ftue">
-            <h1 class="page__heading">@T("Create your first storefront!")</h1>
+            <h1 class="page__heading">@T("Create your first shop!")</h1>
             <ol class="list__counter">
                 @if (Model.Campaigns.Count() >= 3)
                 {
@@ -348,13 +350,13 @@
                 }
                 <li class="list_item__counter">@T("Pick a name &amp; write a description")</li>
                 <li class="list_item__counter">@T("Upload a cover photo")</li>
-                <li class="list_item__counter">@T("Add campaigns to your storefront")</li>
+                <li class="list_item__counter">@T("Add campaigns to your shop")</li>
             </ol>
 
             @if (Model.Campaigns.Count() < 3)
             {
                 <div>
-                    <p>@T("You need at least 3 campaigns to create a storefront.")</p>
+                    <p>@T("You need at least 3 campaigns to create a shop.")</p>
                     <p>
                         <a class="button__cta" href="/GetStarted">@T("Launch one now")</a>
                     </p>
@@ -512,7 +514,7 @@
                         </div>
                     </div>
                     <div class="modal__footer">
-                        <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Store")</button>
+                        <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Shop")</button>
                     </div>
                 </div>
             </div>

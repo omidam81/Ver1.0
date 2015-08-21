@@ -1,0 +1,30 @@
+﻿@model Orchard.Users.ViewModels.UserCreateViewModel
+
+@Html.HiddenFor(m => m.UserName, new {id = "username"})
+<fieldset>
+    @Html.LabelFor(m => m.Email, T("Email"))
+    @Html.TextBoxFor(m => m.Email, new {id = "email", @class = "text medium"})
+    @Html.ValidationMessageFor(m => m.Email, "*")
+</fieldset>
+<fieldset>
+    @Html.LabelFor(m => m.Password, T("Password"))
+    @Html.PasswordFor(m => m.Password, new {@class = "text medium"})
+    @Html.ValidationMessageFor(m => m.Password, "*")
+</fieldset>
+<fieldset>
+    @Html.LabelFor(m => m.ConfirmPassword, T("Confirm Password"))
+    @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "text medium"})
+    @Html.ValidationMessageFor(m => m.ConfirmPassword, "*")
+</fieldset>
+
+@using (Script.Foot())
+{
+    <script>
+        $(document).ready(function() {
+            $('#content form').submit(function() {
+                var email = $('#email').val();
+                $('#username').val(email);
+            });
+        });
+    </script>
+}

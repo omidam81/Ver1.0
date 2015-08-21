@@ -27,7 +27,7 @@ namespace Teeyoot.Module.Services
         {
             FontRecord record = _fontRepository.Get(f => f.Id == font.Id);
             record.Family = font.Family;
-            record.FileName = font.FileName;
+            //record.FileName = font.FileName;
             record.Priority = font.Priority;
             record.Tags = font.Tags;
             _fontRepository.Update(record);

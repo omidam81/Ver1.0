@@ -170,7 +170,9 @@ namespace Teeyoot.Orders.Controllers
                 Count = o.Count,
                 Currency = o.CampaignProductRecord.CurrencyRecord.Code,
                 Price = o.CampaignProductRecord.Price + Pricing(o.CampaignProductRecord.ProductRecord.SizesAvailable,o.ProductSizeRecord.Id),
-                Size = o.ProductSizeRecord.SizeCodeRecord.Name });
+                Size = o.ProductSizeRecord.SizeCodeRecord.Name,
+                Color = o.CampaignProductRecord.ProductColorRecord.Value});
+         
             var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
             var result = new { products, totalPrice };
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -212,7 +214,7 @@ namespace Teeyoot.Orders.Controllers
             var campaign = _campaignService.GetCampaignById(campaignId) ;
             order.ProfitPaid = true;
             _orderService.UpdateOrder(order);
-            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
+            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Currency_Id = order.CurrencyRecord.Id, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
             return RedirectToAction("Index");
         }
 
@@ -220,6 +222,21 @@ namespace Teeyoot.Orders.Controllers
         public ActionResult ApplyStatus(int orderId, string orderStatus)
         {
             var order = _orderService.GetOrderById(orderId);
+
+            if (order.OrderStatusRecord.Name == OrderStatus.Cancelled.ToString() && orderStatus != OrderStatus.Cancelled.ToString())
+            {
+                var sum = order.Products.Select(o => o.Count).Sum();
+                var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
+                campaign.ProductCountSold = campaign.ProductCountSold + sum;
+            }
+
+            if (order.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && orderStatus == OrderStatus.Cancelled.ToString())
+            {
+                var sum = order.Products.Select(o => o.Count).Sum();
+                var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
+                campaign.ProductCountSold = campaign.ProductCountSold - sum;
+            }
+
             OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
             if (orderStatus == "Shipped")
             {

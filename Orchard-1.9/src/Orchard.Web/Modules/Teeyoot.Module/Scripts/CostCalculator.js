@@ -40,7 +40,7 @@ function formula(frontColor, backColor, cost, newCount) {
     var count = parseInt(window.count);                                                         //B16
 
     if (cost) {
-        costOfMaterial = parseFloat(cost).toFixed(2);
+        costOfMaterial = parseFloat(cost);
     }
 
     if (newCount) {
@@ -128,7 +128,7 @@ function setPriceInDesignFromGoal() {
 
     calculatePrice(window.frontColor, window.backColor);
 
-    document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+    $(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
     document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
 }
 
@@ -154,7 +154,7 @@ function estimatedProfitChangeForManuProducts() {
             }
         }
 
-        var prices = calculatePriceForNewProduct(window.frontColor, window.backColor, parseFloat(cost).toFixed(2));
+        var prices = calculatePriceForNewProduct(window.frontColor, window.backColor, parseFloat(cost));
         products[i].BaseCost = prices[0];
         result.push(parseFloat(products[i].Price - products[i].BaseCost) * window.count);
         if (i > 0) {

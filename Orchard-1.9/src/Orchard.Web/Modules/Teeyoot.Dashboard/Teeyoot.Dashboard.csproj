@@ -154,16 +154,16 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dashboard\Storefronts.cshtml" />
+    <Content Include="Views\Dashboard\Shop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\Promotions.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dashboard\Payouts.cshtml" />
+    <Content Include="Views\Dashboard\Accounts.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Dashboard\Settings.cshtml" />
+    <Content Include="Views\Dashboard\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\NewStorefront.cshtml" />

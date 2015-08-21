@@ -62,7 +62,7 @@
             foreach (CampaignRecord camp in Model.CampList)
             {
                 int min = camp.ProductMinimumGoal == 0 ? 1 : camp.ProductMinimumGoal;
-                string sold = camp.ProductCountSold.ToString() + "/" + min.ToString() + " sold";
+                string sold = camp.ProductCountSold.ToString() + " sold";
 
                 DateTime now = DateTime.Now;
                 TimeSpan dif = camp.EndDate.Subtract(now);
@@ -71,9 +71,13 @@
                 {
                     dateLeft = T("Ended").ToString();
                 }
+                else if (dif.Days <= 1)
+                {
+                    dateLeft = T("Ends Today").ToString();
+                }
                 else
                 {
-                    dateLeft = dif.Days + T("d left").ToString();
+                    dateLeft = dif.Days + T(" days left").ToString();
                 }
 
                 float widthResult = 0;

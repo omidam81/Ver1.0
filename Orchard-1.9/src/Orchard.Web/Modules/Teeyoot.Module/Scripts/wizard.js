@@ -108,6 +108,15 @@ window.onload = function initWizard() {
                     document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
                     $('#stp2BackArea').css({ "overflow": "hidden" });
                 });
+
+                var el = $('#primary')[0];
+                var newSize = $(el).find('.block.ssp_block');
+
+                if (newSize.hasClass('design-active')) {
+                    newSize.removeClass('design-active');
+                }
+
+                div.classList.add('design-active');
             }
         });
 
@@ -557,6 +566,15 @@ window.onload = function initWizard() {
             document.querySelector('#stp2BackArea').removeChild(document.querySelector('#stp2BackArea').childNodes[5]);
             $('#stp2BackArea').css({ "overflow": "hidden" });
         });
+
+        var el = $('#primary')[0];
+        var newSize = $(el).find('.block.ssp_block');
+
+        if (newSize.hasClass('design-active')) {
+            newSize.removeClass('design-active');
+        }
+
+        $("#first-product").addClass('design-active');
     });
 
     $("#profSale").on({
@@ -825,7 +843,8 @@ function colorInit() {
                         estimatedProfitChange();
                     }
                 }
-                document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+                //document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+                $(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
             }).hover(function () {
                 $("#minImg").css("background-color", color.value);
                 $("#swatch2").css("background-color", color.value);
@@ -863,6 +882,8 @@ function Goal() {
         setPriceInGoalFromDesign();
         profitSale();
     }
+
+    $("#first-product").click();
 }
 
 var slideSteps = ['design', 'goal', 'description'];
@@ -958,7 +979,7 @@ function onChangeTrackBar() {
     //profitSale();
 
     //if (window.nowPrice < window.sellingPrice) {
-    if (app.state.products.length > 1) {
+    if (app.state.products != null && app.state.products.length > 1) {
         estimatedProfitChangeForManuProducts()
     } else {
         if (window.nowPrice < window.sellingPrice) {

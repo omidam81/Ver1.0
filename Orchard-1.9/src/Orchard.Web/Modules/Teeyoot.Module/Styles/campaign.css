@@ -4799,7 +4799,7 @@ thead .product__size_chart__size_label {
     color: #6c7478;
     font-size: .9rem;
     font-style: italic;
-    margin-top: .5rem;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
@@ -5876,7 +5876,7 @@ input {
     }
 
     .payment_options_actions {
-        float: right;
+        margin-left: 25%;
     }
 }
 

@@ -180,7 +180,8 @@
             var productMinimumGoal = document.getElementById("minimmumGoal").value;
             var tags = [];
             for (var i = 0; i < tagsElems.length; i++) {
-                tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
+                //tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
+                tags.push($(tagsElems[i]).text().substring(0, $(tagsElems[i]).text().length - 1));
             }
             //var isForCharity = document.getElementById('is_for_charity').checked;
             $.ajax({
@@ -908,6 +909,8 @@
                                                                                 @T("Important: by uploading this image you agree you have the rights of this image.")
                                                                             </em>
                                                                         </p>
+                                                                        <button class="button button--primary wizard-button" id="goBack">@T("Go back")</button>
+
                                                                     </div>
                                                                 </div>
                                                                 <div id="art-style" class="design-area__art--edit" style="display: none;">
@@ -1481,7 +1484,7 @@
                                                                     <p class="inline-input-text  small-bottom" style="display: inline;">
                                                                         <strong>teeyoot.com/</strong>
                                                                     </p>
-                                                                    <input type="text" name="url" class="form__textfield url-wizard-input" style="display: inline;" id="url" value="">
+                                                                    <input type="text" name="url" class="form__textfield url-wizard-input" style="display: inline; padding-top:10px!important; padding-bottom:9px!important;border-bottom-left-radius: 0px; border-top-left-radius: 0px;" id="url" value="">
                                                                 </div>
 
                                                                 <div class="teespring-well designer-well">
@@ -1510,7 +1513,9 @@
                                                                     <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">@T("Launch Campaign")</button>
                                                                     <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                         <span>
-                                                                            <span>@T("By clicking this button, I accept Teeyoot's ")</span>
+                                                                            <span>@T("By clicking this button, I accept Teeyoot’s")</span>
+                                                                            <a href="http://test.teeyoot.com/Terms">@T("Term’s")</a>
+                                                                            <span>@T(" of Use and Service")</span>
 
                                                                         </span>
                                                                     </p>

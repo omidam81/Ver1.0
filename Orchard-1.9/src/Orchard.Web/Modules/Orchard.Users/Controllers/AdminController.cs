@@ -245,6 +245,22 @@ namespace Orchard.Users.Controllers {
                     if (String.Equals(Services.WorkContext.CurrentSite.SuperUser, previousName, StringComparison.Ordinal)) {
                         _siteService.GetSiteSettings().As<SiteSettingsPart>().SuperUser = editModel.UserName;
                     }
+                    if (!(string.IsNullOrEmpty(editModel.Password) && string.IsNullOrEmpty(editModel.ConfirmPassword)))
+                    {
+                        if (string.IsNullOrEmpty(editModel.Password) || string.IsNullOrEmpty(editModel.ConfirmPassword))
+                        {
+                            ModelState.AddModelError("MissingPassword", T("Password or Confirm Password field is empty."));
+                        }
+                        else
+                        {
+                            if (editModel.Password != editModel.ConfirmPassword)
+                            {
+                                ModelState.AddModelError("ConfirmPassword", T("Password confirmation must match."));
+                            }
+                            var actUser = _membershipService.GetUser(user.UserName);
+                            _membershipService.SetPassword(actUser, editModel.Password);
+                        }
+                    }
 
                     user.NormalizedUserName = editModel.UserName.ToLowerInvariant();
                 }

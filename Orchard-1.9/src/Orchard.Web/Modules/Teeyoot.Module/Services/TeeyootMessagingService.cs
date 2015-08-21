@@ -21,6 +21,7 @@ namespace Teeyoot.Messaging.Services
     public class TeeyootMessagingService : ITeeyootMessagingService
     {
         private readonly IRepository<MailChimpSettingsPartRecord> _mailChimpSettingsRepository;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IContentManager _contentManager;
         private readonly IMessageService _messageService;
         private readonly IMailChimpSettingsService _settingsService;
@@ -47,7 +48,8 @@ namespace Teeyoot.Messaging.Services
             IRepository<PayoutRecord> payoutsRepository,
             IRepository<PaymentInformationRecord> payoutInformRepository,
             IWorkContextAccessor wca,
-            IRepository<CampaignProductRecord> campaignProductRepository)
+            IRepository<CampaignProductRecord> campaignProductRepository,
+            IRepository<CurrencyRecord> currencyRepository)
         {
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
@@ -56,6 +58,7 @@ namespace Teeyoot.Messaging.Services
             _notifier = notifier;
             _orderRepository = orderRepository;
             _ocpRepository = ocpRepository;
+            _currencyRepository = currencyRepository;
             _campaignRepository = campaignRepository;
             _userRolesPartRepository = userRolesPartRepository;
             _payoutsRepository = payoutsRepository;
@@ -111,6 +114,47 @@ namespace Teeyoot.Messaging.Services
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
             SendTmplMessage(api, mandrillMessage);
         }
+
+
+        public void SendExpiredCampaignMessageToAdmin(int campaignId, bool isSuccesfull)
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = ADMIN_EMAIL;
+            if (isSuccesfull)
+            {
+                mandrillMessage.Subject = "Campaign reach goal!";
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-successfull-admin-template.html");
+            }
+            else
+            {
+                mandrillMessage.Subject = "Campaign didn't reach goal!";
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-notSuccessfull-admin-template.html");
+            }
+
+
+            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            foreach (var user in users)
+            {
+                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
+                FillCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
+            }
+            mandrillMessage.To = emails;
+            
+            SendTmplMessage(api, mandrillMessage);
+        }
+
+
+
+
+
 
         public void SendExpiredCampaignMessageToBuyers(int campaignId, bool isSuccesfull)
         {
@@ -290,9 +334,10 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.Subject = "Payout completed";
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == payout.UserId);
             var payoutInf = _payoutInformRepository.Table.Where(inf => inf.TranzactionId == payout.Id).FirstOrDefault();
+            var currency = _currencyRepository.Get(payout.Currency_Id).Code;
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
-            FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "");
+            FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "", payout.Amount, currency);
             mandrillMessage.To = emails;
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-completed-template.html");
             SendTmplMessage(api, mandrillMessage);
@@ -449,7 +494,7 @@ namespace Teeyoot.Messaging.Services
             foreach (var user in users)
             {
                 emails.Add(new MandrillMailAddress(user.Email, "Admin"));
-                FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin);
+                FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin, 0.00, "");
             }
             mandrillMessage.To = emails;
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-template.html");
@@ -579,7 +624,7 @@ namespace Teeyoot.Messaging.Services
         private void FillCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
         {
             var baseUrl = "";
-
+            string remaining = "";
             if (HttpContext.Current != null)
             {
                 var request = HttpContext.Current.Request;
@@ -591,6 +636,28 @@ namespace Teeyoot.Messaging.Services
             }
             string side = "";
             var campaign = _campaignRepository.Get(campaignId);
+
+             if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days > 0)
+            {
+           remaining = campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days + " days";
+             }
+             else if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days <= -1)
+             { 
+            remaining = Math.Abs(campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days) + "days ago";
+                 }
+                 else
+             {
+             if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours > 0)
+            { 
+                remaining = campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours + "hours";
+            }
+            else
+            {
+                remaining = Math.Abs(campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours) + "hours ago";
+            }
+        }
+
+
             if (campaign.BackSideByDefault)
             {
                 side = "back";
@@ -600,6 +667,7 @@ namespace Teeyoot.Messaging.Services
                 side = "front";
             }
             message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
+            message.AddRcptMergeVars(email, "Campaignremaining", remaining);
             message.AddRcptMergeVars(email, "Url", baseUrl);
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
             message.AddRcptMergeVars(email, "ReservedCount", campaign.ProductCountSold.ToString());
@@ -639,7 +707,7 @@ namespace Teeyoot.Messaging.Services
 
         }
 
-        private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
+        private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)
         {
 
             var requester = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);;
@@ -650,6 +718,9 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "AccHolderName", accHoldName);
             message.AddRcptMergeVars(adminEmail, "ContactNumber", contNum);
             message.AddRcptMergeVars(adminEmail, "Text", messAdmin);
+            message.AddRcptMergeVars(adminEmail, "Amount", amount.ToString("F"));
+            message.AddRcptMergeVars(adminEmail, "Currency", currencyCode);
+
          
 
         }

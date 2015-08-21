@@ -45,12 +45,12 @@
     document.title = "Campaign | Teeyoot";
     var firstBack = "@Model.Campaign.BackSideByDefault";
 
-        var date = document.getElementById("days_for_twitter").innerText;
-        date = date.trim();
-        var twitterBtn = document.getElementsByClassName("btn--twitter");
-        for (var k = 0; k < twitterBtn.length; k++) {
-            var str = "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title for the next " + date + " via%20@Teeyoot: @Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias";
-            $(twitterBtn[k]).attr("href", str);
+    var date = $(document.getElementById("days_for_twitter")).text();
+    date = date.trim();
+    var twitterBtn = document.getElementsByClassName("btn--twitter");
+    for (var k = 0; k < twitterBtn.length; k++) {
+        var str = "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title for the next " + date + " via%20@Teeyoot: @Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias";
+        $(twitterBtn[k]).attr("href", str);
     }
     var pinterestBtn = document.getElementsByClassName("btn--pinterest");
     for (var k = 0; k < pinterestBtn.length; k++) {
@@ -439,7 +439,7 @@
             }),
             success: function (data, status, resp) {
                 $("#reserv_container").addClass("hidden");
-                document.getElementById("reservation-result").innerText = "@T("Your request has been sent!")";
+                $(document.getElementById("reservation-result")).text("@T("Your request has been sent!")");
             }
         });
     }
@@ -994,11 +994,11 @@
                                 </table>
 
                                 <div class="precheckout_actions">
-                                    <div id="add-row" class="precheckout_actions__button">@T("+ Add another style or color")</div>
+                                    <div id="add-row" class="precheckout_actions__button">@T("+ Add another size, colour or style where applicable")</div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <div class="payment_options_info">
+                                @*<div class="payment_options_info">
                                     <ul class="payment_options">
                                         <li class="payment_options__item payment_options__item--visa"></li>
                                         <li class="payment_options__item payment_options__item--amex"></li>
@@ -1008,7 +1008,7 @@
                                             <div class="payment_options__item--paypal"></div>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>*@
                                 <div class="payment_options_container">
                                     <div class="payment_options_actions">
 

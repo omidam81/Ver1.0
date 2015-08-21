@@ -25,6 +25,7 @@
 {
 
     <script type="text/javascript">
+        document.title = "View Shop | Teeyoot";
         window.onload = Visible();
 
         function Visible() {
@@ -243,7 +244,7 @@
                 var messageDiv = document.getElementsByClassName("form__message--error")[0];
                 $(messageDiv).removeClass("hidden");
                 var message = document.getElementsByClassName("form__message_list")[0];
-                text = "@T("You must add at least 3 campaigns to your storefront.")";
+                text = "@T("You must add at least 3 campaigns to your shop.")";
                 $(message).append(text);
                 return;
             } else {
@@ -308,7 +309,7 @@
         }
 
         function DeleteStore() {
-            var text = "@T("Are you sure you want to delete this store? (This action cannot be undone)")";
+            var text = "@T("Are you sure you want to delete this shop? (This action cannot be undone)")";
             if (confirm(text)) {
                 var id_storeFront = document.getElementById("id_storeFront").value;
                 $.ajax({
@@ -321,7 +322,7 @@
                     }),
                     success: function (data, status, resp) {
                         if (resp.status === 200) {
-                            window.location.href = '/Dashboard/Storefronts';
+                            window.location.href = '/Dashboard/Shop';
                         }
                     },
                 });
@@ -354,8 +355,8 @@
             <div class="store__description">@Model.Description</div>
         </div>
         <div class="store__details--edit store__details_container_notshow">
-            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="@T("Store Title")" type="text" value="@Model.Title">
-            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="@T("Store Description (optional)")">@Model.Description</textarea>
+            <input class="store__name--edit" id="title" maxlength="30" name="name" placeholder="@T("Shop Title")" type="text" value="@Model.Title">
+            <textarea class="store__description--edit" id="description" maxlength="140" name="description" placeholder="@T("Shop Description (optional)")">@Model.Description</textarea>
         </div>
     </div>
 </div>
@@ -365,7 +366,7 @@
         <header class="store_owner__banner">
             <div class="store_edit_control">
                 <button class="store_cancel_edit__button button button--primary">@T("Cancel")</button>
-                <button class="store_edit__button button button--primary">@T("Edit Store")</button>
+                <button class="store_edit__button button button--primary">@T("Edit Shop")</button>
                 <button class="store_save__button button button--primary " onclick="SaveStorefront()">@T("Save")</button>
             </div>
 
@@ -385,8 +386,8 @@
                         </li>
                         <li class="store_settings__menu_item">
                             <div class="store_settings__description">
-                                <div class="store_settings__header">@T("Hide store")</div>
-                                <div class="store_settings__details">@T("Hide this store from internet search engines")</div>
+                                <div class="store_settings__header">@T("Hide shop")</div>
+                                <div class="store_settings__details">@T("Hide this shop from internet search engines")</div>
                             </div><label class="switch__label">
                                 @if (Model.HideStore == true)
                                 {
@@ -406,7 +407,7 @@
                                     <a class="cross_sell__info ts-icon-tip" href="" target="_blank">
                                     </a>
                                 </div>
-                                <div class="store_settings__details">@T("Suggests other campaigns from this store after a customer’s initial purchase")</div>
+                                <div class="store_settings__details">@T("Suggests other campaigns from this shop after a customer’s initial purchase")</div>
                             </div>
                             <label class="switch__label">
                                 @if (Model.CrossSelling == true)
@@ -426,10 +427,10 @@
 
                         <li class="store_settings__menu_item">
                             <div class="store_settings__description">
-                                <div class="store_settings__header">@T("Delete Store")</div>
-                                <div class="store_settings__details">@T("Permanently close this store. Your campaigns will not be affected. (Cannot be undone!)")</div>
+                                <div class="store_settings__header">@T("Delete Shop")</div>
+                                <div class="store_settings__details">@T("Permanently close this shop. Your campaigns will not be affected. (Cannot be undone!)")</div>
                             </div>
-                            <button onclick="DeleteStore()" class="store_delete__button button button--warning">@T("Delete Store")</button>
+                            <button onclick="DeleteStore()" class="store_delete__button button button--warning">@T("Delete Shop")</button>
                         </li>
                     </ul>
                 </div>
@@ -601,7 +602,7 @@
                     </div>
                 </div>
                 <div class="modal__footer">
-                    <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Store")</button>
+                    <button class="add_campaigns__button button button--primary" onclick="UpdateCampaings()">@T("Update Shop")</button>
                 </div>
             </div>
         </div>

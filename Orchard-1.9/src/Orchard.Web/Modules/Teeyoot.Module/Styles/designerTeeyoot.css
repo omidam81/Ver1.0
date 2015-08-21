@@ -4766,7 +4766,7 @@ fieldset {
     }
 
 #designer .form__textfield {
-    font: 15px "Open Sans", Helvetica, Arial, sans-serif;
+    font: 14px "Open Sans", Helvetica, Arial, sans-serif;
     padding: 15px;
 }
 
@@ -4863,7 +4863,7 @@ fieldset {
 
 @media only screen and (min-width: 980px) {
     #step-details .url-input input, #step-details .url-input input[type="text"] {
-        width: 72.2%;
+           width: 79.5%;
     }
 }
 
@@ -5800,6 +5800,7 @@ img.art-search-preview {
     max-width: 3.5rem;
     width: auto;
     height: auto;
+    vertical-align: middle;
 }
 
 /*test*/
@@ -5812,4 +5813,8 @@ img.art-search-preview {
     .url-wizard-input {
         width:60%!important;
     }
+}
+
+#artwork-query{
+    padding:5px!important;
 }

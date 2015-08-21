@@ -1,0 +1,200 @@
+﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
+@{
+
+    Style.Include("Payouts.css");
+    //Style.Include("bootstrap.min.css");
+    Script.Require("jQuery");
+    //Script.Include("bootstrap.min.js");
+}
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.title = "Accounts | Teeyoot";
+            $("#go").click(function (event) {
+                event.preventDefault();
+                $('#overlay').fadeIn(400,
+                    function () {
+                        $('#modal_form')
+                            .css('display', 'block')
+                            .animate({ opacity: 1, top: '40%' }, 200);
+                    });
+            });
+            /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+            $('#modal_close, #overlay').click(function () {
+                $('#modal_form')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () { // пoсле aнимaции
+                            $(this).css('display', 'none');
+                            $('#overlay').fadeOut(400);
+                        }
+                    );
+            });
+        });
+
+        document.getElementById("accountNum").addEventListener("keydown", function () {
+            if (document.getElementById("lblAccountNum").innerHTML != "") {
+                document.getElementById("lblAccountNum").innerHTML = "";
+                document.getElementById("accountNum").style.borderColor = "";
+                //$("#modal_form").height($("#modal_form").height() - 15);
+            }
+        });
+
+        document.getElementById("bankName").addEventListener("keydown", function () {
+            if (document.getElementById("lblBankName").innerHTML != "") {
+                document.getElementById("lblBankName").innerHTML = "";
+                document.getElementById("bankName").style.borderColor = "";
+                //$("#modal_form").height($("#modal_form").height() - 15);
+            }
+        });
+
+        document.getElementById("accHoldName").addEventListener("keydown", function () {
+            if (document.getElementById("lblAccHoldName").innerHTML != "") {
+                document.getElementById("lblAccHoldName").innerHTML = "";
+                document.getElementById("accHoldName").style.borderColor = "";
+                //$("#modal_form").height($("#modal_form").height() - 15);
+            }
+        });
+
+        document.getElementById("contNum").addEventListener("keydown", function () {
+            if (document.getElementById("lblContNum").innerHTML != "") {
+                document.getElementById("lblContNum").innerHTML = "";
+                document.getElementById("contNum").style.borderColor = "";
+                //$("#modal_form").height($("#modal_form").height() - 15);
+            }
+        });
+
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function sendData() { 
+            var accountNumber = document.getElementById("accountNum").value;
+            var bankName = document.getElementById("bankName").value;
+            var accHoldName = document.getElementById("accHoldName").value;
+            var contNum = document.getElementById("contNum").value;
+            var messAdmin = document.getElementById("messAdmin").value;
+
+            var currId = document.getElementById("currId").value;
+
+            var text;
+            if (accountNumber == "" || bankName == "" || accHoldName == "" || contNum == "" || !isNumeric(contNum)) {
+                if (accountNumber == "") {
+                    document.getElementById("accountNum").style.borderColor = "red";
+                    text = "@T("This field is required.")";
+                    document.getElementById("lblAccountNum").innerHTML = text;
+                    //$("#modal_form").height($("#modal_form").height() + 15);
+                } else if (!isNumeric(accountNumber)) {
+                    document.getElementById("accountNum").style.borderColor = "red";
+                    text = "@T("Please input corect number.")";
+                    document.getElementById("lblAccountNum").innerHTML = text;
+                }
+
+                if (bankName == "") {
+                    document.getElementById("bankName").style.borderColor = "red";
+                    text = "@T("This field is required.")";
+                    document.getElementById("lblBankName").innerHTML = text;
+                    //$("#modal_form").height($("#modal_form").height() + 15);
+                }
+
+                if (accHoldName == "") {
+                    document.getElementById("accHoldName").style.borderColor = "red";
+                    text = "@T("This field is required.")";
+                    document.getElementById("lblAccHoldName").innerHTML = text;
+                    //$("#modal_form").height($("#modal_form").height() + 15);
+                }
+
+                if (contNum == "") {
+                    document.getElementById("contNum").style.borderColor = "red";
+                    text = "@T("This field is required.")";
+                    document.getElementById("lblContNum").innerHTML = text;
+                    //$("#modal_form").height($("#modal_form").height() + 15);
+                } else if (!isNumeric(contNum)) {
+                    document.getElementById("contNum").style.borderColor = "red";
+                    text = "@T("Please input corect number.")";
+                    document.getElementById("lblContNum").innerHTML = text;
+                }
+            } else {
+
+                $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("SendMail", "Dashboard"))",
+                data: addAntiForgeryToken({
+                    "accountNumber": accountNumber,
+                    "bankName": bankName,
+                    "accHoldName": accHoldName,
+                    "contNum": contNum,
+                    "messAdmin": messAdmin,
+                    "currId": currId
+
+                }),
+            success: function (data, status, resp) {
+                if (resp.status === 200) {
+                    window.location.href = '/Dashboard/Accounts';
+                }
+            },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            }
+        });
+            }
+        };
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+
+
+    </script>
+}
+<div class="dashboard-section-title" style="text-align:center">
+    @T("Accounts")
+    <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
+    <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
+</div>
+<section class="general_border">
+    <div class="main">
+        <h1>@T("Current Payout Amount")</h1>
+        <div class="balance">
+            @T("You currently have ") @Model.Currency <b>@Model.Balance</b>@T(" ready to be paid out")
+            <a class="btnStartPayout" id="go">@T("Start a payout")</a>
+            <div style="clear:both;"></div>
+        </div>
+        <h1>@T("Payout History")</h1>
+        <table class="tbl-pay">
+            <tr class="thead">
+                <td class="td1">@T("DATE")</td>
+                <td class="td2">@T("EVENT")</td>
+                <td class="td3">@T("AMOUNT")</td>
+                <td class="td4 main">@T("STATUS")</td>
+            </tr>
+            @foreach (var elem in @Model.Transactions)
+            {
+                <tr>
+                    <td class="td1">@elem.Date</td>
+                    <td class="td2">@elem.Event</td>
+                    @if (@elem.IsPlus)
+                    {
+                        <td class="td3">+ @Model.Currency @elem.Amount</td>
+                    }
+                    else
+                    {
+                        <td class="td3">- @Model.Currency @elem.Amount</td>
+                    }
+                    <td class="td4">@elem.Status</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <input type="hidden" id="currId" value="@Model.CurrencyId"/>
+
+    <div id="modal_form" style="display:none; position:absolute;">
+        @Html.Partial("StartPayout")
+    </div>
+    <div id="overlay"></div><!-- Пoдлoжкa -->
+
+</section>

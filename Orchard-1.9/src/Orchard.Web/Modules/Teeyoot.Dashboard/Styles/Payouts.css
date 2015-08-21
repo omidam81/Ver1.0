@@ -101,22 +101,27 @@ h1 {
         margin-left: -170px !important;
     }
 }
-@media all and (max-width: 405px) {
+@media all and (max-width: 370px) {
     #modal_form {
-        max-width: 90% !important;
+        /*max-width: 90% !important;*/
         margin-left: -150px !important;
     }
 }
-
-/*@media all and (max-height: 840px) {
+    @media all and (max-width: 330px) {
     #modal_form {
-        height: 580px !important;
-        margin-top: -240px !important;
+        margin-left: -130px !important;
     }
-}*/
+}
+
+  @media all and (max-width: 397px) {
+    #modal_form {
+      height: 780px !important;
+    }
+}
 
 
-label.error {
+
+.error {
     color: red;
     font-style: italic;
     margin-left: 5px;

@@ -154,6 +154,15 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             if (!campaigns.Select(c=>c.Alias).ToList().Contains(URL) || campaign.Alias == URL)
             {
                 DateTime date = new DateTime(Year, Mounth, Day);
+                if (date < DateTime.Now)
+                {
+                    campaign.IsActive = false;
+                    var isSuccesfull = campaign.ProductCountGoal <= campaign.ProductCountSold;
+                    _teeyootMessagingService.SendExpiredCampaignMessageToSeller(campaign.Id, isSuccesfull);
+                    _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(campaign.Id, isSuccesfull);
+                    _teeyootMessagingService.SendExpiredCampaignMessageToAdmin(campaign.Id, isSuccesfull);
+
+                }
 
                 campaign.Title = Title;
                 campaign.Alias = URL;

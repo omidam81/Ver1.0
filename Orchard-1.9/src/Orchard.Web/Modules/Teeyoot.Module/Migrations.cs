@@ -659,7 +659,42 @@ namespace Teeyoot.Module
                 table => table
                     .DropColumn("EmailSent"));
 
-            return 67;
+
+
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+        table => table
+        .AddColumn<int>("Currency_Id", column => column.NotNull().WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CurrencyKey", "PayoutRecord", new[] { "Currency_Id" },
+         "CurrencyRecord", new[] { "Id" });
+
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+             table => table
+        .DropColumn("AccountNumber"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+              table => table
+              .DropColumn("ContactNumber"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("AccountNumber", column => column.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("ContactNumber", column => column.Nullable()));
+
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                           table => table
+                               .DropColumn("AmountSize"));
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+               table => table
+               .AddColumn<double>("AmountSize"));
+
+            return 71;
         }
 
         public int UpdateFrom2()
@@ -1425,6 +1460,57 @@ namespace Teeyoot.Module
                     .DropColumn("EmailSent"));
 
             return 67;
+        }
+
+        public int UpdateFrom67()
+        {
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+        table => table
+        .AddColumn<int>("Currency_Id", column => column.NotNull().WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CurrencyKey", "PayoutRecord", new[] { "Currency_Id" },
+         "CurrencyRecord", new[] { "Id" });
+            return 68;
+        }
+
+        public int UpdateFrom68()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+                table => table
+                    .DropColumn("AccountNumber"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+              table => table
+              .DropColumn("ContactNumber"));
+
+            return 69;
+        }
+
+
+        public int UpdateFrom69()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("AccountNumber", column => column.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentInformationRecord).Name,
+            table => table
+            .AddColumn<string>("ContactNumber", column => column.Nullable()));
+
+            return 70;
+        }
+
+         public int UpdateFrom70()
+        {
+             SchemaBuilder.AlterTable(typeof (PromotionRecord).Name,
+                table => table
+                    .DropColumn("AmountSize"));
+
+             SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table
+                .AddColumn<double>("AmountSize"));
+
+         return 71;
         }
     }
 }
