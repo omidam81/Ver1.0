@@ -297,11 +297,13 @@
     <Content Include="Content\message-templates\cancelled-order-template.html" />
     <Content Include="Content\message-templates\delivered-order-template.html" />
     <Content Include="Content\message-templates\edited-campaign-template.html" />
+    <Content Include="Content\message-templates\expired-campaign-notSuccessfull-admin-template.html" />
     <Content Include="Content\message-templates\launch-template.html" />
     <Content Include="Content\message-templates\make_the_order_buyer.html" />
     <Content Include="Content\message-templates\new-campaign-admin-template.html" />
     <Content Include="Content\message-templates\new-order-buyer-template.html" />
     <Content Include="Content\message-templates\new-order-template.html" />
+    <Content Include="Content\message-templates\expired-campaign-successfull-admin-template.html" />
     <Content Include="Content\message-templates\not-reach-goal-buyer-template.html" />
     <Content Include="Content\message-templates\not-reach-goal-seller-template.html" />
     <Content Include="Content\message-templates\order-is-printing-buyer-template.html" />

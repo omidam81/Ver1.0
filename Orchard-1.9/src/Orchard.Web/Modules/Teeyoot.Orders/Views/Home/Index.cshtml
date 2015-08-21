@@ -75,25 +75,37 @@
 
                                 var tr = document.createElement("tr");
                                 var tdName = document.createElement("td")
+                                var tdColor = document.createElement("td")
                                 var tdSize = document.createElement("td");
                                 var tdCount = document.createElement("td");
                                 var tdPrice = document.createElement("td");
 
                                 var pName = document.createElement("p");
                                 pName.innerHTML = item.Name;
+
+                                var divColor = document.createElement("div");
+                                divColor.style.height = "18px";
+                                divColor.style.width = "18px";
+                                divColor.style.backgroundColor = item.Color;
+                                divColor.style.border = "solid 1px";
+
                                 var pSize = document.createElement("p");
                                 pSize.innerHTML = item.Size;
                                 var pCount = document.createElement("p");
                                 pCount.innerHTML = item.Count;
                                 var pPrice = document.createElement("p");
-                                pPrice.innerHTML = item.Currency+" "+ item.Price;
+                                pPrice.innerHTML = item.Currency + " " + item.Price;
+
+
 
                                 tdName.appendChild(pName);
+                                tdColor.appendChild(divColor);
                                 tdSize.appendChild(pSize);
                                 tdCount.appendChild(pCount);
                                 tdPrice.appendChild(pPrice);
 
                                 tr.appendChild(tdName);
+                                tr.appendChild(tdColor);
                                 tr.appendChild(tdSize);
                                 tr.appendChild(tdCount);
                                 tr.appendChild(tdPrice);

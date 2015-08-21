@@ -64,26 +64,41 @@
             });
 
         }
+
+
+        //$(".amountSize").keyup(function(){
+        //    var price = $(".amountSize").val();           
+        //if (isNaN(price)) {
+        //    price = price.substring(0, price.length - 1);
+        //    $(".amountSize").val(price);
+        //}
+        //});
+        function Replace() {
+            var price = $(".amountSize").val();
+            price = price.replace('.', ',');
+            $(".amountSize").val(price);
+        }
+
 </script>
 }
 
 <div class="dashboard-promotion-title dashboard-section-title">
-    @T("Marketing Campaigns")
+    @T("Discounts")
     <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
     <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
 </div>
 
 <div class="dashboard__info_message">
-    <p class="promotions__explanation">@T("Promotions are special discounts you can offer your customers. When applied, promotions are deducted from a campaign&#39;s profit margin. If there is not a sufficient profit margin, the promotion will not be eligible.")</p>
+    <p class="promotions__explanation">@T("Market your campaigns! Offer your customers incentives to boost your sales! To keep your sales profitable, be mindful that the marketing campaign will only be applied if there are sufficient profit margin for it")</p>
     <div class="share_promotions">
-        @T("Share promotions by appending the ID to the end of your campaign URL.")
-            @T("(e.g., ")<span class="share_promotions__url">http://teebay.com/yourcampaign</span><strong class="share_promotions__query">?promo=PROMOID</strong>)       
-    </div>
+        @T("Share your promotions by appending the Promotion ID at the end of your campaign URL (for example:")<span class="share_promotions__url">http://teeyoot.com/yourcampaign?promo=PROMOCODE</span> @T("). As an illustration, if the Promotion Code is") <span class="share_promotions__url">FX00wV7h0B</span>@T(", then to share your promotions the URL will be")
+            http://teeyoot.com/yourcampaign?promo=<span class="share_promotions__url">FX00wV7h0B</span>
+</div>
 </div>
 
 <section class="account__email_settings">
     <div class="dashboard_section__header">
-        <h1 class="dashboard_section__heading">@T("Add New Promotion")</h1>
+        <h1 class="dashboard_section__heading">@T("Add a New Promotion")</h1>
     </div>
     @using (Html.BeginForm("AddPromotion", "Dashboard", FormMethod.Post))
     {
@@ -91,7 +106,7 @@
         <div class="dashboard_section__content--padded">
             <div class="new_promotion__form">
                 <div class="new_promotion__code">
-                    <div class="label__title">@T("Promo ID")</div>
+                    <div class="label__title">@T("Generate a New Promotion Code")</div>
                     <div class="input__group new_promotion__field">
                         @Html.TextBoxFor(m => m.PromoId, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", @value = "", @required= "true" })             
                         <span class="reload new_promotion__generate_code ts-icon-reload" id="code" maxlength="10" name="code" type="text" value="" onclick="randomString()" />
@@ -99,18 +114,18 @@
                     @Html.ValidationMessageFor(m => m.Promotions)
                 </div>
                 <div class="new_promotion__type">
-                    <div class="label__title">@T("Type")</div>
+                    <div class="label__title">@T("Types of Promotions")</div>
                     @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = T("Discount"), @readonly = "true" })
                 </div>
                 <div class="new_promotion__discount">
                     <div class="label__title">@("Amount")</div>
                     <div class="input__group new_promotion__field">
-                        @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield ", @id = "code", @name = "amountSize", @type = "text", Value = "" })
                         @Html.DropDownListFor(m => m.AmountType, Model.AvailableCurrencies, new { @class = "form__select_menu" })
+                        @Html.TextBoxFor(m => m.AmountSize, new { @class = "form__textfield amountSize", @id = "code", @name = "amountSize", @type = "text", Value = "" })                       
                     </div>
                 </div>
                 <div class="new_promotion__expiration">
-                    <div class="label__title">@T("Expiration")</div>
+                    <div class="label__title">@T("Expiration Date")</div>
                     <div class="input__group new_promotion__field">
                         @Html.TextBoxFor(m => m.Expiration, new { @class = "form__textfield ", @id = "datepicker", @name = "calendar", @type = "text", Value = "", @placeholder=T("Never") , @readonly="readonly"})
                         <span id="calendar" class="new_promotion__clear_expiration clndr_button" style="border: 1px solid #e8eced;" onclick="showCalendar()">
@@ -119,7 +134,7 @@
                     </div>
                 </div>
                 <div class="new_promotion__save__container">
-                    <input name="commit" class="add-button" type="submit" value="+">
+                    <input name="commit" class="add-button" type="submit" value="+" onclick="return Replace();">
                 </div>
             </div>
         </div>
@@ -139,9 +154,9 @@
 
         <div class="list__container">
             <div class="list_item list_item--heading">
-                <div class="list_item__cell code__heading">@T("Promo ID")</div>
+                <div class="list_item__cell code__heading">@T("Promotion Code")</div>
                 <div class="list_item__cell discount__heading">@T("Amount")</div>
-                <div class="list_item__cell expiration__heading">@T("Expires")</div>
+                <div class="list_item__cell expiration__heading">@T("Expires On")</div>
                 <div class="list_item__cell used__heading">@T("Redeemed")</div>
                 <div class="list_item__cell status__heading">@T("Status")</div>
                 <div id="action"  class="list_item__cell actions__heading"></div>
@@ -159,7 +174,14 @@
                 }
                 <div class="list_item" data-id="39431">
                     <div class="list_item__cell list_item__code">@promotion.PromoId</div>
-                    <div class="list_item__cell list_item__discount">@promotion.AmountSize@promotion.AmountType</div>
+                    <div class="list_item__cell list_item__discount">@if(promotion.AmountType != "%")
+                                                                     {
+                                                                        @promotion.AmountType <span> </span>  @promotion.AmountSize
+                                                                     }
+                                                                      else{
+                                                                         @promotion.AmountSize <span> </span> @promotion.AmountType
+                                                                            }
+                    </div>
                     <div class="list_item__cell list_item__expiration">@expiration</div>
                     <div class="list_item__cell list_item__redeemed">@promotion.Redeemed</div>
                     <div class="list_item__cell list_item__status">
