@@ -16,6 +16,8 @@ namespace Teeyoot.Module.Services
         void SendOrderStatusMessage(string pathToTemplates, string pathToMedia, int orderId, string orderStatus);
 
         void SendExpiredCampaignMessageToSeller(int campaignId, bool isSuccesfull);
+       
+        void SendExpiredCampaignMessageToAdmin(int campaignId, bool isSuccesfull);
 
         void SendExpiredCampaignMessageToBuyers(int campaignId, bool isSuccesfull);
 

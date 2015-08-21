@@ -115,6 +115,47 @@ namespace Teeyoot.Messaging.Services
             SendTmplMessage(api, mandrillMessage);
         }
 
+
+        public void SendExpiredCampaignMessageToAdmin(int campaignId, bool isSuccesfull)
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = ADMIN_EMAIL;
+            if (isSuccesfull)
+            {
+                mandrillMessage.Subject = "Campaign reach goal!";
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-successfull-admin-template.html");
+            }
+            else
+            {
+                mandrillMessage.Subject = "Campaign didn't reach goal!";
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-notSuccessfull-admin-template.html");
+            }
+
+
+            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            foreach (var user in users)
+            {
+                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
+                FillCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
+            }
+            mandrillMessage.To = emails;
+            
+            SendTmplMessage(api, mandrillMessage);
+        }
+
+
+
+
+
+
         public void SendExpiredCampaignMessageToBuyers(int campaignId, bool isSuccesfull)
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;

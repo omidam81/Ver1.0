@@ -291,6 +291,7 @@ namespace Teeyoot.Module.Services
                     var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
                     _teeyootMessagingService.SendExpiredCampaignMessageToSeller( c.Id, isSuccesfull);
                     _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(c.Id, isSuccesfull);
+                    _teeyootMessagingService.SendExpiredCampaignMessageToAdmin(c.Id, isSuccesfull);
                     
                     foreach (var o in orders)
                     {
