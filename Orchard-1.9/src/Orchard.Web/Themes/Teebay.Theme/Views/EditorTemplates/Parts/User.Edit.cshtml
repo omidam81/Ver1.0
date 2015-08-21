@@ -1,0 +1,8 @@
+﻿@model Orchard.Users.ViewModels.UserEditViewModel
+
+@Html.HiddenFor(m => m.UserName)
+<fieldset>
+    @Html.LabelFor(m => m.Email, T("Email"))
+    @Html.TextBoxFor(m => m.Email, new {@class = "text medium"})
+    @Html.ValidationMessageFor(m => m.Email, "*")
+</fieldset>
