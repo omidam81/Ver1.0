@@ -5787,4 +5787,5 @@ img.art-search-preview {
     max-width: 3.5rem;
     width: auto;
     height: auto;
+    vertical-align: middle;
 }
