@@ -3649,7 +3649,11 @@ input[type="submit"].button-cta, button.button__cta {
 .back {
     height: inherit !important;
 }
-
+@media all and (max-width: 2300px) {
+    .zoomWindowContainer > div {
+        margin-left: 115px;
+    }
+}
 @media all and (max-width: 1260px) {
     .zoomWindowContainer > div {
         margin-left: 120px;
