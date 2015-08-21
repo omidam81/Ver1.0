@@ -5548,9 +5548,9 @@ input {
 }
 
 .central-modal-block {
-     height: auto;
-     border-radius: 4px;
-     overflow: hidden;
+    height: auto;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 @media all and (max-width: 620px) {
@@ -5655,14 +5655,14 @@ input {
     padding: 0 1rem 1rem;
 }
 
-.central-modal-block  .modal-body {
+.central-modal-block .modal-body {
     overflow: hidden;
     padding: 1rem;
 }
 
-    .precheckout_modal .modal-body::-webkit-scrollbar {
-        width: 0;
-    }
+.precheckout_modal .modal-body::-webkit-scrollbar {
+    width: 0;
+}
 
 @media all and (min-width: 980px) {
     .precheckout_modal .modal-body {
@@ -5692,7 +5692,7 @@ input {
 
     .central-modal-block .modal-header {
         padding: 1.5rem 2.5rem 0 2.5rem;
-}
+    }
 }
 
 .precheckout_modal .modal-footer {
@@ -5895,10 +5895,10 @@ input {
     padding: 10px;
 }
 
-.button-reserve-yours-now:hover {
-    color: #fff !important;
-    background-color: rgb(229, 71, 0);
-}
+    .button-reserve-yours-now:hover {
+        color: #fff !important;
+        background-color: rgb(229, 71, 0);
+    }
 
 .payment_options_actions a:hover {
     text-decoration: none;
@@ -6670,28 +6670,63 @@ td, tr {
     -webkit-transition: opacity .3s linear;
     transition: opacity .3s linear;
 }
-.tb-search-form input[type=text] {    
-    height:24px!important;
-}
-.tb-search-form button{
-height:24px!important;
+
+.tb-search-form input[type=text] {
+    height: 24px !important;
 }
 
-#reservation-result{
+.tb-search-form button {
+    height: 24px !important;
+}
+
+#reservation-result {
     color: #ff4f00;
     font-size: 24px;
 }
- .form-phone{
-        width:100%!important;
-    }
-    .form-phone input{
-        width:48%!important;
-    }
-.checkout_form__row{
-    height:90px!important;
+
+.form-phone {
+    width: 100% !important;
 }
-@media only screen and (max-width: 580px) {
-     .form-phone input{
-        width:100%!important;
+
+    .form-phone input {
+        width: 48% !important;
     }
+
+.checkout_form__row {
+    height: 90px !important;
+}
+
+@media only screen and (max-width: 580px) {
+    .form-phone input {
+        width: 100% !important;
+    }
+}
+
+.list_item_color {
+    width: 25px;
+    float: left;
+    height: auto; 
+    margin-top:50px;
+}
+
+.item_color {
+   
+    width: 25px;
+    height: 25px;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 20px;
+     box-shadow: 0px 0px 5px rgba(0,0,0,0.5),rgba(0,0,0,0.5) 0px 0px 5px inset
+}
+
+#front,
+#back{
+    width:645px;
+    margin-left:25px;
+}
+
+
+@media all and (max-width: 460px) {
+    .list_item_color {
+    margin-top:0;
+}
 }
