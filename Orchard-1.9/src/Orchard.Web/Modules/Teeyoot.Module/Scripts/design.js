@@ -84,6 +84,12 @@ var design={
             $('#designer-art-choseType').hide();
             $('#dropbox').show();
         });
+         $('#goBack').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#dropbox').hide();
+            $('#designer-art-choseType').show();
+            });
 	    $('.upload.select-file').click(function() {
 	        $("input#file").click();
 	    });

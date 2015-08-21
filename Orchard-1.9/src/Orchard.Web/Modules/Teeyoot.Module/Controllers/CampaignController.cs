@@ -77,8 +77,8 @@ namespace Teeyoot.Module.Controllers
                             _notifier.Add(NotifyType.Information, infoMessage);
                         }
                         if (campaign.IsApproved == true && campaign.ProductCountSold <= campaign.ProductMinimumGoal)
-                        {                           
-                                var infoMessage = T(String.Format("The minimum number of orders for this campaign to be printed is {0}", campaign.ProductMinimumGoal - campaign.ProductCountSold));
+                        {
+                            var infoMessage = T(String.Format("The remaining number of orders for this campaign to be printed is {0}", campaign.ProductMinimumGoal - campaign.ProductCountSold));
                                 _notifier.Add(NotifyType.Information, infoMessage);                          
                         }
 
