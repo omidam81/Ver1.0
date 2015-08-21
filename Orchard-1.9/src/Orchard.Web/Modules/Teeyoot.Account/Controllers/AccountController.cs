@@ -431,7 +431,11 @@ namespace Teeyoot.Account.Controllers
             var user = _membershipService.ValidateUser(email, password);
             if (user == null)
             {
-                return res;
+                return new ValidateLogOnResult
+                {
+                    IsValid = false,
+                    ValidationSummary = T("User has been locked by the administrator!").ToString()
+                };
             }           
 
             return new ValidateLogOnResult
