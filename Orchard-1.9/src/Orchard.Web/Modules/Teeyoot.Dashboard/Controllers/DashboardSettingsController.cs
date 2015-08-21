@@ -101,11 +101,11 @@ namespace Teeyoot.Dashboard.Controllers
                 viewModel.ErrorMessage += T("Password is required!").ToString();
                 return RedirectToAction("Profile", viewModel);
             }
-            if (!(model.NewPassword.Length > 6))
+            if (!(model.NewPassword.Length > 7))
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
-                viewModel.ErrorMessage += T("Password must be at least 7 characters!").ToString();
+                viewModel.ErrorMessage += T("Password must be at least 8 characters!").ToString();
                 return RedirectToAction("Profile", viewModel);
             }
             if (model.NewPassword != model.ConfirmPassword)
