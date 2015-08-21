@@ -2742,12 +2742,16 @@ var design={
 
 
 			if(!e) e = $jd('.drag-item-selected');
-			var oldwidth = 0, oldsize=0;		
+			var oldwidth = 0, oldsize = 0;
+			var omp = {};
 			e.resizable({minHeight: 15, minWidth: 15,				
 			    aspectRatio: auto,
 				handles: handles,
 				start: function (event, ui) {
 				    resizing = true;
+				    omp.x = event.pageX;
+				    omp.y = event.pageY;
+				    omp.d = Math.sqrt(Math.pow((ui.position.left+ui.size.width)/2 - omp.x,2) + Math.pow((ui.position.top+ui.size.height)/2 - omp.y,2));
 					oldwidth = ui.size.width;
 					oldsize = $('#dg-font-size').text();
 				},
@@ -2756,8 +2760,15 @@ var design={
 					design.print.size();
 				},
 				resize: function (event, ui) {
-					var e = ui.element;
-
+				    var e = ui.element;
+				    var mp = { x: event.pageX, y: event.pageY };
+				    //var d = Math.sqrt(Math.pow((ui.position.left + ui.size.width) / 2 - mp.x, 2) + Math.pow((ui.position.top + ui.size.height) / 2 - mp.y, 2));
+				    var d = Math.sqrt(Math.pow((omp.x - mp.x, 2) + Math.pow(omp.y - mp.y, 2)));
+				    scale = (d+omp.d) / omp.d;
+				    console.log(d, scale);
+				    ui.size.width = ui.originalSize.width * Math.pow(scale,3);
+				    ui.size.height = ui.originalSize.height * Math.pow(scale, 3);
+				    //ui.originalSize
 					var $width = parseInt(ui.size.width),
 						$height = parseInt(ui.size.height);
 
