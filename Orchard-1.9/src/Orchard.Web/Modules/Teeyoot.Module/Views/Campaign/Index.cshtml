@@ -33,6 +33,8 @@
 {
     <script>
 
+        var isChangetColor = false;
+        var idProduct = "";
 
     $(document).ready(function () {
         var img = document.getElementById("prodBack");
@@ -188,85 +190,136 @@
             isFront = !isFront;
             console.log(isFront);
             $("#card").flip(!isFront);
+            if (isChangetColor) { id = idProduct; }
             if (firstBack == "True") {
                 if (isFront) {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                 }
             } else {
                 if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                 }
             }
         });
         $('#card3 .flip-button:not(.flip-button-active)').on('click', function () {
             isFront3 = !isFront3;
             $("#card3").flip(!isFront3);
+            if (isChangetColor) { id = idProduct; }
             if (firstBack == "True") {
                 if (isFront) {
                     $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                 }
             } else {
                 if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
                 }
-            }
+            });
+
         });
 
-    });
 
+        function Resrve() {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
+            document.getElementById("reserve-it-now").className = "dg-overlay";
 
-    function Resrve() {
-        var rowHtml = document.getElementById('first-line-item').innerHTML;
-        var newRow = document.createElement('tr');
-        $(newRow)
-            .addClass('precheckout_items_table__row')
-            .attr('id', 'js-precheckout-line-item-' + i)
-            .html(rowHtml)
-            .appendTo($("#order_item_list_modal"))
-        i = i + 1;
-        VisibleRemove();
-        document.getElementById("reserve-it-now").className = "dg-overlay";
-
-    }
-
-    function CloseReservation() {
-        document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
-        var el = document.getElementsByClassName("precheckout_items_table__row");
-        var length = el.length;
-        for (var i = 0; i < length; i++) {
-            el[0].parentNode.removeChild(el[0]);
         }
 
-        VisibleRemove();
-    }
+        function CloseReservation() {
+            document.getElementById("reserve-it-now").className = "dg-overlay-not-show";
+            var el = document.getElementsByClassName("precheckout_items_table__row");
+            var length = el.length;
+            for (var i = 0; i < length; i++) {
+                el[0].parentNode.removeChild(el[0]);
+            }
 
-    function BackCampaignReserv() {
-        document.getElementById("bringBackCampaign").className = "dg-overlay";
-    }
-
-    function CloseModalBackReserv() {
-        document.getElementById("bringBackCampaign").className = "dg-overlay-not-show";
-    }
-
-    function ChangeProduct(item) {
-        var id = item[item.selectedIndex].id;
-        if (!isFront) {
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
+            VisibleRemove();
         }
-        var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
 
-        if (firstBack == "True") {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+        function BackCampaignReserv() {
+            document.getElementById("bringBackCampaign").className = "dg-overlay";
+        }
+
+        function CloseModalBackReserv() {
+            document.getElementById("bringBackCampaign").className = "dg-overlay-not-show";
+        }
+      
+        function ChangeColor(item) {
+            var id = item.id;
+            idProduct = id;
+            isChangetColor = true;
+            if (!isFront) {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            }
+
+            var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
+
+            if (firstBack == "True") {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                //$("#prodFront").attr("id", id);
+                //$("#prodBack").attr("id", id);
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+                $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            } else {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                //$("#prodFront").attr("id", id);
+                //$("#prodBack").attr("id", id);
+                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+                $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+            }
+
+          
+        }
+
+        function ChangeProduct(item) {
+
+            isChangetColor = false;
+
+            var id = item[item.selectedIndex].id;
+            var name = $(item[item.selectedIndex]).attr("name");
+
+            var color_items = document.getElementsByClassName("item_color");
+            for (var i = 0; i < color_items.length; i++) {
+                if ($(color_items[i]).attr("name") == name) {
+                    $(color_items[i]).removeClass('hidden').addClass('shown');
+                } else {
+                    $(color_items[i]).removeClass('shown').addClass('hidden');
+                }
+            }
+
+            if (!isFront) {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+            }
+            var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
+
+            if (firstBack == "True") {
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
             $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
@@ -565,7 +618,22 @@
 
             <div class="image_stack__container js_image_stack">
                 <div id="card" style="margin-right:30px">
-                    <div id="front" class="front">
+                    <div class="list_item_color">
+                        @foreach (var prod in Model.Campaign.Products)
+                        {
+                            if (prod.ProductRecord.Name == Model.Campaign.Products[0].ProductRecord.Name)
+                            {
+                                <div class="item_color" name="@prod.ProductRecord.Name" id="@prod.Id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+
+                            }
+                            else
+                            {
+                                <div class="item_color hidden" name="@prod.ProductRecord.Name" id="@prod.Id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)" ></div>
+
+                            }
+
+                        }
+                    </div>          <div id="front" class="front">
                         @if (Model.Campaign.BackSideByDefault)
                         {
                             <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
@@ -626,7 +694,7 @@
                         <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
                             @foreach (var prod in Model.Campaign.Products)
                             {
-                                <option id="@prod.Id" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                <option id="@prod.Id" name="@prod.ProductRecord.Name" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
                             }
                         </select>
                     </div>
@@ -999,16 +1067,16 @@
                             </div>
                             <div class="modal-footer">
                                 @*<div class="payment_options_info">
-                                    <ul class="payment_options">
-                                        <li class="payment_options__item payment_options__item--visa"></li>
-                                        <li class="payment_options__item payment_options__item--amex"></li>
-                                        <li class="payment_options__item payment_options__item--mastercard"></li>
-                                        <li class="payment_options__item payment_options__item--discover"></li>
-                                        <li class="payment_options__item payment_options__item--border">
-                                            <div class="payment_options__item--paypal"></div>
-                                        </li>
-                                    </ul>
-                                </div>*@
+                                        <ul class="payment_options">
+                                            <li class="payment_options__item payment_options__item--visa"></li>
+                                            <li class="payment_options__item payment_options__item--amex"></li>
+                                            <li class="payment_options__item payment_options__item--mastercard"></li>
+                                            <li class="payment_options__item payment_options__item--discover"></li>
+                                            <li class="payment_options__item payment_options__item--border">
+                                                <div class="payment_options__item--paypal"></div>
+                                            </li>
+                                        </ul>
+                                    </div>*@
                                 <div class="payment_options_container">
                                     <div class="payment_options_actions">
 
@@ -1085,18 +1153,18 @@
             @Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days@T(" days")
         }
         else if (Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days <= -1)
-        { 
+        {
             @Math.Abs(Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days) @T("days ago")
         }
         else
         {
             var hours = Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours; if (hours > 0)
-            { 
+            {
                 @hours @T("hours")
             }
             else
             {
-                 @Math.Abs(hours) @T("hours ago")
+                @Math.Abs(hours) @T("hours ago")
             }
         }
     </span>
