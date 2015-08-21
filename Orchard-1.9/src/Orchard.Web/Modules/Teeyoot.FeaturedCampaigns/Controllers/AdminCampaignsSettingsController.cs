@@ -160,6 +160,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     var isSuccesfull = campaign.ProductCountGoal <= campaign.ProductCountSold;
                     _teeyootMessagingService.SendExpiredCampaignMessageToSeller(campaign.Id, isSuccesfull);
                     _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(campaign.Id, isSuccesfull);
+                    _teeyootMessagingService.SendExpiredCampaignMessageToAdmin(campaign.Id, isSuccesfull);
+
                 }
 
                 campaign.Title = Title;

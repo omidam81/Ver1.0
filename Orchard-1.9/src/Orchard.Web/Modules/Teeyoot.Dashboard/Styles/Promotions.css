@@ -553,3 +553,7 @@ input[readonly] {
 .dashboard-promotion-title{
     text-align:center;
 }
+
+.share_promotions__url{
+         font-weight: 600; 
+}

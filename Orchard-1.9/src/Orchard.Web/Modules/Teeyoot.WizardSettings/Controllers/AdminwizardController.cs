@@ -12,6 +12,7 @@ using Orchard.UI.Notify;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.WizardSettings.ViewModels;
+using System.Collections.Generic;
 
 namespace Teeyoot.WizardSettings.Controllers
 {
@@ -32,7 +33,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
         public ActionResult FontList()
         {
-            var fonts = _fontService.GetAllfonts().ToArray();
+            var fonts = _fontService.GetAllfonts().ToList();
             return View(fonts);
         }
 
@@ -136,29 +137,28 @@ namespace Teeyoot.WizardSettings.Controllers
             return this.RedirectLocal(returnUrl, () => RedirectToAction("FontList"));
         }
 
-        [HttpPost]
-        public ActionResult UpdateFont(FontViewModel model)
+        
+        public ActionResult UpdateFont(int id, string family, string tags)
         {
 
             FontRecord newFont = new FontRecord() { };
-            newFont.Id = model.Id;
-            newFont.Family = model.Family;
-            newFont.FileName = model.FileName;
+            newFont.Id = id;
+            newFont.Family = family;
             newFont.Priority = 0;
             int i = 0;
-            if (model.Tags != null)
+            if (tags != null)
             {
                 string[] stringSeparators = new string[] { "," };
                 string[] separatedTags;
                 string resultTags = "[";
-                separatedTags = model.Tags.Split(stringSeparators, StringSplitOptions.None);
+                separatedTags = tags.Split(stringSeparators, StringSplitOptions.None);
                 foreach (var item in separatedTags)
                 {
                     if (i != 0)
                     {
                         resultTags = resultTags + ",";
                     }
-                    resultTags = resultTags + "\"" + item  + "\"";
+                    resultTags = resultTags + "\"" + item + "\"";
                     i++;
                 }
                 resultTags += "]";
