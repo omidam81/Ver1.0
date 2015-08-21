@@ -4766,7 +4766,7 @@ fieldset {
     }
 
 #designer .form__textfield {
-    font: 15px "Open Sans", Helvetica, Arial, sans-serif;
+    font: 14px "Open Sans", Helvetica, Arial, sans-serif;
     padding: 15px;
 }
 
@@ -5812,4 +5812,8 @@ img.art-search-preview {
     .url-wizard-input {
         width:60%!important;
     }
+}
+
+#artwork-query{
+    padding:5px!important;
 }

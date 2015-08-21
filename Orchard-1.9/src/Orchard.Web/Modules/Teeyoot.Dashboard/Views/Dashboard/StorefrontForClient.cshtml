@@ -60,13 +60,13 @@
 
                         <div class="card__progress_container">
                             <div class="progress_bar">
-                                <div class="progress_bar__completed" style="width:@(prod.ProductCountSold * 100 / prod.ProductCountGoal)%"></div>
+                                <div class="progress_bar__completed" style="width:@(prod.ProductMinimumGoal == 0 ? prod.ProductCountSold * 100 / 1 : prod.ProductCountSold * 100 / prod.ProductMinimumGoal)%"></div>
                             </div>
                         </div>
                         <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
                         <div class="card__content_container">
                             <div class="card__campaign_stats">
-                                <div class="card__sold">@prod.ProductCountSold / @prod.ProductCountGoal @T("sold")</div>
+                                <div class="card__sold">@prod.ProductCountSold / @(prod.ProductMinimumGoal == 0 ? 1 : prod.ProductMinimumGoal) @T("sold")</div>
                                 <div class="card__campaign_time">
                                     <div class="campaign_time__status" title="@prod.EndDate.ToString("dd.MM.yyyy")">
                                         <span>

@@ -254,19 +254,26 @@ namespace Teeyoot.Account.Controllers
         [HttpPost]
         public ActionResult Recover(RecoverViewModel viewModel)
         {
-            if (string.IsNullOrWhiteSpace(viewModel.Email))
-            {
-                TempData[RecoverValidationSummaryKey] = T("You did not provide a valid email.").ToString();
-            }
-            else
-            {
-                var siteUrl = _workContextAccessor.GetContext().HttpContext.Request.Url;
-                _userService.SendLostPasswordEmail(viewModel.Email, nonce =>
-                    new Uri(siteUrl, Url.Action("ResetPassword", "Account", new {area = "Teeyoot.Account", nonce}))
-                        .ToString());
-
-                TempData[RecoverEmailSentKey] = true;
-            }
+                if (string.IsNullOrWhiteSpace(viewModel.Email))
+                {
+                    TempData[RecoverValidationSummaryKey] = T("You did not provide a valid email.").ToString();
+                }
+                else
+                {
+                    if (_userService.VerifyUserUnicity(viewModel.Email, viewModel.Email))
+                    {
+                        TempData[RecoverValidationSummaryKey] = T("Oops, this email address is not registered!").ToString();
+                    }
+                    else
+                    {
+                        var siteUrl = _workContextAccessor.GetContext().HttpContext.Request.Url;
+                        _userService.SendLostPasswordEmail(viewModel.Email, nonce =>
+                            new Uri(siteUrl, Url.Action("ResetPassword", "Account", new { area = "Teeyoot.Account", nonce }))
+                                .ToString());
+                    
+                    TempData[RecoverEmailSentKey] = true;
+                    }
+                }
 
             return this.RedirectLocal("~/Recover");
         }
@@ -396,10 +403,19 @@ namespace Teeyoot.Account.Controllers
 
         private ValidateLogOnResult ValidateLogOn(string email, string password)
         {
+            if (_userService.VerifyUserUnicity(email, email))
+            {
+                var result = new ValidateLogOnResult
+                {
+                    IsValid = false,
+                    ValidationSummary = T("Oops, this email address is not registered! Create an account to login").ToString()
+                };
+                return result;
+            }
             var res = new ValidateLogOnResult
             {
                 IsValid = false,
-                ValidationSummary = T("Sorry, that is not a valid login!").ToString()
+                ValidationSummary = T("Oops, the email address and password do not match!").ToString()
             };
 
             if (string.IsNullOrEmpty(email))
@@ -416,7 +432,7 @@ namespace Teeyoot.Account.Controllers
             if (user == null)
             {
                 return res;
-            }
+            }           
 
             return new ValidateLogOnResult
             {
