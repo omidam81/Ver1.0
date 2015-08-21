@@ -3650,70 +3650,105 @@ input[type="submit"].button-cta, button.button__cta {
     height: inherit !important;
 }
 
-@media all and (max-width: 1230px) {
+@media all and (max-width: 1260px) {
     .zoomWindowContainer > div {
-        margin-left: 110px;
+        margin-left: 120px;
     }
 }
-
+@media all and (max-width: 1240px) {
+    .zoomWindowContainer > div {
+        margin-left: 105px;
+    }
+}
+@media all and (max-width: 1220px) {
+    .zoomWindowContainer > div {
+        margin-left: 90px;
+    }
+}
 @media all and (max-width: 1210px) {
     .zoomWindowContainer > div {
-        margin-left: 100px;
+        margin-left: 75px;
     }
 }
-
-@media all and (max-width: 1185px) {
-    .zoomWindowContainer > div {
-        margin-left: 80px;
-    }
-}
-
-@media all and (max-width: 1150px) {
+@media all and (max-width: 1195px) {
     .zoomWindowContainer > div {
         margin-left: 60px;
     }
 }
 
-@media all and (max-width: 1130px) {
+@media all and (max-width: 1180px) {
     .zoomWindowContainer > div {
-        margin-left: 40px;
+        margin-left: 45px;
     }
 }
 
+@media all and (max-width: 1160px) {
+    .zoomWindowContainer > div {
+        margin-left: 30px;
+    }
+}
+@media all and (max-width: 1140px) {
+    .zoomWindowContainer > div {
+         width: 460px !important;
+    }
+}
+@media all and (max-width: 1120px) {
+    .zoomWindowContainer > div {
+        margin-left: 10px;
+        height: 560px !important;
+    }
+}
 @media all and (max-width: 1100px) {
     .zoomWindowContainer > div {
-        margin-left: 20px;
+        margin-left: 0px;
         height: 560px !important;
     }
 }
 
-@media all and (max-width: 1090px) {
-    .zoomWindowContainer > div {
-        height: 560px !important;
-    }
-}
-
-@media all and (max-width: 1070px) {
-    .zoomWindowContainer > div {
-        margin-left: 0;
-    }
-}
-
-@media all and (max-width: 1045px) {
-    .zoomWindowContainer > div {
-        width: 460px !important;
-    }
-}
-
-@media all and (max-width: 1020px) {
-    .zoomWindowContainer > div {
-        width: 450px !important;
-    }
-}
-
-@media all and (max-width: 1010px) {
+@media all and (max-width: 1095px) {
     .zoomWindowContainer > div {
         width: 440px !important;
+    }
+}
+
+@media all and (max-width: 1075px) {
+    .zoomWindowContainer > div {
+        width: 420px !important;
+    }
+}
+
+@media all and (max-width: 1055px) {
+    .zoomWindowContainer > div {
+        width: 400px !important;
+    }
+}
+
+@media all and (max-width: 1035px) {
+    .zoomWindowContainer > div {
+        width: 390px !important;
+        margin-left:-10px;
+    }
+}
+
+
+@media all and (max-width: 1015px) {
+    .image_stack__container {         
+    width: 55% !important;
+}
+    .campaign__column--product{
+        width:35%;
+    }
+   #back_timer .number {
+        height: 45px!important;
+        line-height: 45px!important;
+    }
+
+    #back_timer {
+        font-size: 35px!important;
+    }
+
+     .zoomWindowContainer > div {
+        width: 370px !important;
     }
 }
 
@@ -3726,11 +3761,14 @@ input[type="submit"].button-cta, button.button__cta {
 
 @media all and (max-width: 990px) {
     .zoomWindowContainer > div {
-        width: 430px !important;
+        width: 350px !important;
+    }
+    .campaign__column--product{
+        width:100%;
     }
 }
 
-@media all and (min-width: 980px) {
+@media all and (min-width: 980px) {   
     .zoomLens {
         z-index: 999;
     }
@@ -6512,6 +6550,17 @@ td, tr {
     }
 }
 
+@media all and (max-width: 330px) {
+    #back_timer .number {
+        height: 35px !important;
+        line-height: 35px !important;
+    }
+
+    #back_timer {
+        font-size: 20px !important;
+    }
+}
+
 .info-message, .message-Information {
     background: #ff4f00 !important;
     border-radius: 3px !important;
@@ -6717,16 +6766,23 @@ td, tr {
     margin-top: 20px;
      box-shadow: 0px 0px 5px rgba(0,0,0,0.5),rgba(0,0,0,0.5) 0px 0px 5px inset
 }
-
-#front,
-#back{
-    width:645px;
-    margin-left:25px;
+@media (min-width: 980px) {
+    #front,
+    #back {
+        width: 645px !important;
+        margin-left: 25px;
+    }
 }
-
 
 @media all and (max-width: 460px) {
     .list_item_color {
     margin-top:0;
 }
+}
+
+@media all and (min-width: 980px) {
+    .zoom_window__container.zoom_window__container--fixed {
+        position: fixed;
+        top: 15px;
+    }
 }
