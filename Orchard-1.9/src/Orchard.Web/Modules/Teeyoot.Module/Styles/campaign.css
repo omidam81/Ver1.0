@@ -5876,7 +5876,7 @@ input {
     }
 
     .payment_options_actions {
-        float: right;
+        margin-left: 25%;
     }
 }
 
