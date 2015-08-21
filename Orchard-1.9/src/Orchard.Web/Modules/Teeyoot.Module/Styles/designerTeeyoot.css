@@ -4863,7 +4863,7 @@ fieldset {
 
 @media only screen and (min-width: 980px) {
     #step-details .url-input input, #step-details .url-input input[type="text"] {
-        width: 72.2%;
+           width: 79.5%;
     }
 }
 
