@@ -964,6 +964,9 @@ input[type=range] {
         background-color: #e64700 !important;
     }
 
+ #goBack {
+   margin: 15px 0 0 0; 
+}
 .wizard-modal {
     padding-top: 50px !important;
 }
