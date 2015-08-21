@@ -22,7 +22,6 @@ $(document).ready(function(){
 	$.getCorrection = function(init_w, init_h, delta_w, delta_h, angle){
 		//Convert angle from degrees to radians
 		var angle = angle * Math.PI / 180
-
 		//Get position after rotation with original size
 		var x = -init_w/2;
 		var y = init_h/2;
@@ -139,7 +138,7 @@ $(document).ready(function(){
 		dx = ndx;
 		dy = ndy;
 
-		// Calculate the attrs that will be change
+	    // Calculate the attrs that will be change
 		data = trigger.apply(this, [event, dx, dy]);
 
 		// Put this in the mouseDrag handler since the user can start pressing shift while resizing
@@ -152,24 +151,23 @@ $(document).ready(function(){
 
 		//patch: backup the position
 		var oldPosition = {left: this.position.left, top: this.position.top};
-
 		this._updateCache(data);
 
-		//patch: revert to old position
+	    //patch: revert to old position
 		this.position = {left: oldPosition.left, top: oldPosition.top};
 
-		//patch: difference between datas
+	    //patch: difference between datas
 		var diffData = {
 			left: _parseFloat(data.left || this.lastData.left) - _parseFloat(this.lastData.left),
 			top:  _parseFloat(data.top || this.lastData.top)  - _parseFloat(this.lastData.top),
 		}
 
-		//patch: calculate the correct position offset based on angle
+	    //patch: calculate the correct position offset based on angle
 		var new_data = {};
 		new_data.left = diffData.left * _cos - diffData.top  * _sin;
 		new_data.top  = diffData.top  * _cos + diffData.left * _sin;
 
-		//patch: round the values
+	    //patch: round the values
 		new_data.left = _round(new_data.left);
 		new_data.top  = _round(new_data.top);
 
@@ -177,22 +175,22 @@ $(document).ready(function(){
 		this.position.left += new_data.left;
 		this.position.top  += new_data.top;
 
-		//patch: save the data for later use
+	    //patch: save the data for later use
 		this.lastData = {
 			left: _parseFloat(data.left || this.lastData.left),
 			top:  _parseFloat(data.top  || this.lastData.top)
 		};
-
 		// plugins callbacks need to be called first
 		this._propagate("resize", event);
-
-		//patch: calculate the difference in size
+		if (this.options.resizee) {
+		    this.options.resizee(event, this.ui());
+		}
+	    //patch: calculate the difference in size
 		var diff_w = init_w - this.size.width;
 		var diff_h = init_h - this.size.height;
 
 		//patch: get the offset based on angle
 		var offset = $.getCorrection(init_w, init_h, diff_w, diff_h, angle);
-
 		//patch: update the position
 		this.position.left += offset.left;
 		this.position.top -= offset.top;

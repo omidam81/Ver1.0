@@ -2742,7 +2742,7 @@ var design={
 
 
 			if(!e) e = $jd('.drag-item-selected');
-			var oldwidth = 0, oldsize = 0;
+			var oldwidth = 0, oldheight = 0,oldsize = 0;
 			var omp = {};
 			e.resizable({minHeight: 15, minWidth: 15,				
 			    aspectRatio: auto,
@@ -2751,29 +2751,54 @@ var design={
 				    resizing = true;
 				    omp.x = event.pageX;
 				    omp.y = event.pageY;
-				    omp.d = Math.sqrt(Math.pow((ui.position.left+ui.size.width)/2 - omp.x,2) + Math.pow((ui.position.top+ui.size.height)/2 - omp.y,2));
-					oldwidth = ui.size.width;
-					oldsize = $('#dg-font-size').text();
+				    //omp.d = Math.sqrt(Math.pow(ui.size.width / 2, 2) + Math.pow(ui.size.height / 2, 2));
+				    //omp.d = Math.sqrt(Math.pow(ui.size.width / 2, 2) + Math.pow(ui.size.height / 2, 2));
+				    var offset = ui.element.offset();
+				    oldrect = ui.element[0].getBoundingClientRect();
+				    omp.centerOffset = { x: offset.left + oldrect.width / 2 - omp.x, y: offset.top + oldrect.height / 2 - omp.y };
+				    omp.d = Math.sqrt(Math.pow(omp.centerOffset.x, 2) + Math.pow(omp.centerOffset.y, 2));
+				    oldwidth = ui.size.width;
+				    oldheight = ui.size.height;
+				    oldsize = $('#dg-font-size').text();
 				},
 				stop: function (event, ui) {
 				    resizing = false;
 					design.print.size();
 				},
-				resize: function (event, ui) {
+				resizee: function (event, ui) {
 				    var e = ui.element;
 				    var mp = { x: event.pageX, y: event.pageY };
+				    var offset = ui.element.offset();
+				    mp.centerOffset = { x: offset.left + oldrect.width / 2 - mp.x, y: offset.top + oldrect.height / 2 - mp.y };
+
+				    var d = Math.sqrt(Math.pow(mp.centerOffset.x, 2) + Math.pow(mp.centerOffset.y, 2));
 				    //var d = Math.sqrt(Math.pow((ui.position.left + ui.size.width) / 2 - mp.x, 2) + Math.pow((ui.position.top + ui.size.height) / 2 - mp.y, 2));
-				    var d = Math.sqrt(Math.pow((omp.x - mp.x, 2) + Math.pow(omp.y - mp.y, 2)));
-				    scale = (d+omp.d) / omp.d;
-				    console.log(d, scale);
-				    ui.size.width = ui.originalSize.width * Math.pow(scale,3);
-				    ui.size.height = ui.originalSize.height * Math.pow(scale, 3);
+				    //var d = Math.sqrt(Math.pow(omp.x - mp.x, 2) + Math.pow(omp.y - mp.y, 2));
+				    //var d = Math.max(Math.abs(omp.x - mp.x), Math.abs(omp.y - mp.y));
+                    //we have at least one coord larger then
+				    //direction = ui.size.width > ui.originalSize.width ? 1 : -1;//new point closer to center then starting point
+				    //scale = (d) / omp.d / 2;
+				    //scale = 1 + direction * scale;
+				    scale = d / omp.d;
+				    if (scale > 1) {
+				        scale = (scale - 1) / 1.4 + 1;
+				    }
+				    //console.log("before", ui.size, scale);
+				    //console.log(mp.centerOffset, even.pageX, event.pageY, d, scale);
+				    ui.size.width = ui.originalSize.width * scale;
+				    ui.size.height = ui.originalSize.height * scale;
+				    //console.log("after", ui.size);
+				    //$width = ui.originalSize.width * scale;
+				    //$height = ui.originalSize.height * scale;
 				    //ui.originalSize
 					var $width = parseInt(ui.size.width),
 						$height = parseInt(ui.size.height);
-
+					oldwidth = $width;
+					oldheight = $height;
 				    //$(event.target).data('ui-resizable').axis === 'se'
 					me.resizeTo(e, $width, $height, false, false);
+					oldrect = e[0].getBoundingClientRect();
+
 				}
 			});
 			
