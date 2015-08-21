@@ -16,6 +16,13 @@ namespace Orchard.Users.ViewModels {
             set { User.As<UserPart>().Email = value; }
         }
 
+        [DataType(DataType.Password)]
+        [StringLength(50, MinimumLength = 8)]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
         public IContent User { get; set; }
     }
 }
