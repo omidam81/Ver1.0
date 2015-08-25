@@ -54,14 +54,22 @@
 @using (Script.Foot())
 {
     <script>
-
         var applyAction = function () {
             return false;
         }
-
     </script>
 
     <script>
     var campaignTable = $('#campaign-table').dataTable();
+    </script>
+    
+    <script>
+    $(document).ready(function () {
+        var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");
+        var node = document.createElement("text");
+
+        node.appendChild(textnode);
+        document.getElementsByClassName("local-section-status")[0].appendChild(node);
+    });
     </script>
 }

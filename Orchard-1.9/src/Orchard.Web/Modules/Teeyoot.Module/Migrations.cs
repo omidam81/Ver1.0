@@ -696,7 +696,6 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name,
                 table => table.AddColumn<string>("Country", c => c.WithLength(100)));
-
             SchemaBuilder.AlterTable(typeof(LinkProductColorRecord).Name,
                table => table
                    .DropColumn("BaseCost"));
