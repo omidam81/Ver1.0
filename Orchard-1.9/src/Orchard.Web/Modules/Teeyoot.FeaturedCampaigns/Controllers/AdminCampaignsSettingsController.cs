@@ -163,6 +163,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     _teeyootMessagingService.SendExpiredCampaignMessageToAdmin(campaign.Id, isSuccesfull);
 
                 }
+                else if (date > DateTime.Now)
+                    campaign.IsActive = true;
 
                 campaign.Title = Title;
                 campaign.Alias = URL;
