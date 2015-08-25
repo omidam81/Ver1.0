@@ -11,6 +11,8 @@ namespace Teeyoot.Dashboard.ViewModels
     {
         public virtual CampaignRecord Campaign { get; set; }
 
-        public virtual string PromoId { get; set; }   
+        public virtual string PromoId { get; set; }
+
+        public int CntRequests { get; set; } 
     }
 }

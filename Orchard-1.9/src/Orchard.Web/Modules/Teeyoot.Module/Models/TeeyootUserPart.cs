@@ -101,5 +101,17 @@ namespace Teeyoot.Module.Models
                 Store(p => p.Zip, value);
             }
         }
+
+        public string Country
+        {
+            get
+            {
+                return Retrieve(p => p.Country);
+            }
+            set
+            {
+                Store(p => p.Country, value);
+            }
+        }
     }
 }

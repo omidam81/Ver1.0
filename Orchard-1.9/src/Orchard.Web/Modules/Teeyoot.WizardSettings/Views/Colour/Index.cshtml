@@ -1,6 +1,8 @@
 ﻿@using Teeyoot.WizardSettings.Common
 @model Teeyoot.WizardSettings.ViewModels.ColourIndexViewModel
-
+@{
+    Layout.Title = T("Colors");
+}
 <div class="manage">
     @if (Model.ChooseColourFor == ChooseColourFor.Product)
     {

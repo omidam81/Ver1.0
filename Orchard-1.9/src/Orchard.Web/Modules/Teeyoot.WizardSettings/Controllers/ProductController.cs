@@ -133,6 +133,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
                 viewModel.Materials = product.Materials;
                 viewModel.Details = product.Details;
+                viewModel.BaseCost = product.BaseCost == null ? 0 : product.BaseCost;
             }
 
             FillProductViewModelWithHeadlines(viewModel);
@@ -157,6 +158,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
             product.Materials = viewModel.Materials;
             product.Details = viewModel.Details;
+            product.BaseCost = viewModel.BaseCost;
             product.WhenDeleted = null;
 
             if (product.ProductImageRecord == null)
@@ -179,8 +181,8 @@ namespace Teeyoot.WizardSettings.Controllers
                 var linkProductColour = new LinkProductColorRecord
                 {
                     ProductRecord = product,
-                    ProductColorRecord = productColour,
-                    BaseCost = productColourItem.BaseCost
+                    ProductColorRecord = productColour//,
+                    //BaseCost = productColourItem.BaseCost
                 };
 
                 _linkProductColorRepository.Create(linkProductColour);
@@ -359,7 +361,7 @@ namespace Teeyoot.WizardSettings.Controllers
                     ProductColourId = it.ProductColorRecord.Id,
                     Name = it.ProductColorRecord.Name,
                     HexValue = it.ProductColorRecord.Value,
-                    BaseCost = it.BaseCost
+                    //BaseCost = it.ProductRecord.BaseCost
                 })
                 .ToList();
         }

@@ -409,5 +409,10 @@ namespace Teeyoot.Module.Services
                    Logger.Error("Error when trying to make reservation of campaign ---------------------- > {0}", e.ToString());
              }
         }
+
+        public int GetCountOfReservedRequestsOfCampaign(int id)
+        {
+           return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Count();
+        }
     }
 }

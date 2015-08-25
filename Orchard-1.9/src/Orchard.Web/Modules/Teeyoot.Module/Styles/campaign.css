@@ -3649,31 +3649,37 @@ input[type="submit"].button-cta, button.button__cta {
 .back {
     height: inherit !important;
 }
+
 @media all and (max-width: 2300px) {
     .zoomWindowContainer > div {
         margin-left: 115px;
     }
 }
+
 @media all and (max-width: 1260px) {
     .zoomWindowContainer > div {
         margin-left: 120px;
     }
 }
+
 @media all and (max-width: 1240px) {
     .zoomWindowContainer > div {
         margin-left: 105px;
     }
 }
+
 @media all and (max-width: 1220px) {
     .zoomWindowContainer > div {
         margin-left: 90px;
     }
 }
+
 @media all and (max-width: 1210px) {
     .zoomWindowContainer > div {
         margin-left: 75px;
     }
 }
+
 @media all and (max-width: 1195px) {
     .zoomWindowContainer > div {
         margin-left: 60px;
@@ -3691,17 +3697,20 @@ input[type="submit"].button-cta, button.button__cta {
         margin-left: 30px;
     }
 }
+
 @media all and (max-width: 1140px) {
     .zoomWindowContainer > div {
-         width: 460px !important;
+        width: 460px !important;
     }
 }
+
 @media all and (max-width: 1120px) {
     .zoomWindowContainer > div {
         margin-left: 10px;
         height: 560px !important;
     }
 }
+
 @media all and (max-width: 1100px) {
     .zoomWindowContainer > div {
         margin-left: 0px;
@@ -3730,28 +3739,30 @@ input[type="submit"].button-cta, button.button__cta {
 @media all and (max-width: 1035px) {
     .zoomWindowContainer > div {
         width: 390px !important;
-        margin-left:-10px;
+        margin-left: -10px;
     }
 }
 
 
 @media all and (max-width: 1015px) {
-    .image_stack__container {         
-    width: 55% !important;
-}
-    .campaign__column--product{
-        width:35%;
+    .image_stack__container {
+        width: 55% !important;
     }
-   #back_timer .number {
-        height: 45px!important;
-        line-height: 45px!important;
+
+    .campaign__column--product {
+        width: 35%;
+    }
+
+    #back_timer .number {
+        height: 45px !important;
+        line-height: 45px !important;
     }
 
     #back_timer {
-        font-size: 35px!important;
+        font-size: 35px !important;
     }
 
-     .zoomWindowContainer > div {
+    .zoomWindowContainer > div {
         width: 370px !important;
     }
 }
@@ -3767,12 +3778,13 @@ input[type="submit"].button-cta, button.button__cta {
     .zoomWindowContainer > div {
         width: 350px !important;
     }
-    .campaign__column--product{
-        width:100%;
+
+    .campaign__column--product {
+        width: 100%;
     }
 }
 
-@media all and (min-width: 980px) {   
+@media all and (min-width: 980px) {
     .zoomLens {
         z-index: 999;
     }
@@ -6758,18 +6770,18 @@ td, tr {
 .list_item_color {
     width: 25px;
     float: left;
-    height: auto; 
-    margin-top:50px;
+    height: auto;
+    margin-top: 50px;
 }
 
 .item_color {
-   
     width: 25px;
     height: 25px;
     border-radius: 5px 5px 5px 5px;
     margin-top: 20px;
-     box-shadow: 0px 0px 5px rgba(0,0,0,0.5),rgba(0,0,0,0.5) 0px 0px 5px inset
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5),rgba(0,0,0,0.5) 0px 0px 5px inset;
 }
+
 @media (min-width: 980px) {
     #front,
     #back {
@@ -6780,8 +6792,8 @@ td, tr {
 
 @media all and (max-width: 460px) {
     .list_item_color {
-    margin-top:0;
-}
+        margin-top: 0;
+    }
 }
 
 @media all and (min-width: 980px) {
@@ -6789,4 +6801,11 @@ td, tr {
         position: fixed;
         top: 15px;
     }
+}
+
+.info-label {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
 }

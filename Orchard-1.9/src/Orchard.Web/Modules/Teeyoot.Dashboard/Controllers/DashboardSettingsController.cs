@@ -24,9 +24,10 @@ namespace Teeyoot.Dashboard.Controllers
                 model.City = teeUser.City;
                 model.CurrentEmail = currentUser.Email;
                 model.State = teeUser.State;
-                model.Street = teeUser.Street;
+                model.Street1 = teeUser.Street;
                 model.InfoMessage = viewModel.InfoMessage;
                 model.Zip = teeUser.Zip;
+                model.Country = teeUser.Country;
                 return View(model);
             }
             else
@@ -40,9 +41,10 @@ namespace Teeyoot.Dashboard.Controllers
                 model.City = teeUser.City;
                 model.CurrentEmail = currentUser.Email;
                 model.State = teeUser.State;
-                model.Street = teeUser.Street;
+                model.Street1 = teeUser.Street;
                 model.ErrorMessage = viewModel.ErrorMessage;
                 model.Zip = teeUser.Zip;
+                model.Country = teeUser.Country;
                 return View(model);
             }
             
@@ -50,7 +52,7 @@ namespace Teeyoot.Dashboard.Controllers
 
         public ActionResult ChangeUserInfo(UserSettingsViewModel model)
         {
-            if (model.PhoneNumber == null && model.City == null && model.PublicName == null && model.State == null && model.Street == null && model.Zip == null)
+            if (model.PhoneNumber == null && model.City == null && model.PublicName == null && model.State == null && model.Street1 == null && model.Street2 == null && model.Zip == null)
             {
                 UserSettingsViewModel viewModel = new UserSettingsViewModel() { };
                 viewModel.Id = model.Id;
@@ -66,8 +68,9 @@ namespace Teeyoot.Dashboard.Controllers
                     user.City = model.City;
                     user.PublicName = model.PublicName;
                     user.State = model.State;
-                    user.Street = model.Street;
+                    user.Street = model.Street1 + " " + model.Street2;
                     user.Zip = model.Zip;
+                    user.Country = model.Country;
                     
                     model.InfoMessage = T("Your info has been changed sucessfully!").ToString();
                     return RedirectToAction("Profile", model);

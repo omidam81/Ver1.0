@@ -87,6 +87,7 @@ namespace Teeyoot.Dashboard.Controllers
                         Id = c.Id,
                         Name = c.Title,
                         Sold = c.ProductCountSold,
+                        Minimum=c.ProductMinimumGoal,
                         StartDate = c.StartDate,
                         Status = c.CampaignStatusRecord,
                         IsActive = c.IsActive,

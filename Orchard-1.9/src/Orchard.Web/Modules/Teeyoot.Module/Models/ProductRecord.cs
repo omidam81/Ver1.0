@@ -20,6 +20,8 @@ namespace Teeyoot.Module.Models
 
         public virtual DateTime? WhenDeleted { get; set; }
 
+        public virtual float BaseCost { get; set; }
+
         public virtual IList<LinkProductColorRecord> ColorsAvailable { get; set; }
 
         public virtual IList<LinkProductSizeRecord> SizesAvailable { get; set; }

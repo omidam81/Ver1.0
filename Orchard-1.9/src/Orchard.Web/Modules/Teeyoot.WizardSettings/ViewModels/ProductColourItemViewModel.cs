@@ -6,7 +6,7 @@
         public int ProductColourId { get; set; }
         public string Name { get; set; }
         public string HexValue { get; set; }
-        public double BaseCost { get; set; }
+        //public float BaseCost { get; set; }
         public bool Selected { get; set; }
     }
 }

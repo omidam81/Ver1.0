@@ -13,6 +13,6 @@ namespace Teeyoot.Module.Models
 
         public virtual ProductRecord ProductRecord { get; set; }
 
-        public virtual double BaseCost { get; set; }
+        //public virtual double BaseCost { get; set; }
     }
 }

@@ -36,6 +36,8 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public int Sold { get; set; }
 
+        public int Minimum { get; set; }
+
         public double Profit { get; set; }
 
         public string Alias { get; set; }

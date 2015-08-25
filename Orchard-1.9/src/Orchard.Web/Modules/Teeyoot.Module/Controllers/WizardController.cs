@@ -407,7 +407,7 @@ namespace Teeyoot.Module.Controllers
                 prices = p.ColorsAvailable.Select(c => new ProductPriceViewModel
                 {
                     color_id = c.ProductColorRecord.Id,
-                    price = c.BaseCost
+                    price = p.BaseCost
                 }).ToArray()
             }).ToArray();
 
