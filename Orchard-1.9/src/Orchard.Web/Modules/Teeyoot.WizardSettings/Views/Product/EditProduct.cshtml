@@ -307,7 +307,7 @@
             $('#selected-colours-table .product-colour-row:visible').each(function (index, element) {
                 $(element).find('.row-id').attr('name', 'SelectedProductColours[' + index + '].Id');
                 $(element).find('.row-product-colour-id').attr('name', 'SelectedProductColours[' + index + '].ProductColourId');
-                $(element).find('.row-base-cost').attr('name', 'SelectedProductColours[' + index + '].BaseCost');
+                //$(element).find('.row-base-cost').attr('name', 'SelectedProductColours[' + index + '].BaseCost');
             });
         };
 
@@ -415,13 +415,19 @@
 
                 var baseCost = $('#baseCost').val();
 
-                if (!selectedHeadline) {
-                    alert('@T("Please select Product Headline.")');
+                if ($.trim(baseCost) === '0' || $.trim(baseCost) == parseFloat("0")) {
+                    alert('@T("Please enter Base Cost.")');
                     return false;
                 }
 
                 fixProductColoursIndexing();
                 return true;
+            });
+
+            $('#baseCost').keypress(function (event) {
+                if ((event.which != 44 || $(this).val().indexOf(',') != -1) && (event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
             });
         });
     </script>
