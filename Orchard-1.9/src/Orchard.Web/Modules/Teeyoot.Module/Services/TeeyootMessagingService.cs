@@ -98,12 +98,12 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             if (isSuccesfull)
             {
-                mandrillMessage.Subject = "Campaign reach goal!";
+                mandrillMessage.Subject = "Your Tee campaign just expired!";
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-printing-seller-template.html");
             }
             else
             {
-                mandrillMessage.Subject = "Campaign didn't reach goal!";
+                mandrillMessage.Subject = "Your Tee campaign just expired!";
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-seller-template.html");
             }
 
