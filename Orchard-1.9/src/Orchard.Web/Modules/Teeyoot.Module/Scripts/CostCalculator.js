@@ -173,12 +173,12 @@ function estimatedProfitChangeForManuProducts() {
             $(indexProf).html(profit.toFixed(2));
             $(indexCost).html(products[i].BaseCost.toFixed(2));
             if (profit < 0) {
-                
+
                 app.state.isNegativeProfit[i] = true;
-               // $(divProfitCalcul).css('display', 'none');
-               // $(h6Cost).css('display', 'none');
-               // $(h6Price).css('display', 'none');
-               // $(h4Price).css('display', 'none');
+                // $(divProfitCalcul).css('display', 'none');
+                // $(h6Cost).css('display', 'none');
+                // $(h6Price).css('display', 'none');
+                // $(h4Price).css('display', 'none');
                 //$(h4CostProfText).html("minimum");
                 //$(indexCost).html(products[i].BaseCost.toFixed(2));
                 //$(h4CostProfText).css('color', '#ff0000');
@@ -223,7 +223,7 @@ function estimatedProfitChangeForManuProducts() {
 
 function updateMinimum(changes) {
     if (changes < 0) {
-       // $("#profit-calculator").css('display', 'none');
+        // $("#profit-calculator").css('display', 'none');
         //$("#price-for-first-product-text").css('display', 'none');
         //$("#base-cost-for-first-product-text-smoll").css('display', 'none');
         //$("#").css('display', 'none');
@@ -273,30 +273,35 @@ function minimumGoal() {
         var price = 0;
         var baseCost = 0;
 
+        var count = parseInt("0");
+        
         for (var i = 0; i < products.length; i++) {
-            if (price < parseFloat(products[i].Price)) {
-                price = parseFloat(products[i].Price);
+            price = parseFloat(products[i].Price);
+            baseCost = parseFloat(products[i].BaseCost);
+
+            var nowCount = Math.ceil(window.count / 2) + 1;
+            var newPrice = 0;
+            while (price > newPrice) {
+                if (nowCount == 0) break;
+                nowCount--;
+                newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
             }
-            if (baseCost < parseFloat(products[i].BaseCost)) {
-                baseCost = parseFloat(products[i].BaseCost);
+            window.count = parseInt(slider.noUiSlider.get());
+
+            if (nowCount <= 0) {
+                nowCount = 1;
             }
+            if (window.count <= 100) {
+                nowCount = nowCount - 1;
+            }
+
+            count = count + Math.floor(nowCount);
         }
 
-        var nowCount = Math.ceil(window.count / 2) + 1;
-        var newPrice = 0;
-        while (price > newPrice) {
-            if (nowCount == 0) break;
-            nowCount--;
-            newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
+        if (count >= window.count) {
+            count = window.count;
         }
-        window.count = parseInt(slider.noUiSlider.get());
-
-
-        if (nowCount <= 0) {
-            nowCount = 1;
-        }
-
-        count = Math.floor(nowCount);
+        
         document.getElementById("minimmumGoal").value = count;
     }
 }

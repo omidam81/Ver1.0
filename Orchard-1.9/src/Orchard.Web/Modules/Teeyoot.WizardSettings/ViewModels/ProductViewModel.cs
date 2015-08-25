@@ -30,6 +30,7 @@ namespace Teeyoot.WizardSettings.ViewModels
 
         public string Materials { get; set; }
         public string Details { get; set; }
+        public float BaseCost { get; set; }
 
         public IEnumerable<ProductColourItemViewModel> ProductColours { get; set; }
         public List<ProductColourItemViewModel> SelectedProductColours { get; set; }
