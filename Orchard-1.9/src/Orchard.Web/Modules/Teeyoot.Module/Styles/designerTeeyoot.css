@@ -5818,3 +5818,6 @@ img.art-search-preview {
 #artwork-query{
     padding:5px!important;
 }
+#error-add-message{
+    color:red;
+}
