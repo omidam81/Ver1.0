@@ -4241,8 +4241,8 @@ html, body {
     }
 
         .menu-icon-links-to-s-n li div a img {
-            width: 70px;
-            height: 70px;
+            width: 30px;
+            height: 30px;
         }
 
 @media all and (max-width: 900px) {
