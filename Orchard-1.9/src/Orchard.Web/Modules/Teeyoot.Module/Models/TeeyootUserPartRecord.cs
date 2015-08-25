@@ -23,5 +23,7 @@ namespace Teeyoot.Module.Models
         public virtual string State { get; set; }
 
         public virtual string Zip { get; set; }
+
+        public virtual string Country { get; set; }
     }
 }

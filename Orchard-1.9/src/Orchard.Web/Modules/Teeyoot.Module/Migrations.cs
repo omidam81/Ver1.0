@@ -694,7 +694,9 @@ namespace Teeyoot.Module
                table => table
                .AddColumn<double>("AmountSize"));
 
-            return 71;
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name,
+                table => table.AddColumn<string>("Country", c => c.WithLength(100)));
+            return 72;
         }
 
         public int UpdateFrom2()
@@ -1512,5 +1514,12 @@ namespace Teeyoot.Module
 
          return 71;
         }
+
+         public int UpdateFrom71()
+        {    
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name,
+                table => table.AddColumn<string>("Country", c => c.WithLength(100)));
+         return 72;
+        }       
     }
 }
