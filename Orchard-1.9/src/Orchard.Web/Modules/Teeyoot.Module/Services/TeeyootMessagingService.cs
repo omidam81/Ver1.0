@@ -673,7 +673,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "ReservedCount", campaign.ProductCountSold.ToString());
             message.AddRcptMergeVars(email, "Goal", campaign.ProductCountGoal.ToString());
             message.AddRcptMergeVars(email, "SellerEmail", _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId).Email);
-            message.AddRcptMergeVars(email, "CampaignPreviewUrl", pathToMedia + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/"+side+".png");
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/"+side+".png");
 
         }
 
@@ -749,9 +749,11 @@ namespace Teeyoot.Messaging.Services
 
         private void FillProductsMergeVars(MandrillMessage message, IList<LinkOrderCampaignProductRecord> orderedProducts, string pathToMedia, string email, string orderPublicId)
         {
+            string baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
             List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
             foreach (var item in orderedProducts)
             {
+               
                 string side = "";
                 var campaign = _campaignRepository.Get(item.CampaignProductRecord.CampaignRecord_Id);
                 if (campaign.BackSideByDefault)
@@ -762,6 +764,7 @@ namespace Teeyoot.Messaging.Services
                 {
                     side = "front";
                 }
+                string preview_url = pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/" + side + ".png";
                 int index = orderedProducts.IndexOf(item);
                 int idSize = item.ProductSizeRecord.Id;
                 float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
@@ -774,7 +777,7 @@ namespace Teeyoot.Messaging.Services
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
                         {"currency", item.OrderRecord.CurrencyRecord.Code},
                         {"total_price", (price* item.Count).ToString("F")},
-                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/"+side+".png"}
+                        {"preview_url", baseUrl + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/"+side+".png"}
                      });
 
             }
@@ -785,6 +788,7 @@ namespace Teeyoot.Messaging.Services
 
         private void FillCampaignProductsMergeVars(MandrillMessage message, IList<CampaignProductRecord> campaignProducts, string pathToMedia, string email)
         {
+            string baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
             List<Dictionary<string, object>> products = new List<Dictionary<string, object>>();
             foreach (var item in campaignProducts)
             {
@@ -802,7 +806,7 @@ namespace Teeyoot.Messaging.Services
                         {"name",  item.ProductRecord.Name},
                         {"price", item.Price},
                         {"currency", item.CurrencyRecord.Code},
-                        {"preview_url", pathToMedia + "/Media/campaigns/" + item.CampaignRecord_Id + "/" + item.Id + "/normal/"+side+".png"}
+                        {"preview_url", baseUrl + "/Media/campaigns/" + item.CampaignRecord_Id + "/" + item.Id + "/normal/"+side+".png"}
                      });
 
             }
