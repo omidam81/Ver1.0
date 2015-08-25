@@ -279,6 +279,9 @@
     .address__field_right{
         float:left;
     }
+    .label_country{
+        width:100%!important;
+    }
 }
 @media all and (max-width: 370px) {
     .dashboard_section__content--padded{
@@ -291,4 +294,16 @@
 
 .dashboard-settings-title{
     text-align:center;
+}
+
+.label_country{
+    width: 94%;
+    border-color: #c2c9cc;
+    font-size: 1.1rem;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 2rem;
+    padding: 0.3em;
+    border-color: #e8eced !important;
+    border: 1px solid #e8eced !important;
+    color: #293033;
 }

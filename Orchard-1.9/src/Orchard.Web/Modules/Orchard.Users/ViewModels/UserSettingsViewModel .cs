@@ -11,7 +11,9 @@ namespace Orchard.Users.ViewModels {
         [Phone]
         public string PhoneNumber { get; set; }
 
-        public string Street { get; set; }
+        public string Street1 { get; set; }
+
+        public string Street2 { get; set; }
 
         public string Suit { get; set; }
 
@@ -20,6 +22,8 @@ namespace Orchard.Users.ViewModels {
         public string State { get; set; }
 
         public string Zip { get; set; }
+
+        public string Country { get; set; }
 
         public string CurrentEmail { get; set; }
 
