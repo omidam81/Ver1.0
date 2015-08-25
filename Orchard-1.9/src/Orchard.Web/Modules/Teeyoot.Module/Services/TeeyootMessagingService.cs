@@ -35,7 +35,7 @@ namespace Teeyoot.Messaging.Services
         private readonly INotifier _notifier;
         private readonly IWorkContextAccessor _wca;
         public Localizer T { get; set; }
-        private const string ADMIN_EMAIL = "noreply@teeyoot.com";
+        private const string ADMIN_EMAIL = "Teeyoot@teeyoot.com";
         private const string MessageTemplatesPath = "/Modules/Teeyoot.Module/Content/message-templates/";
 
         public TeeyootMessagingService(IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
