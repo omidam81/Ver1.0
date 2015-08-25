@@ -414,6 +414,7 @@
 
         $(currentSize).removeClass('shown').addClass('hidden');
         $(newSize).removeClass('hidden').addClass('shown');
+        $(newSize).selectedIndex = 0;
 
         var currentPrice = $(row).find('.modal-price.shown')[0];
         var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];
