@@ -3,6 +3,7 @@
     Style.Include("jquery.dataTables.css");
     Script.Require("jQuery");
     Script.Include("jquery.dataTables.min.js");
+    Layout.Title = T("Export");
 }
 
 <div>
@@ -70,12 +71,6 @@
 
         node.appendChild(textnode);
         document.getElementsByClassName("local-section-status")[0].appendChild(node);
-
-        var textheader = document.createTextNode("Export");
-        var nodeheader = document.createElement("h1");
-        nodeheader.id = 'page-title';
-        nodeheader.appendChild(textheader);
-        document.getElementsByClassName("zone-header")[0].appendChild(nodeheader);       
     });
     </script>
 }
