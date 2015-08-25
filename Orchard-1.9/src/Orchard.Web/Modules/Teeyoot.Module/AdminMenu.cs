@@ -24,7 +24,7 @@ namespace Teeyoot.Module
                     .Add(subItem => subItem
                         .Caption(T("Teeyoot"))
                         .Position("2.1")
-                        .Action("Index", "Home", new {area = "Teeyoot.Module"})
+                        .Action("Index", "Home", new { area = "Teeyoot.Module" })
                     )
                      .Add(subItem => subItem
                         .Caption(T("Campaigns"))
@@ -51,11 +51,11 @@ namespace Teeyoot.Module
                         .Caption(T("Messages"))
                         .Position("2.9")
                         .Action("Index", "AdminMessageContent", new { area = "Teeyoot.Messaging" })
-                    )  
+                    )
                     .Add(subItem => subItem
                         .Caption(T("FAQ"))
                         .Position("2.2")
-                        .Action("Index", "FaqAdmin", new {area = "Teeyoot.FAQ"})
+                        .Action("Index", "FaqAdmin", new { area = "Teeyoot.FAQ" })
                     )
                     .Add(subItem => subItem
                         .Caption(T("Categories"))
@@ -66,20 +66,20 @@ namespace Teeyoot.Module
                         .Caption(T("Product Settings"))
                         .Position("2.5")
                         .Action("Index", "AdminWizard", new { area = "Teeyoot.WizardSettings" })
-                        .Add(T("Fonts"),
-                            i => i.Action("FontList", "AdminWizard", new { area = "Teeyoot.WizardSettings" }).LocalNav())
-                        .Add(T("Colors"),
-                            i => i.Action("Index", "Colour", new { area = "Teeyoot.WizardSettings" }).LocalNav())
-                        .Add(T("Product Headlines"),
-                            i => i.Action("Index", "ProductHeadline", new { area = "Teeyoot.WizardSettings" }).LocalNav())
-                        .Add(T("Product Styles"),
-                            i => i.Action("Index", "ProductStyle", new { area = "Teeyoot.WizardSettings" }).LocalNav())
-                        .Add(T("Product Sizes"),
-                            i => i.Action("Index", "ProductSize", new { area = "Teeyoot.WizardSettings" }).LocalNav())
                         .Add(T("Artworks"),
                             i => i.Action("Index", "Artwork", new { area = "Teeyoot.WizardSettings" }).LocalNav())
-                        .Add(T("Products"),
+                        .Add(T("Styles"),
                             i => i.Action("Index", "Product", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                        .Add(T("Types"),
+                            i => i.Action("Index", "ProductStyle", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                        .Add(T("Headlines"),
+                            i => i.Action("Index", "ProductHeadline", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                        .Add(T("Sizes"),
+                            i => i.Action("Index", "ProductSize", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                        .Add(T("Colors"),
+                            i => i.Action("Index", "Colour", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                        .Add(T("Fonts"),
+                            i => i.Action("FontList", "AdminWizard", new { area = "Teeyoot.WizardSettings" }).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("Cost Calculator"))
@@ -94,13 +94,13 @@ namespace Teeyoot.Module
                     .Add(subItem => subItem
                         .Caption(T("Mandrill Settings"))
                         .Position("2.3")
-                        .Action("Index", "AdminMessage", new {area = "Teeyoot.Messaging"})
-                    )                                                                                                                                    
+                        .Action("Index", "AdminMessage", new { area = "Teeyoot.Messaging" })
+                    )
                     .Add(subItem => subItem
                         .Caption(T("Common Settings"))
                         .Action("Index", "AdminCommonSettings", new { area = "Teeyoot.Module" })
                     )
-                    
+
                 );
         }
     }
