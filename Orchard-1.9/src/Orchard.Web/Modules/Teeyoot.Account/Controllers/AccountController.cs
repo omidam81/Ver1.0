@@ -15,6 +15,7 @@ using Teeyoot.Account.Common;
 using Teeyoot.Account.DTOs;
 using Teeyoot.Account.Services;
 using Teeyoot.Account.ViewModels;
+using Orchard.ContentManagement;
 
 namespace Teeyoot.Account.Controllers
 {
@@ -428,16 +429,28 @@ namespace Teeyoot.Account.Controllers
                 return res;
             }
 
+            var userCheckStatus = _membershipService.GetUser(email);
+            if (userCheckStatus == null)
+            {
+                return res;
+            }
+            else
+            {
+                if (userCheckStatus.As<UserPart>().RegistrationStatus == UserStatus.Pending)
+                {
+                    return new ValidateLogOnResult
+                    {
+                        IsValid = false,
+                        ValidationSummary = T("User has been locked by the administrator!").ToString()
+                    };
+                }
+            }
+
             var user = _membershipService.ValidateUser(email, password);
             if (user == null)
             {
                 return res;
-                //return new ValidateLogOnResult
-                //{
-                //    IsValid = false,
-                //    ValidationSummary = T("User has been locked by the administrator!").ToString()
-                //};
-            }           
+            }
 
             return new ValidateLogOnResult
             {
