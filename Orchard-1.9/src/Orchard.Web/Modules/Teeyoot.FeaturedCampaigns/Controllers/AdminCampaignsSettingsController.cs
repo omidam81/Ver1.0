@@ -74,6 +74,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                 })                               
                                 .ToList()
                                 .OrderBy(e => e.Title);
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false).Count();
+
             var yesterday = DateTime.UtcNow.AddDays(-1);
             var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
 
@@ -100,8 +102,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                         .Sum(p => (int?)p.Count) ?? 0
                     );
             });
-          
-            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray() });
+
+            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), NotApprovedTotal = totalNotApproved });
         }
 
         public ActionResult ChangeStatus(PagerParameters pagerParameters, int id, CampaignStatus status)

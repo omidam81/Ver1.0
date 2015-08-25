@@ -14,5 +14,7 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public int StartedIndex { get; set; }
 
         public string SearchString { get; set; }
+
+        public int NotApprovedTotal { get; set; }
     }
 }
