@@ -75,6 +75,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\opensans-italic-webfont.svg" />
+    <Content Include="Content\fonts\opensans-light-webfont.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
@@ -176,6 +178,45 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-italic-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-italic-webfont.eot_" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-italic-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-italic-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.eot.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.eot_" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.eot_.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.svg.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.ttf.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\opensans-light-webfont.woff.1" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
