@@ -804,6 +804,9 @@
                         {
                             <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
                             <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
+                            <div class="info-label">
+                                <p>After having enough requests, the seller will decide if the campaign should be re-activated</p>
+                            </div>
                         }
                         else
                         {
@@ -1117,8 +1120,9 @@
                             </div>
 
                             <div class="modal-body-central-block">
-                                @T("If just") <span>@T("10")</span> @T("more items are reserved, we can bring this design back! Leave your email and reserve your order now!")
+                                @T("If just") <span>@Model.CntRequests</span> @T("more items are reserved, we can bring this design back! Leave your email and reserve your order now!")
                             </div>
+
                             <div id="reserv_container">
                                 <div class="modal-body">
                                     <div class="tooltip tooltip--topleft">

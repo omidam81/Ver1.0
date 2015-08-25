@@ -71,15 +71,30 @@ namespace Teeyoot.Module.Controllers
                         CampaignIndexViewModel model = new CampaignIndexViewModel() { };
                         model.Campaign = campaign;
 
-                        if (campaign.ProductCountSold >= campaign.ProductMinimumGoal)
+                        if (campaign.ProductCountSold >= campaign.ProductMinimumGoal && campaign.IsActive)
                         {
                             var infoMessage = T("The minimum order has been reached, so this shirt will definitely go to print.");
                             _notifier.Add(NotifyType.Information, infoMessage);
                         }
-                        if (campaign.IsApproved == true && campaign.ProductCountSold <= campaign.ProductMinimumGoal)
+                        if (campaign.IsApproved == true && campaign.ProductCountSold <= campaign.ProductMinimumGoal && campaign.IsActive)
                         {
-                            var infoMessage = T(String.Format("The remaining number of orders for this campaign to be printed is {0}", campaign.ProductMinimumGoal - campaign.ProductCountSold));
+                            var infoMessage = T(String.Format("{0} orders have been made. We need {1} more for this campaign to proceed.", campaign.ProductCountSold, campaign.ProductMinimumGoal - campaign.ProductCountSold));
                                 _notifier.Add(NotifyType.Information, infoMessage);                          
+                        }
+                        if (!campaign.IsActive)
+                        {
+                            var cntRequests =  _campaignService.GetCountOfReservedRequestsOfCampaign(campaign.Id);
+                            model.CntRequests = 10 - (cntRequests >= 10 ? 10 : cntRequests);
+                            if (cntRequests >= 10)
+                            {
+                                var infoMessage = T(String.Format("This campaign is likely to be re-activated soon."));
+                                _notifier.Add(NotifyType.Information, infoMessage);
+                            }
+                            else
+                            {
+                                var infoMessage = T(String.Format("Only {0} more requests for the campaign to be re-activated", 10 - (cntRequests >= 10 ? 10 : cntRequests)));
+                                _notifier.Add(NotifyType.Information, infoMessage);
+                            }
                         }
 
                         if (promo != null)

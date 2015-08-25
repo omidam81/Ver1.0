@@ -45,5 +45,7 @@ namespace Teeyoot.Module.Services
         void SetCampaignStatus(int id, CampaignStatus status);
 
         void ReservCampaign(int id, string email);
+
+        int GetCountOfReservedRequestsOfCampaign(int id);
     }
 }
