@@ -152,6 +152,12 @@
 
         node.appendChild(textnode);
         document.getElementsByClassName("local-section-status")[0].appendChild(node);
+
+        var textheader = document.createTextNode("Details");
+        var nodeheader = document.createElement("h1");
+        nodeheader.id = 'page-title';
+        nodeheader.appendChild(textheader);
+        document.getElementsByClassName("zone-header")[0].appendChild(nodeheader);
     });
     </script>
 }
