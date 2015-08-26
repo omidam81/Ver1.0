@@ -2748,16 +2748,52 @@ var design={
 			if(!e) e = $jd('.drag-item-selected');
 			var oldwidth = 0, oldheight = 0,oldsize = 0;
 			var omp = {};
+			var side = "scale";
 			e.resizable({minHeight: 15, minWidth: 15,				
 			    aspectRatio: auto,
 				handles: handles,
 				start: function (event, ui) {
 				    resizing = true;
+				    northHandleTop = document.querySelector('.ui-resizable-n').offsetTop;
+				    northHandleLeft = document.querySelector('.ui-resizable-n').offsetLeft;
+				    southHandleTop = document.querySelector('.ui-resizable-s').offsetTop;
+				    southHandleLeft = document.querySelector('.ui-resizable-s').offsetLeft;
+				    westHandleTop = document.querySelector('.ui-resizable-w').offsetTop;
+				    westHandleLeft = document.querySelector('.ui-resizable-w').offsetLeft;
+				    eastHandleTop = document.querySelector('.ui-resizable-e').offsetTop;
+				    eastHandleLeft = document.querySelector('.ui-resizable-e').offsetLeft;
 				    omp.x = event.pageX;
 				    omp.y = event.pageY;
-				    //omp.d = Math.sqrt(Math.pow(ui.size.width / 2, 2) + Math.pow(ui.size.height / 2, 2));
-				    //omp.d = Math.sqrt(Math.pow(ui.size.width / 2, 2) + Math.pow(ui.size.height / 2, 2));
 				    var offset = ui.element.offset();
+				    var tr = ui.element[0].style.transform;
+				    if (ui.element[0].style.transform != "rotate(0rad)") {
+				        side = "rotate";
+				    } else {
+				        
+				        if ((omp.x > offset.left + northHandleLeft) && (omp.x < offset.left + northHandleLeft + 12)) {
+				            if ((omp.y > offset.top - 6) && (omp.y < offset.top + 6)) {
+				                side = "north";
+				            }
+				        }
+				        if ((omp.x > offset.left + southHandleLeft) && (omp.x < offset.left + southHandleLeft + 12)) {
+				            if ((omp.y > offset.top + southHandleTop) && (omp.y < offset.top + southHandleTop + 12)) {
+				                side = "south";
+				            }
+				        }
+				        if ((omp.y > offset.top + westHandleTop) && (omp.y < offset.top + westHandleTop + 12)) {
+				            if ((omp.x > offset.left - 6) && (omp.x < offset.left + 6)) {
+				                side = "west";
+				            }
+				        }
+				        if ((omp.y > offset.top + eastHandleTop) && (omp.y < offset.top + eastHandleTop + 12)) {
+				            if ((omp.x > offset.left + eastHandleLeft) && (omp.x < offset.left + eastHandleLeft + 12)) {
+				                side = "east";
+				            }
+				        }
+				    }
+				    //omp.d = Math.sqrt(Math.pow(ui.size.width / 2, 2) + Math.pow(ui.size.height / 2, 2));
+				    //omp.d = Math.sqrt(Math.pow(ui.size.width / 2, 2) + Math.pow(ui.size.height / 2, 2));
+				    
 				    oldrect = ui.element[0].getBoundingClientRect();
 				    omp.centerOffset = { x: offset.left + oldrect.width / 2 - omp.x, y: offset.top + oldrect.height / 2 - omp.y };
 				    omp.d = Math.sqrt(Math.pow(omp.centerOffset.x, 2) + Math.pow(omp.centerOffset.y, 2));
@@ -2770,6 +2806,7 @@ var design={
 					design.print.size();
 				},
 				resizee: function (event, ui) {
+				    
 				    var e = ui.element;
 				    var mp = { x: event.pageX, y: event.pageY };
 				    var offset = ui.element.offset();
@@ -2784,13 +2821,58 @@ var design={
 				    //scale = (d) / omp.d / 2;
 				    //scale = 1 + direction * scale;
 				    scale = d / omp.d;
+                    
+				    //if (scale > 2) {
+				    //    var fixed = Math.floor(scale);
+				    //    scale = 1 + (scale - fixed);
+				    //    //scale = 1 + Math.pow((scale - 2), 2);
+				    //}
+				    //if (scale > 1.1) {
+				    //    var koeff = ((scale - 1) / 0.1).toFixed(0);
+				    //    scale = 1 + Math.pow((scale - 1),koeff);
+				    //}
 				    if (scale > 1) {
 				        scale = (scale - 1) / 1.4 + 1;
 				    }
 				    //console.log("before", ui.size, scale);
 				    //console.log(mp.centerOffset, even.pageX, event.pageY, d, scale);
-				    ui.size.width = ui.originalSize.width * scale;
-				    ui.size.height = ui.originalSize.height * scale;
+				    switch (side) {
+				        case "north": {
+				            ui.element.top = ui.originalPosition.top;
+				            ui.element.left = ui.originalPosition.left;
+				            ui.size.width = ui.originalSize.width;
+				            ui.size.height = (ui.originalSize.height + (omp.y - mp.y))>0 ? ui.originalSize.height + (omp.y - mp.y) : 0 ;
+				            break;}
+				        case "south": {
+				            ui.element.top = ui.originalPosition.top;
+				            ui.element.left = ui.originalPosition.left;
+				            ui.size.width = ui.originalSize.width;
+				            ui.size.height = ui.originalSize.height + (mp.y - omp.y);
+				            break;
+                        }
+				        case "west": {
+				            ui.element.top = ui.originalPosition.top;
+				            ui.element.left = ui.originalPosition.left;
+				            ui.size.width = ui.originalSize.width + (omp.x - mp.x);
+				            ui.size.height = ui.originalSize.height ;
+				            break;
+                        }
+				        case "east": {
+				            ui.element.top = ui.originalPosition.top;
+				            ui.element.left = ui.originalPosition.left;
+				            ui.size.width = ui.originalSize.width - (omp.x - mp.x);
+				            ui.size.height = ui.originalSize.height;
+				            break;
+				        }
+
+				        case "scale": {
+				            ui.size.width = ui.originalSize.width * scale;
+				            ui.size.height = ui.originalSize.height * scale;
+				            break;
+				        }
+				    }
+				    //ui.size.width = ui.originalSize.width * scale;
+				    //ui.size.height = ui.originalSize.height * scale;
 				    //console.log("after", ui.size);
 				    //$width = ui.originalSize.width * scale;
 				    //$height = ui.originalSize.height * scale;
