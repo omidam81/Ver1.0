@@ -2746,7 +2746,7 @@ var design={
 			var oldwidth = 0, oldheight = 0,oldsize = 0;
 			var omp = {};
 			var side = "scale";
-			e.resizable({minHeight: 15, minWidth: 15,				
+			e.resizable({minHeight: 0, minWidth: 15,				
 			    aspectRatio: auto,
 				handles: handles,
 				start: function (event, ui) {
@@ -2844,20 +2844,20 @@ var design={
 				            ui.element.top = ui.originalPosition.top;
 				            ui.element.left = ui.originalPosition.left;
 				            ui.size.width = ui.originalSize.width;
-				            ui.size.height = ui.originalSize.height + (mp.y - omp.y);
+				            ui.size.height = (ui.originalSize.height + (mp.y - omp.y)) > 0 ? ui.originalSize.height + (mp.y - omp.y) : 0;
 				            break;
                         }
 				        case "west": {
 				            ui.element.top = ui.originalPosition.top;
 				            ui.element.left = ui.originalPosition.left;
-				            ui.size.width = ui.originalSize.width + (omp.x - mp.x);
+				            ui.size.width = (ui.originalSize.width + (omp.x - mp.x))>0 ? ui.originalSize.width + (omp.x - mp.x) : 0 ;
 				            ui.size.height = ui.originalSize.height ;
 				            break;
                         }
 				        case "east": {
 				            ui.element.top = ui.originalPosition.top;
 				            ui.element.left = ui.originalPosition.left;
-				            ui.size.width = ui.originalSize.width - (omp.x - mp.x);
+				            ui.size.width = (ui.originalSize.width - (omp.x - mp.x))>0 ? ui.originalSize.width - (omp.x - mp.x) : 0;
 				            ui.size.height = ui.originalSize.height;
 				            break;
 				        }
