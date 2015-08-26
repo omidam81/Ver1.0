@@ -519,6 +519,24 @@ window.onload = function initWizard() {
                 estimatedProfitChange();
             }
             $("#first-product").click();
+
+            var list = document.getElementById("item-options-dropdown-tees");
+            var listProd = document.getElementById("product");
+
+            listProd.innerHTML = "";
+
+            $.each(design.products.productsData, function (i, el) {
+                if (el.id != productId) {
+
+                    if (design.products.categoriesList[list.selectedIndex].products.indexOf(el.id) >= 0) {
+                        var option = document.createElement("option");
+                        option.value = i;
+                        option.id = i;
+                        option.innerHTML = el.name;
+                        listProd.appendChild(option);
+                    }
+                };
+            });
         });
 
         globalPrdc = prdc;
