@@ -1916,6 +1916,7 @@
     max-width: 1236px;
     margin-left: auto;
     margin-right: auto;
+    min-height: 100%;
 }
 
 .aside-1 .tb-aside-first {
