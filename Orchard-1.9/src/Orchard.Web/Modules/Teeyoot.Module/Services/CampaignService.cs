@@ -208,7 +208,11 @@ namespace Teeyoot.Module.Services
                         CurrencyRecord = prod.CurrencyId != 1 ? _currencyRepository.Get(1) : _currencyRepository.Get(prod.CurrencyId), // TODO: eugene: implement
                         Price = price,
                         ProductColorRecord = _colorRepository.Get(prod.ColorId),
-                        ProductRecord = _productRepository.Get(prod.ProductId)
+                        ProductRecord = _productRepository.Get(prod.ProductId),
+                        SecondProductColorRecord = prod.SecondColorId == 0 ? null : _colorRepository.Get(prod.SecondColorId),
+                        ThirdProductColorRecord = prod.ThirdColorId == 0 ? null : _colorRepository.Get(prod.ThirdColorId),
+                        FourthProductColorRecord = prod.FourthColorId == 0 ? null : _colorRepository.Get(prod.FourthColorId),
+                        FifthProductColorRecord = prod.FifthColorId == 0 ? null : _colorRepository.Get(prod.FifthColorId)
                     };
 
                     _campProdRepository.Create(campProduct);

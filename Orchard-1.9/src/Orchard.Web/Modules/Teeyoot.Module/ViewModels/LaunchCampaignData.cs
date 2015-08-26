@@ -34,6 +34,14 @@ namespace Teeyoot.Module.ViewModels
 
         public int ColorId { get; set; }
 
+        public int SecondColorId { get; set; }
+
+        public int ThirdColorId { get; set; }
+
+        public int FourthColorId { get; set; }
+
+        public int FifthColorId { get; set; }
+
         public string BaseCost { get; set; }
 
         public string Price { get; set; }

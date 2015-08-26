@@ -3,6 +3,10 @@ app.state.currentProduct = {
     ProductId: 95,
     BaseCost: 7.14,
     ColorId: 2260,
+    SecondColorId: 0,
+    ThirdColorId: 0,
+    FourthColorId: 0,
+    FifthColorId: 0,
     Price:  parseFloat(String(document.getElementById("profSale").value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2),
     CurrencyId:1
 

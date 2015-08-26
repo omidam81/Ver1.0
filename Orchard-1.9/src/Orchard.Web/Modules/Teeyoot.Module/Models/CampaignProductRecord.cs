@@ -19,6 +19,14 @@ namespace Teeyoot.Module.Models
 
         public virtual ProductColorRecord ProductColorRecord { get; set; }
 
+        public virtual ProductColorRecord SecondProductColorRecord { get; set; }
+
+        public virtual ProductColorRecord ThirdProductColorRecord { get; set; }
+
+        public virtual ProductColorRecord FourthProductColorRecord { get; set; }
+
+        public virtual ProductColorRecord FifthProductColorRecord { get; set; }
+
         public virtual CurrencyRecord CurrencyRecord { get; set; }
     }
 }
