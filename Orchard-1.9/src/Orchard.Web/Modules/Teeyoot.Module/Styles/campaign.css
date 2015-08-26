@@ -430,65 +430,6 @@
     }
 }
 
-.image_stack__nav {
-    text-align: center;
-    position: relative;
-    z-index: 4;
-    line-height: 1;
-}
-
-@media all and (min-width: 980px) {
-    .image_stack__nav {
-        position: absolute;
-        z-index: 1000;
-        bottom: 0;
-        left: 0;
-    }
-}
-
-.image_stack__nav_list {
-    padding-top: 10px;
-}
-
-.image_stack__nav_item {
-    border-radius: 3px;
-    border: 3px solid #e8eced;
-    cursor: pointer;
-    display: inline-block;
-    margin: 5px;
-}
-
-@media all and (min-width: 980px) {
-    .image_stack__nav_item {
-        background-color: white;
-        border-width: 1px;
-        display: block;
-        height: 50px;
-        margin: 10px 0;
-        opacity: .65;
-        overflow: hidden;
-        width: 50px;
-    }
-}
-
-.image_stack__nav_item--active {
-    border-color: #6c7478;
-}
-
-@media all and (min-width: 980px) {
-    .image_stack__nav_item {
-        border-color: #6c7478;
-    }
-
-        .image_stack__nav_item:hover, .image_stack__nav_item.image_stack__nav_item--active {
-            box-shadow: 0 0 0.5px 1px rgba(57,172,230,0.05);
-            background-color: #f5fcff;
-            border-color: #39ace6;
-            opacity: 1;
-            -webkit-transition: all 100ms;
-            transition: all 100ms;
-        }
-}
 
 display--desktop {
     display: none;
@@ -3522,19 +3463,34 @@ input[type="submit"].button-cta, button.button__cta {
     position: relative;
     z-index: 4;
     line-height: 1;
+        width: 100%;
+    text-align: center;
 }
 
-@media all and (min-width: 980px) {
+/*@media all and (min-width: 980px) {*/
     .image_stack__nav {
         position: absolute;
         z-index: 1000;
         bottom: 0;
         left: 0;
     }
-}
+/*}*/
 
 .image_stack__nav_list {
     padding-top: 10px;
+}
+@media all and (max-width: 1150px){
+.image_stack__nav_list {
+    width: 120px;
+    margin-left: 300px;
+}
+}
+
+@media all and (max-width: 980px){
+.image_stack__nav_list {
+    width: auto;
+    margin-left:0;
+}
 }
 
 .image_stack__nav_item {
@@ -3545,18 +3501,18 @@ input[type="submit"].button-cta, button.button__cta {
     margin: 5px;
 }
 
-@media all and (min-width: 980px) {
+/*@media all and (min-width: 980px) {*/
     .image_stack__nav_item {
         background-color: white;
         border-width: 1px;
-        display: block;
+        /*display: block;*/
         height: 50px;
         margin: 10px 0;
         opacity: .65;
         overflow: hidden;
         width: 50px;
     }
-}
+/*}*/
 
 
 .image_stack__nav_item--active {
@@ -3832,26 +3788,19 @@ input[type="submit"].button-cta, button.button__cta {
     }
 }
 
-.image_stack__image_wrap {
-    /*max-width: 90%;
-    display: block;
-    margin: 0 auto;*/
-}
-
-@media all and (min-width: 980px) {
     .image_stack__nav_item {
         border-color: #6c7478;
     }
 
         .image_stack__nav_item:hover, .image_stack__nav_item.image_stack__nav_item--active {
-            box-shadow: 0 0 0.5px 1px rgba(57,172,230,0.05);
-            background-color: #f5fcff;
-            border-color: #39ace6;
+          
+            background-color: #fed2bf;
+            border-color: #ff4f00;
             opacity: 1;
             -webkit-transition: all 100ms;
             transition: all 100ms;
         }
-}
+
 
 @media all and (max-width: 820px) {
     .image_stack__container {
@@ -3868,7 +3817,7 @@ input[type="submit"].button-cta, button.button__cta {
 @media all and (max-width: 770px) {
     .image_stack__container {
         margin-bottom: 0;
-        height: 620px !important;
+        height: 600px !important;
     }
 }
 
@@ -3888,13 +3837,13 @@ input[type="submit"].button-cta, button.button__cta {
     }
 
     .image_stack__container {
-        height: 520px !important;
+        height: 480px !important;
     }
 }
 
 @media all and (max-width: 630px) {
     .image_stack__container {
-        height: 500px !important;
+        height: 440px !important;
     }
 }
 
@@ -3904,7 +3853,7 @@ input[type="submit"].button-cta, button.button__cta {
     }
 
     .image_stack__container {
-        height: 480px !important;
+        height: 440px !important;
     }
 }
 
@@ -3914,7 +3863,7 @@ input[type="submit"].button-cta, button.button__cta {
     }
 
     .image_stack__container {
-        height: 440px !important;
+        height: 420px !important;
     }
 }
 
@@ -3924,7 +3873,7 @@ input[type="submit"].button-cta, button.button__cta {
     }
 
     .image_stack__container {
-        height: 360px !important;
+        height: 340px !important;
     }
 }
 
