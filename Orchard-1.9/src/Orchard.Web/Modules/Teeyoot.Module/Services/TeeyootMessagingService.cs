@@ -75,7 +75,7 @@ namespace Teeyoot.Messaging.Services
             var mandrillMessage = new MandrillMessage
             {
                 MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
-                FromEmail = "noreply@teeyoot.com",
+                FromEmail = "Teeyoot@teeyoot.com",
                 Subject = "Now you can create a campaign!"
             };
 
@@ -330,7 +330,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromEmail = "Teeyoot@teeyoot.com";
             mandrillMessage.Subject = "Payout completed";
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == payout.UserId);
             var payoutInf = _payoutInformRepository.Table.Where(inf => inf.TranzactionId == payout.Id).FirstOrDefault();
@@ -418,7 +418,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromEmail = "Teeyoot@teeyoot.com";
             mandrillMessage.Subject = "New order";
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
@@ -443,7 +443,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromEmail = "Teeyoot@teeyoot.com";
             mandrillMessage.Subject = "You just reserved a t-shirt with Teeyoot";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
                 emails.Add(new MandrillMailAddress(order.Email, "Buyer"));
@@ -463,7 +463,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromEmail = "Teeyoot@teeyoot.com";
             mandrillMessage.Subject = "Your campaign has been changed";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
@@ -486,7 +486,7 @@ namespace Teeyoot.Messaging.Services
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
-            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromEmail = "Teeyoot@teeyoot.com";
             mandrillMessage.Subject = "Payout Request";
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
