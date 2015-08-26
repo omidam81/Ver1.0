@@ -3,10 +3,6 @@ app.state.currentProduct = {
     ProductId: 95,
     BaseCost: 7.14,
     ColorId: 2260,
-    SecondColorId: 0,
-    ThirdColorId: 0,
-    FourthColorId: 0,
-    FifthColorId: 0,
     Price:  parseFloat(String(document.getElementById("profSale").value).match(/-?\d+(?:\.\d+)?/g, '') || 0, 10).toFixed(2),
     CurrencyId:1
 
@@ -2101,594 +2097,595 @@ var design={
 		}
 	},
 	item:{
-		designini: function(){
-            var state = app.state;
-            var color = state.color;
-            var positions = ['front', 'back'];
-            var image = state.getImage();
-            $.each(positions, function(i, view){
-                var $view = $('#view-'+view);
-                var $images = $view.find('.product-design');
-                $images.html('');
-                var $img = $('<img>')
+	    designini: function(){
+	        var state = app.state;
+	        var color = state.color;
+	        var positions = ['front', 'back'];
+	        var image = state.getImage();
+	        $.each(positions, function(i, view){
+	            var $view = $('#view-'+view);
+	            var $images = $view.find('.product-design');
+	            $images.html('');
+	            var $img = $('<img>')
                     .addClass('product_images')
                     .attr('src', assetsUrls.products + 'product_type_'+state.product.id+'_'+view+'.png')
                     .css({'background': color.value, 'width':image.width, 'height': image.height});
-                $images.append($img);
-                var $designArea = $('.design-area', $view);
-                var prefix = 'printable_' + view + '_';
+	            $images.append($img);
+	            var $designArea = $('.design-area', $view);
+	            var prefix = 'printable_' + view + '_';
                 
-                $designArea.css({ 'height': image[prefix + 'height'], 'width': image[prefix + 'width'], 'left': image[prefix + 'left'], 'top': image[prefix + 'top'] });
-                $designArea.css({'display': 'block'});
-            });
-		},
-        getNodeRect: function($item){
-            var body = document.body;
-            var docElem = document.documentElement;
-            var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
-            var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
-            var clientTop = docElem.clientTop || body.clientTop || 0;
-            var clientLeft = docElem.clientLeft || body.clientLeft || 0;
-            var parentBox;
-            var top;
-            var box;
-            var left;
-            var item;
-            var view = app.state.getView();
-            if ((app.state.checkAll == true) && ($item[0] != null)) {
-                $item[0] = null
-            }
-            if ($item[0] == null)
-            {
-                var i = 0;
-                var maxLeftOffset = 0;
-                var maxWidthOffset = 0;
-                var maxTopOffset = 0;
-                var maxHeightOffset = 0;
-                var objName = "item-0";
-                while (document.getElementById(objName) != null) {
-                    item = document.getElementById(objName);
-                    if (item.parentNode.parentNode.id == "view-" + view + "-design-area") {
-                        if (Math.abs(item.offsetLeft) > Math.abs(maxLeftOffset)) {
-                            maxLeftOffset = item.offsetLeft;
-                        } else {
-                            if (item.offsetLeft < 0) {
-                                maxLeftOffset = item.offsetLeft;
-                            }
-                        }
-                        if (Math.abs(item.offsetTop) > Math.abs(maxTopOffset)) {
-                            maxTopOffset = item.offsetTop;
-                        } else {
-                            if (item.offsetTop < 0) {
-                                maxTopOffset = item.offsetTop;
-                            }
-                        }
-                        if (item.offsetWidth > maxWidthOffset) {
-                            maxWidthOffset = item.offsetWidth;
-                        };
-                        if (item.offsetHeight > maxHeightOffset) {
-                            maxHeightOffset = item.offsetHeight;
-                        };
-                    };
-                    i++;
-                    objName = "item-" + i;
-                    }                 
+	            $designArea.css({ 'height': image[prefix + 'height'], 'width': image[prefix + 'width'], 'left': image[prefix + 'left'], 'top': image[prefix + 'top'] });
+	            $designArea.css({'display': 'block'});
+	        });
+	    },
+	    getNodeRect: function($item){
+	        var body = document.body;
+	        var docElem = document.documentElement;
+	        var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+	        var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+	        var clientTop = docElem.clientTop || body.clientTop || 0;
+	        var clientLeft = docElem.clientLeft || body.clientLeft || 0;
+	        var parentBox;
+	        var top;
+	        var box;
+	        var left;
+	        var item;
+	        var view = app.state.getView();
+	        if ((app.state.checkAll == true) && ($item[0] != null)) {
+	            $item[0] = null
+	        }
+	        if ($item[0] == null)
+	        {
+	            var i = 0;
+	            var maxLeftOffset = 0;
+	            var maxWidthOffset = 0;
+	            var maxTopOffset = 0;
+	            var maxHeightOffset = 0;
+	            var objName = "item-0";
+	            while (document.getElementById(objName) != null) {
+	                item = document.getElementById(objName);
+	                if (item.parentNode.parentNode.id == "view-" + view + "-design-area") {
+	                    if (Math.abs(item.offsetLeft) > Math.abs(maxLeftOffset)) {
+	                        maxLeftOffset = item.offsetLeft;
+	                    } else {
+	                        if (item.offsetLeft < 0) {
+	                            maxLeftOffset = item.offsetLeft;
+	                        }
+	                    }
+	                    if (Math.abs(item.offsetTop) > Math.abs(maxTopOffset)) {
+	                        maxTopOffset = item.offsetTop;
+	                    } else {
+	                        if (item.offsetTop < 0) {
+	                            maxTopOffset = item.offsetTop;
+	                        }
+	                    }
+	                    if (item.offsetWidth > maxWidthOffset) {
+	                        maxWidthOffset = item.offsetWidth;
+	                    };
+	                    if (item.offsetHeight > maxHeightOffset) {
+	                        maxHeightOffset = item.offsetHeight;
+	                    };
+	                };
+	                i++;
+	                objName = "item-" + i;
+	            }                 
                               
-                //box = item.getBoundingClientRect();
-                //top = item.offsetTop;
-                //left = item.offsetLeft;
-                //return { top: top, left: left, width: item.offsetWidth, height: item.offsetHeight };
-                return { top: maxTopOffset, left: maxLeftOffset, width: maxWidthOffset, height: maxHeightOffset };
+	            //box = item.getBoundingClientRect();
+	            //top = item.offsetTop;
+	            //left = item.offsetLeft;
+	            //return { top: top, left: left, width: item.offsetWidth, height: item.offsetHeight };
+	            return { top: maxTopOffset, left: maxLeftOffset, width: maxWidthOffset, height: maxHeightOffset };
                 
-            }
-            else
-            {
-                parentBox = $item.parents(':first').offset();
-                box = $item[0].getBoundingClientRect();
-                top = box.top + scrollTop - clientTop - parentBox.top;
-                left = scrollLeft - clientLeft + box.left - parentBox.left;
-                return { top: top, left: left, width: box.width, height: box.height };
-            }
+	        }
+	        else
+	        {
+	            parentBox = $item.parents(':first').offset();
+	            box = $item[0].getBoundingClientRect();
+	            top = box.top + scrollTop - clientTop - parentBox.top;
+	            left = scrollLeft - clientLeft + box.left - parentBox.left;
+	            return { top: top, left: left, width: box.width, height: box.height };
+	        }
 
-            return {top: top, left:left, width:box.width, height:box.height};
-        },
-        placeSizeBox:function($item, $sizeBox, keep){
-            $item = $($item);
-            var ppi = app.state.getImage().ppi;
-            if(!$sizeBox){
-                var id = '#sizer-'+$item.data('id');
-                $sizeBox = $(id);
-            }
-            var iWidth = ($item.width()/ppi).toFixed(2);
-            var iHeight = ($item.height()/ppi).toFixed(2);
+	        return {top: top, left:left, width:box.width, height:box.height};
+	    },
+	    placeSizeBox:function($item, $sizeBox, keep){
+	        $item = $($item);
+	        var ppi = app.state.getImage().ppi;
+	        if(!$sizeBox){
+	            var id = '#sizer-'+$item.data('id');
+	            $sizeBox = $(id);
+	        }
+	        var iWidth = ($item.width()/ppi).toFixed(2);
+	        var iHeight = ($item.height()/ppi).toFixed(2);
 
 
-            $sizeBox.html(iWidth+'" x '+iHeight+'"');
-            var rect = this.getNodeRect($item);
-            var view = '#view-'+app.state.getView();
-            $sizeBox.css({'top': rect.top + rect.height + 30, 'left':rect.left+rect.width/2});
+	        $sizeBox.html(iWidth+'" x '+iHeight+'"');
+	        var rect = this.getNodeRect($item);
+	        var view = '#view-'+app.state.getView();
+	        $sizeBox.css({'top': rect.top + rect.height + 30, 'left':rect.left+rect.width/2});
 
-            var $dialog = $(view+' .size-dialog');
-            if(keep !== 'width'){
-                $dialog.find('input.width').val(iWidth);
-            }
-            if(keep!== 'height'){
-                $dialog.find('input.height').val(iHeight);
-            }
-            $dialog.css({'top': rect.top + rect.height + 30, 'left':rect.left+rect.width/2});
-        },
-        getNextId: function(){
-            var n = -1;
-            $('#app-wrap .drag-item').each(function(){
-                var index 	= $(this).attr('id').replace('item-', '');
-                if (index > n) n = parseInt(index);
-            });
-            n = n + 1;
-            return n;
-        },
-        create: function (item, x, y) {
-		    var me = this;
+	        var $dialog = $(view+' .size-dialog');
+	        if(keep !== 'width'){
+	            $dialog.find('input.width').val(iWidth);
+	        }
+	        if(keep!== 'height'){
+	            $dialog.find('input.height').val(iHeight);
+	        }
+	        $dialog.css({'top': rect.top + rect.height + 30, 'left':rect.left+rect.width/2});
+	    },
+	    getNextId: function(){
+	        var n = -1;
+	        $('#app-wrap .drag-item').each(function(){
+	            var index 	= $(this).attr('id').replace('item-', '');
+	            if (index > n) n = parseInt(index);
+	        });
+	        n = n + 1;
+	        return n;
+	    },
+	    create: function (item, x, y) {
+	        var me = this;
 
-		    var colors = item.colors || item.color;
-		    if (colors) {
-		        app.state.useColors(colors);
-		    }
-            if (parseFloat(item.outlineW) && item.outlineC) {
-                app.state.useColors(item.outlineC);
-            }
+	        var colors = item.colors || item.color;
+	        if (colors) {
+	            app.state.useColors(colors);
+	        }
+	        if (parseFloat(item.outlineW) && item.outlineC) {
+	            app.state.useColors(item.outlineC);
+	        }
 
-			this.unselect();
-            var view = '#view-'+app.state.getView();
-			var e = $(view+' .content-inner'),
+	        this.unselect();
+	        var view = '#view-'+app.state.getView();
+	        var e = $(view+' .content-inner'),
 				div = document.createElement('div');
-			var n = this.getNextId();
+	        var n = this.getNextId();
 			
-			div.className = 'drag-item-selected drag-item';
-			div.id 		= 'item-'+n;
-			div.item 		= item;
-			item.id 		= n;
-			$(div).bind('click', function(){design.item.select(this)});
-			var center = this.align.center(item);
-			div.style.left = (x || center.left) + 'px';
-			div.style.top 	= (y || center.top) + 'px';
-			div.style.width 	= item.width+'px';
-			div.style.height 	= item.height+'px';
+	        div.className = 'drag-item-selected drag-item';
+	        div.id 		= 'item-'+n;
+	        div.item 		= item;
+	        item.id 		= n;
+	        $(div).bind('click', function(){design.item.select(this)});
+	        var center = this.align.center(item);
+	        div.style.left = (x || center.left) + 'px';
+	        div.style.top 	= (y || center.top) + 'px';
+	        div.style.width 	= item.width+'px';
+	        div.style.height 	= item.height+'px';
 			
-			$(div).data('id', item.id);
-			$(div).data('type', item.type);
-			$(div).data('file', item.file);
-			$(div).data('width', item.width);
-			$(div).data('height', item.height);
+	        $(div).data('id', item.id);
+	        $(div).data('type', item.type);
+	        $(div).data('file', item.file);
+	        $(div).data('width', item.width);
+	        $(div).data('height', item.height);
 
-			div.style.zIndex = design.zIndex;
-			design.zIndex  	= design.zIndex + 5;
-			div.style.width = item.width;
-			div.style.height = item.height;
-			$(div).append(item.svg);
+	        div.style.zIndex = design.zIndex;
+	        design.zIndex  	= design.zIndex + 5;
+	        div.style.width = item.width;
+	        div.style.height = item.height;
+	        $(div).append(item.svg);
 
-			if(item.change_color == 1)
-			{
-				$('#clipart-colors').css('display', 'block');
-				$('.btn-action-colors').css('display', 'block');
-			}
-			else
-			{
-				$('#clipart-colors').css('display', 'none');
-				$('.btn-action-colors').css('display', 'none');
-			}
+	        if(item.change_color == 1)
+	        {
+	            $('#clipart-colors').css('display', 'block');
+	            $('.btn-action-colors').css('display', 'block');
+	        }
+	        else
+	        {
+	            $('#clipart-colors').css('display', 'none');
+	            $('.btn-action-colors').css('display', 'none');
+	        }
 			
-			if(item.remove == true){
-				var remove = document.createElement('div');
-				remove.className = 'item-remove-on handle';
-				remove.setAttribute('title', 'Click to remove this item');
-				$(remove).on('click', function(e){
-                    e.preventDefault();
-                    e.stopPropagation();
-                    design.item.remove(this);
-                });
-				$(div).append(remove);
-			}
-            var $div = $(div);
-            var $sizeBox = $('<div class="edit-box-sizer" id="sizer-'+item.id+'">11.38" x 1.55"</div>');
-            $sizeBox.css('z-index',div.style.zIndex);
-            $sizeBox.on('click', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-                var $dialog = $(view+' .size-dialog');
-                me.placeSizeBox($div, $sizeBox);
-                $dialog.show();
-            });
+	        if(item.remove == true){
+	            var remove = document.createElement('div');
+	            remove.className = 'item-remove-on handle';
+	            remove.setAttribute('title', 'Click to remove this item');
+	            $(remove).on('click', function(e){
+	                e.preventDefault();
+	                e.stopPropagation();
+	                design.item.remove(this);
+	            });
+	            $(div).append(remove);
+	        }
+	        var $div = $(div);
+	        var $sizeBox = $('<div class="edit-box-sizer" id="sizer-'+item.id+'">11.38" x 1.55"</div>');
+	        $sizeBox.css('z-index',div.style.zIndex);
+	        $sizeBox.on('click', function(e){
+	            e.stopPropagation();
+	            e.preventDefault();
+	            var $dialog = $(view+' .size-dialog');
+	            me.placeSizeBox($div, $sizeBox);
+	            $dialog.show();
+	        });
 			
-			if(item.edit == true){
-				var edit = document.createElement('div');
-				edit.className = 'item-edit-on glyphicons pencil';
-				edit.setAttribute('title', 'Click to edit this item');
-				edit.setAttribute('onclick', 'design.item.edit(this)');
-				$(div).append(edit);
-			}	
+	        if(item.edit == true){
+	            var edit = document.createElement('div');
+	            edit.className = 'item-edit-on glyphicons pencil';
+	            edit.setAttribute('title', 'Click to edit this item');
+	            edit.setAttribute('onclick', 'design.item.edit(this)');
+	            $(div).append(edit);
+	        }	
 			
-			e.append(div);
-            e.append($sizeBox);
-			this.placeSizeBox($div, $sizeBox);
-			this.move($(div));
-			this.resize($(div));
-			if(item.rotate == true)
-				this.rotate($jd(div));
-			design.layers.add(item);
-			this.setup(item);
-			$('.btn-action-edit').css('display', 'none');
-			if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
-			{
-				if (item.confirmColor == true)
-				{
-					this.setupColorprint(div);
-					$('.btn-action-edit').css('display', 'block');
-				}				
-			}
-			design.print.colors();			
-			design.print.size();
-			return $div;
-		},
-        duplicate: function(item){
-            var newItem = $.extend(true, {}, item[0].item);
-            newItem.width = item.css('width');
-            newItem.height = item.css('height');
-            newItem.svg  = $(newItem.svg).clone()[0];
-            var x = parseInt(item.css('left'))+20;
-            var y = parseInt(item.css('top'))+20;
-            var $div = this.create(newItem, x, y);
-            var data = $.extend({},item.data());
-            delete data['id'];
-            delete data['ui-draggable'];
-            delete data['ui-resizable'];
-            delete data['ui-rotatable'];
-            $div.data(data);
+	        e.append(div);
+	        e.append($sizeBox);
+	        this.placeSizeBox($div, $sizeBox);
+	        this.move($(div));
+	        this.resize($(div));
+	        if(item.rotate == true)
+	            this.rotate($jd(div));
+	        design.layers.add(item);
+	        this.setup(item);
+	        $('.btn-action-edit').css('display', 'none');
+	        if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
+	        {
+	            if (item.confirmColor == true)
+	            {
+	                this.setupColorprint(div);
+	                $('.btn-action-edit').css('display', 'block');
+	            }				
+	        }
+	        design.print.colors();			
+	        design.print.size();
+	        return $div;
+	    },
+	    duplicate: function(item){
+	        var newItem = $.extend(true, {}, item[0].item);
+	        newItem.width = item.css('width');
+	        newItem.height = item.css('height');
+	        newItem.svg  = $(newItem.svg).clone()[0];
+	        var x = parseInt(item.css('left'))+20;
+	        var y = parseInt(item.css('top'))+20;
+	        var $div = this.create(newItem, x, y);
+	        var data = $.extend({},item.data());
+	        delete data['id'];
+	        delete data['ui-draggable'];
+	        delete data['ui-resizable'];
+	        delete data['ui-rotatable'];
+	        $div.data(data);
 
-            this.rotate($div);
-            $div.rotatable("setValue", item.data('angle'));
-            this.unselect();
-            this.select($div[0]);
-            this.checkBorders($div);
+	        this.rotate($div);
+	        $div.rotatable("setValue", item.data('angle'));
+	        this.unselect();
+	        this.select($div[0]);
+	        this.checkBorders($div);
 
-        },
-		setupColorprint: function(o){
-			var item = o.item;
-			$('#screen_colors_images').html('<img class="img-thumbnail img-responsive" src="'+item.thumb+'">');
-			if (item.colors != 'undefined')
-			{
-				$('#screen_colors_list span').each(function(){
-					var color = $(this).data('color');
-					if ($.inArray(color, item.colors) == -1)
-						$(this).removeClass('active');
-					else
-						$(this).addClass('active');
-				});
-			}
-			$('#screen_colors_body').show();
-		},
-		setColor: function(){
-			var colors = [], i = 0;
-			$('#screen_colors_list .bg-colors').each(function(){
-				if ($(this).hasClass('active') == true)
-				{
-					colors.push($(this).data('color'));
-					i++;
-				}
-			});
-			if (i==0)
-			{
-				alert('Please select a color.');
-			}
-			else
-			{
-				var o = this.get();
-				if (o != 'undefined')
-				{
-					var e = document.getElementById(o.attr('id'));
-					e.item.colors = colors;
-					this.printColor(e);
-				}
-				$('#screen_colors_body').hide();
-			}
-			design.print.colors();
-		},
-		printColor: function(o){
-			var box = $('#item-print-colors');
-			$('.btn-action-edit').css('display', 'none');
-			if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
-			{				
-				box.html('').css('display', 'none');
-				if(o.item.confirmColor == true)
-				{
-					if (typeof o.item.colors != 'undefined')
-					{
-						var item = o.item;
-						$('#item-print-colors').html('<div class="col-xs-6 col-md-6"><img class="img-thumbnail img-responsive" src="'+item.thumb+'"></div><div class="col-xs-6 col-md-6"><div id="print-color-added" class="list-colors"></div><br/><span id="print-color-edit">Edit ink colors</span></div>');
+	    },
+	    setupColorprint: function(o){
+	        var item = o.item;
+	        $('#screen_colors_images').html('<img class="img-thumbnail img-responsive" src="'+item.thumb+'">');
+	        if (item.colors != 'undefined')
+	        {
+	            $('#screen_colors_list span').each(function(){
+	                var color = $(this).data('color');
+	                if ($.inArray(color, item.colors) == -1)
+	                    $(this).removeClass('active');
+	                else
+	                    $(this).addClass('active');
+	            });
+	        }
+	        $('#screen_colors_body').show();
+	    },
+	    setColor: function(){
+	        var colors = [], i = 0;
+	        $('#screen_colors_list .bg-colors').each(function(){
+	            if ($(this).hasClass('active') == true)
+	            {
+	                colors.push($(this).data('color'));
+	                i++;
+	            }
+	        });
+	        if (i==0)
+	        {
+	            alert('Please select a color.');
+	        }
+	        else
+	        {
+	            var o = this.get();
+	            if (o != 'undefined')
+	            {
+	                var e = document.getElementById(o.attr('id'));
+	                e.item.colors = colors;
+	                this.printColor(e);
+	            }
+	            $('#screen_colors_body').hide();
+	        }
+	        design.print.colors();
+	    },
+	    printColor: function(o){
+	        var box = $('#item-print-colors');
+	        $('.btn-action-edit').css('display', 'none');
+	        if (app.state.print_type == 'screen' || app.state.print_type == 'embroidery')
+	        {				
+	            box.html('').css('display', 'none');
+	            if(o.item.confirmColor == true)
+	            {
+	                if (typeof o.item.colors != 'undefined')
+	                {
+	                    var item = o.item;
+	                    $('#item-print-colors').html('<div class="col-xs-6 col-md-6"><img class="img-thumbnail img-responsive" src="'+item.thumb+'"></div><div class="col-xs-6 col-md-6"><div id="print-color-added" class="list-colors"></div><br/><span id="print-color-edit">Edit ink colors</span></div>');
 						
-						$('#print-color-edit').click(function(){
-							design.item.setupColorprint(o);
-						});
-						var div = $('#print-color-added');
-						$.each(item.colors, function(i, color){
-							var span = document.createElement('span');
-								span.className = 'bg-colors';
-								span.style.backgroundColor = '#'+color;
-							div.append(span);
-						});
-						box.css('display', 'block');
-						$('.btn-action-edit').css('display', 'block');
-					}
-					else{
-						this.setupColorprint(o);
-					}
-				}				
-			}
-			else
-			{
-				box.html('').css('display', 'none');				
-			}
-		},
-		imports: function(item){		
-			this.unselect();
-            var view = '#view-'+app.state.getView();
-            var e = $(view+' .content-inner'),
+	                    $('#print-color-edit').click(function(){
+	                        design.item.setupColorprint(o);
+	                    });
+	                    var div = $('#print-color-added');
+	                    $.each(item.colors, function(i, color){
+	                        var span = document.createElement('span');
+	                        span.className = 'bg-colors';
+	                        span.style.backgroundColor = '#'+color;
+	                        div.append(span);
+	                    });
+	                    box.css('display', 'block');
+	                    $('.btn-action-edit').css('display', 'block');
+	                }
+	                else{
+	                    this.setupColorprint(o);
+	                }
+	            }				
+	        }
+	        else
+	        {
+	            box.html('').css('display', 'none');				
+	        }
+	    },
+	    imports: function(item){		
+	        this.unselect();
+	        var view = '#view-'+app.state.getView();
+	        var e = $(view+' .content-inner'),
 				span = document.createElement('div');
-			var n = -1;
-			$('#app-wrap .drag-item').each(function(){
-				var index 	= $(this).attr('id').replace('item-', '');
-				if (index > n) n = parseInt(index);
-			});			
-			var n = n + 1;
-			if (item.type == 'team')
-			{
-				if (item.text == '00')
-					span.className = 'drag-item-selected drag-item drag-item-number';
-				else
-					span.className = 'drag-item-selected drag-item drag-item-name';
-			}
-			else
-			{			
-				span.className = 'drag-item-selected drag-item';
-			}
-			span.id 		= 'item-'+n;
-			span.item 		= item;
-			item.id 		= n;
-			$(span).bind('click', function(){design.item.select(this)});
+	        var n = -1;
+	        $('#app-wrap .drag-item').each(function(){
+	            var index 	= $(this).attr('id').replace('item-', '');
+	            if (index > n) n = parseInt(index);
+	        });			
+	        var n = n + 1;
+	        if (item.type == 'team')
+	        {
+	            if (item.text == '00')
+	                span.className = 'drag-item-selected drag-item drag-item-number';
+	            else
+	                span.className = 'drag-item-selected drag-item drag-item-name';
+	        }
+	        else
+	        {			
+	            span.className = 'drag-item-selected drag-item';
+	        }
+	        span.id 		= 'item-'+n;
+	        span.item 		= item;
+	        item.id 		= n;
+	        $(span).bind('click', function(){design.item.select(this)});
 
-			span.style.left 	= item.left;
-			span.style.top 		= item.top;
-			span.style.width 	= item.width;
-			span.style.height 	= item.height;
+	        span.style.left 	= item.left;
+	        span.style.top 		= item.top;
+	        span.style.width 	= item.width;
+	        span.style.height 	= item.height;
 			
-			$(span).data('id', item.id);
-			$(span).data('type', item.type);
-			if (typeof item.file != 'undefined')
-			{
-				$(span).data('file', item.file);
-			}
-			else
-			{
-				item.file = {};
-				$(span).data('file', item.file);
-			}
-			$(span).data('width', item.width);
-			$(span).data('height', item.height);
+	        $(span).data('id', item.id);
+	        $(span).data('type', item.type);
+	        if (typeof item.file != 'undefined')
+	        {
+	            $(span).data('file', item.file);
+	        }
+	        else
+	        {
+	            item.file = {};
+	            $(span).data('file', item.file);
+	        }
+	        $(span).data('width', item.width);
+	        $(span).data('height', item.height);
 
-			span.style.zIndex = item.zIndex;							
-			$(span).append(item.svg);					
+	        span.style.zIndex = item.zIndex;							
+	        $(span).append(item.svg);					
 			
-			if(item.change_color == 1)
-			{
-				$('#clipart-colors').css('display', 'block');
-				$('.btn-action-colors').css('display', 'block');
-			}
-			else
-			{
-				$('#clipart-colors').css('display', 'none');
-				$('.btn-action-colors').css('display', 'none');
-			}
+	        if(item.change_color == 1)
+	        {
+	            $('#clipart-colors').css('display', 'block');
+	            $('.btn-action-colors').css('display', 'block');
+	        }
+	        else
+	        {
+	            $('#clipart-colors').css('display', 'none');
+	            $('.btn-action-colors').css('display', 'none');
+	        }
 			
-			if (item.type != 'team')
-			{
-				var remove = document.createElement('div');
-				remove.className = 'item-remove-on glyphicons bin';
-				remove.setAttribute('title', 'Click to remove this item');
-				remove.setAttribute('onclick', 'design.item.remove(this)');
-				$(span).append(remove);
-			}
+	        if (item.type != 'team')
+	        {
+	            var remove = document.createElement('div');
+	            remove.className = 'item-remove-on glyphicons bin';
+	            remove.setAttribute('title', 'Click to remove this item');
+	            remove.setAttribute('onclick', 'design.item.remove(this)');
+	            $(span).append(remove);
+	        }
 			
-			e.append(span);
+	        e.append(span);
 						
-			this.move($jd(span));
-			this.resize($jd(span));
-			if (item.type != 'team')
-			if (item.rotate != 0)
-			{				
-				this.rotate($jd(span), item.rotate * 0.0174532925);
-			}
-			else
-			{
-				this.rotate($jd(span));
-			}			
-			design.layers.add(item);
-			this.setup(item);
-			design.print.colors();
-			design.print.size();
-		},
-		align:{
-			left: function(){
-			},
-			right: function(){
-			},
-			top: function(){
-			},
-			bottom: function(){
-			},
-			center: function(item){
-                var imageData = app.state.getImage();
-                var view = app.state.getView();
-                var prefix = 'printable_'+view+'_';
-				var align 	= {};
-				align.left 	= (imageData[prefix+'width'] - item.width-2)/2;
-				align.left 	= parseInt(align.left);
-				align.top 	= (imageData[prefix+'height'] - item.height-2)/2;
-				align.top	= parseInt(align.top);
-				return align;
-			}
-		},
-        showGrid: function(){
-            if(app.state.snapToCenter){
-                var imageData = app.state.getImage();
-                var view = app.state.getView();
-                var prefix = 'printable_'+view+'_';
-                var left 	= parseInt(imageData[prefix+'width']/2)+imageData[prefix+'left'];
-                var top 	= imageData['chest_line_'+view];
-                $('#view-'+view+' .xgridline').css({opacity:1, left:left});
-                $('#view-'+view+' .ygridline').css({opacity:1, top:top});
-            }
+	        this.move($jd(span));
+	        this.resize($jd(span));
+	        if (item.type != 'team')
+	            if (item.rotate != 0)
+	            {				
+	                this.rotate($jd(span), item.rotate * 0.0174532925);
+	            }
+	            else
+	            {
+	                this.rotate($jd(span));
+	            }			
+	        design.layers.add(item);
+	        this.setup(item);
+	        design.print.colors();
+	        design.print.size();
+	    },
+	    align:{
+	        left: function(){
+	        },
+	        right: function(){
+	        },
+	        top: function(){
+	        },
+	        bottom: function(){
+	        },
+	        center: function(item){
+	            var imageData = app.state.getImage();
+	            var view = app.state.getView();
+	            var prefix = 'printable_'+view+'_';
+	            var align 	= {};
+	            align.left 	= (imageData[prefix+'width'] - item.width-2)/2;
+	            align.left 	= parseInt(align.left);
+	            align.top 	= (imageData[prefix+'height'] - item.height-2)/2;
+	            align.top	= parseInt(align.top);
+	            return align;
+	        }
+	    },
+	    showGrid: function(){
+	        if(app.state.snapToCenter){
+	            var imageData = app.state.getImage();
+	            var view = app.state.getView();
+	            var prefix = 'printable_'+view+'_';
+	            var left 	= parseInt(imageData[prefix+'width']/2)+imageData[prefix+'left'];
+	            var top 	= imageData['chest_line_'+view];
+	            $('#view-'+view+' .xgridline').css({opacity:1, left:left});
+	            $('#view-'+view+' .ygridline').css({opacity:1, top:top});
+	        }
 
-        },
-        hideGrid: function(){
-            $('.xgridline, .ygridline').css({opacity:0});
-        },
-        checkGrid: function(e, ui){
-            if(!app.state.snapToCenter){
-                return [0,0];
-            }
-            var left = ui.position.left;
-            var width = parseInt(e.css('width'));
-            var top = ui.position.top;
-            var height = parseInt(e.css('height'));
+	    },
+	    hideGrid: function(){
+	        $('.xgridline, .ygridline').css({opacity:0});
+	    },
+	    checkGrid: function(e, ui){
+	        if(!app.state.snapToCenter){
+	            return [0,0];
+	        }
+	        var left = ui.position.left;
+	        var width = parseInt(e.css('width'));
+	        var top = ui.position.top;
+	        var height = parseInt(e.css('height'));
 
-            var imageData = app.state.getImage();
-            var view = app.state.getView();
-            var prefix = 'printable_'+view+'_';
-            var centerLeft 	= imageData[prefix+'width']/2;
-            var centerTop 	= imageData['chest_line_'+view] - imageData[prefix+'top'];
-            var snappedX = centerLeft - (left+width/2);
-            if(Math.abs(snappedX)>10){
-                snappedX = 0;
-            }
-            var snappedY = centerTop - (top+height/2);
-            if(Math.abs(snappedY)>10){
-                snappedY = 0;
-            }
-            return [snappedX, snappedY];
+	        var imageData = app.state.getImage();
+	        var view = app.state.getView();
+	        var prefix = 'printable_'+view+'_';
+	        var centerLeft 	= imageData[prefix+'width']/2;
+	        var centerTop 	= imageData['chest_line_'+view] - imageData[prefix+'top'];
+	        var snappedX = centerLeft - (left+width/2);
+	        if(Math.abs(snappedX)>10){
+	            snappedX = 0;
+	        }
+	        var snappedY = centerTop - (top+height/2);
+	        if(Math.abs(snappedY)>10){
+	            snappedY = 0;
+	        }
+	        return [snappedX, snappedY];
 
-        },
-		move: function(e){
-            var me = this;
-			if(!e) e = $jd('.drag-item-selected');
-			e.draggable({/*containment: "#dg-designer", */scroll: false,
-                start: function (event, ui) {
-                    me.showGrid();
-                    var left = parseInt($(this).css('left'),10);
-                    left = isNaN(left) ? 0 : left;
-                    var top = parseInt($(this).css('top'),10);
-                    top = isNaN(top) ? 0 : top;
-                    this.recoupLeft = left - ui.position.left;
-                    this.recoupTop = top - ui.position.top;
-                    this.first = true;
-                },
-				drag:function(event, ui){
-					var e = ui.helper;
-                    if(!this.first){
-                        me.checkBorders(e, ui);
-                        me.placeSizeBox(e);
-                    }
-                    ui.position.left += this.recoupLeft;
-                    ui.position.top += this.recoupTop;
-                    var snaps = me.checkGrid(e, ui);
-                    ui.position.left += snaps[0];
-                    ui.position.top += snaps[1];
-                    this.first = false;
-				},
-				stop: function( event, ui ) {
-                    me.forceBorders($(this), ui);
-                    me.hideGrid();
-					design.print.size();
-				}
-			});						
-		},
-        forceBorders: function(e, ui){
-            var imageData = app.state.getImage();
-            var view = app.state.getView();
+	    },
+	    move: function(e){
+	        var me = this;
+	        if(!e) e = $jd('.drag-item-selected');
+	        e.draggable({/*containment: "#dg-designer", */scroll: false,
+	            start: function (event, ui) {
+	                me.showGrid();
+	                var left = parseInt($(this).css('left'),10);
+	                left = isNaN(left) ? 0 : left;
+	                var top = parseInt($(this).css('top'),10);
+	                top = isNaN(top) ? 0 : top;
+	                this.recoupLeft = left - ui.position.left;
+	                this.recoupTop = top - ui.position.top;
+	                this.first = true;
+	            },
+	            drag:function(event, ui){
+	                var e = ui.helper;
+	                if(!this.first){
+	                    me.checkBorders(e, ui);
+	                    me.placeSizeBox(e);
+	                }
+	                ui.position.left += this.recoupLeft;
+	                ui.position.top += this.recoupTop;
+	                var snaps = me.checkGrid(e, ui);
+	                ui.position.left += snaps[0];
+	                ui.position.top += snaps[1];
+	                this.first = false;
+	            },
+	            stop: function( event, ui ) {
+	                me.forceBorders($(this), ui);
+	                me.hideGrid();
+	                design.print.size();
+	            }
+	        });						
+	    },
+	    forceBorders: function(e, ui){
+	        var imageData = app.state.getImage();
+	        var view = app.state.getView();
 
-            var height = imageData['printable_'+view+'_height'];
-            var width = imageData['printable_'+view+'_width'];
-            var rect = this.getNodeRect(e);
-            var $width = rect.width,
+	        var height = imageData['printable_'+view+'_height'];
+	        var width = imageData['printable_'+view+'_width'];
+	        var rect = this.getNodeRect(e);
+	        var $width = rect.width,
                 $height = rect.height,
                 $top = rect.top,
                 $left = rect.left;
-            //completely out of the box
-            if($left+$width < 0 || $top+$height < 0 || $left > width || $top > height){
-                var left = (width-$width)/2;
-                var top = (height-$height)/2;
-                ui.position.left = left;
-                ui.position.top = top;
-                e.css('left', left);
-                e.css('top', top);
-                this.placeSizeBox(e);
-                this.checkBorders(e, ui);
-            }
-        },
-        checkBorders: function(e){
-            var imageData = app.state.getImage();
-            var view = app.state.getView();
-            var height = imageData['printable_'+view+'_height'];
-            var width = imageData['printable_'+view+'_width'];
-            var rect = this.getNodeRect(e);
-            var $width = rect.width,
+	        //completely out of the box
+	        if($left+$width < 0 || $top+$height < 0 || $left > width || $top > height){
+	            var left = (width-$width)/2;
+	            var top = (height-$height)/2;
+	            ui.position.left = left;
+	            ui.position.top = top;
+	            e.css('left', left);
+	            e.css('top', top);
+	            this.placeSizeBox(e);
+	            this.checkBorders(e, ui);
+	        }
+	    },
+	    checkBorders: function(e){
+	        var imageData = app.state.getImage();
+	        var view = app.state.getView();
+	        var height = imageData['printable_'+view+'_height'];
+	        var width = imageData['printable_'+view+'_width'];
+	        var rect = this.getNodeRect(e);
+	        var $width = rect.width,
                 $height = rect.height,
                 $top = rect.top,
                 $left = rect.left;
-            if($left < 0 || $top < 0 || ($left+$width) > width || ($top+$height) > height){
-                e.data('block', true);
-                //set error border
-                design.products.setDesignAreaContrastColor('rgba(255, 79, 0, 0.298039)', true);
-            }else{
-                e.data('block', false);
-                var block = false;
-                $('#view-'+view+' .drag-item').each(function(i, item){
-                    block |= $(item).data('block');
-                });
-                if(!block){
-                    design.products.setDesignAreaContrastColor(app.state.color);
-                }
-            }
-            app.state.checkAll = false;
-        },
-        resizeTo: function(e, width, height, isInches, keepRatio){
-            design.item.checkBorders(e);
-            var svg = e.find('svg');
-            var imageData = app.state.getImage();
-            var keep;
-            if(keepRatio){
-                var ratio = e.data('ratio');
-                if(!ratio){
-                    var currentHeight = parseInt(e.css('height'));
-                    var currentWidth = parseInt(e.css('width'));
-                    currentHeight = currentHeight || 1;
-                    currentWidth = currentWidth || 1;
-                    ratio = currentWidth/currentHeight;
-                }
-                if(!width){
-                    keep = 'height';
-                    width = height*ratio;
-                }else if(!height){
-                    keep = 'width';
-                    height = width/ratio;
-                }
-            }
+	        if($left < 0 || $top < 0 || ($left+$width) > width || ($top+$height) > height){
+	            e.data('block', true);
+	            //set error border
+	            design.products.setDesignAreaContrastColor('rgba(255, 79, 0, 0.298039)', true);
+	        }else{
+	            e.data('block', false);
+	            var block = false;
+	            $('#view-'+view+' .drag-item').each(function(i, item){
+	                block |= $(item).data('block');
+	            });
+	            if(!block){
+	                design.products.setDesignAreaContrastColor(app.state.color);
+	            }
+	        }
+	        app.state.checkAll = false;
+	    },
+	    resizeTo: function(e, width, height, isInches, keepRatio){
+	        design.item.checkBorders(e);
+	        var svg = e.find('svg');
+	        var imageData = app.state.getImage();
+	        var keep;
+	        if(keepRatio){
+	            var ratio = e.data('ratio');
+	            if(!ratio){
+	                var currentHeight = parseInt(e.css('height'));
+	                var currentWidth = parseInt(e.css('width'));
+	                currentHeight = currentHeight || 1;
+	                currentWidth = currentWidth || 1;
+	                ratio = currentWidth/currentHeight;
+	            }
+	            if(!width){
+	                keep = 'height';
+	                width = height*ratio;
+	            }else if(!height){
+	                keep = 'width';
+	                height = width/ratio;
+	            }
+	        }
 
-            if(isInches){
-                var ppi = imageData.ppi;
-                width = width * ppi;
-                height = height * ppi;
-            }
+	        if(isInches){
+	            var ppi = imageData.ppi;
+	            width = width * ppi;
+	            height = height * ppi;
+	        }
 
-            e.css({width: width, height:height});
+	        e.css({ width: width, height: height });
+	        svg.css({marginBottom : '16px'});
             svg[0].setAttributeNS(null, 'width', width);
             svg[0].setAttributeNS(null, 'height', height);
             svg[0].setAttributeNS(null, 'preserveAspectRatio', 'none');
