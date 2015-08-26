@@ -4282,10 +4282,3 @@ html, body {
     float: left;
     width: 48.6348122596%;
 }
-
-nav > ul li.current {
-    border-bottom: 1px solid #e8eced !important;
-    background: #e8eced !important;
-    text-decoration:underline;
-    text-decoration-color:#6e6e6e!important;
-}
