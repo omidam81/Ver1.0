@@ -4269,6 +4269,7 @@ html, body {
         padding: 0 10px;
     }
 }
+
 .inp-half {
     display: inline;
     float: left;
@@ -4279,5 +4280,12 @@ html, body {
 .inp-half-right {
     display: inline;
     float: left;
-   width: 48.6348122596%;
+    width: 48.6348122596%;
+}
+
+nav > ul li.current {
+    border-bottom: 1px solid #e8eced !important;
+    background: #e8eced !important;
+    text-decoration:underline;
+    text-decoration-color:#6e6e6e!important;
 }
