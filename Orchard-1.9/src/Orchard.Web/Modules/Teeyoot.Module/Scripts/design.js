@@ -2838,7 +2838,7 @@ var design={
 				            ui.element.top = ui.originalPosition.top;
 				            ui.element.left = ui.originalPosition.left;
 				            ui.size.width = ui.originalSize.width;
-				            ui.size.height = (ui.originalSize.height + (omp.y - mp.y))>0 ? ui.originalSize.height + (omp.y - mp.y) : 0 ;
+				            ui.size.height = (ui.originalSize.height + (omp.y - mp.y)) > 0 ? ui.originalSize.height + (omp.y - mp.y) : 0 ;
 				            break;}
 				        case "south": {
 				            ui.element.top = ui.originalPosition.top;
