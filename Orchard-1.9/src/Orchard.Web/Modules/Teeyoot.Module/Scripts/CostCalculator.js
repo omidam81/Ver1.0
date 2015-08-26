@@ -133,8 +133,24 @@ function setPriceInDesignFromGoal() {
 }
 
 function estimatedProfitChange() {
-    var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(2);
-    $("#total_profit").html("RM " + est);
+    //var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(2);
+    var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(0);
+    if (est.length == 6) {
+        var val = est.toString().substring(0, 3) + "," + est.toString().substring(3, 6)
+        $("#total_profit").html("RM " + val + "+");
+    } else if (est.length == 7) {
+        var val = est.toString().substring(0, 1) + "," + est.toString().substring(1, 4) + "," + est.toString().substring(4, 7);
+        $("#total_profit").html("RM " + val + "+");
+    } else if (est.length == 8) {
+        var val = est.toString().substring(0, 2) + "," + est.toString().substring(2, 5) + "," + est.toString().substring(5, 8);
+        $("#total_profit").html("RM " + val + "+");
+    } else if (est.length == 9) {
+        var val = est.toString().substring(0, 3) + "," + est.toString().substring(3, 6) + "," + est.toString().substring(6, 9);
+        $("#total_profit").html("RM " + val + "+");
+    } else {
+        $("#total_profit").html("RM " + est + "+");
+    }
+
     minimumGoal();
 }
 
@@ -210,13 +226,59 @@ function estimatedProfitChangeForManuProducts() {
             }
         }
     }
-    var min = Math.min.apply(null, result).toFixed(2);
-    var max = Math.max.apply(null, result).toFixed(2);
+    var min = Math.min.apply(null, result).toFixed(0);
+    var max = Math.max.apply(null, result).toFixed(0);
     if (min < 0) min = 0;
     if (min == max) {
-        $("#total_profit").html("RM " + min);
+
+        if (min.length == 6) {
+            var val = min.toString().substring(0, 3) + "," + min.toString().substring(3, 6)
+            $("#total_profit").html("RM " + val + "+");
+        } else if (min.length == 7) {
+            var val = min.toString().substring(0, 1) + "," + min.toString().substring(1, 4) + "," + min.toString().substring(4, 7);
+            $("#total_profit").html("RM " + val + "+");
+        } else if (min.length == 8) {
+            var val = min.toString().substring(0, 2) + "," + min.toString().substring(2, 5) + "," + min.toString().substring(5, 8);
+            $("#total_profit").html("RM " + val + "+");
+        } else if (min.length == 9) {
+            var val = min.toString().substring(0, 3) + "," + min.toString().substring(3, 6) + "," + min.toString().substring(6, 9);
+            $("#total_profit").html("RM " + val + "+");
+        } else {
+            $("#total_profit").html("RM " + min + "+");
+        }
+
+
+        //$("#total_profit").html("RM " + min + "+");
+
+
     } else {
-        $("#total_profit").html("RM " + min + "-" + max);
+        var valMin = min;
+        var valMax = max;
+
+        if (min.length == 6) {
+             valMin = min.toString().substring(0, 3) + "," + min.toString().substring(3, 6)
+        } else if (min.length == 7) {
+             valMin = min.toString().substring(0, 1) + "," + min.toString().substring(1, 4) + "," + min.toString().substring(4, 7);
+        } else if (min.length == 8) {
+             valMin = min.toString().substring(0, 2) + "," + min.toString().substring(2, 5) + "," + min.toString().substring(5, 8);
+        } else if (min.length == 9) {
+             valMin = min.toString().substring(0, 3) + "," + min.toString().substring(3, 6) + "," + min.toString().substring(6, 9);
+        }
+
+        if (max.length == 6) {
+            valMax = max.toString().substring(0, 3) + "," + max.toString().substring(3, 6)
+        } else if (max.length == 7) {
+            valMax = max.toString().substring(0, 1) + "," + max.toString().substring(1, 4) + "," + max.toString().substring(4, 7);
+        } else if (max.length == 8) {
+            valMax = max.toString().substring(0, 2) + "," + max.toString().substring(2, 5) + "," + max.toString().substring(5, 8);
+        } else if (max.length == 9) {
+            valMax = max.toString().substring(0, 3) + "," + max.toString().substring(3, 6) + "," + max.toString().substring(6, 9);
+        }
+
+
+
+        $("#total_profit").html("RM " + valMin + "-" + valMax + "+");
+
     }
     minimumGoal();
 }
