@@ -29,17 +29,18 @@ window.onload = function initWizard() {
 
         var message = document.getElementById("error-add-message");
         $(message).addClass("hidden");
-        var prodId = parseInt(document.getElementById("product").value);
+        var productId = parseInt(document.getElementById("product").value);
 
         var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
         var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
 
-        var front = (design.products.images[prodId].printable_front_height / design.products.images[prodId].printable_front_width).toFixed(1);
-        var back = (design.products.images[prodId].printable_back_height / design.products.images[prodId].printable_back_width).toFixed(1);
+        var front = (design.products.images[productId].printable_front_height / design.products.images[productId].printable_front_width).toFixed(1);
+        var back = (design.products.images[productId].printable_back_height / design.products.images[productId].printable_back_width).toFixed(1);
         if ((front != coeff.toFixed(1)) && (back != coeffBack.toFixed(1))) {
             $(message).removeClass("hidden");
             return;
         };
+
 
         var slider = document.getElementById('trackbar');
         window.count = parseInt(slider.noUiSlider.get());
@@ -524,8 +525,28 @@ window.onload = function initWizard() {
         app.state.products.push(prdc);
         $div.click();
         estimatedProfitChangeForManuProducts();
+
+        var list = document.getElementById("item-options-dropdown-tees");
+        var listProd = document.getElementById("product");
+
+        listProd.innerHTML = "";
+
+        $.each(design.products.productsData, function (i, el) {
+            if (el.id != productId) {
+
+                if (design.products.categoriesList[list.selectedIndex].products.indexOf(el.id) >= 0) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.id = i;
+                    option.innerHTML = el.name;
+                    listProd.appendChild(option);
+                }
+            };
+        });
+
     });
 
+     
     // Изменение количества в инпуте #trackBarValue
 
     $("#trackBarValue").on({
@@ -698,20 +719,8 @@ function initProducts() {
     //Если лист категорий пустой то мы его инициализируем
     if (list.value == "") {
 
-
-        //var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
-        //var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
         $.each(design.products.categoriesList, function (i) {
             var z = 0;
-            //for (var k = 0; k < this.products.length; k++) {
-            //    var front = (design.products.images[this.products[k]].printable_front_height / design.products.images[this.products[k]].printable_front_width).toFixed(1);
-            //    var back = (design.products.images[this.products[k]].printable_back_height / design.products.images[this.products[k]].printable_back_width).toFixed(1);
-            //    if ((front == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
-            //        z++;
-            //    }
-            //}
-            //var gfgf = z;
-            //if (z >= 1) {
                 var option = document.createElement("option");
                 option.value = i;
                 option.id = this.id;
@@ -719,16 +728,11 @@ function initProducts() {
                 list.appendChild(option);
                 //Запихиваем айдишники продуктов по обьектам в массив
                 mas.push(this.products);
-            //}
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
-            //var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
-            //var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
             $.each(design.products.productsData, function (i, el) {
-                //var ww = (parseFloat(design.products.images[el.id].printable_front_height) / parseFloat(design.products.images[el.id].printable_front_width)).toFixed(1);
-                //var back = (parseFloat(design.products.images[el.id].printable_back_height) / parseFloat(design.products.images[el.id].printable_back_width)).toFixed(1);
-                //if ((ww == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
+                if (app.state.currentProduct.ProductId != el.id) {                   
                     //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
                     if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
                         var option = document.createElement("option");
@@ -737,39 +741,27 @@ function initProducts() {
                         option.innerHTML = el.name;
                         listProd.appendChild(option);
                     }
-                //};
+                }
             });
         }
 
         $(list).change(function () {
             listProd.innerHTML = "";
-            //var coeff = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_front_width);
-            //var coeffBack = parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_height) / parseFloat(design.products.images[app.state.currentProduct.ProductId].printable_back_width);
+           
             $.each(design.products.categoriesList[this.value].products, function (i, element) {
-                //var qq = (parseFloat(design.products.images[element].printable_front_height) / parseFloat(design.products.images[element].printable_front_width)).toFixed(1);
-                //var back = (parseFloat(design.products.images[element].printable_back_height) / parseFloat(design.products.images[element].printable_back_width)).toFixed(1);
-                //if ((qq == coeff.toFixed(1)) && (back == coeffBack.toFixed(1))) {
+                var cnt = 0;
+                $.each(app.state.products, function (j , el){
+                    if (el.ProductId == element) { cnt++;   }                                    
+                });
+
+                if (cnt == 0) {
                     var option = document.createElement("option");
                     option.value = element;
                     option.id = element;
                     option.innerHTML = design.products.productsData[element].name;
                     listProd.appendChild(option);
-                //};
+                }
             });
-
-            //$.each((mas[this.value]), function (i, id) {
-            //    $.each(design.products.productsData, function (i, el) {
-
-            //            if (el.id == id) {
-            //                var option = document.createElement("option");
-            //                option.value = i;
-            //                option.id = i;
-            //                option.innerHTML = el.name;
-            //                listProd.appendChild(option);
-            //            }
-
-            //    });
-            //});
         });
     }
 }
