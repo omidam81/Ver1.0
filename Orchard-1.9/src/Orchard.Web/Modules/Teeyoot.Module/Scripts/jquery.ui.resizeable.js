@@ -207,7 +207,7 @@ $(document).ready(function(){
 		if (this.size.height !== prevHeight) {
 			props.height = this.size.height + "px";
 		}
-		if (this.size.height != 0) {
+		if (this.size.height > 0) {
 		    el.css(props);
 		}
 		if (!this._helper && this._proportionallyResizeElements.length) {
