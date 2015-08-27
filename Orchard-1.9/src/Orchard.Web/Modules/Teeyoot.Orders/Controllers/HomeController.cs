@@ -256,7 +256,7 @@ namespace Teeyoot.Orders.Controllers
             }
             if (i == 0)
             {
-                _teeyootMessagingService.SendAllOrderDeliveredMessageToSeller((order.Products[0].CampaignProductRecord.CampaignRecord_Id);
+                _teeyootMessagingService.SendAllOrderDeliveredMessageToSeller((order.Products[0].CampaignProductRecord.CampaignRecord_Id));
             }
             _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, orderId, orderStatus);
             _notifierService.Information(T("Successfully updated order status "));
