@@ -327,7 +327,7 @@ namespace Teeyoot.Messaging.Services
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             var api = new MandrillApi(record.ApiKey);
-            var campaigns = _campaignRepository.Table.Where(camp => camp.EndDate < DateTime.UtcNow.AddDays(-1) && camp.EndDate > DateTime.UtcNow.AddDays(-3));
+            var campaigns = _campaignRepository.Table.Where(camp => camp.EndDate < DateTime.UtcNow.AddDays(-1) && camp.EndDate > DateTime.UtcNow.AddDays(-3) && camp.IsApproved);
             foreach (var campaign in campaigns)
             {
                 var mandrillMessage = new MandrillMessage() { };
