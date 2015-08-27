@@ -201,33 +201,44 @@ ul, ol {
 }
 
 #designDrop {
-    width: 65px;
+    /*width: 65px;
     height: 40px;
     padding: 8px 6px;
     border: 1px solid #afafaf;
     background-color: white;
     border-radius: 5px;
-    margin-left: 15%;
+    margin-left: 15%;*/
+    width: 35px;
+    height: 22px;
+    margin-left: 10px;
 }
 
 .designDrop {
-    width: 65px;
+    /*width: 65px;
     height: 40px;
     padding: 8px 6px;
     border: 1px solid #afafaf;
     background-color: white;
     border-radius: 5px;
-    margin-left: 15%;
+    margin-left: 15%;*/
+    border-radius: 5px;
+    background-color: white;
+    width: 35px;
+    height: 22px;
+    margin-left: 10px;
 }
 
 
 .swatch2 {
-    width: 24px;
+    /*width: 24px;*/
+    width: 34px;
     margin-top: -1%;
-    height: 24px;
+    /*height: 24px;*/
+    height: 21px;
     border: 2px solid #fff;
     border-radius: 3px;
-    background-color: #fff;
+    /*background-color: #fff;*/
+    background-image: url("/Media/Default/images/add_colors.png");
     box-shadow: 0px 0px 0px 1px #d8dddf;
     margin-bottom: 2px;
     -webkit-transition: background-color 400ms;
@@ -235,8 +246,10 @@ ul, ol {
 }
 
 #colors {
-    top: 25%;
-    left: 28%;
+    /*top: 25%;
+    left: 28%;*/
+    top: 20px;
+    left: 125px;
 }
 
 .colors {
@@ -964,9 +977,10 @@ input[type=range] {
         background-color: #e64700 !important;
     }
 
- #goBack {
-   margin: 15px 0 0 0; 
+#goBack {
+    margin: 15px 0 0 0;
 }
+
 .wizard-modal {
     padding-top: 50px !important;
 }
@@ -1015,6 +1029,62 @@ input[type=range] {
 #choices {
     z-index: 12;
 }
+
+
+
+.div-for-colors {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    margin-top: 12px;
+    margin-left: 5px;
+}
+
+.div-color {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px #afafaf;
+    border-style: dashed;
+    margin-left: 5px;
+    /*background-color: #fff;*/
+    border-radius: 3px;
+    /*box-shadow: 0px 0px 0px 1px*/
+}
+
+.div-color-active {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px #fff;
+    border-style: solid;
+    margin-left: 5px;
+    /*background-color: #fff;*/
+    border-radius: 3px;
+    box-shadow: 0px 0px 0px 1px #afafaf;
+}
+
+.div-color-active:hover{
+    border-color: transparent;
+}
+
+.div-color-delete{
+    position: relative;
+    width: 14px;
+    border: 1px solid rgba(255,255,255,0.5);
+    height: 14px;
+    background: red;
+    color: white;
+    border-radius: 100%;
+    left: 12px;
+    top: 12px;
+    font-weight: bolder;
+    font-size: 11px;
+    line-height: 12px;
+    text-align: center;
+    display: table;
+}
+
 
 @media screen and (max-width: 1240px) {
     #layout-wrapper {

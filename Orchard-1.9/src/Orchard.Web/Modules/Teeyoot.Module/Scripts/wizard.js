@@ -53,6 +53,10 @@ window.onload = function initWizard() {
             ProductId: 95,
             BaseCost: 7.14,
             ColorId: 2260,
+            SecondColorId: 0,
+            ThirdColorId: 0,
+            FourthColorId: 0,
+            FifthColorId: 0,
             Price: 15,
             CurrencyId: 12
         };
@@ -319,10 +323,159 @@ window.onload = function initWizard() {
         var ulAllColors = document.createElement("ul");
 
 
+        var divForColors = document.createElement("div");
+        var divColor1Active = document.createElement("div");
+        var divColor2 = document.createElement("div");
+        var divColor3 = document.createElement("div");
+        var divColor4 = document.createElement("div");
+        var divColor5 = document.createElement("div");
+        var divColorDelete1 = document.createElement("div");
+        var divColorDelete2 = document.createElement("div");
+        var divColorDelete3 = document.createElement("div");
+        var divColorDelete4 = document.createElement("div");
+        var divColorDelete5 = document.createElement("div");
+        divForColors.classList.add("div-for-colors");
+        //divForColors.id = "div-for-colors-products-" + index;
+        divColor1Active.classList.add("div-color-active");
+        //divColor1Active.id = "div-color-" + index + "_1";
+        divColor1Active.style.backgroundColor = app.state.color.value;
+        divColor2.classList.add("div-color");
+        //divColor2.id = "div-color-" + index + "_2";
+        divColor3.classList.add("div-color");
+        //divColor3.id = "div-color-" + index + "_3";
+        divColor4.classList.add("div-color");
+        //divColor4.id = "div-color-" + index + "_4";
+        divColor5.classList.add("div-color");
+        //divColor5.id = "div-color-" + index + "_5";
+        divColorDelete1.classList.add("div-color-delete");
+        //divColorDelete1.id = "div-color-delete-" + index + "_1";
+        divColorDelete1.innerHTML = "X";
+        divColorDelete1.style.visibility = "collapse";
+        divColor1Active.appendChild(divColorDelete1);
+        divForColors.appendChild(divColor1Active);
+        divForColors.appendChild(divColor2);
+        divForColors.appendChild(divColor3);
+        divForColors.appendChild(divColor4);
+        divForColors.appendChild(divColor5);
+        divColorDelete2.innerHTML = "X";
+        divColorDelete2.classList.add("div-color-delete");
+        divColorDelete3.innerHTML = "X";
+        divColorDelete3.classList.add("div-color-delete");
+        divColorDelete4.innerHTML = "X";
+        divColorDelete4.classList.add("div-color-delete");
+        divColorDelete5.innerHTML = "X";
+        divColorDelete5.classList.add("div-color-delete");
+
+        $(divColor1Active).click(function (event) {
+            //changesColor("#div-color-3", 3);
+            if ($(divColor1Active).hasClass('div-color-active')) {
+                event.preventDefault();
+                event.stopPropagation();
+                var color = design.products.colors[prdc.ColorId];
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $image.css("background-color", color.value);
+            }
+        }).hover(function () {
+            $(divColorDelete1).css("visibility", "visible");
+        }).mouseleave(function () {
+            $(divColorDelete1).css("visibility", "collapse");
+        });
+        $(divColor2).click(function (event) {
+            //changesColor("#div-color-2", 2);
+            if ($(divColor2).hasClass('div-color-active')) {
+                event.preventDefault();
+                event.stopPropagation();
+                var color = design.products.colors[prdc.SecondColorId];
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $image.css("background-color", color.value);
+            }
+        }).hover(function () {
+            $(divColorDelete2).css("visibility", "visible");
+        }).mouseleave(function () {
+            $(divColorDelete2).css("visibility", "collapse");
+        });
+        $(divColor3).click(function (event) {
+            //changesColor("#div-color-2", 2);
+            if ($(divColor3).hasClass('div-color-active')) {
+                event.preventDefault();
+                event.stopPropagation();
+                var color = design.products.colors[prdc.ThirdColorId];
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $image.css("background-color", color.value);
+            }
+        }).hover(function () {
+            $(divColorDelete3).css("visibility", "visible");
+        }).mouseleave(function () {
+            $(divColorDelete3).css("visibility", "collapse");
+        });
+        $(divColor4).click(function (event) {
+            //changesColor("#div-color-2", 2);
+            if ($(divColor4).hasClass('div-color-active')) {
+                event.preventDefault();
+                event.stopPropagation();
+                var color = design.products.colors[prdc.FourthColorId];
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $image.css("background-color", color.value);
+            }
+        }).hover(function () {
+            $(divColorDelete4).css("visibility", "visible");
+        }).mouseleave(function () {
+            $(divColorDelete4).css("visibility", "collapse");
+        });
+        $(divColor5).click(function (event) {
+            //changesColor("#div-color-2", 2);
+            if ($(divColor5).hasClass('div-color-active')) {
+                event.preventDefault();
+                event.stopPropagation();
+                var color = design.products.colors[prdc.FifthColorId];
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $image.css("background-color", color.value);
+            }
+        }).hover(function () {
+            $(divColorDelete5).css("visibility", "visible");
+        }).mouseleave(function () {
+            $(divColorDelete5).css("visibility", "collapse");
+        });
+        $(divColorDelete1).click(function () {
+            if ($(divColor2).hasClass('div-color-active')) {
+                $("#li_" + prdc.ProductId + "_" + prdc.ColorId).children("span").remove();
+
+                prdc.ColorId = prdc.SecondColorId;
+                prdc.SecondColorId = prdc.ThirdColorId;
+                prdc.ThirdColorId = prdc.FourthColorId;
+                prdc.FourthColorId = prdc.FifthColorId;
+                prdc.FifthColorId = 0;
+
+                $(divColor1Active).css("background-color", $(divColor2).css("background-color"));
+                $(divColor1Active).removeClass().addClass($(divColor2).attr('class'));
+                $(divColor2).css("background-color", $(divColor3).css("background-color"));
+                $(divColor2).removeClass().addClass($(divColor3).attr('class'));
+                if ($(divColor2).hasClass("div-color")) $(divColor2).children("div").remove();
+                $(divColor3).css("background-color", $(divColor4).css("background-color"));
+                $(divColor3).removeClass().addClass($(divColor4).attr('class'));
+                if ($(divColor3).hasClass("div-color")) $(divColor3).children("div").remove();
+                $(divColor4).css("background-color", $(divColor5).css("background-color"));
+                $(divColor4).removeClass().addClass($(divColor5).attr('class'));
+                if ($(divColor4).hasClass("div-color")) $(divColor4).children("div").remove();
+                $(divColor5).css("background-color", "rgb(219, 219, 219)");
+                $(divColor5).removeClass('div-color-active').addClass('div-color');
+                if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+            }
+        });
+
+
         divCol.classList.add("clearfix");
         divCol.classList.add("control-group");
         divCol.classList.add("font-color-selection");
         divCol.style.width = "100px";
+        divCol.style.marginBottom = "0px";
+        divCol.style.marginTop = "5px";
+
 
         divColPick.classList.add("fake-input");
         divColPick.classList.add("color-picker");
@@ -336,8 +489,8 @@ window.onload = function initWizard() {
         divColors.classList.add("colors");
         divColors.classList.add("shirt-colors");
         divColors.classList.add("containertip");
-        divColors.style.top = "28%";
-        divColors.style.left = "28%";
+        divColors.style.top = "20px";
+        divColors.style.left = "125px";
 
         ulAllColors.classList.add("all-colorsTwo");
         ulAllColors.classList.add("colors");
@@ -358,7 +511,11 @@ window.onload = function initWizard() {
 
         // хендлер на нажатие непосредственно на сам пикер для отображения выпадалки
         $divColPick.on('click', function (event) {
-            $div.click();
+            //$div.click();
+            if ($div.hasClass('design-active')) { } else {
+                $div.click();
+            }
+
             event.preventDefault();
             event.stopPropagation();
 
@@ -384,38 +541,217 @@ window.onload = function initWizard() {
         // Перебор всех существующих цветов
         $.each(masColors, function (i, color) {
 
-            var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
-                              color.name + '" style="background-color:' + color.value + ';"></li>';
+            //var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
+            //                  color.name + '" style="background-color:' + color.value + ';"></li>';
+            var colorHtml;
+            if (color.id == prdc.ColorId ||
+                color.id == prdc.SecondColorId ||
+                color.id == prdc.ThirdColorId ||
+                color.id == prdc.FourthColorId ||
+                color.id == prdc.FifthColorId) {
+                colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" id="li_' + prdc.ProductId + '_' + color.id + '" title="' +
+                                    color.name + '" style="background-color:' + color.value + ';"><span>✓</span></li>';
+            } else {
+                colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" id="li_' + prdc.ProductId + '_' + color.id + '" title="' +
+                                    color.name + '" style="background-color:' + color.value + ';"></li>';
+            }
+
             var $colorHtml = $(colorHtml);
-
-
             $colorHtml.click(function (event) {
-                $("#prodFront").css("background-color", color.value);
-                $("#prodBack").css("background-color", color.value);
-                event.preventDefault();
-                event.stopPropagation();
-                $image.css("background-color", color.value);
-                $divSwatch.css("background-color", color.value);
-                prdc.ColorId = parseInt(color.id);
+                //$("#prodFront").css("background-color", color.value);
+                //$("#prodBack").css("background-color", color.value);
+                //event.preventDefault();
+                //event.stopPropagation();
+                //$image.css("background-color", color.value);
 
-                var product = design.products.productsData[prdc.ProductId];
-                var prices = product.prices;
-                for (var i = 0; i < prices.length; i++) {
-                    if (prices[i].color_id == prdc.ColorId) {
-                        prdc.BaseCost = prices[i].price;
+                var span = $colorHtml.find("span");
+                if (prdc.ColorId > 0 && prdc.SecondColorId > 0 && prdc.ThirdColorId > 0 && prdc.FourthColorId > 0 && prdc.FifthColorId > 0) {
+                    $('#max-color-for-product').modal('show');
+                } else {
+                    if (span.length == 0) {
+                        var addSpan = document.createElement("span");
+                        addSpan.innerHTML = '✓';
+
+                        R = parseInt((cutHex(color.value)).substring(0, 2), 16);
+                        G = parseInt((cutHex(color.value)).substring(2, 4), 16);
+                        B = parseInt((cutHex(color.value)).substring(4, 6), 16);
+
+                        function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
+                        var spanColor = "rgb(" + (255 - R) + ", " + (255 - G) + ", " + (255 - B) + ")";
+
+                        var $addSpan = $(addSpan);
+                        addSpan.style.color = spanColor;
+                        $colorHtml.append($addSpan);
+
+                        $("#prodFront").css("background-color", color.value);
+                        $("#prodBack").css("background-color", color.value);
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $image.css("background-color", color.value);
+                        //$("#swatch2").css("background-color", color.value);
+                        if ($(divColor2).hasClass('div-color')) {
+                            $(divColor2).removeClass('div-color').addClass('div-color-active');
+                            $(divColor2).css("background-color", color.value);
+                            //divDelete.id = "div-color-delete-2";
+                            $(divColorDelete2).click(function () {
+                                $("#li_" + prdc.ProductId + "_" + prdc.SecondColorId).children("span").remove();
+                                var color = design.products.colors[prdc.ColorId];
+
+                                prdc.SecondColorId = prdc.ThirdColorId;
+                                prdc.ThirdColorId = prdc.FourthColorId;
+                                prdc.FourthColorId = prdc.FifthColorId;
+                                prdc.FifthColorId = 0;
+
+                                $(divColor2).css("background-color", $(divColor3).css("background-color"));
+                                $(divColor2).removeClass().addClass($(divColor3).attr('class'));
+                                if ($(divColor2).hasClass("div-color")) $(divColor2).children("div").remove();
+                                $(divColor3).css("background-color", $(divColor4).css("background-color"));
+                                $(divColor3).removeClass().addClass($(divColor4).attr('class'));
+                                if ($(divColor3).hasClass("div-color")) $(divColor3).children("div").remove();
+                                $(divColor4).css("background-color", $(divColor5).css("background-color"));
+                                $(divColor4).removeClass().addClass($(divColor5).attr('class'));
+                                if ($(divColor4).hasClass("div-color")) $(divColor4).children("div").remove();
+                                $(divColor5).css("background-color", "rgb(219, 219, 219)");
+                                $(divColor5).removeClass('div-color-active').addClass('div-color');
+                                if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+
+                                if ($(divColor3).hasClass("div-color")) {
+                                    $("#prodFront").css("background-color", color.value);
+                                    $("#prodBack").css("background-color", color.value);
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    $image.css("background-color", color.value);
+                                }
+                            });
+                            $(divColorDelete2).css("visibility", "collapse");
+                            $(divColor2).append($(divColorDelete2));
+                            prdc.SecondColorId = parseInt(color.id);
+                        } else
+                            if ($(divColor3).hasClass('div-color')) {
+                                $(divColor3).removeClass('div-color').addClass('div-color-active');
+                                $(divColor3).css("background-color", color.value);
+                                //divDelete.id = "div-color-delete-3";
+                                //var $divDelete = $(divDelete);
+                                $(divColorDelete3).click(function () {
+                                    $("#li_" + prdc.ProductId + "_" + prdc.ThirdColorId).children("span").remove();
+
+                                    prdc.ThirdColorId = prdc.FourthColorId;
+                                    prdc.FourthColorId = prdc.FifthColorId;
+                                    prdc.FifthColorId = 0;
+
+                                    $(divColor3).css("background-color", $(divColor4).css("background-color"));
+                                    $(divColor3).removeClass().addClass($(divColor4).attr('class'));
+                                    if ($(divColor3).hasClass("div-color")) $(divColor3).children("div").remove();
+                                    $(divColor4).css("background-color", $(divColor5).css("background-color"));
+                                    $(divColor4).removeClass().addClass($(divColor5).attr('class'));
+                                    if ($(divColor4).hasClass("div-color")) $(divColor4).children("div").remove();
+                                    $(divColor5).css("background-color", "rgb(219, 219, 219)");
+                                    $(divColor5).removeClass('div-color-active').addClass('div-color');
+                                    if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+
+                                });
+                                $(divColorDelete3).css("visibility", "collapse");
+                                $(divColor3).append($(divColorDelete3));
+                                prdc.ThirdColorId = parseInt(color.id);
+                            } else
+                                if ($(divColor4).hasClass('div-color')) {
+                                    $(divColor4).removeClass('div-color').addClass('div-color-active');
+                                    $(divColor4).css("background-color", color.value);
+                                    //divDelete.id = "div-color-delete-4";
+                                    //var $divDelete = $(divDelete);
+                                    $(divColorDelete4).click(function () {
+                                        $("#li_" + prdc.ProductId + "_" + prdc.FourthColorId).children("span").remove();
+
+                                        prdc.FourthColorId = prdc.FifthColorId;
+                                        prdc.FifthColorId = 0;
+
+                                        $(divColor4).css("background-color", $(divColor5).css("background-color"));
+                                        $(divColor4).removeClass().addClass($(divColor5).attr('class'));
+                                        if ($(divColor4).hasClass("div-color")) $(divColor4).children("div").remove();
+                                        $(divColor5).css("background-color", "rgb(219, 219, 219)");
+                                        $(divColor5).removeClass('div-color-active').addClass('div-color');
+                                        if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+                                    });
+                                    $(divColorDelete4).css("visibility", "collapse");
+                                    $(divColor4).append($(divColorDelete4));
+                                    prdc.FourthColorId = parseInt(color.id);
+                                } else
+                                    if ($(divColor5).hasClass('div-color')) {
+                                        $(divColor5).removeClass('div-color').addClass('div-color-active');
+                                        $(divColor5).css("background-color", color.value);
+                                        //divDelete.id = "div-color-delete-5";
+                                        //var $divDelete = $(divDelete);
+                                        $(divColorDelete5).click(function () {
+                                            $("#li_" + prdc.ProductId + "_" + prdc.FifthColorId).children("span").remove();
+
+                                            prdc.FifthColorId = 0;
+
+                                            $(divColor5).css("background-color", "rgb(219, 219, 219)");
+                                            $(divColor5).removeClass('div-color-active').addClass('div-color');
+                                            if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+                                        });
+                                        $(divColorDelete5).css("visibility", "collapse");
+                                        $(divColor5).append($(divColorDelete5));
+                                        prdc.FifthColorId = parseInt(color.id);
+                                    }
                     }
                 }
-                var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
-                prdc.BaseCost = calc[0];
-                var changes = prdc.Price - prdc.BaseCost.toFixed(2);
-                estimatedProfitChangeForManuProducts();
-                h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
-                h4Profit.innerHTML = changes.toFixed(2);
+
+                //$divSwatch.css("background-color", color.value);
+                //prdc.ColorId = parseInt(color.id);
+
+                //var product = design.products.productsData[prdc.ProductId];
+                //var prices = product.prices;
+                //for (var i = 0; i < prices.length; i++) {
+                //    if (prices[i].color_id == prdc.ColorId) {
+                //        prdc.BaseCost = prices[i].price;
+                //    }
+                //}
+                //var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
+                //prdc.BaseCost = calc[0];
+                //var changes = prdc.Price - prdc.BaseCost.toFixed(2);
+                //estimatedProfitChangeForManuProducts();
+                //h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
+                //h4Profit.innerHTML = changes.toFixed(2);
                 //$divColors.remove();
                 $divColors.removeClass('containertip--open');
             }).hover(function () {
-                $image.css("background-color", color.value);
-                $divSwatch.css("background-color", color.value);
+                //$image.css("background-color", color.value);
+                //$divSwatch.css("background-color", color.value);
+                var span = $colorHtml.find("span");
+                if ($(divColor2).hasClass('div-color') && span.length == 0) {
+                    $(divColor2).css("background-color", color.value);
+                    $image.css("background-color", color.value);
+                } else
+                    if ($(divColor3).hasClass('div-color') && span.length == 0) {
+                        $(divColor3).css("background-color", color.value);
+                        $image.css("background-color", color.value);
+                    } else
+                        if ($(divColor4).hasClass('div-color') && span.length == 0) {
+                            $(divColor4).css("background-color", color.value);
+                            $image.css("background-color", color.value);
+                        } else
+                            if ($(divColor5).hasClass('div-color') && span.length == 0) {
+                                $(divColor5).css("background-color", color.value);
+                                $image.css("background-color", color.value);
+                            }
+            }).mouseleave(function () {
+                if ($(divColor2).hasClass('div-color')) {
+                    $(divColor2).css("background-color", "#dbdbdb");
+                    $image.css("background-color", design.products.colors[prdc.ColorId].value);
+                } else
+                    if ($(divColor3).hasClass('div-color')) {
+                        $(divColor3).css("background-color", "#dbdbdb");
+                        $image.css("background-color", design.products.colors[prdc.SecondColorId].value);
+                    } else
+                        if ($(divColor4).hasClass('div-color')) {
+                            $(divColor4).css("background-color", "#dbdbdb");
+                            $image.css("background-color", design.products.colors[prdc.ThirdColorId].value);
+                        } else
+                            if ($(divColor5).hasClass('div-color')) {
+                                $(divColor5).css("background-color", "#dbdbdb");
+                                $image.css("background-color", design.products.colors[prdc.FourthColorId].value);
+                            }
             });
             //Аппендим хтмли цветов с всеми евентами
             $ulAllColors.append($colorHtml);
@@ -434,11 +770,12 @@ window.onload = function initWizard() {
         divColorPicAndMeta.classList.add("ssp-ssp-metadata-and-col-pick");
         divColorPicAndMeta.appendChild(divMeta);
 
+
         divMeta.classList.add("ssp_metadata");
 
         divVcent.classList.add("ssp_vcent");
         divVcent.style.width = "100%"
-        divVcent.style.marginLeft = "20px";
+        divVcent.style.marginLeft = "10px";
 
         text.classList.add("ssp_heading");
         text.style.color = "#44474d";
@@ -455,6 +792,7 @@ window.onload = function initWizard() {
         divMeta.appendChild(divVcent);
         divThumb.appendChild(image);
         divColorPicAndMeta.appendChild(divCol);
+        divColorPicAndMeta.appendChild(divForColors);
         div.appendChild(divThumb);
         div.appendChild(divColorPicAndMeta);
         div.appendChild(divAllPriceCalcul);
@@ -546,7 +884,9 @@ window.onload = function initWizard() {
 
     });
 
-     
+
+
+
     // Изменение количества в инпуте #trackBarValue
 
     $("#trackBarValue").on({
@@ -567,6 +907,56 @@ window.onload = function initWizard() {
     $("#swatch2").click(function () {
         $("#first-product").click();
     });
+
+
+    //  ---- Add colors for products
+    $("#div-color-1").click(function () {
+        changesColor("#div-color-1", 1);
+    }).hover(function () {
+        $("#div-color-delete-1").css("visibility", "visible");
+    }).mouseleave(function () {
+        $("#div-color-delete-1").css("visibility", "collapse");
+    });
+
+    $("#div-color-2").click(function () {
+        changesColor("#div-color-2", 2);
+    }).hover(function () {
+        $("#div-color-delete-2").css("visibility", "visible");
+    }).mouseleave(function () {
+        $("#div-color-delete-2").css("visibility", "collapse");
+    });
+
+    $("#div-color-3").click(function () {
+        changesColor("#div-color-3", 3);
+    }).hover(function () {
+        $("#div-color-delete-3").css("visibility", "visible");
+    }).mouseleave(function () {
+        $("#div-color-delete-3").css("visibility", "collapse");
+    });
+
+    $("#div-color-4").click(function () {
+        changesColor("#div-color-4", 4);
+    }).hover(function () {
+        $("#div-color-delete-4").css("visibility", "visible");
+    }).mouseleave(function () {
+        $("#div-color-delete-4").css("visibility", "collapse");
+    });
+
+    $("#div-color-5").click(function () {
+        changesColor("#div-color-5", 5);
+    }).hover(function () {
+        $("#div-color-delete-5").css("visibility", "visible");
+    }).mouseleave(function () {
+        $("#div-color-delete-5").css("visibility", "collapse");
+    });
+
+    $("#div-color-delete-1").click(function () {
+        if ($("#div-color-2").hasClass('div-color-active')) {
+            deleteColor(1);
+        }
+    });
+
+    // --------------------------------------------------------
 
     $("#first-product").click(function () {
         var newColor = app.state.color;
@@ -663,7 +1053,7 @@ function setDesign() {
     if (!app.state.pos) {
         var src = assetsUrls.products + 'product_type_' + app.state.product.id + '_front_small.png';
         $('#first-product .thumbnail_wrapper img').attr('src', src).css('background-color', app.state.color.value);
-        $('#first-product .swatch2').css('background-color', app.state.color.value);
+        $('#first-product #div-color-1').css('background-color', app.state.color.value);
         design.save(function (data) {
             var srcFront = assetsUrls.products + 'product_type_' + app.state.product.id + '_front.png';
             var srcBack = assetsUrls.products + 'product_type_' + app.state.product.id + '_back.png';
@@ -721,18 +1111,18 @@ function initProducts() {
 
         $.each(design.products.categoriesList, function (i) {
             var z = 0;
-                var option = document.createElement("option");
-                option.value = i;
-                option.id = this.id;
-                option.innerHTML = this.name;
-                list.appendChild(option);
-                //Запихиваем айдишники продуктов по обьектам в массив
-                mas.push(this.products);
+            var option = document.createElement("option");
+            option.value = i;
+            option.id = this.id;
+            option.innerHTML = this.name;
+            list.appendChild(option);
+            //Запихиваем айдишники продуктов по обьектам в массив
+            mas.push(this.products);
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
             $.each(design.products.productsData, function (i, el) {
-                if (app.state.currentProduct.ProductId != el.id) {                   
+                if (app.state.currentProduct.ProductId != el.id) {
                     //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
                     if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
                         var option = document.createElement("option");
@@ -747,11 +1137,11 @@ function initProducts() {
 
         $(list).change(function () {
             listProd.innerHTML = "";
-           
+
             $.each(design.products.categoriesList[this.value].products, function (i, element) {
                 var cnt = 0;
-                $.each(app.state.products, function (j , el){
-                    if (el.ProductId == element) { cnt++;   }                                    
+                $.each(app.state.products, function (j, el) {
+                    if (el.ProductId == element) { cnt++; }
                 });
 
                 if (cnt == 0) {
@@ -812,49 +1202,168 @@ function colorInit() {
     var elem = $("#allColorsTwo");
     if (elem.html() === "") {
         $.each(arrColors, function (i, color) {
-            var colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" title="' +
-                                color.name + '" style="background-color:' + color.value + ';"></li>';
+            //<span>✓</span>
+
+            var colorHtml;
+            if (color.id == app.state.currentProduct.ColorId ||
+                color.id == app.state.currentProduct.SecondColorId ||
+                color.id == app.state.currentProduct.ThirdColorId ||
+                color.id == app.state.currentProduct.FourthColorId ||
+                color.id == app.state.currentProduct.FifthColorId) {
+                colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" id="li_' + app.state.currentProduct.ProductId + '_' + color.id + '" title="' +
+                                    color.name + '" style="background-color:' + color.value + ';"><span>✓</span></li>';
+            } else {
+                colorHtml = '<li data-value="' + color.id + ')" class="shirt-color-sample" id="li_' + app.state.currentProduct.ProductId + '_' + color.id + '" title="' +
+                                    color.name + '" style="background-color:' + color.value + ';"></li>';
+            }
             var $colorHtml = $(colorHtml);
             $colorHtml.click(function () {
-                $("#minImg").css("background-color", color.value);
-                $("#swatch2").css("background-color", color.value);
-                $("#prodFront").css("background-color", color.value);
-                $("#prodBack").css("background-color", color.value);
-                $("#prodFront3").css("background-color", color.value);
-                $("#prodBack3").css("background-color", color.value);
-                $(".product_images").css("background-color", color.value);
-                $('.containertip--open').removeClass('containertip--open');
-                design.products.changeColor(color);
-                app.state.currentProduct.ColorId = parseInt(color.id);
+                var span = $colorHtml.find("span");
+                if (app.state.currentProduct.ColorId > 0 && app.state.currentProduct.SecondColorId > 0 && app.state.currentProduct.ThirdColorId > 0 && app.state.currentProduct.FourthColorId > 0 && app.state.currentProduct.FifthColorId > 0) {
+                    $('#max-color-for-product').modal('show');
+                } else {
+                    if (span.length == 0) {
+                        var addSpan = document.createElement("span");
+                        addSpan.innerHTML = '✓';
 
-                app.state.currentProduct.ColorId = parseInt(color.id);
+                        R = parseInt((cutHex(color.value)).substring(0, 2), 16);
+                        G = parseInt((cutHex(color.value)).substring(2, 4), 16);
+                        B = parseInt((cutHex(color.value)).substring(4, 6), 16);
 
-                var product = design.products.productsData[app.state.currentProduct.ProductId];
-                var prices = product.prices;
-                for (var i = 0; i < prices.length; i++) {
-                    if (prices[i].color_id == app.state.currentProduct.ColorId) {
-                        app.state.currentProduct.BaseCost = prices[i].price;
+                        function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
+                        var spanColor = "rgb(" + (255 - R) + ", " + (255 - G) + ", " + (255 - B) + ")";
+
+                        var $addSpan = $(addSpan);
+                        addSpan.style.color = spanColor;
+                        $colorHtml.append($addSpan);
+
+                        var divDelete = document.createElement("div");
+                        divDelete.innerHTML = "X";
+                        divDelete.classList.add("div-color-delete");
+
+                        $("#minImg").css("background-color", color.value);
+                        //$("#swatch2").css("background-color", color.value);
+                        if ($("#div-color-2").hasClass('div-color')) {
+                            $("#div-color-2").removeClass('div-color').addClass('div-color-active');
+                            $("#div-color-2").css("background-color", color.value);
+                            divDelete.id = "div-color-delete-2";
+                            var $divDelete = $(divDelete);
+                            $divDelete.click(function () {
+                                deleteColor(2);
+                            });
+                            $divDelete.css("visibility", "collapse");
+                            $("#div-color-2").append($divDelete);
+                            app.state.currentProduct.SecondColorId = parseInt(color.id);
+                        } else
+                            if ($("#div-color-3").hasClass('div-color')) {
+                                $("#div-color-3").removeClass('div-color').addClass('div-color-active');
+                                $("#div-color-3").css("background-color", color.value);
+                                divDelete.id = "div-color-delete-3";
+                                var $divDelete = $(divDelete);
+                                $divDelete.click(function () {
+                                    deleteColor(3);
+                                });
+                                $divDelete.css("visibility", "collapse");
+                                $("#div-color-3").append($divDelete);
+                                app.state.currentProduct.ThirdColorId = parseInt(color.id);
+                            } else
+                                if ($("#div-color-4").hasClass('div-color')) {
+                                    $("#div-color-4").removeClass('div-color').addClass('div-color-active');
+                                    $("#div-color-4").css("background-color", color.value);
+                                    divDelete.id = "div-color-delete-4";
+                                    var $divDelete = $(divDelete);
+                                    $divDelete.click(function () {
+                                        deleteColor(4);
+                                    });
+                                    $divDelete.css("visibility", "collapse");
+                                    $("#div-color-4").append($divDelete);
+                                    app.state.currentProduct.FourthColorId = parseInt(color.id);
+                                } else
+                                    if ($("#div-color-5").hasClass('div-color')) {
+                                        $("#div-color-5").removeClass('div-color').addClass('div-color-active');
+                                        $("#div-color-5").css("background-color", color.value);
+                                        divDelete.id = "div-color-delete-5";
+                                        var $divDelete = $(divDelete);
+                                        $divDelete.click(function () {
+                                            deleteColor(5);
+                                        });
+                                        $divDelete.css("visibility", "collapse");
+                                        $("#div-color-5").append($divDelete);
+                                        app.state.currentProduct.FifthColorId = parseInt(color.id);
+                                    }
+                        $("#prodFront").css("background-color", color.value);
+                        $("#prodBack").css("background-color", color.value);
+                        $("#prodFront3").css("background-color", color.value);
+                        $("#prodBack3").css("background-color", color.value);
+                        $(".product_images").css("background-color", color.value);
+                        $('.containertip--open').removeClass('containertip--open');
+                        design.products.changeColor(color);
+                        //app.state.currentProduct.ColorId = parseInt(color.id);
+
+                        //app.state.currentProduct.ColorId = parseInt(color.id);
+
+                        //var product = design.products.productsData[app.state.currentProduct.ProductId];
+                        //var prices = product.prices;
+                        //for (var i = 0; i < prices.length; i++) {
+                        //    if (prices[i].color_id == app.state.currentProduct.ColorId) {
+                        //        app.state.currentProduct.BaseCost = prices[i].price;
+                        //    }
+                        //}
+                        //window.costOfMaterial = app.state.currentProduct.BaseCost;
+                        //var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, app.state.currentProduct.BaseCost);
+                        //app.state.currentProduct.BaseCost = calc[0];
+                        //var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
+                        ////$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
+                        //window.nowPrice = app.state.currentProduct.BaseCost;
+                        //updateMinimum(changes.toFixed(2));
+                        //if (window.nowPrice < window.sellingPrice) {
+                        //    if (app.state.products.length > 1) {
+                        //        estimatedProfitChangeForManuProducts()
+                        //    } else {
+                        //        estimatedProfitChange();
+                        //    }
+                        //}
+                        //document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
+                        //$(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
                     }
                 }
-                window.costOfMaterial = app.state.currentProduct.BaseCost;
-                var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, app.state.currentProduct.BaseCost);
-                app.state.currentProduct.BaseCost = calc[0];
-                var changes = app.state.currentProduct.Price - app.state.currentProduct.BaseCost;
-                //$("#mainH4").html("RM " + parseFloat(chenges.toFixed(2)) + " Profit per sale");
-                window.nowPrice = app.state.currentProduct.BaseCost;
-                updateMinimum(changes.toFixed(2));
-                if (window.nowPrice < window.sellingPrice) {
-                    if (app.state.products.length > 1) {
-                        estimatedProfitChangeForManuProducts()
-                    } else {
-                        estimatedProfitChange();
-                    }
-                }
-                //document.getElementById("price_preview").innerText = "RM " + window.nowPrice.toFixed(2);
-                $(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
             }).hover(function () {
-                $("#minImg").css("background-color", color.value);
-                $("#swatch2").css("background-color", color.value);
+                //$("#swatch2").css("background-color", color.value);
+                var span = $colorHtml.find("span");
+                if ($("#div-color-2").hasClass('div-color') && span.length == 0) {
+                    $("#div-color-2").css("background-color", color.value);
+                    $("#minImg").css("background-color", color.value);
+                } else
+                    if ($("#div-color-3").hasClass('div-color') && span.length == 0) {
+                        $("#div-color-3").css("background-color", color.value);
+                        $("#minImg").css("background-color", color.value);
+                    } else
+                        if ($("#div-color-4").hasClass('div-color') && span.length == 0) {
+                            $("#div-color-4").css("background-color", color.value);
+                            $("#minImg").css("background-color", color.value);
+                        } else
+                            if ($("#div-color-5").hasClass('div-color') && span.length == 0) {
+                                $("#div-color-5").css("background-color", color.value);
+                                $("#minImg").css("background-color", color.value);
+                            }
+            }).mouseleave(function () {
+                var oldColorForProducts;
+                if ($("#div-color-2").hasClass('div-color')) {
+                    $("#div-color-2").css("background-color", "#dbdbdb");
+                    $("#minImg").css("background-color", design.products.colors[app.state.currentProduct.ColorId].value);
+                } else
+                    if ($("#div-color-3").hasClass('div-color')) {
+                        $("#div-color-3").css("background-color", "#dbdbdb");
+                        $("#minImg").css("background-color", design.products.colors[app.state.currentProduct.SecondColorId].value);
+                    } else
+                        if ($("#div-color-4").hasClass('div-color')) {
+                            $("#div-color-4").css("background-color", "#dbdbdb");
+                            $("#minImg").css("background-color", design.products.colors[app.state.currentProduct.ThirdColorId].value);
+                        } else
+                            if ($("#div-color-5").hasClass('div-color')) {
+                                $("#div-color-5").css("background-color", "#dbdbdb");
+                                $("#minImg").css("background-color", design.products.colors[app.state.currentProduct.FourthColorId].value);
+                            }
             });
             elem.append($colorHtml);
         })
@@ -1026,4 +1535,132 @@ function onChangeValueForTrackBar() {
         }
     }
     //}
+}
+
+function changesColor(id, number) {
+    if ($(id).hasClass('div-color-active')) {
+        var color;
+        switch (number) {
+            case 1: color = design.products.colors[app.state.currentProduct.ColorId];
+                break;
+            case 2: color = design.products.colors[app.state.currentProduct.SecondColorId];
+                break;
+            case 3: color = design.products.colors[app.state.currentProduct.ThirdColorId];
+                break;
+            case 4: color = design.products.colors[app.state.currentProduct.FourthColorId];
+                break;
+            case 5: color = design.products.colors[app.state.currentProduct.FifthColorId];
+                break;
+        }
+
+        $("#minImg").css("background-color", color.value);
+        $("#prodFront").css("background-color", color.value);
+        $("#prodBack").css("background-color", color.value);
+        $("#prodFront3").css("background-color", color.value);
+        $("#prodBack3").css("background-color", color.value);
+        $(".product_images").css("background-color", color.value);
+        $('.containertip--open').removeClass('containertip--open');
+        design.products.changeColor(color);
+    }
+}
+
+function deleteColor(number) {
+    switch (number) {
+        case 1:
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.ColorId).children("span").remove();
+
+            app.state.currentProduct.ColorId = app.state.currentProduct.SecondColorId;
+            app.state.currentProduct.SecondColorId = app.state.currentProduct.ThirdColorId;
+            app.state.currentProduct.ThirdColorId = app.state.currentProduct.FourthColorId;
+            app.state.currentProduct.FourthColorId = app.state.currentProduct.FifthColorId;
+            app.state.currentProduct.FifthColorId = 0;
+
+            $("#div-color-1").css("background-color", $("#div-color-2").css("background-color"));
+            $("#div-color-1").removeClass().addClass($("#div-color-2").attr('class'));
+            $("#div-color-2").css("background-color", $("#div-color-3").css("background-color"));
+            $("#div-color-2").removeClass().addClass($("#div-color-3").attr('class'));
+            if ($("#div-color-2").hasClass("div-color")) $("#div-color-2").children("div").remove();
+            $("#div-color-3").css("background-color", $("#div-color-4").css("background-color"));
+            $("#div-color-3").removeClass().addClass($("#div-color-4").attr('class'));
+            if ($("#div-color-3").hasClass("div-color")) $("#div-color-3").children("div").remove();
+            $("#div-color-4").css("background-color", $("#div-color-5").css("background-color"));
+            $("#div-color-4").removeClass().addClass($("#div-color-5").attr('class'));
+            if ($("#div-color-4").hasClass("div-color")) $("#div-color-4").children("div").remove();
+            $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
+            $("#div-color-5").removeClass('div-color-active').addClass('div-color');
+            if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+            break;
+        case 2:
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.SecondColorId).children("span").remove();
+            var color = design.products.colors[app.state.currentProduct.ColorId];
+
+            app.state.currentProduct.SecondColorId = app.state.currentProduct.ThirdColorId;
+            app.state.currentProduct.ThirdColorId = app.state.currentProduct.FourthColorId;
+            app.state.currentProduct.FourthColorId = app.state.currentProduct.FifthColorId;
+            app.state.currentProduct.FifthColorId = 0;
+
+            $("#div-color-2").css("background-color", $("#div-color-3").css("background-color"));
+            $("#div-color-2").removeClass().addClass($("#div-color-3").attr('class'));
+            if ($("#div-color-2").hasClass("div-color")) $("#div-color-2").children("div").remove();
+            $("#div-color-3").css("background-color", $("#div-color-4").css("background-color"));
+            $("#div-color-3").removeClass().addClass($("#div-color-4").attr('class'));
+            if ($("#div-color-3").hasClass("div-color")) $("#div-color-3").children("div").remove();
+            $("#div-color-4").css("background-color", $("#div-color-5").css("background-color"));
+            $("#div-color-4").removeClass().addClass($("#div-color-5").attr('class'));
+            if ($("#div-color-4").hasClass("div-color")) $("#div-color-4").children("div").remove();
+            $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
+            $("#div-color-5").removeClass('div-color-active').addClass('div-color');
+            if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+
+            if ($("#div-color-3").hasClass("div-color")) {
+                $("#minImg").css("background-color", color.value);
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $("#prodFront3").css("background-color", color.value);
+                $("#prodBack3").css("background-color", color.value);
+                $(".product_images").css("background-color", color.value);
+                $('.containertip--open').removeClass('containertip--open');
+                design.products.changeColor(color);
+            }
+            break;
+        case 3:
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.ThirdColorId).children("span").remove();
+
+            app.state.currentProduct.ThirdColorId = app.state.currentProduct.FourthColorId;
+            app.state.currentProduct.FourthColorId = app.state.currentProduct.FifthColorId;
+            app.state.currentProduct.FifthColorId = 0;
+
+            $("#div-color-3").css("background-color", $("#div-color-4").css("background-color"));
+            $("#div-color-3").removeClass().addClass($("#div-color-4").attr('class'));
+            if ($("#div-color-3").hasClass("div-color")) $("#div-color-3").children("div").remove();
+            $("#div-color-4").css("background-color", $("#div-color-5").css("background-color"));
+            $("#div-color-4").removeClass().addClass($("#div-color-5").attr('class'));
+            if ($("#div-color-4").hasClass("div-color")) $("#div-color-4").children("div").remove();
+            $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
+            $("#div-color-5").removeClass('div-color-active').addClass('div-color');
+            if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+            break;
+        case 4:
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.FourthColorId).children("span").remove();
+
+            app.state.currentProduct.FourthColorId = app.state.currentProduct.FifthColorId;
+            app.state.currentProduct.FifthColorId = 0;
+
+            $("#div-color-4").css("background-color", $("#div-color-5").css("background-color"));
+            $("#div-color-4").removeClass().addClass($("#div-color-5").attr('class'));
+            if ($("#div-color-4").hasClass("div-color")) $("#div-color-4").children("div").remove();
+            $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
+            $("#div-color-5").removeClass('div-color-active').addClass('div-color');
+            if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+            break;
+        case 5:
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.FifthColorId).children("span").remove();
+
+            app.state.currentProduct.FifthColorId = 0;
+
+            $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
+            $("#div-color-5").removeClass('div-color-active').addClass('div-color');
+            if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+            break;
+    }
 }

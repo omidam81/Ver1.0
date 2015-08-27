@@ -1210,7 +1210,7 @@
                                     <div class="block">Number of shirts:</div><input id="trackBarValue" value="250">
                                 </div>*@
 
-                            <div class="block" style="height: 73px; padding-left: 15px; padding-right: 15px;">
+                            <div class="block" style="height: 73px; padding-left: 15px; padding-right: 15px; cursor: auto">
                                 <div style="display:block">
                                     @*<input type="range" id="trackbar" step="5" min="15" max="500" oninput="onChangeTrackBar()" onchange="onChangeTrackBar()" list="volsettings" />*@
                                     <div id="trackbar" class="noUi-target noUi-ltr noUi-horizontal noUi-background"></div>
@@ -1237,10 +1237,10 @@
                                     </datalist>*@
                             </div>
                             <div class="trackBarValue_box">
-                                <div class="block">@T("Target"):</div><input type="text" id="trackBarValue">
+                                <div class="block" style="cursor: auto">@T("Target"):</div><input type="text" id="trackBarValue">
                             </div>
                             <div class="trackBarValue_box">
-                                <div class="block">@T("Minimum"):</div><input readonly="readonly" type="text" id="minimmumGoal" value="0">
+                                <div class="block" style="cursor: auto">@T("Minimum"):</div><input readonly="readonly" type="text" id="minimmumGoal" value="0">
                             </div>
 
                             <!--<table>
@@ -1275,20 +1275,29 @@
 
                                         <div class="ssp-ssp-metadata-and-col-pick">
                                             <div class="ssp_metadata">
-                                                <div class="ssp_vcent" style=" width: 100%; margin-left: 20px;">
+                                                <div class="ssp_vcent" style=" width: 100%; margin-left: 10px;">
                                                     <h4 class="ssp_heading" style=" font-weight: 800; color: #6c7478;">@T("Teeyoot Premium Tee")</h4>
                                                 </div>
                                             </div>
 
 
-                                            <div class="clearfix control-group font-color-selection" id="colPick" style="width: 100px">
+                                            <div class="clearfix control-group font-color-selection" id="colPick" style="width: 100px; margin-bottom: 0px; margin-top: 5px;">
                                                 <div class="fake-input color-picker standard designer-dropdown" id="designDrop" title="@T("Change color")" data-value="text">
-                                                    <div class="swatch2" id="swatch2" title="" style="background-color: rgb(0, 0, 0);"></div>
+                                                    <div class="swatch2" id="swatch2" title="" style="background-color: #ffffff;"></div>
                                                     <div class="colors shirt-colors containertip" id="colors">
                                                         <ul class="all-colorsTwo" id="allColorsTwo"></ul>
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
+                                            </div>
+                                            <div id="div-for-colors-first-product" class="div-for-colors">
+                                                <div id="div-color-1" class="div-color-active">
+                                                    <div id="div-color-delete-1" class="div-color-delete" style="visibility: collapse;">X</div> 
+                                                </div>
+                                                <div id="div-color-2" class="div-color"> </div>
+                                                <div id="div-color-3" class="div-color"> </div>
+                                                <div id="div-color-4" class="div-color"> </div>
+                                                <div id="div-color-5" class="div-color"> </div>
                                             </div>
                                         </div>
 
@@ -1997,6 +2006,19 @@
                                                 <p>@T("To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign.")</p>
                                                 <input id="technique-change" type="button" value="@T("Select product")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                                 <input id="technique-abort" type="button" value="@T("Cancel")" class="btn btn-large" data-dismiss="modal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="max-color-for-product" class="modal modal-teespring">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>@T("Sorry, you cannot add more than 5 colors of the same style in one campaign")</p>
+                                                <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
                                             </div>
                                         </div>
                                     </div>
