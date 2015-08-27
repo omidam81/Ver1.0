@@ -2746,19 +2746,20 @@ var design={
 			var oldwidth = 0, oldheight = 0,oldsize = 0;
 			var omp = {};
 			var side = "scale";
+			//var childNodes = {};
 			e.resizable({minHeight: 0, minWidth: 15,				
 			    aspectRatio: auto,
 				handles: handles,
 				start: function (event, ui) {
 				    resizing = true;
-				    northHandleTop = document.querySelector('.ui-resizable-n').offsetTop;
-				    northHandleLeft = document.querySelector('.ui-resizable-n').offsetLeft;
-				    southHandleTop = document.querySelector('.ui-resizable-s').offsetTop;
-				    southHandleLeft = document.querySelector('.ui-resizable-s').offsetLeft;
-				    westHandleTop = document.querySelector('.ui-resizable-w').offsetTop;
-				    westHandleLeft = document.querySelector('.ui-resizable-w').offsetLeft;
-				    eastHandleTop = document.querySelector('.ui-resizable-e').offsetTop;
-				    eastHandleLeft = document.querySelector('.ui-resizable-e').offsetLeft;
+				    northHandleTop = $(ui.element[0]).children('.ui-resizable-n')[0].offsetTop;
+				    northHandleLeft = $(ui.element[0]).children('.ui-resizable-n')[0].offsetLeft;
+				    southHandleTop = $(ui.element[0]).children('.ui-resizable-s')[0].offsetTop;
+				    southHandleLeft = $(ui.element[0]).children('.ui-resizable-s')[0].offsetLeft;
+				    westHandleTop = $(ui.element[0]).children('.ui-resizable-w')[0].offsetTop;
+				    westHandleLeft = $(ui.element[0]).children('.ui-resizable-w')[0].offsetLeft;
+				    eastHandleTop = $(ui.element[0]).children('.ui-resizable-e')[0].offsetTop;
+				    eastHandleLeft = $(ui.element[0]).children('.ui-resizable-e')[0].offsetLeft;
 				    omp.x = event.pageX;
 				    omp.y = event.pageY;
 				    var offset = ui.element.offset();
