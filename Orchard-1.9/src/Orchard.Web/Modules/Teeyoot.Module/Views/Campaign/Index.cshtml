@@ -36,129 +36,134 @@
         var isChangetColor = false;
         var idProduct = "";
 
-    $(document).ready(function () {
-        var img = document.getElementById("prodBack");
-        if (firstBack == "True") {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
-        } else {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
-        }
-    });
+        $(document).ready(function () {
+            var img = document.getElementById("prodBack");
+            if (firstBack == "True") {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+            } else {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+            }
+        });
         document.title = document.querySelector(".campaign__name").innerHTML + " | Teeyoot";
-    var firstBack = "@Model.Campaign.BackSideByDefault";
+        var firstBack = "@Model.Campaign.BackSideByDefault";
 
-    var date = $(document.getElementById("days_for_twitter")).text();
-    date = date.trim();
-    var twitterBtn = document.getElementsByClassName("btn--twitter");
-    for (var k = 0; k < twitterBtn.length; k++) {
-        var str = "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title for the next " + date + " via%20@Teeyoot: @Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias";
-        $(twitterBtn[k]).attr("href", str);
-    }
-    var pinterestBtn = document.getElementsByClassName("btn--pinterest");
-    for (var k = 0; k < pinterestBtn.length; k++) {
-        if (firstBack == "True") {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
-        } else {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+        var date = $(document.getElementById("days_for_twitter")).text();
+        date = date.trim();
+        var twitterBtn = document.getElementsByClassName("btn--twitter");
+        for (var k = 0; k < twitterBtn.length; k++) {
+            var str = "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title for the next " + date + " via%20@Teeyoot: @Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias";
+            $(twitterBtn[k]).attr("href", str);
         }
-    }
-    var facebookBtn = document.getElementsByClassName("btn--facebook");
-    for (var k = 0; k < facebookBtn.length; k++) {
-        $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias");
-    }
-
-    $(".product__size_chart_link--show").click(function () {
-        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
-    });
-    $(".product__size_chart_link--hide").click(function () {
-        document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
-    });
-
-    $(".js-size-unit-toggle-inches").click(function () {
-        var id = $("#product__dropdown option:selected")[0].id;
-        var size_show = document.getElementsByClassName("product__size_chart");
-        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
-    });
-    $(".js-size-unit-toggle-centimeters").click(function () {
-        var id = $("#product__dropdown option:selected")[0].id;
-        document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
-    });
-
-    $("#js-circle-nav-item-front").click(function () {
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
-    });
-    $("#js-circle-nav-item-back").click(function () {
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
-        document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
-    });
-
-
-    $("#image-stack-arrow-right").click(function () {
-        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
-        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
-    });
-    $("#image-stack-arrow-left").click(function () {
-        document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
-        document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
-        document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
-        document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
-    });
-
-    var size_show = document.getElementsByClassName("product__size_chart")[0];
-    $(size_show).addClass("active");
-
-    var details = document.getElementsByClassName("product__details")[0];
-    $(details).addClass("active");
-
-    function VisibleRemove() {
-        var cntRows = document.getElementById('order_item_list_modal').childElementCount;
-        if (cntRows == 1) { return; }
-        if (cntRows == 2) {
-            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-            var newSize = $(current).find("#precheckout-item-remove")[0];
-            newSize.className = "precheckout_item_remove_button hidden";
-        } else {
-            var current = document.getElementsByClassName("precheckout_items_table__row")[0];
-            var newSize = $(current).find("#precheckout-item-remove")[0];
-            newSize.className = "precheckout_item_remove_button";
+        var pinterestBtn = document.getElementsByClassName("btn--pinterest");
+        for (var k = 0; k < pinterestBtn.length; k++) {
+            if (firstBack == "True") {
+                $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+            } else {
+                $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+            }
         }
-    };
+        var facebookBtn = document.getElementsByClassName("btn--facebook");
+        for (var k = 0; k < facebookBtn.length; k++) {
+            $(facebookBtn[k]).attr("href", "http://www.facebook.com/share.php?u=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias");
+        }
 
-    var i = 1;
-    $("#add-row").click(function () {
-        var rowHtml = document.getElementById('first-line-item').innerHTML;
-        var newRow = document.createElement('tr');
-        $(newRow)
-            .addClass('precheckout_items_table__row')
-            .attr('id', 'js-precheckout-line-item-' + i)
-            .html(rowHtml)
-            .appendTo($("#order_item_list_modal"))
-        i = i + 1;
-        VisibleRemove();
-    });
+        $(".product__size_chart_link--show").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2 card-open";
+        });
+        $(".product__size_chart_link--hide").click(function () {
+            document.getElementById("js-product-card").className = "product__card_wrap js-product-card product__card_wrap--v2";
+        });
+
+        $(".js-size-unit-toggle-inches").click(function () {
+            var id = $("#product__dropdown option:selected")[0].id;
+            var size_show = document.getElementsByClassName("product__size_chart");
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--inch";
+        });
+        $(".js-size-unit-toggle-centimeters").click(function () {
+            var id = $("#product__dropdown option:selected")[0].id;
+            document.getElementById("js-size-chart-wrap").className = "product__size_chart_wrap product__size_chart_wrap--cm";
+        });
+
+        $("#js-circle-nav-item-front").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item";
+        });
+        $("#js-circle-nav-item-back").click(function () {
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("js-circle-nav-item-front").className = "image_stack__nav_item js-circle-nav-item";
+            document.getElementById("js-circle-nav-item-back").className = "image_stack__nav_item js-circle-nav-item image_stack__nav_item--active";
+        });
 
 
-    $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
-    $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+        $("#image-stack-arrow-right").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow hidden";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap image_stack__image_wrap--active";
+        });
+        $("#image-stack-arrow-left").click(function () {
+            document.getElementById("image-stack-arrow-left").className = "image_stack__arrow image_stack__arrow--left js-arrow-prev ts-icon-left-arrow hidden";
+            document.getElementById("image-stack-arrow-right").className = "image_stack__arrow image_stack__arrow--right js-arrow-next ts-icon-right-arrow";
+            document.getElementById("image-wrap-front").className = "image_stack__image_wrap image_stack__image_wrap--active";
+            document.getElementById("image-wrap-back").className = "image_stack__image_wrap";
+        });
 
-    function ItemRemove(node) {
-        var el = document.getElementById(node.id);
-        el.parentNode.removeChild(el);
-        VisibleRemove();
-    }
+        var size_show = document.getElementsByClassName("product__size_chart")[0];
+        $(size_show).addClass("active");
 
-    var isFront = true;
-    $(function ($) {
-        @*$("#card").flip({
-                trigger: 'manual'
-            }).click(function () {
+        var details = document.getElementsByClassName("product__details")[0];
+        $(details).addClass("active");
+
+        function VisibleRemove() {
+            var cntRows = document.getElementById('order_item_list_modal').childElementCount;
+            if (cntRows == 1) { return; }
+            if (cntRows == 2) {
+                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+                var newSize = $(current).find("#precheckout-item-remove")[0];
+                newSize.className = "precheckout_item_remove_button hidden";
+            } else {
+                var current = document.getElementsByClassName("precheckout_items_table__row")[0];
+                var newSize = $(current).find("#precheckout-item-remove")[0];
+                newSize.className = "precheckout_item_remove_button";
+            }
+        };
+
+        var i = 1;
+        $("#add-row").click(function () {
+            var rowHtml = document.getElementById('first-line-item').innerHTML;
+            var newRow = document.createElement('tr');
+            $(newRow)
+                .addClass('precheckout_items_table__row')
+                .attr('id', 'js-precheckout-line-item-' + i)
+                .html(rowHtml)
+                .appendTo($("#order_item_list_modal"))
+            i = i + 1;
+            VisibleRemove();
+        });
+
+
+        $('#prodFront').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+        $('#prodBack').elevateZoom({ zoomWindowPosition: 2, zoomWindowWidth: 480, zoomWindowHeight: 600 });
+
+        function ItemRemove(node) {
+            var el = document.getElementById(node.id);
+            el.parentNode.removeChild(el);
+            VisibleRemove();
+        }
+
+        var isFront = true;
+        var isFlipFront = true;
+        var isFlipBack = false;
+
+        $("#card").flip({
+            trigger: 'manual'
+        });
+
+        $("#buttnFlipFront").click(function (event) {
+            if (!isFront && !isFlipFront) {
                 isFront = !isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
@@ -168,63 +173,111 @@
                     if (isFront) {
                         $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                     } else {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                     }
                 } else {
                     if (!isFront) {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/back.png " + ")");
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
                     } else {
-                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "//big/front.png" + ")");
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
+                }
+                var imgBttns = document.getElementsByClassName("image_stack__nav_item");
+                for (var i = 0; i < imgBttns.length; i++) {
+                    if ($(imgBttns[i]).hasClass("image_stack__nav_item--active")) {
+                        $(imgBttns[i]).removeClass("image_stack__nav_item--active");
+                    } else {
+                        $(imgBttns[i]).addClass("image_stack__nav_item--active");
                     }
                 }
 
-            });*@
-        $("#card").flip({
-            trigger: 'manual'
-        });
-        $("#card3").flip({
-            trigger: 'manual'
-        });
-        $('#card .flip-button:not(.flip-button-active)').on('click', function () {
-            var id = $("#product__dropdown option:selected")[0].id;
-            isFront = !isFront;
-            console.log(isFront);
-            $("#card").flip(!isFront);
-            if (isChangetColor) { id = idProduct; }
-            if (firstBack == "True") {
-                if (isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-                } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
-                }
-            } else {
-                if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-                } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
-                }
+                isFlipFront = true;
+                isFlipBack = false;
             }
+            event.stopPropagation();
         });
-        $('#card3 .flip-button:not(.flip-button-active)').on('click', function () {
-            isFront3 = !isFront3;
-            $("#card3").flip(!isFront3);
-            if (isChangetColor) { id = idProduct; }
-            if (firstBack == "True") {
-                if (isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+
+        $("#buttnFlipBack").click(function (event) {
+            if (isFront && !isFlipBack) {
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+                var id = $("#product__dropdown option:selected")[0].id;
+                if (isChangetColor) { id = idProduct; }
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
                 }
-            } else {
-                if (!isFront) {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                var imgBttns = document.getElementsByClassName("image_stack__nav_item");
+                for (var i = 0; i < imgBttns.length; i++) {
+                    if ($(imgBttns[i]).hasClass("image_stack__nav_item--active")) {
+                        $(imgBttns[i]).removeClass("image_stack__nav_item--active");
+                    } else {
+                        $(imgBttns[i]).addClass("image_stack__nav_item--active");
+                    }
+                }
+                isFlipFront = false;
+                isFlipBack = true;
+            }
+            event.stopPropagation();
+        });
+
+
+
+        @*$("#card").flip({
+                trigger: 'manual'
+            });
+            $("#card3").flip({
+                trigger: 'manual'
+            });
+            $('#card .flip-button:not(.flip-button-active)').on('click', function () {
+                var id = $("#product__dropdown option:selected")[0].id;
+                isFront = !isFront;
+                console.log(isFront);
+                $("#card").flip(!isFront);
+                if (isChangetColor) { id = idProduct; }
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
                 } else {
-                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
                     }
                 }
             });
+            $('#card3 .flip-button:not(.flip-button-active)').on('click', function () {
+                isFront3 = !isFront3;
+                $("#card3").flip(!isFront3);
+                if (isChangetColor) { id = idProduct; }
+                if (firstBack == "True") {
+                    if (isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
+                } else {
+                    if (!isFront) {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                    } else {
+                        $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                    }
+                }
+            });*@
 
-        });
 
 
         function Resrve() {
@@ -259,7 +312,7 @@
         function CloseModalBackReserv() {
             document.getElementById("bringBackCampaign").className = "dg-overlay-not-show";
         }
-      
+
         function ChangeColor(item) {
             var id = item.id;
             idProduct = id;
@@ -268,6 +321,17 @@
                 isFront = !isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
+
+                var imgBttns = document.getElementsByClassName("image_stack__nav_item");
+                for (var i = 0; i < imgBttns.length; i++) {
+                    if ($(imgBttns[i]).hasClass("image_stack__nav_item--active")) {
+                        $(imgBttns[i]).removeClass("image_stack__nav_item--active");
+                    } else {
+                        $(imgBttns[i]).addClass("image_stack__nav_item--active");
+                    }
+                }
+                isFlipFront = true;
+                isFlipBack = false;
             }
 
             var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
@@ -281,6 +345,9 @@
                 $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
                 $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
                 $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+
+                $("#buttnFlipFrontItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                $("#buttnFlipBackItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             } else {
                 $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
                 $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
@@ -290,9 +357,12 @@
                 $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
                 $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
                 $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-            }
 
-          
+                $("#buttnFlipFrontItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#buttnFlipBackItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            }
+           
+
         }
 
         function ChangeProduct(item) {
@@ -311,261 +381,279 @@
                 }
             }
 
+
             if (!isFront) {
                 isFront = !isFront;
                 console.log(isFront);
                 $("#card").flip(!isFront);
+
+                var imgBttns = document.getElementsByClassName("image_stack__nav_item");
+                for (var i = 0; i < imgBttns.length; i++) {
+                    if ($(imgBttns[i]).hasClass("image_stack__nav_item--active")) {
+                        $(imgBttns[i]).removeClass("image_stack__nav_item--active");
+                    } else {
+                        $(imgBttns[i]).addClass("image_stack__nav_item--active");
+                    }
+                }
+                isFlipFront = true;
+                isFlipBack = false;
             }
             var modalImg = document.getElementsByClassName("modal_campaign_img")[0];
 
             if (firstBack == "True") {
                 $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
-            $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-        } else {
-            $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-            $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-            $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
-            $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
-            $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-        }
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+                $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
 
-        var index = item.selectedIndex;
-        var drop_down = document.getElementById("product__dropdown_modal");
-
-        var row = drop_down.parentNode.parentNode;
-
-        var currentModalSize = $(row).find('.size-dropdown.shown')[0];
-        var newModalSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
-
-        $(currentModalSize).removeClass('shown').addClass('hidden');
-        $(newModalSize).removeClass('hidden').addClass('shown');
-
-        var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newPrice = $(row).find('span[name=select_size_index_' + index + '_0]')[0];
-
-        $(currentPrice).removeClass('shown').addClass('hidden');
-        $(newPrice).removeClass('hidden').addClass('shown');
-
-        document.getElementById('product__dropdown_modal').selectedIndex = index;
-
-        var options = document.getElementById('product__dropdown_modal').options;
-        for (var i = 0; i < options.length; i++) {
-            if (options[i].id == id) {
-
-                options[i].setAttribute("selected", "selected");
+                $("#buttnFlipFrontItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                $("#buttnFlipBackItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             } else {
-                options[i].removeAttribute("selected");
-            }
-        }
+                $("#prodFront").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#prodBack").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+                $("#prodFront").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png");
+                $("#prodBack").attr("data-zoom-image", "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png");
+                $(modalImg).attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
 
-        if (firstBack == "True") {
-            if (isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-            } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
-            }
-        } else {
-            if (!isFront) {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
-            } else {
-                $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
-            }
-        }
+                $("#buttnFlipFrontItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+                $("#buttnFlipBackItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            }         
 
+            var index = item.selectedIndex;
+            var drop_down = document.getElementById("product__dropdown_modal");
 
-        var size_show = document.getElementsByClassName("product__size_chart");
-        for (var i = 0; i < size_show.length; i++) {
-            if ($(size_show[i]).attr('data-product-id') == id) {
-                $(size_show[i]).addClass("active");
-            } else {
-                $(size_show[i]).removeClass("active");
-            }
-        }
+            var row = drop_down.parentNode.parentNode;
 
-        var details = document.getElementsByClassName("product__details");
-        for (var i = 0; i < details.length; i++) {
-            if ($(details[i]).attr('data-product-id') == id) {
-                $(details[i]).addClass("active");
-            } else {
-                $(details[i]).removeClass("active");
-            }
-        }
+            var currentModalSize = $(row).find('.size-dropdown.shown')[0];
+            var newModalSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
 
-    }
+            $(currentModalSize).removeClass('shown').addClass('hidden');
+            $(newModalSize).removeClass('hidden').addClass('shown');
 
-    function ChangeProductModal(item) {
-        var par = item.parentNode.parentNode.id;
-        var index = item.selectedIndex;
-        var id = item[item.selectedIndex].id;
-        var value = item[item.selectedIndex].value;
-        var row = item.parentNode.parentNode;
-        var img = $(row).find('.modal_campaign_img')[0];
-        if (firstBack == "True") {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-        } else {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
-        }
+            var currentPrice = $(row).find('.modal-price.shown')[0];
+            var newPrice = $(row).find('span[name=select_size_index_' + index + '_0]')[0];
 
-        var currentSize = $(row).find('.size-dropdown.shown')[0];
-        var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newPrice).removeClass('hidden').addClass('shown');
 
-        $(currentSize).removeClass('shown').addClass('hidden');
-        $(newSize).removeClass('hidden').addClass('shown');
-        $(newSize).selectedIndex = 0;
+            document.getElementById('product__dropdown_modal').selectedIndex = index;
 
-        var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];
+            var options = document.getElementById('product__dropdown_modal').options;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].id == id) {
 
-        $(currentPrice).removeClass('shown').addClass('hidden');
-        $(newPrice).removeClass('hidden').addClass('shown');
-    }
-
-    function ChangePriceModal(item) {
-        var rows = item.parentNode.parentNode.parentNode;
-        var index = item.selectedIndex;
-        var id = item[item.selectedIndex].value;
-
-        var currentPrice = $(rows).find('.modal-price.shown')[0];
-        var newPrice = $(rows).find('span[name=select_size_index_' + id + '_' + index + ']')[0];
-        $(currentPrice).removeClass('shown').addClass('hidden');
-        $(newPrice).removeClass('hidden').addClass('shown');
-    }
-
-    function sendData() {
-        if (('@Model.PromoId') != null) {
-            var promoId = '@Model.PromoId';
-        }
-        var products = [];
-        var tableRows = $('.precheckout_items_table__row');
-        var count;
-        var productId;
-        var sizeId;
-        var price;
-
-        tableRows.each(function (index, el) {
-
-            var items = $(el).find('.product__dropdown')[0];
-            productId = items[items.selectedIndex].id;
-            items = $(el).find('.size-dropdown.shown')[0];
-            sizeId = items[items.selectedIndex].id;
-            count = $(el).find('.product-count')[0].value;
-            price = $(el).find('.modal-price.shown')[0].title;
-
-            products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price });
-        });
-
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("CreateOrder", "Home"))",
-            data: addAntiForgeryToken({
-                "products": products
-            }),
-            success: function (data, status, resp) {
-                if (resp.status === 200) {
-                    if (promoId) {
-                        window.location.href = '/Buy/' + data + "?promo=" + promoId;
-                    } else {
-                        window.location.href = '/Buy/' + data;
-                    }
+                    options[i].setAttribute("selected", "selected");
+                } else {
+                    options[i].removeAttribute("selected");
                 }
-            },
-            error: function (data, status, resp) {
-                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
             }
-        });
 
-    }
-    function ReservCampaign() {
-        var email = document.getElementById("email_for_reserv").value;
-        var campaignId = document.getElementById("campaignId").value;
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("ReservCampaign", "Home"))",
-            data: addAntiForgeryToken({
-                "Email": email, "Id": campaignId
-            }),
-            success: function (data, status, resp) {
-                $("#reserv_container").addClass("hidden");
-                $(document.getElementById("reservation-result")).text("@T("Your request has been sent!")");
-            }
-        });
-    }
-
-    function shareCampaign() {
-        var isBack = firstBack;
-        var campaignId = document.getElementById("campaignId").value;
-
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "POST",
-            url: "@(Url.Action("ShareCampaign", "Home"))",
-            data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
-            success: function () {
-
-            }
-        });
-
-    }
-
-
-    function addAntiForgeryToken(data) {
-        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-        return data;
-    };
-
-
-
-
-    function CountdownTimer(elm, tl, mes) {
-        this.initialize.apply(this, arguments);
-    }
-    CountdownTimer.prototype = {
-        initialize: function (elm, tl, mes) {
-            this.elem = document.getElementById(elm);
-            this.tl = tl;
-            this.mes = mes;
-        }, countDown: function () {
-            var timer = '';
-            var today = new Date();
-            var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
-            var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-            var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
-            var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
-            var me = this;
-
-            if ((this.tl - today) > 0) {
-                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
-                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
-                timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
-                this.elem.innerHTML = timer;
-                tid = setTimeout(function () { me.countDown(); }, 10);
+            if (firstBack == "True") {
+                if (isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                }
             } else {
-                this.elem.innerHTML = this.mes;
-                return;
+                if (!isFront) {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/back.png " + ")");
+                } else {
+                    $('.zoomWindowContainer div').stop().css("background-image", "url(" + "/Media/campaigns/@Model.Campaign.Id/" + id + "/big/front.png" + ")");
+                }
             }
-        }, addZero: function (num) { return ('0' + num).slice(-2); }
-    }
-    function CDT() {
-        var finishDate = document.getElementById("persistent__timer").value;
-        var tl = new Date(finishDate);
 
 
-        var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
-        timer.countDown();
-    }
-    window.onload = function () {
-        if ("@Model.Campaign.IsApproved" == "True") {
-            CDT();
+            var size_show = document.getElementsByClassName("product__size_chart");
+            for (var i = 0; i < size_show.length; i++) {
+                if ($(size_show[i]).attr('data-product-id') == id) {
+                    $(size_show[i]).addClass("active");
+                } else {
+                    $(size_show[i]).removeClass("active");
+                }
+            }
+
+            var details = document.getElementsByClassName("product__details");
+            for (var i = 0; i < details.length; i++) {
+                if ($(details[i]).attr('data-product-id') == id) {
+                    $(details[i]).addClass("active");
+                } else {
+                    $(details[i]).removeClass("active");
+                }
+            }
+
         }
-    }
+
+        function ChangeProductModal(item) {
+            var par = item.parentNode.parentNode.id;
+            var index = item.selectedIndex;
+            var id = item[item.selectedIndex].id;
+            var value = item[item.selectedIndex].value;
+            var row = item.parentNode.parentNode;
+            var img = $(row).find('.modal_campaign_img')[0];
+            if (firstBack == "True") {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            } else {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+            }
+
+            var currentSize = $(row).find('.size-dropdown.shown')[0];
+            var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
+
+            $(currentSize).removeClass('shown').addClass('hidden');
+            $(newSize).removeClass('hidden').addClass('shown');
+            $(newSize).selectedIndex = 0;
+
+            var currentPrice = $(row).find('.modal-price.shown')[0];
+            var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];
+
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newPrice).removeClass('hidden').addClass('shown');
+        }
+
+        function ChangePriceModal(item) {
+            var rows = item.parentNode.parentNode.parentNode;
+            var index = item.selectedIndex;
+            var id = item[item.selectedIndex].value;
+
+            var currentPrice = $(rows).find('.modal-price.shown')[0];
+            var newPrice = $(rows).find('span[name=select_size_index_' + id + '_' + index + ']')[0];
+            $(currentPrice).removeClass('shown').addClass('hidden');
+            $(newPrice).removeClass('hidden').addClass('shown');
+        }
+
+        function sendData() {
+            if (('@Model.PromoId') != null) {
+                var promoId = '@Model.PromoId';
+            }
+            var products = [];
+            var tableRows = $('.precheckout_items_table__row');
+            var count;
+            var productId;
+            var sizeId;
+            var price;
+
+            tableRows.each(function (index, el) {
+
+                var items = $(el).find('.product__dropdown')[0];
+                productId = items[items.selectedIndex].id;
+                items = $(el).find('.size-dropdown.shown')[0];
+                sizeId = items[items.selectedIndex].id;
+                count = $(el).find('.product-count')[0].value;
+                price = $(el).find('.modal-price.shown')[0].title;
+
+                products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price });
+            });
+
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("CreateOrder", "Home"))",
+                data: addAntiForgeryToken({
+                    "products": products
+                }),
+                success: function (data, status, resp) {
+                    if (resp.status === 200) {
+                        if (promoId) {
+                            window.location.href = '/Buy/' + data + "?promo=" + promoId;
+                        } else {
+                            window.location.href = '/Buy/' + data;
+                        }
+                    }
+                },
+                error: function (data, status, resp) {
+                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                }
+            });
+
+        }
+        function ReservCampaign() {
+            var email = document.getElementById("email_for_reserv").value;
+            var campaignId = document.getElementById("campaignId").value;
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("ReservCampaign", "Home"))",
+                data: addAntiForgeryToken({
+                    "Email": email, "Id": campaignId
+                }),
+                success: function (data, status, resp) {
+                    $("#reserv_container").addClass("hidden");
+                    $(document.getElementById("reservation-result")).text("@T("Your request has been sent!")");
+                }
+            });
+        }
+
+        function shareCampaign() {
+            var isBack = firstBack;
+            var campaignId = document.getElementById("campaignId").value;
+
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("ShareCampaign", "Home"))",
+                data: addAntiForgeryToken({ "isBack": isBack, "campaignId": campaignId }),
+                success: function () {
+
+                }
+            });
+
+        }
+
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+
+
+
+        function CountdownTimer(elm, tl, mes) {
+            this.initialize.apply(this, arguments);
+        }
+        CountdownTimer.prototype = {
+            initialize: function (elm, tl, mes) {
+                this.elem = document.getElementById(elm);
+                this.tl = tl;
+                this.mes = mes;
+            }, countDown: function () {
+                var timer = '';
+                var today = new Date();
+                var day = Math.floor((this.tl - today) / (24 * 60 * 60 * 1000));
+                var hour = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                var min = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / (60 * 1000)) % 60;
+                var sec = Math.floor(((this.tl - today) % (24 * 60 * 60 * 1000)) / 1000) % 60 % 60;
+                var me = this;
+
+                if ((this.tl - today) > 0) {
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">DAYS</div><span class="number day">' + day + '</span></span>';
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">HOURS</div><span class="number hour">' + hour + '</span></span>';
+                    timer += '<span class="number-wrapper"><div class="line"></div><div class="caption">MINS</div><span class="number min">' + this.addZero(min) + '</span></span><span class="number-wrapper"><div class="line"></div><div class="caption">SECS</div><span class="number sec">' + this.addZero(sec) + '</span></span>';
+                    this.elem.innerHTML = timer;
+                    tid = setTimeout(function () { me.countDown(); }, 10);
+                } else {
+                    this.elem.innerHTML = this.mes;
+                    return;
+                }
+            }, addZero: function (num) { return ('0' + num).slice(-2); }
+        }
+        function CDT() {
+            var finishDate = document.getElementById("persistent__timer").value;
+            var tl = new Date(finishDate);
+
+
+            var timer = new CountdownTimer('back_timer', tl, '<div class="finish">@T("The time expired on ")' + finishDate + ' </div>');
+            timer.countDown();
+        }
+        window.onload = function () {
+            if ("@Model.Campaign.IsApproved" == "True") {
+                CDT();
+            }
+        }
 
     </script>
 }
@@ -629,7 +717,7 @@
                             }
                             else
                             {
-                                <div class="item_color hidden" name="@prod.ProductRecord.Name" id="@prod.Id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)" ></div>
+                                <div class="item_color hidden" name="@prod.ProductRecord.Name" id="@prod.Id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
 
                             }
 
@@ -639,40 +727,70 @@
                         {
                             <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
                                  data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/back.png">
-                            <div id="butt1" style="text-align:center; font-weight: 400;">
-                                <div class="flip-button flip-button-front flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Back")</span></div>
-                                <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
-                            </div>
+                            @*<div id="butt1" style="text-align:center; font-weight: 400;">
+                                    <div class="flip-button flip-button-front flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Back")</span></div>
+                                    <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
+                                </div>*@
                         }
                         else
                         {
                             <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
                                  data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
-                            <div id="butt1" style="text-align:center; font-weight: 400;">
-                                <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Front")</span></div>
-                                <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
-                            </div>
+                            @*<div id="butt1" style="text-align:center; font-weight: 400;">
+                                    <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Front")</span></div>
+                                    <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
+                                </div>*@
                         }
                     </div>
                     <div id="back" class="back">
                         @if (Model.Campaign.BackSideByDefault)
                         {
                             <img id="prodBack" style="width:530px">
-                            <div id="butt2" style="text-align:center;">
-                                <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Back")</span></div>
-                                <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span class="flip-button__back">@("Front")</span></div>
-                            </div>
+                            @*<div id="butt2" style="text-align:center;">
+                                    <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Back")</span></div>
+                                    <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span class="flip-button__back">@("Front")</span></div>
+                                </div>*@
                         }
                         else
                         {
                             <img id="prodBack" style="width:530px">
-                            <div id="butt2" style="text-align:center;">
-                                <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>
-                                <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span class="flip-button__back">@T("Back")</span></div>
+                            @*<div id="butt2" style="text-align:center;">
+                                    <div class="flip-button flip-button-front"><span class="flip-button__front">@T("Front")</span></div>
+                                    <div class="flip-button flip-button-back no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span class="flip-button__back">@T("Back")</span></div>
+                                </div>*@
+                        }
+                    </div>
+                </div>
+
+                <div class="image_stack__nav">
+                    <div id="buttnFlipFront" class="image_stack__nav_list">
+                        @if (!Model.Campaign.BackSideByDefault)
+                        {
+                            <div class="image_stack__nav_item image_stack__nav_item--active">
+                                <img id="buttnFlipFrontItem" class="image_stack__nav_item_thumb"
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+                            </div>
+                            <div id="buttnFlipBack" class="image_stack__nav_item">
+                                <img id="buttnFlipBackItem" class="image_stack__nav_item_thumb"
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="image_stack__nav_item image_stack__nav_item--active">
+                                <img id="buttnFlipFrontItem" class="image_stack__nav_item_thumb"
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
+                            </div>
+                            <div id="buttnFlipBack" class="image_stack__nav_item">
+                                <img id="buttnFlipBackItem" class="image_stack__nav_item_thumb"
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
                             </div>
                         }
                     </div>
                 </div>
+
+
             </div>
 
             <div class="campaign__column--product" style="min-height: inherit;">
@@ -1015,7 +1133,7 @@
                                                     foreach (var prod in Model.Campaign.Products)
                                                     {
 
-                                                        <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@index">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                                        <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@index">@prod.ProductRecord.Name</option>
 
                                                         index++;
                                                     }
@@ -1156,22 +1274,27 @@
         @if (@Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days > 0)
         {
             @Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days@T(" days")
+
         }
         else if (Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days <= -1)
         {
             @Math.Abs(Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days) @T("days ago")
+
         }
         else
         {
             var hours = Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours; if (hours > 0)
             {
                 @hours @T("hours")
+
             }
             else
             {
                 @Math.Abs(hours) @T("hours ago")
+
             }
         }
-    </span>
-</div>
+                <
+            </span>
+        </div>
 

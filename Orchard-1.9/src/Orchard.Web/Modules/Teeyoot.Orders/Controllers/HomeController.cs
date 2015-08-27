@@ -236,7 +236,7 @@ namespace Teeyoot.Orders.Controllers
                 var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
                 campaign.ProductCountSold = campaign.ProductCountSold - sum;
             }
-
+            int i = 0;
             OrderStatus newStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
             if (orderStatus == "Shipped")
             {
@@ -246,6 +246,18 @@ namespace Teeyoot.Orders.Controllers
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
             //ToDo: delete order if new status is "Cancelled"
+            var ordersForCampaign = _orderService.GetProductsOrderedOfCampaign(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
+            foreach (var item in ordersForCampaign)
+            {
+                if (item.OrderRecord.OrderStatusRecord.Name != "Delivered")
+                {
+                    i++;
+                }
+            }
+            if (i == 0)
+            {
+                _teeyootMessagingService.SendAllOrderDeliveredMessageToSeller((order.Products[0].CampaignProductRecord.CampaignRecord_Id));
+            }
             _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, orderId, orderStatus);
             _notifierService.Information(T("Successfully updated order status "));
             return RedirectToAction("Index");

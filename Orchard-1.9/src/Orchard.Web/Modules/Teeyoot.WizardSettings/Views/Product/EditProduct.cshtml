@@ -14,6 +14,7 @@
     Script.Include("jquery.multi-select.js");
     Script.Include("jquery.dataTables.min.js");
     Script.Include("edit-printable-area.js");
+    Layout.Title = T("Edit Style");
 }
 
 <div class="manage">
@@ -21,7 +22,7 @@
 </div>
 
 <h2>
-    @(Model.Id == null ? T("Add New Product") : T("Edit Product"))
+    @(Model.Id == null ? T("Add New Style") : T("Edit Style"))
 </h2>
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("EditProduct", "Product"), FormMethod.Post, new { id = "product_form", enctype = "multipart/form-data" }))
@@ -32,12 +33,14 @@
         @Html.TextBoxFor(m => m.Name, new { @class = "text large", id = "name" })
         @Html.LabelFor(m => m.SelectedProductHeadline, T("Headline"))
         @Html.DropDownListFor(m => m.SelectedProductHeadline, new SelectList(Model.ProductHeadlines, "Id", "Name"), T("Select Headline ...").ToString(), new { id = "headlines" })
-        @Html.LabelFor(m => m.Materials, T("Materials"))
-        @Html.TextBoxFor(m => m.Materials, new { @class = "text large" })
+        @*@Html.LabelFor(m => m.Materials, T("Materials"))
+        @Html.TextBoxFor(m => m.Materials, new { @class = "text large" })*@
         @Html.LabelFor(m => m.Details, T("Details"))
         @Html.TextBoxFor(m => m.Details, new { @class = "text large" })
         @Html.LabelFor(m => m.BaseCost, T("Cost of material"))
         @Html.TextBoxFor(m => m.BaseCost, new { @class = "text large", id = "baseCost" })
+        @Html.LabelFor(m => m.PackagingCost, T("Packaging Cost"))
+        @Html.TextBoxFor(m => m.PackagingCost, new { @class = "text large", id = "packagingCost" })
     </fieldset>
     <h3>@T("Product Groups")</h3>
     <hr />
@@ -51,7 +54,7 @@
             }
         </select>
         <hr />
-        <button id="add_group" type="button" class="primaryAction">@T("Add New Group")</button>
+        <button id="add_group" type="button" class="primaryAction">@T("Add New Type")</button>
     </fieldset>
     <h3>@T("Colours")</h3>
     <hr />
@@ -113,9 +116,9 @@
                         <input type="hidden" class="row-product-colour-id" />
                     </td>
                     <td class="product-colour-name"></td>
-                    <td class="product-colour-base-cost">
+                    @*<td class="product-colour-base-cost">
                         <input type="text" value="0" class="row-base-cost" />
-                    </td>
+                    </td>*@
                     <td>
                         <a href="javascript:;" class="remove-product-colour">@T("Remove")</a>
                     </td>
@@ -151,7 +154,7 @@
                         @T("Sleeve (in)")
                     </td>
                     <td>
-                        @T("Select")
+                        @T("Enabled")
                     </td>
                     <td>
                         @T("Cost")

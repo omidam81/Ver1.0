@@ -41,6 +41,12 @@ namespace Teeyoot.Module.Services
 
         void SendEditedCampaignMessageToSeller(int campaignId, string pathToMedia, string pathToTemplates);
 
+        void SendCampaignMetMinimumMessageToBuyers(int campaignId);
+
+        void SendCampaignMetMinimumMessageToSeller(int campaignId);
+
+        void SendAllOrderDeliveredMessageToSeller(int campaignId);
+
         void SendTermsAndConditionsMessageToSeller();
 
         void SendCampaignFinished1DayMessageToSeller();

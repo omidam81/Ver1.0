@@ -857,6 +857,26 @@ window.onload = function initWizard() {
                 estimatedProfitChange();
             }
             $("#first-product").click();
+
+            var list = document.getElementById("item-options-dropdown-tees");
+            var listProd = document.getElementById("product");
+
+            listProd.innerHTML = "";
+           
+            $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
+                var cnt = 0;
+                $.each(app.state.products, function (j, el) {
+                    if (el.ProductId == element) { cnt++; }
+                });
+
+                if (cnt == 0) {
+                    var option = document.createElement("option");
+                    option.value = element;
+                    option.id = element;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                }
+            });
         });
 
         globalPrdc = prdc;
@@ -869,19 +889,20 @@ window.onload = function initWizard() {
 
         listProd.innerHTML = "";
 
-        $.each(design.products.productsData, function (i, el) {
-            if (el.id != productId) {
+        $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
+            var cnt = 0;
+            $.each(app.state.products, function (j, el) {
+                if (el.ProductId == element) { cnt++; }
+            });
 
-                if (design.products.categoriesList[list.selectedIndex].products.indexOf(el.id) >= 0) {
-                    var option = document.createElement("option");
-                    option.value = i;
-                    option.id = i;
-                    option.innerHTML = el.name;
-                    listProd.appendChild(option);
-                }
-            };
+            if (cnt == 0) {
+                var option = document.createElement("option");
+                option.value = element;
+                option.id = element;
+                option.innerHTML = design.products.productsData[element].name;
+                listProd.appendChild(option);
+            }
         });
-
     });
 
 

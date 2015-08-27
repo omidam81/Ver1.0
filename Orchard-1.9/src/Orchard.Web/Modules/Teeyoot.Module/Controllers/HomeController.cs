@@ -242,8 +242,23 @@ namespace Teeyoot.Module.Controllers
                 //order.TranzactionId = result.Target.Id;
 
                 var campaign = _campaignService.GetCampaignById(campaignId);
-                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
-                _campaignService.UpdateCampaign(campaign);
+                if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                {
+                    campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                    _campaignService.UpdateCampaign(campaign);
+                }
+                else
+                {
+                    campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                    _campaignService.UpdateCampaign(campaign);
+                    if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                    {
+                        _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
+                        _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
+                    }
+                }
+                
+                
 
                 //_orderService.UpdateOrder(order, OrderStatus.Approved);
                 if (collection["PromoId"] != null)

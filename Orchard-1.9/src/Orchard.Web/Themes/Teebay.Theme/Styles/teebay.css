@@ -1916,6 +1916,7 @@
     max-width: 1236px;
     margin-left: auto;
     margin-right: auto;
+    min-height: 100%;
 }
 
 .aside-1 .tb-aside-first {
@@ -4268,6 +4269,7 @@ html, body {
         padding: 0 10px;
     }
 }
+
 .inp-half {
     display: inline;
     float: left;
@@ -4278,5 +4280,5 @@ html, body {
 .inp-half-right {
     display: inline;
     float: left;
-   width: 48.6348122596%;
+    width: 48.6348122596%;
 }
