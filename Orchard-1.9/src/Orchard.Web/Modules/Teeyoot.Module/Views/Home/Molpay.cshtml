@@ -1,0 +1,45 @@
+﻿@{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://www.onlinepayment.com.my/MOLPay/API/seamless/3.0/js/MOLPay_seamless.pci.deco.js"></script>
+
+
+}
+@using (Script.Foot())
+{
+    <script>
+        $( document ).ready(function() {
+            var options = { 
+                mpsmerchantid: "teeyoot1_Dev",
+                mpschannel:"credit", 
+                mpsamount:"5", 
+                mpsorderid: "TEST728638391",
+                mpsbill_name:"MOLPay Technical", 
+                mpscardnumber: "5111111111111111",
+                mpsccmonth: "02",
+                mpsyear: "2014",
+                mpscvv: "111",
+                mpsbankname: "credit",
+                mpsbill_name: "MOLPay demo",
+                mpsbill_email: "vas@gmail.com",
+                mpsbill_mobile: "380928273633",
+                mpsbill_desc: "Zaebs",
+                mpsvcode: ""
+                   }; 
+
+            $('#myPay').MOLPaySeamless(options)
+
+        });
+        
+
+    </script>
+}
+
+@{
+    ViewBag.Title = "Molpay";
+}
+
+<h2>Molpay</h2>
+<button type="button" id="myPay" class="btn btn-primary btn-lg" data-toggle="molpayseamless" data-mpsmerchantid="molpaymerchant" data-mpschannel="credit" data-mpsamount="1.20" data-mpsorderid="TEST1139669863" data-mpsbill_name="MOLPay Technical">Pay by Maybank2u</button>
+
+
+

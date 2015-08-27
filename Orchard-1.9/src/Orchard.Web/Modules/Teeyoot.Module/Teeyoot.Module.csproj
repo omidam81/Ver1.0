@@ -729,6 +729,9 @@
     <Content Include="Views\Home\ReservationComplete.cshtml" />
     <Content Include="Views\Home\RecoverOrder.cshtml" />
     <Content Include="Views\AdminCommonSettings\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Molpay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">

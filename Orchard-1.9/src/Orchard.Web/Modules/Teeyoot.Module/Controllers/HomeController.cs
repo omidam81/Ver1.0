@@ -18,6 +18,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Teeyoot.Module.Common.Enums;
@@ -167,6 +169,44 @@ namespace Teeyoot.Module.Controllers
                 return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
             }
         }
+
+
+
+        private string GetVCode(string input)
+        {
+            var result = "";
+            var md5 = MD5.Create();
+            var md5Bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+            var stringBuilder = new StringBuilder();
+            foreach (byte data in md5Bytes)
+            {
+                stringBuilder.Append(data.ToString("x2"));
+            }
+            result = stringBuilder.ToString();
+
+            return result;
+        }
+
+        public ActionResult Molpay() {
+            var merchantId = "teeyoot1_Dev";
+            var verifyKey = "856287426298f7e8508eae9896c09c03";
+
+
+            var Total = "5";
+            var OrderNumber = "699982";
+            var Name = "Privet";
+            var Email = "vas@gmail.com";
+
+
+            var vCode = GetVCode(Total + merchantId + OrderNumber + verifyKey);
+
+            var paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
+                              Total + "&orderid=" + OrderNumber +
+                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + "0931670726" +
+                              "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
+            return View();
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
