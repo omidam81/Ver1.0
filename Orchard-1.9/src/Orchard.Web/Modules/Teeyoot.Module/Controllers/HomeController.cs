@@ -133,6 +133,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult Payment(string orderId, string promo)
         {
             var order = _orderService.GetOrderByPublicId(orderId);
+            order.TotalPrice = order.TotalPrice + 1.99;
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
             if (order != null)
             {

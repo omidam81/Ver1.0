@@ -71,22 +71,30 @@
                                     <dd>$12.50</dd>*@
                             </dl>
                             <dl class="order_summary__breakdown">
-                                <dt class="order_summary__total_label">
-                                    @T("Total")
-                                </dt>
-                                <dd>
-                                    @if (Model.Order.TotalPriceWithPromo != 0)
-                                    {
-                                        <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPriceWithPromo</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPrice</span>
-                                    }
+                                <dt>
 
-                                </dd>
+                                    @T("Delivery")
+                                    
+                                </dt>
+                                <dd>@Model.Order.CurrencyRecord.Code 1.99</dd>
                             </dl>
-                        </div><div class="order_summary--offset js_order_summary--offset"></div>
+                                <dl class="order_summary__breakdown">
+                                    <dt class="order_summary__total_label">
+                                        @T("Total")
+                                    </dt>
+                                    <dd>
+                                        @if (Model.Order.TotalPriceWithPromo != 0)
+                                        {
+                                            <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPriceWithPromo</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPrice</span>
+                                        }
+
+                                    </dd>
+                                </dl>
+</div><div class="order_summary--offset js_order_summary--offset"></div>
                     </div>
                 </div>
             </div>
