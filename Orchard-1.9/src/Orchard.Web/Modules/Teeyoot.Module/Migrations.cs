@@ -718,11 +718,10 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorFifth", "CampaignProductRecord",
                 new[] { "FifthProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
 
-            SchemaBuilder.AlterTable(typeof(ProductColorRecord).Name,
-                   table => table.AddColumn<bool>("IsActiveColor",  c => c.NotNull().WithDefault(true)));
+          
 
-
-            return 75;
+          
+            return 74;
         }
 
         public int UpdateFrom2()
@@ -1579,12 +1578,6 @@ namespace Teeyoot.Module
 
             return 74;
         }
-
-        public int UpdateFrom74()
-        {
-            SchemaBuilder.AlterTable(typeof(ProductColorRecord).Name,
-                   table => table.AddColumn<bool>("IsActiveColor", c => c.NotNull().WithDefault(true)));
-            return 75;
-        }
+     
     }
 }
