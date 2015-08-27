@@ -19,6 +19,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
         private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
         private readonly ICampaignService _campaignService;
+        private readonly IRepository<ProductColorRecord> _colorRepository;
 
         public OrderService(IRepository<OrderRecord> orderRepository, 
                             IRepository<LinkOrderCampaignProductRecord> ocpRepository, 
@@ -26,7 +27,8 @@ namespace Teeyoot.Module.Services
                             ICampaignService campaignService, 
                             IRepository<ProductSizeRecord> sizeRepository,
                             IRepository<OrderStatusRecord> orderStatusRepository,
-                            IRepository<OrderHistoryRecord> orderHistoryRepository)
+                            IRepository<OrderHistoryRecord> orderHistoryRepository,
+                            IRepository<ProductColorRecord> colorRepository)
 	    {
             _orderRepository = orderRepository;
             _ocpRepository = ocpRepository;
@@ -35,6 +37,7 @@ namespace Teeyoot.Module.Services
             _sizeRepository = sizeRepository;
             _orderStatusRepository = orderStatusRepository;
             _orderHistoryRepository = orderHistoryRepository;
+            _colorRepository = colorRepository;
 	    }
 
         public IQueryable<OrderRecord> GetAllOrders()
@@ -108,7 +111,8 @@ namespace Teeyoot.Module.Services
                         Count = product.Count,
                         ProductSizeRecord = _sizeRepository.Get(product.SizeId),
                         CampaignProductRecord = campaignProduct,
-                        OrderRecord = order
+                        OrderRecord = order,
+                        ProductColorRecord = product.ColorId == null || product.ColorId == 0 ? null : _colorRepository.Get(product.ColorId)
                     };
 
                     totalPrice = totalPrice + product.Price * product.Count;

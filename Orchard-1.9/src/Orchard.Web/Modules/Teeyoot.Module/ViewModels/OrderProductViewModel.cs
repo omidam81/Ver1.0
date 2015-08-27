@@ -16,5 +16,7 @@ namespace Teeyoot.Module.ViewModels
 
         public int Price { get; set; }
 
+        public int ColorId { get; set; }
+
     }   
 }

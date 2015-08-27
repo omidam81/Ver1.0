@@ -361,7 +361,7 @@
                 $("#buttnFlipFrontItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
                 $("#buttnFlipBackItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
             }
-           
+
 
         }
 
@@ -418,7 +418,7 @@
 
                 $("#buttnFlipFrontItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
                 $("#buttnFlipBackItem").attr("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
-            }         
+            }
 
             var index = item.selectedIndex;
             var drop_down = document.getElementById("product__dropdown_modal");
@@ -430,6 +430,12 @@
 
             $(currentModalSize).removeClass('shown').addClass('hidden');
             $(newModalSize).removeClass('hidden').addClass('shown');
+
+            var currentModalColor = $(row).find('.color-dropdown.shown')[0];
+            var newModalColor = $(row).find('select[name=select_color_index_' + index + ']')[0];
+
+            $(currentModalColor).removeClass('shown').addClass('hidden');
+            $(newModalColor).removeClass('hidden').addClass('shown');
 
             var currentPrice = $(row).find('.modal-price.shown')[0];
             var newPrice = $(row).find('span[name=select_size_index_' + index + '_0]')[0];
@@ -497,6 +503,13 @@
                 img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
             }
 
+            var currentColor = $(row).find('.color-dropdown.shown')[0];
+            var newColor = $(row).find('select[name=select_color_index_' + index + ']')[0];
+
+            $(currentColor).removeClass('shown').addClass('hidden');
+            $(newColor).removeClass('hidden').addClass('shown');
+            $(newColor).selectedIndex = 0;
+
             var currentSize = $(row).find('.size-dropdown.shown')[0];
             var newSize = $(row).find('select[name=select_size_index_' + index + ']')[0];
 
@@ -522,6 +535,20 @@
             $(newPrice).removeClass('hidden').addClass('shown');
         }
 
+        function ChangePicture(item) {
+            var rows = item.parentNode.parentNode.parentNode;
+            var index = item.selectedIndex;
+            var id = item[item.selectedIndex].id;
+
+            var row = item.parentNode.parentNode;
+            var img = $(rows).find('.modal_campaign_img')[0];
+            if (firstBack == "True") {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/back.png");
+            } else {
+                img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/" + id + "/normal/front.png");
+            }
+        }
+
         function sendData() {
             if (('@Model.PromoId') != null) {
                 var promoId = '@Model.PromoId';
@@ -532,6 +559,7 @@
             var productId;
             var sizeId;
             var price;
+            var colorId;
 
             tableRows.each(function (index, el) {
 
@@ -541,8 +569,10 @@
                 sizeId = items[items.selectedIndex].id;
                 count = $(el).find('.product-count')[0].value;
                 price = $(el).find('.modal-price.shown')[0].title;
+                items = $(el).find('.color-dropdown.shown')[0];
+                colorId = items[items.selectedIndex].value;
 
-                products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price });
+                products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price, ColorId: colorId });
             });
 
             $.ajax({
@@ -568,6 +598,7 @@
             });
 
         }
+
         function ReservCampaign() {
             var email = document.getElementById("email_for_reserv").value;
             var campaignId = document.getElementById("campaignId").value;
@@ -712,13 +743,55 @@
                         {
                             if (prod.ProductRecord.Name == Model.Campaign.Products[0].ProductRecord.Name)
                             {
-                                <div class="item_color" name="@prod.ProductRecord.Name" id="@prod.Id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                string id = prod.Id.ToString();
+                                <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
 
+                                if (prod.SecondProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.SecondProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.SecondProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
+                                if (prod.ThirdProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.ThirdProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.ThirdProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
+                                if (prod.FourthProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.FourthProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.FourthProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
+                                if (prod.FifthProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.FifthProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.FifthProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
                             }
                             else
                             {
-                                <div class="item_color hidden" name="@prod.ProductRecord.Name" id="@prod.Id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                string id = prod.Id.ToString();
+                                <div class="item_color hidden" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
 
+                                if (prod.SecondProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.SecondProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.SecondProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
+                                if (prod.ThirdProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.ThirdProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.ThirdProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
+                                if (prod.FourthProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.FourthProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.FourthProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
+                                if (prod.FifthProductColorRecord != null)
+                                {
+                                    id = prod.Id + "_" + prod.FifthProductColorRecord.Id;
+                                    <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.FifthProductColorRecord.Value" onclick="ChangeColor(this)"></div>
+                                }
                             }
 
                         }
@@ -1077,6 +1150,7 @@
                                     <thead class="precheckout_items_table__head">
                                         <tr>
                                             <th class="line_items_table__heading precheckout_items_table__item--image"></th>
+                                            <th class="line_items_table__heading">@T("Color")</th>
                                             <th class="line_items_table__heading">@T("Qty")</th>
                                             <th class="line_items_table__heading">@T("Size")</th>
                                             <th class="line_items_table__heading">@T("Style")</th>
@@ -1094,6 +1168,76 @@
                                                 {
                                                     <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
                                                 }
+                                            </td>
+                                            <td class="precheckout_items_table__item product-size-item">
+                                                <div class="tooltip tooltip--topleft">
+                                                    @for (var i = 0; i < Model.Campaign.Products.Count; i++)
+                                                    {
+                                                        string id = Model.Campaign.Products[i].Id.ToString();
+                                                        if (i == 0)
+                                                        {
+                                                            <select name="select_color_index_@i" class="form__select_menu color-dropdown precheckout_items_table__item--color shown" onchange="ChangePicture(this)" id="select_color_index_@i">
+                                                                <option value="@Model.Campaign.Products[i].ProductColorRecord.Id" id="@Model.Campaign.Products[i].Id.ToString()" style="background-color: @Model.Campaign.Products[i].ProductColorRecord.Value">@Model.Campaign.Products[i].ProductColorRecord.Name</option>
+
+                                                                @if (Model.Campaign.Products[i].SecondProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].SecondProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].SecondProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].SecondProductColorRecord.Value">@Model.Campaign.Products[i].SecondProductColorRecord.Name</option>
+                                                                }
+
+                                                                @if (Model.Campaign.Products[i].ThirdProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].ThirdProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].ThirdProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].ThirdProductColorRecord.Value">@Model.Campaign.Products[i].ThirdProductColorRecord.Name</option>
+                                                                }
+
+                                                                @if (Model.Campaign.Products[i].FourthProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FourthProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].FourthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FourthProductColorRecord.Value">@Model.Campaign.Products[i].FourthProductColorRecord.Name</option>
+                                                                }
+
+                                                                @if (Model.Campaign.Products[i].FifthProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FifthProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].FifthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FifthProductColorRecord.Value">@Model.Campaign.Products[i].FifthProductColorRecord.Name</option>
+                                                                }
+                                                            </select>
+                                                        }
+                                                        else
+                                                        {
+                                                            id = Model.Campaign.Products[i].Id.ToString();
+                                                            <select name="select_color_index_@i" class="form__select_menu color-dropdown precheckout_items_table__item--color hidden" onchange="ChangePicture(this)" id="select_color_index_@i">
+                                                                <option value="@Model.Campaign.Products[i].ProductColorRecord.Id" id="@Model.Campaign.Products[i].Id.ToString()" style="background-color: @Model.Campaign.Products[i].ProductColorRecord.Value">@Model.Campaign.Products[i].ProductColorRecord.Name</option>
+
+                                                                @if (Model.Campaign.Products[i].SecondProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].SecondProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].SecondProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].SecondProductColorRecord.Value">@Model.Campaign.Products[i].SecondProductColorRecord.Name</option>
+                                                                }
+
+                                                                @if (Model.Campaign.Products[i].ThirdProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].ThirdProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].ThirdProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].ThirdProductColorRecord.Value">@Model.Campaign.Products[i].ThirdProductColorRecord.Name</option>
+                                                                }
+
+                                                                @if (Model.Campaign.Products[i].FourthProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FourthProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].FourthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FourthProductColorRecord.Value">@Model.Campaign.Products[i].FourthProductColorRecord.Name</option>
+                                                                }
+
+                                                                @if (Model.Campaign.Products[i].FifthProductColorRecord != null)
+                                                                {
+                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FifthProductColorRecord.Id;
+                                                                    <option value="@Model.Campaign.Products[i].FifthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FifthProductColorRecord.Value">@Model.Campaign.Products[i].FifthProductColorRecord.Name</option>
+                                                                }
+                                                            </select>
+                                                        }
+                                                    }
+
+                                                </div>
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--qty product-count-item">
                                                 <div class="tooltip tooltip--topleft">
@@ -1275,10 +1419,12 @@
         {
             @Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days@T(" days")
 
+
         }
         else if (Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days <= -1)
         {
             @Math.Abs(Model.Campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days) @T("days ago")
+
 
         }
         else
@@ -1287,14 +1433,17 @@
             {
                 @hours @T("hours")
 
+
             }
             else
             {
                 @Math.Abs(hours) @T("hours ago")
 
+
             }
         }
-                <
-            </span>
-        </div>
+        <
+        <
+    </span>
+</div>
 
