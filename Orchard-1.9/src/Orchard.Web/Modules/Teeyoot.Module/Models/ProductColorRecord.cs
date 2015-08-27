@@ -13,5 +13,7 @@ namespace Teeyoot.Module.Models
         public virtual string Value { get; set; }
 
         public virtual int? Importance { get; set; }
+
+        public virtual bool IsActiveColor { get; set; }
     }
 }

@@ -704,7 +704,25 @@ namespace Teeyoot.Module
                table => table
                .AddColumn<float>("BaseCost"));
 
-            return 73;
+            SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<int>("SecondProductColorRecord_Id", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<int>("ThirdProductColorRecord_Id", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<int>("FourthProductColorRecord_Id", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<int>("FifthProductColorRecord_Id", c => c.Nullable()));
+
+            SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorSecond", "CampaignProductRecord",
+                new[] { "SecondProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorThird", "CampaignProductRecord",
+                new[] { "ThirdProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorFourth", "CampaignProductRecord",
+                new[] { "FourthProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+            SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorFifth", "CampaignProductRecord",
+                new[] { "FifthProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+
+            SchemaBuilder.AlterTable(typeof(ProductColorRecord).Name,
+                   table => table.AddColumn<bool>("IsActiveColor",  c => c.NotNull().WithDefault(true)));
+
+
+            return 75;
         }
 
         public int UpdateFrom2()
@@ -1560,6 +1578,13 @@ namespace Teeyoot.Module
                 new[] { "FifthProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
 
             return 74;
+        }
+
+        public int UpdateFrom74()
+        {
+            SchemaBuilder.AlterTable(typeof(ProductColorRecord).Name,
+                   table => table.AddColumn<bool>("IsActiveColor", c => c.NotNull().WithDefault(true)));
+            return 75;
         }
     }
 }
