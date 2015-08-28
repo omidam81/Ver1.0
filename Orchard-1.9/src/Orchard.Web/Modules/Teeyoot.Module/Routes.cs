@@ -356,14 +356,14 @@ namespace Teeyoot.Module
                         "GetSettings",
                         new RouteValueDictionary
                         {
-                            {"area", "Teeyoot.WizardSettings"},
-                            {"controller", "DeliverySettings"},
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Home"},
                             {"action", "GetSettings"}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary
                         {
-                            {"area", "Teeyoot.WizardSettings"}
+                            {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
                 }
