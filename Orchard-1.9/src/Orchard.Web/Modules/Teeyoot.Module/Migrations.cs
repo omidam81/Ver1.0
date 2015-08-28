@@ -718,10 +718,19 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorFifth", "CampaignProductRecord",
                 new[] { "FifthProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
 
-          
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name, table => table.AddColumn<int>("ProductColorRecord_Id", c => c.Nullable()));
 
-          
-            return 74;
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_ProductColor", "LinkOrderCampaignProductRecord",
+                new[] { "ProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateTable(typeof(DeliverySettingRecord).Name,
+               table => table
+                   .Column<int>("Id", column => column.PrimaryKey().Identity())
+                   .Column<string>("State")
+                   .Column<double>("DeliveryCost")
+               );
+
+            return 76;
         }
 
         public int UpdateFrom2()
@@ -1587,6 +1596,18 @@ namespace Teeyoot.Module
                 new[] { "ProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
 
             return 75;
+        }
+
+        public int UpdateFrom75()
+        {
+            SchemaBuilder.CreateTable(typeof(DeliverySettingRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("State")
+                    .Column<double>("DeliveryCost", column => column.NotNull().WithDefault(0.0))
+                );
+
+            return 76;
         }
     }
 }
