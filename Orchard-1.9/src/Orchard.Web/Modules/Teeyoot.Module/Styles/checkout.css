@@ -813,6 +813,7 @@ checkout__lock_icon {
 .payment-method-list p {
     margin-bottom: 5px;
     text-decoration: none;
+    padding: 1.25rem 0 1.25rem 0;
 }
 
 .payment-method-list li {
