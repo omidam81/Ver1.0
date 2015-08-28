@@ -20,7 +20,7 @@ using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers
 {
-    [Admin]
+    
     public class DeliverySettingsController : Controller
     {
         private readonly ISiteService _siteService;
@@ -105,6 +105,15 @@ namespace Teeyoot.WizardSettings.Controllers
             _deliverySettingService.EditSetting(model);
             _orchardServices.Notifier.Information(T("Record has been changed!"));
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetSettings()
+        {
+            var settings = _deliverySettingService.GetAllSettings().ToArray();
+            return Json(new
+            {
+                settings  = settings
+            }, JsonRequestBehavior.AllowGet);
         }
 
 

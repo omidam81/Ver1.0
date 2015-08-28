@@ -53,4 +53,46 @@ namespace Teeyoot.Module.ViewModels
 
         public string Back { get; set; }
     }
+
+    public class ImgInfo
+    {
+        public string Type { get; set; }
+
+        public string Width { get; set; }
+
+        public string Height { get; set; }
+
+        public string Top { get; set; }
+
+        public string Left { get; set; }
+
+        public string zIndex { get; set; }
+
+        public string Svg { get; set; }
+
+        public int Rotate { get; set; }
+
+        public int ChangeColor { get; set; }
+
+        public string FileStandart { get; set; }
+
+        public FileInf FileLoaded { get; set; }
+
+        public string Url { get; set; }
+
+        public string Text { get; set; }
+
+        public string Color { get; set; }
+
+        public string FontFamily { get; set; }
+
+         public string OutlineC { get; set; }
+
+        public string OutlineW { get; set; }
+    }
+
+    public class FileInf
+    {
+        public string Type { get; set; }
+    }
 }

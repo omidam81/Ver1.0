@@ -45,5 +45,10 @@ namespace Teeyoot.Module.Services
         {
             return _fontRepository.Get(f => f.Id == id);
         }
+
+        public FontRecord GetFontByFamily(string fontFamily)
+        {
+            return _fontRepository.Get(f => f.Family == fontFamily);
+        }
     }
 }

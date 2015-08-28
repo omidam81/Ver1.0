@@ -2171,6 +2171,8 @@ tspan {
             zoom: 1;
             vertical-align: top;
             cursor: pointer;
+            text-align: center;
+            line-height: 18px;
         }
 
             .color-picker .containertip ul li:hover {
