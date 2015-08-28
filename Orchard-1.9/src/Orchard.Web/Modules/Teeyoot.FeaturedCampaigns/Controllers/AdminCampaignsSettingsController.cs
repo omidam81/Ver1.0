@@ -8,6 +8,7 @@ using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.Users.Models;
 using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -149,7 +150,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string Prices)
+        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string Prices, string[] Colors)
         {
             var campaign = _campaignService.GetCampaignById(campaignId);
             var campaigns = _campaignService.GetAllCampaigns();
@@ -176,7 +177,24 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 var prices = Prices.Split(',');
                 for (int i = 0; i < campaign.Products.Count; i++)
                     campaign.Products[i].Price = Convert.ToDouble(prices[i]);
-                _campaignService.UpdateCampaign(campaign);
+
+                //for (int k = 0; k < Colors.Length; k++)
+                //{
+                //    var colors = Colors[k].Split('/').ToList();
+                //    int prodId = Int32.Parse(colors[0]);
+                //    colors.RemoveAt(0);
+
+                //    var prod = campaign.Products.Where(c => c.Id == prodId);
+                    
+                //    foreach(var col in colors){
+                //        if (col == null || Int32.Parse(col) == 0)
+                //        {
+                //            colors.Remove(col);
+                //        }
+                //    }
+                //}
+
+                    _campaignService.UpdateCampaign(campaign);
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                 _teeyootMessagingService.SendEditedCampaignMessageToSeller(campaign.Id, pathToMedia, pathToTemplates);
@@ -188,6 +206,47 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        public void CreateImagesForOtherColor(int campaignId, string prodIdAndColor, CampaignProductRecord p, DesignInfo data, string frontPath, string backPath, string color)
+        {
+            var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaignId.ToString(), prodIdAndColor);
+
+            if (!Directory.Exists(destForder))
+            {
+                Directory.CreateDirectory(destForder + "/normal");
+                Directory.CreateDirectory(destForder + "/big");
+            }
+
+            var frontTemplate = new Bitmap(frontPath);
+            var backTemplate = new Bitmap(backPath);
+
+            var rgba = ColorTranslator.FromHtml(color);
+
+            var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+                p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+                p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+            front.Save(Path.Combine(destForder, "normal", "front.png"));
+
+            var back = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+                p.ProductRecord.ProductImageRecord.PrintableBackTop, p.ProductRecord.ProductImageRecord.PrintableBackLeft,
+                p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
+            back.Save(Path.Combine(destForder, "normal", "back.png"));
+
+            _imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
+            _imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+
+            frontTemplate.Dispose();
+            backTemplate.Dispose();
+            front.Dispose();
+            back.Dispose();
+        }
+
+        private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
+        {
+            var background = _imageHelper.CreateBackground(width, height, color);
+            image = _imageHelper.ApplyBackground(image, background, width, height);
+            return _imageHelper.ApplyDesign(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
         }
 
 	}
