@@ -820,6 +820,17 @@ namespace Teeyoot.Messaging.Services
         private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)
         {
 
+            var baseUrl = "";
+            
+            if (HttpContext.Current != null)
+            {
+                var request = HttpContext.Current.Request;
+                baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
+            }
+            else
+            {
+                baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
+            }
             var requester = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);;
 
             message.AddRcptMergeVars(adminEmail, "Requester_Name", requester.PublicName);
@@ -830,6 +841,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "Text", messAdmin);
             message.AddRcptMergeVars(adminEmail, "Amount", amount.ToString("F"));
             message.AddRcptMergeVars(adminEmail, "Currency", currencyCode);
+            message.AddRcptMergeVars(adminEmail, "Url", baseUrl);
 
          
 
