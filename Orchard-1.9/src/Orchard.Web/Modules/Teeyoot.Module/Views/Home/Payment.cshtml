@@ -190,6 +190,8 @@
                             }
                         </ul>
                     </div>
+                    <div style="clear: both;">
+                    </div>
                     <div class="checkout__legend">
                         <div class="checkout__tool_tip--lock" data-tooltip="@T("All transactions are secure and encrypted.")">
                             <i class="checkout__lock_icon"></i>
@@ -487,7 +489,7 @@
                     $('.message_Mol').css({ "display": "none" });
                 } else if (paymentMethod === 'mol') {
                     $('#payment_method_mol').show();
-                    $('.message_Mol').css({"display":""});
+                    $('.message_Mol').css({ "display": "" });
                 } else if (paymentMethod === 'cash') {
                     $('#payment_method_cash').show();
                     $('.message_Mol').css({ "display": "none" });
