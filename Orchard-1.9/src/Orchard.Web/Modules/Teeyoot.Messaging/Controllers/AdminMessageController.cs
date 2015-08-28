@@ -73,7 +73,7 @@ namespace Teeyoot.Module.Controllers
                 CampaignNotReachGoalBuyerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-seller-template.html") ? "not-reach-goal-seller-template.html" : "No file!",
                 CampaignNotReachGoalSellerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-buyer-template.html") ? "not-reach-goal-buyer-template.html" : "No file!",
                 PartiallyPaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "partially-paid-campaign-template.html") ? "partially-paid-campaign-template.html" : "No file!",
-                CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template.html") ? "campaign-promo-template.html" : "No file!",
+                CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "all-orders-delivered-seller-template.html") ? "all-orders-delivered-seller-template.html" : "No file!",
                 AllOrderDeliveredTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template.html") ? "campaign-promo-template.html" : "No file!",
                 CampaignIsFinishedTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template.html") ? "campaign-promo-template.html" : "No file!",
                 DefinitelyGoSellerTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template.html") ? "campaign-promo-template.html" : "No file!",
