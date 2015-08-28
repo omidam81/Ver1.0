@@ -44,6 +44,12 @@ namespace Teeyoot.Module.Services
             return _deliverySettingsRepository.Get(f => f.Id == settingId);
         }
 
+        public IQueryable<DeliverySettingRecord> GetAllSettings()
+        {
+            return _deliverySettingsRepository.Table;
+        }
+
+
         public void EditSetting(EditDeliverySettingViewModel newSetting)
         {
             DeliverySettingRecord setting = _deliverySettingsRepository.Get(f => f.Id == newSetting.Id);

@@ -96,7 +96,7 @@
                                         }
                                         else
                                         {
-                                            <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPrice</span>
+                                            <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @(@Model.Order.TotalPrice +1.99)</span>
                                         }
 
                                     </dd>
@@ -250,7 +250,7 @@
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
-                                    <select class="form__select_menu  form__textfield " id="Country" name="Country" tabindex="8"></select>
+                                    <input class=" form__textfield " id="Country" name="Country" tabindex="8" value="Malaysia" readonly="readonly"></input>
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
 

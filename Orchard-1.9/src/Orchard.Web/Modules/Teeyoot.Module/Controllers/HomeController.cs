@@ -135,7 +135,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult Payment(string orderId, string promo)
         {
             var order = _orderService.GetOrderByPublicId(orderId);
-            order.TotalPrice = order.TotalPrice + 1.99;
+            
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
             if (order != null)
             {
@@ -295,6 +295,7 @@ namespace Teeyoot.Module.Controllers
                 order.Country = collection["Country"];
                 order.PhoneNumber = collection["PhoneNumber"];
                 order.Reserved = DateTime.UtcNow;
+                order.TotalPrice = order.TotalPrice + 1.99;
                 order.IsActive = true;
                 //order.TranzactionId = result.Target.Id;
 
