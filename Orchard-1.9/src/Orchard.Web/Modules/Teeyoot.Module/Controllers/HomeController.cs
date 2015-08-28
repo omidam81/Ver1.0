@@ -37,6 +37,7 @@ namespace Teeyoot.Module.Controllers
         private readonly IOrderService _orderService;
         private readonly IPromotionService _promotionService;
         private readonly ICampaignService _campaignService;
+        private readonly IDeliverySettingsService _deliverySettingService;
         private readonly INotifier _notifier;
         private readonly IimageHelper _imageHelper;
         private readonly IMailChimpSettingsService _settingsService;
@@ -62,6 +63,7 @@ namespace Teeyoot.Module.Controllers
                               ITeeyootMessagingService teeyootMessagingService,
                               IWorkContextAccessor workContextAccessor, 
                               IRepository<TeeyootUserPartRecord> userRepository,
+                              IDeliverySettingsService deliverySettingService,
                               IContentManager contentManager,
                               IRepository<CommonSettingsRecord> commonSettingsRepository,
                               IRepository<CheckoutCampaignRequest> checkoutRequestRepository)
@@ -70,6 +72,7 @@ namespace Teeyoot.Module.Controllers
             _promotionService = promotionService;
             _campaignService = campaignService;
             _imageHelper = imageHelper;
+            _deliverySettingService = deliverySettingService;
             _settingsService = settingsService;
             _teeyootMessagingService = teeyootMessagingService;
             _paymentSettingsService = paymentSettingsService;
@@ -223,6 +226,14 @@ namespace Teeyoot.Module.Controllers
             Logger.Debug(T("PRIVET").Text);
         }
 
+        public JsonResult GetSettings()
+        {
+            var settings = _deliverySettingService.GetAllSettings().ToArray();
+            return Json(new
+            {
+                settings = settings
+            }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
