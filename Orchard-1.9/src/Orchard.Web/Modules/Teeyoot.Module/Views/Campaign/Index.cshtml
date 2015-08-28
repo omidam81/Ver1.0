@@ -306,12 +306,13 @@
         }
 
         function BackCampaignReserv() {
-            $(document.getElementById("email_for_reserv")).removeClass("error");
-            $(document.getElementById("errMsg")).removeClass("err-msg");
+            $(document.getElementById("errMsg")).addClass("err-msg-hidden");
             document.getElementById("bringBackCampaign").className = "dg-overlay";
         }
 
         function CloseModalBackReserv() {
+            $(document.getElementById("email_for_reserv")).removeClass("error");
+            $(document.getElementById("errMsg")).removeClass("err-msg");
             document.getElementById("bringBackCampaign").className = "dg-overlay-not-show";
         }
 
