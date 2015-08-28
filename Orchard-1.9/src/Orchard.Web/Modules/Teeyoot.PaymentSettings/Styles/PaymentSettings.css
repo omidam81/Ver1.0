@@ -16,7 +16,7 @@ cursor:pointer
 }
 
 .marg1 {
-    margin-left:1%;
+    margin-left:1.6%;
 }
 .marg2 {
     margin-left:1.2%;
@@ -26,6 +26,14 @@ cursor:pointer
 }
 .marg4 {
     margin-left:0.4%;
+}
+
+.marg5 {
+    margin-left:0.4%;
+}
+
+.marg6 {
+    margin-left:1.6%;
 }
 .margb {
 margin-top:1%;

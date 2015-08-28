@@ -100,6 +100,11 @@ namespace Teeyoot.Module
                         .Caption(T("Common Settings"))
                         .Action("Index", "AdminCommonSettings", new { area = "Teeyoot.Module" })
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("Delivery Settings"))
+                        .Position("2.8")
+                        .Action("Index", "DeliverySettings", new { area = "Teeyoot.WizardSettings" })
+                    )
 
                 );
         }

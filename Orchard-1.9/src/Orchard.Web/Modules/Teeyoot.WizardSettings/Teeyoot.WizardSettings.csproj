@@ -111,6 +111,7 @@
     <Compile Include="Common\GetImageResponse.cs" />
     <Compile Include="Common\SizeMetricDimension.cs" />
     <Compile Include="Controllers\AdminWizardController.cs" />
+    <Compile Include="Controllers\DeliverySettingsController.cs" />
     <Compile Include="Controllers\ArtworkController.cs" />
     <Compile Include="Controllers\ColourController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="ViewModels\ArtworkIndexViewModel.cs" />
     <Compile Include="ViewModels\ArtworkViewModel.cs" />
     <Compile Include="ViewModels\ColourIndexViewModel.cs" />
+    <Compile Include="ViewModels\DeliverySettingsViewModel.cs" />
     <Compile Include="ViewModels\ProductColourItemViewModel.cs" />
     <Compile Include="ViewModels\ProductColourViewModel.cs" />
     <Compile Include="ViewModels\ProductGroupItemViewModel.cs" />
@@ -209,6 +211,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Artwork\EditArtwork.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeliverySettings\AddSetting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeliverySettings\EditSetting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeliverySettings\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

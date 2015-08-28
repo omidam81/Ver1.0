@@ -10,7 +10,7 @@
 
 @using (Html.BeginFormAntiForgeryPost()) { 
     @Html.ValidationSummary()
-    <div class="manage">@Html.ActionLink(T("Add a new user").ToString(), "Create", new { }, new { @class = "button primaryAction" })</div>
+    @*<div class="manage">@Html.ActionLink(T("Add a new user").ToString(), "Create", new { }, new { @class = "button primaryAction" })</div>*@
 
     <fieldset class="bulk-actions">
         <label for="publishActions">@T("Actions:")</label>

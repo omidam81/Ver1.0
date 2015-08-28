@@ -718,10 +718,37 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("CampaignProduct_ProductColorFifth", "CampaignProductRecord",
                 new[] { "FifthProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
 
-          
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name, table => table.AddColumn<int>("ProductColorRecord_Id", c => c.Nullable()));
 
-          
-            return 74;
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_ProductColor", "LinkOrderCampaignProductRecord",
+                new[] { "ProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateTable(typeof(DeliverySettingRecord).Name,
+               table => table
+                   .Column<int>("Id", column => column.PrimaryKey().Identity())
+                   .Column<string>("State")
+                   .Column<double>("DeliveryCost")
+               );
+
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("PaymentMethod"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CashDeliv", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("PayPal", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("Mol", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CreditCard", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("MerchantIdMol", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("VerifyKey", c => c.Nullable()));
+
+
+
+
+            return 79;
         }
 
         public int UpdateFrom2()
@@ -1587,6 +1614,47 @@ namespace Teeyoot.Module
                 new[] { "ProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
 
             return 75;
+        }
+
+        public int UpdateFrom75()
+        {
+            SchemaBuilder.CreateTable(typeof(DeliverySettingRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("State")
+                    .Column<double>("DeliveryCost", column => column.NotNull().WithDefault(0.0))
+                );
+
+            return 76;
+        }
+
+        public int UpdateFrom76()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("PaymentMethod"));
+
+            return 77;
+        }
+
+        public int UpdateFrom77()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CashDeliv", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("PayPal", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("Mol", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CreditCard", c => c.NotNull().WithDefault(false)));
+
+            return 78;
+        }
+
+        public int UpdateFrom78()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("MerchantIdMol", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("VerifyKey",  c => c.Nullable()));
+
+            return 79;
         }
     }
 }

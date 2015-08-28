@@ -349,6 +349,23 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
+                },
+                 new RouteDescriptor
+                {
+                    Route = new Route(
+                        "GetSettings",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "DeliverySettings"},
+                            {"action", "GetSettings"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
                 }
 
             };

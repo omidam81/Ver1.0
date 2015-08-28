@@ -778,6 +778,7 @@
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
+    <Compile Include="Models\DeliverySettingRecord.cs" />
     <Compile Include="Models\ArtRecord.cs" />
     <Compile Include="Models\CheckoutCampaignRequest.cs" />
     <Compile Include="Models\CommonSettingsRecord.cs" />
@@ -802,6 +803,7 @@
     <Compile Include="Permissions.cs" />
     <Compile Include="Services\Interfaces\IMailChimpSettingsService.cs" />
     <Compile Include="Services\Interfaces\IPaymentSettingsService.cs" />
+    <Compile Include="Services\Interfaces\IDeliverySettingsService.cs" />
     <Compile Include="Services\Interfaces\ITeeyootMessagingService.cs" />
     <Compile Include="Services\MailChimpSettingsService.cs" />
     <Compile Include="Services\MessageService.cs" />
@@ -809,6 +811,7 @@
     <Compile Include="Services\Interfaces\IMessageService .cs" />
     <Compile Include="Services\PaymentInformationService.cs" />
     <Compile Include="Services\PaymentSettingsService.cs" />
+    <Compile Include="Services\DeliverySettingsService .cs" />
     <Compile Include="Services\PromotionService.cs" />
     <Compile Include="Services\FontService.cs" />
     <Compile Include="Services\Interfaces\IPromotionService.cs" />
@@ -827,6 +830,7 @@
     <Compile Include="ViewModels\AdminOrderViewModel.cs" />
     <Compile Include="ViewModels\CampaignIndexViewModel.cs" />
     <Compile Include="ViewModels\CommonSettingsIndexViewModel.cs" />
+    <Compile Include="ViewModels\EditDeliverySettingViewModel.cs" />
     <Compile Include="ViewModels\LaunchCampaignData.cs" />
     <Compile Include="Models\FeaturedCampaignsWidgetPart.cs" />
     <Compile Include="Models\LinkCampaignAndCategoriesRecord.cs" />
