@@ -148,6 +148,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                    
                     Response.ClearContent();
                     Response.ClearHeaders();
+                    Response.ContentType = "application/zip";
                     Response.AppendHeader("content-disposition", "attachment; filename=campaign_" + id + "_" + campaign.Alias + "_" + "_prints.zip");
 
                     archive.Save(Response.OutputStream);
