@@ -893,7 +893,7 @@ namespace Teeyoot.Messaging.Services
                 string prodColor = "";
                 if (item.CampaignProductRecord.ProductColorRecord.Id == item.ProductColorRecord.Id)
                 {
-                    prodColor = item.ProductColorRecord.Id.ToString();
+                    prodColor = item.CampaignProductRecord.Id.ToString();
                 }
                 else
                 {
