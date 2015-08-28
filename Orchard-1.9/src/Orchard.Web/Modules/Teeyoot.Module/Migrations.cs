@@ -730,7 +730,25 @@ namespace Teeyoot.Module
                    .Column<double>("DeliveryCost")
                );
 
-            return 76;
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("PaymentMethod"));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CashDeliv", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("PayPal", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("Mol", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CreditCard", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("MerchantIdMol", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("VerifyKey", c => c.Nullable()));
+
+
+
+
+            return 79;
         }
 
         public int UpdateFrom2()
@@ -1608,6 +1626,35 @@ namespace Teeyoot.Module
                 );
 
             return 76;
+        }
+
+        public int UpdateFrom76()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("PaymentMethod"));
+
+            return 77;
+        }
+
+        public int UpdateFrom77()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CashDeliv", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("PayPal", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("Mol", c => c.NotNull().WithDefault(false)));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<bool>("CreditCard", c => c.NotNull().WithDefault(false)));
+
+            return 78;
+        }
+
+        public int UpdateFrom78()
+        {
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("MerchantIdMol", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("VerifyKey",  c => c.Nullable()));
+
+            return 79;
         }
     }
 }
