@@ -107,7 +107,7 @@ namespace Teeyoot.WizardSettings.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult GetSettings(int orderId)
+        public JsonResult GetSettings()
         {
             var settings = _deliverySettingService.GetAllSettings().ToArray();
             return Json(new

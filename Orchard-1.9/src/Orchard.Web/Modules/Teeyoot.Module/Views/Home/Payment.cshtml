@@ -246,7 +246,7 @@
                         <div class="checkout_form__row">
                             <div>
                                 <div class="inp-half smarty-streets-container">
-                                    <input class="form__textfield " data-default="43" id="State" placeholder="@T("State")" name="State" abindex="7" type="text">
+                                    <select class="form__textfield " data-default="43" id="State" placeholder="@T("State")" name="State" abindex="7" type="text"></select>
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
@@ -373,10 +373,10 @@
                 async: false,
                 cache: false,
                 type: "GET",
-                url: "@(Url.Action("GetSettings", "DeliverySettings"))",
-                data: { },
+                url: "/GetSettings",
+                
             success: function (data) {
-                settings_arr = data;
+                settings_arr = data.settings;
             }, error: function (data, status, resp) {
                 alert('Status: ' + data.status + '. Error message: ' + data.statusText);
             }
