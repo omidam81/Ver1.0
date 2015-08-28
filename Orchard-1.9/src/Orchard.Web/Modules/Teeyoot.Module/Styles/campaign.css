@@ -6758,3 +6758,11 @@ td, tr {
     text-align: center;
     padding: 20px;
 }
+.err-msg-hidden{
+    visibility:hidden;
+}
+.err-msg{
+    text-align: center;
+    color: red;
+    visibility:visible !important;
+}
