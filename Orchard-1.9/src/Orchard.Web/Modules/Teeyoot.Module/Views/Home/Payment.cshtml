@@ -492,6 +492,7 @@
         {
             container: "paypal-container",
             onPaymentMethodReceived: function (obj) {
+                /*
                 document.getElementById("accordion").className = "accordion";
                 document.querySelector(".contLable").style.display = "none";
                 document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
@@ -503,6 +504,7 @@
                 document.getElementById("bt-pp-cancel").style.background = "white";
                 document.querySelector(".accordion").style.height = "50px";
                 document.getElementById("bt-pp-cancel").style.textDecoration = "none";
+                */
                 doSomethingWithTheNonce(obj.nonce);
             },
             onCancelled: function () {
