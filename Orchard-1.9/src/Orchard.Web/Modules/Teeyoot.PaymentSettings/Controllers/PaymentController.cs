@@ -43,15 +43,16 @@ namespace Teeyoot.PaymentSettings.Controllers
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(p => p.Culture == culture);
             if (setting == null)
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture),Payment1 = true,  PaumentMethod = 0 });
-		    else
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), Payment1 = true, PaumentMethod = setting.PaymentMethod });         
+                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), CashDeliv = false, CreditCard = false, Mol = false, PayPal = false, SettingEmpty = true });
+            else
+                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false});         
         }
 
-        public ActionResult SaveSettings(string PaymentMethod,string PrivateKey, string PublicKey, string MerchantId, string ClientToken, string Language)
+        public ActionResult SaveSettings(bool CashDeliv, bool PayPal, bool Mol, bool CreditCard, string PrivateKey, string PublicKey, string MerchantId,
+                                        string ClientToken, string MerchantIdMol, string VerifyKey, string Language)
         {
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == Language);
-            setting.PaymentMethod = Convert.ToInt32(PaymentMethod);
+            //setting.PaymentMethod = Convert.ToInt32(PaymentMethod);
             setting.PublicKey = PublicKey;
             setting.PrivateKey = PrivateKey;
             setting.MerchantId = MerchantId;
@@ -65,7 +66,7 @@ namespace Teeyoot.PaymentSettings.Controllers
 
         public ActionResult AddSetting(string language)
         {
-            _paymentSettingsService.AddSettings(new PaymentSettingsRecord() { Culture = language, PaymentMethod = 1 });
+            //_paymentSettingsService.AddSettings(new PaymentSettingsRecord() { Culture = language, PaymentMethod = 1 });
                 return RedirectToAction("Index");
         }
 

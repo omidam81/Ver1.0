@@ -17,7 +17,13 @@ namespace Teeyoot.Module.ViewModels
 
         public string ClientToken { get; set; }
 
-        public int PaumentMethod { get; set; }
+        public bool CashDeliv { get; set; }
+
+        public bool PayPal { get; set; }
+
+        public bool Mol { get; set; }
+
+        public bool CreditCard { get; set; }
 
     }   
 }

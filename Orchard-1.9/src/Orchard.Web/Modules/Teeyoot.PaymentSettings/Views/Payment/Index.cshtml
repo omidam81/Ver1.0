@@ -12,39 +12,93 @@
 
             var inp1 = document.getElementById("manual");
             var inp2 = document.getElementById("brain");
-            var inp3 = document.getElementById("mol");
+            var inp3 = document.getElementById("credit");
+            var inp4 = document.getElementById("mol");
     
+            if (inp2.hasAttribute("checked")) {
+                //checked = 1;
+                enableInputs();
+            } else {
+                disableInputs();
+            }
+
+            if (inp4.hasAttribute("checked")) {
+
+                enableInputsMol();
+            } else {
+                disableInputsMol();
+            }
+
+            if (inp3.hasAttribute("checked")) {
+                //checked = 1;
+                enableInputs();
+            } else {
+                disableInputs();
+            }
+
             if (inp1.hasAttribute("checked")) {
-                checked = 1;
-                disableInputs();
+
+                enableInputsMol();
+            } else {
+                disableInputsMol();
             }
-            else if (inp2.hasAttribute("checked")) {
-                checked = 2;
-            }
-            else if (inp3.hasAttribute("checked")) {
-                checked = 3;
-                disableInputs();
-            }
+
+
+
+
 
             inp1.addEventListener("click", function () {
-                checked = 1;
-                disableInputs();
-            })
+                if (inp1.hasAttribute("checked")) {
+                    inp1.removeAttribute("checked");
+                } else {
+                    inp1.setAttribute("checked", "checked");
+                }
+
+            });
+
             inp2.addEventListener("click", function () {
-                checked = 2;
-                enableInputs()
-            })
+                if (inp2.hasAttribute("checked")) {
+                    disableInputs();
+                    inp2.removeAttribute("checked");
+                } else {
+                    enableInputs();
+                    inp2.setAttribute("checked", "checked");
+                }
+
+            });
+
             inp3.addEventListener("click", function () {
-                checked = 3;
-                disableInputs();
-            })
+                if (inp3.hasAttribute("checked")) {
+                    inp3.removeAttribute("checked");
+                } else {
+                    inp3.setAttribute("checked", "checked");
+                }
+
+            });
+
+            inp4.addEventListener("click", function () {
+                if (inp4.hasAttribute("checked")) {
+                    disableInputsMol();
+                    inp4.removeAttribute("checked");
+                } else {
+                    enableInputsMol();
+                    inp4.setAttribute("checked", "checked");
+                }
+
+            });
+
 
             document.getElementById("SendData").addEventListener("click", function () {
-                if (checked == 2) {
+                //if (checked == 2) {
+                    
+                    
+
                     var publicKey = document.getElementById("textPublic").value;
                     var privateKey = document.getElementById("textPrivate").value;
                     var merchantId = document.getElementById("textMerchant").value;
                     var clientToken = document.getElementById("textToken").value;
+                    var merchantIdMol = document.getElementById("textMerchMol").value;
+                    var verifyKey = document.getElementById("textKey").value;
 
                     var result = new Array();
                     $.ajax({
@@ -53,11 +107,17 @@
                         type: "POST",
                         url: "@(Url.Action("SaveSettings", "Payment"))",
                         data: addAntiForgeryToken({
-                            "PaymentMethod": checked.toString(),
+                            "CashDeliv": inp1.hasAttribute("checked"),
+                            "PayPal": inp2.hasAttribute("checked"),
+                            "Mol": inp4.hasAttribute("checked"),
+                            "CreditCard": inp3.hasAttribute("checked"),
+
                             "PrivateKey": privateKey.toString(),
                             "PublicKey": publicKey.toString(),
                             "MerchantId": merchantId.toString(),
                             "ClientToken": clientToken.toString(),
+                            "MerchantIdMol": merchantIdMol.toString(),
+                            "VerifyKey" : verifyKey.toString(),
                             "Language" : document.getElementById("Culture").value
                         }),
                         success: function (data) {
@@ -70,7 +130,7 @@
 
 
 
-                } else {
+                @*} else {
                     var result = new Array();
                     $.ajax({
                         async: false,
@@ -87,7 +147,7 @@
                         alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                     }
                 });
-                }
+                }*@
             })
 
             function addAntiForgeryToken(data) {
@@ -108,6 +168,16 @@
                 document.getElementById("textPrivate").disabled = "disabled";
                 document.getElementById("textMerchant").disabled = "disabled";
                 document.getElementById("textToken").disabled = "disabled";
+            }
+
+            function enableInputsMol() {
+                document.getElementById("textMerchMol").removeAttribute("disabled");
+                document.getElementById("textKey").removeAttribute("disabled");
+            }
+
+            function disableInputsMol() {
+                document.getElementById("textMerchMol").disabled = "disabled";
+                document.getElementById("textKey").disabled = "disabled";
             }
 
 
@@ -132,68 +202,27 @@
         </fieldset>
     }
     <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
-    if (Model.PaumentMethod != 0)
+    if (Model.SettingEmpty == false)
     {
+        
         <div style="margin-top:1%">
-            @*@if (Model.PaumentMethod == 1)
-                {
-                    <font class="method black">
-                        @T("manual mode")
-                    </font>
 
-                    @Html.ActionLink(T("/ braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
-
-
-                    @Html.ActionLink(T("molpay ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
-                }
-                else if (Model.PaumentMethod == 2)
-                {
-                    @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
-
-                    <font class="method black">
-                        @T("braintree")
-                    </font>
-                     @Html.ActionLink(T(" / molpay").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 3 }, new { @class = "method" })
-                }
-                else if (Model.PaumentMethod == 3)
-                {
-                    @Html.ActionLink(T("manual mode /").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 1 }, new { @class = "method" })
-
-                    @Html.ActionLink(T(" braintree / ").ToString(), "EditSetting", new { language = @Model.Culture.Code, paumentMethod = 2 }, new { @class = "method" })
-                    <font class="method black">
-                        @T("  molpay")
-                    </font>
-                }*@
-
-            @if (Model.PaumentMethod == 1)
-            {
-                <input type="radio" id ="manual" name="vehicle" value="1" checked>}
-            else
-            {
-                <input type="radio" id="manual" name="vehicle" value="1">
-            }
-
+            <input type="checkbox" id="manual" name="vehicle" value="1" >
             <font class="method black">
-                @T("manual mode")
+                @T("Cash on delivery")
             </font>
             <br>
-
-            @if (Model.PaumentMethod == 2)
-            {
-                <input type="radio" id="brain" name="vehicle" value="2" checked>}
-            else
-            {
-                <input type="radio" id="brain" name="vehicle" value="2">}
+            <br>
+            <input type="checkbox" id="brain" name="vehicle" value="2">
             <font class="method black">
-                @T("braintree")
+                @T("Braintree PayPal")
             </font>
+            <br>
             <hr>
-
-            <br>
             <font style="margin-left:20px" class="method black">
-                @T("Publick Key")
+                @T("Public Key")
             </font>
-            <input type="text" id="textPublic" class="inp marg1"  value="@Model.PaumentMethod"/>
+            <input type="text" id="textPublic" class="inp marg1"  />
             <br>
             <br>
             <font style="margin-left:20px" class="method black">
@@ -210,24 +239,41 @@
             <br>
             <font style="margin-left:20px" class="method black">
                 @T("Client Token  ")
-            </font>
+            </font> 
             <input type="text" id="textToken" class="inp marg4" />
             <br>
 
 
             <br>
             <hr>
-            @if (Model.PaumentMethod == 3)
-            {
-                <input type="radio" id="mol" name="vehicle" value="3" checked>}
-            else
-            {
-                <input type="radio" id="mol" value="3" name="vehicle">}
+            <input type="checkbox" id="credit" value="3" name="vehicle">
 
             <font class="method black">
-                @T("  molpay")
+                @T("  Braintree Debit/Credit Card")
             </font>
             <br>
+            <br>
+            <input type="checkbox" id="mol" value="3" name="vehicle">
+
+            <font class="method black">
+                @T("  Molpay Online Bancking")
+            </font>
+            <br>
+            <hr>
+            <font style="margin-left:20px" class="method black">
+                @T("Merchant Id")
+            </font>
+            <input type="text" id="textMerchMol" class="inp marg5" />
+            <br>
+            <br>
+            <font style="margin-left:20px" class="method black">
+                @T("Verify Key")
+            </font>
+            <input type="text" id="textKey" class="inp marg6"  />
+            <br>
+            <hr>
+            <br>
+
 
             <button class="margb" id="SendData">@T("Apply")</button>
 

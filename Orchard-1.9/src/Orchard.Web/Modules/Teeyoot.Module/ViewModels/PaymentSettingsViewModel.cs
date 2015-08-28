@@ -9,10 +9,14 @@ namespace Teeyoot.Module.ViewModels
     public class PaymentSettingsViewModel
     {
        public virtual LanguageRecord Culture { get; set; }
-       public int  PaumentMethod { get; set; }
+       //public int  PaumentMethod { get; set; }
        public virtual IEnumerable<LanguageRecord> Languages { get; set; }
-       public bool Payment1 { get; set; }
-       public bool Payment2 { get; set; }
-       public bool Payment3 { get; set; }
+
+       public bool CashDeliv { get; set; }
+       public bool PayPal { get; set; }
+       public bool Mol { get; set; }
+       public bool CreditCard { get; set; }
+
+       public bool SettingEmpty { get; set; }
     }
 }
