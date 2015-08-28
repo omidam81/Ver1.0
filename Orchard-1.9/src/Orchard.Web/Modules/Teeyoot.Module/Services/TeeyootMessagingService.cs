@@ -820,6 +820,17 @@ namespace Teeyoot.Messaging.Services
         private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)
         {
 
+            var baseUrl = "";
+            
+            if (HttpContext.Current != null)
+            {
+                var request = HttpContext.Current.Request;
+                baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
+            }
+            else
+            {
+                baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
+            }
             var requester = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);;
 
             message.AddRcptMergeVars(adminEmail, "Requester_Name", requester.PublicName);
@@ -830,6 +841,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "Text", messAdmin);
             message.AddRcptMergeVars(adminEmail, "Amount", amount.ToString("F"));
             message.AddRcptMergeVars(adminEmail, "Currency", currencyCode);
+            message.AddRcptMergeVars(adminEmail, "Url", baseUrl);
 
          
 
@@ -874,11 +886,20 @@ namespace Teeyoot.Messaging.Services
                 {
                     side = "front";
                 }
-                string preview_url = pathToMedia + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/" + side + ".png";
                 int index = orderedProducts.IndexOf(item);
                 int idSize = item.ProductSizeRecord.Id;
                 float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
                 float price = (float)item.CampaignProductRecord.Price + costSize;
+                string prodColor = "";
+                if (item.CampaignProductRecord.ProductColorRecord.Id == item.ProductColorRecord.Id)
+                {
+                    prodColor = item.ProductColorRecord.Id.ToString();
+                }
+                else
+                {
+                    prodColor = item.CampaignProductRecord.Id + "_" + item.ProductColorRecord.Id.ToString();
+                }
+                
                 products.Add(new Dictionary<string, object>{                 
                         {"quantity", item.Count},
                         {"name",  item.CampaignProductRecord.ProductRecord.Name},
@@ -887,7 +908,7 @@ namespace Teeyoot.Messaging.Services
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
                         {"currency", item.OrderRecord.CurrencyRecord.Code},
                         {"total_price", (price* item.Count).ToString("F")},
-                        {"preview_url", baseUrl + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + item.CampaignProductRecord.Id + "/normal/"+side+".png"}
+                        {"preview_url", baseUrl + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + prodColor + "/normal/"+side+".png"}
                      });
 
             }

@@ -20,7 +20,7 @@ using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers
 {
-    [Admin]
+    
     public class DeliverySettingsController : Controller
     {
         private readonly ISiteService _siteService;
