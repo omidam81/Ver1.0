@@ -45,7 +45,7 @@ namespace Teeyoot.PaymentSettings.Controllers
             if (setting == null)
                 return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), CashDeliv = false, CreditCard = false, Mol = false, PayPal = false, SettingEmpty = true });
             else
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false});         
+                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture),merchantId = setting.MerchantId, clientToken = setting.ClientToken, merchantIdMol = setting.MerchantIdMol, privateKey = setting.PrivateKey, verifyKey = setting.VerifyKey, publicKey = setting.PublicKey, CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false});         
         }
 
         public ActionResult SaveSettings(bool CashDeliv, bool PayPal, bool Mol, bool CreditCard, string PrivateKey, string PublicKey, string MerchantId,
@@ -57,6 +57,10 @@ namespace Teeyoot.PaymentSettings.Controllers
             setting.PrivateKey = PrivateKey;
             setting.MerchantId = MerchantId;
             setting.ClientToken = ClientToken;
+            setting.CashDeliv = CashDeliv;
+            setting.PayPal = PayPal;
+            setting.Mol = Mol;
+            setting.CreditCard = CreditCard;
             _paymentSettingsService.UpdateSettings(setting);
            return RedirectToAction("Index","Payment", new { culture = "en" });
         }
