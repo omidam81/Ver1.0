@@ -158,7 +158,7 @@ window.onload = function initWizard() {
         imageDel.style.cursor = "pointer";
 
         var $image = $(image);
-        $image.css("background-color", app.state.color.value);
+        $image.css("background-color", design.products.colors[app.state.currentProduct.ColorId].value);
 
         //----------- profit/sale ----------------------------------
 
@@ -351,7 +351,8 @@ window.onload = function initWizard() {
         //divForColors.id = "div-for-colors-products-" + index;
         divColor1Active.classList.add("div-color-active");
         //divColor1Active.id = "div-color-" + index + "_1";
-        divColor1Active.style.backgroundColor = app.state.color.value;
+        var col = design.products.colors[app.state.currentProduct.ColorId];
+        divColor1Active.style.backgroundColor = col.value;
         divColor2.classList.add("div-color");
         //divColor2.id = "div-color-" + index + "_2";
         divColor3.classList.add("div-color");

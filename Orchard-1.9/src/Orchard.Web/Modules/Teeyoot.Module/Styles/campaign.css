@@ -53,6 +53,9 @@
     border-radius: 10px;
 }
 
+.textMolpay {
+       padding: 0.75rem 0 1.25rem 0 !important;
+}
 .message_banner--success .message_banner, .message_banner--error .message_banner {
     padding: 1.06666rem 2.66665rem 1.06666rem 1.06666rem;
 }
