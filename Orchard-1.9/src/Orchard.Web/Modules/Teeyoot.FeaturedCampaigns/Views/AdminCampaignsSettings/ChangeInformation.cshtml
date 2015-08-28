@@ -16,70 +16,88 @@
 @using (Script.Foot())
 {
     <script>
-        var loader = document.querySelector(".loader");
-        var wysihtml5ParserRules = {
-            tags: {
-                strong: {},
-                b: {},
-                i: {},
-                em: {},
-                br: {},
-                p: {},
-                div: {},
-                span: {},
-                ul: {},
-                ol: {},
-                li: {},
-                img: {
-                    "check_attributes": {
-                        "width": "numbers",
-                        "alt": "alt",
-                        "src": "url", // if you compiled master manually then change this from 'url' to 'src'
-                        "height": "numbers"
-                    },
+    var loader = document.querySelector(".loader");
+    var wysihtml5ParserRules = {
+        tags: {
+            strong: {},
+            b: {},
+            i: {},
+            em: {},
+            br: {},
+            p: {},
+            div: {},
+            span: {},
+            ul: {},
+            ol: {},
+            li: {},
+            img: {
+                "check_attributes": {
+                    "width": "numbers",
+                    "alt": "alt",
+                    "src": "url", // if you compiled master manually then change this from 'url' to 'src'
+                    "height": "numbers"
                 },
-                a: {
-                    set_attributes: {
-                        target: "_blank",
-                        rel: "nofollow"
-                    },
-                    check_attributes: {
-                        href: "url" // important to avoid XSS
-                    }
+            },
+            a: {
+                set_attributes: {
+                    target: "_blank",
+                    rel: "nofollow"
+                },
+                check_attributes: {
+                    href: "url" // important to avoid XSS
                 }
             }
-        };
-        var el = $('.textarea').wysihtml5({ parserRules: wysihtml5ParserRules });
-
-        window.onload = function () {
-
-            var elems = document.querySelectorAll(".price");
-
-            for (var i = 0; i < elems.length; i++) {
-                var sell = document.getElementById("sell " + i).value;
-                var profit = sell - document.getElementById("base " + i).innerHTML;
-                document.getElementById(i).innerHTML = profit.toFixed(2);
-            }
-
         }
+    };
+    var el = $('.textarea').wysihtml5({ parserRules: wysihtml5ParserRules });
 
-        function profit(i, val) {
-            var id = "base " + i;
-            var costPrice = document.getElementById(id).innerHTML;
-            var profit = val - costPrice.replace(',', '.');
+    window.onload = function () {
+
+        var elems = document.querySelectorAll(".price");
+
+        for (var i = 0; i < elems.length; i++) {
+            var sell = document.getElementById("sell " + i).value;
+            var profit = sell - document.getElementById("base " + i).innerHTML;
             document.getElementById(i).innerHTML = profit.toFixed(2);
         }
 
+    }
 
-        function parsePrice() {
-            var elems = document.querySelectorAll(".prices");
-            var prices = elems[0].value;
-            for (var i = 1; i < elems.length; i++) {
-                prices = prices + "," + elems[i].value
-            }
-            return prices;
+    function profit(i, val) {
+        var id = "base " + i;
+        var costPrice = document.getElementById(id).innerHTML;
+        var profit = val - costPrice.replace(',', '.');
+        document.getElementById(i).innerHTML = profit.toFixed(2);
+    }
 
+
+    function parsePrice() {
+        var elems = document.querySelectorAll(".prices");
+        var prices = elems[0].value;
+        for (var i = 1; i < elems.length; i++) {
+            prices = prices + "," + elems[i].value
         }
+        return prices;
+
+    }
+
+    function allNewColors() {
+        var elems = document.querySelectorAll(".div-for-colors");
+        var colors = [];
+        for (var i = 0; i < elems.length; i++) {
+            var elem = elems[i];
+
+            var temp = elem.id;
+            var temp = temp + "/" + $("#" + elem.id + "-1").attr("data-value");
+            var temp = temp + "/" + $("#" + elem.id + "-2").attr("data-value");
+            var temp = temp + "/" + $("#" + elem.id + "-3").attr("data-value");
+            var temp = temp + "/" + $("#" + elem.id + "-4").attr("data-value");
+            var temp = temp + "/" + $("#" + elem.id + "-5").attr("data-value");
+            colors.push(temp);
+        }
+
+        return colors;
+    }
 
 
         function sendData() {
@@ -94,8 +112,7 @@
             var target = document.querySelector('.Goal').value;
             var description = document.getElementById("campaign_description_text").value;
             var prices = parsePrice();
-
-
+            var colors = allNewColors();
 
             $.ajax({
                 async: false,
@@ -111,7 +128,8 @@
                     "Year": year,
                     "Target": target,
                     "Description": description,
-                    "Prices": prices
+                    "Prices": prices,
+                    "Colors" : colors
                 }),
                 success: function (data, status, resp) {
                     if (resp.status === 200) {
@@ -141,11 +159,154 @@
             return data;
         };
 
+        function visibleDelete(div, isVisible) {
+            if (div.className == "div-color-active") {
+                var divDelete = div.firstElementChild;
+                if (isVisible) {
+                    divDelete.style.visibility = "visible";
+                } else {
+                    divDelete.style.visibility = "collapse";
+                }
+            }
+        }
 
+        function DeleteColor(divDel) {
+            var divCol = $(divDel).parent()[0];
 
+            var atr = $(divCol).attr("data-value");
+            var li = $(divCol).parent().find('li[data-value="' + atr + '"]');
+            li.children().remove();
+            //$(divCol).attr("data-value", "");
 
+            var ids = divCol.id.split('-');
+            switch (parseInt(ids[1])) {
+                case 1:
+                    if ($("#" + ids[0] + "-2").hasClass('div-color-active')) {
+                        $("#" + ids[0] + "-1").css("background-color", $("#" + ids[0] + "-2").css("background-color"));
+                        $("#" + ids[0] + "-1").removeClass().addClass($("#" + ids[0] + "-2").attr('class'));
+                        $("#" + ids[0] + "-1").attr("data-value", $("#" + ids[0] + "-2").attr('data-value'));
+                        $("#" + ids[0] + "-2").css("background-color", $("#" + ids[0] + "-3").css("background-color"));
+                        $("#" + ids[0] + "-2").removeClass().addClass($("#" + ids[0] + "-3").attr('class'));
+                        $("#" + ids[0] + "-2").attr("data-value", $("#" + ids[0] + "-3").attr('data-value'));
+                        $("#" + ids[0] + "-3").css("background-color", $("#" + ids[0] + "-4").css("background-color"));
+                        $("#" + ids[0] + "-3").removeClass().addClass($("#" + ids[0] + "-4").attr('class'));
+                        $("#" + ids[0] + "-3").attr("data-value", $("#" + ids[0] + "-4").attr('data-value'));
+                        $("#" + ids[0] + "-4").css("background-color", $("#" + ids[0] + "-5").css("background-color"));
+                        $("#" + ids[0] + "-4").removeClass().addClass($("#" + ids[0] + "-5").attr('class'));
+                        $("#" + ids[0] + "-4").attr("data-value", $("#" + ids[0] + "-5").attr('data-value'));
+                        $("#" + ids[0] + "-5").css("background-color", "transparent");
+                        $("#" + ids[0] + "-5").removeClass('div-color-active').addClass('div-color');
+                        $("#" + ids[0] + "-5").attr("data-value", "");
+                    }
+                    break;
+                case 2:
+                    $("#" + ids[0] + "-2").css("background-color", $("#" + ids[0] + "-3").css("background-color"));
+                    $("#" + ids[0] + "-2").removeClass().addClass($("#" + ids[0] + "-3").attr('class'));
+                    $("#" + ids[0] + "-2").attr("data-value", $("#" + ids[0] + "-3").attr('data-value'));
+                    $("#" + ids[0] + "-3").css("background-color", $("#" + ids[0] + "-4").css("background-color"));
+                    $("#" + ids[0] + "-3").removeClass().addClass($("#" + ids[0] + "-4").attr('class'));
+                    $("#" + ids[0] + "-3").attr("data-value", $("#" + ids[0] + "-4").attr('data-value'));
+                    $("#" + ids[0] + "-4").css("background-color", $("#" + ids[0] + "-5").css("background-color"));
+                    $("#" + ids[0] + "-4").removeClass().addClass($("#" + ids[0] + "-5").attr('class'));
+                    $("#" + ids[0] + "-4").attr("data-value", $("#" + ids[0] + "-5").attr('data-value'));
+                    $("#" + ids[0] + "-5").css("background-color", "transparent");
+                    $("#" + ids[0] + "-5").removeClass('div-color-active').addClass('div-color');
+                    $("#" + ids[0] + "-5").attr("data-value", "");
+                    if ($("#" + ids[0] + "-3").hasClass('div-color')) {
+                        $("#" + ids[0] + "-2").children().css("visibility", "collapse");
+                    }
+                    break;
+                case 3:
+                    $("#" + ids[0] + "-3").css("background-color", $("#" + ids[0] + "-4").css("background-color"));
+                    $("#" + ids[0] + "-3").removeClass().addClass($("#" + ids[0] + "-4").attr('class'));
+                    $("#" + ids[0] + "-3").attr("data-value", $("#" + ids[0] + "-4").attr('data-value'));
+                    $("#" + ids[0] + "-4").css("background-color", $("#" + ids[0] + "-5").css("background-color"));
+                    $("#" + ids[0] + "-4").removeClass().addClass($("#" + ids[0] + "-5").attr('class'));
+                    $("#" + ids[0] + "-4").attr("data-value", $("#" + ids[0] + "-5").attr('data-value'));
+                    $("#" + ids[0] + "-5").css("background-color", "transparent");
+                    $("#" + ids[0] + "-5").removeClass('div-color-active').addClass('div-color');
+                    $("#" + ids[0] + "-5").attr("data-value", "");
+                    if ($("#" + ids[0] + "-4").hasClass('div-color')) {
+                        $("#" + ids[0] + "-3").children().css("visibility", "collapse");
+                    }
+                    break;
+                case 4:
+                    $("#" + ids[0] + "-4").css("background-color", $("#" + ids[0] + "-5").css("background-color"));
+                    $("#" + ids[0] + "-4").removeClass().addClass($("#" + ids[0] + "-5").attr('class'));
+                    $("#" + ids[0] + "-4").attr("data-value", $("#" + ids[0] + "-5").attr('data-value'));
+                    $("#" + ids[0] + "-5").css("background-color", "transparent");
+                    $("#" + ids[0] + "-5").removeClass('div-color-active').addClass('div-color');
+                    $("#" + ids[0] + "-5").attr("data-value", "");
+                    if ($("#" + ids[0] + "-5").hasClass('div-color')) {
+                        $("#" + ids[0] + "-4").children().css("visibility", "collapse");
+                    }
+                    break;
+                case 5:
+                    $("#" + ids[0] + "-5").css("background-color", "transparent");
+                    $("#" + ids[0] + "-5").removeClass('div-color-active').addClass('div-color');
+                    $("#" + ids[0] + "-5").children().css("visibility", "collapse");
+                    $("#" + ids[0] + "-5").attr("data-value","");
+                    break;
+            }
+        }
 
+        function OpenColors(divForAllColors, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.containertip--open').removeClass('containertip--open');
+            $(divForAllColors).find(".containertip").addClass("containertip--open");
+        }
 
+        $(document.body).on('click', function (event) {
+            if (!$(event.target).is('button')) {
+                $('.containertip--open').removeClass('containertip--open');
+            }
+        });
+
+        function changesColor(li, event) {
+            if (li.childElementCount > 0) {
+            } else {
+                //var color = li.style.backgroundColor;
+                //R = parseInt((cutHex(color)).substring(0, 2), 16);
+                //G = parseInt((cutHex(color)).substring(2, 4), 16);
+                //B = parseInt((cutHex(color)).substring(4, 6), 16);
+                
+                var newSpan = document.createElement("span");
+                newSpan.innerHTML = "✓";
+                li.appendChild(newSpan);
+
+                var divCol = $(li).parent().parent().parent().parent();
+                if (divCol.children("div")[1].style.backgroundColor == "rgba(0, 0, 0, 0)" || divCol.children("div")[1].style.backgroundColor == "transparent") {
+                    var div = divCol.children("div")[1];
+                    $(div).removeClass("div-color").addClass("div-color-active");
+                    $(div).css("background-color", $(li).css("background-color"));
+                    $(div).attr("data-value", li.getAttribute("data-value"))
+                } else if (divCol.children("div")[2].style.backgroundColor == "rgba(0, 0, 0, 0)" || divCol.children("div")[2].style.backgroundColor == "transparent") {
+                    var div = divCol.children("div")[2];
+                    $(div).removeClass("div-color").addClass("div-color-active");
+                    $(div).css("background-color", $(li).css("background-color"));
+                    $(div).attr("data-value", li.getAttribute("data-value"))
+                } else if (divCol.children("div")[3].style.backgroundColor == "rgba(0, 0, 0, 0)" || divCol.children("div")[3].style.backgroundColor == "transparent") {
+                    var div = divCol.children("div")[3];
+                    $(div).removeClass("div-color").addClass("div-color-active");
+                    $(div).css("background-color", $(li).css("background-color"));
+                    $(div).attr("data-value", li.getAttribute("data-value"))
+                } else if (divCol.children("div")[4].style.backgroundColor == "rgba(0, 0, 0, 0)" || divCol.children("div")[4].style.backgroundColor == "transparent") {
+                    var div = divCol.children("div")[4];
+                    $(div).removeClass("div-color").addClass("div-color-active");
+                    $(div).css("background-color", $(li).css("background-color"));
+                    $(div).attr("data-value", li.getAttribute("data-value"))
+                } else {
+                    $(li).children("span").remove();
+                    $('#max-color-for-product').modal('show');
+                };
+                $('.containertip--open').removeClass('containertip--open');
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        };
+
+        function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h };
 
     </script>
 
@@ -221,7 +382,8 @@
         <table class="items">
             <thead>
                 <tr>
-                    <td>@T("Name product")</td>
+                    <td>@T("Style")</td>
+                    <td>@T("Product colors")</td>
                     <td>@T("Cost Price")</td>
                     <td>@T("Sell Price")</td>
                     <td>@T("Profit")</td>
@@ -231,6 +393,74 @@
             {
                 <tr>
                     <td>@Model.Products.ElementAt(i).ProductRecord.Name</td>
+                    <td>
+                        @{
+                string color2 = Model.Products.ElementAt(i).SecondProductColorRecord == null ? "transparent" : Model.Products.ElementAt(i).SecondProductColorRecord.Value;
+                string color2Class = Model.Products.ElementAt(i).SecondProductColorRecord == null ? "div-color" : "div-color-active";
+                string dataVal2 = Model.Products.ElementAt(i).SecondProductColorRecord == null ? "" : Model.Products.ElementAt(i).SecondProductColorRecord.Id.ToString();
+                string color3 = Model.Products.ElementAt(i).ThirdProductColorRecord == null ? "transparent" : Model.Products.ElementAt(i).ThirdProductColorRecord.Value;
+                string color3Class = Model.Products.ElementAt(i).ThirdProductColorRecord == null ? "div-color" : "div-color-active";
+                string dataVal3 = Model.Products.ElementAt(i).ThirdProductColorRecord == null ? "" : Model.Products.ElementAt(i).ThirdProductColorRecord.Id.ToString();
+                string color4 = Model.Products.ElementAt(i).FourthProductColorRecord == null ? "transparent" : Model.Products.ElementAt(i).FourthProductColorRecord.Value;
+                string color4Class = Model.Products.ElementAt(i).FourthProductColorRecord == null ? "div-color" : "div-color-active";
+                string dataVal4 = Model.Products.ElementAt(i).FourthProductColorRecord == null ? "" : Model.Products.ElementAt(i).FourthProductColorRecord.Id.ToString();
+                string color5 = Model.Products.ElementAt(i).FifthProductColorRecord == null ? "transparent" : Model.Products.ElementAt(i).FifthProductColorRecord.Value;
+                string color5Class = Model.Products.ElementAt(i).FifthProductColorRecord == null ? "div-color" : "div-color-active";
+                string dataVal5 = Model.Products.ElementAt(i).FifthProductColorRecord == null ? "" : Model.Products.ElementAt(i).FifthProductColorRecord.Id.ToString();
+                        }
+
+                        <div id="@Model.Products.ElementAt(i).Id" class="div-for-colors">
+                            <div id="@Model.Products.ElementAt(i).Id-1" class="div-color-active" style="background-color: @Model.Products.ElementAt(i).ProductColorRecord.Value" onmouseover="visibleDelete(this, true)" onmouseout="visibleDelete(this, false)" data-value="@Model.Products.ElementAt(i).ProductColorRecord.Id">
+                                <div class="div-color-delete" onclick="DeleteColor(this)" style="visibility: collapse;">X</div>
+                            </div>
+                            <div id="@Model.Products.ElementAt(i).Id-2" class="@color2Class" style="background-color: @color2" onmouseover="visibleDelete(this, true)" onmouseout="visibleDelete(this, false)" data-value="@dataVal2">
+                                <div class="div-color-delete" onclick="DeleteColor(this)" style="visibility: collapse;">X</div>
+                            </div>
+                            <div id="@Model.Products.ElementAt(i).Id-3" class="@color3Class" style="background-color: @color3" onmouseover="visibleDelete(this, true)" onmouseout="visibleDelete(this, false)" data-value="@dataVal3">
+                                <div class="div-color-delete" onclick="DeleteColor(this)" style="visibility: collapse;">X</div>
+                            </div>
+                            <div id="@Model.Products.ElementAt(i).Id-4" class="@color4Class" style="background-color: @color4" onmouseover="visibleDelete(this, true)" onmouseout="visibleDelete(this, false)" data-value="@dataVal4">
+                                <div class="div-color-delete" onclick="DeleteColor(this)" style="visibility: collapse;">X</div>
+                            </div>
+                            <div id="@Model.Products.ElementAt(i).Id-5" class="@color5Class" style="background-color: @color5" onmouseover="visibleDelete(this, true)" onmouseout="visibleDelete(this, false)" data-value="@dataVal5">
+                                <div class="div-color-delete" onclick="DeleteColor(this)" style="visibility: collapse;">X</div>
+                            </div>
+                            <div class="fake-input color-picker standard designer-dropdown designDrop" onclick="OpenColors(this, event)" title="@T("Change color")" data-value="text">
+                                <div class="swatch2" title="" style="background-color: #ffffff;"></div>
+                                <div class="colors shirt-colors containertip" style="top: -17px; left: 100%;">
+                                    <ul class="all-colorsTwo">
+                                        @for (int k = 0; k < Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.Count; k++)
+                                        {
+                                            <li data-value="@Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Id" class="shirt-color-sample" title="@Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Name" style="background-color: @Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Value" onclick="changesColor(this, event)">
+                                                @if (Model.Products.ElementAt(i).ProductColorRecord.Id == Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Id)
+                                                {
+                                                    <span>✓</span>
+                                                }
+                                                else if (Model.Products.ElementAt(i).SecondProductColorRecord != null && Model.Products.ElementAt(i).SecondProductColorRecord.Id == Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Id)
+                                                {
+                                                    <span>✓</span>
+                                                }
+                                                else if (Model.Products.ElementAt(i).ThirdProductColorRecord != null && Model.Products.ElementAt(i).ThirdProductColorRecord.Id == Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Id)
+                                                {
+                                                    <span>✓</span>
+                                                }
+                                                else if (Model.Products.ElementAt(i).FourthProductColorRecord != null && Model.Products.ElementAt(i).FourthProductColorRecord.Id == Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Id)
+                                                {
+                                                    <span>✓</span>
+                                                }
+                                                else if (Model.Products.ElementAt(i).FifthProductColorRecord != null && Model.Products.ElementAt(i).FifthProductColorRecord.Id == Model.Products.ElementAt(i).ProductRecord.ColorsAvailable.ElementAt(k).ProductColorRecord.Id)
+                                                {
+                                                    <span>✓</span>
+                                                }
+
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </td>
                     <td id="base @i">@Model.Products.ElementAt(i).BaseCost.ToString().Replace(",", ".")</td>
                     <td><input id="sell @i" type="text" class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
                     <td class="price" id=@i></td>
@@ -245,6 +475,21 @@
     </fieldset>
 }
 
-<button type="submit" onclick="sendData()">@T("Save").ToString()</button>
+<button class="button" type="submit" onclick="sendData()">@T("Save").ToString()</button>
 @Html.ActionLink(T("Back").Text, "Index", new { }, new { @class = "button" })
 <img src="\media\default\images\loading.gif" style="display:none;" class="loader" />
+
+<div id="max-color-for-product" class="no-content-modal modal modal-teespring">
+    <div class="no-content modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class="partitioned-header no-bottom">@T("Sorry")</h3>
+            </div>
+            <div class="modal-body">
+                <p>@T("You cannot add more than 5 colors of the same style in one campaign")</p>
+                <input type="button" value="@T("Ok")" class="btn btn-large btn-primary wizard-button" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>
