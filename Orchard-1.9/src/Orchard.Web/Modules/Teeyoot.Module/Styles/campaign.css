@@ -6729,6 +6729,7 @@ td, tr {
     border-radius: 5px 5px 5px 5px;
     margin-top: 20px;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.5),rgba(0,0,0,0.5) 0px 0px 5px inset;
+    cursor: pointer;
 }
 
 @media (min-width: 980px) {
