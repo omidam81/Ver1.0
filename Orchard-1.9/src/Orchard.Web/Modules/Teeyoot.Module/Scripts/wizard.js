@@ -1251,7 +1251,6 @@ function colorInit() {
                         G = parseInt((cutHex(color.value)).substring(2, 4), 16);
                         B = parseInt((cutHex(color.value)).substring(4, 6), 16);
 
-                        function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
                         var spanColor = "rgb(" + (255 - R) + ", " + (255 - G) + ", " + (255 - B) + ")";
 
                         var $addSpan = $(addSpan);
@@ -1684,4 +1683,8 @@ function deleteColor(number) {
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
             break;
     }
+}
+
+function cutHex(h) {
+    return (h.charAt(0) == "#") ? h.substring(1, 7) : h
 }

@@ -171,7 +171,7 @@ namespace Teeyoot.Orders.Controllers
                 Currency = o.CampaignProductRecord.CurrencyRecord.Code,
                 Price = o.CampaignProductRecord.Price + Pricing(o.CampaignProductRecord.ProductRecord.SizesAvailable,o.ProductSizeRecord.Id),
                 Size = o.ProductSizeRecord.SizeCodeRecord.Name,
-                Color = o.CampaignProductRecord.ProductColorRecord.Value});
+                Color = o.ProductColorRecord == null ? o.CampaignProductRecord.ProductColorRecord.Value : o.ProductColorRecord.Value});
          
             var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
             var result = new { products, totalPrice };
