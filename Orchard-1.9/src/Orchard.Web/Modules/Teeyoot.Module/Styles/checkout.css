@@ -788,4 +788,36 @@ checkout__lock_icon {
     -webkit-appearance: none;
 }
 
+.payment-method-list > li > a {
+    display: block;
+    padding: 10px 0 14px 0;
+    height: 78px;
+    width: 90%;
+    background: white;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 13px;
+    color: #c2c9cc;
+    text-decoration: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
 
+.payment-method-list > li > a:hover {
+    text-decoration: none;
+    color: #ff4f00;
+    border-color: #ff4f00;
+}
+
+.payment-method-list p {
+    margin-bottom: 5px;
+    text-decoration: none;
+    padding: 1.25rem 0 1.25rem 0;
+}
+
+.payment-method-list li {
+    width: 25%;
+    list-style: none;
+    float: left;
+}

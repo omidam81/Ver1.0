@@ -15,6 +15,21 @@
             var inp3 = document.getElementById("credit");
             var inp4 = document.getElementById("mol");
     
+            //if (inp1.name == "true") {
+            //    inp1.setAttribute("checked", "checked");
+            //}
+            //if (inp2.name == "true") {
+            //    inp2.setAttribute("checked", "checked");
+            //}
+            //if (inp3.name == "true") {
+            //    inp3.setAttribute("checked", "checked");
+            //}
+            //if (inp4.name == "true") {
+            //    inp4.setAttribute("checked", "checked");
+            //}
+
+
+
             if (inp2.hasAttribute("checked")) {
                 //checked = 1;
                 enableInputs();
@@ -29,19 +44,19 @@
                 disableInputsMol();
             }
 
-            if (inp3.hasAttribute("checked")) {
-                //checked = 1;
-                enableInputs();
-            } else {
-                disableInputs();
-            }
+            //if (inp3.hasAttribute("checked")) {
+            //    //checked = 1;
+            //    enableInputs();
+            //} else {
+            //    disableInputs();
+            //}
 
-            if (inp1.hasAttribute("checked")) {
+            //if (inp1.hasAttribute("checked")) {
 
-                enableInputsMol();
-            } else {
-                disableInputsMol();
-            }
+            //    enableInputsMol();
+            //} else {
+            //    disableInputsMol();
+            //}
 
 
 
@@ -206,14 +221,28 @@
     {
         
         <div style="margin-top:1%">
-
-            <input type="checkbox" id="manual" name="vehicle" value="1" >
+            
+            @if (Model.CashDeliv)
+            {
+                <input type="checkbox" id="manual" name="@Model.CashDeliv" checked>
+            }
+            else
+            {
+                <input type="checkbox" id="manual" name="@Model.CashDeliv">
+            }
+            
             <font class="method black">
                 @T("Cash on delivery")
             </font>
             <br>
             <br>
-            <input type="checkbox" id="brain" name="vehicle" value="2">
+            @if (Model.PayPal)
+            {
+                <input type="checkbox" id="brain" name="@Model.PayPal" checked>
+            }
+            else { 
+             <input type="checkbox" id="brain" name="@Model.PayPal">
+            }
             <font class="method black">
                 @T("Braintree PayPal")
             </font>
@@ -222,39 +251,49 @@
             <font style="margin-left:20px" class="method black">
                 @T("Public Key")
             </font>
-            <input type="text" id="textPublic" class="inp marg1"  />
+            <input type="text" id="textPublic" class="inp marg1" value="@Model.publicKey" />
             <br>
             <br>
             <font style="margin-left:20px" class="method black">
                 @T("Private Key ")
             </font>
-            <input type="text" id="textPrivate" class="inp marg2" />
+            <input type="text" id="textPrivate" class="inp marg2" value="@Model.privateKey"/>
             <br>
             <br>
             <font style="margin-left:20px" class="method black">
                 @T("Merchant Id")
             </font>
-            <input type="text" id="textMerchant" class="inp marg3" />
+            <input type="text" id="textMerchant" class="inp marg3" value="@Model.merchantId" />
             <br>
             <br>
             <font style="margin-left:20px" class="method black">
                 @T("Client Token  ")
             </font> 
-            <input type="text" id="textToken" class="inp marg4" />
+            <input type="text" id="textToken" class="inp marg4" value="@Model.clientToken"/>
             <br>
 
 
             <br>
             <hr>
-            <input type="checkbox" id="credit" value="3" name="vehicle">
-
+            @if (Model.CreditCard)
+            {
+                <input type="checkbox" id="credit" name="@Model.CreditCard" checked>
+            }
+            else { 
+            <input type="checkbox" id="credit" name="@Model.CreditCard" >
+            }
             <font class="method black">
                 @T("  Braintree Debit/Credit Card")
             </font>
             <br>
             <br>
-            <input type="checkbox" id="mol" value="3" name="vehicle">
-
+            @if (Model.Mol)
+            {
+                <input type="checkbox" id="mol" name="@Model.Mol" checked>
+            }
+            else { 
+            <input type="checkbox" id="mol" name="@Model.Mol" >
+            }
             <font class="method black">
                 @T("  Molpay Online Bancking")
             </font>
@@ -263,13 +302,13 @@
             <font style="margin-left:20px" class="method black">
                 @T("Merchant Id")
             </font>
-            <input type="text" id="textMerchMol" class="inp marg5" />
+            <input type="text" id="textMerchMol" class="inp marg5" value="@Model.merchantIdMol"/>
             <br>
             <br>
             <font style="margin-left:20px" class="method black">
                 @T("Verify Key")
             </font>
-            <input type="text" id="textKey" class="inp marg6"  />
+            <input type="text" id="textKey" class="inp marg6"  value="@Model.verifyKey"/>
             <br>
             <hr>
             <br>
