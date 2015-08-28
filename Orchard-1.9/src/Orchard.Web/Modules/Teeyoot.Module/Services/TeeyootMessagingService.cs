@@ -214,7 +214,7 @@ namespace Teeyoot.Messaging.Services
                 FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
-            mandrillMessage.To = emails;
+            mandrillMessage.To = emails.Distinct().ToList(); 
             SendTmplMessage(api, mandrillMessage);
         }
 
@@ -240,7 +240,7 @@ namespace Teeyoot.Messaging.Services
                 FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
-            mandrillMessage.To = emails;
+            mandrillMessage.To = emails.Distinct().ToList();
             SendTmplMessage(api, mandrillMessage);
         }
 
