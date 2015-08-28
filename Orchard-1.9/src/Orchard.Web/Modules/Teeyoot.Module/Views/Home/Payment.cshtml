@@ -81,27 +81,27 @@
                                 <dt>
 
                                     @T("Delivery")
-                                    
+
                                 </dt>
                                 <dd>@Model.Order.CurrencyRecord.Code 1.99</dd>
                             </dl>
-                                <dl class="order_summary__breakdown">
-                                    <dt class="order_summary__total_label">
-                                        @T("Total")
-                                    </dt>
-                                    <dd>
-                                        @if (Model.Order.TotalPriceWithPromo != 0)
-                                        {
-                                            <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPriceWithPromo</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @(@Model.Order.TotalPrice +1.99)</span>
-                                        }
+                            <dl class="order_summary__breakdown">
+                                <dt class="order_summary__total_label">
+                                    @T("Total")
+                                </dt>
+                                <dd>
+                                    @if (Model.Order.TotalPriceWithPromo != 0)
+                                    {
+                                        <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPriceWithPromo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @(@Model.Order.TotalPrice + 1.99)</span>
+                                    }
 
-                                    </dd>
-                                </dl>
-</div><div class="order_summary--offset js_order_summary--offset"></div>
+                                </dd>
+                            </dl>
+                        </div><div class="order_summary--offset js_order_summary--offset"></div>
                     </div>
                 </div>
             </div>
@@ -147,51 +147,52 @@
                         <label id="Email-error" class="error valid" for="Email"></label>
                     </div>
 
-                  @*  @if (Model.PaumentMethod == 2)*@
-                   @* {*@
+                    @*  @if (Model.PaumentMethod == 2)*@
+                    @* {*@
 
-                        <div>
-                            <ul class="payment-method-list">
-                                @if (Model.CreditCard)
-                                {
-                                    <li>
-                                        <a href="javascript:;" class="payment-method" id="payment_method_credit_card">
-                                            <p>@T("Credit Card")</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (Model.PayPal)
-                                {
-                                    <li>
-                                        <a href="javascript:;" class="payment-method" id="payment_method_paypal">
-                                            <p>@T("PayPal")</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (Model.Mol)
-                                {
-                                    <li>
-                                        <a href="javascript:;" class="payment-method" id="payment_method_mol">
-                                            <p>@T("Mol")</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (Model.CashDeliv)
-                                {
-                                    <li>
-                                        <a href="javascript:;" class="payment-method" id="payment_method_cash">
-                                            <p>@T("Cash")</p>
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                        <div class="checkout__legend">
-                            <div class="checkout__tool_tip--lock" data-tooltip="@T("All transactions are secure and encrypted.")">
-                                <i class="checkout__lock_icon"></i>
-                            </div>@T("Payment Info")
-                        </div>
+                    <div>
+                        <ul class="payment-method-list">
+                            @if (Model.CreditCard)
+                            {
+                                <li>
+                                    <a href="javascript:;" class="payment-method" data-payment-method="creditcard">
+                                        <p>@T("Credit Card")</p>
+                                    </a>
+                                </li>
+                            }
+                            @if (Model.PayPal)
+                            {
+                                <li>
+                                    <a href="javascript:;" class="payment-method" data-payment-method="paypal">
+                                        <p>@T("PayPal")</p>
+                                    </a>
+                                </li>
+                            }
+                            @if (Model.Mol)
+                            {
+                                <li>
+                                    <a href="javascript:;" class="payment-method" data-payment-method="mol">
+                                        <p>@T("Mol")</p>
+                                    </a>
+                                </li>
+                            }
+                            @if (Model.CashDeliv)
+                            {
+                                <li>
+                                    <a href="javascript:;" class="payment-method" data-payment-method="cash">
+                                        <p>@T("Cash")</p>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="checkout__legend">
+                        <div class="checkout__tool_tip--lock" data-tooltip="@T("All transactions are secure and encrypted.")">
+                            <i class="checkout__lock_icon"></i>
+                        </div>@T("Payment Info")
+                    </div>
 
+                    <div class="payment-method-container" id="payment_method_credit_card" style="display: none;">
                         <div id="accordion" class="accordion_min accordion">
                             <div class="contLable">
 
@@ -205,8 +206,12 @@
                                             <li>
                                                 <div class="credit_card credit_card--amex js-credit-card-amex credit_card--disabled"></div>
                                             </li>
-                                            <li><div class="credit_card credit_card--mastercard js-credit-card-mastercard credit_card--disabled"></div></li>
-                                            <li><div class="credit_card credit_card--discover js-credit-card-discover credit_card--disabled"></div></li>
+                                            <li>
+                                                <div class="credit_card credit_card--mastercard js-credit-card-mastercard credit_card--disabled"></div>
+                                            </li>
+                                            <li>
+                                                <div class="credit_card credit_card--discover js-credit-card-discover credit_card--disabled"></div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </label>
@@ -221,15 +226,15 @@
                                         <div class="checkout__input--medium form-field-pair">
                                             <div class="mmYYYY">
                                                 <div class="checkout_cell">
-                                                    <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
+                                                    <input class="form__textfield form-field-pair__field" style="display: inline; border-radius: 5px 0px 0px 5px;" name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
                                                     <label id="cc-month-error" class="error valid" for="cc-month"></label>
                                                 </div>
                                                 <div class="checkout_cell">
-                                                    <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
+                                                    <input class="form__textfield form-field-pair__field" style="display: inline; margin-left: -5px; margin-right: 9px; border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
                                                     <label id="cc-year-error" class="error valid" for="cc-year"></label>
                                                 </div>
                                                 <div class="cvc_cell checkout_cell">
-                                                    <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
+                                                    <input class="form__textfield form-field-pair__field" style="display: inline; width: 29%" name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
                                                     <label id="cc-cvv-error" class="error valid" for="cc-cvv"></label>
                                                 </div>
                                             </div>
@@ -247,17 +252,97 @@
 
                                 </div>
                             </div>
-                            <div class="accordion__item" style="margin-top:30px">
+                            @*
+                                <div class="accordion__item" style="margin-top:30px">
 
-                                <label class="accordion__label" for="paypal">
-                                    <p>
-                                        <div id="paypal-container"></div>
-                                    </p>
-                                </label>
-                            </div>
+                                    <label class="accordion__label" for="paypal">
+                                        <p>
+                                            <div id="paypal-container"></div>
+                                        </p>
+                                    </label>
+                                </div>
+                            *@
                         </div>
-                   
+                    </div>
+                    <div class="payment-method-container" id="payment_method_paypal" style="display: none;">
+                        <div class="accordion_min accordion">
+                            <p>
+                                <div id="paypal-container"></div>
+                            </p>
+                        </div>
 
+                    </div>
+                    <div class="payment-method-container" id="payment_method_mol" style="display: none;">
+                    </div>
+                    <div class="payment-method-container" id="payment_method_cash" style="display: none;">
+                    </div>
+                    @*
+                        <div id="accordion" class="accordion_min accordion">
+                                <div class="contLable">
+
+                                    <label class="accordion__label_text" for="new-credit-card">
+                                        @T("Credit Card")
+                                        <div class="accordion__sub_label accordion__sub_label--sticky">
+                                            <ul class="credit_card_list js_credit_card_list">
+                                                <li>
+                                                    <div class="credit_card credit_card--visa js-credit-card-visa credit_card--disabled"></div>
+                                                </li>
+                                                <li>
+                                                    <div class="credit_card credit_card--amex js-credit-card-amex credit_card--disabled"></div>
+                                                </li>
+                                                <li><div class="credit_card credit_card--mastercard js-credit-card-mastercard credit_card--disabled"></div></li>
+                                                <li><div class="credit_card credit_card--discover js-credit-card-discover credit_card--disabled"></div></li>
+                                            </ul>
+                                        </div>
+                                    </label>
+
+                                    <div class="accordion__content">
+
+                                        <div>
+                                            <input class="form__textfield  js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="@T("Credit card number")" tabindex="9" type="text">
+                                            <label id="cc-number-error" class="error valid" for="cc-number"></label>
+                                        </div>
+                                        <div class="checkout_form__row">
+                                            <div class="checkout__input--medium form-field-pair">
+                                                <div class="mmYYYY">
+                                                    <div class="checkout_cell">
+                                                        <input class="form__textfield form-field-pair__field" style="display:inline;  border-radius: 5px 0px 0px 5px; " name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
+                                                        <label id="cc-month-error" class="error valid" for="cc-month"></label>
+                                                    </div>
+                                                    <div class="checkout_cell">
+                                                        <input class="form__textfield form-field-pair__field" style="display:inline; margin-left:-5px; margin-right:9px;  border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
+                                                        <label id="cc-year-error" class="error valid" for="cc-year"></label>
+                                                    </div>
+                                                    <div class="cvc_cell checkout_cell">
+                                                        <input class="form__textfield form-field-pair__field" style="display:inline; width:29% " name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
+                                                        <label id="cc-cvv-error" class="error valid" for="cc-cvv"></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="checkout__input--small">
+                                                <div class="checkout__tool_tip_container">
+                                                    <div class="checkout__tool_tip--cvc" data-tooltip="@T("3 or 4 digit security code usually located on the back of the card.")">
+                                                        <i class="ss-icon ss-standard tool_tip__toggle"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="accordion__item" style="margin-top:30px">
+
+                                    <label class="accordion__label" for="paypal">
+                                        <p>
+                                            <div id="paypal-container"></div>
+                                        </p>
+                                    </label>
+                                </div>
+                            </div>
+
+                    *@
                     <div class="form__group js-checkout-shipping">
                         <div class="checkout__legend">@T("Shipping Info")</div>
                         <div class="inp-half">
@@ -372,37 +457,51 @@
         $(document).ready(function () {
             document.title = "Payment | Teeyoot";
 
+            $('.payment-method[data-payment-method="creditcard"]').css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
+            $('#payment_method_credit_card').show();
+
             $('.payment-method').click(function () {
                 $('.payment-method').css('text-decoration', '').css('color', '').css('border-color', '');
                 $(this).css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
+
+                $('.payment-method-container').hide();
+                var paymentMethod = $(this).data('payment-method');
+                if (paymentMethod === 'creditcard') {
+                    $('#payment_method_credit_card').show();
+                } else if (paymentMethod === 'paypal') {
+                    $('#payment_method_paypal').show();
+                } else if (paymentMethod === 'mol') {
+                    $('#payment_method_mol').show();
+                } else if (paymentMethod === 'cash') {
+                    $('#payment_method_cash').show();
+                }
             });
         });
         //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
         var token = document.getElementById("Token").value;
         braintree.setup(token, "paypal",
-            {
-                container: "paypal-container",
-                onPaymentMethodReceived: function (obj) {
-                    document.getElementById("accordion").className = "accordion";
-                    document.querySelector(".contLable").style.display = "none";
-                    document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
-                    document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
-                    document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
-                    document.getElementById("bt-pp-cancel").style.fontSize = "20px";
-                    document.getElementById("bt-pp-email").style.fontSize = "18px";
-                    document.querySelector(".accordion__item").style.borderTop = "0px";
-                    document.getElementById("bt-pp-cancel").style.background = "white";
-                    document.querySelector(".accordion").style.height = "50px";
-                    document.getElementById("bt-pp-cancel").style.textDecoration = "none";
-                    doSomethingWithTheNonce(obj.nonce);
-                }, onCancelled: function () {
-                    document.getElementById("accordion").className = "accordion_min accordion";
-                    document.querySelector(".contLable").style.display = "inline";
-                    document.querySelector(".accordion").style.height = "275px";
-                }
-            });
-
-
+        {
+            container: "paypal-container",
+            onPaymentMethodReceived: function (obj) {
+                document.getElementById("accordion").className = "accordion";
+                document.querySelector(".contLable").style.display = "none";
+                document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
+                document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
+                document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
+                document.getElementById("bt-pp-cancel").style.fontSize = "20px";
+                document.getElementById("bt-pp-email").style.fontSize = "18px";
+                document.querySelector(".accordion__item").style.borderTop = "0px";
+                document.getElementById("bt-pp-cancel").style.background = "white";
+                document.querySelector(".accordion").style.height = "50px";
+                document.getElementById("bt-pp-cancel").style.textDecoration = "none";
+                doSomethingWithTheNonce(obj.nonce);
+            },
+            onCancelled: function () {
+                document.getElementById("accordion").className = "accordion_min accordion";
+                document.querySelector(".contLable").style.display = "inline";
+                document.querySelector(".accordion").style.height = "275px";
+            }
+        });
     </script>
 
     <script language="javascript">
@@ -418,6 +517,4 @@
         }
         populateCountries("Country");
     </script>
-
-
 }

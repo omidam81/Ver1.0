@@ -145,10 +145,10 @@ namespace Teeyoot.Module.Controllers
                 model.ClientToken = setting.ClientToken;
                 //var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
 
-                model.CashDeliv = true; //setting.CashDeliv;
-                model.CreditCard = true; //setting.CreditCard;
-                model.Mol = true; //setting.Mol;
-                model.PayPal = true;//setting.PayPal;
+                model.CashDeliv = setting.CashDeliv;
+                model.CreditCard = setting.CreditCard;
+                model.Mol = setting.Mol;
+                model.PayPal = setting.PayPal;
 
                 if (promo != null)
                 {
