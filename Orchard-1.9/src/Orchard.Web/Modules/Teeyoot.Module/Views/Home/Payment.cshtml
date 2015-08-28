@@ -127,6 +127,10 @@
                             </span>
                         </p>
                     </div>
+                    <br>
+                    <div class="message_Mol" style="display:none">
+                        <span style="color:red" hei>You will be charged after your order is placed</span>
+                    </div>
                 </div>
             </div>
 
@@ -477,12 +481,16 @@
                 var paymentMethod = $(this).data('payment-method');
                 if (paymentMethod === 'creditcard') {
                     $('#payment_method_credit_card').show();
+                    $('.message_Mol').css({ "display": "none" });
                 } else if (paymentMethod === 'paypal') {
                     $('#payment_method_paypal').show();
+                    $('.message_Mol').css({ "display": "none" });
                 } else if (paymentMethod === 'mol') {
                     $('#payment_method_mol').show();
+                    $('.message_Mol').css({"display":""});
                 } else if (paymentMethod === 'cash') {
                     $('#payment_method_cash').show();
+                    $('.message_Mol').css({ "display": "none" });
                 }
             });
         });

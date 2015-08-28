@@ -47,6 +47,12 @@
     width: 100%;
 }
 
+.message_Mol {
+    border: solid 1px red;
+    padding: 15px;
+    border-radius: 10px;
+}
+
 .message_banner--success .message_banner, .message_banner--error .message_banner {
     padding: 1.06666rem 2.66665rem 1.06666rem 1.06666rem;
 }
@@ -6729,6 +6735,7 @@ td, tr {
     border-radius: 5px 5px 5px 5px;
     margin-top: 20px;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.5),rgba(0,0,0,0.5) 0px 0px 5px inset;
+    cursor: pointer;
 }
 
 @media (min-width: 980px) {

@@ -15,20 +15,6 @@
             var inp3 = document.getElementById("credit");
             var inp4 = document.getElementById("mol");
     
-            //if (inp1.name == "true") {
-            //    inp1.setAttribute("checked", "checked");
-            //}
-            //if (inp2.name == "true") {
-            //    inp2.setAttribute("checked", "checked");
-            //}
-            //if (inp3.name == "true") {
-            //    inp3.setAttribute("checked", "checked");
-            //}
-            //if (inp4.name == "true") {
-            //    inp4.setAttribute("checked", "checked");
-            //}
-
-
 
             if (inp2.hasAttribute("checked")) {
                 //checked = 1;
@@ -43,23 +29,6 @@
             } else {
                 disableInputsMol();
             }
-
-            //if (inp3.hasAttribute("checked")) {
-            //    //checked = 1;
-            //    enableInputs();
-            //} else {
-            //    disableInputs();
-            //}
-
-            //if (inp1.hasAttribute("checked")) {
-
-            //    enableInputsMol();
-            //} else {
-            //    disableInputsMol();
-            //}
-
-
-
 
 
             inp1.addEventListener("click", function () {
@@ -106,7 +75,11 @@
             document.getElementById("SendData").addEventListener("click", function () {
                 //if (checked == 2) {
                     
-                    
+                if (!inp1.hasAttribute("checked") && !inp2.hasAttribute("checked") && !inp3.hasAttribute("checked") && !inp4.hasAttribute("checked")) {
+                    alert("Choose at least one of the following payment methods");
+                } else {
+
+
 
                     var publicKey = document.getElementById("textPublic").value;
                     var privateKey = document.getElementById("textPrivate").value;
@@ -132,8 +105,8 @@
                             "MerchantId": merchantId.toString(),
                             "ClientToken": clientToken.toString(),
                             "MerchantIdMol": merchantIdMol.toString(),
-                            "VerifyKey" : verifyKey.toString(),
-                            "Language" : document.getElementById("Culture").value
+                            "VerifyKey": verifyKey.toString(),
+                            "Language": document.getElementById("Culture").value
                         }),
                         success: function (data) {
                             alert("Settings updated");
@@ -142,27 +115,7 @@
                         }
                     });
 
-
-
-
-                @*} else {
-                    var result = new Array();
-                    $.ajax({
-                        async: false,
-                        cache: false,
-                        type: "GET",
-                        url: "@(Url.Action("SaveSettings", "Payment"))",
-                        data: {
-                            "PaymentMethod": checked.toString(),
-                            "Language": document.getElementById("Culture").value
-                        },
-                    success: function (data) {
-                        alert("Settings updated");
-                    }, error: function (data, status, resp) {
-                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-                    }
-                });
-                }*@
+                }
             })
 
             function addAntiForgeryToken(data) {
