@@ -196,7 +196,8 @@ namespace Teeyoot.Module.Controllers
             return result;
         }
 
-        public string Molpay(OrderRecord order) {
+        public string Molpay(OrderRecord order)
+        {
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
 
@@ -223,14 +224,19 @@ namespace Teeyoot.Module.Controllers
             return paymentUrl;
         }
 
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public void CallbackMolpay(string nbcb, string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
-                                    string error_desc, string currency, string paydate, string skey)
+        public void CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
+                                    string error_desc, string currency, string paydate,string channel, string skey)
         {
-            //Logger.
-            Logger.Error(T("PRIVET").Text);
-            Logger.Debug(T("PRIVET").Text);
+            string destFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/molPayLog");
+            var dir = new DirectoryInfo(destFolder);
+
+            if (!dir.Exists)
+            {
+                Directory.CreateDirectory(destFolder);
+            } 
+            System.IO.File.AppendAllText(destFolder + "/mol.txt","Return Url status:"+ status + "; amount: "+ amount + "; orderid: "+ orderid + "; error_desc: " + error_desc);
         }
 
         public JsonResult GetSettings()
@@ -304,7 +310,7 @@ namespace Teeyoot.Module.Controllers
                 }
                 else if (collection["paumentMeth"] == "3")
                 {
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])));
+                    var url = Molpay1(_orderService.GetOrderById(int.Parse(collection["OrderId"])));
                     return Redirect(url);
                 }
              
