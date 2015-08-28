@@ -306,6 +306,8 @@
         }
 
         function BackCampaignReserv() {
+            $(document.getElementById("email_for_reserv")).removeClass("error");
+            $(document.getElementById("errMsg")).removeClass("err-msg");
             document.getElementById("bringBackCampaign").className = "dg-overlay";
         }
 
@@ -601,20 +603,27 @@
 
         function ReservCampaign() {
             var email = document.getElementById("email_for_reserv").value;
-            var campaignId = document.getElementById("campaignId").value;
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("ReservCampaign", "Home"))",
-                data: addAntiForgeryToken({
-                    "Email": email, "Id": campaignId
-                }),
-                success: function (data, status, resp) {
-                    $("#reserv_container").addClass("hidden");
-                    $(document.getElementById("reservation-result")).text("@T("Your request has been sent!")");
-                }
-            });
+            if ((email.indexOf('@@') < 0) || (email.indexOf('.') < 0)) {
+                $(document.getElementById("email_for_reserv")).addClass("error");
+                $(document.getElementById("errMsg")).removeClass("err-msg-hidden");
+                $(document.getElementById("errMsg")).addClass("err-msg");
+            }
+            else {
+                var campaignId = document.getElementById("campaignId").value;
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("ReservCampaign", "Home"))",
+                    data: addAntiForgeryToken({
+                        "Email": email, "Id": campaignId
+                    }),
+                    success: function (data, status, resp) {
+                        $("#reserv_container").addClass("hidden");
+                        $(document.getElementById("reservation-result")).text("@T("Your request has been sent!")");
+                    }
+                });
+            }
         }
 
         function shareCampaign() {
@@ -1389,8 +1398,9 @@
                             <div id="reserv_container">
                                 <div class="modal-body">
                                     <div class="tooltip tooltip--topleft">
-                                        <input id="email_for_reserv" class="form__textfield form__textfield--whole-width" type="text" placeholder="@T("Email address (so we can notify you)")">
+                                        <input id="email_for_reserv" class="form__textfield form__textfield--whole-width" type="email" required placeholder="@T("Email address (so we can notify you)")">
                                     </div>
+                                    <label id="errMsg" class="err-msg-hidden">Please, input valid email address! </label>
                                 </div>
 
                                 <div class="modal-footer">
