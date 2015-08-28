@@ -15,6 +15,8 @@ namespace Teeyoot.Module.Services
         void AddFont(FontRecord font);
 
         FontRecord GetFont(int id);
+
+        FontRecord GetFontByFamily(string fontFamily);
     }
 
     
