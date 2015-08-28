@@ -104,14 +104,15 @@
                                 }
 
                             </td>
-                            <td>                              
+                            <td>
+                                <a class="button" href="@Url.Action("ChangeInformation","AdminCampaignsSettings", new { Id = camp.Campaign.Id })" title="@T("Change")">@T("Change")</a>
                                 @if (!camp.Campaign.IsActive)
                                 {
                                     @*@T(" | ")*@
-                                    <a href="@Url.Action("DeleteCampaign", new { id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
+                                    <a class="button" href="@Url.Action("DeleteCampaign", new { id = camp.Campaign.Id })" title="@T("Delete")">@T("Delete")</a>
                                 }
-
                             </td>
+
                         </tr>
                     }
                 }

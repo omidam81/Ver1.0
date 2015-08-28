@@ -27,11 +27,18 @@
                                     int idSize = item.OrderRecord.Products[index].ProductSizeRecord.Id;
                                     float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
                                     float price = (float)item.CampaignProductRecord.Price + costSize;
+                                    string colorName = item.ProductColorRecord == null ? item.CampaignProductRecord.ProductColorRecord.Name : item.ProductColorRecord.Name;
+                                    string colorValue = item.ProductColorRecord == null ? item.CampaignProductRecord.ProductColorRecord.Value : item.ProductColorRecord.Value;
+                                    string colorImage = item.ProductColorRecord == null ? item.CampaignProductRecord.Id.ToString() : item.CampaignProductRecord.Id + "_" + item.ProductColorRecord.Id;
+                                    if (item.CampaignProductRecord.SecondProductColorRecord == null)
+                                    {
+                                        colorImage = item.CampaignProductRecord.Id.ToString();
+                                    }
 
                                     <tr>
                                         <td>
                                             <div class="order_summary__item_image ">
-                                                <img src="/Media/campaigns/@item.CampaignProductRecord.CampaignRecord_Id/@item.CampaignProductRecord.Id/normal/front.png">
+                                                <img src="/Media/campaigns/@item.CampaignProductRecord.CampaignRecord_Id/@colorImage/normal/front.png">
                                             </div>
                                         </td>
                                         <td class="order_summary__item_name">
@@ -39,8 +46,8 @@
                                             <ul class="order_summary__item_options">
                                                 <li>@item.ProductSizeRecord.SizeCodeRecord.Name</li>
                                                 <li>
-                                                    <span class="order_summary__item_color_label">@item.CampaignProductRecord.ProductColorRecord.Name</span>
-                                                    <span class="order_summary__item_color" style="background-color: @item.CampaignProductRecord.ProductColorRecord.Value"></span>
+                                                    <span class="order_summary__item_color_label">@colorName</span>
+                                                    <span class="order_summary__item_color" style="background-color: @colorValue"></span>
                                                 </li>
                                             </ul>
                                         </td>

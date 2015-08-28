@@ -1578,6 +1578,15 @@ namespace Teeyoot.Module
 
             return 74;
         }
-     
+
+        public int UpdateFrom74()
+        {
+            SchemaBuilder.AlterTable(typeof(LinkOrderCampaignProductRecord).Name, table => table.AddColumn<int>("ProductColorRecord_Id", c => c.Nullable()));
+
+            SchemaBuilder.CreateForeignKey("LinkOrderCampaignProduct_ProductColor", "LinkOrderCampaignProductRecord",
+                new[] { "ProductColorRecord_Id" }, "ProductColorRecord", new[] { "Id" });
+
+            return 75;
+        }
     }
 }

@@ -96,7 +96,20 @@ window.onload = function initWizard() {
 
         $div.click(function () {
             if (app.state.products.indexOf(prdc) >= 0) {
-                var newColor = design.products.colors[prdc.ColorId];
+                var colorId = prdc.ColorId;
+                if (prdc.FifthColorId > 0) {
+                    colorId = prdc.FifthColorId;
+                } else if (prdc.FourthColorId > 0) {
+                    colorId = prdc.FourthColorId;
+                } else if (prdc.ThirdColorId > 0) {
+                    colorId = prdc.ThirdColorId;
+                } else if (prdc.SecondColorId > 0) {
+                    colorId = prdc.SecondColorId;
+                } else {
+                    colorId = prdc.ColorId;
+                }
+
+                var newColor = design.products.colors[colorId];
                 var src = assetsUrls.products + 'product_type_' + product.id + '_front_small.png';
                 design.save(function (data) {
                     var srcFront = assetsUrls.products + 'product_type_' + product.id + '_front.png';
@@ -634,6 +647,7 @@ window.onload = function initWizard() {
                                 //var $divDelete = $(divDelete);
                                 $(divColorDelete3).click(function () {
                                     $("#li_" + prdc.ProductId + "_" + prdc.ThirdColorId).children("span").remove();
+                                    var color = design.products.colors[prdc.SecondColorId];
 
                                     prdc.ThirdColorId = prdc.FourthColorId;
                                     prdc.FourthColorId = prdc.FifthColorId;
@@ -649,6 +663,13 @@ window.onload = function initWizard() {
                                     $(divColor5).removeClass('div-color-active').addClass('div-color');
                                     if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
 
+                                    if ($(divColor4).hasClass("div-color")) {
+                                        $("#prodFront").css("background-color", color.value);
+                                        $("#prodBack").css("background-color", color.value);
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        $image.css("background-color", color.value);
+                                    }
                                 });
                                 $(divColorDelete3).css("visibility", "collapse");
                                 $(divColor3).append($(divColorDelete3));
@@ -661,6 +682,7 @@ window.onload = function initWizard() {
                                     //var $divDelete = $(divDelete);
                                     $(divColorDelete4).click(function () {
                                         $("#li_" + prdc.ProductId + "_" + prdc.FourthColorId).children("span").remove();
+                                        var color = design.products.colors[prdc.ThirdColorId];
 
                                         prdc.FourthColorId = prdc.FifthColorId;
                                         prdc.FifthColorId = 0;
@@ -671,6 +693,14 @@ window.onload = function initWizard() {
                                         $(divColor5).css("background-color", "rgb(219, 219, 219)");
                                         $(divColor5).removeClass('div-color-active').addClass('div-color');
                                         if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+
+                                        if ($(divColor5).hasClass("div-color")) {
+                                            $("#prodFront").css("background-color", color.value);
+                                            $("#prodBack").css("background-color", color.value);
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                            $image.css("background-color", color.value);
+                                        }
                                     });
                                     $(divColorDelete4).css("visibility", "collapse");
                                     $(divColor4).append($(divColorDelete4));
@@ -683,12 +713,19 @@ window.onload = function initWizard() {
                                         //var $divDelete = $(divDelete);
                                         $(divColorDelete5).click(function () {
                                             $("#li_" + prdc.ProductId + "_" + prdc.FifthColorId).children("span").remove();
+                                            var color = design.products.colors[prdc.FourthColorId];
 
                                             prdc.FifthColorId = 0;
 
                                             $(divColor5).css("background-color", "rgb(219, 219, 219)");
                                             $(divColor5).removeClass('div-color-active').addClass('div-color');
                                             if ($(divColor5).hasClass("div-color")) $(divColor5).children("div").remove();
+
+                                            $("#prodFront").css("background-color", color.value);
+                                            $("#prodBack").css("background-color", color.value);
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                            $image.css("background-color", color.value);
                                         });
                                         $(divColorDelete5).css("visibility", "collapse");
                                         $(divColor5).append($(divColorDelete5));
@@ -780,7 +817,7 @@ window.onload = function initWizard() {
         text.classList.add("ssp_heading");
         text.style.color = "#44474d";
         text.style.fontWeight = "800";
-        text.textContent = "Teeyoot Premium Tee";
+        text.textContent =  product.name;
 
         divDelete.classList.add("ssp_delete");
 
@@ -1251,7 +1288,6 @@ function colorInit() {
                         G = parseInt((cutHex(color.value)).substring(2, 4), 16);
                         B = parseInt((cutHex(color.value)).substring(4, 6), 16);
 
-                        function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
                         var spanColor = "rgb(" + (255 - R) + ", " + (255 - G) + ", " + (255 - B) + ")";
 
                         var $addSpan = $(addSpan);
@@ -1415,6 +1451,8 @@ function Goal() {
     if (parseInt(app.state.getUsedColorsCountFront()) == parseInt("0") && parseInt(app.state.getUsedColorsCountBack()) == parseInt("0")) {
         $('#no-content-error').modal('show');
     } else {
+        var asd = design.products.productsData[app.state.currentProduct.ProductId];
+        document.getElementById("productName").innerHTML = asd.name;
         slideTo(2);
         setPriceInGoalFromDesign();
         profitSale();
@@ -1610,6 +1648,8 @@ function deleteColor(number) {
             $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+
+
             break;
         case 2:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.SecondColorId).children("span").remove();
@@ -1646,6 +1686,7 @@ function deleteColor(number) {
             break;
         case 3:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.ThirdColorId).children("span").remove();
+            var color = design.products.colors[app.state.currentProduct.SecondColorId];
 
             app.state.currentProduct.ThirdColorId = app.state.currentProduct.FourthColorId;
             app.state.currentProduct.FourthColorId = app.state.currentProduct.FifthColorId;
@@ -1660,9 +1701,21 @@ function deleteColor(number) {
             $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+
+            if ($("#div-color-4").hasClass("div-color")) {
+                $("#minImg").css("background-color", color.value);
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $("#prodFront3").css("background-color", color.value);
+                $("#prodBack3").css("background-color", color.value);
+                $(".product_images").css("background-color", color.value);
+                $('.containertip--open').removeClass('containertip--open');
+                design.products.changeColor(color);
+            }
             break;
         case 4:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.FourthColorId).children("span").remove();
+            var color = design.products.colors[app.state.currentProduct.ThirdColorId];
 
             app.state.currentProduct.FourthColorId = app.state.currentProduct.FifthColorId;
             app.state.currentProduct.FifthColorId = 0;
@@ -1673,15 +1726,40 @@ function deleteColor(number) {
             $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+
+            if ($("#div-color-5").hasClass("div-color")) {
+                $("#minImg").css("background-color", color.value);
+                $("#prodFront").css("background-color", color.value);
+                $("#prodBack").css("background-color", color.value);
+                $("#prodFront3").css("background-color", color.value);
+                $("#prodBack3").css("background-color", color.value);
+                $(".product_images").css("background-color", color.value);
+                $('.containertip--open').removeClass('containertip--open');
+                design.products.changeColor(color);
+            };
             break;
         case 5:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.FifthColorId).children("span").remove();
+            var color = design.products.colors[app.state.currentProduct.FourthColorId];
 
             app.state.currentProduct.FifthColorId = 0;
 
             $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+
+            $("#minImg").css("background-color", color.value);
+            $("#prodFront").css("background-color", color.value);
+            $("#prodBack").css("background-color", color.value);
+            $("#prodFront3").css("background-color", color.value);
+            $("#prodBack3").css("background-color", color.value);
+            $(".product_images").css("background-color", color.value);
+            $('.containertip--open').removeClass('containertip--open');
+            design.products.changeColor(color);
             break;
     }
+}
+
+function cutHex(h) {
+    return (h.charAt(0) == "#") ? h.substring(1, 7) : h
 }

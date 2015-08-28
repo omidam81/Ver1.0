@@ -581,36 +581,57 @@ namespace Teeyoot.Module.Controllers
                 var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
                 var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
-                var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), p.Id.ToString());
+                
+                CreateImagesForOtherColor(campaign.Id, p.Id.ToString(), p, data, frontPath, backPath, p.ProductColorRecord.Value);
 
-                if (!Directory.Exists(destForder))
+                if (p.SecondProductColorRecord != null)
                 {
-                    Directory.CreateDirectory(destForder + "/normal");
-                    Directory.CreateDirectory(destForder + "/big");
+                    CreateImagesForOtherColor(campaign.Id, p.Id.ToString() + "_" + p.SecondProductColorRecord.Id.ToString(), p, data, frontPath, backPath, p.SecondProductColorRecord.Value);
+                }
+                if (p.ThirdProductColorRecord != null)
+                {
+                    CreateImagesForOtherColor(campaign.Id, p.Id.ToString() + "_" + p.ThirdProductColorRecord.Id.ToString(), p, data, frontPath, backPath, p.ThirdProductColorRecord.Value);
+                }
+                if (p.FourthProductColorRecord != null)
+                {
+                    CreateImagesForOtherColor(campaign.Id, p.Id.ToString() + "_" + p.FourthProductColorRecord.Id.ToString(), p, data, frontPath, backPath, p.FourthProductColorRecord.Value);
+                }
+                if (p.FifthProductColorRecord != null)
+                {
+                    CreateImagesForOtherColor(campaign.Id, p.Id.ToString() + "_" + p.FifthProductColorRecord.Id.ToString(), p, data, frontPath, backPath, p.FifthProductColorRecord.Value);
                 }
 
-                var frontTemplate = new Bitmap(frontPath);
-                var backTemplate = new Bitmap(backPath);
 
-                var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
+                //var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), p.Id.ToString());
 
-                var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
-                    p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
-                    p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
-                front.Save(Path.Combine(destForder, "normal", "front.png"));
+                //if (!Directory.Exists(destForder))
+                //{
+                //    Directory.CreateDirectory(destForder + "/normal");
+                //    Directory.CreateDirectory(destForder + "/big");
+                //}
 
-                var back = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
-                    p.ProductRecord.ProductImageRecord.PrintableBackTop, p.ProductRecord.ProductImageRecord.PrintableBackLeft,
-                    p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
-                back.Save(Path.Combine(destForder, "normal", "back.png"));
+                //var frontTemplate = new Bitmap(frontPath);
+                //var backTemplate = new Bitmap(backPath);
 
-                _imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
-                _imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+                //var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
 
-                frontTemplate.Dispose();
-                backTemplate.Dispose();
-                front.Dispose();
-                back.Dispose();
+                //var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+                //    p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+                //    p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+                //front.Save(Path.Combine(destForder, "normal", "front.png"));
+
+                //var back = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+                //    p.ProductRecord.ProductImageRecord.PrintableBackTop, p.ProductRecord.ProductImageRecord.PrintableBackLeft,
+                //    p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
+                //back.Save(Path.Combine(destForder, "normal", "back.png"));
+
+                //_imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
+                //_imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+
+                //frontTemplate.Dispose();
+                //backTemplate.Dispose();
+                //front.Dispose();
+                //back.Dispose();
 
                 int product = _campaignService.GetProductsOfCampaign(campaign.Id).First().Id;
                 string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
@@ -692,6 +713,40 @@ namespace Teeyoot.Module.Controllers
 
             TempData[SendEmailRequestAcceptedKey] = true;
             return RedirectToAction("Oops");
+        }
+
+        public void CreateImagesForOtherColor(int campaignId, string prodIdAndColor, CampaignProductRecord p, DesignInfo data, string frontPath, string backPath, string color)
+        {
+            var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaignId.ToString(), prodIdAndColor);
+
+            if (!Directory.Exists(destForder))
+            {
+                Directory.CreateDirectory(destForder + "/normal");
+                Directory.CreateDirectory(destForder + "/big");
+            }
+
+            var frontTemplate = new Bitmap(frontPath);
+            var backTemplate = new Bitmap(backPath);
+
+            var rgba = ColorTranslator.FromHtml(color);
+
+            var front = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+                p.ProductRecord.ProductImageRecord.PrintableFrontTop, p.ProductRecord.ProductImageRecord.PrintableFrontLeft,
+                p.ProductRecord.ProductImageRecord.PrintableFrontWidth, p.ProductRecord.ProductImageRecord.PrintableFrontHeight);
+            front.Save(Path.Combine(destForder, "normal", "front.png"));
+
+            var back = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, p.ProductRecord.ProductImageRecord.Width, p.ProductRecord.ProductImageRecord.Height,
+                p.ProductRecord.ProductImageRecord.PrintableBackTop, p.ProductRecord.ProductImageRecord.PrintableBackLeft,
+                p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
+            back.Save(Path.Combine(destForder, "normal", "back.png"));
+
+            _imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
+            _imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+
+            frontTemplate.Dispose();
+            backTemplate.Dispose();
+            front.Dispose();
+            back.Dispose();
         }
     }
 }

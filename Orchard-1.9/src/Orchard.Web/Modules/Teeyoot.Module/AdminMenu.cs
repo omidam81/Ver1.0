@@ -68,7 +68,7 @@ namespace Teeyoot.Module
                         .Action("Index", "AdminWizard", new { area = "Teeyoot.WizardSettings" })
                         .Add(T("Artworks"),
                             i => i.Action("Index", "Artwork", new { area = "Teeyoot.WizardSettings" }).LocalNav())
-                        .Add(T("Style Edit"),
+                        .Add(T("Style"),
                             i => i.Action("Index", "Product", new { area = "Teeyoot.WizardSettings" }).LocalNav())
                         .Add(T("Types"),
                             i => i.Action("Index", "ProductStyle", new { area = "Teeyoot.WizardSettings" }).LocalNav())
