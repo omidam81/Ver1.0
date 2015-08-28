@@ -29,7 +29,7 @@
                                     float price = (float)item.CampaignProductRecord.Price + costSize;
                                     string colorName = item.ProductColorRecord == null ? item.CampaignProductRecord.ProductColorRecord.Name : item.ProductColorRecord.Name;
                                     string colorValue = item.ProductColorRecord == null ? item.CampaignProductRecord.ProductColorRecord.Value : item.ProductColorRecord.Value;
-                                    string colorImage = item.ProductColorRecord == null ? item.CampaignProductRecord.Id.ToString() : item.CampaignProductRecord.Id + "_" + item.ProductColorRecord.Id;
+                                    string colorImage = (item.ProductColorRecord == null || item.ProductColorRecord.Id == item.CampaignProductRecord.ProductColorRecord.Id) ? item.CampaignProductRecord.Id.ToString() : item.CampaignProductRecord.Id + "_" + item.ProductColorRecord.Id;
                                     if (item.CampaignProductRecord.SecondProductColorRecord == null)
                                     {
                                         colorImage = item.CampaignProductRecord.Id.ToString();
