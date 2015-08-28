@@ -817,7 +817,7 @@ window.onload = function initWizard() {
         text.classList.add("ssp_heading");
         text.style.color = "#44474d";
         text.style.fontWeight = "800";
-        text.textContent = "Teeyoot Premium Tee";
+        text.textContent =  product.name;
 
         divDelete.classList.add("ssp_delete");
 
@@ -1451,6 +1451,8 @@ function Goal() {
     if (parseInt(app.state.getUsedColorsCountFront()) == parseInt("0") && parseInt(app.state.getUsedColorsCountBack()) == parseInt("0")) {
         $('#no-content-error').modal('show');
     } else {
+        var asd = design.products.productsData[app.state.currentProduct.ProductId];
+        document.getElementById("productName").innerHTML = asd.name;
         slideTo(2);
         setPriceInGoalFromDesign();
         profitSale();
