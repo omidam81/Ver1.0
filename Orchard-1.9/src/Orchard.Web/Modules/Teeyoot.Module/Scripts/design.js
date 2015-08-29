@@ -1224,22 +1224,76 @@ var design={
                 }
 				var $item = $('<li class="item-option"></li>');
                 $item.data('id', product.id);
-				$item.click(function(){
-                    $('#products-list li').removeClass('active');
-                    $(this).addClass('active');
-                    me.changeDesign(product);                   
-                    app.state.currentProduct.ProductId = parseInt(product.id);                   
-                    $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
-                    design.item.unselect();
-                    if (design.item.get().length == 0) {
-                        var elem = document.getElementById('item-0');
-                        if (elem != null) {
+                $item.click(function () {
+                    var res = false;
+                    var coeff = parseFloat(design.products.images[product.id].printable_front_height) / parseFloat(design.products.images[product.id].printable_front_width);
+                    var coeffBack = parseFloat(design.products.images[product.id].printable_back_height) / parseFloat(design.products.images[product.id].printable_back_width);
+                    for (var i = 1; i < app.state.products.length; i++) {
+                        var front = (design.products.images[app.state.products[i].ProductId].printable_front_height / design.products.images[app.state.products[i].ProductId].printable_front_width).toFixed(1);
+                        var back = (design.products.images[app.state.products[i].ProductId].printable_back_height / design.products.images[app.state.products[i].ProductId].printable_back_width).toFixed(1);
+                        if ((front != coeff.toFixed(1)) && (back != coeffBack.toFixed(1))) {
+                            res = true;
+                        } else {
+                            res = false;
+                        };
+                    }
+                    if (res) {
+                       
+                        $('#incompatible-print-area').modal('show');
+                        app.state.prevColor = app.state.color;
+                        document.getElementById('select-product').addEventListener('click', function () {
+                            $('#products-list li').removeClass('active');
+                            $item.addClass('active');
+                            me.changeDesign(product);
+                            app.state.currentProduct.ProductId = parseInt(product.id);
+                            $(".lab-colors-block").height($item.offset().top - $item.closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
+                            design.item.unselect();
+                            if (design.item.get().length == 0) {
+                                var elem = document.getElementById('item-0');
+                                if (elem != null) {
+                                    design.item.checkBorders(design.item.get());
+                                }
+                            } else {
+                                design.item.checkBorders(design.item.get());
+                            };
+                            var products = app.state.products;
+                            var length = products.length;
+                            while (products[1] != null) {
+                                var elem = document.getElementById(products[1].ProductId);
+                                var del = elem.parentNode.querySelector(".ssp_delete");
+                                var img = del.querySelector("img");
+                                $(img).trigger("click");
+                            }
+
+                        });
+                        document.getElementById('cancel-select-product').addEventListener('click', function (event) {
+
+                            $('#item-options-dropdown').val(app.state.prevDropDownOption).trigger('change');
+                            app.state.prevDropDownOption = app.state.currentDropDownOption;
+                            design.products.changeColor(design.products.colors[app.state.prevColor.id]);
+                            app.state.color = app.state.prevColor;
+                            app.state.currentProduct.ColorId = app.state.color.id;
                             design.item.checkBorders(design.item.get());
-                        }
+                            //event.stopPropagation();
+                        });
                     } else {
-                        design.item.checkBorders(design.item.get());
-                    };
-                    
+                        app.state.prevDropDownOption = app.state.currentDropDownOption;
+                    //if (app.state.selectProduct) {
+                        $('#products-list li').removeClass('active');
+                        $(this).addClass('active');
+                        me.changeDesign(product);
+                        app.state.currentProduct.ProductId = parseInt(product.id);
+                        $(".lab-colors-block").height($(this).offset().top - $(this).closest(".slide-1-right-box").offset().top + 57 + (parseInt($(".lab-colors-block").css("top")) < 1 ? 30 : 0));
+                        design.item.unselect();
+                        if (design.item.get().length == 0) {
+                            var elem = document.getElementById('item-0');
+                            if (elem != null) {
+                                design.item.checkBorders(design.item.get());
+                            }
+                        } else {
+                            design.item.checkBorders(design.item.get());
+                        };
+                    }
                 } );
                 var html = '<p class="item-name">'+product.name+'</p><div class="item-overview">'+
                     '<div class="item-thumb-container item-thumb-loaded"><img class="item-thumb" src="' + assetsUrls.products + 'product_type_' + product.id + '_front_small.png"></div>' +
@@ -1263,6 +1317,8 @@ var design={
                 me.categoryProducts[category.id] = category.products;
 			});
     	    $('#item-options-dropdown').html(options).on('change', function (e) {
+    	        app.state.prevDropDownOption = app.state.currentDropDownOption;
+    	        app.state.currentDropDownOption = e.target.value;
     	        var value = e.target.value;
     	        var idList = me.categoryProducts[value];
                 me.addProduct(idList);

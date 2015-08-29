@@ -6,7 +6,10 @@
 var globalPrdc = '';
 window.onload = function initWizard() {
 
-
+    app.state.selectProduct = true;
+    app.state.cancelSelectProduct = false;
+    app.state.currentDropDownOption = 1;
+    app.state.prevDropDownOption = 1;
     app.state.products = [];
     app.state.isNegativeProfit = [];
     app.state.w = $(window).width();
@@ -17,7 +20,7 @@ window.onload = function initWizard() {
     slides.css({ width: app.state.w + 'px' });
     app.state.pos = 0;
     slide();
-
+    
     //if (document.querySelector(".user-email") == null) {
 
     //$("#openTags").click(function () {
@@ -70,7 +73,9 @@ window.onload = function initWizard() {
         var image = document.createElement("img");
         var imageDel = document.createElement("img");
         var text = document.createElement("h4");
-
+        var inpHidd = document.createElement("input");
+        inpHidd.type = "hidden";
+        inpHidd.id = productId;
         var $div = $(div);
 
         //var $salePriceTextDiv = $(salePriceTextDiv);
@@ -824,7 +829,7 @@ window.onload = function initWizard() {
 
         divDelete.appendChild(imageDel);
 
-
+        div.appendChild(inpHidd);
 
         divVcent.appendChild(text);
         divMeta.appendChild(divVcent);
@@ -1351,11 +1356,12 @@ function colorInit() {
                                     }
                         $("#prodFront").css("background-color", color.value);
                         $("#prodBack").css("background-color", color.value);
-                        $("#prodFront3").css("background-color", color.value);
-                        $("#prodBack3").css("background-color", color.value);
-                        $(".product_images").css("background-color", color.value);
+                        //$("#prodFront3").css("background-color", color.value);
+                        //$("#prodBack3").css("background-color", color.value);
+                        //$(".product_images").css("background-color", color.value);
                         $('.containertip--open').removeClass('containertip--open');
-                        design.products.changeColor(color);
+                        //design.products.changeColor(color);
+
                         //app.state.currentProduct.ColorId = parseInt(color.id);
 
                         //app.state.currentProduct.ColorId = parseInt(color.id);
@@ -1440,6 +1446,8 @@ function NextPage() {
 }
 
 function Design() {
+
+
     slideTo(1);
 }
 
@@ -1452,8 +1460,11 @@ function Goal() {
     if (parseInt(app.state.getUsedColorsCountFront()) == parseInt("0") && parseInt(app.state.getUsedColorsCountBack()) == parseInt("0")) {
         $('#no-content-error').modal('show');
     } else {
-        var asd = design.products.productsData[app.state.currentProduct.ProductId];
-        document.getElementById("productName").innerHTML = asd.name;
+        var prod = design.products.productsData[app.state.currentProduct.ProductId];
+        document.getElementById("productName").innerHTML = prod.name;
+       
+        
+       
         slideTo(2);
         setPriceInGoalFromDesign();
         profitSale();
@@ -1616,11 +1627,12 @@ function changesColor(id, number) {
         $("#minImg").css("background-color", color.value);
         $("#prodFront").css("background-color", color.value);
         $("#prodBack").css("background-color", color.value);
-        $("#prodFront3").css("background-color", color.value);
-        $("#prodBack3").css("background-color", color.value);
-        $(".product_images").css("background-color", color.value);
+        //$("#prodFront3").css("background-color", color.value);
+        //$("#prodBack3").css("background-color", color.value);
+        //$(".product_images").css("background-color", color.value);
         $('.containertip--open').removeClass('containertip--open');
-        design.products.changeColor(color);
+        //design.products.changeColor(color);
+        //app.state.currentProduct.ColorId = color.id;
     }
 }
 
