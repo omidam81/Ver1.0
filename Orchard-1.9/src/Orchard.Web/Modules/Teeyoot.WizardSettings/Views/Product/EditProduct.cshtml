@@ -34,7 +34,7 @@
         @Html.LabelFor(m => m.SelectedProductHeadline, T("Headline"))
         @Html.DropDownListFor(m => m.SelectedProductHeadline, new SelectList(Model.ProductHeadlines, "Id", "Name"), T("Select Headline ...").ToString(), new { id = "headlines" })
         @*@Html.LabelFor(m => m.Materials, T("Materials"))
-        @Html.TextBoxFor(m => m.Materials, new { @class = "text large" })*@
+            @Html.TextBoxFor(m => m.Materials, new { @class = "text large" })*@
         @Html.LabelFor(m => m.Details, T("Details"))
         @Html.TextBoxFor(m => m.Details, new { @class = "text large" })
         @Html.LabelFor(m => m.BaseCost, T("Cost of material"))
@@ -48,7 +48,7 @@
         <select id="groups" name="SelectedProductGroups" multiple="multiple">
             @foreach (var productGroup in Model.ProductGroups)
             {
-                <option value="@productGroup.Id" @if (productGroup.Selected) { <text> selected="selected" </text>  }>
+                <option value="@productGroup.Id" @if (productGroup.Selected) { <text> selected="selected" </text>   }>
                     @productGroup.Name
                 </option>
             }
@@ -62,7 +62,7 @@
         <select id="colours" multiple="multiple">
             @foreach (var productColour in Model.ProductColours)
             {
-                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected) { <text> selected="selected" disabled="disabled" </text>  }
+                <option style="background-color: @productColour.HexValue;" value="@productColour.Id" @if (productColour.Selected) { <text> selected="selected" disabled="disabled" </text>   }
                         data-name="@productColour.Name" data-colour="@productColour.HexValue">
                     @productColour.Name
                 </option>
@@ -117,8 +117,8 @@
                     </td>
                     <td class="product-colour-name"></td>
                     @*<td class="product-colour-base-cost">
-                        <input type="text" value="0" class="row-base-cost" />
-                    </td>*@
+                            <input type="text" value="0" class="row-base-cost" />
+                        </td>*@
                     <td>
                         <a href="javascript:;" class="remove-product-colour">@T("Remove")</a>
                     </td>
@@ -189,7 +189,7 @@
                         <td>
                             <input type="hidden" class="size-id" value="@productSize.Id" />
                             <input type="hidden" class="size-code-id" value="@productSize.SizeCodeId" />
-                            <input class="select-product-size" type="checkbox" @if (productSize.Selected) { <text> checked="checked" </text>  } />
+                            <input class="select-product-size" type="checkbox" @if (productSize.Selected) { <text> checked="checked" </text>   } />
                         </td>
                         <td>
                             @if (productSize.Selected)
@@ -208,13 +208,13 @@
         <select id="selected-product-sizes" name="SelectedProductSizes" multiple="multiple" style="display: none;">
             @foreach (var productSize in Model.ProductSizes)
             {
-                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>  }></option>
+                <option value="@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>   }></option>
             }
         </select>
         <select id="selected-product-sizes-cost" name="SelectedProductSizesCost" multiple="multiple" style="display: none;">
             @foreach (var productSize in Model.ProductSizes)
             {
-                <option value="@productSize.CostSize" id="product-sizes-cost-@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>  }></option>
+                <option value="@productSize.CostSize" id="product-sizes-cost-@productSize.Id" data-size-code-id="@productSize.SizeCodeId" @if (productSize.Selected) { <text> selected="selected" </text>   }></option>
             }
         </select>
     </fieldset>
@@ -428,8 +428,12 @@
             });
 
             $('#baseCost').keypress(function (event) {
-                if ((event.which != 44 || $(this).val().indexOf(',') != -1) && (event.which < 48 || event.which > 57)) {
-                    event.preventDefault();
+
+                if (event.which != 8) {
+
+                    if ((event.which != 44 || $(this).val().indexOf(',') != -1) && (event.which < 48 || event.which > 57)) {
+                        event.preventDefault();
+                    }
                 }
             });
         });
