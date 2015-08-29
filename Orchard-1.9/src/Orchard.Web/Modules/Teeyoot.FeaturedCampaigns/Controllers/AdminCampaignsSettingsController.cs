@@ -189,18 +189,18 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
                     var prod = campaign.Products.Where(c => c.Id == prodId).First();
 
-                    List<int> newCol = new List<int>();
-                    foreach (var col in colors)
-                    {
-                        if (col == null || string.IsNullOrEmpty(col) || Int32.Parse(col) == 0)
-                        {
-                            //colors.Remove(col);
-                        }
-                        else
-                        {
-                            newCol.Add(Int32.Parse(col));
-                        }
-                    }
+                    //List<int> newCol = new List<int>();
+                    //foreach (var col in colors)
+                    //{
+                    //    if (col == null || string.IsNullOrEmpty(col) || Int32.Parse(col) == 0)
+                    //    {
+                    //        //colors.Remove(col);
+                    //    }
+                    //    else
+                    //    {
+                    //        newCol.Add(Int32.Parse(col));
+                    //    }
+                    //}
 
                     //List<int> nowIds = new List<int>{ prod.ProductColorRecord.Id,
                     //                   prod.SecondProductColorRecord != null ? prod.SecondProductColorRecord.Id : 0,
@@ -208,239 +208,336 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     //                   prod.FourthProductColorRecord != null ? prod.FourthProductColorRecord.Id : 0,
                     //                   prod.FifthProductColorRecord != null ? prod.FifthProductColorRecord.Id : 0};
 
-                    List<bool> noIdsBool = new List<bool> { false, false, false, false, false };
+                    //List<bool> noIdsBool = new List<bool> { false, false, false, false, false };
 
 
-                    List<int> masResult = new List<int>();
-                    foreach (var col in newCol)
+                    //List<int> masResult = new List<int>();
+                    //foreach (var col in newCol)
+                    //{
+                    //    if (prod.ProductColorRecord.Id == col)
+                    //    {
+                    //        //colors.Remove(col);
+                    //        noIdsBool[0] = true;
+                    //        continue;
+                    //    }
+
+                    //    if (prod.SecondProductColorRecord != null && prod.SecondProductColorRecord.Id == col)
+                    //    {
+                    //        //colors.Remove(col);
+                    //        noIdsBool[1] = true;
+                    //        continue;
+                    //    }
+
+                    //    if (prod.ThirdProductColorRecord != null && prod.ThirdProductColorRecord.Id == col)
+                    //    {
+                    //        //colors.Remove(col);
+                    //        noIdsBool[2] = true;
+                    //        continue;
+                    //    }
+
+                    //    if (prod.FourthProductColorRecord != null && prod.FourthProductColorRecord.Id == col)
+                    //    {
+                    //        //colors.Remove(col);
+                    //        noIdsBool[3] = true;
+                    //        continue;
+                    //    }
+
+                    //    if (prod.FifthProductColorRecord != null && prod.FifthProductColorRecord.Id == col)
+                    //    {
+                    //        //colors.Remove(col);
+                    //        noIdsBool[4] = true;
+                    //        continue;
+                    //    }
+                    //    masResult.Add(col);
+                    //}
+
+                    //if (masResult != null && masResult.Count != 0)
+                    //{
+                    //    foreach (var col in masResult)
+                    //    {
+                    //        var serializer = new JavaScriptSerializer();
+                    //        serializer.MaxJsonLength = int.MaxValue;
+                    //        var data = serializer.Deserialize<DesignInfo>(campaign.Design);
+
+                    //        var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == col).First().ProductColorRecord;
+                    //        if (!noIdsBool.ElementAt(0))
+                    //        {
+                    var serializer = new JavaScriptSerializer();
+                    serializer.MaxJsonLength = int.MaxValue;
+                    var data = serializer.Deserialize<DesignInfo>(campaign.Design);
+                    if (prod.ProductColorRecord != null)
                     {
-                        if (prod.ProductColorRecord.Id == col)
+                        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id.ToString()));
+                        try
                         {
-                            //colors.Remove(col);
-                            noIdsBool[0] = true;
-                            continue;
+                            dir.Delete(true);
                         }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex.Message);
+                        }
+                        var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[0])).First().ProductColorRecord;
+                        var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                        var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                        var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
 
-                        if (prod.SecondProductColorRecord.Id == col)
-                        {
-                            //colors.Remove(col);
-                            noIdsBool[1] = true;
-                            continue;
-                        }
+                        CreateImagesForOtherColor(campaign.Id, prod.Id.ToString(), prod, data, frontPath, backPath, color.Value);
 
-                        if (prod.ThirdProductColorRecord.Id == col)
-                        {
-                            //colors.Remove(col);
-                            noIdsBool[2] = true;
-                            continue;
-                        }
-
-                        if (prod.FourthProductColorRecord.Id == col)
-                        {
-                            //colors.Remove(col);
-                            noIdsBool[3] = true;
-                            continue;
-                        }
-
-                        if (prod.FifthProductColorRecord.Id == col)
-                        {
-                            //colors.Remove(col);
-                            noIdsBool[4] = true;
-                            continue;
-                        }
-                        masResult.Add(col);
+                        prod.ProductColorRecord = color;
                     }
+                    
+                    //}
 
-                    if (masResult != null && masResult.Count != 0)
+                    //if (!noIdsBool.ElementAt(1))
+                    //{
+                    
+                    if (prod.SecondProductColorRecord != null)
                     {
-                        foreach (var col in masResult)
+                        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.SecondProductColorRecord.Id.ToString()));
+                        try
                         {
-                            var serializer = new JavaScriptSerializer();
-                            serializer.MaxJsonLength = int.MaxValue;
-                            var data = serializer.Deserialize<DesignInfo>(campaign.Design);
+                            dir.Delete(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex.Message);
+                        }
+                        if (!string.IsNullOrEmpty(colors[1]))
+                        {
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[1])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
 
-                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == col).First().ProductColorRecord;
-                            if (!noIdsBool.ElementAt(0))
-                            {
-                                if (prod.ProductColorRecord != null)
-                                {
-                                    DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id.ToString()));
-                                    try
-                                    {
-                                        dir.Delete(true);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Logger.Error(ex.Message);
-                                    }
-                                }
-
-                                var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
-                                var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
-                                var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
-
-                                CreateImagesForOtherColor(campaign.Id, prod.Id.ToString(), prod, data, frontPath, backPath, color.Value);
-
-                                prod.ProductColorRecord = color;
-                                continue;
-                            }
-
-                            if (!noIdsBool.ElementAt(1))
-                            {
-                                if (prod.SecondProductColorRecord != null)
-                                {
-                                    DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.SecondProductColorRecord.Id.ToString()));
-                                    try
-                                    {
-                                        dir.Delete(true);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Logger.Error(ex.Message);
-                                    }
-                                }
-
-                                var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
-                                var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
-                                var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
-
-                                CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
-
-                                prod.ProductColorRecord = color;
-                                continue;
-                            }
-
-                            if (!noIdsBool.ElementAt(2))
-                            {
-                                if (prod.ThirdProductColorRecord != null)
-                                {
-                                    DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.ThirdProductColorRecord.Id.ToString()));
-                                    try
-                                    {
-                                        dir.Delete(true);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Logger.Error(ex.Message);
-                                    }
-                                }
-
-                                var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
-                                var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
-                                var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
-
-                                CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
-
-                                prod.ProductColorRecord = color;
-                                continue;
-                            }
-
-                            if (!noIdsBool.ElementAt(3))
-                            {
-                                if (prod.FourthProductColorRecord != null)
-                                {
-                                    DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FourthProductColorRecord.Id.ToString()));
-                                    try
-                                    {
-                                        dir.Delete(true);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Logger.Error(ex.Message);
-                                    }
-                                }
-
-                                var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
-                                var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
-                                var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
-
-                                CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
-
-                                prod.ProductColorRecord = color;
-                                continue;
-                            }
-
-                            if (!noIdsBool.ElementAt(4))
-                            {
-                                if (prod.FifthProductColorRecord != null)
-                                {
-                                    DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FifthProductColorRecord.Id.ToString()));
-                                    try
-                                    {
-                                        dir.Delete(true);
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Logger.Error(ex.Message);
-                                    }
-                                }
-
-                                var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
-                                var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
-                                var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
-
-                                CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
-
-                                prod.ProductColorRecord = color;
-                                continue;
-                            }
+                            prod.SecondProductColorRecord = color;
+                        }
+                        else {
+                            prod.SecondProductColorRecord = null;
                         }
                     }
                     else
                     {
-                        if (!noIdsBool[1])
+                        if (!string.IsNullOrEmpty(colors[1]))
                         {
-                            DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.SecondProductColorRecord.Id.ToString()));
-                            try
-                            {
-                                dir.Delete(true);
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Error(ex.Message);
-                            }
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[1])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.SecondProductColorRecord = color;
+                        }
+                        else
+                        {
                             prod.SecondProductColorRecord = null;
                         }
-                        if (!noIdsBool[2])
+                    }
+
+                    
+                    //}
+
+                    //if (!noIdsBool.ElementAt(2))
+                    //{
+                    if (prod.ThirdProductColorRecord != null)
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.ThirdProductColorRecord.Id.ToString()));
+                        try
                         {
-                            DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.ThirdProductColorRecord.Id.ToString()));
-                            try
-                            {
-                                dir.Delete(true);
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Error(ex.Message);
-                            }
+                            dir.Delete(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex.Message);
+                        }
+                        if (!string.IsNullOrEmpty(colors[2]))
+                        {
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[2])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.ThirdProductColorRecord = color;
+                        }
+                        else {
                             prod.ThirdProductColorRecord = null;
                         }
-                        if (!noIdsBool[3])
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(colors[2]))
                         {
-                            DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FourthProductColorRecord.Id.ToString()));
-                            try
-                            {
-                                dir.Delete(true);
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Error(ex.Message);
-                            }
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[2])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.ThirdProductColorRecord = color;
+                        }
+                        else
+                        {
+                            prod.ThirdProductColorRecord = null;
+                        }
+                    }
+
+                    
+                    //}
+
+                    //if (!noIdsBool.ElementAt(3))
+                    //{
+                    if (prod.FourthProductColorRecord != null)
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FourthProductColorRecord.Id.ToString()));
+                        try
+                        {
+                            dir.Delete(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex.Message);
+                        }
+                        if (!string.IsNullOrEmpty(colors[3]))
+                        {
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[3])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.FourthProductColorRecord = color;
+                        }
+                        else
+                        {
                             prod.FourthProductColorRecord = null;
                         }
-                        if (!noIdsBool[4])
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(colors[3]))
                         {
-                            DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FifthProductColorRecord.Id.ToString()));
-                            try
-                            {
-                                dir.Delete(true);
-                            }
-                            catch (Exception ex)
-                            {
-                                Logger.Error(ex.Message);
-                            }
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[3])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.FourthProductColorRecord = color;
+                        }
+                        else
+                        {
+                            prod.FourthProductColorRecord = null;
+                        }
+                    }
+
+                    
+                    //}
+
+                    //if (!noIdsBool.ElementAt(4))
+                    //{
+                    if (prod.FifthProductColorRecord != null)
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FifthProductColorRecord.Id.ToString()));
+                        try
+                        {
+                            dir.Delete(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex.Message);
+                        }
+                        if (!string.IsNullOrEmpty(colors[4]))
+                        {
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[4])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.FifthProductColorRecord = color;
+                        }
+                        else
+                        {
                             prod.FifthProductColorRecord = null;
                         }
                     }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(colors[4]))
+                        {
+                            var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+                            var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
+                            var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
+                            var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[4])).First().ProductColorRecord;
+                            CreateImagesForOtherColor(campaign.Id, prod.Id.ToString() + "_" + color.Id.ToString(), prod, data, frontPath, backPath, color.Value);
+
+                            prod.FifthProductColorRecord = color;
+                        }
+                        else
+                        {
+                            prod.FifthProductColorRecord = null;
+                        }
+                    }
+
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    if (!noIdsBool[1] && prod.SecondProductColorRecord != null)
+                    //    {
+                    //        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.SecondProductColorRecord.Id.ToString()));
+                    //        try
+                    //        {
+                    //            dir.Delete(true);
+                    //            prod.SecondProductColorRecord = null;
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            Logger.Error(ex.Message);
+                    //        }
+                    //    }
+                    //    if (!noIdsBool[2] && prod.ThirdProductColorRecord != null)
+                    //    {
+                    //        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.ThirdProductColorRecord.Id.ToString()));
+                    //        try
+                    //        {
+                    //            dir.Delete(true);
+                    //            prod.ThirdProductColorRecord = null;
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            Logger.Error(ex.Message);
+                    //        }
+                    //    }
+                    //    if (!noIdsBool[3] && prod.FourthProductColorRecord != null)
+                    //    {
+                    //        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FourthProductColorRecord.Id.ToString()));
+                    //        try
+                    //        {
+                    //            dir.Delete(true);
+                    //            prod.FourthProductColorRecord = null;
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            Logger.Error(ex.Message);
+                    //        }
+                    //    }
+                    //    if (!noIdsBool[4] && prod.FifthProductColorRecord != null)
+                    //    {
+                    //        DirectoryInfo dir = new DirectoryInfo(Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id + "_" + prod.FifthProductColorRecord.Id.ToString()));
+                    //        try
+                    //        {
+                    //            dir.Delete(true);
+                    //            prod.FifthProductColorRecord = null;
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            Logger.Error(ex.Message);
+                    //        }
+                    //    }
+                    //}
                 }
 
                 _campaignService.UpdateCampaign(campaign);
