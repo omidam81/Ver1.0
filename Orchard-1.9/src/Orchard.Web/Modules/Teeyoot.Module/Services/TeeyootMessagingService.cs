@@ -506,7 +506,7 @@ namespace Teeyoot.Messaging.Services
                 FillSellerToBuyersProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, message.CampaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
-            mandrillMessage.To = emails;
+            mandrillMessage.To = emails.Distinct().ToList();
             string text = System.IO.File.ReadAllText(pathToTemplates + "seller-template.html").Replace("{{Text}}", message.Text);
             mandrillMessage.Html = text;
             message.IsApprowed = true;
