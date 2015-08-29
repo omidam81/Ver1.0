@@ -218,7 +218,7 @@ ul.disc {list-style:disc inside; margin:12px 0;}
 #header {
     height:50px;
     margin:16px 0 0 0;
-    background:#f3f4f5;
+    /*background:#f3f4f5;*/
 }
 #branding {
     background:#323232;
