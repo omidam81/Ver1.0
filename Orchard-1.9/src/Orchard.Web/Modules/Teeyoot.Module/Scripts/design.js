@@ -1228,14 +1228,16 @@ var design={
                     var res = false;
                     var coeff = parseFloat(design.products.images[product.id].printable_front_height) / parseFloat(design.products.images[product.id].printable_front_width);
                     var coeffBack = parseFloat(design.products.images[product.id].printable_back_height) / parseFloat(design.products.images[product.id].printable_back_width);
-                    for (var i = 1; i < app.state.products.length; i++) {
-                        var front = (design.products.images[app.state.products[i].ProductId].printable_front_height / design.products.images[app.state.products[i].ProductId].printable_front_width).toFixed(1);
-                        var back = (design.products.images[app.state.products[i].ProductId].printable_back_height / design.products.images[app.state.products[i].ProductId].printable_back_width).toFixed(1);
-                        if ((front != coeff.toFixed(1)) && (back != coeffBack.toFixed(1))) {
-                            res = true;
-                        } else {
-                            res = false;
-                        };
+                    if (app.state.products != null) {
+                        for (var i = 1; i < app.state.products.length; i++) {
+                            var front = (design.products.images[app.state.products[i].ProductId].printable_front_height / design.products.images[app.state.products[i].ProductId].printable_front_width).toFixed(1);
+                            var back = (design.products.images[app.state.products[i].ProductId].printable_back_height / design.products.images[app.state.products[i].ProductId].printable_back_width).toFixed(1);
+                            if ((front != coeff.toFixed(1)) && (back != coeffBack.toFixed(1))) {
+                                res = true;
+                            } else {
+                                res = false;
+                            };
+                        }
                     }
                     if (res) {
                        
