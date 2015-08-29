@@ -56,6 +56,8 @@ namespace Teeyoot.PaymentSettings.Controllers
             setting.PublicKey = PublicKey;
             setting.PrivateKey = PrivateKey;
             setting.MerchantId = MerchantId;
+            setting.MerchantIdMol = MerchantIdMol;
+            setting.VerifyKey = VerifyKey;
             setting.ClientToken = ClientToken;
             setting.CashDeliv = CashDeliv;
             setting.PayPal = PayPal;

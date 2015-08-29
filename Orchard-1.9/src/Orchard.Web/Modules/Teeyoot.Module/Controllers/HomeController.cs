@@ -196,34 +196,47 @@ namespace Teeyoot.Module.Controllers
             return result;
         }
 
-        public ActionResult Molpay() {
-            var merchantId = "teeyoot1_Dev";
-            var verifyKey = "856287426298f7e8508eae9896c09c03";
+        public string Molpay(OrderRecord order)
+        {
+
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
+
+            //var merchantId = "teeyoot1_Dev";
+            //var verifyKey = "856287426298f7e8508eae9896c09c03";
+            var merchantId = setting.MerchantIdMol;
+            var verifyKey = setting.VerifyKey;
 
 
-            var Total = "5";
-            var OrderNumber = "699982";
-            var Name = "Privet";
-            var Email = "vas@gmail.com";
+            //var Total = order.TotalPrice;
+            var Total = "2";
+            var OrderNumber = order.Id;
+            var Name = "order";
+            var Email = order.Email;
+            var Phone = order.PhoneNumber;
 
 
             var vCode = GetVCode(Total + merchantId + OrderNumber + verifyKey);
 
             var paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + "0931670726" +
+                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
                               "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
-            return View();
+            return paymentUrl;
         }
 
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public void CallbackMolpay(string nbcb, string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
-                                    string error_desc, string currency, string paydate, string skey)
+        public void CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
+                                    string error_desc, string currency, string paydate,string channel, string skey)
         {
-            //Logger.
-            Logger.Error(T("PRIVET").Text);
-            Logger.Debug(T("PRIVET").Text);
+            string destFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/molPayLog");
+            var dir = new DirectoryInfo(destFolder);
+
+            if (!dir.Exists)
+            {
+                Directory.CreateDirectory(destFolder);
+            } 
+            System.IO.File.AppendAllText(destFolder + "/mol.txt","Return Url status:"+ status + "; amount: "+ amount + "; orderid: "+ orderid + "; error_desc: " + error_desc);
         }
 
         public JsonResult GetSettings()
@@ -241,58 +254,71 @@ namespace Teeyoot.Module.Controllers
         {
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
 
-            //BraintreeGateway Gateway = new BraintreeGateway
-            //{
-            //    Environment = Braintree.Environment.SANDBOX,
-            //    PublicKey = setting.PublicKey,
-            //    PrivateKey = setting.PrivateKey,
-            //    MerchantId = setting.MerchantId
-            //};
+            BraintreeGateway Gateway = new BraintreeGateway
+            {
+                Environment = Braintree.Environment.SANDBOX,
+                PublicKey = setting.PublicKey,
+                PrivateKey = setting.PrivateKey,
+                MerchantId = setting.MerchantId
+            };
 
 
 
-            //Result<Transaction> result;
-            //var nonceId = Request.Form["payment_method_nonce"];
-            //if (Request.Form["payment_method_nonce"] != "")
-            //{
-            //    TransactionRequest requestPayPal = new TransactionRequest
-            //    {
-            //        Amount = 1000.0M,
-            //        PaymentMethodNonce = "fake-valid-nonce",
-            //        Options = new TransactionOptionsRequest
-            //        {
-            //            SubmitForSettlement = false,
-            //            StoreInVault = true
-            //        }
-            //    };
+            Result<Transaction> result;
+            var nonceId = Request.Form["payment_method_nonce"];
+            if (collection["paumentMeth"] == "2")
+            {
+                TransactionRequest requestPayPal = new TransactionRequest
+                {
+                    Amount = 1000.0M,
+                    PaymentMethodNonce = "fake-valid-nonce",
+                    Options = new TransactionOptionsRequest
+                    {
+                        SubmitForSettlement = false,
+                        StoreInVault = true
+                    }
+                };
 
-            //    result = Gateway.Transaction.Sale(requestPayPal);
-            //}
-            //else
-            //{
-            //    TransactionRequest requestCard = new TransactionRequest
-            //    {
-            //        Amount = 1000.0M, //Здесь указывается сумма транзакции в USD
-            //        CreditCard = new TransactionCreditCardRequest
-            //        {
-            //            Number = collection["number"],
-            //            CVV = collection["cvv"],
-            //            ExpirationMonth = collection["month"],
-            //            ExpirationYear = collection["year"]
-            //        },
-            //        Options = new TransactionOptionsRequest
-            //        {
-            //            StoreInVault = true,
-            //            SubmitForSettlement = false
-            //        }
-            //    };
+                result = Gateway.Transaction.Sale(requestPayPal);
+            }
+            else
+                if (collection["paumentMeth"] == "1")
+                {
+                TransactionRequest requestCard = new TransactionRequest
+                {
+                    Amount = 1000.0M, //Здесь указывается сумма транзакции в USD
+                    CreditCard = new TransactionCreditCardRequest
+                    {
+                        Number = collection["number"],
+                        CVV = collection["cvv"],
+                        ExpirationMonth = collection["month"],
+                        ExpirationYear = collection["year"]
+                    },
+                    Options = new TransactionOptionsRequest
+                    {
+                        StoreInVault = true,
+                        SubmitForSettlement = false
+                    }
+                };
 
-            //    result = Gateway.Transaction.Sale(requestCard);
+                result = Gateway.Transaction.Sale(requestCard);
 
-            //}
+                }
+                else if (collection["paumentMeth"] == "4")
+                {
+                //Отправляем сообщение админу
+                }
+                else if (collection["paumentMeth"] == "3")
+                {
+                    var url = Molpay1(_orderService.GetOrderById(int.Parse(collection["OrderId"])));
+                    return Redirect(url);
+                }
+             
+          
 
             //if (result.IsSuccess())
             //{
+            var meth = collection["paumentMeth"];
                 int id = int.Parse(collection["OrderId"]);
                 var order = _orderService.GetOrderById(id);
                 var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
@@ -354,6 +380,9 @@ namespace Teeyoot.Module.Controllers
                 };
                 _checkoutRequestRepository.Create(request);
             }
+
+
+               
 
             return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             //}

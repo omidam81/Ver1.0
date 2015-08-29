@@ -214,7 +214,7 @@ namespace Teeyoot.Messaging.Services
                 FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
-            mandrillMessage.To = emails;
+            mandrillMessage.To = emails.Distinct().ToList(); 
             SendTmplMessage(api, mandrillMessage);
         }
 
@@ -240,7 +240,7 @@ namespace Teeyoot.Messaging.Services
                 FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
             }
-            mandrillMessage.To = emails;
+            mandrillMessage.To = emails.Distinct().ToList();
             SendTmplMessage(api, mandrillMessage);
         }
 
@@ -891,15 +891,21 @@ namespace Teeyoot.Messaging.Services
                 float costSize = item.CampaignProductRecord.ProductRecord.SizesAvailable.Where(c => c.ProductSizeRecord.Id == idSize).First().SizeCost;
                 float price = (float)item.CampaignProductRecord.Price + costSize;
                 string prodColor = "";
-                if (item.CampaignProductRecord.ProductColorRecord.Id == item.ProductColorRecord.Id)
+                if (item.ProductColorRecord != null)
                 {
-                    prodColor = item.CampaignProductRecord.Id.ToString();
+                    if (item.CampaignProductRecord.ProductColorRecord.Id == item.ProductColorRecord.Id)
+                    {
+                        prodColor = item.CampaignProductRecord.Id.ToString();
+                    }
+                    else
+                    {
+                        prodColor = item.CampaignProductRecord.Id + "_" + item.ProductColorRecord.Id.ToString();
+                    }
                 }
                 else
                 {
-                    prodColor = item.CampaignProductRecord.Id + "_" + item.ProductColorRecord.Id.ToString();
+                    prodColor = item.CampaignProductRecord.Id.ToString();
                 }
-                
                 products.Add(new Dictionary<string, object>{                 
                         {"quantity", item.Count},
                         {"name",  item.CampaignProductRecord.ProductRecord.Name},
