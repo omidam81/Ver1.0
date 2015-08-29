@@ -310,7 +310,7 @@ namespace Teeyoot.Module.Controllers
                 }
                 else if (collection["paumentMeth"] == "3")
                 {
-                    var url = Molpay1(_orderService.GetOrderById(int.Parse(collection["OrderId"])));
+                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])));
                     return Redirect(url);
                 }
              
