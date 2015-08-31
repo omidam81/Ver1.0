@@ -745,10 +745,15 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.AddColumn<string>("VerifyKey", c => c.Nullable()));
 
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("IsArchived", c => c.NotNull().WithDefault(false)));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("BaseCampaignId", c => c.Nullable()));
+
+            SchemaBuilder.CreateForeignKey("CampaignRecord_BaseCampaignId", "CampaignRecord",
+                    new[] { "BaseCampaignId" }, "CampaignRecord", new[] { "Id" });
 
 
 
-            return 79;
+            return 80;
         }
 
         public int UpdateFrom2()
@@ -1656,5 +1661,18 @@ namespace Teeyoot.Module
 
             return 79;
         }
+
+
+        public int UpdateFrom79()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<bool>("IsArchived", c => c.NotNull().WithDefault(false)));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("BaseCampaignId", c => c.Nullable()));
+
+            SchemaBuilder.CreateForeignKey("CampaignRecord_BaseCampaignId", "CampaignRecord",
+                    new[] { "BaseCampaignId" }, "CampaignRecord", new[] { "Id" });
+
+            return 80;
+        }
+
     }
 }
