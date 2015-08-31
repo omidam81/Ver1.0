@@ -754,7 +754,11 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
 
-            return 81;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CntFrontColor"));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CntBackColor"));
+
+
+            return 82;
         }
 
         public int UpdateFrom2()
@@ -1680,6 +1684,15 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
 
             return 81;
+        }
+
+        public int UpdateFrom81()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CntFrontColor"));
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CntBackColor"));
+
+
+            return 82;
         }
 
     }

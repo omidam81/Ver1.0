@@ -57,6 +57,10 @@ namespace Teeyoot.Module.Models
 
         public virtual bool IsPrivate { get; set; }
 
+        public virtual int CntFrontColor { get; set; }
+
+        public virtual int CntBackColor { get; set; }
+
         public virtual string CampaignProfit { get; set; }
 
         public virtual IList<CampaignProductRecord> Products { get; set; }

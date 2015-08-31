@@ -5391,7 +5391,20 @@ ul, ol {
     line-height: 1;
     min-width: 5rem;
     padding: 15px 5px 0 0;
-    width: 5rem;
+    /*width: 5rem;*/
+}
+
+.size {
+    width: 6rem;
+}
+
+.color {
+    width: 10rem;
+}
+
+.recom {
+    padding: 0 !important;
+    font-size: 11px;
 }
 
 table {
@@ -5438,7 +5451,7 @@ input {
 
 .precheckout_items_table__item--style {
     padding-right: 0;
-    width: 20rem;
+    width: 15rem;
 }
 
 .precheckout_items_table__item--price {
