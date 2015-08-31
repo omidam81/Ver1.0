@@ -332,7 +332,7 @@ namespace Teeyoot.Module.Controllers
                 order.Country = collection["Country"];
                 order.PhoneNumber = collection["PhoneNumber"];
                 order.Reserved = DateTime.UtcNow;
-                order.TotalPrice = order.TotalPrice + 1.99;
+                order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
                 order.IsActive = true;
                 //order.TranzactionId = result.Target.Id;
 
