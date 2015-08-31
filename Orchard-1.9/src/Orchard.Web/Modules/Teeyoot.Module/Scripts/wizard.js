@@ -20,7 +20,7 @@ window.onload = function initWizard() {
     slides.css({ width: app.state.w + 'px' });
     app.state.pos = 0;
     slide();
-    
+
     //if (document.querySelector(".user-email") == null) {
 
     //$("#openTags").click(function () {
@@ -823,7 +823,7 @@ window.onload = function initWizard() {
         text.classList.add("ssp_heading");
         text.style.color = "#44474d";
         text.style.fontWeight = "800";
-        text.textContent =  product.name;
+        text.textContent = product.name;
 
         divDelete.classList.add("ssp_delete");
 
@@ -905,7 +905,7 @@ window.onload = function initWizard() {
             var listProd = document.getElementById("product");
 
             listProd.innerHTML = "";
-           
+
             $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
                 var cnt = 0;
                 $.each(app.state.products, function (j, el) {
@@ -1172,31 +1172,62 @@ function initProducts() {
 
     //Если лист категорий пустой то мы его инициализируем
     if (list.value == "") {
-
+        var index = 0;
         $.each(design.products.categoriesList, function (i) {
-            var z = 0;
-            var option = document.createElement("option");
-            option.value = i;
-            option.id = this.id;
-            option.innerHTML = this.name;
-            list.appendChild(option);
-            //Запихиваем айдишники продуктов по обьектам в массив
-            mas.push(this.products);
+            if (this.products.length == 1) {
+                if (this.products[0] == app.state.currentProduct.ProductId) {
+
+                } else {              
+                var option = document.createElement("option");
+                option.value = i;
+                option.id = this.id;
+                option.innerHTML = this.name;
+                list.appendChild(option);       
+                }
+            } else {
+                var option = document.createElement("option");
+                option.value = i;
+                option.id = this.id;
+                option.innerHTML = this.name;
+                list.appendChild(option);
+            }
+            if (!(i > index)) {
+                index = i;
+            }
+
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
-            $.each(design.products.productsData, function (i, el) {
-                if (app.state.currentProduct.ProductId != el.id) {
-                    //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
-                    if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
-                        var option = document.createElement("option");
-                        option.value = i;
-                        option.id = i;
-                        option.innerHTML = el.name;
-                        listProd.appendChild(option);
-                    }
-                }
+            //if (index > 0) {
+            //    index = 0;
+            //} else {
+            //    index = 1;
+            //}
+            $.each(design.products.categoriesList[index].products, function (i, element) {
+                var option = document.createElement("option");
+                option.value = element;
+                option.id = element;
+                option.innerHTML = design.products.productsData[element].name;
+                listProd.appendChild(option);
+
             });
+            //$.each(design.products.productsData, function (i, el) {
+            //    if (app.state.currentProduct.ProductId != el.id) {
+            //        //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
+            //        if (index > 0) {
+            //            index = 0;
+            //        } else {
+            //            index = 1;
+            //        }
+            //        if (design.products.categoriesList[index].products.indexOf(el.id) != -1) {
+            //            var option = document.createElement("option");
+            //            option.value = i;
+            //            option.id = i;
+            //            option.innerHTML = el.name;
+            //            listProd.appendChild(option);
+            //        }
+            //    }
+            //});
         }
 
         $(list).change(function () {
@@ -1216,6 +1247,52 @@ function initProducts() {
                     listProd.appendChild(option);
                 }
             });
+        });
+    } else {
+        $.each(design.products.categoriesList, function (i) {
+            if (((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId))) {
+                index = i;
+            }
+
+        });
+        while (listProd.childNodes.length > 0) {
+            listProd.removeChild(listProd.childNodes[0]);
+        };
+        while (list.childNodes.length > 0) {
+            list.removeChild(list.childNodes[0]);
+        };
+        $.each(design.products.categoriesList, function (i) {
+            if (this.products.length == 1) {
+                if (this.products[0] == app.state.currentProduct.ProductId) {
+
+                } else {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.id = this.id;
+                    option.innerHTML = this.name;
+                    list.appendChild(option);
+                }
+            } else {
+                var option = document.createElement("option");
+                option.value = i;
+                option.id = this.id;
+                option.innerHTML = this.name;
+                list.appendChild(option);
+            }
+            if (!(i > index)) {
+                index = i;
+            }
+
+        });
+
+
+        $.each(design.products.categoriesList[index].products, function (i, element) {
+            var option = document.createElement("option");
+            option.value = element;
+            option.id = element;
+            option.innerHTML = design.products.productsData[element].name;
+            listProd.appendChild(option);
+
         });
     }
 }
@@ -1462,9 +1539,9 @@ function Goal() {
     } else {
         var prod = design.products.productsData[app.state.currentProduct.ProductId];
         document.getElementById("productName").innerHTML = prod.name;
-       
-        
-       
+
+
+
         slideTo(2);
         setPriceInGoalFromDesign();
         profitSale();
