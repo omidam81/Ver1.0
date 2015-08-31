@@ -906,7 +906,7 @@ window.onload = function initWizard() {
 
             listProd.innerHTML = "";
 
-            $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
+            $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
                 var cnt = 0;
                 $.each(app.state.products, function (j, el) {
                     if (el.ProductId == element) { cnt++; }
@@ -932,7 +932,7 @@ window.onload = function initWizard() {
 
         listProd.innerHTML = "";
 
-        $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
+        $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
             var cnt = 0;
             $.each(app.state.products, function (j, el) {
                 if (el.ProductId == element) { cnt++; }
@@ -1186,35 +1186,29 @@ function initProducts() {
     if (list.value == "") {
         var index = 0;
         $.each(design.products.categoriesList, function (i) {
-            if (this.products.length == 1) {
-                if (this.products[0] == app.state.currentProduct.ProductId) {
-
-                } else {              
-                var option = document.createElement("option");
-                option.value = i;
-                option.id = this.id;
-                option.innerHTML = this.name;
-                list.appendChild(option);       
-                }
+            if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)){
+               
             } else {
                 var option = document.createElement("option");
                 option.value = i;
-                option.id = this.id;
+                option.id = i;
                 option.innerHTML = this.name;
                 list.appendChild(option);
             }
-            if (!(i > index)) {
-                index = i;
-            }
 
+            $.each(design.products.categoriesList[i].products, function (z, element) {
+                if (element == app.state.currentProduct.ProductId) {
+                    index = i;
+                }
+            })
         });
         //Если лист продуктов пустой то мы его инициализируем
         if (listProd.value == "") {
-            //if (index > 0) {
-            //    index = 0;
-            //} else {
-            //    index = 1;
-            //}
+            if (index > 0) {
+                index = 0;
+            } else {
+                index = 1;
+            }
             $.each(design.products.categoriesList[index].products, function (i, element) {
                 var option = document.createElement("option");
                 option.value = element;
@@ -1274,16 +1268,8 @@ function initProducts() {
             list.removeChild(list.childNodes[0]);
         };
         $.each(design.products.categoriesList, function (i) {
-            if (this.products.length == 1) {
-                if (this.products[0] == app.state.currentProduct.ProductId) {
+            if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
 
-                } else {
-                    var option = document.createElement("option");
-                    option.value = i;
-                    option.id = this.id;
-                    option.innerHTML = this.name;
-                    list.appendChild(option);
-                }
             } else {
                 var option = document.createElement("option");
                 option.value = i;
@@ -1291,13 +1277,20 @@ function initProducts() {
                 option.innerHTML = this.name;
                 list.appendChild(option);
             }
-            if (!(i > index)) {
-                index = i;
-            }
 
+            $.each(design.products.categoriesList[i].products, function (z, element) {
+                if (element == app.state.currentProduct.ProductId) {
+                    index = i;
+                }
+            })
         });
 
 
+        if (index > 0) {
+            index = 0;
+        } else {
+            index = 1;
+        }
         $.each(design.products.categoriesList[index].products, function (i, element) {
             var option = document.createElement("option");
             option.value = element;
