@@ -14,6 +14,8 @@ namespace Teeyoot.Module.Services
 
         void EditSetting(EditDeliverySettingViewModel newSetting);
 
+        void UpdateSetting(DeliverySettingRecord setting);
+
         IQueryable<DeliverySettingRecord> GetAllSettings();
 
         DeliverySettingRecord GetSettingById(int settingId);
