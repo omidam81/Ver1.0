@@ -757,8 +757,9 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CntFrontColor"));
             SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CntBackColor"));
 
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<bool>("Enabled", c => c.NotNull().WithDefault(false)));
 
-            return 82;
+            return 83;
         }
 
         public int UpdateFrom2()
@@ -1695,5 +1696,10 @@ namespace Teeyoot.Module
             return 82;
         }
 
+       public int UpdateFrom82()
+        {
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<bool>("Enabled", c => c.NotNull().WithDefault(false)));
+            return 83;
+        }
     }
 }

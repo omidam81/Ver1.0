@@ -186,7 +186,7 @@
                             {
                                 <li>
                                     <a href="javascript:;"  class="payment-method" data-payment-method="mol">
-                                        <p sty>@T("Online Bancking")</p>
+                                        <p >@T("Online Bancking")</p>
                                         @*<p>@T("Online Bancking")</p>*@
                                     </a>
                                 </li>
@@ -385,7 +385,7 @@
                         <div class="checkout_form__row">
                             <div>
                                 <div class="inp-half smarty-streets-container">
-                                    <select class="form__textfield " data-default="43" id="State" placeholder="@T("State")" name="State" abindex="7" type="text"></select>
+                                    <select class="form__textfield " data-default="43" id="State" placeholder="@T("State")" name="State" tabindex="7" type="text"></select>
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
@@ -489,6 +489,7 @@
                 $('#paymentMethod').val("2");
             } else if (defaultPaymentMethod === 'mol') {
                 $('#message_err').css({ "display": "none" });
+                $('.message_Mol').css({ "display": "" });
                 $('#payment_method_mol').show();
                 $('#paymentMethod').val("3");
             } else if (defaultPaymentMethod === 'cash') {

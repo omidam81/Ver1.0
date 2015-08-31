@@ -20,6 +20,12 @@ namespace Teeyoot.Module.Services
             _deliverySettingsRepository.Delete(_deliverySettingsRepository.Get(id));
         }
 
+
+        public void UpdateSetting(DeliverySettingRecord setting)
+        {
+            _deliverySettingsRepository.Update(setting);
+
+        }
         public void AddSetting(string state, double deliveryCost)
         {
            
@@ -58,6 +64,8 @@ namespace Teeyoot.Module.Services
             _deliverySettingsRepository.Update(setting);
 
         }
+
+
 
     }
 }
