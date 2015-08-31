@@ -1600,7 +1600,7 @@ var design={
 			txt.fontFamily = app.state.font.family || 'arial';
 			txt.outlineC = design.designer.toRgbColor(app.state['color-outline']);
 			txt.outlineW = $('#outline-select').val();
-			this.add(txt, undefined, cloneFrom);
+			this.add(txt, undefined, cloneFrom, 1);
 		},
 		getFontByFamily: function(family) {
 		    var fonts = design.products.fonts || {};
@@ -1645,7 +1645,7 @@ var design={
 
             $('#text-align-tools').show();
 		},
-		add: function(o, type, cloneFrom){
+		add: function(o, type, cloneFrom, style_color){
 			var item = {};
 				if (typeof type == 'undefined')
 				{
@@ -1671,10 +1671,11 @@ var design={
 			}
 
 			var div = document.createElement('div');
-			var node = document.createTextNode(o.text);
-				div.appendChild(node);
-				div.style.fontSize = o.fontSize;
+			var node = document.createTextNode(o.text);			
+			    div.appendChild(node);		
+			    div.style.fontSize = o.fontSize;
 				div.style.fontFamily = o.fontFamily;
+				
 			var cacheText = document.getElementById('cacheText');
 			cacheText.innerHTML = '';
 			cacheText.appendChild(div);
@@ -1704,6 +1705,7 @@ var design={
 			text.setAttributeNS(null, 'text-anchor', 'middle');				
 			text.setAttributeNS(null, 'font-size', o.fontSize);
 			text.setAttributeNS(null, 'font-family', o.fontFamily);
+			text.setAttributeNS(null, 'color', 'black');
 			
 			if(typeof o.strokeWidth != 'undefined' && o.strokeWidth != 0){
 				text.setAttributeNS(null, 'stroke', o.stroke);
