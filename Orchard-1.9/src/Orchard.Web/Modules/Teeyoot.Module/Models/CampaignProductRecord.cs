@@ -28,5 +28,7 @@ namespace Teeyoot.Module.Models
         public virtual ProductColorRecord FifthProductColorRecord { get; set; }
 
         public virtual CurrencyRecord CurrencyRecord { get; set; }
+
+        public virtual DateTime? WhenDeleted { get; set; }
     }
 }

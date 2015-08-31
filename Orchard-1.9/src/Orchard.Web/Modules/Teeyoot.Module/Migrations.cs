@@ -752,8 +752,9 @@ namespace Teeyoot.Module
                     new[] { "BaseCampaignId" }, "CampaignRecord", new[] { "Id" });
 
 
+            SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
 
-            return 80;
+            return 81;
         }
 
         public int UpdateFrom2()
@@ -1672,6 +1673,13 @@ namespace Teeyoot.Module
                     new[] { "BaseCampaignId" }, "CampaignRecord", new[] { "Id" });
 
             return 80;
+        }
+
+        public int UpdateFrom80()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignProductRecord).Name, table => table.AddColumn<DateTime>("WhenDeleted", c => c.Nullable()));
+
+            return 81;
         }
 
     }
