@@ -45,7 +45,11 @@ namespace Teeyoot.Module.Models
 
         public virtual bool IsApproved { get; set; }
 
-        public bool Rejected { get; set; }
+        public virtual bool IsArchived { get; set; }
+
+        public virtual int? BaseCampaignId { get; set; }
+
+        public virtual bool Rejected { get; set; }
 
         public virtual DateTime? WhenDeleted { get; set; }
 
