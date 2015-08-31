@@ -100,6 +100,19 @@ namespace Teeyoot.WizardSettings.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public void Enabled(int id, bool value)
+        {
+            if (id != null)
+            {
+                var setting = _deliverySettingService.GetSettingById(id);
+                setting.Enabled = value;
+                _deliverySettingService.UpdateSetting(setting);
+            }
+        }
+
+
+        [HttpPost]
         public ActionResult EditSetting(EditDeliverySettingViewModel model)
         {
             _deliverySettingService.EditSetting(model);
