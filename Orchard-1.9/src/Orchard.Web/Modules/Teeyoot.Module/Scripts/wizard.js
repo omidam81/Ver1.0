@@ -976,14 +976,18 @@ window.onload = function initWizard() {
     //  ---- Add colors for products
     $("#div-color-1").click(function () {
         changesColor("#div-color-1", 1);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-1").css("visibility", "visible");
     }).mouseleave(function () {
         $("#div-color-delete-1").css("visibility", "collapse");
     });
 
-    $("#div-color-2").click(function () {
+    $("#div-color-2").click(function (event) {
         changesColor("#div-color-2", 2);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-2").css("visibility", "visible");
     }).mouseleave(function () {
@@ -992,6 +996,8 @@ window.onload = function initWizard() {
 
     $("#div-color-3").click(function () {
         changesColor("#div-color-3", 3);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-3").css("visibility", "visible");
     }).mouseleave(function () {
@@ -1000,6 +1006,8 @@ window.onload = function initWizard() {
 
     $("#div-color-4").click(function () {
         changesColor("#div-color-4", 4);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-4").css("visibility", "visible");
     }).mouseleave(function () {
@@ -1008,6 +1016,8 @@ window.onload = function initWizard() {
 
     $("#div-color-5").click(function () {
         changesColor("#div-color-5", 5);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-5").css("visibility", "visible");
     }).mouseleave(function () {
@@ -1017,6 +1027,8 @@ window.onload = function initWizard() {
     $("#div-color-delete-1").click(function () {
         if ($("#div-color-2").hasClass('div-color-active')) {
             deleteColor(1);
+            event.preventDefault();
+            event.stopPropagation();
         }
     });
 
@@ -1708,6 +1720,7 @@ function changesColor(id, number) {
         //$("#prodBack3").css("background-color", color.value);
         //$(".product_images").css("background-color", color.value);
         $('.containertip--open').removeClass('containertip--open');
+        //app.state.color = color;
         //design.products.changeColor(color);
         //app.state.currentProduct.ColorId = color.id;
     }
@@ -1717,6 +1730,14 @@ function deleteColor(number) {
     switch (number) {
         case 1:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.ColorId).children("span").remove();
+            color = design.products.colors[app.state.currentProduct.SecondColorId];
+            $("#prodFront").css("background-color", color.value);
+            $("#minImg").css("background-color", color.value);
+            $("#prodBack").css("background-color", color.value);
+            //$("#prodFront3").css("background-color", app.state.currentProduct.SecondColorId.value);
+            //$("#prodBack3").css("background-color", app.state.currentProduct.SecondColorId.value);
+            //$(".product_images").css("background-color", app.state.currentProduct.SecondColorId.value);
+            design.products.changeColor(design.products.colors[app.state.currentProduct.SecondColorId]);
 
             app.state.currentProduct.ColorId = app.state.currentProduct.SecondColorId;
             app.state.currentProduct.SecondColorId = app.state.currentProduct.ThirdColorId;
