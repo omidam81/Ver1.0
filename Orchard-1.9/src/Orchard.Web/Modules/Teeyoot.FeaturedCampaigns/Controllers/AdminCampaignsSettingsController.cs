@@ -6,6 +6,7 @@ using Orchard.Logging;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
+using Orchard.UI.Notify;
 using Orchard.Users.Models;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly IContentManager _contentManager;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IOrderService _orderService;
+        private readonly INotifier _notifier;
 
         public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper, IOrderService orderService, IContentManager contentManager,
-            ITeeyootMessagingService teeyootMessagingService)
+            ITeeyootMessagingService teeyootMessagingService, INotifier notifier)
         {
             _campaignService = campaignService;
             _siteService = siteService;
@@ -49,6 +51,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+            _notifier = notifier;
         }
 
         private dynamic Shape { get; set; }
@@ -146,7 +149,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 Mounth = Convert.ToInt32(mounth),
                 Year = Convert.ToInt32(year),
                 Description = campaign.Description,
-                Products = campaign.Products
+                Products = campaign.Products.Where(c => c.WhenDeleted == null)
             };
             return View(model);
         }
@@ -157,6 +160,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         {
             var campaign = _campaignService.GetCampaignById(campaignId);
             var campaigns = _campaignService.GetAllCampaigns();
+
+            bool resultError = false;
+
             if (!campaigns.Select(c => c.Alias).ToList().Contains(URL) || campaign.Alias == URL)
             {
                 DateTime date = new DateTime(Year, Mounth, Day);
@@ -178,8 +184,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 campaign.Description = Description;
                 campaign.EndDate = date.ToUniversalTime();
                 var prices = Prices.Split(',');
-                for (int i = 0; i < campaign.Products.Count; i++)
-                    campaign.Products[i].Price = Convert.ToDouble(prices[i]);
+                var prods = campaign.Products.Where(c => c.WhenDeleted == null).ToList();
+                for (int i = 0; i < prods.Count; i++)
+                    prods[i].Price = Convert.ToDouble(prices[i]);
 
                 for (int k = 0; k < Colors.Length; k++)
                 {
@@ -187,7 +194,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     int prodId = Int32.Parse(colors[0]);
                     colors.RemoveAt(0);
 
-                    var prod = campaign.Products[k];//campaign.Products.Where(c => c.Id == prodId).First();
+                    var prod = campaign.Products.Where(c => c.Id == prodId).First();
 
                     string productPath1 = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), prod.Id.ToString());
                     string productPath2 = prod.SecondProductColorRecord != null ? Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), string.Format("{0}_{1}", prod.Id.ToString(), prod.SecondProductColorRecord.Id.ToString())) : string.Empty;
@@ -223,6 +230,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     catch (Exception e)
                     {
                         Logger.Error(T("Error when trign delete directory for products --------------------------------------->" + e.Message).ToString());
+                        resultError = true;
                     }
                     finally
                     {
@@ -286,6 +294,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         catch (Exception ex)
                         {
                             Logger.Error(T("Error when trign creating images and directories for products --------------------------------------->" + ex.Message).ToString());
+                            resultError = true;
                         }
                     }
                 }
@@ -300,6 +309,11 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             else
             {
                 Response.Write(false);
+            }
+
+            if (resultError)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -346,5 +360,23 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             return _imageHelper.ApplyDesign(image, design, printableAreaTop, printableAreaLeft, printableAreaWidth, printableAreaHeight, width, height);
         }
 
+
+        public ActionResult DeleteProduct(int productId, int campaignId)
+        {
+            var camp = _campaignService.GetCampaignById(campaignId);
+
+            try
+            {
+                camp.Products.Where(c => c.Id == productId).First().WhenDeleted = DateTime.UtcNow;
+                _campaignService.UpdateCampaign(camp);
+                _notifier.Add(NotifyType.Information, T("The product was removed!"));
+            }
+            catch
+            {
+                _notifier.Add(NotifyType.Error, T("An error occurred while deleting"));
+            }
+            
+            return RedirectToAction("ChangeInformation", new { id = campaignId });
+        }
     }
 }

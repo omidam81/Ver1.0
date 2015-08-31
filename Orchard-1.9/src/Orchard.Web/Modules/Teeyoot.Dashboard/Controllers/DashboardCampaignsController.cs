@@ -99,7 +99,7 @@ namespace Teeyoot.Dashboard.Controllers
 
             foreach (var item in campaignSummaries)
             {
-                var prods = campaignProducts.FirstOrDefault(p => p.CampaignRecord_Id == item.Id);
+                var prods = campaignProducts.Where(c => c.WhenDeleted == null).FirstOrDefault(p => p.CampaignRecord_Id == item.Id);
                 item.FirstProductId = prods != null ? prods.Id : 0;
                 item.Profit = orderedProducts
                                     .Where(p => p.OrderRecord.IsActive && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
@@ -204,7 +204,7 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 allTags = allTags + " " + tag.Name;
             }
-            int product = _campaignService.GetProductsOfCampaign(id).First().Id;
+            int product = _campaignService.GetProductsOfCampaign(id).Where(c => c.WhenDeleted == null).First().Id;
 
             string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + product.ToString() + "/";
             string backIMG;

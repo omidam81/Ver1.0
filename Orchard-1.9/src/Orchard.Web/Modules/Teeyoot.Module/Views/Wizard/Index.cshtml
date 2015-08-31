@@ -294,8 +294,15 @@
                 $("#card").flip(true);
                 $("#card3").flip(true);
             }else{
-
+                //$("#card").flip(false);
+                //$("#card3").flip(false);
+                if(!($("#backdefaultside").prop('checked'))){
+                    $("#card").flip(false);
+                    $("#card3").flip(false);
+                    app.state.isFront = true;
+                }
             }
+            
         });
 
         function refreshToken() {

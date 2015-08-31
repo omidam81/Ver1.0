@@ -596,17 +596,19 @@
             }
         }
         populateCountries("State");
-        var delivCost;
+        var delivCost = 0;
         document.getElementById("State").addEventListener("change", function () {
             if (this.options[this.selectedIndex].value == -1) {
                 document.getElementById("parentDelivery").style.display = "none";
                 document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                delivCost = 0;
             } else {
 
                 for (var i = 0; i < Settings.length; i++) {
                     if (Settings[i].State == this.options[this.selectedIndex].value) {
                         document.getElementById("parentDelivery").style.display = "";
                         document.getElementById("deliveryCost").innerHTML = Settings[i].DeliveryCost;
+                        document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                         document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) + Settings[i].DeliveryCost;
                         delivCost = Settings[i].DeliveryCost;
                         //console.log(this.options[0].value);
