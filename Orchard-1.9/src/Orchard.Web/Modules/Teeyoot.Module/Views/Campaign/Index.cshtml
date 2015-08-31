@@ -749,9 +749,9 @@
             <div class="image_stack__container js_image_stack">
                 <div id="card" style="margin-right:30px">
                     <div class="list_item_color">
-                        @foreach (var prod in Model.Campaign.Products)
+                        @foreach (var prod in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                         {
-                            if (prod.ProductRecord.Name == Model.Campaign.Products[0].ProductRecord.Name)
+                            if (prod.ProductRecord.Name == Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().ProductRecord.Name)
                             {
                                 string id = prod.Id.ToString();
                                 <div class="item_color" name="@prod.ProductRecord.Name" id="@id" style="border: 4px solid @prod.ProductColorRecord.Value" onclick="ChangeColor(this)"></div>
@@ -808,8 +808,8 @@
                     </div>          <div id="front" class="front">
                         @if (Model.Campaign.BackSideByDefault)
                         {
-                            <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png"
-                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/back.png">
+                            <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/back.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/big/back.png">
                             @*<div id="butt1" style="text-align:center; font-weight: 400;">
                                     <div class="flip-button flip-button-front flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Back")</span></div>
                                     <div class="flip-button flip-button-back"><span>@T("Front")</span></div>
@@ -817,8 +817,8 @@
                         }
                         else
                         {
-                            <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png"
-                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/big/front.png">
+                            <img style="width:530px" id="prodFront" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png"
+                                 data-zoom-image="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/big/front.png">
                             @*<div id="butt1" style="text-align:center; font-weight: 400;">
                                     <div class="flip-button flip-button-front no-select flip-button-active" style="background-color:#6c7478; color: white; cursor: default;"><span>@T("Front")</span></div>
                                     <div class="flip-button flip-button-back"><span>@T("Back")</span></div>
@@ -851,11 +851,11 @@
                         {
                             <div class="image_stack__nav_item image_stack__nav_item--active">
                                 <img id="buttnFlipFrontItem" class="image_stack__nav_item_thumb"
-                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png">
                             </div>
                             <div id="buttnFlipBack" class="image_stack__nav_item">
                                 <img id="buttnFlipBackItem" class="image_stack__nav_item_thumb"
-                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/back.png">
                             </div>
                         }
                         else
@@ -863,11 +863,11 @@
 
                             <div class="image_stack__nav_item image_stack__nav_item--active">
                                 <img id="buttnFlipFrontItem" class="image_stack__nav_item_thumb"
-                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/back.png">
                             </div>
                             <div id="buttnFlipBack" class="image_stack__nav_item">
                                 <img id="buttnFlipBackItem" class="image_stack__nav_item_thumb"
-                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+                                     src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png">
                             </div>
                         }
                     </div>
@@ -894,7 +894,7 @@
                     <div class="js_product_dropdown">
 
                         <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
-                            @foreach (var prod in Model.Campaign.Products)
+                            @foreach (var prod in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                             {
                                 <option id="@prod.Id" name="@prod.ProductRecord.Name" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
                             }
@@ -915,7 +915,7 @@
 
                             <div class="product__details_wrap">
 
-                                @foreach (var product in Model.Campaign.Products)
+                                @foreach (var product in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                                 {
 
 
@@ -942,7 +942,7 @@
 
                             <div id="js-size-chart-wrap" class="product__size_chart_wrap product__size_chart_wrap--inch">
 
-                                @foreach (var product in Model.Campaign.Products)
+                                @foreach (var product in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                                 {
                                     <div class="product__size_chart" data-product-id="@product.Id">
 
@@ -1172,78 +1172,81 @@
                                             <td class="precheckout_items_table__item precheckout_items_table__item--image">
                                                 @if (Model.Campaign.BackSideByDefault)
                                                 {
-                                                    <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png">
+                                                    <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/back.png">
                                                 }
                                                 else
                                                 {
-                                                    <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png">
+                                                    <img class="modal_campaign_img" src="/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png">
                                                 }
                                             </td>
                                             <td class="precheckout_items_table__item product-size-item">
                                                 <div class="tooltip tooltip--topleft">
-                                                    @for (var i = 0; i < Model.Campaign.Products.Count; i++)
-                                                    {
-                                                        string id = Model.Campaign.Products[i].Id.ToString();
-                                                        if (i == 0)
+                                                    @{
+                                                        var products = Model.Campaign.Products.Where(c => c.WhenDeleted == null).ToList();
+                                                        for (var i = 0; i < products.Count; i++)
                                                         {
-                                                            <select name="select_color_index_@i" class="form__select_menu color-dropdown precheckout_items_table__item--color shown" onchange="ChangePicture(this)" id="select_color_index_@i">
-                                                                <option value="@Model.Campaign.Products[i].ProductColorRecord.Id" id="@Model.Campaign.Products[i].Id.ToString()" style="background-color: @Model.Campaign.Products[i].ProductColorRecord.Value">@Model.Campaign.Products[i].ProductColorRecord.Name</option>
+                                                            string id = Model.Campaign.Products[i].Id.ToString();
+                                                            if (Model.Campaign.Products[i] == Model.Campaign.Products.Where(c => c.WhenDeleted == null).First())
+                                                            {
+                                                                <select name="select_color_index_@i" class="form__select_menu color-dropdown precheckout_items_table__item--color shown" onchange="ChangePicture(this)" id="select_color_index_@i">
+                                                                    <option value="@Model.Campaign.Products[i].ProductColorRecord.Id" id="@Model.Campaign.Products[i].Id.ToString()" style="background-color: @Model.Campaign.Products[i].ProductColorRecord.Value">@Model.Campaign.Products[i].ProductColorRecord.Name</option>
 
-                                                                @if (Model.Campaign.Products[i].SecondProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].SecondProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].SecondProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].SecondProductColorRecord.Value">@Model.Campaign.Products[i].SecondProductColorRecord.Name</option>
-                                                                }
+                                                                    @if (Model.Campaign.Products[i].SecondProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].SecondProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].SecondProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].SecondProductColorRecord.Value">@Model.Campaign.Products[i].SecondProductColorRecord.Name</option>
+                                                                    }
 
-                                                                @if (Model.Campaign.Products[i].ThirdProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].ThirdProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].ThirdProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].ThirdProductColorRecord.Value">@Model.Campaign.Products[i].ThirdProductColorRecord.Name</option>
-                                                                }
+                                                                    @if (Model.Campaign.Products[i].ThirdProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].ThirdProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].ThirdProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].ThirdProductColorRecord.Value">@Model.Campaign.Products[i].ThirdProductColorRecord.Name</option>
+                                                                    }
 
-                                                                @if (Model.Campaign.Products[i].FourthProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FourthProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].FourthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FourthProductColorRecord.Value">@Model.Campaign.Products[i].FourthProductColorRecord.Name</option>
-                                                                }
+                                                                    @if (Model.Campaign.Products[i].FourthProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FourthProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].FourthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FourthProductColorRecord.Value">@Model.Campaign.Products[i].FourthProductColorRecord.Name</option>
+                                                                    }
 
-                                                                @if (Model.Campaign.Products[i].FifthProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FifthProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].FifthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FifthProductColorRecord.Value">@Model.Campaign.Products[i].FifthProductColorRecord.Name</option>
-                                                                }
-                                                            </select>
-                                                        }
-                                                        else
-                                                        {
-                                                            id = Model.Campaign.Products[i].Id.ToString();
-                                                            <select name="select_color_index_@i" class="form__select_menu color-dropdown precheckout_items_table__item--color hidden" onchange="ChangePicture(this)" id="select_color_index_@i">
-                                                                <option value="@Model.Campaign.Products[i].ProductColorRecord.Id" id="@Model.Campaign.Products[i].Id.ToString()" style="background-color: @Model.Campaign.Products[i].ProductColorRecord.Value">@Model.Campaign.Products[i].ProductColorRecord.Name</option>
+                                                                    @if (Model.Campaign.Products[i].FifthProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FifthProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].FifthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FifthProductColorRecord.Value">@Model.Campaign.Products[i].FifthProductColorRecord.Name</option>
+                                                                    }
+                                                                </select>
+                                                            }
+                                                            else
+                                                            {
+                                                                id = Model.Campaign.Products[i].Id.ToString();
+                                                                <select name="select_color_index_@i" class="form__select_menu color-dropdown precheckout_items_table__item--color hidden" onchange="ChangePicture(this)" id="select_color_index_@i">
+                                                                    <option value="@Model.Campaign.Products[i].ProductColorRecord.Id" id="@Model.Campaign.Products[i].Id.ToString()" style="background-color: @Model.Campaign.Products[i].ProductColorRecord.Value">@Model.Campaign.Products[i].ProductColorRecord.Name</option>
 
-                                                                @if (Model.Campaign.Products[i].SecondProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].SecondProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].SecondProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].SecondProductColorRecord.Value">@Model.Campaign.Products[i].SecondProductColorRecord.Name</option>
-                                                                }
+                                                                    @if (Model.Campaign.Products[i].SecondProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].SecondProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].SecondProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].SecondProductColorRecord.Value">@Model.Campaign.Products[i].SecondProductColorRecord.Name</option>
+                                                                    }
 
-                                                                @if (Model.Campaign.Products[i].ThirdProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].ThirdProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].ThirdProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].ThirdProductColorRecord.Value">@Model.Campaign.Products[i].ThirdProductColorRecord.Name</option>
-                                                                }
+                                                                    @if (Model.Campaign.Products[i].ThirdProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].ThirdProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].ThirdProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].ThirdProductColorRecord.Value">@Model.Campaign.Products[i].ThirdProductColorRecord.Name</option>
+                                                                    }
 
-                                                                @if (Model.Campaign.Products[i].FourthProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FourthProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].FourthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FourthProductColorRecord.Value">@Model.Campaign.Products[i].FourthProductColorRecord.Name</option>
-                                                                }
+                                                                    @if (Model.Campaign.Products[i].FourthProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FourthProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].FourthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FourthProductColorRecord.Value">@Model.Campaign.Products[i].FourthProductColorRecord.Name</option>
+                                                                    }
 
-                                                                @if (Model.Campaign.Products[i].FifthProductColorRecord != null)
-                                                                {
-                                                                    id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FifthProductColorRecord.Id;
-                                                                    <option value="@Model.Campaign.Products[i].FifthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FifthProductColorRecord.Value">@Model.Campaign.Products[i].FifthProductColorRecord.Name</option>
-                                                                }
-                                                            </select>
+                                                                    @if (Model.Campaign.Products[i].FifthProductColorRecord != null)
+                                                                    {
+                                                                        id = Model.Campaign.Products[i].Id + "_" + Model.Campaign.Products[i].FifthProductColorRecord.Id;
+                                                                        <option value="@Model.Campaign.Products[i].FifthProductColorRecord.Id" id="@id" style="background-color: @Model.Campaign.Products[i].FifthProductColorRecord.Value">@Model.Campaign.Products[i].FifthProductColorRecord.Name</option>
+                                                                    }
+                                                                </select>
+                                                            }
                                                         }
                                                     }
 
@@ -1256,9 +1259,9 @@
                                             </td>
                                             <td class="precheckout_items_table__item product-size-item">
                                                 <div class="tooltip tooltip--topleft">
-                                                    @for (var i = 0; i < Model.Campaign.Products.Count; i++)
+                                                    @for (var i = 0; i < products.Count; i++)
                                                     {
-                                                        if (i == 0)
+                                                        if (Model.Campaign.Products[i] == Model.Campaign.Products.Where(c => c.WhenDeleted == null).First())
                                                         {
                                                             <select name="select_size_index_@i" class="form__select_menu size-dropdown precheckout_items_table__item--size shown" onchange="ChangePriceModal(this)" id="select_size_index_@i">
                                                                 @foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
@@ -1284,7 +1287,7 @@
                                                 <select id="product__dropdown_modal" class="product__dropdown form__select_menu" onchange="ChangeProductModal(this)">
 
                                                     @{int index = 0;
-                                                    foreach (var prod in Model.Campaign.Products)
+                                                    foreach (var prod in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                                                     {
 
                                                         <option id="@prod.Id" name="select_style_index_@prod.Id" class="style-dropdown" value="@index">@prod.ProductRecord.Name</option>
@@ -1298,7 +1301,7 @@
 
                                                 @for (var i = 0; i < Model.Campaign.Products.Count; i++)
                                                 {
-                                                    if (i == 0)
+                                                    if (Model.Campaign.Products[i] == Model.Campaign.Products.Where(c => c.WhenDeleted == null).First())
                                                     {
                                                         int count = 0;
                                                         foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)

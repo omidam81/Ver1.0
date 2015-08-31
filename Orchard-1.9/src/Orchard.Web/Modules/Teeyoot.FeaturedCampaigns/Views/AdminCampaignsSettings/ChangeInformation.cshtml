@@ -146,7 +146,12 @@
                 },
                 error: function (data, status, resp) {
                     loader.style.display = "none";
-                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    if (resp.status === 507) {
+                        alert('Please, try to save again');
+                    }
+                    else {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
 
                 }
             });
@@ -468,7 +473,7 @@
                     <td>
                         @if (Model.Products.ElementAt(i).WhenDeleted == null)
                         {
-                            @*<a class="button" href="@Url.Action("DeleteProduct", new { id = Model.Products.ElementAt(i).Id })" title="@T("Delete")">@T("Delete")</a>*@
+                            <a class="button" href="@Url.Action("DeleteProduct", new { productId = Model.Products.ElementAt(i).Id, campaignId = Model.CampaignId })" title="@T("Delete")">@T("Delete")</a>
                         }
                     </td>
                 </tr>
