@@ -932,20 +932,56 @@ window.onload = function initWizard() {
 
         listProd.innerHTML = "";
 
-        $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
-            var cnt = 0;
-            $.each(app.state.products, function (j, el) {
-                if (el.ProductId == element) { cnt++; }
-            });
+        //if (listProd.childNodes.length == 0) {
+        //    list.removeChild(list.childNodes[list[list.selectedIndex].id]);
+        //    $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+        //        var cnt = 0;
+        //        $.each(app.state.products, function (j, el) {
+        //            if (el.ProductId == element) { cnt++; }
+        //        });
 
-            if (cnt == 0) {
-                var option = document.createElement("option");
-                option.value = element;
-                option.id = element;
-                option.innerHTML = design.products.productsData[element].name;
-                listProd.appendChild(option);
-            }
-        });
+        //        if (cnt == 0) {
+        //            var option = document.createElement("option");
+        //            option.value = element;
+        //            option.id = element;
+        //            option.innerHTML = design.products.productsData[element].name;
+        //            listProd.appendChild(option);
+        //        }
+        //    });
+
+        //} else {
+            $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+                var cnt = 0;
+                $.each(app.state.products, function (j, el) {
+                    if (el.ProductId == element) { cnt++; }
+                });
+
+                if (cnt == 0) {
+                    var option = document.createElement("option");
+                    option.value = element;
+                    option.id = element;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                }
+            });
+            if (listProd.childNodes.length == 0) {
+                list.removeChild(list.childNodes[list[list.selectedIndex].id]);
+                $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+                    var cnt = 0;
+                    $.each(app.state.products, function (j, el) {
+                        if (el.ProductId == element) { cnt++; }
+                    });
+
+                    if (cnt == 0) {
+                        var option = document.createElement("option");
+                        option.value = element;
+                        option.id = element;
+                        option.innerHTML = design.products.productsData[element].name;
+                        listProd.appendChild(option);
+                    }
+                });
+                }
+        //}
     });
 
 
