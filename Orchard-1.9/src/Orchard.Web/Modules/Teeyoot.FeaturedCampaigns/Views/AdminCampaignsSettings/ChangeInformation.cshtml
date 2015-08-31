@@ -387,6 +387,7 @@
                     <td>@T("Cost Price")</td>
                     <td>@T("Sell Price")</td>
                     <td>@T("Profit")</td>
+                    <td>@T("Action")</td>
                 </tr>
             </thead>
             @for (int i = 0; i < Model.Products.Count(); i++)
@@ -464,6 +465,12 @@
                     <td id="base @i">@Model.Products.ElementAt(i).BaseCost.ToString().Replace(",", ".")</td>
                     <td><input id="sell @i" type="text" class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
                     <td class="price" id=@i></td>
+                    <td>
+                        @if (Model.Products.ElementAt(i).WhenDeleted == null)
+                        {
+                            @*<a class="button" href="@Url.Action("DeleteProduct", new { id = Model.Products.ElementAt(i).Id })" title="@T("Delete")">@T("Delete")</a>*@
+                        }
+                    </td>
                 </tr>
             }
 
