@@ -471,7 +471,7 @@
                     <td><input id="sell @i" type="text" class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
                     <td class="price" id=@i></td>
                     <td>
-                        @if (Model.Products.ElementAt(i).WhenDeleted == null)
+                        @if (Model.Products.ElementAt(i).WhenDeleted == null && Model.Products.Count() > 1)
                         {
                             <a class="button" href="@Url.Action("DeleteProduct", new { productId = Model.Products.ElementAt(i).Id, campaignId = Model.CampaignId })" title="@T("Delete")">@T("Delete")</a>
                         }
