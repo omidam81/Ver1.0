@@ -48,9 +48,12 @@
         var firstBack = "@Model.Campaign.BackSideByDefault";
 
         var date = $(document.getElementById("days_for_twitter")).text();
+        date = date.replace(/>/g, "").replace(/</g, "");
         date = date.trim();
+        //console.log(date);
         var twitterBtn = document.getElementsByClassName("btn--twitter");
         for (var k = 0; k < twitterBtn.length; k++) {
+
             var str = "http://twitter.com/home?status=Check%20out%20 @Model.Campaign.Title for the next " + date + " via%20@Teeyoot: @Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias";
             $(twitterBtn[k]).attr("href", str);
         }
