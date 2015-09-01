@@ -851,6 +851,8 @@ window.onload = function initWizard() {
 
 
         $(imageDel).click(function () {
+            var list = document.getElementById("item-options-dropdown-tees");
+            var selectedOptionInList = list.selectedOptions[0];
             if (document.querySelectorAll(".ssp_block").length == 8) {
                 document.getElementById("ui").style.display = "inline";
             }
@@ -906,32 +908,127 @@ window.onload = function initWizard() {
 
             listProd.innerHTML = "";
 
+            //var deletedProdCatIdx = -1;
+            //$.each(design.products.categoriesList, function (i, category) {
+            //    $.each(category.products, function (z, element) {
+            //        if (element == prdc.ProductId) {
+            //            index = i;
+            //        }
+            //    })
+            //})
+            //var isInList = false;
+            //$.each(list.childNodes, function (i, node) {
+            //    if ((node.id == index) && (i != 0)) {
+            //        isInList = true;
+            //    }
+            //})
+
+            //if (design.products.categoriesList[index].products.length == 1 && !(isInList)) {
+            //    var option = document.createElement("option");
+            //    option.value = index;
+            //    option.id = index;
+            //    option.innerHTML = design.products.categoriesList[index].name;
+            //    list.appendChild(option);
+            //}
+            //$.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+            //    var cnt = 0;
+            //    $.each(app.state.products, function (j, el) {
+            //        if (el.ProductId == element) { cnt++; }
+            //    });
+
+            //    if (cnt == 0) {
+            //        var option = document.createElement("option");
+            //        option.value = element;
+            //        option.id = element;
+            //        option.innerHTML = design.products.productsData[element].name;
+            //        listProd.appendChild(option);
+            //    }
+            //});
+            var mas = [];
+            var resultMas = [];
+            var firstCatElemsInStateProdIds = [];
+            while (listProd.childNodes.length > 0) {
+                listProd.removeChild(listProd.childNodes[0]);
+            };
+            while (list.childNodes.length > 0) {
+                list.removeChild(list.childNodes[0]);
+            };
+
             $.each(design.products.categoriesList, function (i, category) {
-                $.each(category.products, function (z, element) {
-                    if (element == prdc.ProductId) {
+                if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
+
+                } else {
+                    mas.push(category);
+                }
+
+                $.each(design.products.categoriesList[i].products, function (z, element) {
+                    if (element == app.state.currentProduct.ProductId) {
                         index = i;
                     }
                 })
-            })
-            var option = document.createElement("option");
-            option.value = index;
-            option.id = index;
-            option.innerHTML = design.products.categoriesList[index].name;
-            list.appendChild(option);
-            $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
-                var cnt = 0;
-                $.each(app.state.products, function (j, el) {
-                    if (el.ProductId == element) { cnt++; }
-                });
+            });
+            $.each(mas, function (i, element) {
+                var theOnlyInAdditionalProducts = false;
+                if (element.products.length == 1) {
+                    $.each(app.state.products, function (i, stateProd) {
+                        if (stateProd.id == element.products[0]) {
+                            theOnlyInAdditionalProducts = true;
+                        }
+                    });
+                }
+                if (element.products.length == 1 && theOnlyInAdditionalProducts) {
 
-                if (cnt == 0) {
+
+                } else {
+                    var koeff = 0;
+                    $.each(element.products, function (k, prod) {
+                        $.each(app.state.products, function (ii, stateProd) {
+                            if (stateProd.ProductId == prod) {
+                                koeff++;
+
+                            }
+                        });
+                    });
+                    if (!(koeff == element.products.length)) {
+                        resultMas.push(element);
+                    }
+
+
+                }
+
+            });
+            $.each(resultMas[0].products, function (k, prod) {
+                $.each(app.state.products, function (ii, stateProd) {
+                    if (prod == stateProd.ProductId) {
+                        firstCatElemsInStateProdIds.push(k);
+                    }
+                });
+            });
+            $.each(resultMas, function (i, element) {
+                var option = document.createElement("option");
+                option.value = design.products.categoriesList.indexOf(element);
+                option.id = design.products.categoriesList.indexOf(element);
+                option.innerHTML = resultMas[i].name;
+                list.appendChild(option);
+
+            })
+            $.each(resultMas[0].products, function (i, element) {
+                if ((element != app.state.currentProduct.ProductId) && (firstCatElemsInStateProdIds.indexOf(i) < 0)) {
                     var option = document.createElement("option");
                     option.value = element;
                     option.id = element;
                     option.innerHTML = design.products.productsData[element].name;
                     listProd.appendChild(option);
                 }
+
             });
+            $.each(list.childNodes, function (i, element) {
+                if (element.value == selectedOptionInList.value) {
+                    list.selectedIndex = i;
+                }
+
+            })
+            $('#item-options-dropdown-tees').trigger('change');
         });
 
         globalPrdc = prdc;
@@ -1229,40 +1326,47 @@ function initProducts() {
     var list = document.getElementById("item-options-dropdown-tees");
     var listProd = document.getElementById("product");
     var mas = [];
+    if (app.state.products.length < 2) {
+        //Если лист категорий пустой то мы его инициализируем
+        if (list.value == "") {
+            var index = 0;
+            $.each(design.products.categoriesList, function (i, category) {
+                if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
 
-    //Если лист категорий пустой то мы его инициализируем
-    if (list.value == "") {
-        var index = 0;
-        $.each(design.products.categoriesList, function (i) {
-            if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)){
-               
-            } else {
-                var option = document.createElement("option");
-                option.value = i;
-                option.id = i;
-                option.innerHTML = this.name;
-                list.appendChild(option);
-            }
-
-            $.each(design.products.categoriesList[i].products, function (z, element) {
-                if (element == app.state.currentProduct.ProductId) {
-                    index = i;
+                } else {
+                    mas.push(category);
                 }
+
+                $.each(design.products.categoriesList[i].products, function (z, element) {
+                    if (element == app.state.currentProduct.ProductId) {
+                        index = i;
+                    }
+                })
+            });
+            $.each(mas, function (i, element) {
+                
+                    var option = document.createElement("option");
+                    option.value = design.products.categoriesList.indexOf(element);
+                    option.id = design.products.categoriesList.indexOf(element);
+                    option.innerHTML = mas[i].name;
+                    list.appendChild(option);
+                
             })
-        });
-        //Если лист продуктов пустой то мы его инициализируем
-        if (listProd.value == "") {
-            if (index > 0) {
-                index = 0;
-            } else {
-                index = 1;
-            }
-            $.each(design.products.categoriesList[index].products, function (i, element) {
-                var option = document.createElement("option");
-                option.value = element;
-                option.id = element;
-                option.innerHTML = design.products.productsData[element].name;
-                listProd.appendChild(option);
+            //Если лист продуктов пустой то мы его инициализируем
+            //if (listProd.value == "") {
+            //    if (index > 0) {
+            //        index = 0;
+            //    } else {
+            //        index = 1;
+            //    }
+            $.each(mas[0].products, function (i, element) {
+                if (element != app.state.currentProduct.ProductId) {
+                    var option = document.createElement("option");
+                    option.value = element;
+                    option.id = element;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                }
 
             });
             //$.each(design.products.productsData, function (i, el) {
@@ -1282,27 +1386,11 @@ function initProducts() {
             //        }
             //    }
             //});
-        }
+        
+    
+            $(list).change(function () {
+                listProd.innerHTML = "";
 
-        $(list).change(function () {
-            listProd.innerHTML = "";
-
-            $.each(design.products.categoriesList[this.value].products, function (i, element) {
-                var cnt = 0;
-                $.each(app.state.products, function (j, el) {
-                    if (el.ProductId == element) { cnt++; }
-                });
-
-                if (cnt == 0) {
-                    var option = document.createElement("option");
-                    option.value = element;
-                    option.id = element;
-                    option.innerHTML = design.products.productsData[element].name;
-                    listProd.appendChild(option);
-                }
-            });
-            if (listProd.childNodes.length == 0) {
-                list.removeChild(list.childNodes[list[list.selectedIndex].id]);
                 $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
                     var cnt = 0;
                     $.each(app.state.products, function (j, el) {
@@ -1317,31 +1405,87 @@ function initProducts() {
                         listProd.appendChild(option);
                     }
                 });
-            }
+                //if (listProd.childNodes.length == 0) {
+                //    list.removeChild(list.childNodes[list[list.selectedIndex].id]);
+                //    $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+                //        var cnt = 0;
+                //        $.each(app.state.products, function (j, el) {
+                //            if (el.ProductId == element) { cnt++; }
+                //        });
 
-        });
+                //        if (cnt == 0) {
+                //            var option = document.createElement("option");
+                //            option.value = element;
+                //            option.id = element;
+                //            option.innerHTML = design.products.productsData[element].name;
+                //            listProd.appendChild(option);
+                //        }
+                //    });
+                //}
+
+            });
+        } else {
+            $.each(design.products.categoriesList, function (i) {
+                if (((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId))) {
+                    index = i;
+                }
+
+            });
+            while (listProd.childNodes.length > 0) {
+                listProd.removeChild(listProd.childNodes[0]);
+            };
+            while (list.childNodes.length > 0) {
+                list.removeChild(list.childNodes[0]);
+            };
+
+            $.each(design.products.categoriesList, function (i, category) {
+                if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
+
+                } else {
+                    mas.push(category);
+                }
+
+                $.each(design.products.categoriesList[i].products, function (z, element) {
+                    if (element == app.state.currentProduct.ProductId) {
+                        index = i;
+                    }
+                })
+            });
+            $.each(mas, function (i, element) {
+                var option = document.createElement("option");
+                option.value = design.products.categoriesList.indexOf(element);
+                option.id = design.products.categoriesList.indexOf(element);
+                option.innerHTML = mas[i].name;
+                list.appendChild(option);
+
+            })
+            $.each(mas[0].products, function (i, element) {
+                if (element != app.state.currentProduct.ProductId) {
+                    var option = document.createElement("option");
+                    option.value = element;
+                    option.id = element;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                }
+
+            });
+        }
     } else {
-        $.each(design.products.categoriesList, function (i) {
-            if (((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId))) {
-                index = i;
-            }
-
-        });
+        //когда есть доп продукты
+        var resultMas = [];
+        var firstCatElemsInStateProdIds = [];
         while (listProd.childNodes.length > 0) {
             listProd.removeChild(listProd.childNodes[0]);
         };
         while (list.childNodes.length > 0) {
             list.removeChild(list.childNodes[0]);
         };
-        $.each(design.products.categoriesList, function (i) {
+
+        $.each(design.products.categoriesList, function (i, category) {
             if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
 
             } else {
-                var option = document.createElement("option");
-                option.value = i;
-                option.id = this.id;
-                option.innerHTML = this.name;
-                list.appendChild(option);
+                mas.push(category);
             }
 
             $.each(design.products.categoriesList[i].products, function (z, element) {
@@ -1350,21 +1494,62 @@ function initProducts() {
                 }
             })
         });
+        $.each(mas, function (i, element) {
+            var theOnlyInAdditionalProducts = false;
+            if (element.products.length == 1) {
+                $.each(app.state.products, function (i, stateProd) {
+                    if (stateProd.id == element.products[0]) {
+                        theOnlyInAdditionalProducts = true;
+                    }
+                });
+            }
+            if (element.products.length == 1 && theOnlyInAdditionalProducts) {
+                
+                
+            } else {
+                var koeff = 0;
+                $.each(element.products, function (k, prod) {
+                    $.each(app.state.products, function (ii, stateProd) {
+                        if (stateProd.ProductId == prod) {
+                            koeff++;
+                            
+                        }
+                    });
+                });
+                if (!(koeff == element.products.length)) {
+                    resultMas.push(element);
+                }
 
 
-        if (index > 0) {
-            index = 0;
-        } else {
-            index = 1;
-        }
-        $.each(design.products.categoriesList[index].products, function (i, element) {
-            var option = document.createElement("option");
-            option.value = element;
-            option.id = element;
-            option.innerHTML = design.products.productsData[element].name;
-            listProd.appendChild(option);
+            }
 
         });
+        $.each(resultMas[0].products, function (k, prod) {
+            $.each(app.state.products, function (ii, stateProd) {
+                if (prod == stateProd.ProductId) {
+                    firstCatElemsInStateProdIds.push(k);
+                }
+            });
+        });
+        $.each(resultMas, function (i, element) {
+            var option = document.createElement("option");
+            option.value = design.products.categoriesList.indexOf(element);
+            option.id = design.products.categoriesList.indexOf(element);
+            option.innerHTML = resultMas[i].name;
+            list.appendChild(option);
+
+        })
+        $.each(resultMas[0].products, function (i, element) {
+            if ((element != app.state.currentProduct.ProductId) && (firstCatElemsInStateProdIds.indexOf(i)<0)) {
+                var option = document.createElement("option");
+                option.value = element;
+                option.id = element;
+                option.innerHTML = design.products.productsData[element].name;
+                listProd.appendChild(option);
+            }
+
+        });
+
     }
 }
 
