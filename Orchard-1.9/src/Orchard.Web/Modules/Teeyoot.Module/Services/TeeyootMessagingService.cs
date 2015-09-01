@@ -139,19 +139,19 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromName = "Teeyoot";
             if (isSuccesfull)
             {
-                mandrillMessage.Subject = "Campaign reach goal!";
+                mandrillMessage.Subject = "Campaign reach target!";
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-successfull-admin-template.html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
-                    mandrillMessage.Subject = "Campaign didn't reach goal!";
+                    mandrillMessage.Subject = "Campaign didn't reach target!";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-notSuccessfull-admin-template.html");
                 }
                 else
                 {
-                    mandrillMessage.Subject = "Campaign didn't reach goal, but met the minimum!";
+                    mandrillMessage.Subject = "Campaign didn't reach target, but met the minimum!";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-met-minimum-admin-template.html");
                 }
             }
