@@ -383,11 +383,11 @@
                         <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
                         <div class="checkout_form__row">
                             <div class="inp-half">
-                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="8" type="text">
+                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="6" type="text">
                                 <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
                             </div>
                             <div class="inp-half-right">
-                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="6" type="text">
+                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="7" type="text">
                                 <label id="City-error" class="error valid" for="City"></label>
                             </div>
                         </div>
@@ -462,7 +462,10 @@
                     required: true
                 },
                 State: {
-                    required: true
+                    required: true,
+        //            var elem = document.getElementById("State");
+
+        //return ($("#State option:selected").val() == "-");
                 },
                 StreetAddress: {
                     required: true
@@ -585,7 +588,7 @@
             });
             var countryElement = document.getElementById(countryElementId);
             countryElement.length = 0;
-            countryElement.options[0] = new Option('Select State', '-1');
+            countryElement.options[0] = new Option('Select State', "");
             countryElement.selectedIndex = 0;
             Settings = settings_arr;
             for (var i = 0; i < settings_arr.length; i++) {
@@ -598,7 +601,7 @@
         populateCountries("State");
         var delivCost = 0;
         document.getElementById("State").addEventListener("change", function () {
-            if (this.options[this.selectedIndex].value == -1) {
+            if (this.options[this.selectedIndex].value == "") {
                 document.getElementById("parentDelivery").style.display = "none";
                 document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                 delivCost = 0;
