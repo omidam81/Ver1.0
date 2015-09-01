@@ -1,5 +1,6 @@
 ﻿using Ionic.Zip;
 using Orchard.ContentManagement;
+using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
@@ -37,9 +38,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IOrderService _orderService;
         private readonly INotifier _notifier;
+        private readonly IRepository<ProductColorRecord> _repositoryColor;
 
         public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper, IOrderService orderService, IContentManager contentManager,
-            ITeeyootMessagingService teeyootMessagingService, INotifier notifier)
+            ITeeyootMessagingService teeyootMessagingService, INotifier notifier, IRepository<ProductColorRecord> repositoryColor)
         {
             _campaignService = campaignService;
             _siteService = siteService;
@@ -52,6 +54,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
             _notifier = notifier;
+            _repositoryColor = repositoryColor;
         }
 
         private dynamic Shape { get; set; }
@@ -237,7 +240,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         var serializer = new JavaScriptSerializer();
                         serializer.MaxJsonLength = int.MaxValue;
                         var data = serializer.Deserialize<DesignInfo>(campaign.Design);
-                        var color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[0])).First().ProductColorRecord;
+                        var color = _repositoryColor.Table.Where(c => c.Id == Int32.Parse(colors[0])).First();
+                        
                         var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                         var frontPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_front.png");
                         var backPath = Path.Combine(imageFolder, "product_type_" + prod.ProductRecord.Id + "_back.png");
@@ -249,7 +253,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
                             if (!string.IsNullOrEmpty(colors[1]))
                             {
-                                color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[1])).First().ProductColorRecord;
+                                color = _repositoryColor.Table.Where(c => c.Id == Int32.Parse(colors[1])).First();
                                 CreateImagesForOtherColor(campaign.Id, string.Format("{0}_{1}", prod.Id.ToString(), color.Id.ToString()), prod, data, frontPath, backPath, color.Value);
                                 prod.SecondProductColorRecord = color;
                             }
@@ -260,7 +264,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
                             if (!string.IsNullOrEmpty(colors[2]))
                             {
-                                color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[2])).First().ProductColorRecord;
+                                _repositoryColor.Table.Where(c => c.Id == Int32.Parse(colors[2])).First();
                                 CreateImagesForOtherColor(campaign.Id, string.Format("{0}_{1}", prod.Id.ToString(), color.Id.ToString()), prod, data, frontPath, backPath, color.Value);
                                 prod.ThirdProductColorRecord = color;
                             }
@@ -271,7 +275,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
                             if (!string.IsNullOrEmpty(colors[3]))
                             {
-                                color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[3])).First().ProductColorRecord;
+                                _repositoryColor.Table.Where(c => c.Id == Int32.Parse(colors[3])).First();
                                 CreateImagesForOtherColor(campaign.Id, string.Format("{0}_{1}", prod.Id.ToString(), color.Id.ToString()), prod, data, frontPath, backPath, color.Value);
                                 prod.FourthProductColorRecord = color;
                             }
@@ -282,7 +286,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
                             if (!string.IsNullOrEmpty(colors[4]))
                             {
-                                color = prod.ProductRecord.ColorsAvailable.Where(c => c.ProductColorRecord.Id == Int32.Parse(colors[4])).First().ProductColorRecord;
+                                _repositoryColor.Table.Where(c => c.Id == Int32.Parse(colors[4])).First();
                                 CreateImagesForOtherColor(campaign.Id, string.Format("{0}_{1}", prod.Id.ToString(), color.Id.ToString()), prod, data, frontPath, backPath, color.Value);
                                 prod.FifthProductColorRecord = color;
                             }
