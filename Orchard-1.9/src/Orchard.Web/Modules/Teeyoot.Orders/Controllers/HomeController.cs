@@ -210,11 +210,12 @@ namespace Teeyoot.Orders.Controllers
         public ActionResult EditStatusPayout(string publicId, double profit, int sellerId)
         {
             var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
+            order.Paid = DateTime.Now.ToUniversalTime();
             var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
             var campaign = _campaignService.GetCampaignById(campaignId) ;
             order.ProfitPaid = true;
             _orderService.UpdateOrder(order);
-            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now, Currency_Id = order.CurrencyRecord.Id, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
+            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
             return RedirectToAction("Index");
         }
 
