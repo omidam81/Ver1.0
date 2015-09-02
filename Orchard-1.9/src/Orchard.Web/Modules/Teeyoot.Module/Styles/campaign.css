@@ -5389,7 +5389,7 @@ ul, ol {
 
 .precheckout_items_table__item {
     line-height: 1;
-    min-width: 5rem;
+    min-width: 4.1rem;
     padding: 15px 5px 0 0;
     /*width: 5rem;*/
 }
@@ -5626,6 +5626,7 @@ input {
 
 .form__textfield {
     padding: 10px !important;
+    border-style: none;
     /*border-color: #e8eced !important;
     border: 1px solid #e8eced !important;*/
 }
@@ -6384,6 +6385,10 @@ input {
 @media all and (max-width: 400px) {
     .menu-anonimous-menu {
         width: 70% !important;
+    }
+
+    .modal-price {
+      font-size: 12px;
     }
 
     .menu-for-user {

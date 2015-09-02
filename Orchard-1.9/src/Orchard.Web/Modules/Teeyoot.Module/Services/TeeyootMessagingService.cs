@@ -889,6 +889,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "Goal", campaign.ProductCountGoal.ToString());
             message.AddRcptMergeVars(email, "SellerEmail", _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId).Email);
             message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/"+side+".png");
+            message.AddRcptMergeVars(email, "VideoPreviewUrl", baseUrl + "/Media/Default/images/video_thumbnail_521x315.jpg/");
 
         }
 
