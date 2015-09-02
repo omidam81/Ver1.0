@@ -120,11 +120,11 @@ namespace Teeyoot.Dashboard.Controllers
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Today)
                             .Sum(p => (int?)p.Count) ?? 0,
-                Profit = productsOrderedQuery
+                Profit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Today)
                             .Where(p => p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (int?)entry.Profit) ?? 0
+                            .Sum(entry => (double?)entry.Profit) ?? 0,2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Today)
@@ -139,11 +139,11 @@ namespace Teeyoot.Dashboard.Controllers
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Yesterday)
                             .Sum(p => (int?)p.Count) ?? 0,
-                Profit = productsOrderedQuery
+                Profit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Yesterday)
                             .Where(p => p.OrderRecord.Reserved.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (int?)entry.Profit) ?? 0
+                            .Sum(entry => (double?)entry.Profit) ?? 0,2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Yesterday)
@@ -158,16 +158,16 @@ namespace Teeyoot.Dashboard.Controllers
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
                             .Sum(p => (int?)p.Count) ?? 0,
-                Profit = productsOrderedQuery
+                Profit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
                             .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (int?)entry.Profit) ?? 0,
-                ToBePaid = productsOrderedQuery
+                            .Sum(entry => (double?)entry.Profit) ?? 0,2),
+                ToBePaid = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
                             .Where(p => !p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (int?)entry.Profit) ?? 0
+                            .Sum(entry => (double?)entry.Profit) ?? 0,2)
             });
 
             model.Overviews.Add(new CampaignsOverview
@@ -175,10 +175,10 @@ namespace Teeyoot.Dashboard.Controllers
                 Type = OverviewType.AllTime,
                 ProductsOrdered = productsOrderedQuery
                             .Sum(p => (int?)p.Count) ?? 0,
-                Profit = productsOrderedQuery
+                Profit =  Math.Round(productsOrderedQuery
                             .Where(p => p.OrderRecord.Paid.HasValue)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (int?)entry.Profit) ?? 0
+                            .Sum(entry => (double?)entry.Profit) ?? 0, 2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .Where(p => !p.OrderRecord.Reserved.HasValue)
