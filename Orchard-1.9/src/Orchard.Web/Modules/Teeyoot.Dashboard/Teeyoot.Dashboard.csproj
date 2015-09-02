@@ -77,6 +77,7 @@
   <ItemGroup>
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CostCalculator.js" />
     <Content Include="Scripts\jquery.flip.js" />
     <Content Include="Scripts\promotion.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
@@ -129,6 +130,7 @@
     <Compile Include="Routes.cs" />
     <Compile Include="Services\CampaignCategoriesService.cs" />
     <Compile Include="Services\ICampaignCategoriesService.cs" />
+    <Compile Include="ViewModels\RelaunchCampaignsViewModel.cs" />
     <Compile Include="ViewModels\CampaignsViewModel.cs" />
     <Compile Include="ViewModels\EditCampaignViewModel.cs" />
     <Compile Include="ViewModels\MessagesIndexViewModel.cs" />

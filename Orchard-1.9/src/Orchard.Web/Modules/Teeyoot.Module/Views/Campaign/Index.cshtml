@@ -1017,6 +1017,12 @@
                         }
                     </div>
                 }
+                @if (Model.Campaign.IsArchived == true)
+                {
+                    <a class="button--ended campaign_transaction__button campaign_transaction__button--new button hidden" href="#">Campaign has ended</a>
+                    <a class="button--ended campaign_transaction__button campaign_transaction__button--old button button--transaction--flat" href="#">Campaign has ended</a>
+                    <div class="did_not_reach_text">This campaign didn't reach its goal</div>
+                }
                 @if (Model.Campaign.IsApproved == true)
                 {
                     <div>

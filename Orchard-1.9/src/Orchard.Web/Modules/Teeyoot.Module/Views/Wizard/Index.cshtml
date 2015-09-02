@@ -178,6 +178,8 @@
             var backSideByDefault = document.getElementById('backdefaultside').checked;
             var tagsElems = document.querySelectorAll(".item");
             var productMinimumGoal = document.getElementById("minimmumGoal").value;
+            var cntFrontColor = window.frontColor;
+            var cntBackColor = window.backColor;
             var tags = [];
             for (var i = 0; i < tagsElems.length; i++) {
                 //tags.push(tagsElems[i].innerText.substring(0, tagsElems[i].innerText.length - 1));
@@ -203,7 +205,9 @@
                     'BackSideByDefault': backSideByDefault,
                     "Tags": tags,
                     "Products": app.state.products,
-                    "ProductMinimumGoal" : productMinimumGoal
+                    "ProductMinimumGoal" : productMinimumGoal,
+                    "CntFrontColor" : cntFrontColor,
+                    "CntBackColor" : cntBackColor
                 }),
                 success: function(data, status, resp) {
                     if (resp.status === 200) {
@@ -1479,7 +1483,7 @@
                                                                         </a>
                                                                     </p>
                                                                     <select name="length" class="form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
-                                                                        <option data-attr-delay="0" value="8" data-reactid=".6.0.3.2.$8">3 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                                                        <option data-attr-delay="0" value="3" data-reactid=".6.0.3.2.$8">3 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
                                                                         <option data-attr-delay="0" value="5" data-reactid=".6.0.3.2.$5">5 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
                                                                         <option data-attr-delay="0" value="7" data-reactid=".6.0.3.2.$7">7 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(7).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
                                                                         <option data-attr-delay="0" value="14" data-reactid=".6.0.3.2.$14">14 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(14).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>

@@ -33,6 +33,8 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IMessageService _messageService;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly ITShirtCostService _tshirtService;
+        private readonly IProductService _productService;
         private readonly INotifier _notifier;
         private IOrchardServices Services { get; set; }
 
@@ -53,6 +55,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    ICampaignCategoriesService campaignCategoryService,
                                    IRepository<CurrencyRecord> currencyRepository,
                                    IMessageService messageService,
+                                   ITShirtCostService tshirtService,
+                                   IProductService productService,
                                    INotifier notifier,
                                    ITeeyootMessagingService teeyootMessagingService
                                     )
@@ -72,6 +76,8 @@ namespace Teeyoot.Dashboard.Controllers
             _campaignCategoryService = campaignCategoryService;
             _paymentInfService = paymentInfService;
             _messageService = messageService;
+            _tshirtService = tshirtService;
+            _productService = productService;
             _notifier = notifier;
             _teeyootMessagingService = teeyootMessagingService;
             Services = services;

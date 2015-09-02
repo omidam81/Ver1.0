@@ -36,5 +36,10 @@ namespace Teeyoot.Module.Services
         {
             return _productColorRepository.Table;
         }
+
+        public ProductRecord GetProductById(int id)
+        {
+            return _productRepository.Get(id);
+        }
     }
 }
