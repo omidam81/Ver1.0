@@ -994,6 +994,7 @@
 
                                                 @foreach (var size in product.ProductRecord.SizesAvailable)
                                                 {
+                                                    string sleaveCm = size.ProductSizeRecord.SleeveCm != null ? Math.Round((double)size.ProductSizeRecord.SleeveCm, 2).ToString() + " cm" : " ";
                                                     <tr class="product__size_chart__row">
                                                         <td class="product__size_chart__size_label">@size.ProductSizeRecord.SizeCodeRecord.Name</td>
                                                         <td>
@@ -1002,7 +1003,7 @@
                                                         </td>
                                                         <td>
                                                             <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.SleeveInch"</span>
-                                                            <span class="product__size_chart__size product__size_chart__size--cm">@Math.Round((double)size.ProductSizeRecord.SleeveCm, 2) cm</span>
+                                                            <span class="product__size_chart__size product__size_chart__size--cm">@sleaveCm</span>
                                                         </td>
                                                         <td>
                                                             <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.WidthInch"</span>
