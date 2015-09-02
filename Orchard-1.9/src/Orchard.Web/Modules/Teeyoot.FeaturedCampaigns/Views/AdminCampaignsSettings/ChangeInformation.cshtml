@@ -53,6 +53,14 @@
 
     window.onload = function () {
 
+        var target = document.querySelector(".Goal");
+        target.addEventListener("change", function () {
+            if (target.value < 15) {
+                target.value = 15;
+            }
+        });
+
+
         var elems = document.querySelectorAll(".price");
 
         for (var i = 0; i < elems.length; i++) {

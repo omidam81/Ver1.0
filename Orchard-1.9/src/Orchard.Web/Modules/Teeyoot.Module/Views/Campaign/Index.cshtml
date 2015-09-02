@@ -291,7 +291,20 @@
             i = i + 1;
             VisibleRemove();
             document.getElementById("reserve-it-now").className = "dg-overlay";
-
+            //if (window.color != 0) {
+            //    var optionColor = $.find('option[id="' + window.color + '"]')[0];
+            //    var selectColor = optionColor.parentNode;
+            //    selectColor.selectedIndex = optionColor.index;
+            //    selectColor.selectedOptions = null;
+            //    var child;
+            //    for (var i = 0; i < selectColor.children.length; i++) {
+            //        child = selectColor.children[i];
+            //        child.removeAttribute("selected");
+            //    }
+            //    selectColor.selectedOptions = optionColor;
+            //    $(optionColor).attr("selected", "selected");
+            //}
+            //event.stopPropagation();
         }
 
         function CloseReservation() {
@@ -316,10 +329,26 @@
             document.getElementById("bringBackCampaign").className = "dg-overlay-not-show";
         }
 
+        window.color = 0;
+
         function ChangeColor(item) {
             var id = item.id;
             idProduct = id;
             isChangetColor = true;
+            window.color = id;
+            if (window.color != 0) {
+                var optionColor = $.find('option[id="' + window.color + '"]')[0];
+                var selectColor = optionColor.parentNode;
+                selectColor.selectedIndex = optionColor.index;
+                selectColor.selectedOptions = null;
+                var child;
+                for (var i = 0; i < selectColor.children.length; i++) {
+                    child = selectColor.children[i];
+                    child.removeAttribute("selected");
+                }
+                selectColor.selectedOptions = optionColor;
+                $(optionColor).attr("selected", "selected");
+            }
             if (!isFront) {
                 isFront = !isFront;
                 console.log(isFront);
@@ -374,7 +403,7 @@
 
             var id = item[item.selectedIndex].id;
             var name = $(item[item.selectedIndex]).attr("name");
-
+            window.color = 0;
             var color_items = document.getElementsByClassName("item_color");
             for (var i = 0; i < color_items.length; i++) {
                 if ($(color_items[i]).attr("name") == name) {
@@ -965,6 +994,7 @@
 
                                                 @foreach (var size in product.ProductRecord.SizesAvailable)
                                                 {
+                                                    string sleaveCm = size.ProductSizeRecord.SleeveCm != null ? Math.Round((double)size.ProductSizeRecord.SleeveCm, 2).ToString() + " cm" : " ";
                                                     <tr class="product__size_chart__row">
                                                         <td class="product__size_chart__size_label">@size.ProductSizeRecord.SizeCodeRecord.Name</td>
                                                         <td>
@@ -973,7 +1003,7 @@
                                                         </td>
                                                         <td>
                                                             <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.SleeveInch"</span>
-                                                            <span class="product__size_chart__size product__size_chart__size--cm">@Math.Round((double)size.ProductSizeRecord.SleeveCm, 2) cm</span>
+                                                            <span class="product__size_chart__size product__size_chart__size--cm">@sleaveCm</span>
                                                         </td>
                                                         <td>
                                                             <span class="product__size_chart__size product__size_chart__size--inch">@size.ProductSizeRecord.WidthInch"</span>
