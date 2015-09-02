@@ -49,5 +49,9 @@ namespace Teeyoot.Module.Services
         int GetCountOfReservedRequestsOfCampaign(int id);
 
         CampaignRecord ReLaunchCampiagn(int productCountGoal, string campaignProfit, int campaignLength, int minimum, RelaunchProductInfo[] baseCost, int id);
+
+        void CheckCountOfReservedRequestsOfCampaigns();
+
+        IQueryable<string> GetBuyersEmailOfReservedCampaign(int id);
     }
 }

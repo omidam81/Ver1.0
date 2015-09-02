@@ -116,7 +116,8 @@ function estimatedProfitChange(products, count) {
         $("#total_profit").html("RM " + minProfit + "+");
     } else {
         $("#total_profit").html("RM " + minProfit + "-" + maxProfin + "+");
-    }   
+    }
+    return minProfit;
 }
 
 function minimumGoal(products, frontColor, backColor, cnt, tshirtCost) {

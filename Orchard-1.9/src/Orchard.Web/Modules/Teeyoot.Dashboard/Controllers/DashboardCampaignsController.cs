@@ -357,10 +357,7 @@ namespace Teeyoot.Dashboard.Controllers
                 var prodRec = _productService.GetProductById(product.ProductRecord.Id);
                 prodInfo.Add(new { Price = product.Price, BaseCostForProduct = prodRec.BaseCost, ProductId = prodRec.Id, BaseCost = product.BaseCost });
             }
-            //var productBaseCost = _campaignService.GetProductsOfCampaign(id);
-            //result.Products = products.Select(p => new { Price = p.Price, BaseCost = p.BaseCost }).ToArray();
-
-
+            
             var tShirtCostRecord = _tshirtService.GetCost();
 
             result.Products = prodInfo.ToArray();
@@ -368,8 +365,6 @@ namespace Teeyoot.Dashboard.Controllers
             result.CntFrontColor = campaign.CntFrontColor;
             result.TShirtCostRecord = tShirtCostRecord;
             result.ProductCountGoal = campaign.ProductCountGoal;
-
-          
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -381,9 +376,6 @@ namespace Teeyoot.Dashboard.Controllers
             var newCampaign = _campaignService.ReLaunchCampiagn(productCountGoal,  campaignProfit,  campaignLength,  minimum,  baseCost,  id);
 
             CreateImagesForCampaignProducts(newCampaign);
-            //var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-            //var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-            //_teeyootMessagingService.SendNewCampaignAdminMessage(pathToTemplates, pathToMedia, campaign.Id);
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);  
         }

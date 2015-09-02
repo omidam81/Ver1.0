@@ -32,6 +32,7 @@ namespace Teeyoot.Messaging.Services
         private readonly IRepository<PayoutRecord> _payoutsRepository;
         private readonly IRepository<PaymentInformationRecord> _payoutInformRepository;
         private readonly IRepository<CampaignProductRecord> _campaignProductRepository;
+        private readonly IRepository<BringBackCampaignRecord> _backCampaignRepository;
         private readonly INotifier _notifier;
         private readonly IWorkContextAccessor _wca;
         public Localizer T { get; set; }
@@ -49,7 +50,8 @@ namespace Teeyoot.Messaging.Services
             IRepository<PaymentInformationRecord> payoutInformRepository,
             IWorkContextAccessor wca,
             IRepository<CampaignProductRecord> campaignProductRepository,
-            IRepository<CurrencyRecord> currencyRepository)
+            IRepository<CurrencyRecord> currencyRepository,
+            IRepository<BringBackCampaignRecord> backCampaignRepository)
         {
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
@@ -65,6 +67,7 @@ namespace Teeyoot.Messaging.Services
             _payoutInformRepository = payoutInformRepository;
             _wca = wca;
             _campaignProductRepository = campaignProductRepository;
+            _backCampaignRepository = backCampaignRepository;
         }
 
         public void SendCheckoutRequestEmails(IEnumerable<CheckoutCampaignRequest> checkoutCampaignRequests)
@@ -305,6 +308,108 @@ namespace Teeyoot.Messaging.Services
             SendTmplMessage(api, mandrillMessage);
 
         }
+        public void SendReLaunchApprovedCampaignMessageToSeller(string pathToTemplates, string pathToMedia, int campaignId)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromName = "Teeyoot";
+            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+
+            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+            mandrillMessage.To = new List<MandrillMailAddress>(){
+                new MandrillMailAddress(seller.Email, "Seller")
+            };
+
+            FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
+
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch.html");
+            SendTmplMessage(api, mandrillMessage);
+        }
+        
+        public void SendReLaunchApprovedCampaignMessageToBuyers(string pathToTemplates, string pathToMedia, int campaignId)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromName = "Teeyoot";
+            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+           
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            var buyers = _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == campaignId).ToList();
+
+            foreach (var buyer in buyers)
+            {
+                emails.Add(new MandrillMailAddress(buyer.Email, "Buyer"));
+                FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, buyer.Email, pathToMedia, pathToTemplates);
+            }
+           
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-buyer.html");
+            SendTmplMessage(api, mandrillMessage);
+            
+        }
+
+        public void SendReLaunchCampaignMessageToAdmin( int campaignId)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromName = "Teeyoot";
+            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+
+            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            foreach (var user in users)
+            {
+                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
+                FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
+            }
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller.html");
+            SendTmplMessage(api, mandrillMessage);           
+        }
+        public void SendReLaunchCampaignMessageToSeller(int campaignId)
+        {
+            var campaign = _campaignRepository.Get(campaignId);
+
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromName = "Teeyoot";
+            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+
+            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+            mandrillMessage.To = new List<MandrillMailAddress>(){
+                new MandrillMailAddress(seller.Email, "Seller")
+            };
+
+            FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller.html");
+            SendTmplMessage(api, mandrillMessage);
+        }
+
 
         public void SendTermsAndConditionsMessageToSeller()
         {
@@ -785,6 +890,59 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "SellerEmail", _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId).Email);
             message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/"+side+".png");
 
+        }
+
+        private void FillRelaunchCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
+        {
+            var baseUrl = "";
+            string remaining = "";
+            if (HttpContext.Current != null)
+            {
+                var request = HttpContext.Current.Request;
+                baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
+            }
+            else
+            {
+                baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
+            }
+            string side = "";
+            var campaign = _campaignRepository.Get(campaignId);
+
+            if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days > 0)
+            {
+                remaining = campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days + " days";
+            }
+            else if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days <= -1)
+            {
+                remaining = Math.Abs(campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Days) + "days ago";
+            }
+            else
+            {
+                if (campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours > 0)
+                {
+                    remaining = campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours + "hours";
+                }
+                else
+                {
+                    remaining = Math.Abs(campaign.EndDate.ToLocalTime().Subtract(DateTime.UtcNow).Hours) + "hours ago";
+                }
+            }
+
+
+            if (campaign.BackSideByDefault)
+            {
+                side = "back";
+            }
+            else
+            {
+                side = "front";
+            }
+            message.AddRcptMergeVars(email, "CampaignTitle", campaign.Title);
+            message.AddRcptMergeVars(email, "Url", baseUrl);
+            message.AddRcptMergeVars(email, "Campaignremaining", remaining);
+            message.AddRcptMergeVars(email, "CampaignEndDate", campaign.EndDate.ToLocalTime().ToShortDateString());
+            message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/" + side + ".png");
         }
 
         private void FillAdditionalCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)

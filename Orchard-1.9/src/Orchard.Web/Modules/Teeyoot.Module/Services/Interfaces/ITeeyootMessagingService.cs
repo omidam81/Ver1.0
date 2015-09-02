@@ -13,6 +13,10 @@ namespace Teeyoot.Module.Services
 
         void SendLaunchCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId);
 
+        void SendReLaunchCampaignMessageToAdmin(int campaignId);
+
+        void SendReLaunchCampaignMessageToSeller(int campaignId);
+
         void SendOrderStatusMessage(string pathToTemplates, string pathToMedia, int orderId, string orderStatus);
 
         void SendExpiredCampaignMessageToSeller(int campaignId, bool isSuccesfull);
@@ -52,5 +56,9 @@ namespace Teeyoot.Module.Services
         void SendCampaignFinished1DayMessageToSeller();
 
         void SendOrderShipped3DaysToBuyer();
+
+        void SendReLaunchApprovedCampaignMessageToSeller(string pathToTemplates, string pathToMedia, int campaignId);
+
+        void SendReLaunchApprovedCampaignMessageToBuyers(string pathToTemplates, string pathToMedia, int campaignId);
     }
 }
