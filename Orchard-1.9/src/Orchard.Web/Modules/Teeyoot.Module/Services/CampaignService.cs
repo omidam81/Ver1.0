@@ -100,6 +100,11 @@ namespace Teeyoot.Module.Services
             return _campaignRepository.Get(id);
         }
 
+        public int GetArchivedCampaignsCnt(int id)
+        {
+            return _campaignRepository.Table.Where(c => c.BaseCampaignId == id).Count();
+        }
+
         public List<CampaignRecord> GetCampaignsForTheFilter(string filter, int skip = 0, int take = 16, bool tag = false)
         {
             if (tag)
@@ -151,7 +156,9 @@ namespace Teeyoot.Module.Services
                     IsApproved = false,
                     CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Unpaid.ToString()),
                     CampaignProfit = data.CampaignProfit != null ? data.CampaignProfit : string.Empty,
-                    ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal
+                    ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal,
+                    CntBackColor = data.CntBackColor,
+                    CntFrontColor = data.CntFrontColor
                 };
                 _campaignRepository.Create(newCampaign);
 
@@ -213,6 +220,132 @@ namespace Teeyoot.Module.Services
                         ThirdProductColorRecord = prod.ThirdColorId == 0 ? null : _colorRepository.Get(prod.ThirdColorId),
                         FourthProductColorRecord = prod.FourthColorId == 0 ? null : _colorRepository.Get(prod.FourthColorId),
                         FifthProductColorRecord = prod.FifthColorId == 0 ? null : _colorRepository.Get(prod.FifthColorId)
+                    };
+
+                    _campProdRepository.Create(campProduct);
+
+                    newCampaign.Products.Add(campProduct);
+                }
+
+                return newCampaign;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public CampaignRecord ReLaunchCampiagn(int productCountGoal, string campaignProfit, int campaignLength, int minimum, RelaunchProductInfo[] baseCost, int id)
+        {
+            var campaign = GetCampaignById(id);
+            var alias = campaign.Alias;
+            campaign.IsArchived = true;
+
+            int campId = 0;
+            int.TryParse(campaign.BaseCampaignId.ToString(), out campId);
+            if (campId != 0)
+            {
+                var numberArchive = GetArchivedCampaignsCnt(campId);
+                campaign.Alias = alias + "_archive_" + (numberArchive + 1);
+            }
+            else
+            {
+                campaign.Alias = alias + "_archive_1";
+            }
+           
+            var user = Services.WorkContext.CurrentUser;
+            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+            int? userId = null;
+
+            if (teeyootUser != null)
+            {
+                userId = teeyootUser.ContentItem.Record.Id;
+            }
+
+            try
+            {
+                var newCampaign = new CampaignRecord
+                {
+                    Alias = alias,
+                    BackSideByDefault = campaign.BackSideByDefault,
+                    Description = campaign.Description,
+                    Design = campaign.Design,
+                    EndDate = DateTime.UtcNow.AddDays(campaignLength),
+                    IsForCharity = campaign.IsForCharity,
+                    StartDate = DateTime.UtcNow,
+                    ProductCountGoal = productCountGoal,
+                    ProductCountSold = 0,
+                    TeeyootUserId = userId,
+                    Title = campaign.Title,
+                    IsActive = true,
+                    IsApproved = false,
+                    CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Unpaid.ToString()),
+                    CampaignProfit = campaignProfit != null ? campaignProfit : string.Empty,
+                    ProductMinimumGoal = minimum == 0 ? 1 : minimum,
+                    CntBackColor = campaign.CntBackColor,
+                    CntFrontColor = campaign.CntFrontColor,
+                    BaseCampaignId = campaign.BaseCampaignId != null ? campaign.BaseCampaignId : campaign.Id
+                };
+                _campaignRepository.Create(newCampaign);
+
+                var tags = _linkCampaignAndCategories.Table.Where(c =>c.CampaignRecord.Id == id);
+
+                if (tags != null)
+                {
+                    foreach (var tag in tags)
+                    {
+                        if (_campaignCategories.Table.Where(c => c.Name.ToLower() == tag.CampaignCategoriesPartRecord.Name).FirstOrDefault() != null)
+                        {
+                            var cat = _campaignCategories.Table.Where(c => c.Name.ToLower() == tag.CampaignCategoriesPartRecord.Name).FirstOrDefault();
+                            var link = new LinkCampaignAndCategoriesRecord
+                            {
+                                CampaignRecord = newCampaign,
+                                CampaignCategoriesPartRecord = cat
+                            };
+                            _linkCampaignAndCategories.Create(link);
+                        }
+                        else
+                        {
+                            var cat = new CampaignCategoriesRecord
+                            {
+                                Name = tag.CampaignCategoriesPartRecord.Name,
+                                IsVisible = false
+                            };
+                            _campaignCategories.Create(cat);
+                            var link = new LinkCampaignAndCategoriesRecord
+                            {
+                                CampaignRecord = newCampaign,
+                                CampaignCategoriesPartRecord = cat
+                            };
+                            _linkCampaignAndCategories.Create(link);
+                        }
+                    }
+                }
+
+                foreach (var prod in campaign.Products)
+                {
+                    double newBaseCost = 0;
+
+                    foreach (var newProd in baseCost)
+                    {
+                        if (newProd.Id == prod.ProductRecord.Id)
+                        {
+                            double.TryParse(newProd.BaseCost.Replace('.', ','), out newBaseCost);
+                        }
+                    }
+
+                    var campProduct = new CampaignProductRecord
+                    {
+                        CampaignRecord_Id = newCampaign.Id,
+                        BaseCost = newBaseCost,
+                        CurrencyRecord = prod.CurrencyRecord,
+                        Price = prod.Price,
+                        ProductColorRecord = prod.ProductColorRecord,
+                        ProductRecord = prod.ProductRecord,
+                        SecondProductColorRecord = prod.SecondProductColorRecord,
+                        ThirdProductColorRecord = prod.ThirdProductColorRecord,
+                        FourthProductColorRecord = prod.FourthProductColorRecord,
+                        FifthProductColorRecord = prod.FifthProductColorRecord
                     };
 
                     _campProdRepository.Create(campProduct);

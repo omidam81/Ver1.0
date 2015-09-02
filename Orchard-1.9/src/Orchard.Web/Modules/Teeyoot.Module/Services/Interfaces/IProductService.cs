@@ -13,5 +13,6 @@ namespace Teeyoot.Module.Services
         IQueryable<ProductRecord> GetAllProducts();
         IQueryable<ProductGroupRecord> GetAllProductGroups();
         IQueryable<ProductColorRecord> GetAllColorsAvailable();
+        ProductRecord GetProductById(int id);
     }
 }
