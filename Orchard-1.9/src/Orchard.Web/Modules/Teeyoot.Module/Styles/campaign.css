@@ -5626,6 +5626,7 @@ input {
 
 .form__textfield {
     padding: 10px !important;
+    border-style: none;
     /*border-color: #e8eced !important;
     border: 1px solid #e8eced !important;*/
 }

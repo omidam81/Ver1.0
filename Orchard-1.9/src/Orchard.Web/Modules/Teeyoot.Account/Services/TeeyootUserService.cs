@@ -35,6 +35,9 @@ namespace Teeyoot.Account.Services
             mandrillMessage.To = emails;
             var request = HttpContext.Current.Request;
             mandrillMessage.AddRcptMergeVars(user.Email, "Url", request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/");
+            var baseUrl = "";
+            baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
+            mandrillMessage.AddRcptMergeVars(user.Email, "VideoPreviewUrl", baseUrl + "/Media/Default/images/video_thumbnail_521x315.jpg/");
             var text = System.IO.File.ReadAllText(pathToTemplates + "welcome-template.html");
             mandrillMessage.Html = text;
             var res = SendTmplMessage(api, mandrillMessage);
