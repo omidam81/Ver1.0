@@ -109,7 +109,7 @@ namespace Teeyoot.Dashboard.Controllers
                 var prods = campaignProducts.Where(c => c.WhenDeleted == null).FirstOrDefault(p => p.CampaignRecord_Id == item.Id);
                 item.FirstProductId = prods != null ? prods.Id : 0;
                 item.Profit = orderedProducts
-                                    .Where(p => p.OrderRecord.IsActive && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
+                                    .Where(p => p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
                                     .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
                                     .Sum(entry => (double?)entry.Profit) ?? 0;
             }
@@ -130,7 +130,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Today)
-                             .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0,2)
                 //,
@@ -150,7 +150,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Yesterday)
-                             .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                             .Where(p =>  p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0,2)
                 //,
@@ -170,12 +170,12 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 Profit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                            .Where(p => p.OrderRecord.Paid.HasValue  && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0,2),
                 ToBePaid = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => !p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                            .Where(p => !p.OrderRecord.Paid.HasValue  && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0,2)
             });

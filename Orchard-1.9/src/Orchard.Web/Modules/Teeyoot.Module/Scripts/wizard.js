@@ -1879,6 +1879,10 @@ function slide() {
 
     $('#design').click(Design);
     $('#description').click(function () {
+        if (app.state.pos == 0) {
+            Goal();
+        }
+        
         slideTo(3);
     });
 }
