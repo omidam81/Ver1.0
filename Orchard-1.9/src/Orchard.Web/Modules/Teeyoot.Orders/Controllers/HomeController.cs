@@ -89,7 +89,6 @@ namespace Teeyoot.Orders.Controllers
 
                 double orderProfit = 0;
 
-
                 if (item.Products != null)
                 {
                     foreach (var product in item.Products)
@@ -100,7 +99,7 @@ namespace Teeyoot.Orders.Controllers
                             if (size.Id == product.ProductSizeRecord.Id)
                                 prof = prof - size.SizeCost;
                         }
-                        orderProfit = orderProfit + prof;
+                        orderProfit = orderProfit + (prof*product.Count);
                         orderProfit = Math.Round(orderProfit, 2);
                     }
                 }
