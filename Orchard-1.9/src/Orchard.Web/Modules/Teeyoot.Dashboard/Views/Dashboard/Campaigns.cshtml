@@ -3,20 +3,21 @@
 @{
     @model Teeyoot.Dashboard.ViewModels.CampaignsViewModel
     Style.Include("campaigns.css");
+    Script.Include("CostCalculator.js");
 }
 
 <div class="campaign-title-dashboard dashboard-section-title">
-   <span class="centr"> @T("Your Campaign Overview")</span>
+    <span class="centr"> @T("Your Campaign Overview")</span>
     <span class="menu-closer" onclick="toggleMobileMenu()"><i class="fa fa-angle-up"></i></span>
     <span class="menu-opener" onclick="toggleMobileMenu()"><i class="fa fa-angle-down"></i></span>
 </div>
 
 <div class="box">
     @*<div class="box-header">
-        <div class="box-header-title">@T("Overview")</div>
-    </div>*@
+            <div class="box-header-title">@T("Overview")</div>
+        </div>*@
 
-    <div class="campaigns-overview-body centr" >
+    <div class="campaigns-overview-body centr">
 
         @for (int i = 0; i < Model.Overviews.Count; i++)
         {
@@ -156,11 +157,7 @@
                     <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/@(!c.ShowBack ? "front.png" : "back.png")')">
 
                         <div class="campaign-card-links">
-                            @*<div>
-                                <a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                            </div>*@
+
                             @*<div>
 
                                     <a href="@Url.Action("Wizard", "Dashboard", new { id = c.Id })" title="@T("Duplicate")">
@@ -175,12 +172,20 @@
                                     </a>
                                 </div>
                             }
-
                             <div>
-                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id, change = !c.IsPrivate })" title="@T("Private")" class="@colorForPrivate" >
+                                <a href="@Url.Action("PrivateCampaign", "Dashboard", new { id = c.Id, change = !c.IsPrivate })" title="@T("Private")" class="@colorForPrivate">
                                     <i class="fa fa-globe"></i>
                                 </a>
-                            </div>
+                            </div>@*<a href="@Url.Action("EditCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">*@
+                            @if (!c.IsActive && !c.IsArchived && c.CountRequests >= 10)
+                            {
+                                <div>
+                                 
+                                    <a href="#re-enable" onclick="Relaunch(@c.Id, '@c.Name')" title="@T("Re-enable")">
+                                        <i class="fa fa-refresh"></i>
+                                    </a>
+                                </div>
+                            }
                         </div>
 
                         <div class="campaign-card-profit">
@@ -205,10 +210,20 @@
                                 @if (daysRemaining > 0)
                                 {
                                     @daysRemaining@: days @T("remaining")
-                                                   } else if (daysRemaining <= -1) { @Math.Abs(daysRemaining) @: days @T("ago")
-                                                   } else { var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours;  if (hours > 0) { @hours @: h @T("remaining")
-                                                       } else { @Math.Abs(hours) @: h @T("ago")
-                                                       } }  </span>
+                                                   }
+                                else if (daysRemaining <= -1)
+                                { @Math.Abs(daysRemaining) @: days @T("ago")
+                                                   }
+                                else
+                                {
+                                    var hours = c.EndDate.Subtract(DateTime.UtcNow).Hours; if (hours > 0)
+                                    { @hours @: h @T("remaining")
+                                                       }
+                                    else
+                                    { @Math.Abs(hours) @: h @T("ago")
+                                                       }
+                                }
+                            </span>
                         </div>
 
                     </div>
@@ -222,92 +237,237 @@
     </div>
 </div>
 
+
+<div class="dg-overlay-not-show" id="re-enable">
+    <div class="dg-table">
+        <div class="dg-cell">
+            <div class="dg-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span id="modal__title"></span>
+                            <span class="precheckout_close_button" id="close-reservation" onclick="CloseModal()">X</span>
+                                <i class="ts-icon-close"></i>
+                            </span>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="label__title">@T("Set a new goal")</div>
+                            <p class="relaunch__goal_info">@T("Your goal must be at least 15.")</p>
+
+                            <input class="tipping_point_input" id="relaunch_form_tipping_point" type="text">
+                            <div class="relaunch_info_container">
+                                <span class="relaunch_info">@T("Minimum: ") </span><span id="minimmumGoal" class="profit_range_text"></span>
+                            </div>
+                            <div>
+                                <span class="relaunch_info">@T("Estimated profit if you achieve your target: ")</span><span id="total_profit" class="profit_range_text"></span>
+                            </div>
+                            <div class="relaunch__length">
+                                <label class="label__title" for="relaunch_form_length"> @T("Choose a campaign length")</label>
+
+                                <select name="length" class="length form__select_menu campaign-length--select" id="length" data-reactid=".6.0.3.2">
+                                    <option data-attr-delay="0" value="3">3 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                    <option data-attr-delay="0" value="5">5 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                    <option data-attr-delay="0" value="7">7 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(7).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                    <option data-attr-delay="0" value="14">14 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(14).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                    <option data-attr-delay="0" value="21">21 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(21).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                    <option data-attr-delay="0" value="28">28 @T("Days")  (@T("Ending")  @DateTime.Now.AddDays(28).ToString("dddd, MMMM dd, yyyy", new System.Globalization.CultureInfo(WorkContext.CurrentCulture)))</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="payment_options_container">
+                                <div class="payment_options_actions">
+                                    <div onclick="sendData(); return false;" class="button--relaunch">
+                                        @T("Reopen your campaign now!")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
 @using (Script.Foot())
 {
     <script>
+    var campaignId;
+    var products;
+    var cntFrontColor;
+    var cntBackColor;
+    var productCountGoal;
+    var tShirtCostRecord;
+    var baseCost;
+    function Relaunch(id, name) {
+
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "GET",
+            url: "@(Url.Action("GetDataForReLaunch", "Dashboard"))",
+            data: {
+                "id": id
+            },
+            success: function (data) {
+                products = data.Products;
+                cntFrontColor = data.CntFrontColor;
+                cntBackColor = data.CntBackColor;
+                productCountGoal = data.ProductCountGoal;
+                tShirtCostRecord = data.TShirtCostRecord;
+                baseCost = minimumGoal(data.Products, data.CntFrontColor, data.CntBackColor, data.ProductCountGoal, data.TShirtCostRecord);
+                document.getElementById("relaunch_form_tipping_point").value = data.ProductCountGoal;
+
+                estimatedProfitChange(products, data.ProductCountGoal);
+            }
+        });
+
+        document.getElementById("modal__title").innerHTML = "Reopen \"" + name + "\"";
+        campaignId = id;
+        document.getElementById("re-enable").className = "dg-overlay";
+    }
 
 
-        var showOverviewForPeriod = function (index) {
-            $('.overview-for-period.selected').removeClass('selected');
-            $('.overview-period.current').removeClass('current');
-            $($('.overview-for-period')[index]).addClass('selected');
-            $($('.overview-period')[index]).addClass('current');
+    $("#relaunch_form_tipping_point").keyup(function () {
+        var cnt = document.getElementById("relaunch_form_tipping_point").value;
+        if (cnt > tShirtCostRecord.SalesGoal) {
+            cnt = tShirtCostRecord.SalesGoal;
+            document.getElementById("relaunch_form_tipping_point").value = tShirtCostRecord.SalesGoal;
         }
+        baseCost = minimumGoal(products, cntFrontColor, cntBackColor, cnt, tShirtCostRecord);
 
-        var filterCampaignList = function (el) {
-            $('.campaign-card').each(function (index, elem) {
-                elem = $(elem);
-                if (elem.attr('data-Name').indexOf(el.value) === -1) {
-                    elem.addClass('hidden');
-                } else if (elem.hasClass('hidden')) {
-                    elem.removeClass('hidden');
+        estimatedProfitChange(baseCost, cnt);
+
+    });
+
+    function CloseModal() {
+        document.getElementById("re-enable").className = "dg-overlay-not-show";
+    }
+
+    function sendData() {
+        var countTees = parseInt(document.getElementById("relaunch_form_tipping_point").value);
+        var profit = document.getElementById('total_profit').innerHTML;
+        var campaignLength = parseInt(document.getElementById('length').value);
+        var minimum = parseInt(document.getElementById("minimmumGoal").innerHTML);
+
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("ReLaunchCampaign", "Dashboard"))",
+            data: addAntiForgeryToken({
+                "productCountGoal": countTees,
+                "campaignProfit": profit,
+                "campaignLength": campaignLength,
+                "minimum": minimum,
+                "baseCost": baseCost,
+                "id": campaignId
+            }),
+            success: function (data, status, resp) {
+                if (resp.status === 200) {
+                    CloseModal();
+
+                    window.location.href = '/Dashboard/Campaigns';
+                }
+            },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            }
+        });
+    }
+
+    function addAntiForgeryToken(data) {
+        data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+        return data;
+    };
+    var showOverviewForPeriod = function (index) {
+        $('.overview-for-period.selected').removeClass('selected');
+        $('.overview-period.current').removeClass('current');
+        $($('.overview-for-period')[index]).addClass('selected');
+        $($('.overview-period')[index]).addClass('current');
+    }
+
+    var filterCampaignList = function (el) {
+        $('.campaign-card').each(function (index, elem) {
+            elem = $(elem);
+            if (elem.attr('data-Name').indexOf(el.value) === -1) {
+                elem.addClass('hidden');
+            } else if (elem.hasClass('hidden')) {
+                elem.removeClass('hidden');
+            }
+        });
+    }
+
+    var sortCampaignList = function (el) {
+        var sortBy = $(el).find('span');
+
+        $('.sort-by span').text(sortBy.text()).attr('data-sortby', sortBy.attr('data-sortby'));
+
+        var campaigns = $('.campaign-card');
+
+        campaigns.sort(function (a, b) {
+            var sortByValue = sortBy.attr('data-sortby');
+            var an = sortByValue === "Sales" ? parseInt(b.getAttribute('data-' + sortByValue), 10) : a.getAttribute('data-' + sortByValue),
+                bn = sortByValue === "Sales" ? parseInt(a.getAttribute('data-' + sortByValue), 10) : b.getAttribute('data-' + sortByValue);
+
+            if (an > bn) {
+                return 1;
+            }
+            if (an < bn) {
+                return -1;
+            }
+            return 0;
+        });
+
+        campaigns.detach().appendTo($('.campaigns-list-container > div'));
+    }
+
+    var filterByState = function (el) {
+        var status = $(el).find('span');
+
+        $('.filtered-by span').text(status.text()).attr('data-filterby', status.attr('data-filterby'));
+
+        if (status.attr('data-filterby') === 'All') {
+            $('.campaign-card').removeClass('hidden');
+        } else {
+            $('.campaign-card').each(function (index, el) {
+                el = $(el);
+                if (el.attr('data-campaign-state') !== status.attr('data-filterby')) {
+                    el.addClass('hidden');
+                } else if (el.hasClass('hidden')) {
+                    el.removeClass('hidden');
                 }
             });
         }
+    }
 
-        var sortCampaignList = function (el) {
-            var sortBy = $(el).find('span');
+    $('.filter-dropdown-toggle').click(function () {
+        //$(".filter-dropdown").removeClass('open');
+        $(this).parent().toggleClass('open')
+    });
 
-            $('.sort-by span').text(sortBy.text()).attr('data-sortby', sortBy.attr('data-sortby'));
-
-            var campaigns = $('.campaign-card');
-
-            campaigns.sort(function (a, b) {
-                var sortByValue = sortBy.attr('data-sortby');
-                var an = sortByValue === "Sales" ? parseInt(b.getAttribute('data-' + sortByValue), 10) : a.getAttribute('data-' + sortByValue),
-                    bn = sortByValue === "Sales" ? parseInt(a.getAttribute('data-' + sortByValue), 10) : b.getAttribute('data-' + sortByValue);
-
-                if (an > bn) {
-                    return 1;
-                }
-                if (an < bn) {
-                    return -1;
-                }
-                return 0;
-            });
-
-            campaigns.detach().appendTo($('.campaigns-list-container > div'));
+    $(document).click(function (e) {
+        if (!$(e.target).hasClass("filter-dropdown-toggle") && !$(e.target).parent().parent().hasClass("filter-dropdown-toggle")) {
+            $(".filter-dropdown").removeClass('open');
         }
+    }
+    );
 
-        var filterByState = function (el) {
-            var status = $(el).find('span');
+    $(document).ready(function () {
 
-            $('.filtered-by span').text(status.text()).attr('data-filterby', status.attr('data-filterby'));
-
-            if (status.attr('data-filterby') === 'All') {
-                $('.campaign-card').removeClass('hidden');
-            } else {
-                $('.campaign-card').each(function (index, el) {
-                    el = $(el);
-                    if (el.attr('data-campaign-state') !== status.attr('data-filterby')) {
-                        el.addClass('hidden');
-                    } else if (el.hasClass('hidden')) {
-                        el.removeClass('hidden');
-                    }
-                });
-            }
-        }
-
-        $('.filter-dropdown-toggle').click(function () {
-            //$(".filter-dropdown").removeClass('open');
-            $(this).parent().toggleClass('open')
-        });
-
-        $(document).click(function (e) {
-            if (!$(e.target).hasClass("filter-dropdown-toggle") && !$(e.target).parent().parent().hasClass("filter-dropdown-toggle")) {
-                $(".filter-dropdown").removeClass('open');
-            }
-        }
-        );
-
-        $(document).ready(function () {
-
-            document.title = "Your Campaigns | Teeyoot";
-            var statusFilter = document.getElementsByClassName('filtered-by');
-            var sortBy = document.getElementsByClassName('sort-by');
-            filterByState(statusFilter);
-            sortCampaignList(sortBy);
-        });
+        document.title = "Your Campaigns | Teeyoot";
+        var statusFilter = document.getElementsByClassName('filtered-by');
+        var sortBy = document.getElementsByClassName('sort-by');
+        filterByState(statusFilter);
+        sortCampaignList(sortBy);
+    });
 
     </script>
 }
