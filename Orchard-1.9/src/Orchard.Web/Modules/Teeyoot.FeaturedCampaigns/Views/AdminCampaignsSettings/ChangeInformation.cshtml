@@ -53,6 +53,14 @@
 
     window.onload = function () {
 
+        var target = document.querySelector(".Goal");
+        target.addEventListener("change", function () {
+            if (target.value < 15) {
+                target.value = 15;
+            }
+        });
+
+
         var elems = document.querySelectorAll(".price");
 
         for (var i = 0; i < elems.length; i++) {
@@ -146,7 +154,12 @@
                 },
                 error: function (data, status, resp) {
                     loader.style.display = "none";
-                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    if (resp.status === 507) {
+                        alert('Please, try to save again');
+                    }
+                    else {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
 
                 }
             });
@@ -466,9 +479,9 @@
                     <td><input id="sell @i" type="text" class="prices" value="@Model.Products.ElementAt(i).Price" onkeyup="profit(@i,this.value.replace(',', '.'))" style="width:50px" /></td>
                     <td class="price" id=@i></td>
                     <td>
-                        @if (Model.Products.ElementAt(i).WhenDeleted == null)
+                        @if (Model.Products.ElementAt(i).WhenDeleted == null && Model.Products.Count() > 1)
                         {
-                            @*<a class="button" href="@Url.Action("DeleteProduct", new { id = Model.Products.ElementAt(i).Id })" title="@T("Delete")">@T("Delete")</a>*@
+                            <a class="button" href="@Url.Action("DeleteProduct", new { productId = Model.Products.ElementAt(i).Id, campaignId = Model.CampaignId })" title="@T("Delete")">@T("Delete")</a>
                         }
                     </td>
                 </tr>

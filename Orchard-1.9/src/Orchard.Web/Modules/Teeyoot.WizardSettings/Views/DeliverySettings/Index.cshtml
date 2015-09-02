@@ -20,6 +20,9 @@
                 <th class="visible">
                     <h3>@T("Delivery cost")</h3>
                 </th>
+                <th class="visible">
+                    <h3>@T("Enabled")</h3>
+                </th>
                 <th class="name">
                     <h3>@T("Action")</h3>
                 </th>
@@ -35,14 +38,66 @@
                     <td class="visible">
                         @(String.Format("{0:0.00}", @setting.DeliveryCost))
                     </td>
+                    <td class="visible">
+                       @if (setting.Enabled)
+                       {
+                        <input type="checkbox" id="@setting.Id" checked="checked" onclick=switchOn(this) />
+                       }
+                       else
+                       {
+                        <input type="checkbox" id="@setting.Id" onclick=switchOn(this) />
+                       }
+
+                    </td>
                     <td class="related">
                         <a class="button" href="@Url.Action("EditSetting", "DeliverySettings", new { Id = setting.Id })" title="@T("Edit")">@T("Edit")</a>
                         <a class="button" href="@Url.Action("DeleteSetting", "DeliverySettings", new { Id = setting.Id })" itemprop="RemoveUrl">@T("Delete")</a>
                     </td>
                 </tr>
             }
+            <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
         </tbody>
     </table>
 </fieldset>
 
 @Display(Model.Pager)
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        function addAntiForgeryToken(data) {
+            var antiForgeryTokenValue = $('#anti_forgery_token').val();
+            data.__RequestVerificationToken = antiForgeryTokenValue;
+            return data;
+        };
+
+
+        function switchOn(obj) {
+            //console.log(obj.id);
+
+            var id = obj.id;
+            var value = obj.checked;
+            
+            $.ajax({
+
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@Url.Action("Enabled")",
+                data: addAntiForgeryToken({"id" : id, "value": value}),
+            success: function (data) {
+                // Something afterwards here
+
+            },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            }
+            });
+
+
+
+        }
+
+
+        </script>
+}

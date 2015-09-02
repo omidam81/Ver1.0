@@ -83,7 +83,10 @@
                                     @T("Delivery")
 
                                 </dt>
-                                <dd>@Model.Order.CurrencyRecord.Code 1.99</dd>
+                                <dd id="parentDelivery" style="display:none">
+                                    @Model.Order.CurrencyRecord.Code
+                                    <span id="deliveryCost"></span>
+                                </dd>
                             </dl>
                             <dl class="order_summary__breakdown">
                                 <dt class="order_summary__total_label">
@@ -92,11 +95,17 @@
                                 <dd>
                                     @if (Model.Order.TotalPriceWithPromo != 0)
                                     {
-                                        <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @Model.Order.TotalPriceWithPromo</span>
+                                        <span class="order_summary__total" >
+                                            @Model.Order.CurrencyRecord.Code
+                                            <span id="ordTotal"> @Model.Order.TotalPriceWithPromo</span>
+                                    </span>
                                     }
                                     else
                                     {
-                                        <span class="order_summary__total">@Model.Order.CurrencyRecord.Code @(@Model.Order.TotalPrice + 1.99)</span>
+                                        <span class="order_summary__total">
+                                            @Model.Order.CurrencyRecord.Code
+                                            <span id="ordTotal">@Model.Order.TotalPrice</span>
+                                        </span>
                                     }
 
                                 </dd>
@@ -107,7 +116,7 @@
                                     @T("We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only.")
 
                                 </span>
-                                
+
                             </dl>
 
                         </div><div class="order_summary--offset js_order_summary--offset"></div>
@@ -185,8 +194,8 @@
                             @if (Model.Mol)
                             {
                                 <li>
-                                    <a href="javascript:;"  class="payment-method" data-payment-method="mol">
-                                        <p sty>@T("Online Bancking")</p>
+                                    <a href="javascript:;" class="payment-method" data-payment-method="mol">
+                                        <p>@T("Online Banking")</p>
                                         @*<p>@T("Online Bancking")</p>*@
                                     </a>
                                 </li>
@@ -374,18 +383,18 @@
                         <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
                         <div class="checkout_form__row">
                             <div class="inp-half">
-                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="8" type="text">
+                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="6" type="text">
                                 <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
                             </div>
                             <div class="inp-half-right">
-                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="6" type="text">
+                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="7" type="text">
                                 <label id="City-error" class="error valid" for="City"></label>
                             </div>
                         </div>
                         <div class="checkout_form__row">
                             <div>
                                 <div class="inp-half smarty-streets-container">
-                                    <select class="form__textfield " data-default="43" id="State" placeholder="@T("State")" name="State" abindex="7" type="text"></select>
+                                    <select class="form__textfield " style="font-size:17px" data-default="43" id="State" placeholder="@T("State")" name="State" tabindex="7" type="text"></select>
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
@@ -453,7 +462,10 @@
                     required: true
                 },
                 State: {
-                    required: true
+                    required: true,
+        //            var elem = document.getElementById("State");
+
+        //return ($("#State option:selected").val() == "-");
                 },
                 StreetAddress: {
                     required: true
@@ -489,6 +501,7 @@
                 $('#paymentMethod').val("2");
             } else if (defaultPaymentMethod === 'mol') {
                 $('#message_err').css({ "display": "none" });
+                $('.message_Mol').css({ "display": "" });
                 $('#payment_method_mol').show();
                 $('#paymentMethod').val("3");
             } else if (defaultPaymentMethod === 'cash') {
@@ -557,6 +570,7 @@
 
     <script language="javascript">
         //var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Anguilla", "Antartica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Ashmore and Cartier Island", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czeck Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Europa Island", "Falkland Islands (Islas Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "Gambia, The", "Gaza Strip", "Georgia", "Germany", "Ghana", "Gibraltar", "Glorioso Islands", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See (Vatican City)", "Honduras", "Hong Kong", "Howland Island", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Ireland, Northern", "Israel", "Italy", "Jamaica", "Jan Mayen", "Japan", "Jarvis Island", "Jersey", "Johnston Atoll", "Jordan", "Juan de Nova Island", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Man, Isle of", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Midway Islands", "Moldova", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcaim Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romainia", "Russia", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Scotland", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and South Sandwich Islands", "Spain", "Spratly Islands", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Tobago", "Toga", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "USA", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands", "Wales", "Wallis and Futuna", "West Bank", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+        var Settings = [];
         function populateCountries(countryElementId) {
             var settings_arr = [];
             $.ajax({
@@ -574,12 +588,39 @@
             });
             var countryElement = document.getElementById(countryElementId);
             countryElement.length = 0;
-            countryElement.options[0] = new Option('Select State', '-1');
+            countryElement.options[0] = new Option('Select State', "");
             countryElement.selectedIndex = 0;
+            Settings = settings_arr;
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
+                countryElement.options[i].addEventListener("click", function () {
+                    console.log("qwe")
+                });
             }
         }
         populateCountries("State");
+        var delivCost = 0;
+        document.getElementById("State").addEventListener("change", function () {
+            if (this.options[this.selectedIndex].value == "") {
+                document.getElementById("parentDelivery").style.display = "none";
+                document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                delivCost = 0;
+            } else {
+
+                for (var i = 0; i < Settings.length; i++) {
+                    if (Settings[i].State == this.options[this.selectedIndex].value) {
+                        document.getElementById("parentDelivery").style.display = "";
+                        document.getElementById("deliveryCost").innerHTML = Settings[i].DeliveryCost;
+                        document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                        document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) + Settings[i].DeliveryCost;
+                        delivCost = Settings[i].DeliveryCost;
+                        //console.log(this.options[0].value);
+                    }
+                }
+            }
+
+
+        });
+
     </script>
 }

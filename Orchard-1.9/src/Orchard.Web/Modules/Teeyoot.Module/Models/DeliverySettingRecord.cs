@@ -8,5 +8,7 @@ namespace Teeyoot.Module.Models
         public virtual string State { get; set; }
 
         public virtual double DeliveryCost { get; set; }
+
+        public virtual bool Enabled { get; set; }
     }
 }

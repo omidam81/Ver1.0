@@ -20,7 +20,7 @@ window.onload = function initWizard() {
     slides.css({ width: app.state.w + 'px' });
     app.state.pos = 0;
     slide();
-    
+
     //if (document.querySelector(".user-email") == null) {
 
     //$("#openTags").click(function () {
@@ -823,7 +823,7 @@ window.onload = function initWizard() {
         text.classList.add("ssp_heading");
         text.style.color = "#44474d";
         text.style.fontWeight = "800";
-        text.textContent =  product.name;
+        text.textContent = product.name;
 
         divDelete.classList.add("ssp_delete");
 
@@ -851,6 +851,8 @@ window.onload = function initWizard() {
 
 
         $(imageDel).click(function () {
+            var list = document.getElementById("item-options-dropdown-tees");
+            var selectedOptionInList = list.selectedOptions[0];
             if (document.querySelectorAll(".ssp_block").length == 8) {
                 document.getElementById("ui").style.display = "inline";
             }
@@ -905,8 +907,159 @@ window.onload = function initWizard() {
             var listProd = document.getElementById("product");
 
             listProd.innerHTML = "";
-           
-            $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
+
+            //var deletedProdCatIdx = -1;
+            //$.each(design.products.categoriesList, function (i, category) {
+            //    $.each(category.products, function (z, element) {
+            //        if (element == prdc.ProductId) {
+            //            index = i;
+            //        }
+            //    })
+            //})
+            //var isInList = false;
+            //$.each(list.childNodes, function (i, node) {
+            //    if ((node.id == index) && (i != 0)) {
+            //        isInList = true;
+            //    }
+            //})
+
+            //if (design.products.categoriesList[index].products.length == 1 && !(isInList)) {
+            //    var option = document.createElement("option");
+            //    option.value = index;
+            //    option.id = index;
+            //    option.innerHTML = design.products.categoriesList[index].name;
+            //    list.appendChild(option);
+            //}
+            //$.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+            //    var cnt = 0;
+            //    $.each(app.state.products, function (j, el) {
+            //        if (el.ProductId == element) { cnt++; }
+            //    });
+
+            //    if (cnt == 0) {
+            //        var option = document.createElement("option");
+            //        option.value = element;
+            //        option.id = element;
+            //        option.innerHTML = design.products.productsData[element].name;
+            //        listProd.appendChild(option);
+            //    }
+            //});
+            var mas = [];
+            var resultMas = [];
+            var firstCatElemsInStateProdIds = [];
+            while (listProd.childNodes.length > 0) {
+                listProd.removeChild(listProd.childNodes[0]);
+            };
+            while (list.childNodes.length > 0) {
+                list.removeChild(list.childNodes[0]);
+            };
+
+            $.each(design.products.categoriesList, function (i, category) {
+                if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
+
+                } else {
+                    mas.push(category);
+                }
+
+                $.each(design.products.categoriesList[i].products, function (z, element) {
+                    if (element == app.state.currentProduct.ProductId) {
+                        index = i;
+                    }
+                })
+            });
+            $.each(mas, function (i, element) {
+                var theOnlyInAdditionalProducts = false;
+                if (element.products.length == 1) {
+                    $.each(app.state.products, function (i, stateProd) {
+                        if (stateProd.id == element.products[0]) {
+                            theOnlyInAdditionalProducts = true;
+                        }
+                    });
+                }
+                if (element.products.length == 1 && theOnlyInAdditionalProducts) {
+
+
+                } else {
+                    var koeff = 0;
+                    $.each(element.products, function (k, prod) {
+                        $.each(app.state.products, function (ii, stateProd) {
+                            if (stateProd.ProductId == prod) {
+                                koeff++;
+
+                            }
+                        });
+                    });
+                    if (!(koeff == element.products.length)) {
+                        resultMas.push(element);
+                    }
+
+
+                }
+
+            });
+            $.each(resultMas[0].products, function (k, prod) {
+                $.each(app.state.products, function (ii, stateProd) {
+                    if (prod == stateProd.ProductId) {
+                        firstCatElemsInStateProdIds.push(k);
+                    }
+                });
+            });
+            $.each(resultMas, function (i, element) {
+                var option = document.createElement("option");
+                option.value = design.products.categoriesList.indexOf(element);
+                option.id = design.products.categoriesList.indexOf(element);
+                option.innerHTML = resultMas[i].name;
+                list.appendChild(option);
+
+            })
+            $.each(resultMas[0].products, function (i, element) {
+                if ((element != app.state.currentProduct.ProductId) && (firstCatElemsInStateProdIds.indexOf(i) < 0)) {
+                    var option = document.createElement("option");
+                    option.value = element;
+                    option.id = element;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                }
+
+            });
+            $.each(list.childNodes, function (i, element) {
+                if (element.value == selectedOptionInList.value) {
+                    list.selectedIndex = i;
+                }
+
+            })
+            $('#item-options-dropdown-tees').trigger('change');
+        });
+
+        globalPrdc = prdc;
+        app.state.products.push(prdc);
+        $div.click();
+        estimatedProfitChangeForManuProducts();
+
+        var list = document.getElementById("item-options-dropdown-tees");
+        var listProd = document.getElementById("product");
+
+        listProd.innerHTML = "";
+
+        //if (listProd.childNodes.length == 0) {
+        //    list.removeChild(list.childNodes[list[list.selectedIndex].id]);
+        //    $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+        //        var cnt = 0;
+        //        $.each(app.state.products, function (j, el) {
+        //            if (el.ProductId == element) { cnt++; }
+        //        });
+
+        //        if (cnt == 0) {
+        //            var option = document.createElement("option");
+        //            option.value = element;
+        //            option.id = element;
+        //            option.innerHTML = design.products.productsData[element].name;
+        //            listProd.appendChild(option);
+        //        }
+        //    });
+
+        //} else {
+            $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
                 var cnt = 0;
                 $.each(app.state.products, function (j, el) {
                     if (el.ProductId == element) { cnt++; }
@@ -920,32 +1073,24 @@ window.onload = function initWizard() {
                     listProd.appendChild(option);
                 }
             });
-        });
+            if (listProd.childNodes.length == 0) {
+                list.removeChild(list.childNodes[list.selectedIndex]);
+                $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+                    var cnt = 0;
+                    $.each(app.state.products, function (j, el) {
+                        if (el.ProductId == element) { cnt++; }
+                    });
 
-        globalPrdc = prdc;
-        app.state.products.push(prdc);
-        $div.click();
-        estimatedProfitChangeForManuProducts();
-
-        var list = document.getElementById("item-options-dropdown-tees");
-        var listProd = document.getElementById("product");
-
-        listProd.innerHTML = "";
-
-        $.each(design.products.categoriesList[list.selectedIndex].products, function (i, element) {
-            var cnt = 0;
-            $.each(app.state.products, function (j, el) {
-                if (el.ProductId == element) { cnt++; }
-            });
-
-            if (cnt == 0) {
-                var option = document.createElement("option");
-                option.value = element;
-                option.id = element;
-                option.innerHTML = design.products.productsData[element].name;
-                listProd.appendChild(option);
-            }
-        });
+                    if (cnt == 0) {
+                        var option = document.createElement("option");
+                        option.value = element;
+                        option.id = element;
+                        option.innerHTML = design.products.productsData[element].name;
+                        listProd.appendChild(option);
+                    }
+                });
+                }
+        //}
     });
 
 
@@ -976,14 +1121,18 @@ window.onload = function initWizard() {
     //  ---- Add colors for products
     $("#div-color-1").click(function () {
         changesColor("#div-color-1", 1);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-1").css("visibility", "visible");
     }).mouseleave(function () {
         $("#div-color-delete-1").css("visibility", "collapse");
     });
 
-    $("#div-color-2").click(function () {
+    $("#div-color-2").click(function (event) {
         changesColor("#div-color-2", 2);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-2").css("visibility", "visible");
     }).mouseleave(function () {
@@ -992,6 +1141,8 @@ window.onload = function initWizard() {
 
     $("#div-color-3").click(function () {
         changesColor("#div-color-3", 3);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-3").css("visibility", "visible");
     }).mouseleave(function () {
@@ -1000,6 +1151,8 @@ window.onload = function initWizard() {
 
     $("#div-color-4").click(function () {
         changesColor("#div-color-4", 4);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-4").css("visibility", "visible");
     }).mouseleave(function () {
@@ -1008,6 +1161,8 @@ window.onload = function initWizard() {
 
     $("#div-color-5").click(function () {
         changesColor("#div-color-5", 5);
+        event.preventDefault();
+        event.stopPropagation();
     }).hover(function () {
         $("#div-color-delete-5").css("visibility", "visible");
     }).mouseleave(function () {
@@ -1017,6 +1172,8 @@ window.onload = function initWizard() {
     $("#div-color-delete-1").click(function () {
         if ($("#div-color-2").hasClass('div-color-active')) {
             deleteColor(1);
+            event.preventDefault();
+            event.stopPropagation();
         }
     });
 
@@ -1169,54 +1326,230 @@ function initProducts() {
     var list = document.getElementById("item-options-dropdown-tees");
     var listProd = document.getElementById("product");
     var mas = [];
+    if (app.state.products.length < 2) {
+        //Если лист категорий пустой то мы его инициализируем
+        if (list.value == "") {
+            var index = 0;
+            $.each(design.products.categoriesList, function (i, category) {
+                if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
 
-    //Если лист категорий пустой то мы его инициализируем
-    if (list.value == "") {
-
-        $.each(design.products.categoriesList, function (i) {
-            var z = 0;
-            var option = document.createElement("option");
-            option.value = i;
-            option.id = this.id;
-            option.innerHTML = this.name;
-            list.appendChild(option);
-            //Запихиваем айдишники продуктов по обьектам в массив
-            mas.push(this.products);
-        });
-        //Если лист продуктов пустой то мы его инициализируем
-        if (listProd.value == "") {
-            $.each(design.products.productsData, function (i, el) {
-                if (app.state.currentProduct.ProductId != el.id) {
-                    //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
-                    if (design.products.categoriesList[0].products.indexOf(el.id) >= 0) {
-                        var option = document.createElement("option");
-                        option.value = i;
-                        option.id = i;
-                        option.innerHTML = el.name;
-                        listProd.appendChild(option);
-                    }
+                } else {
+                    mas.push(category);
                 }
+
+                $.each(design.products.categoriesList[i].products, function (z, element) {
+                    if (element == app.state.currentProduct.ProductId) {
+                        index = i;
+                    }
+                })
             });
-        }
-
-        $(list).change(function () {
-            listProd.innerHTML = "";
-
-            $.each(design.products.categoriesList[this.value].products, function (i, element) {
-                var cnt = 0;
-                $.each(app.state.products, function (j, el) {
-                    if (el.ProductId == element) { cnt++; }
-                });
-
-                if (cnt == 0) {
+            $.each(mas, function (i, element) {
+                
+                    var option = document.createElement("option");
+                    option.value = design.products.categoriesList.indexOf(element);
+                    option.id = design.products.categoriesList.indexOf(element);
+                    option.innerHTML = mas[i].name;
+                    list.appendChild(option);
+                
+            })
+            //Если лист продуктов пустой то мы его инициализируем
+            //if (listProd.value == "") {
+            //    if (index > 0) {
+            //        index = 0;
+            //    } else {
+            //        index = 1;
+            //    }
+            $.each(mas[0].products, function (i, element) {
+                if (element != app.state.currentProduct.ProductId) {
                     var option = document.createElement("option");
                     option.value = element;
                     option.id = element;
                     option.innerHTML = design.products.productsData[element].name;
                     listProd.appendChild(option);
                 }
+
+            });
+            //$.each(design.products.productsData, function (i, el) {
+            //    if (app.state.currentProduct.ProductId != el.id) {
+            //        //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
+            //        if (index > 0) {
+            //            index = 0;
+            //        } else {
+            //            index = 1;
+            //        }
+            //        if (design.products.categoriesList[index].products.indexOf(el.id) != -1) {
+            //            var option = document.createElement("option");
+            //            option.value = i;
+            //            option.id = i;
+            //            option.innerHTML = el.name;
+            //            listProd.appendChild(option);
+            //        }
+            //    }
+            //});
+        
+    
+            $(list).change(function () {
+                listProd.innerHTML = "";
+
+                $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+                    var cnt = 0;
+                    $.each(app.state.products, function (j, el) {
+                        if (el.ProductId == element) { cnt++; }
+                    });
+
+                    if (cnt == 0) {
+                        var option = document.createElement("option");
+                        option.value = element;
+                        option.id = element;
+                        option.innerHTML = design.products.productsData[element].name;
+                        listProd.appendChild(option);
+                    }
+                });
+                //if (listProd.childNodes.length == 0) {
+                //    list.removeChild(list.childNodes[list[list.selectedIndex].id]);
+                //    $.each(design.products.categoriesList[list[list.selectedIndex].id].products, function (i, element) {
+                //        var cnt = 0;
+                //        $.each(app.state.products, function (j, el) {
+                //            if (el.ProductId == element) { cnt++; }
+                //        });
+
+                //        if (cnt == 0) {
+                //            var option = document.createElement("option");
+                //            option.value = element;
+                //            option.id = element;
+                //            option.innerHTML = design.products.productsData[element].name;
+                //            listProd.appendChild(option);
+                //        }
+                //    });
+                //}
+
+            });
+        } else {
+            $.each(design.products.categoriesList, function (i) {
+                if (((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId))) {
+                    index = i;
+                }
+
+            });
+            while (listProd.childNodes.length > 0) {
+                listProd.removeChild(listProd.childNodes[0]);
+            };
+            while (list.childNodes.length > 0) {
+                list.removeChild(list.childNodes[0]);
+            };
+
+            $.each(design.products.categoriesList, function (i, category) {
+                if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
+
+                } else {
+                    mas.push(category);
+                }
+
+                $.each(design.products.categoriesList[i].products, function (z, element) {
+                    if (element == app.state.currentProduct.ProductId) {
+                        index = i;
+                    }
+                })
+            });
+            $.each(mas, function (i, element) {
+                var option = document.createElement("option");
+                option.value = design.products.categoriesList.indexOf(element);
+                option.id = design.products.categoriesList.indexOf(element);
+                option.innerHTML = mas[i].name;
+                list.appendChild(option);
+
+            })
+            $.each(mas[0].products, function (i, element) {
+                if (element != app.state.currentProduct.ProductId) {
+                    var option = document.createElement("option");
+                    option.value = element;
+                    option.id = element;
+                    option.innerHTML = design.products.productsData[element].name;
+                    listProd.appendChild(option);
+                }
+
+            });
+        }
+    } else {
+        //когда есть доп продукты
+        var resultMas = [];
+        var firstCatElemsInStateProdIds = [];
+        while (listProd.childNodes.length > 0) {
+            listProd.removeChild(listProd.childNodes[0]);
+        };
+        while (list.childNodes.length > 0) {
+            list.removeChild(list.childNodes[0]);
+        };
+
+        $.each(design.products.categoriesList, function (i, category) {
+            if ((this.products.length == 1) && (this.products[0] == app.state.currentProduct.ProductId)) {
+
+            } else {
+                mas.push(category);
+            }
+
+            $.each(design.products.categoriesList[i].products, function (z, element) {
+                if (element == app.state.currentProduct.ProductId) {
+                    index = i;
+                }
+            })
+        });
+        $.each(mas, function (i, element) {
+            var theOnlyInAdditionalProducts = false;
+            if (element.products.length == 1) {
+                $.each(app.state.products, function (i, stateProd) {
+                    if (stateProd.id == element.products[0]) {
+                        theOnlyInAdditionalProducts = true;
+                    }
+                });
+            }
+            if (element.products.length == 1 && theOnlyInAdditionalProducts) {
+                
+                
+            } else {
+                var koeff = 0;
+                $.each(element.products, function (k, prod) {
+                    $.each(app.state.products, function (ii, stateProd) {
+                        if (stateProd.ProductId == prod) {
+                            koeff++;
+                            
+                        }
+                    });
+                });
+                if (!(koeff == element.products.length)) {
+                    resultMas.push(element);
+                }
+
+
+            }
+
+        });
+        $.each(resultMas[0].products, function (k, prod) {
+            $.each(app.state.products, function (ii, stateProd) {
+                if (prod == stateProd.ProductId) {
+                    firstCatElemsInStateProdIds.push(k);
+                }
             });
         });
+        $.each(resultMas, function (i, element) {
+            var option = document.createElement("option");
+            option.value = design.products.categoriesList.indexOf(element);
+            option.id = design.products.categoriesList.indexOf(element);
+            option.innerHTML = resultMas[i].name;
+            list.appendChild(option);
+
+        })
+        $.each(resultMas[0].products, function (i, element) {
+            if ((element != app.state.currentProduct.ProductId) && (firstCatElemsInStateProdIds.indexOf(i)<0)) {
+                var option = document.createElement("option");
+                option.value = element;
+                option.id = element;
+                option.innerHTML = design.products.productsData[element].name;
+                listProd.appendChild(option);
+            }
+
+        });
+
     }
 }
 
@@ -1462,9 +1795,9 @@ function Goal() {
     } else {
         var prod = design.products.productsData[app.state.currentProduct.ProductId];
         document.getElementById("productName").innerHTML = prod.name;
-       
-        
-       
+
+
+
         slideTo(2);
         setPriceInGoalFromDesign();
         profitSale();
@@ -1631,6 +1964,7 @@ function changesColor(id, number) {
         //$("#prodBack3").css("background-color", color.value);
         //$(".product_images").css("background-color", color.value);
         $('.containertip--open').removeClass('containertip--open');
+        //app.state.color = color;
         //design.products.changeColor(color);
         //app.state.currentProduct.ColorId = color.id;
     }
@@ -1640,6 +1974,14 @@ function deleteColor(number) {
     switch (number) {
         case 1:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.ColorId).children("span").remove();
+            color = design.products.colors[app.state.currentProduct.SecondColorId];
+            $("#prodFront").css("background-color", color.value);
+            $("#minImg").css("background-color", color.value);
+            $("#prodBack").css("background-color", color.value);
+            //$("#prodFront3").css("background-color", app.state.currentProduct.SecondColorId.value);
+            //$("#prodBack3").css("background-color", app.state.currentProduct.SecondColorId.value);
+            //$(".product_images").css("background-color", app.state.currentProduct.SecondColorId.value);
+            design.products.changeColor(design.products.colors[app.state.currentProduct.SecondColorId]);
 
             app.state.currentProduct.ColorId = app.state.currentProduct.SecondColorId;
             app.state.currentProduct.SecondColorId = app.state.currentProduct.ThirdColorId;

@@ -1866,6 +1866,9 @@ var design={
 						if (parseFloat(value) && obj.item.outlineC) {
 						    app.state.useColors(obj.item.outlineC);
 						}
+						if (!(value > 0)) {
+						    txt[0].style.color = 'black';
+						}
 						break;
 				    case 'outline':
 				        var oWidth = parseFloat(txt[0].getAttributeNS(null, 'stroke-width'));
@@ -1876,9 +1879,16 @@ var design={
 				        if (oWidth && obj.item.outlineC) {
 				            app.state.unuseColors(obj.item.outlineC);
 				        }
-				        obj.item.outlineC = rgb;
+				        if (!(oWidth > 0)) {
+				            txt[0].style.color = 'black';
+				        } else {
+				            obj.item.outlineC = rgb;
+				        }
 				        if (oWidth) {
 				            app.state.useColors(rgb);
+				        }
+				        if (!(oWidth > 0)) {
+				            txt[0].style.color = 'black';
 				        }
 				        break;
 				    case 'art-outline':

@@ -107,7 +107,7 @@
                 }
                 Model.NewRow++;
 
-                string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
+                string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products.Where(c => c.WhenDeleted == null).First().Id + "/";
                 string backIMG;
                 string frontIMG;
                 if (camp.BackSideByDefault)

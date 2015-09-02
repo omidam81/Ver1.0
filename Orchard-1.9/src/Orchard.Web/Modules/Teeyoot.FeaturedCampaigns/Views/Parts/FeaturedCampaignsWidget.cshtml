@@ -31,7 +31,17 @@
         }
         width = (int)widthResult + "% !important";
 
-        string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products[0].Id + "/";
+        string productId = string.Empty;
+        for (int i = 0; i < camp.Products.Count; i++)
+        {
+            if (camp.Products[i].WhenDeleted == null)
+            {
+                productId = camp.Products[i].Id.ToString();
+                break;
+            }
+        }
+        
+        string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + productId + "/";
         string backIMG;
         string frontIMG;
         if (camp.BackSideByDefault)
