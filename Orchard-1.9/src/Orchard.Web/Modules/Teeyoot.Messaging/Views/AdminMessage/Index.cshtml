@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="fileRow">
-                    <div class="alias">@T("Withdraw Template")</div>
+                    <div class="alias">@T("Withdraw to Admin Template")</div>
                     <div class="fileNameInput">@Model.WithdrawTemplate</div>
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "withdraw-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
@@ -136,6 +136,22 @@
                     </div>
                     <div>
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "withdraw-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
+                    </div>
+                </div>
+                <div class="fileRow">
+                    <div class="alias">@T("Withdraw to Seller Template")</div>
+                    <div class="fileNameInput">@Model.WithdrawSellerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "withdraw-seller-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
+                        <input class="button  primaryAction" type="submit" value="@T("Upload File")">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "withdraw-seller-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                    <div>
+                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "withdraw-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
                 <div class="fileRow">

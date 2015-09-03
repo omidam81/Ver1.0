@@ -715,6 +715,27 @@ namespace Teeyoot.Messaging.Services
 
         }
 
+        public void SendPayoutRequestMessageToSeller(int userId, string accountNumber, string bankName, string accHoldName, string contNum)
+        {
+            string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
+            string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
+            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var api = new MandrillApi(record.ApiKey);
+            var mandrillMessage = new MandrillMessage() { };
+            mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
+            mandrillMessage.FromEmail = "noreply@teeyoot.com";
+            mandrillMessage.FromName = "Teeyoot";
+            mandrillMessage.Subject = "Payout Request";
+            var user = _contentManager.Get<UserPart>(userId, VersionOptions.Latest);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            emails.Add(new MandrillMailAddress(user.Email, "Seller"));
+            FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, "", 0.00, "");
+            mandrillMessage.To = emails;
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-seller-template.html");
+            SendTmplMessage(api, mandrillMessage);
+
+        }
+
         public void SendOrderStatusMessage(string pathToTemplates, string pathToMedia, int orderId, string orderStatus)
         {
             var order = _orderRepository.Get(orderId);
@@ -990,7 +1011,7 @@ namespace Teeyoot.Messaging.Services
             {
                 baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
             }
-            var requester = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);;
+            var requester = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);
 
             message.AddRcptMergeVars(adminEmail, "Requester_Name", requester.PublicName);
             message.AddRcptMergeVars(adminEmail, "AccountNumber", accountNumber);

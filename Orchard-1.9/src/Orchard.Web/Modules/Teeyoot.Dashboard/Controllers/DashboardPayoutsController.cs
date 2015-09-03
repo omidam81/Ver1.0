@@ -64,7 +64,7 @@ namespace Teeyoot.Dashboard.Controllers
             
             }
             _teeyootMessagingService.SendPayoutRequestMessageToAdmin(currentUserId, accountNumber, bankName, accHoldName, contNum, messAdmin);
-
+            _teeyootMessagingService.SendPayoutRequestMessageToSeller(currentUserId, accountNumber, bankName, accHoldName, contNum);
             return RedirectToAction("Accounts");
         }
     

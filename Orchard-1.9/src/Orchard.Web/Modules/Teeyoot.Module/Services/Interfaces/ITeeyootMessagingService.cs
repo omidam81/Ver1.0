@@ -33,6 +33,8 @@ namespace Teeyoot.Module.Services
 
         void SendPayoutRequestMessageToAdmin(int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin);
 
+        void SendPayoutRequestMessageToSeller(int userId, string accountNumber, string bankName, string accHoldName, string contNum);
+
         void SendRecoverOrderMessage(string pathToTemplates, IList<OrderRecord> orders, string email);
 
         void SendCompletedPayoutMessage(string pathToTemplates, string pathToMedia, PayoutRecord payout);

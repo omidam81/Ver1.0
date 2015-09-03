@@ -328,6 +328,7 @@
     <Content Include="Content\message-templates\unpaid-campaign-template.html" />
     <Content Include="Content\message-templates\welcome-template.html" />
     <Content Include="Content\message-templates\withdraw-completed-template.html" />
+    <Content Include="Content\message-templates\withdraw-seller-template.html" />
     <Content Include="Content\message-templates\withdraw-template.html" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\uploads\readme.txt" />

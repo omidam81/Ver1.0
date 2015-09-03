@@ -91,6 +91,7 @@ namespace Teeyoot.Module.Controllers
                 Shipped3DayAfterTemplate = System.IO.File.Exists(pathToTemplates + "shipped-order-3day-after-template.html") ? "shipped-order-3day-after-template.html" : "No file!",
                 TermsConditionsTemplate = System.IO.File.Exists(pathToTemplates + "terms-conditions-template.html") ? "terms-conditions-template.html" : "No file!",
                 WithdrawCompletedTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-completed-template.html") ? "withdraw-completed-template.html" : "No file!",
+                WithdrawSellerTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-seller-template.html") ? "withdraw-seller-template.html" : "No file!",
                 Culture = s.Culture,
                 AvailableLanguages = availableLanguages,
 
