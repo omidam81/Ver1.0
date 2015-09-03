@@ -61,9 +61,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\dotnetzip\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="MarkdownSharp">
-      <HintPath>..\..\..\..\lib\markdown\MarkdownSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -233,6 +230,10 @@
     <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
       <Project>{9916839c-39fc-4ceb-a5af-89ca7e87119f}</Project>
       <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Markdown\Markdown.csproj">
+      <Project>{3158c928-888c-4a84-8bc1-4a8257489538}</Project>
+      <Name>Markdown</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orchard.Autoroute\Orchard.Autoroute.csproj">
       <Project>{66fccd76-2761-47e3-8d11-b45d0001ddaa}</Project>
