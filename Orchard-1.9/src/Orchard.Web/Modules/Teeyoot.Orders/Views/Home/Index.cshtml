@@ -5,6 +5,7 @@
     Style.Include("jquery.dataTables.css");
     Script.Require("jQuery");
     Script.Include("jquery.dataTables.min.js");
+    
 }
 @using (Script.Foot())
 {
@@ -212,7 +213,7 @@
                         <h3>@T("Order Number")</h3>
                     </th>
                     <th class="publicId">
-                        <h3>@T("Create date")</h3>
+                        <h3>@T("Order Date")</h3>
                     </th>
                     <th class="status">
                         <h3>@T("Status")</h3>
@@ -330,8 +331,66 @@
 {
     <script>
         $(document).ready(function () {
-            var campaignTable = $('#order-table').dataTable({ "aaSorting": [[1, 'desc']] });
-        })
+            //var campaignTable = $('#order-table').dataTable({ "aaSorting": [[1, 'desc']] });
+            var campaignTable = $('#order-table').dataTable({
+                "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
+                iDisplayLength: 10,
+                aaSorting: [[1, 'desc']],
+                bSortable: true,
+                aoColumnDefs: [
+                { "aTargets": [0], "bSortable": true },
+                { "aTargets": [1], "bSortable": true, "sType": "date-eu" },
+                { "aTargets": [2], "bSortable": false },
+                { "aTargets": [3], "bSortable": true },
+                { "aTargets": [4], "bSortable": true },
+                { "aTargets": [5], "bSortable": true },
+                { "aTargets": [6], "bSortable": true },
+                { "aTargets": [7], "bSortable": false }
+                ]
+            });
+        });
 
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "date-eu-pre": function (date) {
+                date = date.replace(" ", "");
+
+                if (!date) {
+                    return 0;
+                }
+
+                var year;
+                var eu_date = date.split(/[\.\-\/]/);
+
+                /*year (optional)*/
+                if (eu_date[2]) {
+                    year = eu_date[2];
+                }
+                else {
+                    year = 0;
+                }
+
+                /*month*/
+                var month = eu_date[1];
+                if (month.length == 1) {
+                    month = 0 + month;
+                }
+
+                /*day*/
+                var day = eu_date[0];
+                if (day.length == 1) {
+                    day = 0 + day;
+                }
+
+                return (year + month + day) * 1;
+            },
+
+            "date-eu-asc": function (a, b) {
+                return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+            },
+
+            "date-eu-desc": function (a, b) {
+                return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+            }
+        });     
     </script>
 }
