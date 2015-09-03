@@ -90,10 +90,16 @@ window.onload = function initWizard() {
         var product = design.products.productsData[prdc.ProductId];
         prdc.ColorId = app.state.currentProduct.ColorId;//product.colors_available[0];
         var prices = product.prices;
+        var changeBaseCost = false;
         for (var i = 0; i < prices.length; i++) {
             if (prices[i].color_id == prdc.ColorId) {
                 prdc.BaseCost = prices[i].price;
+                changeBaseCost = true;
             }
+        }
+        if (!changeBaseCost) {
+            prdc.BaseCost = prices[0].price;
+            prdc.ColorId = prices[0].color_id;
         }
         var calc = calculatePriceForNewProduct(window.frontColor, window.backColor, prdc.BaseCost);
         prdc.BaseCost = calc[0];
@@ -163,7 +169,7 @@ window.onload = function initWizard() {
         imageDel.style.cursor = "pointer";
 
         var $image = $(image);
-        $image.css("background-color", design.products.colors[app.state.currentProduct.ColorId].value);
+        $image.css("background-color", design.products.colors[prdc.ColorId].value);
 
         //----------- profit/sale ----------------------------------
 
@@ -356,7 +362,7 @@ window.onload = function initWizard() {
         //divForColors.id = "div-for-colors-products-" + index;
         divColor1Active.classList.add("div-color-active");
         //divColor1Active.id = "div-color-" + index + "_1";
-        var col = design.products.colors[app.state.currentProduct.ColorId];
+        var col = design.products.colors[prdc.ColorId];
         divColor1Active.style.backgroundColor = col.value;
         divColor2.classList.add("div-color");
         //divColor2.id = "div-color-" + index + "_2";

@@ -169,13 +169,13 @@
                             @productSize.SizeCodeName
                         </td>
                         <td>
-                            @productSize.WidthCm
+                            @Math.Round(productSize.WidthCm, 2)                          
                         </td>
                         <td>
-                            @productSize.LengthCm
+                            @Math.Round(productSize.LengthCm, 2)                                                    
                         </td>
                         <td>
-                            @productSize.SleeveCm
+                            @(productSize.SleeveCm == null ? productSize.SleeveCm : Math.Round((double)productSize.SleeveCm, 2))
                         </td>
                         <td>
                             @productSize.LengthInch
