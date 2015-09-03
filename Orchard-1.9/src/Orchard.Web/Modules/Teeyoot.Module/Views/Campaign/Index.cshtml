@@ -43,6 +43,12 @@
             } else {
                 img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
             }
+
+            var cm = document.getElementsByClassName("product__size_chart__size product__size_chart__size--cm");
+            for (var i = 0; i < cm.length; i++) {
+                var cmItem = $(cm[i]).text();
+                $(cm[i]).text(cmItem.replace(",", "."));
+            }
         });
         document.title = document.querySelector(".campaign__name").innerHTML + " | Teeyoot";
         var firstBack = "@Model.Campaign.BackSideByDefault";
