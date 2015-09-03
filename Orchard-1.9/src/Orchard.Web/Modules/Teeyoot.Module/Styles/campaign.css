@@ -6818,3 +6818,20 @@ td, tr {
     line-height: 1.3;
     text-align: center;
 }
+.button--reserv {
+    background: #ff4f00!important;
+    background-color: #ff4f00!important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff4f00), color-stop(100%, #c4450c))!important;
+    background-image: -webkit-linear-gradient(#ff4f00, #c4450c)!important;
+    background-image: linear-gradient(#ff4f00,#c4450c)!important;
+    border: 1px solid #ed673e!important;
+    cursor: default;
+}
+
+.button--transaction--flat.button--reserv, .button--transaction--flat.button--reserv:hover, .button--transaction--flat.button--reserv.hover, .button--transaction--flat.button--reserv:active, .button--transaction--flat.button--reserv.active {
+    background-color: #ff4f00!important;
+    border-color: #ea4e08!important;
+        background-color: #ff4f00!important;
+    border-color: #f24e05!important;
+}
+
