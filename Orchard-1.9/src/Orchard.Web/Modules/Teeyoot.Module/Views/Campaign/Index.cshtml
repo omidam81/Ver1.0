@@ -1049,8 +1049,8 @@
                             }
                             else
                             {
-                                <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
-                                <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
+                                <a class="button--reserv campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
+                                <a class="button--reserv campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
                                 <div class="info-label">
                                     <p>After having enough requests, the seller will decide if the campaign should be re-activated</p>
                                 </div>
@@ -1059,11 +1059,11 @@
                         else
                         {
                             <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#reserve-it-now" onclick="Resrve()">@T("Reserve it now")</a>
-                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">@T("Reserve it now")</a>                           
-                            }
+                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">@T("Reserve it now")</a>
+                        }
                     </div>
                 }
-                
+
                 @if (Model.Campaign.IsApproved == true)
                 {
                     <div>
