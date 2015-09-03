@@ -14,5 +14,7 @@ namespace Teeyoot.Module.Models
         public virtual string Name { get; set; }
 
         public virtual string ShortName { get; set; }
+
+        public virtual string CurrencyCulture { get; set; }
     }
 }
