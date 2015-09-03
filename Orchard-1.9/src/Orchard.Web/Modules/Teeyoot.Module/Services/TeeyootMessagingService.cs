@@ -762,7 +762,7 @@ namespace Teeyoot.Messaging.Services
                     };
                 case "Printing":
                     {
-                        mandrillMessage.Subject = "The items you orders are now printing!";
+                        mandrillMessage.Subject = "Your order is being sent for print!";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template.html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
