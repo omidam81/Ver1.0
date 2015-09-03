@@ -31,11 +31,16 @@ var design={
         $('.design-area-zoom').on('click', function(){
             app.state.zoomed = !app.state.zoomed;
             if(app.state.zoomed){
-                $('#design-area').css('transform','scale(1.4, 1.4)');
+                $('#design-area').css('transform', 'scale(1.4, 1.4)');
+                var e = design.item.get();
+                design.item.checkBorders(e);
             }else{
-                $('#design-area').css('transform','scale(1, 1)');
+                $('#design-area').css('transform', 'scale(1, 1)');
+                var e = design.item.get();
+                design.item.checkBorders(e);
             }
-            design.products.setDesignAreaContrastColor(app.state.color);
+            //design.products.setDesignAreaContrastColor(app.state.color);
+            
         });
         $(document.body).on('click', function(event){
             if(!$(event.target).is('button')) {
@@ -2683,6 +2688,12 @@ var design={
 	        var height = imageData['printable_'+view+'_height'];
 	        var width = imageData['printable_'+view+'_width'];
 	        var rect = this.getNodeRect(e);
+	        if (document.getElementById('design-area').style.transform != "scale(1,1)") {
+	            rect.width = rect.width / 1.4;
+	            rect.height = rect.height / 1.4;
+	            rect.top = rect.top / 1.4;
+	            rect.left = rect.left / 1.4;
+	        };
 	        var $width = rect.width,
                 $height = rect.height,
                 $top = rect.top,
@@ -2705,6 +2716,12 @@ var design={
 	        var height = imageData['printable_'+view+'_height'];
 	        var width = imageData['printable_'+view+'_width'];
 	        var rect = this.getNodeRect(e);
+	        if (document.getElementById('design-area').style.transform != "scale(1,1)") {
+	            rect.width = rect.width / 1.4;
+	            rect.height = rect.height / 1.4;
+	            rect.top = rect.top / 1.4;
+	            rect.left = rect.left / 1.4;
+	        };
 	        var $width = rect.width,
                 $height = rect.height,
                 $top = rect.top,
