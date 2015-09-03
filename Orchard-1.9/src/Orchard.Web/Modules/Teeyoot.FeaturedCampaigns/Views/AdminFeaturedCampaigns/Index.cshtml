@@ -125,8 +125,68 @@
 {
     <script>
         $(document).ready(function () {
-            var campaignTable = $('#campaign-table').dataTable({ "aaSorting": [[0, 'desc']] });
-        })
+            var campaignTable = $('#campaign-table').dataTable({
+                "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
+                iDisplayLength: 10,
+                aaSorting: [[2, 'desc']],
+                bSortable: true,
+                aoColumnDefs: [
+                { "aTargets": [0], "bSortable": true },
+                { "aTargets": [1], "bSortable": true },
+                { "aTargets": [2], "bSortable": true, "sType": "date-eu" },          
+                { "aTargets": [3], "bSortable": true },
+                { "aTargets": [4], "bSortable": true },
+                { "aTargets": [5], "bSortable": true },
+                { "aTargets": [6], "bSortable": true },
+                { "aTargets": [7], "bSortable": true },
+                { "aTargets": [8], "bSortable": true },
+                { "aTargets": [9], "bSortable": true }
+                ]
+            });
+        });
+
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "date-eu-pre": function (date) {
+                date = date.replace(" ", "");
+
+                if (!date) {
+                    return 0;
+                }
+
+                var year;
+                var eu_date = date.split(/[\.\-\/]/);
+
+                /*year (optional)*/
+                if (eu_date[2]) {
+                    year = eu_date[2];
+                }
+                else {
+                    year = 0;
+                }
+
+                /*month*/
+                var month = eu_date[1];
+                if (month.length == 1) {
+                    month = 0 + month;
+                }
+
+                /*day*/
+                var day = eu_date[0];
+                if (day.length == 1) {
+                    day = 0 + day;
+                }
+
+                return (year + month + day) * 1;
+            },
+
+            "date-eu-asc": function (a, b) {
+                return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+            },
+
+            "date-eu-desc": function (a, b) {
+                return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+            }
+        });
         
     </script>
     

@@ -556,31 +556,6 @@ namespace Teeyoot.Module.Services
         public IQueryable<string> GetBuyersEmailOfReservedCampaign(int id)
         {
             return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Select(c=>c.Email);
-        }
-
-
-        public void CheckCountOfReservedRequestsOfCampaigns()
-        {
-            var campaigns = _campaignRepository
-                                .Table
-                                .Where(c => c.EndDate < DateTime.UtcNow && !c.IsActive && c.IsApproved && !c.IsArchived)
-                                .ToList();
-
-            Logger.Information("Check campaigns for relaunch  --------------- > {0} campaigns found", campaigns.Count);
-
-            foreach (var c in campaigns)
-            {
-
-                int cntRequests = GetCountOfReservedRequestsOfCampaign(c.Id);
-
-                if (cntRequests >= 10)
-                {
-                    _teeyootMessagingService.SendReLaunchCampaignMessageToAdmin(c.Id);
-                    _teeyootMessagingService.SendReLaunchCampaignMessageToSeller(c.Id);
-                }
-
-            }
-        }
-
+        }   
     }
 }

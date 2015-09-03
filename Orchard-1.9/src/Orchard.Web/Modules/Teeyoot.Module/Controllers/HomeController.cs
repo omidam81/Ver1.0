@@ -581,6 +581,15 @@ namespace Teeyoot.Module.Controllers
         {
             _campaignService.ReservCampaign(id, email);
 
+            int cntRequests = _campaignService.GetCountOfReservedRequestsOfCampaign(id);
+
+            if (cntRequests >= 10)
+            {
+                _teeyootMessagingService.SendReLaunchCampaignMessageToAdmin(id);
+                _teeyootMessagingService.SendReLaunchCampaignMessageToSeller(id);
+            }
+
+
             return new HttpStatusCodeResult(HttpStatusCode.OK);            
         }
      } 
