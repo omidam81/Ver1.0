@@ -317,7 +317,10 @@
     <Content Include="Content\message-templates\place-order-template.html" />
     <Content Include="Content\message-templates\recover_orders_for_buyer.html" />
     <Content Include="Content\message-templates\reject-template.html" />
+    <Content Include="Content\message-templates\relaunch-buyer.html" />
     <Content Include="Content\message-templates\relaunch-template.html" />
+    <Content Include="Content\message-templates\relaunch-to-admin-seller.html" />
+    <Content Include="Content\message-templates\relaunch.html" />
     <Content Include="Content\message-templates\seller-template.html" />
     <Content Include="Content\message-templates\shipped-order-3day-after-template.html" />
     <Content Include="Content\message-templates\shipped-order-template.html" />
@@ -763,6 +766,7 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
+    <Compile Include="Common\ScheduledTasks\SendRelaunchRequestTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendShippedOrderAfter3DayToBuyerTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendFinishedCampaignafter1DayToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />
@@ -824,6 +828,7 @@
     <Compile Include="Services\TeeyootMessagingService.cs" />
     <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="Common\TeeyootCultureSelector.cs" />
+    <Compile Include="ViewModels\RelaunchProductInfo.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
     <Compile Include="Services\SwatchService.cs" />

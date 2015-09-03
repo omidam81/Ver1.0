@@ -1034,19 +1034,29 @@
                     <div class="campaign_transaction js-transaction-button">
                         @if (Model.Campaign.EndDate.ToLocalTime() < DateTime.Now)
                         {
-                            <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
-                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
-                            <div class="info-label">
-                                <p>After having enough requests, the seller will decide if the campaign should be re-activated</p>
-                            </div>
+                            if (Model.Campaign.IsArchived)
+                            {
+                                <a class="button--ended campaign_transaction__button campaign_transaction__button--new button hidden" href="#">Campaign has ended</a>
+                                <a class="button--ended campaign_transaction__button campaign_transaction__button--old button button--transaction--flat" href="#">Campaign has ended</a>
+                                <div class="did_not_reach_text">This campaign didn't reach its goal</div>
+                            }
+                            else
+                            {
+                                <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
+                                <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#bringBackCampaign" onclick="BackCampaignReserv()">@T("Request to bring back the campaign")</a>
+                                <div class="info-label">
+                                    <p>After having enough requests, the seller will decide if the campaign should be re-activated</p>
+                                </div>
+                            }
                         }
                         else
                         {
                             <a class="campaign_transaction__button campaign_transaction__button--new button hidden button--transaction" href="#reserve-it-now" onclick="Resrve()">@T("Reserve it now")</a>
-                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">@T("Reserve it now")</a>
-                        }
+                            <a class="campaign_transaction__button campaign_transaction__button--old button button--transaction--flat button--transaction" href="#reserve-it-now" onclick="Resrve()">@T("Reserve it now")</a>                           
+                            }
                     </div>
                 }
+                
                 @if (Model.Campaign.IsApproved == true)
                 {
                     <div>
@@ -1432,7 +1442,7 @@
                             <div id="reserv_container">
                                 <div class="modal-body">
                                     <div class="tooltip tooltip--topleft">
-                                        <input id="email_for_reserv" class="form__textfield form__textfield--whole-width" type="email" required placeholder="@T("Email address (so we can notify you)")">
+                                        <input id="email_for_reserv" class="form__textfield form__textfield--whole-width" type="text" required placeholder="@T("Email address (so we can notify you)")">
                                     </div>
                                     <label id="errMsg" class="err-msg-hidden">Please, input valid email address! </label>
                                 </div>

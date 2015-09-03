@@ -19,6 +19,8 @@ namespace Teeyoot.Module.ViewModels
         public string CampaignProfit { get; set; }
         public int ProductMinimumGoal { get; set; }
         public string CampaignCulture { get; set; }
+        public int CntFrontColor { get; set; }
+        public int CntBackColor { get; set; }
 
         // needed as well
         [AllowHtml]

@@ -142,9 +142,22 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             campaign.IsApproved = true;
             campaign.Rejected = false;
             campaign.WhenApproved = DateTime.UtcNow;
+
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-            _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
+
+            if (!campaign.IsArchived && campaign.BaseCampaignId != null)
+            {
+                int baseId;
+                int.TryParse(campaign.BaseCampaignId.ToString(),out baseId);
+                _teeyootMessagingService.SendReLaunchApprovedCampaignMessageToSeller(pathToTemplates, pathToMedia, baseId);
+                _teeyootMessagingService.SendReLaunchApprovedCampaignMessageToBuyers(pathToTemplates, pathToMedia, baseId);
+            }
+            else
+            {               
+                _teeyootMessagingService.SendLaunchCampaignMessage(pathToTemplates, pathToMedia, campaign.Id);
+            }
+            
             return RedirectToAction("Index", new { PagerParameters = pagerParameters });
         }
 
