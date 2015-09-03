@@ -1,0 +1,65 @@
+#: ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+msgid "SafeMode"
+msgstr "SafeMode"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+msgid "Jonathan Wall"
+msgstr "Jonathan Wall"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+msgid "The Orchard Theme for setup and failure conditions."
+msgstr "The Orchard Theme for setup and failure conditions."
+
+#: ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+#. "Tags"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+msgid "hidden"
+msgstr "hidden"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/SafeMode/Theme.txt
+msgid "http://www.orchardproject.net"
+msgstr "http://www.orchardproject.net"
+
+#: ~/Themes/SafeMode/Theme.txt
+#. "Name"
+msgctxt ~/Themes/SafeMode/Theme.txt
+msgid "SafeMode"
+msgstr "SafeMode"
+
+#: ~/Themes/SafeMode/Theme.txt
+#. "Author"
+msgctxt ~/Themes/SafeMode/Theme.txt
+msgid "Jonathan Wall"
+msgstr "Jonathan Wall"
+
+#: ~/Themes/SafeMode/Theme.txt
+#. "Description"
+msgctxt ~/Themes/SafeMode/Theme.txt
+msgid "The Orchard Theme for setup and failure conditions."
+msgstr "The Orchard Theme for setup and failure conditions."
+
+#: ~/Themes/SafeMode/Theme.txt
+#. "Tags"
+msgctxt ~/Themes/SafeMode/Theme.txt
+msgid "hidden"
+msgstr "hidden"
+
+#: ~/Themes/SafeMode/Theme.txt
+#. "Website"
+msgctxt ~/Themes/SafeMode/Theme.txt
+msgid "http://www.orchardproject.net"
+msgstr "http://www.orchardproject.net"
+
+#: ~/Themes/SafeMode/Views/Layout.cshtml
+msgctxt ~/Themes/SafeMode/Views/Layout.cshtml
+msgid "Welcome to Orchard"
+msgstr "Welcome to Orchard"
+

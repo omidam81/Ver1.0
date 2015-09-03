@@ -1,0 +1,334 @@
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "Output Cache"
+msgstr "Output Cache"
+
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "http://orchardproject.net/"
+msgstr "http://orchardproject.net/"
+
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "Adds output caching functiona"
+msgstr "Adds output caching functiona"
+
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Orchard.OutputCache.Description"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "Adds output caching functionality."
+msgstr "Adds output caching functionality."
+
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Orchard.OutputCache.Category"
+#. "Orchard.OutputCache.Database.Category"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/Modules/Orchard.OutputCache/Module.txt
+#. "Orchard.OutputCache.Database.Description"
+msgctxt ~/Modules/Orchard.OutputCache/Module.txt
+msgid "Activates a provider that stores output cache data in the database."
+msgstr "Activates a provider that stores output cache data in the database."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "Output Cache"
+msgstr "Output Cache"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "http://orchardproject.net/"
+msgstr "http://orchardproject.net/"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "Adds output caching functiona"
+msgstr "Adds output caching functiona"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Orchard.OutputCache.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "Adds output caching functionality."
+msgstr "Adds output caching functionality."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Orchard.OutputCache.Category"
+#. "Orchard.OutputCache.Database.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+#. "Orchard.OutputCache.Database.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.OutputCache/Module.txt
+msgid "Activates a provider that stores output cache data in the database."
+msgstr "Activates a provider that stores output cache data in the database."
+
+#: Orchard.OutputCache.AdminMenu
+
+#. "Settings"
+msgctxt Orchard.OutputCache.AdminMenu
+msgid "Settings"
+msgstr "Settings"
+
+#: Orchard.OutputCache.AdminMenu
+msgctxt Orchard.OutputCache.AdminMenu
+msgid "Cache"
+msgstr "Cache"
+
+#: Orchard.OutputCache.AdminMenu
+msgctxt Orchard.OutputCache.AdminMenu
+msgid "Statistics"
+msgstr "Statistics"
+
+#: Orchard.OutputCache.Controllers.AdminController
+
+#. "You do not have permission to manage output cache."
+msgctxt Orchard.OutputCache.Controllers.AdminController
+msgid "You do not have permission to manage output cache."
+msgstr "You do not have permission to manage output cache."
+
+#: Orchard.OutputCache.Controllers.AdminController
+msgctxt Orchard.OutputCache.Controllers.AdminController
+msgid "Output cache settings saved successfully."
+msgstr "Output cache settings saved successfully."
+
+#: Orchard.OutputCache.Controllers.AdminController
+msgctxt Orchard.OutputCache.Controllers.AdminController
+msgid "Could not save output cache settings."
+msgstr "Could not save output cache settings."
+
+#: Orchard.OutputCache.Controllers.StatisticsController
+
+#. "You do not have permission to manage output cache."
+msgctxt Orchard.OutputCache.Controllers.StatisticsController
+msgid "You do not have permission to manage output cache."
+msgstr "You do not have permission to manage output cache."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Cache Settings"
+msgstr "Cache Settings"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Default Cache Duration"
+msgstr "Default Cache Duration"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Number of seconds that items should be cached on the server before being regenerated."
+msgstr "Number of seconds that items should be cached on the server before being regenerated."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Default Cache Grace Time"
+msgstr "Default Cache Grace Time"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Number of seconds past duration that stale items can be served from cache while regenaration is in progress. Enter 0 to disable grace time by default."
+msgstr "Number of seconds past duration that stale items can be served from cache while regenaration is in progress. Enter 0 to disable grace time by default."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Max Age"
+msgstr "Max Age"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When defined, a cache-control header with a max-age property will be added. Use this in order to enable kernel cache on IIS."
+msgstr "When defined, a cache-control header with a max-age property will be added. Use this in order to enable kernel cache on IIS."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Vary by Query String Parameters"
+msgstr "Vary by Query String Parameters"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When defined, using comma separated values, sets caching to vary by the specified query string parameters. Leave empty to vary by all query string parameters."
+msgstr "When defined, using comma separated values, sets caching to vary by the specified query string parameters. Leave empty to vary by all query string parameters."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Vary by Request Headers"
+msgstr "Vary by Request Headers"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When defined, using comma separated values, sets caching to vary by the specified request headers."
+msgstr "When defined, using comma separated values, sets caching to vary by the specified request headers."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Ignored URLs"
+msgstr "Ignored URLs"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Specifies a set of paths relative to tenant root (e.g. '/' or '/About') for which caching should not be done. Enter one path per line."
+msgstr "Specifies a set of paths relative to tenant root (e.g. '/' or '/About') for which caching should not be done. Enter one path per line."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "You can add comments by starting a line with #."
+msgstr "You can add comments by starting a line with #."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Advanced Settings"
+msgstr "Advanced Settings"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Ignore no-cache headers"
+msgstr "Ignore no-cache headers"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When checked, requests containing a 'Content-Cache: no-cache' header will still return cached values if available."
+msgstr "When checked, requests containing a 'Content-Cache: no-cache' header will still return cached values if available."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Vary by culture"
+msgstr "Vary by culture"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When checked, caching will vary by request culture. For better performance, leave this unchecked if your site uses only one culture."
+msgstr "When checked, caching will vary by request culture. For better performance, leave this unchecked if your site uses only one culture."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Cache authenticated requests"
+msgstr "Cache authenticated requests"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When checked, caching will apply even if the user is authenticated. When unchecked, caching will be bypassed for authenticated requests."
+msgstr "When checked, caching will apply even if the user is authenticated. When unchecked, caching will be bypassed for authenticated requests."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Vary by authentication state"
+msgstr "Vary by authentication state"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "When checked (and 'Cache authenticated requests' is also checked) caching will vary by whether the user is authenticated or not. This is useful if content is rendered differently for authenticated vs. anonymous users."
+msgstr "When checked (and 'Cache authenticated requests' is also checked) caching will vary by whether the user is authenticated or not. This is useful if content is rendered differently for authenticated vs. anonymous users."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Render caching information in cached pages"
+msgstr "Render caching information in cached pages"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Route"
+msgstr "Route"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Priority"
+msgstr "Priority"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Duration (*)"
+msgstr "Duration (*)"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Grace Time (**)"
+msgstr "Grace Time (**)"
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "* Leave Duration column empty to use default duration, enter 0 to disable caching for the route."
+msgstr "* Leave Duration column empty to use default duration, enter 0 to disable caching for the route."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "** Leave Grace Time column empty to use default grace time, enter 0 to disable grace time for the route."
+msgstr "** Leave Grace Time column empty to use default grace time, enter 0 to disable grace time for the route."
+
+#: ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Admin/Index.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Cache Statistics"
+msgstr "Cache Statistics"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Evict All"
+msgstr "Evict All"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Cached Items"
+msgstr "Cached Items"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "URL"
+msgstr "URL"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Cache Key"
+msgstr "Cache Key"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Cached"
+msgstr "Cached"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Valid Until"
+msgstr "Valid Until"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Stored Until"
+msgstr "Stored Until"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+
+#. "{0} {1}"
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "{0} {1}"
+msgstr "{0} {1}"
+
+#: ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgctxt ~/Modules/Orchard.OutputCache/Views/Statistics/Index.cshtml
+msgid "Evict"
+msgstr "Evict"
+

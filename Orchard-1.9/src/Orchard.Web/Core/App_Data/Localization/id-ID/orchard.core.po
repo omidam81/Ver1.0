@@ -1,0 +1,2101 @@
+#: ~/Core/Common/Module.txt
+#. "Name"
+msgctxt ~/Core/Common/Module.txt
+msgid "Common"
+msgstr "Common"
+
+#: ~/Core/Common/Module.txt
+#. "Author"
+msgctxt ~/Core/Common/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Common/Module.txt
+#. "Website"
+msgctxt ~/Core/Common/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Common/Module.txt
+#. "Description"
+msgctxt ~/Core/Common/Module.txt
+msgid "The common module introduces content parts that are going to be used by most content types (common, body, identity)."
+msgstr "The common module introduces content parts that are going to be used by most content types (common, body, identity)."
+
+#: ~/Core/Containers/Module.txt
+#. "Name"
+msgctxt ~/Core/Containers/Module.txt
+msgid "Containers"
+msgstr "Containers"
+
+#: ~/Core/Containers/Module.txt
+#. "Author"
+msgctxt ~/Core/Containers/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Containers/Module.txt
+#. "Website"
+msgctxt ~/Core/Containers/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Containers/Module.txt
+#. "Description"
+msgctxt ~/Core/Containers/Module.txt
+msgid "The containers module introduces container and containable behaviors for content items."
+msgstr "The containers module introduces container and containable behaviors for content items."
+
+#: ~/Core/Contents/Module.txt
+#. "Name"
+#. ".Name"
+msgctxt ~/Core/Contents/Module.txt
+msgid "Contents"
+msgstr "Contents"
+
+#: ~/Core/Contents/Module.txt
+#. "Author"
+msgctxt ~/Core/Contents/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Contents/Module.txt
+#. "Website"
+msgctxt ~/Core/Contents/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Contents/Module.txt
+#. "Description"
+msgctxt ~/Core/Contents/Module.txt
+msgid "The contents module enables the creation of custom content types."
+msgstr "The contents module enables the creation of custom content types."
+
+#: ~/Core/Contents/Module.txt
+#. ".Description"
+msgctxt ~/Core/Contents/Module.txt
+msgid "Default custom content type definition, creation and management."
+msgstr "Default custom content type definition, creation and management."
+
+#: ~/Core/Contents/Module.txt
+#. ".Category"
+msgctxt ~/Core/Contents/Module.txt
+msgid "Core"
+msgstr "Core"
+
+#: ~/Core/Contents/Module.txt
+#. "Contents.ControlWrapper.Name"
+msgctxt ~/Core/Contents/Module.txt
+msgid "Content Control Wrapper"
+msgstr "Content Control Wrapper"
+
+#: ~/Core/Contents/Module.txt
+#. "Contents.ControlWrapper.Description"
+msgctxt ~/Core/Contents/Module.txt
+msgid "Add an Edit button on the front-end for authenticated users"
+msgstr "Add an Edit button on the front-end for authenticated users"
+
+#: ~/Core/Contents/Module.txt
+#. "Contents.ControlWrapper.Category"
+msgctxt ~/Core/Contents/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/Core/Dashboard/Module.txt
+#. "Name"
+msgctxt ~/Core/Dashboard/Module.txt
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: ~/Core/Dashboard/Module.txt
+#. "Author"
+msgctxt ~/Core/Dashboard/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Dashboard/Module.txt
+#. "Website"
+msgctxt ~/Core/Dashboard/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Dashboard/Module.txt
+#. "Description"
+msgctxt ~/Core/Dashboard/Module.txt
+msgid "The dashboard module is providing the dashboard screen of the admininstration UI of the application."
+msgstr "The dashboard module is providing the dashboard screen of the admininstration UI of the application."
+
+#: ~/Core/Feeds/Module.txt
+#. "Name"
+msgctxt ~/Core/Feeds/Module.txt
+msgid "Feeds"
+msgstr "Feeds"
+
+#: ~/Core/Feeds/Module.txt
+#. "Author"
+msgctxt ~/Core/Feeds/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Feeds/Module.txt
+#. "Website"
+msgctxt ~/Core/Feeds/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Feeds/Module.txt
+#. "Description"
+msgctxt ~/Core/Feeds/Module.txt
+msgid "The Feeds module is providing RSS feeds to content items."
+msgstr "The Feeds module is providing RSS feeds to content items."
+
+#: ~/Core/Navigation/Module.txt
+#. "Name"
+msgctxt ~/Core/Navigation/Module.txt
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ~/Core/Navigation/Module.txt
+#. "Author"
+msgctxt ~/Core/Navigation/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Navigation/Module.txt
+#. "Website"
+msgctxt ~/Core/Navigation/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Navigation/Module.txt
+#. "Description"
+msgctxt ~/Core/Navigation/Module.txt
+msgid "The navigation module creates and manages a simple navigation menu for the front-end of the application and allows you to add content items to the admin menu."
+msgstr "The navigation module creates and manages a simple navigation menu for the front-end of the application and allows you to add content items to the admin menu."
+
+#: ~/Core/Reports/Module.txt
+#. "Name"
+msgctxt ~/Core/Reports/Module.txt
+msgid "Reports"
+msgstr "Reports"
+
+#: ~/Core/Reports/Module.txt
+#. "Author"
+msgctxt ~/Core/Reports/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Reports/Module.txt
+#. "Website"
+msgctxt ~/Core/Reports/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Reports/Module.txt
+#. "Description"
+msgctxt ~/Core/Reports/Module.txt
+msgid "The dashboard module is providing the reports screen of the application."
+msgstr "The dashboard module is providing the reports screen of the application."
+
+#: ~/Core/Scheduling/Module.txt
+#. "Name"
+msgctxt ~/Core/Scheduling/Module.txt
+msgid "Scheduling"
+msgstr "Scheduling"
+
+#: ~/Core/Scheduling/Module.txt
+#. "Author"
+msgctxt ~/Core/Scheduling/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Scheduling/Module.txt
+#. "Website"
+msgctxt ~/Core/Scheduling/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Scheduling/Module.txt
+#. "Description"
+msgctxt ~/Core/Scheduling/Module.txt
+msgid "The scheduling module enables background task scheduling."
+msgstr "The scheduling module enables background task scheduling."
+
+#: ~/Core/Settings/Module.txt
+#. "Name"
+msgctxt ~/Core/Settings/Module.txt
+msgid "Settings"
+msgstr "Settings"
+
+#: ~/Core/Settings/Module.txt
+#. "Author"
+msgctxt ~/Core/Settings/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Settings/Module.txt
+#. "Website"
+msgctxt ~/Core/Settings/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Settings/Module.txt
+#. "Description"
+msgctxt ~/Core/Settings/Module.txt
+msgid "The settings module creates site settings that other modules can contribute to."
+msgstr "The settings module creates site settings that other modules can contribute to."
+
+#: ~/Core/Shapes/Module.txt
+#. "Name"
+msgctxt ~/Core/Shapes/Module.txt
+msgid "Shapes"
+msgstr "Shapes"
+
+#: ~/Core/Shapes/Module.txt
+#. "Author"
+msgctxt ~/Core/Shapes/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Shapes/Module.txt
+#. "Website"
+msgctxt ~/Core/Shapes/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Shapes/Module.txt
+#. "Description"
+msgctxt ~/Core/Shapes/Module.txt
+msgid "The shapes module contains core shape templates and display hooks."
+msgstr "The shapes module contains core shape templates and display hooks."
+
+#: ~/Core/Title/Module.txt
+#. "Name"
+msgctxt ~/Core/Title/Module.txt
+msgid "Title"
+msgstr "Title"
+
+#: ~/Core/Title/Module.txt
+#. "Author"
+msgctxt ~/Core/Title/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/Title/Module.txt
+#. "Website"
+msgctxt ~/Core/Title/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/Title/Module.txt
+#. "Description"
+msgctxt ~/Core/Title/Module.txt
+msgid "The title module enables content items to have titles."
+msgstr "The title module enables content items to have titles."
+
+#: ~/Core/XmlRpc/Module.txt
+#. "Name"
+msgctxt ~/Core/XmlRpc/Module.txt
+msgid "XmlRpc"
+msgstr "XmlRpc"
+
+#: ~/Core/XmlRpc/Module.txt
+#. "Author"
+msgctxt ~/Core/XmlRpc/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Core/XmlRpc/Module.txt
+#. "Website"
+msgctxt ~/Core/XmlRpc/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Core/XmlRpc/Module.txt
+#. "Description"
+msgctxt ~/Core/XmlRpc/Module.txt
+msgid "The XmlRpc module enables creation of contents from client applications such as LiveWriter."
+msgstr "The XmlRpc module enables creation of contents from client applications such as LiveWriter."
+
+#: Orchard.Core.Common.Shapes
+msgctxt Orchard.Core.Common.Shapes
+msgid "Draft"
+msgstr "Draft"
+
+#: Orchard.Core.Common.Shapes
+msgctxt Orchard.Core.Common.Shapes
+msgid "as a Draft"
+msgstr "as a Draft"
+
+#: Orchard.Core.Common.DateEditor.DateEditorDriver
+msgctxt Orchard.Core.Common.DateEditor.DateEditorDriver
+msgid "'{0} {1}' could not be parsed as a valid date and time."
+msgstr "'{0} {1}' could not be parsed as a valid date and time."
+
+#: Orchard.Core.Common.DateEditor.DateEditorDriver
+msgctxt Orchard.Core.Common.DateEditor.DateEditorDriver
+msgid "Both the date and time need to be specified."
+msgstr "Both the date and time need to be specified."
+
+#: Orchard.Core.Common.Drivers.CommonPartDriver
+msgctxt Orchard.Core.Common.Drivers.CommonPartDriver
+msgid "Invalid container"
+msgstr "Invalid container"
+
+#: Orchard.Core.Common.Drivers.TextFieldDriver
+msgctxt Orchard.Core.Common.Drivers.TextFieldDriver
+msgid "The field {0} is mandatory"
+msgstr "The field {0} is mandatory"
+
+#: Orchard.Core.Common.Drivers.TextFieldDriver
+msgctxt Orchard.Core.Common.Drivers.TextFieldDriver
+msgid "Value"
+msgstr "Value"
+
+#: Orchard.Core.Common.Drivers.TextFieldDriver
+msgctxt Orchard.Core.Common.Drivers.TextFieldDriver
+msgid "The text associated with the field."
+msgstr "The text associated with the field."
+
+#: Orchard.Core.Common.OwnerEditor.OwnerEditorDriver
+msgctxt Orchard.Core.Common.OwnerEditor.OwnerEditorDriver
+msgid "Invalid user name"
+msgstr "Invalid user name"
+
+#: ~/Core/Common/Views/CommonMetadataOwner.cshtml
+msgctxt ~/Core/Common/Views/CommonMetadataOwner.cshtml
+msgid "By {0}"
+msgstr "By {0}"
+
+#: ~/Core/Common/Views/CommonMetadataOwner.cshtml
+msgctxt ~/Core/Common/Views/CommonMetadataOwner.cshtml
+msgid "unknown"
+msgstr "unknown"
+
+#: ~/Core/Common/Views/Parts.Common.Body.Summary.cshtml
+msgctxt ~/Core/Common/Views/Parts.Common.Body.Summary.cshtml
+msgid "more"
+msgstr "more"
+
+#: ~/Core/Common/Views/Parts.Common.Date.Edit.cshtml
+msgctxt ~/Core/Common/Views/Parts.Common.Date.Edit.cshtml
+msgid "Created On"
+msgstr "Created On"
+
+#: ~/Core/Common/Views/Parts.Common.Metadata.SummaryAdmin.cshtml
+msgctxt ~/Core/Common/Views/Parts.Common.Metadata.SummaryAdmin.cshtml
+msgid "Last modified: {0}"
+msgstr "Last modified: {0}"
+
+#: ~/Core/Common/Views/Parts.Common.Owner.Edit.cshtml
+msgctxt ~/Core/Common/Views/Parts.Common.Owner.Edit.cshtml
+msgid "Owner"
+msgstr "Owner"
+
+#: ~/Core/Common/Views/DefinitionTemplates/BodyPartSettings.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/BodyPartSettings.cshtml
+msgid "Default flavor"
+msgstr "Default flavor"
+
+#: ~/Core/Common/Views/DefinitionTemplates/BodyTypePartSettings.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/BodyTypePartSettings.cshtml
+msgid "Flavor"
+msgstr "Flavor"
+
+#: ~/Core/Common/Views/DefinitionTemplates/DateEditorSettings.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/DateEditorSettings.cshtml
+msgid "Show editor for creation date time"
+msgstr "Show editor for creation date time"
+
+#: ~/Core/Common/Views/DefinitionTemplates/OwnerEditorSettings.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/OwnerEditorSettings.cshtml
+msgid "Show editor for owner"
+msgstr "Show editor for owner"
+
+#: ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgid "Display options"
+msgstr "Display options"
+
+#: ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgid "Required"
+msgstr "Required"
+
+#: ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgid "Check to ensure the user enters a value in this field."
+msgstr "Check to ensure the user enters a value in this field."
+
+#: ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgid "Help text"
+msgstr "Help text"
+
+#: ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgctxt ~/Core/Common/Views/DefinitionTemplates/TextFieldSettingsEventsViewModel.cshtml
+msgid "The help text is written under the field when authors are editing the content item."
+msgstr "The help text is written under the field when authors are editing the content item."
+
+#: ~/Core/Common/Views/EditorTemplates/DateTimeEditor.cshtml
+
+#. "Date"
+msgctxt ~/Core/Common/Views/EditorTemplates/DateTimeEditor.cshtml
+msgid "Date"
+msgstr "Date"
+
+#: ~/Core/Common/Views/EditorTemplates/DateTimeEditor.cshtml
+
+#. "Time"
+msgctxt ~/Core/Common/Views/EditorTemplates/DateTimeEditor.cshtml
+msgid "Time"
+msgstr "Time"
+
+#: ~/Core/Common/Views/EditorTemplates/Flavor.cshtml
+msgctxt ~/Core/Common/Views/EditorTemplates/Flavor.cshtml
+msgid "Default Flavor"
+msgstr "Default Flavor"
+
+#: ~/Core/Common/Views/EditorTemplates/Parts.Common.Body.cshtml
+msgctxt ~/Core/Common/Views/EditorTemplates/Parts.Common.Body.cshtml
+msgid "Body"
+msgstr "Body"
+
+#: Orchard.Core.Containers.Controllers.ItemController
+msgctxt Orchard.Core.Containers.Controllers.ItemController
+msgid "Container not found"
+msgstr "Container not found"
+
+#: Orchard.Core.Containers.Controllers.ItemController
+msgctxt Orchard.Core.Containers.Controllers.ItemController
+msgid "Cannot view content"
+msgstr "Cannot view content"
+
+#: Orchard.Core.Containers.Drivers.ContainablePartDriver
+msgctxt Orchard.Core.Containers.Drivers.ContainablePartDriver
+msgid "(None)"
+msgstr "(None)"
+
+#: Orchard.Core.Containers.Drivers.ContainerPartDriver
+msgctxt Orchard.Core.Containers.Drivers.ContainerPartDriver
+msgid "There are no content types in the system with a Containable part attached. Consider adding a Containable part to some content type, existing or new, in order to relate items to this (Container enabled) item."
+msgstr "There are no content types in the system with a Containable part attached. Consider adding a Containable part to some content type, existing or new, in order to relate items to this (Container enabled) item."
+
+#: Orchard.Core.Containers.Drivers.ContainerWidgetPartDriver
+msgctxt Orchard.Core.Containers.Drivers.ContainerWidgetPartDriver
+msgid "Please select a container to show items from."
+msgstr "Please select a container to show items from."
+
+#: Orchard.Core.Containers.Drivers.ContainerWidgetPartDriver
+msgctxt Orchard.Core.Containers.Drivers.ContainerWidgetPartDriver
+msgid "Please create a container so you can select it to show items from."
+msgstr "Please create a container so you can select it to show items from."
+
+#: Orchard.Core.Containers.Drivers.ContainerWidgetPartDriver
+msgctxt Orchard.Core.Containers.Drivers.ContainerWidgetPartDriver
+msgid "(None - create container enabled items first)"
+msgstr "(None - create container enabled items first)"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgid "Show Container Picker"
+msgstr "Show Container Picker"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgid "Check this option to render a container picker on the content editor for this type."
+msgstr "Check this option to render a container picker on the content editor for this type."
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgid "Show Position Editor"
+msgstr "Show Position Editor"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainableTypePartSettings.cshtml
+msgid "Check this option to render a position editor on the content editor for this type."
+msgstr "Check this option to render a position editor on the content editor for this type."
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerPartSettings.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerPartSettings.cshtml
+msgid "Default Page Size"
+msgstr "Default Page Size"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerPartSettings.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerPartSettings.cshtml
+msgid "Show paging controls"
+msgstr "Show paging controls"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Default Items Shown"
+msgstr "Default Items Shown"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Default Page Size"
+msgstr "Default Page Size"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Show paging controls"
+msgstr "Show paging controls"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Enable drag and drop"
+msgstr "Enable drag and drop"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Check this option to enable manual repositioning of items using. If not set, this option will be configurable on the list content item itself."
+msgstr "Check this option to enable manual repositioning of items using. If not set, this option will be configurable on the list content item itself."
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "List View"
+msgstr "List View"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "The default list view to use when rendering this list in the admin. This is configurable per individual list."
+msgstr "The default list view to use when rendering this list in the admin. This is configurable per individual list."
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Restrict the item content types this type supports."
+msgstr "Restrict the item content types this type supports."
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Supported Types"
+msgstr "Supported Types"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "(Any)"
+msgstr "(Any)"
+
+#: ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgctxt ~/Core/Containers/Views/DefinitionTemplates/ContainerTypePartSettingsViewModel.cshtml
+msgid "Select zero or more content types that this content type supports. Selecting zero content types means the list can contain any content type. Only types with the Containable part can be contained in a list."
+msgstr "Select zero or more content types that this content type supports. Selecting zero content types means the list can contain any content type. Only types with the Containable part can be contained in a list."
+
+#: ~/Core/Containers/Views/EditorTemplates/Containable.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Containable.cshtml
+msgid "Member of"
+msgstr "Member of"
+
+#: ~/Core/Containers/Views/EditorTemplates/Containable.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Containable.cshtml
+msgid "Position"
+msgstr "Position"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Show contained items list"
+msgstr "Show contained items list"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Renders the contained items when this list is displayed."
+msgstr "Renders the contained items when this list is displayed."
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Enable positoning"
+msgstr "Enable positoning"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Check this option to enable manual repositioning of items."
+msgstr "Check this option to enable manual repositioning of items."
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Contains"
+msgstr "Contains"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "(Any)"
+msgstr "(Any)"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Select zero or more content types. Selecting zero content types means the list can contain any content type. Only types with the Containable part can be contained in a list."
+msgstr "Select zero or more content types. Selecting zero content types means the list can contain any content type. Only types with the Containable part can be contained in a list."
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Page size"
+msgstr "Page size"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Show paging controls"
+msgstr "Show paging controls"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Show on admin menu"
+msgstr "Show on admin menu"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Menu text"
+msgstr "Menu text"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Position"
+msgstr "Position"
+
+#: ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/Container.cshtml
+msgid "Image Set"
+msgstr "Image Set"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Show items from"
+msgstr "Show items from"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Maximum number of items to display"
+msgstr "Maximum number of items to display"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Order by"
+msgstr "Order by"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Weight"
+msgstr "Weight"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+
+#. "Date Created"
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Date Created"
+msgstr "Date Created"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+
+#. "Date Published"
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Date Published"
+msgstr "Date Published"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+
+#. "Title (Title Part)"
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Title (Title Part)"
+msgstr "Title (Title Part)"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+
+#. "Custom 1"
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Custom 1"
+msgstr "Custom 1"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+
+#. "Custom 2"
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Custom 2"
+msgstr "Custom 2"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+
+#. "Custom 3"
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Custom 3"
+msgstr "Custom 3"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Order direction"
+msgstr "Order direction"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Ascending"
+msgstr "Ascending"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Descending"
+msgstr "Descending"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Filter items"
+msgstr "Filter items"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Filter where"
+msgstr "Filter where"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Filter operator"
+msgstr "Filter operator"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "is equal to"
+msgstr "is equal to"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "is less than"
+msgstr "is less than"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "is greater than"
+msgstr "is greater than"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "starts with"
+msgstr "starts with"
+
+#: ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/ContainerWidget.cshtml
+msgid "Filter value"
+msgstr "Filter value"
+
+#: ~/Core/Containers/Views/EditorTemplates/CustomProperties.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/CustomProperties.cshtml
+msgid "Custom One"
+msgstr "Custom One"
+
+#: ~/Core/Containers/Views/EditorTemplates/CustomProperties.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/CustomProperties.cshtml
+msgid "Custom Two"
+msgstr "Custom Two"
+
+#: ~/Core/Containers/Views/EditorTemplates/CustomProperties.cshtml
+msgctxt ~/Core/Containers/Views/EditorTemplates/CustomProperties.cshtml
+msgid "Custom Three"
+msgstr "Custom Three"
+
+#: Orchard.Core.Contents.AdminMenu
+msgctxt Orchard.Core.Contents.AdminMenu
+msgid "Content"
+msgstr "Content"
+
+#: Orchard.Core.Contents.AdminMenu
+msgctxt Orchard.Core.Contents.AdminMenu
+msgid "Content Items"
+msgstr "Content Items"
+
+#: Orchard.Core.Contents.AdminMenu
+msgctxt Orchard.Core.Contents.AdminMenu
+msgid "New"
+msgstr "New"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't publish selected content."
+msgstr "Couldn't publish selected content."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Content successfully published."
+msgstr "Content successfully published."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't unpublish selected content."
+msgstr "Couldn't unpublish selected content."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Content successfully unpublished."
+msgstr "Content successfully unpublished."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't remove selected content."
+msgstr "Couldn't remove selected content."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Content successfully removed."
+msgstr "Content successfully removed."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Cannot create content"
+msgstr "Cannot create content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+
+#. "Couldn't create content"
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't create content"
+msgstr "Couldn't create content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Your content has been created."
+msgstr "Your content has been created."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Your {0} has been created."
+msgstr "Your {0} has been created."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Cannot edit content"
+msgstr "Cannot edit content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+
+#. "Couldn't publish content"
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't publish content"
+msgstr "Couldn't publish content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't edit content"
+msgstr "Couldn't edit content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Your content has been saved."
+msgstr "Your content has been saved."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Your {0} has been saved."
+msgstr "Your {0} has been saved."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't clone content"
+msgstr "Couldn't clone content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Could not clone the content item."
+msgstr "Could not clone the content item."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Successfully cloned. The clone was saved as a draft."
+msgstr "Successfully cloned. The clone was saved as a draft."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't remove content"
+msgstr "Couldn't remove content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "That content has been removed."
+msgstr "That content has been removed."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "That {0} has been removed."
+msgstr "That {0} has been removed."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "That content has been published."
+msgstr "That content has been published."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "That {0} has been published."
+msgstr "That {0} has been published."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "Couldn't unpublish content"
+msgstr "Couldn't unpublish content"
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "That content has been unpublished."
+msgstr "That content has been unpublished."
+
+#: Orchard.Core.Contents.Controllers.AdminController
+msgctxt Orchard.Core.Contents.Controllers.AdminController
+msgid "That {0} has been unpublished."
+msgstr "That {0} has been unpublished."
+
+#: Orchard.Core.Contents.Controllers.ItemController
+msgctxt Orchard.Core.Contents.Controllers.ItemController
+msgid "Cannot view content"
+msgstr "Cannot view content"
+
+#: Orchard.Core.Contents.Controllers.ItemController
+msgctxt Orchard.Core.Contents.Controllers.ItemController
+msgid "Cannot preview content"
+msgstr "Cannot preview content"
+
+#: ~/Core/Contents/Views/Content.ControlWrapper.cshtml
+msgctxt ~/Core/Contents/Views/Content.ControlWrapper.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Core/Contents/Views/Content.PublishButton.cshtml
+msgctxt ~/Core/Contents/Views/Content.PublishButton.cshtml
+msgid "Publish Now"
+msgstr "Publish Now"
+
+#: ~/Core/Contents/Views/Content.SaveButton.cshtml
+msgctxt ~/Core/Contents/Views/Content.SaveButton.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Core/Contents/Views/Content.SaveButton.cshtml
+msgctxt ~/Core/Contents/Views/Content.SaveButton.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Core/Contents/Views/Content.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Content.SummaryAdmin.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Core/Contents/Views/Content.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Content.SummaryAdmin.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Core/Contents/Views/Content.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Content.SummaryAdmin.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Core/Contents/Views/Parts.Contents.Clone.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Parts.Contents.Clone.SummaryAdmin.cshtml
+msgid "Clone"
+msgstr "Clone"
+
+#: ~/Core/Contents/Views/Parts.Contents.Clone.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Parts.Contents.Clone.SummaryAdmin.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgid "View"
+msgstr "View"
+
+#: ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+
+#. " | "
+msgctxt ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgid "Publish Draft"
+msgstr "Publish Draft"
+
+#: ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+
+#. "Preview"
+msgctxt ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgid "Preview"
+msgstr "Preview"
+
+#: ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgid "Unpublish"
+msgstr "Unpublish"
+
+#: ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgctxt ~/Core/Contents/Views/Parts.Contents.Publish.SummaryAdmin.cshtml
+msgid "Publish"
+msgstr "Publish"
+
+#: ~/Core/Contents/Views/Admin/CreatableTypeList.cshtml
+msgctxt ~/Core/Contents/Views/Admin/CreatableTypeList.cshtml
+msgid "Create New Content"
+msgstr "Create New Content"
+
+#: ~/Core/Contents/Views/Admin/Create.cshtml
+msgctxt ~/Core/Contents/Views/Admin/Create.cshtml
+msgid "New {0}"
+msgstr "New {0}"
+
+#: ~/Core/Contents/Views/Admin/Edit.cshtml
+msgctxt ~/Core/Contents/Views/Admin/Edit.cshtml
+msgid "Edit Content"
+msgstr "Edit Content"
+
+#: ~/Core/Contents/Views/Admin/Edit.cshtml
+msgctxt ~/Core/Contents/Views/Admin/Edit.cshtml
+msgid "Edit {0}"
+msgstr "Edit {0}"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Manage Content"
+msgstr "Manage Content"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Create New Content"
+msgstr "Create New Content"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Manage {0} Content"
+msgstr "Manage {0} Content"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Create New {0}"
+msgstr "Create New {0}"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Choose action..."
+msgstr "Choose action..."
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Publish Now"
+msgstr "Publish Now"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Unpublish"
+msgstr "Unpublish"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+
+#. "Apply"
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Show"
+msgstr "Show"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+
+#. "any (show all)"
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "any (show all)"
+msgstr "any (show all)"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Culture"
+msgstr "Culture"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Ordered by"
+msgstr "Ordered by"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "recently created"
+msgstr "recently created"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "recently modified"
+msgstr "recently modified"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "recently published"
+msgstr "recently published"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "Filter by"
+msgstr "Filter by"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "latest"
+msgstr "latest"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "published"
+msgstr "published"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "unpublished"
+msgstr "unpublished"
+
+#: ~/Core/Contents/Views/Admin/List.cshtml
+msgctxt ~/Core/Contents/Views/Admin/List.cshtml
+msgid "all versions"
+msgstr "all versions"
+
+#: Orchard.Core.Dashboard.AdminMenu
+msgctxt Orchard.Core.Dashboard.AdminMenu
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: Orchard.Core.Dashboard.AdminMenu
+msgctxt Orchard.Core.Dashboard.AdminMenu
+msgid "Orchard"
+msgstr "Orchard"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Welcome to Orchard"
+msgstr "Welcome to Orchard"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Get up and running"
+msgstr "Get up and running"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Start by exploring the menu on the left and familiarize yourself with Orchard. As for the basics, we suggest <a href=\"{0}\">changing the theme</a>, <a href=\"{1}\">adding some pages</a>, <a href=\"{2}\">setup up a blog</a>, and <a href=\"{3}\">configuring basic settings</a>."
+msgstr "Start by exploring the menu on the left and familiarize yourself with Orchard. As for the basics, we suggest <a href=\"{0}\">changing the theme</a>, <a href=\"{1}\">adding some pages</a>, <a href=\"{2}\">setup up a blog</a>, and <a href=\"{3}\">configuring basic settings</a>."
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Get more goodies"
+msgstr "Get more goodies"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Change the way your site works and looks with <a href=\"{0}\">themes</a> and <a href=\"{1}\">modules</a>. There’s plenty to choose from in the <a href=\"http://gallery.orchardproject.net/\">Orchard Gallery</a>. We’re always adding things, so be sure to check back often to see what’s new."
+msgstr "Change the way your site works and looks with <a href=\"{0}\">themes</a> and <a href=\"{1}\">modules</a>. There’s plenty to choose from in the <a href=\"http://gallery.orchardproject.net/\">Orchard Gallery</a>. We’re always adding things, so be sure to check back often to see what’s new."
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Read the Docs"
+msgstr "Read the Docs"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Are you ready to go deeper and become an Orchard expert? Take a look at the <a href=\"http://docs.orchardproject.net\">Orchard Documentation</a> to learn about how everything connects together and what makes Orchard tick."
+msgstr "Are you ready to go deeper and become an Orchard expert? Take a look at the <a href=\"http://docs.orchardproject.net\">Orchard Documentation</a> to learn about how everything connects together and what makes Orchard tick."
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Make friends"
+msgstr "Make friends"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Find friends that share your interest of Orchard. There are a couple ways that you can <a href=\"http://orchardproject.net/discussions\">discuss and get connected</a> to the project including mailing lists, forums and IRC."
+msgstr "Find friends that share your interest of Orchard. There are a couple ways that you can <a href=\"http://orchardproject.net/discussions\">discuss and get connected</a> to the project including mailing lists, forums and IRC."
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Contribute back"
+msgstr "Contribute back"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Help grow Orchard. We encourage contributions of all sorts, including code submissions, documentation, translations, feature recommendations, and more.Here are some ways to  <a href=\"http://orchardproject.net/contribution\">give back to the project</a>."
+msgstr "Help grow Orchard. We encourage contributions of all sorts, including code submissions, documentation, translations, feature recommendations, and more.Here are some ways to  <a href=\"http://orchardproject.net/contribution\">give back to the project</a>."
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Stay up to date"
+msgstr "Stay up to date"
+
+#: ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgctxt ~/Core/Dashboard/Views/Admin/Index.cshtml
+msgid "Your browser does not support iframes. You can't see advisory messages."
+msgstr "Your browser does not support iframes. You can't see advisory messages."
+
+#: Orchard.Core.Navigation.AdminMenu
+msgctxt Orchard.Core.Navigation.AdminMenu
+msgid "Navigation"
+msgstr "Navigation"
+
+#: Orchard.Core.Navigation.AdminMenu
+msgctxt Orchard.Core.Navigation.AdminMenu
+msgid "Main Menu"
+msgstr "Main Menu"
+
+#: Orchard.Core.Navigation.Commands.MenuCommands
+msgctxt Orchard.Core.Navigation.Commands.MenuCommands
+msgid "Menu not found."
+msgstr "Menu not found."
+
+#: Orchard.Core.Navigation.Commands.MenuCommands
+msgctxt Orchard.Core.Navigation.Commands.MenuCommands
+msgid "Invalid username: {0}"
+msgstr "Invalid username: {0}"
+
+#: Orchard.Core.Navigation.Commands.MenuCommands
+msgctxt Orchard.Core.Navigation.Commands.MenuCommands
+msgid "Menu item created successfully."
+msgstr "Menu item created successfully."
+
+#: Orchard.Core.Navigation.Commands.MenuCommands
+msgctxt Orchard.Core.Navigation.Commands.MenuCommands
+msgid "Menu name can't be empty."
+msgstr "Menu name can't be empty."
+
+#: Orchard.Core.Navigation.Commands.MenuCommands
+msgctxt Orchard.Core.Navigation.Commands.MenuCommands
+msgid "Menu created successfully."
+msgstr "Menu created successfully."
+
+#: Orchard.Core.Navigation.Controllers.AdminController
+msgctxt Orchard.Core.Navigation.Controllers.AdminController
+msgid "Not allowed to manage menus"
+msgstr "Not allowed to manage menus"
+
+#: Orchard.Core.Navigation.Controllers.AdminController
+
+#. "Couldn't manage the main menu"
+msgctxt Orchard.Core.Navigation.Controllers.AdminController
+msgid "Couldn't manage the main menu"
+msgstr "Couldn't manage the main menu"
+
+#: Orchard.Core.Navigation.Controllers.AdminController
+
+#. "Creating menu item failed: {0}"
+msgctxt Orchard.Core.Navigation.Controllers.AdminController
+msgid "Creating menu item failed: {0}"
+msgstr "Creating menu item failed: {0}"
+
+#: Orchard.Core.Navigation.Controllers.AdminController
+msgctxt Orchard.Core.Navigation.Controllers.AdminController
+msgid "Your {0} has been added."
+msgstr "Your {0} has been added."
+
+#: Orchard.Core.Navigation.Drivers.AdminMenuPartDriver
+msgctxt Orchard.Core.Navigation.Drivers.AdminMenuPartDriver
+msgid "The AdminMenuText field is required"
+msgstr "The AdminMenuText field is required"
+
+#: Orchard.Core.Navigation.Drivers.MenuPartDriver
+msgctxt Orchard.Core.Navigation.Drivers.MenuPartDriver
+msgid "The MenuText field is required"
+msgstr "The MenuText field is required"
+
+#: Orchard.Core.Navigation.Drivers.MenuWidgetPartDriver
+msgctxt Orchard.Core.Navigation.Drivers.MenuWidgetPartDriver
+msgid "Home"
+msgstr "Home"
+
+#: Orchard.Core.Navigation.Drivers.ShapeMenuItemPartDriver
+msgctxt Orchard.Core.Navigation.Drivers.ShapeMenuItemPartDriver
+msgid "The Shape Type is mandatory."
+msgstr "The Shape Type is mandatory."
+
+#: ~/Core/Navigation/Views/Menu.DeleteButton.cshtml
+msgctxt ~/Core/Navigation/Views/Menu.DeleteButton.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Core/Navigation/Views/Admin/CreateMenuItem.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/CreateMenuItem.cshtml
+msgid "Create Menu Item"
+msgstr "Create Menu Item"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "You need to hit \"Save All\" in order to save your changes."
+msgstr "You need to hit \"Save All\" in order to save your changes."
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Current Menu:"
+msgstr "Current Menu:"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Add a new menu..."
+msgstr "Add a new menu..."
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "The menu is empty"
+msgstr "The menu is empty"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Save All"
+msgstr "Save All"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Core/Navigation/Views/Admin/Index.cshtml
+msgctxt ~/Core/Navigation/Views/Admin/Index.cshtml
+msgid "Some items where not saved."
+msgstr "Some items where not saved."
+
+#: ~/Core/Navigation/Views/DefinitionTemplates/AdminMenuPartTypeSettings.cshtml
+msgctxt ~/Core/Navigation/Views/DefinitionTemplates/AdminMenuPartTypeSettings.cshtml
+msgid "Default Position"
+msgstr "Default Position"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuItem.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuItem.Edit.cshtml
+msgid "Url"
+msgstr "Url"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuItem.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuItem.Edit.cshtml
+msgid "A valid url, i.e. ~/my-page, http://orchardproject.net, /content/file.pdf, ..."
+msgstr "A valid url, i.e. ~/my-page, http://orchardproject.net, /content/file.pdf, ..."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "For Menu"
+msgstr "For Menu"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Select which menu you want to display"
+msgstr "Select which menu you want to display"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Start Level"
+msgstr "Start Level"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "The level the menu should start at."
+msgstr "The level the menu should start at."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Levels to display"
+msgstr "Levels to display"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "The number of levels to display, \"0\" meaning all levels."
+msgstr "The number of levels to display, \"0\" meaning all levels."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Display as Breadcrumb"
+msgstr "Display as Breadcrumb"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Check to render the path to the current content item."
+msgstr "Check to render the path to the current content item."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Add the home page as the first element"
+msgstr "Add the home page as the first element"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Check to render the home page as the first element of the breadcrumb."
+msgstr "Check to render the home page as the first element of the breadcrumb."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Add the current content item as the last element"
+msgstr "Add the current content item as the last element"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Check to render the current content item as the last element."
+msgstr "Check to render the current content item as the last element."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "No filter on selected page"
+msgstr "No filter on selected page"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.MenuWidget.Edit.cshtml
+msgid "Check for the menu to be display without filtering the selected current page."
+msgstr "Check for the menu to be display without filtering the selected current page."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgid "Show on admin menu"
+msgstr "Show on admin menu"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgid "Menu text"
+msgstr "Menu text"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgid "The text that should appear in the menu."
+msgstr "The text that should appear in the menu."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgid "Position"
+msgstr "Position"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.AdminMenu.Edit.cshtml
+msgid "The position in the menu."
+msgstr "The position in the menu."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+msgid "Show on a menu"
+msgstr "Show on a menu"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+msgid "Select which menu you want the content item to be displayed on."
+msgstr "Select which menu you want the content item to be displayed on."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+
+#. "Menu text"
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+msgid "Menu text"
+msgstr "Menu text"
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+
+#. "The text that should appear in the menu."
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.Navigation.Menu.Edit.cshtml
+msgid "The text that should appear in the menu."
+msgstr "The text that should appear in the menu."
+
+#: ~/Core/Navigation/Views/EditorTemplates/Parts.ShapeMenuItemPart.Edit.cshtml
+msgctxt ~/Core/Navigation/Views/EditorTemplates/Parts.ShapeMenuItemPart.Edit.cshtml
+msgid "Type of the shape to display"
+msgstr "Type of the shape to display"
+
+#: Orchard.Core.Reports.AdminMenu
+msgctxt Orchard.Core.Reports.AdminMenu
+msgid "Reports"
+msgstr "Reports"
+
+#: Orchard.Core.Reports.AdminMenu
+msgctxt Orchard.Core.Reports.AdminMenu
+msgid "View"
+msgstr "View"
+
+#: Orchard.Core.Reports.Controllers.AdminController
+msgctxt Orchard.Core.Reports.Controllers.AdminController
+msgid "Not authorized to list reports"
+msgstr "Not authorized to list reports"
+
+#: Orchard.Core.Reports.Controllers.AdminController
+msgctxt Orchard.Core.Reports.Controllers.AdminController
+msgid "Not authorized to display report"
+msgstr "Not authorized to display report"
+
+#: ~/Core/Reports/Views/Admin/Display.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Display.cshtml
+msgid "Display Report"
+msgstr "Display Report"
+
+#: ~/Core/Reports/Views/Admin/Display.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Display.cshtml
+msgid "This is a table of the reports in your application"
+msgstr "This is a table of the reports in your application"
+
+#: ~/Core/Reports/Views/Admin/Display.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Display.cshtml
+msgid "Type"
+msgstr "Type"
+
+#: ~/Core/Reports/Views/Admin/Display.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Display.cshtml
+msgid "Message"
+msgstr "Message"
+
+#: ~/Core/Reports/Views/Admin/Display.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Display.cshtml
+msgid "Date"
+msgstr "Date"
+
+#: ~/Core/Reports/Views/Admin/Index.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Index.cshtml
+msgid "Reports"
+msgstr "Reports"
+
+#: ~/Core/Reports/Views/Admin/Index.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Index.cshtml
+msgid "This is a table of the reports in your application"
+msgstr "This is a table of the reports in your application"
+
+#: ~/Core/Reports/Views/Admin/Index.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Core/Reports/Views/Admin/Index.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Index.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Core/Reports/Views/Admin/Index.cshtml
+msgctxt ~/Core/Reports/Views/Admin/Index.cshtml
+msgid "Date"
+msgstr "Date"
+
+#: Orchard.Core.Settings.AdminMenu
+
+#. "Settings"
+msgctxt Orchard.Core.Settings.AdminMenu
+msgid "Settings"
+msgstr "Settings"
+
+#: Orchard.Core.Settings.AdminMenu
+msgctxt Orchard.Core.Settings.AdminMenu
+msgid "General"
+msgstr "General"
+
+#: Orchard.Core.Settings.Commands.SiteSettingsCommands
+msgctxt Orchard.Core.Settings.Commands.SiteSettingsCommands
+msgid "'BaseUrl' site setting is already set. Use the 'Force' flag to override."
+msgstr "'BaseUrl' site setting is already set. Use the 'Force' flag to override."
+
+#: Orchard.Core.Settings.Commands.SiteSettingsCommands
+msgctxt Orchard.Core.Settings.Commands.SiteSettingsCommands
+msgid "No HTTP request available to determine the base url of the site"
+msgstr "No HTTP request available to determine the base url of the site"
+
+#: Orchard.Core.Settings.Commands.SiteSettingsCommands
+msgctxt Orchard.Core.Settings.Commands.SiteSettingsCommands
+msgid "'BaseUrl' site setting set to '{0}'"
+msgstr "'BaseUrl' site setting set to '{0}'"
+
+#: Orchard.Core.Settings.Controllers.AdminController
+
+#. "Not authorized to manage settings"
+msgctxt Orchard.Core.Settings.Controllers.AdminController
+msgid "Not authorized to manage settings"
+msgstr "Not authorized to manage settings"
+
+#: Orchard.Core.Settings.Controllers.AdminController
+msgctxt Orchard.Core.Settings.Controllers.AdminController
+msgid "Settings updated"
+msgstr "Settings updated"
+
+#: Orchard.Core.Settings.Descriptor.ShellDescriptorManager
+msgctxt Orchard.Core.Settings.Descriptor.ShellDescriptorManager
+msgid "Invalid serial number for shell descriptor"
+msgstr "Invalid serial number for shell descriptor"
+
+#: Orchard.Core.Settings.Drivers.SiteSettingsPartDriver
+msgctxt Orchard.Core.Settings.Drivers.SiteSettingsPartDriver
+msgid "The user {0} was not found"
+msgstr "The user {0} was not found"
+
+#: Orchard.Core.Settings.Drivers.SiteSettingsPartDriver
+msgctxt Orchard.Core.Settings.Drivers.SiteSettingsPartDriver
+msgid "The base url must be absolute."
+msgstr "The base url must be absolute."
+
+#: Orchard.Core.Settings.Drivers.SiteSettingsPartDriver
+msgctxt Orchard.Core.Settings.Drivers.SiteSettingsPartDriver
+msgid "The base url you entered could not be requested from current location."
+msgstr "The base url you entered could not be requested from current location."
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Site Settings"
+msgstr "Site Settings"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Tokens for Site Settings"
+msgstr "Tokens for Site Settings"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Site Name"
+msgstr "Site Name"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "The name of the site."
+msgstr "The name of the site."
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Super User"
+msgstr "Super User"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "The super user of the site."
+msgstr "The super user of the site."
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Site Culture"
+msgstr "Site Culture"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "The current culture of the site."
+msgstr "The current culture of the site."
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Base Url"
+msgstr "Base Url"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "The base url the site."
+msgstr "The base url the site."
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "Time Zone"
+msgstr "Time Zone"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "The current time zone of the site."
+msgstr "The current time zone of the site."
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "{0}"
+msgstr "{0}"
+
+#: Orchard.Core.Settings.Tokens.SettingsTokens
+msgctxt Orchard.Core.Settings.Tokens.SettingsTokens
+msgid "The setting named {0}."
+msgstr "The setting named {0}."
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Cultures"
+msgstr "Cultures"
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Manage Settings"
+msgstr "Manage Settings"
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid " &#62; "
+msgstr " &#62; "
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Supported Cultures"
+msgstr "Supported Cultures"
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Available Cultures"
+msgstr "Available Cultures"
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Add a culture..."
+msgstr "Add a culture..."
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Other"
+msgstr "Other"
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Core/Settings/Views/Admin/Culture.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Culture.cshtml
+msgid "Cultures this site supports"
+msgstr "Cultures this site supports"
+
+#: ~/Core/Settings/Views/Admin/Index.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Index.cshtml
+msgid "Settings"
+msgstr "Settings"
+
+#: ~/Core/Settings/Views/Admin/Index.cshtml
+msgctxt ~/Core/Settings/Views/Admin/Index.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Core/Settings/Views/DisplayTemplates/RemovableCulture.cshtml
+msgctxt ~/Core/Settings/Views/DisplayTemplates/RemovableCulture.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Use web.config setting"
+msgstr "Use web.config setting"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Enabled"
+msgstr "Enabled"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Disabled"
+msgstr "Disabled"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "General"
+msgstr "General"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Site name"
+msgstr "Site name"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Base URL"
+msgstr "Base URL"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Enter the fully qualified base URL of the web site."
+msgstr "Enter the fully qualified base URL of the web site."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "e.g., http://localhost:30320/orchardlocal, http://www.yourdomain.com"
+msgstr "e.g., http://localhost:30320/orchardlocal, http://www.yourdomain.com"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Default Site Culture"
+msgstr "Default Site Culture"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines the default culture used to localize strings and to format and parse numbers, date and times."
+msgstr "Determines the default culture used to localize strings and to format and parse numbers, date and times."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Add or remove supported cultures for the site"
+msgstr "Add or remove supported cultures for the site"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Default Site Calendar"
+msgstr "Default Site Calendar"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Culture calendar"
+msgstr "Culture calendar"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines the default calendar used when displaying and editing dates and times."
+msgstr "Determines the default calendar used when displaying and editing dates and times."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "The 'Culture calendar' option means the default calendar for the culture of the current request will be used (not necessarily the configured default site culture)."
+msgstr "The 'Culture calendar' option means the default calendar for the culture of the current request will be used (not necessarily the configured default site culture)."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Default Time Zone"
+msgstr "Default Time Zone"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Local to server"
+msgstr "Local to server"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines the default time zone used when displaying and editing dates and times."
+msgstr "Determines the default time zone used when displaying and editing dates and times."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Page title separator"
+msgstr "Page title separator"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Super user"
+msgstr "Super user"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Enter an existing account name, or nothing if you don't want a Super user account"
+msgstr "Enter an existing account name, or nothing if you don't want a Super user account"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Resource Debug Mode"
+msgstr "Resource Debug Mode"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines whether scripts and stylesheets load in their debuggable or minified form."
+msgstr "Determines whether scripts and stylesheets load in their debuggable or minified form."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Use CDN"
+msgstr "Use CDN"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines whether the defined CDN value is used for scripts and stylesheets, or their local version"
+msgstr "Determines whether the defined CDN value is used for scripts and stylesheets, or their local version"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Default number of items per page"
+msgstr "Default number of items per page"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines the default number of items that are shown per page."
+msgstr "Determines the default number of items that are shown per page."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Maximum number of items per page"
+msgstr "Maximum number of items per page"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines the maximum number of items that are shown per page. Leave 0 for unlimited."
+msgstr "Determines the maximum number of items that are shown per page. Leave 0 for unlimited."
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Last index of items in pages"
+msgstr "Last index of items in pages"
+
+#: ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgctxt ~/Core/Settings/Views/EditorTemplates/Parts.Settings.SiteSettingsPart.cshtml
+msgid "Determines the last element of the database that can be displayed. Leave 0 for unlimited."
+msgstr "Determines the last element of the database that can be displayed. Leave 0 for unlimited."
+
+#: Orchard.Core.Shapes.CoreShapes
+msgctxt Orchard.Core.Shapes.CoreShapes
+msgid "<<"
+msgstr "<<"
+
+#: Orchard.Core.Shapes.CoreShapes
+msgctxt Orchard.Core.Shapes.CoreShapes
+msgid "<"
+msgstr "<"
+
+#: Orchard.Core.Shapes.CoreShapes
+msgctxt Orchard.Core.Shapes.CoreShapes
+msgid ">"
+msgstr ">"
+
+#: Orchard.Core.Shapes.CoreShapes
+msgctxt Orchard.Core.Shapes.CoreShapes
+msgid ">>"
+msgstr ">>"
+
+#: Orchard.Core.Shapes.CoreShapes
+msgctxt Orchard.Core.Shapes.CoreShapes
+msgid "..."
+msgstr "..."
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "a moment ago"
+msgstr "a moment ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in a moment"
+msgstr "in a moment"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "1 day ago"
+msgstr "1 day ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "{0} days ago"
+msgstr "{0} days ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in 1 day"
+msgstr "in 1 day"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in {0} days"
+msgstr "in {0} days"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "1 hour ago"
+msgstr "1 hour ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "{0} hours ago"
+msgstr "{0} hours ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in 1 hour"
+msgstr "in 1 hour"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in {0} hours"
+msgstr "in {0} hours"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "1 minute ago"
+msgstr "1 minute ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "{0} minutes ago"
+msgstr "{0} minutes ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in 1 minute"
+msgstr "in 1 minute"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in {0} minutes"
+msgstr "in {0} minutes"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "1 second ago"
+msgstr "1 second ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "{0} seconds ago"
+msgstr "{0} seconds ago"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in 1 second"
+msgstr "in 1 second"
+
+#: Orchard.Core.Shapes.DateTimeShapes
+msgctxt Orchard.Core.Shapes.DateTimeShapes
+msgid "in {0} seconds"
+msgstr "in {0} seconds"
+
+#: ~/Core/Shapes/Views/ErrorPage.cshtml
+msgctxt ~/Core/Shapes/Views/ErrorPage.cshtml
+msgid "Oops. Something went wrong ... sorry"
+msgstr "Oops. Something went wrong ... sorry"
+
+#: ~/Core/Shapes/Views/ErrorPage.cshtml
+msgctxt ~/Core/Shapes/Views/ErrorPage.cshtml
+msgid "An unhandled exception has occurred and the request was terminated. Please refresh the page. If the error persists, go back"
+msgstr "An unhandled exception has occurred and the request was terminated. Please refresh the page. If the error persists, go back"
+
+#: ~/Core/Shapes/Views/NotFound.cshtml
+msgctxt ~/Core/Shapes/Views/NotFound.cshtml
+msgid "Not found"
+msgstr "Not found"
+
+#: ~/Core/Shapes/Views/NotFound.cshtml
+msgctxt ~/Core/Shapes/Views/NotFound.cshtml
+msgid "The page you are looking for does not exist."
+msgstr "The page you are looking for does not exist."
+
+#: ~/Core/Shapes/Views/User.cshtml
+msgctxt ~/Core/Shapes/Views/User.cshtml
+msgid "Welcome, <strong>{0}</strong>!"
+msgstr "Welcome, <strong>{0}</strong>!"
+
+#: ~/Core/Shapes/Views/User.cshtml
+msgctxt ~/Core/Shapes/Views/User.cshtml
+msgid "Sign Out"
+msgstr "Sign Out"
+
+#: ~/Core/Shapes/Views/User.cshtml
+msgctxt ~/Core/Shapes/Views/User.cshtml
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: ~/Core/Shapes/Views/User.cshtml
+msgctxt ~/Core/Shapes/Views/User.cshtml
+msgid "Sign In"
+msgstr "Sign In"
+
+#: ~/Core/Title/Views/EditorTemplates/Parts.Title.TitlePart.cshtml
+msgctxt ~/Core/Title/Views/EditorTemplates/Parts.Title.TitlePart.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Core/Title/Views/EditorTemplates/Parts.Title.TitlePart.cshtml
+msgctxt ~/Core/Title/Views/EditorTemplates/Parts.Title.TitlePart.cshtml
+msgid "You must provide a title for this content item"
+msgstr "You must provide a title for this content item"
+

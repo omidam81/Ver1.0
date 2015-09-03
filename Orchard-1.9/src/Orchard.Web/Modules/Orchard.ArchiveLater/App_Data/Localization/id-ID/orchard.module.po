@@ -1,0 +1,83 @@
+#: ~/Modules/Orchard.ArchiveLater/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.ArchiveLater/Module.txt
+msgid "Archive Later"
+msgstr "Archive Later"
+
+#: ~/Modules/Orchard.ArchiveLater/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.ArchiveLater/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.ArchiveLater/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.ArchiveLater/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.ArchiveLater/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.ArchiveLater/Module.txt
+msgid "The ArchiveLater module introduces scheduled archiving functionality."
+msgstr "The ArchiveLater module introduces scheduled archiving functionality."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+msgid "Archive Later"
+msgstr "Archive Later"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.ArchiveLater/Module.txt
+msgid "The ArchiveLater module introduces scheduled archiving functionality."
+msgstr "The ArchiveLater module introduces scheduled archiving functionality."
+
+#: Orchard.ArchiveLater.Drivers.ArchiveLaterPartDriver
+msgctxt Orchard.ArchiveLater.Drivers.ArchiveLaterPartDriver
+msgid "'{0} {1}' could not be parsed as a valid date and time."
+msgstr "'{0} {1}' could not be parsed as a valid date and time."
+
+#: Orchard.ArchiveLater.Services.ArchiveLaterService
+msgctxt Orchard.ArchiveLater.Services.ArchiveLaterService
+msgid "Couldn't archive selected content."
+msgstr "Couldn't archive selected content."
+
+#: ~/Modules/Orchard.ArchiveLater/Views/EditorTemplates/Parts/ArchiveLater.cshtml
+msgctxt ~/Modules/Orchard.ArchiveLater/Views/EditorTemplates/Parts/ArchiveLater.cshtml
+msgid "Archive Settings"
+msgstr "Archive Settings"
+
+#: ~/Modules/Orchard.ArchiveLater/Views/EditorTemplates/Parts/ArchiveLater.cshtml
+msgctxt ~/Modules/Orchard.ArchiveLater/Views/EditorTemplates/Parts/ArchiveLater.cshtml
+msgid "Archive Later"
+msgstr "Archive Later"
+
+#: ~/Modules/Orchard.ArchiveLater/Views/Parts/ArchiveLater.Metadata.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.ArchiveLater/Views/Parts/ArchiveLater.Metadata.SummaryAdmin.cshtml
+msgid "Scheduled"
+msgstr "Scheduled"
+
+#: ~/Modules/Orchard.ArchiveLater/Views/Parts/ArchiveLater.Metadata.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.ArchiveLater/Views/Parts/ArchiveLater.Metadata.SummaryAdmin.cshtml
+msgid "The page is scheduled for archiving"
+msgstr "The page is scheduled for archiving"
+
+#: ~/Modules/Orchard.ArchiveLater/Views/Parts/ArchiveLater.Metadata.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.ArchiveLater/Views/Parts/ArchiveLater.Metadata.SummaryAdmin.cshtml
+msgid "Unpublish on"
+msgstr "Unpublish on"
+

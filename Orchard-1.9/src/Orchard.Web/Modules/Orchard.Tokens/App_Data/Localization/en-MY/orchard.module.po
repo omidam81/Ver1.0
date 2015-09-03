@@ -1,0 +1,823 @@
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Name"
+#. "Orchard.Tokens.Name"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Tokens"
+msgstr "Tokens"
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "http://orchardtokens.codeplex.com"
+msgstr "http://orchardtokens.codeplex.com"
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Description"
+#. "Orchard.Tokens.Description"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Provides a system for performing string replacements with common site values."
+msgstr "Provides a system for performing string replacements with common site values."
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.Category"
+#. "Orchard.Tokens.Feeds.Category"
+#. "Orchard.Tokens.HtmlFilter.Category"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.Feeds.Name"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Feeds Tokens"
+msgstr "Feeds Tokens"
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.Feeds.Description"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Provides a content part to customize RSS fields based on tokens."
+msgstr "Provides a content part to customize RSS fields based on tokens."
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.HtmlFilter.Name"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Tokens Html Filter"
+msgstr "Tokens Html Filter"
+
+#: ~/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.HtmlFilter.Description"
+msgctxt ~/Modules/Orchard.Tokens/Module.txt
+msgid "Evaluates tokens in a body."
+msgstr "Evaluates tokens in a body."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Name"
+#. "Orchard.Tokens.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Tokens"
+msgstr "Tokens"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "http://orchardtokens.codeplex.com"
+msgstr "http://orchardtokens.codeplex.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Description"
+#. "Orchard.Tokens.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Provides a system for performing string replacements with common site values."
+msgstr "Provides a system for performing string replacements with common site values."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.Category"
+#. "Orchard.Tokens.Feeds.Category"
+#. "Orchard.Tokens.HtmlFilter.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.Feeds.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Feeds Tokens"
+msgstr "Feeds Tokens"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.Feeds.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Provides a content part to customize RSS fields based on tokens."
+msgstr "Provides a content part to customize RSS fields based on tokens."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.HtmlFilter.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Tokens Html Filter"
+msgstr "Tokens Html Filter"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+#. "Orchard.Tokens.HtmlFilter.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tokens/Module.txt
+msgid "Evaluates tokens in a body."
+msgstr "Evaluates tokens in a body."
+
+#: Orchard.Tokens.Providers.ContentTokens
+
+#. "Content Items"
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Content Items"
+msgstr "Content Items"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Content Id"
+msgstr "Content Id"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Numeric primary key value of content."
+msgstr "Numeric primary key value of content."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Content Author"
+msgstr "Content Author"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Person in charge of the content."
+msgstr "Person in charge of the content."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Content Date"
+msgstr "Content Date"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Date the content was created."
+msgstr "Date the content was created."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Identity"
+msgstr "Identity"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Identity of the content."
+msgstr "Identity of the content."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Content Type"
+msgstr "Content Type"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "The name of the item Content Type."
+msgstr "The name of the item Content Type."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Display Text"
+msgstr "Display Text"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Title of the content."
+msgstr "Title of the content."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Display Url"
+msgstr "Display Url"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Url to display the content."
+msgstr "Url to display the content."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Edit Url"
+msgstr "Edit Url"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Url to edit the content."
+msgstr "Url to edit the content."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Container"
+msgstr "Container"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "The container Content Item."
+msgstr "The container Content Item."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Body"
+msgstr "Body"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "The body text of the content item."
+msgstr "The body text of the content item."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "{0} {1}"
+msgstr "{0} {1}"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "The content of the {0} field."
+msgstr "The content of the {0} field."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Text Field"
+msgstr "Text Field"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Tokens for Text Fields"
+msgstr "Tokens for Text Fields"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Length"
+msgstr "Length"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "The length of the field."
+msgstr "The length of the field."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Url"
+msgstr "Url"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Tokens for Urls"
+msgstr "Tokens for Urls"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Absolute"
+msgstr "Absolute"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Absolute url."
+msgstr "Absolute url."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Type Definition"
+msgstr "Type Definition"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Tokens for Content Types"
+msgstr "Tokens for Content Types"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Name"
+msgstr "Name"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Name of the content type."
+msgstr "Name of the content type."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Display Name"
+msgstr "Display Name"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Display name of the content type."
+msgstr "Display name of the content type."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Parts"
+msgstr "Parts"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "List of the attached part names."
+msgstr "List of the attached part names."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Fields"
+msgstr "Fields"
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Fields for each of the attached parts. For example, Fields.Page.Approved."
+msgstr "Fields for each of the attached parts. For example, Fields.Page.Approved."
+
+#: Orchard.Tokens.Providers.ContentTokens
+msgctxt Orchard.Tokens.Providers.ContentTokens
+msgid "Anonymous"
+msgstr "Anonymous"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Date/Time"
+msgstr "Date/Time"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Current date/time tokens"
+msgstr "Current date/time tokens"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Since"
+msgstr "Since"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Relative to the current date/time."
+msgstr "Relative to the current date/time."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Local"
+msgstr "Local"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Based on the configured time zone and calendar."
+msgstr "Based on the configured time zone and calendar."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Short Date and Time"
+msgstr "Short Date and Time"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Short date and time format."
+msgstr "Short date and time format."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Short Date"
+msgstr "Short Date"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Short date format."
+msgstr "Short date format."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Short Time"
+msgstr "Short Time"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Short time format."
+msgstr "Short time format."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Long Date and Time"
+msgstr "Long Date and Time"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Long date and time format."
+msgstr "Long date and time format."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Long Date"
+msgstr "Long Date"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Long date format."
+msgstr "Long date format."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Long Time"
+msgstr "Long Time"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Long time format."
+msgstr "Long time format."
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Format:<formatString>"
+msgstr "Format:<formatString>"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "Optional custom date/time format string (e.g. yyyy/MM/dd). For reference see <a target=\"_blank\" href=\"http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx\">Custom Date and Time Format Strings</a>"
+msgstr "Optional custom date/time format string (e.g. yyyy/MM/dd). For reference see <a target=\"_blank\" href=\"http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx\">Custom Date and Time Format Strings</a>"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "'on' MMM d yyyy 'at' h:mm tt"
+msgstr "'on' MMM d yyyy 'at' h:mm tt"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "a moment ago"
+msgstr "a moment ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "1 day ago"
+msgstr "1 day ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "{0} days ago"
+msgstr "{0} days ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "1 hour ago"
+msgstr "1 hour ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "{0} hours ago"
+msgstr "{0} hours ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "1 minute ago"
+msgstr "1 minute ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "{0} minutes ago"
+msgstr "{0} minutes ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "1 second ago"
+msgstr "1 second ago"
+
+#: Orchard.Tokens.Providers.DateTokens
+msgctxt Orchard.Tokens.Providers.DateTokens
+msgid "{0} seconds ago"
+msgstr "{0} seconds ago"
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "Http Request"
+msgstr "Http Request"
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "Current Http Request tokens."
+msgstr "Current Http Request tokens."
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "QueryString:<element>"
+msgstr "QueryString:<element>"
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "The Query String value for the specified element."
+msgstr "The Query String value for the specified element."
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "Form:<element>"
+msgstr "Form:<element>"
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "The Form value for the specified element."
+msgstr "The Form value for the specified element."
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "Route:<key>"
+msgstr "Route:<key>"
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "The Route value for the specified key."
+msgstr "The Route value for the specified key."
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "Content"
+msgstr "Content"
+
+#: Orchard.Tokens.Providers.RequestTokens
+msgctxt Orchard.Tokens.Providers.RequestTokens
+msgid "The request routed Content Item."
+msgstr "The request routed Content Item."
+
+#: Orchard.Tokens.Providers.ShapeTokens
+msgctxt Orchard.Tokens.Providers.ShapeTokens
+msgid "Shape"
+msgstr "Shape"
+
+#: Orchard.Tokens.Providers.ShapeTokens
+msgctxt Orchard.Tokens.Providers.ShapeTokens
+msgid "Shape tokens."
+msgstr "Shape tokens."
+
+#: Orchard.Tokens.Providers.ShapeTokens
+msgctxt Orchard.Tokens.Providers.ShapeTokens
+msgid "Execute:<shape name>"
+msgstr "Execute:<shape name>"
+
+#: Orchard.Tokens.Providers.ShapeTokens
+msgctxt Orchard.Tokens.Providers.ShapeTokens
+msgid "Executes the specified shape."
+msgstr "Executes the specified shape."
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Text"
+msgstr "Text"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Tokens for text strings"
+msgstr "Tokens for text strings"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Limit:<text length>[,<ellipsis>]"
+msgstr "Limit:<text length>[,<ellipsis>]"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Limit text to specified length and append an optional ellipsis text."
+msgstr "Limit text to specified length and append an optional ellipsis text."
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Format:<text format>"
+msgstr "Format:<text format>"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Optional format specifier (e.g. foo{0}bar). See format strings at <a target=\"_blank\" href=\"http://msdn.microsoft.com/en-us/library/az4se3k1.aspx\">Standard Formats</a> and <a target=\"_blank\" href=\"http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx\">Custom Formats</a>"
+msgstr "Optional format specifier (e.g. foo{0}bar). See format strings at <a target=\"_blank\" href=\"http://msdn.microsoft.com/en-us/library/az4se3k1.aspx\">Standard Formats</a> and <a target=\"_blank\" href=\"http://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx\">Custom Formats</a>"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "TrimEnd:<chars|number>"
+msgstr "TrimEnd:<chars|number>"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Trims the specified characters or number of them from the end of the string."
+msgstr "Trims the specified characters or number of them from the end of the string."
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Url Encode"
+msgstr "Url Encode"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Encodes a URL string."
+msgstr "Encodes a URL string."
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Html Encode"
+msgstr "Html Encode"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Encodes an HTML string."
+msgstr "Encodes an HTML string."
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Line Encode"
+msgstr "Line Encode"
+
+#: Orchard.Tokens.Providers.TextTokens
+msgctxt Orchard.Tokens.Providers.TextTokens
+msgid "Replaces new lines with <br /> tags."
+msgstr "Replaces new lines with <br /> tags."
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "User"
+msgstr "User"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "User tokens"
+msgstr "User tokens"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "Name"
+msgstr "Name"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "Username"
+msgstr "Username"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "Email"
+msgstr "Email"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "Email Address"
+msgstr "Email Address"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "Id"
+msgstr "Id"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "User Id"
+msgstr "User Id"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "Content"
+msgstr "Content"
+
+#: Orchard.Tokens.Providers.UserTokens
+msgctxt Orchard.Tokens.Providers.UserTokens
+msgid "The user's content item"
+msgstr "The user's content item"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Global1"
+msgstr "Global1"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "description of token1"
+msgstr "description of token1"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Global2"
+msgstr "Global2"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "description of token2"
+msgstr "description of token2"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Global3"
+msgstr "Global3"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "description of token3"
+msgstr "description of token3"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Current User"
+msgstr "Current User"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "The current user"
+msgstr "The current user"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Name"
+msgstr "Name"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Their user name"
+msgstr "Their user name"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Birthdate"
+msgstr "Birthdate"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Date of birth"
+msgstr "Date of birth"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Now"
+msgstr "Now"
+
+#: Orchard.Tokens.Tests.TestTokenProvider
+msgctxt Orchard.Tokens.Tests.TestTokenProvider
+msgid "Current system date in short date format. You can chain a .NET DateTime format string to customize."
+msgstr "Current system date in short date format. You can chain a .NET DateTime format string to customize."
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid " Use '-' to remove the tag, leave empty to keep untouched, or use the 'Text' text token for the current value."
+msgstr " Use '-' to remove the tag, leave empty to keep untouched, or use the 'Text' text token for the current value."
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The title field of the RSS item."
+msgstr "The title field of the RSS item."
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Link"
+msgstr "Link"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The link field of the RSS item"
+msgstr "The link field of the RSS item"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Description"
+msgstr "Description"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The description field of the RSS item. The content needs to be raw HTML, i.e. not encoded."
+msgstr "The description field of the RSS item. The content needs to be raw HTML, i.e. not encoded."
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Author"
+msgstr "Author"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The author field of the RSS item"
+msgstr "The author field of the RSS item"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Category"
+msgstr "Category"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The category field of the RSS item"
+msgstr "The category field of the RSS item"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Enclosure"
+msgstr "Enclosure"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The enclosure field of the RSS item. This is usually a html tag like <img>"
+msgstr "The enclosure field of the RSS item. This is usually a html tag like <img>"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "PubDate"
+msgstr "PubDate"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The pubDate field of the RSS item"
+msgstr "The pubDate field of the RSS item"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "Source"
+msgstr "Source"
+
+#: ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgctxt ~/Modules/Orchard.Tokens/Views/DefinitionTemplates/RssPartSettings.cshtml
+msgid "The source field of the RSS item"
+msgstr "The source field of the RSS item"
+

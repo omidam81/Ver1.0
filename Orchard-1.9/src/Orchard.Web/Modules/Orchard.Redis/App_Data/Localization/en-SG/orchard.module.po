@@ -1,0 +1,172 @@
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Orchard.Redis"
+msgstr "Orchard.Redis"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Provides Redis integration with Orchard."
+msgstr "Provides Redis integration with Orchard."
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. ".Name"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Redis"
+msgstr "Redis"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. ".Description"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Used to provide Redis related functionalities."
+msgstr "Used to provide Redis related functionalities."
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. ".Category"
+#. "Orchard.Redis.MessageBus.Category"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Hosting"
+msgstr "Hosting"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.MessageBus.Name"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Redis Message Bus"
+msgstr "Redis Message Bus"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.MessageBus.Description"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "A message bus implementation using Redis pub/sub."
+msgstr "A message bus implementation using Redis pub/sub."
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.OutputCache.Name"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Redis Output Cache"
+msgstr "Redis Output Cache"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.OutputCache.Description"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "An output cache storage provider using Redis."
+msgstr "An output cache storage provider using Redis."
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.OutputCache.Category"
+#. "Orchard.Redis.Caching.Category"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.Caching.Name"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Redis Cache"
+msgstr "Redis Cache"
+
+#: ~/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.Caching.Description"
+msgctxt ~/Modules/Orchard.Redis/Module.txt
+msgid "Business data cache using Redis."
+msgstr "Business data cache using Redis."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Orchard.Redis"
+msgstr "Orchard.Redis"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Provides Redis integration with Orchard."
+msgstr "Provides Redis integration with Orchard."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. ".Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Redis"
+msgstr "Redis"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. ".Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Used to provide Redis related functionalities."
+msgstr "Used to provide Redis related functionalities."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. ".Category"
+#. "Orchard.Redis.MessageBus.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Hosting"
+msgstr "Hosting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.MessageBus.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Redis Message Bus"
+msgstr "Redis Message Bus"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.MessageBus.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "A message bus implementation using Redis pub/sub."
+msgstr "A message bus implementation using Redis pub/sub."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.OutputCache.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Redis Output Cache"
+msgstr "Redis Output Cache"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.OutputCache.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "An output cache storage provider using Redis."
+msgstr "An output cache storage provider using Redis."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.OutputCache.Category"
+#. "Orchard.Redis.Caching.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.Caching.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Redis Cache"
+msgstr "Redis Cache"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+#. "Orchard.Redis.Caching.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Redis/Module.txt
+msgid "Business data cache using Redis."
+msgstr "Business data cache using Redis."
+

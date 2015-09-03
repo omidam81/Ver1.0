@@ -151,7 +151,8 @@ namespace Teeyoot.Module.Services
                     IsApproved = false,
                     CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Unpaid.ToString()),
                     CampaignProfit = data.CampaignProfit != null ? data.CampaignProfit : string.Empty,
-                    ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal
+                    ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal,
+                    CampaignCulture = (data.CampaignCulture == null || string.IsNullOrEmpty(data.CampaignCulture)) ? "en-MY" : data.CampaignCulture.Trim()
                 };
                 _campaignRepository.Create(newCampaign);
 

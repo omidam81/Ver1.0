@@ -1,0 +1,146 @@
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Services"
+msgstr "Microsoft Azure Services"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Provides a set of Orchard service implementations targeting Microsoft Azure services."
+msgstr "Provides a set of Orchard service implementations targeting Microsoft Azure services."
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.Media.Name"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Media Storage"
+msgstr "Microsoft Azure Media Storage"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.Media.Description"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Activates an Orchard media storage provider that targets Microsoft Azure Blob Storage."
+msgstr "Activates an Orchard media storage provider that targets Microsoft Azure Blob Storage."
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.Media.Category"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Hosting"
+msgstr "Hosting"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.OutputCache.Name"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Output Cache"
+msgstr "Microsoft Azure Output Cache"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.OutputCache.Description"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Activates an Orchard output cache provider that targets Windows Azure Cache."
+msgstr "Activates an Orchard output cache provider that targets Windows Azure Cache."
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.OutputCache.Category"
+#. "Orchard.Azure.DatabaseCache.Category"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.DatabaseCache.Name"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Database Cache"
+msgstr "Microsoft Azure Database Cache"
+
+#: ~/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.DatabaseCache.Description"
+msgctxt ~/Modules/Orchard.Azure/Module.txt
+msgid "Activates an NHibernate second-level cache provider that targets Microsoft Azure Cache."
+msgstr "Activates an NHibernate second-level cache provider that targets Microsoft Azure Cache."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Services"
+msgstr "Microsoft Azure Services"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Provides a set of Orchard service implementations targeting Microsoft Azure services."
+msgstr "Provides a set of Orchard service implementations targeting Microsoft Azure services."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.Media.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Media Storage"
+msgstr "Microsoft Azure Media Storage"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.Media.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Activates an Orchard media storage provider that targets Microsoft Azure Blob Storage."
+msgstr "Activates an Orchard media storage provider that targets Microsoft Azure Blob Storage."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.Media.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Hosting"
+msgstr "Hosting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.OutputCache.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Output Cache"
+msgstr "Microsoft Azure Output Cache"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.OutputCache.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Activates an Orchard output cache provider that targets Windows Azure Cache."
+msgstr "Activates an Orchard output cache provider that targets Windows Azure Cache."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.OutputCache.Category"
+#. "Orchard.Azure.DatabaseCache.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.DatabaseCache.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Microsoft Azure Database Cache"
+msgstr "Microsoft Azure Database Cache"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+#. "Orchard.Azure.DatabaseCache.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Azure/Module.txt
+msgid "Activates an NHibernate second-level cache provider that targets Microsoft Azure Cache."
+msgstr "Activates an NHibernate second-level cache provider that targets Microsoft Azure Cache."
+

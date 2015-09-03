@@ -1,0 +1,192 @@
+#: ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+#. "Name"
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+msgid "Teebay Theme"
+msgstr "Teebay Theme"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+#. "Tags"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+msgid "Awesome"
+msgstr "Awesome"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/Teebay.Theme/Theme.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Themes/Teebay.Theme/Theme.txt
+#. "Name"
+#. "Description"
+msgctxt ~/Themes/Teebay.Theme/Theme.txt
+msgid "Teebay Theme"
+msgstr "Teebay Theme"
+
+#: ~/Themes/Teebay.Theme/Theme.txt
+#. "Author"
+msgctxt ~/Themes/Teebay.Theme/Theme.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Themes/Teebay.Theme/Theme.txt
+#. "Tags"
+msgctxt ~/Themes/Teebay.Theme/Theme.txt
+msgid "Awesome"
+msgstr "Awesome"
+
+#: ~/Themes/Teebay.Theme/Theme.txt
+#. "Website"
+msgctxt ~/Themes/Teebay.Theme/Theme.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Themes/Teebay.Theme/Views/BadgeOfHonor.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/BadgeOfHonor.cshtml
+msgid "&#169; 2015 Teeyoot.com"
+msgstr "&#169; 2015 Teeyoot.com"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-anonimous-menu-MenuItem-level-1.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-anonimous-menu-MenuItem-level-1.cshtml
+msgid "Get Started"
+msgstr "Get Started"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-anonymous-menu-MenuItem-level-1.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-anonymous-menu-MenuItem-level-1.cshtml
+msgid "Get Started"
+msgstr "Get Started"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgid "Your Campaigns"
+msgstr "Your Campaigns"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgid "Shop"
+msgstr "Shop"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgid "Direct Messages"
+msgstr "Direct Messages"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgid "Marketing Campaigns"
+msgstr "Marketing Campaigns"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgid "Accounts"
+msgstr "Accounts"
+
+#: ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/MenuItemLink-seller-dashboard-menu.cshtml
+msgid "Profile"
+msgstr "Profile"
+
+#: ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgid "Not found"
+msgstr "Not found"
+
+#: ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgid "The page you are looking for is not found."
+msgstr "The page you are looking for is not found."
+
+#: ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgid "You can either go the "
+msgstr "You can either go the "
+
+#: ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgid "Home page"
+msgstr "Home page"
+
+#: ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgid " or the "
+msgstr " or the "
+
+#: ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+
+#. "Previous page"
+msgctxt ~/Themes/Teebay.Theme/Views/NotFound.cshtml
+msgid "Previous page"
+msgstr "Previous page"
+
+#: ~/Themes/Teebay.Theme/Views/Parts.MenuWidget-31.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/Parts.MenuWidget-31.cshtml
+msgid "Logout"
+msgstr "Logout"
+
+#: ~/Themes/Teebay.Theme/Views/Parts.MenuWidget-31.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/Parts.MenuWidget-31.cshtml
+msgid "Collapse"
+msgstr "Collapse"
+
+#: ~/Themes/Teebay.Theme/Views/Parts.Search.SearchForm-66.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/Parts.Search.SearchForm-66.cshtml
+msgid "Search Campaigns"
+msgstr "Search Campaigns en-MY"
+
+#: ~/Themes/Teebay.Theme/Views/User.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/User.cshtml
+msgid "Welcome, <strong>{0}</strong>!"
+msgstr "Welcome, <strong>{0}</strong>!"
+
+#: ~/Themes/Teebay.Theme/Views/User.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/User.cshtml
+msgid "Sign Out"
+msgstr "Sign Out"
+
+#: ~/Themes/Teebay.Theme/Views/User.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/User.cshtml
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: ~/Themes/Teebay.Theme/Views/User.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/User.cshtml
+msgid "Sign In"
+msgstr "Sign In"
+
+#: ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Create.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Create.cshtml
+msgid "Email"
+msgstr "Email"
+
+#: ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Create.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Create.cshtml
+msgid "Password"
+msgstr "Password"
+
+#: ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Create.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Create.cshtml
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Edit.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Edit.cshtml
+msgid "Email"
+msgstr "Email"
+
+#: ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Edit.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Edit.cshtml
+msgid "Password"
+msgstr "Password"
+
+#: ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Edit.cshtml
+msgctxt ~/Themes/Teebay.Theme/Views/EditorTemplates/Parts/User.Edit.cshtml
+msgid "Confirm Password"
+msgstr "Confirm Password"
+

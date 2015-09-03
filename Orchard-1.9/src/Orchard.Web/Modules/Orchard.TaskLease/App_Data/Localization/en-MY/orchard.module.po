@@ -1,0 +1,48 @@
+#: ~/Modules/Orchard.TaskLease/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.TaskLease/Module.txt
+msgid "Task Lease"
+msgstr "Task Lease"
+
+#: ~/Modules/Orchard.TaskLease/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.TaskLease/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.TaskLease/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.TaskLease/Module.txt
+msgid "http://orchardtasklease.codeplex.com"
+msgstr "http://orchardtasklease.codeplex.com"
+
+#: ~/Modules/Orchard.TaskLease/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.TaskLease/Module.txt
+msgid "Provides services to synchronize tasks in a farm environment"
+msgstr "Provides services to synchronize tasks in a farm environment"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+msgid "Task Lease"
+msgstr "Task Lease"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+msgid "http://orchardtasklease.codeplex.com"
+msgstr "http://orchardtasklease.codeplex.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.TaskLease/Module.txt
+msgid "Provides services to synchronize tasks in a farm environment"
+msgstr "Provides services to synchronize tasks in a farm environment"
+

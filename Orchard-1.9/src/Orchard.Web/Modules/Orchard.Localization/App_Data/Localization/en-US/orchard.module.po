@@ -1,0 +1,497 @@
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "The localization module enables the localization of content items."
+msgstr "The localization module enables the localization of content items."
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Description"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Enables localization of content items."
+msgstr "Enables localization of content items."
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Category"
+#. "Orchard.Localization.DateTimeFormat.Category"
+#. "Orchard.Localization.CultureSelector.Category"
+#. "Orchard.Localization.Transliteration.Category"
+#. "Orchard.Localization.Transliteration.SlugGeneration.Category"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Name"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Content Localization"
+msgstr "Content Localization"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.DateTimeFormat.Description"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Enables PO-based translation of date/time formats and names of days and months."
+msgstr "Enables PO-based translation of date/time formats and names of days and months."
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.DateTimeFormat.Name"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Date/Time Format Translation"
+msgstr "Date/Time Format Translation"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.CultureSelector.Description"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Enables culture picker services, and also the admin culture picker."
+msgstr "Enables culture picker services, and also the admin culture picker."
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.CultureSelector.Name"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Culture Picker"
+msgstr "Culture Picker"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.Description"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Enables transliteration of content."
+msgstr "Enables transliteration of content."
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.Name"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Transliteration"
+msgstr "Transliteration"
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.SlugGeneration.Description"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "Enables transliteration of the autoroute slug when creating a piece of content."
+msgstr "Enables transliteration of the autoroute slug when creating a piece of content."
+
+#: ~/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.SlugGeneration.Name"
+msgctxt ~/Modules/Orchard.Localization/Module.txt
+msgid "URL Transliteration"
+msgstr "URL Transliteration"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "The localization module enables the localization of content items."
+msgstr "The localization module enables the localization of content items."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Enables localization of content items."
+msgstr "Enables localization of content items."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Category"
+#. "Orchard.Localization.DateTimeFormat.Category"
+#. "Orchard.Localization.CultureSelector.Category"
+#. "Orchard.Localization.Transliteration.Category"
+#. "Orchard.Localization.Transliteration.SlugGeneration.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Content Localization"
+msgstr "Content Localization"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.DateTimeFormat.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Enables PO-based translation of date/time formats and names of days and months."
+msgstr "Enables PO-based translation of date/time formats and names of days and months."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.DateTimeFormat.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Date/Time Format Translation"
+msgstr "Date/Time Format Translation"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.CultureSelector.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Enables culture picker services, and also the admin culture picker."
+msgstr "Enables culture picker services, and also the admin culture picker."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.CultureSelector.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Culture Picker"
+msgstr "Culture Picker"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Enables transliteration of content."
+msgstr "Enables transliteration of content."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Transliteration"
+msgstr "Transliteration"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.SlugGeneration.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "Enables transliteration of the autoroute slug when creating a piece of content."
+msgstr "Enables transliteration of the autoroute slug when creating a piece of content."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+#. "Orchard.Localization.Transliteration.SlugGeneration.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Localization/Module.txt
+msgid "URL Transliteration"
+msgstr "URL Transliteration"
+
+#: Orchard.Localization.AdminMenu
+
+#. "Settings"
+msgctxt Orchard.Localization.AdminMenu
+msgid "Settings"
+msgstr "Settings"
+
+#: Orchard.Localization.AdminMenu
+msgctxt Orchard.Localization.AdminMenu
+msgid "Transliteration"
+msgstr "Transliteration"
+
+#: Orchard.Localization.Controllers.AdminController
+msgctxt Orchard.Localization.Controllers.AdminController
+msgid "Created content item translation."
+msgstr "Created content item translation."
+
+#: Orchard.Localization.Projections.CurrentCultureFilter
+
+#. "Localization"
+msgctxt Orchard.Localization.Projections.CurrentCultureFilter
+msgid "Localization"
+msgstr "Localization"
+
+#: Orchard.Localization.Projections.CurrentCultureFilter
+
+#. "For current culture"
+msgctxt Orchard.Localization.Projections.CurrentCultureFilter
+msgid "For current culture"
+msgstr "For current culture"
+
+#: Orchard.Localization.Projections.CurrentCultureFilter
+msgctxt Orchard.Localization.Projections.CurrentCultureFilter
+msgid "Localized content items for current culture"
+msgstr "Localized content items for current culture"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+
+#. "Content Items"
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Content Items"
+msgstr "Content Items"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+
+#. "Culture"
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Culture"
+msgstr "Culture"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "The culture of the content item"
+msgstr "The culture of the content item"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Tokens for culture"
+msgstr "Tokens for culture"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Name"
+msgstr "Name"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Gets the culture name in the format languagecode2-country/regioncode2."
+msgstr "Gets the culture name in the format languagecode2-country/regioncode2."
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Two Letter ISO Language Name"
+msgstr "Two Letter ISO Language Name"
+
+#: Orchard.Localization.Providers.ContentLocalizationTokens
+msgctxt Orchard.Localization.Providers.ContentLocalizationTokens
+msgid "Gets the ISO 639-1 two-letter code for the language of the current CultureInfo."
+msgstr "Gets the ISO 639-1 two-letter code for the language of the current CultureInfo."
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "January, February, March, April, May, June, July, August, September, October, November, December"
+msgstr "January, February, March, April, May, June, July, August, September, October, November, December"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+msgstr "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+msgstr "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+msgstr "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "Su, Mo, Tu, We, Th, Fr, Sa"
+msgstr "Su, Mo, Tu, We, Th, Fr, Sa"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "M/d/yyyy"
+msgstr "M/d/yyyy"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "h:mm tt"
+msgstr "h:mm tt"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "M/d/yyyy h:mm tt"
+msgstr "M/d/yyyy h:mm tt"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "dddd, MMMM d, yyyy"
+msgstr "dddd, MMMM d, yyyy"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "h:mm:ss tt"
+msgstr "h:mm:ss tt"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "dddd, MMMM d, yyyy h:mm:ss tt"
+msgstr "dddd, MMMM d, yyyy h:mm:ss tt"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "firstDay: 1"
+msgstr "firstDay: 1"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "use24HourTime: false"
+msgstr "use24HourTime: false"
+
+#: Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgctxt Orchard.Localization.Providers.LocalizationDateTimeFormatProvider
+msgid "AM;PM"
+msgstr "AM;PM"
+
+#: ~/Modules/Orchard.Localization/Views/AdminCultureSelector.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/AdminCultureSelector.cshtml
+msgid "{0} (current)"
+msgstr "{0} (current)"
+
+#: ~/Modules/Orchard.Localization/Views/FrontEndCultureSelector.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/FrontEndCultureSelector.cshtml
+msgid "{0} (current)"
+msgstr "{0} (current)"
+
+#: ~/Modules/Orchard.Localization/Views/FrontEndCultureSelector.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/FrontEndCultureSelector.cshtml
+msgid "{0}"
+msgstr "{0}"
+
+#: ~/Modules/Orchard.Localization/Views/Admin/Translate.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/Admin/Translate.cshtml
+msgid "Translate Content"
+msgstr "Translate Content"
+
+#: ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgid "Content Localization"
+msgstr "Content Localization"
+
+#: ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+
+#. "This is the <em>{0}</em> variation of the content"
+msgctxt ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgid "This is the <em>{0}</em> variation of the content"
+msgstr "This is the <em>{0}</em> variation of the content"
+
+#: ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgid "This is the <em>{0}</em> variation of {1}"
+msgstr "This is the <em>{0}</em> variation of {1}"
+
+#: ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgid "This content currently has no culture associated to it, please select a culture to associate to this piece of content: {0}"
+msgstr "This content currently has no culture associated to it, please select a culture to associate to this piece of content: {0}"
+
+#: ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgid "Other translations:"
+msgstr "Other translations:"
+
+#: ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/EditorTemplates/Parts/Localization.ContentTranslations.Edit.cshtml
+msgid "+ New translation"
+msgstr "+ New translation"
+
+#: ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.cshtml
+msgid "Translations:"
+msgstr "Translations:"
+
+#: ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.Summary.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.Summary.cshtml
+msgid "Translations:"
+msgstr "Translations:"
+
+#: ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+
+#. "Culture: {0}"
+msgctxt ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgid "Culture: {0}"
+msgstr "Culture: {0}"
+
+#: ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgid "Undefined"
+msgstr "Undefined"
+
+#: ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgid "Translations:"
+msgstr "Translations:"
+
+#: ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/Parts/Localization.ContentTranslations.SummaryAdmin.cshtml
+msgid "+ New translation"
+msgstr "+ New translation"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgid "Create Transliteration"
+msgstr "Create Transliteration"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Create.cshtml
+msgid "Create"
+msgstr "Create"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgid "Edit Transliteration"
+msgstr "Edit Transliteration"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Edit.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "Transliteration Settings"
+msgstr "Transliteration Settings"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "Create a new specification"
+msgstr "Create a new specification"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "Culture From"
+msgstr "Culture From"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "Culture To"
+msgstr "Culture To"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.Localization/Views/TransliterationAdmin/Index.cshtml
+msgid "There are no specifications registered. Why not <a href=\"{0}\">Create one</a>?"
+msgstr "There are no specifications registered. Why not <a href=\"{0}\">Create one</a>?"
+

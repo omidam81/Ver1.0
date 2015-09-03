@@ -1,0 +1,62 @@
+#: ~/Modules/Orchard.Caching/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Caching/Module.txt
+msgid "Orchard.Caching"
+msgstr "Orchard.Caching"
+
+#: ~/Modules/Orchard.Caching/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Caching/Module.txt
+msgid "Sébastien Ros"
+msgstr "Sébastien Ros"
+
+#: ~/Modules/Orchard.Caching/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Caching/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Caching/Module.txt
+#. "Description"
+#. "Orchard.Caching.Description"
+msgctxt ~/Modules/Orchard.Caching/Module.txt
+msgid "Provides an API to cache business data."
+msgstr "Provides an API to cache business data."
+
+#: ~/Modules/Orchard.Caching/Module.txt
+#. "Orchard.Caching.Category"
+msgctxt ~/Modules/Orchard.Caching/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+msgid "Orchard.Caching"
+msgstr "Orchard.Caching"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+msgid "Sébastien Ros"
+msgstr "Sébastien Ros"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+#. "Description"
+#. "Orchard.Caching.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+msgid "Provides an API to cache business data."
+msgstr "Provides an API to cache business data."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+#. "Orchard.Caching.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Caching/Module.txt
+msgid "Performance"
+msgstr "Performance"
+

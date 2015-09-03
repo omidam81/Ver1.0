@@ -1,0 +1,73 @@
+#: ~/Modules/Markdown/Module.txt
+#. "Name"
+msgctxt ~/Modules/Markdown/Module.txt
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ~/Modules/Markdown/Module.txt
+#. "Author"
+msgctxt ~/Modules/Markdown/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Markdown/Module.txt
+#. "Website"
+msgctxt ~/Modules/Markdown/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Markdown/Module.txt
+#. "Description"
+msgctxt ~/Modules/Markdown/Module.txt
+msgid "The Markdown module enables rich text contents to be created using the Markdown syntax."
+msgstr "The Markdown module enables rich text contents to be created using the Markdown syntax."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Markdown/Module.txt
+msgid "The Markdown module enables rich text contents to be created using the Markdown syntax."
+msgstr "The Markdown module enables rich text contents to be created using the Markdown syntax."
+
+#: Markdown.Handlers.MarkdownSiteSettingsPartHandler
+msgctxt Markdown.Handlers.MarkdownSiteSettingsPartHandler
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ~/Modules/Markdown/Views/Body-Markdown.Editor.cshtml
+msgctxt ~/Modules/Markdown/Views/Body-Markdown.Editor.cshtml
+msgid "Insert/Update Media"
+msgstr "Insert/Update Media"
+
+#: ~/Modules/Markdown/Views/EditorTemplates/Parts/Markdown.MarkdownSiteSettings.cshtml
+msgctxt ~/Modules/Markdown/Views/EditorTemplates/Parts/Markdown.MarkdownSiteSettings.cshtml
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ~/Modules/Markdown/Views/EditorTemplates/Parts/Markdown.MarkdownSiteSettings.cshtml
+msgctxt ~/Modules/Markdown/Views/EditorTemplates/Parts/Markdown.MarkdownSiteSettings.cshtml
+msgid "Use Markdown to write Blog Post"
+msgstr "Use Markdown to write Blog Post"
+
+#: ~/Modules/Markdown/Views/EditorTemplates/Parts/Markdown.MarkdownSiteSettings.cshtml
+msgctxt ~/Modules/Markdown/Views/EditorTemplates/Parts/Markdown.MarkdownSiteSettings.cshtml
+msgid "Enable to change the default editor for all blog posts to Markdown."
+msgstr "Enable to change the default editor for all blog posts to Markdown."
+

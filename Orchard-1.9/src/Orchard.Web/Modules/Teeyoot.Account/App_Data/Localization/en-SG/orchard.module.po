@@ -1,0 +1,324 @@
+#: ~/Modules/Teeyoot.Account/Module.txt
+#. "Name"
+msgctxt ~/Modules/Teeyoot.Account/Module.txt
+msgid "Teeyoot Account"
+msgstr "Teeyoot Account"
+
+#: ~/Modules/Teeyoot.Account/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Account/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Teeyoot.Account/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Account/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Teeyoot.Account/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Account/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Account/Module.txt
+#. "Teeyoot.Account.Description"
+msgctxt ~/Modules/Teeyoot.Account/Module.txt
+msgid "Description for feature Teeyoot.Account."
+msgstr "Description for feature Teeyoot.Account."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+msgid "Teeyoot Account"
+msgstr "Teeyoot Account"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+#. "Teeyoot.Account.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Account/Module.txt
+msgid "Description for feature Teeyoot.Account."
+msgstr "Description for feature Teeyoot.Account."
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Registration issue occurred."
+msgstr "Registration issue occurred."
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "You did not provide a valid email."
+msgstr "You did not provide a valid email."
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Oops, this email address is not registered!"
+msgstr "Oops, this email address is not registered!"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Name can't be blank"
+msgstr "Name can't be blank"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Email can't be blank"
+msgstr "Email can't be blank"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Email is too long"
+msgstr "Email is too long"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Email is invalid"
+msgstr "Email is invalid"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "A user already exists with the Email you have given"
+msgstr "A user already exists with the Email you have given"
+
+#: Teeyoot.Account.Controllers.AccountController
+
+#. "Password can't be blank"
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Password can't be blank"
+msgstr "Password can't be blank"
+
+#: Teeyoot.Account.Controllers.AccountController
+
+#. "Password is too short (minimum is {0} characters)"
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Password is too short (minimum is {0} characters)"
+msgstr "Password is too short (minimum is {0} characters)"
+
+#: Teeyoot.Account.Controllers.AccountController
+
+#. "Password confirmation can't be blank"
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Password confirmation can't be blank"
+msgstr "Password confirmation can't be blank"
+
+#: Teeyoot.Account.Controllers.AccountController
+
+#. "Password confirmation doesn't match Password"
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Password confirmation doesn't match Password"
+msgstr "Password confirmation doesn't match Password"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Oops, this email address is not registered! Create an account to login"
+msgstr "Oops, this email address is not registered! Create an account to login"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "Oops, the email address and password do not match!"
+msgstr "Oops, the email address and password do not match!"
+
+#: Teeyoot.Account.Controllers.AccountController
+msgctxt Teeyoot.Account.Controllers.AccountController
+msgid "User has been locked by the administrator!"
+msgstr "User has been locked by the administrator!"
+
+#: Teeyoot.Account.Services.TeeyootFacebookOAuthService
+
+#. "LogOn through Facebook failed"
+msgctxt Teeyoot.Account.Services.TeeyootFacebookOAuthService
+msgid "LogOn through Facebook failed"
+msgstr "LogOn through Facebook failed"
+
+#: Teeyoot.Account.Services.TeeyootGoogleOAuthService
+
+#. "LogOn through Google failed"
+msgctxt Teeyoot.Account.Services.TeeyootGoogleOAuthService
+msgid "LogOn through Google failed"
+msgstr "LogOn through Google failed"
+
+#: Teeyoot.Account.Services.TeeyootSocialLogOnService
+msgctxt Teeyoot.Account.Services.TeeyootSocialLogOnService
+msgid "User can not be created to assign to Quick LogOn credentials"
+msgstr "User can not be created to assign to Quick LogOn credentials"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Create a new account"
+msgstr "Create a new account"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+
+#. "* "
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "* "
+msgstr "* "
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Email address"
+msgstr "Email address"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Phone Number"
+msgstr "Phone Number"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Password"
+msgstr "Password"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Must be longer than 8 characters!"
+msgstr "Must be longer than 8 characters!"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/CreateAccount.cshtml
+msgid "Register"
+msgstr "Register"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgid "Your password has been successfully updated!"
+msgstr "Your password has been successfully updated!"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgid "Or login with..."
+msgstr "Or login with..."
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgid "Do you already have an account on Facebook or Google? "
+msgstr "Do you already have an account on Facebook or Google? "
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgid "Click the logo below to log in:"
+msgstr "Click the logo below to log in:"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgid "Login with Facebook"
+msgstr "Login with Facebook"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Index.cshtml
+msgid "Login with Google"
+msgstr "Login with Google"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Login with Teeyoot"
+msgstr "Login with Teeyoot"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Create a new account"
+msgstr "Create a new account"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Email address"
+msgstr "Email address"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Password"
+msgstr "Password"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Forgot your password?"
+msgstr "Forgot your password?"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Log in now"
+msgstr "Log in now"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Remember me on this computer"
+msgstr "Remember me on this computer"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/LogOn.cshtml
+msgid "Login | Teeyoot"
+msgstr "Login | Teeyoot"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgid "Request a Password Reset | Teeyoot"
+msgstr "Request a Password Reset | Teeyoot"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgid "An email containing a link that will allow you to change your password has been sent to you. If you do not receive an email in the next ten minutes, please email us."
+msgstr "An email containing a link that will allow you to change your password has been sent to you. If you do not receive an email in the next ten minutes, please email us."
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgid "Request a Password Reset"
+msgstr "Request a Password Reset"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/Recover.cshtml
+msgid "Request"
+msgstr "Request"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgid "Create a new password"
+msgstr "Create a new password"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgid "New Password"
+msgstr "New Password"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgid "Confirm new password"
+msgstr "Confirm new password"
+
+#: ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgctxt ~/Modules/Teeyoot.Account/Views/Account/ResetPassword.cshtml
+msgid "Change Password"
+msgstr "Change Password"
+

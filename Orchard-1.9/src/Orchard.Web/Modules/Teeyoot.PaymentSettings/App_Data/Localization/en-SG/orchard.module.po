@@ -1,0 +1,131 @@
+#: ~/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Name"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "Teeyoot Payment Settings"
+msgstr "Teeyoot Payment Settings"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Teeyoot.PaymentSettings.Description"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "Description for feature Teeyoot.PaymentSettings."
+msgstr "Description for feature Teeyoot.PaymentSettings."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "Teeyoot Payment Settings"
+msgstr "Teeyoot Payment Settings"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+#. "Teeyoot.PaymentSettings.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.PaymentSettings/Module.txt
+msgid "Description for feature Teeyoot.PaymentSettings."
+msgstr "Description for feature Teeyoot.PaymentSettings."
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Payment Settings"
+msgstr "Payment Settings"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+
+#. "Apply"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Cash on delivery"
+msgstr "Cash on delivery"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Braintree PayPal"
+msgstr "Braintree PayPal"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Public Key"
+msgstr "Public Key"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Private Key "
+msgstr "Private Key "
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+
+#. "Merchant Id"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Merchant Id"
+msgstr "Merchant Id"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Client Token  "
+msgstr "Client Token  "
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "  Braintree Debit/Credit Card"
+msgstr "  Braintree Debit/Credit Card"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "  Molpay Online Bancking"
+msgstr "  Molpay Online Bancking"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Verify Key"
+msgstr "Verify Key"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "There are no setting to this language"
+msgstr "There are no setting to this language"
+
+#: ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+
+#. "Add"
+msgctxt ~/Modules/Teeyoot.PaymentSettings/Views/Payment/Index.cshtml
+msgid "Add"
+msgstr "Add"
+

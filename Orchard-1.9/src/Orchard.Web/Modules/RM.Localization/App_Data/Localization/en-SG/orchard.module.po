@@ -1,0 +1,177 @@
+#: ~/Modules/RM.Localization/Module.txt
+#. "Name"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "RM.Localization"
+msgstr "RM.Localization"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "Author"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Maxim Rich"
+msgstr "Maxim Rich"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "Website"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "http://www.richmaxim.com"
+msgstr "http://www.richmaxim.com"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "Description"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Provide enchancements of default Orchard multilanguage support"
+msgstr "Provide enchancements of default Orchard multilanguage support"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.BrowserCultureSelector.Name"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "RM Browser culture selector"
+msgstr "RM Browser culture selector"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.BrowserCultureSelector.Description"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Select current language as default user's browser language"
+msgstr "Select current language as default user's browser language"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.BrowserCultureSelector.Category"
+#. "RM.Localization.CookieCultureSelector.Category"
+#. "RM.Localization.AdminCookieCultureSelector.Category"
+#. "RM.Localization.ShadowCultureManager.Category"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.CookieCultureSelector.Name"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "RM Cookie culture selector"
+msgstr "RM Cookie culture selector"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.CookieCultureSelector.Description"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Select current language from cookie. Use Language Picker Widget to change current language"
+msgstr "Select current language from cookie. Use Language Picker Widget to change current language"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.AdminCookieCultureSelector.Name"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "RM Admin cookie culture selector"
+msgstr "RM Admin cookie culture selector"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.AdminCookieCultureSelector.Description"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Select current language from cookie in Admin menu"
+msgstr "Select current language from cookie in Admin menu"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.ShadowCultureManager.Name"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "RM Shadow cultures"
+msgstr "RM Shadow cultures"
+
+#: ~/Modules/RM.Localization/Module.txt
+#. "RM.Localization.ShadowCultureManager.Description"
+msgctxt ~/Modules/RM.Localization/Module.txt
+msgid "Example, your default site culture is en-US and you have content localized as ru-RU. For visitors from Ukraine (uk-UA) or Belarus (be-BY) much preffereble would be to show content in ru-RU when en-US, because almost people know russian language. The same situation can happen with other cultures"
+msgstr "Example, your default site culture is en-US and you have content localized as ru-RU. For visitors from Ukraine (uk-UA) or Belarus (be-BY) much preffereble would be to show content in ru-RU when en-US, because almost people know russian language. The same situation can happen with other cultures"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "RM.Localization"
+msgstr "RM.Localization"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Maxim Rich"
+msgstr "Maxim Rich"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "http://www.richmaxim.com"
+msgstr "http://www.richmaxim.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Provide enchancements of default Orchard multilanguage support"
+msgstr "Provide enchancements of default Orchard multilanguage support"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.BrowserCultureSelector.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "RM Browser culture selector"
+msgstr "RM Browser culture selector"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.BrowserCultureSelector.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Select current language as default user's browser language"
+msgstr "Select current language as default user's browser language"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.BrowserCultureSelector.Category"
+#. "RM.Localization.CookieCultureSelector.Category"
+#. "RM.Localization.AdminCookieCultureSelector.Category"
+#. "RM.Localization.ShadowCultureManager.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.CookieCultureSelector.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "RM Cookie culture selector"
+msgstr "RM Cookie culture selector"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.CookieCultureSelector.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Select current language from cookie. Use Language Picker Widget to change current language"
+msgstr "Select current language from cookie. Use Language Picker Widget to change current language"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.AdminCookieCultureSelector.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "RM Admin cookie culture selector"
+msgstr "RM Admin cookie culture selector"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.AdminCookieCultureSelector.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Select current language from cookie in Admin menu"
+msgstr "Select current language from cookie in Admin menu"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.ShadowCultureManager.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "RM Shadow cultures"
+msgstr "RM Shadow cultures"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+#. "RM.Localization.ShadowCultureManager.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.Localization/Module.txt
+msgid "Example, your default site culture is en-US and you have content localized as ru-RU. For visitors from Ukraine (uk-UA) or Belarus (be-BY) much preffereble would be to show content in ru-RU when en-US, because almost people know russian language. The same situation can happen with other cultures"
+msgstr "Example, your default site culture is en-US and you have content localized as ru-RU. For visitors from Ukraine (uk-UA) or Belarus (be-BY) much preffereble would be to show content in ru-RU when en-US, because almost people know russian language. The same situation can happen with other cultures"
+
+#: RM.Localization.AdminMenu
+msgctxt RM.Localization.AdminMenu
+msgid "Reset"
+msgstr "Reset"
+
+#: ~/Modules/RM.Localization/Views/EditorTemplates/Parts.ShadowCulture.Settings.cshtml
+msgctxt ~/Modules/RM.Localization/Views/EditorTemplates/Parts.ShadowCulture.Settings.cshtml
+msgid "Shadow Culture Rules"
+msgstr "Shadow Culture Rules"
+
+#: ~/Modules/RM.Localization/Views/EditorTemplates/Parts.ShadowCulture.Settings.cshtml
+msgctxt ~/Modules/RM.Localization/Views/EditorTemplates/Parts.ShadowCulture.Settings.cshtml
+msgid "Example: 'ru-RU:^uk-UA|be-BY$'"
+msgstr "Example: 'ru-RU:^uk-UA|be-BY$'"
+

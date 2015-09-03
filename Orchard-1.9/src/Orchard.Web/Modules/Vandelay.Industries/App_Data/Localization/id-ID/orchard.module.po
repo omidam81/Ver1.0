@@ -1,0 +1,715 @@
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Industries"
+msgstr "Vandelay Industries"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Author"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Bertrand Le Roy"
+msgstr "Bertrand Le Roy"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Website"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "http://weblogs.asp.net/bleroy"
+msgstr "http://weblogs.asp.net/bleroy"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "A collection of useful Orchard modules"
+msgstr "A collection of useful Orchard modules"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.Classy.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Classy"
+msgstr "Vandelay Classy"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.Classy.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Add ids, classes and scripts to the rendering of your content items through this part that can be added to any content type."
+msgstr "Add ids, classes and scripts to the rendering of your content items through this part that can be added to any content type."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.Classy.Category"
+#. "Vandelay.ThemePicker.Category"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Designer"
+msgstr "Designer"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.ContentAdminMenu.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Content Admin Menu"
+msgstr "Vandelay Content Admin Menu"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.ContentAdminMenu.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Adds an admin menu entry per content type under the "Content" header."
+msgstr "Adds an admin menu entry per content type under the "Content" header."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.ContentAdminMenu.Category"
+#. "Vandelay.CustomSort.Category"
+#. "Vandelay.Favicon.Category"
+#. "Vandelay.RelativeUrlFilter.Category"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.CustomSort.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Custom Sort"
+msgstr "Vandelay Custom Sort"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.CustomSort.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Drag and drop content items to create custom sort orders that can then be used in projections."
+msgstr "Drag and drop content items to create custom sort orders that can then be used in projections."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.Favicon.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Favicon"
+msgstr "Vandelay Favicon"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.Favicon.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Adds a favicon setting to site settings"
+msgstr "Adds a favicon setting to site settings"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.RelativeUrlFilter.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Relative URL Filter"
+msgstr "Vandelay Relative URL Filter"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.RelativeUrlFilter.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Transforms image source and link hrefs into absolute URLs, for example to avoid broken images in Feedburner."
+msgstr "Transforms image source and link hrefs into absolute URLs, for example to avoid broken images in Feedburner."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.RemoteRss.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Remote RSS"
+msgstr "Vandelay Remote RSS"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.RemoteRss.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Include remote RSS feeds into your Orchard sites"
+msgstr "Include remote RSS feeds into your Orchard sites"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.RemoteRss.Category"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Syndication"
+msgstr "Syndication"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.SplashScreen.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Splash Screen"
+msgstr "Vandelay Splash Screen"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.SplashScreen.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Displays a splash screen to all first-time users."
+msgstr "Displays a splash screen to all first-time users."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.SplashScreen.Category"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.ThemePicker.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Theme Picker"
+msgstr "Vandelay Theme Picker"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.ThemePicker.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Pick a different theme based on the user agent."
+msgstr "Pick a different theme based on the user agent."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.TranslationManager.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay Translation Manager"
+msgstr "Vandelay Translation Manager"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.TranslationManager.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Translation management tools"
+msgstr "Translation management tools"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.TranslationManager.Category"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.UserStorage.Name"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Vandelay User Storage"
+msgstr "Vandelay User Storage"
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.UserStorage.Description"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Provides a user-specific key value data store."
+msgstr "Provides a user-specific key value data store."
+
+#: ~/Modules/Vandelay.Industries/Module.txt
+#. "Vandelay.UserStorage.Category"
+msgctxt ~/Modules/Vandelay.Industries/Module.txt
+msgid "Developer"
+msgstr "Developer"
+
+#: Vandelay.Industries.Controllers.AdminController
+
+#. "Cannot manage themes"
+msgctxt Vandelay.Industries.Controllers.AdminController
+msgid "Cannot manage themes"
+msgstr "Cannot manage themes"
+
+#: Vandelay.Industries.Controllers.CustomSortAdminController
+
+#. "Not allowed to manage queries"
+msgctxt Vandelay.Industries.Controllers.CustomSortAdminController
+msgid "Not allowed to manage queries"
+msgstr "Not allowed to manage queries"
+
+#: Vandelay.Industries.Controllers.CustomSortAdminController
+msgctxt Vandelay.Industries.Controllers.CustomSortAdminController
+msgid "Query not found."
+msgstr "Query not found."
+
+#: Vandelay.Industries.Controllers.UserStorageController
+
+#. "Not allowed to manage user storage"
+msgctxt Vandelay.Industries.Controllers.UserStorageController
+msgid "Not allowed to manage user storage"
+msgstr "Not allowed to manage user storage"
+
+#: Vandelay.Industries.Drivers.CustomCssDriver
+msgctxt Vandelay.Industries.Drivers.CustomCssDriver
+msgid "Error during CustomCss update."
+msgstr "Error during CustomCss update."
+
+#: Vandelay.Industries.Drivers.SplashScreenSettingsPartDriver
+msgctxt Vandelay.Industries.Drivers.SplashScreenSettingsPartDriver
+msgid "Accept"
+msgstr "Accept"
+
+#: Vandelay.Industries.Handlers.FaviconSettingsPartHandler
+msgctxt Vandelay.Industries.Handlers.FaviconSettingsPartHandler
+msgid "Favicon"
+msgstr "Favicon"
+
+#: Vandelay.Industries.Handlers.SplashScreenSettingsPartHandler
+msgctxt Vandelay.Industries.Handlers.SplashScreenSettingsPartHandler
+msgid "Splash Screen"
+msgstr "Splash Screen"
+
+#: Vandelay.Industries.Menus.ContentAdminMenu
+msgctxt Vandelay.Industries.Menus.ContentAdminMenu
+msgid "Content"
+msgstr "Content"
+
+#: Vandelay.Industries.Menus.CustomSortAdminMenu
+msgctxt Vandelay.Industries.Menus.CustomSortAdminMenu
+msgid "Queries"
+msgstr "Queries"
+
+#: Vandelay.Industries.Menus.CustomSortAdminMenu
+msgctxt Vandelay.Industries.Menus.CustomSortAdminMenu
+msgid "Custom sort orders"
+msgstr "Custom sort orders"
+
+#: Vandelay.Industries.Menus.ThemePickerAdminMenu
+msgctxt Vandelay.Industries.Menus.ThemePickerAdminMenu
+msgid "Themes"
+msgstr "Themes"
+
+#: Vandelay.Industries.Menus.ThemePickerAdminMenu
+msgctxt Vandelay.Industries.Menus.ThemePickerAdminMenu
+msgid "Picker"
+msgstr "Picker"
+
+#: Vandelay.Industries.Menus.UserStorageAdminMenu
+msgctxt Vandelay.Industries.Menus.UserStorageAdminMenu
+msgid "Users"
+msgstr "Users"
+
+#: Vandelay.Industries.Menus.UserStorageAdminMenu
+msgctxt Vandelay.Industries.Menus.UserStorageAdminMenu
+msgid "Storage"
+msgstr "Storage"
+
+#: Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgctxt Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgid "Custom Sorts"
+msgstr "Custom Sorts"
+
+#: Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgctxt Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgid "Manually-defined sort orders."
+msgstr "Manually-defined sort orders."
+
+#: Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgctxt Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgid "Custom sort order <a href=\"{1}\">{0}</a>"
+msgstr "Custom sort order <a href=\"{1}\">{0}</a>"
+
+#: Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgctxt Vandelay.Industries.Providers.SortCriteria.CustomSortCriteria
+msgid "Ordered by {0}"
+msgstr "Ordered by {0}"
+
+#: Vandelay.Industries.Services.LocalizationManagementService
+msgctxt Vandelay.Industries.Services.LocalizationManagementService
+msgid ", bool fetchTwoStrings = false) {
+            // This will fail on some carefully crafted comments such as /* T("
+msgstr ", bool fetchTwoStrings = false) {
+            // This will fail on some carefully crafted comments such as /* T("
+
+#: Vandelay.Industries.Services.LocalizationManagementService
+msgctxt Vandelay.Industries.Services.LocalizationManagementService
+msgid ", true)) {
+                DispatchResourceString(zipFiles, corePoPath, rootPoPath, site, path, site, contents, '"
+msgstr ", true)) {
+                DispatchResourceString(zipFiles, corePoPath, rootPoPath, site, path, site, contents, '"
+
+#: Vandelay.Industries.Services.LocalizationManagementService
+msgctxt Vandelay.Industries.Services.LocalizationManagementService
+msgid "');
+            }
+        }
+
+        public byte[] ExtractDefaultTranslation(string sitePath) {
+            var site = Path.Get(sitePath);
+            var corePoPath = site.Combine(
+                "
+msgstr "');
+            }
+        }
+
+        public byte[] ExtractDefaultTranslation(string sitePath) {
+            var site = Path.Get(sitePath);
+            var corePoPath = site.Combine(
+                "
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgid "Add New Custom Sort Order"
+msgstr "Add New Custom Sort Order"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgid "Display Name"
+msgstr "Display Name"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgid "Name of the custom sort order as it will be displayed in the admin."
+msgstr "Name of the custom sort order as it will be displayed in the admin."
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Create.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Edit Custom Sort Order"
+msgstr "Edit Custom Sort Order"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Display Name"
+msgstr "Display Name"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Name of the custom sort order as it will be displayed in the admin."
+msgstr "Name of the custom sort order as it will be displayed in the admin."
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Pinned items"
+msgstr "Pinned items"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Drop content items here to define their fixed custom order."
+msgstr "Drop content items here to define their fixed custom order."
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Add items"
+msgstr "Add items"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Select a query, then drag and drop items into the pinned items to force their sort order."
+msgstr "Select a query, then drag and drop items into the pinned items to force their sort order."
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "Please pick a query"
+msgstr "Please pick a query"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "&times;"
+msgstr "&times;"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Edit.cshtml
+msgid "+"
+msgstr "+"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgid "Manage Custom Sort Orders"
+msgstr "Manage Custom Sort Orders"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgid "Add a new custom sort order"
+msgstr "Add a new custom sort order"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/CustomSortAdmin.Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Vandelay.Industries/Views/Vandelay.ThemePicker.LinkToDefault.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Vandelay.ThemePicker.LinkToDefault.cshtml
+msgid "Click here to switch to the default theme."
+msgstr "Click here to switch to the default theme."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Pick Themes for User Agents"
+msgstr "Pick Themes for User Agents"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Add new theme selection criterion"
+msgstr "Add new theme selection criterion"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Name:"
+msgstr "Name:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "A name for the criterion (e.g. IE6 or Mobile)."
+msgstr "A name for the criterion (e.g. IE6 or Mobile)."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Rule:"
+msgstr "Rule:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "The rule that will be used to evaluate the criterion."
+msgstr "The rule that will be used to evaluate the criterion."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Criterion:"
+msgstr "Criterion:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "The criterion to evaluate (e.g. ""^Mozilla\/4\.0 \(compatible; MSIE 6\.0; Windows NT \d\.\d(.*)\)$"" or ""phone"")."
+msgstr "The criterion to evaluate (e.g. ""^Mozilla\/4\.0 \(compatible; MSIE 6\.0; Windows NT \d\.\d(.*)\)$"" or ""phone"")."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Theme:"
+msgstr "Theme:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "The theme that must be selected if the criterion matches according to the rule. Only enabled themes appear here. Please enable more than one theme in order to be able to use this feature."
+msgstr "The theme that must be selected if the criterion matches according to the rule. Only enabled themes appear here. Please enable more than one theme in order to be able to use this feature."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Priority:"
+msgstr "Priority:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Setting the priority for this rule enables other theme providers to cohabitate with this one. You can leave the default value of 10 in other cases."
+msgstr "Setting the priority for this rule enables other theme providers to cohabitate with this one. You can leave the default value of 10 in other cases."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Zone:"
+msgstr "Zone:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Position:"
+msgstr "Position:"
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Optionally specify a zone name and a position within that zone for a link that enables the user to switch back to the default theme. This link is rendered by the Vandelay_ThemePicker_LinkToDefault shape, using the Vandelay.ThemePicker.LinkToDefault.cshtml template of the theme."
+msgstr "Optionally specify a zone name and a position within that zone for a link that enables the user to switch back to the default theme. This link is rendered by the Vandelay_ThemePicker_LinkToDefault shape, using the Vandelay.ThemePicker.LinkToDefault.cshtml template of the theme."
+
+#: ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/Admin/Index.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgid "Custom id"
+msgstr "Custom id"
+
+#: ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgid "You may specify here the id of the outer tag for this content item."
+msgstr "You may specify here the id of the outer tag for this content item."
+
+#: ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgid "Css Class"
+msgstr "Css Class"
+
+#: ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgid "You may specify here a list of CSS classes separated by spaces that will be added to the outer tag for this content item."
+msgstr "You may specify here a list of CSS classes separated by spaces that will be added to the outer tag for this content item."
+
+#: ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgid "Script URLs"
+msgstr "Script URLs"
+
+#: ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/DefinitionTemplates/CustomCssSettings.cshtml
+msgid "You may specify here a list of scripts to include when this content item is displayed. Each script will be included only once even if more than one item requires it. Enter one script per line. A script can be the name of a registered script such as \"jQuery\" or the URL of any script, such as \"~/Themes/MyTheme/scripts/foo.js\"."
+msgstr "You may specify here a list of scripts to include when this content item is displayed. Each script will be included only once even if more than one item requires it. Enter one script per line. A script can be the name of a registered script such as \"jQuery\" or the URL of any script, such as \"~/Themes/MyTheme/scripts/foo.js\"."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgid "Custom id"
+msgstr "Custom id"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgid "You may specify here the id of the outer tag for this content item."
+msgstr "You may specify here the id of the outer tag for this content item."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgid "Css Class"
+msgstr "Css Class"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgid "You may specify here a list of CSS classes separated by spaces that will be added to the outer tag for this content item."
+msgstr "You may specify here a list of CSS classes separated by spaces that will be added to the outer tag for this content item."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgid "Script URLs"
+msgstr "Script URLs"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/CustomCss.cshtml
+msgid "You may specify here a list of scripts to include when this content item is displayed. Each script will be included only once even if more than one item requires it. Enter one script per line. A script can be the name of a registered script such as \"jQuery\" or the URL of any script, such as \"~/Themes/MyTheme/scripts/foo.js\"."
+msgstr "You may specify here a list of scripts to include when this content item is displayed. Each script will be included only once even if more than one item requires it. Enter one script per line. A script can be the name of a registered script such as \"jQuery\" or the URL of any script, such as \"~/Themes/MyTheme/scripts/foo.js\"."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/Favicon.FaviconSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/Favicon.FaviconSettings.cshtml
+msgid "Favicon"
+msgstr "Favicon"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/Favicon.FaviconSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/Favicon.FaviconSettings.cshtml
+msgid "Favicon URL"
+msgstr "Favicon URL"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/Favicon.FaviconSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/Favicon.FaviconSettings.cshtml
+msgid "Upload favicon files into a favicon folder in the Media module."
+msgstr "Upload favicon files into a favicon folder in the Media module."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgid "Remote RSS Url"
+msgstr "Remote RSS Url"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgid "The URL of a remote RSS or Atom feed. You may need to override Views/Parts/RemoteRss.cshtml, depending on the form of the particular feed you are displaying."
+msgstr "The URL of a remote RSS or Atom feed. You may need to override Views/Parts/RemoteRss.cshtml, depending on the form of the particular feed you are displaying."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgid "Number of Items"
+msgstr "Number of Items"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgid "The number of feed items to display. If this is set to more than what the feed returns, then less than that number will be displayed."
+msgstr "The number of feed items to display. If this is set to more than what the feed returns, then less than that number will be displayed."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgid "Cache Duration"
+msgstr "Cache Duration"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/RemoteRss.cshtml
+msgid "The number of minutes the site waits before attempting to refresh the feed from live data."
+msgstr "The number of minutes the site waits before attempting to refresh the feed from live data."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Splash Screen"
+msgstr "Splash Screen"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Enable Splash Screen"
+msgstr "Enable Splash Screen"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Splash Screen Contents"
+msgstr "Splash Screen Contents"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Insert/Update Media"
+msgstr "Insert/Update Media"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Accept Button Text"
+msgstr "Accept Button Text"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "The text for the button that will accept the terms and enable the user to enter the site."
+msgstr "The text for the button that will accept the terms and enable the user to enter the site."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Reject Button Text"
+msgstr "Reject Button Text"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "The text for the button that will reject the terms and redirect the user out of the site. Leave blank if there should be no reject button."
+msgstr "The text for the button that will reject the terms and redirect the user out of the site. Leave blank if there should be no reject button."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Reject Redirect URL"
+msgstr "Reject Redirect URL"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "The URL where the reject button will lead."
+msgstr "The URL where the reject button will lead."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "Ignored urls"
+msgstr "Ignored urls"
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "This must be a set of relative paths, e.g., /, /About. Please ensure that you enter only one path per line."
+msgstr "This must be a set of relative paths, e.g., /, /About. Please ensure that you enter only one path per line."
+
+#: ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/EditorTemplates/Parts/SplashScreenSettings.cshtml
+msgid "You can add comments by starting the line with #."
+msgstr "You can add comments by starting the line with #."
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "Manage user storage"
+msgstr "Manage user storage"
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "User name"
+msgstr "User name"
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "Folder"
+msgstr "Folder"
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "File name"
+msgstr "File name"
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "Contents"
+msgstr "Contents"
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Vandelay.Industries/Views/UserStorage/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+

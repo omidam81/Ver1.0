@@ -1,0 +1,377 @@
+#: ~/Modules/Teeyoot.Search/Module.txt
+#. "Name"
+#. "Teeyoot.Search.Name"
+msgctxt ~/Modules/Teeyoot.Search/Module.txt
+msgid "Teeyoot Search"
+msgstr "Teeyoot Search"
+
+#: ~/Modules/Teeyoot.Search/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Search/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Modules/Teeyoot.Search/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Search/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.Search/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Search/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Search/Module.txt
+#. "Teeyoot.Search.Description"
+msgctxt ~/Modules/Teeyoot.Search/Module.txt
+msgid "Description for feature Teeyoot.Search."
+msgstr "Description for feature Teeyoot.Search."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+#. "Name"
+#. "Teeyoot.Search.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+msgid "Teeyoot Search"
+msgstr "Teeyoot Search"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+#. "Teeyoot.Search.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Search/Module.txt
+msgid "Description for feature Teeyoot.Search."
+msgstr "Description for feature Teeyoot.Search."
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "The Search Category has been deleted."
+msgstr "The Search Category has been deleted."
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "Error when chenged visible category. Try again!"
+msgstr "Error when chenged visible category. Try again!"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "The New Category has been created."
+msgstr "The New Category has been created."
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "This Category already exists!"
+msgstr "This Category already exists!"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "Please, enter name of the Category"
+msgstr "Please, enter name of the Category"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "Category was not removed. Try again!"
+msgstr "Category was not removed. Try again!"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "The Category has been deleted."
+msgstr "The Category has been deleted."
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "The name was chenged successfully!"
+msgstr "The name was chenged successfully!"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "Can not change name for category. Try again late!"
+msgstr "Can not change name for category. Try again late!"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "You did not enter a name for the update"
+msgstr "You did not enter a name for the update"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "The Campaign has been deleted from this category."
+msgstr "The Campaign has been deleted from this category."
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "Can not delete campaign from category. Try again late!"
+msgstr "Can not delete campaign from category. Try again late!"
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "The campaign has successfully been added to the category."
+msgstr "The campaign has successfully been added to the category."
+
+#: Teeyoot.Search.Controllers.AdminSearchController
+msgctxt Teeyoot.Search.Controllers.AdminSearchController
+msgid "Can not added campaign to the category. Try again late!"
+msgstr "Can not added campaign to the category. Try again late!"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Add campaign for category \""
+msgstr "Add campaign for category \""
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Add check campaigns"
+msgstr "Add check campaigns"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Filter"
+msgstr "Filter"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "By Default"
+msgstr "By Default"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Sold"
+msgstr "Sold"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/AddCampaign.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Edit сategory \""
+msgstr "Edit сategory \""
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Change name for category"
+msgstr "Change name for category"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "New name"
+msgstr "New name"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Change"
+msgstr "Change"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Add Campaign"
+msgstr "Add Campaign"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Filter"
+msgstr "Filter"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "By Default"
+msgstr "By Default"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Sold"
+msgstr "Sold"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/EditCategory.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Search Categories"
+msgstr "Search Categories"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Choose action..."
+msgstr "Choose action..."
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Filter"
+msgstr "Filter"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "By Default"
+msgstr "By Default"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "New Category"
+msgstr "New Category"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Add new category"
+msgstr "Add new category"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+
+#. "Visible"
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Visible"
+msgstr "Visible"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+
+#. " | "
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+
+#. "Unvisible"
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Unvisible"
+msgstr "Unvisible"
+
+#: ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/AdminSearch/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.Search/Views/Parts/CampaignCategoriesWidget.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Parts/CampaignCategoriesWidget.cshtml
+msgid "See more from:"
+msgstr "See more from:"
+
+#: ~/Modules/Teeyoot.Search/Views/Parts/CampaignCategoriesWidget.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Parts/CampaignCategoriesWidget.cshtml
+msgid "Sorry, but there is no category"
+msgstr "Sorry, but there is no category"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid "Сategory "
+msgstr "Сategory "
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid " does not exist!"
+msgstr " does not exist!"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+
+#. "Browse Other Categories:"
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid "Browse Other Categories:"
+msgstr "Browse Other Categories:"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid "No search results for the category"
+msgstr "No search results for the category"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid "Ended"
+msgstr "Ended"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid "Ends Today"
+msgstr "Ends Today"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/CategoriesSearch.cshtml
+msgid " days left"
+msgstr " days left"
+
+#: ~/Modules/Teeyoot.Search/Views/Search/Search.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/Search.cshtml
+msgid "No search results for the word "
+msgstr "No search results for the word "
+
+#: ~/Modules/Teeyoot.Search/Views/Search/Search.cshtml
+msgctxt ~/Modules/Teeyoot.Search/Views/Search/Search.cshtml
+msgid "Search | Teeyoot"
+msgstr "Search | Teeyoot"
+

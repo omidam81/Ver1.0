@@ -1,0 +1,262 @@
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Orchard.Templates"
+msgstr "Orchard.Templates"
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Provides a Template type that can be used to store template code and used as a shape."
+msgstr "Provides a Template type that can be used to store template code and used as a shape."
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Name"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Templates"
+msgstr "Templates"
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Description"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Provides a Template type that represents a shape template, stored as a content item."
+msgstr "Provides a Template type that represents a shape template, stored as a content item."
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Category"
+#. "Orchard.Templates.Razor.Category"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Razor.Name"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Razor Templates"
+msgstr "Razor Templates"
+
+#: ~/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Razor.Description"
+msgctxt ~/Modules/Orchard.Templates/Module.txt
+msgid "Extends Templates with Razor templates."
+msgstr "Extends Templates with Razor templates."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Orchard.Templates"
+msgstr "Orchard.Templates"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Provides a Template type that can be used to store template code and used as a shape."
+msgstr "Provides a Template type that can be used to store template code and used as a shape."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Templates"
+msgstr "Templates"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Provides a Template type that represents a shape template, stored as a content item."
+msgstr "Provides a Template type that represents a shape template, stored as a content item."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Category"
+#. "Orchard.Templates.Razor.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Razor.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Razor Templates"
+msgstr "Razor Templates"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+#. "Orchard.Templates.Razor.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Templates/Module.txt
+msgid "Extends Templates with Razor templates."
+msgstr "Extends Templates with Razor templates."
+
+#: Orchard.Templates.AdminMenu
+msgctxt Orchard.Templates.AdminMenu
+msgid "Templates"
+msgstr "Templates"
+
+#: Orchard.Templates.Controllers.AdminController
+msgctxt Orchard.Templates.Controllers.AdminController
+msgid "Couldn't publish selected content."
+msgstr "Couldn't publish selected content."
+
+#: Orchard.Templates.Controllers.AdminController
+msgctxt Orchard.Templates.Controllers.AdminController
+msgid "Content successfully published."
+msgstr "Content successfully published."
+
+#: Orchard.Templates.Controllers.AdminController
+msgctxt Orchard.Templates.Controllers.AdminController
+msgid "Couldn't unpublish selected content."
+msgstr "Couldn't unpublish selected content."
+
+#: Orchard.Templates.Controllers.AdminController
+msgctxt Orchard.Templates.Controllers.AdminController
+msgid "Content successfully unpublished."
+msgstr "Content successfully unpublished."
+
+#: Orchard.Templates.Controllers.AdminController
+msgctxt Orchard.Templates.Controllers.AdminController
+msgid "Couldn't remove selected content."
+msgstr "Couldn't remove selected content."
+
+#: Orchard.Templates.Controllers.AdminController
+msgctxt Orchard.Templates.Controllers.AdminController
+msgid "Content successfully removed."
+msgstr "Content successfully removed."
+
+#: Orchard.Templates.Drivers.ShapePartDriver
+msgctxt Orchard.Templates.Drivers.ShapePartDriver
+msgid "Template processing error: {0}"
+msgstr "Template processing error: {0}"
+
+#: Orchard.Templates.Drivers.ShapePartDriver
+msgctxt Orchard.Templates.Drivers.ShapePartDriver
+msgid "{0} names can only contain alphanumerical or underscore (_) characters and have to start with a letter."
+msgstr "{0} names can only contain alphanumerical or underscore (_) characters and have to start with a letter."
+
+#: Orchard.Templates.Services.NoTemplateProcessorBanner
+msgctxt Orchard.Templates.Services.NoTemplateProcessorBanner
+msgid "To be able to use Templates enable a template processor like Razor Templates."
+msgstr "To be able to use Templates enable a template processor like Razor Templates."
+
+#: ~/Modules/Orchard.Templates/Views/Admin/CreatableTypeList.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/CreatableTypeList.cshtml
+msgid "Create New Template"
+msgstr "Create New Template"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Manage Templates"
+msgstr "Manage Templates"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Create New Template"
+msgstr "Create New Template"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Manage {0}s"
+msgstr "Manage {0}s"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Create New {0}"
+msgstr "Create New {0}"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Choose action..."
+msgstr "Choose action..."
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Publish Now"
+msgstr "Publish Now"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Unpublish"
+msgstr "Unpublish"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+
+#. "Apply"
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Show"
+msgstr "Show"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "any (show all)"
+msgstr "any (show all)"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "Ordered by"
+msgstr "Ordered by"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "recently created"
+msgstr "recently created"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "recently modified"
+msgstr "recently modified"
+
+#: ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/Admin/List.cshtml
+msgid "recently published"
+msgstr "recently published"
+
+#: ~/Modules/Orchard.Templates/Views/DefinitionTemplates/Parts.Shape.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/DefinitionTemplates/Parts.Shape.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Templates/Views/DefinitionTemplates/Parts.Shape.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/DefinitionTemplates/Parts.Shape.cshtml
+msgid "The name of this template, which can be used to reference from code (as when using shape type names) and tokens."
+msgstr "The name of this template, which can be used to reference from code (as when using shape type names) and tokens."
+
+#: ~/Modules/Orchard.Templates/Views/DefinitionTemplates/ShapePartSettingsViewModel.cshtml
+msgctxt ~/Modules/Orchard.Templates/Views/DefinitionTemplates/ShapePartSettingsViewModel.cshtml
+msgid "Template Processor"
+msgstr "Template Processor"
+

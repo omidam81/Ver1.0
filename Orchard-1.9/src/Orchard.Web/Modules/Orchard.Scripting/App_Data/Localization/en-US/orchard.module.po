@@ -1,0 +1,162 @@
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Name"
+#. "Orchard.Scripting.Lightweight.Category"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "Scripting"
+msgstr "Scripting"
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "The scripting module enables the possibility to execute scripts using a simple custom scripting language."
+msgstr "The scripting module enables the possibility to execute scripts using a simple custom scripting language."
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Lightweight.Name"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "Lightweight scripting"
+msgstr "Lightweight scripting"
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Lightweight.Description"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "Custom lightweight and simple scripting language."
+msgstr "Custom lightweight and simple scripting language."
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Rules.Name"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "Scripting Rules"
+msgstr "Scripting Rules"
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Rules.Description"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "Rules for the Scripting modules"
+msgstr "Rules for the Scripting modules"
+
+#: ~/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Rules.Category"
+msgctxt ~/Modules/Orchard.Scripting/Module.txt
+msgid "Rules"
+msgstr "Rules"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Name"
+#. "Orchard.Scripting.Lightweight.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "Scripting"
+msgstr "Scripting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "The scripting module enables the possibility to execute scripts using a simple custom scripting language."
+msgstr "The scripting module enables the possibility to execute scripts using a simple custom scripting language."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Lightweight.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "Lightweight scripting"
+msgstr "Lightweight scripting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Lightweight.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "Custom lightweight and simple scripting language."
+msgstr "Custom lightweight and simple scripting language."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Rules.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "Scripting Rules"
+msgstr "Scripting Rules"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Rules.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "Rules for the Scripting modules"
+msgstr "Rules for the Scripting modules"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+#. "Orchard.Scripting.Rules.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting/Module.txt
+msgid "Rules"
+msgstr "Rules"
+
+#: Orchard.Scripting.ScriptExpressionEvaluator
+msgctxt Orchard.Scripting.ScriptExpressionEvaluator
+msgid "Syntax error: {0}"
+msgstr "Syntax error: {0}"
+
+#: Orchard.Scripting.Rules.ConditionActions
+
+#. "Conditions"
+msgctxt Orchard.Scripting.Rules.ConditionActions
+msgid "Conditions"
+msgstr "Conditions"
+
+#: Orchard.Scripting.Rules.ConditionActions
+msgctxt Orchard.Scripting.Rules.ConditionActions
+msgid "Script condition"
+msgstr "Script condition"
+
+#: Orchard.Scripting.Rules.ConditionActions
+msgctxt Orchard.Scripting.Rules.ConditionActions
+msgid "Evaluates a boolean using a scripting engine."
+msgstr "Evaluates a boolean using a scripting engine."
+
+#: Orchard.Scripting.Rules.ConditionActions
+msgctxt Orchard.Scripting.Rules.ConditionActions
+msgid "There are currently no scripting engine enabled"
+msgstr "There are currently no scripting engine enabled"
+
+#: Orchard.Scripting.Rules.ConditionActions
+msgctxt Orchard.Scripting.Rules.ConditionActions
+msgid "Expression is not a boolean value"
+msgstr "Expression is not a boolean value"
+
+#: Orchard.Scripting.Rules.ConditionForms
+msgctxt Orchard.Scripting.Rules.ConditionForms
+msgid "Description"
+msgstr "Description"
+
+#: Orchard.Scripting.Rules.ConditionForms
+msgctxt Orchard.Scripting.Rules.ConditionForms
+msgid "Message that will be displayed in the Actions list."
+msgstr "Message that will be displayed in the Actions list."
+
+#: Orchard.Scripting.Rules.ConditionForms
+msgctxt Orchard.Scripting.Rules.ConditionForms
+msgid "Condition"
+msgstr "Condition"
+
+#: Orchard.Scripting.Rules.ConditionForms
+msgctxt Orchard.Scripting.Rules.ConditionForms
+msgid "Enter a valid boolean expression to evaluate."
+msgstr "Enter a valid boolean expression to evaluate."
+

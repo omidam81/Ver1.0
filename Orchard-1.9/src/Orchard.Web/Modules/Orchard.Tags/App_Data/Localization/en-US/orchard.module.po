@@ -1,0 +1,379 @@
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Name"
+#. "Orchard.Tags.Name"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Description"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "The tags module is providing basic tagging for arbitrary content types."
+msgstr "The tags module is providing basic tagging for arbitrary content types."
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Category"
+#. "Orchard.Tags.TagCloud.Category"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Feeds.Name"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Tags Feeds"
+msgstr "Tags Feeds"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Feeds.Description"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Adds tags to the RSS feeds."
+msgstr "Adds tags to the RSS feeds."
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Feeds.Category"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Syndication"
+msgstr "Syndication"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.TagCloud.Name"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Tag Cloud"
+msgstr "Tag Cloud"
+
+#: ~/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.TagCloud.Description"
+msgctxt ~/Modules/Orchard.Tags/Module.txt
+msgid "Adds a tag cloud widget."
+msgstr "Adds a tag cloud widget."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Name"
+#. "Orchard.Tags.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "The tags module is providing basic tagging for arbitrary content types."
+msgstr "The tags module is providing basic tagging for arbitrary content types."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Category"
+#. "Orchard.Tags.TagCloud.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Feeds.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Tags Feeds"
+msgstr "Tags Feeds"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Feeds.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Adds tags to the RSS feeds."
+msgstr "Adds tags to the RSS feeds."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.Feeds.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Syndication"
+msgstr "Syndication"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.TagCloud.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Tag Cloud"
+msgstr "Tag Cloud"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+#. "Orchard.Tags.TagCloud.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Tags/Module.txt
+msgid "Adds a tag cloud widget."
+msgstr "Adds a tag cloud widget."
+
+#: Orchard.Tags.AdminMenu
+msgctxt Orchard.Tags.AdminMenu
+msgid "Tags"
+msgstr "Tags"
+
+#: Orchard.Tags.AdminMenu
+msgctxt Orchard.Tags.AdminMenu
+msgid "List"
+msgstr "List"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "Can't manage tags"
+msgstr "Can't manage tags"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "Couldn't delete tag"
+msgstr "Couldn't delete tag"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "Couldn't create tag"
+msgstr "Couldn't create tag"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "The tag \"{0}\" could not be added because it contains forbidden chars: {1}"
+msgstr "The tag \"{0}\" could not be added because it contains forbidden chars: {1}"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "Couldn't edit tag"
+msgstr "Couldn't edit tag"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "The tag \"{0}\" could not be modified because it contains forbidden chars: {1}"
+msgstr "The tag \"{0}\" could not be modified because it contains forbidden chars: {1}"
+
+#: Orchard.Tags.Controllers.AdminController
+msgctxt Orchard.Tags.Controllers.AdminController
+msgid "Couldn't remove tag"
+msgstr "Couldn't remove tag"
+
+#: Orchard.Tags.Drivers.TagsPartDriver
+msgctxt Orchard.Tags.Drivers.TagsPartDriver
+msgid "The tags \"{0}\" could not be added because they contain forbidden chars: {1}"
+msgstr "The tags \"{0}\" could not be added because they contain forbidden chars: {1}"
+
+#: Orchard.Tags.Feeds.TagFeedQuery
+
+#. "Content tagged with {0}"
+msgctxt Orchard.Tags.Feeds.TagFeedQuery
+msgid "Content tagged with {0}"
+msgstr "Content tagged with {0}"
+
+#: Orchard.Tags.Projections.TagsFilter
+
+#. "Tags"
+msgctxt Orchard.Tags.Projections.TagsFilter
+msgid "Tags"
+msgstr "Tags"
+
+#: Orchard.Tags.Projections.TagsFilter
+msgctxt Orchard.Tags.Projections.TagsFilter
+msgid "Has Tags"
+msgstr "Has Tags"
+
+#: Orchard.Tags.Projections.TagsFilter
+msgctxt Orchard.Tags.Projections.TagsFilter
+msgid "Tagged content items"
+msgstr "Tagged content items"
+
+#: Orchard.Tags.Projections.TagsFilter
+msgctxt Orchard.Tags.Projections.TagsFilter
+msgid "Any tag"
+msgstr "Any tag"
+
+#: Orchard.Tags.Projections.TagsFilter
+msgctxt Orchard.Tags.Projections.TagsFilter
+msgid "Tagged with {0}"
+msgstr "Tagged with {0}"
+
+#: Orchard.Tags.Projections.TagsFilterForms
+msgctxt Orchard.Tags.Projections.TagsFilterForms
+msgid "Tags"
+msgstr "Tags"
+
+#: Orchard.Tags.Projections.TagsFilterForms
+msgctxt Orchard.Tags.Projections.TagsFilterForms
+msgid "Select some tags."
+msgstr "Select some tags."
+
+#: Orchard.Tags.Projections.TagsFilterForms
+msgctxt Orchard.Tags.Projections.TagsFilterForms
+msgid "Is one of"
+msgstr "Is one of"
+
+#: Orchard.Tags.Projections.TagsFilterForms
+msgctxt Orchard.Tags.Projections.TagsFilterForms
+msgid "Is all of"
+msgstr "Is all of"
+
+#: Orchard.Tags.Services.TagService
+msgctxt Orchard.Tags.Services.TagService
+msgid "Couldn't rename tag: name was empty"
+msgstr "Couldn't rename tag: name was empty"
+
+#: Orchard.Tags.Services.TagService
+msgctxt Orchard.Tags.Services.TagService
+msgid "Error removing tag to content item: the content item has not been created yet."
+msgstr "Error removing tag to content item: the content item has not been created yet."
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "Manage tag: {0}"
+msgstr "Manage tag: {0}"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "Tag Name"
+msgstr "Tag Name"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "Content items tagged with {0}"
+msgstr "Content items tagged with {0}"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "There is nothing tagged with {0}"
+msgstr "There is nothing tagged with {0}"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "Content Type"
+msgstr "Content Type"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Edit.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Choose action..."
+msgstr "Choose action..."
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+
+#. "Apply"
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "This is a table of the tags in your application"
+msgstr "This is a table of the tags in your application"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Admin/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/CreateTag.cshtml
+
+#. "New Tag Name"
+msgctxt ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/CreateTag.cshtml
+msgid "New Tag Name"
+msgstr "New Tag Name"
+
+#: ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/CreateTag.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/CreateTag.cshtml
+msgid "Add Tag"
+msgstr "Add Tag"
+
+#: ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/TagCloud.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/TagCloud.cshtml
+msgid "The number of buckets determines how many different sizes of tags will get rendered in the cloud."
+msgstr "The number of buckets determines how many different sizes of tags will get rendered in the cloud."
+
+#: ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/TagCloud.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/TagCloud.cshtml
+msgid "Enter the slug of the container for which you want the tag cloud, e.g. blog, /, or leave empty for the cloud to be scoped to the whole site. "
+msgstr "Enter the slug of the container for which you want the tag cloud, e.g. blog, /, or leave empty for the cloud to be scoped to the whole site. "
+
+#: ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/Tags.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/Tags.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/Tags.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/EditorTemplates/Parts/Tags.cshtml
+msgid "Separate multiple tags with commas"
+msgstr "Separate multiple tags with commas"
+
+#: ~/Modules/Orchard.Tags/Views/Home/Index.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Home/Index.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Orchard.Tags/Views/Home/Search.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Home/Search.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Orchard.Tags/Views/Home/Search.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Home/Search.cshtml
+msgid "Contents tagged with {0}"
+msgstr "Contents tagged with {0}"
+
+#: ~/Modules/Orchard.Tags/Views/Home/Search.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Home/Search.cshtml
+msgid "Contents tagged with <span>{0}</span>"
+msgstr "Contents tagged with <span>{0}</span>"
+
+#: ~/Modules/Orchard.Tags/Views/Parts/Tags.ShowTags.cshtml
+msgctxt ~/Modules/Orchard.Tags/Views/Parts/Tags.ShowTags.cshtml
+msgid "Tags:"
+msgstr "Tags:"
+

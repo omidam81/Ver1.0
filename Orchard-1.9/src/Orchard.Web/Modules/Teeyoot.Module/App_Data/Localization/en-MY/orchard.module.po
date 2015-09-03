@@ -1,0 +1,2254 @@
+#: ~/Modules/Teeyoot.Module/Module.txt
+#. "Name"
+#. "Teeyoot.Module.Name"
+msgctxt ~/Modules/Teeyoot.Module/Module.txt
+msgid "Teeyoot"
+msgstr "Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Module/Module.txt
+msgid "The sollutium Team"
+msgstr "The sollutium Team"
+
+#: ~/Modules/Teeyoot.Module/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Module/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.Module/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Module/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Module/Module.txt
+#. "Teeyoot.Module.Description"
+msgctxt ~/Modules/Teeyoot.Module/Module.txt
+msgid "Description for feature Teeyoot.Module."
+msgstr "Description for feature Teeyoot.Module."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+#. "Name"
+#. "Teeyoot.Module.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+msgid "Teeyoot"
+msgstr "Teeyoot"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+msgid "The sollutium Team"
+msgstr "The sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+#. "Teeyoot.Module.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Module/Module.txt
+msgid "Description for feature Teeyoot.Module."
+msgstr "Description for feature Teeyoot.Module."
+
+#: Teeyoot.Module.AdminMenu
+
+#. "Teeyoot"
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Teeyoot"
+msgstr "Teeyoot en-MY"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Campaigns"
+msgstr "Campaigns"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Status"
+msgstr "Status"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Export"
+msgstr "Export"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Details"
+msgstr "Details"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Orders"
+msgstr "Orders"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Payouts"
+msgstr "Payouts"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Messages"
+msgstr "Messages"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "FAQ"
+msgstr "FAQ"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Categories"
+msgstr "Categories"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Product Settings"
+msgstr "Product Settings"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Artworks"
+msgstr "Artworks"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Styles"
+msgstr "Styles"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Types"
+msgstr "Types"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Headlines"
+msgstr "Headlines"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Sizes"
+msgstr "Sizes"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Colors"
+msgstr "Colors"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Fonts"
+msgstr "Fonts"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Cost Calculator"
+msgstr "Cost Calculator"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Payment Settings"
+msgstr "Payment Settings"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Mandrill Settings"
+msgstr "Mandrill Settings"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Common Settings"
+msgstr "Common Settings"
+
+#: Teeyoot.Module.AdminMenu
+msgctxt Teeyoot.Module.AdminMenu
+msgid "Delivery Settings"
+msgstr "Delivery Settings"
+
+#: Teeyoot.Module.Controllers.AdminCommonSettingsController
+msgctxt Teeyoot.Module.Controllers.AdminCommonSettingsController
+msgid "\"Do not accept any new campaign\" setting changed to {0}."
+msgstr "\"Do not accept any new campaign\" setting changed to {0}."
+
+#: Teeyoot.Module.Controllers.AdminCommonSettingsController
+msgctxt Teeyoot.Module.Controllers.AdminCommonSettingsController
+msgid "\"Yes\""
+msgstr "\"Yes\""
+
+#: Teeyoot.Module.Controllers.AdminCommonSettingsController
+msgctxt Teeyoot.Module.Controllers.AdminCommonSettingsController
+msgid "\"No\""
+msgstr "\"No\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Additional Screen Costs\""
+msgstr "Incorrect entries in the box \"Additional Screen Costs\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"DTG print price\""
+msgstr "Incorrect entries in the box \"DTG print price\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"1st Screen Cost\""
+msgstr "Incorrect entries in the box \"1st Screen Cost\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Ink Cost\""
+msgstr "Incorrect entries in the box \"Ink Cost\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Labour Cost\""
+msgstr "Incorrect entries in the box \"Labour Cost\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Labour time per colour per print\""
+msgstr "Incorrect entries in the box \"Labour time per colour per print\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Labour time per side printed per print\""
+msgstr "Incorrect entries in the box \"Labour time per side printed per print\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Percentage Mark-Up required\""
+msgstr "Incorrect entries in the box \"Percentage Mark-Up required\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Incorrect entries in the box \"Prints per litre\""
+msgstr "Incorrect entries in the box \"Prints per litre\""
+
+#: Teeyoot.Module.Controllers.AdminCostController
+
+#. "Data update was successfully"
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "Data update was successfully"
+msgstr "Data update was successfully"
+
+#: Teeyoot.Module.Controllers.AdminCostController
+
+#. "When you try to update the data error occurred. Please, try again later!"
+msgctxt Teeyoot.Module.Controllers.AdminCostController
+msgid "When you try to update the data error occurred. Please, try again later!"
+msgstr "When you try to update the data error occurred. Please, try again later!"
+
+#: Teeyoot.Module.Controllers.CampaignController
+msgctxt Teeyoot.Module.Controllers.CampaignController
+msgid "Your campaign have been rejected!"
+msgstr "Your campaign have been rejected!"
+
+#: Teeyoot.Module.Controllers.CampaignController
+msgctxt Teeyoot.Module.Controllers.CampaignController
+msgid "Your design has been sent, wait for confirmation."
+msgstr "Your design has been sent, wait for confirmation."
+
+#: Teeyoot.Module.Controllers.CampaignController
+msgctxt Teeyoot.Module.Controllers.CampaignController
+msgid "The minimum order has been reached, so this shirt will definitely go to print."
+msgstr "The minimum order has been reached, so this shirt will definitely go to print."
+
+#: Teeyoot.Module.Controllers.CampaignController
+msgctxt Teeyoot.Module.Controllers.CampaignController
+msgid "Sorry, this promo is expired!"
+msgstr "Sorry, this promo is expired!"
+
+#: Teeyoot.Module.Controllers.CampaignController
+msgctxt Teeyoot.Module.Controllers.CampaignController
+msgid "You have wrong promo code!"
+msgstr "You have wrong promo code!"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Welcome to Teeyoot!"
+msgstr "Welcome to Teeyoot!"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Please, select at least one product to place your order"
+msgstr "Please, select at least one product to place your order"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Error occured when trying to create new order"
+msgstr "Error occured when trying to create new order"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "The transaction is successful"
+msgstr "The transaction is successful"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "The transaction is failed"
+msgstr "The transaction is failed"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller"
+msgstr "Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Could not find order with that lookup number"
+msgstr "Could not find order with that lookup number"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Your order has not been yet approved"
+msgstr "Your order has not been yet approved"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "No orders found during last 60 days"
+msgstr "No orders found during last 60 days"
+
+#: Teeyoot.Module.Controllers.HomeController
+msgctxt Teeyoot.Module.Controllers.HomeController
+msgid "Success! We have sent an email to "
+msgstr "Success! We have sent an email to "
+
+#: Teeyoot.Module.Controllers.WizardController
+
+#. "Campiagn Title can't be empty"
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn Title can't be empty"
+msgstr "Campiagn Title can't be empty"
+
+#: Teeyoot.Module.Controllers.WizardController
+
+#. "Campiagn Description can't be empty"
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn Description can't be empty"
+msgstr "Campiagn Description can't be empty"
+
+#: Teeyoot.Module.Controllers.WizardController
+
+#. "Campiagn URL can't be empty"
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn URL can't be empty"
+msgstr "Campiagn URL can't be empty"
+
+#: Teeyoot.Module.Controllers.WizardController
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn URL can't contain whitespaces"
+msgstr "Campiagn URL can't contain whitespaces"
+
+#: Teeyoot.Module.Controllers.WizardController
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn URL has wrong format"
+msgstr "Campiagn URL has wrong format"
+
+#: Teeyoot.Module.Controllers.WizardController
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn with this URL already exists"
+msgstr "Campiagn with this URL already exists"
+
+#: Teeyoot.Module.Controllers.WizardController
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Campiagn URL must be at least 4 characters long"
+msgstr "Campiagn URL must be at least 4 characters long"
+
+#: Teeyoot.Module.Controllers.WizardController
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "No design found for your campaign"
+msgstr "No design found for your campaign"
+
+#: Teeyoot.Module.Controllers.WizardController
+msgctxt Teeyoot.Module.Controllers.WizardController
+msgid "Error occured when trying to create new campaign"
+msgstr "Error occured when trying to create new campaign"
+
+#: Teeyoot.Module.Services.CampaignService
+msgctxt Teeyoot.Module.Services.CampaignService
+msgid "The campaign successfully reached its goal!"
+msgstr "The campaign successfully reached its goal!"
+
+#: Teeyoot.Module.Services.CampaignService
+msgctxt Teeyoot.Module.Services.CampaignService
+msgid "The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed."
+msgstr "The campaign failed to reach its goal by the deadline. You will not be charged and the shirts will not be printed."
+
+#: Teeyoot.Module.Services.CampaignService
+msgctxt Teeyoot.Module.Services.CampaignService
+msgid "The campaign has ended and your order is now being printed!"
+msgstr "The campaign has ended and your order is now being printed!"
+
+#: Teeyoot.Module.Services.CampaignService
+msgctxt Teeyoot.Module.Services.CampaignService
+msgid "Your order was cancelled."
+msgstr "Your order was cancelled."
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgid "Common Settings"
+msgstr "Common Settings"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgid "Setting"
+msgstr "Setting"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgid "Value"
+msgstr "Value"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgid "Do not accept any new campaigns"
+msgstr "Do not accept any new campaigns"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgid "Number of checkout requests with not sent emails."
+msgstr "Number of checkout requests with not sent emails."
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCommonSettings/Index.cshtml
+msgid "Do you want to send {0} emails to clients?"
+msgstr "Do you want to send {0} emails to clients?"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "T-Shirt Cost Edit"
+msgstr "T-Shirt Cost Edit"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "1st Screen Cost (RM)"
+msgstr "1st Screen Cost (RM)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Additional Screen Costs (RM)"
+msgstr "Additional Screen Costs (RM)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Ink Cost (RM per litre per colour)"
+msgstr "Ink Cost (RM per litre per colour)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Prints per litre"
+msgstr "Prints per litre"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Labour Cost (RM per hr)"
+msgstr "Labour Cost (RM per hr)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Labour time per colour per print (seconds)"
+msgstr "Labour time per colour per print (seconds)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Labour time per side printed per print (seconds)"
+msgstr "Labour time per side printed per print (seconds)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Percentage Mark-Up required"
+msgstr "Percentage Mark-Up required"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "DTG print price (RM)"
+msgstr "DTG print price (RM)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Sales goal"
+msgstr "Sales goal"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Amount of colors per print"
+msgstr "Amount of colors per print"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Edit.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "T-Shirt Cost"
+msgstr "T-Shirt Cost"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "1st Screen Cost (RM)"
+msgstr "1st Screen Cost (RM)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Additional Screen Costs (RM)"
+msgstr "Additional Screen Costs (RM)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Ink Cost (RM per litre per colour)"
+msgstr "Ink Cost (RM per litre per colour)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Prints per litre"
+msgstr "Prints per litre"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Labour Cost (RM per hr)"
+msgstr "Labour Cost (RM per hr)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Labour time per colour per print (seconds)"
+msgstr "Labour time per colour per print (seconds)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Labour time per side printed per print (seconds)"
+msgstr "Labour time per side printed per print (seconds)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Percentage Mark-Up required"
+msgstr "Percentage Mark-Up required"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "DTG print price (RM)"
+msgstr "DTG print price (RM)"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Target"
+msgstr "Target"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Amount of colors per print"
+msgstr "Amount of colors per print"
+
+#: ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.Module/Views/AdminCost/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Messages"
+msgstr "Messages"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Your request has been sent!"
+msgstr "Your request has been sent!"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "The time expired on "
+msgstr "The time expired on "
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Read more"
+msgstr "Read more"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+
+#. "Back"
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+
+#. "Front"
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Front"
+msgstr "Front"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Available Styles"
+msgstr "Available Styles"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "View Sizing Chart &amp; Product Details"
+msgstr "View Sizing Chart &amp; Product Details"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Hide Details"
+msgstr "Hide Details"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Inches"
+msgstr "Inches"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Centimeters"
+msgstr "Centimeters"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Length"
+msgstr "Length"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Sleeve"
+msgstr "Sleeve"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Width"
+msgstr "Width"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+
+#. "Request to bring back the campaign"
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Request to bring back the campaign"
+msgstr "Request to bring back the campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+
+#. "Reserve it now"
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Reserve it now"
+msgstr "Reserve it now"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+
+#. "Share this campaign on:"
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Share this campaign on:"
+msgstr "Share this campaign on:"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Shipping Info"
+msgstr "Shipping Info"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Orders are printed and shipped when the time expires"
+msgstr "Orders are printed and shipped when the time expires"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "You can expect your package to arrive around"
+msgstr "You can expect your package to arrive around"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Design and sell custom apparel with no risks and at no cost."
+msgstr "Design and sell custom apparel with no risks and at no cost."
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "We ship, you keep the profit."
+msgstr "We ship, you keep the profit."
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Launch a Campaign"
+msgstr "Launch a Campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Learn More"
+msgstr "Learn More"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Your Order"
+msgstr "Your Order"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Color"
+msgstr "Color"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Qty"
+msgstr "Qty"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Size"
+msgstr "Size"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Style"
+msgstr "Style"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Price"
+msgstr "Price"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "+ Add another size, colour or style where applicable"
+msgstr "+ Add another size, colour or style where applicable"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Checkout"
+msgstr "Checkout"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Your Reservation"
+msgstr "Your Reservation"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "If just"
+msgstr "If just"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "more items are reserved, we can bring this design back! Leave your email and reserve your order now!"
+msgstr "more items are reserved, we can bring this design back! Leave your email and reserve your order now!"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "Email address (so we can notify you)"
+msgstr "Email address (so we can notify you)"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "RESERVE YOURS NOW!"
+msgstr "RESERVE YOURS NOW!"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid " days"
+msgstr " days"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "days ago"
+msgstr "days ago"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "hours"
+msgstr "hours"
+
+#: ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Campaign/Index.cshtml
+msgid "hours ago"
+msgstr "hours ago"
+
+#: ~/Modules/Teeyoot.Module/Views/EditorTemplates/Parts/MailChimpSettings.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/EditorTemplates/Parts/MailChimpSettings.cshtml
+msgid "Api Key"
+msgstr "Api Key"
+
+#: ~/Modules/Teeyoot.Module/Views/EditorTemplates/Parts/MailChimpSettings.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/EditorTemplates/Parts/MailChimpSettings.cshtml
+msgid "Language"
+msgstr "Language"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Order Tracker"
+msgstr "Order Tracker"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Order"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Order"
+msgstr "Order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Order placed"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Order placed"
+msgstr "Order placed"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Print"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Print"
+msgstr "Print"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Printing"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Printing"
+msgstr "Printing"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Ship"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Ship"
+msgstr "Ship"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Shipped"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Shipped"
+msgstr "Shipped"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Deliver"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Deliver"
+msgstr "Deliver"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Delivered"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Delivered"
+msgstr "Delivered"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Updated"
+msgstr "Updated"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "You placed an order"
+msgstr "You placed an order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Congratulations, share your recent order to help push the campaign "
+msgstr "Congratulations, share your recent order to help push the campaign "
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Cancel order"
+#. "Cancel Order"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Cancel order"
+msgstr "Cancel order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "We're printing your order"
+msgstr "We're printing your order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "We're producing your order and making sure you get a beautiful, high-quality print! "
+msgstr "We're producing your order and making sure you get a beautiful, high-quality print! "
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Your order has been cancelled"
+msgstr "Your order has been cancelled"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Your order has been cancelled and will not be produced. "
+msgstr "Your order has been cancelled and will not be produced. "
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Order history"
+msgstr "Order history"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Order for"
+msgstr "Order for"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "placed"
+msgstr "placed"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Order summary"
+msgstr "Order summary"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Shipping to"
+msgstr "Shipping to"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+
+#. "Not now"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Not now"
+msgstr "Not now"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/OrderTracking.cshtml
+msgid "Are you sure you want to cancel your order? You will not be able to re-open this order."
+msgstr "Are you sure you want to cancel your order? You will not be able to re-open this order."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Checkout"
+msgstr "Checkout"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Order Summary"
+msgstr "Order Summary"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Discount"
+msgstr "Discount"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Shipping"
+msgstr "Shipping"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Delivery"
+msgstr "Delivery"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Total"
+msgstr "Total"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only."
+msgstr "We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "How does Teeyoot work?"
+msgstr "How does Teeyoot work?"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "We won't charge you unless the campaign order reaches its minimum."
+msgstr "We won't charge you unless the campaign order reaches its minimum."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "What are my payment options?"
+msgstr "What are my payment options?"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "We accept payment via Cash on Delivery, Paypal, Direct Bank Transfer, Debit or Credit Card."
+msgstr "We accept payment via Cash on Delivery, Paypal, Direct Bank Transfer, Debit or Credit Card."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "If I pay via Direct Bank Transfer but the campaign does not reach its minimum, will I get a refund?"
+msgstr "If I pay via Direct Bank Transfer but the campaign does not reach its minimum, will I get a refund?"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Yes absolutely! We will refund the amount within 7 days after the campaign ends. Your interest is our top priority."
+msgstr "Yes absolutely! We will refund the amount within 7 days after the campaign ends. Your interest is our top priority."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "How long will it take to get my shirt?"
+msgstr "How long will it take to get my shirt?"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Your order will arrive"
+msgstr "Your order will arrive"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "business days after the end of the campaign!"
+msgstr "business days after the end of the campaign!"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Contact Info"
+msgstr "Contact Info"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Email address"
+msgstr "Email address"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Credit/Debit Card "
+msgstr "Credit/Debit Card "
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Braintree PayPal"
+msgstr "Braintree PayPal"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Online Banking"
+msgstr "Online Banking"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Online Bancking"
+msgstr "Online Bancking"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Cash on delivery"
+msgstr "Cash on delivery"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "All transactions are secure and encrypted."
+msgstr "All transactions are secure and encrypted."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Payment Info"
+msgstr "Payment Info"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+
+#. "Credit Card"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Credit Card"
+msgstr "Credit Card"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+
+#. "Credit card number"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Credit card number"
+msgstr "Credit card number"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+
+#. "3 or 4 digit security code usually located on the back of the card."
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "3 or 4 digit security code usually located on the back of the card."
+msgstr "3 or 4 digit security code usually located on the back of the card."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Shipping Info"
+msgstr "Shipping Info"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "First name"
+msgstr "First name"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Last name"
+msgstr "Last name"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Address line 1"
+msgstr "Address line 1"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Address line 2"
+msgstr "Address line 2"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Postal code"
+msgstr "Postal code"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "City"
+msgstr "City"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "State"
+msgstr "State"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Phone number"
+msgstr "Phone number"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+
+#. "Place Your Order"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "Place Your Order"
+msgstr "Place Your Order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "By clicking 'Place Your Order' you agree to our"
+msgstr "By clicking 'Place Your Order' you agree to our"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "privacy policy"
+msgstr "privacy policy"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "and"
+msgstr "and"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/Payment.cshtml
+msgid "terms of service"
+msgstr "terms of service"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgid "Recover Your Order"
+msgstr "Recover Your Order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgid "Enter your email address to see all the orders you placed using this email address for the past 60 days."
+msgstr "Enter your email address to see all the orders you placed using this email address for the past 60 days."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgid "Email"
+msgstr "Email"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgid "Recover orders"
+msgstr "Recover orders"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/RecoverOrder.cshtml
+msgid "Recover your order | Teeyoot"
+msgstr "Recover your order | Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/ReservationComplete.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/ReservationComplete.cshtml
+msgid "sold"
+msgstr "sold"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/ReservationComplete.cshtml
+
+#. "remaining"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/ReservationComplete.cshtml
+msgid "remaining"
+msgstr "remaining"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/ReservationComplete.cshtml
+
+#. "ago"
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/ReservationComplete.cshtml
+msgid "ago"
+msgstr "ago"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Track your order | Teeyoot"
+msgstr "Track your order | Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Track your order"
+msgstr "Track your order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Enter your tracking number to check the status of your order. Your tracking number is in your confirmation email when you ordered."
+msgstr "Enter your tracking number to check the status of your order. Your tracking number is in your confirmation email when you ordered."
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Tracking number"
+msgstr "Tracking number"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Track my order"
+msgstr "Track my order"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Forgotten your order number?"
+msgstr "Forgotten your order number?"
+
+#: ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Home/TrackOrder.cshtml
+msgid "Index"
+msgstr "Index"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Launch Campaign | Teeyoot"
+msgstr "Launch Campaign | Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Design"
+msgstr "Design"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Description"
+msgstr "Description"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Enter custom text below"
+msgstr "Enter custom text below"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Add custom text here"
+msgstr "Add custom text here"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Futuristic / Digital"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Futuristic / Digital"
+msgstr "Futuristic / Digital"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Change color"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Change color"
+msgstr "Change color"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "No outline"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "No outline"
+msgstr "No outline"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Thin"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Thin"
+msgstr "Thin"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Medium"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Medium"
+msgstr "Medium"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Thick"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Thick"
+msgstr "Thick"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Black"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Black"
+msgstr "Black"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Snap to center"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Snap to center"
+msgstr "Snap to center"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Duplicate"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Duplicate"
+msgstr "Duplicate"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Center"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Center"
+msgstr "Center"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Push Behind"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Push Behind"
+msgstr "Push Behind"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Flip Horizontally"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Flip Horizontally"
+msgstr "Flip Horizontally"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Flip Vertically"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Flip Vertically"
+msgstr "Flip Vertically"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Use our images"
+msgstr "Use our images"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Search Artwork"
+msgstr "Search Artwork"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "or"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "OR"
+msgstr "OR"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Upload your images"
+msgstr "Upload your images"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Drag file here or"
+msgstr "Drag file here or"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Click to upload image"
+msgstr "Click to upload image"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Important: by uploading this image you agree you have the rights of this image."
+msgstr "Important: by uploading this image you agree you have the rights of this image."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Go back"
+msgstr "Go back"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Art color "
+msgstr "Art color "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Add an outline"
+msgstr "Add an outline"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Uploaded File"
+msgstr "Uploaded File"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Recently Used Artwork"
+msgstr "Recently Used Artwork"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Width"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Width"
+msgstr "Width"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "in."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "in."
+msgstr "in."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Height"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Height"
+msgstr "Height"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Print Area"
+msgstr "Print Area"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Printable Area"
+msgstr "Printable Area"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Front"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Front"
+msgstr "Front"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Back"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Choose the colour of your product"
+msgstr "Choose the colour of your product"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Style"
+msgstr "Style"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Please reduce the amount of colors you are using"
+msgstr "Please reduce the amount of colors you are using"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Next"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Next"
+msgstr "Next"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "File size too big"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "File size too big"
+msgstr "File size too big"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Uploaded files must be no more than 5MB."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Uploaded files must be no more than 5MB."
+msgstr "Uploaded files must be no more than 5MB."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Go back to designer "
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Go back to designer "
+msgstr "Go back to designer "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Incorrect File Type"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Incorrect File Type"
+msgstr "Incorrect File Type"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Uploaded files must be either gif, jpeg, jpg, png, or eps."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Uploaded files must be either gif, jpeg, jpg, png, or eps."
+msgstr "Uploaded files must be either gif, jpeg, jpg, png, or eps."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sales Target"
+msgstr "Sales Target"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Target"
+msgstr "Target"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Minimum"
+msgstr "Minimum"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Your target is the number of shirts you are aiming to sell. The higher your target, the lower is the cost per shirt and the higher will be your profit. You must sell at least the minimum for your campaign to go to print."
+msgstr "Your target is the number of shirts you are aiming to sell. The higher your target, the lower is the cost per shirt and the higher will be your profit. You must sell at least the minimum for your campaign to go to print."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "IMPORTANT: if you sell less than your target your profit per sale will be reduced."
+msgstr "IMPORTANT: if you sell less than your target your profit per sale will be reduced."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Set selling price"
+msgstr "Set selling price"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sale Price "
+msgstr "Sale Price "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "(per shirt)"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "(per shirt)"
+msgstr "(per shirt)"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Cost Price"
+msgstr "Cost Price"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Your Profit"
+msgstr "Your Profit"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Add some more styles of t-shirts your customers can buy."
+msgstr "Add some more styles of t-shirts your customers can buy."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sorry, the print area of this style does not match, so it cannot be added in this campaign"
+msgstr "Sorry, the print area of this style does not match, so it cannot be added in this campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Estimated profit if you achieve your target"
+msgstr "Estimated profit if you achieve your target"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Title of campaign"
+msgstr "Title of campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum."
+msgstr "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Describe your campaign here…"
+msgstr "Describe your campaign here…"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Tag your campaign"
+msgstr "Tag your campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Enter up to 6 words to describe your campaign so buyers can find it"
+msgstr "Enter up to 6 words to describe your campaign so buyers can find it"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Campaign duration"
+msgstr "Campaign duration"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Days"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Days"
+msgstr "Days"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Ending"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Ending"
+msgstr "Ending"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Campaign URL"
+msgstr "Campaign URL"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Other Options"
+msgstr "Other Options"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "By default show the back of the shirt"
+msgstr "By default show the back of the shirt"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Launch Campaign"
+msgstr "Launch Campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "By clicking this button, I accept Teeyoot’s"
+msgstr "By clicking this button, I accept Teeyoot’s"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Term’s"
+msgstr "Term’s"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " of Use and Service"
+msgstr " of Use and Service"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "This is a preview of your campaign. "
+msgstr "This is a preview of your campaign. "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Click here to go back and continue launching your campaign »"
+msgstr "Click here to go back and continue launching your campaign »"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Too many colors."
+msgstr "Too many colors."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Your design has more than "
+msgstr "Your design has more than "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over "
+msgstr " colors. Unfortunately, because of the way screen printing works, we aren't able to print images with over "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. " colors. "
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " colors. "
+msgstr " colors. "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Make adjustments"
+msgstr "Make adjustments"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Did you try and upload a full color image?"
+msgstr "Did you try and upload a full color image?"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Looks like you tried to upload an image with more than "
+msgstr "Looks like you tried to upload an image with more than "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over "
+msgstr " colors or shades of gray. Unfortunately, because of the way screen printing workks, we aren't able to print images with over "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "If you think the system has made a mistake, and your image is under "
+msgstr "If you think the system has made a mistake, and your image is under "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "</span> colors, please "
+msgstr "</span> colors, please "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "contact support for assistance"
+msgstr "contact support for assistance"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Keep designing "
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Keep designing "
+msgstr "Keep designing "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Did you upload an artwork with text?"
+msgstr "Did you upload an artwork with text?"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "To ensure that your artwork gets printed correctly, we require it to be outlined."
+msgstr "To ensure that your artwork gets printed correctly, we require it to be outlined."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Here's how:"
+msgstr "Here's how:"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " In Illustrator, select the entire design."
+msgstr " In Illustrator, select the entire design."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " Create outlines, using the Type menu."
+msgstr " Create outlines, using the Type menu."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Save your artwork and upload it again."
+msgstr "Save your artwork and upload it again."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "If you need more assistance, please "
+msgstr "If you need more assistance, please "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "contact support"
+msgstr "contact support"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Oops! There was an error."
+msgstr "Oops! There was an error."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!"
+msgstr "Try uploading a PNG, JPG, GIF, or smaller version of the file. Don't worry, we will vectorize your artwork before it gets printed!"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "You need to create a design."
+msgstr "You need to create a design."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. "
+msgstr "Unfortunately, you can't sell a blank item.  You need to add text or art before you can continue. "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Need help?"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Need help?"
+msgstr "Need help?"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "You have negative profit!"
+msgstr "You have negative profit!"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Your sale price must be more than your cost price on all your campaigns!"
+msgstr "Your sale price must be more than your cost price on all your campaigns!"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Go back to designer"
+msgstr "Go back to designer"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Server error."
+msgstr "Server error."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sorry, we were unable to save your design. Please try again. If the problem persist, "
+msgstr "Sorry, we were unable to save your design. Please try again. If the problem persist, "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "contact our customer support"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "contact our customer support"
+msgstr "contact our customer support"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "and mention the following error."
+msgstr "and mention the following error."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Error: "
+msgstr "Error: "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Return to design "
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Return to design "
+msgstr "Return to design "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Oops! The design application is still busy."
+msgstr "Oops! The design application is still busy."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Please try again in a few seconds. If the problem persists, "
+msgstr "Please try again in a few seconds. If the problem persists, "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "File is too small"
+msgstr "File is too small"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Your artwork should be at least "
+msgstr "Your artwork should be at least "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " pixels wide by "
+msgstr " pixels wide by "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " pixels high."
+msgstr " pixels high."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Need help? "
+msgstr "Need help? "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Contact our design team!"
+msgstr "Contact our design team!"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Incompatible products!"
+msgstr "Incompatible products!"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign."
+msgstr "To preserve print quality, this product is not compatible with others already in this campaign. Selecting this product will remove others in this campaign."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Select product"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Select product"
+msgstr "Select product"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Cancel"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Waiting for preview"
+msgstr "Waiting for preview"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Please wait while your preview is generated."
+msgstr "Please wait while your preview is generated."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "How would you like to login?"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "How would you like to login?"
+msgstr "How would you like to login?"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "You can "
+msgstr "You can "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Login with Teespring"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "login with Teespring"
+msgstr "login with Teespring"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid " or use any of the sites below:"
+msgstr " or use any of the sites below:"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "login with"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "login with"
+msgstr "login with"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "create a new account with Teespring"
+msgstr "create a new account with Teespring"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Email"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Email"
+msgstr "Email"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Password"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Password"
+msgstr "Password"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Login to your account »"
+msgstr "Login to your account »"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Loading..."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Loading..."
+msgstr "Loading..."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Want to create a new account?"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Want to create a new account?"
+msgstr "Want to create a new account?"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Create an account with Teespring"
+msgstr "Create an account with Teespring"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Password: Must be longer than 8 characters."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Password: Must be longer than 8 characters."
+msgstr "Password: Must be longer than 8 characters."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Confirm Password"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Create your account "
+msgstr "Create your account "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Already have an account?"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Saving your design"
+msgstr "Saving your design"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Loading"
+msgstr "Loading"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Upload Error"
+msgstr "Upload Error"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "An unknown error occurred with your upload. Our support staff have been notified. Please try again."
+msgstr "An unknown error occurred with your upload. Our support staff have been notified. Please try again."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Invalid Product"
+msgstr "Invalid Product"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching."
+msgstr "One or more of the products on the campaign are no longer available and have been removed. Please confirm your product options on the pricing step before launching."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Campaign Error."
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Campaign Error."
+msgstr "Campaign Error."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "An unknown error occurred."
+msgstr "An unknown error occurred."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Ok"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Ok"
+msgstr "Ok"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Invalid Zip Code."
+msgstr "Invalid Zip Code."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Oops! We couldn't find any printable"
+msgstr "Oops! We couldn't find any printable"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "color"
+msgstr "color"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "This might have happened due to a low resolution image or small details that our analysis couldn't perceive."
+msgstr "This might have happened due to a low resolution image or small details that our analysis couldn't perceive."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Possible solutions are"
+msgstr "Possible solutions are"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "uploading a bigger artwork"
+msgstr "uploading a bigger artwork"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "uploading a vectorized version"
+msgstr "uploading a vectorized version"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "for assistance"
+msgstr "for assistance"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Return to design"
+msgstr "Return to design"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Oops! We ran into an issue."
+msgstr "Oops! We ran into an issue."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sorry, we were unable to retrieve this artwork. If it happens again, please "
+msgstr "Sorry, we were unable to retrieve this artwork. If it happens again, please "
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "for assistance."
+msgstr "for assistance."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Oops! We have a problem with that artwork"
+msgstr "Oops! We have a problem with that artwork"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another."
+msgstr "Sorry, we were unable to render that artwork correctly. A bug has been reported and will be investigated. Please try another."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Incompatible Products"
+msgstr "Incompatible Products"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Sorry"
+msgstr "Sorry"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "You cannot add more than 5 colors of the same style in one campaign"
+msgstr "You cannot add more than 5 colors of the same style in one campaign"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Close"
+msgstr "Close"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "You can"
+msgstr "You can"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+
+#. "Login with Teeyoot"
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "login with Teeyoot"
+msgstr "login with Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "or use any of the sites below:"
+msgstr "or use any of the sites below:"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "create a new account with Teeyoot"
+msgstr "create a new account with Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Login to your account >>"
+msgstr "Login to your account >>"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Create an account with Teeyoot"
+msgstr "Create an account with Teeyoot"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Phone Number"
+msgstr "Phone Number"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Index.cshtml
+msgid "Create your account >>"
+msgstr "Create your account >>"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgid "You request has been accepted."
+msgstr "You request has been accepted."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgid "You have given invalid email address."
+msgstr "You have given invalid email address."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgid "Sorry"
+msgstr "Sorry"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgid "Sorry, due to excess demand we are not accepting any new campaigns. Please try again in a few days or add your name to our mailing list and we’ll let you know when we are ready to take orders."
+msgstr "Sorry, due to excess demand we are not accepting any new campaigns. Please try again in a few days or add your name to our mailing list and we’ll let you know when we are ready to take orders."
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgid "Indicate your mail"
+msgstr "Indicate your mail"
+
+#: ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgctxt ~/Modules/Teeyoot.Module/Views/Wizard/Oops.cshtml
+msgid "Send mail"
+msgstr "Send mail"
+

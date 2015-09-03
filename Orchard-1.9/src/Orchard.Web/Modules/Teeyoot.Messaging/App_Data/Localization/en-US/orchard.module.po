@@ -1,0 +1,421 @@
+#: ~/Modules/Teeyoot.Messaging/Module.txt
+#. "Name"
+#. "Teeyoot.Messaging.Name"
+msgctxt ~/Modules/Teeyoot.Messaging/Module.txt
+msgid "Teeyoot Messaging"
+msgstr "Teeyoot Messaging"
+
+#: ~/Modules/Teeyoot.Messaging/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Messaging/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Modules/Teeyoot.Messaging/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Messaging/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.Messaging/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Messaging/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Messaging/Module.txt
+#. "Teeyoot.Messaging.Description"
+msgctxt ~/Modules/Teeyoot.Messaging/Module.txt
+msgid "Description for feature Teeyoot.Messaging."
+msgstr "Description for feature Teeyoot.Messaging."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+#. "Name"
+#. "Teeyoot.Messaging.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+msgid "Teeyoot Messaging"
+msgstr "Teeyoot Messaging"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+#. "Teeyoot.Messaging.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Messaging/Module.txt
+msgid "Description for feature Teeyoot.Messaging."
+msgstr "Description for feature Teeyoot.Messaging."
+
+#: Teeyoot.Messaging.Controllers.AdminMessageContentController
+msgctxt Teeyoot.Messaging.Controllers.AdminMessageContentController
+msgid "Message has been sent!"
+msgstr "Message has been sent!"
+
+#: Teeyoot.Module.Controllers.AdminMessageController
+
+#. "Creating setting failed: {0}"
+msgctxt Teeyoot.Module.Controllers.AdminMessageController
+msgid "Creating setting failed: {0}"
+msgstr "Creating setting failed: {0}"
+
+#: Teeyoot.Module.Controllers.AdminMessageController
+msgctxt Teeyoot.Module.Controllers.AdminMessageController
+msgid "New setting has been added."
+msgstr "New setting has been added."
+
+#: Teeyoot.Module.Controllers.AdminMessageController
+msgctxt Teeyoot.Module.Controllers.AdminMessageController
+msgid "The setting has been updated."
+msgstr "The setting has been updated."
+
+#: Teeyoot.Module.Controllers.AdminMessageController
+msgctxt Teeyoot.Module.Controllers.AdminMessageController
+msgid "File has been deleted."
+msgstr "File has been deleted."
+
+#: Teeyoot.Module.Controllers.AdminMessageController
+msgctxt Teeyoot.Module.Controllers.AdminMessageController
+msgid "File has been added!"
+msgstr "File has been added!"
+
+#: Teeyoot.Module.Controllers.AdminMessageController
+msgctxt Teeyoot.Module.Controllers.AdminMessageController
+msgid "Wrong file extention!"
+msgstr "Wrong file extention!"
+
+#: Teeyoot.Messaging.Services.MandrillService
+msgctxt Teeyoot.Messaging.Services.MandrillService
+msgid "Message has been sent!"
+msgstr "Message has been sent!"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Addsetting.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Addsetting.cshtml
+msgid "Add new setting"
+msgstr "Add new setting"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/EditMailChimpSetting.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/EditMailChimpSetting.cshtml
+msgid "Edit Api Key"
+msgstr "Edit Api Key"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Mandrill Settings"
+msgstr "Mandrill Settings"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Api Key"
+msgstr "Api Key"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Seller Template"
+msgstr "Seller Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+
+#. "Upload File"
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Upload File"
+msgstr "Upload File"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+
+#. "Download"
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Download"
+msgstr "Download"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Welcome Template"
+msgstr "Welcome Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Relaunch Template"
+msgstr "Relaunch Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Launch Template"
+msgstr "Launch Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Withdraw Template"
+msgstr "Withdraw Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Place Order Template"
+msgstr "Place Order Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Campaign Promo Template"
+msgstr "Campaign Promo Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Unpaid Campaign Template"
+msgstr "Unpaid Campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Partially Paid Campaign Template"
+msgstr "Partially Paid Campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Paid Campaign Template"
+msgstr "Paid Campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Campaign Not Reach Goal Buyer Template"
+msgstr "Campaign Not Reach Goal Buyer Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Campaign Not Reach Goal Seller Template"
+msgstr "Campaign Not Reach Goal Seller Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Delivered Order Template"
+msgstr "Delivered Order Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Shipped Order Template"
+msgstr "Shipped Order Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Cancelled Order Template"
+msgstr "Cancelled Order Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Order Is Printing Buyer Template"
+msgstr "Order Is Printing Buyer Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Campaign Is Printing Seller Template"
+msgstr "Campaign Is Printing Seller Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "All orders delivered Template"
+msgstr "All orders delivered Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Campaign is finished Template"
+msgstr "Campaign is finished Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Definitely go to print Seller Template"
+msgstr "Definitely go to print Seller Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Definitely go to print Buyer Template"
+msgstr "Definitely go to print Buyer Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Edited campaign Template"
+msgstr "Edited campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Expired and met the minimum Template"
+msgstr "Expired and met the minimum Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Expired not successfull campaign Template"
+msgstr "Expired not successfull campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Expired successfull campaign Template"
+msgstr "Expired successfull campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Make the order Template"
+msgstr "Make the order Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "New campaign admin Template"
+msgstr "New campaign admin Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "New order buyer Template"
+msgstr "New order buyer Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Not reach goal, but met minimum Template"
+msgstr "Not reach goal, but met minimum Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Recover orders Template"
+msgstr "Recover orders Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Rejected campaign Template"
+msgstr "Rejected campaign Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Shipped order 3 days after Template"
+msgstr "Shipped order 3 days after Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Terms and conditions Template"
+msgstr "Terms and conditions Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Withdraw completed Template"
+msgstr "Withdraw completed Template"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "There are no setting to this language"
+msgstr "There are no setting to this language"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+
+#. "Add"
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessage/Index.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "Messages"
+msgstr "Messages"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "Date"
+msgstr "Date"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "User Id"
+msgstr "User Id"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "Subject"
+msgstr "Subject"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "Sender"
+msgstr "Sender"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "Text"
+msgstr "Text"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+
+#. "Approve"
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/Index.cshtml
+msgid "Approve"
+msgstr "Approve"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "UserName: "
+msgstr "UserName: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Email: "
+msgstr "Email: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Payout information"
+msgstr "Payout information"
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Account number: "
+msgstr "Account number: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Bank name: "
+msgstr "Bank name: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Contact number: "
+msgstr "Contact number: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Account holder name: "
+msgstr "Account holder name: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/AdminMessageContent/MessageContent.cshtml
+msgid "Message admin: "
+msgstr "Message admin: "
+
+#: ~/Modules/Teeyoot.Messaging/Views/EditorTemplates/Parts/MailChimpSettings.cshtml
+msgctxt ~/Modules/Teeyoot.Messaging/Views/EditorTemplates/Parts/MailChimpSettings.cshtml
+msgid "Api Key"
+msgstr "Api Key"
+

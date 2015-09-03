@@ -1,0 +1,80 @@
+#: ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+msgid "The Theme Machine"
+msgstr "The Theme Machine"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+msgid "jowall, mibach, loudej, heskew"
+msgstr "jowall, mibach, loudej, heskew"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+msgid "Orchard Theme Machine is a flexible multi-zone theme that provides a solid foundation to build your site. It features 20 collapsible widget zones and is flexible enough to cover a wide range of layouts."
+msgstr "Orchard Theme Machine is a flexible multi-zone theme that provides a solid foundation to build your site. It features 20 collapsible widget zones and is flexible enough to cover a wide range of layouts."
+
+#: ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+#. "Tags"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+msgid "Awesome"
+msgstr "Awesome"
+
+#: ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Themes/TheThemeMachine/Theme.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Themes/TheThemeMachine/Theme.txt
+#. "Name"
+msgctxt ~/Themes/TheThemeMachine/Theme.txt
+msgid "The Theme Machine"
+msgstr "The Theme Machine"
+
+#: ~/Themes/TheThemeMachine/Theme.txt
+#. "Author"
+msgctxt ~/Themes/TheThemeMachine/Theme.txt
+msgid "jowall, mibach, loudej, heskew"
+msgstr "jowall, mibach, loudej, heskew"
+
+#: ~/Themes/TheThemeMachine/Theme.txt
+#. "Description"
+msgctxt ~/Themes/TheThemeMachine/Theme.txt
+msgid "Orchard Theme Machine is a flexible multi-zone theme that provides a solid foundation to build your site. It features 20 collapsible widget zones and is flexible enough to cover a wide range of layouts."
+msgstr "Orchard Theme Machine is a flexible multi-zone theme that provides a solid foundation to build your site. It features 20 collapsible widget zones and is flexible enough to cover a wide range of layouts."
+
+#: ~/Themes/TheThemeMachine/Theme.txt
+#. "Tags"
+msgctxt ~/Themes/TheThemeMachine/Theme.txt
+msgid "Awesome"
+msgstr "Awesome"
+
+#: ~/Themes/TheThemeMachine/Theme.txt
+#. "Website"
+msgctxt ~/Themes/TheThemeMachine/Theme.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Themes/TheThemeMachine/Views/BadgeOfHonor.cshtml
+msgctxt ~/Themes/TheThemeMachine/Views/BadgeOfHonor.cshtml
+msgid "Powered by <a href=\"{0}\" target=\"_blank\">Orchard</a>"
+msgstr "Powered by <a href=\"{0}\" target=\"_blank\">Orchard</a>"
+
+#: ~/Themes/TheThemeMachine/Views/BadgeOfHonor.cshtml
+msgctxt ~/Themes/TheThemeMachine/Views/BadgeOfHonor.cshtml
+msgid "&#169; The Theme Machine 2010."
+msgstr "&#169; The Theme Machine 2010."
+
+#: ~/Themes/TheThemeMachine/Views/Pager.cshtml
+msgctxt ~/Themes/TheThemeMachine/Views/Pager.cshtml
+msgid "Newer"
+msgstr "Newer"
+
+#: ~/Themes/TheThemeMachine/Views/Pager.cshtml
+msgctxt ~/Themes/TheThemeMachine/Views/Pager.cshtml
+msgid "Older"
+msgstr "Older"
+

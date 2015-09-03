@@ -1,0 +1,165 @@
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Orchard.MessageBus"
+msgstr "Orchard.MessageBus"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Provides communication APIs for server farms."
+msgstr "Provides communication APIs for server farms."
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.Name"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Message Bus"
+msgstr "Message Bus"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.Description"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Reusable API abstractions to communicate in a server farm."
+msgstr "Reusable API abstractions to communicate in a server farm."
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.Category"
+#. "Orchard.MessageBus.DistributedSignals.Category"
+#. "Orchard.MessageBus.SqlServerServiceBroker.Category"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Hosting"
+msgstr "Hosting"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.DistributedSignals.Name"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Distributed Signals"
+msgstr "Distributed Signals"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.DistributedSignals.Description"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Distribute signals cache invalidation calls."
+msgstr "Distribute signals cache invalidation calls."
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Name"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "SQL Server Service Broker"
+msgstr "SQL Server Service Broker"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Description"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "A message bus implementation using SQL Server Service Broker."
+msgstr "A message bus implementation using SQL Server Service Broker."
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Name"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Distributed Shell Restart"
+msgstr "Distributed Shell Restart"
+
+#: ~/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Description"
+msgctxt ~/Modules/Orchard.MessageBus/Module.txt
+msgid "Distribute shell restarts."
+msgstr "Distribute shell restarts."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Orchard.MessageBus"
+msgstr "Orchard.MessageBus"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Provides communication APIs for server farms."
+msgstr "Provides communication APIs for server farms."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Message Bus"
+msgstr "Message Bus"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Reusable API abstractions to communicate in a server farm."
+msgstr "Reusable API abstractions to communicate in a server farm."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.Category"
+#. "Orchard.MessageBus.DistributedSignals.Category"
+#. "Orchard.MessageBus.SqlServerServiceBroker.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Hosting"
+msgstr "Hosting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.DistributedSignals.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Distributed Signals"
+msgstr "Distributed Signals"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.DistributedSignals.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Distribute signals cache invalidation calls."
+msgstr "Distribute signals cache invalidation calls."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "SQL Server Service Broker"
+msgstr "SQL Server Service Broker"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "A message bus implementation using SQL Server Service Broker."
+msgstr "A message bus implementation using SQL Server Service Broker."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Distributed Shell Restart"
+msgstr "Distributed Shell Restart"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+#. "Orchard.MessageBus.SqlServerServiceBroker.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MessageBus/Module.txt
+msgid "Distribute shell restarts."
+msgstr "Distribute shell restarts."
+
+#: Orchard.MessageBus.Services.MessageBusNotificationProvider
+msgctxt Orchard.MessageBus.Services.MessageBusNotificationProvider
+msgid "You need to enable an message bus broker implementation like SQL Server Service Broker."
+msgstr "You need to enable an message bus broker implementation like SQL Server Service Broker."
+

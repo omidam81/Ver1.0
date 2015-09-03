@@ -1,0 +1,221 @@
+#: ~/Modules/Teeyoot.FAQ/Module.txt
+#. "Name"
+#. "Teeyoot.FAQ.Name"
+msgctxt ~/Modules/Teeyoot.FAQ/Module.txt
+msgid "Teeyoot FAQ"
+msgstr "Teeyoot FAQ"
+
+#: ~/Modules/Teeyoot.FAQ/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.FAQ/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Modules/Teeyoot.FAQ/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.FAQ/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.FAQ/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.FAQ/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.FAQ/Module.txt
+#. "Teeyoot.FAQ.Description"
+msgctxt ~/Modules/Teeyoot.FAQ/Module.txt
+msgid "Description for feature Teeyoot.FAQ."
+msgstr "Description for feature Teeyoot.FAQ."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+#. "Name"
+#. "Teeyoot.FAQ.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+msgid "Teeyoot FAQ"
+msgstr "Teeyoot FAQ"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+#. "Teeyoot.FAQ.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FAQ/Module.txt
+msgid "Description for feature Teeyoot.FAQ."
+msgstr "Description for feature Teeyoot.FAQ."
+
+#: Teeyoot.FAQ.Controllers.FaqAdminController
+
+#. "Creating FAQ entry failed: {0}"
+msgctxt Teeyoot.FAQ.Controllers.FaqAdminController
+msgid "Creating FAQ entry failed: {0}"
+msgstr "Creating FAQ entry failed: {0}"
+
+#: Teeyoot.FAQ.Controllers.FaqAdminController
+msgctxt Teeyoot.FAQ.Controllers.FaqAdminController
+msgid "New FAQ topic has been added."
+msgstr "New FAQ topic has been added."
+
+#: Teeyoot.FAQ.Controllers.FaqAdminController
+msgctxt Teeyoot.FAQ.Controllers.FaqAdminController
+msgid "The FAQ topic has been updated."
+msgstr "The FAQ topic has been updated."
+
+#: Teeyoot.FAQ.Controllers.FaqAdminController
+msgctxt Teeyoot.FAQ.Controllers.FaqAdminController
+msgid "The FAQ topic has been deleted."
+msgstr "The FAQ topic has been deleted."
+
+#: Teeyoot.FAQ.Drivers.FaqEntryPartDriver
+msgctxt Teeyoot.FAQ.Drivers.FaqEntryPartDriver
+msgid "Topic can't be empty."
+msgstr "Topic can't be empty."
+
+#: ~/Modules/Teeyoot.FAQ/Views/EditorTemplates/Parts/FaqEntry.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/EditorTemplates/Parts/FaqEntry.cshtml
+msgid "Section"
+msgstr "Section"
+
+#: ~/Modules/Teeyoot.FAQ/Views/EditorTemplates/Parts/FaqEntry.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/EditorTemplates/Parts/FaqEntry.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Modules/Teeyoot.FAQ/Views/EditorTemplates/Parts/FaqEntry.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/EditorTemplates/Parts/FaqEntry.cshtml
+msgid "Language"
+msgstr "Language"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/AddFaqEntry.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/AddFaqEntry.cshtml
+msgid "Add FAQ Entry"
+msgstr "Add FAQ Entry"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/EditFaqEntry.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/EditFaqEntry.cshtml
+msgid "Edit FAQ Entry"
+msgstr "Edit FAQ Entry"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "FAQ"
+msgstr "FAQ"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Add New FAQ Topic"
+msgstr "Add New FAQ Topic"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Filter"
+msgstr "Filter"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Section"
+msgstr "Section"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "-- show all --"
+msgstr "-- show all --"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Language"
+msgstr "Language"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "By Default"
+msgstr "By Default"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/FaqAdmin/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgid "Home"
+msgstr "Home"
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgid "results found for "
+msgstr "results found for "
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/GetDetailSearch.cshtml
+msgid "Read Article "
+msgstr "Read Article "
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/Index.cshtml
+msgid "View All "
+msgstr "View All "
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/SearchPartial.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/SearchPartial.cshtml
+msgid "Welcome to Teeyoot Answers"
+msgstr "Welcome to Teeyoot Answers"
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/SearchPartial.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/SearchPartial.cshtml
+msgid "Have a Question? Ask or enter a search term here."
+msgstr "Have a Question? Ask or enter a search term here."
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/ViewSection.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/ViewSection.cshtml
+msgid "Home"
+msgstr "Home"
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/ViewSection.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/ViewSection.cshtml
+msgid "Read Article "
+msgstr "Read Article "
+
+#: ~/Modules/Teeyoot.FAQ/Views/Home/ViewTopic.cshtml
+msgctxt ~/Modules/Teeyoot.FAQ/Views/Home/ViewTopic.cshtml
+msgid "Home"
+msgstr "Home"
+

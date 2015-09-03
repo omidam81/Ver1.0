@@ -1,0 +1,175 @@
+#: ~/Modules/Teeyoot.Payouts/Module.txt
+#. "Name"
+msgctxt ~/Modules/Teeyoot.Payouts/Module.txt
+msgid "Teeyoot Payouts"
+msgstr "Teeyoot Payouts"
+
+#: ~/Modules/Teeyoot.Payouts/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Payouts/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Teeyoot.Payouts/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Payouts/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Teeyoot.Payouts/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Payouts/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Payouts/Module.txt
+#. "Teeyoot.Payouts.Description"
+msgctxt ~/Modules/Teeyoot.Payouts/Module.txt
+msgid "Description for feature Teeyoot.Payouts."
+msgstr "Description for feature Teeyoot.Payouts."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+msgid "Teeyoot Payouts"
+msgstr "Teeyoot Payouts"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+#. "Teeyoot.Payouts.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Payouts/Module.txt
+msgid "Description for feature Teeyoot.Payouts."
+msgstr "Description for feature Teeyoot.Payouts."
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "Filter:"
+msgstr "Filter:"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "DATE"
+msgstr "DATE"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "EVENT"
+msgstr "EVENT"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "AMOUNT"
+msgstr "AMOUNT"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "STATUS"
+msgstr "STATUS"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "USER ID"
+msgstr "USER ID"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "+ "
+msgstr "+ "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "- "
+msgstr "- "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "edit"
+msgstr "edit"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid " Completed"
+msgstr " Completed"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "Completed"
+msgstr "Completed"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/Index.cshtml
+msgid "inf"
+msgstr "inf"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "User information"
+msgstr "User information"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "UserName: "
+msgstr "UserName: "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Email: "
+msgstr "Email: "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Payout information"
+msgstr "Payout information"
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Account number: "
+msgstr "Account number: "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Bank name: "
+msgstr "Bank name: "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Contact number: "
+msgstr "Contact number: "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Account holder name: "
+msgstr "Account holder name: "
+
+#: ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgctxt ~/Modules/Teeyoot.Payouts/Views/Tranzaction/PaymentUserInformation.cshtml
+msgid "Message admin: "
+msgstr "Message admin: "
+

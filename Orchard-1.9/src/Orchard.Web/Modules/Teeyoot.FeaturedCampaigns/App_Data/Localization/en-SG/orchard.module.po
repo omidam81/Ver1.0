@@ -1,0 +1,504 @@
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Name"
+#. "Teeyoot.FeaturedCampaigns.Name"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "Teeyoot Featured Campaigns"
+msgstr "Teeyoot Featured Campaigns"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Teeyoot.FeaturedCampaigns.Description"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "Description for feature Teeyoot.FeaturedCampaigns."
+msgstr "Description for feature Teeyoot.FeaturedCampaigns."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Name"
+#. "Teeyoot.FeaturedCampaigns.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "Teeyoot Featured Campaigns"
+msgstr "Teeyoot Featured Campaigns"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+#. "Teeyoot.FeaturedCampaigns.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.FeaturedCampaigns/Module.txt
+msgid "Description for feature Teeyoot.FeaturedCampaigns."
+msgstr "Description for feature Teeyoot.FeaturedCampaigns."
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgid "Error when trign delete directory for products --------------------------------------->"
+msgstr "Error when trign delete directory for products --------------------------------------->"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgid "Error when trign creating images and directories for products --------------------------------------->"
+msgstr "Error when trign creating images and directories for products --------------------------------------->"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgid "The product was removed!"
+msgstr "The product was removed!"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminCampaignsSettingsController
+msgid "An error occurred while deleting"
+msgstr "An error occurred while deleting"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgid "Can not update campaign, because already selected 6 companies!"
+msgstr "Can not update campaign, because already selected 6 companies!"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgid "The campaign has successfully updated."
+msgstr "The campaign has successfully updated."
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgid "Can not update campaign. Try again later!"
+msgstr "Can not update campaign. Try again later!"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgid "The campaign was deleted successfully!"
+msgstr "The campaign was deleted successfully!"
+
+#: Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgctxt Teeyoot.FeaturedCampaigns.Controllers.AdminFeaturedCampaignsController
+msgid "The company could not be removed. Try again!"
+msgstr "The company could not be removed. Try again!"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Title of campaign : "
+msgstr "Title of campaign : "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "URL : "
+msgstr "URL : "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "End Date : "
+msgstr "End Date : "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Day"
+msgstr "Day"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Month"
+msgstr "Month"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Year"
+msgstr "Year"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Target : "
+msgstr "Target : "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Description : "
+msgstr "Description : "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum."
+msgstr "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum."
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Decribe your campaign here…"
+msgstr "Decribe your campaign here…"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Style"
+msgstr "Style"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Product colors"
+msgstr "Product colors"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Cost Price"
+msgstr "Cost Price"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Sell Price"
+msgstr "Sell Price"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Profit"
+msgstr "Profit"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Change color"
+msgstr "Change color"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Sorry"
+msgstr "Sorry"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "You cannot add more than 5 colors of the same style in one campaign"
+msgstr "You cannot add more than 5 colors of the same style in one campaign"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/ChangeInformation.cshtml
+msgid "Ok"
+msgstr "Ok"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Details"
+msgstr "Details"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Campaign Id"
+msgstr "Campaign Id"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Campaign Name"
+msgstr "Campaign Name"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Create date"
+msgstr "Create date"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Active"
+msgstr "Active"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Sold last 24 hours"
+msgstr "Sold last 24 hours"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Sold / Minimum / Goal"
+msgstr "Sold / Minimum / Goal"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Profit"
+msgstr "Profit"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Payment Status"
+msgstr "Payment Status"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "End Date"
+msgstr "End Date"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Seller Name"
+msgstr "Seller Name"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Seller Email"
+msgstr "Seller Email"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Phone Number"
+msgstr "Phone Number"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Change Status"
+msgstr "Change Status"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Change End Date"
+msgstr "Change End Date"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Day"
+msgstr "Day"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Month"
+msgstr "Month"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Year"
+msgstr "Year"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminCampaignsSettings/Index.cshtml
+msgid "Change"
+msgstr "Change"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Export"
+msgstr "Export"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Campaign Id"
+msgstr "Campaign Id"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Campaign name"
+msgstr "Campaign name"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Create date"
+msgstr "Create date"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Active"
+msgstr "Active"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Sold last 24 hours"
+msgstr "Sold last 24 hours"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Sold / Minimum / Goal"
+msgstr "Sold / Minimum / Goal"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Approved"
+msgstr "Approved"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Actions"
+msgstr "Actions"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Yes"
+msgstr "Yes"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "No"
+msgstr "No"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+
+#. "Export prints"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminExportPrints/Index.cshtml
+msgid "Export prints"
+msgstr "Export prints"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Campaigns"
+msgstr "Campaigns"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Campaign Id"
+msgstr "Campaign Id"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Campaign name"
+msgstr "Campaign name"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Create date"
+msgstr "Create date"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Active"
+msgstr "Active"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Sold last 24 hours"
+msgstr "Sold last 24 hours"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Sold / Minimum / Goal"
+msgstr "Sold / Minimum / Goal"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Approved"
+msgstr "Approved"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Featured"
+msgstr "Featured"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Ready to print"
+msgstr "Ready to print"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Modify"
+msgstr "Modify"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+
+#. "Yes"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Yes"
+msgstr "Yes"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+
+#. "No"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "No"
+msgstr "No"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Approve"
+msgstr "Approve"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Reject"
+msgstr "Reject"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Mark as featured"
+msgstr "Mark as featured"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Unmark as featured"
+msgstr "Unmark as featured"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+
+#. "Change"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Change"
+msgstr "Change"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/AdminFeaturedCampaigns/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/Parts/FeaturedCampaignsWidget.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/Parts/FeaturedCampaignsWidget.cshtml
+msgid "Featured Campaigns"
+msgstr "Featured Campaigns"
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/Parts/FeaturedCampaignsWidget.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/Parts/FeaturedCampaignsWidget.cshtml
+msgid " of "
+msgstr " of "
+
+#: ~/Modules/Teeyoot.FeaturedCampaigns/Views/Parts/FeaturedCampaignsWidget.cshtml
+msgctxt ~/Modules/Teeyoot.FeaturedCampaigns/Views/Parts/FeaturedCampaignsWidget.cshtml
+msgid " sold"
+msgstr " sold"
+

@@ -1,0 +1,206 @@
+#: ~/Modules/Teeyoot.Orders/Module.txt
+#. "Name"
+msgctxt ~/Modules/Teeyoot.Orders/Module.txt
+msgid "Teeyoot Orders"
+msgstr "Teeyoot Orders"
+
+#: ~/Modules/Teeyoot.Orders/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Orders/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Teeyoot.Orders/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Orders/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Teeyoot.Orders/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Orders/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Orders/Module.txt
+#. "Teeyoot.Orders.Description"
+msgctxt ~/Modules/Teeyoot.Orders/Module.txt
+msgid "Description for feature Teeyoot.Orders."
+msgstr "Description for feature Teeyoot.Orders."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+msgid "Teeyoot Orders"
+msgstr "Teeyoot Orders"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+#. "Teeyoot.Orders.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Orders/Module.txt
+msgid "Description for feature Teeyoot.Orders."
+msgstr "Description for feature Teeyoot.Orders."
+
+#: Teeyoot.Orders.Controllers.HomeController
+msgctxt Teeyoot.Orders.Controllers.HomeController
+msgid "Successfully updated order status "
+msgstr "Successfully updated order status "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Campaign name"
+msgstr "Campaign name"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+
+#. "Apply"
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "By Default"
+msgstr "By Default"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Order Number"
+msgstr "Order Number"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Create date"
+msgstr "Create date"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+
+#. "Status"
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Status"
+msgstr "Status"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Buyer"
+msgstr "Buyer"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Campaign"
+msgstr "Campaign"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Seller"
+msgstr "Seller"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Profit"
+msgstr "Profit"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "inf"
+msgstr "inf"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "RM "
+msgstr "RM "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+
+#. "Paid"
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Paid"
+msgstr "Paid"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/Index.cshtml
+msgid "Not paid | "
+msgstr "Not paid | "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "Buyer information"
+msgstr "Buyer information"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "First Name: "
+msgstr "First Name: "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "Last Name: "
+msgstr "Last Name: "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "Street Adress: "
+msgstr "Street Adress: "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "City: "
+msgstr "City: "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "Country: "
+msgstr "Country: "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalBuyer.cshtml
+msgid "Phone Number: "
+msgstr "Phone Number: "
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgid "Order information"
+msgstr "Order information"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgid "Color"
+msgstr "Color"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgid "Size"
+msgstr "Size"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgid "Count"
+msgstr "Count"
+
+#: ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgctxt ~/Modules/Teeyoot.Orders/Views/Home/ModalOrder.cshtml
+msgid "Price"
+msgstr "Price"
+

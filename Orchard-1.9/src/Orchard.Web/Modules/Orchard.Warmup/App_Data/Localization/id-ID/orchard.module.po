@@ -1,0 +1,164 @@
+#: ~/Modules/Orchard.Warmup/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Warmup/Module.txt
+msgid "Warmup"
+msgstr "Warmup"
+
+#: ~/Modules/Orchard.Warmup/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Warmup/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Warmup/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Warmup/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Warmup/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Warmup/Module.txt
+msgid "Provides a mecanism to generate a static version of pages for being used during application warm up."
+msgstr "Provides a mecanism to generate a static version of pages for being used during application warm up."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+msgid "Warmup"
+msgstr "Warmup"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Warmup/Module.txt
+msgid "Provides a mecanism to generate a static version of pages for being used during application warm up."
+msgstr "Provides a mecanism to generate a static version of pages for being used during application warm up."
+
+#: Orchard.Warmup.AdminMenu
+msgctxt Orchard.Warmup.AdminMenu
+msgid "Settings"
+msgstr "Settings"
+
+#: Orchard.Warmup.AdminMenu
+msgctxt Orchard.Warmup.AdminMenu
+msgid "Performance"
+msgstr "Performance"
+
+#: Orchard.Warmup.AdminMenu
+msgctxt Orchard.Warmup.AdminMenu
+msgid "Warmup"
+msgstr "Warmup"
+
+#: Orchard.Warmup.Commands.WarmupCommands
+msgctxt Orchard.Warmup.Commands.WarmupCommands
+msgid "Generation finished"
+msgstr "Generation finished"
+
+#: Orchard.Warmup.Controllers.AdminController
+
+#. "Not authorized to manage settings"
+msgctxt Orchard.Warmup.Controllers.AdminController
+msgid "Not authorized to manage settings"
+msgstr "Not authorized to manage settings"
+
+#: Orchard.Warmup.Controllers.AdminController
+msgctxt Orchard.Warmup.Controllers.AdminController
+msgid "\"{0}\" is an invalid warmup url."
+msgstr "\"{0}\" is an invalid warmup url."
+
+#: Orchard.Warmup.Controllers.AdminController
+msgctxt Orchard.Warmup.Controllers.AdminController
+msgid "Delay must be greater than zero."
+msgstr "Delay must be greater than zero."
+
+#: Orchard.Warmup.Controllers.AdminController
+msgctxt Orchard.Warmup.Controllers.AdminController
+msgid "Warmup updated successfully."
+msgstr "Warmup updated successfully."
+
+#: Orchard.Warmup.Services.SettingsBanner
+msgctxt Orchard.Warmup.Services.SettingsBanner
+msgid "The Warmup feature needs the <a href=\"{0}\">Base Url site setting</a> to be set."
+msgstr "The Warmup feature needs the <a href=\"{0}\">Base Url site setting</a> to be set."
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "The paths below will be requested using {0} as a base url. You can change the base url on the {1}. "
+msgstr "The paths below will be requested using {0} as a base url. You can change the base url on the {1}. "
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "General Settings page"
+msgstr "General Settings page"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "This must be a set of relative paths, e.g., /, /About. Please ensure that you enter only one path per line."
+msgstr "This must be a set of relative paths, e.g., /, /About. Please ensure that you enter only one path per line."
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Generate warmup pages periodically"
+msgstr "Generate warmup pages periodically"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Every"
+msgstr "Every"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "minutes"
+msgstr "minutes"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Generate warmup pages any time some content is published"
+msgstr "Generate warmup pages any time some content is published"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+
+#. "Status"
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Status"
+msgstr "Status"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "This is a table of the reports in your application"
+msgstr "This is a table of the reports in your application"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Path"
+msgstr "Path"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Date generated"
+msgstr "Date generated"
+
+#: ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+
+#. "Save"
+msgctxt ~/Modules/Orchard.Warmup/Views/Admin/Index.cshtml
+msgid "Save"
+msgstr "Save"
+

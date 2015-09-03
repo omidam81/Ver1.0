@@ -1,0 +1,521 @@
+#: ~/Modules/Orchard.Media/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Media/Module.txt
+msgid "Media"
+msgstr "Media"
+
+#: ~/Modules/Orchard.Media/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Media/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Media/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Media/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Media/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Media/Module.txt
+msgid "The media module offer basic media management features. It currently only supports image files. Storage goes into the current Orchard file system, which can be the server's physical file system or Azure blob storage."
+msgstr "The media module offer basic media management features. It currently only supports image files. Storage goes into the current Orchard file system, which can be the server's physical file system or Azure blob storage."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+msgid "Media"
+msgstr "Media"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Media/Module.txt
+msgid "The media module offer basic media management features. It currently only supports image files. Storage goes into the current Orchard file system, which can be the server's physical file system or Azure blob storage."
+msgstr "The media module offer basic media management features. It currently only supports image files. Storage goes into the current Orchard file system, which can be the server's physical file system or Azure blob storage."
+
+#: Orchard.Media.AdminMenu
+msgctxt Orchard.Media.AdminMenu
+msgid "Media"
+msgstr "Media"
+
+#: Orchard.Media.AdminMenu
+msgctxt Orchard.Media.AdminMenu
+msgid "Media Storage"
+msgstr "Media Storage"
+
+#: Orchard.Media.Controllers.AdminController
+
+#. "Couldn't delete media folder"
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Couldn't delete media folder"
+msgstr "Couldn't delete media folder"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Deleting Folder failed: {0}"
+msgstr "Deleting Folder failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Couldn't create media folder"
+msgstr "Couldn't create media folder"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media folder created"
+msgstr "Media folder created"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Creating Folder failed: {0}"
+msgstr "Creating Folder failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Editing failed: {0}"
+msgstr "Editing failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+
+#. "Couldn't delete media file"
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Couldn't delete media file"
+msgstr "Couldn't delete media file"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media file deleted"
+msgstr "Media file deleted"
+
+#: Orchard.Media.Controllers.AdminController
+
+#. "Deleting failed: {0}"
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Deleting failed: {0}"
+msgstr "Deleting failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+
+#. "Media folder deleted"
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media folder deleted"
+msgstr "Media folder deleted"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Deleting media folder failed: {0}"
+msgstr "Deleting media folder failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Couldn't rename media folder"
+msgstr "Couldn't rename media folder"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media folder properties modified"
+msgstr "Media folder properties modified"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Modifying media folder properties failed: {0}"
+msgstr "Modifying media folder properties failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+
+#. "Couldn't upload media file"
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Couldn't upload media file"
+msgstr "Couldn't upload media file"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Select a file to upload"
+msgstr "Select a file to upload"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Uploading media file failed: {0}"
+msgstr "Uploading media file failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media file(s) uploaded"
+msgstr "Media file(s) uploaded"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "ERROR: You don't have permission to upload media files"
+msgstr "ERROR: You don't have permission to upload media files"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "HEY: You didn't give me a file to upload"
+msgstr "HEY: You didn't give me a file to upload"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "ERROR: Uploading media file failed: {0}"
+msgstr "ERROR: Uploading media file failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media deleted"
+msgstr "Media deleted"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Removing media file failed: {0}"
+msgstr "Removing media file failed: {0}"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Couldn't modify media file"
+msgstr "Couldn't modify media file"
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Editing media file failed."
+msgstr "Editing media file failed."
+
+#: Orchard.Media.Controllers.AdminController
+msgctxt Orchard.Media.Controllers.AdminController
+msgid "Media information updated"
+msgstr "Media information updated"
+
+#: Orchard.Media.Handlers.MediaSettingsPartHandler
+msgctxt Orchard.Media.Handlers.MediaSettingsPartHandler
+msgid "Media"
+msgstr "Media"
+
+#: Orchard.Media.Services.provides
+msgctxt Orchard.Media.Services.provides
+msgid "New file name \"{0}\" is not allowed. Please provide a file extension."
+msgstr "New file name \"{0}\" is not allowed. Please provide a file extension."
+
+#: Orchard.Media.Services.provides
+msgctxt Orchard.Media.Services.provides
+msgid "New file name \"{0}\" is not allowed."
+msgstr "New file name \"{0}\" is not allowed."
+
+#: Orchard.Media.Services.provides
+msgctxt Orchard.Media.Services.provides
+msgid "Could not upload file {0}. Supported file types are {1}."
+msgstr "Could not upload file {0}. Supported file types are {1}."
+
+#: Orchard.Media.Services.XmlRpcHandler
+msgctxt Orchard.Media.Services.XmlRpcHandler
+msgid "Access denied"
+msgstr "Access denied"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+
+#. "Add Media"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "Add Media"
+msgstr "Add Media"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "Media Folders"
+msgstr "Media Folders"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "File Path <span> - multiple files must be in a zipped folder</span>"
+msgstr "File Path <span> - multiple files must be in a zipped folder</span>"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "Browse"
+msgstr "Browse"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "Extract Zip"
+msgstr "Extract Zip"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "After your files have been uploaded, you can edit the titles and descriptions."
+msgstr "After your files have been uploaded, you can edit the titles and descriptions."
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "Upload"
+msgstr "Upload"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Add.cshtml
+msgid "Can't upload file. Supported file types are {0}."
+msgstr "Can't upload file. Supported file types are {0}."
+
+#: ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+
+#. "Add a Folder"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgid "Add a Folder"
+msgstr "Add a Folder"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgid "Media Folders"
+msgstr "Media Folders"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgid "Folder Name"
+msgstr "Folder Name"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Create.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+
+#. "Manage Folder"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Manage Folder"
+msgstr "Manage Folder"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Media Folders"
+msgstr "Media Folders"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Folder Properties"
+msgstr "Folder Properties"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Add media"
+msgstr "Add media"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Add a folder"
+msgstr "Add a folder"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "This is a table of the pages currently available for use in your application."
+msgstr "This is a table of the pages currently available for use in your application."
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Author"
+msgstr "Author"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Last Updated"
+msgstr "Last Updated"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Type"
+msgstr "Type"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Size"
+msgstr "Size"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+
+#. "Folder"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Edit.cshtml
+msgid "Folder"
+msgstr "Folder"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Edit Media - {0}"
+msgstr "Edit Media - {0}"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Media Folders"
+msgstr "Media Folders"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Edit Media"
+msgstr "Edit Media"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Dimensions: <span>500 x 375 pixels</span>"
+msgstr "Dimensions: <span>500 x 375 pixels</span>"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Size: <span>{0}</span>"
+msgstr "Size: <span>{0}</span>"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Added on: <span>{0}</span>"
+msgstr "Added on: <span>{0}</span>"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Embed:"
+msgstr "Embed:"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Copy this html to add this media file to your site."
+msgstr "Copy this html to add this media file to your site."
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+
+#. "Save"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditMedia.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+
+#. "Folder Properties"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgid "Folder Properties"
+msgstr "Folder Properties"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgid "Media Folders"
+msgstr "Media Folders"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgid "Folder Name:"
+msgstr "Folder Name:"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+
+#. "Save"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/EditProperties.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Media"
+msgstr "Media"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Add a folder"
+msgstr "Add a folder"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "This is a table of the media folders currently available for use in your application."
+msgstr "This is a table of the media folders currently available for use in your application."
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Author"
+msgstr "Author"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Last Updated"
+msgstr "Last Updated"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Type"
+msgstr "Type"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Size"
+msgstr "Size"
+
+#: ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+
+#. "Folder"
+msgctxt ~/Modules/Orchard.Media/Views/Admin/Index.cshtml
+msgid "Folder"
+msgstr "Folder"
+
+#: ~/Modules/Orchard.Media/Views/EditorTemplates/Parts/Media.MediaSettings.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/EditorTemplates/Parts/Media.MediaSettings.cshtml
+msgid "Media"
+msgstr "Media"
+
+#: ~/Modules/Orchard.Media/Views/EditorTemplates/Parts/Media.MediaSettings.cshtml
+msgctxt ~/Modules/Orchard.Media/Views/EditorTemplates/Parts/Media.MediaSettings.cshtml
+msgid "Upload allowed file types (list of extensions separated by spaces)"
+msgstr "Upload allowed file types (list of extensions separated by spaces)"
+

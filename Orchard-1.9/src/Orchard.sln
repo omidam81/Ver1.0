@@ -297,6 +297,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teeyoot.PaymentSettings", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RM.Localization", "Orchard.Web\Modules\RM.Localization\RM.Localization.csproj", "{C4557BDF-1053-4D68-97EC-48C4C897E842}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vandelay.Industries", "Orchard.Web\Modules\Vandelay.Industries\Vandelay.Industries.csproj", "{8AD14CA5-56CD-4B94-89FD-3330AA758131}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeCoverage|Any CPU = CodeCoverage|Any CPU
@@ -1222,6 +1224,16 @@ Global
 		{C4557BDF-1053-4D68-97EC-48C4C897E842}.FxCop|Any CPU.Build.0 = Release|Any CPU
 		{C4557BDF-1053-4D68-97EC-48C4C897E842}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4557BDF-1053-4D68-97EC-48C4C897E842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.CodeCoverage|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.CodeCoverage|Any CPU.Build.0 = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.Coverage|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.Coverage|Any CPU.Build.0 = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.FxCop|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.FxCop|Any CPU.Build.0 = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1320,5 +1332,6 @@ Global
 		{8BC0C9A0-EE8C-4AEF-8D0C-83DF59B6D255} = {22C2C39D-97A0-4585-80B8-D7DC3CC6ADF2}
 		{E6A82749-0706-4D3E-8161-6BD9F729D225} = {22C2C39D-97A0-4585-80B8-D7DC3CC6ADF2}
 		{C4557BDF-1053-4D68-97EC-48C4C897E842} = {E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}
+		{8AD14CA5-56CD-4B94-89FD-3330AA758131} = {E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,1430 @@
+#: ~/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Name"
+#. "Teeyoot.WizardSettings.Name"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "Teeyoot Wizard Settings"
+msgstr "Teeyoot Wizard Settings"
+
+#: ~/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Teeyoot.WizardSettings.Description"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "Description for feature Teeyoot.WizardSettings."
+msgstr "Description for feature Teeyoot.WizardSettings."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Name"
+#. "Teeyoot.WizardSettings.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "Teeyoot Wizard Settings"
+msgstr "Teeyoot Wizard Settings"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+#. "Teeyoot.WizardSettings.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.WizardSettings/Module.txt
+msgid "Description for feature Teeyoot.WizardSettings."
+msgstr "Description for feature Teeyoot.WizardSettings."
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "WOFF file has been added!"
+msgstr "WOFF file has been added!"
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+
+#. "Wrong file extention!"
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "Wrong file extention!"
+msgstr "Wrong file extention!"
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "Thumbnail has been added!"
+msgstr "Thumbnail has been added!"
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "The font has been deleted."
+msgstr "The font has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "The font has been updated."
+msgstr "The font has been updated."
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "Font family is required.\n"
+msgstr "Font family is required.\n"
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "Font file is required.\n"
+msgstr "Font file is required.\n"
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "Thumbnail is required.\n"
+msgstr "Thumbnail is required.\n"
+
+#: Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgctxt Teeyoot.WizardSettings.Controllers.AdminWizardController
+msgid "The font has been added"
+msgstr "The font has been added"
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "Artwork \"{0}\" has been added"
+msgstr "Artwork \"{0}\" has been added"
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "Artwork \"{0}\" has been edited."
+msgstr "Artwork \"{0}\" has been edited."
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "Deleting artwork \"{0}\" failed: {1}"
+msgstr "Deleting artwork \"{0}\" failed: {1}"
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "Deleting artwork \"{0}\" failed."
+msgstr "Deleting artwork \"{0}\" failed."
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "Artwork \"{0}\" has been deleted."
+msgstr "Artwork \"{0}\" has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "SVG image file was not provided"
+msgstr "SVG image file was not provided"
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "PNG image file was not provided"
+msgstr "PNG image file was not provided"
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "SVG image file should be *.svg"
+msgstr "SVG image file should be *.svg"
+
+#: Teeyoot.WizardSettings.Controllers.ArtworkController
+msgctxt Teeyoot.WizardSettings.Controllers.ArtworkController
+msgid "PNG image file should be *.png"
+msgstr "PNG image file should be *.png"
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "New Product Colour \"{0}\" has been added."
+msgstr "New Product Colour \"{0}\" has been added."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Product Colour has been edited."
+msgstr "Product Colour has been edited."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Deleting Product Colour failed: {0}"
+msgstr "Deleting Product Colour failed: {0}"
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Deleting Product Colour failed. There are references to another objects."
+msgstr "Deleting Product Colour failed. There are references to another objects."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Product Colour has been deleted."
+msgstr "Product Colour has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "New Swatch Colour has been added."
+msgstr "New Swatch Colour has been added."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Swatch Colour has been edited."
+msgstr "Swatch Colour has been edited."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Deleting Swatch Colour failed: {0}"
+msgstr "Deleting Swatch Colour failed: {0}"
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Deleting Swatch Colour failed. There are references to another objects."
+msgstr "Deleting Swatch Colour failed. There are references to another objects."
+
+#: Teeyoot.WizardSettings.Controllers.ColourController
+msgctxt Teeyoot.WizardSettings.Controllers.ColourController
+msgid "Swatch Colour has been deleted."
+msgstr "Swatch Colour has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.DeliverySettingsController
+msgctxt Teeyoot.WizardSettings.Controllers.DeliverySettingsController
+msgid "State has been deleted!"
+msgstr "State has been deleted!"
+
+#: Teeyoot.WizardSettings.Controllers.DeliverySettingsController
+msgctxt Teeyoot.WizardSettings.Controllers.DeliverySettingsController
+msgid "Record has been changed!"
+msgstr "Record has been changed!"
+
+#: Teeyoot.WizardSettings.Controllers.ProductController
+
+#. "Deleting Product \"{0}\" failed: {1}"
+msgctxt Teeyoot.WizardSettings.Controllers.ProductController
+msgid "Deleting Product \"{0}\" failed: {1}"
+msgstr "Deleting Product \"{0}\" failed: {1}"
+
+#: Teeyoot.WizardSettings.Controllers.ProductController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductController
+msgid "Product \"{0}\" has been deleted."
+msgstr "Product \"{0}\" has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.ProductController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductController
+msgid "Front Image file should be *.png."
+msgstr "Front Image file should be *.png."
+
+#: Teeyoot.WizardSettings.Controllers.ProductController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductController
+msgid "Front Image should be {0}x{1}."
+msgstr "Front Image should be {0}x{1}."
+
+#: Teeyoot.WizardSettings.Controllers.ProductController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductController
+msgid "Back Image file should be *.png."
+msgstr "Back Image file should be *.png."
+
+#: Teeyoot.WizardSettings.Controllers.ProductController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductController
+msgid "Back Image should be {0}x{1}."
+msgstr "Back Image should be {0}x{1}."
+
+#: Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgid "New Product Headline has been added."
+msgstr "New Product Headline has been added."
+
+#: Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgid "Product Headline has been edited."
+msgstr "Product Headline has been edited."
+
+#: Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+
+#. "Deleting Product Headline failed: {0}"
+msgctxt Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgid "Deleting Product Headline failed: {0}"
+msgstr "Deleting Product Headline failed: {0}"
+
+#: Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductHeadlineController
+msgid "Product Headline has been deleted."
+msgstr "Product Headline has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgid "New Product Size has been added."
+msgstr "New Product Size has been added."
+
+#: Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgid "Product Size has been edited."
+msgstr "Product Size has been edited."
+
+#: Teeyoot.WizardSettings.Controllers.ProductSizeController
+
+#. "Deleting Product Size failed: {0}"
+msgctxt Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgid "Deleting Product Size failed: {0}"
+msgstr "Deleting Product Size failed: {0}"
+
+#: Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgid "Product Size has been deleted."
+msgstr "Product Size has been deleted."
+
+#: Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgid "cm"
+msgstr "cm"
+
+#: Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductSizeController
+msgid "in"
+msgstr "in"
+
+#: Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgid "New Product Style \"{0}\" has been added."
+msgstr "New Product Style \"{0}\" has been added."
+
+#: Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgid "Product Style has been edited."
+msgstr "Product Style has been edited."
+
+#: Teeyoot.WizardSettings.Controllers.ProductStyleController
+
+#. "Deleting Product Style failed: {0}"
+msgctxt Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgid "Deleting Product Style failed: {0}"
+msgstr "Deleting Product Style failed: {0}"
+
+#: Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgctxt Teeyoot.WizardSettings.Controllers.ProductStyleController
+msgid "Product Style has been deleted."
+msgstr "Product Style has been deleted."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+
+#. "Add font"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "Add Font"
+msgstr "Add Font"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "Select font (supported format(s): .woff)"
+msgstr "Select font (supported format(s): .woff)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+
+#. "Upload File"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "Upload File"
+msgstr "Upload File"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "Font Thumbnail"
+msgstr "Font Thumbnail"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "Font Family"
+msgstr "Font Family"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/AddFont.cshtml
+msgid "File Name"
+msgstr "File Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/EditFont.cshtml
+
+#. "Edit font"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/EditFont.cshtml
+msgid "Edit Font"
+msgstr "Edit Font"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/EditFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/EditFont.cshtml
+msgid "FontFamily"
+msgstr "FontFamily"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/EditFont.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/EditFont.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Fonts"
+msgstr "Fonts"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+
+#. "Add Font"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Add Font"
+msgstr "Add Font"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Font family"
+msgstr "Font family"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+
+#. "Preview"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Preview"
+msgstr "Preview"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "edit"
+msgstr "edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/AdminWizard/FontList.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+
+#. "Add New Artwork"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgid "Add New Artwork"
+msgstr "Add New Artwork"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgid "Artwork SVG Image (only *.svg allowed)"
+msgstr "Artwork SVG Image (only *.svg allowed)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgid "Artwork PNG Image (only *.png allowed)"
+msgstr "Artwork PNG Image (only *.png allowed)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/AddArtwork.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+
+#. "Edit Artwork"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgid "Edit Artwork"
+msgstr "Edit Artwork"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgid "Artwork SVG Image (only *.svg allowed)"
+msgstr "Artwork SVG Image (only *.svg allowed)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgid "Artwork PNG Image (only *.png allowed)"
+msgstr "Artwork PNG Image (only *.png allowed)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/EditArtwork.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgid "Artworks"
+msgstr "Artworks"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgid "Add New Artwork"
+msgstr "Add New Artwork"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Artwork/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgid "Add Product Colour"
+msgstr "Add Product Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgid "Add New Product Colour"
+msgstr "Add New Product Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgid "Value"
+msgstr "Value"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddProductColour.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "Add Swatch Colour"
+msgstr "Add Swatch Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "Add New Swatch Colour"
+msgstr "Add New Swatch Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "Value"
+msgstr "Value"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "In Stock"
+msgstr "In Stock"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/AddSwatchColour.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+
+#. "Edit Product Colour"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgid "Edit Product Colour"
+msgstr "Edit Product Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgid "Value"
+msgstr "Value"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditProductColour.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+
+#. "Edit Swatch Colour"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgid "Edit Swatch Colour"
+msgstr "Edit Swatch Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgid "Value"
+msgstr "Value"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgid "In Stock"
+msgstr "In Stock"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/EditSwatchColour.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Colors"
+msgstr "Colors"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Add New Product Colour"
+msgstr "Add New Product Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Add New Swatch Colour"
+msgstr "Add New Swatch Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Color for:"
+msgstr "Color for:"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Product"
+msgstr "Product"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Swatch"
+msgstr "Swatch"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Please select ..."
+msgstr "Please select ..."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+
+#. "Name"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+
+#. "Color"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Color"
+msgstr "Color"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+
+#. " | "
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Colour/Index.cshtml
+msgid "In Stock"
+msgstr "In Stock"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+
+#. "Add New Setting"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgid "Add New Setting"
+msgstr "Add New Setting"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgid "State"
+msgstr "State"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgid "Delivery Cost (only ',' decimal is allowed)"
+msgstr "Delivery Cost (only ',' decimal is allowed)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/AddSetting.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+
+#. "Add New Setting"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgid "Add New Setting"
+msgstr "Add New Setting"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgid "State"
+msgstr "State"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgid "Delivery Cost"
+msgstr "Delivery Cost"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/EditSetting.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Delivery Settings"
+msgstr "Delivery Settings"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Add New State"
+msgstr "Add New State"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "State "
+msgstr "State "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Delivery cost"
+msgstr "Delivery cost"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Enabled"
+msgstr "Enabled"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/DeliverySettings/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Add New Product"
+msgstr "Add New Product"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Edit Product"
+msgstr "Edit Product"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+
+#. "Edit Style"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Edit Style"
+msgstr "Edit Style"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Back To List"
+msgstr "Back To List"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Add New Style"
+msgstr "Add New Style"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+
+#. "Name"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Headline"
+msgstr "Headline"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Select Headline ..."
+msgstr "Select Headline ..."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Materials"
+msgstr "Materials"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Details"
+msgstr "Details"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Cost of material"
+msgstr "Cost of material"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Packaging Cost"
+msgstr "Packaging Cost"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Product Groups"
+msgstr "Product Groups"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Add New Type"
+msgstr "Add New Type"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Colours"
+msgstr "Colours"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Add New Colour"
+msgstr "Add New Colour"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Selected Colours"
+msgstr "Selected Colours"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Color"
+msgstr "Color"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Base Cost"
+msgstr "Base Cost"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+
+#. "Remove"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Product Sizes"
+msgstr "Product Sizes"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Size Code"
+msgstr "Size Code"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Width (cm)"
+msgstr "Width (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Length (cm)"
+msgstr "Length (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Sleeve (cm)"
+msgstr "Sleeve (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Length (in)"
+msgstr "Length (in)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Width (in)"
+msgstr "Width (in)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Sleeve (in)"
+msgstr "Sleeve (in)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Enabled"
+msgstr "Enabled"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Cost"
+msgstr "Cost"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Product Images"
+msgstr "Product Images"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Image type"
+msgstr "Image type"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Existing file"
+msgstr "Existing file"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Choose Image. 530x630 with *.png format only allowed."
+msgstr "Choose Image. 530x630 with *.png format only allowed."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Front"
+msgstr "Front"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+
+#. "Has not been uploaded"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Has not been uploaded"
+msgstr "Has not been uploaded"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Edit Image"
+msgstr "Edit Image"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+
+#. "All unsaved changes will be lost. Are you sure?"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "All unsaved changes will be lost. Are you sure?"
+msgstr "All unsaved changes will be lost. Are you sure?"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "You have already selected size with such code. There is only one allowed."
+msgstr "You have already selected size with such code. There is only one allowed."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Please enter Product Name."
+msgstr "Please enter Product Name."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Please select Product Headline."
+msgstr "Please select Product Headline."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/EditProduct.cshtml
+msgid "Please enter Base Cost."
+msgstr "Please enter Base Cost."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgid "Styles"
+msgstr "Styles"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgid "Add New Style"
+msgstr "Add New Style"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Front"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Front"
+msgstr "Front"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Back"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Width (cm)"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Width (cm)"
+msgstr "Width (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Lock"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Lock"
+msgstr "Lock"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Height (cm)"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Height (cm)"
+msgstr "Height (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Chest line"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Chest line"
+msgstr "Chest line"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Save"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+
+#. "Cancel"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/Product/SetPrintableArea.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgid "Add Product Headline"
+msgstr "Add Product Headline"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgid "Add New Product Headline"
+msgstr "Add New Product Headline"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/AddProductHeadline.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+
+#. "Edit Product Headline"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgid "Edit Product Headline"
+msgstr "Edit Product Headline"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/EditProductHeadline.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgid "Headlines"
+msgstr "Headlines"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgid "Add New Product Headline"
+msgstr "Add New Product Headline"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductHeadline/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Add Product Size"
+msgstr "Add Product Size"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Add New Product Size"
+msgstr "Add New Product Size"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Width"
+msgstr "Width"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Length"
+msgstr "Length"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Sleeve"
+msgstr "Sleeve"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Size Code"
+msgstr "Size Code"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Select Size ..."
+msgstr "Select Size ..."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/AddProductSize.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+
+#. "Edit Product Size"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Edit Product Size"
+msgstr "Edit Product Size"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Width"
+msgstr "Width"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Length"
+msgstr "Length"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Sleeve"
+msgstr "Sleeve"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Size Code"
+msgstr "Size Code"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Select Size ..."
+msgstr "Select Size ..."
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/EditProductSize.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Sizes"
+msgstr "Sizes"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Add New Product Size"
+msgstr "Add New Product Size"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Size Code"
+msgstr "Size Code"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Width (cm)"
+msgstr "Width (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Length (cm)"
+msgstr "Length (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Sleeve (cm)"
+msgstr "Sleeve (cm)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Width (in)"
+msgstr "Width (in)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Length (in)"
+msgstr "Length (in)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Sleeve (in)"
+msgstr "Sleeve (in)"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Command"
+msgstr "Command"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductSize/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+
+#. "Add New Product Style"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgid "Add New Product Style"
+msgstr "Add New Product Style"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/AddProductStyle.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+
+#. "Edit Product Style"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgid "Edit Product Style"
+msgstr "Edit Product Style"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/EditProductStyle.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgid "Types"
+msgstr "Types"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgid "Add New Product Style"
+msgstr "Add New Product Style"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgctxt ~/Modules/Teeyoot.WizardSettings/Views/ProductStyle/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+

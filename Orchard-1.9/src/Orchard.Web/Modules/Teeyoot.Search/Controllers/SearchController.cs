@@ -9,6 +9,7 @@ using Teeyoot.Search.Services;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Models;
 using Teeyoot.Search.ViewModels;
+using Orchard;
 
 namespace Teebay.Search.Controllers
 {
@@ -18,16 +19,18 @@ namespace Teebay.Search.Controllers
         private readonly ICampaignService _campService;
         private readonly ICampaignCategoriesService _campCategService;
         private readonly ICampaignProductService _campProductService;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
         private List<CampaignRecord> campListAfterSearch;
         private List<CampaignProductRecord> campProductList;
         private const int take = 16;
 
-        public SearchController(ICampaignService campService, ICampaignCategoriesService campCategService, ICampaignProductService campProductService)
+        public SearchController(ICampaignService campService, ICampaignCategoriesService campCategService, ICampaignProductService campProductService, IWorkContextAccessor workContextAccessor)
         {
             _campService = campService;
             _campCategService = campCategService;
             _campProductService = campProductService;
+            _workContextAccessor = workContextAccessor;
         }
 
         [HttpGet]
@@ -38,13 +41,16 @@ namespace Teebay.Search.Controllers
 
             filter = filter.Trim();
 
+            string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             if (!string.IsNullOrEmpty(filter))
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take);
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).Where(c => c.CampaignCulture == cultureSearch).ToList();
             }
             else
             {
-                campListAfterSearch = _campService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
+                campListAfterSearch = _campService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved && c.CampaignCulture == cultureSearch).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
             }
 
             bool notResult = CheckResult();
@@ -68,9 +74,13 @@ namespace Teebay.Search.Controllers
             List<CampaignCategoriesRecord> campCategList = _campCategService.GetAllCategories().ToList();
             CampaignCategoriesRecord findCampCateg = campCategList.Find(x => x.Name.ToLower() == categoriesName.ToLower());
             bool notFoundCateg = false;
+
+            string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             if (findCampCateg != null)
             {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(categoriesName.ToLower(), 0, 16, true);
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(categoriesName.ToLower(), 0, 16, true).Where(c => c.CampaignCulture == cultureSearch).ToList();
                 campCategList.Remove(findCampCateg);
             }
             else

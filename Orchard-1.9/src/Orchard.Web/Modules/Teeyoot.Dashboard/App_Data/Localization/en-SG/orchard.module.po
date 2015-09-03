@@ -1,0 +1,1342 @@
+#: ~/Modules/Teeyoot.Dashboard/Module.txt
+#. "Name"
+#. "Teeyoot.Dashboard.Name"
+msgctxt ~/Modules/Teeyoot.Dashboard/Module.txt
+msgid "Teeyoot Dashboard"
+msgstr "Teeyoot Dashboard"
+
+#: ~/Modules/Teeyoot.Dashboard/Module.txt
+#. "Author"
+msgctxt ~/Modules/Teeyoot.Dashboard/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/Modules/Teeyoot.Dashboard/Module.txt
+#. "Website"
+msgctxt ~/Modules/Teeyoot.Dashboard/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/Modules/Teeyoot.Dashboard/Module.txt
+#. "Description"
+msgctxt ~/Modules/Teeyoot.Dashboard/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/Modules/Teeyoot.Dashboard/Module.txt
+#. "Teeyoot.Dashboard.Description"
+msgctxt ~/Modules/Teeyoot.Dashboard/Module.txt
+msgid "Description for feature Teeyoot.Dashboard."
+msgstr "Description for feature Teeyoot.Dashboard."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+#. "Name"
+#. "Teeyoot.Dashboard.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+msgid "Teeyoot Dashboard"
+msgstr "Teeyoot Dashboard"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+msgid "The Sollutium Team"
+msgstr "The Sollutium Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+msgid "http://sollutium.com"
+msgstr "http://sollutium.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+msgid "Description for the module"
+msgstr "Description for the module"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+#. "Teeyoot.Dashboard.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Teeyoot.Dashboard/Module.txt
+msgid "Description for feature Teeyoot.Dashboard."
+msgstr "Description for feature Teeyoot.Dashboard."
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Campaign was updated successfully"
+msgstr "Campaign was updated successfully"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "An error occurred when updating the campaign. Try again."
+msgstr "An error occurred when updating the campaign. Try again."
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "The campaign was deleted successfully!"
+msgstr "The campaign was deleted successfully!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "The company could not be removed. Try again!"
+msgstr "The company could not be removed. Try again!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Campaign set status - private"
+msgstr "Campaign set status - private"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Campaign set status - public"
+msgstr "Campaign set status - public"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "The company could not be changed. Try again!"
+msgstr "The company could not be changed. Try again!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Never"
+msgstr "Never"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Today"
+msgstr "Today"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid " days ago"
+msgstr " days ago"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Your message has been sent for approving!"
+msgstr "Your message has been sent for approving!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "You requested a payout"
+msgstr "You requested a payout"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "There is nothing to update!"
+msgstr "There is nothing to update!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Your info has been changed sucessfully!"
+msgstr "Your info has been changed sucessfully!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+
+#. "Sorry, it is some error, try later!"
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Sorry, it is some error, try later!"
+msgstr "Sorry, it is some error, try later!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Please, input valid phone number!"
+msgstr "Please, input valid phone number!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Password is required!"
+msgstr "Password is required!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Password must be at least 8 characters!"
+msgstr "Password must be at least 8 characters!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Confirmation did not match new password!"
+msgstr "Confirmation did not match new password!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Password incorrect!"
+msgstr "Password incorrect!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Your password has been changed sucessfully!"
+msgstr "Your password has been changed sucessfully!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "New email address is required!"
+msgstr "New email address is required!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Confirmation did not match new email!"
+msgstr "Confirmation did not match new email!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+
+#. "Your email has been changed sucessfully!"
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Your email has been changed sucessfully!"
+msgstr "Your email has been changed sucessfully!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Please, input valid email address!"
+msgstr "Please, input valid email address!"
+
+#: Teeyoot.Dashboard.Controllers.DashboardController
+
+#. "Such url exists! It must be unique."
+msgctxt Teeyoot.Dashboard.Controllers.DashboardController
+msgid "Such url exists! It must be unique."
+msgstr "Such url exists! It must be unique."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+
+#. "This field is required."
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "This field is required."
+msgstr "This field is required."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+
+#. "Please input corect number."
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "Please input corect number."
+msgstr "Please input corect number."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "Accounts"
+msgstr "Accounts"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "Current Payout Amount"
+msgstr "Current Payout Amount"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "You currently have "
+msgstr "You currently have "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid " ready to be paid out"
+msgstr " ready to be paid out"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "Start a payout"
+msgstr "Start a payout"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "Payout History"
+msgstr "Payout History"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "DATE"
+msgstr "DATE"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "EVENT"
+msgstr "EVENT"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "AMOUNT"
+msgstr "AMOUNT"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Accounts.cshtml
+msgid "STATUS"
+msgstr "STATUS"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Your Campaign Overview"
+msgstr "Your Campaign Overview"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Overview"
+msgstr "Overview"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "products ordered"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "products ordered"
+msgstr "products ordered"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "profit"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "profit"
+msgstr "profit"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "To be paid"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "to be paid"
+msgstr "to be paid"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "profit (includes pending profit)"
+msgstr "profit (includes pending profit)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Search by filter"
+msgstr "Search by filter"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Sort By"
+msgstr "Sort By"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Show"
+msgstr "Show"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "Active"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Active"
+msgstr "Active"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Ended"
+msgstr "Ended"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "All"
+msgstr "All"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Duplicate"
+msgstr "Duplicate"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "Private"
+msgstr "Private"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "sold"
+msgstr "sold"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "remaining"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "remaining"
+msgstr "remaining"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+
+#. "ago"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Campaigns.cshtml
+msgid "ago"
+msgstr "ago"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Create message"
+msgstr "Create message"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "You are sending a message to all buyers of"
+msgstr "You are sending a message to all buyers of"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Subject"
+msgstr "Subject"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Email template"
+msgstr "Email template"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Default"
+msgstr "Default"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "New Campaign Launch"
+msgstr "New Campaign Launch"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Campaign URL"
+msgstr "Campaign URL"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "campaign"
+msgstr "campaign"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Type Campaign URL to generate template"
+msgstr "Type Campaign URL to generate template"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Learn how to further customize your emails"
+msgstr "Learn how to further customize your emails"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "You can personalize your emails to your customers! Just use any of the following placeholders and they will be replaced with each specific buyer's info."
+msgstr "You can personalize your emails to your customers! Just use any of the following placeholders and they will be replaced with each specific buyer's info."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Variable"
+msgstr "Variable"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Example"
+msgstr "Example"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "John"
+msgstr "John"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Smith"
+msgstr "Smith"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "San Francisco"
+msgstr "San Francisco"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "CA"
+msgstr "CA"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "United States"
+msgstr "United States"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Red Hanes Tagless Tee"
+msgstr "Red Hanes Tagless Tee"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "You can also format your email using HTML by switching to the HTML view."
+msgstr "You can also format your email using HTML by switching to the HTML view."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Message Content"
+msgstr "Message Content"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Write something nice to your buyers..."
+msgstr "Write something nice to your buyers..."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "You may send buyers from a single campaign up to 3 emails in a 7-day period."
+msgstr "You may send buyers from a single campaign up to 3 emails in a 7-day period."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/CreateMessage.cshtml
+msgid "Send Message"
+msgstr "Send Message"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Edit "
+msgstr "Edit "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+
+#. "Front"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Front"
+msgstr "Front"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+
+#. "Back"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Campaign title"
+msgstr "Campaign title"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Summarize your campaign in 40 characters or less."
+msgstr "Summarize your campaign in 40 characters or less."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Description"
+msgstr "Description"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum."
+msgstr "Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Enter text ..."
+msgstr "Enter text ..."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Tags"
+msgstr "Tags"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)"
+msgstr "Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "URL"
+msgstr "URL"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "This is where you will send buyers to view your campaign."
+msgstr "This is where you will send buyers to view your campaign."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Display Options"
+msgstr "Display Options"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Show the back side by default"
+msgstr "Show the back side by default"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/EditCampaign.cshtml
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Direct Messages"
+msgstr "Direct Messages"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Communicate with your buyers directly through email! With direct messages you may send  your buyers any message or inform them of your new campaign launch. Get personal and connect with them today!"
+msgstr "Communicate with your buyers directly through email! With direct messages you may send  your buyers any message or inform them of your new campaign launch. Get personal and connect with them today!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+
+#. "Print"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Print"
+msgstr "Print"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Campaign Name"
+msgstr "Campaign Name"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Sizes"
+msgstr "Sizes"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Last Sent"
+msgstr "Last Sent"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Sent This Week"
+msgstr "Sent This Week"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Size"
+msgstr "Size"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Last Send"
+msgstr "Last Send"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Send This Week"
+msgstr "Send This Week"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+
+#. "Message"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Messages.cshtml
+msgid "Message"
+msgstr "Message"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid " Only .png files allowed!"
+msgstr " Only .png files allowed!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Title can't be empty!"
+msgstr "Title can't be empty!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Url can't be empty!"
+msgstr "Url can't be empty!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "You must add at least 3 campaigns to your shop."
+msgstr "You must add at least 3 campaigns to your shop."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Upload banner photo"
+msgstr "Upload banner photo"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Only .png files allowed"
+msgstr "Only .png files allowed"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Recommended: 900px X 500px"
+msgstr "Recommended: 900px X 500px"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Change image"
+msgstr "Change image"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Shop Title"
+msgstr "Shop Title"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Shop Description (optional)"
+msgstr "Shop Description (optional)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Publish Shop"
+msgstr "Publish Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Settings"
+msgstr "Settings"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "URL permalink"
+msgstr "URL permalink"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Hide shop"
+msgstr "Hide shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Hide this shop from internet search engines"
+msgstr "Hide this shop from internet search engines"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Enable cross-selling"
+msgstr "Enable cross-selling"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Suggests other campaigns from this shop after a customer’s initial purchase"
+msgstr "Suggests other campaigns from this shop after a customer’s initial purchase"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Cross-selling is currently enabled but there are not enough active campaigns. Please"
+msgstr "Cross-selling is currently enabled but there are not enough active campaigns. Please"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "relaunch a campaign"
+msgstr "relaunch a campaign"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "or"
+msgstr "or"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "create a new campaign"
+msgstr "create a new campaign"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Create your first shop!"
+msgstr "Create your first shop!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Launch 3 campaigns"
+msgstr "Launch 3 campaigns"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Launch 3 campaigns (2 more needed)"
+msgstr "Launch 3 campaigns (2 more needed)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Pick a name &amp; write a description"
+msgstr "Pick a name &amp; write a description"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Upload a cover photo"
+msgstr "Upload a cover photo"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Add campaigns to your shop"
+msgstr "Add campaigns to your shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "You need at least 3 campaigns to create a shop."
+msgstr "You need at least 3 campaigns to create a shop."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Launch one now"
+msgstr "Launch one now"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Add Campaigns"
+msgstr "Add Campaigns"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid " or "
+msgstr " or "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "launch a new campaign"
+msgstr "launch a new campaign"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Add Campaigns +"
+msgstr "Add Campaigns +"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "View "
+msgstr "View "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "View"
+msgstr "View"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Remove "
+msgstr "Remove "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "sold"
+msgstr "sold"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+
+#. "remaining"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "remaining"
+msgstr "remaining"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+
+#. "ago"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "ago"
+msgstr "ago"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Add Campaigns to "
+msgstr "Add Campaigns to "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Filter by search"
+msgstr "Filter by search"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "reserved"
+msgstr "reserved"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/NewStorefront.cshtml
+msgid "Update Shop"
+msgstr "Update Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Profile"
+msgstr "Profile"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Change Your Info"
+msgstr "Change Your Info"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Name (Public)"
+msgstr "Name (Public)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Address line 1"
+msgstr "Address line 1"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Address line 2"
+msgstr "Address line 2"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Postal code"
+msgstr "Postal code"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "City"
+msgstr "City"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "State"
+msgstr "State"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Country"
+msgstr "Country"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Phone number"
+msgstr "Phone number"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Apt / Suite"
+msgstr "Apt / Suite"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Update Info"
+msgstr "Update Info"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Change Your Email"
+msgstr "Change Your Email"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Current email address"
+msgstr "Current email address"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "New email address"
+msgstr "New email address"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Confirm new email address"
+msgstr "Confirm new email address"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Update Email"
+msgstr "Update Email"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Change Your Password"
+msgstr "Change Your Password"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Current password"
+msgstr "Current password"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "New password"
+msgstr "New password"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Must be longer than 8 characters"
+msgstr "Must be longer than 8 characters"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Confirm new password"
+msgstr "Confirm new password"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Profile.cshtml
+msgid "Update Password"
+msgstr "Update Password"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Discounts"
+msgstr "Discounts"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Market your campaigns! Offer your customers incentives to boost your sales! To keep your sales profitable, be mindful that the marketing campaign will only be applied if there are sufficient profit margin for it"
+msgstr "Market your campaigns! Offer your customers incentives to boost your sales! To keep your sales profitable, be mindful that the marketing campaign will only be applied if there are sufficient profit margin for it"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Share your promotions by appending the Promotion ID at the end of your campaign URL (for example:"
+msgstr "Share your promotions by appending the Promotion ID at the end of your campaign URL (for example:"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "). As an illustration, if the Promotion Code is"
+msgstr "). As an illustration, if the Promotion Code is"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid ", then to share your promotions the URL will be"
+msgstr ", then to share your promotions the URL will be"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Add a New Promotion"
+msgstr "Add a New Promotion"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Generate a New Promotion Code"
+msgstr "Generate a New Promotion Code"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Types of Promotions"
+msgstr "Types of Promotions"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Discount"
+msgstr "Discount"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Expiration Date"
+msgstr "Expiration Date"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Never"
+msgstr "Never"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "All promotions"
+msgstr "All promotions"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Promotion Code"
+msgstr "Promotion Code"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Amount"
+msgstr "Amount"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Expires On"
+msgstr "Expires On"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Redeemed"
+msgstr "Redeemed"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Promotions.cshtml
+msgid "Status"
+msgstr "Status"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "Shop"
+msgstr "Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+
+#. "Group all your campaigns together! On this page, you can organise all your campaigns together and show them in a single page to encourage more purchases from your customers!"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "Group all your campaigns together! On this page, you can organise all your campaigns together and show them in a single page to encourage more purchases from your customers!"
+msgstr "Group all your campaigns together! On this page, you can organise all your campaigns together and show them in a single page to encourage more purchases from your customers!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "Get Started"
+msgstr "Get Started"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "All Shops"
+msgstr "All Shops"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "Create New Shop"
+msgstr "Create New Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "Back"
+msgstr "Back"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "Front"
+msgstr "Front"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+
+#. "View Shop"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "View Shop"
+msgstr "View Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "campaigns"
+msgstr "campaigns"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/Shop.cshtml
+msgid "active"
+msgstr "active"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Send us a payout request by filling in your payment information"
+msgstr "Send us a payout request by filling in your payment information"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Account number"
+msgstr "Account number"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Bank Name"
+msgstr "Bank Name"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Account Holder Name"
+msgstr "Account Holder Name"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Contact Number "
+msgstr "Contact Number "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Message for the admin"
+msgstr "Message for the admin"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StartPayout.cshtml
+msgid "Submit"
+msgstr "Submit"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StorefrontForClient.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StorefrontForClient.cshtml
+msgid "sold"
+msgstr "sold"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StorefrontForClient.cshtml
+
+#. "remaining"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StorefrontForClient.cshtml
+msgid "remaining"
+msgstr "remaining"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StorefrontForClient.cshtml
+
+#. "ago"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/StorefrontForClient.cshtml
+msgid "ago"
+msgstr "ago"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid " Only .png files allowed!"
+msgstr " Only .png files allowed!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Title can't be empty!"
+msgstr "Title can't be empty!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Url can't be empty!"
+msgstr "Url can't be empty!"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "You must add at least 3 campaigns to your shop."
+msgstr "You must add at least 3 campaigns to your shop."
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Are you sure you want to delete this shop? (This action cannot be undone)"
+msgstr "Are you sure you want to delete this shop? (This action cannot be undone)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Upload banner photo"
+msgstr "Upload banner photo"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Only .png files allowed"
+msgstr "Only .png files allowed"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Recommended: 900px X 500px"
+msgstr "Recommended: 900px X 500px"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Change image"
+msgstr "Change image"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Shop Title"
+msgstr "Shop Title"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Shop Description (optional)"
+msgstr "Shop Description (optional)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Edit Shop"
+msgstr "Edit Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Save"
+msgstr "Save"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Settings"
+msgstr "Settings"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "URL permalink"
+msgstr "URL permalink"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Hide shop"
+msgstr "Hide shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Hide this shop from internet search engines"
+msgstr "Hide this shop from internet search engines"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Enable cross-selling"
+msgstr "Enable cross-selling"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Suggests other campaigns from this shop after a customer’s initial purchase"
+msgstr "Suggests other campaigns from this shop after a customer’s initial purchase"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+
+#. "Delete Shop"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Delete Shop"
+msgstr "Delete Shop"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Permanently close this shop. Your campaigns will not be affected. (Cannot be undone!)"
+msgstr "Permanently close this shop. Your campaigns will not be affected. (Cannot be undone!)"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Add Campaigns +"
+msgstr "Add Campaigns +"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "View "
+msgstr "View "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "View"
+msgstr "View"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Remove "
+msgstr "Remove "
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "sold"
+msgstr "sold"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+
+#. "remaining"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "remaining"
+msgstr "remaining"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+
+#. "ago"
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "ago"
+msgstr "ago"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Add Campaigns to"
+msgstr "Add Campaigns to"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Filter by search"
+msgstr "Filter by search"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "reserved"
+msgstr "reserved"
+
+#: ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgctxt ~/Modules/Teeyoot.Dashboard/Views/Dashboard/ViewStorefront.cshtml
+msgid "Update Shop"
+msgstr "Update Shop"
+

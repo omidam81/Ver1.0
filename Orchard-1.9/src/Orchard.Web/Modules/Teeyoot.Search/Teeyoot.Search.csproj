@@ -131,6 +131,12 @@
   <ItemGroup>
     <Content Include="Views\Parts\CampaignCategoriesWidget.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Localization\en-MY\orchard.module.po" />
+    <Content Include="App_Data\Localization\en-SG\orchard.module.po" />
+    <Content Include="App_Data\Localization\en-US\orchard.module.po" />
+    <Content Include="App_Data\Localization\id-ID\orchard.module.po" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,53 @@
+#: ~/Modules/Orchard.Pages/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Pages/Module.txt
+msgid "Pages"
+msgstr "Pages"
+
+#: ~/Modules/Orchard.Pages/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Pages/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Pages/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Pages/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Pages/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Pages/Module.txt
+msgid "Introduces a preconfigured page content type."
+msgstr "Introduces a preconfigured page content type."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+msgid "Pages"
+msgstr "Pages"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Pages/Module.txt
+msgid "Introduces a preconfigured page content type."
+msgstr "Introduces a preconfigured page content type."
+
+#: Orchard.Pages.Commands.PageCommands
+msgctxt Orchard.Pages.Commands.PageCommands
+msgid "Page created successfully."
+msgstr "Page created successfully."
+

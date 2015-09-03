@@ -1,0 +1,62 @@
+#: ~/Modules/SysCache/Module.txt
+#. "Name"
+msgctxt ~/Modules/SysCache/Module.txt
+msgid "SysCache"
+msgstr "SysCache"
+
+#: ~/Modules/SysCache/Module.txt
+#. "Author"
+msgctxt ~/Modules/SysCache/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/SysCache/Module.txt
+#. "Website"
+msgctxt ~/Modules/SysCache/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/SysCache/Module.txt
+#. "Description"
+#. "SysCache.Description"
+msgctxt ~/Modules/SysCache/Module.txt
+msgid "Enables database caching using the SysCache provider."
+msgstr "Enables database caching using the SysCache provider."
+
+#: ~/Modules/SysCache/Module.txt
+#. "SysCache.Category"
+msgctxt ~/Modules/SysCache/Module.txt
+msgid "Performance"
+msgstr "Performance"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+msgid "SysCache"
+msgstr "SysCache"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+#. "Description"
+#. "SysCache.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+msgid "Enables database caching using the SysCache provider."
+msgstr "Enables database caching using the SysCache provider."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+#. "SysCache.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/SysCache/Module.txt
+msgid "Performance"
+msgstr "Performance"
+

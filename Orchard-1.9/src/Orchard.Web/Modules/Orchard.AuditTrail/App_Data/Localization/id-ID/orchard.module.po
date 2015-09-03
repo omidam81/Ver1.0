@@ -1,0 +1,1691 @@
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Name"
+#. "Orchard.AuditTrail.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Description"
+#. "Orchard.AuditTrail.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides a log for recording and viewing back-end changes."
+msgstr "Provides a log for recording and viewing back-end changes."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Category"
+#. "Orchard.AuditTrail.ImportExport.Category"
+#. "Orchard.AuditTrail.Trimming.Category"
+#. "Orchard.AuditTrail.Users.Category"
+#. "Orchard.AuditTrail.Roles.Category"
+#. "Orchard.AuditTrail.ContentDefinition.Category"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Security"
+msgstr "Security"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ImportExport.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Import Export"
+msgstr "Audit Trail Import Export"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ImportExport.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides import/export functionality for the Audit Trail feature."
+msgstr "Provides import/export functionality for the Audit Trail feature."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Trimming.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Trimming"
+msgstr "Audit Trail Trimming"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Trimming.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides a background task that regularly deletes old audit trail records."
+msgstr "Provides a background task that regularly deletes old audit trail records."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Users.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail User Events"
+msgstr "Audit Trail User Events"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Users.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides audit trail support for user related events."
+msgstr "Provides audit trail support for user related events."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Roles.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Role Events"
+msgstr "Audit Trail Role Events"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Roles.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides audit trail support for role related events."
+msgstr "Provides audit trail support for role related events."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ContentDefinition.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Content Definition Events"
+msgstr "Audit Trail Content Definition Events"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ContentDefinition.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides audit trail support for content definition related events."
+msgstr "Provides audit trail support for content definition related events."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.RecycleBin.Name"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Recycle Bin"
+msgstr "Recycle Bin"
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.RecycleBin.Description"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Adds a Recycle Bin menu item to the Audit Trail menu, enabling you to recycle removed content items."
+msgstr "Adds a Recycle Bin menu item to the Audit Trail menu, enabling you to recycle removed content items."
+
+#: ~/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.RecycleBin.Category"
+msgctxt ~/Modules/Orchard.AuditTrail/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Name"
+#. "Orchard.AuditTrail.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Description"
+#. "Orchard.AuditTrail.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides a log for recording and viewing back-end changes."
+msgstr "Provides a log for recording and viewing back-end changes."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Category"
+#. "Orchard.AuditTrail.ImportExport.Category"
+#. "Orchard.AuditTrail.Trimming.Category"
+#. "Orchard.AuditTrail.Users.Category"
+#. "Orchard.AuditTrail.Roles.Category"
+#. "Orchard.AuditTrail.ContentDefinition.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Security"
+msgstr "Security"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ImportExport.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Import Export"
+msgstr "Audit Trail Import Export"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ImportExport.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides import/export functionality for the Audit Trail feature."
+msgstr "Provides import/export functionality for the Audit Trail feature."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Trimming.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Trimming"
+msgstr "Audit Trail Trimming"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Trimming.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides a background task that regularly deletes old audit trail records."
+msgstr "Provides a background task that regularly deletes old audit trail records."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Users.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail User Events"
+msgstr "Audit Trail User Events"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Users.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides audit trail support for user related events."
+msgstr "Provides audit trail support for user related events."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Roles.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Role Events"
+msgstr "Audit Trail Role Events"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.Roles.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides audit trail support for role related events."
+msgstr "Provides audit trail support for role related events."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ContentDefinition.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Audit Trail Content Definition Events"
+msgstr "Audit Trail Content Definition Events"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.ContentDefinition.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Provides audit trail support for content definition related events."
+msgstr "Provides audit trail support for content definition related events."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.RecycleBin.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Recycle Bin"
+msgstr "Recycle Bin"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.RecycleBin.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Adds a Recycle Bin menu item to the Audit Trail menu, enabling you to recycle removed content items."
+msgstr "Adds a Recycle Bin menu item to the Audit Trail menu, enabling you to recycle removed content items."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+#. "Orchard.AuditTrail.RecycleBin.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.AuditTrail/Module.txt
+msgid "Content"
+msgstr "Content"
+
+#: Orchard.AuditTrail.Controllers.ContentController
+msgctxt Orchard.AuditTrail.Controllers.ContentController
+msgid "&quot;{0}&quot; has been restored."
+msgstr "&quot;{0}&quot; has been restored."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+
+#. "&quot;{0}&quot; has been restored."
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "&quot;{0}&quot; has been restored."
+msgstr "&quot;{0}&quot; has been restored."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "Please select an action to execute."
+msgstr "Please select an action to execute."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "Please select one or more content items."
+msgstr "Please select one or more content items."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "You need the EditContent permission to restore <strong>{0}</strong>."
+msgstr "You need the EditContent permission to restore <strong>{0}</strong>."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "You need the DeleteContent permission to permanently delete <strong>{0}</strong>."
+msgstr "You need the DeleteContent permission to permanently delete <strong>{0}</strong>."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "&quot;{0}&quot; has been permanently deleted."
+msgstr "&quot;{0}&quot; has been permanently deleted."
+
+#: Orchard.AuditTrail.Controllers.RecycleBinController
+msgctxt Orchard.AuditTrail.Controllers.RecycleBinController
+msgid "An exception occurred while trying to permanently delete content with ID {0}."
+msgstr "An exception occurred while trying to permanently delete content with ID {0}."
+
+#: Orchard.AuditTrail.Drivers.AuditTrailTrimmingSettingsPartDriver
+msgctxt Orchard.AuditTrail.Drivers.AuditTrailTrimmingSettingsPartDriver
+msgid "Never"
+msgstr "Never"
+
+#: Orchard.AuditTrail.Handlers.AuditTrailSettingsPartHandler
+msgctxt Orchard.AuditTrail.Handlers.AuditTrailSettingsPartHandler
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: Orchard.AuditTrail.Handlers.AuditTrailTrimmingSettingsPartHandler
+msgctxt Orchard.AuditTrail.Handlers.AuditTrailTrimmingSettingsPartHandler
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: Orchard.AuditTrail.Menus.AuditTrailAdminMenu
+msgctxt Orchard.AuditTrail.Menus.AuditTrailAdminMenu
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: Orchard.AuditTrail.Menus.AuditTrailAdminMenu
+msgctxt Orchard.AuditTrail.Menus.AuditTrailAdminMenu
+msgid "History"
+msgstr "History"
+
+#: Orchard.AuditTrail.Menus.RecycleBinAdminMenu
+msgctxt Orchard.AuditTrail.Menus.RecycleBinAdminMenu
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: Orchard.AuditTrail.Menus.RecycleBinAdminMenu
+msgctxt Orchard.AuditTrail.Menus.RecycleBinAdminMenu
+msgid "Recycle Bin"
+msgstr "Recycle Bin"
+
+#: Orchard.AuditTrail.Providers.AuditTrail.AuditTrailSettingsEventProvider
+msgctxt Orchard.AuditTrail.Providers.AuditTrail.AuditTrailSettingsEventProvider
+msgid "Audit Trail Settings"
+msgstr "Audit Trail Settings"
+
+#: Orchard.AuditTrail.Providers.AuditTrail.AuditTrailSettingsEventProvider
+msgctxt Orchard.AuditTrail.Providers.AuditTrail.AuditTrailSettingsEventProvider
+msgid "Events changed"
+msgstr "Events changed"
+
+#: Orchard.AuditTrail.Providers.AuditTrail.AuditTrailSettingsEventProvider
+msgctxt Orchard.AuditTrail.Providers.AuditTrail.AuditTrailSettingsEventProvider
+msgid "The audit trail event settings were changed."
+msgstr "The audit trail event settings were changed."
+
+#: Orchard.AuditTrail.Providers.AuditTrail.AuditTrailTrimmingSettingsEventProvider
+msgctxt Orchard.AuditTrail.Providers.AuditTrail.AuditTrailTrimmingSettingsEventProvider
+msgid "Audit Trail Settings"
+msgstr "Audit Trail Settings"
+
+#: Orchard.AuditTrail.Providers.AuditTrail.AuditTrailTrimmingSettingsEventProvider
+msgctxt Orchard.AuditTrail.Providers.AuditTrail.AuditTrailTrimmingSettingsEventProvider
+msgid "Trimming settings changed"
+msgstr "Trimming settings changed"
+
+#: Orchard.AuditTrail.Providers.AuditTrail.AuditTrailTrimmingSettingsEventProvider
+msgctxt Orchard.AuditTrail.Providers.AuditTrail.AuditTrailTrimmingSettingsEventProvider
+msgid "The audit trail trimming settings were changed."
+msgstr "The audit trail trimming settings were changed."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Content Items"
+msgstr "Content Items"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Created"
+msgstr "Created"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was created."
+msgstr "A content item was created."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Saved"
+msgstr "Saved"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was saved."
+msgstr "A content item was saved."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Published"
+msgstr "Published"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was published."
+msgstr "A content item was published."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Unpublished"
+msgstr "Unpublished"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was unpublished."
+msgstr "A content item was unpublished."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Removed"
+msgstr "Removed"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was deleted."
+msgstr "A content item was deleted."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Destroyed"
+msgstr "Destroyed"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was permanently deleted."
+msgstr "A content item was permanently deleted."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Imported"
+msgstr "Imported"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was imported."
+msgstr "A content item was imported."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Exported"
+msgstr "Exported"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was exported."
+msgstr "A content item was exported."
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "Restored"
+msgstr "Restored"
+
+#: Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Content.ContentAuditTrailEventProvider
+msgid "A content item was restored to a previous version."
+msgstr "A content item was restored to a previous version."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Content Parts"
+msgstr "Content Parts"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Created"
+msgstr "Created"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "A content part was created."
+msgstr "A content part was created."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Removed"
+msgstr "Removed"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "A content part was removed."
+msgstr "A content part was removed."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Imported"
+msgstr "Imported"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "A content part was imported."
+msgstr "A content part was imported."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Description changed"
+msgstr "Description changed"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "A content part description was changed."
+msgstr "A content part description was changed."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Field added"
+msgstr "Field added"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "A field was added to a content part."
+msgstr "A field was added to a content part."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Field removed"
+msgstr "Field removed"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "A field was removed from a content part."
+msgstr "A field was removed from a content part."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Part settings updated"
+msgstr "Part settings updated"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "The settings of a content part were updated."
+msgstr "The settings of a content part were updated."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "Field settings updated"
+msgstr "Field settings updated"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentPartAuditTrailEventProvider
+msgid "The settings of a field on a content part were updated."
+msgstr "The settings of a field on a content part were updated."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Content Type"
+msgstr "Content Type"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Created"
+msgstr "Created"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "A content type was created."
+msgstr "A content type was created."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Removed"
+msgstr "Removed"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "A content type was removed."
+msgstr "A content type was removed."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Imported"
+msgstr "Imported"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "A content type was imported."
+msgstr "A content type was imported."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Part added"
+msgstr "Part added"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "A content part was added to a content type."
+msgstr "A content part was added to a content type."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Part removed"
+msgstr "Part removed"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "A content part was removed from a content type."
+msgstr "A content part was removed from a content type."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Type display name updated"
+msgstr "Type display name updated"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "The display name of a content type was updated."
+msgstr "The display name of a content type was updated."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Type settings updated"
+msgstr "Type settings updated"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "The settings of a content type were updated."
+msgstr "The settings of a content type were updated."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Part settings updated"
+msgstr "Part settings updated"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "The settings of a content part on a content type were updated."
+msgstr "The settings of a content part on a content type were updated."
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "Field settings updated"
+msgstr "Field settings updated"
+
+#: Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.ContentDefinition.ContentTypeAuditTrailEventProvider
+msgid "The settings of a content field on a content part on a content type were updated."
+msgstr "The settings of a content field on a content part on a content type were updated."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "Roles"
+msgstr "Roles"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "Created"
+msgstr "Created"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A role was created."
+msgstr "A role was created."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "Removed"
+msgstr "Removed"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A role was removed."
+msgstr "A role was removed."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "Renamed"
+msgstr "Renamed"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A role was renamed."
+msgstr "A role was renamed."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "Permission added"
+msgstr "Permission added"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A permission was added to a role."
+msgstr "A permission was added to a role."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "Permission removed"
+msgstr "Permission removed"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A permission was removed from a role."
+msgstr "A permission was removed from a role."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "User added"
+msgstr "User added"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A user was added to a role."
+msgstr "A user was added to a role."
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "User removed"
+msgstr "User removed"
+
+#: Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Roles.RoleAuditTrailEventProvider
+msgid "A user was removed from a role."
+msgstr "A user was removed from a role."
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "Users"
+msgstr "Users"
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "Logged in"
+msgstr "Logged in"
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "A user was successfully logged in."
+msgstr "A user was successfully logged in."
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "Logged out"
+msgstr "Logged out"
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "A user actively logged out."
+msgstr "A user actively logged out."
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "Login failed"
+msgstr "Login failed"
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "An attempt to login failed due to incorrect credentials."
+msgstr "An attempt to login failed due to incorrect credentials."
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "Password changed"
+msgstr "Password changed"
+
+#: Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgctxt Orchard.AuditTrail.Providers.Users.UserAuditTrailEventProvider
+msgid "A user's password was changed."
+msgstr "A user's password was changed."
+
+#: Orchard.AuditTrail.Services.CommonAuditTrailEventHandler
+msgctxt Orchard.AuditTrail.Services.CommonAuditTrailEventHandler
+msgid "Error parsing '{0}' date string '{1}': {2}"
+msgstr "Error parsing '{0}' date string '{1}': {2}"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-EventsChanged.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-EventsChanged.cshtml
+msgid "Event"
+msgstr "Event"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-EventsChanged.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-EventsChanged.cshtml
+msgid "Description"
+msgstr "Description"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-EventsChanged.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-EventsChanged.cshtml
+msgid "New Status"
+msgstr "New Status"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgid "The trimming retention period was changed from <strong>{0}</strong> to <strong>{1}</strong>."
+msgstr "The trimming retention period was changed from <strong>{0}</strong> to <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgid "The minimum trimming run interval was changed from <strong>{0}</strong> to <strong>{1}</strong>."
+msgstr "The minimum trimming run interval was changed from <strong>{0}</strong> to <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+
+#. "1 day"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgid "1 day"
+msgstr "1 day"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+
+#. "{0} days"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgid "{0} days"
+msgstr "{0} days"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+
+#. "1 hour"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgid "1 hour"
+msgstr "1 hour"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+
+#. "{0} hours"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-AuditTrailSettings-TrimmingSettingsChanged.cshtml
+msgid "{0} hours"
+msgstr "{0} hours"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content-Restored.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content-Restored.SummaryAdmin.cshtml
+msgid "The {1} {2} was {3} as {0}."
+msgstr "The {1} {2} was {3} as {0}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content-Restored.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content-Restored.SummaryAdmin.cshtml
+msgid "Version {0}"
+msgstr "Version {0}"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content-Restored.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content-Restored.SummaryAdmin.cshtml
+msgid "Content item <strong>{1}</strong> was {2} as <strong>Version {0}</strong>."
+msgstr "Content item <strong>{1}</strong> was {2} as <strong>Version {0}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "ID:"
+msgstr "ID:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+
+#. "Version {0}"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "Version {0}"
+msgstr "Version {0}"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "Comment:"
+msgstr "Comment:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "Context"
+msgstr "Context"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "Before"
+msgstr "Before"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "After"
+msgstr "After"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgid "{0} of the {1} {2} was {3}."
+msgstr "{0} of the {1} {2} was {3}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgid "Version {0}"
+msgstr "Version {0}"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgid "The {0} <strong>{1}</strong> was {2}."
+msgstr "The {0} <strong>{1}</strong> was {2}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgid "The {0} {1} was {2}."
+msgstr "The {0} {1} was {2}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Content.SummaryAdmin.cshtml
+msgid "<strong>Version {0}</strong> of content item <strong>{1}</strong> was {2}."
+msgstr "<strong>Version {0}</strong> of content item <strong>{1}</strong> was {2}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Created.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Created.cshtml
+msgid "The content part {0} was created."
+msgstr "The content part {0} was created."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-DescriptionChanged.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-DescriptionChanged.cshtml
+msgid "The description of content part {0} was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "The description of content part {0} was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-DescriptionChanged.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-DescriptionChanged.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldAdded.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldAdded.cshtml
+msgid "The content field <strong>{0}</strong> of type <strong>{1}</strong> was added to the content part {2}."
+msgstr "The content field <strong>{0}</strong> of type <strong>{1}</strong> was added to the content part {2}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldRemoved.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldRemoved.cshtml
+msgid "The content field <strong>{0}</strong> was removed from the content part {1}."
+msgstr "The content field <strong>{0}</strong> was removed from the content part {1}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgid "Settings for the field <strong>{0}</strong> attached to the {1} content part were updated:"
+msgstr "Settings for the field <strong>{0}</strong> attached to the {1} content part were updated:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgid "Setting"
+msgstr "Setting"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgid "Settings for the field <strong>{0}</strong> attached to the {1} content part were updated:"
+msgstr "Settings for the field <strong>{0}</strong> attached to the {1} content part were updated:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgid "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.SummaryAdmin.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgid "Context"
+msgstr "Context"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgid "Before"
+msgstr "Before"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgid "After"
+msgstr "After"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Imported.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgid "Settings for the content part {0} were changed:"
+msgstr "Settings for the content part {0} were changed:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgid "Setting"
+msgstr "Setting"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.SummaryAdmin.cshtml
+msgid "Settings for the content part {0} were changed:"
+msgstr "Settings for the content part {0} were changed:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.SummaryAdmin.cshtml
+msgid "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.SummaryAdmin.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-PartSettingsUpdated.SummaryAdmin.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Removed.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentPart-Removed.cshtml
+msgid "The content part <strong>{0}</strong> was removed."
+msgstr "The content part <strong>{0}</strong> was removed."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Created.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Created.cshtml
+msgid "The content type {0} was created."
+msgstr "The content type {0} was created."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgid "Setting"
+msgstr "Setting"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgid "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.SummaryAdmin.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-FieldSettingsUpdated.SummaryAdmin.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgid "Action"
+msgstr "Action"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgid "Context"
+msgstr "Context"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgid "Before"
+msgstr "Before"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgid "After"
+msgstr "After"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Imported.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartAdded.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartAdded.cshtml
+msgid "The content part {0} was added to the content type {1}."
+msgstr "The content part {0} was added to the content type {1}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartRemoved.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartRemoved.cshtml
+msgid "The content part {0} was removed from the content type {1}."
+msgstr "The content part {0} was removed from the content type {1}."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgid "Settings for the content part {0} attached to the content type {1} were changed:"
+msgstr "Settings for the content part {0} attached to the content type {1} were changed:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgid "Setting"
+msgstr "Setting"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.SummaryAdmin.cshtml
+msgid "Settings for the content part {0} attached to the content type {1} were changed:"
+msgstr "Settings for the content part {0} attached to the content type {1} were changed:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.SummaryAdmin.cshtml
+msgid "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.SummaryAdmin.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-PartSettingsUpdated.SummaryAdmin.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Removed.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-Removed.cshtml
+msgid "The content type <strong>{0}</strong> was removed."
+msgstr "The content type <strong>{0}</strong> was removed."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeDisplayNameUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeDisplayNameUpdated.cshtml
+msgid "The display name for the content type {0} was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "The display name for the content type {0} was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeDisplayNameUpdated.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeDisplayNameUpdated.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgid "Settings for the content type {0} were changed:"
+msgstr "Settings for the content type {0} were changed:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgid "Setting"
+msgstr "Setting"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgid "From"
+msgstr "From"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgid "To"
+msgstr "To"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.SummaryAdmin.cshtml
+msgid "Settings for the content type {0} were changed:"
+msgstr "Settings for the content type {0} were changed:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.SummaryAdmin.cshtml
+msgid "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+msgstr "<strong>{0}</strong> was changed from <strong>{1}</strong> to <strong>{2}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.SummaryAdmin.cshtml
+
+#. "[Empty]"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-ContentType-TypeSettingsUpdated.SummaryAdmin.cshtml
+msgid "[Empty]"
+msgstr "[Empty]"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-Created.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-Created.cshtml
+msgid "The role <strong>{0}</strong> was created."
+msgstr "The role <strong>{0}</strong> was created."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-PermissionAdded.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-PermissionAdded.cshtml
+msgid "The permission <strong>{0}</strong> was added to the role <strong>{1}</strong>."
+msgstr "The permission <strong>{0}</strong> was added to the role <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-PermissionRemoved.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-PermissionRemoved.cshtml
+msgid "The permission <strong>{0}</strong> was removed from the role <strong>{1}</strong>."
+msgstr "The permission <strong>{0}</strong> was removed from the role <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-Removed.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-Removed.cshtml
+msgid "The role <strong>{0}</strong> was removed."
+msgstr "The role <strong>{0}</strong> was removed."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-Renamed.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-Renamed.cshtml
+msgid "The role <strong>{0}</strong> was renamed to <strong>{1}</strong>."
+msgstr "The role <strong>{0}</strong> was renamed to <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-UserAdded.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-UserAdded.cshtml
+msgid "The user <strong>{0}</strong> was added to the role <strong>{1}</strong>."
+msgstr "The user <strong>{0}</strong> was added to the role <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-UserRemoved.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-Role-UserRemoved.cshtml
+msgid "The user <strong>{0}</strong> was removed from the role <strong>{1}</strong>."
+msgstr "The user <strong>{0}</strong> was removed from the role <strong>{1}</strong>."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-User-LoginFailed..cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-User-LoginFailed..cshtml
+msgid "Attempted user name: <strong>{0}</strong>"
+msgstr "Attempted user name: <strong>{0}</strong>"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-User.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEvent-User.cshtml
+msgid "User name: <strong>{0}</strong>"
+msgstr "User name: <strong>{0}</strong>"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgid "Details"
+msgstr "Details"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgid "Restore"
+msgstr "Restore"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Published.SummaryAdmin.cshtml
+msgid "Are you sure you want to restore to version {0}?"
+msgstr "Are you sure you want to restore to version {0}?"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgid "Details"
+msgstr "Details"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgid "Restore"
+msgstr "Restore"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions-Content-Removed.SummaryAdmin.cshtml
+msgid "Are you sure you want to restore this content item?"
+msgstr "Are you sure you want to restore this content item?"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailEventActions.cshtml
+msgid "Details"
+msgstr "Details"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-Category.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-Category.cshtml
+msgid "Category:"
+msgstr "Category:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-Date-From.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-Date-From.cshtml
+msgid "From:"
+msgstr "From:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-Date-To.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-Date-To.cshtml
+msgid "To:"
+msgstr "To:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-User.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-Common-User.cshtml
+msgid "User:"
+msgstr "User:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentItem.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentItem.cshtml
+msgid "Content Item:"
+msgstr "Content Item:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentType.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentType.cshtml
+msgid "Content type:"
+msgstr "Content type:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentType.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentType.cshtml
+msgid "Applies to content type events only, not to content item events."
+msgstr "Applies to content type events only, not to content item events."
+
+#: ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentType.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/AuditTrailFilter-ContentType.cshtml
+msgid "?"
+msgstr "?"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "There are no audit trail events to display."
+msgstr "There are no audit trail events to display."
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Category"
+msgstr "Category"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Event"
+msgstr "Event"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "User"
+msgstr "User"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Client IP"
+msgstr "Client IP"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Timestamp"
+msgstr "Timestamp"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Summary"
+msgstr "Summary"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Comment"
+msgstr "Comment"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.cshtml
+msgid "Show more events"
+msgstr "Show more events"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.Link.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.AuditTrail.Link.cshtml
+msgid "View Audit Trail"
+msgstr "View Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.Contents.AuditTrail.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.Contents.AuditTrail.SummaryAdmin.cshtml
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Parts.Contents.AuditTrail.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Parts.Contents.AuditTrail.SummaryAdmin.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgid "Audit Trail Event"
+msgstr "Audit Trail Event"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgid "Event:"
+msgstr "Event:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgid "Category:"
+msgstr "Category:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgid "Timestamp:"
+msgstr "Timestamp:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgid "Username:"
+msgstr "Username:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Detail.cshtml
+msgid "Client IP address:"
+msgstr "Client IP address:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Date (newest first)"
+msgstr "Date (newest first)"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Category (alphabetical)"
+msgstr "Category (alphabetical)"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Event name (alphabetical)"
+msgstr "Event name (alphabetical)"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Sort by:"
+msgstr "Sort by:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "There are no records to display."
+msgstr "There are no records to display."
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Category"
+msgstr "Category"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Event"
+msgstr "Event"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "User"
+msgstr "User"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Client IP"
+msgstr "Client IP"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Timestamp"
+msgstr "Timestamp"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Summary"
+msgstr "Summary"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Admin/Index.cshtml
+msgid "Comment"
+msgstr "Comment"
+
+#: ~/Modules/Orchard.AuditTrail/Views/Content/Detail.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/Content/Detail.cshtml
+msgid "{0} - {1} (version {2})"
+msgstr "{0} - {1} (version {2})"
+
+#: ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgid "Show audit trail link"
+msgstr "Show audit trail link"
+
+#: ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgid "Renders a link to the audit trail of the content item."
+msgstr "Renders a link to the audit trail of the content item."
+
+#: ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgid "Show inline audit trail"
+msgstr "Show inline audit trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgid "Renders an inline view of the audit trail of the content item."
+msgstr "Renders an inline view of the audit trail of the content item."
+
+#: ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgid "Show comment input"
+msgstr "Show comment input"
+
+#: ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/DefinitionTemplates/AuditTrailPartSettings.cshtml
+msgid "Renders a text field to allow the user to enter a comment about the changes she made."
+msgstr "Renders a text field to allow the user to enter a comment about the changes she made."
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrail.Comment.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrail.Comment.cshtml
+msgid "Comment"
+msgstr "Comment"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrail.Comment.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrail.Comment.cshtml
+msgid "Optionally provide a comment about this change for the audit trail."
+msgstr "Optionally provide a comment about this change for the audit trail."
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "Events to record in the audit trail"
+msgstr "Events to record in the audit trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "Event"
+msgstr "Event"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "Description"
+msgstr "Description"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "Enabled"
+msgstr "Enabled"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "Client IP address logging"
+msgstr "Client IP address logging"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "Enable client IP address logging"
+msgstr "Enable client IP address logging"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailSettings.cshtml
+msgid "When enabled, the client IP address will be recorded in audit trail event records."
+msgstr "When enabled, the client IP address will be recorded in audit trail event records."
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "Trimming settings"
+msgstr "Trimming settings"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "Retention period"
+msgstr "Retention period"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "The number of days of audit log data to retain."
+msgstr "The number of days of audit log data to retain."
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "Minimum run interval"
+msgstr "Minimum run interval"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "The minimum number of hours to wait between trimming process runs. Enter 0 for continuous trimming."
+msgstr "The minimum number of hours to wait between trimming process runs. Enter 0 for continuous trimming."
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "Last run"
+msgstr "Last run"
+
+#: ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/EditorTemplates/Parts.AuditTrailTrimmingSettings.cshtml
+msgid "Indicates the last time the audit trail trimming process was run."
+msgstr "Indicates the last time the audit trail trimming process was run."
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Audit Trail"
+msgstr "Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Are you sure you want to restore the selected items?"
+msgstr "Are you sure you want to restore the selected items?"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+
+#. "Restore"
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Restore"
+msgstr "Restore"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "WARNING: This will PERMANENTLY delete the selected content items, including related content part records, never to be seen again. Are you sure you want to do this?"
+msgstr "WARNING: This will PERMANENTLY delete the selected content items, including related content part records, never to be seen again. Are you sure you want to do this?"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Remove Permanently ☠"
+msgstr "Remove Permanently ☠"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Execute"
+msgstr "Execute"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "There are no records to display."
+msgstr "There are no records to display."
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Content Item"
+msgstr "Content Item"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Removed"
+msgstr "Removed"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "-"
+msgstr "-"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "View"
+msgstr "View"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+
+#. " | "
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "View Audit Trail"
+msgstr "View Audit Trail"
+
+#: ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgctxt ~/Modules/Orchard.AuditTrail/Views/RecycleBin/Index.cshtml
+msgid "Are you sure you want to restore this item?"
+msgstr "Are you sure you want to restore this item?"
+

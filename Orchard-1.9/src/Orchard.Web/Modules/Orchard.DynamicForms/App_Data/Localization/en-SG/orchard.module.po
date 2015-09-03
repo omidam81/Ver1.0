@@ -1,0 +1,989 @@
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Custom Forms"
+msgstr "Custom Forms"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "http://orchardcustomforms.codeplex.com"
+msgstr "http://orchardcustomforms.codeplex.com"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Description"
+#. "Orchard.DynamicForms.Description"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Create custom forms like contact forms using layouts."
+msgstr "Create custom forms like contact forms using layouts."
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Name"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Dynamic Forms"
+msgstr "Dynamic Forms"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Category"
+#. "Orchard.DynamicForms.AntiSpam.Category"
+#. "Orchard.DynamicForms.Taxonomies.Category"
+#. "Orchard.DynamicForms.Projections.Category"
+#. "Orchard.DynamicForms.ImportExport.Category"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Forms"
+msgstr "Forms"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.AntiSpam.Name"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Anti-Spam Elements"
+msgstr "Anti-Spam Elements"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.AntiSpam.Description"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Provides anti-spam elements to protect your content from malicious submissions."
+msgstr "Provides anti-spam elements to protect your content from malicious submissions."
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Taxonomies.Name"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Taxonomy Element"
+msgstr "Taxonomy Element"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Taxonomies.Description"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Adds a Taxonomy form element to the sytem."
+msgstr "Adds a Taxonomy form element to the sytem."
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Projections.Name"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Query Element"
+msgstr "Query Element"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Projections.Description"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Adds a Query form element to the sytem."
+msgstr "Adds a Query form element to the sytem."
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.ImportExport.Name"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Dynamic Forms Import Export"
+msgstr "Dynamic Forms Import Export"
+
+#: ~/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.ImportExport.Description"
+msgctxt ~/Modules/Orchard.DynamicForms/Module.txt
+msgid "Enables the import and export of form submissions."
+msgstr "Enables the import and export of form submissions."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Custom Forms"
+msgstr "Custom Forms"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "http://orchardcustomforms.codeplex.com"
+msgstr "http://orchardcustomforms.codeplex.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Description"
+#. "Orchard.DynamicForms.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Create custom forms like contact forms using layouts."
+msgstr "Create custom forms like contact forms using layouts."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Dynamic Forms"
+msgstr "Dynamic Forms"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Category"
+#. "Orchard.DynamicForms.AntiSpam.Category"
+#. "Orchard.DynamicForms.Taxonomies.Category"
+#. "Orchard.DynamicForms.Projections.Category"
+#. "Orchard.DynamicForms.ImportExport.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Forms"
+msgstr "Forms"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.AntiSpam.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Anti-Spam Elements"
+msgstr "Anti-Spam Elements"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.AntiSpam.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Provides anti-spam elements to protect your content from malicious submissions."
+msgstr "Provides anti-spam elements to protect your content from malicious submissions."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Taxonomies.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Taxonomy Element"
+msgstr "Taxonomy Element"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Taxonomies.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Adds a Taxonomy form element to the sytem."
+msgstr "Adds a Taxonomy form element to the sytem."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Projections.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Query Element"
+msgstr "Query Element"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.Projections.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Adds a Query form element to the sytem."
+msgstr "Adds a Query form element to the sytem."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.ImportExport.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Dynamic Forms Import Export"
+msgstr "Dynamic Forms Import Export"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+#. "Orchard.DynamicForms.ImportExport.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DynamicForms/Module.txt
+msgid "Enables the import and export of form submissions."
+msgstr "Enables the import and export of form submissions."
+
+#: Orchard.DynamicForms.AdminMenu
+msgctxt Orchard.DynamicForms.AdminMenu
+msgid "Form Submissions"
+msgstr "Form Submissions"
+
+#: Orchard.DynamicForms.AdminMenu
+msgctxt Orchard.DynamicForms.AdminMenu
+msgid "Manage Forms"
+msgstr "Manage Forms"
+
+#: Orchard.DynamicForms.Activities.AddModelErrorActivity
+msgctxt Orchard.DynamicForms.Activities.AddModelErrorActivity
+msgid "Forms"
+msgstr "Forms"
+
+#: Orchard.DynamicForms.Activities.AddModelErrorActivity
+msgctxt Orchard.DynamicForms.Activities.AddModelErrorActivity
+msgid "Add a model validation error"
+msgstr "Add a model validation error"
+
+#: Orchard.DynamicForms.Activities.AddModelErrorActivity
+
+#. "Done"
+msgctxt Orchard.DynamicForms.Activities.AddModelErrorActivity
+msgid "Done"
+msgstr "Done"
+
+#: Orchard.DynamicForms.Activities.DynamicFormActivity
+
+#. "Done"
+msgctxt Orchard.DynamicForms.Activities.DynamicFormActivity
+msgid "Done"
+msgstr "Done"
+
+#: Orchard.DynamicForms.Activities.DynamicFormActivity
+msgctxt Orchard.DynamicForms.Activities.DynamicFormActivity
+msgid "Forms"
+msgstr "Forms"
+
+#: Orchard.DynamicForms.Activities.DynamicFormSubmittedActivity
+msgctxt Orchard.DynamicForms.Activities.DynamicFormSubmittedActivity
+msgid "A dynamic form is submitted."
+msgstr "A dynamic form is submitted."
+
+#: Orchard.DynamicForms.Activities.DynamicFormValidatingActivity
+msgctxt Orchard.DynamicForms.Activities.DynamicFormValidatingActivity
+msgid "A dynamic form is being validated."
+msgstr "A dynamic form is being validated."
+
+#: Orchard.DynamicForms.Bindings.BooleanFieldBindings
+msgctxt Orchard.DynamicForms.Bindings.BooleanFieldBindings
+msgid "No"
+msgstr "No"
+
+#: Orchard.DynamicForms.Controllers.FormController
+msgctxt Orchard.DynamicForms.Controllers.FormController
+msgid "The specified form \"{0}\" could not be found."
+msgstr "The specified form \"{0}\" could not be found."
+
+#: Orchard.DynamicForms.Controllers.SubmissionAdminController
+msgctxt Orchard.DynamicForms.Controllers.SubmissionAdminController
+msgid "That submission has been deleted."
+msgstr "That submission has been deleted."
+
+#: Orchard.DynamicForms.Controllers.SubmissionAdminController
+msgctxt Orchard.DynamicForms.Controllers.SubmissionAdminController
+msgid "Please select the submissions to delete."
+msgstr "Please select the submissions to delete."
+
+#: Orchard.DynamicForms.Controllers.SubmissionAdminController
+msgctxt Orchard.DynamicForms.Controllers.SubmissionAdminController
+msgid "{0} submissions have been deleted."
+msgstr "{0} submissions have been deleted."
+
+#: Orchard.DynamicForms.Drivers.ButtonElementDriver
+msgctxt Orchard.DynamicForms.Drivers.ButtonElementDriver
+msgid "The button text."
+msgstr "The button text."
+
+#: Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgctxt Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgid "The value of this checkbox."
+msgstr "The value of this checkbox."
+
+#: Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgctxt Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgid "Tick this checkbox to make this check box element mandatory."
+msgstr "Tick this checkbox to make this check box element mandatory."
+
+#: Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgctxt Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgctxt Orchard.DynamicForms.Drivers.CheckboxElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.CommonFormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.CommonFormElementDriver
+msgid "The name of this form field."
+msgstr "The name of this form field."
+
+#: Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgid "The value of this email field."
+msgstr "The value of this email field."
+
+#: Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgid "Tick this checkbox to make this email field a required field."
+msgstr "Tick this checkbox to make this email field a required field."
+
+#: Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgid "The maximum length allowed."
+msgstr "The maximum length allowed."
+
+#: Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgid "The name of another field whose value must match with this email field."
+msgstr "The name of another field whose value must match with this email field."
+
+#: Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EmailFieldElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Enter one option per line. To differentiate between an option's text and value, separate the two by a colon. For example: &quot;Option 1:1&quot;"
+msgstr "Enter one option per line. To differentiate between an option's text and value, separate the two by a colon. For example: &quot;Option 1:1&quot;"
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "The control to render when presenting the list of options."
+msgstr "The control to render when presenting the list of options."
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Select List"
+msgstr "Select List"
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Multi Select List"
+msgstr "Multi Select List"
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Radio List"
+msgstr "Radio List"
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Check List"
+msgstr "Check List"
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Tick this checkbox to make at least one option required."
+msgstr "Tick this checkbox to make at least one option required."
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgctxt Orchard.DynamicForms.Drivers.EnumerationElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "The name of the form."
+msgstr "The name of the form."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "The action of the form. Leave blank to have the form submitted to the default form controller."
+msgstr "The action of the form. Leave blank to have the form submitted to the default form controller."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "The method of the form."
+msgstr "The method of the form."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "Enables client validation."
+msgstr "Enables client validation."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "Stores the submitted form into the database."
+msgstr "Stores the submitted form into the database."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "Check this to create a content item based using the submitted values. You will have to select a Content Type here and bind the form fields to the various parts and fields of the selected Content Type."
+msgstr "Check this to create a content item based using the submitted values. You will have to select a Content Type here and bind the form fields to the various parts and fields of the selected Content Type."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "The Content Type to use when storing the submitted form values as a content item. Note that if you change the content type, you will have to update the form field bindings."
+msgstr "The Content Type to use when storing the submitted form values as a content item. Note that if you change the content type, you will have to update the form field bindings."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "Save the created content item as a draft."
+msgstr "Save the created content item as a draft."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "Publish the created content item."
+msgstr "Publish the created content item."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "The message to show after the form has been submitted. Leave blank if you don't want to show a message."
+msgstr "The message to show after the form has been submitted. Leave blank if you don't want to show a message."
+
+#: Orchard.DynamicForms.Drivers.FormElementDriver
+msgctxt Orchard.DynamicForms.Drivers.FormElementDriver
+msgid "The URL to redirect to after the form has been submitted. Leave blank to stay on the same page. tip: you can use a Workflow to control what happens when this form is submitted."
+msgstr "The URL to redirect to after the form has been submitted. Leave blank to stay on the same page. tip: you can use a Workflow to control what happens when this form is submitted."
+
+#: Orchard.DynamicForms.Drivers.HiddenFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.HiddenFieldElementDriver
+msgid "The value of this hidden field."
+msgstr "The value of this hidden field."
+
+#: Orchard.DynamicForms.Drivers.LabelElementDriver
+msgctxt Orchard.DynamicForms.Drivers.LabelElementDriver
+msgid "The label text."
+msgstr "The label text."
+
+#: Orchard.DynamicForms.Drivers.LabelElementDriver
+msgctxt Orchard.DynamicForms.Drivers.LabelElementDriver
+msgid "The name of the field this label is for."
+msgstr "The name of the field this label is for."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "Tick this checkbox to make this password field a required field."
+msgstr "Tick this checkbox to make this password field a required field."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "The minimum length required."
+msgstr "The minimum length required."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "The maximum length allowed."
+msgstr "The maximum length allowed."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "The regular expression the password must match with."
+msgstr "The regular expression the password must match with."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "The name of another field whose value must match with this password field."
+msgstr "The name of another field whose value must match with this password field."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.PasswordFieldElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Optionally specify a label for the first option. If no label is specified, no empty option will be rendered."
+msgstr "Optionally specify a label for the first option. If no label is specified, no empty option will be rendered."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Select the query to use as a source for the list."
+msgstr "Select the query to use as a source for the list."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Specify the expression to get the display text of each option."
+msgstr "Specify the expression to get the display text of each option."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Specify the expression to get the value of each option."
+msgstr "Specify the expression to get the value of each option."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "The control to render when presenting the list of options."
+msgstr "The control to render when presenting the list of options."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Select List"
+msgstr "Select List"
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Multi Select List"
+msgstr "Multi Select List"
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Radio List"
+msgstr "Radio List"
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Check List"
+msgstr "Check List"
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Tick this checkbox to make at least one option required."
+msgstr "Tick this checkbox to make at least one option required."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.QueryElementDriver
+msgctxt Orchard.DynamicForms.Drivers.QueryElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.RadioButtonElementDriver
+msgctxt Orchard.DynamicForms.Drivers.RadioButtonElementDriver
+msgid "The label for this radio button."
+msgstr "The label for this radio button."
+
+#: Orchard.DynamicForms.Drivers.RadioButtonElementDriver
+msgctxt Orchard.DynamicForms.Drivers.RadioButtonElementDriver
+msgid "The value of this radio button."
+msgstr "The value of this radio button."
+
+#: Orchard.DynamicForms.Drivers.ReCaptchaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.ReCaptchaElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.ReCaptchaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.ReCaptchaElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current anti-spam filter. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current anti-spam filter. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Optionally specify a label for the first option. If no label is specified, no empty option will be rendered."
+msgstr "Optionally specify a label for the first option. If no label is specified, no empty option will be rendered."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Select the taxonomy to use as a source for the list."
+msgstr "Select the taxonomy to use as a source for the list."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "The sort order to use when presenting the term values."
+msgstr "The sort order to use when presenting the term values."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Specify the expression to get the display text of each option."
+msgstr "Specify the expression to get the display text of each option."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Specify the expression to get the value of each option."
+msgstr "Specify the expression to get the value of each option."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "The control to render when presenting the list of options."
+msgstr "The control to render when presenting the list of options."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "None"
+msgstr "None"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Ascending"
+msgstr "Ascending"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Descending"
+msgstr "Descending"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Select List"
+msgstr "Select List"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Multi Select List"
+msgstr "Multi Select List"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Radio List"
+msgstr "Radio List"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Check List"
+msgstr "Check List"
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Tick this checkbox to make at least one option required."
+msgstr "Tick this checkbox to make at least one option required."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TaxonomyElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "The value of this text area."
+msgstr "The value of this text area."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "The number of rows for this text area."
+msgstr "The number of rows for this text area."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "The number of columns for this text area."
+msgstr "The number of columns for this text area."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "Check to make this text area a required field."
+msgstr "Check to make this text area a required field."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "The minimum length required."
+msgstr "The minimum length required."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "The maximum length allowed."
+msgstr "The maximum length allowed."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextAreaElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgid "The value of this text field."
+msgstr "The value of this text field."
+
+#: Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgid "Check to make this text field a required field."
+msgstr "Check to make this text field a required field."
+
+#: Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgid "The minimum length required."
+msgstr "The minimum length required."
+
+#: Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgid "The maximum length allowed."
+msgstr "The maximum length allowed."
+
+#: Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgid "Optionally provide a custom validation message."
+msgstr "Optionally provide a custom validation message."
+
+#: Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgctxt Orchard.DynamicForms.Drivers.TextFieldElementDriver
+msgid "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+msgstr "Autogenerate a validation message when a validation error occurs for the current field. Alternatively, to control the placement of the validation message you can use the ValidationMessage element instead."
+
+#: Orchard.DynamicForms.Drivers.ValidationMessageElementDriver
+msgctxt Orchard.DynamicForms.Drivers.ValidationMessageElementDriver
+msgid "The name of the field this validation message is for."
+msgstr "The name of the field this validation message is for."
+
+#: Orchard.DynamicForms.Elements.FormCategoryProvider
+msgctxt Orchard.DynamicForms.Elements.FormCategoryProvider
+msgid "Forms"
+msgstr "Forms"
+
+#: Orchard.DynamicForms.Elements.FormCategoryProvider
+msgctxt Orchard.DynamicForms.Elements.FormCategoryProvider
+msgid "Contains elements that help building forms."
+msgstr "Contains elements that help building forms."
+
+#: Orchard.DynamicForms.Forms.AddModelErrorForm
+msgctxt Orchard.DynamicForms.Forms.AddModelErrorForm
+msgid "The key / form field name for which to add a model validation error."
+msgstr "The key / form field name for which to add a model validation error."
+
+#: Orchard.DynamicForms.Forms.AddModelErrorForm
+msgctxt Orchard.DynamicForms.Forms.AddModelErrorForm
+msgid "The model validation error message to add."
+msgstr "The model validation error message to add."
+
+#: Orchard.DynamicForms.Forms.AutoLabelForm
+msgctxt Orchard.DynamicForms.Forms.AutoLabelForm
+msgid "Check this to show a label for this text field."
+msgstr "Check this to show a label for this text field."
+
+#: Orchard.DynamicForms.Forms.AutoLabelForm
+msgctxt Orchard.DynamicForms.Forms.AutoLabelForm
+msgid "The label text to render."
+msgstr "The label text to render."
+
+#: Orchard.DynamicForms.Forms.DynamicFormValidatingForm
+msgctxt Orchard.DynamicForms.Forms.DynamicFormValidatingForm
+msgid "Script"
+msgstr "Script"
+
+#: Orchard.DynamicForms.Forms.DynamicFormValidatingForm
+msgctxt Orchard.DynamicForms.Forms.DynamicFormValidatingForm
+msgid "The script to validate the submitted form. You can use ContentItem, Services, WorkContext, Workflow and T(). Call AddModelError(string key, LocalizedString errorMessage) to add modelstate errors."
+msgstr "The script to validate the submitted form. You can use ContentItem, Services, WorkContext, Workflow and T(). Call AddModelError(string key, LocalizedString errorMessage) to add modelstate errors."
+
+#: Orchard.DynamicForms.Forms.SelectDynamicForms
+msgctxt Orchard.DynamicForms.Forms.SelectDynamicForms
+msgid "Dynamic Forms"
+msgstr "Dynamic Forms"
+
+#: Orchard.DynamicForms.Forms.SelectDynamicForms
+msgctxt Orchard.DynamicForms.Forms.SelectDynamicForms
+msgid "Enter a comma separated list of dynamic form names. Leave empty to handle all forms."
+msgstr "Enter a comma separated list of dynamic form names. Leave empty to handle all forms."
+
+#: Orchard.DynamicForms.Tokens.FormTokens
+msgctxt Orchard.DynamicForms.Tokens.FormTokens
+msgid "Dynamic Form submission"
+msgstr "Dynamic Form submission"
+
+#: Orchard.DynamicForms.Tokens.FormTokens
+msgctxt Orchard.DynamicForms.Tokens.FormTokens
+msgid "Dynamic Form Submission tokens for use in workflows handling the Dynamic Form Submitted event."
+msgstr "Dynamic Form Submission tokens for use in workflows handling the Dynamic Form Submitted event."
+
+#: Orchard.DynamicForms.Tokens.FormTokens
+msgctxt Orchard.DynamicForms.Tokens.FormTokens
+msgid "Field:<field name>"
+msgstr "Field:<field name>"
+
+#: Orchard.DynamicForms.Tokens.FormTokens
+msgctxt Orchard.DynamicForms.Tokens.FormTokens
+msgid "The posted field value to access."
+msgstr "The posted field value to access."
+
+#: Orchard.DynamicForms.Tokens.FormTokens
+msgctxt Orchard.DynamicForms.Tokens.FormTokens
+msgid "IsValid:<field name>"
+msgstr "IsValid:<field name>"
+
+#: Orchard.DynamicForms.Tokens.FormTokens
+msgctxt Orchard.DynamicForms.Tokens.FormTokens
+msgid "The posted field validation status."
+msgstr "The posted field validation status."
+
+#: Orchard.DynamicForms.ValidationRules.StringLength
+msgctxt Orchard.DynamicForms.ValidationRules.StringLength
+msgid "{0} must be between {1} and {2} characters long."
+msgstr "{0} must be between {1} and {2} characters long."
+
+#: Orchard.DynamicForms.ValidationRules.StringLength
+msgctxt Orchard.DynamicForms.ValidationRules.StringLength
+msgid "{0} must be at least {1} characters long."
+msgstr "{0} must be at least {1} characters long."
+
+#: Orchard.DynamicForms.Validators.ReCaptchaValidator
+msgctxt Orchard.DynamicForms.Validators.ReCaptchaValidator
+msgid "There was an error while validating the Captcha image."
+msgstr "There was an error while validating the Captcha image."
+
+#: ~/Modules/Orchard.DynamicForms/Views/Activity-DynamicFormSubmitted.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Activity-DynamicFormSubmitted.cshtml
+msgid "Any Dynamic Form Submitted"
+msgstr "Any Dynamic Form Submitted"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Activity-DynamicFormSubmitted.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Activity-DynamicFormSubmitted.cshtml
+msgid "{0} Form Submitted"
+msgstr "{0} Form Submitted"
+
+#: ~/Modules/Orchard.DynamicForms/Views/LayoutEditor.Template.Form.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/LayoutEditor.Template.Form.cshtml
+msgid "Delete form (Del)"
+msgstr "Delete form (Del)"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgid "Dynamic Forms"
+msgstr "Dynamic Forms"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgid "Form"
+msgstr "Form"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+
+#. "Submissions"
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgid "Submissions"
+msgstr "Submissions"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Admin/Index.cshtml
+msgid "There are no submissions yet."
+msgstr "There are no submissions yet."
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Element Blueprints"
+msgstr "Element Blueprints"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Create"
+msgstr "Create"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Choose action..."
+msgstr "Choose action..."
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Display Name"
+msgstr "Display Name"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Base"
+msgstr "Base"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/BlueprintAdmin/Index.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/IpAddressField.Design.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/IpAddressField.Design.cshtml
+msgid "IP Address"
+msgstr "IP Address"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/ReCaptcha.Design.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/ReCaptcha.Design.cshtml
+msgid "ReCaptcha"
+msgstr "ReCaptcha"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/UserNameField.Design.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/UserNameField.Design.cshtml
+msgid "User Name"
+msgstr "User Name"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationMessage.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationMessage.cshtml
+msgid "ValidationMessage (target not specified)"
+msgstr "ValidationMessage (target not specified)"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationMessage.Design.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationMessage.Design.cshtml
+msgid "Validation message (target not specified)"
+msgstr "Validation message (target not specified)"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationMessage.Design.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationMessage.Design.cshtml
+msgid "Validation message for field <em>{0}</em>"
+msgstr "Validation message for field <em>{0}</em>"
+
+#: ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationSummary.Design.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/Elements/ValidationSummary.Design.cshtml
+msgid "Validation summary"
+msgstr "Validation summary"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgid "Submission for {0}"
+msgstr "Submission for {0}"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgid "Field"
+msgstr "Field"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgid "Value"
+msgstr "Value"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgid "ID"
+msgstr "ID"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Details.cshtml
+msgid "Created"
+msgstr "Created"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Submissions for {0}"
+msgstr "Submissions for {0}"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Actions:"
+msgstr "Actions:"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Choose action..."
+msgstr "Choose action..."
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Apply"
+msgstr "Apply"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Details"
+msgstr "Details"
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgctxt ~/Modules/Orchard.DynamicForms/Views/SubmissionAdmin/Index.cshtml
+msgid "Remove"
+msgstr "Remove"
+

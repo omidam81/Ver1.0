@@ -1,0 +1,384 @@
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Name"
+#. "Orchard.Search.Name"
+#. "Orchard.Search.Category"
+#. "Orchard.Search.Content.Category"
+#. "Orchard.Search.ContentPicker.Category"
+#. "Orchard.Search.MediaLibrary.Category"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "The search module enables the management of the search index and provides the front-end searching user interface."
+msgstr "The search module enables the management of the search index and provides the front-end searching user interface."
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.Description"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Standard interface to Orchard's built-in search."
+msgstr "Standard interface to Orchard's built-in search."
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.Content.Name"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Admin Content Search"
+msgstr "Admin Content Search"
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.Content.Description"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Provides a Content Search tab in Admin."
+msgstr "Provides a Content Search tab in Admin."
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.ContentPicker.Name"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Content Picker Search"
+msgstr "Content Picker Search"
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.ContentPicker.Description"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Provides a search tab in Content Picker."
+msgstr "Provides a search tab in Content Picker."
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.MediaLibrary.Name"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Media Library Search"
+msgstr "Media Library Search"
+
+#: ~/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.MediaLibrary.Description"
+msgctxt ~/Modules/Orchard.Search/Module.txt
+msgid "Provides search menu item in the Media Library explorer."
+msgstr "Provides search menu item in the Media Library explorer."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Name"
+#. "Orchard.Search.Name"
+#. "Orchard.Search.Category"
+#. "Orchard.Search.Content.Category"
+#. "Orchard.Search.ContentPicker.Category"
+#. "Orchard.Search.MediaLibrary.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Search"
+msgstr "Search"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "The search module enables the management of the search index and provides the front-end searching user interface."
+msgstr "The search module enables the management of the search index and provides the front-end searching user interface."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Standard interface to Orchard's built-in search."
+msgstr "Standard interface to Orchard's built-in search."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.Content.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Admin Content Search"
+msgstr "Admin Content Search"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.Content.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Provides a Content Search tab in Admin."
+msgstr "Provides a Content Search tab in Admin."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.ContentPicker.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Content Picker Search"
+msgstr "Content Picker Search"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.ContentPicker.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Provides a search tab in Content Picker."
+msgstr "Provides a search tab in Content Picker."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.MediaLibrary.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Media Library Search"
+msgstr "Media Library Search"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+#. "Orchard.Search.MediaLibrary.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Search/Module.txt
+msgid "Provides search menu item in the Media Library explorer."
+msgstr "Provides search menu item in the Media Library explorer."
+
+#: Orchard.Search.ContentAdminMenu
+msgctxt Orchard.Search.ContentAdminMenu
+msgid "Content"
+msgstr "Content"
+
+#: Orchard.Search.ContentAdminMenu
+msgctxt Orchard.Search.ContentAdminMenu
+msgid "Search"
+msgstr "Search"
+
+#: Orchard.Search.ContentPickerNavigationProvider
+msgctxt Orchard.Search.ContentPickerNavigationProvider
+msgid "Content Picker"
+msgstr "Content Picker"
+
+#: Orchard.Search.ContentPickerNavigationProvider
+msgctxt Orchard.Search.ContentPickerNavigationProvider
+msgid "Search Content"
+msgstr "Search Content"
+
+#: Orchard.Search.Commands.SearchCommands
+msgctxt Orchard.Search.Commands.SearchCommands
+msgid "Invalid index name."
+msgstr "Invalid index name."
+
+#: Orchard.Search.Controllers.AdminController
+
+#. "Invalid search query: {0}"
+msgctxt Orchard.Search.Controllers.AdminController
+msgid "Invalid search query: {0}"
+msgstr "Invalid search query: {0}"
+
+#: Orchard.Search.Controllers.ContentPickerController
+
+#. "Invalid search query: {0}"
+msgctxt Orchard.Search.Controllers.ContentPickerController
+msgid "Invalid search query: {0}"
+msgstr "Invalid search query: {0}"
+
+#: Orchard.Search.Controllers.SearchController
+msgctxt Orchard.Search.Controllers.SearchController
+msgid "Please define a default search index"
+msgstr "Please define a default search index"
+
+#: Orchard.Search.Controllers.SearchController
+
+#. "Invalid search query: {0}"
+msgctxt Orchard.Search.Controllers.SearchController
+msgid "Invalid search query: {0}"
+msgstr "Invalid search query: {0}"
+
+#: Orchard.Search.Handlers.AdminSearchSettingsPartHandler
+msgctxt Orchard.Search.Handlers.AdminSearchSettingsPartHandler
+msgid "Admin Search"
+msgstr "Admin Search"
+
+#: Orchard.Search.Handlers.SearchSettingsPartHandler
+msgctxt Orchard.Search.Handlers.SearchSettingsPartHandler
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Views/SearchContentTab.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/SearchContentTab.cshtml
+msgid "Search Content"
+msgstr "Search Content"
+
+#: ~/Modules/Orchard.Search/Views/SearchContentTab.cshtml
+
+#. "Search"
+msgctxt ~/Modules/Orchard.Search/Views/SearchContentTab.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/Admin/Index.cshtml
+msgid "Search Content"
+msgstr "Search Content"
+
+#: ~/Modules/Orchard.Search/Views/Admin/Index.cshtml
+
+#. "Search"
+msgctxt ~/Modules/Orchard.Search/Views/Admin/Index.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/Admin/Index.cshtml
+msgid "There are no results"
+msgstr "There are no results"
+
+#: ~/Modules/Orchard.Search/Views/ContentPicker/NoIndex.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/ContentPicker/NoIndex.cshtml
+msgid "You need to enable a search index module."
+msgstr "You need to enable a search index module."
+
+#: ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgid "Show Search tab"
+msgstr "Show Search tab"
+
+#: ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgid "Uncheck to hide the Search tab from the picker window."
+msgstr "Uncheck to hide the Search tab from the picker window."
+
+#: ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgid "Search index"
+msgstr "Search index"
+
+#: ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgid "The index to use when displaying this tab."
+msgstr "The index to use when displaying this tab."
+
+#: ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgid "Content Types and Parts"
+msgstr "Content Types and Parts"
+
+#: ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/DefinitionTemplates/ContentPickerSearchFieldSettings.cshtml
+msgid "A comma separated value of all the content types or content parts to display."
+msgstr "A comma separated value of all the content types or content parts to display."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Admin Search"
+msgstr "Admin Search"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Indexes"
+msgstr "Indexes"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Select which index to use in search queries."
+msgstr "Select which index to use in search queries."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Fields"
+msgstr "Fields"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Check any property which should be used for search queries."
+msgstr "Check any property which should be used for search queries."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "There is currently no index to search from. Please update your index, and check if some indexable content exists."
+msgstr "There is currently no index to search from. Please update your index, and check if some indexable content exists."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "Narrow search to current culture only"
+msgstr "Narrow search to current culture only"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/AdminSearch.SiteSettings.cshtml
+msgid "If checked, search results will only include content items localized in the current culture of the request."
+msgstr "If checked, search results will only include content items localized in the current culture of the request."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Indexes"
+msgstr "Indexes"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Select which index to use in search queries."
+msgstr "Select which index to use in search queries."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Fields"
+msgstr "Fields"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Check any property which should be used for search queries."
+msgstr "Check any property which should be used for search queries."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "There is currently no index to search from. Please update your index, and check if some indexable content exists."
+msgstr "There is currently no index to search from. Please update your index, and check if some indexable content exists."
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Localization"
+msgstr "Localization"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "Narrow search to current culture only"
+msgstr "Narrow search to current culture only"
+
+#: ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/EditorTemplates/Parts/Search.SiteSettings.cshtml
+msgid "If checked, search results will only include content items localized in the current culture of the request."
+msgstr "If checked, search results will only include content items localized in the current culture of the request."
+
+#: ~/Modules/Orchard.Search/Views/Parts/Search.SearchForm.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/Parts/Search.SearchForm.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgid "Search"
+msgstr "Search"
+
+#: ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+
+#. "There is <em>one</em> result"
+msgctxt ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgid "There is <em>one</em> result"
+msgstr "There is <em>one</em> result"
+
+#: ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgid "<em>zero</em> results"
+msgstr "<em>zero</em> results"
+
+#: ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgctxt ~/Modules/Orchard.Search/Views/Search/Index.cshtml
+msgid "<em>{1} - {2}</em> of <em>{0}</em> results"
+msgstr "<em>{1} - {2}</em> of <em>{0}</em> results"
+

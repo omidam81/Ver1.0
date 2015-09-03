@@ -1,0 +1,479 @@
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Name"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "RM.QuickLogOn.OAuth"
+msgstr "RM.QuickLogOn.OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Author"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Maxim Rich"
+msgstr "Maxim Rich"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Website"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "http://www.richmaxim.com"
+msgstr "http://www.richmaxim.com"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Description"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Set of Quick LogOn OAuth providers. Google, Windows LiveID, LinkedIn and Facebook OAuth are available at this time."
+msgstr "Set of Quick LogOn OAuth providers. Google, Windows LiveID, LinkedIn and Facebook OAuth are available at this time."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.Twitter.Name"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with Twitter OAuth"
+msgstr "Quick LogOn with Twitter OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.Twitter.Category"
+#. "RM.QuickLogOn.OAuth.Facebook.Category"
+#. "RM.QuickLogOn.OAuth.LiveID.Category"
+#. "RM.QuickLogOn.OAuth.LinkedIn.Category"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Security"
+msgstr "Security"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.Facebook.Name"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with Facebook OAuth"
+msgstr "Quick LogOn with Facebook OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.LiveID.Name"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with Windows LiveID OAuth"
+msgstr "Quick LogOn with Windows LiveID OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.LinkedIn.Name"
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with LinkedIn OAuth"
+msgstr "Quick LogOn with LinkedIn OAuth"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "RM.QuickLogOn.OAuth"
+msgstr "RM.QuickLogOn.OAuth"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Maxim Rich"
+msgstr "Maxim Rich"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "http://www.richmaxim.com"
+msgstr "http://www.richmaxim.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Set of Quick LogOn OAuth providers. Google, Windows LiveID, LinkedIn and Facebook OAuth are available at this time."
+msgstr "Set of Quick LogOn OAuth providers. Google, Windows LiveID, LinkedIn and Facebook OAuth are available at this time."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.Twitter.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with Twitter OAuth"
+msgstr "Quick LogOn with Twitter OAuth"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.Twitter.Category"
+#. "RM.QuickLogOn.OAuth.Facebook.Category"
+#. "RM.QuickLogOn.OAuth.LiveID.Category"
+#. "RM.QuickLogOn.OAuth.LinkedIn.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Security"
+msgstr "Security"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.Facebook.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with Facebook OAuth"
+msgstr "Quick LogOn with Facebook OAuth"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.LiveID.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with Windows LiveID OAuth"
+msgstr "Quick LogOn with Windows LiveID OAuth"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+#. "RM.QuickLogOn.OAuth.LinkedIn.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/RM.QuickLogOn.OAuth/Module.txt
+msgid "Quick LogOn with LinkedIn OAuth"
+msgstr "Quick LogOn with LinkedIn OAuth"
+
+#: RM.QuickLogOn.OAuth.Handlers.FacebookSettingsPartHandler
+msgctxt RM.QuickLogOn.OAuth.Handlers.FacebookSettingsPartHandler
+msgid "QuickLogOn"
+msgstr "QuickLogOn"
+
+#: RM.QuickLogOn.OAuth.Handlers.GoogleSettingsPartHandler
+msgctxt RM.QuickLogOn.OAuth.Handlers.GoogleSettingsPartHandler
+msgid "QuickLogOn"
+msgstr "QuickLogOn"
+
+#: RM.QuickLogOn.OAuth.Handlers.LinkedInSettingsPartHandler
+msgctxt RM.QuickLogOn.OAuth.Handlers.LinkedInSettingsPartHandler
+msgid "QuickLogOn"
+msgstr "QuickLogOn"
+
+#: RM.QuickLogOn.OAuth.Handlers.LiveIDSettingsPartHandler
+msgctxt RM.QuickLogOn.OAuth.Handlers.LiveIDSettingsPartHandler
+msgid "QuickLogOn"
+msgstr "QuickLogOn"
+
+#: RM.QuickLogOn.OAuth.Handlers.TwitterSettingsPartHandler
+msgctxt RM.QuickLogOn.OAuth.Handlers.TwitterSettingsPartHandler
+msgid "QuickLogOn"
+msgstr "QuickLogOn"
+
+#: RM.QuickLogOn.OAuth.Providers.FacebookOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.FacebookOAuthProvider
+msgid "Facebook"
+msgstr "Facebook"
+
+#: RM.QuickLogOn.OAuth.Providers.FacebookOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.FacebookOAuthProvider
+msgid "LogOn with Your Facebook account"
+msgstr "LogOn with Your Facebook account"
+
+#: RM.QuickLogOn.OAuth.Providers.GoogleOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.GoogleOAuthProvider
+msgid "Google"
+msgstr "Google"
+
+#: RM.QuickLogOn.OAuth.Providers.GoogleOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.GoogleOAuthProvider
+msgid "LogOn with Your Google account"
+msgstr "LogOn with Your Google account"
+
+#: RM.QuickLogOn.OAuth.Providers.LinkedInOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.LinkedInOAuthProvider
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: RM.QuickLogOn.OAuth.Providers.LinkedInOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.LinkedInOAuthProvider
+msgid "LogOn with Your LinkedIn account"
+msgstr "LogOn with Your LinkedIn account"
+
+#: RM.QuickLogOn.OAuth.Providers.LiveIDOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.LiveIDOAuthProvider
+msgid "LiveID"
+msgstr "LiveID"
+
+#: RM.QuickLogOn.OAuth.Providers.LiveIDOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.LiveIDOAuthProvider
+msgid "LogOn with Your LiveID account"
+msgstr "LogOn with Your LiveID account"
+
+#: RM.QuickLogOn.OAuth.Providers.TwitterOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.TwitterOAuthProvider
+msgid "Twitter"
+msgstr "Twitter"
+
+#: RM.QuickLogOn.OAuth.Providers.TwitterOAuthProvider
+msgctxt RM.QuickLogOn.OAuth.Providers.TwitterOAuthProvider
+msgid "LogOn with Your Twitter account"
+msgstr "LogOn with Your Twitter account"
+
+#: RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgid "invalid code"
+msgstr "invalid code"
+
+#: RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgid "invalid email"
+msgstr "invalid email"
+
+#: RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgid "invalid token"
+msgstr "invalid token"
+
+#: RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.FacebookOAuthService
+msgid "LogOn through Google failed: {0}"
+msgstr "LogOn through Google failed: {0}"
+
+#: RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgid "invalid code"
+msgstr "invalid code"
+
+#: RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgid "invalid email"
+msgstr "invalid email"
+
+#: RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgid "invalid token"
+msgstr "invalid token"
+
+#: RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.GoogleOAuthService
+msgid "LogOn through Google failed: {0}"
+msgstr "LogOn through Google failed: {0}"
+
+#: RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgid "invalid code"
+msgstr "invalid code"
+
+#: RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgid "invalid email"
+msgstr "invalid email"
+
+#: RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgid "invalid token"
+msgstr "invalid token"
+
+#: RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LinkedInOAuthService
+msgid "LogOn through LiveID failed: {0}"
+msgstr "LogOn through LiveID failed: {0}"
+
+#: RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgid "invalid code"
+msgstr "invalid code"
+
+#: RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgid "invalid email"
+msgstr "invalid email"
+
+#: RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgid "invalid token"
+msgstr "invalid token"
+
+#: RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.LiveIDOAuthService
+msgid "LogOn through LiveID failed: {0}"
+msgstr "LogOn through LiveID failed: {0}"
+
+#: RM.QuickLogOn.OAuth.Services.TwitterOAuthService
+msgctxt RM.QuickLogOn.OAuth.Services.TwitterOAuthService
+msgid "Invalid OAuth token"
+msgstr "Invalid OAuth token"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Facebook OAuth"
+msgstr "Facebook OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Setup or update existing Facebook App:"
+msgstr "Setup or update existing Facebook App:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Put callback url to Facebook App settings:"
+msgstr "Put callback url to Facebook App settings:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Receive ClientId and ClientSecret from Facebook App and put them into appropriate fields below"
+msgstr "Receive ClientId and ClientSecret from Facebook App and put them into appropriate fields below"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Client Id"
+msgstr "Client Id"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Enter client id."
+msgstr "Enter client id."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Client Secret"
+msgstr "Client Secret"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Facebook.SiteSettings.cshtml
+msgid "Entre client secret. Leave empty to skip change."
+msgstr "Entre client secret. Leave empty to skip change."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Google OAuth"
+msgstr "Google OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Setup or update existing Google API Project:"
+msgstr "Setup or update existing Google API Project:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Put callback url to Google API Project settings:"
+msgstr "Put callback url to Google API Project settings:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Receive ClientId and ClientSecret from Google API Project and put them into appropriate fields below"
+msgstr "Receive ClientId and ClientSecret from Google API Project and put them into appropriate fields below"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Client Id"
+msgstr "Client Id"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Enter client id."
+msgstr "Enter client id."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Client Secret"
+msgstr "Client Secret"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Google.SiteSettings.cshtml
+msgid "Entre client secret to change. If empty then no change."
+msgstr "Entre client secret to change. If empty then no change."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "LinkedIn OAuth"
+msgstr "LinkedIn OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Setup or update existing LinkedIn application:"
+msgstr "Setup or update existing LinkedIn application:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Put callback url to LinkedIn application settings:"
+msgstr "Put callback url to LinkedIn application settings:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Receive ClientId and ClientSecret from LinkedIn application and put them into appropriate fields below"
+msgstr "Receive ClientId and ClientSecret from LinkedIn application and put them into appropriate fields below"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Client Id"
+msgstr "Client Id"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Enter client id."
+msgstr "Enter client id."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Client Secret"
+msgstr "Client Secret"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LinkedIn.SiteSettings.cshtml
+msgid "Entre client secret to change. If empty then no change."
+msgstr "Entre client secret to change. If empty then no change."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "LiveID OAuth"
+msgstr "LiveID OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Setup or update existing Windows Live application:"
+msgstr "Setup or update existing Windows Live application:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Put callback url to Windows Live application settings:"
+msgstr "Put callback url to Windows Live application settings:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Receive ClientId and ClientSecret from Windows Live application and put them into appropriate fields below"
+msgstr "Receive ClientId and ClientSecret from Windows Live application and put them into appropriate fields below"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Client Id"
+msgstr "Client Id"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Enter client id."
+msgstr "Enter client id."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Client Secret"
+msgstr "Client Secret"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.LiveID.SiteSettings.cshtml
+msgid "Entre client secret to change. If empty then no change."
+msgstr "Entre client secret to change. If empty then no change."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Twitter OAuth"
+msgstr "Twitter OAuth"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Setup or update existing Twitter application:"
+msgstr "Setup or update existing Twitter application:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Put callback url to Twitter application settings:"
+msgstr "Put callback url to Twitter application settings:"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Receive ConsumerKey, AccessToken and ConsumerSecret from Twitter application and put them into appropriate fields below"
+msgstr "Receive ConsumerKey, AccessToken and ConsumerSecret from Twitter application and put them into appropriate fields below"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Consumer Key"
+msgstr "Consumer Key"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Enter consumer key."
+msgstr "Enter consumer key."
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Access Token"
+msgstr "Access Token"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Consumer Secret"
+msgstr "Consumer Secret"
+
+#: ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgctxt ~/Modules/RM.QuickLogOn.OAuth/Views/EditorTemplates/Parts.Twitter.SiteSettings.cshtml
+msgid "Entre consumer secret to change. If empty then no change."
+msgstr "Entre consumer secret to change. If empty then no change."
+

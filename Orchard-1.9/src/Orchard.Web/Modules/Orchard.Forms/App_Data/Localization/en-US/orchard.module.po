@@ -1,0 +1,64 @@
+#: ~/Modules/Orchard.Forms/Module.txt
+#. "Name"
+#. "Orchard.Forms.Name"
+msgctxt ~/Modules/Orchard.Forms/Module.txt
+msgid "Forms"
+msgstr "Forms"
+
+#: ~/Modules/Orchard.Forms/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Forms/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Forms/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Forms/Module.txt
+msgid "http://orchardforms.codeplex.com"
+msgstr "http://orchardforms.codeplex.com"
+
+#: ~/Modules/Orchard.Forms/Module.txt
+#. "Description"
+#. "Orchard.Forms.Description"
+msgctxt ~/Modules/Orchard.Forms/Module.txt
+msgid "Provides a system to publish and alter html forms."
+msgstr "Provides a system to publish and alter html forms."
+
+#: ~/Modules/Orchard.Forms/Module.txt
+#. "Orchard.Forms.Category"
+msgctxt ~/Modules/Orchard.Forms/Module.txt
+msgid "Developer"
+msgstr "Developer"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+#. "Name"
+#. "Orchard.Forms.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+msgid "Forms"
+msgstr "Forms"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+msgid "http://orchardforms.codeplex.com"
+msgstr "http://orchardforms.codeplex.com"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+#. "Description"
+#. "Orchard.Forms.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+msgid "Provides a system to publish and alter html forms."
+msgstr "Provides a system to publish and alter html forms."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+#. "Orchard.Forms.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Forms/Module.txt
+msgid "Developer"
+msgstr "Developer"
+

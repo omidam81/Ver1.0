@@ -1,0 +1,557 @@
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "Widgets"
+msgstr "Widgets"
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "An implementation of widgets for Orchard."
+msgstr "An implementation of widgets for Orchard."
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.PageLayerHinting.Name"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "Page Layer Hinting"
+msgstr "Page Layer Hinting"
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.PageLayerHinting.Description"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "Adds a notification after creating a new Page with a direct link to create a Widget Layer for that specific page by URL."
+msgstr "Adds a notification after creating a new Page with a direct link to create a Widget Layer for that specific page by URL."
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.PageLayerHinting.Category"
+#. "Orchard.Widgets.ControlWrapper.Category"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "Widget"
+msgstr "Widget"
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.ControlWrapper.Name"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "Widget Control Wrapper"
+msgstr "Widget Control Wrapper"
+
+#: ~/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.ControlWrapper.Description"
+msgctxt ~/Modules/Orchard.Widgets/Module.txt
+msgid "Add an Edit button on the front-end for authenticated users"
+msgstr "Add an Edit button on the front-end for authenticated users"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "Widgets"
+msgstr "Widgets"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "An implementation of widgets for Orchard."
+msgstr "An implementation of widgets for Orchard."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.PageLayerHinting.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "Page Layer Hinting"
+msgstr "Page Layer Hinting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.PageLayerHinting.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "Adds a notification after creating a new Page with a direct link to create a Widget Layer for that specific page by URL."
+msgstr "Adds a notification after creating a new Page with a direct link to create a Widget Layer for that specific page by URL."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.PageLayerHinting.Category"
+#. "Orchard.Widgets.ControlWrapper.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "Widget"
+msgstr "Widget"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.ControlWrapper.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "Widget Control Wrapper"
+msgstr "Widget Control Wrapper"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+#. "Orchard.Widgets.ControlWrapper.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Widgets/Module.txt
+msgid "Add an Edit button on the front-end for authenticated users"
+msgstr "Add an Edit button on the front-end for authenticated users"
+
+#: Orchard.Widgets.AdminMenu
+msgctxt Orchard.Widgets.AdminMenu
+msgid "Widgets"
+msgstr "Widgets"
+
+#: Orchard.Widgets.AdminMenu
+msgctxt Orchard.Widgets.AdminMenu
+msgid "Configure"
+msgstr "Configure"
+
+#: Orchard.Widgets.Commands.LayerCommands
+msgctxt Orchard.Widgets.Commands.LayerCommands
+msgid "Creating Layer {0}"
+msgstr "Creating Layer {0}"
+
+#: Orchard.Widgets.Commands.LayerCommands
+msgctxt Orchard.Widgets.Commands.LayerCommands
+msgid "Layer created successfully."
+msgstr "Layer created successfully."
+
+#: Orchard.Widgets.Commands.WidgetCommands
+msgctxt Orchard.Widgets.Commands.WidgetCommands
+msgid "Creating widget failed : type {0} was not found. Supported widget types are: {1}."
+msgstr "Creating widget failed : type {0} was not found. Supported widget types are: {1}."
+
+#: Orchard.Widgets.Commands.WidgetCommands
+msgctxt Orchard.Widgets.Commands.WidgetCommands
+msgid "Creating widget failed : layer {0} was not found."
+msgstr "Creating widget failed : layer {0} was not found."
+
+#: Orchard.Widgets.Commands.WidgetCommands
+msgctxt Orchard.Widgets.Commands.WidgetCommands
+msgid "Widget created successfully."
+msgstr "Widget created successfully."
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "To manage widgets you must have a theme enabled."
+msgstr "To manage widgets you must have a theme enabled."
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "There are no widget layers defined. A layer will need to be added in order to add widgets to any part of the site."
+msgstr "There are no widget layers defined. A layer will need to be added in order to add widgets to any part of the site."
+
+#: Orchard.Widgets.Controllers.AdminController
+
+#. "Layer not found: {0}"
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Layer not found: {0}"
+msgstr "Layer not found: {0}"
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Not authorized to manage widgets."
+msgstr "Not authorized to manage widgets."
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Need a zone specified for widget placement."
+msgstr "Need a zone specified for widget placement."
+
+#: Orchard.Widgets.Controllers.AdminController
+
+#. "Creating widget failed: {0}"
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Creating widget failed: {0}"
+msgstr "Creating widget failed: {0}"
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Your {0} has been added."
+msgstr "Your {0} has been added."
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Your {0} has been created."
+msgstr "Your {0} has been created."
+
+#: Orchard.Widgets.Controllers.AdminController
+
+#. "Your {0} has been saved."
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Your {0} has been saved."
+msgstr "Your {0} has been saved."
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Layer was successfully deleted"
+msgstr "Layer was successfully deleted"
+
+#: Orchard.Widgets.Controllers.AdminController
+
+#. "Removing Layer failed: {0}"
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Removing Layer failed: {0}"
+msgstr "Removing Layer failed: {0}"
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Widget not found: {0}"
+msgstr "Widget not found: {0}"
+
+#: Orchard.Widgets.Controllers.AdminController
+
+#. "Editing widget failed: {0}"
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Editing widget failed: {0}"
+msgstr "Editing widget failed: {0}"
+
+#: Orchard.Widgets.Controllers.AdminController
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Widget was successfully deleted"
+msgstr "Widget was successfully deleted"
+
+#: Orchard.Widgets.Controllers.AdminController
+
+#. "Removing Widget failed: {0}"
+msgctxt Orchard.Widgets.Controllers.AdminController
+msgid "Removing Widget failed: {0}"
+msgstr "Removing Widget failed: {0}"
+
+#: Orchard.Widgets.Drivers.LayerPartDriver
+msgctxt Orchard.Widgets.Drivers.LayerPartDriver
+msgid "A Layer with the same name already exists"
+msgstr "A Layer with the same name already exists"
+
+#: Orchard.Widgets.Drivers.LayerPartDriver
+msgctxt Orchard.Widgets.Drivers.LayerPartDriver
+msgid "The rule is not valid: {0}"
+msgstr "The rule is not valid: {0}"
+
+#: Orchard.Widgets.Drivers.WidgetPartDriver
+msgctxt Orchard.Widgets.Drivers.WidgetPartDriver
+msgid "Title can't be empty."
+msgstr "Title can't be empty."
+
+#: Orchard.Widgets.Drivers.WidgetPartDriver
+msgctxt Orchard.Widgets.Drivers.WidgetPartDriver
+msgid "A Widget with the same Name already exists."
+msgstr "A Widget with the same Name already exists."
+
+#: Orchard.Widgets.Filters.WidgetFilter
+msgctxt Orchard.Widgets.Filters.WidgetFilter
+msgid "An error occured during layer evaluation on: {0}"
+msgstr "An error occured during layer evaluation on: {0}"
+
+#: Orchard.Widgets.Handlers.LayerHintHandler
+msgctxt Orchard.Widgets.Handlers.LayerHintHandler
+msgid "Would you like to <a href=\"{0}\">add a widget layer</a> for \"{1}\"?"
+msgstr "Would you like to <a href=\"{0}\">add a widget layer</a> for \"{1}\"?"
+
+#: Orchard.Widgets.Handlers.LayerHintHandler
+msgctxt Orchard.Widgets.Handlers.LayerHintHandler
+msgid "A widget layer for \"{0}\" at \"{1}\"."
+msgstr "A widget layer for \"{0}\" at \"{1}\"."
+
+#: Orchard.Widgets.RuleEngine.RuleManager
+msgctxt Orchard.Widgets.RuleEngine.RuleManager
+msgid "There are currently not scripting engine enabled"
+msgstr "There are currently not scripting engine enabled"
+
+#: Orchard.Widgets.RuleEngine.RuleManager
+msgctxt Orchard.Widgets.RuleEngine.RuleManager
+msgid "Expression is not a boolean value"
+msgstr "Expression is not a boolean value"
+
+#: ~/Modules/Orchard.Widgets/Views/Widget.ControlWrapper.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Widget.ControlWrapper.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Orchard.Widgets/Views/Widget.DeleteButton.cshtml
+
+#. "Delete"
+msgctxt ~/Modules/Orchard.Widgets/Views/Widget.DeleteButton.cshtml
+msgid "Delete"
+msgstr "Delete"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgid "Current Layer:"
+msgstr "Current Layer:"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+
+#. "Show"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgid "Show"
+msgstr "Show"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgid "Add a new layer..."
+msgstr "Add a new layer..."
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgid "Current Culture:"
+msgstr "Current Culture:"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetFiltersControl.cshtml
+msgid "any (show all)"
+msgstr "any (show all)"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetLayerVisibility.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetLayerVisibility.cshtml
+msgid "All Layers:"
+msgstr "All Layers:"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetLayerVisibility.cshtml
+
+#. "Hide All"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetLayerVisibility.cshtml
+msgid "Hide All"
+msgstr "Hide All"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetLayerVisibility.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetLayerVisibility.cshtml
+msgid "Show All"
+msgstr "Show All"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.cshtml
+msgid "Zones for other enabled themes."
+msgstr "Zones for other enabled themes."
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.cshtml
+msgid "Widgets in these zones will not appear anywhere when your currently active theme is applied. They might still appear in selectively applied (e.g. mobile) themes."
+msgstr "Widgets in these zones will not appear anywhere when your currently active theme is applied. They might still appear in selectively applied (e.g. mobile) themes."
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Orphans.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Orphans.cshtml
+msgid "Widgets with problems."
+msgstr "Widgets with problems."
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Orphans.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Orphans.cshtml
+msgid "These widgets aren't going to appear anywhere because they're missing the CommonPart from their content type. To fix these widgets, if you still want to keep them around, start by fixing their <a href=\"{0}\">Content Types</a>."
+msgstr "These widgets aren't going to appear anywhere because they're missing the CommonPart from their content type. To fix these widgets, if you still want to keep them around, start by fixing their <a href=\"{0}\">Content Types</a>."
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Orphans.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Orphans.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. "Publish Draft"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Publish Draft"
+msgstr "Publish Draft"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. " | "
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid " | "
+msgstr " | "
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. "Unpublish"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Unpublish"
+msgstr "Unpublish"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. "Publish"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Publish"
+msgstr "Publish"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Move to current layer"
+msgstr "Move to current layer"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. "Move up"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Move up"
+msgstr "Move up"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. "Move down"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Move down"
+msgstr "Move down"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "View"
+msgstr "View"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+
+#. "Preview"
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetPlacement.Zones.cshtml
+msgid "Preview"
+msgstr "Preview"
+
+#: ~/Modules/Orchard.Widgets/Views/WidgetSimplePreview.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/WidgetSimplePreview.cshtml
+msgid "{0} zone preview"
+msgstr "{0} zone preview"
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/AddLayer.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/AddLayer.cshtml
+msgid "Add Layer"
+msgstr "Add Layer"
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/AddWidget.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/AddWidget.cshtml
+msgid "Add Widget"
+msgstr "Add Widget"
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/ChooseWidget.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/ChooseWidget.cshtml
+msgid "Choose A Widget"
+msgstr "Choose A Widget"
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/ChooseWidget.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/ChooseWidget.cshtml
+msgid "There are no widgets available to add."
+msgstr "There are no widgets available to add."
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/EditLayer.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/EditLayer.cshtml
+msgid "Edit Layer"
+msgstr "Edit Layer"
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/EditWidget.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/EditWidget.cshtml
+msgid "Edit Widget"
+msgstr "Edit Widget"
+
+#: ~/Modules/Orchard.Widgets/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/Admin/Index.cshtml
+msgid "Widgets"
+msgstr "Widgets"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgid "The name of the Layer as it will be displayed in the admin pages."
+msgstr "The name of the Layer as it will be displayed in the admin pages."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgid "Description"
+msgstr "Description"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgid "Some text describing the purpose of this Layer."
+msgstr "Some text describing the purpose of this Layer."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgid "Layer Rule"
+msgstr "Layer Rule"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.LayerPart.cshtml
+msgid "An expression that evaluates to true when the widgets in this layer must be displayed. See <a href=\"http://docs.orchardproject.net/Documentation/Managing-widgets#AddingaLayer\">http://docs.orchardproject.net/Documentation/Managing-widgets#AddingaLayer</a> for more information."
+msgstr "An expression that evaluates to true when the widgets in this layer must be displayed. See <a href=\"http://docs.orchardproject.net/Documentation/Managing-widgets#AddingaLayer\">http://docs.orchardproject.net/Documentation/Managing-widgets#AddingaLayer</a> for more information."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "Zone"
+msgstr "Zone"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "The Zone in the Layout where the Widget will be rendered."
+msgstr "The Zone in the Layout where the Widget will be rendered."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "Layer"
+msgstr "Layer"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "The Layer where the Widget will be rendered."
+msgstr "The Layer where the Widget will be rendered."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "Position"
+msgstr "Position"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "The position of the Widget inside the Zone."
+msgstr "The position of the Widget inside the Zone."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "Title"
+msgstr "Title"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "The title of the Widget."
+msgstr "The title of the Widget."
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "Check to render the title on the front-end, uncheck to hide"
+msgstr "Check to render the title on the front-end, uncheck to hide"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "Name"
+msgstr "Name"
+
+#: ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgctxt ~/Modules/Orchard.Widgets/Views/EditorTemplates/Parts.Widgets.WidgetPart.cshtml
+msgid "The technical name of the Widget, used for css class and alternates."
+msgstr "The technical name of the Widget, used for css class and alternates."
+

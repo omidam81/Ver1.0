@@ -46,12 +46,13 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<ArtRecord> _artRepository;
         private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
         private readonly ShellSettings _shellSettings;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
         private const int ArtsPageSize = 30;
         private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
         private const string InvalidEmailKey = "InvalidEmail";
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository, ShellSettings shellSettings)
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository, ShellSettings shellSettings, IWorkContextAccessor workContextAccessor)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -67,6 +68,7 @@ namespace Teeyoot.Module.Controllers
             _shellSettings = shellSettings;
             T = NullLocalizer.Instance;
             _artRepository = artRepository;
+            _workContextAccessor = workContextAccessor;
         }
 
         public ILogger Logger { get; set; }
@@ -222,6 +224,21 @@ namespace Teeyoot.Module.Controllers
                     {
                         prod.Price = prod.BaseCost;
                     }
+                }
+
+                string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+
+                if (culture == "en-SG")
+                {
+                    data.CampaignCulture = "en-SG";
+                }
+                else if (culture == "id-ID")
+                {
+                    data.CampaignCulture = "id-ID";
+                }
+                else
+                {
+                    data.CampaignCulture = "en-MY";
                 }
 
                 var campaign = _campaignService.CreateNewCampiagn(data);

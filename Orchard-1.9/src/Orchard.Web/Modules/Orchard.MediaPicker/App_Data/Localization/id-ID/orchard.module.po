@@ -1,0 +1,517 @@
+#: ~/Modules/Orchard.MediaPicker/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.MediaPicker/Module.txt
+msgid "Media Picker"
+msgstr "Media Picker"
+
+#: ~/Modules/Orchard.MediaPicker/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.MediaPicker/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.MediaPicker/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.MediaPicker/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.MediaPicker/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.MediaPicker/Module.txt
+msgid "UI for browsing for, uploading, or selecting an image for an HTML editor."
+msgstr "UI for browsing for, uploading, or selecting an image for an HTML editor."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+msgid "Media Picker"
+msgstr "Media Picker"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.MediaPicker/Module.txt
+msgid "UI for browsing for, uploading, or selecting an image for an HTML editor."
+msgstr "UI for browsing for, uploading, or selecting an image for an HTML editor."
+
+#: Orchard.MediaPicker.Controllers.AdminController
+msgctxt Orchard.MediaPicker.Controllers.AdminController
+msgid "Couldn't create media folder"
+msgstr "Couldn't create media folder"
+
+#: Orchard.MediaPicker.Controllers.AdminController
+msgctxt Orchard.MediaPicker.Controllers.AdminController
+msgid "Creating Folder failed: {0}"
+msgstr "Creating Folder failed: {0}"
+
+#: Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgid "The field {0} is mandatory"
+msgstr "The field {0} is mandatory"
+
+#: Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgid "The field {0} doesn't accept multiple media items"
+msgstr "The field {0} doesn't accept multiple media items"
+
+#: Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgid "Items"
+msgstr "Items"
+
+#: Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaGalleryFieldDriver
+msgid "A Json serialized list of the media."
+msgstr "A Json serialized list of the media."
+
+#: Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgid "The field {0} must have one of these extensions: {1}"
+msgstr "The field {0} must have one of these extensions: {1}"
+
+#: Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgid "The field {0} is mandatory"
+msgstr "The field {0} is mandatory"
+
+#: Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgid "Url"
+msgstr "Url"
+
+#: Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgctxt Orchard.MediaPicker.Drivers.MediaPickerFieldDriver
+msgid "The url of the media."
+msgstr "The url of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Media Picker Field"
+msgstr "Media Picker Field"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Tokens for Media Picker Fields"
+msgstr "Tokens for Media Picker Fields"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Url"
+msgstr "Url"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The url of the media."
+msgstr "The url of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Alternate Text"
+msgstr "Alternate Text"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The alternate text of the media."
+msgstr "The alternate text of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Class"
+msgstr "Class"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The class of the media."
+msgstr "The class of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Style"
+msgstr "Style"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The style of the media."
+msgstr "The style of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Alignment"
+msgstr "Alignment"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The alignment of the media."
+msgstr "The alignment of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Width"
+msgstr "Width"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The width of the media."
+msgstr "The width of the media."
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "Height"
+msgstr "Height"
+
+#: Orchard.MediaPicker.Tokens.FieldTokens
+msgctxt Orchard.MediaPicker.Tokens.FieldTokens
+msgid "The height of the media."
+msgstr "The height of the media."
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgid "Pick Image"
+msgstr "Pick Image"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgid "Cannot perform requested operation"
+msgstr "Cannot perform requested operation"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgid "Authentication timed-out: please log-on again"
+msgstr "Authentication timed-out: please log-on again"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgid "Update/Upload Image"
+msgstr "Update/Upload Image"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgid "Insert/Upload Image"
+msgstr "Insert/Upload Image"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Index.cshtml
+msgid "Browse Media"
+msgstr "Browse Media"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Media Folders"
+msgstr "Media Folders"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Create Folder"
+msgstr "Create Folder"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "This is a table of the images currently available for use in your application."
+msgstr "This is a table of the images currently available for use in your application."
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Folder"
+msgstr "Folder"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Added on"
+msgstr "Added on"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Size"
+msgstr "Size"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Upload an image from your computer"
+msgstr "Upload an image from your computer"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "URL"
+msgstr "URL"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Alternative Text"
+msgstr "Alternative Text"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Class"
+msgstr "Class"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Style"
+msgstr "Style"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Alignment"
+msgstr "Alignment"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Width"
+msgstr "Width"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Height"
+msgstr "Height"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Lock Aspect Ratio"
+msgstr "Lock Aspect Ratio"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Insert"
+msgstr "Insert"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Update"
+msgstr "Update"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Gallery.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Preview of Image"
+msgstr "Preview of Image"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "URL for the image resource"
+msgstr "URL for the image resource"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Upload an image from your computer"
+msgstr "Upload an image from your computer"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Alternative Text"
+msgstr "Alternative Text"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Class"
+msgstr "Class"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Style"
+msgstr "Style"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Alignment"
+msgstr "Alignment"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Width"
+msgstr "Width"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Height"
+msgstr "Height"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Lock Aspect Ratio"
+msgstr "Lock Aspect Ratio"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Insert"
+msgstr "Insert"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Update"
+msgstr "Update"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Admin/Tab_Url.cshtml
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "A media is required"
+msgstr "A media is required"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "Check to ensure the user is providing at least one media."
+msgstr "Check to ensure the user is providing at least one media."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "Allow only specific extensions"
+msgstr "Allow only specific extensions"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "You can define a set of extensions the user will be able to pick, separated by spaces, e.g. jpg png gif"
+msgstr "You can define a set of extensions the user will be able to pick, separated by spaces, e.g. jpg png gif"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "Leave it empty if you don't want to apply any restriction."
+msgstr "Leave it empty if you don't want to apply any restriction."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "Allow multiple media items"
+msgstr "Allow multiple media items"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "Check to allow the user to select multiple media items."
+msgstr "Check to allow the user to select multiple media items."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "Help text"
+msgstr "Help text"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaGalleryFieldSettings.cshtml
+msgid "The help text is written under the field when authors are selecting media items."
+msgstr "The help text is written under the field when authors are selecting media items."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "The media is required"
+msgstr "The media is required"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Check to ensure the user is providing a valid media for this field."
+msgstr "Check to ensure the user is providing a valid media for this field."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Allow only specific extensions"
+msgstr "Allow only specific extensions"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "You can define a set of extensions the user will be able to pick, separated by spaces, e.g. jpg png gif"
+msgstr "You can define a set of extensions the user will be able to pick, separated by spaces, e.g. jpg png gif"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Leave it empty if you don't want to apply any restriction."
+msgstr "Leave it empty if you don't want to apply any restriction."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Provide custom parameters"
+msgstr "Provide custom parameters"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Custom parameters can be used if your own views."
+msgstr "Custom parameters can be used if your own views."
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Custom1"
+msgstr "Custom1"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Custom2"
+msgstr "Custom2"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Custom3"
+msgstr "Custom3"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "Help text"
+msgstr "Help text"
+
+#: ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/DefinitionTemplates/MediaPickerFieldSettings.cshtml
+msgid "The help text is written under the field when authors are selecting a media."
+msgstr "The help text is written under the field when authors are selecting a media."
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgid "You need to save your changes."
+msgstr "You need to save your changes."
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgid "Media"
+msgstr "Media"
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+
+#. "Edit"
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgid "Edit"
+msgstr "Edit"
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+
+#. "Remove"
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgid "Remove"
+msgstr "Remove"
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaGallery.Edit.cshtml
+msgid "Add"
+msgstr "Add"
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaPicker.Edit.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaPicker.Edit.cshtml
+msgid "Browse"
+msgstr "Browse"
+
+#: ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaPicker.Edit.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/EditorTemplates/Fields/MediaPicker.Edit.cshtml
+msgid "Clear"
+msgstr "Clear"
+
+#: ~/Modules/Orchard.MediaPicker/Views/Fields/MediaGallery.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Fields/MediaGallery.cshtml
+msgid "No media."
+msgstr "No media."
+
+#: ~/Modules/Orchard.MediaPicker/Views/Fields/MediaGallery.SummaryAdmin.cshtml
+msgctxt ~/Modules/Orchard.MediaPicker/Views/Fields/MediaGallery.SummaryAdmin.cshtml
+msgid "No media."
+msgstr "No media."
+

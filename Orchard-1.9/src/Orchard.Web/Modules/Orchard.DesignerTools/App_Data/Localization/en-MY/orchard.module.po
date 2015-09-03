@@ -1,0 +1,184 @@
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Designer Tools"
+msgstr "Designer Tools"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Contains designer tools to ease the Themes development process"
+msgstr "Contains designer tools to ease the Themes development process"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "UrlAlternates.Name"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Url Alternates"
+msgstr "Url Alternates"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "UrlAlternates.Category"
+#. "WidgetAlternates.Category"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Designer"
+msgstr "Designer"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "UrlAlternates.Description"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Adds shape alternates for specific urls"
+msgstr "Adds shape alternates for specific urls"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "WidgetAlternates.Name"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Widget Alternates"
+msgstr "Widget Alternates"
+
+#: ~/Modules/Orchard.DesignerTools/Module.txt
+#. "WidgetAlternates.Description"
+msgctxt ~/Modules/Orchard.DesignerTools/Module.txt
+msgid "Adds shape alternates for content types stereotyped as widgets, allowing to customize shapes by widget and zone"
+msgstr "Adds shape alternates for content types stereotyped as widgets, allowing to customize shapes by widget and zone"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Designer Tools"
+msgstr "Designer Tools"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Contains designer tools to ease the Themes development process"
+msgstr "Contains designer tools to ease the Themes development process"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "UrlAlternates.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Url Alternates"
+msgstr "Url Alternates"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "UrlAlternates.Category"
+#. "WidgetAlternates.Category"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Designer"
+msgstr "Designer"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "UrlAlternates.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Adds shape alternates for specific urls"
+msgstr "Adds shape alternates for specific urls"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "WidgetAlternates.Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Widget Alternates"
+msgstr "Widget Alternates"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+#. "WidgetAlternates.Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.DesignerTools/Module.txt
+msgid "Adds shape alternates for content types stereotyped as widgets, allowing to customize shapes by widget and zone"
+msgstr "Adds shape alternates for content types stereotyped as widgets, allowing to customize shapes by widget and zone"
+
+#: Orchard.DesignerTools.Controllers.AlternateController
+msgctxt Orchard.DesignerTools.Controllers.AlternateController
+msgid "Not authorized to create templates"
+msgstr "Not authorized to create templates"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingMeta.cshtml
+
+#. "n/a"
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingMeta.cshtml
+msgid "n/a"
+msgstr "n/a"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingMeta.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingMeta.cshtml
+msgid "Content not available as coming from source code."
+msgstr "Content not available as coming from source code."
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+
+#. "Shape"
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Shape"
+msgstr "Shape"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Model"
+msgstr "Model"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Placement"
+msgstr "Placement"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Template"
+msgstr "Template"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "HTML"
+msgstr "HTML"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Active Template"
+msgstr "Active Template"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Original Template"
+msgstr "Original Template"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Display Type"
+msgstr "Display Type"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Alternate ({0})"
+msgstr "Alternate ({0})"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Create"
+msgstr "Create"
+
+#: ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgctxt ~/Modules/Orchard.DesignerTools/Views/ShapeTracingTemplates.cshtml
+msgid "Wrappers ({0})"
+msgstr "Wrappers ({0})"
+

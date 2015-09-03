@@ -1,0 +1,48 @@
+#: ~/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Name"
+msgctxt ~/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "DLR Scripting"
+msgstr "DLR Scripting"
+
+#: ~/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Author"
+msgctxt ~/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Website"
+msgctxt ~/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Description"
+msgctxt ~/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "The DLR scripting module enables the possibility to execute scripts using the DLR."
+msgstr "The DLR scripting module enables the possibility to execute scripts using the DLR."
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Name"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "DLR Scripting"
+msgstr "DLR Scripting"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Author"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "The Orchard Team"
+msgstr "The Orchard Team"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Website"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "http://orchardproject.net"
+msgstr "http://orchardproject.net"
+
+#: ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+#. "Description"
+msgctxt ~/obj/Release/Package/PackageTmp/Modules/Orchard.Scripting.Dlr/Module.txt
+msgid "The DLR scripting module enables the possibility to execute scripts using the DLR."
+msgstr "The DLR scripting module enables the possibility to execute scripts using the DLR."
+

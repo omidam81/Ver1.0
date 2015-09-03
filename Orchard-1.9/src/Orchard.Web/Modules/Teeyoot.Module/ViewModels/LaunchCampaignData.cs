@@ -18,6 +18,7 @@ namespace Teeyoot.Module.ViewModels
         public bool IsForCharity { get; set; }
         public string CampaignProfit { get; set; }
         public int ProductMinimumGoal { get; set; }
+        public string CampaignCulture { get; set; }
 
         // needed as well
         [AllowHtml]
