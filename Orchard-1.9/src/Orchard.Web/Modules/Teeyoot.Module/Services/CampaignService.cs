@@ -69,8 +69,7 @@ namespace Teeyoot.Module.Services
             Logger = NullLogger.Instance;
 
             _workContextAccessor = workContextAccessor;
-            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            
         }
 
         private IOrchardServices Services { get; set; }
@@ -203,6 +202,8 @@ namespace Teeyoot.Module.Services
                     }
                 }
 
+                culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+                cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
                 var currencyId = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
                 foreach (var prod in data.Products)
                 {
