@@ -241,7 +241,7 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetSettings()
         {
-            var settings = _deliverySettingService.GetAllSettings().Where(s => s.Enabled).ToArray();
+            var settings = _deliverySettingService.GetAllSettings().ToArray();
             return Json(new
             {
                 settings = settings
