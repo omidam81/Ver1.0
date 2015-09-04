@@ -2128,3 +2128,127 @@ function deleteColor(number) {
 function cutHex(h) {
     return (h.charAt(0) == "#") ? h.substring(1, 7) : h
 }
+//document.addEventListener("keypress", function (e) {
+//    if (e.keyCode == 40) {
+//        document.querySelector("body").scrollTop = 0;
+//    }
+//});
+document.addEventListener("keydown", function keyBut(e) {
+    //alert("qwe");
+    //alert("q");
+    var tspans = document.querySelectorAll('svg');
+    if (tspans.length != 0) {
+        for (var i = 0; i < tspans.length; i++) {
+            var elem = tspans[i].parentNode;
+            if ($(elem).hasClass('drag-item-selected')) {
+                if (e.keyCode == 37) {
+                    var str = elem.style.left;
+                    var left = str.substring(0, str.length - 2)
+
+                    var boxes = elem.parentNode.querySelectorAll('.edit-box-sizer');
+                    var box = boxes[0];
+                    if (boxes.length > 1) {
+                        for (var i = 0; i < boxes.length; i++) {
+                            //console.log("box: " + box.style.zIndex + ";  boxes[i]: " + boxes[i].style.zIndex);
+                            if (parseInt(boxes[i].style.zIndex) > parseInt(box.style.zIndex)) {
+                                box = boxes[i];
+                                //console.log(box);
+                            }
+                            //console.log("result: " + box.style.zIndex);
+
+                        }
+                    }
+                    var boxStr = box.style.left;
+                    var boxTopValue = boxStr.substring(0, boxStr.length - 2);
+                    elem.style.left = left - 1 + "px";
+                    box.style.left = boxTopValue - 1 + "px";
+                    design.item.checkBorders(design.item.get());
+
+
+                    //document.removeEventListener("keyup", keyBut);
+                    //console.log(elem.style.left)
+                } else if (e.keyCode == 38) {
+                    var str = elem.style.top;
+                    var left = str.substring(0, str.length - 2);
+
+                    var boxes = elem.parentNode.querySelectorAll('.edit-box-sizer');
+                    var box = boxes[0];
+                    if (boxes.length > 1) {
+                        for (var i = 0; i < boxes.length; i++) {
+                            console.log("box: " + box.style.zIndex + ";  boxes[i]: " + boxes[i].style.zIndex);
+                            if (parseInt(boxes[i].style.zIndex) > parseInt(box.style.zIndex)) {
+                                box = boxes[i];
+                                //console.log(box);
+                            }
+                            console.log("result: " + box.style.zIndex);
+
+                        }
+                    }
+                    var boxStr = box.style.top;
+                    var boxTopValue = boxStr.substring(0, boxStr.length - 2);
+                    elem.style.top = parseFloat(left) - 1 + "px";
+                    box.style.top = boxTopValue - 1 + "px";
+                    design.item.checkBorders(design.item.get());
+                    //console.log(elem.style.top)
+
+                } else if (e.keyCode == 39) {
+                    var str = elem.style.left;
+                    var left = str.substring(0, str.length - 2)
+
+                    var boxes = elem.parentNode.querySelectorAll('.edit-box-sizer');
+                    var box = boxes[0];
+                    if (boxes.length > 1) {
+                        for (var i = 0; i < boxes.length; i++) {
+                            console.log("box: " + box.style.zIndex + ";  boxes[i]: " + boxes[i].style.zIndex);
+                            if (parseInt(boxes[i].style.zIndex) > parseInt(box.style.zIndex)) {
+                                box = boxes[i];
+                                //console.log(box);
+                            }
+                            console.log("result: " + box.style.zIndex);
+
+                        }
+                    }
+                    var boxStr = box.style.left;
+                    var boxTopValue = boxStr.substring(0, boxStr.length - 2);
+
+
+                    elem.style.left = parseFloat(left) + 1 + "px";
+                    box.style.left = parseFloat(boxTopValue) + 1 + "px";
+                    design.item.checkBorders(design.item.get());
+
+                } else if (e.keyCode == 40) {
+                    var str = elem.style.top;
+                    var left = str.substring(0, str.length - 2)
+
+                    var boxes = elem.parentNode.querySelectorAll('.edit-box-sizer');
+                    var box = boxes[0];
+                    if (boxes.length > 1) {
+                        for (var i = 0; i < boxes.length; i++) {
+                            console.log("box: " + box.style.zIndex + ";  boxes[i]: " + boxes[i].style.zIndex);
+                            if (parseInt(boxes[i].style.zIndex) > parseInt(box.style.zIndex)) {
+                                box = boxes[i];
+                                //console.log(box);
+                            }
+                            //console.log("result: " + box.style.zIndex);
+
+                        }
+                    }
+                    var boxStr = box.style.top;
+                    var boxTopValue = boxStr.substring(0, boxStr.length - 2);
+                    //document.querySelector("body").scrollTop = 0;
+
+
+                    elem.style.top = parseFloat(left) + 1 + "px";
+                    box.style.top = parseFloat(boxTopValue) + 1 + "px";
+                    design.item.checkBorders(design.item.get());
+                    e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+
+                }
+            }
+        }
+   
+
+
+
+    }
+});

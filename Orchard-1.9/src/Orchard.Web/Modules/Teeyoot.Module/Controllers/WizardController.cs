@@ -595,7 +595,7 @@ namespace Teeyoot.Module.Controllers
                 var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
                 var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
-                
+
                 CreateImagesForOtherColor(campaign.Id, p.Id.ToString(), p, data, frontPath, backPath, p.ProductColorRecord.Value);
 
                 if (p.SecondProductColorRecord != null)
@@ -615,7 +615,7 @@ namespace Teeyoot.Module.Controllers
                     CreateImagesForOtherColor(campaign.Id, p.Id.ToString() + "_" + p.FifthProductColorRecord.Id.ToString(), p, data, frontPath, backPath, p.FifthProductColorRecord.Value);
                 }
 
-
+            }
                 //var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), p.Id.ToString());
 
                 //if (!Directory.Exists(destForder))
@@ -654,19 +654,18 @@ namespace Teeyoot.Module.Controllers
                 var imageSocialFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 if (!campaign.BackSideByDefault)
                 {
-                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
+                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.FirstOrDefault().ProductRecord.Id + "_front.png");
                     var imgPath = new Bitmap(frontSocialPath);
 
                     _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Front);
                 }
                 else
                 {
-                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.FirstOrDefault().ProductRecord.Id + "_back.png");
                     var imgPath = new Bitmap(backSocialPath);
 
                     _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Back);
-                }
-            }
+                }           
         }
 
         private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
@@ -754,11 +753,29 @@ namespace Teeyoot.Module.Controllers
                 p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
             back.Save(Path.Combine(destForder, "normal", "back.png"));
 
-            _imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
-            _imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+
+            var frontZoom = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width * 4, p.ProductRecord.ProductImageRecord.Height * 4,
+                p.ProductRecord.ProductImageRecord.PrintableFrontTop * 4, p.ProductRecord.ProductImageRecord.PrintableFrontLeft *4,
+                p.ProductRecord.ProductImageRecord.PrintableFrontWidth * 4, p.ProductRecord.ProductImageRecord.PrintableFrontHeight * 4);
+          
+            var backZoom = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, p.ProductRecord.ProductImageRecord.Width * 4, p.ProductRecord.ProductImageRecord.Height * 4,
+                p.ProductRecord.ProductImageRecord.PrintableBackTop * 4, p.ProductRecord.ProductImageRecord.PrintableBackLeft * 4,
+                p.ProductRecord.ProductImageRecord.PrintableBackWidth * 4, p.ProductRecord.ProductImageRecord.PrintableBackHeight * 4);
+
+            Rectangle rect = new Rectangle(0, 0, frontZoom.Width - 10, frontZoom.Height - 10);
+            Bitmap croppedFront = frontZoom.Clone(rect, frontZoom.PixelFormat);
+
+            croppedFront.Save(Path.Combine(destForder, "big", "front.png"));
+
+            Rectangle rect2 = new Rectangle(0, 0, backZoom.Width - 10, backZoom.Height - 10);
+            Bitmap croppedBck = backZoom.Clone(rect2, backZoom.PixelFormat);
+
+            croppedBck.Save(Path.Combine(destForder, "big", "back.png"));
 
             frontTemplate.Dispose();
             backTemplate.Dispose();
+            croppedFront.Dispose();
+            croppedBck.Dispose();
             front.Dispose();
             back.Dispose();
         }
