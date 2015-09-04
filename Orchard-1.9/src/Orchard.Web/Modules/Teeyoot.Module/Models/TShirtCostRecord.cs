@@ -29,5 +29,7 @@ namespace Teeyoot.Module.Models
         public virtual int SalesGoal { get; set; }
 
         public virtual int MaxColors { get; set; }
+
+        public virtual string CostCulture { get; set; }
     }
 }

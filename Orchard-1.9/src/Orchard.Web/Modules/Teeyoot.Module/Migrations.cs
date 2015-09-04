@@ -763,7 +763,10 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name, table => table.AddColumn<string>("CurrencyCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
 
-            return 85;
+            SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<string>("CostCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.AddColumn<string>("CategoriesCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 86;
         }
 
         public int UpdateFrom2()
@@ -1718,6 +1721,14 @@ namespace Teeyoot.Module
            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name, table => table.AddColumn<string>("CurrencyCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
 
            return 85;
+       }
+
+       public int UpdateFrom85()
+       {
+           SchemaBuilder.AlterTable(typeof(TShirtCostRecord).Name, table => table.AddColumn<string>("CostCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.AddColumn<string>("CategoriesCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+           return 86;
        }
     }
 }
