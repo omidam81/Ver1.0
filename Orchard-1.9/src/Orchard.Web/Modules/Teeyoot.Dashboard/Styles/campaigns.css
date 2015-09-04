@@ -517,3 +517,15 @@ tipping_point_input:focus{
         min-width: 200px;
 }
 }
+.paid-profit-div{
+    width:100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+.profit-div{
+    width:33%;
+}
+.paid-profit-span{
+    float:left;
+}
