@@ -2688,7 +2688,7 @@ var design={
 	        var height = imageData['printable_'+view+'_height'];
 	        var width = imageData['printable_'+view+'_width'];
 	        var rect = this.getNodeRect(e);
-	        if (document.getElementById('design-area').style.transform != "scale(1,1)") {
+	        if ((document.getElementById('design-area').style.transform != "scale(1,1)") && ((document.getElementById('design-area').style.transform != ""))) {
 	            rect.width = rect.width / 1.4;
 	            rect.height = rect.height / 1.4;
 	            rect.top = rect.top / 1.4;
@@ -2716,7 +2716,7 @@ var design={
 	        var height = imageData['printable_'+view+'_height'];
 	        var width = imageData['printable_'+view+'_width'];
 	        var rect = this.getNodeRect(e);
-	        if (document.getElementById('design-area').style.transform != "scale(1,1)") {
+	        if ((document.getElementById('design-area').style.transform != "scale(1,1)") && ((document.getElementById('design-area').style.transform != ""))) {
 	            rect.width = rect.width / 1.4;
 	            rect.height = rect.height / 1.4;
 	            rect.top = rect.top / 1.4;
