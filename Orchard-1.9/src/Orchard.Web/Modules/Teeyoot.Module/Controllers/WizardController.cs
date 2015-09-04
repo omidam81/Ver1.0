@@ -47,6 +47,8 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
         private readonly ShellSettings _shellSettings;
         private readonly IWorkContextAccessor _workContextAccessor;
+        private string culture = string.Empty;
+        private string cultureUsed = string.Empty;
 
         private const int ArtsPageSize = 30;
         private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
@@ -68,7 +70,10 @@ namespace Teeyoot.Module.Controllers
             _shellSettings = shellSettings;
             T = NullLocalizer.Instance;
             _artRepository = artRepository;
+
             _workContextAccessor = workContextAccessor;
+            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public ILogger Logger { get; set; }
@@ -84,7 +89,7 @@ namespace Teeyoot.Module.Controllers
                 return RedirectToAction("Oops");
             }
 
-            var cost = _costService.GetCost();
+            var cost = _costService.GetCost(cultureUsed);
             AdminCostViewModel costViewModel = new AdminCostViewModel();
             if (cost != null)
             {
@@ -226,20 +231,7 @@ namespace Teeyoot.Module.Controllers
                     }
                 }
 
-                string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-
-                if (culture == "en-SG")
-                {
-                    data.CampaignCulture = "en-SG";
-                }
-                else if (culture == "id-ID")
-                {
-                    data.CampaignCulture = "id-ID";
-                }
-                else
-                {
-                    data.CampaignCulture = "en-MY";
-                }
+                data.CampaignCulture = cultureUsed;
 
                 var campaign = _campaignService.CreateNewCampiagn(data);
                 CreateImagesForCampaignProducts(campaign);

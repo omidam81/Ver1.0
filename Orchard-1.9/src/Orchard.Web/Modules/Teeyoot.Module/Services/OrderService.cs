@@ -84,7 +84,7 @@ namespace Teeyoot.Module.Services
                 {
                     Created = DateTime.UtcNow,
                     CurrencyRecord = _currencyRepository.Get(1),
-                    OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.New.ToString("d"))),
+                    OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Approved.ToString("d"))),
                     OrderPublicId = "",
                     IsActive = false
                 };

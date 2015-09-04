@@ -47,5 +47,7 @@ namespace Teeyoot.Module.ViewModels
         public string FacebookClientId { get; set; }
         public string GoogleClientId { get; set; }
         public string GoogleApiKey { get; set; }
+
+        public string CurrencyCulture { get; set; }
     }
 }

@@ -75,6 +75,7 @@ namespace Teeyoot.Messaging.Services
             var pathToTemplates = HttpContext.Current.Server.MapPath(MessageTemplatesPath);
             var record = _settingsService.GetAllSettings().List().FirstOrDefault();
             var api = new MandrillApi(record.ApiKey);
+            List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             var mandrillMessage = new MandrillMessage
             {
                 MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
@@ -83,7 +84,15 @@ namespace Teeyoot.Messaging.Services
                 Subject = "Now you can create a campaign!"
             };
 
-            var emails = checkoutCampaignRequests.Select(r => new MandrillMailAddress {Email = r.Email}).ToList();
+            List<string> checkoutEmails = checkoutCampaignRequests.Select(r =>r.Email).ToList();
+            List<string> resultEmails = new List<string>();
+            var noDupes = new HashSet<string>(checkoutEmails);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Buyer"));
+            }
             mandrillMessage.To = emails;
             var text = File.ReadAllText(pathToTemplates + "make_the_order_buyer.html");
             mandrillMessage.Html = text;
@@ -210,14 +219,26 @@ namespace Teeyoot.Messaging.Services
 
             List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive).ToList();           
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            List<string> emailsList = new List<string>();
             foreach (var item in ordersList)
             {
-                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "Buyer"));
-                FillUserMergeVars(mandrillMessage, item.OrderRecord);
-                FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
-                FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
+                if (item.OrderRecord.Email != null)
+                {
+                    emailsList.Add(item.OrderRecord.Email);
+                    FillUserMergeVars(mandrillMessage, item.OrderRecord);
+                    FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
+                    FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
+                }
             }
-            mandrillMessage.To = emails.Distinct().ToList(); 
+            List<string> resultEmails = new List<string>();
+            var noDupes = new HashSet<string>(emailsList);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Buyer"));
+            }
+            mandrillMessage.To = emails; 
             SendTmplMessage(api, mandrillMessage);
         }
 
@@ -236,14 +257,27 @@ namespace Teeyoot.Messaging.Services
             List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive).ToList();
             var campaign = _campaignRepository.Get(campaignId);
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            List<string> emailsList = new List<string>();
             foreach (var item in ordersList)
             {
-                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "Buyer"));
-                FillUserMergeVars(mandrillMessage, item.OrderRecord);
-                FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
-                FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
+
+                if (item.OrderRecord.Email != null)
+                {
+                    emailsList.Add(item.OrderRecord.Email);
+                    FillUserMergeVars(mandrillMessage, item.OrderRecord);
+                    FillProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
+                    FillCampaignMergeVars(mandrillMessage, campaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
+                }
             }
-            mandrillMessage.To = emails.Distinct().ToList();
+            List<string> resultEmails = new List<string>();
+            var noDupes = new HashSet<string>(emailsList);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Buyer"));
+            }
+            mandrillMessage.To = emails;
             SendTmplMessage(api, mandrillMessage);
         }
 
@@ -344,14 +378,23 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
            
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            List<string> emailsList = new List<string>();
+            List<string> resultEmails = new List<string>();
             var buyers = _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == campaignId).ToList();
 
             foreach (var buyer in buyers)
             {
-                emails.Add(new MandrillMailAddress(buyer.Email, "Buyer"));
+                emailsList.Add(buyer.Email);
                 FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, buyer.Email, pathToMedia, pathToTemplates);
             }
-           
+            
+            var noDupes = new HashSet<string>(emailsList);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Buyer"));
+            }
             mandrillMessage.To = emails;
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-buyer.html");
             SendTmplMessage(api, mandrillMessage);
@@ -604,14 +647,26 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromName = "Teeyoot";
             List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == message.CampaignId && p.OrderRecord.IsActive).ToList();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
+            List<string> emailsList = new List<string>();
             foreach (var item in ordersList)
             {
-                emails.Add(new MandrillMailAddress(item.OrderRecord.Email, "Seller"));
-                FillUserMergeVars(mandrillMessage, item.OrderRecord);
-                FillSellerToBuyersProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
-                FillCampaignMergeVars(mandrillMessage, message.CampaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
+                if (item.OrderRecord.Email != null)
+                {
+                    emailsList.Add(item.OrderRecord.Email);
+                    FillUserMergeVars(mandrillMessage, item.OrderRecord);
+                    FillSellerToBuyersProductsMergeVars(mandrillMessage, item.OrderRecord.Products, pathToMedia, item.OrderRecord.Email, item.OrderRecord.OrderPublicId);
+                    FillCampaignMergeVars(mandrillMessage, message.CampaignId, item.OrderRecord.Email, pathToMedia, pathToTemplates);
+                }
             }
-            mandrillMessage.To = emails.Distinct().ToList();
+            List<string> resultEmails = new List<string>();
+            var noDupes = new HashSet<string>(emailsList);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Buyer"));
+            }
+            mandrillMessage.To = emails;
             string text = System.IO.File.ReadAllText(pathToTemplates + "seller-template.html").Replace("{{Text}}", message.Text);
             mandrillMessage.Html = text;
             message.IsApprowed = true;

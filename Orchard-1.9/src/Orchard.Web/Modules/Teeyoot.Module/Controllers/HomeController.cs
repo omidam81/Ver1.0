@@ -241,7 +241,7 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetSettings()
         {
-            var settings = _deliverySettingService.GetAllSettings().Where(s => s.Enabled).ToArray();
+            var settings = _deliverySettingService.GetAllSettings().ToArray();
             return Json(new
             {
                 settings = settings
@@ -458,7 +458,7 @@ namespace Teeyoot.Module.Controllers
                 return View("TrackOrder");
             }
 
-            if (order.OrderStatusRecord.Name == OrderStatus.New.ToString())
+            if (order.OrderStatusRecord.Name == OrderStatus.UnApproved.ToString())
             {
                 _notifier.Error(T("Your order has not been yet approved"));
                 return View("TrackOrder");

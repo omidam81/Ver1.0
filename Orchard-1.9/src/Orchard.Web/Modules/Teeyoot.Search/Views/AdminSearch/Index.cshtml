@@ -70,37 +70,40 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var categ in Model.CampaignCategoriesList)
+                @if (Model.CampaignCategoriesList != null)
                 {
-                    <tr data-record-text="@categ.Id" class="admin-categories-tr">
-                        <td class="check-box">
-                            <input type="checkbox">
-                        </td>
-                        <td class="visible">
-                            <h3>
-                                @{
-                    string vis = categ.IsVisible ? "Yes" : "No";
-                    @T(vis);
+                    foreach (var categ in Model.CampaignCategoriesList)
+                    {
+                        <tr data-record-text="@categ.Id" class="admin-categories-tr">
+                            <td class="check-box">
+                                <input type="checkbox">
+                            </td>
+                            <td class="visible">
+                                <h3>
+                                    @{
+                        string vis = categ.IsVisible ? "Yes" : "No";
+                        @T(vis);
+                                    }
+                                </h3>
+                            </td>
+                            <td class="name">
+                                <a href="@Url.Action("EditCategory", new  { id = categ.Id})">@categ.Name</a>
+                            </td>
+                            <td class="related">
+                                <a href="@Url.Action("EditCategory", new { id = categ.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                                @if (categ.IsVisible)
+                                {
+                                    <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = false })" title="@T("Unvisible")">@T("Unvisible")</a>@T(" | ")
                                 }
-                            </h3>
-                        </td>
-                        <td class="name">
-                            <a href="@Url.Action("EditCategory", new  { id = categ.Id})">@categ.Name</a>
-                        </td>
-                        <td class="related">
-                            <a href="@Url.Action("EditCategory", new { id = categ.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                            @if (categ.IsVisible)
-                            {
-                                <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = false })" title="@T("Unvisible")">@T("Unvisible")</a>@T(" | ")
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = true })" title="@T("Visible")">@T("Visible")</a>@T(" | ")
+                                else
+                                {
+                                    <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = true })" title="@T("Visible")">@T("Visible")</a>@T(" | ")
 
-                            }
-                            <a href="@Url.Action("DeleteCategory", new { id = categ.Id })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
-                        </td>
-                    </tr>
+                                }
+                                        <a href="@Url.Action(" deletecategory", new { id=categ.Id })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                                    </td>
+                                </tr>
+                    }
                 }
             </tbody>
         </table>

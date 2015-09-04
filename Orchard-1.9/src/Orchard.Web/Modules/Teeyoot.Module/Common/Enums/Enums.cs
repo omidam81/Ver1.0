@@ -14,7 +14,7 @@ namespace Teeyoot.Module.Common.Enums
 
     public enum OrderStatus
     {
-        New = 1,
+        UnApproved = 1,
         Approved,
         Printing,
         Shipped,
