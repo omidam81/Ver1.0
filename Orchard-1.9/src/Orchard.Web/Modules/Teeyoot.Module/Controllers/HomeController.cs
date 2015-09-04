@@ -579,16 +579,24 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         public HttpStatusCodeResult ReservCampaign(string email, int id)
         {
+            var requests = _campaignService.GetReservedRequestsOfCampaign(id);
+
+            foreach (var request in requests)
+            {
+                if (request.Email == email)
+                {
+                    Response.Write(T("You have already done a reservation!"));
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
+            }
+
             _campaignService.ReservCampaign(id, email);
 
-            int cntRequests = _campaignService.GetCountOfReservedRequestsOfCampaign(id);
-
-            if (cntRequests >= 10)
+            if (requests.Count() >= 10)
             {
                 _teeyootMessagingService.SendReLaunchCampaignMessageToAdmin(id);
                 _teeyootMessagingService.SendReLaunchCampaignMessageToSeller(id);
             }
-
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);            
         }

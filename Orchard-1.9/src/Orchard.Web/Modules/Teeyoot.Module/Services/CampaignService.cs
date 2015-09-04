@@ -548,9 +548,14 @@ namespace Teeyoot.Module.Services
              }
         }
 
+        public IQueryable<BringBackCampaignRecord> GetReservedRequestsOfCampaign(int id)
+        {
+           return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id);
+        }
+
         public int GetCountOfReservedRequestsOfCampaign(int id)
         {
-           return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Count();
+            return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Count();
         }
 
         public IQueryable<string> GetBuyersEmailOfReservedCampaign(int id)
