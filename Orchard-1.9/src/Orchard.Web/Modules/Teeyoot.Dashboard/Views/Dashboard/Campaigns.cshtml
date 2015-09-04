@@ -252,8 +252,8 @@
 
                         </div>
                         <div class="modal-body">
-                            <div class="label__title">@T("Set a new goal")</div>
-                            <p class="relaunch__goal_info">@T("Your goal must be at least 15.")</p>
+                            <div class="label__title">@T("Set a new target")</div>
+                            <p class="relaunch__goal_info">@T("Your target must be at least 15.")</p>
 
                             <input class="tipping_point_input" id="relaunch_form_tipping_point" type="text">
                             <div class="relaunch_info_container">
@@ -354,12 +354,13 @@
     function sendData() {
         var countTees = parseInt(document.getElementById("relaunch_form_tipping_point").value);
         var minProfit = estimatedProfitChange(baseCost, countTees);
-        if (minProfit <= 0)
+       
+        if (minProfit <= 0 || countTees < 15)
         {
             return;
         }
-        var profit = document.getElementById('total_profit').innerHTML;
         var campaignLength = parseInt(document.getElementById('length').value);
+        var profit = document.getElementById('total_profit').innerHTML;       
         var minimum = parseInt(document.getElementById("minimmumGoal").innerHTML);
 
         $.ajax({

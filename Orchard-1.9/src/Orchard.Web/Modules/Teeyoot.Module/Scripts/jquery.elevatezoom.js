@@ -130,7 +130,8 @@ if ( typeof Object.create !== 'function' ) {
 					self.zoomWrap = self.$elem.wrap('<div style="height:'+self.nzHeight+'px;width:'+self.nzWidth+'px;" class="zoomWrapper" />');        
 					self.$elem.css('position', 'absolute'); 
 				}
-
+				self.largeHeight = 952;
+				self.largeWidth = 800;
 				self.zoomLock = 1;
 				self.scrollingLock = false;
 				self.changeBgSize = false;
