@@ -590,7 +590,7 @@ namespace Teeyoot.Module.Controllers
                 var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 var frontPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
                 var backPath = Path.Combine(imageFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
-                
+
                 CreateImagesForOtherColor(campaign.Id, p.Id.ToString(), p, data, frontPath, backPath, p.ProductColorRecord.Value);
 
                 if (p.SecondProductColorRecord != null)
@@ -610,7 +610,7 @@ namespace Teeyoot.Module.Controllers
                     CreateImagesForOtherColor(campaign.Id, p.Id.ToString() + "_" + p.FifthProductColorRecord.Id.ToString(), p, data, frontPath, backPath, p.FifthProductColorRecord.Value);
                 }
 
-
+            }
                 //var destForder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), p.Id.ToString());
 
                 //if (!Directory.Exists(destForder))
@@ -649,19 +649,18 @@ namespace Teeyoot.Module.Controllers
                 var imageSocialFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 if (!campaign.BackSideByDefault)
                 {
-                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_front.png");
+                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.FirstOrDefault().ProductRecord.Id + "_front.png");
                     var imgPath = new Bitmap(frontSocialPath);
 
                     _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Front);
                 }
                 else
                 {
-                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + p.ProductRecord.Id + "_back.png");
+                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.FirstOrDefault().ProductRecord.Id + "_back.png");
                     var imgPath = new Bitmap(backSocialPath);
 
                     _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Back);
-                }
-            }
+                }           
         }
 
         private Bitmap BuildProductImage(Bitmap image, Bitmap design, Color color, int width, int height, int printableAreaTop, int printableAreaLeft, int printableAreaWidth, int printableAreaHeight)
