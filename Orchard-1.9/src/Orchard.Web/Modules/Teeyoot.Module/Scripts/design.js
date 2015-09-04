@@ -33,11 +33,11 @@ var design={
             if(app.state.zoomed){
                 $('#design-area').css('transform', 'scale(1.4, 1.4)');
                 var e = design.item.get();
-                design.item.checkBorders(e);
+                //design.item.checkBorders();
             }else{
                 $('#design-area').css('transform', 'scale(1, 1)');
                 var e = design.item.get();
-                design.item.checkBorders(e);
+                //design.item.checkBorders();
             }
             //design.products.setDesignAreaContrastColor(app.state.color);
             
@@ -2688,7 +2688,7 @@ var design={
 	        var height = imageData['printable_'+view+'_height'];
 	        var width = imageData['printable_'+view+'_width'];
 	        var rect = this.getNodeRect(e);
-	        if ((document.getElementById('design-area').style.transform != "scale(1,1)") && ((document.getElementById('design-area').style.transform != ""))) {
+	        if ((document.getElementById('design-area').style.transform != "scale(1, 1)") && ((document.getElementById('design-area').style.transform != ""))) {
 	            rect.width = rect.width / 1.4;
 	            rect.height = rect.height / 1.4;
 	            rect.top = rect.top / 1.4;
@@ -2716,7 +2716,7 @@ var design={
 	        var height = imageData['printable_'+view+'_height'];
 	        var width = imageData['printable_'+view+'_width'];
 	        var rect = this.getNodeRect(e);
-	        if ((document.getElementById('design-area').style.transform != "scale(1,1)") && ((document.getElementById('design-area').style.transform != ""))) {
+	        if ((document.getElementById('design-area').style.transform != "scale(1, 1)") && ((document.getElementById('design-area').style.transform != ""))) {
 	            rect.width = rect.width / 1.4;
 	            rect.height = rect.height / 1.4;
 	            rect.top = rect.top / 1.4;

@@ -656,8 +656,8 @@
                     "Email": email, "Id": campaignId
                 }),
                 success: function (data, status, resp) {
-                    if (data != null) {
-                        $(document.getElementById("reservation-result")).text(data);
+                    if (data == "Already") {
+                        $(document.getElementById("reservation-result")).text("@T("You have already done a reservation!")");
                     } else {
                         $("#reserv_container").addClass("hidden");
                         $(document.getElementById("reservation-result")).text("@T("Your request has been sent!")");

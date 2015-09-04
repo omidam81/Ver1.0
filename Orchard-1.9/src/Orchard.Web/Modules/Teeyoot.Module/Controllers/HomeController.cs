@@ -585,7 +585,7 @@ namespace Teeyoot.Module.Controllers
             {
                 if (request.Email == email)
                 {
-                    Response.Write(T("You have already done a reservation!"));
+                    Response.Write("Already");
                     return new HttpStatusCodeResult(HttpStatusCode.OK);
                 }
             }
