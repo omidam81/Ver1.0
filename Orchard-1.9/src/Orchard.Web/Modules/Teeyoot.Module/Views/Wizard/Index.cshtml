@@ -284,6 +284,7 @@
         window.percentageMarkUpRequired = @Model.PercentageMarkUpRequired;
         window.printsPerLitre = @Model.PrintsPerLitre;
         window.salesTarget = @Model.SalesGoal;
+        window.currency = "@Model.CurrencyCulture";
         //window.maxColors = ;
         window.count = 30; // Первоначальное количество элементов, должно будет изменяться
         window.nowPrice = window.costOfMaterial; // Цена за футболку, которая будет постоянно изменяться
@@ -1327,7 +1328,7 @@
                                         <div id="all-price-calculator" class="all-price-calculator">
                                             <div class="price-calculator">
                                                 <div class="ssp_pricing ssp_pricing_new">
-                                                    <span class="rm-for-price" style="font-weight: normal !important">RM </span>
+                                                    <span class="rm-for-price" style="font-weight: normal !important">@Model.CurrencyCulture </span>
                                                     <input type="text" class="ssp_input price_per form__textfield" id="profSale" onchange="profitSale()">
                                                 </div>
                                                 <div class="profitSale" id="price-for-first-product-text">
@@ -1336,7 +1337,7 @@
                                             </div>
                                             <div class="cost-calculator">
                                                 <div class="profitSale">
-                                                    <h4 class="h4ProfSale costH4Rm" id="base-cost-for-first-product-rm">RM</h4>
+                                                    <h4 class="h4ProfSale costH4Rm" id="base-cost-for-first-product-rm">@Model.CurrencyCulture</h4>
                                                     <h4 class="h4ProfSale costH4Float" id="base-cost-for-first-product"></h4>
                                                     <h4 class="h4ProfSale costH4Text" id="base-cost-for-first-product-text">@T("Cost Price")</h4>
                                                     <h6 class="h6Sale" id="base-cost-for-first-product-text-smoll">@T("(per shirt)")</h6>
@@ -1344,7 +1345,7 @@
                                             </div>
                                             <div class="profit-calculator" id="profit-calculator">
                                                 <div class="profitSale">
-                                                    <h4 class="h4ProfSale costH4Rm profit">RM</h4>
+                                                    <h4 class="h4ProfSale costH4Rm profit">@Model.CurrencyCulture</h4>
                                                     <h4 class="h4ProfSale costH4Float profit" id="mainH4"></h4>
                                                     <h4 class="h4ProfSale costH4Text profit">@T("Your Profit")</h4>
                                                     <h6 class="h6Sale profit" style="padding-top: 2px;">
