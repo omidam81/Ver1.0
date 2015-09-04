@@ -1,4 +1,5 @@
-﻿using Orchard.ContentManagement;
+﻿using Orchard;
+using Orchard.ContentManagement;
 using Orchard.Data;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,25 @@ namespace Teeyoot.Search.Services
         private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCetegory;
         private readonly IContentManager _contentManager;
         private readonly IRepository<CampaignRecord> _campaign;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string culture = string.Empty;
+        private string cultureUsed = string.Empty;
 
-        public CampaignCategoriesService(IRepository<CampaignCategoriesRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory, IRepository<CampaignRecord> campaign)
+        public CampaignCategoriesService(IRepository<CampaignCategoriesRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory, IRepository<CampaignRecord> campaign, IWorkContextAccessor workContextAccessor)
         {
             _repository = repository;
             _contentManager = contentManager;
             _linkCampaignAndCetegory = linkCampaignAndCetegory;
             _campaign = campaign;
+
+            _workContextAccessor = workContextAccessor;
         }
 
         public IQueryable<CampaignCategoriesRecord> GetAllCategories()
         {
-            return _repository.Table;
+            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            return _repository.Table.Where(c => c.CategoriesCulture == cultureUsed);
         }
 
         public IQueryable<CampaignRecord> GetCampaignsByIdCategory(int id)

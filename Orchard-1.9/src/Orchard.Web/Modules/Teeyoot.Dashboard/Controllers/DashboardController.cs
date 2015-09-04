@@ -37,6 +37,9 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly IProductService _productService;
         private readonly INotifier _notifier;
         private IOrchardServices Services { get; set; }
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string culture = string.Empty;
+        private string cultureUsed = string.Empty;
 
         public Localizer T { get; set; }
 
@@ -58,7 +61,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    ITShirtCostService tshirtService,
                                    IProductService productService,
                                    INotifier notifier,
-                                   ITeeyootMessagingService teeyootMessagingService
+                                   ITeeyootMessagingService teeyootMessagingService,
+                                   IWorkContextAccessor workContextAccessor
                                     )
         {
             _campaignService = campaignService;
@@ -83,6 +87,10 @@ namespace Teeyoot.Dashboard.Controllers
             Services = services;
 
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public ILogger Logger { get; set; }

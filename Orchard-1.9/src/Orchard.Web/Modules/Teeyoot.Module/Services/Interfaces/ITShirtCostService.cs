@@ -10,7 +10,7 @@ namespace Teeyoot.Module.Services.Interfaces
 {
     public interface ITShirtCostService : IDependency
     {
-        TShirtCostRecord GetCost();
+        TShirtCostRecord GetCost(string culture);
 
         bool UpdateCost(TShirtCostRecord cost);
 

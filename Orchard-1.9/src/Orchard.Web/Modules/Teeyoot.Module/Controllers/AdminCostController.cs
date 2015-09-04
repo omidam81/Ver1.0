@@ -19,17 +19,24 @@ namespace Teeyoot.Module.Controllers
         private readonly ITShirtCostService _costService;
         public Localizer T { get; set; }
         private IOrchardServices Services { get; set; }
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string culture = string.Empty;
+        private string cultureSearch = string.Empty;
 
-        public AdminCostController(ITShirtCostService costService, IOrchardServices services)
+        public AdminCostController(ITShirtCostService costService, IOrchardServices services, IWorkContextAccessor workContextAccessor)
         {
             _costService = costService;
             Services = services;
+
+            _workContextAccessor = workContextAccessor;
+            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         // GET: AdminCost
         public ActionResult Index()
         {
-            TShirtCostRecord cost = _costService.GetCost();
+            TShirtCostRecord cost = _costService.GetCost(cultureSearch);
 
             if (cost == null)
             {
@@ -45,7 +52,7 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult Edit()
         {
-            TShirtCostRecord cost = _costService.GetCost();
+            TShirtCostRecord cost = _costService.GetCost(cultureSearch);
             if (cost == null)
             {
                 return View("Edit");
@@ -138,7 +145,7 @@ namespace Teeyoot.Module.Controllers
                 return this.RedirectToAction("Edit");
             }
 
-            TShirtCostRecord cost = _costService.GetCost();
+            TShirtCostRecord cost = _costService.GetCost(cultureSearch);
 
             if (cost == null)
             {
@@ -154,7 +161,8 @@ namespace Teeyoot.Module.Controllers
                     PercentageMarkUpRequired = Convert.ToSingle(costViewModel.PercentageMarkUpRequired, new CultureInfo("en-US")),
                     PrintsPerLitre = costViewModel.PrintsPerLitre,
                     SalesGoal = costViewModel.SalesGoal,
-                    MaxColors = costViewModel.MaxColors
+                    MaxColors = costViewModel.MaxColors,
+                    CostCulture = cultureSearch
                 };
 
                 if (_costService.InsertCost(newCost))

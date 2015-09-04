@@ -24,7 +24,7 @@ namespace Teeyoot.Module
                     .Add(subItem => subItem
                         .Caption(T("Teeyoot"))
                         .Position("2.1")
-                        .Action("Index", "Home", new { area = "Teeyoot.Module" })
+                        //.Action("Index", "Home", new { area = "Teeyoot.Module" })
                     )
                      .Add(subItem => subItem
                         .Caption(T("Campaigns"))

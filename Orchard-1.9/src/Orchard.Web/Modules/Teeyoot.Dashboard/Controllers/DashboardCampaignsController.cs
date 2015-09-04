@@ -362,7 +362,7 @@ namespace Teeyoot.Dashboard.Controllers
                 prodInfo.Add(new { Price = product.Price, BaseCostForProduct = prodRec.BaseCost, ProductId = prodRec.Id, BaseCost = product.BaseCost });
             }
             
-            var tShirtCostRecord = _tshirtService.GetCost();
+            var tShirtCostRecord = _tshirtService.GetCost(cultureUsed);
 
             result.Products = prodInfo.ToArray();
             result.CntBackColor = campaign.CntBackColor;

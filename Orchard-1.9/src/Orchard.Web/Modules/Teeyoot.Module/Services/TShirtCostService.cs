@@ -17,9 +17,9 @@ namespace Teeyoot.Module.Services
             _costRepository = costRepository;
         }
 
-        public TShirtCostRecord GetCost()
+        public TShirtCostRecord GetCost(string culture)
         {
-            return _costRepository.Table.FirstOrDefault();
+            return _costRepository.Table.Where(c => c.CostCulture == culture).FirstOrDefault();
         }
 
         public bool UpdateCost(TShirtCostRecord cost)
