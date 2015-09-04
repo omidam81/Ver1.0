@@ -757,11 +757,29 @@ namespace Teeyoot.Module.Controllers
                 p.ProductRecord.ProductImageRecord.PrintableBackWidth, p.ProductRecord.ProductImageRecord.PrintableBackHeight);
             back.Save(Path.Combine(destForder, "normal", "back.png"));
 
-            _imageHelper.ResizeImage(front, 1070, 1274).Save(Path.Combine(destForder, "big", "front.png"));
-            _imageHelper.ResizeImage(back, 1070, 1274).Save(Path.Combine(destForder, "big", "back.png"));
+
+            var frontZoom = BuildProductImage(frontTemplate, _imageHelper.Base64ToBitmap(data.Front), rgba, p.ProductRecord.ProductImageRecord.Width * 4, p.ProductRecord.ProductImageRecord.Height * 4,
+                p.ProductRecord.ProductImageRecord.PrintableFrontTop * 4, p.ProductRecord.ProductImageRecord.PrintableFrontLeft *4,
+                p.ProductRecord.ProductImageRecord.PrintableFrontWidth * 4, p.ProductRecord.ProductImageRecord.PrintableFrontHeight * 4);
+          
+            var backZoom = BuildProductImage(backTemplate, _imageHelper.Base64ToBitmap(data.Back), rgba, p.ProductRecord.ProductImageRecord.Width * 4, p.ProductRecord.ProductImageRecord.Height * 4,
+                p.ProductRecord.ProductImageRecord.PrintableBackTop * 4, p.ProductRecord.ProductImageRecord.PrintableBackLeft * 4,
+                p.ProductRecord.ProductImageRecord.PrintableBackWidth * 4, p.ProductRecord.ProductImageRecord.PrintableBackHeight * 4);
+
+            Rectangle rect = new Rectangle(0, 0, frontZoom.Width - 10, frontZoom.Height - 10);
+            Bitmap croppedFront = frontZoom.Clone(rect, frontZoom.PixelFormat);
+
+            croppedFront.Save(Path.Combine(destForder, "big", "front.png"));
+
+            Rectangle rect2 = new Rectangle(0, 0, backZoom.Width - 10, backZoom.Height - 10);
+            Bitmap croppedBck = backZoom.Clone(rect2, backZoom.PixelFormat);
+
+            croppedBck.Save(Path.Combine(destForder, "big", "back.png"));
 
             frontTemplate.Dispose();
             backTemplate.Dispose();
+            croppedFront.Dispose();
+            croppedBck.Dispose();
             front.Dispose();
             back.Dispose();
         }
