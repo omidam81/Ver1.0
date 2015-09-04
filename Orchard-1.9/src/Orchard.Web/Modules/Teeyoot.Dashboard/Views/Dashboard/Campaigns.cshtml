@@ -354,12 +354,13 @@
     function sendData() {
         var countTees = parseInt(document.getElementById("relaunch_form_tipping_point").value);
         var minProfit = estimatedProfitChange(baseCost, countTees);
-        if (minProfit <= 0)
+       
+        if (minProfit <= 0 || countTees < 15)
         {
             return;
         }
-        var profit = document.getElementById('total_profit').innerHTML;
         var campaignLength = parseInt(document.getElementById('length').value);
+        var profit = document.getElementById('total_profit').innerHTML;       
         var minimum = parseInt(document.getElementById("minimmumGoal").innerHTML);
 
         $.ajax({
