@@ -214,7 +214,7 @@ window.onload = function initWizard() {
         h4CostProfFloat.classList.add("costH4Float");
         h6Cost.classList.add("h6Sale");
         h6Cost.innerHTML = "(per shirt)";
-        h4CostProfRm.innerHTML = "RM";
+        h4CostProfRm.innerHTML = window.currency;
         h4CostProfText.innerHTML = "Cost Price";
         h4CostProfFloat.innerHTML = prdc.BaseCost.toFixed(2);
         divCostProf.appendChild(h4CostProfRm);
@@ -238,7 +238,7 @@ window.onload = function initWizard() {
         h6.classList.add("profit");
         h6.innerHTML = "(per shirt)";
         h6.style.paddingTop = "2px";
-        h4ProfRm.innerHTML = "RM";
+        h4ProfRm.innerHTML = window.currency;
         h4ProfText.innerHTML = "Your Profit";
         divProf.appendChild(h4ProfRm);
         divProf.appendChild(h4Profit);
@@ -258,7 +258,7 @@ window.onload = function initWizard() {
         divProfit.classList.add("profitSale");
         spanPrice.classList.add("rm-for-price");
         spanPrice.style.fontWeight = "normal";
-        spanPrice.innerHTML = "RM"
+        spanPrice.innerHTML = window.currency;
         inpPrice.classList.add("ssp_input");
         inpPrice.classList.add("price_per");
         inpPrice.classList.add("form__textfield");
@@ -1575,7 +1575,7 @@ function profitSale() {
         updateMinimum(price);
         app.state.currentProduct.Price = selPrice;
         window.sellingPrice = app.state.currentProduct.Price;
-        $("#total_profit").html("RM 0+");
+        $("#total_profit").html(window.currency + " 0+");
         minimumGoal();
     } else {
         //$("#mainH4").html($price);

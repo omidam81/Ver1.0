@@ -49,12 +49,13 @@ namespace Teeyoot.Module.Controllers
         private readonly IWorkContextAccessor _workContextAccessor;
         private string culture = string.Empty;
         private string cultureUsed = string.Empty;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
 
         private const int ArtsPageSize = 30;
         private const string SendEmailRequestAcceptedKey = "SendEmailAcceptedRequest";
         private const string InvalidEmailKey = "InvalidEmail";
 
-        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository, ShellSettings shellSettings, IWorkContextAccessor workContextAccessor)
+        public WizardController(IOrchardServices orchardServices, ICampaignService campaignService, IimageHelper imageHelper, IFontService fontService, IProductService productService, ISwatchService swatchService, ITShirtCostService costService, ITeeyootMessagingService teeyootMessagingService, IRepository<CommonSettingsRecord> commonSettingsRepository, IRepository<ArtRecord> artRepository, IRepository<CheckoutCampaignRequest> checkoutCampaignRequestRepository, ShellSettings shellSettings, IWorkContextAccessor workContextAccessor, IRepository<CurrencyRecord> currencyRepository)
         {
             _orchardServices = orchardServices;
             _campaignService = campaignService;
@@ -74,6 +75,7 @@ namespace Teeyoot.Module.Controllers
             _workContextAccessor = workContextAccessor;
             culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            _currencyRepository = currencyRepository;
         }
 
         public ILogger Logger { get; set; }
@@ -123,6 +125,9 @@ namespace Teeyoot.Module.Controllers
             costViewModel.GoogleClientId = googleSettingsPart.ClientId;
 
             costViewModel.GoogleApiKey = "AIzaSyBijPOV5bUKPNRKTE8areEVNi81ji7sS1I";
+
+            var currency = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
+            costViewModel.CurrencyCulture = currency.Code;
 
             return View(costViewModel);
         }

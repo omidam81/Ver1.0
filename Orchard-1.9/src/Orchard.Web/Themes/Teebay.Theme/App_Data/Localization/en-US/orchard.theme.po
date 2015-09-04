@@ -138,7 +138,7 @@ msgstr "Collapse"
 #: ~/Themes/Teebay.Theme/Views/Parts.Search.SearchForm-66.cshtml
 msgctxt ~/Themes/Teebay.Theme/Views/Parts.Search.SearchForm-66.cshtml
 msgid "Search Campaigns"
-msgstr "Search Campaigns en-US"
+msgstr "Search Campaigns"
 
 #: ~/Themes/Teebay.Theme/Views/User.cshtml
 msgctxt ~/Themes/Teebay.Theme/Views/User.cshtml

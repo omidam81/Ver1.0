@@ -10,7 +10,7 @@
         app.state.currentProduct.Price = window.sellingPrice;
     }
 
-    document.getElementById("price_preview").innerHTML = "RM " + res.toFixed(2);
+    document.getElementById("price_preview").innerHTML = window.currency + " " + res.toFixed(2);
     app.state.currentProduct.BaseCost = window.nowPrice;
 
     var changes = parseFloat(app.state.currentProduct.Price) - window.nowPrice;
@@ -128,7 +128,7 @@ function setPriceInDesignFromGoal() {
 
     calculatePrice(window.frontColor, window.backColor);
 
-    $(document.getElementById("price_preview")).text("RM " + window.nowPrice.toFixed(2));
+    $(document.getElementById("price_preview")).text(window.currency + " " + window.nowPrice.toFixed(2));
     document.getElementById('count_preview').innerHTML = "Base cost &#64; " + window.count + " shirts";
 }
 
@@ -137,18 +137,18 @@ function estimatedProfitChange() {
     var est = (parseFloat((window.sellingPrice - window.nowPrice) * window.count)).toFixed(0);
     if (est.length == 6) {
         var val = est.toString().substring(0, 3) + "," + est.toString().substring(3, 6)
-        $("#total_profit").html("RM " + val + "+");
+        $("#total_profit").html(window.currency + " " + val + "+");
     } else if (est.length == 7) {
         var val = est.toString().substring(0, 1) + "," + est.toString().substring(1, 4) + "," + est.toString().substring(4, 7);
-        $("#total_profit").html("RM " + val + "+");
+        $("#total_profit").html(window.currency + " " + val + "+");
     } else if (est.length == 8) {
         var val = est.toString().substring(0, 2) + "," + est.toString().substring(2, 5) + "," + est.toString().substring(5, 8);
-        $("#total_profit").html("RM " + val + "+");
+        $("#total_profit").html(window.currency + " " + val + "+");
     } else if (est.length == 9) {
         var val = est.toString().substring(0, 3) + "," + est.toString().substring(3, 6) + "," + est.toString().substring(6, 9);
-        $("#total_profit").html("RM " + val + "+");
+        $("#total_profit").html(window.currency + " " + val + "+");
     } else {
-        $("#total_profit").html("RM " + est + "+");
+        $("#total_profit").html(window.currency + " " + est + "+");
     }
 
     minimumGoal();
@@ -233,18 +233,18 @@ function estimatedProfitChangeForManuProducts() {
 
         if (min.length == 6) {
             var val = min.toString().substring(0, 3) + "," + min.toString().substring(3, 6)
-            $("#total_profit").html("RM " + val + "+");
+            $("#total_profit").html(window.currency + " " + val + "+");
         } else if (min.length == 7) {
             var val = min.toString().substring(0, 1) + "," + min.toString().substring(1, 4) + "," + min.toString().substring(4, 7);
-            $("#total_profit").html("RM " + val + "+");
+            $("#total_profit").html(window.currency + " " + val + "+");
         } else if (min.length == 8) {
             var val = min.toString().substring(0, 2) + "," + min.toString().substring(2, 5) + "," + min.toString().substring(5, 8);
-            $("#total_profit").html("RM " + val + "+");
+            $("#total_profit").html(window.currency + " " + val + "+");
         } else if (min.length == 9) {
             var val = min.toString().substring(0, 3) + "," + min.toString().substring(3, 6) + "," + min.toString().substring(6, 9);
-            $("#total_profit").html("RM " + val + "+");
+            $("#total_profit").html(window.currency + " " + val + "+");
         } else {
-            $("#total_profit").html("RM " + min + "+");
+            $("#total_profit").html(window.currency + " " + min + "+");
         }
 
 
@@ -277,7 +277,7 @@ function estimatedProfitChangeForManuProducts() {
 
 
 
-        $("#total_profit").html("RM " + valMin + "-" + valMax + "+");
+        $("#total_profit").html(window.currency + " " + valMin + "-" + valMax + "+");
 
     }
     minimumGoal();
@@ -300,7 +300,7 @@ function updateMinimum(changes) {
         $("#mainH4").html(changes);
         //$("#mainH4").css('color', '#ff0000');
         if (app.state.products.length < 2) {
-            $("#total_profit").html("RM 0");
+            $("#total_profit").html(window.currency + " 0");
         }
     } else {
         if (app.state.isNegativeProfit != null) {
