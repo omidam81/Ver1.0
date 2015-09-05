@@ -69,7 +69,6 @@ namespace Teeyoot.Module.Services
             Logger = NullLogger.Instance;
 
             _workContextAccessor = workContextAccessor;
-            
         }
 
         private IOrchardServices Services { get; set; }
