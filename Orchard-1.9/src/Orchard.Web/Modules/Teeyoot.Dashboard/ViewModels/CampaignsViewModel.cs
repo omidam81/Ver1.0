@@ -17,7 +17,11 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public CampaignSummary[] Campaigns { get; set; }
 
-        public string Currency { get; set; }
+        public string MYCurrencyCode { get; set; }
+
+        public string IDCurrencyCode { get; set; }
+
+        public string SGCurrencyCode { get; set; }
     }
 
     public class CampaignSummary
@@ -40,6 +44,8 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public double Profit { get; set; }
 
+        public string SummaryCurrency { get; set; }
+
         public string Alias { get; set; }
 
         public CampaignStatusRecord Status { get; set; }
@@ -59,9 +65,17 @@ namespace Teeyoot.Dashboard.ViewModels
     {
         public int ProductsOrdered { get; set; }
 
-        public double Profit { get; set; }
+        public double MYProfit { get; set; }
 
-        public double ToBePaid { get; set; }
+        public double SGProfit { get; set; }
+
+        public double IDProfit { get; set; }
+
+        public double MYToBePaid { get; set; }
+
+        public double SGToBePaid { get; set; }
+
+        public double IDToBePaid { get; set; }
 
         public OverviewType Type { get; set; }
     }

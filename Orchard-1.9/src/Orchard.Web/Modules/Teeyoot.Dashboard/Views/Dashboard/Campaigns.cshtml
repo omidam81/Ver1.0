@@ -26,15 +26,26 @@
             {
                 <div class="overview-for-period selected">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.Currency@item.Profit</span>@T("profit")</div>
-                    <div><span>@Model.Currency@item.ToBePaid</span>@T("to be paid")</div>
+                    <div>
+                        <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
+                        <div><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit")</div>
+                        <div><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit")</div>
+                    </div>
+
+                    <div>
+                    <div><span>@Model.MYCurrencyCode@item.MYToBePaid</span>@T("to be paid")</div>
+                    <div><span>@Model.SGCurrencyCode@item.SGToBePaid</span>@T("to be paid")</div>
+                    <div><span>@Model.IDCurrencyCode@item.IDToBePaid</span>@T("to be paid")</div>
+                        </div>
                 </div>
             }
             else if (item.Type != Teeyoot.Module.Common.Enums.OverviewType.AllTime)
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.Currency@item.Profit</span>@T("profit (includes pending profit)")</div>
+                    <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit (includes pending profit)")</div>
+                    <div><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit (includes pending profit)")</div>
+                    <div><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit (includes pending profit)")</div>
                     @*<div><span></span>@T("To be paid")</div>*@
                 </div>
             }
@@ -42,7 +53,9 @@
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.Currency@item.Profit</span>@T("profit")</div>
+                    <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
+                    <div><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit")</div>
+                    <div><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit")</div>
                     @*<div><span></span>@T("To be paid")</div>*@
                 </div>
             }
@@ -189,7 +202,7 @@
                         </div>
 
                         <div class="campaign-card-profit">
-                            <span>@Model.Currency@c.Profit</span>
+                            <span>@c.SummaryCurrency@c.Profit</span>
                         </div>
 
                     </div>
