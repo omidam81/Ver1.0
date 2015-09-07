@@ -1,6 +1,10 @@
 ﻿@{
     Style.Include("FeaturedCampaigns.css");
 }
+@if (Model.Campaigns != null)
+{
+    
+   
 <div class="row">
     <div class=" span-12 cell">
         <div class="featured-campaigns-title"><h1 class="section__subheading" style="text-align: center;" data-mce-style="text-align: center;">@T("Featured Campaigns")</h1></div>
@@ -75,3 +79,4 @@
         </div>
     }
 </div>
+}  
