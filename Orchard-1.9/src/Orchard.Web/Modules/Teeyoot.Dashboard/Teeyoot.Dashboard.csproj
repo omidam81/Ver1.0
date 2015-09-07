@@ -110,6 +110,10 @@
       <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
       <Name>Orchard.Users</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RM.Localization\RM.Localization.csproj">
+      <Project>{c4557bdf-1053-4d68-97ec-48c4c897e842}</Project>
+      <Name>RM.Localization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Teeyoot.Messaging\Teeyoot.Messaging.csproj">
       <Project>{8ab824c5-2480-4572-929a-9d4d4081aeba}</Project>
       <Name>Teeyoot.Messaging</Name>

@@ -184,6 +184,18 @@
                     </div>
                     <div class="list_item__cell list_item__expiration">@expiration</div>
                     <div class="list_item__cell list_item__redeemed">@promotion.Redeemed</div>
+                    @if (promotion.Expiration < DateTime.UtcNow)
+                    {
+                    <div class="list_item__cell list_item__status">
+                        <label class="switch__label">
+
+                            <input id="switchState" checked="@promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@promotion.Id)" disabled />
+                            <div class="switch__el" data-off="Off" data-on="On"></div>
+                        </label>
+                    </div>
+                    }
+                    else
+                    {
                     <div class="list_item__cell list_item__status">
                         <label class="switch__label">
 
@@ -191,6 +203,8 @@
                             <div class="switch__el" data-off="Off" data-on="On"></div>
                         </label>
                     </div>
+                    }
+                    
                     <div id="action" class="list_item__cell list_item__actions"><a href="@Url.Action("DeletePromotion", new {id = promotion.Id })" class="ts-icon-close delete_promotion__button"></a></div>
                 </div>
             }

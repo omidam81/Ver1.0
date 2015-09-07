@@ -72,5 +72,22 @@ namespace Teeyoot.Module.Services
         {
             return _promotionRepository.Get(f => f.Id == id);
         }
+
+        public void CheckExpiredPromotions()
+        {
+            var promotions = _promotionRepository
+                                .Table
+                                .Where(c => c.Expiration < DateTime.UtcNow && c.Status)
+                                .ToList();
+
+            foreach (var c in promotions)
+            {
+
+                c.Status = false;
+                _promotionRepository.Update(c);
+                _promotionRepository.Flush();
+            }
+               
+        }
     }
 }
