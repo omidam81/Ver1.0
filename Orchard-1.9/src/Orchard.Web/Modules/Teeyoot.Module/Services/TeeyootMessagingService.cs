@@ -10,6 +10,7 @@ using Orchard.UI.Notify;
 using Orchard.Users.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -1043,11 +1044,11 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(record.Email, "COUNTRY", record.Country);
             if (record.TotalPriceWithPromo > 0.0)
             {
-                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPriceWithPromo.ToString());
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPriceWithPromo.ToString("F", CultureInfo.InvariantCulture));
             }
             else
             {
-                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPrice.ToString());
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
 
         }
@@ -1074,7 +1075,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "AccHolderName", accHoldName);
             message.AddRcptMergeVars(adminEmail, "ContactNumber", contNum);
             message.AddRcptMergeVars(adminEmail, "Text", messAdmin);
-            message.AddRcptMergeVars(adminEmail, "Amount", amount.ToString("F"));
+            message.AddRcptMergeVars(adminEmail, "Amount", amount.ToString("F", CultureInfo.InvariantCulture));
             message.AddRcptMergeVars(adminEmail, "Currency", currencyCode);
             message.AddRcptMergeVars(adminEmail, "Url", baseUrl);
 
@@ -1095,11 +1096,11 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "COUNTRY", record.Country);
             if (record.TotalPriceWithPromo > 0.0)
             {
-                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPriceWithPromo.ToString("F"));
+                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPriceWithPromo.ToString("F", CultureInfo.InvariantCulture));
             }
             else
             {
-                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPrice.ToString("F"));
+                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
 
         }
@@ -1148,7 +1149,7 @@ namespace Teeyoot.Messaging.Services
                         {"price", price},
                         {"size", item.ProductSizeRecord.SizeCodeRecord.Name},
                         {"currency", item.OrderRecord.CurrencyRecord.Code},
-                        {"total_price", (price* item.Count).ToString("F")},
+                        {"total_price", (price* item.Count).ToString("F", CultureInfo.InvariantCulture)},
                         {"preview_url", baseUrl + "/Media/campaigns/" + item.CampaignProductRecord.CampaignRecord_Id + "/" + prodColor + "/normal/"+side+".png"}
                      });
 

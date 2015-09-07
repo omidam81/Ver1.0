@@ -5,6 +5,7 @@ using System.Text;
 using Orchard.ContentManagement.Drivers;
 using Teeyoot.Module.Models;
 using Teeyoot.Search.Services;
+using System.Web.Mvc;
 
 namespace Teeyoot.Search.Drivers
 {

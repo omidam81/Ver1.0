@@ -63,11 +63,27 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
                         }
                     }
                     int max = otherCampaigns.Count();
-
-                    Random rand = new Random();
-                    for (int i = 0; i < countTopCamp; i++)
+                    if ((max + featuredCampaigns.Count()) < 6)
                     {
-                        featuredCampaigns.Add(otherCampaigns.ElementAt(rand.Next(max)));
+                        featuredCampaigns = null;
+                    }
+                    else
+                    {
+
+                        Random rand = new Random();
+                        for (int i = 0; i < countTopCamp; i++)
+                        {
+                            var res = false;
+                            while (!res)
+                            {
+                                var camp = otherCampaigns.ElementAt(rand.Next(max));
+                                if (!featuredCampaigns.Exists(c => c.Id == camp.Id))
+                                {
+                                    featuredCampaigns.Add(camp);
+                                    res = true;
+                                }
+                            }
+                        }
                     }
                 }
             }
