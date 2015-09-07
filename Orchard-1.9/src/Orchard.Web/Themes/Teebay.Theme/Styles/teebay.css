@@ -4297,3 +4297,35 @@ html, body {
 .user-display {
     /*margin-top: -45px;*/
 }
+
+.profit-paid-div{
+    display: -webkit-inline-box;
+    width: 100%;
+}
+
+.profit-paid-span-div{
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    width: 33%;
+}
+
+@media all and (max-width: 600px) {
+    .profit-paid-div{
+        display:block;
+    width: 100%;
+}
+
+    .profit-paid-span-div{
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+}
