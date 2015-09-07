@@ -166,6 +166,10 @@ namespace Teeyoot.Module.Services
                 };
                 _campaignRepository.Create(newCampaign);
 
+                var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+                string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+                var currencyId = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
+
                 if (data.Tags != null)
                 {
                     foreach (var tag in data.Tags)
@@ -185,7 +189,8 @@ namespace Teeyoot.Module.Services
                             var cat = new CampaignCategoriesRecord
                             {
                                 Name = tag,
-                                IsVisible = false
+                                IsVisible = false,
+                                CategoriesCulture = cultureUsed
                             };
                             _campaignCategories.Create(cat);
                             var link = new LinkCampaignAndCategoriesRecord
@@ -197,10 +202,6 @@ namespace Teeyoot.Module.Services
                         }
                     }
                 }
-
-                var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-                string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
-                var currencyId = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
 
                 foreach (var prod in data.Products)
                 {
