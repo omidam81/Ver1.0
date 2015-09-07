@@ -3418,20 +3418,25 @@ var design={
 		    };
 			
 			var obj 	= [], i = 0;
-			$('#view-' +postion+ ' .design-area .drag-item').each(function(){
+			var zoom = 2;
+			$('#view-' + postion + ' .design-area .drag-item').each(function () {
 				obj[i] 			= {};
-				obj[i].top 		= design.convert.px($(this).css('top'));
-				obj[i].left 	= design.convert.px($(this).css('left'));
-				obj[i].width 	= design.convert.px($(this).css('width'));
-				obj[i].height 	= design.convert.px($(this).css('height'));
+				obj[i].top = zoom * design.convert.px($(this).css('top'));
+				obj[i].left = zoom * design.convert.px($(this).css('left'));
+				obj[i].width = zoom * design.convert.px($(this).css('width'));
+				obj[i].height = zoom * design.convert.px($(this).css('height'));
 								
 				if(typeof $(this).data('rotate') != 'undefined')
 					obj[i].rotate = $(this).data('rotate');
 				else 
 					obj[i].rotate = 0;
 					
-				var svg 		= $(this).find('svg');				
-				obj[i].svg 		= $('<div></div>').html($(svg).clone()).html();
+				var svg = $(this).find('svg');
+				svg = $(svg).clone();
+				svg[0].setAttributeNS(null, 'width', zoom * svg[0].getAttributeNS(null, 'width'));
+				svg[0].setAttributeNS(null, 'height', zoom * svg[0].getAttributeNS(null, 'height'));
+
+				obj[i].svg 		= $('<div></div>').html(svg).html();
 				var image 		= $(svg).find('image');
 				if (typeof image[0] == 'undefined')
 				{
@@ -3450,9 +3455,9 @@ var design={
 				return obj1.zIndex - obj2.zIndex;
 			});
 			
-			var canvas 			= document.createElement('canvas');
-				canvas.width 	= area.width;
-				canvas.height 	= area.height;
+			var canvas = document.createElement('canvas');
+			    canvas.width = zoom*area.width;
+			    canvas.height = zoom*area.height;
 			var context = canvas.getContext('2d');
 			
 			var radius = 0;		
@@ -3663,8 +3668,8 @@ var design={
 						}
 						else
 						{
-							context.drawSvg(item.svg, item.left, item.top);
-						}
+						    context.drawSvg(item.svg, item.left, item.top);
+                        }
 						context.restore();
 						canvasLoad(obj, i);
 					}
