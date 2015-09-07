@@ -50,6 +50,8 @@ namespace Teeyoot.Module.Controllers
         private readonly IWorkContextAccessor _workContextAccessor;
         private readonly IRepository<TeeyootUserPartRecord> _userRepository;
         private readonly IContentManager _contentManager;
+        private string culture = string.Empty;
+        private string cultureUsed = string.Empty;
 
 
         public HomeController(IOrderService orderService, 
@@ -86,6 +88,9 @@ namespace Teeyoot.Module.Controllers
             _notifier = notifier;
             T = NullLocalizer.Instance;
             Shape = shapeFactory;
+
+            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         private ILogger Logger { get; set; }
@@ -397,7 +402,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult ReservationComplete(int campaignId, int sellerId)
         {
             var campaigns = _campaignService.GetAllCampaigns()
-                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId)
+                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId && c.CampaignCulture == cultureUsed)
                                 .Select(c => new
                                 {
                                     Id = c.Id,
