@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using RM.Localization.Services;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -20,8 +21,10 @@ namespace Teeyoot.Module.Controllers
         private readonly IWorkContextAccessor _wca;
         private readonly INotifier _notifier;
         public Localizer T { get; set; }
+        private readonly ICookieCultureService _cookieCultureService;
+        private string cultureUsed = string.Empty;
 
-        public CampaignController(ICampaignService campaignService, IPromotionService promotionService, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services)
+        public CampaignController(ICampaignService campaignService, IPromotionService promotionService, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
         {
             Services = services;
             _campaignService = campaignService;
@@ -29,6 +32,10 @@ namespace Teeyoot.Module.Controllers
             _wca = wca;
             _notifier = notifier;
             Logger = NullLogger.Instance;
+
+            _cookieCultureService = cookieCultureService;
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public ILogger Logger { get; set; }
@@ -54,6 +61,12 @@ namespace Teeyoot.Module.Controllers
 
                     if (campaign.IsApproved == true || Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId)
                     {
+                        string campaignCulture = campaign.CampaignCulture;
+                        if (campaignCulture != cultureUsed)
+                        {
+                            _cookieCultureService.SetCulture(campaignCulture);
+                        }
+
                         if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.Rejected == true)
                         {
                             var infoMessage = T("Your campaign have been rejected!");
