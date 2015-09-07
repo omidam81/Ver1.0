@@ -43,7 +43,7 @@ namespace Teeyoot.Dashboard.Controllers
             var model = new CampaignsViewModel();
             model.MYCurrencyCode = _currencyRepository.Table.Where(c=> c.CurrencyCulture == "en-MY").FirstOrDefault().Code; 
             model.IDCurrencyCode = _currencyRepository.Table.Where(c=> c.CurrencyCulture == "id-ID").FirstOrDefault().Code;
-            model.SGCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "en-SG").FirstOrDefault().Code; 
+            model.SGCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "en-SG").FirstOrDefault().Code;
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
             var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser != null ? teeyootUser.Id : 0);
