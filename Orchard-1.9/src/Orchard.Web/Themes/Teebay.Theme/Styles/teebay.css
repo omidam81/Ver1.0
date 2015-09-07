@@ -2393,7 +2393,7 @@
 .credits {
     padding-left: 17px;
     margin-bottom: 25px;
-    margin-top: -45px;
+    /*margin-top: -45px;*/
 }
 
 @media all and (max-width: 1200px) {
@@ -4295,5 +4295,5 @@ html, body {
     }
 
 .user-display {
-    margin-top: -45px;
+    /*margin-top: -45px;*/
 }
