@@ -18,5 +18,7 @@ namespace Teeyoot.Module.ViewModels
 
         public int ColorId { get; set; }
 
+        public int CurrencyId { get; set; }
+
     }   
 }

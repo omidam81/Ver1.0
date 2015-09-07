@@ -599,6 +599,7 @@
         var sizeId;
         var price;
         var colorId;
+        var currencyId = @Model.Campaign.Products.First().CurrencyRecord.Id;
 
         tableRows.each(function (index, el) {
 
@@ -611,7 +612,7 @@
             items = $(el).find('.color-dropdown.shown')[0];
             colorId = items[items.selectedIndex].value;
 
-            products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price, ColorId: colorId });
+            products.push({ ProductId: productId, SizeId: sizeId, Count: count, Price: price, ColorId: colorId, CurrencyId: currencyId});
         });
 
         $.ajax({

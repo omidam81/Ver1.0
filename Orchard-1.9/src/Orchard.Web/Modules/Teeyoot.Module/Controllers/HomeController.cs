@@ -458,7 +458,7 @@ namespace Teeyoot.Module.Controllers
                 return View("TrackOrder");
             }
 
-            if (order.OrderStatusRecord.Name == OrderStatus.UnApproved.ToString())
+            if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
             {
                 _notifier.Error(T("Your order has not been yet approved"));
                 return View("TrackOrder");
