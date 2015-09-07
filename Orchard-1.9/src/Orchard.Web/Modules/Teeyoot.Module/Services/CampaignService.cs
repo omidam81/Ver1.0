@@ -28,6 +28,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IRepository<BringBackCampaignRecord> _backCampaignRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -43,7 +44,8 @@ namespace Teeyoot.Module.Services
                                IRepository<OrderRecord> orderRepository,
                                IRepository<OrderHistoryRecord> orderHistoryRepository,
                                ITeeyootMessagingService teeyootMessagingService,
-                               IRepository<BringBackCampaignRecord> backCampaignRepository)
+                               IRepository<BringBackCampaignRecord> backCampaignRepository,
+                               IWorkContextAccessor workContextAccessor)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -63,6 +65,7 @@ namespace Teeyoot.Module.Services
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+            _workContextAccessor = workContextAccessor;
         }
 
         private IOrchardServices Services { get; set; }
@@ -195,6 +198,10 @@ namespace Teeyoot.Module.Services
                     }
                 }
 
+                var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+                string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+                var currencyId = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
+
                 foreach (var prod in data.Products)
                 {
                     double baseCost = 0;
@@ -213,7 +220,7 @@ namespace Teeyoot.Module.Services
                     {
                         CampaignRecord_Id = newCampaign.Id,
                         BaseCost = baseCost,
-                        CurrencyRecord = prod.CurrencyId != 1 ? _currencyRepository.Get(1) : _currencyRepository.Get(prod.CurrencyId), // TODO: eugene: implement
+                        CurrencyRecord = currencyId,
                         Price = price,
                         ProductColorRecord = _colorRepository.Get(prod.ColorId),
                         ProductRecord = _productRepository.Get(prod.ProductId),

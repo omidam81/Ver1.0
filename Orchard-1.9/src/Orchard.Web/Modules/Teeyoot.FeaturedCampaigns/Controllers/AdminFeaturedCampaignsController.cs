@@ -29,13 +29,16 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public Localizer T { get; set; }
 
         public ILogger Logger { get; set; }
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         public AdminFeaturedCampaignsController(ISiteService siteService, 
                                                 IShapeFactory shapeFactory, 
                                                 IOrchardServices services, 
                                                 ICampaignService campaignService,
                                                 IOrderService orderService,
-                                                ITeeyootMessagingService teeyootMessagingService)
+                                                ITeeyootMessagingService teeyootMessagingService,
+                                                IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _campaignService = campaignService;
@@ -44,12 +47,16 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             Shape = shapeFactory;
             Services = services;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         // GET: Admin
         public ActionResult Index(PagerParameters pagerParameters)
         {
-            var campaigns = _campaignService.GetAllCampaigns();
+            var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed);
             var yesterday = DateTime.UtcNow.AddDays(-1);
             var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
 

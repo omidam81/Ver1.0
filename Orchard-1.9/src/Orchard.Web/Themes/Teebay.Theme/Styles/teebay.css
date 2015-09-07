@@ -2393,6 +2393,7 @@
 .credits {
     padding-left: 17px;
     margin-bottom: 25px;
+    margin-top: -45px;
 }
 
 @media all and (max-width: 1200px) {
@@ -4281,4 +4282,18 @@ html, body {
     display: inline;
     float: left;
     width: 48.6348122596%;
+}
+
+.widget-cookie-culture-picker ul {
+    display: block;
+    list-style: none;
+    text-align: center;
+}
+
+    .widget-cookie-culture-picker ul li {
+        display: inline-block;
+    }
+
+.user-display {
+    margin-top: -45px;
 }

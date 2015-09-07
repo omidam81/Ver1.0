@@ -7,6 +7,7 @@ using Teeyoot.Module.Models;
 using Teeyoot.FeaturedCampaigns.Services;
 using Orchard.ContentManagement.Drivers;
 using Teeyoot.Module.Services;
+using Orchard;
 
 namespace Teeyoot.FeaturedCampaigns.Drivers
 {
@@ -14,16 +15,22 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
     {
         private readonly ICampaignService _campaignsService;
         private readonly IFeaturedCampaignsService _featuredCampaignsService;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
-        public FeaturedCampaignsWidget(ICampaignService campaignsService, IFeaturedCampaignsService featuredCampaignsService)
+        public FeaturedCampaignsWidget(ICampaignService campaignsService, IFeaturedCampaignsService featuredCampaignsService, IWorkContextAccessor workContextAccessor)
         {
             _campaignsService = campaignsService;
             _featuredCampaignsService = featuredCampaignsService;
+
+            _workContextAccessor = workContextAccessor;
         }
 
         protected override DriverResult Display(FeaturedCampaignsWidgetPart part, string displayType, dynamic shapeHelper)
         {
-            var campaignsInFeatured = _campaignsService.GetAllCampaigns().Where(c => c.IsFeatured && !c.IsPrivate && c.IsActive && c.IsApproved).OrderByDescending(c => c.ProductCountSold).ToList();
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
+            var campaignsInFeatured = _campaignsService.GetAllCampaigns().Where(c => c.IsFeatured && !c.IsPrivate && c.IsActive && c.IsApproved && c.CampaignCulture == cultureUsed).OrderByDescending(c => c.ProductCountSold).ToList();
             var featuredCampaigns = new List<CampaignRecord>();
 
             if (campaignsInFeatured.Count >= 6)
@@ -34,7 +41,7 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
             {
                 featuredCampaigns = campaignsInFeatured;
                 int countTopCamp = 6 - campaignsInFeatured.Count;
-                var ordersFromOneDay = _featuredCampaignsService.GetOrderForOneDay();
+                var ordersFromOneDay = _featuredCampaignsService.GetOrderForOneDay().Where(c => c.Products.First().CampaignProductRecord.CurrencyRecord.CurrencyCulture == cultureUsed).ToList();
                 if (ordersFromOneDay != null && ordersFromOneDay.Count > 0)
                 {
                     int[] ordersIdFromOneDay = ordersFromOneDay.Select(c => c.Id).ToArray();
@@ -54,7 +61,7 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
                 if (featuredCampaigns.Count() < 6)
                 {
                     countTopCamp = 6 - featuredCampaigns.Count();
-                    var otherCampaigns = _campaignsService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved).ToList();
+                    var otherCampaigns = _campaignsService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved && c.CampaignCulture == cultureUsed).ToList();
                     foreach (var camp in campaignsInFeatured)
                     {
                         if (otherCampaigns.Exists(c => c.Id == camp.Id))

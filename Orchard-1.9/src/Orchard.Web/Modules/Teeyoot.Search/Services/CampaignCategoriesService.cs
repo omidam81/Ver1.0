@@ -75,10 +75,13 @@ namespace Teeyoot.Search.Services
             }
             else
             {
+                culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+                cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
                 var newCateg = new CampaignCategoriesRecord
                 {
                     Name = name,
-                    IsVisible = false
+                    IsVisible = false,
+                    CategoriesCulture = cultureUsed
                 };
                 try
                 {
