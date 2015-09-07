@@ -152,7 +152,12 @@ namespace Teeyoot.Module.Common.Utils
             Image backImage = Image.FromFile(System.Web.Hosting.HostingEnvironment.MapPath("/Media/Default/images/facebook_background.jpg"));
             backImage = ResizeImage(backImage, 1200, 627);
             Graphics g = Graphics.FromImage(backImage);
-            g.DrawImage(campaignImg, 150, 0, 900, 900);
+
+            campaignImg = ResizeImage(campaignImg, 700, 831);
+            Rectangle rect = new Rectangle(0, 0, campaignImg.Width, campaignImg.Height-100);
+            Bitmap croppedFront = campaignImg.Clone(rect, campaignImg.PixelFormat);
+
+            g.DrawImage(croppedFront, 255, 0, croppedFront.Width, croppedFront.Height);
 
             ImageCodecInfo imageCodecInfo = GetEncoderInfo("image/jpeg");
             Encoder encoder = Encoder.Quality;
