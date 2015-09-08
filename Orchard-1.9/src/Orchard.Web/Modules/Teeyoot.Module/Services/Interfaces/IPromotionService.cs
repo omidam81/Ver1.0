@@ -20,6 +20,8 @@ namespace Teeyoot.Module.Services
         PromotionRecord GetPromotionByPromoId(string promoId);
 
         PromotionRecord GetPromotion(int id);
+
+        void CheckExpiredPromotions();
     }
 
     

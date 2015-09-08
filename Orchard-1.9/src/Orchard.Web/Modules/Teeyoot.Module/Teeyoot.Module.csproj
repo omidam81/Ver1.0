@@ -771,6 +771,7 @@
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
+    <Compile Include="Common\ScheduledTasks\CheckExpiredPromotionsTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendShippedOrderAfter3DayToBuyerTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendFinishedCampaignafter1DayToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />

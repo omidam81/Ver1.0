@@ -60,7 +60,7 @@
                         </table>
                         <div class="order_summary__breakdown_container">
                             <dl class="order_summary__breakdown">
-                                @if (Model.Promotion != null)
+                                @if (Model.Promotion != null && Model.Order.TotalPriceWithPromo != 0)
                                 {
                                     <dt>
                                         @T("Discount")

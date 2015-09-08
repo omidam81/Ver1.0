@@ -9,6 +9,9 @@ using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using RM.Localization.Services;
+using Orchard.Data;
+
+using System.Linq;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -20,12 +23,14 @@ namespace Teeyoot.Module.Controllers
         private readonly IPromotionService _promotionService;
         private readonly IWorkContextAccessor _wca;
         private readonly INotifier _notifier;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
         public Localizer T { get; set; }
         private readonly ICookieCultureService _cookieCultureService;
         private string cultureUsed = string.Empty;
 
-        public CampaignController(ICampaignService campaignService, IPromotionService promotionService, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
+        public CampaignController(ICampaignService campaignService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
         {
+            _currencyRepository = currencyRepository;
             Services = services;
             _campaignService = campaignService;
             _promotionService = promotionService;
@@ -115,9 +120,9 @@ namespace Teeyoot.Module.Controllers
                             try
                             {
                                 PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
-                                if (promotion.Status)
+                                if (promotion.Status && (promotion.AmountType == _currencyRepository.Table.Where(c=> c.CurrencyCulture == campaign.CampaignCulture).FirstOrDefault().Code) && (promotion.Expiration > DateTime.UtcNow))
                                 {
-                                    var infoMessage = T(String.Format("Congratulations, you'll be receiving {0}{1} off your purchase. Discount reflected at checkout!", promotion.AmountSize, promotion.AmountType));
+                                    var infoMessage = T(String.Format("Congratulations, you'll be receiving {0} {1} off your purchase. Discount reflected at checkout!", promotion.AmountType, promotion.AmountSize));
                                     _notifier.Add(NotifyType.Information, infoMessage);
                                     model.PromoId = promo;
                                 }

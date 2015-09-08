@@ -19,24 +19,24 @@
 
     <div class="campaigns-overview-body centr">
 
-        @for (int i = 0; i < Model.Overviews.Count; i++)
+        @*@for (int i = 0; i < Model.Overviews.Count; i++)
         {
             var item = Model.Overviews[i];
             if (item.Type == Teeyoot.Module.Common.Enums.OverviewType.Active)
             {
                 <div class="overview-for-period selected">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div>
-                        <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
-                        <div><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit")</div>
-                        <div><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit")</div>
+                    <div class="profit-paid-div">
+                        <div class="profit-paid-span-div"><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
+                        <div class="profit-paid-span-div"><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit")</div>
+                        <div class="profit-paid-span-div"><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit")</div>
                     </div>
 
-                    <div>
-                    <div><span>@Model.MYCurrencyCode@item.MYToBePaid</span>@T("to be paid")</div>
-                    <div><span>@Model.SGCurrencyCode@item.SGToBePaid</span>@T("to be paid")</div>
-                    <div><span>@Model.IDCurrencyCode@item.IDToBePaid</span>@T("to be paid")</div>
-                        </div>
+                    <div class="profit-paid-div">
+                        <div class="profit-paid-span-div"><span>@Model.MYCurrencyCode@item.MYToBePaid</span>@T("to be paid")</div>
+                        <div class="profit-paid-span-div"><span>@Model.SGCurrencyCode@item.SGToBePaid</span>@T("to be paid")</div>
+                        <div class="profit-paid-span-div"><span>@Model.IDCurrencyCode@item.IDToBePaid</span>@T("to be paid")</div>
+                    </div>
                 </div>
             }
             else if (item.Type != Teeyoot.Module.Common.Enums.OverviewType.AllTime)
@@ -46,7 +46,7 @@
                     <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit (includes pending profit)")</div>
                     <div><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit (includes pending profit)")</div>
                     <div><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit (includes pending profit)")</div>
-                    @*<div><span></span>@T("To be paid")</div>*@
+                  
                 </div>
             }
             else
@@ -56,7 +56,43 @@
                     <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
                     <div><span>@Model.SGCurrencyCode@item.SGProfit</span>@T("profit")</div>
                     <div><span>@Model.IDCurrencyCode@item.IDProfit</span>@T("profit")</div>
-                    @*<div><span></span>@T("To be paid")</div>*@
+                  
+                </div>
+            }
+        }*@
+
+        @for (int i = 0; i < Model.Overviews.Count; i++)
+        {
+            var item = Model.Overviews[i];
+            if (item.Type == Teeyoot.Module.Common.Enums.OverviewType.Active)
+            {
+                <div class="overview-for-period selected">
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
+                    <div>
+                        <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
+
+                    </div>
+
+                    <div>
+                        <div><span>@Model.MYCurrencyCode@item.MYToBePaid</span>@T("to be paid")</div>
+
+                    </div>
+                </div>
+            }
+            else if (item.Type != Teeyoot.Module.Common.Enums.OverviewType.AllTime)
+            {
+                <div class="overview-for-period">
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
+                    <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit (includes pending profit)")</div>
+
+
+                </div>
+            }
+            else
+            {
+                <div class="overview-for-period">
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
+                    <div><span>@Model.MYCurrencyCode@item.MYProfit</span>@T("profit")</div>
                 </div>
             }
         }

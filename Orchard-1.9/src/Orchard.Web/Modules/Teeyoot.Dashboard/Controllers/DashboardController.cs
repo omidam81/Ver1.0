@@ -12,6 +12,7 @@ using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Dashboard.Services;
 using Orchard.Localization;
 using Orchard.UI.Notify;
+using RM.Localization.Services;
 
 namespace Teeyoot.Dashboard.Controllers
 {
@@ -35,6 +36,7 @@ namespace Teeyoot.Dashboard.Controllers
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly ITShirtCostService _tshirtService;
         private readonly IProductService _productService;
+        private readonly ICookieCultureService _cookieCultureService;
         private readonly INotifier _notifier;
         private IOrchardServices Services { get; set; }
         private readonly IWorkContextAccessor _workContextAccessor;
@@ -61,10 +63,12 @@ namespace Teeyoot.Dashboard.Controllers
                                    ITShirtCostService tshirtService,
                                    IProductService productService,
                                    INotifier notifier,
+                                   ICookieCultureService cookieCultureService,
                                    ITeeyootMessagingService teeyootMessagingService,
                                    IWorkContextAccessor workContextAccessor
                                     )
         {
+            _cookieCultureService = cookieCultureService;
             _campaignService = campaignService;
             _currencyRepository = currencyRepository;
             _orderService = orderService;

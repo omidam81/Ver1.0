@@ -25,7 +25,9 @@ namespace Teeyoot.Dashboard.Controllers
         {
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-            var campaigns = _campaignService.GetCampaignsOfUser(teeyootUser.Id).Where(c => c.IsApproved).ToList();
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            var cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            var campaigns = _campaignService.GetCampaignsOfUser(teeyootUser.Id).Where(c => c.IsApproved && c.CampaignCulture == cultureUsed).ToList();
             var model = new StoreViewModel();
             model.Campaigns = campaigns;
             return View(model);
@@ -66,8 +68,15 @@ namespace Teeyoot.Dashboard.Controllers
 
  
         public ActionResult ViewStorefront(string url)
-        {            
+        {
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            var cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
             var storeFront = _storeService.GetStoreByUrl(url);
+            if (storeFront.Campaigns[0].CampaignRecord.CampaignCulture != cultureUsed)
+            {
+                _cookieCultureService.SetCulture(storeFront.Campaigns[0].CampaignRecord.CampaignCulture);
+                return RedirectToAction("ViewStorefront", new { url = url });
+            }
             var campaigns = _campaignService.GetCampaignsOfUser(int.Parse(storeFront.TeeyootUserId.ToString())).Where(c => c.IsApproved).ToList();
             var model = new StoreViewModel();
             model.Campaigns = campaigns;
