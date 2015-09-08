@@ -205,7 +205,7 @@ namespace Teeyoot.Module.Controllers
             return result;
         }
 
-        public string Molpay(OrderRecord order)
+        public string Molpay(OrderRecord order,string method)
         {
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == DEFAULT_LANGUAGE_CODE);
@@ -225,11 +225,22 @@ namespace Teeyoot.Module.Controllers
 
 
             var vCode = GetVCode(Total + merchantId + OrderNumber + verifyKey);
-
-            var paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
+            var paymentUrl = "";
+            if (method == "credit")
+	            {
+		            paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
+                              Total + "&orderid=" + OrderNumber +
+                              "&bill_name=" + Name + "&channel=crossborder&bill_email=" + Email + "&bill_mobile=" + Phone +
+                              "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
+	            } else {
+                    paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
                               "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
                               "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
+                       
+                        }
+
+             
             return paymentUrl;
         }
 
@@ -319,7 +330,8 @@ namespace Teeyoot.Module.Controllers
                 }
                 else if (collection["paumentMeth"] == "3")
                 {
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])));
+                    var method = collection["Bank"];
+                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])),method);
                     return Redirect(url);
                 }
              
