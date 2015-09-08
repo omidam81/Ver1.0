@@ -428,6 +428,7 @@ namespace Teeyoot.Module.Services
                 //                            .First(s => s.Name == CampaignStatus.Ended.ToString());
 
                 c.IsActive = false;
+                c.IsFeatured = false;
                 _campaignRepository.Update(c);
                 _campaignRepository.Flush();
 
