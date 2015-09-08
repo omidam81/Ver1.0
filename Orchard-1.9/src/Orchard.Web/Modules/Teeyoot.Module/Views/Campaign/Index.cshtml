@@ -938,7 +938,7 @@
                         <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
                             @foreach (var prod in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                             {
-                                <option id="@prod.Id" name="@prod.ProductRecord.Name" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price</option>
+                                <option id="@prod.Id" name="@prod.ProductRecord.Name" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</option>
                             }
                         </select>
                     </div>

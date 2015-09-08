@@ -81,7 +81,7 @@ namespace Teeyoot.Module.Controllers
                         {
                             if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.IsApproved == false)
                             {
-                                var infoMessage = T("Your design has been sent, wait for confirmation.");
+                                var infoMessage = T("Your campaign is awaiting approval. This should take less than 1 hour during office hours.");
                                 _notifier.Add(NotifyType.Information, infoMessage);
                             }
                         }
