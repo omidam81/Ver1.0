@@ -68,14 +68,15 @@
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
 
-        function sendData() { 
+        function sendData() {
             var accountNumber = document.getElementById("accountNum").value;
             var bankName = document.getElementById("bankName").value;
             var accHoldName = document.getElementById("accHoldName").value;
             var contNum = document.getElementById("contNum").value;
             var messAdmin = document.getElementById("messAdmin").value;
+            var currId = document.getElementById("currency").value;
 
-            var currId = document.getElementById("currId").value;
+            //var currId = document.getElementById("currId").value;
 
             var text;
             if (accountNumber == "" || bankName == "" || accHoldName == "" || contNum == "" || !isNumeric(contNum)) {
@@ -117,28 +118,28 @@
             } else {
 
                 $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("SendMail", "Dashboard"))",
-                data: addAntiForgeryToken({
-                    "accountNumber": accountNumber,
-                    "bankName": bankName,
-                    "accHoldName": accHoldName,
-                    "contNum": contNum,
-                    "messAdmin": messAdmin,
-                    "currId": currId
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("SendMail", "Dashboard"))",
+                    data: addAntiForgeryToken({
+                        "accountNumber": accountNumber,
+                        "bankName": bankName,
+                        "accHoldName": accHoldName,
+                        "contNum": contNum,
+                        "messAdmin": messAdmin,
+                        "currId": currId
 
-                }),
-            success: function (data, status, resp) {
-                if (resp.status === 200) {
-                    window.location.href = '/Dashboard/Accounts';
-                }
-            },
-            error: function (data, status, resp) {
-                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-            }
-        });
+                    }),
+                    success: function (data, status, resp) {
+                        if (resp.status === 200) {
+                            window.location.href = '/Dashboard/Accounts';
+                        }
+                    },
+                    error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
+                });
             }
         };
 
@@ -160,9 +161,33 @@
     <div class="main">
         <h1>@T("Current Payout Amount")</h1>
         <div class="balance">
-            @T("You currently have ") @Model.Currency <b>@Model.Balance</b>@T(" ready to be paid out")
-            <a class="btnStartPayout" id="go">@T("Start a payout")</a>
-            <div style="clear:both;"></div>
+
+            @for (int i = 0; i < Model.Balances.Count(); i++)
+            {
+                if (i == Model.Balances.Count() - 1)
+                {
+
+                    @T("You currently have ") @Model.Balances[i].Currency <b>@Model.Balances[i].Bal</b>@T(" ready to be paid out")
+                    <a class="btnStartPayout" id="go">@T("Start a payout")</a>
+                }
+                else
+                {
+                    @T("You currently have ") @Model.Balances[i].Currency <b>@Model.Balances[i].Bal</b>@T(" ready to be paid out")
+                  <br>
+                }
+
+            }
+
+            @*@foreach (var item in Model.Balances)
+                {
+                    @T("You currently have ") @item.Currency <b>@item.Bal</b>@T(" ready to be paid out")
+                    <br>
+                }*@
+
+
+
+            @* <div style="clear:both;"></div>*@
+
         </div>
         <h1>@T("Payout History")</h1>
         <table class="tbl-pay">
@@ -179,21 +204,20 @@
                     <td class="td2">@elem.Event</td>
                     @if (@elem.IsPlus)
                     {
-                        <td class="td3">+ @Model.Currency @elem.Amount</td>
+                        <td class="td3">+ @elem.Currency @elem.Amount</td>
                     }
                     else
                     {
-                        <td class="td3">- @Model.Currency @elem.Amount</td>
+                        <td class="td3"> - @elem.Currency @elem.Amount</td>
                     }
                     <td class="td4">@elem.Status</td>
                 </tr>
             }
         </table>
     </div>
-    <input type="hidden" id="currId" value="@Model.CurrencyId"/>
 
     <div id="modal_form" style="display:none; position:absolute;">
-        @Html.Partial("StartPayout")
+        @Html.Partial("StartPayout", @Model.Balances)
     </div>
     <div id="overlay"></div><!-- Пoдлoжкa -->
 

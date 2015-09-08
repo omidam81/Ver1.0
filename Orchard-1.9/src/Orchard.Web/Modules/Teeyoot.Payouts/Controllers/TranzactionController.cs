@@ -98,7 +98,7 @@ namespace Teeyoot.Payouts.Controllers
         public ActionResult EditStatus(int id)
         {
             var item = _payoutService.GetAllPayouts().Where(payout => payout.Id == id).First();
-            item.Status = "Completed";
+            item.Status = "completed";
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             _payoutService.UpdatePayout(item);
