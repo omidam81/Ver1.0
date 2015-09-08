@@ -58,31 +58,35 @@ namespace Teeyoot.Payouts.Controllers
         {
             var payouts = _payoutService.GetAllPayouts();
             List<History> list;
-            if (filter == "1")
-                list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending").ToList();
-            else if (filter == "2")
-                list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed").ToList();
-            else
-                list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).ToList();
-
-            var entriesProjection = list.Select(e =>
+            if (payouts != null)
             {
-                return Shape.FaqEntry(
-                    Date: e.Date,
-                    Id: e.Id,
-                    Event: e.Event,
-                    Amount: e.Amount,
-                    Status: e.Status,
-                    UserId: e.UserId,
-                    IsPlus: e.IsPlus
-                    );
-            });
+                if (filter == "1")
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending").ToList();
+                else if (filter == "2")
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed").ToList();
+                else
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).ToList();
 
-            var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
-            var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
-            var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
+                var entriesProjection = list.Select(e =>
+                {
+                    return Shape.FaqEntry(
+                        Date: e.Date,
+                        Id: e.Id,
+                        Event: e.Event,
+                        Amount: e.Amount,
+                        Status: e.Status,
+                        UserId: e.UserId,
+                        IsPlus: e.IsPlus
+                        );
+                });
+                var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+                var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
+                var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
 
-            return View("Index", new PayoutsViewModel { Transacts = entries.ToArray(), Pager = pagerShape });
+                return View("Index", new PayoutsViewModel { Transacts = entries.ToArray(), Pager = pagerShape });
+            }
+
+            return View("Index", new PayoutsViewModel { Transacts = null, Pager = null });
         }
 
         [HttpPost]

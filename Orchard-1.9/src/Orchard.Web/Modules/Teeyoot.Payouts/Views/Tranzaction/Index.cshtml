@@ -65,7 +65,7 @@
             });
         });
 
-        function editNode(Id){
+        function editNode(Id) {
             var elem = document.getElementById(Id);
             var sp = elem.querySelector("span");
             var butt = elem.querySelector("button");
@@ -96,22 +96,22 @@
                     cache: false,
                     type: "POST",
                     url: "@(Url.Action("EditPayout", "Tranzaction"))",
-                    data:addAntiForgeryToken( { "Id": Id, "Cost": span2.innerHTML}),
-                success: function (data) {
-                }, error: function (data, status, resp) {
-                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-                }
+                    data: addAntiForgeryToken({ "Id": Id, "Cost": span2.innerHTML }),
+                    success: function (data) {
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
+                });
+
+
             });
-
-
-            });     
         }
 
-    function addAntiForgeryToken(data) {
-        var antiForgeryTokenValue = $('#anti_forgery_token').val();
-        data.__RequestVerificationToken = antiForgeryTokenValue;
-        return data;
-    };
+        function addAntiForgeryToken(data) {
+            var antiForgeryTokenValue = $('#anti_forgery_token').val();
+            data.__RequestVerificationToken = antiForgeryTokenValue;
+            return data;
+        };
 
 
     </script>
@@ -169,51 +169,54 @@
             </thead>
 
             <tbody>
-                @foreach (var item in Model.Transacts)
+                @if (Model.Transacts != null)
                 {
-                    <tr class="admin-categories-tr">
-                        <td class="date">
-                            @item.Date
-                        </td>
-                        <td class="event">
-                            @item.Event
-                        </td>
-                        <td class="amount" id="@item.Id">
-                            @if (@item.IsPlus)
-                            {
-                                @T("+ ")<span>@item.Amount</span>
-
-                            }
-                            else
-                            {
-                                @T("- ")<span> @item.Amount</span>
-                                if (@item.Status == "pending")
+                    foreach (var item in Model.Transacts)
+                    {
+                        <tr class="admin-categories-tr">
+                            <td class="date">
+                                @item.Date
+                            </td>
+                            <td class="event">
+                                @item.Event
+                            </td>
+                            <td class="amount" id="@item.Id">
+                                @if (@item.IsPlus)
                                 {
-                                    <button class="btnEdit" type="submit" onclick="editNode(@item.Id)">@T("edit")</button>
+                                    @T("+ ")<span>@item.Amount</span>
+
+                                }
+                                else
+                                {
+                                    @T("- ")<span> @item.Amount</span>
+                                    if (@item.Status == "pending")
+                                    {
+                                        <button class="btnEdit" type="submit" onclick="editNode(@item.Id)">@T("edit")</button>
+                                    }
+
+                                }
+                            </td>
+                            <td class="status">
+                                @item.Status
+                                @if (@item.Status == "pending")
+                                {
+                                    @T(" | ")
+                                    <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" Completed")">@T("Completed")</a>
                                 }
 
-                            }
-                        </td>
-                        <td class="status">
-                            @item.Status
-                            @if (@item.Status == "pending")
-                            {
-                                @T(" | ")
-                                <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" Completed")">@T("Completed")</a>
-                            }
-
-                        </td>
-                        <td class="userId">
-                            @item.UserId
-                        </td>
-                        <td class="inf">
-                            <button class="go" type="submit" value="@item.UserId,@item.Id">
-                                @T("inf")
-                        </button>
-                    </td>
-                </tr>
+                            </td>
+                            <td class="userId">
+                                @item.UserId
+                            </td>
+                            <td class="inf">
+                                <button class="go" type="submit" value="@item.UserId,@item.Id">
+                                    @T("inf")
+                                </button>
+                            </td>
+                        </tr>
 
 
+                    }
                 }
             </tbody>
         </table>

@@ -2,21 +2,33 @@
 using Orchard.Data;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services.Interfaces;
+using Orchard.ContentManagement;
+using Orchard;
 
 namespace Teeyoot.Module.Services
 {
     public class PayoutService : IPayoutService
     {
         private readonly IRepository<PayoutRecord> _payoutRepository;
+        private readonly IContentManager _contentManager;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly IRepository<TeeyootUserPartRecord> _teeyootUserRepos;
 
-        public PayoutService(IRepository<PayoutRecord> payoutRepository)
+        public PayoutService(IRepository<PayoutRecord> payoutRepository, IContentManager contentManager,
+            IWorkContextAccessor workContextAccessor, IRepository<TeeyootUserPartRecord> teeyootUserRepos)
         {
             _payoutRepository = payoutRepository;
+            _contentManager = contentManager;
+            _workContextAccessor = workContextAccessor;
+            _teeyootUserRepos = teeyootUserRepos;
         }
 
         public IQueryable<PayoutRecord> GetAllPayouts()
         {
-            return _payoutRepository.Table;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            var users = _teeyootUserRepos.Table.Where(c => c.TeeyootUserCulture == cultureUsed).Select(c => c.Id);
+            return _payoutRepository.Table.Where(p => users.Contains(p.UserId));
         }
 
         public void AddPayout(PayoutRecord payout)
