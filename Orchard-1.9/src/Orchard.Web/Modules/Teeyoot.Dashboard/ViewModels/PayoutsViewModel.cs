@@ -11,17 +11,32 @@ namespace Teeyoot.Dashboard.ViewModels
         public PayoutsViewModel()
         {
             Transactions = new List<History>();
+            Balances = new List<Balance>();
         }
 
         public IList<History> Transactions { get; set; }
+
+        public IList<Balance> Balances { get; set; }
+
         public dynamic[] Transacts { get; set; }
-        public double Balance { get; set; }
+
         public string filter { get; set;}
         public dynamic Pager { get; set; }
-        public string Currency { get; set; }
-        public int CurrencyId { get; set; }
+
+
     }
 
+
+    public class Balance {
+
+        public double Bal { get; set; }
+
+        public int CurrencyId { get; set; }
+
+        public string Currency { get; set; }
+    
+    }
+    
     public class History {
 
         public int Id { get; set; }
@@ -38,7 +53,10 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public String Status { get; set; }
 
-    
+        public int CurrencyId { get; set; }
+
+        public string Currency { get; set; }
+
     }
 
 
