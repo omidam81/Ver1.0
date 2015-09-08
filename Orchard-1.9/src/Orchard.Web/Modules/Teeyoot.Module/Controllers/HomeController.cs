@@ -157,6 +157,10 @@ namespace Teeyoot.Module.Controllers
                 model.CreditCard = setting.CreditCard;
                 model.Mol = setting.Mol;
                 model.PayPal = setting.PayPal;
+                
+                
+                var commonSettings = _commonSettingsRepository.Table.First();
+                model.CashOnDeliveryAvailabilityMessage = commonSettings.CashOnDeliveryAvailabilityMessage;
 
                 if (promo != null)
                 {
