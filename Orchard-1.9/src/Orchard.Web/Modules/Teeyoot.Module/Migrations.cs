@@ -1752,5 +1752,13 @@ namespace Teeyoot.Module
 
            return 88;
        }
+
+       public int UpdateFrom88()
+       {
+           SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
+               table => table.DropColumn("CashOnDeliveryAvailabilityMessage"));
+
+           return 89;
+       }
     }
 }

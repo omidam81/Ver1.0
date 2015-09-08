@@ -158,10 +158,6 @@ namespace Teeyoot.Module.Controllers
                 model.Mol = setting.Mol;
                 model.PayPal = setting.PayPal;
                 
-                
-                var commonSettings = _commonSettingsRepository.Table.First();
-                model.CashOnDeliveryAvailabilityMessage = commonSettings.CashOnDeliveryAvailabilityMessage;
-
                 if (promo != null)
                 {
                     PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);

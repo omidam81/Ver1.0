@@ -4,6 +4,5 @@ namespace Teeyoot.Module.Models
     {
         public virtual int Id { get; protected set; }
         public virtual bool DoNotAcceptAnyNewCampaigns { get; set; }
-        public virtual string CashOnDeliveryAvailabilityMessage { get; set; }
     }
 }

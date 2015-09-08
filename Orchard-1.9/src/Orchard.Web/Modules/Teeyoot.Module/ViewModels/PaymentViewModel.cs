@@ -24,8 +24,5 @@ namespace Teeyoot.Module.ViewModels
         public bool Mol { get; set; }
 
         public bool CreditCard { get; set; }
-
-        public string CashOnDeliveryAvailabilityMessage { get; set; }
-
     }   
 }
