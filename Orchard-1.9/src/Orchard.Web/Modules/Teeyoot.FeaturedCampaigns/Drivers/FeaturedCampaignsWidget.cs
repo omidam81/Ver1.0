@@ -54,7 +54,13 @@ namespace Teeyoot.FeaturedCampaigns.Drivers
                     int insertCamp = campaignsFromOrderForDay.Count() <= countTopCamp ? campaignsFromOrderForDay.Count() : countTopCamp;
                     for (int i = 0; i < insertCamp; i++)
                     {
-                        featuredCampaigns.Add(campaignsFromOrderForDay.ElementAt(rand.Next(take)).Key);
+                        var campNum = rand.Next(take);
+                        var campKey = campaignsFromOrderForDay.ElementAt(campNum).Key;
+                        if (!featuredCampaigns.Contains(campKey))
+                        {
+                            featuredCampaigns.Add(campKey);
+                        }
+
                     }
                 }
                 
