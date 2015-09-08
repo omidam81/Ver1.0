@@ -146,7 +146,11 @@ namespace Teeyoot.Dashboard.Controllers
                             .FilterByType(OverviewType.Today)
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (double?)entry.Profit) ?? 0, 2)
+                            .Sum(entry => (double?)entry.Profit) ?? 0, 2),
+                MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                        .Where(p => p.IsPlus == false && p.Date.Day == DateTime.Now.Day && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                        .Select(p => new { Amount = p.Amount })
+                        .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Today)
@@ -176,7 +180,11 @@ namespace Teeyoot.Dashboard.Controllers
                             .FilterByType(OverviewType.Yesterday)
                              .Where(p =>  p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (double?)entry.Profit) ?? 0,2)
+                            .Sum(entry => (double?)entry.Profit) ?? 0,2),
+                MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                          .Where(p => p.IsPlus == false &&p.Date.Day == DateTime.Now.Day - 1 &&p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Select(p => new { Amount = p.Amount })
+                           .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Yesterday)
@@ -188,32 +196,45 @@ namespace Teeyoot.Dashboard.Controllers
             model.Overviews.Add(new CampaignsOverview
             {
                 Type = OverviewType.Active,
+
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-               SGProfit = Math.Round(productsOrderedQuery
-                            .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
-                            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-               IDProfit = Math.Round(productsOrderedQuery
-                            .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
-                            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-                MYToBePaid = Math.Round(productsOrderedQuery
-                            .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => !p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
-                            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (double?)entry.Profit) ?? 0, 2)
-            });
+                SGProfit = Math.Round(productsOrderedQuery
+                             .FilterByType(OverviewType.Active, campaignsQuery)
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
+                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
+                IDProfit = Math.Round(productsOrderedQuery
+                             .FilterByType(OverviewType.Active, campaignsQuery)
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
+                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
+                MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
+                          .Where(p => p.IsPlus == false && p.Status == "pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Select(p => new {Amount = p.Amount })
+                           .Sum(entry => (double?)entry.Amount) ?? 0, 2),
 
+                MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                          .Where(p => p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Select(p => new { Amount = p.Amount })
+                           .Sum(entry => (double?)entry.Amount) ?? 0, 2)
+
+
+
+                //MYToBePaid = Math.Round(productsOrderedQuery
+                //            .FilterByType(OverviewType.Active, campaignsQuery)
+                //            .Where(p => !p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                //            .Sum(entry => (double?)entry.Profit) ?? 0, 2)
+            });
+            //model.Overviews.Where(p=>p.Type == OverviewType.Active)
             model.Overviews.Add(new CampaignsOverview
             {
                 Type = OverviewType.AllTime,
@@ -221,23 +242,28 @@ namespace Teeyoot.Dashboard.Controllers
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit =  Math.Round(productsOrderedQuery
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit =  Math.Round(productsOrderedQuery
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 IDProfit =  Math.Round(productsOrderedQuery
-                            .Where(p => p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                            .Sum(entry => (double?)entry.Profit) ?? 0, 2)
-                //,
-                //ToBePaid = productsOrderedQuery
-                //            .Where(p => !p.OrderRecord.Reserved.HasValue)
-                //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                //            .Sum(entry => entry.Profit)
+                            .Sum(entry => (double?)entry.Profit) ?? 0, 2),
+               MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                          .Where(p => p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Select(p => new { Amount = p.Amount })
+                           .Sum(entry => (double?)entry.Amount) ?? 0, 2)
+
             });
+            foreach (var item in model.Overviews)
+            {
+                    item.MYProfit = item.MYProfit - item.MYToBeAllPaid;
+            }
+
         }
 
         [Themed]
