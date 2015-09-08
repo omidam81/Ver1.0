@@ -1120,12 +1120,14 @@ window.onload = function initWizard() {
     });
 
     $("#swatch2").click(function () {
-        $("#first-product").click();
+        if (app.state.currentProduct.id != document.querySelector('.design-active').childNodes[0].id) {
+            $("#first-product").click();
+        }
     });
 
 
     //  ---- Add colors for products
-    $("#div-color-1").click(function () {
+    $("#div-color-1").click(function (event) {
         changesColor("#div-color-1", 1);
         event.preventDefault();
         event.stopPropagation();
@@ -1145,7 +1147,7 @@ window.onload = function initWizard() {
         $("#div-color-delete-2").css("visibility", "collapse");
     });
 
-    $("#div-color-3").click(function () {
+    $("#div-color-3").click(function (event) {
         changesColor("#div-color-3", 3);
         event.preventDefault();
         event.stopPropagation();
@@ -1155,7 +1157,7 @@ window.onload = function initWizard() {
         $("#div-color-delete-3").css("visibility", "collapse");
     });
 
-    $("#div-color-4").click(function () {
+    $("#div-color-4").click(function (event) {
         changesColor("#div-color-4", 4);
         event.preventDefault();
         event.stopPropagation();
@@ -1165,7 +1167,7 @@ window.onload = function initWizard() {
         $("#div-color-delete-4").css("visibility", "collapse");
     });
 
-    $("#div-color-5").click(function () {
+    $("#div-color-5").click(function (event) {
         changesColor("#div-color-5", 5);
         event.preventDefault();
         event.stopPropagation();
@@ -1175,7 +1177,7 @@ window.onload = function initWizard() {
         $("#div-color-delete-5").css("visibility", "collapse");
     });
 
-    $("#div-color-delete-1").click(function () {
+    $("#div-color-delete-1").click(function (event) {
         if ($("#div-color-2").hasClass('div-color-active')) {
             deleteColor(1);
             event.preventDefault();
@@ -1185,7 +1187,7 @@ window.onload = function initWizard() {
 
     // --------------------------------------------------------
 
-    $("#first-product").click(function () {
+    $("#first-product").click(function (event) {
         var newColor = app.state.color;
         var product = app.state.currentProduct;
         var src = assetsUrls.products + 'product_type_' + product.ProductId + '_front_small.png';
@@ -1228,6 +1230,8 @@ window.onload = function initWizard() {
         }
 
         $("#first-product").addClass('design-active');
+        event.preventDefault();
+        event.stopPropagation();
     });
 
     $("#profSale").on({
