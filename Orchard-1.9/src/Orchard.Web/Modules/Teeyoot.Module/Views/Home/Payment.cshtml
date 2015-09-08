@@ -9,7 +9,6 @@
 
 <div class="site__content_container">
     <div class="site__wrapper">
-
         <div>@Html.ValidationSummary()</div>
         <div class="form__message form__message--error hidden" style="padding: 15px"></div>
         <div class="checkout__wrapper">
@@ -112,9 +111,7 @@
                             </dl>
                             <dl class="order_summary__breakdown" id="message_err" style="display: none">
                                 <span style="color:red;">
-
-                                    @T("We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only.")
-
+                                    @Model.CashOnDeliveryAvailabilityMessage
                                 </span>
 
                             </dl>
