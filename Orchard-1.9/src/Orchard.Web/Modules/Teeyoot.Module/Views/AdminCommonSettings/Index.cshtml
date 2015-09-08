@@ -35,6 +35,18 @@
             @Model.NumberOfNotSentEmailCheckoutRequests
         </td>
     </tr>
+    <tr>
+        <td>
+            @T("Cash on delivery availability message")
+        </td>
+        <td>
+            @using (Html.BeginFormAntiForgeryPost(Url.Action("EditCashOnDeliveryAvailabilityMessage", "AdminCommonSettings")))
+            {
+                @Html.TextBoxFor(model => model.CashOnDeliveryAvailabilityMessage, new { @class = "text large" })
+                <button class="margb" id="SendData">@T("Apply")</button>
+            }
+        </td>
+    </tr>
     </tbody>
 </table>
 
