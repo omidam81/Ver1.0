@@ -25,5 +25,7 @@ namespace Teeyoot.Module.Models
         public virtual string Zip { get; set; }
 
         public virtual string Country { get; set; }
+
+        public virtual string TeeyootUserCulture { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Orchard.ContentManagement;
+﻿using Orchard;
+using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
@@ -31,6 +32,8 @@ namespace Teeyoot.Orders.Controllers
         private readonly IPayoutService _payoutService;
         private readonly INotifier _notifierService;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         public ILogger Logger { get; set; }
         private dynamic Shape { get; set; }
@@ -43,7 +46,8 @@ namespace Teeyoot.Orders.Controllers
                               ISiteService siteService,
                               IPayoutService payoutService,
                               INotifier notifierService,
-                              ITeeyootMessagingService teeyootMessagingService)
+                              ITeeyootMessagingService teeyootMessagingService, 
+                              IWorkContextAccessor workContextAccessor)
         {
             _orderService = orderService;
             _campaignService = campaignService;
@@ -55,13 +59,16 @@ namespace Teeyoot.Orders.Controllers
             Shape = shapeFactory;
 
             T = NullLocalizer.Instance;
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
 
         public Localizer T { get; set; }
         public ActionResult Index(PagerParameters pagerParameters)
         {
-            var orders = _orderService.GetAllOrders().Where(o => o.IsActive).ToList();
+            var orders = _orderService.GetAllOrders().Where(o => o.IsActive && o.CurrencyRecord.CurrencyCulture == cultureUsed).ToList();
             var orderEntities = new AdminOrderViewModel();
           
             

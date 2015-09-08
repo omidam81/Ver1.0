@@ -113,5 +113,17 @@ namespace Teeyoot.Module.Models
                 Store(p => p.Country, value);
             }
         }
+
+        public string TeeyootUserCulture
+        {
+            get
+            {
+                return Retrieve(p => p.TeeyootUserCulture);
+            }
+            set
+            {
+                Store(p => p.TeeyootUserCulture, value);
+            }
+        }
     }
 }

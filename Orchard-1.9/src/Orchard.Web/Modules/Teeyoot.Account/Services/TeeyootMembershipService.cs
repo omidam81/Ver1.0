@@ -17,6 +17,7 @@ namespace Teeyoot.Account.Services
         private readonly IMembershipService _membershipService;
         private readonly IRoleService _roleService;
         private readonly IRepository<UserRolesPartRecord> _userRolesRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
         // ReSharper disable once InconsistentNaming
         private const string PBKDF2 = "PBKDF2";
@@ -27,7 +28,8 @@ namespace Teeyoot.Account.Services
             IOrchardServices orchardServices,
             IMembershipService membershipService,
             IRoleService roleService,
-            IRepository<UserRolesPartRecord> userRolesRepository)
+            IRepository<UserRolesPartRecord> userRolesRepository,
+            IWorkContextAccessor workContextAccessor)
         {
             _orchardServices = orchardServices;
             _membershipService = membershipService;
@@ -35,6 +37,7 @@ namespace Teeyoot.Account.Services
             _userRolesRepository = userRolesRepository;
 
             Logger = NullLogger.Instance;
+            _workContextAccessor = workContextAccessor;
         }
 
         public IUser CreateUser(string email, string password, string name, string phone)
@@ -54,10 +57,13 @@ namespace Teeyoot.Account.Services
             userPart.EmailStatus = UserStatus.Approved;
 
             var teeyootUserPart = teeyootUser.As<TeeyootUserPart>();
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
             teeyootUserPart.CreatedUtc = DateTime.UtcNow;
             teeyootUserPart.PhoneNumber = phone;
             teeyootUserPart.PublicName = name;
+            teeyootUserPart.TeeyootUserCulture = cultureUsed;
 
             _orchardServices.ContentManager.Create(teeyootUser);
 

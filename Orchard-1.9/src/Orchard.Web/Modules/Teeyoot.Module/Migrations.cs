@@ -769,7 +769,10 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
                table => table.AddColumn<string>("CashOnDeliveryAvailabilityMessage"));
 
-            return 87;
+            SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name,
+                table => table.AddColumn<string>("TeeyootUserCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 88;
         }
 
         public int UpdateFrom2()
@@ -1740,6 +1743,14 @@ namespace Teeyoot.Module
                table => table.AddColumn<string>("CashOnDeliveryAvailabilityMessage"));
 
            return 87;
+       }
+
+       public int UpdateFrom87()
+       {
+           SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name,
+                table => table.AddColumn<string>("TeeyootUserCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+           return 88;
        }
     }
 }
