@@ -1,4 +1,5 @@
 ﻿using Ionic.Zip;
+using Orchard;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
@@ -33,8 +34,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly IimageHelper _imageHelper;
         private readonly IOrderService _orderService;
         private readonly IFontService _fontService;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
-        public AdminExportPrintsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IOrderService orderService, IimageHelper imageHelper, IFontService fontService)
+        public AdminExportPrintsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IOrderService orderService, IimageHelper imageHelper, IFontService fontService, IWorkContextAccessor workContextAccessor)
         {
             _campaignService = campaignService;
             _siteService = siteService;
@@ -45,6 +48,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         private dynamic Shape { get; set; }
@@ -53,9 +60,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult Index(PagerParameters pagerParameters)
         {
-            var total =  _campaignService.GetAllCampaigns().Count();
+            var total =  _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).Count();
 
-            var campaigns =  _campaignService.GetAllCampaigns().Select(c => new { 
+            var campaigns =  _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).Select(c => new { 
                                                     Id = c.Id,
                                                     Title = c.Title,
                                                     Sold = c.ProductCountSold,
@@ -69,10 +76,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                 })                               
                                 .ToList()
                                 .OrderBy(e => e.Status.Id);
-            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false).Count();
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == cultureUsed).Count();
 
             var yesterday = DateTime.UtcNow.AddDays(-1);
-            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.CurrencyRecord.CurrencyCulture == cultureUsed);
 
             var entriesProjection = campaigns.Select(e =>
             {

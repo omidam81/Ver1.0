@@ -48,7 +48,8 @@ namespace Teeyoot.Module.Controllers
             var commonSettingsIndexViewModel = new CommonSettingsIndexViewModel
             {
                 DoNotAcceptAnyNewCampaigns = commonSettings.DoNotAcceptAnyNewCampaigns,
-                NumberOfNotSentEmailCheckoutRequests = numberOfNotSentEmailCheckoutRequests
+                NumberOfNotSentEmailCheckoutRequests = numberOfNotSentEmailCheckoutRequests,
+                CashOnDeliveryAvailabilityMessage = commonSettings.CashOnDeliveryAvailabilityMessage
             };
 
             return View(commonSettingsIndexViewModel);
@@ -79,6 +80,19 @@ namespace Teeyoot.Module.Controllers
 
             _orchardServices.Notifier.Information(T("\"Do not accept any new campaign\" setting changed to {0}.",
                 doNotAcceptAnyNewCampaigns ? T("\"Yes\"") : T("\"No\"")));
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public ActionResult EditCashOnDeliveryAvailabilityMessage(string cashOnDeliveryAvailabilityMessage)
+        {
+            var commonSettings = _commonSettingsRepository.Table.First();
+            commonSettings.CashOnDeliveryAvailabilityMessage = cashOnDeliveryAvailabilityMessage;
+            _commonSettingsRepository.Update(commonSettings);
+
+            _orchardServices.Notifier.Information(T("\"Cash on delivery availability message\" setting changed."));
 
             return RedirectToAction("Index");
         }
