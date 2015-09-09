@@ -1,4 +1,5 @@
-﻿using Orchard.ContentManagement;
+﻿using Orchard;
+using Orchard.ContentManagement;
 using Orchard.Core.Common.Models;
 using Orchard.Data;
 using System;
@@ -13,22 +14,27 @@ namespace Teeyoot.FAQ.Services
     {
         private readonly IRepository<FaqSectionRecord> _sectionRepository;
         private readonly IContentManager _contentManager;
-       
-        public TeeyootFAQService(IRepository<FaqSectionRecord> sectionRepository, IContentManager contentManager)
+        private readonly IWorkContextAccessor _workContextAccessor;
+
+        public TeeyootFAQService(IRepository<FaqSectionRecord> sectionRepository, IContentManager contentManager, IWorkContextAccessor workContextAccessor)
         {
             _sectionRepository = sectionRepository;
             _contentManager = contentManager;
+            _workContextAccessor = workContextAccessor;
         }
 
         public IEnumerable<FaqSectionRecord> GetFaqSections()
         {
-            return _sectionRepository.Table.ToList();
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            return _sectionRepository.Table.Where(s => s.SectionCulture == cultureUsed).ToList();
         }
 
         public FaqSectionRecord GetDefaultSection()
         {
-            //TODO: eugene: implement if needed
-            return _sectionRepository.Table.FirstOrDefault();
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            return _sectionRepository.Table.Where(s => s.SectionCulture == cultureUsed).FirstOrDefault();
         }
 
         public FaqSectionRecord GetFaqSectionById(int id)
@@ -64,7 +70,9 @@ namespace Teeyoot.FAQ.Services
 
         public IContentQuery<FaqEntryPart> GetFaqEntries()
         {
-            return _contentManager.Query<FaqEntryPart, FaqEntryPartRecord>(VersionOptions.Latest);
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            return this.GetFaqEntries(cultureUsed);
         }
 
         public IContentQuery<FaqEntryPart> GetFaqEntries(string language)
