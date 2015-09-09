@@ -48,7 +48,28 @@ namespace Teeyoot.FAQ
                 .WithPart("BodyPart")
                 );
 
-            return 2;
+            ContentDefinitionManager.AlterTypeDefinition("FaqEntry", type => type
+                .WithPart("BodyPart")
+                );
+
+            SchemaBuilder.DropForeignKey(typeof(FaqEntryPartRecord).Name, "FaqEntry_Language");
+
+            SchemaBuilder.AlterTable(typeof(FaqEntryPartRecord).Name,
+                table => table
+                    .DropColumn("LanguageRecord_Id"));
+
+            SchemaBuilder.AlterTable(typeof(FaqEntryPartRecord).Name,
+                table => table
+                    .AddColumn<string>("Language", c => c
+                        .WithLength(10)
+                        .NotNull()
+                        .WithDefault("en-MY"))
+
+            );
+            
+            SchemaBuilder.AlterTable(typeof(FaqSectionRecord).Name, table => table.AddColumn<string>("SectionCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 4;
         }
 
         public int UpdateFrom1()
@@ -78,6 +99,13 @@ namespace Teeyoot.FAQ
             );
 
             return 3;
+        }
+
+        public int UpdateFrom3()
+        {
+            SchemaBuilder.AlterTable(typeof(FaqSectionRecord).Name, table => table.AddColumn<string>("SectionCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 4;
         }
     }
 }
