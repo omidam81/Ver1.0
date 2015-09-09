@@ -111,6 +111,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var p = campaign.Products[0];
 
             var jss = new JavaScriptSerializer();
+            jss.MaxJsonLength = int.MaxValue;
             var dict = jss.Deserialize<dynamic>(campaign.Design);
             string vectors = dict["vectors"];
             var vectorInfo = jss.Deserialize<dynamic>(vectors);
@@ -254,6 +255,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private List<ImgInfo> GetFileInfo(string vectors, Dictionary<string, dynamic> layers , string side)
         {
             var jss = new JavaScriptSerializer();
+            jss.MaxJsonLength = int.MaxValue;
             var vectorInfo = jss.Deserialize<dynamic>(vectors);
             var list = new List<ImgInfo>();
 
