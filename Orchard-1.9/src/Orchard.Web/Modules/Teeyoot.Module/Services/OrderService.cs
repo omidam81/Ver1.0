@@ -102,7 +102,7 @@ namespace Teeyoot.Module.Services
                 _orderRepository.Update(order);
 
                 List<LinkOrderCampaignProductRecord> productsList = new List<LinkOrderCampaignProductRecord>();
-                var totalPrice = 0;
+                double totalPrice = 0;
                 foreach (var product in products)
                 {
                     var campaignProduct = _campaignService.GetCampaignProductById(product.ProductId);
