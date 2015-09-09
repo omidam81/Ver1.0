@@ -23,15 +23,6 @@
                                                 Value = l.Id.ToString()
                                             }), T("-- show all --").ToString())
 
-            @Html.LabelFor(m => m.Search.LanguageCode, T("Language")):
-            @Html.DropDownListFor(m => m.Search.LanguageCode, Model.Languages.Select(l => new SelectListItem
-                                            {
-                                                Selected = l.Code == Model.Search.LanguageCode,
-                                                Text = l.Name,
-                                                Value = l.Code 
-                                            }))
-
-
             <button type="submit">@T("Apply")</button>
             <a href="@Url.Action("Index")">@T("By Default")</a>
         </fieldset>

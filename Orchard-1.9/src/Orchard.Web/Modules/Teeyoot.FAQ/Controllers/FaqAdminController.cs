@@ -27,6 +27,7 @@ namespace Teeyoot.FAQ.Controllers
         private readonly ISiteService _siteService;
         private readonly IWorkContextAccessor _workContextAccessor;
         private readonly ICultureManager _cultureManager;
+        private readonly string cultureUsed = string.Empty;
 
         public FaqAdminController(IOrchardServices services, 
                                   IShapeFactory shapeFactory, 
@@ -43,6 +44,9 @@ namespace Teeyoot.FAQ.Controllers
             Shape = shapeFactory;
             _workContextAccessor = workContextAccessor;
             _cultureManager = cultureManager;
+
+            var culture = _workContextAccessor.GetContext().CurrentCulture;
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         private IOrchardServices Services { get; set; }
@@ -53,18 +57,8 @@ namespace Teeyoot.FAQ.Controllers
         public ActionResult Index(PagerParameters pagerParameters, FaqEntrySearchViewModel search)
         {
             var sections = _faqService.GetFaqSections();
-            var languages = _cultureManager.ListCultures();
 
-            if (string.IsNullOrWhiteSpace(search.LanguageCode))
-            {
-                var currLanguage = languages.FirstOrDefault(l => l == _workContextAccessor.GetContext().CurrentCulture);
-                if (currLanguage == null)
-                    currLanguage = languages.FirstOrDefault(l => l == _cultureManager.GetSiteCulture());
-
-                search.LanguageCode = currLanguage;
-            }
-
-            var faqQuery = _faqService.GetFaqEntries(search.SectionId).Join<BodyPartRecord>().List().Where(fe => fe.Language == search.LanguageCode);
+            var faqQuery = _faqService.GetFaqEntries(search.SectionId).Join<BodyPartRecord>().List().Where(fe => fe.Language == cultureUsed);
 
             if (!string.IsNullOrWhiteSpace(search.SearchString))
             {
@@ -79,15 +73,10 @@ namespace Teeyoot.FAQ.Controllers
                                     ); });
                                    
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
-            var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
-           
+            var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);           
             var pagerShape = Shape.Pager(pager).TotalItemCount(faqQuery.Count());
-            var langs = languages.Select(l => new LanguageViewModel
-            {
-                Code = l,
-                Name = new CultureInfo(l).DisplayName
-            });
-            var model = new FaqEntriesIndexViewModel(entries, sections, langs, search, pagerShape);
+
+            var model = new FaqEntriesIndexViewModel(entries, sections, search, pagerShape);
 
             return View(model);
         }
@@ -115,9 +104,9 @@ namespace Teeyoot.FAQ.Controllers
         [HttpPost, ActionName("AddFaqEntry")]
         public ActionResult AddFaqEntryPOST([Bind(Prefix = "FaqEntryPart.SectionId")] int section, 
             [Bind(Prefix = "Body.Text")] string text,
-            [Bind(Prefix = "FaqEntryPart.Language")] string language, string returnUrl)
+             string returnUrl)
         {
-            var faqEntryPart = _faqService.CreateFaqEntry("", section, language);
+            var faqEntryPart = _faqService.CreateFaqEntry("", section, cultureUsed);
             if (faqEntryPart == null)
                 return HttpNotFound();
 

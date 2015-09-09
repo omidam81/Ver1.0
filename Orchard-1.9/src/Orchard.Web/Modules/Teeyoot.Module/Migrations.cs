@@ -772,7 +772,10 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(TeeyootUserPartRecord).Name,
                 table => table.AddColumn<string>("TeeyootUserCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
 
-            return 88;
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
+               table => table.DropColumn("CashOnDeliveryAvailabilityMessage"));
+
+            return 89;
         }
 
         public int UpdateFrom2()

@@ -9,8 +9,6 @@ namespace Teeyoot.FAQ.ViewModels
     {
         public string SearchString { get; set; }
 
-        public string LanguageCode { get; set; }
-
         public int SectionId { get; set; }
     }
 }
