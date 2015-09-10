@@ -631,7 +631,9 @@
             Settings = settings_arr;
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
-                
+                if (settings_arr[i].State == "Selangor") {
+                    countryElement.selectedIndex = i+1;
+                }
             }
         }
 
