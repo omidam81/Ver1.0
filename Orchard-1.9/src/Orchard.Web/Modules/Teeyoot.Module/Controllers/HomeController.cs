@@ -228,11 +228,13 @@ namespace Teeyoot.Module.Controllers
 
 
             //var Total = order.TotalPrice;
-            var Total = "2";
+            var Total = (order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice).ToString("F2",CultureInfo.InvariantCulture);
             var OrderNumber = order.Id;
-            var Name = "order";
+            var Name = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id).Title;
             var Email = order.Email;
             var Phone = order.PhoneNumber;
+            var Description = order.Id + ", " + Name + " Ordered from Teeyoot/" + order.State;
+            
 
 
             var vCode = GetVCode(Total + merchantId + OrderNumber + verifyKey);
@@ -247,7 +249,7 @@ namespace Teeyoot.Module.Controllers
                     paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
                               "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
+                              "&bill_desc=" + Description + " order number: " + OrderNumber + "&vcode=" + vCode;
                        
                         }
 
@@ -339,12 +341,6 @@ namespace Teeyoot.Module.Controllers
                 {
                 //Отправляем сообщение админу
                 }
-                else if (collection["paumentMeth"] == "3")
-                {
-                    var method = collection["Bank"];
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])),method);
-                    return Redirect(url);
-                }
              
           
 
@@ -367,6 +363,15 @@ namespace Teeyoot.Module.Controllers
                 order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
                 order.IsActive = true;
                 //order.TranzactionId = result.Target.Id;
+
+                if (collection["paumentMeth"] == "3")
+                {
+                    var method = collection["Bank"];
+                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), method);
+                    return Redirect(url);
+                }
+             
+
 
                 var campaign = _campaignService.GetCampaignById(campaignId);
                 if (campaign.ProductCountSold > campaign.ProductCountGoal)
