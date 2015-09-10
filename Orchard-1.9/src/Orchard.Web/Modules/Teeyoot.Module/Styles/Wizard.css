@@ -464,7 +464,27 @@ span.number {
     -webkit-box-sizing: content-box;
 }
 
+.widget-usermenuID {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
+.widget-usermenuSG {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+
     .widget-usermenu .menu-user-menu li {
+        box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+    }
+
+    .widget-usermenuID .menu-user-menu li {
+        box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+    }
+
+    .widget-usermenuSG .menu-user-menu li {
         box-sizing: content-box;
         -webkit-box-sizing: content-box;
     }
@@ -888,6 +908,12 @@ input[type=range] {
     .widget-anonimousMenu {
         margin-right: 0;
     }
+    .widget-anonimousMenuID {
+        margin-right: 0;
+    }
+    .widget-anonimousMenuSG {
+        margin-right: 0;
+    }
 }
 
 .design__area a {
@@ -1131,6 +1157,16 @@ input[type=range] {
 
 @media all and (max-width: 1023px) {
     .widget-usermenu .menu-user-menu {
+        margin-left: -33px !important;
+        margin-right: -8px !important;
+    }
+
+    .widget-usermenuID .menu-user-menu {
+        margin-left: -33px !important;
+        margin-right: -8px !important;
+    }
+
+    .widget-usermenuSG .menu-user-menu {
         margin-left: -33px !important;
         margin-right: -8px !important;
     }

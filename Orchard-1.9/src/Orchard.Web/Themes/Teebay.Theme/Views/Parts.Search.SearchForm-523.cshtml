@@ -1,0 +1,7 @@
+﻿@using (Html.BeginForm("Search", "Search", new { area = "Teeyoot.Search" }, FormMethod.Get, new { @class = "tb-search-form" }))
+{
+    @Html.TextBox("filter", null, new { placeholder = T("Search Campaigns") })
+    <button type="submit">
+        <img src="~/Themes/Teebay.Theme/Content/search-ico.png" />
+    </button>
+}

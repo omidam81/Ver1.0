@@ -895,6 +895,14 @@ input[type=range] {
     margin-right: -50px;
 }
 
+.widget-anonimousMenuID {
+    margin-right: -50px;
+}
+
+.widget-anonimousMenuSG {
+    margin-right: -50px;
+}
+
 .menu-anonimous-menu .last {
     display: none;
 }
@@ -905,6 +913,14 @@ input[type=range] {
 
 @media all and (max-width: 1000px) {
     .widget-anonimousMenu {
+        margin-right: 0;
+    }
+
+    .widget-anonimousMenuID {
+        margin-right: 0;
+    }
+
+    .widget-anonimousMenuSG {
         margin-right: 0;
     }
 }

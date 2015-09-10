@@ -26,7 +26,15 @@ var toggleMenu = function () {
 }
 
 var toggleMobileMenu = function () {
-    var el = $('.widget-SellerDashboardMenu')[0];
+    if ($('.widget-SellerDashboardMenu')[0] != null) {
+        var el = $('.widget-SellerDashboardMenu')[0];
+    }
+    else if ($('.widget-SellerDashboardMenuID')[0] != null) {
+        var el = $('.widget-SellerDashboardMenuID')[0];
+    }
+    else {
+        var el = $('.widget-SellerDashboardMenuSG')[0];
+    }
 
     if ($(el).hasClass('shown')) {
         $(el).removeClass('shown');
@@ -55,6 +63,15 @@ $(window).scroll(function (event) {
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1;
 if (isAndroid) {
-    var current = document.getElementsByClassName("widget-mainSearch")[0];
+    if (document.getElementsByClassName("widget-mainSearch")[0] != null) {
+        var current = document.getElementsByClassName("widget-mainSearch")[0];
+    }
+    else if (document.getElementsByClassName("widget-mainSearchID")[0] != null) {
+        var current = document.getElementsByClassName("widget-mainSearchID")[0];
+    }
+    else {
+        var current = document.getElementsByClassName("widget-mainSearchSG")[0];
+    }
+    
     $(current).attr("style", "padding-top:4px");
 }
