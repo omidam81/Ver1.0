@@ -10,5 +10,7 @@ namespace Teeyoot.Module.Models
         public virtual double DeliveryCost { get; set; }
 
         public virtual bool Enabled { get; set; }
+
+        public virtual string DeliveryCulture { get; set; }
     }
 }
