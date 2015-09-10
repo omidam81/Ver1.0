@@ -843,8 +843,24 @@ img {
     box-sizing: content-box !important;
 }
 
+.widget-usermenuID {
+    box-sizing: content-box !important;
+}
+
+.widget-usermenuSG {
+    box-sizing: content-box !important;
+}
+
 @media (max-width: 1000px) {
     .widget-usermenu .menu-user-menu {
+        margin-right: -14px !important;
+    }
+
+    .widget-usermenuID .menu-user-menu {
+        margin-right: -14px !important;
+    }
+
+    .widget-usermenuSG .menu-user-menu {
         margin-right: -14px !important;
     }
 }
