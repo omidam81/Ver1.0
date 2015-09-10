@@ -144,7 +144,11 @@
                     </div>
                     <br>
                     <div class="message_Mol" style="display:none">
-                        <span style="color:red" hei>You will be charged immediately after you place your order</span>
+                        <span style="color:red" hei>
+                            <p>@T("You will be redirected to the Online Banking system to complete the payment")</p>
+                            <p>@T("You will be charged immediately after you place your order")</p>
+                        
+                        </span>
                     </div>
                 </div>
             </div>
@@ -627,7 +631,13 @@
             Settings = settings_arr;
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
-                
+                if (settings_arr[i].State == "Selangor") {
+                    countryElement.selectedIndex = i + 1;
+                    document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
+                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
+                }
             }
         }
 
