@@ -189,6 +189,8 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\teebay.bqt.me package.pubxml" />
     <None Include="Properties\PublishProfiles\teebay.bqt.me.pubxml" />
+    <None Include="Properties\PublishProfiles\teeyoot.com prod.pubxml" />
+    <None Include="Properties\PublishProfiles\test.teeyoot.com.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
