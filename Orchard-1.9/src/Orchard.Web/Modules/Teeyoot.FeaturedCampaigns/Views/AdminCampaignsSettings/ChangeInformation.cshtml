@@ -65,6 +65,7 @@
 
         for (var i = 0; i < elems.length; i++) {
             var sell = document.getElementById("sell " + i).value;
+            sell = sell.replace(",", ".");
             var profit = sell - document.getElementById("base " + i).innerHTML;
             document.getElementById(i).innerHTML = profit.toFixed(2);
         }
