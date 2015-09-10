@@ -632,7 +632,11 @@
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
                 if (settings_arr[i].State == "Selangor") {
-                    countryElement.selectedIndex = i+1;
+                    countryElement.selectedIndex = i + 1;
+                    document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
+                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
                 }
             }
         }
