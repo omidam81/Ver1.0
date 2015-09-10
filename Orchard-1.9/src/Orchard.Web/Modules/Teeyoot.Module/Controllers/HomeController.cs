@@ -407,7 +407,12 @@ namespace Teeyoot.Module.Controllers
                 _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
                _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
 
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s=> s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
                 var request = new CheckoutCampaignRequest
