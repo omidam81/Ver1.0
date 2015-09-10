@@ -85,7 +85,12 @@ namespace Teeyoot.Module.Controllers
         // GET: Wizard
         public ActionResult Index(int? id)
         {
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s=> s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
                 return RedirectToAction("Oops");
@@ -709,7 +714,12 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         public ActionResult Oops(OopsViewModel viewModel)
         {
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             if (!commonSettings.DoNotAcceptAnyNewCampaigns)
             {
                 return RedirectToAction("Oops");

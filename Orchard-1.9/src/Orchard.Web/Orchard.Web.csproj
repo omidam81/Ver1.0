@@ -227,6 +227,8 @@
     <None Include="Properties\PublishProfiles\teebay.bqt.me.pubxml" />
     <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-590.cshtml" />
     <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-593.cshtml" />
+    <None Include="Properties\PublishProfiles\teeyoot.com prod.pubxml" />
+    <None Include="Properties\PublishProfiles\test.teeyoot.com.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

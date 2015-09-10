@@ -787,7 +787,9 @@ namespace Teeyoot.Module
 
             SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.AddColumn<string>("CommonCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
 
-            return 92;
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<string>("DeliveryCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 93;
         }
 
         public int UpdateFrom2()
@@ -1802,5 +1804,12 @@ namespace Teeyoot.Module
 
            return 92;
        }
+
+        public int UpdateFrom92()
+        {
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<string>("DeliveryCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 93;
+        }
     }
 }

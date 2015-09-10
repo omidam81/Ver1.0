@@ -81,9 +81,9 @@
 
     function parsePrice() {
         var elems = document.querySelectorAll(".prices");
-        var prices = elems[0].value;
-        for (var i = 1; i < elems.length; i++) {
-            prices = prices + "," + elems[i].value
+        var prices = [];
+        for (var i = 0; i < elems.length; i++) {
+            prices.push(elems[i].value)
         }
         return prices;
 
