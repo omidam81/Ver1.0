@@ -237,6 +237,8 @@
     <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-563.cshtml" />
     <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-579.cshtml" />
     <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-582.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-602.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-567.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
