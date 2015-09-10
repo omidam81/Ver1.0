@@ -5677,8 +5677,44 @@ html, body {
     }
 
 .user-display {
-    /*margin-top: -45px;*/
+    margin-top: -23px;
 }
+
+.culture-picker-p {
+    display: inline-block;
+    margin: 0px;
+}
+
+@media all and (max-width: 1200px) {
+    .widget-cookie-culture-picker ul {
+        margin-bottom: 20px;
+    }
+
+    .credits {
+        margin-top: 0px;
+    }
+
+    .user-display {
+        margin-top: 0px;
+    }
+}
+
+@media all and (max-width: 860px) {
+    .widget-cookie-culture-picker ul {
+        text-align: left;
+        margin-left: 18px;
+    }
+
+        .widget-cookie-culture-picker ul li {
+            display: block;
+            padding: 10px 0px;
+        }
+
+
+    .culture-picker-p {
+        display: none;
+    }
+ }
 
 .profit-paid-div{
     display: -webkit-inline-box;
