@@ -9,5 +9,6 @@ namespace Teeyoot.Module.Models
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
+        public virtual string ProdHeadCulture { get; set; }
     }
 }

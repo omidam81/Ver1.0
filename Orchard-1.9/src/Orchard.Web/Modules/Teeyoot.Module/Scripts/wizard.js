@@ -409,6 +409,7 @@ window.onload = function initWizard() {
         $(divColor2).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor2).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.SecondColorId];
@@ -424,6 +425,7 @@ window.onload = function initWizard() {
         $(divColor3).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor3).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.ThirdColorId];
@@ -439,6 +441,7 @@ window.onload = function initWizard() {
         $(divColor4).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor4).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.FourthColorId];
@@ -454,6 +457,7 @@ window.onload = function initWizard() {
         $(divColor5).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor5).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.FifthColorId];
@@ -1957,6 +1961,7 @@ function onChangeValueForTrackBar() {
 
 function changesColor(id, number) {
     if ($(id).hasClass('div-color-active')) {
+        $("#first-product").click();
         var color;
         switch (number) {
             case 1: color = design.products.colors[app.state.currentProduct.ColorId];

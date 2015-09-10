@@ -155,6 +155,42 @@
     <Content Include="Global.asax" />
     <Content Include="Refresh.html" />
     <Content Include="Themes\Teebay.Theme\Scripts\teebay.js" />
+    <Content Include="Themes\Teebay.Theme\Views\BadgeOfHonor.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\EditorTemplates\Parts\User.Create.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\EditorTemplates\Parts\User.Edit.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Layout-Teeyoot_Dashboard-Dashboard.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Layout-Teeyoot_Module-Home-ReservationComplete.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Layout.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\MenuItemLink-anonimous-menu-MenuItem-level-1.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Themes\Teebay.Theme\Views\MenuItemLink-anonymous-menu-MenuItem-level-1.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\MenuItemLink-seller-dashboard-menu.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\NotFound.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Common.Metadata-Page.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-519.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-539.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-556.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-142.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-281.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-31.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-524.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-527.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-530.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-552.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-555.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-564.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-63.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Search.SearchForm-523.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Search.SearchForm-551.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Search.SearchForm-66.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Title-Page.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\User.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Widget-Name-searchothercampaigns.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -216,7 +216,7 @@ namespace Teeyoot.Module.Controllers
             return result;
         }
 
-        public string Molpay(OrderRecord order,string method)
+        public string Molpay(OrderRecord order,string method, string email,string state, string phone)
         {
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
@@ -231,9 +231,9 @@ namespace Teeyoot.Module.Controllers
             var Total = (order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice).ToString("F2",CultureInfo.InvariantCulture);
             var OrderNumber = order.Id;
             var Name = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id).Title;
-            var Email = order.Email;
-            var Phone = order.PhoneNumber;
-            var Description = order.Id + ", " + Name + " Ordered from Teeyoot/" + order.State;
+            var Email = email;
+            var Phone = phone;
+            var Description = order.Id + ", " + Name + "," + "\nOrdered from Teeyoot/" + state;
             
 
 
@@ -243,13 +243,13 @@ namespace Teeyoot.Module.Controllers
 	            {
 		            paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&channel=crossborder&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
+                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
+                              "&bill_desc=" + Description + " order number: " + OrderNumber + "&vcode=" + vCode;
 	            } else {
                     paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
                               "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + Description + " order number: " + OrderNumber + "&vcode=" + vCode;
+                              "&bill_desc=" + Description + "&vcode=" + vCode;
                        
                         }
 
@@ -340,10 +340,15 @@ namespace Teeyoot.Module.Controllers
                 else if (collection["paumentMeth"] == "4")
                 {
                 //Отправляем сообщение админу
+                } else if (collection["paumentMeth"] == "3")
+                {
+                    var method = collection["Bank"];
+                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), method, collection["Email"], collection["State"], collection["PhoneNumber"]);
+                    return Redirect(url);
                 }
              
           
-
+           
             //if (result.IsSuccess())
             //{
             var meth = collection["paumentMeth"];
@@ -364,12 +369,7 @@ namespace Teeyoot.Module.Controllers
                 order.IsActive = true;
                 //order.TranzactionId = result.Target.Id;
 
-                if (collection["paumentMeth"] == "3")
-                {
-                    var method = collection["Bank"];
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), method);
-                    return Redirect(url);
-                }
+
              
 
 
@@ -407,7 +407,12 @@ namespace Teeyoot.Module.Controllers
                 _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
                _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
 
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s=> s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
                 var request = new CheckoutCampaignRequest

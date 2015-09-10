@@ -20,17 +20,23 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
         private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         public AdminCommonSettingsController(
             IOrchardServices orchardServices,
             IRepository<CommonSettingsRecord> commonSettingsRepository,
             IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
-            ITeeyootMessagingService teeyootMessagingService)
+            ITeeyootMessagingService teeyootMessagingService,
+            IWorkContextAccessor workContextAccessor)
         {
             _orchardServices = orchardServices;
             _commonSettingsRepository = commonSettingsRepository;
             _checkoutRequestRepository = checkoutRequestRepository;
             _teeyootMessagingService = teeyootMessagingService;
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
@@ -41,7 +47,12 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult Index()
         {
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             var numberOfNotSentEmailCheckoutRequests = _checkoutRequestRepository.Table
                 .Count(r => r.EmailSentUtcDate == null);
 
@@ -57,7 +68,12 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         public ActionResult EditDoNotAcceptAnyNewCampaigns(bool doNotAcceptAnyNewCampaigns, bool sendEmails)
         {
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             commonSettings.DoNotAcceptAnyNewCampaigns = doNotAcceptAnyNewCampaigns;
             _commonSettingsRepository.Update(commonSettings);
 

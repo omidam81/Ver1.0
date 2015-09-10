@@ -18,5 +18,7 @@ namespace Teeyoot.Module.Models
         public virtual int Blue { get; set; }
 
         public virtual int Green { get; set; }
+
+        public virtual string SwatchCulture { get; set; }
     }
 }

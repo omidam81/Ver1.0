@@ -27,5 +27,7 @@ namespace Teeyoot.Module.Models
         public virtual int PrintableBackHeight { get; set; }
         public virtual int ChestLineBack { get; set; }
         public virtual string Gender { get; set; }
+
+        public virtual string ProdImgCulture { get; set; }
     }
 }
