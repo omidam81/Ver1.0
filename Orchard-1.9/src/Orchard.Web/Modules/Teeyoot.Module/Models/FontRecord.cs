@@ -15,6 +15,6 @@ namespace Teeyoot.Module.Models
 
         public virtual string Tags { get; set; }
         public virtual int? Priority { get; set; }
-         
+        public virtual string FontCulture { get; set; }
     }
 }
