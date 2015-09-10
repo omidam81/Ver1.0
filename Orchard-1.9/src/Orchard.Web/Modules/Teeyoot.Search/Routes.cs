@@ -107,7 +107,21 @@ namespace Teeyoot.Search
                             {"area", "Teeyoot.Search"}
                         },
                         new MvcRouteHandler())
-                }
+                },
+                 new RouteDescriptor {
+                            Route = new Route(
+                                "SearchCampaigns",
+                                new RouteValueDictionary {
+                                    {"area", "Teeyoot.Search"},
+                                    {"controller", "Search"},
+                                    {"action", "SearchCampaigns"}                           
+                                },
+                                new RouteValueDictionary(),
+                                new RouteValueDictionary {
+                                    {"area", "Teeyoot.Search"}
+                                },
+                                new MvcRouteHandler())
+                        }
             };
         }
     }

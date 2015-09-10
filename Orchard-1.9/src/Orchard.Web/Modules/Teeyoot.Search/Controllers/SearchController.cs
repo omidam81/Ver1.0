@@ -36,35 +36,22 @@ namespace Teebay.Search.Controllers
         [HttpGet]
         public ActionResult Search(string filter, int? page)
         {
-            page = page ?? 0;
-            int skip = (int)page * take;
-
-            filter = filter.Trim();
-
-            string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
-
-            if (!string.IsNullOrEmpty(filter))
-            {
-                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).Where(c => c.CampaignCulture == cultureSearch).ToList();
-            }
-            else
-            {
-                campListAfterSearch = _campService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved && c.CampaignCulture == cultureSearch).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
-            }
-
-            bool notResult = CheckResult();
-
-            float[] price = PriceForCampaign(notResult);
+            var searchViewModel = GetSearchViewModel(filter, page);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_CustomerRow", new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
+                return PartialView("_CustomerRow", searchViewModel);
             }
-            else
-            {
-                return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
-            }
+
+            return View(searchViewModel);
+        }
+
+        [HttpGet]
+        public ActionResult SearchCampaigns(string filter, int? page)
+        {
+            var searchViewModel = GetSearchViewModel(filter, page);
+
+            return PartialView("SearchCampaigns", searchViewModel);
         }
 
         public ActionResult CategoriesSearch(string categoriesName)
@@ -122,6 +109,40 @@ namespace Teebay.Search.Controllers
             {
                 return false;
             }
+        }
+
+        private SearchViewModel GetSearchViewModel(string filter, int? page)
+        {
+            page = page ?? 0;
+            int skip = (int)page * take;
+
+            filter = filter.Trim();
+
+            string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                campListAfterSearch = _campService.GetCampaignsForTheFilter(filter, skip, take).Where(c => c.CampaignCulture == cultureSearch).ToList();
+            }
+            else
+            {
+                campListAfterSearch = _campService.GetAllCampaigns().Where(c => !c.IsPrivate && c.IsActive && c.IsApproved && c.CampaignCulture == cultureSearch).OrderByDescending(c => c.ProductCountSold).Skip(skip).Take(take).ToList();
+            }
+
+            bool notResult = CheckResult();
+
+            float[] price = PriceForCampaign(notResult);
+
+            var searchViewModel = new SearchViewModel
+            {
+                NotResult = notResult,
+                Filter = filter,
+                CampList = campListAfterSearch,
+                Price = price
+            };
+
+            return searchViewModel;
         }
     }
 }

@@ -75,7 +75,12 @@
     <Content Include="Content\menu-icon_.png" />
     <Content Include="Content\search-ico.png" />
     <Content Include="Content\TEEYOOT_LOGO_Full_Color.png" />
+    <Content Include="Scripts\autocomplete-jquery-ui.min.js" />
+    <Content Include="Scripts\infiniteScroll.js" />
+    <Content Include="Scripts\SearchCampaigns.js" />
     <Content Include="Scripts\teebay.js" />
+    <Content Include="Styles\images\busy.gif" />
+    <Content Include="Styles\SearchCampaigns.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Styles\teebay.css" />
     <Content Include="Styles\teeyoot.dashboard.css" />

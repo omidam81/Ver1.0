@@ -137,6 +137,9 @@
     <Content Include="App_Data\Localization\en-US\orchard.module.po" />
     <Content Include="App_Data\Localization\id-ID\orchard.module.po" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\SearchCampaigns.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
