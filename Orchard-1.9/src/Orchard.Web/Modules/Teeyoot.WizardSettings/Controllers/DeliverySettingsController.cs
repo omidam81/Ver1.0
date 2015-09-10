@@ -27,6 +27,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IDeliverySettingsService _deliverySettingService;
         private readonly IRepository<DeliverySettingRecord> _deliverySettingsRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
@@ -38,13 +40,17 @@ namespace Teeyoot.WizardSettings.Controllers
             IOrchardServices orchardServices,
             IDeliverySettingsService deliverySettingService,
             IRepository<DeliverySettingRecord> deliverySettingsRepository,
-            IShapeFactory shapeFactory)
+            IShapeFactory shapeFactory,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
             _deliverySettingService = deliverySettingService;
             _deliverySettingsRepository = deliverySettingsRepository;
             Shape = shapeFactory;
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
@@ -56,12 +62,21 @@ namespace Teeyoot.WizardSettings.Controllers
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
-            viewModel.DeliverySettings = _deliverySettingsRepository.Table
+            var setting = _deliverySettingsRepository.Table.Where(s => s.DeliveryCulture == cultureUsed);
+
+            if (setting.FirstOrDefault() == null)
+	            {
+                    _deliverySettingService.AddSetting("Default",0,cultureUsed);
+	            }
+
+            viewModel.DeliverySettings = setting
                 .OrderBy(a => a.State)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_deliverySettingsRepository.Table.Count());
+                //var q = "qwe";
+
+            var pagerShape = Shape.Pager(pager).TotalItemCount(setting.Count());
             viewModel.Pager = pagerShape;
 
             return View(viewModel);
@@ -75,7 +90,7 @@ namespace Teeyoot.WizardSettings.Controllers
         [HttpPost]
         public ActionResult AddSetting(DeliverySettingRecord record)
         {
-            _deliverySettingService.AddSetting(record.State, record.DeliveryCost);
+            _deliverySettingService.AddSetting(record.State, record.DeliveryCost, cultureUsed);
             return RedirectToAction("Index");
         }
 

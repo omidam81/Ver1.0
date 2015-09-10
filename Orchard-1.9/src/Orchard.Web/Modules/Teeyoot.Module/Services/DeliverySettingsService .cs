@@ -3,16 +3,20 @@ using Orchard.Data;
 using Teeyoot.Module.Models;
 using System;
 using Teeyoot.Module.ViewModels;
+using Orchard;
 
 namespace Teeyoot.Module.Services
 {
     public class DeliverySettingsService : IDeliverySettingsService
     {
         private readonly IRepository<DeliverySettingRecord> _deliverySettingsRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
 
-        public DeliverySettingsService(IRepository<DeliverySettingRecord> deliverySettingsRepository)
+        public DeliverySettingsService(IRepository<DeliverySettingRecord> deliverySettingsRepository, IWorkContextAccessor workContextAccessor)
         {
             _deliverySettingsRepository = deliverySettingsRepository;
+            _workContextAccessor = workContextAccessor;
+            
         }
 
         public void DeleteSetting(int id)
@@ -26,7 +30,7 @@ namespace Teeyoot.Module.Services
             _deliverySettingsRepository.Update(setting);
 
         }
-        public void AddSetting(string state, double deliveryCost)
+        public void AddSetting(string state, double deliveryCost, string culture)
         {
            
             try
@@ -34,7 +38,8 @@ namespace Teeyoot.Module.Services
                 var newSetting = new DeliverySettingRecord()
                 {
                     State = state,
-                    DeliveryCost = deliveryCost
+                    DeliveryCost = deliveryCost,
+                    DeliveryCulture = culture
 
                 };
                 _deliverySettingsRepository.Create(newSetting);
@@ -52,7 +57,15 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<DeliverySettingRecord> GetAllSettings()
         {
-            return _deliverySettingsRepository.Table;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            var settings = _deliverySettingsRepository.Table.Where(s => s.DeliveryCulture == cultureUsed);
+
+            if (settings.FirstOrDefault() == null)
+            {
+                _deliverySettingsRepository.Create(new DeliverySettingRecord() { DeliveryCost = 0, State = "Default", DeliveryCulture = cultureUsed, Enabled = true });
+            }
+            return _deliverySettingsRepository.Table.Where(s=>s.DeliveryCulture == cultureUsed);
         }
 
 
