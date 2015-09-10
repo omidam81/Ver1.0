@@ -229,6 +229,14 @@
     <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-593.cshtml" />
     <None Include="Properties\PublishProfiles\teeyoot.com prod.pubxml" />
     <None Include="Properties\PublishProfiles\test.teeyoot.com.pubxml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Search.SearchForm-561.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.Search.SearchForm-587.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-589.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-588.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-562.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-563.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-579.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.CookieCulturePicker-582.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
