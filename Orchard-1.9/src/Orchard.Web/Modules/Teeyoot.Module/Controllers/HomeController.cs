@@ -248,8 +248,8 @@ namespace Teeyoot.Module.Controllers
 	            } else {
                     paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + Description + " order number: " + OrderNumber + "&vcode=" + vCode;
+                              "&bill_name=" + Name + "&channel=crossborder&bill_email=" + Email + "&bill_mobile=" + Phone +
+                              "&bill_desc=" + merchantId + " order number: " + OrderNumber + "&vcode=" + vCode;
                        
                         }
 
