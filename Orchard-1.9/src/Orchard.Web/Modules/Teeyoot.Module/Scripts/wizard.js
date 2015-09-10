@@ -392,8 +392,9 @@ window.onload = function initWizard() {
         divColorDelete5.classList.add("div-color-delete");
 
         $(divColor1Active).click(function (event) {
-            //changesColor("#div-color-3", 3);
+            //changesColor("#div-color-3", 3);          
             if ($(divColor1Active).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.ColorId];
