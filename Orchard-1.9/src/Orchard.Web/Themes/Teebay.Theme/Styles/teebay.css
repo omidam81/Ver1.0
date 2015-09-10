@@ -4844,6 +4844,7 @@ html, body {
 
         .tee-preview:nth-child(3) {
             margin-left: 0;
+            clear: both;
             float: left;
             margin-right: 2%;
             padding-left: 0;
@@ -4857,6 +4858,7 @@ html, body {
 
         .tee-preview:nth-child(5) {
             margin-left: 0;
+            clear: both;
             float: left;
             margin-right: 2%;
             padding-left: 0;
@@ -5765,4 +5767,9 @@ html, body {
     text-align: center;
     display: block;
 }
+}
+
+.campaigns-text a{
+        word-wrap: break-word;
+    white-space: normal;
 }
