@@ -166,7 +166,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string Prices, string[] Colors)
+        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string[] Prices, string[] Colors)
         {
             var campaign = _campaignService.GetCampaignById(campaignId);
             var campaigns = _campaignService.GetAllCampaigns();
@@ -194,11 +194,13 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 campaign.ProductCountGoal = Target;
                 campaign.Description = Description;
                 campaign.EndDate = date.ToUniversalTime();
-                var prices = Prices.Split(',');
+                
                 var prods = campaign.Products.Where(c => c.WhenDeleted == null).ToList();
                 for (int i = 0; i < prods.Count; i++)
-                    prods[i].Price = Convert.ToDouble(prices[i]);
-
+                {
+                    var price = Prices[i].Replace(".", ",");
+                    prods[i].Price = Convert.ToDouble(price);
+                }
                 for (int k = 0; k < Colors.Length; k++)
                 {
                     var colors = Colors[k].Split('/').ToList();
