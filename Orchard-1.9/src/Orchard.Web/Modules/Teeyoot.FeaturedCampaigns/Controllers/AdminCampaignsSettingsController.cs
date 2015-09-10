@@ -179,6 +179,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 if (date < DateTime.Now)
                 {
                     campaign.IsActive = false;
+                    campaign.IsFeatured = false;
                     var isSuccesfull = campaign.ProductCountGoal <= campaign.ProductCountSold;
                     _teeyootMessagingService.SendExpiredCampaignMessageToSeller(campaign.Id, isSuccesfull);
                     _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(campaign.Id, isSuccesfull);
