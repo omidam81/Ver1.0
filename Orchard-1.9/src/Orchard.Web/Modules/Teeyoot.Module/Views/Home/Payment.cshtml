@@ -111,7 +111,7 @@
                             </dl>
                             <dl class="order_summary__breakdown" id="message_err" style="display: none">
                                 <span style="color:red;">
-                                    @Model.CashOnDeliveryAvailabilityMessage
+                                    @T("We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only.")
                                 </span>
 
                             </dl>
@@ -406,7 +406,7 @@
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
-                                    <input class=" form__textfield " id="Country" name="Country" tabindex="8" value="Malaysia" readonly="readonly"></input>
+                                    <input class=" form__textfield " id="Country" name="Country" tabindex="8" value="@Model.CountryName" readonly="readonly"></input>
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
 

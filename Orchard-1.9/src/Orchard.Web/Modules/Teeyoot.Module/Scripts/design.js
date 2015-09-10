@@ -911,34 +911,43 @@ var design={
         searchArt: function(append){
             var me = this;
             var query = app.state.searchQuery;
-            var $container = $('.art-search-container');
-            if(!append){
-                $container.html('<div class="loading"><img src="./assets/images/small_loadwheel.gif"></div>');
-                app.state.currentArtSearchPage = 0;
-            }else{
-                app.state.currentArtSearchPage = app.state.currentArtSearchPage ||0;
-
-            }
-            app.state.artSearching = true;
-            app.searchArt(query, app.state.currentArtSearchPage).then(function(data){
-                app.state.currentArtSearchPage++;
-                if(!append){
+            if (query == "") {
+                var $container = $('.art-search-container');
+                app.loadRandomArt().then(function (data) {
                     $container.html('');
-                    if(!data || !data.length){
-                        $container.html('<div class="no-results" ><div class="alert alert-block alert-warning">'+
-                            '<h4 class="alert-heading">Sorry!</h4><p data-select-like-a-boss="1">No results were found '+
-                            'for your query. Please try again! We recommend keeping it simple like "dog" or "cat".</p>'+
-                            '</div></div>');
-                    }
                     design.products.art = data;
-                }else{
-                    var current = design.products.art || [];
-                    design.products.art = current.concat(data);
+                    me.addArt();
+                });
+            } else {
+                var $container = $('.art-search-container');
+                if (!append) {
+                    $container.html('<div class="loading"><img src="./assets/images/small_loadwheel.gif"></div>');
+                    app.state.currentArtSearchPage = 0;
+                } else {
+                    app.state.currentArtSearchPage = app.state.currentArtSearchPage || 0;
+
                 }
-                me.addArt(data);
-            }).always(function(){
-                app.state.artSearching = false;
-            });
+                app.state.artSearching = true;
+                app.searchArt(query, app.state.currentArtSearchPage).then(function (data) {
+                    app.state.currentArtSearchPage++;
+                    if (!append) {
+                        $container.html('');
+                        if (!data || !data.length) {
+                            $container.html('<div class="no-results" ><div class="alert alert-block alert-warning">' +
+                                '<h4 class="alert-heading">Sorry!</h4><p data-select-like-a-boss="1">No results were found ' +
+                                'for your query. Please try again! We recommend keeping it simple like "dog" or "cat".</p>' +
+                                '</div></div>');
+                        }
+                        design.products.art = data;
+                    } else {
+                        var current = design.products.art || [];
+                        design.products.art = current.concat(data);
+                    }
+                    me.addArt(data);
+                }).always(function () {
+                    app.state.artSearching = false;
+                });
+            }           
         },
         loadRandomArt: function(){
             var me= this;
@@ -3493,7 +3502,8 @@ var design={
 			    var sBuffer = cv.getContext('2d').
                 getImageData(0, 0, sw, sh).data; // source buffer 8 bit rgba
 			    var tBuffer = new Float32Array(3 * tw * th); // target buffer Float32 rgb
-			    var sR = 0, sG = 0, sB = 0; // source's current point r,g,b
+			    var tBufferA = new Float32Array(tw * th); // target buffer Float32 rgb
+			    var sR = 0, sG = 0, sB = 0, sA = 0; // source's current point r,g,b
 
 			    for (sy = 0; sy < sh; sy++) {
 			        ty = sy * scale; // y src position within target
@@ -3516,54 +3526,64 @@ var design={
 			            sR = sBuffer[sIndex];   // retrieving r,g,b for curr src px.
 			            sG = sBuffer[sIndex + 1];
 			            sB = sBuffer[sIndex + 2];
+                        sA = sBuffer[sIndex + 3]
 			            if (!crossX && !crossY) { // pixel does not cross
 			                // just add components weighted by squared scale.
 			                tBuffer[tIndex] += sR * sqScale;
 			                tBuffer[tIndex + 1] += sG * sqScale;
 			                tBuffer[tIndex + 2] += sB * sqScale;
+			                tBufferA[tIndex/3] += sA * sqScale;
 			            } else if (crossX && !crossY) { // cross on X only
 			                w = wx * scale;
 			                // add weighted component for current px
 			                tBuffer[tIndex] += sR * w;
 			                tBuffer[tIndex + 1] += sG * w;
 			                tBuffer[tIndex + 2] += sB * w;
+			                tBufferA[tIndex/3] += sA * w;
 			                // add weighted component for next (tX+1) px                
 			                nw = nwx * scale
 			                tBuffer[tIndex + 3] += sR * nw;
 			                tBuffer[tIndex + 4] += sG * nw;
 			                tBuffer[tIndex + 5] += sB * nw;
-			            } else if (!crossX && crossY) { // cross on Y only
+			                tBufferA[(tIndex + 3)/3] += sA * nw;
+                        } else if (!crossX && crossY) { // cross on Y only
 			                w = wy * scale;
 			                // add weighted component for current px
 			                tBuffer[tIndex] += sR * w;
 			                tBuffer[tIndex + 1] += sG * w;
 			                tBuffer[tIndex + 2] += sB * w;
-			                // add weighted component for next (tY+1) px                
+			                tBufferA[tIndex/3] += sA * w;
+                            // add weighted component for next (tY+1) px                
 			                nw = nwy * scale
 			                tBuffer[tIndex + 3 * tw] += sR * nw;
 			                tBuffer[tIndex + 3 * tw + 1] += sG * nw;
 			                tBuffer[tIndex + 3 * tw + 2] += sB * nw;
-			            } else { // crosses both x and y : four target points involved
+			                tBufferA[(tIndex + 3 * tw)/3] += sA * nw;
+                        } else { // crosses both x and y : four target points involved
 			                // add weighted component for current px
 			                w = wx * wy;
 			                tBuffer[tIndex] += sR * w;
 			                tBuffer[tIndex + 1] += sG * w;
 			                tBuffer[tIndex + 2] += sB * w;
-			                // for tX + 1; tY px
+			                tBufferA[tIndex/3] += sA * w;
+                            // for tX + 1; tY px
 			                nw = nwx * wy;
 			                tBuffer[tIndex + 3] += sR * nw;
 			                tBuffer[tIndex + 4] += sG * nw;
 			                tBuffer[tIndex + 5] += sB * nw;
-			                // for tX ; tY + 1 px
+			                tBufferA[(tIndex + 3)/3] += sA * nw;
+                            // for tX ; tY + 1 px
 			                nw = wx * nwy;
 			                tBuffer[tIndex + 3 * tw] += sR * nw;
 			                tBuffer[tIndex + 3 * tw + 1] += sG * nw;
 			                tBuffer[tIndex + 3 * tw + 2] += sB * nw;
+			                tBufferA[(tIndex + 3 * tw)/3] += sA * nw
 			                // for tX + 1 ; tY +1 px
 			                nw = nwx * nwy;
 			                tBuffer[tIndex + 3 * tw + 3] += sR * nw;
 			                tBuffer[tIndex + 3 * tw + 4] += sG * nw;
 			                tBuffer[tIndex + 3 * tw + 5] += sB * nw;
+			                tBufferA[(tIndex + 3 * tw + 3)/3] += sA * nw;
 			            }
 			        } // end for sx 
 			    } // end for sy
@@ -3581,7 +3601,7 @@ var design={
 			        tByteBuffer[tIndex] = 0 | (tBuffer[sIndex]);
 			        tByteBuffer[tIndex + 1] = 0 | (tBuffer[sIndex + 1]);
 			        tByteBuffer[tIndex + 2] = 0 | (tBuffer[sIndex + 2]);
-			        tByteBuffer[tIndex + 3] = 255;
+			        tByteBuffer[tIndex + 3] = 0 | (tBufferA[sIndex/3]);
 			    }
 			    // writing result to canvas.
 			    resCtx.putImageData(imgRes, 0, 0);

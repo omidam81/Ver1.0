@@ -19,15 +19,3 @@
     @Html.ValidationMessageFor(m => m.Question)
    
 </fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.Language, T("Language"))
-    @Html.DropDownListFor(m => m.Language, Model.AvailableLanguages.Select(l => new SelectListItem 
-                                            {
-                                                Selected = l == Model.Language,
-                                                Text = new System.Globalization.CultureInfo(l).DisplayName,
-                                                Value = l 
-                                            }))
-    @Html.ValidationMessageFor(m => m.Language)
-   
-</fieldset>
-

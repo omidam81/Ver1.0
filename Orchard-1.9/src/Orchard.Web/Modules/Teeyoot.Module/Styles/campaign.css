@@ -6849,3 +6849,11 @@ td, tr {
     border-color: #f24e05!important;
 }
 
+@media all and (min-width: 870px) {
+   .image_stack__nav{
+       top: 585px;
+   }
+}
+
+
+

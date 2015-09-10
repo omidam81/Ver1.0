@@ -1,4 +1,4 @@
-﻿@model Teeyoot.FAQ.ViewModels.FaqEntriesIndexViewModel 
+﻿@model Teeyoot.FAQ.ViewModels.FaqEntriesIndexViewModel
 @{
     Script.Require("ShapesBase");
     Layout.Title = T("FAQ").ToString();
@@ -15,23 +15,15 @@
             @Html.LabelFor(m => m.Search.SearchString, T("Filter")):
             @Html.TextBoxFor(m => m.Search.SearchString)
 
-            @Html.LabelFor(m => m.Search.SectionId, T("Section")):
-            @Html.DropDownListFor(m => m.Search.SectionId, Model.Sections.Select(l => new SelectListItem
+            @if (Model.Sections != null) {
+                @Html.LabelFor(m => m.Search.SectionId, T("Section"))
+                @Html.DropDownListFor(m => m.Search.SectionId, Model.Sections.Select(l => new SelectListItem
                                             {
                                                 Selected = Model.Search.SectionId > 1 ? l.Id == Model.Search.SectionId : false,
                                                 Text = l.Name,
                                                 Value = l.Id.ToString()
                                             }), T("-- show all --").ToString())
-
-            @Html.LabelFor(m => m.Search.LanguageCode, T("Language")):
-            @Html.DropDownListFor(m => m.Search.LanguageCode, Model.Languages.Select(l => new SelectListItem
-                                            {
-                                                Selected = l.Code == Model.Search.LanguageCode,
-                                                Text = l.Name,
-                                                Value = l.Code 
-                                            }))
-
-
+            }
             <button type="submit">@T("Apply")</button>
             <a href="@Url.Action("Index")">@T("By Default")</a>
         </fieldset>
@@ -62,4 +54,3 @@
     }
 </ul>
 @Display(Model.Pager)
-   

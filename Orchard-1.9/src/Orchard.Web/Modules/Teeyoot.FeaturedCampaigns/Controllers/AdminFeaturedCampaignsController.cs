@@ -155,10 +155,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             if (!campaign.IsArchived && campaign.BaseCampaignId != null)
             {
-                int baseId;
-                int.TryParse(campaign.BaseCampaignId.ToString(),out baseId);
-                _teeyootMessagingService.SendReLaunchApprovedCampaignMessageToSeller(pathToTemplates, pathToMedia, baseId);
-                _teeyootMessagingService.SendReLaunchApprovedCampaignMessageToBuyers(pathToTemplates, pathToMedia, baseId);
+                _teeyootMessagingService.SendReLaunchApprovedCampaignMessageToSeller(pathToTemplates, pathToMedia, campaign.Id);
+                _teeyootMessagingService.SendReLaunchApprovedCampaignMessageToBuyers(pathToTemplates, pathToMedia, campaign.Id);
             }
             else
             {               

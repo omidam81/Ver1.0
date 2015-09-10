@@ -8,6 +8,7 @@ using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -110,6 +111,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var p = campaign.Products[0];
 
             var jss = new JavaScriptSerializer();
+            jss.MaxJsonLength = int.MaxValue;
             var dict = jss.Deserialize<dynamic>(campaign.Design);
             string vectors = dict["vectors"];
             var vectorInfo = jss.Deserialize<dynamic>(vectors);
@@ -134,10 +136,29 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             {
                 IEnumerable<ImgInfo> listBackSort = listBack.OrderBy(l => l.zIndex);
                 svgBack = CreateSVG(p.ProductRecord.ProductImageRecord.PrintableBackHeight, p.ProductRecord.ProductImageRecord.PrintableBackWidth, listBackSort);
-            }         
+            }
+
+            var destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), campaign.Products.First().Id.ToString()) + "\\normal";
 
                 using (var archive = new ZipFile())
                 {
+                    if (Directory.Exists(destFolder))
+                    {
+                        var dir = new DirectoryInfo(destFolder);
+                        FileInfo[]  images;
+                        images = dir.GetFiles();
+                        if (images != null)
+                        {
+                            for (int i = 0; i < images.Length; i++)
+                            {
+                                Image image = Image.FromFile(images[i].FullName);
+                                ImageConverter _imageConverter = new ImageConverter();
+                                byte[] imgByte = (byte[])_imageConverter.ConvertTo(image, typeof(byte[]));
+                                archive.AddEntry(images[i].Name, imgByte);                          
+                            }
+                        }                      
+                    }
+
                     byte[] byteArrayFront = Encoding.UTF8.GetBytes(svgFront);
                     MemoryStream streamFront = new MemoryStream(byteArrayFront);
 
@@ -234,6 +255,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private List<ImgInfo> GetFileInfo(string vectors, Dictionary<string, dynamic> layers , string side)
         {
             var jss = new JavaScriptSerializer();
+            jss.MaxJsonLength = int.MaxValue;
             var vectorInfo = jss.Deserialize<dynamic>(vectors);
             var list = new List<ImgInfo>();
 

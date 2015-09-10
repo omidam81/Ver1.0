@@ -77,6 +77,8 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public double IDToBePaid { get; set; }
 
+        public double MYToBeAllPaid { get; set; }
+
         public OverviewType Type { get; set; }
     }
 }

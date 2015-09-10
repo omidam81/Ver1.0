@@ -105,8 +105,7 @@
                             "MerchantId": merchantId.toString(),
                             "ClientToken": clientToken.toString(),
                             "MerchantIdMol": merchantIdMol.toString(),
-                            "VerifyKey": verifyKey.toString(),
-                            "Language": document.getElementById("Culture").value
+                            "VerifyKey": verifyKey.toString()
                         }),
                         success: function (data) {
                             alert("Settings updated");
@@ -156,19 +155,6 @@
 
 @if (Model != null)
 {
-    using (Html.BeginForm("Index", "Payment", FormMethod.Get))
-    {
-        <fieldset class="bulk-actions">
-            @Html.DropDownListFor(m => m.Culture, Model.Languages.Select(l => new SelectListItem
-                                            {
-                                                Selected = l.Code == Model.Culture.Code,
-                                                Text = l.Name,
-                                                Value = l.Code
-                                            }))
-
-            <button type="submit">@T("Apply")</button>
-        </fieldset>
-    }
     <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
     if (Model.SettingEmpty == false)
     {
@@ -248,7 +234,7 @@
             <input type="checkbox" id="mol" name="@Model.Mol" >
             }
             <font class="method black">
-                @T("  Molpay Online Bancking")
+                @T("  Molpay Online Banking")
             </font>
             <br>
             <hr>
@@ -274,7 +260,6 @@
     else
     {
         <div><h3>@T("There are no setting to this language")</h3></div>
-        <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting", new { language = Model.Culture.Code })" title="@T("Add")">@T("Add")</a>
+        <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("AddSetting")" title="@T("Add")">@T("Add")</a>
     }
-    <input type="hidden" id="Culture" value="@Model.Culture.Code"/>
 }

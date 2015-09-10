@@ -13,45 +13,40 @@ using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.PaymentSettings.Controllers
-{   
+{
     [Admin]
     public class PaymentController : Controller
     {
-        private readonly ILanguageService _languageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
         private IOrchardServices Services { get; set; }
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         public Localizer T { get; set; }
 
-        public PaymentController(ILanguageService languageService, IPaymentSettingsService paymentSettingsService, IOrchardServices services)
+        public PaymentController(IWorkContextAccessor workContextAccessor, IPaymentSettingsService paymentSettingsService, IOrchardServices services)
         {
-            _languageService = languageService;
+            _workContextAccessor = workContextAccessor;
             _paymentSettingsService = paymentSettingsService;
             Services = services;
-        }
 
-        private const string DEFAULT_LANGUAGE_CODE = "en";
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+        }
 
         public ActionResult Index(string culture)
         {
-            if (string.IsNullOrWhiteSpace(culture))
-            {
-                culture = _languageService.GetLanguages().FirstOrDefault(l => l.Code == DEFAULT_LANGUAGE_CODE).Code;
-            }
-
-            var languages = _languageService.GetLanguages();
-
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(p => p.Culture == culture);
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(p => p.Culture == cultureUsed);
             if (setting == null)
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture), CashDeliv = false, CreditCard = false, Mol = false, PayPal = false, SettingEmpty = true });
+                return View(new PaymentSettingsViewModel() { CashDeliv = false, CreditCard = false, Mol = false, PayPal = false, SettingEmpty = true });
             else
-                return View(new PaymentSettingsViewModel() { Languages = languages, Culture = _languageService.GetLanguageByCode(culture),merchantId = setting.MerchantId, clientToken = setting.ClientToken, merchantIdMol = setting.MerchantIdMol, privateKey = setting.PrivateKey, verifyKey = setting.VerifyKey, publicKey = setting.PublicKey, CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false});         
+                return View(new PaymentSettingsViewModel() { merchantId = setting.MerchantId, clientToken = setting.ClientToken, merchantIdMol = setting.MerchantIdMol, privateKey = setting.PrivateKey, verifyKey = setting.VerifyKey, publicKey = setting.PublicKey, CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false });
         }
 
         public ActionResult SaveSettings(bool CashDeliv, bool PayPal, bool Mol, bool CreditCard, string PrivateKey, string PublicKey, string MerchantId,
-                                        string ClientToken, string MerchantIdMol, string VerifyKey, string Language)
+                                        string ClientToken, string MerchantIdMol, string VerifyKey)
         {
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == Language);
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
             //setting.PaymentMethod = Convert.ToInt32(PaymentMethod);
             setting.PublicKey = PublicKey;
             setting.PrivateKey = PrivateKey;
@@ -64,16 +59,13 @@ namespace Teeyoot.PaymentSettings.Controllers
             setting.Mol = Mol;
             setting.CreditCard = CreditCard;
             _paymentSettingsService.UpdateSettings(setting);
-           return RedirectToAction("Index","Payment", new { culture = "en" });
+            return RedirectToAction("Index", "Payment");
         }
 
-
-
-
-        public ActionResult AddSetting(string language)
+        public ActionResult AddSetting()
         {
-            //_paymentSettingsService.AddSettings(new PaymentSettingsRecord() { Culture = language, PaymentMethod = 1 });
-                return RedirectToAction("Index");
+            _paymentSettingsService.AddSettings(new PaymentSettingsRecord() { Culture = cultureUsed });
+            return RedirectToAction("Index");
         }
 
         //public ActionResult EditSetting(string language, int paumentMethod)

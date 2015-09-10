@@ -11,14 +11,40 @@
     <script type="text/javascript">
         $(document).ready(function () {
             document.title = "Accounts | Teeyoot";
+            $("#close-modal").click(function () {
+                $('#messageForProfit')
+                   .animate({ opacity: 0, top: '45%' }, 200,
+                       function () { // пoсле aнимaции
+                           $(this).css('display', 'none'); 
+                       }
+                   );
+            });
             $("#go").click(function (event) {
-                event.preventDefault();
-                $('#overlay').fadeIn(400,
-                    function () {
-                        $('#modal_form')
-                            .css('display', 'block')
-                            .animate({ opacity: 1, top: '40%' }, 200);
-                    });
+
+                var profit = document.getElementsByClassName("profit");
+                var item = 0;
+                for (var i = 0; i < profit.length; i++) {
+                    item = item + parseFloat($(profit[i]).text());
+                }
+                if (item <= 0) {
+                    $('#messageForProfit')
+                              .css('display', 'block')
+                              .animate({ opacity: 1, top: '40%' }, 200);     
+                } else {
+                    $('#messageForProfit')
+                    .animate({ opacity: 0, top: '45%' }, 200,
+                        function () { // пoсле aнимaции
+                            $(this).css('display', 'none');
+                        }
+                    );
+                    event.preventDefault();
+                    $('#overlay').fadeIn(400,
+                        function () {
+                            $('#modal_form')
+                                .css('display', 'block')
+                                .animate({ opacity: 1, top: '40%' }, 200);
+                        });
+                }                              
             });
             /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
             $('#modal_close, #overlay').click(function () {
@@ -167,12 +193,12 @@
                 if (i == Model.Balances.Count() - 1)
                 {
 
-                    @T("You currently have ") @Model.Balances[i].Currency <b>@Model.Balances[i].Bal</b>@T(" ready to be paid out")
+                    @T("You currently have ") @Model.Balances[i].Currency <b class="profit">@Model.Balances[i].Bal</b>@T(" ready to be paid out")
                     <a class="btnStartPayout" id="go">@T("Start a payout")</a>
                 }
                 else
                 {
-                    @T("You currently have ") @Model.Balances[i].Currency <b>@Model.Balances[i].Bal</b>@T(" ready to be paid out")
+                    @T("You currently have ") @Model.Balances[i].Currency <b class="profit">@Model.Balances[i].Bal</b>@T(" ready to be paid out")
                   <br>
                 }
 
@@ -219,6 +245,10 @@
     <div id="modal_form" style="display:none; position:absolute;">
         @Html.Partial("StartPayout", @Model.Balances)
     </div>
+    <div id="messageForProfit" style="display:none; position:absolute;">
+        <div id="close-modal" style="float:right; cursor:pointer">X</div>
+        <h1 style="color:red">@T("You currently don't have any profit.")</h1>
+    </div>  
     <div id="overlay"></div><!-- Пoдлoжкa -->
 
 </section>
