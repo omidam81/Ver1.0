@@ -20,7 +20,6 @@ using Teeyoot.Module.Services;
 using Teeyoot.Messaging.ViewModels;
 using Mandrill;
 using Mandrill.Model;
-using Teeyoot.FAQ.Services;
 using System.Collections.Specialized;
 
 
@@ -30,85 +29,76 @@ namespace Teeyoot.Module.Controllers
     public class AdminMessageController : Controller, IUpdateModel
     {
         private readonly IMailChimpSettingsService _settingsService;
-        private readonly ILanguageService _languageService;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
-        public AdminMessageController(IMailChimpSettingsService settingsService, IOrchardServices services, ILanguageService languageService)
+        public AdminMessageController(IMailChimpSettingsService settingsService, IOrchardServices services, IWorkContextAccessor workContextAccessor)
         {
             _settingsService = settingsService;
             Services = services;
-            _languageService = languageService;
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         private IOrchardServices Services { get; set; }
         public ILogger Logger { get; set; }
         public Localizer T { get; set; }
-        private const string DEFAULT_LANGUAGE_CODE = "en";
 
-        public ActionResult Index(string culture)
+        public ActionResult Index()
         {
-            if (string.IsNullOrWhiteSpace(culture))
-            {
-                    culture = _languageService.GetLanguages().FirstOrDefault(l => l.Code == DEFAULT_LANGUAGE_CODE).Code;
-            }
-            var availableLanguages = _languageService.GetLanguages().ToList();
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-            var settings = _settingsService.GetSettingByCulture(culture).List().Select(s => new MailChimpListViewModel
+            var settings = _settingsService.GetSettingByCulture(cultureUsed).List().Select(s => new MailChimpListViewModel
             {
                 Id = s.Id,
                 ApiKey = s.ApiKey,
-                SellerTemplate = System.IO.File.Exists(pathToTemplates + "seller-template.html") ? "seller-template.html" : "No file!",
-                WelcomeTemplate = System.IO.File.Exists(pathToTemplates + "welcome-template.html") ? "welcome-template.html" : "No file!",
-                RelaunchTemplate = System.IO.File.Exists(pathToTemplates + "relaunch-template.html") ? "relaunch-template.html" : "No file!",
-                LaunchTemplate = System.IO.File.Exists(pathToTemplates + "launch-template.html") ? "launch-template.html" : "No file!",
-                WithdrawTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-template.html") ? "withdraw-template.html" : "No file!",
-                PlaceOrderTemplate = System.IO.File.Exists(pathToTemplates + "place-order-template.html") ? "place-order-template.html" : "No file!",
-                NewOrderTemplate = System.IO.File.Exists(pathToTemplates + "new-order-template.html") ? "new-order-template.html" : "No file!",
-                ShippedOrderTemplate = System.IO.File.Exists(pathToTemplates + "shipped-order-template.html") ? "shipped-order-template.html" : "No file!",
-                DeliveredOrderTemplate = System.IO.File.Exists(pathToTemplates + "delivered-order-template.html") ? "delivered-order-template.html" : "No file!",
-                CancelledOrderTemplate = System.IO.File.Exists(pathToTemplates + "cancelled-order-template.html") ? "cancelled-order-template.html" : "No file!",
-                OrderIsPrintingBuyerTemplate = System.IO.File.Exists(pathToTemplates + "order-is-printing-buyer-template.html") ? "order-is-printing-buyer-template.html" : "No file!",
-                CampaignIsPrintingSellerTemplate = System.IO.File.Exists(pathToTemplates + "campaign-is-printing-seller-template.html") ? "campaign-is-printing-seller-template.html" : "No file!",
-                PaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "paid-campaign-template.html") ? "paid-campaign-template.html" : "No file!",
-                UnpaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "unpaid-campaign-template.html") ? "unpaid-campaign-template.html" : "No file!",
-                CampaignNotReachGoalBuyerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-seller-template.html") ? "not-reach-goal-seller-template.html" : "No file!",
-                CampaignNotReachGoalSellerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-buyer-template.html") ? "not-reach-goal-buyer-template.html" : "No file!",
-                PartiallyPaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "partially-paid-campaign-template.html") ? "partially-paid-campaign-template.html" : "No file!",
-                CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template.html") ? "campaign-promo-template.html" : "No file!",
-                AllOrderDeliveredTemplate = System.IO.File.Exists(pathToTemplates + "all-orders-delivered-seller-template.html") ? "all-orders-delivered-seller-template.html" : "No file!",
-                CampaignIsFinishedTemplate = System.IO.File.Exists(pathToTemplates + "campaign-is-finished-template.html") ? "campaign-is-finished-template.html" : "No file!",
-                DefinitelyGoSellerTemplate = System.IO.File.Exists(pathToTemplates + "definitely-go-to-print-buyer-template.html") ? "definitely-go-to-print-buyer-template.html" : "No file!",
-                DefinitelyGoBuyerTemplate = System.IO.File.Exists(pathToTemplates + "definitely-go-to-print-seller-template.html") ? "definitely-go-to-print-seller-template.html" : "No file!",
-                EditedCampaignTemplate = System.IO.File.Exists(pathToTemplates + "edited-campaign-template.html") ? "edited-campaign-template.html" : "No file!",
-                ExpiredMetMinimumTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-met-minimum-admin-template.html") ? "expired-campaign-met-minimum-admin-template.html" : "No file!",
-                ExpiredNotSuccessfullTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-notSuccessfull-admin-template.html") ? "expired-campaign-notSuccessfull-admin-template.html" : "No file!",
-                ExpiredSuccessfullTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-successfull-admin-template.html") ? "expired-campaign-successfull-admin-template.html" : "No file!",
-                MakeTheOrderTemplate = System.IO.File.Exists(pathToTemplates + "make_the_order_buyer.html") ? "make_the_order_buyer.html" : "No file!",
-                NewCampaignAdminTemplate = System.IO.File.Exists(pathToTemplates + "new-campaign-admin-template.html") ? "new-campaign-admin-template.html" : "No file!",
-                NewOrderBuyerTemplate = System.IO.File.Exists(pathToTemplates + "new-order-buyer-template.html") ? "new-order-buyer-template.html" : "No file!",
-                NotReachGoalMetMinimumTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-met-minimum-seller-template.html") ? "not-reach-goal-met-minimum-seller-template.html" : "No file!",
-                RecoverOrdersTemplate = System.IO.File.Exists(pathToTemplates + "recover_orders_for_buyer.html") ? "recover_orders_for_buyer.html" : "No file!",
-                RejectTemplate = System.IO.File.Exists(pathToTemplates + "reject-template.html") ? "reject-template.html" : "No file!",
-                Shipped3DayAfterTemplate = System.IO.File.Exists(pathToTemplates + "shipped-order-3day-after-template.html") ? "shipped-order-3day-after-template.html" : "No file!",
-                TermsConditionsTemplate = System.IO.File.Exists(pathToTemplates + "terms-conditions-template.html") ? "terms-conditions-template.html" : "No file!",
-                WithdrawCompletedTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-completed-template.html") ? "withdraw-completed-template.html" : "No file!",
-                WithdrawSellerTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-seller-template.html") ? "withdraw-seller-template.html" : "No file!",
-                Culture = s.Culture,
-                AvailableLanguages = availableLanguages,
-
+                SellerTemplate = System.IO.File.Exists(pathToTemplates + "seller-template-" + cultureUsed + ".html") ? "seller-template-" + cultureUsed + ".html" : "No file!",
+                WelcomeTemplate = System.IO.File.Exists(pathToTemplates + "welcome-template-" + cultureUsed + ".html") ? "welcome-template-" + cultureUsed + ".html" : "No file!",
+                RelaunchTemplate = System.IO.File.Exists(pathToTemplates + "relaunch-template-" + cultureUsed + ".html") ? "relaunch-template-" + cultureUsed + ".html" : "No file!",
+                LaunchTemplate = System.IO.File.Exists(pathToTemplates + "launch-template-" + cultureUsed + ".html") ? "launch-template-" + cultureUsed + ".html" : "No file!",
+                WithdrawTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-template-" + cultureUsed + ".html") ? "withdraw-template-" + cultureUsed + ".html" : "No file!",
+                PlaceOrderTemplate = System.IO.File.Exists(pathToTemplates + "place-order-template-" + cultureUsed + ".html") ? "place-order-template-" + cultureUsed + ".html" : "No file!",
+                NewOrderTemplate = System.IO.File.Exists(pathToTemplates + "new-order-template-" + cultureUsed + ".html") ? "new-order-template-" + cultureUsed + ".html" : "No file!",
+                ShippedOrderTemplate = System.IO.File.Exists(pathToTemplates + "shipped-order-template-" + cultureUsed + ".html") ? "shipped-order-template-" + cultureUsed + ".html" : "No file!",
+                DeliveredOrderTemplate = System.IO.File.Exists(pathToTemplates + "delivered-order-template-" + cultureUsed + ".html") ? "delivered-order-template-" + cultureUsed + ".html" : "No file!",
+                CancelledOrderTemplate = System.IO.File.Exists(pathToTemplates + "cancelled-order-template-" + cultureUsed + ".html") ? "cancelled-order-template-" + cultureUsed + ".html" : "No file!",
+                OrderIsPrintingBuyerTemplate = System.IO.File.Exists(pathToTemplates + "order-is-printing-buyer-template-" + cultureUsed + ".html") ? "order-is-printing-buyer-template" + cultureUsed + ".html" : "No file!",
+                CampaignIsPrintingSellerTemplate = System.IO.File.Exists(pathToTemplates + "campaign-is-printing-seller-template-" + cultureUsed + ".html") ? "campaign-is-printing-seller-template-" + cultureUsed + ".html" : "No file!",
+                PaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "paid-campaign-template-" + cultureUsed + ".html") ? "paid-campaign-template-" + cultureUsed + ".html" : "No file!",
+                UnpaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "unpaid-campaign-template-" + cultureUsed + ".html") ? "unpaid-campaign-template-" + cultureUsed + ".html" : "No file!",
+                CampaignNotReachGoalBuyerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-seller-template-" + cultureUsed + ".html") ? "not-reach-goal-seller-template-" + cultureUsed + ".html" : "No file!",
+                CampaignNotReachGoalSellerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-buyer-template-" + cultureUsed + ".html") ? "not-reach-goal-buyer-template-" + cultureUsed + ".html" : "No file!",
+                PartiallyPaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "partially-paid-campaign-template-" + cultureUsed + ".html") ? "partially-paid-campaign-template-" + cultureUsed + ".html" : "No file!",
+                CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template-" + cultureUsed + ".html") ? "campaign-promo-template-" + cultureUsed + ".html" : "No file!",
+                AllOrderDeliveredTemplate = System.IO.File.Exists(pathToTemplates + "all-orders-delivered-seller-template-" + cultureUsed + ".html") ? "all-orders-delivered-seller-template-" + cultureUsed + ".html" : "No file!",
+                CampaignIsFinishedTemplate = System.IO.File.Exists(pathToTemplates + "campaign-is-finished-template-" + cultureUsed + ".html") ? "campaign-is-finished-template-" + cultureUsed + ".html" : "No file!",
+                DefinitelyGoSellerTemplate = System.IO.File.Exists(pathToTemplates + "definitely-go-to-print-buyer-template-" + cultureUsed + ".html") ? "definitely-go-to-print-buyer-template-" + cultureUsed + ".html" : "No file!",
+                DefinitelyGoBuyerTemplate = System.IO.File.Exists(pathToTemplates + "definitely-go-to-print-seller-template-" + cultureUsed + ".html") ? "definitely-go-to-print-seller-template-" + cultureUsed + ".html" : "No file!",
+                EditedCampaignTemplate = System.IO.File.Exists(pathToTemplates + "edited-campaign-template-" + cultureUsed + ".html") ? "edited-campaign-template-" + cultureUsed + ".html" : "No file!",
+                ExpiredMetMinimumTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-met-minimum-admin-template-" + cultureUsed + ".html") ? "expired-campaign-met-minimum-admin-template-" + cultureUsed + ".html" : "No file!",
+                ExpiredNotSuccessfullTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-notSuccessfull-admin-template-" + cultureUsed + ".html") ? "expired-campaign-notSuccessfull-admin-template-" + cultureUsed + ".html" : "No file!",
+                ExpiredSuccessfullTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-successfull-admin-template-" + cultureUsed + ".html") ? "expired-campaign-successfull-admin-template-" + cultureUsed + ".html" : "No file!",
+                MakeTheOrderTemplate = System.IO.File.Exists(pathToTemplates + "make_the_order_buyer-" + cultureUsed + ".html") ? "make_the_order_buyer-" + cultureUsed + ".html" : "No file!",
+                NewCampaignAdminTemplate = System.IO.File.Exists(pathToTemplates + "new-campaign-admin-template-" + cultureUsed + ".html") ? "new-campaign-admin-template-" + cultureUsed + ".html" : "No file!",
+                NewOrderBuyerTemplate = System.IO.File.Exists(pathToTemplates + "new-order-buyer-template-" + cultureUsed + ".html") ? "new-order-buyer-template-" + cultureUsed + ".html" : "No file!",
+                NotReachGoalMetMinimumTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-met-minimum-seller-template-" + cultureUsed + ".html") ? "not-reach-goal-met-minimum-seller-template-" + cultureUsed + ".html" : "No file!",
+                RecoverOrdersTemplate = System.IO.File.Exists(pathToTemplates + "recover_orders_for_buyer-" + cultureUsed + ".html") ? "recover_orders_for_buyer-" + cultureUsed + ".html" : "No file!",
+                RejectTemplate = System.IO.File.Exists(pathToTemplates + "reject-template-" + cultureUsed + ".html") ? "reject-template-" + cultureUsed + ".html" : "No file!",
+                Shipped3DayAfterTemplate = System.IO.File.Exists(pathToTemplates + "shipped-order-3day-after-template-" + cultureUsed + ".html") ? "shipped-order-3day-after-template-" + cultureUsed + ".html" : "No file!",
+                TermsConditionsTemplate = System.IO.File.Exists(pathToTemplates + "terms-conditions-template-" + cultureUsed + ".html") ? "terms-conditions-template-" + cultureUsed + ".html" : "No file!",
+                WithdrawCompletedTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-completed-template-" + cultureUsed + ".html") ? "withdraw-completed-template-" + cultureUsed + ".html" : "No file!",
+                WithdrawSellerTemplate = System.IO.File.Exists(pathToTemplates + "withdraw-seller-template-" + cultureUsed + ".html") ? "withdraw-seller-template-" + cultureUsed + ".html" : "No file!"
             });
             if (settings.FirstOrDefault() == null)
             {
-                var settingPart = new MailChimpListViewModel() {
-                    Culture = culture,
-                    AvailableLanguages = availableLanguages,               
-                };
+                var settingPart = new MailChimpListViewModel();
                 return View(settingPart);
             }
                      
             return View(settings.FirstOrDefault());
         }
 
-        public ActionResult AddSetting(string returnUrl, string language)
+        public ActionResult AddSetting(string returnUrl)
         {
             MailChimpSettingsPart mailChimpSettingsPart = Services.ContentManager.New<MailChimpSettingsPart>("MailChimpSettings");
 
@@ -116,8 +106,6 @@ namespace Teeyoot.Module.Controllers
                 return HttpNotFound();
             try
             {
-                var culture = _languageService.GetLanguages().ToList().Where(l=>l.Code == language);
-                mailChimpSettingsPart.AvailableLanguages = culture;
                 var model = Services.ContentManager.BuildEditor(mailChimpSettingsPart);
                 return View(model);
             }
@@ -133,8 +121,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult AddSettingPOST(string returnUrl)
         {
             Uri myUri = new Uri(returnUrl);
-            var culture = HttpUtility.ParseQueryString(myUri.Query).Get("Culture");
-            var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("",culture);
+            var mailChimpSettingPart = _settingsService.CreateMailChimpSettingsPart("",cultureUsed);
             if (mailChimpSettingPart == null)
                 return HttpNotFound();
 
@@ -157,8 +144,6 @@ namespace Teeyoot.Module.Controllers
         public ActionResult EditMailChimpSetting(int id)
         {
             var mailChimpSettingPart = _settingsService.GetSetting(id);
-            var language = _languageService.GetLanguages().ToList().Where(l => l.Code == mailChimpSettingPart.Culture);
-            mailChimpSettingPart.AvailableLanguages = language;
             if (mailChimpSettingPart == null)
                 return new HttpNotFoundResult();
 
