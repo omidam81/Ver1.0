@@ -51,7 +51,7 @@
                                             </ul>
                                         </td>
                                         <td class="order_summary__item_price">
-                                            @item.CampaignProductRecord.CurrencyRecord.Code @(price * item.Count)
+                                            @item.CampaignProductRecord.CurrencyRecord.Code @((price * item.Count).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                         </td>
                                     </tr>
                                 }
