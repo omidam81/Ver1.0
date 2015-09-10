@@ -225,6 +225,8 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\teebay.bqt.me package.pubxml" />
     <None Include="Properties\PublishProfiles\teebay.bqt.me.pubxml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-590.cshtml" />
+    <Content Include="Themes\Teebay.Theme\Views\Parts.MenuWidget-593.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

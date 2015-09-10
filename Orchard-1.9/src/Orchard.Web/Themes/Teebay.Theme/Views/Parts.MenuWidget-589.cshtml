@@ -1,0 +1,16 @@
+﻿@Display(Model.Menu)
+<a onclick="showMenu()" id="menu-icon"><img src="~/Themes/Teebay.Theme/Content/menu-icon_.png" /></a>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        function showMenu() {
+            var display = $('.widget-anonimousMenuSG nav ul').css("display");
+            if (display !== 'none') {
+                $('.widget-anonimousMenuSG nav ul').css("display", "none");
+            } else {
+                $('.widget-anonimousMenuSG nav ul').css("display", "block");
+            }
+        }
+    </script>
+}
