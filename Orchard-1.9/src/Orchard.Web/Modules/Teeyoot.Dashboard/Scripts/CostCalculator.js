@@ -135,20 +135,21 @@ function minimumGoal(products, frontColor, backColor, cnt, tshirtCost) {
             productsChanged.push({ id: products[i].ProductId, BaseCost: baseCost.toFixed(2), Price :  products[i].Price });
 
 
-            var nowCount = Math.ceil(cnt / 2) + 1;
+            var nowCount = cnt;//Math.ceil(cnt / 2) + 1;
             var newPrice = 0;
-            while (price > newPrice) {
+            while (price - newPrice > 0) {
                 if (nowCount == 0) break;
                 nowCount--;
-                newPrice = formula(frontColor, backColor, baseCost, nowCount, tshirtCost);
+                newPrice = formula(frontColor, backColor, baseProductCost, nowCount, tshirtCost);
             }
+            nowCount++;
 
-            if (nowCount <= 0) {
-                nowCount = 1;
-            }
-            if (cnt <= 100) {
-                nowCount = nowCount - 1;
-            }
+            //if (nowCount <= 0) {
+            //    nowCount = 1;
+            //}
+            //if (cnt <= 100) {
+            //    nowCount = nowCount - 1;
+            //}
 
             count = count + Math.floor(nowCount);
         }
