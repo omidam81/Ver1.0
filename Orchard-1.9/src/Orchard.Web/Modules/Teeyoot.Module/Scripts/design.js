@@ -4106,6 +4106,7 @@ $(document).ready(function () {
                         || mouseDownAt.parentNode.className == 'div-design-area'
                         || mouseDownAt.parentNode.className == '#view' + view
                         || mouseDownAt.parentNode.className == 'content-inner'
+                        || mouseDownAt.parentNode.className == 'back labView'
                         || mouseDownAt.parentNode.className == 'front labView') {
                 design.item.unselect();
                 $('#enter-text').val('');
