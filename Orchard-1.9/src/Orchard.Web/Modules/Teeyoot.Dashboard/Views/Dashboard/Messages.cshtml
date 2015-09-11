@@ -56,9 +56,9 @@
                 <div class="row">@item.ThisWeekSend/3</div>
                 <div style="align-content:center" class="row">
                     <div>
-                        @if (item.ThisWeekSend >= 10)
+                        @if (item.ThisWeekSend >= 3)
                         {
-                            <a href="@Url.Action("CreateMessage", new { campaignId = item.Campaign.Id })"><button type="button" class="t-button" disabled="disabled">@T("Message")</button></a>
+                            <a href="@Url.Action("CreateMessage", new { campaignId = item.Campaign.Id })"><button type="button" class="t-button" style="background-color:#f6804b!important" disabled="disabled">@T("Message")</button></a>
                         }
                         else
                         {
