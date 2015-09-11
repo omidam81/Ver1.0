@@ -1,6 +1,4 @@
 ﻿using Braintree;
-using Mandrill;
-using Mandrill.Model;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
@@ -9,19 +7,16 @@ using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
 using Orchard.UI.Notify;
-using Orchard.Users.Models;
 using RM.Localization.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Teeyoot.Module.Common.Enums;
@@ -47,6 +42,7 @@ namespace Teeyoot.Module.Controllers
         private readonly IMessageService _messageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+        private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
 
         private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
@@ -55,6 +51,7 @@ namespace Teeyoot.Module.Controllers
         private string cultureUsed = string.Empty;
         private readonly ICookieCultureService _cookieCultureService;
         private readonly ICultureService _cultureService;
+
         
 
         public HomeController(IOrderService orderService, 
@@ -73,7 +70,8 @@ namespace Teeyoot.Module.Controllers
                               IRepository<CommonSettingsRecord> commonSettingsRepository,
                               IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
                               ICookieCultureService cookieCultureService,
-                              ICultureService cultureService)
+                              ICultureService cultureService,
+                              IRepository<OrderStatusRecord> orderStatusRepository)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -88,6 +86,7 @@ namespace Teeyoot.Module.Controllers
             _workContextAccessor = workContextAccessor;
             _userRepository = userRepository;
             _contentManager = contentManager;
+            _orderStatusRepository = orderStatusRepository;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -276,7 +275,7 @@ namespace Teeyoot.Module.Controllers
         }
 
         //[HttpGet]
-        public void CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
+        public ActionResult CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
                                     string error_desc, string currency, string paydate,string channel, string skey)
         {
             string destFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/molPayLog");
@@ -288,7 +287,57 @@ namespace Teeyoot.Module.Controllers
             }
             var request = System.Web.HttpContext.Current.Request;
             System.IO.File.AppendAllText(destFolder + "/mol.txt",DateTime.Now + "  -------------  " +  "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n");
-            
+
+            var order = _orderService.GetOrderById(Convert.ToInt32(orderid));
+            var campaign = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id);
+
+            //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
+            //{
+                
+     
+            if (status == "00")
+            {
+
+                order.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Approved.ToString("d")));
+
+                if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                {
+                    campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                    _campaignService.UpdateCampaign(campaign);
+                }
+                else
+                {
+                    campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                    _campaignService.UpdateCampaign(campaign);
+                    if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                    {
+                        _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
+                        _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
+                    }
+                }
+
+
+                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                var users = _userRepository.Table.ToList();
+                _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+                _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+
+                var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+                if (commonSettings == null)
+                {
+                    _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                    commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                }
+
+            }
+            else if (status == "11")
+            {
+                return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true});
+            }
+            //}
+
+            return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
         
         }
 
@@ -363,14 +412,42 @@ namespace Teeyoot.Module.Controllers
                 } else if (collection["paumentMeth"] == "3")
                 {
                     var method = collection["Bank"];
+
+                    var meth1 = collection["paumentMeth"];
+                    int id1 = int.Parse(collection["OrderId"]);
+                    var orderMol = _orderService.GetOrderById(id1);
+                    var campId = orderMol.Products.First().CampaignProductRecord.CampaignRecord_Id;
+                    orderMol.Email = collection["Email"];
+                    orderMol.FirstName = collection["FirstName"];
+                    orderMol.LastName = collection["LastName"];
+                    orderMol.StreetAddress = collection["StreetAddress"] + " " + collection["StreetAddress2"];
+                    orderMol.City = collection["City"];
+                    orderMol.State = collection["State"];
+                    orderMol.PostalCode = collection["PostalCode"];
+                    orderMol.Country = collection["Country"];
+                    orderMol.PhoneNumber = collection["PhoneNumber"];
+                    orderMol.Reserved = DateTime.UtcNow;
+                    orderMol.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Unapproved.ToString("d")));
+
+                    if (orderMol.TotalPriceWithPromo > 0)
+                    {
+                        orderMol.TotalPriceWithPromo = orderMol.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
+                    }
+                    orderMol.TotalPrice = orderMol.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - orderMol.Promotion;
+                    orderMol.IsActive = true;
+                    if (collection["PromoId"] != null)
+                    {
+                        PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
+                        promotion.Redeemed = promotion.Redeemed + 1;
+                    }
+
                     var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])),collection["Country"],collection["FirstName"],collection["LastName"], collection["Email"], collection["State"], collection["PhoneNumber"], _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost);
                     return Redirect(url);
                 }
              
           
            
-            //if (result.IsSuccess())
-            //{
+
             var meth = collection["paumentMeth"];
                 int id = int.Parse(collection["OrderId"]);
                 var order = _orderService.GetOrderById(id);
@@ -391,7 +468,6 @@ namespace Teeyoot.Module.Controllers
                 }
                 order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - order.Promotion;
                 order.IsActive = true;
-                //order.TranzactionId = result.Target.Id;
 
 
              
@@ -461,7 +537,7 @@ namespace Teeyoot.Module.Controllers
         }
 
         [Themed]
-        public ActionResult ReservationComplete(int campaignId, int sellerId)
+        public ActionResult ReservationComplete(int campaignId, int sellerId, bool oops = false)
         {
             var campaigns = _campaignService.GetAllCampaigns()
                                 .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId && c.CampaignCulture == cultureUsed)
@@ -492,7 +568,11 @@ namespace Teeyoot.Module.Controllers
             });
 
             var model = new ReservationCompleteViewModel();
-            model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
+            if (!oops)
+                model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
+            else
+                model.Message = T("Oops! we couldn't process this order, you can try to change your payment method and try again").ToString();
+
             model.Campaigns = entriesProjection.ToArray();
 
             return View(model);
