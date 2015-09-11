@@ -10,21 +10,24 @@
 </div>
 
 <ul class="contentItems">
-    @foreach (var productHeadline in Model.ProductHeadlines)
+    @if (Model.ProductHeadlines != null)
     {
-        <li data-record-text="@productHeadline.Id">
-            <div class="summary">
-                <div class="properties">
-                    <div>
-                        <h3>@productHeadline.Name</h3>
+        foreach (var productHeadline in Model.ProductHeadlines)
+        {
+            <li data-record-text="@productHeadline.Id">
+                <div class="summary">
+                    <div class="properties">
+                        <div>
+                            <h3>@productHeadline.Name</h3>
+                        </div>
+                    </div>
+                    <div class="related">
+                        <a href="@Url.Action("EditProductHeadline", "ProductHeadline", new {productHeadlineId = productHeadline.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                        <a href="@Url.Action("DeleteProductHeadline", "ProductHeadline", new {productHeadlineId = productHeadline.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                     </div>
                 </div>
-                <div class="related">
-                    <a href="@Url.Action("EditProductHeadline", "ProductHeadline", new {productHeadlineId = productHeadline.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("DeleteProductHeadline", "ProductHeadline", new {productHeadlineId = productHeadline.Id})" itemprop="RemoveUrl">@T("Delete")</a>
-                </div>
-            </div>
-        </li>
+            </li>
+        }
     }
 </ul>
 @Display(Model.Pager)

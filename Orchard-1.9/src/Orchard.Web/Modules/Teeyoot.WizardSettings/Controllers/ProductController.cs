@@ -36,6 +36,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IRepository<ProductImageRecord> _productImageRepository;
         private readonly IRepository<ProductSizeRecord> _productSizeRepository;
         private readonly IRepository<LinkProductSizeRecord> _linkProductSizeRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private readonly IimageHelper _imageHelper;
 
@@ -68,7 +70,8 @@ namespace Teeyoot.WizardSettings.Controllers
             IRepository<ProductImageRecord> productImageRepository,
             IRepository<ProductSizeRecord> productSizeRepository,
             IRepository<LinkProductSizeRecord> linkProductSizeRepository,
-            IimageHelper imageHelper)
+            IimageHelper imageHelper,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
@@ -89,6 +92,10 @@ namespace Teeyoot.WizardSettings.Controllers
             Logger = NullLogger.Instance;
 
             Shape = shapeFactory;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public Localizer T { get; set; }
@@ -99,7 +106,7 @@ namespace Teeyoot.WizardSettings.Controllers
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
             var products = _productRepository.Table
-                .Where(c => c.WhenDeleted == null)
+                .Where(c => c.WhenDeleted == null && c.ProductHeadlineRecord.ProdHeadCulture == cultureUsed)
                 .OrderBy(p => p.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
@@ -163,7 +170,7 @@ namespace Teeyoot.WizardSettings.Controllers
 
             if (product.ProductImageRecord == null)
             {
-                var productImage = new ProductImageRecord();
+                var productImage = new ProductImageRecord() { ProdImgCulture = cultureUsed };
                 _productImageRepository.Create(productImage);
 
                 product.ProductImageRecord = productImage;
@@ -325,6 +332,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private void FillProductViewModelWithColours(ProductViewModel viewModel, ProductRecord product)
         {
             viewModel.ProductColours = _productColourRepository.Table
+                .Where(c => c.ProdColorCulture == cultureUsed)
                 .OrderBy(c => c.Name)
                 .Select(c => new ProductColourItemViewModel
                 {
@@ -369,6 +377,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private void FillProductViewModelWithGroups(ProductViewModel viewModel, ProductRecord product)
         {
             viewModel.ProductGroups = _productGroupRepository.Table
+                .Where(g => g.ProdGroupCulture == cultureUsed)
                 .OrderBy(g => g.Name)
                 .Select(g => new ProductGroupItemViewModel
                 {
@@ -394,6 +403,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private void FillProductViewModelWithHeadlines(ProductViewModel viewModel)
         {
             viewModel.ProductHeadlines = _productHeadlineRepository.Table
+                .Where(h => h.ProdHeadCulture == cultureUsed)
                 .OrderBy(h => h.Name)
                 .Select(h => new ProductHeadlineViewModel
                 {
@@ -406,6 +416,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private void FillProductViewModelWithSizes(ProductViewModel viewModel, ProductRecord product)
         {
             viewModel.ProductSizes = _productSizeRepository.Table
+                .Where(s => s.ProdSizeCulture == cultureUsed)
                 .Fetch(s => s.SizeCodeRecord)
                 .Select(s => new ProductSizeItemViewModel
                 {

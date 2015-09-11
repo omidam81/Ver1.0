@@ -23,17 +23,22 @@ namespace Teeyoot.WizardSettings.Controllers
         private IOrchardServices Services { get; set; }
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
-
-        public AdminWizardController(IFontService fontService, IOrchardServices services)
+        public AdminWizardController(IFontService fontService, IOrchardServices services, IWorkContextAccessor workContextAccessor)
         {
             _fontService = fontService;
             Services = services;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public ActionResult FontList()
         {
-            var fonts = _fontService.GetAllfonts().ToList();
+            var fonts = _fontService.GetAllfonts().Where(f => f.FontCulture == cultureUsed).ToList();
             return View(fonts);
         }
 
@@ -195,6 +200,7 @@ namespace Teeyoot.WizardSettings.Controllers
             newFont.Family = model.Family;
             newFont.FileName = model.FileName;
             newFont.Priority = 0;
+            newFont.FontCulture = cultureUsed;
             int i = 0;
             if (model.Tags != null)
             {

@@ -23,6 +23,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductSizeRecord> _productSizeRepository;
         private readonly IRepository<SizeCodeRecord> _sizeCodeRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private dynamic Shape { get; set; }
 
@@ -31,7 +33,8 @@ namespace Teeyoot.WizardSettings.Controllers
             IOrchardServices orchardServices,
             IRepository<ProductSizeRecord> productSizeRepository,
             IRepository<SizeCodeRecord> sizeCodeRepository,
-            IShapeFactory shapeFactory)
+            IShapeFactory shapeFactory,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
@@ -42,6 +45,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public Localizer T { get; set; }
@@ -54,13 +61,14 @@ namespace Teeyoot.WizardSettings.Controllers
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
             var productSizes = _productSizeRepository.Table
+                .Where(s => s.ProdSizeCulture == cultureUsed)
                 .OrderBy(s => s.SizeCodeRecord.Id)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize)
                 .Fetch(s => s.SizeCodeRecord)
                 .ToList();
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_productSizeRepository.Table.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_productSizeRepository.Table.Where(s => s.ProdSizeCulture == cultureUsed).Count());
 
             viewModel.ProductSizes = productSizes;
             viewModel.Pager = pagerShape;
@@ -94,7 +102,8 @@ namespace Teeyoot.WizardSettings.Controllers
                 WidthCm = ConvertSize(viewModel.WidthDimension, viewModel.Width, SizeMetricDimension.Centimetre),
                 WidthInch = ConvertSize(viewModel.WidthDimension, viewModel.Width, SizeMetricDimension.Inch),
                 LengthCm = ConvertSize(viewModel.LengthDimension, viewModel.Length, SizeMetricDimension.Centimetre),
-                LengthInch = ConvertSize(viewModel.LengthDimension, viewModel.Length, SizeMetricDimension.Inch)
+                LengthInch = ConvertSize(viewModel.LengthDimension, viewModel.Length, SizeMetricDimension.Inch),
+                ProdSizeCulture = cultureUsed
             };
 
             if (viewModel.Sleeve != null)
