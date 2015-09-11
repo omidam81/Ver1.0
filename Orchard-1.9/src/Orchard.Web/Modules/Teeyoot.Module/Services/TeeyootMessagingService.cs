@@ -1063,7 +1063,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "Campaignremaining", remaining);
             message.AddRcptMergeVars(email, "CampaignEndDate", campaign.EndDate.ToLocalTime().ToShortDateString());
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
-            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/" + side + ".png");
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First(p => p.WhenDeleted == null).Id + "/normal/" + side + ".png");
         }
 
         private void FillAdditionalCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)

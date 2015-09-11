@@ -125,9 +125,10 @@
 
         $("#name").keyup(function () {
             var name = document.getElementById("name").value;
+            document.getElementById("name").value = name.split("!").join("").split("*").join("").split("#").join("");
             name = name.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             name = name.replace(/([^\s0-9a-zA-Z])/g,"");
-            var url = document.getElementById("url").value = name;
+            var url = document.getElementById("url").value = name;         
         });
     </script>
     <script type="text/javascript">
@@ -1063,7 +1064,7 @@
                                                         <div id="view-back" class="back labView">
                                                             <div class="product-design"></div>
                                                             <div class="design-area printable-area-box" id="view-back-design-area">
-                                                                <div class="content-inner"></div>
+                                                                <div class=" content-inner"></div>
                                                                 <div class="size-dialog aspect-ratio" style="display: none">
                                                                     <div class="aspect-ratio__field width">
                                                                         <span>@T("Width")</span>
