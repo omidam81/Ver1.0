@@ -21,6 +21,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductHeadlineRecord> _productHeadlineRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private dynamic Shape { get; set; }
 
@@ -28,7 +30,8 @@ namespace Teeyoot.WizardSettings.Controllers
             ISiteService siteService,
             IOrchardServices orchardServices,
             IRepository<ProductHeadlineRecord> productHeadlineRepository,
-            IShapeFactory shapeFactory)
+            IShapeFactory shapeFactory,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
@@ -37,6 +40,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public Localizer T { get; set; }
@@ -47,11 +54,12 @@ namespace Teeyoot.WizardSettings.Controllers
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
             var productHeadlines = _productHeadlineRepository.Table
+                .Where(p => p.ProdHeadCulture == cultureUsed)
                 .OrderBy(p => p.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_productHeadlineRepository.Table.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_productHeadlineRepository.Table.Where(p => p.ProdHeadCulture == cultureUsed).Count());
 
             var viewModel = new ProductHeadlineIndexViewModel(productHeadlines, pagerShape);
 
@@ -77,7 +85,7 @@ namespace Teeyoot.WizardSettings.Controllers
                 return RedirectToAction("AddProductHeadline");
             }
 
-            var productHeadline = new ProductHeadlineRecord {Name = viewModel.Name};
+            var productHeadline = new ProductHeadlineRecord {Name = viewModel.Name, ProdHeadCulture = cultureUsed};
             _productHeadlineRepository.Create(productHeadline);
 
             _orchardServices.Notifier.Information(T("New Product Headline has been added."));

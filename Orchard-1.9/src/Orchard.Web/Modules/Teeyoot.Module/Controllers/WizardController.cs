@@ -47,7 +47,6 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CheckoutCampaignRequest> _checkoutCampaignRequestRepository;
         private readonly ShellSettings _shellSettings;
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string culture = string.Empty;
         private string cultureUsed = string.Empty;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
 
@@ -73,7 +72,7 @@ namespace Teeyoot.Module.Controllers
             _artRepository = artRepository;
 
             _workContextAccessor = workContextAccessor;
-            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
             _currencyRepository = currencyRepository;
         }
@@ -90,6 +89,21 @@ namespace Teeyoot.Module.Controllers
             {
                 return RedirectToAction("Oops");
             }
+
+            var product = _productService.GetAllProducts().Where(pr => pr.ProductHeadlineRecord.ProdHeadCulture == cultureUsed);
+            var group = _productService.GetAllProductGroups().Where(gr => gr.ProdGroupCulture == cultureUsed);
+            var color = _productService.GetAllColorsAvailable().Where(col => col.ProdColorCulture == cultureUsed);
+            //var art = _artRepository.Table.Where(a => a.ArtCulture == cultureUsed);
+            var font = _fontService.GetAllfonts().Where(f => f.FontCulture == cultureUsed);
+            var swatch = _swatchService.GetAllSwatches().Where(s => s.SwatchCulture == cultureUsed);
+            var currencys = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed);
+            var sizes = _productService.GetAllProducts().Where(pr => pr.ProductImageRecord.ProdImgCulture == cultureUsed);
+            //var images = _productService.GetAllProducts().Where(pr => pr.);
+            if ((product == null || product.Count() == 0) || (group == null || group.Count() == 0) || (color == null || color.Count() == 0) || (font == null || font.Count() == 0) || (swatch == null || swatch.Count() == 0) || (currencys == null || currencys.Count() == 0) || (sizes == null || sizes.Count() == 0))
+            {
+                return RedirectToAction("Oops");
+            }
+
 
             var cost = _costService.GetCost(cultureUsed);
             AdminCostViewModel costViewModel = new AdminCostViewModel();
@@ -269,19 +283,19 @@ namespace Teeyoot.Module.Controllers
 
         public JsonResult GetDetailTags(string filter)
         {
-            var entries = _campaignService.GetAllCategories().Select(n => new { name = n.Name }).ToList();
+            var entries = _campaignService.GetAllCategories().Where(c => c.CategoriesCulture == cultureUsed).Select(n => new { name = n.Name }).ToList();
             return Json(entries, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetFonts()
         {
-            var fonts = _fontService.GetAllfonts();
+            var fonts = _fontService.GetAllfonts().Where(f => f.FontCulture == cultureUsed);
             return Json(fonts.Select(f => new { id = f.Id, family = f.Family, filename = f.FileName, tags = f.Tags, priority = f.Priority }), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetSwatches()
         {
-            var swatches = _swatchService.GetAllSwatches();
+            var swatches = _swatchService.GetAllSwatches().Where(s => s.SwatchCulture == cultureUsed);
             return Json(swatches.ToList().Select(s => new { id = s.Id, name = s.Name, inStock = s.InStock, rgb = new[] { s.Red, s.Green, s.Blue } }), JsonRequestBehavior.AllowGet);
         }
 
@@ -293,7 +307,7 @@ namespace Teeyoot.Module.Controllers
             }
 
             var arts = _artRepository.Table
-                .Where(a => a.Name.Contains(query.ToLowerInvariant()));
+                .Where(a => a.Name.Contains(query.ToLowerInvariant()) && a.ArtCulture == cultureUsed);
 
             if (page > 0)
             {
@@ -326,14 +340,19 @@ namespace Teeyoot.Module.Controllers
                     {
                         command.Transaction = transaction;
                         command.CommandType = CommandType.Text;
-                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord" +
+                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord WHERE ArtCulture = '@artCulture' " +
                                               " ORDER BY NEWID()";
 
                         var artsPageSizeParameter = new SqlParameter("@artsPageSize", SqlDbType.Int)
                         {
                             Value = ArtsPageSize
                         };
+                        var artCulture = new SqlParameter("@artCulture", SqlDbType.VarChar)
+                        {
+                            Value = cultureUsed
+                        };
                         command.Parameters.Add(artsPageSizeParameter);
+                        command.Parameters.Add(artCulture);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -361,9 +380,9 @@ namespace Teeyoot.Module.Controllers
         {
             var model = new WizardProductsViewModel();
 
-            var products = _productService.GetAllProducts().ToList();
-            var groups = _productService.GetAllProductGroups().ToList();
-            var colors = _productService.GetAllColorsAvailable();
+            var products = _productService.GetAllProducts().Where(pr => pr.ProductHeadlineRecord.ProdHeadCulture == cultureUsed).ToList();
+            var groups = _productService.GetAllProductGroups().Where(gr => gr.ProdGroupCulture == cultureUsed).ToList();
+            var colors = _productService.GetAllColorsAvailable().Where(col => col.ProdColorCulture == cultureUsed);
 
             model.product_colors = colors.Select(c => new ColorViewModel
             {
@@ -460,7 +479,7 @@ namespace Teeyoot.Module.Controllers
                 {
                     lock (_locker)
                     {
-                        var result = _productService.GetAllColorsAvailable().Select(c => new ColorViewModel
+                        var result = _productService.GetAllColorsAvailable().Where(c => c.ProdColorCulture == cultureUsed).Select(c => new ColorViewModel
                             {
                                 id = c.Id,
                                 name = c.Name,
@@ -489,7 +508,7 @@ namespace Teeyoot.Module.Controllers
                 {
                     lock (_locker)
                     {
-                        var result = _productService.GetAllProducts().ToList().Select(p => new ProductViewModel
+                        var result = _productService.GetAllProducts().Where(pr => pr.ProductHeadlineRecord.ProdHeadCulture == cultureUsed).ToList().Select(p => new ProductViewModel
                             {
                                 id = p.Id,
                                 name = p.Name,
@@ -522,7 +541,7 @@ namespace Teeyoot.Module.Controllers
                 {
                     lock (_locker)
                     {
-                        var groups = _productService.GetAllProductGroups().ToList().Select(g => new ProductGroupViewModel
+                        var groups = _productService.GetAllProductGroups().Where(gr => gr.ProdGroupCulture == cultureUsed).ToList().Select(g => new ProductGroupViewModel
                             {
                                 id = g.Id,
                                 name = g.Name,
@@ -552,7 +571,7 @@ namespace Teeyoot.Module.Controllers
                 {
                     lock (_locker)
                     {
-                        var images = _productService.GetAllProducts().Select(p => new ProductImageViewModel
+                        var images = _productService.GetAllProducts().Where(pr => pr.ProductHeadlineRecord.ProdHeadCulture == cultureUsed).Select(p => new ProductImageViewModel
                             {
                                 id = p.ProductImageRecord.Id,
                                 product_id = p.Id,

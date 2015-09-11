@@ -15,8 +15,5 @@
         public string WoffFile { get; set; }
 
         public string Thumbnail { get; set; }
-
-
-
     }
 }
