@@ -301,7 +301,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="payment-method-container" id="mol_container" style="display: none;">
+                    @*<div class="payment-method-container" id="mol_container" style="display: none;">
                         <div class="accordion_min accordion">
                             <p>
                                 
@@ -310,7 +310,7 @@
 
                             </p>
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="payment-method-container" id="payment_method_mol" style="display: none;">
                     </div>
@@ -516,7 +516,7 @@
             } else if (defaultPaymentMethod === 'mol') {
                 $('#message_err').css({ "display": "none" });
                 $('.message_Mol').css({ "display": "" });
-                document.getElementById("mol_container").style.display = "";
+                //document.getElementById("mol_container").style.display = "";
                 $('#payment_method_mol').show();
                 $('#paymentMethod').val("3");
                 populateCountries("State");
@@ -540,7 +540,7 @@
                     $('#paymentMethod').val("1");
                     populateCountries("State");
                     //document.getElementById("parentDelivery").style.display = "none"; 
-                    document.getElementById("mol_container").style.display = "none";
+                    //document.getElementById("mol_container").style.display = "none";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                 } else if (paymentMethod === 'paypal') {
@@ -550,7 +550,7 @@
                     $('#paymentMethod').val("2");
                     populateCountries("State");
                     //document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("mol_container").style.display = "none";
+                    //document.getElementById("mol_container").style.display = "none";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                 } else if (paymentMethod === 'mol') {
@@ -560,7 +560,7 @@
                     $('#paymentMethod').val("3");
                     populateCountries("State");
                     //document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("mol_container").style.display = "";
+                    //document.getElementById("mol_container").style.display = "";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                 } else if (paymentMethod === 'cash') {
@@ -570,7 +570,7 @@
                     $('#paymentMethod').val("4");
                     populateCountriesForCashOnDelivery("State");
                     //document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("mol_container").style.display = "none";
+                    //document.getElementById("mol_container").style.display = "none";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                     
