@@ -125,9 +125,10 @@
 
         $("#name").keyup(function () {
             var name = document.getElementById("name").value;
+            document.getElementById("name").value = name.split("!").join("").split("*").join("").split("#").join("");
             name = name.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             name = name.replace(/([^\s0-9a-zA-Z])/g,"");
-            var url = document.getElementById("url").value = name;
+            var url = document.getElementById("url").value = name;         
         });
     </script>
     <script type="text/javascript">
