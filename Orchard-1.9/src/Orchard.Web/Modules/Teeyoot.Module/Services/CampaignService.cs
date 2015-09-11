@@ -352,6 +352,7 @@ namespace Teeyoot.Module.Services
                         Price = prod.Price,
                         ProductColorRecord = prod.ProductColorRecord,
                         ProductRecord = prod.ProductRecord,
+                        WhenDeleted = prod.WhenDeleted,
                         SecondProductColorRecord = prod.SecondProductColorRecord,
                         ThirdProductColorRecord = prod.ThirdProductColorRecord,
                         FourthProductColorRecord = prod.FourthProductColorRecord,
