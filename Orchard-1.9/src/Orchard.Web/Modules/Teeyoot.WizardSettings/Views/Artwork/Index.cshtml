@@ -10,22 +10,25 @@
 </div>
 
 <ul class="contentItems">
-    @foreach (var art in Model.Arts)
+    @if (Model.Arts != null)
     {
-        <li>
-            <div class="summary">
-                <div class="properties">
-                    <div>
-                        <h3>@art.Name</h3>
-                        <img src="@Url.MakeAbsolute(Model.ArtworksImagesRelativePath + "/" + Path.GetFileNameWithoutExtension(art.FileName) + ".png", HttpContext.Current.Request.ToRootUrlString())" alt="@art.Name"/>
+        foreach (var art in Model.Arts)
+        {
+            <li>
+                <div class="summary">
+                    <div class="properties">
+                        <div>
+                            <h3>@art.Name</h3>
+                            <img src="@Url.MakeAbsolute(Model.ArtworksImagesRelativePath + "/" + Path.GetFileNameWithoutExtension(art.FileName) + ".png", HttpContext.Current.Request.ToRootUrlString())" alt="@art.Name" />
+                        </div>
+                    </div>
+                    <div class="related">
+                        <a href="@Url.Action("EditArtwork", "Artwork", new {artworkId = art.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
+                        <a href="@Url.Action("DeleteArtwork", "Artwork", new {artworkId = art.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                     </div>
                 </div>
-                <div class="related">
-                    <a href="@Url.Action("EditArtwork", "Artwork", new {artworkId = art.Id})" title="@T("Edit")">@T("Edit")</a>@T(" | ")
-                    <a href="@Url.Action("DeleteArtwork", "Artwork", new {artworkId = art.Id})" itemprop="RemoveUrl">@T("Delete")</a>
-                </div>
-            </div>
-        </li>
+            </li>
+        }
     }
 </ul>
 @Display(Model.Pager)

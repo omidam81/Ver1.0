@@ -392,8 +392,9 @@ window.onload = function initWizard() {
         divColorDelete5.classList.add("div-color-delete");
 
         $(divColor1Active).click(function (event) {
-            //changesColor("#div-color-3", 3);
+            //changesColor("#div-color-3", 3);          
             if ($(divColor1Active).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.ColorId];
@@ -409,6 +410,7 @@ window.onload = function initWizard() {
         $(divColor2).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor2).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.SecondColorId];
@@ -424,6 +426,7 @@ window.onload = function initWizard() {
         $(divColor3).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor3).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.ThirdColorId];
@@ -439,6 +442,7 @@ window.onload = function initWizard() {
         $(divColor4).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor4).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.FourthColorId];
@@ -454,6 +458,7 @@ window.onload = function initWizard() {
         $(divColor5).click(function (event) {
             //changesColor("#div-color-2", 2);
             if ($(divColor5).hasClass('div-color-active')) {
+                $div.click();
                 event.preventDefault();
                 event.stopPropagation();
                 var color = design.products.colors[prdc.FifthColorId];
@@ -1369,16 +1374,18 @@ function initProducts() {
             //    } else {
             //        index = 1;
             //    }
-            $.each(mas[0].products, function (i, element) {
-                if (element != app.state.currentProduct.ProductId) {
-                    var option = document.createElement("option");
-                    option.value = element;
-                    option.id = element;
-                    option.innerHTML = design.products.productsData[element].name;
-                    listProd.appendChild(option);
-                }
+            if(mas.length != 0){
+                $.each(mas[0].products, function (i, element) {
+                    if (element != app.state.currentProduct.ProductId) {
+                        var option = document.createElement("option");
+                        option.value = element;
+                        option.id = element;
+                        option.innerHTML = design.products.productsData[element].name;
+                        listProd.appendChild(option);
+                    }
 
-            });
+                });
+            }
             //$.each(design.products.productsData, function (i, el) {
             //    if (app.state.currentProduct.ProductId != el.id) {
             //        //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист
@@ -1957,6 +1964,7 @@ function onChangeValueForTrackBar() {
 
 function changesColor(id, number) {
     if ($(id).hasClass('div-color-active')) {
+        $("#first-product").click();
         var color;
         switch (number) {
             case 1: color = design.products.colors[app.state.currentProduct.ColorId];

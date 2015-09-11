@@ -10,6 +10,7 @@ namespace Teeyoot.Module.Models
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
         public virtual IList<LinkProductGroupRecord> Products { get; private set; }
+        public virtual string ProdGroupCulture { get; set; }
 
         public ProductGroupRecord()
         {

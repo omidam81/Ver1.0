@@ -1,0 +1,17 @@
+﻿@{
+    foreach (var menuItem in Model.Menu)
+    {
+        if (menuItem.Text.ToString().ToLower() == T("Logout").ToString().ToLower())
+        {
+            Model.Menu.Items.Remove(menuItem);
+            break;
+        }
+    }    
+}
+@Display(Model.Menu)
+
+<div onclick="toggleMenu();" class="collapse-button fixed">
+    <i class="fa fa-angle-left fa-2x"></i>
+    <i class="fa fa-angle-right fa-2x hidden"></i>
+    <span class="to-hide-on-click">@T("Collapse")</span>
+</div>

@@ -69,12 +69,12 @@
                 <div class="overview-for-period selected">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
                     <div>
-                        <div><span>@Model.MYCurrencyCode@item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
+                        <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
 
                     </div>
 
                     <div>
-                        <div><span>@Model.MYCurrencyCode@item.MYToBePaid.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Claimed Payout Balance")</div>
+                        <div><span>@Model.MYCurrencyCode @item.MYToBePaid.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Claimed Payout Balance")</div>
 
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.MYCurrencyCode@item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit (includes pending profit)")</div>
+                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit (includes pending profit)")</div>
 
 
                 </div>
@@ -92,7 +92,7 @@
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.MYCurrencyCode@item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
+                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
                 </div>
             }
         }
@@ -238,7 +238,7 @@
                         </div>
 
                         <div class="campaign-card-profit">
-                            <span>@c.SummaryCurrency@c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>
+                            <span>@c.SummaryCurrency @c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>
                         </div>
 
                     </div>

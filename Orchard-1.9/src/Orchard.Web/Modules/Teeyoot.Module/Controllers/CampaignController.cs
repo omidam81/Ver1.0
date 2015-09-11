@@ -91,7 +91,7 @@ namespace Teeyoot.Module.Controllers
 
                         if (campaign.ProductCountSold >= campaign.ProductMinimumGoal && campaign.IsActive)
                         {
-                            var infoMessage = T("The minimum order has been reached, so this shirt will definitely go to print.");
+                            var infoMessage = T("{0} were sold. The t-shirt is ready to be printed", campaign.ProductCountSold);
                             _notifier.Add(NotifyType.Information, infoMessage);
                         }
                         if (campaign.IsApproved == true && campaign.ProductCountSold < campaign.ProductMinimumGoal && campaign.IsActive)
@@ -99,7 +99,7 @@ namespace Teeyoot.Module.Controllers
                             var infoMessage = T(String.Format("{0} orders have been made. We need {1} more for this campaign to proceed.", campaign.ProductCountSold, campaign.ProductMinimumGoal - campaign.ProductCountSold));
                                 _notifier.Add(NotifyType.Information, infoMessage);                          
                         }
-                        if (!campaign.IsActive && campaign.IsApproved)
+                        if (!campaign.IsActive && campaign.IsApproved && !campaign.IsArchived)
                         {
                             var cntRequests =  _campaignService.GetCountOfReservedRequestsOfCampaign(campaign.Id);
                             model.CntRequests = 10 - (cntRequests >= 10 ? 10 : cntRequests);

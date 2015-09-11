@@ -21,6 +21,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductGroupRecord> _productStyleRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private dynamic Shape { get; set; }
 
@@ -28,7 +30,8 @@ namespace Teeyoot.WizardSettings.Controllers
             ISiteService siteService,
             IOrchardServices orchardServices,
             IRepository<ProductGroupRecord> productStyleRepository,
-            IShapeFactory shapeFactory)
+            IShapeFactory shapeFactory,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
@@ -37,6 +40,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public Localizer T { get; set; }
@@ -47,11 +54,12 @@ namespace Teeyoot.WizardSettings.Controllers
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
             var productHeadlines = _productStyleRepository.Table
+                .Where(gr => gr.ProdGroupCulture == cultureUsed)
                 .OrderBy(p => p.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_productStyleRepository.Table.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_productStyleRepository.Table.Where(gr => gr.ProdGroupCulture == cultureUsed).Count());
 
             var viewModel = new ProductStyleIndexViewModel(productHeadlines, pagerShape);
 
@@ -77,7 +85,7 @@ namespace Teeyoot.WizardSettings.Controllers
                 return RedirectToAction("AddProductStyle");
             }
 
-            var productStyle = new ProductGroupRecord {Name = viewModel.Name};
+            var productStyle = new ProductGroupRecord {Name = viewModel.Name, ProdGroupCulture = cultureUsed};
             _productStyleRepository.Create(productStyle);
 
             _orchardServices.Notifier.Information(T("New Product Style \"{0}\" has been added.", productStyle.Name));

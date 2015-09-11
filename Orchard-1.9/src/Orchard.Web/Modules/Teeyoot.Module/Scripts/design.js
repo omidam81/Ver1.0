@@ -911,34 +911,43 @@ var design={
         searchArt: function(append){
             var me = this;
             var query = app.state.searchQuery;
-            var $container = $('.art-search-container');
-            if(!append){
-                $container.html('<div class="loading"><img src="./assets/images/small_loadwheel.gif"></div>');
-                app.state.currentArtSearchPage = 0;
-            }else{
-                app.state.currentArtSearchPage = app.state.currentArtSearchPage ||0;
-
-            }
-            app.state.artSearching = true;
-            app.searchArt(query, app.state.currentArtSearchPage).then(function(data){
-                app.state.currentArtSearchPage++;
-                if(!append){
+            if (query == "") {
+                var $container = $('.art-search-container');
+                app.loadRandomArt().then(function (data) {
                     $container.html('');
-                    if(!data || !data.length){
-                        $container.html('<div class="no-results" ><div class="alert alert-block alert-warning">'+
-                            '<h4 class="alert-heading">Sorry!</h4><p data-select-like-a-boss="1">No results were found '+
-                            'for your query. Please try again! We recommend keeping it simple like "dog" or "cat".</p>'+
-                            '</div></div>');
-                    }
                     design.products.art = data;
-                }else{
-                    var current = design.products.art || [];
-                    design.products.art = current.concat(data);
+                    me.addArt();
+                });
+            } else {
+                var $container = $('.art-search-container');
+                if (!append) {
+                    $container.html('<div class="loading"><img src="./assets/images/small_loadwheel.gif"></div>');
+                    app.state.currentArtSearchPage = 0;
+                } else {
+                    app.state.currentArtSearchPage = app.state.currentArtSearchPage || 0;
+
                 }
-                me.addArt(data);
-            }).always(function(){
-                app.state.artSearching = false;
-            });
+                app.state.artSearching = true;
+                app.searchArt(query, app.state.currentArtSearchPage).then(function (data) {
+                    app.state.currentArtSearchPage++;
+                    if (!append) {
+                        $container.html('');
+                        if (!data || !data.length) {
+                            $container.html('<div class="no-results" ><div class="alert alert-block alert-warning">' +
+                                '<h4 class="alert-heading">Sorry!</h4><p data-select-like-a-boss="1">No results were found ' +
+                                'for your query. Please try again! We recommend keeping it simple like "dog" or "cat".</p>' +
+                                '</div></div>');
+                        }
+                        design.products.art = data;
+                    } else {
+                        var current = design.products.art || [];
+                        design.products.art = current.concat(data);
+                    }
+                    me.addArt(data);
+                }).always(function () {
+                    app.state.artSearching = false;
+                });
+            }           
         },
         loadRandomArt: function(){
             var me= this;

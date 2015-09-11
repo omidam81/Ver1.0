@@ -94,8 +94,12 @@ namespace Teeyoot.Messaging.Services
             {
                 emails.Add(new MandrillMailAddress(item, "Buyer"));
             }
+
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             mandrillMessage.To = emails;
-            var text = File.ReadAllText(pathToTemplates + "make_the_order_buyer.html");
+            var text = File.ReadAllText(pathToTemplates + "make_the_order_buyer-" + cultureUsed + ".html");
             mandrillMessage.Html = text;
             var res = SendTmplMessage(api, mandrillMessage);
         }
@@ -114,19 +118,19 @@ namespace Teeyoot.Messaging.Services
             if (isSuccesfull)
             {
                 mandrillMessage.Subject = "Your Tee campaign just expired!";
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-printing-seller-template.html");
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-printing-seller-template-" + campaign.CampaignCulture + ".html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
                     mandrillMessage.Subject = "Your Tee campaign just expired!";
-                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-seller-template.html");
+                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-seller-template-" + campaign.CampaignCulture + ".html");
                 }
                 else
                 {
                     mandrillMessage.Subject = "Your Tee campaign just expired!";
-                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-met-minimum-seller-template.html");
+                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-met-minimum-seller-template-" + campaign.CampaignCulture + ".html");
                 }
             }
 
@@ -153,19 +157,19 @@ namespace Teeyoot.Messaging.Services
             if (isSuccesfull)
             {
                 mandrillMessage.Subject = "Campaign reach target!";
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-successfull-admin-template.html");
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-successfull-admin-template-" + campaign.CampaignCulture + ".html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
                     mandrillMessage.Subject = "Campaign didn't reach target!";
-                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-notSuccessfull-admin-template.html");
+                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-notSuccessfull-admin-template-" + campaign.CampaignCulture + ".html");
                 }
                 else
                 {
                     mandrillMessage.Subject = "Campaign didn't reach target, but met the minimum!";
-                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-met-minimum-admin-template.html");
+                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-met-minimum-admin-template-" + campaign.CampaignCulture + ".html");
                 }
             }
 
@@ -202,19 +206,19 @@ namespace Teeyoot.Messaging.Services
             if (isSuccesfull)
             {
                 mandrillMessage.Subject = "Your order is printing!";
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template.html");
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template-" + campaign.CampaignCulture + ".html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
                     mandrillMessage.Subject = "Your order was cancelled!";
-                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-buyer-template.html");
+                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-buyer-template-" + campaign.CampaignCulture + ".html");
                 }
                 else
                 {
                     mandrillMessage.Subject = "Your order is printing!";
-                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template.html");
+                    mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template-" + campaign.CampaignCulture + ".html");
                 }
             }
 
@@ -254,9 +258,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
             mandrillMessage.Subject = "Campaign will definitely go to print!";
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-buyer-template.html");
-            List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive).ToList();
             var campaign = _campaignRepository.Get(campaignId);
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-buyer-template-" + campaign.CampaignCulture + ".html");
+            List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive).ToList();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             List<string> emailsList = new List<string>();
             foreach (var item in ordersList)
@@ -294,7 +298,7 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
             mandrillMessage.Subject = "Your Tee campaign met the minimum!";
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-seller-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-seller-template-" + campaign.CampaignCulture + ".html");
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")
@@ -315,7 +319,7 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
             mandrillMessage.Subject = "All orders of your campaign have been delivered!";
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "all-orders-delivered-seller-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "all-orders-delivered-seller-template-" + campaign.CampaignCulture + ".html");
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")
@@ -339,7 +343,7 @@ namespace Teeyoot.Messaging.Services
                 new MandrillMailAddress(seller.Email, "Seller")
             };
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "launch-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "launch-template-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -362,7 +366,7 @@ namespace Teeyoot.Messaging.Services
 
             FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
 
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
         }
         
@@ -381,7 +385,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             List<string> emailsList = new List<string>();
             List<string> resultEmails = new List<string>();
-            var buyers = _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == campaignId).ToList();
+            var buyers = _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == campaign.BaseCampaignId).ToList();
 
             foreach (var buyer in buyers)
             {
@@ -397,7 +401,7 @@ namespace Teeyoot.Messaging.Services
                 emails.Add(new MandrillMailAddress(item, "Buyer"));
             }
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-buyer.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-buyer-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
             
         }
@@ -419,15 +423,27 @@ namespace Teeyoot.Messaging.Services
 
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+
+            List<string> emailsList = new List<string>();
+            List<string> resultEmails = new List<string>();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var user in users)
             {
-                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
+                emailsList.Add(user.Email);
                 FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
             }
+
+            var noDupes = new HashSet<string>(emailsList);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Admin"));
+            }
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller.html");
-            SendTmplMessage(api, mandrillMessage);           
+
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller-" + campaign.CampaignCulture + ".html");
+            SendTmplMessage(api, mandrillMessage);
         }
         public void SendReLaunchCampaignMessageToSeller(int campaignId)
         {
@@ -450,7 +466,7 @@ namespace Teeyoot.Messaging.Services
             };
 
             FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
         }
 
@@ -473,7 +489,7 @@ namespace Teeyoot.Messaging.Services
                 mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")};
                 FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "terms-conditions-template.html");
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "terms-conditions-template-" + campaign.CampaignCulture + ".html");
                 SendTmplMessage(api, mandrillMessage);
             }
 
@@ -497,7 +513,7 @@ namespace Teeyoot.Messaging.Services
                 mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")};
                 FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-finished-template.html");
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-finished-template-" + campaign.CampaignCulture + ".html");
                 SendTmplMessage(api, mandrillMessage);
             }
 
@@ -524,7 +540,7 @@ namespace Teeyoot.Messaging.Services
                 FillUserMergeVars(mandrillMessage, order, order.Email);
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
-                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "shipped-order-3day-after-template.html");
+                mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "shipped-order-3day-after-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                 SendTmplMessage(api, mandrillMessage);
             }
 
@@ -545,9 +561,8 @@ namespace Teeyoot.Messaging.Services
                 new MandrillMailAddress(seller.Email, "Seller")
             };
             FillCampaignMergeVars(mandrillMessage, campaignId, seller.Email, pathToMedia, pathToTemplates);
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "reject-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "reject-template-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
-
         }
 
         public void SendNewCampaignAdminMessage(string pathToTemplates, string pathToMedia, int campaignId)
@@ -569,7 +584,7 @@ namespace Teeyoot.Messaging.Services
                 FillCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
             }
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-campaign-admin-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-campaign-admin-template-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -590,7 +605,7 @@ namespace Teeyoot.Messaging.Services
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
             FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "", payout.Amount, currency);
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-completed-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-completed-template-" + _currencyRepository.Get(payout.Currency_Id).CurrencyCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -616,13 +631,13 @@ namespace Teeyoot.Messaging.Services
                 case "Unpaid":
                     {
                         mandrillMessage.Subject = "Your campaign has been unpaid!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "unpaid-campaign-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "unpaid-campaign-template-" + campaign.CampaignCulture + ".html");
                         break;
                     };
                 case "Paid":
                     {
                         mandrillMessage.Subject = "Your campaign has been paid!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "paid-campaign-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "paid-campaign-template-" + campaign.CampaignCulture + ".html");
                         break;
                     };
                 //case "PartiallyPaid":
@@ -668,7 +683,7 @@ namespace Teeyoot.Messaging.Services
                 emails.Add(new MandrillMailAddress(item, "Buyer"));
             }
             mandrillMessage.To = emails;
-            string text = System.IO.File.ReadAllText(pathToTemplates + "seller-template.html").Replace("{{Text}}", message.Text);
+            string text = System.IO.File.ReadAllText(pathToTemplates + "seller-template-" + ordersList.First().OrderRecord.CurrencyRecord.CurrencyCulture + ".html").Replace("{{Text}}", message.Text);
             mandrillMessage.Html = text;
             message.IsApprowed = true;
             var res = SendTmplMessage(api, mandrillMessage);
@@ -697,7 +712,7 @@ namespace Teeyoot.Messaging.Services
                 FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, user.Email, pathToMedia, pathToTemplates);
             }
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-order-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -718,7 +733,7 @@ namespace Teeyoot.Messaging.Services
                 FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
                 FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-order-buyer-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "new-order-buyer-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -741,7 +756,7 @@ namespace Teeyoot.Messaging.Services
             FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
             FillAdditionalCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "edited-campaign-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "edited-campaign-template-" + campaign.CampaignCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -766,7 +781,7 @@ namespace Teeyoot.Messaging.Services
                 FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin, 0.00, "");
             }
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-template-" + _contentManager.Get<TeeyootUserPart>(userIds.First(), VersionOptions.Latest).TeeyootUserCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -787,7 +802,7 @@ namespace Teeyoot.Messaging.Services
             emails.Add(new MandrillMailAddress(user.Email, "Seller"));
             FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, "", 0.00, "");
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-seller-template.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-seller-template-" + _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest).TeeyootUserCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -806,7 +821,7 @@ namespace Teeyoot.Messaging.Services
                 case "Approved":
                     {
                         mandrillMessage.Subject = "Your order has been approved!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "place-order-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "place-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
@@ -819,7 +834,7 @@ namespace Teeyoot.Messaging.Services
                 case "Printing":
                     {
                         mandrillMessage.Subject = "Your order is being sent for print!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
@@ -832,7 +847,7 @@ namespace Teeyoot.Messaging.Services
                 case "Shipped":
                     {
                         mandrillMessage.Subject = "Your order has been shipped!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "shipped-order-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "shipped-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
@@ -845,7 +860,7 @@ namespace Teeyoot.Messaging.Services
                 case "Delivered":
                     {
                         mandrillMessage.Subject = "Your order has been delivered!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "delivered-order-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "delivered-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
@@ -858,7 +873,7 @@ namespace Teeyoot.Messaging.Services
                 case "Cancelled":
                     {
                         mandrillMessage.Subject = "Your order has been cancelled!";
-                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "cancelled-order-template.html");
+                        mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "cancelled-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
                         FillProductsMergeVars(mandrillMessage, order.Products, pathToMedia, order.Email, order.OrderPublicId);
@@ -887,7 +902,7 @@ namespace Teeyoot.Messaging.Services
                 new MandrillMailAddress(email, "Buyer")
             };
             FillOrdersMergeVars(mandrillMessage, orders, email, pathToTemplates);
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "recover_orders_for_buyer.html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "recover_orders_for_buyer-" + orders.First().CurrencyRecord.CurrencyCulture + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
@@ -1020,7 +1035,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "Campaignremaining", remaining);
             message.AddRcptMergeVars(email, "CampaignEndDate", campaign.EndDate.ToLocalTime().ToShortDateString());
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
-            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/" + side + ".png");
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First(p => p.WhenDeleted == null).Id + "/normal/" + side + ".png");
         }
 
         private void FillAdditionalCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)

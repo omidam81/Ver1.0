@@ -51,7 +51,7 @@
                                             </ul>
                                         </td>
                                         <td class="order_summary__item_price">
-                                            @item.CampaignProductRecord.CurrencyRecord.Code @(price * item.Count)
+                                            @item.CampaignProductRecord.CurrencyRecord.Code @((price * item.Count).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                         </td>
                                     </tr>
                                 }
@@ -127,9 +127,9 @@
                     <div class="order_summary__help__container">
                         <h2>@T("How does Teeyoot work?")</h2>
                         <p>@T("We won't charge you unless the campaign order reaches its minimum.")</p>
-                        <p>@T("What are my payment options?")</p>
-                        <p>@T("We accept payment via Cash on Delivery, Paypal, Direct Bank Transfer, Debit or Credit Card.")</p>
-                        <p>@T("If I pay via Direct Bank Transfer but the campaign does not reach its minimum, will I get a refund?")</p>
+                        <h2>@T("What are my payment options?")</h2>
+                        <p>@T("We accept payment via Cash on Delivery, Direct Bank Transfer, Debit or Credit Card.")</p>
+                        <h2>@T("If I pay via Online Banking but the campaign does not reach its minimum, will I get a refund?")</h2>
                         <p>@T("Yes absolutely! We will refund the amount within 7 days after the campaign ends. Your interest is our top priority.")</p>
                     </div>
                     <div class="order_summary__help__container">
@@ -137,14 +137,18 @@
                         <p>
                             <span class="js-delivery-estimate">
                                 @T("Your order will arrive")
-                                <span class="js-estimate-earliest">10</span>-
+                                <span class="js-estimate-earliest">10</span> -
                                 <span class="js-estimate-latest">15</span> @T("business days after the end of the campaign!")
                             </span>
                         </p>
                     </div>
                     <br>
                     <div class="message_Mol" style="display:none">
-                        <span style="color:red" hei>You will be charged immediately after you place your order</span>
+                        <span style="color:red" hei>
+                            <p>@T("You will be redirected to the Online Banking system to complete the payment")</p>
+                            <p>@T("You will be charged immediately after you place your order")</p>
+                        
+                        </span>
                     </div>
                 </div>
             </div>
@@ -406,7 +410,7 @@
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
-                                    <input class=" form__textfield " id="Country" name="Country" tabindex="8" value="Malaysia" readonly="readonly"></input>
+                                    <input class=" form__textfield " id="Country" name="Country" tabindex="8" value="@Model.CountryName" readonly="readonly"></input>
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
 
@@ -485,7 +489,7 @@
                     required: true
                 }
             },
-            submitHandler: function (form) { form.submit(); }
+            submitHandler: function (form) { var elem = document.getElementById('transaction'); elem.disabled = 'disabled'; form.submit(); }
         });
 
 
@@ -627,7 +631,13 @@
             Settings = settings_arr;
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
-                
+                if (settings_arr[i].State == "Selangor") {
+                    countryElement.selectedIndex = i + 1;
+                    document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
+                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
+                }
             }
         }
 

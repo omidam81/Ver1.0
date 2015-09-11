@@ -28,80 +28,82 @@
             Text = T("Swatch").ToString(),
             Value = Enum.GetName(typeof (ChooseColourFor), ChooseColourFor.Swatch)
         }
-    }, T("Please select ...").ToString(), new {id = "choose_colour_for"})
+    }, T("Please select ...").ToString(), new { id = "choose_colour_for" })
 </fieldset>
 
 @if (Model.ChooseColourFor == ChooseColourFor.Product)
 {
-    <table class="items">
-        <thead>
-        <tr>
-            <th>
-                <h4>@T("Name")</h4>
-            </th>
-            <th>
-                <h4>@T("Color")</h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var productColour in Model.Colors)
-        {
-            <tr>
-                <td>
-                    @productColour.Name
-                </td>
-                <td style="background: @productColour.Value">
-                </td>
-                <td>
-                    <a href="@Url.Action("EditProductColour", "Colour", new {productColourId = productColour.Id})" title="@T("Edit")">@T("Edit")</a>
-                    @T(" | ")
-                    <a href="@Url.Action("DeleteProductColour", "Colour", new {productColourId = productColour.Id})" itemprop="RemoveUrl">@T("Delete")</a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    if (Model.Colors != null && Model.Colors.Count() != 0)
+    {
+        <table class="items">
+            <thead>
+                <tr>
+                    <th>
+                        <h4>@T("Name")</h4>
+                    </th>
+                    <th>
+                        <h4>@T("Color")</h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var productColour in Model.Colors)
+                {
+                    <tr>
+                        <td>
+                            @productColour.Name
+                        </td>
+                        <td style="background: @productColour.Value"></td>
+                        <td>
+                            <a href="@Url.Action("EditProductColour", "Colour", new {productColourId = productColour.Id})" title="@T("Edit")">@T("Edit")</a>
+                            @T(" | ")
+                            <a href="@Url.Action("DeleteProductColour", "Colour", new {productColourId = productColour.Id})" itemprop="RemoveUrl">@T("Delete")</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 }
 else if (Model.ChooseColourFor == ChooseColourFor.Swatch)
 {
-    <table class="items">
-        <thead>
-        <tr>
-            <th>
-                <h4>@T("Name")</h4>
-            </th>
-            <th>
-                <h4>@T("Color")</h4>
-            </th>
-            <th>
-                <h4>@T("In Stock")</h4>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var swatchColour in Model.Colors)
-        {
-            <tr>
-                <td>
-                    @swatchColour.Name
-                </td>
-                <td style="background: @swatchColour.Value"></td>
-                <td>
-                    <input type="checkbox" @if (swatchColour.InStock)
-                                           {
-                                               <text>checked="checked"</text>
-                                           } disabled="disabled"/>
-                </td>
-                <td>
-                    <a href="@Url.Action("EditSwatchColour", "Colour", new {swatchColourId = swatchColour.Id})" title="@T("Edit")">@T("Edit")</a>
-                    @T(" | ")
-                    <a href="@Url.Action("DeleteSwatchColour", "Colour", new {swatchColourId = swatchColour.Id})" itemprop="RemoveUrl">@T("Delete")</a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    if (Model.Colors != null && Model.Colors.Count() != 0)
+    {
+        <table class="items">
+            <thead>
+                <tr>
+                    <th>
+                        <h4>@T("Name")</h4>
+                    </th>
+                    <th>
+                        <h4>@T("Color")</h4>
+                    </th>
+                    <th>
+                        <h4>@T("In Stock")</h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var swatchColour in Model.Colors)
+                {
+                    <tr>
+                        <td>
+                            @swatchColour.Name
+                        </td>
+                        <td style="background: @swatchColour.Value"></td>
+                        <td>
+                            <input type="checkbox" @if (swatchColour.InStock) { <text> checked="checked" </text>   } disabled="disabled" />
+                        </td>
+                        <td>
+                            <a href="@Url.Action("EditSwatchColour", "Colour", new {swatchColourId = swatchColour.Id})" title="@T("Edit")">@T("Edit")</a>
+                            @T(" | ")
+                            <a href="@Url.Action("DeleteSwatchColour", "Colour", new {swatchColourId = swatchColour.Id})" itemprop="RemoveUrl">@T("Delete")</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 }
 
 @if (Model.ChooseColourFor.HasValue)
@@ -112,8 +114,8 @@ else if (Model.ChooseColourFor == ChooseColourFor.Swatch)
 @using (Script.Foot())
 {
     <script>
-        $(document).ready(function() {
-            $("#choose_colour_for").change(function() {
+        $(document).ready(function () {
+            $("#choose_colour_for").change(function () {
                 var selectedColourFor = $(this).find('option:selected').val();
                 window.location.href = '/Admin/Colours/' + selectedColourFor;
             });

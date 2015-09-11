@@ -775,7 +775,21 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
                table => table.DropColumn("CashOnDeliveryAvailabilityMessage"));
 
-            return 89;
+            SchemaBuilder.AlterTable(typeof(ArtRecord).Name, table => table.AddColumn<string>("ArtCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(ProductImageRecord).Name, table => table.AddColumn<string>("ProdImgCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(ProductHeadlineRecord).Name, table => table.AddColumn<string>("ProdHeadCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(ProductSizeRecord).Name, table => table.AddColumn<string>("ProdSizeCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(ProductGroupRecord).Name, table => table.AddColumn<string>("ProdGroupCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(FontRecord).Name, table => table.AddColumn<string>("FontCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            SchemaBuilder.AlterTable(typeof(ProductColorRecord).Name, table => table.AddColumn<string>("ProdColorCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+            SchemaBuilder.AlterTable(typeof(SwatchRecord).Name, table => table.AddColumn<string>("SwatchCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.AddColumn<string>("CommonCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<string>("DeliveryCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 93;
         }
 
         public int UpdateFrom2()
@@ -1763,5 +1777,39 @@ namespace Teeyoot.Module
 
            return 89;
        }
+
+       public int UpdateFrom89()
+       {
+           SchemaBuilder.AlterTable(typeof(ArtRecord).Name, table => table.AddColumn<string>("ArtCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(ProductImageRecord).Name, table => table.AddColumn<string>("ProdImgCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(ProductHeadlineRecord).Name, table => table.AddColumn<string>("ProdHeadCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(ProductSizeRecord).Name, table => table.AddColumn<string>("ProdSizeCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(ProductGroupRecord).Name, table => table.AddColumn<string>("ProdGroupCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(FontRecord).Name, table => table.AddColumn<string>("FontCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+           return 90;
+       }
+
+       public int UpdateFrom90()
+       {
+           SchemaBuilder.AlterTable(typeof(ProductColorRecord).Name, table => table.AddColumn<string>("ProdColorCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+           SchemaBuilder.AlterTable(typeof(SwatchRecord).Name, table => table.AddColumn<string>("SwatchCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+        
+           return 91;
+       }
+     
+        public int UpdateFrom91()
+       {
+           SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.AddColumn<string>("CommonCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+           return 92;
+       }
+
+        public int UpdateFrom92()
+        {
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<string>("DeliveryCulture", c => c.NotNull().WithDefault("en-MY").WithLength(10)));
+
+            return 93;
+        }
     }
 }

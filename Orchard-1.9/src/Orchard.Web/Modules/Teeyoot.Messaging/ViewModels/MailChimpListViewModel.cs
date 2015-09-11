@@ -83,11 +83,5 @@ namespace Teeyoot.Messaging.ViewModels
         public virtual string WithdrawCompletedTemplate { get; set; }
 
         public virtual string WithdrawSellerTemplate { get; set; }
-
-        public virtual string Culture { get; set; }
-
-        public virtual IEnumerable<LanguageRecord> AvailableLanguages { get; set; }
-
-
     }
 }

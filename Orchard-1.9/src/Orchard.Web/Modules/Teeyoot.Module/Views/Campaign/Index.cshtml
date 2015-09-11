@@ -557,7 +557,7 @@
         $(newSize).selectedIndex = 0;
 
         var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];
+        var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];   
 
         $(currentPrice).removeClass('shown').addClass('hidden');
         $(newPrice).removeClass('hidden').addClass('shown');
@@ -570,6 +570,7 @@
 
         var currentPrice = $(rows).find('.modal-price.shown')[0];
         var newPrice = $(rows).find('span[name=select_size_index_' + id + '_' + index + ']')[0];
+      
         $(currentPrice).removeClass('shown').addClass('hidden');
         $(newPrice).removeClass('hidden').addClass('shown');
     }
@@ -938,7 +939,7 @@
                         <select id="product__dropdown" class="product__dropdown form__select_menu js_product_select" onchange="ChangeProduct(this)">
                             @foreach (var prod in Model.Campaign.Products.Where(c => c.WhenDeleted == null))
                             {
-                                <option id="@prod.Id" name="@prod.ProductRecord.Name" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code@prod.Price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</option>
+                                <option id="@prod.Id" name="@prod.ProductRecord.Name" value="@prod.Id">@prod.ProductRecord.Name - @prod.CurrencyRecord.Code @prod.Price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</option>
                             }
                         </select>
                     </div>
@@ -1363,11 +1364,11 @@
                                                             string pos = i + "_" + count;
                                                             if (size == Model.Campaign.Products[i].ProductRecord.SizesAvailable.First())
                                                             {
-                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
                                                             }
                                                             else
                                                             {
-                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
                                                             }
                                                             count++;
                                                         }
@@ -1380,7 +1381,7 @@
                                                             float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
                                                             string pos = i + "_" + count;
 
-                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price</span>
+                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
 
                                                             count++;
                                                         }

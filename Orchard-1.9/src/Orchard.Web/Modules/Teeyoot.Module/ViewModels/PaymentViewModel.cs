@@ -24,5 +24,7 @@ namespace Teeyoot.Module.ViewModels
         public bool Mol { get; set; }
 
         public bool CreditCard { get; set; }
+
+        public string CountryName { get; set; }
     }   
 }

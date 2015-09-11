@@ -44,7 +44,33 @@
         border: 0;
     }
 
+    .widget-SellerDashboardMenuID ul li {
+        float: none;
+        padding: 15px 0;
+        background-color: #fff;
+        margin: 0;
+        border: 0;
+    }
+
+    .widget-SellerDashboardMenuSG ul li {
+        float: none;
+        padding: 15px 0;
+        background-color: #fff;
+        margin: 0;
+        border: 0;
+    }
+
         .widget-SellerDashboardMenu ul li a {
+            float: none;
+            color: #6e6e6e;
+        }
+
+        .widget-SellerDashboardMenuID ul li a {
+            float: none;
+            color: #6e6e6e;
+        }
+
+        .widget-SellerDashboardMenuSG ul li a {
             float: none;
             color: #6e6e6e;
         }
@@ -54,7 +80,25 @@
             position: relative;
         }
 
+        .widget-SellerDashboardMenuID ul li span {
+            bottom: 6px;
+            position: relative;
+        }
+
+        .widget-SellerDashboardMenuSG ul li span {
+            bottom: 6px;
+            position: relative;
+        }
+
         .widget-SellerDashboardMenu ul li i {
+            width: 45px;
+        }
+
+        .widget-SellerDashboardMenuID ul li i {
+            width: 45px;
+        }
+
+        .widget-SellerDashboardMenuSG ul li i {
             width: 45px;
         }
 
@@ -63,7 +107,25 @@
             color: #e64700;
         }
 
+        .widget-SellerDashboardMenuID ul li a:hover {
+            text-decoration: none;
+            color: #e64700;
+        }
+
+        .widget-SellerDashboardMenuSG ul li a:hover {
+            text-decoration: none;
+            color: #e64700;
+        }
+
 .widget-SellerDashboardMenu .current a {
+    color: #e64700;
+}
+
+.widget-SellerDashboardMenuID .current a {
+    color: #e64700;
+}
+
+.widget-SellerDashboardMenuSG .current a {
     color: #e64700;
 }
 
@@ -71,7 +133,23 @@
     padding-top: 30px;
 }
 
+.widget-SellerDashboardMenuID li.first {
+    padding-top: 30px;
+}
+
+.widget-SellerDashboardMenuSG li.first {
+    padding-top: 30px;
+}
+
 .widget-SellerDashboardMenu li.last {
+    padding-bottom: 30px;
+}
+
+.widget-SellerDashboardMenuID li.last {
+    padding-bottom: 30px;
+}
+
+.widget-SellerDashboardMenuSG li.last {
     padding-bottom: 30px;
 }
 
@@ -152,6 +230,12 @@
         display:none;
     }
     .widget-SellerDashboardMenu {
+        display:none;
+    }
+    .widget-SellerDashboardMenuID {
+        display:none;
+    }
+    .widget-SellerDashboardMenuSG {
         display:none;
     }
     .menu-opener {

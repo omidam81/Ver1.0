@@ -1,0 +1,31 @@
+﻿@using Orchard.Utility.Extensions;
+@using Orchard.Mvc.Html;
+@using Orchard.Mvc.Extensions;
+@using System.Linq;
+@using RM.Localization.Models
+
+@{
+    var cultures = Model.Cultures as IEnumerable<CultureItemModel> ?? new CultureItemModel[0];
+    var current = Model.CurrentCulture as string;
+    }
+
+    <ul>
+        @foreach (var c in cultures)
+        {
+        if (c.Culture != current)
+        {
+        <li>@Html.ActionLink(c.LocalizedName, "SetCulture", "CookieCulture", new { Area = "RM.Localization", culture = c.Culture, returnUrl = HttpContext.Current.Request.ToUrlString() }, null)</li>
+        }
+        else
+        {
+        <li><strong>@Html.ActionLink(c.LocalizedName, "SetCulture", "CookieCulture", new { Area = "RM.Localization", culture = c.Culture, returnUrl = HttpContext.Current.Request.ToUrlString() }, null)</strong></li>
+        }
+
+        if (cultures.Last().Culture != c.Culture)
+        {
+        <p class="culture-picker-p">|</p>
+        }
+        }
+        @*
+        <li>@Html.ActionLink("Reset", "ResetCulture", "CookieCulture", new { Area = "RM.Localization", returnUrl = HttpContext.Current.Request.ToUrlString() }, null)</li>*@
+    </ul>

@@ -22,5 +22,7 @@ namespace Teeyoot.Module.Models
         public virtual double WidthInch { get; set; }
 
         public virtual double? SleeveInch { get; set; }
+
+        public virtual string ProdSizeCulture { get; set; }
     }
 }
