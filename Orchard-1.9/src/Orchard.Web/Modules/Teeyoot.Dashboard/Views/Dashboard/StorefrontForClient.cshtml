@@ -71,7 +71,7 @@
                                 <div class="progress_bar__completed" style="width:@(prod.ProductMinimumGoal == 0 ? prod.ProductCountSold * 100 / 1 : prod.ProductCountSold * 100 / prod.ProductMinimumGoal)%"></div>
                             </div>
                         </div>
-                        <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price</div>
+                        <div class="card__campaign_price">@prod.Products[0].CurrencyRecord.Code @prod.Products[0].Price.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</div>
                         <div class="card__content_container">
                             <div class="card__campaign_stats">
                                 <div class="card__sold">@prod.ProductCountSold / @(prod.ProductMinimumGoal == 0 ? 1 : prod.ProductMinimumGoal) @T("sold")</div>
