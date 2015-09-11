@@ -21,6 +21,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Teeyoot.Module.Common.Enums;
@@ -281,7 +282,10 @@ namespace Teeyoot.Module.Controllers
             {
                 Directory.CreateDirectory(destFolder);
             }
-            System.IO.File.AppendAllText(destFolder + "/mol.txt",DateTime.Now + "  -------------  " +  "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "\r\n");
+            var request = System.Web.HttpContext.Current.Request;
+            System.IO.File.AppendAllText(destFolder + "/mol.txt",DateTime.Now + "  -------------  " +  "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n");
+            
+        
         }
 
         public JsonResult GetSettings()
