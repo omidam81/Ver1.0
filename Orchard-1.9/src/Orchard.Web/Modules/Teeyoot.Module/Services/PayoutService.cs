@@ -25,9 +25,10 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<PayoutRecord> GetAllPayouts()
         {
-            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
-            var users = _teeyootUserRepos.Table.Where(c => c.TeeyootUserCulture == cultureUsed).Select(c => c.Id);
+            //var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            //string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            //var users = _teeyootUserRepos.Table.Where(c => c.TeeyootUserCulture == cultureUsed).Select(c => c.Id);
+            var users = _teeyootUserRepos.Table.Select(c => c.Id);
             return _payoutRepository.Table.Where(p => users.Contains(p.UserId));
         }
 
