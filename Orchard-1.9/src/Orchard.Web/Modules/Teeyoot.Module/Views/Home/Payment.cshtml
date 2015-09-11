@@ -541,7 +541,7 @@
                     populateCountries("State");
                     document.getElementById("parentDelivery").style.display = "none"; 
                     document.getElementById("mol_container").style.display = "none";
-                    document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost).toFixed(2);
                     delivCost = 0;
                 } else if (paymentMethod === 'paypal') {
                     $('#payment_method_paypal').show();
@@ -551,7 +551,7 @@
                     populateCountries("State");
                     document.getElementById("parentDelivery").style.display = "none";
                     document.getElementById("mol_container").style.display = "none";
-                    document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost).toFixed(2);
                     delivCost = 0;
                 } else if (paymentMethod === 'mol') {
                     $('#payment_method_mol').show();
@@ -561,7 +561,7 @@
                     populateCountries("State");
                     document.getElementById("parentDelivery").style.display = "none";
                     document.getElementById("mol_container").style.display = "";
-                    document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost).toFixed(2);
                     delivCost = 0;
                 } else if (paymentMethod === 'cash') {
                     $('#payment_method_cash').show();
@@ -571,7 +571,7 @@
                     populateCountriesForCashOnDelivery("State");
                     document.getElementById("parentDelivery").style.display = "none";
                     document.getElementById("mol_container").style.display = "none";
-                    document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost).toFixed(2);
                     delivCost = 0;
                     
                 }
