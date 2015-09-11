@@ -636,29 +636,41 @@
                 countryElement.selectedIndex = 0;
             //}
 
-            Settings = settings_arr;
+                Settings = settings_arr;
+                var z = 0;
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
                 if (settings_arr[i].State == "Selangor") {
-                    //if (countryElement.value != "Select State" || countryElement.value != "First") {
-                    countryElement.selectedIndex = i + 1;
-                    document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    z = i+1;
+                    ////if (countryElement.value != "Select State" || countryElement.value != "First") {
+                    //countryElement.selectedIndex = i + 1;
+                    //document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
+                    ////document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    ////delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    //document.getElementById("parentDelivery").style.display = "";
+                    //var res = document.getElementById("ordTotal").innerHTML;
+                    //var res1 = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    //document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
                     //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                    document.getElementById("parentDelivery").style.display = "";
-                    var res = document.getElementById("ordTotal").innerHTML;
-                    var res1 = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
-                    delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                } else {
+                }
+                else {
                     document.getElementById("parentDelivery").style.display = "none";
                     document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost)).toFixed(2);
-                    delivCost = 0;
-                    
-                    
+                    delivCost = 0;    
                 }
                    //}
-                }
+            }
+            countryElement.selectedIndex = z;
+            if (z != 0) {
+            document.getElementById("deliveryCost").innerHTML = settings_arr[z-1].DeliveryCost;
+          
+            //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+            //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+            document.getElementById("parentDelivery").style.display = "";
+
+            document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[z-1].DeliveryCost)).toFixed(2);
+            delivCost = parseFloat(Settings[z-1].DeliveryCost).toFixed(2);
+            }
             }
         
 
