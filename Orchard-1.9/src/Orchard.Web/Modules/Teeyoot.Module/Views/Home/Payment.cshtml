@@ -301,7 +301,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="payment-method-container" id="mol_container" style="display: none;">
+                    @*<div class="payment-method-container" id="mol_container" style="display: none;">
                         <div class="accordion_min accordion">
                             <p>
                                 
@@ -310,7 +310,7 @@
 
                             </p>
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="payment-method-container" id="payment_method_mol" style="display: none;">
                     </div>
@@ -516,7 +516,7 @@
             } else if (defaultPaymentMethod === 'mol') {
                 $('#message_err').css({ "display": "none" });
                 $('.message_Mol').css({ "display": "" });
-                document.getElementById("mol_container").style.display = "";
+                //document.getElementById("mol_container").style.display = "";
                 $('#payment_method_mol').show();
                 $('#paymentMethod').val("3");
                 populateCountries("State");
@@ -540,7 +540,7 @@
                     $('#paymentMethod').val("1");
                     populateCountries("State");
                     //document.getElementById("parentDelivery").style.display = "none"; 
-                    document.getElementById("mol_container").style.display = "none";
+                    //document.getElementById("mol_container").style.display = "none";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                 } else if (paymentMethod === 'paypal') {
@@ -550,7 +550,7 @@
                     $('#paymentMethod').val("2");
                     populateCountries("State");
                     //document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("mol_container").style.display = "none";
+                    //document.getElementById("mol_container").style.display = "none";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                 } else if (paymentMethod === 'mol') {
@@ -560,7 +560,7 @@
                     $('#paymentMethod').val("3");
                     populateCountries("State");
                     //document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("mol_container").style.display = "";
+                    //document.getElementById("mol_container").style.display = "";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                 } else if (paymentMethod === 'cash') {
@@ -570,7 +570,7 @@
                     $('#paymentMethod').val("4");
                     populateCountriesForCashOnDelivery("State");
                     //document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("mol_container").style.display = "none";
+                    //document.getElementById("mol_container").style.display = "none";
                     //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
                     //delivCost = 0;
                     
@@ -636,29 +636,41 @@
                 countryElement.selectedIndex = 0;
             //}
 
-            Settings = settings_arr;
+                Settings = settings_arr;
+                var z = 0;
             for (var i = 0; i < settings_arr.length; i++) {
                 countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
                 if (settings_arr[i].State == "Selangor") {
-                    //if (countryElement.value != "Select State" || countryElement.value != "First") {
-                    countryElement.selectedIndex = i + 1;
-                    document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    z = i+1;
+                    ////if (countryElement.value != "Select State" || countryElement.value != "First") {
+                    //countryElement.selectedIndex = i + 1;
+                    //document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
+                    ////document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                    ////delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    //document.getElementById("parentDelivery").style.display = "";
+                    //var res = document.getElementById("ordTotal").innerHTML;
+                    //var res1 = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                    //document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
                     //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                    document.getElementById("parentDelivery").style.display = "";
-                    var res = document.getElementById("ordTotal").innerHTML;
-                    var res1 = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
-                    delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                } else {
+                }
+                else {
                     document.getElementById("parentDelivery").style.display = "none";
                     document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost)).toFixed(2);
-                    delivCost = 0;
-                    
-                    
+                    delivCost = 0;    
                 }
                    //}
-                }
+            }
+            countryElement.selectedIndex = z;
+            if (z != 0) {
+            document.getElementById("deliveryCost").innerHTML = settings_arr[z-1].DeliveryCost;
+          
+            //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+            //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+            document.getElementById("parentDelivery").style.display = "";
+
+            document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[z-1].DeliveryCost)).toFixed(2);
+            delivCost = parseFloat(Settings[z-1].DeliveryCost).toFixed(2);
+            }
             }
         
 
@@ -688,7 +700,7 @@
                     countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
                     z++;
 
-                    if (settings_arr[i].State == "gygagr") {
+                    if (settings_arr[i].State == "Selangor") {
                         countryElement.selectedIndex = z;
                         //if (countryElement.value != "Select State" || countryElement.value != "First") {
                         //countryElement.selectedIndex = i + 1;
