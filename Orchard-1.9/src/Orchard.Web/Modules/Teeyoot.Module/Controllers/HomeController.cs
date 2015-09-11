@@ -216,7 +216,7 @@ namespace Teeyoot.Module.Controllers
             return result;
         }
 
-        public string Molpay(OrderRecord order,string method, string email,string state, string phone)
+        public string Molpay(OrderRecord order,string method, string email,string state, string phone, double deliveryCost)
         {
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
@@ -228,7 +228,7 @@ namespace Teeyoot.Module.Controllers
 
 
             //var Total = order.TotalPrice;
-            var Total = (order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice).ToString("F2",CultureInfo.InvariantCulture);
+            var Total = ((order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice) + deliveryCost).ToString("F2", CultureInfo.InvariantCulture);
             var OrderNumber = order.Id;
             var Name = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id).Title;
             var Email = email;
@@ -243,8 +243,9 @@ namespace Teeyoot.Module.Controllers
 	            {
 		            paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + Description + " order number: " + OrderNumber + "&vcode=" + vCode;
+                              "&bill_name=" + Name + "&channel=credit&bill_email=" + Email + "&bill_mobile=" + Phone +
+                              "&bill_desc=" + Description + "&vcode=" + vCode;
+
 	            } else {
                     paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
@@ -258,7 +259,18 @@ namespace Teeyoot.Module.Controllers
         }
 
 
-        [HttpPost]
+        public ActionResult Molpas() {
+            var merchantId = "7qw5pmrj3hqd2hr4";
+            var total = "51.99";
+            var orderNumber = 352;
+            var verifyKey = "856287426298f7e8508eae9896c09c03";
+            var vCode = GetVCode(total + merchantId + orderNumber + verifyKey);
+            var model = new MolpasViewModel() { vcode = vCode };
+
+            return View(model);
+        }
+
+        //[HttpGet]
         public void CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
                                     string error_desc, string currency, string paydate,string channel, string skey)
         {
@@ -268,8 +280,8 @@ namespace Teeyoot.Module.Controllers
             if (!dir.Exists)
             {
                 Directory.CreateDirectory(destFolder);
-            } 
-            System.IO.File.AppendAllText(destFolder + "/mol.txt","Return Url status:"+ status + "; amount: "+ amount + "; orderid: "+ orderid + "; error_desc: " + error_desc);
+            }
+            System.IO.File.AppendAllText(destFolder + "/mol.txt",DateTime.Now + "  -------------  " +  "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "\r\n");
         }
 
         public JsonResult GetSettings()
@@ -343,7 +355,7 @@ namespace Teeyoot.Module.Controllers
                 } else if (collection["paumentMeth"] == "3")
                 {
                     var method = collection["Bank"];
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), method, collection["Email"], collection["State"], collection["PhoneNumber"]);
+                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), method, collection["Email"], collection["State"], collection["PhoneNumber"], _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost);
                     return Redirect(url);
                 }
              
@@ -405,9 +417,15 @@ namespace Teeyoot.Module.Controllers
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                 var users = _userRepository.Table.ToList();
                 _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-               _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
+              // _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
+                _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
 
-            var commonSettings = _commonSettingsRepository.Table.First();
+            var commonSettings = _commonSettingsRepository.Table.Where(s=> s.CommonCulture == cultureUsed).FirstOrDefault();
+            if (commonSettings == null)
+            {
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+            }
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
                 var request = new CheckoutCampaignRequest

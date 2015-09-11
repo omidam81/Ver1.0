@@ -1,0 +1,25 @@
+﻿@Display(Model.Menu)
+<a onclick="showMenu()" id="menu-icon"><img src="~/Themes/Teebay.Theme/Content/menu-icon_.png" /></a>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        function showMenu() {
+            var display = $('.widget-authenticatedMenu nav ul').css("display");
+            var width = $('.widget-usermenu .menu-for-user').css("width");
+            if (display !== 'none') {
+                $('.widget-authenticatedMenu nav ul').css("display", "none");
+                $('.widget-usermenu .menu-for-user').css("display", "none");
+                $('.widget-usermenu .menu-for-user').css("border-bottom", "none");
+            } else {
+                $('.widget-authenticatedMenu nav ul').css("display", "block");
+                $('.widget-usermenu .menu-for-user').css("display", "block");
+                if (width !== '220px') {
+                    $('.widget-usermenu .menu-for-user').css("border-bottom", "3px solid #0089B6");
+                } else {
+                    $('.widget-usermenu .menu-for-user').css("border-bottom", "none");
+                }
+            }
+        }
+    </script>
+}

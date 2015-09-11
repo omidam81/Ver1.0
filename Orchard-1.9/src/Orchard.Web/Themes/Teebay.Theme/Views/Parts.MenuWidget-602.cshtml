@@ -1,0 +1,37 @@
+﻿<div class="menu-for-user">
+    <div class="user-email" onclick="showUserMenu()">
+        <button class="user-email-button">
+            @WorkContext.CurrentUser.Email
+        </button>
+    </div>
+    @Display(Model.Menu)
+</div>
+
+@using (Script.Foot())
+{
+<script type="text/javascript">
+    function showUserMenu() {
+        var display = $('.widget-usermenuID .menu-user-menu').css("display");
+        var width = $('.widget-usermenuID .menu-for-user').css("width");
+        if (display !== 'none') {
+            $('.widget-usermenuID .menu-user-menu').css("display", "none");
+            $('.user-email-button').css("border-right", "none");
+            $('.user-email-button').css("border-bottom", "none");
+            if (width !== '220px') {
+                $('.widget-usermenuID .menu-for-user').css("border-bottom", "3px solid #0089B6");
+            } else {
+                $('.widget-usermenuID .menu-for-user').css("border-bottom", "none");
+            }
+        } else {
+            $('.widget-usermenuID .menu-user-menu').css("display", "block");
+            $('.user-email-button').css("background", "#ffffff");
+            $('.user-email-button').css("border-bottom", "solid 1px #e8eced");
+            if (width == '220px') {
+                $('.user-email-button').css("border-right", "solid 1px #e8eced");
+            }else{
+                $('.widget-usermenuID .menu-for-user').css("border-bottom", "none");
+            }
+        }
+    }
+</script>
+}

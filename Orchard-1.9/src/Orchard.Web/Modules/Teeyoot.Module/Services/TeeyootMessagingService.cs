@@ -385,7 +385,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             List<string> emailsList = new List<string>();
             List<string> resultEmails = new List<string>();
-            var buyers = _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == campaignId).ToList();
+            var buyers = _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == campaign.BaseCampaignId).ToList();
 
             foreach (var buyer in buyers)
             {
@@ -423,15 +423,27 @@ namespace Teeyoot.Messaging.Services
 
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+
+            List<string> emailsList = new List<string>();
+            List<string> resultEmails = new List<string>();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var user in users)
             {
-                emails.Add(new MandrillMailAddress(user.Email, "Admin"));
+                emailsList.Add(user.Email);
                 FillRelaunchCampaignMergeVars(mandrillMessage, campaignId, user.Email, pathToMedia, pathToTemplates);
             }
+
+            var noDupes = new HashSet<string>(emailsList);
+            resultEmails.Clear();
+            resultEmails.AddRange(noDupes);
+            foreach (var item in resultEmails)
+            {
+                emails.Add(new MandrillMailAddress(item, "Admin"));
+            }
             mandrillMessage.To = emails;
+
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "relaunch-to-admin-seller-" + campaign.CampaignCulture + ".html");
-            SendTmplMessage(api, mandrillMessage);           
+            SendTmplMessage(api, mandrillMessage);
         }
         public void SendReLaunchCampaignMessageToSeller(int campaignId)
         {

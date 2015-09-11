@@ -31,7 +31,8 @@ namespace Orchard.Localization.Services {
                 .OrderByDescending(c => c.Priority)
                 .FirstOrDefault(c => !String.IsNullOrEmpty(c.CultureName));
 
-            return culture == null ? String.Empty : culture.CultureName;
+            return culture.CultureName == "en-SG" ? "en-SG" : (culture.CultureName == "id-ID" ? "id-ID" : "en-MY");
+            //return culture == null ? "en-MY" : culture.CultureName;
         }
     }
 }

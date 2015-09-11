@@ -4,5 +4,6 @@ namespace Teeyoot.Module.Models
     {
         public virtual int Id { get; protected set; }
         public virtual bool DoNotAcceptAnyNewCampaigns { get; set; }
+        public virtual string CommonCulture { get; set; }
     }
 }

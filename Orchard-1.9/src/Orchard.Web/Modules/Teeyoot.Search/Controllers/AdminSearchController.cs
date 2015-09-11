@@ -165,7 +165,7 @@ namespace Teeyoot.Search.Controllers
             return this.RedirectToAction("Index");
         }
 
-        [HttpPost]
+        
         public ActionResult DeleteCategory(int id)
         {
             if (!_campCategService.DeleteCategory(id))
