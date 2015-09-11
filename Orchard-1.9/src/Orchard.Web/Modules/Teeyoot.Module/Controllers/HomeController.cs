@@ -243,7 +243,7 @@ namespace Teeyoot.Module.Controllers
 	            {
 		            paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&channel=crossborder&bill_email=" + Email + "&bill_mobile=" + Phone +
+                              "&bill_name=" + Name + "&channel=credit&bill_email=" + Email + "&bill_mobile=" + Phone +
                               "&bill_desc=" + Description + "&vcode=" + vCode;
 
 	            } else {
@@ -259,7 +259,18 @@ namespace Teeyoot.Module.Controllers
         }
 
 
-        [HttpPost]
+        public ActionResult Molpas() {
+            var merchantId = "7qw5pmrj3hqd2hr4";
+            var total = "51.99";
+            var orderNumber = 352;
+            var verifyKey = "856287426298f7e8508eae9896c09c03";
+            var vCode = GetVCode(total + merchantId + orderNumber + verifyKey);
+            var model = new MolpasViewModel() { vcode = vCode };
+
+            return View(model);
+        }
+
+        //[HttpGet]
         public void CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
                                     string error_desc, string currency, string paydate,string channel, string skey)
         {
@@ -269,8 +280,8 @@ namespace Teeyoot.Module.Controllers
             if (!dir.Exists)
             {
                 Directory.CreateDirectory(destFolder);
-            } 
-            System.IO.File.AppendAllText(destFolder + "/mol.txt","Return Url status:"+ status + "; amount: "+ amount + "; orderid: "+ orderid + "; error_desc: " + error_desc);
+            }
+            System.IO.File.AppendAllText(destFolder + "/mol.txt",DateTime.Now + "  -------------  " +  "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "\r\n");
         }
 
         public JsonResult GetSettings()
