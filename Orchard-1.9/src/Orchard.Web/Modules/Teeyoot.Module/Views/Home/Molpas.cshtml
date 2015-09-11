@@ -1,0 +1,30 @@
+﻿@model Teeyoot.Module.ViewModels.MolpasViewModel
+
+@{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://www.onlinepayment.com.my/MOLPay/API/seamless/3.3/js/MOLPay_seamless.deco.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var options = {
+                mpsmerchantid: "7qw5pmrj3hqd2hr4",
+                mpschannel: "crossborder",
+                mpsamount: "51.99",
+                mpsorderid:"352",
+                mpsbill_name: "MOLPay Technical",
+                mpsbill_desc: "qweqwe",
+                mpsbill_mobile: "123123123",
+                mpsbill_email: "qweqwe@gmail.com",
+                mpsvcode: document.getElementById('Mod').value
+
+
+
+                
+                   };
+
+            $('#myPay').MOLPaySeamless(options)
+        });
+    </script>
+}
+<input type="hidden" id="Mod" value="@Model.vcode">
+<h2>Molpas</h2>
+<button type="button" id="myPay" data-toggle="molpayseamless">Pay by Maybank2u</button> 

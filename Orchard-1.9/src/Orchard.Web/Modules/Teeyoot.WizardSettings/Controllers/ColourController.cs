@@ -24,6 +24,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ProductColorRecord> _productColourRepository;
         private readonly IRepository<SwatchRecord> _swatchColourRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private dynamic Shape { get; set; }
 
@@ -32,7 +34,8 @@ namespace Teeyoot.WizardSettings.Controllers
             IOrchardServices orchardServices,
             IRepository<ProductColorRecord> productColourRepository,
             IRepository<SwatchRecord> swatchRecordRepository,
-            IShapeFactory shapeFactory)
+            IShapeFactory shapeFactory,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
@@ -43,6 +46,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public Localizer T { get; set; }
@@ -62,11 +69,12 @@ namespace Teeyoot.WizardSettings.Controllers
                 var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
                 var productColours = _productColourRepository.Table
+                    .Where(p => p.ProdColorCulture == cultureUsed)
                     .OrderBy(p => p.Name)
                     .Skip(pager.GetStartIndex())
                     .Take(pager.PageSize);
 
-                var pagerShape = Shape.Pager(pager).TotalItemCount(_productColourRepository.Table.Count());
+                var pagerShape = Shape.Pager(pager).TotalItemCount(_productColourRepository.Table.Where(p => p.ProdColorCulture == cultureUsed).Count());
 
                 viewModel.Colors = productColours;
                 viewModel.Pager = pagerShape;
@@ -76,6 +84,7 @@ namespace Teeyoot.WizardSettings.Controllers
                 var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
                 var swatchColours = _swatchColourRepository.Table
+                    .Where(p => p.SwatchCulture == cultureUsed)
                     .OrderBy(p => p.Name)
                     .Skip(pager.GetStartIndex())
                     .Take(pager.PageSize)
@@ -87,7 +96,7 @@ namespace Teeyoot.WizardSettings.Controllers
                         InStock = s.InStock
                     });
 
-                var pagerShape = Shape.Pager(pager).TotalItemCount(_swatchColourRepository.Table.Count());
+                var pagerShape = Shape.Pager(pager).TotalItemCount(_swatchColourRepository.Table.Where(s => s.SwatchCulture == cultureUsed).Count());
 
                 viewModel.Colors = swatchColours;
                 viewModel.Pager = pagerShape;
@@ -118,7 +127,8 @@ namespace Teeyoot.WizardSettings.Controllers
             var productColour = new ProductColorRecord
             {
                 Name = viewModel.Name,
-                Value = viewModel.Value
+                Value = viewModel.Value,
+                ProdColorCulture = cultureUsed
             };
 
             _productColourRepository.Create(productColour);
@@ -219,7 +229,8 @@ namespace Teeyoot.WizardSettings.Controllers
                 Red = rgbColor.R,
                 Green = rgbColor.G,
                 Blue = rgbColor.B,
-                InStock = viewModel.InStock
+                InStock = viewModel.InStock,
+                SwatchCulture = cultureUsed
             };
 
             _swatchColourRepository.Create(swatchColour);

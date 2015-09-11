@@ -25,75 +25,75 @@
 
         };
 
-           
-
-    function editNode(Id){
-        var tags = document.getElementById(Id);
-        var family = document.getElementById(Id + "+fml");
-        var actions = document.getElementById(Id+"+act");
-        var spFamily = family.querySelector("span");
-        var spTags = tags.querySelector("span");
-        var butt = actions.querySelector("button");
-        var deleteButt = document.getElementById(Id+"+del");
-        var valueSpan = spFamily.innerHTML;
-        var tagValue = spTags.innerHTML;
-        spFamily.parentNode.removeChild(spFamily);
-        spTags.parentNode.removeChild(spTags);
-        var inp = document.createElement("input");
-        inp.id = "family";
-        inp.type = "text";
-        inp.style.width = "99%";
-        inp.value = valueSpan;
-        family.appendChild(inp);
-        var inpTags = document.createElement("input");
-        inpTags.id = "tags";
-        inpTags.type = "text";
-        inpTags.style.width = "99%";       
-        inpTags.value = tagValue;
-        tags.appendChild(inpTags);
-        butt.style.display = "none";
 
 
-        var butSave = document.createElement("button");
-        butSave.innerHTML = "save";
-        butSave.style.padding = "5px 11px 5px 11px";
-        butSave.style.marginRight = "4px";
-        butSave.classList.add("primaryAction");
-        butt.parentNode.insertBefore(butSave, deleteButt);
+        function editNode(Id) {
+            var tags = document.getElementById(Id);
+            var family = document.getElementById(Id + "+fml");
+            var actions = document.getElementById(Id + "+act");
+            var spFamily = family.querySelector("span");
+            var spTags = tags.querySelector("span");
+            var butt = actions.querySelector("button");
+            var deleteButt = document.getElementById(Id + "+del");
+            var valueSpan = spFamily.innerHTML;
+            var tagValue = spTags.innerHTML;
+            spFamily.parentNode.removeChild(spFamily);
+            spTags.parentNode.removeChild(spTags);
+            var inp = document.createElement("input");
+            inp.id = "family";
+            inp.type = "text";
+            inp.style.width = "99%";
+            inp.value = valueSpan;
+            family.appendChild(inp);
+            var inpTags = document.createElement("input");
+            inpTags.id = "tags";
+            inpTags.type = "text";
+            inpTags.style.width = "99%";
+            inpTags.value = tagValue;
+            tags.appendChild(inpTags);
+            butt.style.display = "none";
 
-        butSave.addEventListener("click", function () {
-            var span2 = document.createElement("span");
-            span2.innerHTML = inpTags.value;
-            inpTags.parentNode.removeChild(inpTags);
-            butSave.parentNode.removeChild(butSave);
-            butt.style.display = "";
-            tags.appendChild(span2);
 
-            var span1 = document.createElement("span");
-            span1.innerHTML = inp.value;
-            inp.parentNode.removeChild(inp);
-            family.appendChild(span1);
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: "@(Url.Action("UpdateFont", "AdminWizard"))",
-                data:addAntiForgeryToken( { "id": Id, "family": span1.innerHTML, "tags": span2.innerHTML}),
-            success: function (data) {
-            }, error: function (data, status, resp) {
-                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-            }
+            var butSave = document.createElement("button");
+            butSave.innerHTML = "save";
+            butSave.style.padding = "5px 11px 5px 11px";
+            butSave.style.marginRight = "4px";
+            butSave.classList.add("primaryAction");
+            butt.parentNode.insertBefore(butSave, deleteButt);
+
+            butSave.addEventListener("click", function () {
+                var span2 = document.createElement("span");
+                span2.innerHTML = inpTags.value;
+                inpTags.parentNode.removeChild(inpTags);
+                butSave.parentNode.removeChild(butSave);
+                butt.style.display = "";
+                tags.appendChild(span2);
+
+                var span1 = document.createElement("span");
+                span1.innerHTML = inp.value;
+                inp.parentNode.removeChild(inp);
+                family.appendChild(span1);
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("UpdateFont", "AdminWizard"))",
+                    data: addAntiForgeryToken({ "id": Id, "family": span1.innerHTML, "tags": span2.innerHTML }),
+                    success: function (data) {
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
+                });
+
+                function addAntiForgeryToken(data) {
+                    var antiForgeryTokenValue = $('#anti_forgery_token').val();
+                    data.__RequestVerificationToken = antiForgeryTokenValue;
+                    return data;
+                };
+
+
             });
-
-            function addAntiForgeryToken(data) {
-                var antiForgeryTokenValue = $('#anti_forgery_token').val();
-                data.__RequestVerificationToken = antiForgeryTokenValue;
-                return data;
-            };
-
-
-    });     
-    }
+        }
     </script>
 }
 
@@ -102,33 +102,36 @@
 {
     <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
     @Html.AntiForgeryToken()
-    <table style="width:100%; border: 1px solid #eaeaea; margin-top:30px">
-        <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Font family")</h1></th>
-        <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Preview")</h1></th>
-        <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Tags")</h1></th>
-        <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Action")</h1></th>
+    if (Model != null && Model.Count() != 0)
+    {
+        <table style="width:100%; border: 1px solid #eaeaea; margin-top:30px">
+            <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Font family")</h1></th>
+            <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Preview")</h1></th>
+            <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Tags")</h1></th>
+            <th style="width:25%; border: 1px solid #eaeaea;"><h1>@T("Action")</h1></th>
 
-        @foreach (var font in Model)
-        {
-            string url = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + "-webfont" + ".woff";
-            <style>
+            @foreach (var font in Model)
+            {
+                string url = "/Modules/Teeyoot.Module/Content/fonts/" + @font.FileName + "-webfont" + ".woff";
+                <style>
                 @@font-face {
                     font-family: @font.Family;
                     src: url('@url');
                 }
-            </style>
+                </style>
 
-            <tr style="border: 1px solid #eaeaea;">
-                <td class="fontCell" id="@font.Id+fml"><span>@font.Family</span></td>
-                <td class="fontCell"><div style="font-family:@font.Family">@T("Preview")</div></td>
-                <td class="fontCell" id="@font.Id"><span class="tag">@font.Tags</span></td>
-                <td class="fontCell" id="@font.Id+act">
-                    <div>
-                        <button class="primaryAction" type="button" onclick="editNode(@font.Id)">@T("edit")</button>
-                        <button class="primaryAction" id="@font.Id+del"> <a href="@Url.Action("DeleteFont", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a></button>
-                    </div>
-                </td>
-            </tr>
-        }     
-    </table>
+                <tr style="border: 1px solid #eaeaea;">
+                    <td class="fontCell" id="@font.Id+fml"><span>@font.Family</span></td>
+                    <td class="fontCell"><div style="font-family:@font.Family">@T("Preview")</div></td>
+                    <td class="fontCell" id="@font.Id"><span class="tag">@font.Tags</span></td>
+                    <td class="fontCell" id="@font.Id+act">
+                        <div>
+                            <button class="primaryAction" type="button" onclick="editNode(@font.Id)">@T("edit")</button>
+                            <button class="primaryAction" id="@font.Id+del"> <a href="@Url.Action("DeleteFont", new { id = font.Id, returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
 }

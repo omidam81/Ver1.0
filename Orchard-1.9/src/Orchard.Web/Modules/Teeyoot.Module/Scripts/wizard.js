@@ -1374,16 +1374,18 @@ function initProducts() {
             //    } else {
             //        index = 1;
             //    }
-            $.each(mas[0].products, function (i, element) {
-                if (element != app.state.currentProduct.ProductId) {
-                    var option = document.createElement("option");
-                    option.value = element;
-                    option.id = element;
-                    option.innerHTML = design.products.productsData[element].name;
-                    listProd.appendChild(option);
-                }
+            if(mas.length != 0){
+                $.each(mas[0].products, function (i, element) {
+                    if (element != app.state.currentProduct.ProductId) {
+                        var option = document.createElement("option");
+                        option.value = element;
+                        option.id = element;
+                        option.innerHTML = design.products.productsData[element].name;
+                        listProd.appendChild(option);
+                    }
 
-            });
+                });
+            }
             //$.each(design.products.productsData, function (i, el) {
             //    if (app.state.currentProduct.ProductId != el.id) {
             //        //Если список продуктов по первой категории содержит айдишники из общего списка продуктов то мы вытягиваем их в наш лист

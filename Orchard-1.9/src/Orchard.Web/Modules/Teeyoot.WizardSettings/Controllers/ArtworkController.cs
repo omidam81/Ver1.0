@@ -24,6 +24,8 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly ISiteService _siteService;
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<ArtRecord> _artRepository;
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string cultureUsed = string.Empty;
 
         private const string ArtworksImagesRelativePath = "~/Modules/Teeyoot.Module/Content/vector";
         private const string ArtworkSvgImageFileNameTemplate = "{0}.svg";
@@ -38,7 +40,8 @@ namespace Teeyoot.WizardSettings.Controllers
             ISiteService siteService,
             IOrchardServices orchardServices,
             IRepository<ArtRecord> artRepository,
-            IShapeFactory shapeFactory)
+            IShapeFactory shapeFactory,
+            IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _orchardServices = orchardServices;
@@ -47,6 +50,10 @@ namespace Teeyoot.WizardSettings.Controllers
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public ActionResult Index(PagerParameters pagerParameters)
@@ -58,11 +65,12 @@ namespace Teeyoot.WizardSettings.Controllers
             viewModel.ArtworksImagesRelativePath = ArtworksImagesRelativePath;
 
             viewModel.Arts = _artRepository.Table
+                .Where(a => a.ArtCulture == cultureUsed)
                 .OrderBy(a => a.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(_artRepository.Table.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(_artRepository.Table.Where(a => a.ArtCulture == cultureUsed).Count());
             viewModel.Pager = pagerShape;
 
             return View(viewModel);
@@ -90,7 +98,7 @@ namespace Teeyoot.WizardSettings.Controllers
             // If art file with the name already exist we are adding GUID ending
             var fileName = viewModel.Name;
             var existingArtwork = _artRepository.Table
-                .FirstOrDefault(a => a.Name == viewModel.Name);
+                .FirstOrDefault(a => a.ArtCulture == cultureUsed && a.Name == viewModel.Name);
 
             if (existingArtwork != null)
             {
@@ -110,7 +118,8 @@ namespace Teeyoot.WizardSettings.Controllers
             var art = new ArtRecord
             {
                 Name = viewModel.Name,
-                FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name)
+                FileName = string.Format(ArtworkSvgImageFileNameTemplate, viewModel.Name),
+                ArtCulture = cultureUsed
             };
             _artRepository.Create(art);
 
