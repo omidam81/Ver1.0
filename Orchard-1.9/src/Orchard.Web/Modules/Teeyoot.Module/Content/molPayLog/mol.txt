@@ -1,0 +1,7 @@
+Return Url status:; amount: ; orderid: ; error_desc: 
+Return Url status:; amount: ; orderid: ; error_desc: 
+Return Url status:; amount: ; orderid: ; error_desc: 
+Return Url status:; amount: ; orderid: ; error_desc: 
+Return Url status:; amount: ; orderid: ; error_desc: 
+11.09.2015 11:47:18  -------------  Return Url status:; amount: ; orderid: ; error_desc: 
+11.09.2015 11:47:21  -------------  Return Url status:; amount: ; orderid: ; error_desc: 

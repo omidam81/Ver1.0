@@ -489,7 +489,7 @@
                     required: true
                 }
             },
-            submitHandler: function (form) { form.submit(); }
+            submitHandler: function (form) { var elem = document.getElementById('transaction'); elem.disabled = 'disabled'; form.submit(); }
         });
 
 
