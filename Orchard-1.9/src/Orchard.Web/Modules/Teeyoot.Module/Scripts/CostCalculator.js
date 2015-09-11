@@ -339,23 +339,24 @@ function minimumGoal() {
         
         for (var i = 0; i < products.length; i++) {
             price = parseFloat(products[i].Price);
-            baseCost = parseFloat(products[i].BaseCost);
+            var prod = design.products.productsData[products[i].ProductId];
+            baseCost = parseFloat(prod.prices[0].price);
 
-            var nowCount = Math.ceil(window.count / 2) + 1;
+            var nowCount = window.count;//Math.ceil(window.count / 2) + 1;
             var newPrice = 0;
-            while (price > newPrice) {
+            while (price - newPrice > 0) {
                 if (nowCount == 0) break;
                 nowCount--;
                 newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
             }
             window.count = parseInt(slider.noUiSlider.get());
-
-            if (nowCount <= 0) {
-                nowCount = 1;
-            }
-            if (window.count <= 100) {
-                nowCount = nowCount - 1;
-            }
+            nowCount++;
+            //if (nowCount <= 0) {
+            //    nowCount = 1;
+            //}
+            //if (window.count <= 100) {
+            //    nowCount = nowCount - 1;
+            //}
 
             count = count + Math.floor(nowCount);
         }

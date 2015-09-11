@@ -176,10 +176,10 @@
                     <div class="list_item__cell list_item__code">@promotion.PromoId</div>
                     <div class="list_item__cell list_item__discount">@if(promotion.AmountType != "%")
                                                                      {
-                                                                        @promotion.AmountType <span> </span>  @promotion.AmountSize
+                                                                        @promotion.AmountType <span> </span>  @promotion.AmountSize.ToString("F", System.Globalization.CultureInfo.InvariantCulture)
                                                                      }
                                                                       else{
-                                                                         @promotion.AmountSize <span> </span> @promotion.AmountType
+                                                                         @promotion.AmountSize.ToString("F", System.Globalization.CultureInfo.InvariantCulture) <span> </span> @promotion.AmountType
                                                                             }
                     </div>
                     <div class="list_item__cell list_item__expiration">@expiration</div>

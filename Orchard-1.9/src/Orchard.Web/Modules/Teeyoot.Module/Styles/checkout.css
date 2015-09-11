@@ -822,3 +822,53 @@ checkout__lock_icon {
     list-style: none;
     float: left;
 }
+
+@media only screen and (max-width: 1235px) {
+    .payment-label {
+       margin-right:40%;
+    }
+   
+}
+@media only screen and (max-width: 980px) {
+    .payment-label {
+       margin-right:10%;
+    }
+   
+}
+@media only screen and (max-width: 800px) {
+    .payment-label {
+       margin-right:50%;
+    }
+   
+}
+
+@media only screen and (max-width: 660px) {
+    .payment-label {
+       margin-right:40%;
+    }
+   
+}
+@media only screen and (max-width: 495px) {
+    .payment-label {
+       margin-right:30%;
+    }
+   
+}
+@media only screen and (max-width: 430px) {
+    .payment-label {
+       margin-right:20%;
+    }
+   
+}
+@media only screen and (max-width: 380px) {
+    .payment-label {
+       margin-right:10%;
+    }
+   
+}
+@media only screen and (max-width: 335px) {
+    .payment-label {
+       margin-right:0;
+    }
+   
+}

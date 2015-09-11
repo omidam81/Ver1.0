@@ -73,8 +73,11 @@ namespace Teeyoot.Messaging.Services
 
         public void SendCheckoutRequestEmails(IEnumerable<CheckoutCampaignRequest> checkoutCampaignRequests)
         {
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             var pathToTemplates = HttpContext.Current.Server.MapPath(MessageTemplatesPath);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(cultureUsed).List().First();
             var api = new MandrillApi(record.ApiKey);
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             var mandrillMessage = new MandrillMessage
@@ -95,9 +98,6 @@ namespace Teeyoot.Messaging.Services
                 emails.Add(new MandrillMailAddress(item, "Buyer"));
             }
 
-            var culture = _wca.GetContext().CurrentCulture.Trim();
-            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
-
             mandrillMessage.To = emails;
             var text = File.ReadAllText(pathToTemplates + "make_the_order_buyer-" + cultureUsed + ".html");
             mandrillMessage.Html = text;
@@ -109,7 +109,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -148,7 +148,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -196,13 +196,13 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            var campaign = _campaignRepository.Get(campaignId);
             if (isSuccesfull)
             {
                 mandrillMessage.Subject = "Your order is printing!";
@@ -251,14 +251,14 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var campaign = _campaignRepository.Get(campaignId);
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
             mandrillMessage.Subject = "Campaign will definitely go to print!";
-            var campaign = _campaignRepository.Get(campaignId);
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-buyer-template-" + campaign.CampaignCulture + ".html");
             List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive).ToList();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
@@ -291,7 +291,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -312,7 +312,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -331,7 +331,7 @@ namespace Teeyoot.Messaging.Services
         public void SendLaunchCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId)
         {
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -351,7 +351,7 @@ namespace Teeyoot.Messaging.Services
         {
             var campaign = _campaignRepository.Get(campaignId);
 
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -374,7 +374,7 @@ namespace Teeyoot.Messaging.Services
         {
             var campaign = _campaignRepository.Get(campaignId);
 
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -413,7 +413,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
 
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -452,7 +452,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
 
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -475,9 +475,17 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-            var api = new MandrillApi(record.ApiKey);
             var campaigns = _campaignRepository.Table.Where(camp => camp.WhenApproved < DateTime.UtcNow.AddDays(-1) && camp.WhenApproved > DateTime.UtcNow.AddDays(-3));
+            MailChimpSettingsPart record = null;
+            if (campaigns != null || campaigns.Count() != 0)
+            {
+                record = _settingsService.GetSettingByCulture(campaigns.First().CampaignCulture).List().First();
+            }
+            else
+            {
+                record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            }
+            var api = new MandrillApi(record.ApiKey);
             foreach (var campaign in campaigns)
             {
                 var mandrillMessage = new MandrillMessage() { };
@@ -499,9 +507,17 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-            var api = new MandrillApi(record.ApiKey);
             var campaigns = _campaignRepository.Table.Where(camp => camp.EndDate < DateTime.UtcNow.AddDays(-1) && camp.EndDate > DateTime.UtcNow.AddDays(-3) && camp.IsApproved);
+            MailChimpSettingsPart record = null;
+            if (campaigns != null || campaigns.Count() != 0)
+            {
+                record = _settingsService.GetSettingByCulture(campaigns.First().CampaignCulture).List().First();
+            }
+            else
+            {
+                record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            }
+            var api = new MandrillApi(record.ApiKey);
             foreach (var campaign in campaigns)
             {
                 var mandrillMessage = new MandrillMessage() { };
@@ -523,10 +539,18 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
-            var api = new MandrillApi(record.ApiKey);
            
             var orders = _orderRepository.Table.Where(order => order.WhenSentOut < DateTime.UtcNow.AddDays(-1) && order.WhenSentOut > DateTime.UtcNow.AddDays(-3));
+            MailChimpSettingsPart record = null;
+            if (orders != null || orders.Count() != 0)
+            {
+                record = _settingsService.GetSettingByCulture(orders.First().CurrencyRecord.CurrencyCulture).List().First();
+            }
+            else
+            {
+                record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            }
+            var api = new MandrillApi(record.ApiKey);
             foreach (var order in orders)
             {
                 var mandrillMessage = new MandrillMessage() { };
@@ -549,7 +573,7 @@ namespace Teeyoot.Messaging.Services
         public void SendRejectedCampaignMessage(string pathToTemplates, string pathToMedia, int campaignId)
         {
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -568,7 +592,7 @@ namespace Teeyoot.Messaging.Services
         public void SendNewCampaignAdminMessage(string pathToTemplates, string pathToMedia, int campaignId)
         {
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -591,16 +615,17 @@ namespace Teeyoot.Messaging.Services
 
         public void SendCompletedPayoutMessage(string pathToTemplates, string pathToMedia, PayoutRecord payout)
         {
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == payout.UserId);
+            var payoutInf = _payoutInformRepository.Table.Where(inf => inf.TranzactionId == payout.Id).FirstOrDefault();
+            var currency = _currencyRepository.Get(payout.Currency_Id).Code;
+            var culture = _currencyRepository.Get(payout.Currency_Id).CurrencyCulture;
+            var record = _settingsService.GetSettingByCulture(culture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
             mandrillMessage.Subject = "Payout completed";
-            var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == payout.UserId);
-            var payoutInf = _payoutInformRepository.Table.Where(inf => inf.TranzactionId == payout.Id).FirstOrDefault();
-            var currency = _currencyRepository.Get(payout.Currency_Id).Code;
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
             FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "", payout.Amount, currency);
@@ -615,7 +640,7 @@ namespace Teeyoot.Messaging.Services
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -653,15 +678,16 @@ namespace Teeyoot.Messaging.Services
 
         public void SendSellerMessage(int messageId, string pathToMedia, string pathToTemplates)
         {
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var message = _messageService.GetMessage(messageId);
+            List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == message.CampaignId && p.OrderRecord.IsActive).ToList();
+            var culture = ordersList.First().CampaignProductRecord.CurrencyRecord.CurrencyCulture;
+            var record = _settingsService.GetSettingByCulture(culture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
-            var message = _messageService.GetMessage(messageId);
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = message.Sender;
             mandrillMessage.Subject = message.Subject;
             mandrillMessage.FromName = "Teeyoot";
-            List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == message.CampaignId && p.OrderRecord.IsActive).ToList();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             List<string> emailsList = new List<string>();
             foreach (var item in ordersList)
@@ -694,7 +720,7 @@ namespace Teeyoot.Messaging.Services
             var order = _orderRepository.Get(orderId);
             //string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             //string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(order.CurrencyRecord.CurrencyCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -720,7 +746,7 @@ namespace Teeyoot.Messaging.Services
         public void SendNewOrderMessageToBuyer(int orderId, string pathToMedia, string pathToTemplates)
         {
             var order = _orderRepository.Get(orderId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(order.CurrencyRecord.CurrencyCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -741,7 +767,7 @@ namespace Teeyoot.Messaging.Services
         public void SendEditedCampaignMessageToSeller(int campaignId, string pathToMedia, string pathToTemplates)
         {
             var campaign = _campaignRepository.Get(campaignId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(campaign.CampaignCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -765,15 +791,17 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            
+            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
+
+            var record = _settingsService.GetSettingByCulture(_contentManager.Get<TeeyootUserPart>(userIds.First(), VersionOptions.Latest).TeeyootUserCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
             mandrillMessage.Subject = "Payout Request";
-            var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
-            var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var user in users)
             {
@@ -790,7 +818,7 @@ namespace Teeyoot.Messaging.Services
         {
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(_contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest).TeeyootUserCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -810,7 +838,7 @@ namespace Teeyoot.Messaging.Services
         public void SendOrderStatusMessage(string pathToTemplates, string pathToMedia, int orderId, string orderStatus)
         {
             var order = _orderRepository.Get(orderId);
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+            var record = _settingsService.GetSettingByCulture(order.CurrencyRecord.CurrencyCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -890,8 +918,8 @@ namespace Teeyoot.Messaging.Services
 
         public void SendRecoverOrderMessage(string pathToTemplates, IList<OrderRecord> orders, string email)
         {
-           
-            var record = _settingsService.GetAllSettings().List().FirstOrDefault();
+
+            var record = _settingsService.GetSettingByCulture(orders.First().CurrencyRecord.CurrencyCulture).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -1035,7 +1063,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "Campaignremaining", remaining);
             message.AddRcptMergeVars(email, "CampaignEndDate", campaign.EndDate.ToLocalTime().ToShortDateString());
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
-            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products[0].Id + "/normal/" + side + ".png");
+            message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First(p => p.WhenDeleted == null).Id + "/normal/" + side + ".png");
         }
 
         private void FillAdditionalCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
