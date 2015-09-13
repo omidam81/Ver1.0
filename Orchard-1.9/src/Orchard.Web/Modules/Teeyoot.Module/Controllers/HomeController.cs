@@ -228,7 +228,7 @@ namespace Teeyoot.Module.Controllers
 
 
             //var Total = order.TotalPrice;
-            var Total = ((order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice) + deliveryCost).ToString("F2", CultureInfo.InvariantCulture);
+            var Total = (order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice).ToString("F2", CultureInfo.InvariantCulture);
             var OrderNumber = order.Id;
             
             var Campaign = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id);

@@ -188,7 +188,7 @@ function estimatedProfitChangeForManuProducts() {
 
             $(indexProf).html(profit.toFixed(2));
             $(indexCost).html(products[i].BaseCost.toFixed(2));
-            if (profit < 0) {
+            if (profit <= 0) {
 
                 app.state.isNegativeProfit[i] = true;
                 // $(divProfitCalcul).css('display', 'none');
@@ -284,7 +284,7 @@ function estimatedProfitChangeForManuProducts() {
 }
 
 function updateMinimum(changes) {
-    if (changes < 0) {
+    if (changes <= 0) {
         // $("#profit-calculator").css('display', 'none');
         //$("#price-for-first-product-text").css('display', 'none');
         //$("#base-cost-for-first-product-text-smoll").css('display', 'none');
