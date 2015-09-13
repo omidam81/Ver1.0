@@ -429,11 +429,17 @@ namespace Teeyoot.Module.Controllers
                     orderMol.Reserved = DateTime.UtcNow;
                     orderMol.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Unapproved.ToString("d")));
 
+                    orderMol.Delivery = _deliverySettingService.GetAllSettings()
+                        .FirstOrDefault(s => s.State == collection["State"])
+                        .DeliveryCost;
+
+                    /*
                     if (orderMol.TotalPriceWithPromo > 0)
                     {
                         orderMol.TotalPriceWithPromo = orderMol.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
                     }
                     orderMol.TotalPrice = orderMol.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - orderMol.Promotion;
+                    */
                     orderMol.IsActive = true;
                     if (collection["PromoId"] != null)
                     {

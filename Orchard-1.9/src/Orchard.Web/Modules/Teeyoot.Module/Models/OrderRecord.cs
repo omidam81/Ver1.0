@@ -54,6 +54,8 @@ namespace Teeyoot.Module.Models
 
         public virtual double Promotion { get; set; }
 
+        public virtual double Delivery { get; set; }
+
         public virtual double TotalPriceWithPromo { get; set; }
 
         public virtual string TranzactionId { get; set; }
