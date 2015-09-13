@@ -64,7 +64,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             var total =_campaignService.GetAllCampaigns().Count();
 
-            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false).Count();
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == cultureUsed).Count();
 
             if (total > 0)
             {
@@ -104,7 +104,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)
         {
-            var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured);
+            var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured && c.CampaignCulture == cultureUsed);
 
             if (featuredCampaigns.Count() >= 6 && visible)
             {

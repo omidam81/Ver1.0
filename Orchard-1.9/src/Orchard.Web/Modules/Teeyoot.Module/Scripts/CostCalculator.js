@@ -342,12 +342,12 @@ function minimumGoal() {
             var prod = design.products.productsData[products[i].ProductId];
             baseCost = parseFloat(prod.prices[0].price);
 
-            var nowCount = window.count;//Math.ceil(window.count / 2) + 1;
+            var nowCount = window.count + 1;//Math.ceil(window.count / 2) + 1;
             var newPrice = 0;
             while (price - newPrice > 0) {
-                if (nowCount == 0) break;
+                if(nowCount == 0) break;
                 nowCount--;
-                newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
+                newPrice = (formula(window.frontColor, window.backColor, baseCost, nowCount)).toFixed(2);
             }
             window.count = parseInt(slider.noUiSlider.get());
             nowCount++;
