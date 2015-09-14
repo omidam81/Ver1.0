@@ -67,7 +67,7 @@
             if (item.Type == Teeyoot.Module.Common.Enums.OverviewType.Active)
             {
                 <div class="overview-for-period selected">
-                    <div><span>@(item.ProductsOrdered >= 0 ?item.ProductsOrdered : 0 )</span>@T("products ordered")</div>
+                    <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
                     <div>
                         <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
 

@@ -238,7 +238,7 @@ namespace Teeyoot.Orders.Controllers
                 campaign.ProductCountSold = campaign.ProductCountSold + sum;
             }
 
-            if (order.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && orderStatus == OrderStatus.Cancelled.ToString())
+            if (order.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && orderStatus == OrderStatus.Cancelled.ToString() && order.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString())
             {
                 var sum = order.Products.Select(o => o.Count).Sum();
                 var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
