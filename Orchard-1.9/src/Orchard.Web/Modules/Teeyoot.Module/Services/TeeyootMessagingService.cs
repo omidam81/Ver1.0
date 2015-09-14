@@ -1145,13 +1145,18 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(adminEmail, "PHONE", record.PhoneNumber);
             message.AddRcptMergeVars(adminEmail, "STREET_ADDRESS", record.StreetAddress);
             message.AddRcptMergeVars(adminEmail, "COUNTRY", record.Country);
+
+            double totalPrice;
+
             if (record.TotalPriceWithPromo > 0.0)
             {
-                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPriceWithPromo.ToString("F", CultureInfo.InvariantCulture));
+                totalPrice = record.TotalPriceWithPromo + record.Delivery;
+                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
             else
             {
-                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", record.TotalPrice.ToString("F", CultureInfo.InvariantCulture));
+                totalPrice = record.TotalPrice + record.Delivery;
+                message.AddRcptMergeVars(adminEmail, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
 
         }
