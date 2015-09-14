@@ -3063,7 +3063,7 @@ var design={
             if (colors) {
                 app.state.unuseColors(colors);
             }
-            if (item.outlineC && item.outlineW) {
+            if (item.outlineC && (item.outlineW>0)) {
                 app.state.unuseColors(item.outlineC);
             }
 			var id = $(e.parentNode).data('id');
