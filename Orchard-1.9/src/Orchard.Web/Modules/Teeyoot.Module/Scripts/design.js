@@ -1174,6 +1174,42 @@ var design={
                     .attr('title', color.name)
                     .on('click', function(){
                         design.products.changeColor(color);
+                        //app.state.currentProduct.ColorId = parseInt(color.id);
+                        if (parseInt(color.id) == app.state.currentProduct.SecondColorId) {
+                            app.state.currentProduct.SecondColorId = app.state.currentProduct.ColorId;
+                            $("#div-color-2").css("background-color", $("#div-color-1").css("background-color"));
+                            $("#div-color-2").removeClass().addClass($("#div-color-1").attr('class'));
+                        } else if (parseInt(color.id) == app.state.currentProduct.ThirdColorId) {
+                            app.state.currentProduct.ThirdColorId = app.state.currentProduct.SecondColorId;
+                            app.state.currentProduct.SecondColorId = app.state.currentProduct.ColorId;
+                            $("#div-color-3").css("background-color", $("#div-color-2").css("background-color"));
+                            $("#div-color-3").removeClass().addClass($("#div-color-2").attr('class'));
+                            $("#div-color-2").css("background-color", $("#div-color-1").css("background-color"));
+                            $("#div-color-2").removeClass().addClass($("#div-color-1").attr('class'));
+                        } else if (parseInt(color.id) == app.state.currentProduct.FourthColorId) {
+                            app.state.currentProduct.FourthColorId = app.state.currentProduct.ThirdColorId;
+                            app.state.currentProduct.ThirdColorId = app.state.currentProduct.SecondColorId;
+                            app.state.currentProduct.SecondColorId = app.state.currentProduct.ColorId;
+                            $("#div-color-4").css("background-color", $("#div-color-3").css("background-color"));
+                            $("#div-color-4").removeClass().addClass($("#div-color-3").attr('class'));
+                            $("#div-color-3").css("background-color", $("#div-color-2").css("background-color"));
+                            $("#div-color-3").removeClass().addClass($("#div-color-2").attr('class'));
+                            $("#div-color-2").css("background-color", $("#div-color-1").css("background-color"));
+                            $("#div-color-2").removeClass().addClass($("#div-color-1").attr('class'));
+                        } else if (parseInt(color.id) == app.state.currentProduct.FifthColorId) {
+                            app.state.currentProduct.FifthColorId = app.state.currentProduct.FourthColorId;
+                            app.state.currentProduct.FourthColorId = app.state.currentProduct.ThirdColorId;
+                            app.state.currentProduct.ThirdColorId = app.state.currentProduct.SecondColorId;
+                            app.state.currentProduct.SecondColorId = app.state.currentProduct.ColorId;
+                            $("#div-color-5").css("background-color", $("#div-color-4").css("background-color"));
+                            $("#div-color-5").removeClass().addClass($("#div-color-4").attr('class'));
+                            $("#div-color-4").css("background-color", $("#div-color-3").css("background-color"));
+                            $("#div-color-4").removeClass().addClass($("#div-color-3").attr('class'));
+                            $("#div-color-3").css("background-color", $("#div-color-2").css("background-color"));
+                            $("#div-color-3").removeClass().addClass($("#div-color-2").attr('class'));
+                            $("#div-color-2").css("background-color", $("#div-color-1").css("background-color"));
+                            $("#div-color-2").removeClass().addClass($("#div-color-1").attr('class'));
+                        }
                         app.state.currentProduct.ColorId = parseInt(color.id);
                         var prices = app.state.product.prices;
                         var price;
@@ -3063,7 +3099,7 @@ var design={
             if (colors) {
                 app.state.unuseColors(colors);
             }
-            if (item.outlineC && item.outlineW) {
+            if (item.outlineC && (item.outlineW>0)) {
                 app.state.unuseColors(item.outlineC);
             }
 			var id = $(e.parentNode).data('id');

@@ -238,7 +238,15 @@
                         </div>
 
                         <div class="campaign-card-profit">
-                            <span>@c.SummaryCurrency @c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>
+                            @if (c.Sold >= c.Minimum)
+                            {
+                                <span>@c.SummaryCurrency @c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>
+                            }
+                            else
+                            {
+                                <span>@c.SummaryCurrency 0.00
+                            </span>
+                            }
                         </div>
 
                     </div>

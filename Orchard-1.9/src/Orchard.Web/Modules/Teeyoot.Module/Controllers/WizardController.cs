@@ -345,8 +345,7 @@ namespace Teeyoot.Module.Controllers
                     {
                         command.Transaction = transaction;
                         command.CommandType = CommandType.Text;
-                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord WHERE ArtCulture = '@artCulture' " +
-                                              " ORDER BY NEWID()";
+                        command.CommandText = " SELECT TOP (@artsPageSize) * FROM Teeyoot_Module_ArtRecord WHERE ArtCulture = @artCulture ORDER BY NEWID()";
 
                         var artsPageSizeParameter = new SqlParameter("@artsPageSize", SqlDbType.Int)
                         {

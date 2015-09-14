@@ -125,9 +125,10 @@
 
         $("#name").keyup(function () {
             var name = document.getElementById("name").value;
+            document.getElementById("name").value = name.split("!").join("").split("*").join("").split("#").join("");
             name = name.split("/").join("").split("?").join("").split("&").join("").split("\\").join("").split(" ").join("");
             name = name.replace(/([^\s0-9a-zA-Z])/g,"");
-            var url = document.getElementById("url").value = name;
+            var url = document.getElementById("url").value = name;         
         });
     </script>
     <script type="text/javascript">
@@ -826,7 +827,7 @@
                                                                     </div>
                                                                     <div id="font-select-menu" class="containertip">
                                                                         <select class="category-menu">
-                                                                            <option value="@T("Futuristic / Digital")">@T("Futuristic / Digital")</option>
+                                                                            @*<option value="@T("Futuristic / Digital")">@T("Futuristic / Digital")</option>*@
                                                                         </select>
                                                                         <ul class="options"></ul>
                                                                     </div>
@@ -1548,7 +1549,7 @@
                                                                     <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                         <span>
                                                                             <span>@T("By clicking this button, I accept Teeyoot’s")</span>
-                                                                            <a href="http://test.teeyoot.com/Terms">@T("Term’s")</a>
+                                                                            <a href="/Terms">@T("Term’s")</a>
                                                                             <span>@T(" of Use and Service")</span>
 
                                                                         </span>

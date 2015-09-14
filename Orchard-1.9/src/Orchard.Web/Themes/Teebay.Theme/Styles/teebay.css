@@ -3711,7 +3711,7 @@
 .credits {
     padding-left: 17px;
     margin-bottom: 25px;
-    /*margin-top: -45px;*/
+    margin-top: -23px;
 }
 
 @media all and (max-width: 1200px) {
@@ -5691,6 +5691,8 @@ html, body {
     display: block;
     list-style: none;
     text-align: center;
+    margin: 0;
+    color: #6e6e6e;
 }
 
     .widget-cookie-culture-picker ul li {
@@ -5698,7 +5700,7 @@ html, body {
     }
 
 .user-display {
-    /*margin-top: -23px;*/
+    margin-top: -23px;
 }
 
 .culture-picker-p {

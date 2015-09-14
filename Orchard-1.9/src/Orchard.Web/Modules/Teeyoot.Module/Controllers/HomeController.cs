@@ -1,6 +1,4 @@
 ﻿using Braintree;
-using Mandrill;
-using Mandrill.Model;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
@@ -9,12 +7,10 @@ using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Themes;
 using Orchard.UI.Notify;
-using Orchard.Users.Models;
 using RM.Localization.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -46,6 +42,7 @@ namespace Teeyoot.Module.Controllers
         private readonly IMessageService _messageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+        private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
 
         private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
@@ -54,25 +51,27 @@ namespace Teeyoot.Module.Controllers
         private string cultureUsed = string.Empty;
         private readonly ICookieCultureService _cookieCultureService;
         private readonly ICultureService _cultureService;
-        
 
-        public HomeController(IOrderService orderService, 
-                              ICampaignService campaignService, 
-                              INotifier notifier, 
-                              IPromotionService promotionService, 
-                              IimageHelper imageHelper, 
+
+
+        public HomeController(IOrderService orderService,
+                              ICampaignService campaignService,
+                              INotifier notifier,
+                              IPromotionService promotionService,
+                              IimageHelper imageHelper,
                               IMailChimpSettingsService settingsService,
                               IPaymentSettingsService paymentSettingsService,
                               IShapeFactory shapeFactory,
                               ITeeyootMessagingService teeyootMessagingService,
-                              IWorkContextAccessor workContextAccessor, 
+                              IWorkContextAccessor workContextAccessor,
                               IRepository<TeeyootUserPartRecord> userRepository,
                               IDeliverySettingsService deliverySettingService,
                               IContentManager contentManager,
                               IRepository<CommonSettingsRecord> commonSettingsRepository,
                               IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
                               ICookieCultureService cookieCultureService,
-                              ICultureService cultureService)
+                              ICultureService cultureService,
+                              IRepository<OrderStatusRecord> orderStatusRepository)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -87,6 +86,7 @@ namespace Teeyoot.Module.Controllers
             _workContextAccessor = workContextAccessor;
             _userRepository = userRepository;
             _contentManager = contentManager;
+            _orderStatusRepository = orderStatusRepository;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -103,7 +103,7 @@ namespace Teeyoot.Module.Controllers
         private Localizer T { get; set; }
 
         private dynamic Shape { get; set; }
-        
+
 
         //public static BraintreeGateway Gateway = new BraintreeGateway
         //{
@@ -147,7 +147,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult Payment(string orderId, string promo)
         {
             var order = _orderService.GetOrderByPublicId(orderId);
-            
+
             if (order != null)
             {
                 var campaignCulture = order.CurrencyRecord.CurrencyCulture;
@@ -172,7 +172,7 @@ namespace Teeyoot.Module.Controllers
                 model.CreditCard = setting.CreditCard;
                 model.Mol = setting.Mol;
                 model.PayPal = setting.PayPal;
-                
+
                 if (promo != null)
                 {
                     PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
@@ -216,7 +216,7 @@ namespace Teeyoot.Module.Controllers
             return result;
         }
 
-        public string Molpay(OrderRecord order,string method, string email,string state, string phone, double deliveryCost)
+        public string Molpay(OrderRecord order, string country, string firstName, string lastName, string email, string state, string phone, double deliveryCost)
         {
 
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
@@ -230,36 +230,41 @@ namespace Teeyoot.Module.Controllers
             //var Total = order.TotalPrice;
             var Total = ((order.TotalPriceWithPromo != 0 ? order.TotalPriceWithPromo : order.TotalPrice) + deliveryCost).ToString("F2", CultureInfo.InvariantCulture);
             var OrderNumber = order.Id;
-            var Name = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id).Title;
+
+            var Campaign = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id);
+            var title = Campaign.Title;
+            var campId = Campaign.Id;
+            var name = firstName + " " + lastName;
             var Email = email;
             var Phone = phone;
-            var Description = order.Id + ", " + Name + "," + "\nOrdered from Teeyoot/" + state;
-            
+            var description = campId + ", " + title + "," + "\nOrdered from Teeyoot " + country + " " + state;
+
 
 
             var vCode = GetVCode(Total + merchantId + OrderNumber + verifyKey);
-            var paymentUrl = "";
-            if (method == "credit")
-	            {
-		            paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
-                              Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&channel=credit&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + Description + "&vcode=" + vCode;
+            //var paymentUrl = "";
+            //if (method == "credit")
+            //    {
+            //        paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
+            //                  Total + "&orderid=" + OrderNumber +
+            //                  "&bill_name=" + Name + "&channel=credit&bill_email=" + Email + "&bill_mobile=" + Phone +
+            //                  "&bill_desc=" + Description + "&vcode=" + vCode;
 
-	            } else {
-                    paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
+            //    } else {
+            var paymentUrl = "https://www.onlinepayment.com.my/MOLPay/pay/" + merchantId + "?amount=" +
                               Total + "&orderid=" + OrderNumber +
-                              "&bill_name=" + Name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
-                              "&bill_desc=" + Description + "&vcode=" + vCode;
-                       
-                        }
+                              "&bill_name=" + name + "&bill_email=" + Email + "&bill_mobile=" + Phone +
+                              "&bill_desc=" + description + "&vcode=" + vCode;
 
-             
+            //}
+
+
             return paymentUrl;
         }
 
 
-        public ActionResult Molpas() {
+        public ActionResult Molpas()
+        {
             var merchantId = "7qw5pmrj3hqd2hr4";
             var total = "51.99";
             var orderNumber = 352;
@@ -271,9 +276,10 @@ namespace Teeyoot.Module.Controllers
         }
 
         //[HttpGet]
-        public void CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
-                                    string error_desc, string currency, string paydate,string channel, string skey)
+        public ActionResult CallbackMolpay(string amount, string orderid, string appcode, string tranID, string domain, string status, string error_code,
+                                    string error_desc, string currency, string paydate, string channel, string skey)
         {
+
             string destFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/molPayLog");
             var dir = new DirectoryInfo(destFolder);
 
@@ -281,7 +287,66 @@ namespace Teeyoot.Module.Controllers
             {
                 Directory.CreateDirectory(destFolder);
             }
-            System.IO.File.AppendAllText(destFolder + "/mol.txt",DateTime.Now + "  -------------  " +  "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "\r\n");
+            var request = System.Web.HttpContext.Current.Request;
+            System.IO.File.AppendAllText(destFolder + "/mol.txt", DateTime.Now + "  -------------  " + "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n");
+
+            if (orderid == null)
+                return View();
+
+
+                var order = _orderService.GetOrderById(Convert.ToInt32(orderid));
+                var campaign = _campaignService.GetCampaignById(order.Products.First().CampaignProductRecord.CampaignRecord_Id);
+
+                //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
+                //{
+
+
+                if (status == "00")
+                {
+
+                    //order.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Approved.ToString("d")));
+                    order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
+                    _orderService.UpdateOrder(order);
+
+                    if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                    {
+                        campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                        _campaignService.UpdateCampaign(campaign);
+                    }
+                    else
+                    {
+                        campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                        _campaignService.UpdateCampaign(campaign);
+                        if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                        {
+                            _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
+                            _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
+                        }
+                    }
+
+
+                    var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                    var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                    var users = _userRepository.Table.ToList();
+                //_teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+
+                    var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+                    if (commonSettings == null)
+                    {
+                        _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                        commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                    }
+
+                }
+                else if (status == "11")
+                {
+                    return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
+                }
+
+                return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
+           
+
         }
 
         public JsonResult GetSettings()
@@ -297,6 +362,9 @@ namespace Teeyoot.Module.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateTransaction(FormCollection collection)
         {
+            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+            var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
 
             BraintreeGateway Gateway = new BraintreeGateway
@@ -329,102 +397,147 @@ namespace Teeyoot.Module.Controllers
             else
                 if (collection["paumentMeth"] == "1")
                 {
-                TransactionRequest requestCard = new TransactionRequest
-                {
-                    Amount = 1000.0M, //Здесь указывается сумма транзакции в USD
-                    CreditCard = new TransactionCreditCardRequest
+                    TransactionRequest requestCard = new TransactionRequest
                     {
-                        Number = collection["number"],
-                        CVV = collection["cvv"],
-                        ExpirationMonth = collection["month"],
-                        ExpirationYear = collection["year"]
-                    },
-                    Options = new TransactionOptionsRequest
-                    {
-                        StoreInVault = true,
-                        SubmitForSettlement = false
-                    }
-                };
+                        Amount = 1000.0M, //Здесь указывается сумма транзакции в USD
+                        CreditCard = new TransactionCreditCardRequest
+                        {
+                            Number = collection["number"],
+                            CVV = collection["cvv"],
+                            ExpirationMonth = collection["month"],
+                            ExpirationYear = collection["year"]
+                        },
+                        Options = new TransactionOptionsRequest
+                        {
+                            StoreInVault = true,
+                            SubmitForSettlement = false
+                        }
+                    };
 
-                result = Gateway.Transaction.Sale(requestCard);
+                    result = Gateway.Transaction.Sale(requestCard);
 
                 }
                 else if (collection["paumentMeth"] == "4")
                 {
-                //Отправляем сообщение админу
-                } else if (collection["paumentMeth"] == "3")
+                    //Отправляем сообщение админу
+                }
+                else if (collection["paumentMeth"] == "3")
                 {
                     var method = collection["Bank"];
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), method, collection["Email"], collection["State"], collection["PhoneNumber"], _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost);
+
+                    var meth1 = collection["paumentMeth"];
+                    int id1 = int.Parse(collection["OrderId"]);
+                    var orderMol = _orderService.GetOrderById(id1);
+                    var campId = orderMol.Products.First().CampaignProductRecord.CampaignRecord_Id;
+                    orderMol.Email = collection["Email"];
+                    orderMol.FirstName = collection["FirstName"];
+                    orderMol.LastName = collection["LastName"];
+                    orderMol.StreetAddress = collection["StreetAddress"] + " " + collection["StreetAddress2"];
+                    orderMol.City = collection["City"];
+                    orderMol.State = collection["State"];
+                    orderMol.PostalCode = collection["PostalCode"];
+                    orderMol.Country = collection["Country"];
+                    orderMol.PhoneNumber = collection["PhoneNumber"];
+                    orderMol.Reserved = DateTime.UtcNow;
+                    orderMol.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Unapproved.ToString("d")));
+
+                    orderMol.Delivery = _deliverySettingService.GetAllSettings()
+                        .FirstOrDefault(s => s.State == collection["State"])
+                        .DeliveryCost;
+
+                    /*
+                    if (orderMol.TotalPriceWithPromo > 0)
+                    {
+                        orderMol.TotalPriceWithPromo = orderMol.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
+                    }
+                    orderMol.TotalPrice = orderMol.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - orderMol.Promotion;
+                    */
+                    orderMol.IsActive = true;
+                    if (collection["PromoId"] != null)
+                    {
+                        PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
+                        promotion.Redeemed = promotion.Redeemed + 1;
+                    }
+                  
+                    _teeyootMessagingService.SendNewOrderMessageToAdmin(orderMol.Id, pathToMedia, pathToTemplates);
+                    _teeyootMessagingService.SendNewOrderMessageToBuyer(orderMol.Id, pathToMedia, pathToTemplates);
+
+                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), collection["Country"], collection["FirstName"], collection["LastName"], collection["Email"], collection["State"], collection["PhoneNumber"], _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost);
                     return Redirect(url);
                 }
-             
-          
-           
-            //if (result.IsSuccess())
-            //{
+
+
+
+
             var meth = collection["paumentMeth"];
-                int id = int.Parse(collection["OrderId"]);
-                var order = _orderService.GetOrderById(id);
-                var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
-                order.Email = collection["Email"];
-                order.FirstName = collection["FirstName"];
-                order.LastName = collection["LastName"];
-                order.StreetAddress = collection["StreetAddress"] + " " + collection["StreetAddress2"];
-                order.City = collection["City"];
-                order.State = collection["State"];
-                order.PostalCode = collection["PostalCode"];
-                order.Country = collection["Country"];
-                order.PhoneNumber = collection["PhoneNumber"];
-                order.Reserved = DateTime.UtcNow;
-                if (order.TotalPriceWithPromo > 0)
-                {
-                    order.TotalPriceWithPromo = order.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
-                }
-                order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - order.Promotion;
-                order.IsActive = true;
-                //order.TranzactionId = result.Target.Id;
+            int id = int.Parse(collection["OrderId"]);
+            var order = _orderService.GetOrderById(id);
+            var campaignId = order.Products.First().CampaignProductRecord.CampaignRecord_Id;
+            order.Email = collection["Email"];
+            order.FirstName = collection["FirstName"];
+            order.LastName = collection["LastName"];
+            order.StreetAddress = collection["StreetAddress"] + " " + collection["StreetAddress2"];
+            order.City = collection["City"];
+            order.State = collection["State"];
+            order.PostalCode = collection["PostalCode"];
+            order.Country = collection["Country"];
+            order.PhoneNumber = collection["PhoneNumber"];
+            order.Reserved = DateTime.UtcNow;
+
+            order.Delivery = _deliverySettingService.GetAllSettings()
+                .FirstOrDefault(s => s.State == collection["State"])
+                .DeliveryCost;
+
+            /*
+            if (order.TotalPriceWithPromo > 0)
+            {
+                order.TotalPriceWithPromo = order.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
+            }
+             */
+            order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
+            /*
+            order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - order.Promotion;
+             */
+            order.IsActive = true;
 
 
-             
 
 
-                var campaign = _campaignService.GetCampaignById(campaignId);
+
+            var campaign = _campaignService.GetCampaignById(campaignId);
+            if (campaign.ProductCountSold > campaign.ProductCountGoal)
+            {
+                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                _campaignService.UpdateCampaign(campaign);
+            }
+            else
+            {
+                campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                _campaignService.UpdateCampaign(campaign);
                 if (campaign.ProductCountSold > campaign.ProductCountGoal)
                 {
-                    campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
-                    _campaignService.UpdateCampaign(campaign);
+                    _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
+                    _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
                 }
-                else
-                {
-                    campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
-                    _campaignService.UpdateCampaign(campaign);
-                    if (campaign.ProductCountSold > campaign.ProductCountGoal)
-                    {
-                        _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
-                        _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
-                    }
-                }
-                
-                
+            }
 
-                //_orderService.UpdateOrder(order, OrderStatus.Approved);
-                if (collection["PromoId"] != null)
-                {
-                    PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
-                    promotion.Redeemed = promotion.Redeemed + 1;
-                }
-                //Transaction transaction = result.Target;
-                //ViewData["TransactionId"] = transaction.Id;
-                //_notifier.Information(T("The transaction is successful"));
-                var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-                var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                var users = _userRepository.Table.ToList();
-                _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-              // _teeyootMessagingService.SendNewOrderMessageToBuyer(order.Id, pathToMedia, pathToTemplates);
-                _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
 
-            var commonSettings = _commonSettingsRepository.Table.Where(s=> s.CommonCulture == cultureUsed).FirstOrDefault();
+
+            //_orderService.UpdateOrder(order, OrderStatus.Approved);
+            if (collection["PromoId"] != null)
+            {
+                PromotionRecord promotion = _promotionService.GetPromotionByPromoId(collection["PromoId"]);
+                promotion.Redeemed = promotion.Redeemed + 1;
+            }
+            //Transaction transaction = result.Target;
+            //ViewData["TransactionId"] = transaction.Id;
+            //_notifier.Information(T("The transaction is successful"));
+               
+            var users = _userRepository.Table.ToList();
+            _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+            _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+               
+            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
             if (commonSettings == null)
             {
                 _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
@@ -441,7 +554,7 @@ namespace Teeyoot.Module.Controllers
             }
 
 
-               
+
 
             return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
             //}
@@ -453,7 +566,7 @@ namespace Teeyoot.Module.Controllers
         }
 
         [Themed]
-        public ActionResult ReservationComplete(int campaignId, int sellerId)
+        public ActionResult ReservationComplete(int campaignId, int sellerId, bool oops = false)
         {
             var campaigns = _campaignService.GetAllCampaigns()
                                 .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId && c.CampaignCulture == cultureUsed)
@@ -479,12 +592,16 @@ namespace Teeyoot.Module.Controllers
                     ShowBack: e.ShowBack,
                     Alias: e.Alias,
                     EndDate: e.EndDate,
-                    FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id).Id
+                    FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id && p.WhenDeleted== null).Id
                     );
             });
 
             var model = new ReservationCompleteViewModel();
-            model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
+            if (!oops)
+                model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
+            else
+                model.Message = T("Oops! we couldn't process this order, you can try to change your payment method and try again").ToString();
+
             model.Campaigns = entriesProjection.ToArray();
 
             return View(model);
@@ -533,7 +650,7 @@ namespace Teeyoot.Module.Controllers
                 order.StreetAddress,
                 order.City + ", " + order.State + ", " + order.Country + " " + order.PostalCode
             };
-            model.Events = order.Events.ToArray();     
+            model.Events = order.Events.ToArray();
             model.CultureInfo = CultureInfo.GetCultureInfo(_workContextAccessor.GetContext().CurrentCulture);
             model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", model.CultureInfo);
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
@@ -543,7 +660,7 @@ namespace Teeyoot.Module.Controllers
             return View(model);
         }
 
-        [Themed]      
+        [Themed]
         public ActionResult RecoverOrder(string email)
         {
             if (email == null)
@@ -577,7 +694,7 @@ namespace Teeyoot.Module.Controllers
                 _orderService.DeleteOrder(orderId);
                 return Redirect("/");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Error("Error occured when trying to delete an order ---------------> " + ex.ToString());
                 return RedirectToAction("OrderTracking", new { orderId = publicId });
@@ -594,8 +711,8 @@ namespace Teeyoot.Module.Controllers
 
             string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
             var dir = new DirectoryInfo(destFolder);
-           
-            if (dir.Exists == false || ( (dir.Exists == true) && (dir.GetFiles().Count() == 0)))
+
+            if (dir.Exists == false || ((dir.Exists == true) && (dir.GetFiles().Count() == 0)))
             {
                 try
                 {
@@ -633,8 +750,8 @@ namespace Teeyoot.Module.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-   
-   
+
+
         [HttpPost]
         public HttpStatusCodeResult ReservCampaign(string email, int id)
         {
@@ -657,7 +774,7 @@ namespace Teeyoot.Module.Controllers
                 _teeyootMessagingService.SendReLaunchCampaignMessageToSeller(id);
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.OK);            
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-     } 
+    }
 }

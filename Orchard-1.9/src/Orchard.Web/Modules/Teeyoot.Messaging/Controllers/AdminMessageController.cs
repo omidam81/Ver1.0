@@ -173,7 +173,7 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult Delete(string templateName, string returnUrl)
         {
-            System.IO.File.Delete(Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/") + templateName + ".html");
+            System.IO.File.Delete(Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/") + templateName +"-" + cultureUsed + ".html");
             Services.Notifier.Information(T("File has been deleted."));
             return this.RedirectLocal(returnUrl, () => RedirectToAction("Index"));
         }
@@ -198,7 +198,7 @@ namespace Teeyoot.Module.Controllers
                 if (allowed.Contains(extension))
                 {
                     string fileExt = Path.GetExtension(file.FileName);
-                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/"), templateName + fileExt);
+                    var path = Path.Combine(Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/"), templateName + "-" + cultureUsed + fileExt);
                     file.SaveAs(path);
                     Services.Notifier.Information(T("File has been added!"));
                     return RedirectToAction("Index");
@@ -210,7 +210,7 @@ namespace Teeyoot.Module.Controllers
 
         public void Download(string fileName)
         {
-            fileName += ".html";
+            fileName = fileName + "-" + cultureUsed + ".html";
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             Response.ContentType = "text/HTML";

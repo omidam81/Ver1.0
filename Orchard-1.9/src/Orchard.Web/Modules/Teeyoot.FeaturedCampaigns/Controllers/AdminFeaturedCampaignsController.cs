@@ -14,6 +14,7 @@ using Orchard.UI.Navigation;
 using Orchard.Localization;
 using Teeyoot.Module.Services;
 using Orchard.Logging;
+using Teeyoot.Module.Common.Enums;
 
 namespace Teeyoot.FeaturedCampaigns.Controllers
 {
@@ -58,13 +59,13 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         {
             var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed);
             var yesterday = DateTime.UtcNow.AddDays(-1);
-            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
 
             var featuredCampaigns = new FeaturedCampaignViewModel[] { };
 
             var total =_campaignService.GetAllCampaigns().Count();
 
-            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false).Count();
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == cultureUsed).Count();
 
             if (total > 0)
             {
@@ -104,7 +105,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)
         {
-            var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured);
+            var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured && c.CampaignCulture == cultureUsed);
 
             if (featuredCampaigns.Count() >= 6 && visible)
             {

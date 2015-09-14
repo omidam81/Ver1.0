@@ -188,7 +188,7 @@ function estimatedProfitChangeForManuProducts() {
 
             $(indexProf).html(profit.toFixed(2));
             $(indexCost).html(products[i].BaseCost.toFixed(2));
-            if (profit < 0) {
+            if (profit <= 0) {
 
                 app.state.isNegativeProfit[i] = true;
                 // $(divProfitCalcul).css('display', 'none');
@@ -284,7 +284,7 @@ function estimatedProfitChangeForManuProducts() {
 }
 
 function updateMinimum(changes) {
-    if (changes < 0) {
+    if (changes <= 0) {
         // $("#profit-calculator").css('display', 'none');
         //$("#price-for-first-product-text").css('display', 'none');
         //$("#base-cost-for-first-product-text-smoll").css('display', 'none');
@@ -339,23 +339,24 @@ function minimumGoal() {
         
         for (var i = 0; i < products.length; i++) {
             price = parseFloat(products[i].Price);
-            baseCost = parseFloat(products[i].BaseCost);
+            var prod = design.products.productsData[products[i].ProductId];
+            baseCost = parseFloat(prod.prices[0].price);
 
-            var nowCount = Math.ceil(window.count / 2) + 1;
+            var nowCount = window.count + 1;//Math.ceil(window.count / 2) + 1;
             var newPrice = 0;
-            while (price > newPrice) {
-                if (nowCount == 0) break;
+            while (price - newPrice > 0) {
+                if(nowCount == 0) break;
                 nowCount--;
-                newPrice = formula(window.frontColor, window.backColor, baseCost, nowCount);
+                newPrice = (formula(window.frontColor, window.backColor, baseCost, nowCount)).toFixed(2);
             }
             window.count = parseInt(slider.noUiSlider.get());
-
-            if (nowCount <= 0) {
-                nowCount = 1;
-            }
-            if (window.count <= 100) {
-                nowCount = nowCount - 1;
-            }
+            nowCount++;
+            //if (nowCount <= 0) {
+            //    nowCount = 1;
+            //}
+            //if (window.count <= 100) {
+            //    nowCount = nowCount - 1;
+            //}
 
             count = count + Math.floor(nowCount);
         }
