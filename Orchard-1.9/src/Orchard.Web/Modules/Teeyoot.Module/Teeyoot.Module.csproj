@@ -815,6 +815,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Molpay.cshtml" />
     <Content Include="Views\Home\Molpas.cshtml" />
+    <Content Include="Views\Home\CallbackMolpay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
