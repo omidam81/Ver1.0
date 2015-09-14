@@ -592,7 +592,7 @@ namespace Teeyoot.Module.Controllers
                     ShowBack: e.ShowBack,
                     Alias: e.Alias,
                     EndDate: e.EndDate,
-                    FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id).Id
+                    FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id && p.WhenDeleted== null).Id
                     );
             });
 
