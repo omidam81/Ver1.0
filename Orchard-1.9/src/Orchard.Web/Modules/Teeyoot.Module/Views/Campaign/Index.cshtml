@@ -1353,22 +1353,22 @@
                                             </td>
                                             <td class="precheckout_items_table__item precheckout_items_table__item--price">
 
-                                                @for (var i = 0; i < Model.Campaign.Products.Count; i++)
+                                                @for (var i = 0; i < products.Count; i++)
                                                 {
-                                                    if (Model.Campaign.Products[i] == Model.Campaign.Products.Where(c => c.WhenDeleted == null).First())
+                                                    if (products[i] == products.First())
                                                     {
                                                         int count = 0;
-                                                        foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
+                                                        foreach (var size in products[i].ProductRecord.SizesAvailable)
                                                         {
-                                                            float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
+                                                            float price = (float)products[i].Price + size.SizeCost;
                                                             string pos = i + "_" + count;
-                                                            if (size == Model.Campaign.Products[i].ProductRecord.SizesAvailable.First())
+                                                            if (size == products[i].ProductRecord.SizesAvailable.First())
                                                             {
-                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
+                                                                <span name="select_size_index_@pos" class="modal-price shown" title="@price">@products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
                                                             }
                                                             else
                                                             {
-                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
+                                                                <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
                                                             }
                                                             count++;
                                                         }
@@ -1376,12 +1376,12 @@
                                                     else
                                                     {
                                                         int count = 0;
-                                                        foreach (var size in Model.Campaign.Products[i].ProductRecord.SizesAvailable)
+                                                        foreach (var size in products[i].ProductRecord.SizesAvailable)
                                                         {
-                                                            float price = (float)Model.Campaign.Products[i].Price + size.SizeCost;
+                                                            float price = (float)products[i].Price + size.SizeCost;
                                                             string pos = i + "_" + count;
 
-                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@Model.Campaign.Products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
+                                                            <span name="select_size_index_@pos" class="modal-price hidden" title="@price">@products[i].CurrencyRecord.Code @price.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)</span>
 
                                                             count++;
                                                         }
