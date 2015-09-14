@@ -1085,15 +1085,19 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(record.Email, "STATE", record.State);
             message.AddRcptMergeVars(record.Email, "STREET_ADDRESS", record.StreetAddress);
             message.AddRcptMergeVars(record.Email, "COUNTRY", record.Country);
+
+            double totalPrice;
+
             if (record.TotalPriceWithPromo > 0.0)
             {
-                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPriceWithPromo.ToString("F", CultureInfo.InvariantCulture));
+                totalPrice = record.TotalPriceWithPromo + record.Delivery;
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
             else
             {
-                message.AddRcptMergeVars(record.Email, "TOTALPRICE", record.TotalPrice.ToString("F", CultureInfo.InvariantCulture));
+                totalPrice = record.TotalPrice + record.Delivery;
+                message.AddRcptMergeVars(record.Email, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
-
         }
 
         private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)

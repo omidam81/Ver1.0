@@ -180,6 +180,8 @@ namespace Teeyoot.Orders.Controllers
                 Color = o.ProductColorRecord == null ? o.CampaignProductRecord.ProductColorRecord.Value : o.ProductColorRecord.Value});
          
             var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
+            totalPrice += order.Delivery;
+
             var result = new { products, totalPrice };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
