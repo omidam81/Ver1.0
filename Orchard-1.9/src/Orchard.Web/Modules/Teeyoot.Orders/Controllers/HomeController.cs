@@ -180,6 +180,8 @@ namespace Teeyoot.Orders.Controllers
                 Color = o.ProductColorRecord == null ? o.CampaignProductRecord.ProductColorRecord.Value : o.ProductColorRecord.Value});
          
             var totalPrice = order.TotalPriceWithPromo > 0.0 ? order.TotalPriceWithPromo : order.TotalPrice;
+            totalPrice += order.Delivery;
+
             var result = new { products, totalPrice };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -231,14 +233,14 @@ namespace Teeyoot.Orders.Controllers
             var order = _orderService.GetOrderById(orderId);
             var campId = order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id;
 
-            if (order.OrderStatusRecord.Name == OrderStatus.Cancelled.ToString() && orderStatus != OrderStatus.Cancelled.ToString())
+            if ((order.OrderStatusRecord.Name == OrderStatus.Cancelled.ToString() || order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString()) && (orderStatus != OrderStatus.Cancelled.ToString() || orderStatus != OrderStatus.Unapproved.ToString()) && order.OrderStatusRecord.Name != orderStatus)
             {
                 var sum = order.Products.Select(o => o.Count).Sum();
                 var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
                 campaign.ProductCountSold = campaign.ProductCountSold + sum;
             }
 
-            if (order.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && orderStatus == OrderStatus.Cancelled.ToString())
+            if ((order.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() || order.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString()) && order.OrderStatusRecord.Name != orderStatus && (orderStatus == OrderStatus.Cancelled.ToString() || orderStatus == OrderStatus.Unapproved.ToString()))
             {
                 var sum = order.Products.Select(o => o.Count).Sum();
                 var campaign = _campaignService.GetCampaignById(order.Products.FirstOrDefault().CampaignProductRecord.CampaignRecord_Id);
