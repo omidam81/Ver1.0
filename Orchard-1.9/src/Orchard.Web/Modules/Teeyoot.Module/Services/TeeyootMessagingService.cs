@@ -789,16 +789,20 @@ namespace Teeyoot.Messaging.Services
 
         public void SendPayoutRequestMessageToAdmin(int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin)
         {
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
             var teeUser = _contentManager.Get<TeeyootUserPart>(userIds.First(), VersionOptions.Latest);
-            var record = _settingsService.GetSettingByCulture("en-MY").List().First();
+            var record = _settingsService.GetSettingByCulture(cultureUsed).List().First();
             if (teeUser !=null)
             {
                 record = _settingsService.GetSettingByCulture(teeUser.TeeyootUserCulture).List().First();
+                cultureUsed = teeUser.TeeyootUserCulture;
             }         
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
@@ -813,16 +817,24 @@ namespace Teeyoot.Messaging.Services
                 FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, messAdmin, 0.00, "");
             }
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-template-" + _contentManager.Get<TeeyootUserPart>(userIds.First(), VersionOptions.Latest).TeeyootUserCulture + ".html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-template-" + cultureUsed + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
 
         public void SendPayoutRequestMessageToSeller(int userId, string accountNumber, string bankName, string accHoldName, string contNum)
         {
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
-            var record = _settingsService.GetSettingByCulture(_contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest).TeeyootUserCulture).List().First();
+            var use = _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest);
+            if (use != null)
+            {
+                cultureUsed = use.TeeyootUserCulture;
+            }
+            var record = _settingsService.GetSettingByCulture(cultureUsed).List().First();
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
@@ -834,7 +846,7 @@ namespace Teeyoot.Messaging.Services
             emails.Add(new MandrillMailAddress(user.Email, "Seller"));
             FillPayoutRequestMergeVars(mandrillMessage, user.Email, userId, accountNumber, bankName, accHoldName, contNum, "", 0.00, "");
             mandrillMessage.To = emails;
-            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-seller-template-" + _contentManager.Get<TeeyootUserPart>(userId, VersionOptions.Latest).TeeyootUserCulture + ".html");
+            mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "withdraw-seller-template-" + cultureUsed + ".html");
             SendTmplMessage(api, mandrillMessage);
 
         }
