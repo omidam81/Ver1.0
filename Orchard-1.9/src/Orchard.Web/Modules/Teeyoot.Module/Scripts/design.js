@@ -3466,7 +3466,12 @@ var design={
 			
 			var canvas = document.createElement('canvas');
 			    canvas.width = zoom*area.width;
-			    canvas.height = zoom*area.height;
+			    canvas.height = zoom * area.height;
+
+			var $container = $('<div id="hidden-canvas-container" style="display:none"></div');
+		    $('body').append($container);
+		    $container.append(canvas);
+
 			var context = canvas.getContext('2d');
 			
 			var radius = 0;		
@@ -3701,6 +3706,7 @@ var design={
 				else
 				{
 				    design.output[postion] = canvas;
+				    $container.remove();
 				    if (typeof callback === "function") {
 				        callback();
 				    }
