@@ -487,6 +487,7 @@ namespace Teeyoot.Module.Controllers
             {
                 order.TotalPriceWithPromo = order.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
             }
+            order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
             order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - order.Promotion;
             order.IsActive = true;
 
