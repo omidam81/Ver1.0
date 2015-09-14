@@ -53,42 +53,42 @@
                                 @if (camp.Campaign.IsApproved)
                                 {
                                     <span style="font-weight:600">@T("Yes")</span>
-                                }
-                                else
-                                {
-                                    <a style="text-decoration:underline" href="@Url.Action("Approve", new {  id = camp.Campaign.Id })" title="@T("Approve")">@T("Yes")</a>
-                                }
-                                <span> / </span>
-                                @if (camp.Campaign.Rejected)
-                                {
-                                    <span style="font-weight:600">@T("No")</span>
-                                }
-                                else
-                                {
+                                    <span> / </span>
                                     <a style="text-decoration:underline" href="@Url.Action("Reject", new {  id = camp.Campaign.Id })" title="@T("Reject")">@T("No")</a>
                                 }
-
+                                else
+                                {
+                                    if (camp.Campaign.Rejected)
+                                    {
+                                        <span style="font-weight:600">@T("No")</span>
+                                        <span> / </span>
+                                        <a style="text-decoration:underline" href="@Url.Action("Approve", new {  id = camp.Campaign.Id })" title="@T("Approve")">@T("Yes")</a>
+                                    }
+                                    else
+                                    {
+                                        <a style="text-decoration:underline" href="@Url.Action("Approve", new {  id = camp.Campaign.Id })" title="@T("Approve")">@T("Yes")</a>
+                                        <span> / </span>
+                                        <a style="text-decoration:underline" href="@Url.Action("Reject", new {  id = camp.Campaign.Id })" title="@T("Reject")">@T("No")</a>
+                                    }
+                                }
                             </td>
                             <td>
                                 @if (camp.Campaign.IsActive)
                                 {
                                     if (camp.Campaign.IsFeatured)
                                     {
-                                        <span style="font-weight:600">@T("Yes")</span>
+                                        <span style="font-weight:600">@T("Yes")</span>  
+                                        <span> / </span>
+                                        <a href="@Url.Action("ChangeVisible", new {  id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("No")</a>
+
                                     }
                                     else
-                                    {
-                                        <a href="@Url.Action("ChangeVisible", new { id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Yes")</a>
-                                    }
-                                    <span> / </span>
-                                    if (!camp.Campaign.IsFeatured)
                                     {
                                         <span style="font-weight:600">@T("No")</span>
-                                    }
-                                    else
-                                    {
-                                        <a href="@Url.Action("ChangeVisible", new {  id = camp.Campaign.Id, visible = false })" title="@T("Unmark as featured")">@T("No")</a>
-                                    }
+                                        <span> / </span>
+                                        <a href="@Url.Action("ChangeVisible", new { id = camp.Campaign.Id, visible = true })" title="@T("Mark as featured")">@T("Yes")</a>
+                                       
+                                    }                                  
                                 }
 
                             </td>
