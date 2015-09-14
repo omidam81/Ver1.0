@@ -1813,7 +1813,19 @@ function Goal() {
         var prod = design.products.productsData[app.state.currentProduct.ProductId];
         document.getElementById("productName").innerHTML = prod.name;
 
-
+        if (app.state.color.id == app.state.currentProduct.SecondColorId) {
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.color.id).children("span").remove();
+            deleteColor(2, true);
+        } else if (app.state.color.id == app.state.currentProduct.ThirdColorId) {
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.color.id).children("span").remove();
+            deleteColor(3, true);
+        } else if (app.state.color.id == app.state.currentProduct.FourthColorId) {
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.color.id).children("span").remove();
+            deleteColor(4, true);
+        } else if (app.state.color.id == app.state.currentProduct.FifthColorId) {
+            $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.color.id).children("span").remove();
+            deleteColor(5, true);
+        }
 
         slideTo(2);
         setPriceInGoalFromDesign();
@@ -1992,7 +2004,7 @@ function changesColor(id, number) {
     }
 }
 
-function deleteColor(number) {
+function deleteColor(number, dontChanges) {
     switch (number) {
         case 1:
             $("#li_" + app.state.currentProduct.ProductId + "_" + app.state.currentProduct.ColorId).children("span").remove();
@@ -2050,6 +2062,10 @@ function deleteColor(number) {
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
 
+            if (dontChanges) {
+                break;
+            }
+
             if ($("#div-color-3").hasClass("div-color")) {
                 $("#minImg").css("background-color", color.value);
                 $("#prodFront").css("background-color", color.value);
@@ -2079,6 +2095,10 @@ function deleteColor(number) {
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
 
+            if (dontChanges) {
+                break;
+            }
+
             if ($("#div-color-4").hasClass("div-color")) {
                 $("#minImg").css("background-color", color.value);
                 $("#prodFront").css("background-color", color.value);
@@ -2104,6 +2124,10 @@ function deleteColor(number) {
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
 
+            if (dontChanges) {
+                break;
+            }
+
             if ($("#div-color-5").hasClass("div-color")) {
                 $("#minImg").css("background-color", color.value);
                 $("#prodFront").css("background-color", color.value);
@@ -2124,6 +2148,10 @@ function deleteColor(number) {
             $("#div-color-5").css("background-color", "rgb(219, 219, 219)");
             $("#div-color-5").removeClass('div-color-active').addClass('div-color');
             if ($("#div-color-5").hasClass("div-color")) $("#div-color-5").children("div").remove();
+
+            if (dontChanges) {
+                break;
+            }
 
             $("#minImg").css("background-color", color.value);
             $("#prodFront").css("background-color", color.value);

@@ -5691,6 +5691,7 @@ html, body {
     display: block;
     list-style: none;
     text-align: center;
+    margin: 0;
 }
 
     .widget-cookie-culture-picker ul li {
