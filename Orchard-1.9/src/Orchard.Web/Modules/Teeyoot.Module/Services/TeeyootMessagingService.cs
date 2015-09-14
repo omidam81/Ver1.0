@@ -794,8 +794,12 @@ namespace Teeyoot.Messaging.Services
             
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
-
-            var record = _settingsService.GetSettingByCulture(_contentManager.Get<TeeyootUserPart>(userIds.First(), VersionOptions.Latest).TeeyootUserCulture).List().First();
+            var teeUser = _contentManager.Get<TeeyootUserPart>(userIds.First(), VersionOptions.Latest);
+            var record = _settingsService.GetSettingByCulture("en-MY").List().First();
+            if (teeUser !=null)
+            {
+                record = _settingsService.GetSettingByCulture(teeUser.TeeyootUserCulture).List().First();
+            }         
             var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
