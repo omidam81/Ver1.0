@@ -11,7 +11,7 @@
 
     <meta property="og:site_name" content="Teeyoot" />
     <meta property="og:title" content="@Model.Campaign.Title" />
-    <meta property="og:image" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.jpg" />
+    <meta property="og:image" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/social/campaign.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="627" />
     @*<meta property="og:description" content="@Model.Campaign.Description" />*@
@@ -22,7 +22,7 @@
     @*<meta name="twitter:description" content="@Model.Campaign.Description">*@
     <meta name="twitter:title" content="@Model.Campaign.Title">
     <meta name="twitter:site" content="teeyoot">
-    <meta name="twitter:image" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/social/campaign.jpg" />
+    <meta name="twitter:image" content="@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/social/campaign.jpg" />
     if (Model.Campaign.IsPrivate)
     {
         <meta name="Robots" content="NOINDEX,NOFOLLOW">
@@ -39,9 +39,9 @@
     $(document).ready(function () {
         var img = document.getElementById("prodBack");
         if (firstBack == "True") {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png");
         } else {
-            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+            img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/back.png");
         }
 
         var cm = document.getElementsByClassName("product__size_chart__size product__size_chart__size--cm");
@@ -64,9 +64,9 @@
     var pinterestBtn = document.getElementsByClassName("btn--pinterest");
     for (var k = 0; k < pinterestBtn.length; k++) {
         if (firstBack == "True") {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/back.png");
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/back.png");
         } else {
-            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png");
+            $(pinterestBtn[k]).attr("href", "https://www.pinterest.com/pin/create/button/?url=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/@Model.Campaign.Alias;media=@Request.Url.Scheme://@Request.Url.Authority@Request.ApplicationPath.TrimEnd('/')/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png");
         }
     }
     var facebookBtn = document.getElementsByClassName("btn--facebook");
@@ -557,7 +557,7 @@
         $(newSize).selectedIndex = 0;
 
         var currentPrice = $(row).find('.modal-price.shown')[0];
-        var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];   
+        var newPrice = $(row).find('span[name=select_size_index_' + value + '_0]')[0];
 
         $(currentPrice).removeClass('shown').addClass('hidden');
         $(newPrice).removeClass('hidden').addClass('shown');
@@ -570,7 +570,7 @@
 
         var currentPrice = $(rows).find('.modal-price.shown')[0];
         var newPrice = $(rows).find('span[name=select_size_index_' + id + '_' + index + ']')[0];
-      
+
         $(currentPrice).removeClass('shown').addClass('hidden');
         $(newPrice).removeClass('hidden').addClass('shown');
     }
@@ -739,7 +739,7 @@
         }
     }
 
-    </script>
+</script>
 }
 
 <section class="site__featured_container">
@@ -927,7 +927,7 @@
                 <h1 class="campaign__name display--desktop hidden">@Model.Campaign.Title</h1>
 
                 <div class="campaign__description display--desktop">
-                    @Html.Raw(@Model.Campaign.Description)
+                    @Html.Raw(Model.Campaign.Description)
                 </div>
 
                 <div class="product_dropdown__container">
@@ -1206,7 +1206,7 @@
                                 <h2 class="precheckout_modal__title">@T("Your Order")</h2>
                             </div>
                             <div class="precheckout_modal__image_container">
-                                <div class="precheckout_modal__image" style="background-image: url(/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products[0].Id/normal/front.png);"></div>
+                                <div class="precheckout_modal__image" style="background-image: url(/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png);"></div>
                             </div>
 
                             <div class="modal-body">
