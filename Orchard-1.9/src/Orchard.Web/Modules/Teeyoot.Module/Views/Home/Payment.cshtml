@@ -500,6 +500,10 @@
         $(document).ready(function () {
             document.title = "Payment | Teeyoot";
 
+            $(window).on('unload', function () {
+                $('button').prop('disabled', false);
+            });
+
             $('.payment-method:first').css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
 
             var defaultPaymentMethod = $('.payment-method:first').data('payment-method');
