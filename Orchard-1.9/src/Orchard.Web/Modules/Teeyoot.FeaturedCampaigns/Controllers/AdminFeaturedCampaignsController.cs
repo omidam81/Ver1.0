@@ -14,6 +14,7 @@ using Orchard.UI.Navigation;
 using Orchard.Localization;
 using Teeyoot.Module.Services;
 using Orchard.Logging;
+using Teeyoot.Module.Common.Enums;
 
 namespace Teeyoot.FeaturedCampaigns.Controllers
 {
@@ -58,7 +59,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         {
             var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed);
             var yesterday = DateTime.UtcNow.AddDays(-1);
-            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday);
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
 
             var featuredCampaigns = new FeaturedCampaignViewModel[] { };
 
