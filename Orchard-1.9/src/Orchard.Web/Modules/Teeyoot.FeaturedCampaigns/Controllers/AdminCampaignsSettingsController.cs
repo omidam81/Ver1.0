@@ -93,7 +93,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == cultureUsed).Count();
 
             var yesterday = DateTime.UtcNow.AddDays(-1);
-            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.CurrencyRecord.CurrencyCulture == cultureUsed);
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.CurrencyRecord.CurrencyCulture == cultureUsed && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
 
             var entriesProjection = campaigns.Select(e =>
             {
@@ -114,7 +114,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     CreatedDate: e.CreateDate.ToLocalTime().ToString("dd/MM/yyyy"),
                     Last24HoursSold: last24hoursOrders
                                         .SelectMany(o => o.Products)
-                                        .Where(p => p.CampaignProductRecord.CampaignRecord_Id == e.Id)
+                                        .Where(p => p.CampaignProductRecord.CampaignRecord_Id == e.Id )
                                         .Sum(p => (int?)p.Count) ?? 0
                     );
             });
