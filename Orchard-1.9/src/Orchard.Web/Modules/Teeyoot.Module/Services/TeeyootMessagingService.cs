@@ -777,7 +777,7 @@ namespace Teeyoot.Messaging.Services
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
-            List<CampaignProductRecord> orderedProducts = _campaignProductRepository.Table.Where(prod => prod.CampaignRecord_Id == campaign.Id).ToList();
+            List<CampaignProductRecord> orderedProducts = _campaignProductRepository.Table.Where(prod => prod.CampaignRecord_Id == campaign.Id && prod.WhenDeleted == null).ToList();
             FillCampaignProductsMergeVars(mandrillMessage, orderedProducts, pathToMedia, seller.Email);
             FillCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
             FillAdditionalCampaignMergeVars(mandrillMessage, campaign.Id, seller.Email, pathToMedia, pathToTemplates);
