@@ -483,12 +483,21 @@ namespace Teeyoot.Module.Controllers
             order.Country = collection["Country"];
             order.PhoneNumber = collection["PhoneNumber"];
             order.Reserved = DateTime.UtcNow;
+
+            order.Delivery = _deliverySettingService.GetAllSettings()
+                .FirstOrDefault(s => s.State == collection["State"])
+                .DeliveryCost;
+
+            /*
             if (order.TotalPriceWithPromo > 0)
             {
                 order.TotalPriceWithPromo = order.TotalPriceWithPromo + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost;
             }
+             */
             order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
+            /*
             order.TotalPrice = order.TotalPrice + _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost - order.Promotion;
+             */
             order.IsActive = true;
 
 
