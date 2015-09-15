@@ -42,6 +42,7 @@
                         <a class="button primaryAction" style="margin-right:5px" href="@Url.Action("EditMailChimpSetting", new { id = Model.Id, returnUrl = Request.Url.PathAndQuery })" title="@T("Edit")">@T("Edit")</a>
                     </div>
                 </div>
+                <hr/>
                 <div class="fileRow">
                     <div class="alias">@T("Seller Template")</div>
                     <div class="fileNameInput">@Model.SellerTemplate</div>
@@ -93,6 +94,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "relaunch-" })
                 <div class="fileRow">
                     <div class="alias">@T("Relaunch approved Buyer Template")</div>
                     <div class="fileNameInput">@Model.RelaunchApprovedBuyerTemplate</div>
@@ -109,6 +111,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-buyer-", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "relaunch-buyer-" })
                 <div class="fileRow">
                     <div class="alias">@T("Relaunch Admin and Seller Template")</div>
                     <div class="fileNameInput">@Model.RelaunchAdminSellerTemplate</div>
@@ -125,7 +128,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-to-admin-seller-", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-                @Html.Action("EditEmailTemplateSubject", new { templateName = "relaunch-template" })
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "relaunch-to-admin-seller-" })
                 <div class="fileRow">
                     <div class="alias">@T("Launch Template")</div>
                     <div class="fileNameInput">@Model.LaunchTemplate</div>
@@ -669,6 +672,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "withdraw-completed-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "withdraw-completed-template" })
             </div>
         }
         else
