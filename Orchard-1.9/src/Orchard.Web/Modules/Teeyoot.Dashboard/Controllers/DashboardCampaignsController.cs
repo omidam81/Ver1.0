@@ -128,7 +128,7 @@ namespace Teeyoot.Dashboard.Controllers
                 var prods = campaignProducts.Where(c => c.WhenDeleted == null).FirstOrDefault(p => p.CampaignRecord_Id == item.Id);
                 item.FirstProductId = prods != null ? prods.Id : 0;
                 item.Profit = orderedProducts
-                                    .Where(p => p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
+                                    .Where(p => p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.CampaignProductRecord.CampaignRecord_Id == item.Id)
                                     .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
                                     .Sum(entry => (double?)entry.Profit) ?? 0;
                 item.SummaryCurrency = _currencyRepository.Table.Where(c => c.CurrencyCulture == (_campaignService.GetCampaignById(item.Id).CampaignCulture)).FirstOrDefault().Code;
@@ -146,21 +146,21 @@ namespace Teeyoot.Dashboard.Controllers
                 Type = OverviewType.Today,
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Today)
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Today)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Today)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 IDProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Today)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
@@ -180,21 +180,21 @@ namespace Teeyoot.Dashboard.Controllers
                 Type = OverviewType.Yesterday,
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Yesterday)
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Yesterday)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Yesterday)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 IDProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Yesterday)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
@@ -215,21 +215,21 @@ namespace Teeyoot.Dashboard.Controllers
 
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
                              .FilterByType(OverviewType.Active, campaignsQuery)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
                              .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                              .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 IDProfit = Math.Round(productsOrderedQueryWithMinimum
                              .FilterByType(OverviewType.Active, campaignsQuery)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                              .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                              .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
@@ -255,18 +255,18 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 Type = OverviewType.AllTime,
                 ProductsOrdered = productsOrderedQuery
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-SG")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 IDProfit = Math.Round(productsOrderedQueryWithMinimum
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
