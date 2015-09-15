@@ -108,7 +108,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public void ExportPrints(PagerParameters pagerParameters, int id)
         {
             var campaign = _campaignService.GetCampaignById(id);
-            var p = campaign.Products[0];
+            var p = campaign.Products.Where(pr => pr.WhenDeleted == null).First();
 
             var jss = new JavaScriptSerializer();
             jss.MaxJsonLength = int.MaxValue;
@@ -138,7 +138,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 svgBack = CreateSVG(p.ProductRecord.ProductImageRecord.PrintableBackHeight, p.ProductRecord.ProductImageRecord.PrintableBackWidth, listBackSort);
             }
 
-            var destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), campaign.Products.First().Id.ToString()) + "\\normal";
+            var destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), campaign.Products.Where(pr=>pr.WhenDeleted == null).First().Id.ToString()) + "\\normal";
 
                 using (var archive = new ZipFile())
                 {

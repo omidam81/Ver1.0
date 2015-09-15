@@ -95,11 +95,11 @@ namespace Teeyoot.Messaging.Services
             resultEmails.AddRange(noDupes);
             foreach (var item in resultEmails)
             {
-                emails.Add(new MandrillMailAddress(item, "Buyer"));
+                emails.Add(new MandrillMailAddress(item, "Seller"));
             }
 
             mandrillMessage.To = emails;
-            var text = File.ReadAllText(pathToTemplates + "make_the_order_buyer-" + cultureUsed + ".html");
+            var text = File.ReadAllText(pathToTemplates + "make_the_campaign_seller-" + cultureUsed + ".html");
             mandrillMessage.Html = text;
             var res = SendTmplMessage(api, mandrillMessage);
         }

@@ -288,7 +288,8 @@ namespace Teeyoot.Module.Controllers
                 Directory.CreateDirectory(destFolder);
             }
             var request = System.Web.HttpContext.Current.Request;
-            System.IO.File.AppendAllText(destFolder + "/mol.txt", DateTime.Now + "  -------------  " + "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n");
+            System.IO.File.AppendAllText(destFolder + "/mol.txt", DateTime.Now + "  -------------  " + "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n" + "tranId: " + tranID +
+                                         " domain: " + domain + " error_code: " + error_code + "; skey: " + skey + "; channel: " + channel + "\r\n");
 
             if (orderid == null)
                 return View();
@@ -707,7 +708,7 @@ namespace Teeyoot.Module.Controllers
         public HttpStatusCodeResult ShareCampaign(bool isBack, int campaignId)
         {
             CampaignRecord campaign = _campaignService.GetCampaignById(campaignId);
-            int product = _campaignService.GetProductsOfCampaign(campaignId).First().Id;
+            int product = _campaignService.GetProductsOfCampaign(campaignId).Where(pr=>pr.WhenDeleted == null).First().Id;
 
             string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), product.ToString(), "social");
             var dir = new DirectoryInfo(destFolder);
@@ -722,7 +723,7 @@ namespace Teeyoot.Module.Controllers
                     serializer.MaxJsonLength = int.MaxValue;
                     DesignInfo data = serializer.Deserialize<DesignInfo>(campaign.Design);
 
-                    var p = campaign.Products[0];
+                    var p = campaign.Products.Where(pr=>pr.WhenDeleted ==null).First();
 
                     var imageFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                     var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
