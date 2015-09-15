@@ -16,7 +16,11 @@ namespace Teeyoot.Messaging.ViewModels
 
         public virtual string WelcomeTemplate { get; set; }
 
-        public virtual string RelaunchTemplate { get; set; }
+        public virtual string RelaunchApprovedSellerTemplate { get; set; }
+
+        public virtual string RelaunchApprovedBuyerTemplate { get; set; }
+
+        public virtual string RelaunchAdminSellerTemplate { get; set; }
 
         public virtual string LaunchTemplate { get; set; }
 
@@ -64,7 +68,7 @@ namespace Teeyoot.Messaging.ViewModels
 
         public virtual string ExpiredSuccessfullTemplate { get; set; }
 
-        public virtual string MakeTheOrderTemplate { get; set; }
+        public virtual string MakeTheCampaignTemplate { get; set; }
 
         public virtual string NewCampaignAdminTemplate { get; set; }
 
