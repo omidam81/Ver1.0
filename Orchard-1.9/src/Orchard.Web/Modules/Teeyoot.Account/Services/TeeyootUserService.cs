@@ -17,6 +17,11 @@ namespace Teeyoot.Account.Services
         private readonly IWorkContextAccessor _wca;
         private readonly string _cultureUsed;
 
+        private WorkContext WorkContext
+        {
+            get { return _wca.GetContext(); }
+        }
+
         public TeeyootUserService(
             IMailChimpSettingsService settingsService,
             IMailSubjectService mailSubjectService,
@@ -26,7 +31,7 @@ namespace Teeyoot.Account.Services
             _mailSubjectService = mailSubjectService;
             _wca = wca;
 
-            var culture = _wca.GetContext().CurrentCulture.Trim();
+            var culture =  WorkContext.CurrentCulture.Trim();
             _cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
