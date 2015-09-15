@@ -138,7 +138,7 @@ namespace Teeyoot.Module.Common.Utils
 
         public void CreateSocialImg(string destForder, CampaignRecord campaign, Bitmap imgPath, String campaignData)
         {
-            var p = campaign.Products[0];
+            var p = campaign.Products.Where(pr=>pr.WhenDeleted == null).First();
 
             var imageFolder = System.Web.Hosting.HostingEnvironment.MapPath("/Modules/Teeyoot.Module/Content/images/");
             var rgba = ColorTranslator.FromHtml(p.ProductColorRecord.Value);
