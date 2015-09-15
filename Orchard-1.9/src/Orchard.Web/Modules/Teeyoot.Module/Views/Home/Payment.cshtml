@@ -165,7 +165,7 @@
                 <input type="hidden" id="OrderPublicId" name="OrderPublicId" value=@Model.Order.OrderPublicId>
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
-                    <div>
+                    <div class="inp-fix">
                         <input autofocus="autofocus" class="form__textfield " id="Email" name="Email" placeholder="@T("Email address")" tabindex="1" type="text">
                         <label id="Email-error" class="error valid" for="Email"></label>
                     </div>
@@ -223,7 +223,7 @@
                     </div>
 
                     <div class="payment-method-container" id="payment_method_credit_card" style="display: none;">
-                        <div id="accordion" class="accordion_min accordion">
+                        <div id="accordion" class="credit_card_accordion accordion_min accordion">
                             <div class="contLable">
 
                                 <label class="accordion__label_text" for="new-credit-card">
@@ -248,22 +248,22 @@
 
                                 <div class="accordion__content">
 
-                                    <div>
+                                    <div class="inp-fix">
                                         <input class="form__textfield  js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="@T("Credit card number")" tabindex="9" type="text">
                                         <label id="cc-number-error" class="error valid" for="cc-number"></label>
                                     </div>
                                     <div class="checkout_form__row">
                                         <div class="checkout__input--medium form-field-pair">
                                             <div class="mmYYYY">
-                                                <div class="checkout_cell">
+                                                <div class="checkout_cell inp-fix">
                                                     <input class="form__textfield form-field-pair__field" style="display: inline; border-radius: 5px 0px 0px 5px;" name="month" data-stripe="exp-month" id="cc-month" inputmode="numeric" max="12" maxlength="2" min="1" pattern="\d*" placeholder="MM" tabindex="10" type="text">
                                                     <label id="cc-month-error" class="error valid" for="cc-month"></label>
                                                 </div>
-                                                <div class="checkout_cell">
+                                                <div class="inp-year checkout_cell inp-fix">
                                                     <input class="form__textfield form-field-pair__field" style="display: inline; margin-left: -5px; margin-right: 9px; border-radius: 0px 5px 5px 0px" data-stripe="exp-year" name="year" id="cc-year" inputmode="numeric" max="2024" maxlength="4" min="2015" minlength="4" pattern="\d*" placeholder="YYYY" tabindex="11" type="text">
                                                     <label id="cc-year-error" class="error valid" for="cc-year"></label>
                                                 </div>
-                                                <div class="cvc_cell checkout_cell">
+                                                <div class="cvc_cell checkout_cell inp-fix">
                                                     <input class="form__textfield form-field-pair__field" style="display: inline; width: 29%" name="cvv" data-stripe="cvc" id="cc-cvv" inputmode="numeric" maxlength="4" pattern="\d*" placeholder="CVC" tabindex="12" type="text">
                                                     <label id="cc-cvv-error" class="error valid" for="cc-cvv"></label>
                                                 </div>
@@ -283,14 +283,14 @@
                                 </div>
                             </div>
                             @*
-                                <div class="accordion__item" style="margin-top:30px">
+            <div class="accordion__item" style="margin-top:30px">
 
-                                    <label class="accordion__label" for="paypal">
-                                        <p>
-                                            <div id="paypal-container"></div>
-                                        </p>
-                                    </label>
-                                </div>
+                <label class="accordion__label" for="paypal">
+                    <p>
+                        <div id="paypal-container"></div>
+                    </p>
+                </label>
+            </div>
                             *@
                         </div>
                     </div>
@@ -391,9 +391,15 @@
                         <div class="inp-half-right">
                             <input class="form__textfield " data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="@T("Last name")" size="30" tabindex="3" type="text">
                         </div>
-                        <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T("Address line 1")" size="50" tabindex="4" type="text">
-                        <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
-                        <div class="checkout_form__row">
+                        <div class="input-address">
+                            <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T("Address line 1")" size="50" tabindex="4" type="text">
+
+                        </div>
+                        <div class="input-address">
+                            <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
+
+                        </div>
+                         <div class="checkout_form__row">
                             <div class="inp-half">
                                 <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="6" type="text">
                                 <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
@@ -604,9 +610,9 @@
                 doSomethingWithTheNonce(obj.nonce);
             },
             onCancelled: function () {
-                document.getElementById("accordion").className = "accordion_min accordion";
+                document.getElementById("accordion").className = "credit_card_accordion accordion_min accordion";
                 document.querySelector(".contLable").style.display = "inline";
-                document.querySelector(".accordion").style.height = "275px";
+                //document.querySelector(".accordion").style.height = "230px";
             }
         });
        
