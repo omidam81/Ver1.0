@@ -307,6 +307,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                             {
                                 prod.FifthProductColorRecord = null;
                             }
+
                         }
                         catch (Exception ex)
                         {
@@ -314,8 +315,33 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                             resultError = true;
                         }
                     }
+                   
                 }
+                var s = new JavaScriptSerializer();
+                s.MaxJsonLength = int.MaxValue;
+                var d = s.Deserialize<DesignInfo>(campaign.Design);
 
+                string destFolder = Path.Combine(Server.MapPath("/Media/campaigns/"), campaign.Id.ToString(), campaign.Products.Where(pr => pr.WhenDeleted == null).First().Id.ToString(), "social");
+                var dirict = new DirectoryInfo(destFolder);
+                var imageSocialFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
+              
+                    Directory.CreateDirectory(destFolder);
+            
+                    if (campaign.BackSideByDefault == false)
+                    {
+                        var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.Where(pr => pr.WhenDeleted == null).First().ProductRecord.Id + "_front.png");
+                        var imgPath = new Bitmap(frontSocialPath);
+
+                        _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, d.Front);
+                    }
+                    else
+                    {
+                        var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.Where(pr => pr.WhenDeleted == null).First().ProductRecord.Id + "_back.png");
+                        var imgPath = new Bitmap(backSocialPath);
+
+                        _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, d.Back);
+                    }
+                
                 _campaignService.UpdateCampaign(campaign);
                 var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                 var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');

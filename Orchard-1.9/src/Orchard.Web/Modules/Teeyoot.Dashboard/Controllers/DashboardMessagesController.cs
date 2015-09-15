@@ -74,7 +74,7 @@ namespace Teeyoot.Dashboard.Controllers
             MessageContentViewModel model = new MessageContentViewModel() { };
             model.CampaignId = campaignId;
             var campaign = _campaignService.GetCampaignById(campaignId);
-            model.ProductId = campaign.Products[0].Id;
+            model.ProductId = campaign.Products.Where(pr=>pr.WhenDeleted == null).First().Id;
             model.CampaignTitle = campaign.Title;
             return View(model);
         }

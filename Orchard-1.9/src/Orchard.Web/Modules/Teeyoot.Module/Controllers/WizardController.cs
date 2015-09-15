@@ -677,14 +677,14 @@ namespace Teeyoot.Module.Controllers
                 var imageSocialFolder = Server.MapPath("/Modules/Teeyoot.Module/Content/images/");
                 if (!campaign.BackSideByDefault)
                 {
-                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.FirstOrDefault().ProductRecord.Id + "_front.png");
+                    var frontSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.Where(pr=>pr.WhenDeleted ==null).First().ProductRecord.Id + "_front.png");
                     var imgPath = new Bitmap(frontSocialPath);
 
                     _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Front);
                 }
                 else
                 {
-                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.FirstOrDefault().ProductRecord.Id + "_back.png");
+                    var backSocialPath = Path.Combine(imageSocialFolder, "product_type_" + campaign.Products.Where(pr=>pr.WhenDeleted == null).First().ProductRecord.Id + "_back.png");
                     var imgPath = new Bitmap(backSocialPath);
 
                     _imageHelper.CreateSocialImg(destFolder, campaign, imgPath, data.Back);
