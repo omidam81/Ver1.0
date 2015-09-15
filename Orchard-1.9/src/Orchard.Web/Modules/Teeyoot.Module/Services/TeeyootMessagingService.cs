@@ -85,7 +85,7 @@ namespace Teeyoot.Messaging.Services
                 MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
                 FromEmail = "noreply@teeyoot.com",
                 FromName = "Teeyoot",
-                Subject = "Now you can create a campaign!"
+                Subject = "Join us now"
             };
 
             List<string> checkoutEmails = checkoutCampaignRequests.Select(r =>r.Email).ToList();
