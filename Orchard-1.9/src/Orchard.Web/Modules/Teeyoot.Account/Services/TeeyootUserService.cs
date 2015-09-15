@@ -3,19 +3,31 @@ using System.Linq;
 using System.Web;
 using Mandrill;
 using Mandrill.Model;
+using Orchard;
 using Orchard.Security;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Account.Services
 {
     public class TeeyootUserService : ITeeyootUserService
     {
         private readonly IMailChimpSettingsService _settingsService;
+        private readonly IMailSubjectService _mailSubjectService;
+        private readonly IWorkContextAccessor _wca;
+        private readonly string _cultureUsed;
 
         public TeeyootUserService(
-            IMailChimpSettingsService settingsService)
+            IMailChimpSettingsService settingsService,
+            IMailSubjectService mailSubjectService,
+            IWorkContextAccessor wca)
         {
             _settingsService = settingsService;
+            _mailSubjectService = mailSubjectService;
+            _wca = wca;
+
+            var culture = _wca.GetContext().CurrentCulture.Trim();
+            _cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public void SendWelcomeEmail(IUser user)
@@ -29,7 +41,8 @@ namespace Teeyoot.Account.Services
                 MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
                 FromEmail = "noreply@teeyoot.com",
                 FromName = "Teeyoot",
-                Subject = "Teeyoot welcomes you onboard!"
+                Subject = _mailSubjectService
+                    .GetMailSubject("welcome-template", _cultureUsed) //"Teeyoot welcomes you onboard!"
             };
             var emails = new List<MandrillMailAddress> {new MandrillMailAddress(user.Email, "user")};
             mandrillMessage.To = emails;
