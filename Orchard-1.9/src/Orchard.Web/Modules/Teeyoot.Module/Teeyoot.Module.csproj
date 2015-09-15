@@ -874,6 +874,7 @@
     <Compile Include="Models\BringBackCampaignRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
+    <Compile Include="Models\MailTemplateSubjectRecord.cs" />
     <Compile Include="Models\MessageRecord.cs" />
     <Compile Include="Models\OrderHistoryRecord.cs" />
     <Compile Include="Models\PaymentInformationRecord.cs" />

@@ -59,6 +59,7 @@
                     </div>
 
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Welcome Template")</div>
                     <div class="fileNameInput">@Model.WelcomeTemplate</div>
@@ -75,6 +76,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "welcome-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "welcome-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Relaunch Template")</div>
                     <div class="fileNameInput">@Model.RelaunchTemplate</div>
@@ -91,6 +93,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "relaunch-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Launch Template")</div>
                     <div class="fileNameInput">@Model.LaunchTemplate</div>
@@ -107,6 +110,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "launch-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "launch-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Withdraw to Admin Template")</div>
                     <div class="fileNameInput">@Model.WithdrawTemplate</div>
@@ -123,6 +127,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "withdraw-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "withdraw-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Withdraw to Seller Template")</div>
                     <div class="fileNameInput">@Model.WithdrawSellerTemplate</div>
@@ -139,6 +144,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "withdraw-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "withdraw-seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Place Order Template")</div>
                     <div class="fileNameInput">@Model.PlaceOrderTemplate</div>
@@ -155,6 +161,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "place-order-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "place-order-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Campaign Promo Template")</div>
                     <div class="fileNameInput">@Model.CampaignPromoTemplate</div>
@@ -171,6 +178,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "campaign-promo-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "campaign-promo-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Unpaid Campaign Template")</div>
                     <div class="fileNameInput">@Model.UnpaidCampaignTemplate</div>
@@ -187,6 +195,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "unpaid-campaign-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "unpaid-campaign-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Partially Paid Campaign Template")</div>
                     <div class="fileNameInput">@Model.PartiallyPaidCampaignTemplate</div>
@@ -203,6 +212,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "partially-paid-campaign-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "partially-paid-campaign-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Paid Campaign Template")</div>
                     <div class="fileNameInput">@Model.PaidCampaignTemplate</div>
@@ -219,6 +229,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "paid-campaign-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "paid-campaign-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Campaign Not Reach Goal Buyer Template")</div>
                     <div class="fileNameInput">@Model.CampaignNotReachGoalBuyerTemplate</div>
@@ -235,6 +246,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "not-reach-goal-buyer-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "not-reach-goal-buyer-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Campaign Not Reach Goal Seller Template")</div>
                     <div class="fileNameInput">@Model.CampaignNotReachGoalSellerTemplate</div>
@@ -251,6 +263,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "not-reach-goal-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "not-reach-goal-seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Delivered Order Template")</div>
                     <div class="fileNameInput">@Model.DeliveredOrderTemplate</div>
@@ -267,6 +280,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "delivered-order-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "delivered-order-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Shipped Order Template")</div>
                     <div class="fileNameInput">@Model.ShippedOrderTemplate</div>
@@ -283,6 +297,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "shipped-order-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "shipped-order-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Cancelled Order Template")</div>
                     <div class="fileNameInput">@Model.CancelledOrderTemplate</div>
@@ -299,6 +314,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "cancelled-order-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "cancelled-order-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Order Is Printing Buyer Template")</div>
                     <div class="fileNameInput">@Model.OrderIsPrintingBuyerTemplate</div>
@@ -315,6 +331,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "order-is-printing-buyer-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "order-is-printing-buyer-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Campaign Is Printing Seller Template")</div>
                     <div class="fileNameInput">@Model.CampaignIsPrintingSellerTemplate</div>
@@ -331,7 +348,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "campaign-is-printing-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "campaign-is-printing-seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("All orders delivered Template")</div>
                     <div class="fileNameInput">@Model.AllOrderDeliveredTemplate</div>
@@ -348,7 +365,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "all-orders-delivered-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "all-orders-delivered-seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Campaign is finished Template")</div>
                     <div class="fileNameInput">@Model.CampaignIsFinishedTemplate</div>
@@ -365,7 +382,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "campaign-is-finished-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "campaign-is-finished-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Definitely go to print Seller Template")</div>
                     <div class="fileNameInput">@Model.DefinitelyGoSellerTemplate</div>
@@ -382,7 +399,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "definitely-go-to-print-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "definitely-go-to-print-seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Definitely go to print Buyer Template")</div>
                     <div class="fileNameInput">@Model.DefinitelyGoBuyerTemplate</div>
@@ -399,7 +416,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "definitely-go-to-print-buyer-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "definitely-go-to-print-buyer-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Edited campaign Template")</div>
                     <div class="fileNameInput">@Model.EditedCampaignTemplate</div>
@@ -416,7 +433,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "edited-campaign-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "edited-campaign-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Expired and met the minimum Template")</div>
                     <div class="fileNameInput">@Model.ExpiredMetMinimumTemplate</div>
@@ -433,7 +450,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "expired-campaign-met-minimum-admin-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "expired-campaign-met-minimum-admin-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Expired not successfull campaign Template")</div>
                     <div class="fileNameInput">@Model.ExpiredNotSuccessfullTemplate</div>
@@ -450,7 +467,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "expired-campaign-notSuccessfull-admin-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "expired-campaign-notSuccessfull-admin-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Expired successfull campaign Template")</div>
                     <div class="fileNameInput">@Model.ExpiredSuccessfullTemplate</div>
@@ -467,7 +484,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "expired-campaign-successfull-admin-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "expired-campaign-successfull-admin-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Make the order Template")</div>
                     <div class="fileNameInput">@Model.MakeTheOrderTemplate</div>
@@ -484,7 +501,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "make_the_order_buyer", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "make_the_order_buyer" })
                 <div class="fileRow">
                     <div class="alias">@T("New campaign admin Template")</div>
                     <div class="fileNameInput">@Model.NewCampaignAdminTemplate</div>
@@ -501,7 +518,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "new-campaign-admin-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "new-campaign-admin-template" })
                 <div class="fileRow">
                     <div class="alias">@T("New order buyer Template")</div>
                     <div class="fileNameInput">@Model.NewOrderBuyerTemplate</div>
@@ -518,7 +535,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "new-order-buyer-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "new-order-buyer-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Not reach goal, but met minimum Template")</div>
                     <div class="fileNameInput">@Model.NotReachGoalMetMinimumTemplate</div>
@@ -535,7 +552,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "not-reach-goal-met-minimum-seller-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "not-reach-goal-met-minimum-seller-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Recover orders Template")</div>
                     <div class="fileNameInput">@Model.RecoverOrdersTemplate</div>
@@ -552,7 +569,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "recover_orders_for_buyer", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "recover_orders_for_buyer" })
                 <div class="fileRow">
                     <div class="alias">@T("Rejected campaign Template")</div>
                     <div class="fileNameInput">@Model.RejectTemplate</div>
@@ -569,7 +586,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "reject-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "reject-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Shipped order 3 days after Template")</div>
                     <div class="fileNameInput">@Model.Shipped3DayAfterTemplate</div>
@@ -586,7 +603,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "shipped-order-3day-after-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "shipped-order-3day-after-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Terms and conditions Template")</div>
                     <div class="fileNameInput">@Model.TermsConditionsTemplate</div>
@@ -603,7 +620,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "terms-conditions-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "terms-conditions-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Withdraw completed Template")</div>
                     <div class="fileNameInput">@Model.WithdrawCompletedTemplate</div>

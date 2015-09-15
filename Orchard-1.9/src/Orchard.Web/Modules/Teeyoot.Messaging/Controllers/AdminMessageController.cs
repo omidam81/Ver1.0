@@ -21,6 +21,7 @@ using Teeyoot.Messaging.ViewModels;
 using Mandrill;
 using Mandrill.Model;
 using System.Collections.Specialized;
+using Orchard.Data;
 
 
 namespace Teeyoot.Module.Controllers
@@ -31,11 +32,13 @@ namespace Teeyoot.Module.Controllers
         private readonly IMailChimpSettingsService _settingsService;
         private readonly IWorkContextAccessor _workContextAccessor;
         private string cultureUsed = string.Empty;
+        private readonly IRepository<MailTemplateSubjectRecord> _mailTemplateSubjectRecordRepository; 
 
-        public AdminMessageController(IMailChimpSettingsService settingsService, IOrchardServices services, IWorkContextAccessor workContextAccessor)
+        public AdminMessageController(IMailChimpSettingsService settingsService, IOrchardServices services, IRepository<MailTemplateSubjectRecord> mailTemplateSubjectRecordRepository, IWorkContextAccessor workContextAccessor)
         {
             _settingsService = settingsService;
             Services = services;
+            _mailTemplateSubjectRecordRepository = mailTemplateSubjectRecordRepository;
             _workContextAccessor = workContextAccessor;
             var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
@@ -220,6 +223,43 @@ namespace Teeyoot.Module.Controllers
             Response.WriteFile(Dfile.FullName);
             Response.End();
         }
-        
+
+        [HttpGet]
+        public ActionResult EditEmailTemplateSubject(string templateName)
+        {
+            var subject = _mailTemplateSubjectRecordRepository.Table
+                .FirstOrDefault(s => s.TemplateName == templateName && s.Culture == cultureUsed);
+
+            var viewModel = new EditEmailTemplateSubjectViewModel
+            {
+                TemplateName = templateName,
+                Subject = subject == null ? "" : subject.Subject
+            };
+
+            return PartialView("EditEmailTemplateSubject", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditEmailTemplateSubject(EditEmailTemplateSubjectViewModel viewModel)
+        {
+            var subject = _mailTemplateSubjectRecordRepository.Table
+                .FirstOrDefault(s => s.TemplateName == viewModel.TemplateName && s.Culture == cultureUsed);
+            var subjectToCreateOrUpdate = subject ?? new MailTemplateSubjectRecord();
+
+            subjectToCreateOrUpdate.TemplateName = viewModel.TemplateName;
+            subjectToCreateOrUpdate.Culture = cultureUsed;
+            subjectToCreateOrUpdate.Subject = viewModel.Subject;
+
+            if (subject == null)
+            {
+                _mailTemplateSubjectRecordRepository.Create(subjectToCreateOrUpdate);
+            }
+            else
+            {
+                _mailTemplateSubjectRecordRepository.Update(subjectToCreateOrUpdate);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

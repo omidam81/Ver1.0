@@ -1,0 +1,12 @@
+﻿@model Teeyoot.Messaging.ViewModels.EditEmailTemplateSubjectViewModel
+
+@using (Html.BeginForm("EditEmailTemplateSubject", "AdminMessage"))
+{
+    @Html.AntiForgeryTokenOrchard()
+    @Html.HiddenFor(model => model.TemplateName)
+    @Html.LabelFor(model => model.Subject, @T("Subject:"))
+    @Html.TextBoxFor(model => model.Subject, new {@class = "text large"})
+    <fieldset>
+        <button type="submit" class="primaryAction">@T("Edit")</button>
+    </fieldset>
+}
