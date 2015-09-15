@@ -29,7 +29,7 @@ namespace Teeyoot.Account.Services
                 MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
                 FromEmail = "noreply@teeyoot.com",
                 FromName = "Teeyoot",
-                Subject = "Welcome to teeyoot!"
+                Subject = "Teeyoot welcomes you onboard!"
             };
             var emails = new List<MandrillMailAddress> {new MandrillMailAddress(user.Email, "user")};
             mandrillMessage.To = emails;

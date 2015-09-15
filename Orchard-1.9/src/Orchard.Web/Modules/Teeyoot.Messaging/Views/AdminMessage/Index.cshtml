@@ -76,19 +76,51 @@
                     </div>
                 </div>
                 <div class="fileRow">
-                    <div class="alias">@T("Relaunch Template")</div>
-                    <div class="fileNameInput">@Model.RelaunchTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "relaunch-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    <div class="alias">@T("Relaunch approved Seller Template")</div>
+                    <div class="fileNameInput">@Model.RelaunchApprovedSellerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "relaunch-" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="@T("Upload File")">
                     }
                     <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "relaunch-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "relaunch-", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                     <div>
-                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-template" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
+                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-" ,  returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
+                    </div>
+                </div>
+                <div class="fileRow">
+                    <div class="alias">@T("Relaunch approved Buyer Template")</div>
+                    <div class="fileNameInput">@Model.RelaunchApprovedBuyerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "relaunch-buyer-" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="@T("Upload File")">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "relaunch-buyer-", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                    <div>
+                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-buyer-", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
+                    </div>
+                </div>
+                <div class="fileRow">
+                    <div class="alias">@T("Relaunch Admin and Seller Template")</div>
+                    <div class="fileNameInput">@Model.RelaunchAdminSellerTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "relaunch-to-admin-seller-" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input style="margin-left:5px" type="file" name="file" id="name" />
+                        <input class="button primaryAction" type="submit" value="@T("Upload File")">
+                    }
+                    <div>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "relaunch-to-admin-seller-", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                    </div>
+                    <div>
+                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "relaunch-to-admin-seller-", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
                 <div class="fileRow">
@@ -469,19 +501,19 @@
                 </div>
 
                 <div class="fileRow">
-                    <div class="alias">@T("Make the order Template")</div>
-                    <div class="fileNameInput">@Model.MakeTheOrderTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "make_the_order_buyer" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    <div class="alias">@T("Make the campaign Template")</div>
+                    <div class="fileNameInput">@Model.MakeTheCampaignTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "make_the_campaign_seller-" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="@T("Upload File")">
                     }
                     <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "make_the_order_buyer", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "make_the_campaign_seller-", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                     <div>
-                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "make_the_order_buyer", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
+                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "make_the_campaign_seller-", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
 
