@@ -288,7 +288,8 @@ namespace Teeyoot.Module.Controllers
                 Directory.CreateDirectory(destFolder);
             }
             var request = System.Web.HttpContext.Current.Request;
-            System.IO.File.AppendAllText(destFolder + "/mol.txt", DateTime.Now + "  -------------  " + "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n");
+            System.IO.File.AppendAllText(destFolder + "/mol.txt", DateTime.Now + "  -------------  " + "Return Url status:" + status + "; amount: " + amount + "; orderid: " + orderid + "; error_desc: " + error_desc + "          " + request.Url + "\r\n" + "tranId: " + tranID +
+                                         " domain: " + domain + " error_code: " + error_code + "; skey: " + skey + "; channel: " + channel + "\r\n");
 
             if (orderid == null)
                 return View();
