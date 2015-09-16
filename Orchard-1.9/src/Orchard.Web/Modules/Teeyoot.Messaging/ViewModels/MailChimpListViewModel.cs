@@ -46,7 +46,7 @@ namespace Teeyoot.Messaging.ViewModels
 
         public virtual string UnpaidCampaignTemplate { get; set; }
 
-        public virtual string PartiallyPaidCampaignTemplate { get; set; }
+        //public virtual string PartiallyPaidCampaignTemplate { get; set; }
 
         public virtual string CampaignPromoTemplate { get; set; }
 
@@ -54,7 +54,7 @@ namespace Teeyoot.Messaging.ViewModels
 
         public virtual string AllOrderDeliveredTemplate { get; set; }
 
-        public virtual string CampaignIsFinishedTemplate { get; set; }
+        //public virtual string CampaignIsFinishedTemplate { get; set; }
 
         public virtual string DefinitelyGoSellerTemplate { get; set; }
 
@@ -72,7 +72,7 @@ namespace Teeyoot.Messaging.ViewModels
 
         public virtual string NewCampaignAdminTemplate { get; set; }
 
-        public virtual string NewOrderBuyerTemplate { get; set; }
+        //public virtual string NewOrderBuyerTemplate { get; set; }
 
         public virtual string NotReachGoalMetMinimumTemplate { get; set; }
 

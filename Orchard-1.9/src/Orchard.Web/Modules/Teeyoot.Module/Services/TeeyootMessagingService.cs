@@ -1192,6 +1192,10 @@ namespace Teeyoot.Messaging.Services
                 totalPrice = record.TotalPrice + record.Delivery;
                 message.AddRcptMergeVars(record.Email, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
+            if (record.Delivery != null)
+            {
+                message.AddRcptMergeVars(record.Email, "DELIVERYPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
+            }
         }
 
         private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)
@@ -1247,6 +1251,10 @@ namespace Teeyoot.Messaging.Services
             {
                 totalPrice = record.TotalPrice + record.Delivery;
                 message.AddRcptMergeVars(adminEmail, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
+            }
+            if (record.Delivery != null)
+            {
+                message.AddRcptMergeVars(adminEmail, "DELIVERYPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
 
         }
