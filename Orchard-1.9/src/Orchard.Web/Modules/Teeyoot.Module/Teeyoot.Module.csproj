@@ -874,6 +874,7 @@
     <Compile Include="Models\BringBackCampaignRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
+    <Compile Include="Models\MailTemplateSubjectRecord.cs" />
     <Compile Include="Models\MessageRecord.cs" />
     <Compile Include="Models\OrderHistoryRecord.cs" />
     <Compile Include="Models\PaymentInformationRecord.cs" />
@@ -891,10 +892,12 @@
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Services\Interfaces\IMailChimpSettingsService.cs" />
+    <Compile Include="Services\Interfaces\IMailSubjectService.cs" />
     <Compile Include="Services\Interfaces\IPaymentSettingsService.cs" />
     <Compile Include="Services\Interfaces\IDeliverySettingsService.cs" />
     <Compile Include="Services\Interfaces\ITeeyootMessagingService.cs" />
     <Compile Include="Services\MailChimpSettingsService.cs" />
+    <Compile Include="Services\MailSubjectService.cs" />
     <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Interfaces\IPaymentInformationService.cs" />
     <Compile Include="Services\Interfaces\IMessageService .cs" />

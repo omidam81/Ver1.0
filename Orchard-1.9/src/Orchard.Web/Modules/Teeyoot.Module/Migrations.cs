@@ -792,7 +792,15 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(OrderRecord).Name,
                 table => table.AddColumn<double>("Delivery"));
 
-            return 94;
+            SchemaBuilder.CreateTable(typeof (MailTemplateSubjectRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("TemplateName")
+                    .Column<string>("Culture")
+                    .Column<string>("Subject")
+                );
+
+            return 95;
         }
 
         public int UpdateFrom2()
@@ -1821,6 +1829,19 @@ namespace Teeyoot.Module
                 table => table.AddColumn<double>("Delivery"));
 
             return 94;
+        }
+
+        public int UpdateFrom94()
+        {
+            SchemaBuilder.CreateTable(typeof (MailTemplateSubjectRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("TemplateName")
+                    .Column<string>("Culture")
+                    .Column<string>("Subject")
+                );
+
+            return 95;
         }
     }
 }

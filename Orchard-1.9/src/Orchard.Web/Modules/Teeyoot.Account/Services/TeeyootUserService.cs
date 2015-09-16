@@ -3,19 +3,38 @@ using System.Linq;
 using System.Web;
 using Mandrill;
 using Mandrill.Model;
+using Orchard;
+using Orchard.Data;
 using Orchard.Security;
+using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Account.Services
 {
     public class TeeyootUserService : ITeeyootUserService
     {
         private readonly IMailChimpSettingsService _settingsService;
+        private readonly IMailSubjectService _mailSubjectService;
+        private readonly IWorkContextAccessor _wca;
+
+        private string CultureUsed
+        {
+            get
+            {
+                var culture = _wca.GetContext().CurrentCulture.Trim();
+                return culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            }
+        }
 
         public TeeyootUserService(
-            IMailChimpSettingsService settingsService)
+            IRepository<MailTemplateSubjectRecord> subjectRepository,
+            IMailChimpSettingsService settingsService,
+            IWorkContextAccessor wca)
         {
+            _mailSubjectService = new MailSubjectService(subjectRepository);
             _settingsService = settingsService;
+            _wca = wca;
         }
 
         public void SendWelcomeEmail(IUser user)
@@ -29,16 +48,19 @@ namespace Teeyoot.Account.Services
                 MergeLanguage = MandrillMessageMergeLanguage.Handlebars,
                 FromEmail = "noreply@teeyoot.com",
                 FromName = "Teeyoot",
-                Subject = "Teeyoot welcomes you onboard!"
+                Subject = _mailSubjectService
+                    .GetMailSubject("welcome-template", CultureUsed) //"Teeyoot welcomes you onboard!"
             };
             var emails = new List<MandrillMailAddress> {new MandrillMailAddress(user.Email, "user")};
             mandrillMessage.To = emails;
             var request = HttpContext.Current.Request;
-            mandrillMessage.AddRcptMergeVars(user.Email, "Url", request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/");
+            mandrillMessage.AddRcptMergeVars(user.Email, "Url",
+                request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/");
             var baseUrl = "";
             baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
-            mandrillMessage.AddRcptMergeVars(user.Email, "VideoPreviewUrl", baseUrl + "/Media/Default/images/video_thumbnail_521x315.jpg/");
-            var text = System.IO.File.ReadAllText(pathToTemplates + "welcome-template.html");
+            mandrillMessage.AddRcptMergeVars(user.Email, "VideoPreviewUrl",
+                baseUrl + "/Media/Default/images/video_thumbnail_521x315.jpg/");
+            var text = System.IO.File.ReadAllText(pathToTemplates + "welcome-template-" + CultureUsed + ".html");
             mandrillMessage.Html = text;
             var res = SendTmplMessage(api, mandrillMessage);
         }

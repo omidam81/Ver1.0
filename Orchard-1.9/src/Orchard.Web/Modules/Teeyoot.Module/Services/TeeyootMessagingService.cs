@@ -16,11 +16,13 @@ using System.Linq;
 using System.Web;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Messaging.Services
 {
     public class TeeyootMessagingService : ITeeyootMessagingService
     {
+        private readonly IMailSubjectService _mailSubjectService;
         private readonly IRepository<MailChimpSettingsPartRecord> _mailChimpSettingsRepository;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IContentManager _contentManager;
@@ -40,7 +42,16 @@ namespace Teeyoot.Messaging.Services
         private const string ADMIN_EMAIL = "noreply@teeyoot.com";
         private const string MessageTemplatesPath = "/Modules/Teeyoot.Module/Content/message-templates/";
 
-        public TeeyootMessagingService(IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
+        private string CultureUsed 
+        {
+            get
+            {
+                var culture = _wca.GetContext().CurrentCulture.Trim();
+                return culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            }
+        }
+
+        public TeeyootMessagingService(IRepository<MailTemplateSubjectRecord> subjectRepository, IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
             IMailChimpSettingsService settingsService,
             IMessageService messageService,
              INotifier notifier,
@@ -54,6 +65,7 @@ namespace Teeyoot.Messaging.Services
             IRepository<CurrencyRecord> currencyRepository,
             IRepository<BringBackCampaignRecord> backCampaignRepository)
         {
+            _mailSubjectService = new MailSubjectService(subjectRepository);
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
             _messageService = messageService;
@@ -117,19 +129,25 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromName = "Teeyoot";
             if (isSuccesfull)
             {
-                mandrillMessage.Subject = "We are printing one of your designs!";
+                mandrillMessage.Subject = _mailSubjectService
+                    .GetMailSubject("campaign-is-printing-seller-template",CultureUsed);
+                //mandrillMessage.Subject = "We are printing one of your designs!";
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "campaign-is-printing-seller-template-" + campaign.CampaignCulture + ".html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
-                    mandrillMessage.Subject = "Your campaign didn't reach the minimum";
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("not-reach-goal-seller-template", CultureUsed);
+                    //mandrillMessage.Subject = "Your campaign didn't reach the minimum";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-seller-template-" + campaign.CampaignCulture + ".html");
                 }
                 else
                 {
-                    mandrillMessage.Subject = "Your campaign has ended, you did just fine!";
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("not-reach-goal-met-minimum-seller-template", CultureUsed);
+                    //mandrillMessage.Subject = "Your campaign has ended, you did just fine!";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-met-minimum-seller-template-" + campaign.CampaignCulture + ".html");
                 }
             }
@@ -156,19 +174,25 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromName = "Teeyoot";
             if (isSuccesfull)
             {
-                mandrillMessage.Subject = "A campaign just ended - target";
+                mandrillMessage.Subject = _mailSubjectService
+                    .GetMailSubject("expired-campaign-successfull-admin-template", CultureUsed);
+                //mandrillMessage.Subject = "A campaign just ended - target";
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-successfull-admin-template-" + campaign.CampaignCulture + ".html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
-                    mandrillMessage.Subject = "A campaign just ended - no success";
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("expired-campaign-notSuccessfull-admin-template", CultureUsed);
+                    //mandrillMessage.Subject = "A campaign just ended - no success";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-notSuccessfull-admin-template-" + campaign.CampaignCulture + ".html");
                 }
                 else
                 {
-                    mandrillMessage.Subject = "A campaign just ended - minimum";
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("expired-campaign-met-minimum-admin-template", CultureUsed);
+                    //mandrillMessage.Subject = "A campaign just ended - minimum";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "expired-campaign-met-minimum-admin-template-" + campaign.CampaignCulture + ".html");
                 }
             }
@@ -205,19 +229,25 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.FromName = "Teeyoot";
             if (isSuccesfull)
             {
-                mandrillMessage.Subject = "Yay! we are printing them";
+                mandrillMessage.Subject = _mailSubjectService
+                    .GetMailSubject("order-is-printing-buyer-template", CultureUsed);
+                //mandrillMessage.Subject = "Yay! we are printing them";
                 mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template-" + campaign.CampaignCulture + ".html");
             }
             else
             {
                 if (campaign.ProductCountSold < campaign.ProductMinimumGoal)
                 {
-                    mandrillMessage.Subject = "Oops! We're not printing this";
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("not-reach-goal-buyer-template", CultureUsed);
+                    //mandrillMessage.Subject = "Oops! We're not printing this";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "not-reach-goal-buyer-template-" + campaign.CampaignCulture + ".html");
                 }
                 else
                 {
-                    mandrillMessage.Subject = "Yay! we are printing them";
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("order-is-printing-buyer-template", CultureUsed);
+                    //mandrillMessage.Subject = "Yay! we are printing them";
                     mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template-" + campaign.CampaignCulture + ".html");
                 }
             }
@@ -258,7 +288,10 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "We're definitely printing this!";
+
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("definitely-go-to-print-buyer-template", CultureUsed);
+            //mandrillMessage.Subject = "We're definitely printing this!";
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-buyer-template-" + campaign.CampaignCulture + ".html");
             List<LinkOrderCampaignProductRecord> ordersList = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive).ToList();
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
@@ -297,7 +330,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Your campaign has hit the minimum!";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("definitely-go-to-print-seller-template", CultureUsed);
+            //mandrillMessage.Subject = "Your campaign has hit the minimum!";
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "definitely-go-to-print-seller-template-" + campaign.CampaignCulture + ".html");
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
@@ -318,7 +353,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "All orders from your campaign was delivered!";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("all-orders-delivered-seller-template", CultureUsed);
+            //mandrillMessage.Subject = "All orders from your campaign was delivered!";
             mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "all-orders-delivered-seller-template-" + campaign.CampaignCulture + ".html");
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
@@ -337,7 +374,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Yay! your new campaign has been approved";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("launch-template", CultureUsed);
+            //mandrillMessage.Subject = "Yay! your new campaign has been approved";
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")
@@ -357,7 +396,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("relaunch-", CultureUsed);
+            //mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
 
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
@@ -380,7 +421,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("relaunch-buyer-", CultureUsed);
+            //mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
            
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             List<string> emailsList = new List<string>();
@@ -419,7 +462,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("relaunch-to-admin-seller-", CultureUsed);
+            //mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
 
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
@@ -458,7 +503,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("relaunch-to-admin-seller-", CultureUsed);
+            //mandrillMessage.Subject = "Re-enable Campaign on Teeyoot";
 
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
@@ -492,7 +539,9 @@ namespace Teeyoot.Messaging.Services
                 mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
                 mandrillMessage.FromEmail = ADMIN_EMAIL;
                 mandrillMessage.FromName = "Teeyoot";
-                mandrillMessage.Subject = "Promote your campaign";
+                mandrillMessage.Subject = _mailSubjectService
+                    .GetMailSubject("terms-conditions-template", CultureUsed);
+                //mandrillMessage.Subject = "Promote your campaign";
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
                 mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")};
@@ -524,7 +573,9 @@ namespace Teeyoot.Messaging.Services
                 mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
                 mandrillMessage.FromEmail = ADMIN_EMAIL;
                 mandrillMessage.FromName = "Teeyoot";
-                mandrillMessage.Subject = "Campaing is finished!";
+                mandrillMessage.Subject = _mailSubjectService
+                    .GetMailSubject("campaign-is-finished-template", CultureUsed);
+                //mandrillMessage.Subject = "Campaing is finished!";
                 var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
                 mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")};
@@ -557,7 +608,9 @@ namespace Teeyoot.Messaging.Services
                 mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
                 mandrillMessage.FromEmail = ADMIN_EMAIL;
                 mandrillMessage.FromName = "Teeyoot";
-                mandrillMessage.Subject = "Your order should be around the corner";
+                mandrillMessage.Subject = _mailSubjectService
+                    .GetMailSubject("shipped-order-3day-after-template", CultureUsed);
+                //mandrillMessage.Subject = "Your order should be around the corner";
                 List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
                 emails.Add(new MandrillMailAddress(order.Email, "Buyer"));
                 mandrillMessage.To = emails;
@@ -579,7 +632,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Sorry, we couldn't approve your campaign";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("reject-template", CultureUsed);
+            //mandrillMessage.Subject = "Sorry, we couldn't approve your campaign";
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(seller.Email, "Seller")
@@ -598,7 +653,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Yay! new campaign";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("new-campaign-admin-template", CultureUsed);
+            //mandrillMessage.Subject = "Yay! new campaign";
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
@@ -625,7 +682,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "We have paid you. Definitely!";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("withdraw-completed-template", CultureUsed);
+            //mandrillMessage.Subject = "We have paid you. Definitely!";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
             FillPayoutRequestMergeVars(mandrillMessage, seller.Email, seller.Id, payoutInf.AccountNumber.ToString(), payoutInf.BankName.ToString(), payoutInf.AccountHolderName.ToString(), payoutInf.ContactNumber.ToString(), "", payout.Amount, currency);
@@ -654,14 +713,18 @@ namespace Teeyoot.Messaging.Services
             switch (campaignStatus)
             {
                 case "Unpaid":
-                    {
-                        mandrillMessage.Subject = "We haven't paid you yet!";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("unpaid-campaign-template", CultureUsed);
+                        //mandrillMessage.Subject = "We haven't paid you yet!";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "unpaid-campaign-template-" + campaign.CampaignCulture + ".html");
                         break;
                     };
                 case "Paid":
-                    {
-                        mandrillMessage.Subject = "We have paid you!";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("paid-campaign-template", CultureUsed);
+                        //mandrillMessage.Subject = "We have paid you!";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "paid-campaign-template-" + campaign.CampaignCulture + ".html");
                         break;
                     };
@@ -752,7 +815,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Thanks for your purchase!";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("new-order-buyer-template", CultureUsed);
+            //mandrillMessage.Subject = "Thanks for your purchase!";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
                 emails.Add(new MandrillMailAddress(order.Email, "Buyer"));
                 FillUserMergeVars(mandrillMessage, order, order.Email);
@@ -773,7 +838,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "We edited your campaign";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("edited-campaign-template", CultureUsed);
+            //mandrillMessage.Subject = "We edited your campaign";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
             emails.Add(new MandrillMailAddress(seller.Email, "Seller"));
@@ -809,7 +876,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Someone wants to withdraw";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("withdraw-template", CultureUsed);
+            //mandrillMessage.Subject = "Someone wants to withdraw";
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             foreach (var user in users)
             {
@@ -840,7 +909,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "We have received your payout request";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("withdraw-seller-template", CultureUsed);
+            //mandrillMessage.Subject = "We have received your payout request";
             var user = _contentManager.Get<UserPart>(userId, VersionOptions.Latest);
             List<MandrillMailAddress> emails = new List<MandrillMailAddress>();
             emails.Add(new MandrillMailAddress(user.Email, "Seller"));
@@ -863,8 +934,10 @@ namespace Teeyoot.Messaging.Services
             switch (orderStatus)
             {
                 case "Approved":
-                    {
-                        mandrillMessage.Subject = "Thanks for your purchase!";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("place-order-template", CultureUsed);
+                        //mandrillMessage.Subject = "Thanks for your purchase!";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "place-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
@@ -876,8 +949,10 @@ namespace Teeyoot.Messaging.Services
                         break;
                     };
                 case "Printing":
-                    {
-                        mandrillMessage.Subject = "Yay! we are printing them";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("order-is-printing-buyer-template", CultureUsed);
+                        //mandrillMessage.Subject = "Yay! we are printing them";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "order-is-printing-buyer-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
@@ -889,8 +964,10 @@ namespace Teeyoot.Messaging.Services
                         break;
                     };
                 case "Shipped":
-                    {
-                        mandrillMessage.Subject = "Your order is on its way!";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("shipped-order-template", CultureUsed);
+                        //mandrillMessage.Subject = "Your order is on its way!";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "shipped-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
@@ -902,8 +979,10 @@ namespace Teeyoot.Messaging.Services
                         break;
                     };
                 case "Delivered":
-                    {
-                        mandrillMessage.Subject = "We have delivered your order!";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("delivered-order-template", CultureUsed);
+                        //mandrillMessage.Subject = "We have delivered your order!";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "delivered-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
@@ -915,8 +994,10 @@ namespace Teeyoot.Messaging.Services
                         break;
                     };
                 case "Cancelled":
-                    {
-                        mandrillMessage.Subject = "Order was cancelled";
+                {
+                    mandrillMessage.Subject = _mailSubjectService
+                        .GetMailSubject("cancelled-order-template", CultureUsed);
+                        //mandrillMessage.Subject = "Order was cancelled";
                         mandrillMessage.Html = System.IO.File.ReadAllText(pathToTemplates + "cancelled-order-template-" + order.CurrencyRecord.CurrencyCulture + ".html");
                         FillUserMergeVars(mandrillMessage, order);
                         FillCampaignMergeVars(mandrillMessage, order.Products[0].CampaignProductRecord.CampaignRecord_Id, order.Email, pathToMedia, pathToTemplates);
@@ -941,7 +1022,9 @@ namespace Teeyoot.Messaging.Services
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
             mandrillMessage.FromName = "Teeyoot";
-            mandrillMessage.Subject = "Your current orders";           
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("recover_orders_for_buyer", CultureUsed);
+            //mandrillMessage.Subject = "Your current orders";           
             mandrillMessage.To = new List<MandrillMailAddress>(){
                 new MandrillMailAddress(email, "Buyer")
             };
@@ -1114,6 +1197,10 @@ namespace Teeyoot.Messaging.Services
                 totalPrice = record.TotalPrice + record.Delivery;
                 message.AddRcptMergeVars(record.Email, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
+            if (record.Delivery != null)
+            {
+                message.AddRcptMergeVars(record.Email, "DELIVERYPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
+            }
         }
 
         private void FillPayoutRequestMergeVars(MandrillMessage message, string adminEmail, int userId, string accountNumber, string bankName, string accHoldName, string contNum, string messAdmin, double amount, string currencyCode)
@@ -1169,6 +1256,10 @@ namespace Teeyoot.Messaging.Services
             {
                 totalPrice = record.TotalPrice + record.Delivery;
                 message.AddRcptMergeVars(adminEmail, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
+            }
+            if (record.Delivery != null)
+            {
+                message.AddRcptMergeVars(adminEmail, "DELIVERYPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
 
         }

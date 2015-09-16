@@ -21,6 +21,7 @@ using Teeyoot.Messaging.ViewModels;
 using Mandrill;
 using Mandrill.Model;
 using System.Collections.Specialized;
+using Orchard.Data;
 
 
 namespace Teeyoot.Module.Controllers
@@ -31,11 +32,13 @@ namespace Teeyoot.Module.Controllers
         private readonly IMailChimpSettingsService _settingsService;
         private readonly IWorkContextAccessor _workContextAccessor;
         private string cultureUsed = string.Empty;
+        private readonly IRepository<MailTemplateSubjectRecord> _mailTemplateSubjectRecordRepository; 
 
-        public AdminMessageController(IMailChimpSettingsService settingsService, IOrchardServices services, IWorkContextAccessor workContextAccessor)
+        public AdminMessageController(IMailChimpSettingsService settingsService, IOrchardServices services, IRepository<MailTemplateSubjectRecord> mailTemplateSubjectRecordRepository, IWorkContextAccessor workContextAccessor)
         {
             _settingsService = settingsService;
             Services = services;
+            _mailTemplateSubjectRecordRepository = mailTemplateSubjectRecordRepository;
             _workContextAccessor = workContextAccessor;
             var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
@@ -70,10 +73,10 @@ namespace Teeyoot.Module.Controllers
                 UnpaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "unpaid-campaign-template-" + cultureUsed + ".html") ? "unpaid-campaign-template-" + cultureUsed + ".html" : "No file!",
                 CampaignNotReachGoalBuyerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-seller-template-" + cultureUsed + ".html") ? "not-reach-goal-seller-template-" + cultureUsed + ".html" : "No file!",
                 CampaignNotReachGoalSellerTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-buyer-template-" + cultureUsed + ".html") ? "not-reach-goal-buyer-template-" + cultureUsed + ".html" : "No file!",
-                PartiallyPaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "partially-paid-campaign-template-" + cultureUsed + ".html") ? "partially-paid-campaign-template-" + cultureUsed + ".html" : "No file!",
+                //PartiallyPaidCampaignTemplate = System.IO.File.Exists(pathToTemplates + "partially-paid-campaign-template-" + cultureUsed + ".html") ? "partially-paid-campaign-template-" + cultureUsed + ".html" : "No file!",
                 CampaignPromoTemplate = System.IO.File.Exists(pathToTemplates + "campaign-promo-template-" + cultureUsed + ".html") ? "campaign-promo-template-" + cultureUsed + ".html" : "No file!",
                 AllOrderDeliveredTemplate = System.IO.File.Exists(pathToTemplates + "all-orders-delivered-seller-template-" + cultureUsed + ".html") ? "all-orders-delivered-seller-template-" + cultureUsed + ".html" : "No file!",
-                CampaignIsFinishedTemplate = System.IO.File.Exists(pathToTemplates + "campaign-is-finished-template-" + cultureUsed + ".html") ? "campaign-is-finished-template-" + cultureUsed + ".html" : "No file!",
+                //CampaignIsFinishedTemplate = System.IO.File.Exists(pathToTemplates + "campaign-is-finished-template-" + cultureUsed + ".html") ? "campaign-is-finished-template-" + cultureUsed + ".html" : "No file!",
                 DefinitelyGoSellerTemplate = System.IO.File.Exists(pathToTemplates + "definitely-go-to-print-buyer-template-" + cultureUsed + ".html") ? "definitely-go-to-print-buyer-template-" + cultureUsed + ".html" : "No file!",
                 DefinitelyGoBuyerTemplate = System.IO.File.Exists(pathToTemplates + "definitely-go-to-print-seller-template-" + cultureUsed + ".html") ? "definitely-go-to-print-seller-template-" + cultureUsed + ".html" : "No file!",
                 EditedCampaignTemplate = System.IO.File.Exists(pathToTemplates + "edited-campaign-template-" + cultureUsed + ".html") ? "edited-campaign-template-" + cultureUsed + ".html" : "No file!",
@@ -82,7 +85,7 @@ namespace Teeyoot.Module.Controllers
                 ExpiredSuccessfullTemplate = System.IO.File.Exists(pathToTemplates + "expired-campaign-successfull-admin-template-" + cultureUsed + ".html") ? "expired-campaign-successfull-admin-template-" + cultureUsed + ".html" : "No file!",
                 MakeTheCampaignTemplate = System.IO.File.Exists(pathToTemplates + "make_the_campaign_seller-" + cultureUsed + ".html") ? "make_the_campaign_seller-" + cultureUsed + ".html" : "No file!",
                 NewCampaignAdminTemplate = System.IO.File.Exists(pathToTemplates + "new-campaign-admin-template-" + cultureUsed + ".html") ? "new-campaign-admin-template-" + cultureUsed + ".html" : "No file!",
-                NewOrderBuyerTemplate = System.IO.File.Exists(pathToTemplates + "new-order-buyer-template-" + cultureUsed + ".html") ? "new-order-buyer-template-" + cultureUsed + ".html" : "No file!",
+                //NewOrderBuyerTemplate = System.IO.File.Exists(pathToTemplates + "new-order-buyer-template-" + cultureUsed + ".html") ? "new-order-buyer-template-" + cultureUsed + ".html" : "No file!",
                 NotReachGoalMetMinimumTemplate = System.IO.File.Exists(pathToTemplates + "not-reach-goal-met-minimum-seller-template-" + cultureUsed + ".html") ? "not-reach-goal-met-minimum-seller-template-" + cultureUsed + ".html" : "No file!",
                 RecoverOrdersTemplate = System.IO.File.Exists(pathToTemplates + "recover_orders_for_buyer-" + cultureUsed + ".html") ? "recover_orders_for_buyer-" + cultureUsed + ".html" : "No file!",
                 RejectTemplate = System.IO.File.Exists(pathToTemplates + "reject-template-" + cultureUsed + ".html") ? "reject-template-" + cultureUsed + ".html" : "No file!",
@@ -222,6 +225,43 @@ namespace Teeyoot.Module.Controllers
             Response.WriteFile(Dfile.FullName);
             Response.End();
         }
-        
+
+        [HttpGet]
+        public ActionResult EditEmailTemplateSubject(string templateName)
+        {
+            var subject = _mailTemplateSubjectRecordRepository.Table
+                .FirstOrDefault(s => s.TemplateName == templateName && s.Culture == cultureUsed);
+
+            var viewModel = new EditEmailTemplateSubjectViewModel
+            {
+                TemplateName = templateName,
+                Subject = subject == null ? "" : subject.Subject
+            };
+
+            return PartialView("EditEmailTemplateSubject", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditEmailTemplateSubject(EditEmailTemplateSubjectViewModel viewModel)
+        {
+            var subject = _mailTemplateSubjectRecordRepository.Table
+                .FirstOrDefault(s => s.TemplateName == viewModel.TemplateName && s.Culture == cultureUsed);
+            var subjectToCreateOrUpdate = subject ?? new MailTemplateSubjectRecord();
+
+            subjectToCreateOrUpdate.TemplateName = viewModel.TemplateName;
+            subjectToCreateOrUpdate.Culture = cultureUsed;
+            subjectToCreateOrUpdate.Subject = viewModel.Subject;
+
+            if (subject == null)
+            {
+                _mailTemplateSubjectRecordRepository.Create(subjectToCreateOrUpdate);
+            }
+            else
+            {
+                _mailTemplateSubjectRecordRepository.Update(subjectToCreateOrUpdate);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
