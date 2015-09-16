@@ -684,3 +684,12 @@
 
 </div>
 
+@using (Script.Foot())
+{
+    <script>
+        $(document).ready(function() {
+            $('.message-Error:not(:first)').remove();
+            $('.message-Information:not(:first)').remove();
+        });
+    </script>
+}
