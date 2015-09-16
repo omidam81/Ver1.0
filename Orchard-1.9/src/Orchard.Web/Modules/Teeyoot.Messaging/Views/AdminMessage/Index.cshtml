@@ -536,7 +536,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "make_the_campaign_seller-", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-                @Html.Action("EditEmailTemplateSubject", new { templateName = "make_the_order_buyer" })
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "make_the_campaign_seller-" })
                 <div class="fileRow">
                     <div class="alias">@T("New campaign admin Template")</div>
                     <div class="fileNameInput">@Model.NewCampaignAdminTemplate</div>
