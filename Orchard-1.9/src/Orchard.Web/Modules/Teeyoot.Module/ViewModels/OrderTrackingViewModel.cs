@@ -28,5 +28,7 @@ namespace Teeyoot.Module.ViewModels
         public string[] ShippingTo { get; set; }
 
         public CultureInfo CultureInfo { get; set; }
+
+        public string TotalPrice { get; set; }
     }
 }
