@@ -331,7 +331,7 @@
                             </p>
                         }
                         <p>
-                            <strong>@T("Total price: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.TotalPrice</strong>
+                            <strong>@T("Total price: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.TotalPrice.Replace(',','.')</strong>
                         </p>
                         <br />
                         <h4 class="h4">@T("Delivery Address")</h4>

@@ -926,7 +926,7 @@ namespace Teeyoot.Messaging.Services
         {
             var order = _orderRepository.Get(orderId);
             var record = _settingsService.GetSettingByCulture(order.CurrencyRecord.CurrencyCulture).List().First();
-            var api = new MandrillApi("ZOgVPBkL9NdJGsFBwTpEcQ");
+            var api = new MandrillApi(record.ApiKey);
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
