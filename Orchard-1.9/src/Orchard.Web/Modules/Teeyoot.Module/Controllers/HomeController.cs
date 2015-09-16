@@ -460,8 +460,8 @@ namespace Teeyoot.Module.Controllers
                         promotion.Redeemed = promotion.Redeemed + 1;
                     }
                   
-                    _teeyootMessagingService.SendNewOrderMessageToAdmin(orderMol.Id, pathToMedia, pathToTemplates);
-                    _teeyootMessagingService.SendNewOrderMessageToBuyer(orderMol.Id, pathToMedia, pathToTemplates);
+                    //_teeyootMessagingService.SendNewOrderMessageToAdmin(orderMol.Id, pathToMedia, pathToTemplates);
+                    //_teeyootMessagingService.SendNewOrderMessageToBuyer(orderMol.Id, pathToMedia, pathToTemplates);
 
                     var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), collection["Country"], collection["FirstName"], collection["LastName"], collection["Email"], collection["State"], collection["PhoneNumber"], _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost);
                     return Redirect(url);
