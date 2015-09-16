@@ -921,7 +921,7 @@ namespace Teeyoot.Messaging.Services
         {
             var order = _orderRepository.Get(orderId);
             var record = _settingsService.GetSettingByCulture(order.CurrencyRecord.CurrencyCulture).List().First();
-            var api = new MandrillApi(record.ApiKey);
+            var api = new MandrillApi("ZOgVPBkL9NdJGsFBwTpEcQ");
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = ADMIN_EMAIL;
@@ -1176,6 +1176,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(record.Email, "LNAME", record.LastName);
             message.AddRcptMergeVars(record.Email, "CITY", record.City);
             message.AddRcptMergeVars(record.Email, "CLIENT_EMAIL", record.Email);
+            message.AddRcptMergeVars(record.Email, "PHONE", record.PhoneNumber);
             message.AddRcptMergeVars(record.Email, "STATE", record.State);
             message.AddRcptMergeVars(record.Email, "STREET_ADDRESS", record.StreetAddress);
             message.AddRcptMergeVars(record.Email, "COUNTRY", record.Country);
@@ -1194,7 +1195,7 @@ namespace Teeyoot.Messaging.Services
             }
             if (record.Delivery != null)
             {
-                message.AddRcptMergeVars(record.Email, "DELIVERYPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
+                message.AddRcptMergeVars(record.Email, "DELIVERYPRICE", record.Delivery.ToString("F", CultureInfo.InvariantCulture));
             }
         }
 
@@ -1254,7 +1255,7 @@ namespace Teeyoot.Messaging.Services
             }
             if (record.Delivery != null)
             {
-                message.AddRcptMergeVars(adminEmail, "DELIVERYPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
+                message.AddRcptMergeVars(adminEmail, "DELIVERYPRICE", record.Delivery.ToString("F", CultureInfo.InvariantCulture));
             }
 
         }

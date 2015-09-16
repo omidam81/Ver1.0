@@ -330,6 +330,9 @@
     <Content Include="Content\message-templates\launch-template-en-MY.html" />
     <Content Include="Content\message-templates\launch-template-en-SG.html" />
     <Content Include="Content\message-templates\launch-template-id-ID.html" />
+    <Content Include="Content\message-templates\make_the_campaign_seller-en-MY.html" />
+    <Content Include="Content\message-templates\make_the_campaign_seller-en-SG.html" />
+    <Content Include="Content\message-templates\make_the_campaign_seller-id-ID.html" />
     <Content Include="Content\message-templates\make_the_order_buyer-en-MY.html" />
     <Content Include="Content\message-templates\make_the_order_buyer-en-SG.html" />
     <Content Include="Content\message-templates\make_the_order_buyer-id-ID.html" />
@@ -853,7 +856,6 @@
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredPromotionsTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendShippedOrderAfter3DayToBuyerTask.cs" />
-    <Compile Include="Common\ScheduledTasks\SendFinishedCampaignafter1DayToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
