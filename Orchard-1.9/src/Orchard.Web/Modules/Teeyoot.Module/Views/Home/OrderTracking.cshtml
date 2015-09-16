@@ -235,29 +235,37 @@
             <div class="col-md-8">
                 <div class="track-left">
                     <div class="track-inner">
-                        <span class="badge badge-success">@("Status")</span> @T("Updated") @(Model.Events.Count() > 0 ?
-                        Model.Events.Last().EventDate.ToLocalTime().ToString("dd MMM HH:mm", Model.CultureInfo) :
-                        Model.CreateDate)
+                        @*<span class="badge badge-success">@("Status")</span> @T("Updated") @(Model.Events.Count() > 0 ?
+                            Model.Events.Last().EventDate.ToLocalTime().ToString("dd MMM HH:mm", Model.CultureInfo) :
+                            Model.CreateDate)*@
                         <div class="offset-top offset-top-small offset-top-xs"></div>
 
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Approved.ToString())
                         {
-                            <h2 class="h2">@T("You placed an order")</h2>
+                            <h2 class="h2">@T("Your order was confirmed on") @Model.CreateDate @T(" but...")</h2>
                             <p class="offset-top offset-top-small">
-                                @T("Congratulations, share your recent order to help push the campaign " +
-                                    "over the top and we get to print your great shirt.")
+                                @T("...we will only send it for printing when the campaignm ends if the campaign reaches the minimum number of orders.")
                             </p>
-                            <p>
-                                <a id="cancel_order_link" href="#">@T("Cancel order")</a>
+                            @*<p>
+                                    <a id="cancel_order_link" href="#">@T("Cancel order")</a>
+                                </p>*@
+                            <p class="offset-top offset-top-small">
+                                @T("Click the campaign link below to check out how the campaign is doing.")
+                            </p>
+                            <p style="text-align: center">
+                                @{string url = WorkContext.CurrentSite.BaseUrl.ToString() + "/" + Model.CampaignAlias; }
+                                <a id="campaign_link" href="@url">@Model.CampaignName</a>
                             </p>
                         }
 
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Printing.ToString())
                         {
-                            <h2 class="h2">@T("We're printing your order")</h2>
+                            <h2 class="h2">@T("We are printing your order!")</h2>
                             <p class="offset-top offset-top-small">
-                                @T("We're producing your order and making sure you get a beautiful, high-quality print! " +
-                                    "We will e-mail you with your USPS tracking number once printing completes and your order ships.")
+                                @T("Sit back and relax, while our little elves print your order. Meanwhile, check out other popular campaigns that you may be interested here")
+                            </p>
+                            <p style="text-align: center">
+                                <a id="campaign_link" href="@Url.Action("Search", new { Controller = "Search", Area = "Teeyoot.Search", filter = " "})">@T("Search Other Campaigns")</a>
                             </p>
                         }
 
@@ -272,38 +280,41 @@
 
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Shipped.ToString())
                         {
-                            <h2 class="h2">@T("Shipped")</h2>
+                            <h2 class="h2">@T("Your order is on its way to you!")</h2>
                             <p class="offset-top offset-top-small">
-                                @T("Shipped")
+                                @T("We have sent your orders either by post or courier. Sip a teh tarik, and it will be right on your doorstep soon.")
                             </p>
                         }
 
                         @if (Model.Status.Name == Teeyoot.Module.Common.Enums.OrderStatus.Delivered.ToString())
                         {
-                            <h2 class="h2">@T("Delivered")</h2>
+                            <h2 class="h2">@T("Your order has been delivered!")</h2>
                             <p class="offset-top offset-top-small">
-                                @T("Delivered")
+                                @T("Thank you for the purchase! The T-shirt is excited to meet you!")
+                            </p>
+                            <p class="offset-top offset-top-small">
+                                @T("We hope you’re happy with the purchase. If you have any questions, feel free to contact us and tell us what you think about our services. We would love to hear from you.")
                             </p>
                         }
 
-                        <hr>
-                        <h4 class="h4">@T("Order history")</h4>
-                        <ul class="list-unstyled">
+                        @*<hr>
+                            <h4 class="h4">@T("Order history")</h4>
+                            <ul class="list-unstyled">
 
-                            <li>
-                                <span class="badge">@Model.CreateDate</span>
-                                @T("Order for") <a href="/@Model.CampaignAlias">@Model.CampaignName</a> @T("placed")
-                            </li>
-
-                            @foreach (var e in Model.Events)
-                            {
                                 <li>
-                                    <span class="badge">@e.EventDate.ToLocalTime().ToString("dd MMM HH:mm", Model.CultureInfo)</span>
-                                    @e.Event
+                                    <span class="badge">@Model.CreateDate</span>
+                                    @T("Order for") <a href="/@Model.CampaignAlias">@Model.CampaignName</a> @T("placed")
                                 </li>
-                            }
 
-                        </ul>
+                                @foreach (var e in Model.Events)
+                                {
+                                    <li>
+                                        <span class="badge">@e.EventDate.ToLocalTime().ToString("dd MMM HH:mm", Model.CultureInfo)</span>
+                                        @e.Event
+                                    </li>
+                                }
+
+                            </ul>*@
                     </div>
                 </div>
             </div>
@@ -311,16 +322,19 @@
             <div class="col-md-4">
                 <div class="track-right track-border-left">
                     <div class="track-inner">
-                        <h4 class="h4">@T("Order summary")</h4>
+                        <h4 class="h4">@T("Your order details")</h4>
 
                         @foreach (var prod in Model.Products)
                         {
                             <p>
-                                <strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name<br>
+                                <strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name @prod.CampaignProductRecord.CurrencyRecord.Code @prod.CampaignProductRecord.Price<br>
                             </p>
                         }
+                        <p>
+                            <strong>@T("Total price: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.TotalPrice</strong>
+                        </p>
                         <br />
-                        <h4 class="h4">@T("Shipping to")</h4>
+                        <h4 class="h4">@T("Delivery Address")</h4>
                         @foreach (var str in Model.ShippingTo)
                         {
                             <div class="shipping-address">@str</div>
