@@ -309,7 +309,7 @@ namespace Teeyoot.Module.Controllers
                     order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
                     _orderService.UpdateOrder(order);
 
-                    if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                    if (campaign.ProductCountSold >= campaign.ProductCountGoal)
                     {
                         campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                         _campaignService.UpdateCampaign(campaign);
@@ -318,7 +318,7 @@ namespace Teeyoot.Module.Controllers
                     {
                         campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                         _campaignService.UpdateCampaign(campaign);
-                        if (campaign.ProductCountSold > campaign.ProductMinimumGoal)
+                        if (campaign.ProductCountSold >= campaign.ProductMinimumGoal)
                         {
                             _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
                             _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
