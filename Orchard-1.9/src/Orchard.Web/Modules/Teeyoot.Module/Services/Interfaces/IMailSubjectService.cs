@@ -7,7 +7,7 @@ using Orchard;
 
 namespace Teeyoot.Module.Services.Interfaces
 {
-    public interface IMailSubjectService : IDependency
+    public interface IMailSubjectService
     {
         string GetMailSubject(string templateName, string culture);
     }

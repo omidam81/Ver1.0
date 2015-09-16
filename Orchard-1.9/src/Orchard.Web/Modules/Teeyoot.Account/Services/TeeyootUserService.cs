@@ -4,7 +4,9 @@ using System.Web;
 using Mandrill;
 using Mandrill.Model;
 using Orchard;
+using Orchard.Data;
 using Orchard.Security;
+using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
 
@@ -23,12 +25,12 @@ namespace Teeyoot.Account.Services
         }
 
         public TeeyootUserService(
+            IRepository<MailTemplateSubjectRecord> subjectRepository,
             IMailChimpSettingsService settingsService,
-            IMailSubjectService mailSubjectService,
             IWorkContextAccessor wca)
         {
+            _mailSubjectService = new MailSubjectService(subjectRepository);
             _settingsService = settingsService;
-            _mailSubjectService = mailSubjectService;
             _wca = wca;
 
             var culture =  WorkContext.CurrentCulture.Trim();
