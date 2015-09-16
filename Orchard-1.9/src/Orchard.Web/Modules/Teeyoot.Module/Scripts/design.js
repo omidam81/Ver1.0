@@ -1029,15 +1029,20 @@ var design={
             $categories.change();
 		},
 		changeFont: function(font){
-			var id = font.family;
+		    var id = font.family;
+		    //design.fontsClear = design.fontsClear || '';
 			if (typeof id != 'undefined')
 			{
 				if (typeof design.designer.fontActive[id] === 'undefined') {
                     if (font.filename) {
-                        var url = assetsUrls.fonts+font.filename+'-webfont.woff';
+                        var url = assetsUrls.fonts + font.filename + '-webfont.woff';
+                        var urlSvg = assetsUrls.fonts + font.filename + '-webfont.svg';
                         design.designer.fontActive[id] = true;
-                        var css = "<style type='text/css'>@font-face{font-family:'" + id + "';font-style: normal; font-weight: 400;src: local('" + id + "'), local('" + id + "'), url(" + url + ") format('woff');}</style>";
+                        var fontInnerCss = "@font-face{font-family:\"" + id + "\";font-style: normal; font-weight: 400;src: local('" + id + "'), local('" + id +
+                            "'), url(" + url + ") format('woff');}";
+                        var css = "<style type='text/css'>"+fontInnerCss+"</style>";
                         design.fonts = design.fonts + ' ' + css;
+                        //design.fontsClear += ' ' + fontInnerCss;
                         $('head').append(css);
                     }
                 }
@@ -3729,6 +3734,8 @@ var design={
 						}
 						else
 						{
+						    //var fontsCss = "<defs><style type='text/css'><![CDATA["+design.fontsClear + "]]></style></defs>";
+						    //context.drawSvg(item.svg.replace(/(<svg[^>]+>)/, "$1" + fontsCss), item.left, item.top);
 						    context.drawSvg(item.svg, item.left, item.top);
                         }
 						context.restore();
