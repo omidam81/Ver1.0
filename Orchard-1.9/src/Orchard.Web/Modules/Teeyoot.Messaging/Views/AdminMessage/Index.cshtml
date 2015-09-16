@@ -231,7 +231,7 @@
                     </div>
                 </div>
                 @Html.Action("EditEmailTemplateSubject", new { templateName = "unpaid-campaign-template" })
-                <div class="fileRow">
+                @*<div class="fileRow">
                     <div class="alias">@T("Partially Paid Campaign Template")</div>
                     <div class="fileNameInput">@Model.PartiallyPaidCampaignTemplate</div>
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "partially-paid-campaign-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -247,7 +247,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "partially-paid-campaign-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-                @Html.Action("EditEmailTemplateSubject", new { templateName = "partially-paid-campaign-template" })
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "partially-paid-campaign-template" })*@
                 <div class="fileRow">
                     <div class="alias">@T("Paid Campaign Template")</div>
                     <div class="fileNameInput">@Model.PaidCampaignTemplate</div>
@@ -401,7 +401,7 @@
                     </div>
                 </div>
                 @Html.Action("EditEmailTemplateSubject", new { templateName = "all-orders-delivered-seller-template" })
-                <div class="fileRow">
+                @*<div class="fileRow">
                     <div class="alias">@T("Campaign is finished Template")</div>
                     <div class="fileNameInput">@Model.CampaignIsFinishedTemplate</div>
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "campaign-is-finished-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -417,7 +417,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "campaign-is-finished-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-                @Html.Action("EditEmailTemplateSubject", new { templateName = "campaign-is-finished-template" })
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "campaign-is-finished-template" })*@
                 <div class="fileRow">
                     <div class="alias">@T("Definitely go to print Seller Template")</div>
                     <div class="fileNameInput">@Model.DefinitelyGoSellerTemplate</div>
@@ -554,7 +554,7 @@
                     </div>
                 </div>
                 @Html.Action("EditEmailTemplateSubject", new { templateName = "new-campaign-admin-template" })
-                <div class="fileRow">
+                @*<div class="fileRow">
                     <div class="alias">@T("New order buyer Template")</div>
                     <div class="fileNameInput">@Model.NewOrderBuyerTemplate</div>
                     @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "new-order-buyer-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -570,7 +570,7 @@
                         <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "new-order-buyer-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-                @Html.Action("EditEmailTemplateSubject", new { templateName = "new-order-buyer-template" })
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "new-order-buyer-template" })*@
                 <div class="fileRow">
                     <div class="alias">@T("Not reach goal, but met minimum Template")</div>
                     <div class="fileNameInput">@Model.NotReachGoalMetMinimumTemplate</div>
