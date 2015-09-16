@@ -318,7 +318,7 @@ namespace Teeyoot.Module.Controllers
                     {
                         campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                         _campaignService.UpdateCampaign(campaign);
-                        if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                        if (campaign.ProductCountSold > campaign.ProductMinimumGoal)
                         {
                             _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
                             _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
@@ -506,7 +506,7 @@ namespace Teeyoot.Module.Controllers
 
 
             var campaign = _campaignService.GetCampaignById(campaignId);
-            if (campaign.ProductCountSold > campaign.ProductCountGoal)
+            if (campaign.ProductCountSold > campaign.ProductCountGoal-1)
             {
                 campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                 _campaignService.UpdateCampaign(campaign);
@@ -515,7 +515,7 @@ namespace Teeyoot.Module.Controllers
             {
                 campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                 _campaignService.UpdateCampaign(campaign);
-                if (campaign.ProductCountSold > campaign.ProductCountGoal)
+                if (campaign.ProductCountSold > campaign.ProductMinimumGoal-1)
                 {
                     _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
                     _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
