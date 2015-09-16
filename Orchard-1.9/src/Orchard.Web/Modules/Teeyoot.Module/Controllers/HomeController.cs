@@ -657,6 +657,7 @@ namespace Teeyoot.Module.Controllers
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
             model.CampaignName = campaign.Title;
             model.CampaignAlias = campaign.Alias;
+            model.TotalPrice = (order.TotalPrice + order.Delivery).ToString();
 
             return View(model);
         }

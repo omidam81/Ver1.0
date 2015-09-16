@@ -100,7 +100,7 @@
                                     <a href="@Url.Action("ChangesVisibleCategory", new { id = categ.Id, visible = true })" title="@T("Visible")">@T("Visible")</a>@T(" | ")
 
                                 }
-                                        <a href="@Url.Action(" deletecategory", new { id=categ.Id })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                                        <a href="@Url.Action("DeleteCategory", new { id=categ.Id })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                                     </td>
                                 </tr>
                     }

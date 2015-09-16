@@ -208,8 +208,15 @@ namespace Teeyoot.Module.Controllers
                     Services.Notifier.Information(T("File has been added!"));
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    Services.Notifier.Error(T("Wrong file extension!"));  
+                }
             }
-            Services.Notifier.Error(T("Wrong file extention!"));
+            else
+            {
+                Services.Notifier.Error(T("Error! No file selected to upload."));             
+            }
             return RedirectToAction("Index");
         }
 
