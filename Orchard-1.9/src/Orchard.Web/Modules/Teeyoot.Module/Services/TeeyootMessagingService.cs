@@ -43,7 +43,7 @@ namespace Teeyoot.Messaging.Services
         private const string MessageTemplatesPath = "/Modules/Teeyoot.Module/Content/message-templates/";
         private readonly string _cultureUsed;
 
-        public TeeyootMessagingService(IMailSubjectService mailSubjectService, IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
+        public TeeyootMessagingService(IRepository<MailTemplateSubjectRecord> subjectRepository, IRepository<MailChimpSettingsPartRecord> mailChimpSettingsRepository, IContentManager contentManager, IRepository<CampaignRecord> campaignRepository,
             IMailChimpSettingsService settingsService,
             IMessageService messageService,
              INotifier notifier,
@@ -57,7 +57,7 @@ namespace Teeyoot.Messaging.Services
             IRepository<CurrencyRecord> currencyRepository,
             IRepository<BringBackCampaignRecord> backCampaignRepository)
         {
-            _mailSubjectService = mailSubjectService;
+            _mailSubjectService = new MailSubjectService(subjectRepository);
             _mailChimpSettingsRepository = mailChimpSettingsRepository;
             _contentManager = contentManager;
             _messageService = messageService;
