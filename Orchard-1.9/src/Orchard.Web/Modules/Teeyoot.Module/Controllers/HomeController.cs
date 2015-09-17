@@ -304,10 +304,14 @@ namespace Teeyoot.Module.Controllers
 
                 if (status == "00")
                 {
-
-                    //order.OrderStatusRecord = _orderStatusRepository.Get(int.Parse(OrderStatus.Approved.ToString("d")));
                     order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
                     _orderService.UpdateOrder(order);
+                    var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                    var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                    var users = _userRepository.Table.ToList();
+                    //_teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+                                      
 
                     if (campaign.ProductCountSold >= campaign.ProductCountGoal)
                     {
@@ -326,11 +330,7 @@ namespace Teeyoot.Module.Controllers
                     }
 
 
-                    var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-                    var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                    var users = _userRepository.Table.ToList();
-                //_teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+                    
 
                     var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
                     if (commonSettings == null)
@@ -342,6 +342,11 @@ namespace Teeyoot.Module.Controllers
                 }
                 else if (status == "11")
                 {
+                    order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
+                    _orderService.UpdateOrder(order);
+                    var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                    var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());
                     return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                 }
 
@@ -501,7 +506,9 @@ namespace Teeyoot.Module.Controllers
              */
             order.IsActive = true;
 
-
+            var users = _userRepository.Table.ToList();
+            _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+            _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
 
 
 
@@ -534,9 +541,7 @@ namespace Teeyoot.Module.Controllers
             //ViewData["TransactionId"] = transaction.Id;
             //_notifier.Information(T("The transaction is successful"));
                
-            var users = _userRepository.Table.ToList();
-            _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-            _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+            
                
             var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
             if (commonSettings == null)
