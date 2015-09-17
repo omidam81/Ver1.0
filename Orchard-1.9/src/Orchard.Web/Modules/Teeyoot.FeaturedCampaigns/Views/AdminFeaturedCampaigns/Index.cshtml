@@ -105,7 +105,7 @@
 
                             </td>
                             <td>
-                                <a class="button" href="@Url.Action("ChangeInformation","AdminCampaignsSettings", new { Id = camp.Campaign.Id })" title="@T("Change")">@T("Change")</a>
+                                <a class="button" href="@Url.Action("ChangeInformation","AdminCampaignsSettings", new { Id = camp.Campaign.Id })" title="@T("Modify")">@T("Modify")</a>
                                 @if (!camp.Campaign.IsActive)
                                 {
                                     @*@T(" | ")*@
