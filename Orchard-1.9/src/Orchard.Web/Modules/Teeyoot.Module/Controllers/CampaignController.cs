@@ -91,7 +91,7 @@ namespace Teeyoot.Module.Controllers
 
                         if (campaign.ProductCountSold >= campaign.ProductMinimumGoal && campaign.IsActive)
                         {
-                            var infoMessage = T("{0} were sold. The t-shirt is ready to be printed", campaign.ProductCountSold);
+                            var infoMessage = T("Yippee! The minimum order for this campaign is {0}, but we have already sold {1}. The item will definitely go to print once the campaign ends.", campaign.ProductMinimumGoal, campaign.ProductCountSold);
                             _notifier.Add(NotifyType.Information, infoMessage);
                         }
                         if (campaign.IsApproved == true && campaign.ProductCountSold < campaign.ProductMinimumGoal && campaign.IsActive)
