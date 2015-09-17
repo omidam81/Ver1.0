@@ -317,6 +317,18 @@ background: #ff4f00 !important;
     margin-left: 10px;
 }
 
+@media (max-width: 850px) {
+    .col-sm-3:first-child {
+        width: 30%;
+    }
+    .col-sm-3:nth-child(2) {
+        width: 22%;
+    }
+    .col-sm-3:nth-child(3) {
+        width: 23%;
+    }
+}
+
 @media (min-width: 768px) {
     .col-sm-7{
         width: 58.33333333%;
