@@ -309,7 +309,7 @@ namespace Teeyoot.Module.Controllers
                     var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                     var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                     var users = _userRepository.Table.ToList();
-                    //_teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+                    _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
                     _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
                                       
 
@@ -465,7 +465,7 @@ namespace Teeyoot.Module.Controllers
                         promotion.Redeemed = promotion.Redeemed + 1;
                     }
                   
-                    _teeyootMessagingService.SendNewOrderMessageToAdmin(orderMol.Id, pathToMedia, pathToTemplates);
+                   // _teeyootMessagingService.SendNewOrderMessageToAdmin(orderMol.Id, pathToMedia, pathToTemplates);
                     //_teeyootMessagingService.SendNewOrderMessageToBuyer(orderMol.Id, pathToMedia, pathToTemplates);
 
                     var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])), collection["Country"], collection["FirstName"], collection["LastName"], collection["Email"], collection["State"], collection["PhoneNumber"], _deliverySettingService.GetAllSettings().FirstOrDefault(s => s.State == collection["State"]).DeliveryCost);
