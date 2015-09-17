@@ -12,12 +12,12 @@
 <script type="text/javascript">
     function showUserMenu() {
         var display = $('.widget-usermenuID .menu-user-menu').css("display");
-        var width = $('.widget-usermenuID .menu-for-user').css("width");
+        //var width = $('.widget-usermenuID .menu-for-user').css("width");
         if (display !== 'none') {
             $('.widget-usermenuID .menu-user-menu').css("display", "none");
             $('.user-email-button').css("border-right", "none");
             $('.user-email-button').css("border-bottom", "none");
-            if (width !== '220px') {
+            if (parseInt(window.innerWidth) <= 1000) {
                 $('.widget-usermenuID .menu-for-user').css("border-bottom", "3px solid #0089B6");
             } else {
                 $('.widget-usermenuID .menu-for-user').css("border-bottom", "none");
@@ -26,11 +26,11 @@
             $('.widget-usermenuID .menu-user-menu').css("display", "block");
             $('.user-email-button').css("background", "#ffffff");
             $('.user-email-button').css("border-bottom", "solid 1px #e8eced");
-            if (width == '220px') {
-                $('.user-email-button').css("border-right", "solid 1px #e8eced");
-            }else{
+            //if (width == '220px') {
+            //    $('.user-email-button').css("border-right", "solid 1px #e8eced");
+            //}else{
                 $('.widget-usermenuID .menu-for-user').css("border-bottom", "none");
-            }
+            //}
         }
     }
 </script>
