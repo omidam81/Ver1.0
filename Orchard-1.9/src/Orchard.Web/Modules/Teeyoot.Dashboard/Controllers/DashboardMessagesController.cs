@@ -79,6 +79,7 @@ namespace Teeyoot.Dashboard.Controllers
             return View(model);
         }
 
+        [ValidateInput(false)]
         public ActionResult SendSellerMessageForApproving(MessageContentViewModel model)
         {
             if (TryUpdateModel(model))
