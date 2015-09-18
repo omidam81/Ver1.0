@@ -625,7 +625,7 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         public ActionResult SearchForOrder(string orderId)
         {
-            return RedirectToAction("OrderTracking", new { orderId });
+            return RedirectToAction("OrderTracking", new { orderId = orderId.Trim() });
         }
 
         [Themed]
