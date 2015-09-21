@@ -304,13 +304,13 @@ namespace Teeyoot.Module.Controllers
 
                 if (status == "00")
                 {
-                    order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
+                    order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Paid.ToString());
                     _orderService.UpdateOrder(order);
                     var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                     var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                     var users = _userRepository.Table.ToList();
                     _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
+                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Paid.ToString());
                                       
 
                     if (campaign.ProductCountSold >= campaign.ProductCountGoal)
