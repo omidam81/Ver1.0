@@ -651,6 +651,15 @@ checkout__lock_icon {
     border-color: #CC0000 !important;
 }
 
+.mobile-question {
+    padding-left: 10px;
+    font-size: 25px;
+    width: 100%;
+    border: 1px solid #c2c9cc;
+    border-radius: 5px 5px 5px 5px;
+	cursor: pointer;
+	display: none;
+}
 
 @media only screen and (max-width: 980px) {
 
@@ -667,6 +676,9 @@ checkout__lock_icon {
 
     .order_summary__help {
         padding-left: 10px !important;
+        display: none;
+        border: 1px solid #c2c9cc;
+        border-radius: 0px 0px 5px 5px;
     }
 
     .checkout__container {
@@ -677,6 +689,10 @@ checkout__lock_icon {
 
     .site__wrapper {
         width: auto !important;
+    }
+
+    .mobile-question {
+        display: block;
     }
 }
 

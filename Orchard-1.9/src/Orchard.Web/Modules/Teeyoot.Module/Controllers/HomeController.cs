@@ -300,54 +300,56 @@ namespace Teeyoot.Module.Controllers
 
                 //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
                 //{
-
-
-                if (status == "00")
+                if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Paid.ToString()))
                 {
-                    order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
-                    _orderService.UpdateOrder(order);
-                    var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-                    var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                    var users = _userRepository.Table.ToList();
-                    _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
-                                      
 
-                    if (campaign.ProductCountSold >= campaign.ProductCountGoal)
+                    if (status == "00")
                     {
-                        campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
-                        _campaignService.UpdateCampaign(campaign);
-                    }
-                    else
-                    {
-                        campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
-                        _campaignService.UpdateCampaign(campaign);
-                        if (campaign.ProductCountSold >= campaign.ProductMinimumGoal)
+                        order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Paid.ToString());
+                        _orderService.UpdateOrder(order);
+                        var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                        var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                        var users = _userRepository.Table.ToList();
+                        _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
+                        _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Paid.ToString());
+
+
+                        if (campaign.ProductCountSold >= campaign.ProductCountGoal)
                         {
-                            _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
-                            _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
+                            campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                            _campaignService.UpdateCampaign(campaign);
                         }
+                        else
+                        {
+                            campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
+                            _campaignService.UpdateCampaign(campaign);
+                            if (campaign.ProductCountSold >= campaign.ProductMinimumGoal)
+                            {
+                                _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
+                                _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
+                            }
+                        }
+
+
+
+
+                        var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+                        if (commonSettings == null)
+                        {
+                            _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
+                            commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                        }
+
                     }
-
-
-                    
-
-                    var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
-                    if (commonSettings == null)
+                    else if (status == "11")
                     {
-                        _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
-                        commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                        order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
+                        _orderService.UpdateOrder(order);
+                        var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                        var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                        _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());
+                        return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                     }
-
-                }
-                else if (status == "11")
-                {
-                    order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
-                    _orderService.UpdateOrder(order);
-                    var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-                    var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                    _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());
-                    return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                 }
 
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
@@ -510,9 +512,17 @@ namespace Teeyoot.Module.Controllers
             _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
             _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
 
-
+            var sendMessage = false;
 
             var campaign = _campaignService.GetCampaignById(campaignId);
+            if (campaign.ProductCountSold > campaign.ProductMinimumGoal - 1)
+            {
+                sendMessage = false;
+            }
+            else
+            {
+                sendMessage = true;
+            }
             if (campaign.ProductCountSold > campaign.ProductCountGoal-1)
             {
                 campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
@@ -522,7 +532,7 @@ namespace Teeyoot.Module.Controllers
             {
                 campaign.ProductCountSold += order.Products.Sum(p => (int?)p.Count) ?? 0;
                 _campaignService.UpdateCampaign(campaign);
-                if (campaign.ProductCountSold > campaign.ProductMinimumGoal-1)
+                if ((campaign.ProductCountSold > campaign.ProductMinimumGoal - 1) && sendMessage)
                 {
                     _teeyootMessagingService.SendCampaignMetMinimumMessageToBuyers(campaign.Id);
                     _teeyootMessagingService.SendCampaignMetMinimumMessageToSeller(campaign.Id);
@@ -625,7 +635,7 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         public ActionResult SearchForOrder(string orderId)
         {
-            return RedirectToAction("OrderTracking", new { orderId });
+            return RedirectToAction("OrderTracking", new { orderId = orderId.Trim() });
         }
 
         [Themed]

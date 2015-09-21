@@ -326,12 +326,17 @@
 
                         @foreach (var prod in Model.Products)
                         {
-                            <p>
-                                <strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name @prod.CampaignProductRecord.CurrencyRecord.Code @prod.CampaignProductRecord.Price<br>
-                            </p>
+                            <div style="display: inline-flex; margin-bottom:2px">
+                                <div>
+                                    <div style="float:left"><strong>( @prod.Count )</strong> @prod.ProductSizeRecord.SizeCodeRecord.Name - @prod.CampaignProductRecord.ProductRecord.Name </div>
+                                    <div style="float:left; margin-right 5px; margin-bottom -4px; width: 20px; height: 20px; display: inline-block;  background-color: @prod.ProductColorRecord.Value;    margin: 0 5px 5px 5px; border: 1px solid #000000;"></div>
+                                    <div style="float:left"> @prod.CampaignProductRecord.CurrencyRecord.Code @prod.CampaignProductRecord.Price</div><br>
+                                </div>
+                            </div>
+                            <br/>
                         }
-                        <p>
-                            <strong>@T("Total price: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.TotalPrice.Replace(',','.')</strong>
+                        <p style="margin-top: 10px;">
+                            <strong>@T("Total price: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.TotalPrice.Replace(',', '.')</strong>
                         </p>
                         <br />
                         <h4 class="h4">@T("Delivery Address")</h4>

@@ -49,7 +49,7 @@
                         <td>@T(isActive)</td>
                         <td>@value</td>
                         <td>@c.Sold / @c.Minimum / @c.Goal</td>
-                        <td>@c.Profit</td>
+                        <td><span>@c.SummaryCurrency @c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span></td>
                         <td>@c.Status</td>
                         <td id="date_@c.Id">@c.EndDate</td>
                         <td>@c.Seller.UserName</td>

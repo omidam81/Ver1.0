@@ -437,7 +437,7 @@ namespace Teeyoot.Module.Services
                 {
                     var orders = _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == c.Id && p.OrderRecord.IsActive).Select(pr => pr.OrderRecord).Distinct().ToList();
 
-                    var isSuccesfull = c.ProductCountGoal <= c.ProductCountSold;
+                    var isSuccesfull = c.ProductMinimumGoal <= c.ProductCountSold;
                     _teeyootMessagingService.SendExpiredCampaignMessageToSeller( c.Id, isSuccesfull);
                     _teeyootMessagingService.SendExpiredCampaignMessageToBuyers(c.Id, isSuccesfull);
                     _teeyootMessagingService.SendExpiredCampaignMessageToAdmin(c.Id, isSuccesfull);

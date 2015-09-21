@@ -32,6 +32,7 @@
         @for (int i = 0; i < Model.Count; i++ )
         {
             var item = Model[i];
+            
             <div class="divRow divRow-mobile" >
                 <div class="divRow" style="margin-top:2%; ">
                     <div id="campaignPrintRow" class=" row">@T("Print")</div>
@@ -56,7 +57,7 @@
                 <div class="row">@item.ThisWeekSend/3</div>
                 <div style="align-content:center" class="row">
                     <div>
-                        @if (item.ThisWeekSend >= 3)
+                        @if (item.ThisWeekSend >= 3 || item.Campaign.Sold == 0)
                         {
                             <a href="@Url.Action("CreateMessage", new { campaignId = item.Campaign.Id })"><button type="button" class="t-button" style="background-color:#f6804b!important" disabled="disabled">@T("Message")</button></a>
                         }
@@ -67,6 +68,7 @@
                     </div>
                 </div>
             </div>
+        
         }
     </div>
 </div>

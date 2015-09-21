@@ -48,7 +48,13 @@
                             <td>@camp.Campaign.CreatedDate.ToString("dd/MM/yyyy")</td>
                             <td>@T(isActive)</td>
                             <td>@value</td>
-                            <td>@camp.Campaign.Sold / @camp.Campaign.Minimum / @camp.Campaign.Goal</td>
+                            @if (camp.Campaign.Sold < 0)
+                            {
+                                <td>0 / @camp.Campaign.Minimum / @camp.Campaign.Goal</td>
+                            }else{
+                                <td>@camp.Campaign.Sold / @camp.Campaign.Minimum / @camp.Campaign.Goal</td>
+                            }
+                            
                             <td>
                                 @if (camp.Campaign.IsApproved)
                                 {
