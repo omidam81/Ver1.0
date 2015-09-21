@@ -488,7 +488,7 @@ input[readonly] {
     border: 1px solid #e8eced;
 }
 
-@media all and (max-width: 1330px) {
+@media all and (max-width: 1350px) {
     .new_promotion__form .label__title {
         height: 2rem;
     }
