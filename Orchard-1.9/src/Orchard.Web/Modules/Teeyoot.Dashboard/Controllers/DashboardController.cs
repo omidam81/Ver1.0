@@ -19,6 +19,8 @@ namespace Teeyoot.Dashboard.Controllers
     [Themed]
     public partial class DashboardController : Controller
     {
+        private readonly IRepository<CampaignCategoriesRecord> _campaignCategoryRepository;
+        private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCategoryRepository;
         private readonly ICampaignService _campaignService;
         private readonly IMailChimpSettingsService _settingsService;
         private readonly IOrderService _orderService;
@@ -45,7 +47,9 @@ namespace Teeyoot.Dashboard.Controllers
 
         public Localizer T { get; set; }
 
-        public DashboardController(ICampaignService campaignService,
+        public DashboardController(IRepository<CampaignCategoriesRecord> campaignCategoryRepository,
+                                   IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategoryRepository,
+                                   ICampaignService campaignService,
                                    IMailChimpSettingsService settingsService,
                                    IOrderService orderService,
                                    IWorkContextAccessor wca,
@@ -68,6 +72,8 @@ namespace Teeyoot.Dashboard.Controllers
                                    IWorkContextAccessor workContextAccessor
                                     )
         {
+            _campaignCategoryRepository = campaignCategoryRepository;
+            _linkCampaignAndCategoryRepository = linkCampaignAndCategoryRepository;
             _cookieCultureService = cookieCultureService;
             _campaignService = campaignService;
             _currencyRepository = currencyRepository;

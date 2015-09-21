@@ -293,12 +293,14 @@ namespace Teeyoot.Dashboard.Controllers
                 return View("EditCampaign", new EditCampaignViewModel { IsError = true });
             }
 
-            var tags = _campaignCategoryService.GetCategoryByCampaignId(camp.Id).ToList();
-            string allTags = string.Empty;
-            foreach (var tag in tags)
-            {
-                allTags = allTags + " " + tag.Name;
-            }
+            var allTags = _campaignService.GetAllCategories()
+                .Select(t => new TagViewModel {name = t.Name})
+                .ToList();
+
+            var tags = _campaignCategoryService.GetCategoryByCampaignId(camp.Id)
+                .Select(t => t.Name)
+                .ToList();
+
             int product = _campaignService.GetProductsOfCampaign(id).Where(c => c.WhenDeleted == null).First().Id;
 
             string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + product.ToString() + "/";
@@ -315,7 +317,21 @@ namespace Teeyoot.Dashboard.Controllers
                 frontIMG = path + "normal/front.png";
             }
 
-            return View("EditCampaign", new EditCampaignViewModel { IsError = false, Id = camp.Id, Title = camp.Title, Description = camp.Description, Tags = allTags, Alias = camp.Alias, BackSideByDefault = camp.BackSideByDefault, FrontImagePath = frontIMG, BackImagePath = backIMG });
+            var editCampaignViewModel = new EditCampaignViewModel
+            {
+                IsError = false,
+                Id = camp.Id,
+                Title = camp.Title,
+                Description = camp.Description,
+                AllTags = allTags,
+                Tags = tags,
+                Alias = camp.Alias,
+                BackSideByDefault = camp.BackSideByDefault,
+                FrontImagePath = frontIMG,
+                BackImagePath = backIMG
+            };
+
+            return View("EditCampaign", editCampaignViewModel);
         }
 
         public ActionResult SaveChanges(EditCampaignViewModel editCampaign)
@@ -324,54 +340,54 @@ namespace Teeyoot.Dashboard.Controllers
 
             campaign.Title = editCampaign.Title;
             campaign.Description = editCampaign.Description;
-            campaign.Alias = editCampaign.Alias;
+            //campaign.Alias = editCampaign.Alias;
             campaign.BackSideByDefault = editCampaign.BackSideByDefault;
 
-            var tags = _campaignCategoryService.GetCategoryByCampaignId(editCampaign.Id).ToList();
-            var allTags = _campaignCategoryService.GetAllCategories();
+            var campaignTags = _linkCampaignAndCategoryRepository.Table
+                .Where(t => t.CampaignRecord == campaign)
+                .ToList();
 
-            List<string> campaignTags = editCampaign.Tags.Split(' ').ToList();
-
-            List<string> campaignTagsForeach = campaignTags.ToList();
-            List<CampaignCategoriesRecord> tagsInBD = new List<CampaignCategoriesRecord>();
-
-            foreach (var tag in campaignTagsForeach)
+            // Delete existing campaign tags
+            foreach (var campaignTag in campaignTags)
             {
-                var newTag = tags.Where(c => c.Name.ToLower() == tag.ToLower()).FirstOrDefault();
-                if (newTag != null)
-                {
-                    campaignTags.Remove(newTag.Name);
-                }
-
-                newTag = allTags.Where(c => c.Name.ToLower() == tag.ToLower()).FirstOrDefault();
-                if (newTag != null)
-                {
-                    campaignTags.Remove(newTag.Name);
-                    tagsInBD.Add(newTag);
-                }
+                _linkCampaignAndCategoryRepository.Delete(campaignTag);
             }
 
-            List<CampaignCategoriesRecord> newTags = new List<CampaignCategoriesRecord>();
-            foreach (var tag in campaignTags)
+            // Create new campaign tags
+            string[] tagsToSave = {};
+            if (editCampaign.TagsToSave != null)
             {
-                CampaignCategoriesRecord newTag = new CampaignCategoriesRecord
+                tagsToSave = editCampaign.TagsToSave.Split(',');
+            }
+
+            foreach (var tagToSave in tagsToSave)
+            {
+                var tag = _campaignCategoryRepository.Table
+                    .FirstOrDefault(t => t.Name.ToLowerInvariant() == tagToSave.ToLowerInvariant());
+
+                if (tag == null)
                 {
-                    Name = tag,
-                    IsVisible = false
+                    tag = new CampaignCategoriesRecord
+                    {
+                        Name = tagToSave,
+                        IsVisible = false,
+                        CategoriesCulture = cultureUsed
+                    };
+
+                    _campaignCategoryRepository.Create(tag);
+                }
+
+                var campaignTag = new LinkCampaignAndCategoriesRecord
+                {
+                    CampaignRecord = campaign,
+                    CampaignCategoriesPartRecord = tag
                 };
-                newTags.Add(newTag);
+
+                _linkCampaignAndCategoryRepository.Create(campaignTag);
             }
 
-            if (_campaignCategoryService.UpdateCampaignAndCreateNewCategories(campaign, newTags, tagsInBD))
-            {
-                _notifier.Information(T("Campaign was updated successfully"));
-                return RedirectToAction("Campaigns");
-            }
-            else
-            {
-                _notifier.Error(T("An error occurred when updating the campaign. Try again."));
-                return RedirectToAction("EditCampaign", new { id = editCampaign.Id });
-            }
+            _notifier.Information(T("Campaign was updated successfully"));
+            return RedirectToAction("Campaigns");
         }
 
         public JsonResult GetDetailTags(string filter)

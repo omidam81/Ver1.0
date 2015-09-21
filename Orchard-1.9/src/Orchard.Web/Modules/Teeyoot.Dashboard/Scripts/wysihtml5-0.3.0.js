@@ -5827,6 +5827,8 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     }
 
     function keyDown(event) {
+        $("#description_error-text").hide();
+        $(".wysihtml5-sandbox").removeClass("wizard-error");
       var keyCode = event.keyCode;
       if (event.shiftKey || (keyCode !== wysihtml5.ENTER_KEY && keyCode !== wysihtml5.BACKSPACE_KEY)) {
         return;

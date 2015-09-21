@@ -206,7 +206,9 @@
                     <div class="campaign-card-image" style="background-image: url('/Media/campaigns/@c.Id/@c.FirstProductId/normal/@(!c.ShowBack ? "front.png" : "back.png")')">
 
                         <div class="campaign-card-links">
-
+                            <a class="private-campaigns-true" href="@Url.Action("EditCampaign", "Dashboard", new {id = c.Id})" title="@T("Edit")">
+                                <i class="fa fa-edit"></i>
+                            </a>
                             @*<div>
 
                                     <a href="@Url.Action("Wizard", "Dashboard", new { id = c.Id })" title="@T("Duplicate")">

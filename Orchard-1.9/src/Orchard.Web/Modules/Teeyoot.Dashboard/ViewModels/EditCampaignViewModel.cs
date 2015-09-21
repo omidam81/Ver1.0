@@ -20,7 +20,13 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public bool BackSideByDefault { get; set; }
 
-        public string Tags { get; set; }
+        public IEnumerable<TagViewModel> AllTags { get; set; }
+
+        public IEnumerable<string> Tags { get; set; }
+
+        public string TagsToSave { get; set; }
+
+        //public string Tags { get; set; }
 
         public string FrontImagePath { get; set; }
 
