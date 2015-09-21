@@ -57,13 +57,13 @@
                         @(productSize.SleeveCm == null ? productSize.SleeveCm : Math.Round((double)productSize.SleeveCm, 2))
                     </td>
                     <td>
-                        @productSize.WidthInch
+                        @Math.Round(productSize.WidthInch, 2)
                     </td>
                     <td>
-                        @productSize.LengthInch
+                        @Math.Round(productSize.LengthInch, 2)
                     </td>
                     <td>
-                        @productSize.SleeveInch
+                        @(productSize.SleeveInch == null ? productSize.SleeveCm : Math.Round((double)productSize.SleeveCm, 2))
                     </td>
                     <td>
                         <a href="@Url.Action("EditProductSize", "ProductSize", new {productSizeId = productSize.Id})" title="@T("Edit")">@T("Edit")</a>
