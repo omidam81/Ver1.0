@@ -123,6 +123,7 @@
 
 
             <div class="order_summary__container">
+                <div class="mobile-question">+</div>
                 <div class="order_summary__help">
                     <div class="order_summary__help__container">
                         <h2>@T("How does Teeyoot work?")</h2>
@@ -137,19 +138,19 @@
                         <p>
                             <span class="js-delivery-estimate">
                                 @T("Your order will arrive")
-                                <span class="js-estimate-earliest">10</span> -
-                                <span class="js-estimate-latest">15</span> @T("business days after the end of the campaign!")
+                                <span class="js-estimate-earliest">@T("10")</span> -
+                                <span class="js-estimate-latest">@T("15")</span> @T("business days after the end of the campaign!")
                             </span>
                         </p>
                     </div>
-                    <br>
-                    <div class="message_Mol" style="display:none">
-                        <span style="color:red" hei>
-                            <p>@T("You will be redirected to the Online Banking system to complete the payment")</p>
-                            <p>@T("You will be charged immediately after you place your order")</p>
+                </div>
+                <br>
+                <div class="message_Mol" style="display:none">
+                    <span style="color:red" hei>
+                        <p>@T("You will be redirected to the Online Banking system to complete the payment")</p>
+                        <p>@T("You will be charged immediately after you place your order")</p>
 
-                        </span>
-                    </div>
+                    </span>
                 </div>
             </div>
 
@@ -785,6 +786,21 @@
             }
 
 
+        });
+
+        $(".mobile-question").click(function () {
+            //alert("as");
+            if ($(".order_summary__help").css("display") == "none") {
+                $(".order_summary__help").css("display", "block");
+                $(".mobile-question").css("border-radius", "5px 5px 0px 0px");
+                $(".mobile-question").css("border-bottom", "0px");
+                $(".mobile-question")[0].innerHTML = "&ndash;";
+            } else {
+                $(".order_summary__help").css("display", "none");
+                $(".mobile-question").css("border-radius", "5px 5px 5px 5px");
+                $(".mobile-question").css("border-bottom", "1px solid #c2c9cc");
+                $(".mobile-question")[0].innerHTML = "+";
+            }
         });
 
     </script>
