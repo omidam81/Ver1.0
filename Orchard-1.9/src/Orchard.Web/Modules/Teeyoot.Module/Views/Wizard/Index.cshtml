@@ -2127,31 +2127,43 @@
                     <h3 id="login_validation_summary" style="display: none; color: red;"></h3>
                     <form id="login_form" action="javascript:;">
                         <fieldset>
-                            <input type="text" class="email" id="loginEmail" name="loginEmail" style="margin:0 auto;" placeholder="@T("Email")" />
-                            <br />
-                            <input type="password" class="password" id="loginPassword" name="loginPassword" style="margin:0 auto;" placeholder="@T("Password")" />
-                            <br />
-                            <input type="submit" class="btn-modal-login" value="@T("Login to your account >>")" />
+                            <div class="input-fixed">
+                                <input type="text" class="email" id="loginEmail" name="loginEmail" style="margin:0 auto;" placeholder="@T("Email")" />
+                                <br />
+                            </div>
+                            <div class="input-fixed">
+                                <input type="password" class="password" id="loginPassword" name="loginPassword" style="margin:0 auto;" placeholder="@T("Password")" />
+                                <br />
+                            </div>
+                                <input type="submit" class="btn-modal-login" value="@T("Login to your account >>")" />
+                            
                             <img id="login_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
                         </fieldset>
                     </form>
-                    <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
+                    <div>
+                        <a href="javascript:;" class="create-new-account">@T("Want to create a new account?")</a>
+                    </div>
                 </div>
                 <div id="create_account" class="auth-window">
                     <h2 class="modal-title">@T("Create an account with Teeyoot")</h2>
                     <h3 id="create_account_validation_summary" style="display: none; color: red;"></h3>
                     <form id="create_account_form" action="javascript:;">
                         <fieldset>
-                            <span class="mandatory_wizard">* </span><input type="text" id="registrName" name="registrName" class="name" placeholder="@T("Name")" />
-                            <br />
-                            <span class="mandatory_wizard">* </span> <input type="text" id="registrEmail" name="registrEmail" class="email" placeholder="@T("Email")" />
-                            <br />
-                            <span class="mandatory_wizard"> &nbsp; </span><input type="text" class="phone" placeholder="@T("Phone Number")" />
-                            <br />
-                            <span class="mandatory_wizard">* </span> <input type="password" id="registerPassword" name="registerPassword" class="password" placeholder="@T("Password: Must be longer than 8 characters.")" />
-                            <br />
-                            <span class="mandatory_wizard">* </span><input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="confirm-password" placeholder="@T("Confirm Password")" />
-                            <br />
+                            <div class="input-fixed">
+                                <span class="mandatory_wizard">* </span><input type="text" id="registrName" name="registrName" class="name" placeholder="@T("Name")" />                              
+                            </div>
+                            <div class="input-fixed">
+                                <span class="mandatory_wizard">* </span> <input type="text" id="registrEmail" name="registrEmail" class="email" placeholder="@T("Email")" />
+                            </div>
+                            <div class="input-fixed">
+                                <span class="mandatory_wizard"> &nbsp; </span><input type="text" class="phone" placeholder="@T("Phone Number")" />
+                            </div>
+                            <div class="input-fixed">
+                                <span class="mandatory_wizard">* </span> <input type="password" id="registerPassword" name="registerPassword" class="password" placeholder="@T("Password: Must be longer than 8 characters.")" />
+                            </div>
+                            <div class="input-fixed">
+                                <span class="mandatory_wizard">* </span><input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="confirm-password" placeholder="@T("Confirm Password")" />
+                            </div>
                             <input type="submit" class="btn-modal-login" value="@T("Create your account >>")" />
                             <img id="create_account_busy" style="display: none;" src="/Modules/Teeyoot.Module/Content/images/busy.gif" alt="@T("Loading...")" />
                         </fieldset>

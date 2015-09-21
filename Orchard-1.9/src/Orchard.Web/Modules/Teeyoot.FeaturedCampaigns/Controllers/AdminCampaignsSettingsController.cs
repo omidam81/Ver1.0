@@ -35,6 +35,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly ICampaignService _campaignService;
         private readonly ISiteService _siteService;
         private readonly IimageHelper _imageHelper;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IContentManager _contentManager;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IOrderService _orderService;
@@ -44,7 +45,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private string cultureUsed = string.Empty;
 
         public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper, IOrderService orderService, IContentManager contentManager,
-            ITeeyootMessagingService teeyootMessagingService, INotifier notifier, IRepository<ProductColorRecord> repositoryColor, IWorkContextAccessor workContextAccessor)
+            ITeeyootMessagingService teeyootMessagingService, INotifier notifier, IRepository<ProductColorRecord> repositoryColor, IWorkContextAccessor workContextAccessor, IRepository<CurrencyRecord> currencyRepository)
         {
             _campaignService = campaignService;
             _siteService = siteService;
@@ -52,6 +53,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             _contentManager = contentManager;
             _teeyootMessagingService = teeyootMessagingService;
             _orderService = orderService;
+            _currencyRepository = currencyRepository;
 
             Shape = shapeFactory;
             T = NullLocalizer.Instance;
@@ -71,6 +73,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public ActionResult Index(PagerParameters pagerParameters)
         {
             var total = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).Count();
+            var orderedProducts = _orderService.GetAllOrderedProducts();
 
             var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).Select(c => new
             {
@@ -82,7 +85,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 UserId = c.TeeyootUserId,
                 IsApproved = c.IsApproved,
                 EndDate = c.EndDate,
-                Profit = c.CampaignProfit,
+                Profit = orderedProducts
+                                    .Where(p => p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.CampaignProductRecord.CampaignRecord_Id == c.Id)
+                                    .Select(pr => new { Profit = pr.Count * (pr.CampaignProductRecord.Price - pr.CampaignProductRecord.BaseCost) })
+                                    .Sum(entry => (double?)entry.Profit) ?? 0,              
                 Alias = c.Alias,
                 IsActive = c.IsActive,
                 Minimum = c.ProductMinimumGoal,
@@ -108,6 +114,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     IsApproved: e.IsApproved,
                     EndDate: e.EndDate.ToLocalTime().ToString("dd/MM/yyyy"),
                     Profit: e.Profit,
+                    SummaryCurrency : _currencyRepository.Table.Where(cm => cm.CurrencyCulture == (_campaignService.GetCampaignById(e.Id).CampaignCulture)).FirstOrDefault().Code,
                     Alias: e.Alias,
                     IsActive: e.IsActive,
                     Minimum: e.Minimum,

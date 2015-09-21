@@ -6855,5 +6855,8 @@ td, tr {
    }
 }
 
+.info-text{
+    clear:both;
+}
 
 
