@@ -215,9 +215,6 @@
                     <th class="publicId">
                         <h3>@T("Order Date")</h3>
                     </th>
-                    <th class="status">
-                        <h3>@T("Status")</h3>
-                    </th>
                     <th class="buyer">
                         <h3>@T("Buyer")</h3>
                     </th>
@@ -229,6 +226,9 @@
                     </th>
                     <th class="profit">
                         <h3>@T("Profit")</h3>
+                    </th>
+                    <th class="status">
+                        <h3>@T("Status")</h3>
                     </th>
                     <th class="payout">
                         <h3>@T("Payment Status")</h3>
@@ -245,6 +245,22 @@
                         </td>
                         <td>
                             @item.CreateDate
+                        </td>
+                        <td class="buyer">
+                            @item.EmailBuyer
+                            <button class="go" type="submit" value="@item.Id">
+                                @T("inf")
+                            </button>
+                        </td>
+                        <td class="campaign">
+                            @item.CampaignName
+                        </td>
+                        <td class="seller">
+                            @item.UserNameSeller
+                        </td>
+                        <td class="profit">
+                            @T("RM ")
+                            @item.Profit
                         </td>
                         <td class="status">
                             @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
@@ -272,24 +288,6 @@
                                     @T("Apply")
                                 </button>
                             }
-
-
-                        </td>
-                        <td class="buyer">
-                            @item.EmailBuyer
-                            <button class="go" type="submit" value="@item.Id">
-                                @T("inf")
-                            </button>
-                        </td>
-                        <td class="campaign">
-                            @item.CampaignName
-                        </td>
-                        <td class="seller">
-                            @item.UserNameSeller
-                        </td>
-                        <td class="profit">
-                            @T("RM ")
-                            @item.Profit
                         </td>
                         <td class="payout">
                             @if (item.Payout)
