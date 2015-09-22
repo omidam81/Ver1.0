@@ -614,9 +614,15 @@ namespace Teeyoot.Module.Controllers
 
             var model = new ReservationCompleteViewModel();
             if (!oops)
+            {
+                model.Oops = false;
                 model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
+            }
             else
+            {
                 model.Message = T("Oops! we couldn't process this order, you can try to change your payment method and try again").ToString();
+                model.Oops = true;
+            }
 
             model.Campaigns = entriesProjection.ToArray();
 

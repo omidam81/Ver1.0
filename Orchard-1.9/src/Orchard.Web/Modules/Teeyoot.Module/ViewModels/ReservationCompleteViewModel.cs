@@ -15,5 +15,7 @@ namespace Teeyoot.Module.ViewModels
         public dynamic[] Campaigns { get; set; }
 
         public string Message { get; set; }
+
+        public bool Oops { get; set; }
     }
 }
