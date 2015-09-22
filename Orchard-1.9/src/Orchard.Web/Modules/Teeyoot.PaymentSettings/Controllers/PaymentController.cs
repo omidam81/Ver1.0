@@ -40,11 +40,31 @@ namespace Teeyoot.PaymentSettings.Controllers
             if (setting == null)
                 return View(new PaymentSettingsViewModel() { CashDeliv = false, CreditCard = false, Mol = false, PayPal = false, SettingEmpty = true });
             else
-                return View(new PaymentSettingsViewModel() { merchantId = setting.MerchantId, clientToken = setting.ClientToken, merchantIdMol = setting.MerchantIdMol, privateKey = setting.PrivateKey, verifyKey = setting.VerifyKey, publicKey = setting.PublicKey, CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false });
+                return View(new PaymentSettingsViewModel() { merchantId = setting.MerchantId, clientToken = setting.ClientToken, merchantIdMol = setting.MerchantIdMol, privateKey = setting.PrivateKey, verifyKey = setting.VerifyKey, publicKey = setting.PublicKey, CashDeliv = setting.CashDeliv, CreditCard = setting.CreditCard, Mol = setting.Mol, PayPal = setting.PayPal, SettingEmpty = false,
+                    // Tab names for payment methods
+                    CashDelivTabName = setting.CashDelivTabName,
+                    PayPalTabName = setting.PayPalTabName,
+                    MolTabName = setting.MolTabName,
+                    CreditCardTabName = setting.CreditCardTabName,
+                    // Notes for payment methods
+                    CashDelivNote = setting.CashDelivNote,
+                    PayPalNote = setting.PayPalNote,
+                    MolNote = setting.MolNote,
+                    CreditCardNote = setting.CreditCardNote}); 
         }
 
         public ActionResult SaveSettings(bool CashDeliv, bool PayPal, bool Mol, bool CreditCard, string PrivateKey, string PublicKey, string MerchantId,
-                                        string ClientToken, string MerchantIdMol, string VerifyKey)
+                                        string ClientToken, string MerchantIdMol, string VerifyKey,
+                                        // Tab names for payment methods
+                                        string CashDelivTabName,
+                                        string PayPalTabName,
+                                        string MolTabName,
+                                        string CreditCardTabName,
+                                        // Notes for payment methods
+                                        string CashDelivNote,
+                                        string PayPalNote,
+                                        string MolNote,
+                                        string CreditCardNote)
         {
             var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
             //setting.PaymentMethod = Convert.ToInt32(PaymentMethod);
@@ -58,6 +78,18 @@ namespace Teeyoot.PaymentSettings.Controllers
             setting.PayPal = PayPal;
             setting.Mol = Mol;
             setting.CreditCard = CreditCard;
+
+            // Tab names for payment methods
+            setting.CashDelivTabName = CashDelivTabName;
+            setting.PayPalTabName = PayPalTabName;
+            setting.MolTabName = MolTabName;
+            setting.CreditCardTabName = CreditCardTabName;
+            // Notes for payment methods
+            setting.CashDelivNote = CashDelivNote;
+            setting.PayPalNote = PayPalNote;
+            setting.MolNote = MolNote;
+            setting.CreditCardNote = CreditCardNote;
+
             _paymentSettingsService.UpdateSettings(setting);
             return RedirectToAction("Index", "Payment");
         }

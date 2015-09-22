@@ -78,8 +78,10 @@
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CostCalculator.js" />
+    <Content Include="Scripts\EditCampaign.js" />
     <Content Include="Scripts\jquery.flip.js" />
     <Content Include="Scripts\promotion.js" />
+    <Content Include="Scripts\selectize.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\campaigns.css" />
@@ -142,6 +144,7 @@
     <Compile Include="ViewModels\PayoutsViewModel.cs" />
     <Compile Include="ViewModels\PromotionViewModel.cs" />
     <Compile Include="ViewModels\StoreViewModel.cs" />
+    <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dashboard\Campaigns.cshtml" />

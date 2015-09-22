@@ -69,8 +69,12 @@
         loadedData = data;
         var $front = $('#card .front');
         var $back = $('#card .back');
-        $front.find('.width').val((data.PrintableFrontWidth/data.Ppi*2.54).toFixed(2));
+        $front.find('.width').val((data.PrintableFrontWidth / data.Ppi * 2.54).toFixed(2));
         $front.find('.height').val((data.PrintableFrontHeight / data.Ppi * 2.54).toFixed(2));
+        //---------------
+        $front.find('.left').val(data.PrintableFrontLeft);
+        $front.find('.top').val(data.PrintableFrontTop);
+        //---------------
         $front.find('.area-chest').val((data.ChestLineFront / data.Ppi * 2.54).toFixed(2));
         $front.find('.area-design').css({
             top: data.PrintableFrontTop,
@@ -82,6 +86,10 @@
 
         $back.find('.width').val((data.PrintableBackWidth / data.Ppi * 2.54).toFixed(2));
         $back.find('.height').val((data.PrintableBackHeight / data.Ppi * 2.54).toFixed(2));
+        //---------------
+        $back.find('.left').val(data.PrintableBackLeft);
+        $back.find('.top').val(data.PrintableBackTop);
+        //----------------------
         $back.find('.area-chest').val((data.ChestLineBack / data.Ppi * 2.54).toFixed(2));
         $back.find('.area-design').css({
             top: data.PrintableBackTop,
@@ -95,8 +103,8 @@
     function inputsKeyUp() {
         var o = $(this);
         var $plane = $(isFront ? '#card .front' : '#card .back');
-        var value 	= o.val();
-        var filter 	= /^[0-9.]+$/;
+        var value = o.val();
+        var filter = /^[0-9.]+$/;
         if (filter.test(value)) {
             var area = $plane.find('.area-design');
 
@@ -108,6 +116,13 @@
                 var C_areaZoom = area.width() / $plane.find('.width').val();
                 var height = value * C_areaZoom;
                 area.height(height.toFixed(2));
+                //---------------------------------------------
+            } else if (o.hasClass('left')) {
+                area.css('left', +value);
+
+            } else if (o.hasClass('top')) {
+                area.css('top', +value);
+                //-------------------------------------------------
             } else {
                 var C_areaZoom = area.width() / $plane.find('.width').val();
                 $plane.find('.chestline').css('top', C_areaZoom * value);
@@ -129,6 +144,8 @@
                 areaZoom = $plane.find('.height').val() / $plane.find('.area-design').height();
                 var width = ui.size.width * areaZoom;
                 $plane.find('.width').val(width.toFixed(2));
+
+
             } else {
                 var width = ui.size.width * areaZoom;
                 $plane.find('.width').val(width.toFixed(2));
@@ -136,16 +153,25 @@
                 $plane.find('.height').val(height.toFixed(2));
             }
         }
-        if(areaZoom !== oldZoom){
+        if (areaZoom !== oldZoom) {
             $plane = $(!isFront ? '#card .front' : '#card .back');
             isLockedW = $plane.find('.lock-w').is(':checked');
             isLockedH = $plane.find('.lock-h').is(':checked');
             $plane.find('.area-design').css({
-                width:$plane.find('.width').val() / areaZoom,
-                height:$plane.find('.height').val() / areaZoom
-        });
+                width: $plane.find('.width').val() / areaZoom,
+                height: $plane.find('.height').val() / areaZoom
+            });
         }
+
+        UpdateInputsOnMove(ui);
     }
+
+    function UpdateInputsOnMove(ui) {
+        var $plane = $(isFront ? '#card .front' : '#card .back');
+        $plane.find('.left').val(ui.position.left);
+        $plane.find('.top').val(ui.position.top);
+    }
+
     function setResizeable() {
         var $front = $('#card .front');
         var $back = $('#card .back');
@@ -154,11 +180,15 @@
         if (area.hasClass('ui-resizable')) {
             area.resizable('destroy');
         }
+
         area.resizable({
             handles: "ne, se, sw, nw", aspectRatio: aspect,
             resize: function (event, ui) { updateInputsOnResize(ui); },
             start: function (event, ui) { areaZoom = $front.find('.width').val() / $front.find('.area-design').width(); }
-        }).draggable({ containment: "parent" });
+        }).draggable({
+            containment: "parent",
+            drag: function (event, ui) { UpdateInputsOnMove(ui); }
+        });
         aspect = $back.find('.lock-w').is(':checked') && $back.find('.lock-h').is(':checked')
         var area = $('.back .area-design');
         if (area.hasClass('ui-resizable')) {
@@ -168,7 +198,10 @@
             handles: "ne, se, sw, nw", aspectRatio: aspect,
             resize: function (event, ui) { updateInputsOnResize(ui); },
             start: function (event, ui) { areaZoom = $back.find('.width').val() / $back.find('.area-design').width(); }
-        }).draggable({ containment: "parent" });
+        }).draggable({
+            containment: "parent",
+            drag: function (event, ui) { UpdateInputsOnMove(ui); }
+        });
     }
     function showDialog(data) {
         isFront = true;

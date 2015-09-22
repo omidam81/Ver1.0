@@ -335,6 +335,14 @@
                             </div>
                             <br/>
                         }
+                        @if (!string.IsNullOrEmpty(Model.Promotion)) { 
+                        <p style="margin-top: 10px;">
+                            <strong>@T("Promotion: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.Promotion.Replace(',', '.')</strong>
+                        </p>
+                        }
+                        <p style="margin-top: 10px;">
+                            <strong>@T("Delivery cost: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.Delivery.Replace(',', '.')</strong>
+                        </p>
                         <p style="margin-top: 10px;">
                             <strong>@T("Total price: ") @Model.Products.First().CampaignProductRecord.CurrencyRecord.Code @Model.TotalPrice.Replace(',', '.')</strong>
                         </p>

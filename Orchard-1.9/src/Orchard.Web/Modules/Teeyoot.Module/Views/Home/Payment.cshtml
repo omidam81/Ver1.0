@@ -109,12 +109,12 @@
 
                                 </dd>
                             </dl>
-                            <dl class="order_summary__breakdown" id="message_err" style="display: none">
+                            @*<dl class="order_summary__breakdown" id="message_err" style="display: none">
                                 <span style="color:red;">
                                     @T("We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only.")
                                 </span>
 
-                            </dl>
+                            </dl>*@
 
                         </div><div class="order_summary--offset js_order_summary--offset"></div>
                     </div>
@@ -123,34 +123,37 @@
 
 
             <div class="order_summary__container">
+                <div class="mobile-question"><h2>+ @T("Questions and answers")</h2></div>
                 <div class="order_summary__help">
                     <div class="order_summary__help__container">
-                        <h2>@T("How does Teeyoot work?")</h2>
-                        <p>@T("We won't charge you unless the campaign order reaches its minimum.")</p>
-                        <h2>@T("What are my payment options?")</h2>
-                        <p>@T("We accept payment via Cash on Delivery, Direct Bank Transfer, Debit or Credit Card.")</p>
-                        <h2>@T("If I pay via Online Banking but the campaign does not reach its minimum, will I get a refund?")</h2>
-                        <p>@T("Yes absolutely! We will refund the amount within 7 days after the campaign ends. Your interest is our top priority.")</p>
+                        @Html.Raw(Model.CheckoutPageRightSideContent)
                     </div>
-                    <div class="order_summary__help__container">
-                        <h2>@T("How long will it take to get my shirt?")</h2>
-                        <p>
-                            <span class="js-delivery-estimate">
-                                @T("Your order will arrive")
-                                <span class="js-estimate-earliest">10</span> -
-                                <span class="js-estimate-latest">15</span> @T("business days after the end of the campaign!")
-                            </span>
-                        </p>
-                    </div>
-                    <br>
-                    <div class="message_Mol" style="display:none">
-                        <span style="color:red" hei>
-                            <p>@T("You will be redirected to the Online Banking system to complete the payment")</p>
-                            <p>@T("You will be charged immediately after you place your order")</p>
-
-                        </span>
-                    </div>
+                    
                 </div>
+                <br>
+                @*<div class="message_Mol" style="display:none">*@
+
+                @if (String.IsNullOrEmpty(Model.CreditCardNote))
+                {
+                    <div class="message_Mol" style="display: none;">
+                        <span style="color:red" id="message_Mol_span">@Model.CreditCardNote</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="message_Mol">
+                        <span style="color:red" id="message_Mol_span">@Model.CreditCardNote</span>
+                    </div>
+                }
+
+                <dl class="order_summary__breakdown" id="message_err" style="display: none">
+                    <span style="color:red;">
+                        @Model.CashOnDeliveryAvailabilityMessage
+                    </span>
+
+                </dl>
+
+
             </div>
 
 
@@ -180,7 +183,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="creditcard">
-                                        <p>@T("Credit / Debit Card ")</p>
+                                        <p>@Model.CreditCardTabName</p>
                                     </a>
                                     <p class="recom">Recommended</p>
                                 </li>
@@ -189,7 +192,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="paypal">
-                                        <p>@T("Braintree PayPal")</p>
+                                        <p>@Model.PayPalTabName</p>
                                     </a>
                                 </li>
                             }
@@ -197,7 +200,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="mol">
-                                        <p>@T("Online Banking")</p>
+                                        <p>@Model.MolTabName</p>
                                         @*<p>@T("Online Bancking")</p>*@
                                     </a>
                                 </li>
@@ -206,7 +209,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="cash">
-                                        <p>@T("Cash on delivery")</p>
+                                        <p>@Model.CashDelivTabName</p>
                                     </a>
                                 </li>
 
@@ -432,14 +435,13 @@
                     </div>
                     <div class="checkout_form_footer" style="margin-top:10px">
                         <div class="checkout_form_footer__submit_wrap js_submit_wrap_cc">
-                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="@T("Place Your Order")">@T("Place Your Order")</button>
-
-                            <p class="tos_agreement">
+                            <p class="info-text tos_agreement">
                                 @T("By clicking 'Place Your Order' you agree to our")
                                 <a href='/Privacy' target='_blank'>@T("privacy policy")</a>
                                 @T("and") <a href='/Terms' target='_blank'>@T("terms of service")</a>
                                 .
                             </p>
+                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="@T("Place Your Order")">@T("Place Your Order")</button> 
                         </div>
                     </div>
                 </div>
@@ -504,196 +506,216 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            document.title = "Payment | Teeyoot";
+    $(document).ready(function () {
+        document.title = "Payment | Teeyoot";
 
-            $(window).on('unload', function () {
-                $('button').prop('disabled', false);
-            });
+        $(window).on('unload', function () {
+            $('button').prop('disabled', false);
+        });
 
-            $('.payment-method:first').css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
+        $('.payment-method:first').css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
 
-            var defaultPaymentMethod = $('.payment-method:first').data('payment-method');
-            if (defaultPaymentMethod === 'creditcard') {
-                $('#message_err').css({ "display": "none" });
+        var defaultPaymentMethod = $('.payment-method:first').data('payment-method');
+        if (defaultPaymentMethod === 'creditcard') {
+            $('#message_err').css({ "display": "none" });
+            $('#payment_method_credit_card').show();
+            $('#paymentMethod').val("1");
+            populateCountries("State");
+        } else if (defaultPaymentMethod === 'paypal') {
+            $('#message_err').css({ "display": "none" });
+            $('#payment_method_paypal').show();
+            $('#paymentMethod').val("2");
+            populateCountries("State");
+        } else if (defaultPaymentMethod === 'mol') {
+            $('#message_err').css({ "display": "none" });
+            /*$('.message_Mol').css({ "display": "" });*/
+            //document.getElementById("mol_container").style.display = "";
+            $('#payment_method_mol').show();
+            $('#paymentMethod').val("3");
+            populateCountries("State");
+        } else if (defaultPaymentMethod === 'cash') {
+            $('#payment_method_cash').show();
+            $('#paymentMethod').val("4");
+            $('#message_err').css({ "display": "" });
+            populateCountriesForCashOnDelivery("State");
+        }
+
+        $('.payment-method').click(function () {
+            $('.payment-method').css('text-decoration', '').css('color', '').css('border-color', '');
+            $(this).css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
+
+            $('.payment-method-container').hide();
+            var paymentMethod = $(this).data('payment-method');
+            if (paymentMethod === 'creditcard') {
                 $('#payment_method_credit_card').show();
+                /*$('.message_Mol').css({ "display": "none" });*/
+                $('#message_Mol_span').text("@Model.CreditCardNote");
+                if ('@Model.CreditCardNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
+                $('#message_err').css({ "display": "none" });
                 $('#paymentMethod').val("1");
                 populateCountries("State");
-            } else if (defaultPaymentMethod === 'paypal') {
-                $('#message_err').css({ "display": "none" });
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "none";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
+            } else if (paymentMethod === 'paypal') {
                 $('#payment_method_paypal').show();
+                /*$('.message_Mol').css({ "display": "none" });*/
+                $('#message_Mol_span').text("@Model.PayPalNote");
+                if ('@Model.PayPalNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
+                $('#message_err').css({ "display": "none" });
                 $('#paymentMethod').val("2");
                 populateCountries("State");
-            } else if (defaultPaymentMethod === 'mol') {
-                $('#message_err').css({ "display": "none" });
-                $('.message_Mol').css({ "display": "" });
-                //document.getElementById("mol_container").style.display = "";
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "none";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
+            } else if (paymentMethod === 'mol') {
                 $('#payment_method_mol').show();
+                /*$('.message_Mol').css({ "display": "" });*/
+                $('#message_Mol_span').text("@Model.MolNote");
+                if ('@Model.MolNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
+                $('#message_err').css({ "display": "none" });
                 $('#paymentMethod').val("3");
                 populateCountries("State");
-            } else if (defaultPaymentMethod === 'cash') {
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
+            } else if (paymentMethod === 'cash') {
                 $('#payment_method_cash').show();
-                $('#paymentMethod').val("4");
+                /*$('.message_Mol').css({ "display": "none" });*/
+                $('#message_Mol_span').text("@Model.CashDelivNote");
+                if ('@Model.CashDelivNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
                 $('#message_err').css({ "display": "" });
+                $('#paymentMethod').val("4");
                 populateCountriesForCashOnDelivery("State");
-            }
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "none";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
 
-            $('.payment-method').click(function () {
-                $('.payment-method').css('text-decoration', '').css('color', '').css('border-color', '');
-                $(this).css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
-
-                $('.payment-method-container').hide();
-                var paymentMethod = $(this).data('payment-method');
-                if (paymentMethod === 'creditcard') {
-                    $('#payment_method_credit_card').show();
-                    $('.message_Mol').css({ "display": "none" });
-                    $('#message_err').css({ "display": "none" });
-                    $('#paymentMethod').val("1");
-                    populateCountries("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "none";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-                } else if (paymentMethod === 'paypal') {
-                    $('#payment_method_paypal').show();
-                    $('.message_Mol').css({ "display": "none" });
-                    $('#message_err').css({ "display": "none" });
-                    $('#paymentMethod').val("2");
-                    populateCountries("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "none";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-                } else if (paymentMethod === 'mol') {
-                    $('#payment_method_mol').show();
-                    $('.message_Mol').css({ "display": "" });
-                    $('#message_err').css({ "display": "none" });
-                    $('#paymentMethod').val("3");
-                    populateCountries("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-                } else if (paymentMethod === 'cash') {
-                    $('#payment_method_cash').show();
-                    $('.message_Mol').css({ "display": "none" });
-                    $('#message_err').css({ "display": "" });
-                    $('#paymentMethod').val("4");
-                    populateCountriesForCashOnDelivery("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "none";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-
-                }
-            });
-        });
-        //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
-        document.getElementById("transaction").disabled = "";
-        var token = document.getElementById("Token").value;
-        braintree.setup(token, "paypal",
-        {
-            container: "paypal-container",
-            onPaymentMethodReceived: function (obj) {
-                /*
-                document.getElementById("accordion").className = "accordion";
-                document.querySelector(".contLable").style.display = "none";
-                document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
-                document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
-                document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
-                document.getElementById("bt-pp-cancel").style.fontSize = "20px";
-                document.getElementById("bt-pp-email").style.fontSize = "18px";
-                document.querySelector(".accordion__item").style.borderTop = "0px";
-                document.getElementById("bt-pp-cancel").style.background = "white";
-                document.querySelector(".accordion").style.height = "50px";
-                document.getElementById("bt-pp-cancel").style.textDecoration = "none";
-                */
-                doSomethingWithTheNonce(obj.nonce);
-            },
-            onCancelled: function () {
-                document.getElementById("accordion").className = "credit_card_accordion accordion_min accordion";
-                document.querySelector(".contLable").style.display = "inline";
-                //document.querySelector(".accordion").style.height = "230px";
             }
         });
+    });
+    //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
+    document.getElementById("transaction").disabled = "";
+    var token = document.getElementById("Token").value;
+    braintree.setup(token, "paypal",
+    {
+        container: "paypal-container",
+        onPaymentMethodReceived: function (obj) {
+            /*
+            document.getElementById("accordion").className = "accordion";
+            document.querySelector(".contLable").style.display = "none";
+            document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
+            document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
+            document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
+            document.getElementById("bt-pp-cancel").style.fontSize = "20px";
+            document.getElementById("bt-pp-email").style.fontSize = "18px";
+            document.querySelector(".accordion__item").style.borderTop = "0px";
+            document.getElementById("bt-pp-cancel").style.background = "white";
+            document.querySelector(".accordion").style.height = "50px";
+            document.getElementById("bt-pp-cancel").style.textDecoration = "none";
+            */
+            doSomethingWithTheNonce(obj.nonce);
+        },
+        onCancelled: function () {
+            document.getElementById("accordion").className = "credit_card_accordion accordion_min accordion";
+            document.querySelector(".contLable").style.display = "inline";
+            //document.querySelector(".accordion").style.height = "230px";
+        }
+    });
 
     </script>
 
     <script language="javascript">
-        //var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Anguilla", "Antartica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Ashmore and Cartier Island", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czeck Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Europa Island", "Falkland Islands (Islas Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "Gambia, The", "Gaza Strip", "Georgia", "Germany", "Ghana", "Gibraltar", "Glorioso Islands", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See (Vatican City)", "Honduras", "Hong Kong", "Howland Island", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Ireland, Northern", "Israel", "Italy", "Jamaica", "Jan Mayen", "Japan", "Jarvis Island", "Jersey", "Johnston Atoll", "Jordan", "Juan de Nova Island", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Man, Isle of", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Midway Islands", "Moldova", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcaim Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romainia", "Russia", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Scotland", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and South Sandwich Islands", "Spain", "Spratly Islands", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Tobago", "Toga", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "USA", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands", "Wales", "Wallis and Futuna", "West Bank", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
-        var Settings = [];
-        function populateCountries(countryElementId) {
-            var state = "@Model.Order.State";
-            var settings_arr = [];
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "GET",
-                url: "/GetSettings",
+    //var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Anguilla", "Antartica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Ashmore and Cartier Island", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czeck Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Europa Island", "Falkland Islands (Islas Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "Gambia, The", "Gaza Strip", "Georgia", "Germany", "Ghana", "Gibraltar", "Glorioso Islands", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See (Vatican City)", "Honduras", "Hong Kong", "Howland Island", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Ireland, Northern", "Israel", "Italy", "Jamaica", "Jan Mayen", "Japan", "Jarvis Island", "Jersey", "Johnston Atoll", "Jordan", "Juan de Nova Island", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Man, Isle of", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Midway Islands", "Moldova", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcaim Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romainia", "Russia", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Scotland", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and South Sandwich Islands", "Spain", "Spratly Islands", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Tobago", "Toga", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "USA", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands", "Wales", "Wallis and Futuna", "West Bank", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+    var Settings = [];
+    function populateCountries(countryElementId) {
+        var state = "@Model.Order.State";
+        var settings_arr = [];
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "GET",
+            url: "/GetSettings",
 
-                success: function (data) {
-                    settings_arr = data.settings;
-                },
-                error: function (data, status, resp) {
-                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
-                }
-            });
-            var countryElement = document.getElementById(countryElementId);
-            //if (countryElement == "First" || countryElement == "") {
-            var vall = "";
-            if (countryElement.value != "" || countryElement.value != "Select State") {
-                vall = countryElement.value;
+            success: function (data) {
+                settings_arr = data.settings;
+            },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
             }
-
-            countryElement.length = 0;
-            countryElement.options[0] = new Option('Select State', "");
-            countryElement.selectedIndex = 0;
-            //}
-
-            Settings = settings_arr;
-            var z = 0;
-            for (var i = 0; i < settings_arr.length; i++) {
-                countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
-                if (settings_arr[i].State == $('#paymentState').val()) {
-                    z = i + 1;
-                } else if (settings_arr[i].State == state) {
-                    z = i + 1;
-                } else if (settings_arr[i].State == "Selangor") {
-                    z = i + 1;
-                    ////if (countryElement.value != "Select State" || countryElement.value != "First") {
-                    //countryElement.selectedIndex = i + 1;
-                    //document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
-                    ////document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    ////delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                    //document.getElementById("parentDelivery").style.display = "";
-                    //var res = document.getElementById("ordTotal").innerHTML;
-                    //var res1 = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                    //document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
-                    //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                }
-                else {
-                    document.getElementById("parentDelivery").style.display = "none";
-                    document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost)).toFixed(2);
-                    delivCost = 0;
-                }
-                //}
-            }
-            countryElement.selectedIndex = z;
-            if (z != 0) {
-                document.getElementById("deliveryCost").innerHTML = settings_arr[z - 1].DeliveryCost;
-
-                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
-                document.getElementById("parentDelivery").style.display = "";
-
-                document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[z - 1].DeliveryCost)).toFixed(2);
-                delivCost = parseFloat(Settings[z - 1].DeliveryCost).toFixed(2);
-            }
+        });
+        var countryElement = document.getElementById(countryElementId);
+        //if (countryElement == "First" || countryElement == "") {
+        var vall = "";
+        if (countryElement.value != "" || countryElement.value != "Select State") {
+            vall = countryElement.value;
         }
 
+        countryElement.length = 0;
+        countryElement.options[0] = new Option('Select State', "");
+        countryElement.selectedIndex = 0;
+        //}
 
-        function populateCountriesForCashOnDelivery(countryElementId) {
-            var state = "@Model.Order.State";
+        Settings = settings_arr;
+        var z = 0;
+        for (var i = 0; i < settings_arr.length; i++) {
+            countryElement.options[countryElement.length] = new Option(settings_arr[i].State, settings_arr[i].State);
+            if (settings_arr[i].State == $('#paymentState').val()) {
+                z = i + 1;
+            } else if (settings_arr[i].State == state) {
+                z = i + 1;
+            } else if (settings_arr[i].State == "Selangor") {
+                z = i + 1;
+                ////if (countryElement.value != "Select State" || countryElement.value != "First") {
+                //countryElement.selectedIndex = i + 1;
+                //document.getElementById("deliveryCost").innerHTML = settings_arr[i].DeliveryCost;
+                ////document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                ////delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                //document.getElementById("parentDelivery").style.display = "";
+                //var res = document.getElementById("ordTotal").innerHTML;
+                //var res1 = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+                //document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
+                //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+            }
+            else {
+                document.getElementById("parentDelivery").style.display = "none";
+                document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost)).toFixed(2);
+                delivCost = 0;
+            }
+            //}
+        }
+        countryElement.selectedIndex = z;
+        if (z != 0) {
+            document.getElementById("deliveryCost").innerHTML = settings_arr[z - 1].DeliveryCost;
+
+            //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+            //delivCost = parseFloat(Settings[i].DeliveryCost).toFixed(2);
+            document.getElementById("parentDelivery").style.display = "";
+
+            document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[z - 1].DeliveryCost)).toFixed(2);
+            delivCost = parseFloat(Settings[z - 1].DeliveryCost).toFixed(2);
+        }
+    }
+
+
+    function populateCountriesForCashOnDelivery(countryElementId) {
+        var state = "@Model.Order.State";
             var settings_arr = [];
             $.ajax({
                 async: false,
@@ -785,6 +807,21 @@
             }
 
 
+        });
+
+        $(".mobile-question").click(function () {
+            var text = "@T("Questions and answers")";
+            if ($(".order_summary__help").css("display") == "none") {
+                $(".order_summary__help").css("display", "block");
+                $(".mobile-question").css("border-radius", "5px 5px 0px 0px");
+                $(".mobile-question").css("border-bottom", "0px");
+                $(".mobile-question")[0].innerHTML = "<h2>&ndash; " + text + "</h2>";
+            } else {
+                $(".order_summary__help").css("display", "none");
+                $(".mobile-question").css("border-radius", "5px 5px 5px 5px");
+                $(".mobile-question").css("border-bottom", "1px solid #c2c9cc");
+                $(".mobile-question")[0].innerHTML = "<h2>+ " + text + "</h2>";
+            }
         });
 
     </script>

@@ -1843,5 +1843,43 @@ namespace Teeyoot.Module
 
             return 95;
         }
+
+
+        //
+        //
+        //
+        public int UpdateFrom95()
+        {
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
+               table => table.AddColumn<string>("CashOnDeliveryAvailabilityMessage"));
+            //
+            // Tab names for payment methods
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+               table => table.AddColumn<string>("CashDelivTabName"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("PayPalTabName"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+                  table => table.AddColumn<string>("MolTabName"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("CreditCardTabName"));
+            // Notes for payment methods
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("CashDelivNote"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("PayPalNote"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+                  table => table.AddColumn<string>("MolNote"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("CreditCardNote"));
+            //
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
+              table => table.AddColumn<string>("CheckoutPageRightSideContent", c => c.Unlimited()));
+
+            return 96;
+        }
+        //
+        //
+        //
+
     }
 }

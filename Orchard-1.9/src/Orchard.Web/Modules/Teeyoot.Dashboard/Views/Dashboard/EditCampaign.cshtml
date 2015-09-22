@@ -1,183 +1,216 @@
 ﻿@model Teeyoot.Dashboard.ViewModels.EditCampaignViewModel
 @{
     Layout.Title = T("Edit ") + Model.Title;
+
     Style.Include("EditCampaign.css");
     Style.Include("jqueryui.css");
     Style.Include("designer.css");
     Style.Include("bootstrap-wysihtml5.css");
     Style.Include("bootstrap.min.css");
+    Style.Include("selectize.css");
 
     Script.Require("jQueryUI");
     Script.Include("bootstrap.min.js");
+    Script.Include("selectize.js");
     Script.Include("wysihtml5-0.3.0.js");
     Script.Include("bootstrap-wysihtml5.js");
     Script.Include("jquery.flip.js");
-}
 
-@using (Script.Foot())
-{
-    <script type="text/javascript">
-
-        $('.textarea').wysihtml5();
-
-        var isFront = true
-        $(function ($) {
-            $("#card").flip({
-                trigger: 'manual'
-            }).click(function () {
-                isFront = !isFront;
-                console.log(isFront);
-                $("#card").flip(!isFront);
-            });
-        });
-
-        var items = function (request, response) {
-            var result = new Array();
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "GET",
-                url: "@(Url.Action("GetDetailTags", "Dashboard"))",
-                data: { "filter": document.getElementById("inputTags").value },
-                success: function (data) {
-                    for (var i = 0; i < data.length ; i++) {
-                        result[i] = data[i];
-                    }
-                },
-            });
-            response(result);
-
-        };
-
-
-        $("#inputTags").autocomplete({
-            minLength: 0,
-            source: items,
-            select: function (event, ui) {
-                var data = document.getElementById("inputTags").value;
-                var count = data.lastIndexOf(' ');
-                var str = data.substring(0, parseInt(count) + 1);
-                var new_str = str + ui.item.value;
-                ui.item.value = new_str;
-            },
-        });
-
-    </script>
+    Script.Include("EditCampaign.js");
 }
 
 <body class="page__designs_edit Chrome" data-hasqtip="0">
-    <div class="edit-campaign">
-        @if (Model.IsError)
-        {
-            <div class="edit-error">
-
-            </div>
-        }
-        else
-        {
-            <section id="no-band" class="no-offset">
-                <div class="container container_designer">
-                    <div id="designer" class="clearfix">
-                        <div class="step stepAnimation" id="step-details">
-                            <!--designer-details-error-->
-                            <div class="row">
-                                <div class="edit-title">
-                                    <h1>@T("Edit") @Model.Title</h1>
-                                </div>
-                                <div class="span5">
-                                    <div id="product-quick-preview" class="product-preview">
-                                        <div class="product-view">
-                                            <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
-                                            <div class="new-editor-container">
-                                                <div id="card" style="margin-right: 30px;">
-                                                    <div class="front">
-                                                        <img style="width:530px" id="prodFront" src="@Model.FrontImagePath">
-                                                        <img style="position:absolute" id="prodFront3_d" src="">
-                                                        <div id="butt1" style="text-align:center; margin-top:-60px !important;">
-                                                            <div class="flip-button flip-button-front-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; margin-left:-18px; margin-top:10px;">@T("Front")</span></div>
-                                                            <div class="flip-button flip-button-back-three"><span style="position:absolute; margin-left:-15px; margin-top:10px;">@T("Back")</span></div>
+<div class="edit-campaign">
+    @if (Model.IsError)
+    {
+        <div class="edit-error">
+        </div>
+    }
+    else
+    {
+        <section id="no-band" class="no-offset">
+            <div class="container container_designer">
+                <div id="designer" class="clearfix">
+                    <div class="step stepAnimation" id="step-details">
+                        <!--designer-details-error-->
+                        <div class="row">
+                            <div class="edit-title">
+                                <h1>@T("Edit") @Model.Title</h1>
+                            </div>
+                            <div class="span5">
+                                <div id="product-quick-preview" class="product-preview">
+                                    <div class="product-view">
+                                        <!--TODO for now this is just placeholder, needs to be a template and moved elsewhere-->
+                                        <div class="new-editor-container">
+                                            <div id="card" style="margin-right: 30px;">
+                                                <div class="front">
+                                                    <img style="width: 530px" id="prodFront" src="@Model.FrontImagePath">
+                                                    <img style="position: absolute" id="prodFront3_d" src="">
+                                                    <div id="butt1" style="text-align: center; margin-top: -60px !important;">
+                                                        <div class="flip-button flip-button-front-three" style="background-color: #6c7478; color: white;">
+                                                            <span style="position: absolute; margin-left: -18px; margin-top: 10px;">@T("Front")</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="back">
-                                                        <img id="prodBack" style="width:530px" src="@Model.BackImagePath">
-                                                        <img style="position:absolute" id="prodBack3_d" src="">
-                                                        <div id="butt2" style="text-align:center; margin-top:-60px !important;">
-                                                            <div class="flip-button flip-button-front-three"><span style="position:absolute; margin-left:-18px; font-weight: 400; margin-top:10px;">@T("Front")</span></div>
-                                                            <div class="flip-button flip-button-back-three" style="background-color:#6c7478; color: white;"><span style="position:absolute; font-weight: 400; margin-left:-15px; margin-top:10px;">@T("Back")</span></div>
+                                                        <div class="flip-button flip-button-back-three">
+                                                            <span style="position: absolute; margin-left: -15px; margin-top: 10px;">@T("Back")</span>
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="back">
+                                                    <img id="prodBack" style="width: 530px" src="@Model.BackImagePath">
+                                                    <img style="position: absolute" id="prodBack3_d" src="">
+                                                    <div id="butt2" style="text-align: center; margin-top: -60px !important;">
+                                                        <div class="flip-button flip-button-front-three">
+                                                            <span style="position: absolute; margin-left: -18px; font-weight: 400; margin-top: 10px;">@T("Front")</span>
+                                                        </div>
+                                                        <div class="flip-button flip-button-back-three" style="background-color: #6c7478; color: white;">
+                                                            <span style="position: absolute; font-weight: 400; margin-left: -15px; margin-top: 10px;">@T("Back")</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <!-- render flip buttons here -->
                                         </div>
+                                        <!-- render flip buttons here -->
                                     </div>
                                 </div>
-                                <div class="span7 aside">
-                                    @using (Html.BeginForm("SaveChanges", "Dashboard", FormMethod.Get))
-                                    {
-                                        <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
-                                            <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
-                                                <label class="has-under-text">@T("Campaign title")</label>
-                                                <p class="under-text" data-reactid=".6.0.0.1">@T("Summarize your campaign in 40 characters or less.")</p>
-                                                @*<input type="text" name="name" class="form__textfield " id="name" value="@Model.Title" data-reactid=".6.0.0.2">*@
-                                                @Html.HiddenFor(m => m.Id)
-                                                @Html.TextBoxFor(m => m.Title, new { @name="name", @class="form__textfield ", @id="name"})
-                                            </div>
-                                            <div class="teespring-well designer-well description" data-reactid=".6.0.1">
-                                                <label class="has-under-text">@T("Description")</label>
-                                                <div id="campaign_details" class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
-                                                    @*<textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="height: 200px">@Model.Description</textarea>*@
-                                                    @Html.TextAreaFor(m => m.Description, new { @class="textarea wysiwyg form__textfield", @id="campaign_description_text", @placeholder= T("Enter text ..."), @style="height: 200px" })
-                                                </div>
-                                            </div>
-                                            <div class="teespring-well designer-well" id="tags">
-                                                <label>@T("Tags")</label>
-                                                <p>
-                                                    <label class="display-label">
-                                                        <span>@T("Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)")</span>
-                                                    </label>
-                                                </p>
-                                                @*<input type="text" name="name" class="form__textfield " id="inputTags" value="@Model.Tags">*@
-                                                @Html.TextBoxFor(m => m.Tags, new { @name="name", @class="form__textfield ", @id="inputTags" })
-                                            </div>
-
-                                            <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
-                                                <label>@T("URL")</label>
-                                                <p class="under-text" data-reactid=".6.0.4.1">@T("This is where you will send buyers to view your campaign.")</p>
-                                                <p class="inline-input-text  small-bottom" style="display: inline;">
-                                                    <strong>teeyoot.com/</strong>
-                                                </p>
-                                                @*<input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="@Model.Alias">*@
-                                                @Html.TextBoxFor(m => m.Alias, new { @name="url", @class="form__textfield ", @style="display: inline;", @id="url" })
-                                            </div>
-
-                                            <div class="teespring-well designer-well campaign-length" style="margin-top:3%;">
-
-                                                <div class="teespring-well designer-well">
-                                                    <label>@T("Display Options")</label>
-                                                    <p>
-                                                        <label class="checkbox display-label">
-                                                            @*<input type="checkbox" name="backdefaultside" id="backdefaultside" checked="@Model.BackSideByDefault.ToString()">*@
-                                                            @Html.CheckBoxFor(m => m.BackSideByDefault, new { @name="backdefaultside", @id="backdefaultside" })
-                                                            <span>@T("Show the back side by default")</span>
-                                                        </label>
-                                                    </p>
-                                                </div>
-
-                                                <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
-                                                    <a class="button cancel-button" href="@Url.Action("Campaigns", "Dashboard")">@T("Cancel")</a>
-                                                    <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">@T("Save Changes")</button>
-                                                </div>
+                            </div>
+                            <div class="span7 aside">
+                                @using (Html.BeginForm("SaveChanges", "Dashboard", FormMethod.Post, new {id = "edit_campaign_form"}))
+                                {
+                                    @Html.AntiForgeryTokenOrchard()
+                                    <div class="campaign-details-container" id="designer-details-aside" data-reactid=".6">
+                                        <div class="teespring-well designer-well campaign-title" data-reactid=".6.0.0">
+                                            <label class="has-under-text">@T("Campaign title")</label>
+                                            <input type="hidden" id="title_cant_be_empty_error_text" value="@T("Campaign title can't be empty")"/>
+                                            <p class="has-under-text text-error" id="title_error_text" style="display: none;"></p>
+                                            @*
+                                            <p class="under-text" data-reactid=".6.0.0.1">@T("Summarize your campaign in 40 characters or less.")</p>
+                                                *@
+                                            @*<input type="text" name="name" class="form__textfield " id="name" value="@Model.Title" data-reactid=".6.0.0.2">*@
+                                            @Html.HiddenFor(m => m.Id)
+                                            @Html.TextBoxFor(m => m.Title, new {@name = "name", @class = "form__textfield ", @id = "name"})
+                                        </div>
+                                        <div class="teespring-well designer-well description" data-reactid=".6.0.1">
+                                            <label class="has-under-text">@T("Description")</label>
+                                            <div id="campaign_details" class="tool_tip--focus tool_tip__campaign_description " data-tooltip="@T("Let your buyers know why they should buy your product. 300 characters or less is recommended. 1500 characters is the maximum.")" data-reactid=".6.0.1.1">
+                                                @*<textarea class="textarea wysiwyg form__textfield" id="campaign_description_text" placeholder="Enter text ..." style="height: 200px">@Model.Description</textarea>*@
+                                                <input type="hidden" id="description_cant_be_empty_error_text" value="@T("Campaign Description can't be empty")"/>
+                                                <p class="has-under-text text-error" id="description_error-text" style="display: none;"></p>
+                                                @Html.TextAreaFor(m => m.Description, new {@class = "textarea wysiwyg form__textfield", @id = "campaign_description_text", @placeholder = T("Enter text ..."), @style = "height: 200px"})
                                             </div>
                                         </div>
-                                    }
-                                </div>
+                                        <div class="teespring-well designer-well" id="tags">
+                                            <label>@T("Tags")</label>
+                                            <p>
+                                                <label class="display-label">
+                                                    <span>@T("Tags help buyers find your campaign. Enter up to 5 words to describe your campaign (e.g. Sports, Moms, Firefighters)")</span>
+                                                </label>
+                                            </p>
+                                            @*<input type="text" name="name" class="form__textfield " id="inputTags" value="@Model.Tags">*@
+                                            @*
+                                            @Html.TextBoxFor(m => m.Tags, new {@name = "name", @class = "form__textfield ", @id = "inputTags"})
+                                                *@
+                                            <input id="all_tags" type="hidden" value="@Json.Encode(Model.AllTags)"/>
+                                            <input id="selected_tags" type="hidden" value="@Json.Encode(Model.Tags)"/>
+                                            <input id="tags_to_save" type="hidden" name="TagsToSave"/>
+                                            <div id="inputTags"></div>
+                                        </div>
+                                        @*
+                                        <div class="teespring-well designer-well url-input" data-reactid=".6.0.4">
+                                            <label>@T("URL")</label>
+                                            <p class="under-text" data-reactid=".6.0.4.1">@T("This is where you will send buyers to view your campaign.")</p>
+                                            <p class="inline-input-text  small-bottom" style="display: inline;">
+                                                <strong>teeyoot.com/</strong>
+                                            </p>
+                                            <input type="text" name="url" class="form__textfield " style="display: inline;" id="url" value="@Model.Alias">
+                                             @Html.TextBoxFor(m => m.Alias, new {@name = "url", @class = "form__textfield ", @style = "display: inline;", @id = "url"})
+                                        </div>
+                                        *@
+                                        <div class="teespring-well designer-well campaign-length" style="margin-top: 3%;">
+                                            <div class="teespring-well designer-well">
+                                                <label>@T("Display Options")</label>
+                                                <p>
+                                                    <label class="checkbox display-label">
+                                                        @*<input type="checkbox" name="backdefaultside" id="backdefaultside" checked="@Model.BackSideByDefault.ToString()">*@
+                                                        @Html.CheckBoxFor(m => m.BackSideByDefault, new {@name = "backdefaultside", @id = "backdefaultside"})
+                                                        <span>@T("Show the back side by default")</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                            <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
+                                                <a class="button cancel-button" href="@Url.Action("Campaigns", "Dashboard")">@T("Cancel")</a>
+                                                <button id="launch-campaign" type="submit" class="button button--transaction" data-reactid=".6.0.7.1">@T("Save Changes")</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        }
-    </div>
+            </div>
+        </section>
+    }
+</div>
 </body>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            EditCampaign.init();
+        });
+    </script>
+}
+
+@*
+    @using (Script.Foot())
+    {
+        <script type="text/javascript">
+
+            $('.textarea').wysihtml5();
+
+            var isFront = true
+            $(function ($) {
+                $("#card").flip({
+                    trigger: 'manual'
+                }).click(function () {
+                    isFront = !isFront;
+                    console.log(isFront);
+                    $("#card").flip(!isFront);
+                });
+            });
+
+            var items = function (request, response) {
+                var result = new Array();
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "GET",
+                    url: "@(Url.Action("GetDetailTags", "Dashboard"))",
+                    data: { "filter": document.getElementById("inputTags").value },
+                    success: function (data) {
+                        for (var i = 0; i < data.length ; i++) {
+                            result[i] = data[i];
+                        }
+                    },
+                });
+                response(result);
+
+            };
+
+
+            $("#inputTags").autocomplete({
+                minLength: 0,
+                source: items,
+                select: function (event, ui) {
+                    var data = document.getElementById("inputTags").value;
+                    var count = data.lastIndexOf(' ');
+                    var str = data.substring(0, parseInt(count) + 1);
+                    var new_str = str + ui.item.value;
+                    ui.item.value = new_str;
+                },
+            });
+
+        </script>
+    }
+*@
