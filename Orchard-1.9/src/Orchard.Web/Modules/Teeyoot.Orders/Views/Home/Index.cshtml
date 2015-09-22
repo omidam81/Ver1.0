@@ -210,16 +210,19 @@
             <thead>
                 <tr class="admin-categories">
                     <th class="publicId">
+                        <h3>@T("Order ID")</h3>
+                    </th>
+                    <th class="publicId">
                         <h3>@T("Order Number")</h3>
                     </th>
                     <th class="publicId">
                         <h3>@T("Order Date")</h3>
                     </th>
-                    <th class="status">
-                        <h3>@T("Status")</h3>
-                    </th>
                     <th class="buyer">
                         <h3>@T("Buyer")</h3>
+                    </th>
+                    <th class="campaign">
+                        <h3>@T("Campaign ID")</h3>
                     </th>
                     <th class="campaign">
                         <h3>@T("Campaign")</h3>
@@ -230,8 +233,11 @@
                     <th class="profit">
                         <h3>@T("Profit")</h3>
                     </th>
-                    <th class="payout">
+                    <th class="status">
                         <h3>@T("Status")</h3>
+                    </th>
+                    <th class="payout">
+                        <h3>@T("Payment Status")</h3>
                     </th>
                 </tr>
             </thead>
@@ -240,19 +246,41 @@
                 @foreach (var item in Model.DynamicOrders)
                 {
                     <tr class="admin-categories-tr">
+                        <td>
+                            @item.Id
+                        </td>
                         <td class="publicId">
                             <a class="ordNumber"> @item.PublicId</a>
                         </td>
                         <td>
                             @item.CreateDate
                         </td>
+                        <td class="buyer">
+                            @item.EmailBuyer
+                            <button class="go" type="submit" value="@item.Id">
+                                @T("inf")
+                            </button>
+                        </td>
+                        <td>
+                            @item.CampaignId
+                        </td>
+                        <td class="campaign">
+                            @item.CampaignName
+                        </td>
+                        <td class="seller">
+                            @item.UserNameSeller
+                        </td>
+                        <td class="profit">
+                            @T("RM ")
+                            @item.Profit
+                        </td>
                         <td class="status">
                             @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
                             {
-                                <input type="hidden" value="@item.Id" name="orderId" />
+                                <input type="hidden" value="@item.Id" name="orderId"/>
 
                                 <select name="orderStatus">
-                                    @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.OrderStatus)))
+                                    @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof (Teeyoot.Module.Common.Enums.OrderStatus)))
                                     {
                                         if (s.ToString() == item.Status)
                                         {
@@ -272,24 +300,6 @@
                                     @T("Apply")
                                 </button>
                             }
-
-
-                        </td>
-                        <td class="buyer">
-                            @item.EmailBuyer
-                            <button class="go" type="submit" value="@item.Id">
-                                @T("inf")
-                            </button>
-                        </td>
-                        <td class="campaign">
-                            @item.CampaignName
-                        </td>
-                        <td class="seller">
-                            @item.UserNameSeller
-                        </td>
-                        <td class="profit">
-                            @T("RM ")
-                            @item.Profit
                         </td>
                         <td class="payout">
                             @if (item.Payout)
@@ -299,7 +309,7 @@
                             else
                             {
                                 @T("Not paid | ")
-                                <a href="@Url.Action("EditStatusPayout", new { publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId })" class="paid">@T("Paid")</a>
+                                <a href="@Url.Action("EditStatusPayout", new {publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId})" class="paid">@T("Paid")</a>
                             }
                         </td>
                     </tr>

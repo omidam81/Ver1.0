@@ -118,6 +118,7 @@ namespace Teeyoot.Orders.Controllers
                     Products = item.Products,
                     Status = item.OrderStatusRecord.Name,
                     EmailBuyer = item.Email,
+                    CampaignId = campaign.Id,
                     CampaignName = campaign.Title,
                     Id = item.Id,
                     Profit = orderProfit,
@@ -156,6 +157,7 @@ namespace Teeyoot.Orders.Controllers
                     Profit: e.Profit,
                     UserNameSeller: e.UserNameSeller,
                     Payout: e.Payout,
+                    CampaignId: e.CampaignId,
                     CampaignName: e.CampaignName,
                     SellerId: e.SellerId,
                     CreateDate: e.CreateDate.ToString("dd/MM/yyyy")
