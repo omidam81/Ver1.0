@@ -59,7 +59,11 @@ namespace Teeyoot.Module.Controllers
             var commonSettingsIndexViewModel = new CommonSettingsIndexViewModel
             {
                 DoNotAcceptAnyNewCampaigns = commonSettings.DoNotAcceptAnyNewCampaigns,
-                NumberOfNotSentEmailCheckoutRequests = numberOfNotSentEmailCheckoutRequests
+                NumberOfNotSentEmailCheckoutRequests = numberOfNotSentEmailCheckoutRequests,
+                //
+                //
+                CashOnDeliveryAvailabilityMessage = commonSettings.CashOnDeliveryAvailabilityMessage,
+                CheckoutPageRightSideContent = commonSettings.CheckoutPageRightSideContent
             };
 
             return View(commonSettingsIndexViewModel);
@@ -98,5 +102,38 @@ namespace Teeyoot.Module.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+
+
+        //
+        //
+        //
+        //
+        [HttpPost]
+        public ActionResult EditCashOnDeliveryAvailabilityMessage(string cashOnDeliveryAvailabilityMessage)
+        {
+            var commonSettings = _commonSettingsRepository.Table.First();
+            commonSettings.CashOnDeliveryAvailabilityMessage = cashOnDeliveryAvailabilityMessage;
+            _commonSettingsRepository.Update(commonSettings);
+
+            _orchardServices.Notifier.Information(T("\"Cash on delivery availability message\" setting changed."));
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditCheckoutPageRightSideContent(string CheckoutPageRightSideContent)
+        {
+            var commonSettings = _commonSettingsRepository.Table.First();
+            commonSettings.CheckoutPageRightSideContent = CheckoutPageRightSideContent;
+            _commonSettingsRepository.Update(commonSettings);
+
+            _orchardServices.Notifier.Information(T("\"Checkout page right side content \" setting changed."));
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -26,5 +26,21 @@ namespace Teeyoot.Module.ViewModels
         public bool CreditCard { get; set; }
 
         public string CountryName { get; set; }
+
+        //
+        //
+        public string CashOnDeliveryAvailabilityMessage { get; set; }
+        // Tab names for payment methods
+        public string CashDelivTabName { get; set; }
+        public string PayPalTabName { get; set; }
+        public string MolTabName { get; set; }
+        public string CreditCardTabName { get; set; }
+        // Notes for payment methods
+        public string CashDelivNote { get; set; }
+        public string PayPalNote { get; set; }
+        public string MolNote { get; set; }
+        public string CreditCardNote { get; set; }
+        //
+        public string CheckoutPageRightSideContent { get; set; }
     }   
 }
