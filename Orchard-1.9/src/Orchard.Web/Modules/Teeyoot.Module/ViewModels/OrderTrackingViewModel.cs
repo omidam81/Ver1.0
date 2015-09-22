@@ -30,5 +30,9 @@ namespace Teeyoot.Module.ViewModels
         public CultureInfo CultureInfo { get; set; }
 
         public string TotalPrice { get; set; }
+
+        public string Delivery { get; set; }
+
+        public string Promotion { get; set; }
     }
 }
