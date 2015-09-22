@@ -210,6 +210,9 @@
             <thead>
                 <tr class="admin-categories">
                     <th class="publicId">
+                        <h3>@T("Order ID")</h3>
+                    </th>
+                    <th class="publicId">
                         <h3>@T("Order Number")</h3>
                     </th>
                     <th class="publicId">
@@ -217,6 +220,9 @@
                     </th>
                     <th class="buyer">
                         <h3>@T("Buyer")</h3>
+                    </th>
+                    <th class="campaign">
+                        <h3>@T("Campaign ID")</h3>
                     </th>
                     <th class="campaign">
                         <h3>@T("Campaign")</h3>
@@ -240,6 +246,9 @@
                 @foreach (var item in Model.DynamicOrders)
                 {
                     <tr class="admin-categories-tr">
+                        <td>
+                            @item.Id
+                        </td>
                         <td class="publicId">
                             <a class="ordNumber"> @item.PublicId</a>
                         </td>
@@ -251,6 +260,9 @@
                             <button class="go" type="submit" value="@item.Id">
                                 @T("inf")
                             </button>
+                        </td>
+                        <td>
+                            @item.CampaignId
                         </td>
                         <td class="campaign">
                             @item.CampaignName
@@ -265,10 +277,10 @@
                         <td class="status">
                             @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
                             {
-                                <input type="hidden" value="@item.Id" name="orderId" />
+                                <input type="hidden" value="@item.Id" name="orderId"/>
 
                                 <select name="orderStatus">
-                                    @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.OrderStatus)))
+                                    @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof (Teeyoot.Module.Common.Enums.OrderStatus)))
                                     {
                                         if (s.ToString() == item.Status)
                                         {
@@ -297,7 +309,7 @@
                             else
                             {
                                 @T("Not paid | ")
-                                <a href="@Url.Action("EditStatusPayout", new { publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId })" class="paid">@T("Paid")</a>
+                                <a href="@Url.Action("EditStatusPayout", new {publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId})" class="paid">@T("Paid")</a>
                             }
                         </td>
                     </tr>

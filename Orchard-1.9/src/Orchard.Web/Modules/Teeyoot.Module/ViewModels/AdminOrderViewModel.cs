@@ -25,8 +25,8 @@ namespace Teeyoot.Module.ViewModels
         public string Status { get; set; }
 
 
-        
 
+        public int CampaignId { get; set; }
         public string CampaignName { get; set; }
 
         //information buyuer
