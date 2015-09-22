@@ -109,12 +109,12 @@
 
                                 </dd>
                             </dl>
-                            <dl class="order_summary__breakdown" id="message_err" style="display: none">
+                            @*<dl class="order_summary__breakdown" id="message_err" style="display: none">
                                 <span style="color:red;">
                                     @T("We provide cash on delivery within Kuala Lumpur, and Petaling Jaya areas only.")
                                 </span>
 
-                            </dl>
+                            </dl>*@
 
                         </div><div class="order_summary--offset js_order_summary--offset"></div>
                     </div>
@@ -126,32 +126,34 @@
                 <div class="mobile-question"><h2>+ @T("Questions and answers")</h2></div>
                 <div class="order_summary__help">
                     <div class="order_summary__help__container">
-                        <h2>@T("How does Teeyoot work?")</h2>
-                        <p>@T("We won't charge you unless the campaign order reaches its minimum.")</p>
-                        <h2>@T("What are my payment options?")</h2>
-                        <p>@T("We accept payment via Cash on Delivery, Direct Bank Transfer, Debit or Credit Card.")</p>
-                        <h2>@T("If I pay via Online Banking but the campaign does not reach its minimum, will I get a refund?")</h2>
-                        <p>@T("Yes absolutely! We will refund the amount within 7 days after the campaign ends. Your interest is our top priority.")</p>
+                        @Html.Raw(Model.CheckoutPageRightSideContent)
                     </div>
-                    <div class="order_summary__help__container">
-                        <h2>@T("How long will it take to get my shirt?")</h2>
-                        <p>
-                            <span class="js-delivery-estimate">
-                                @T("Your order will arrive")
-                                <span class="js-estimate-earliest">@T("10")</span> -
-                                <span class="js-estimate-latest">@T("15")</span> @T("business days after the end of the campaign!")
-                            </span>
-                        </p>
-                    </div>
+                    
                 </div>
                 <br>
-                <div class="message_Mol" style="display:none">
-                    <span style="color:red" hei>
-                        <p>@T("You will be redirected to the Online Banking system to complete the payment")</p>
-                        <p>@T("You will be charged immediately after you place your order")</p>
+                @*<div class="message_Mol" style="display:none">*@
 
+                @if (String.IsNullOrEmpty(Model.CreditCardNote))
+                {
+                    <div class="message_Mol" style="display: none;">
+                        <span style="color:red" id="message_Mol_span">@Model.CreditCardNote</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="message_Mol">
+                        <span style="color:red" id="message_Mol_span">@Model.CreditCardNote</span>
+                    </div>
+                }
+
+                <dl class="order_summary__breakdown" id="message_err" style="display: none">
+                    <span style="color:red;">
+                        @Model.CashOnDeliveryAvailabilityMessage
                     </span>
-                </div>
+
+                </dl>
+
+
             </div>
 
 
@@ -181,7 +183,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="creditcard">
-                                        <p>@T("Credit / Debit Card ")</p>
+                                        <p>@Model.CreditCardTabName</p>
                                     </a>
                                     <p class="recom">Recommended</p>
                                 </li>
@@ -190,7 +192,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="paypal">
-                                        <p>@T("Braintree PayPal")</p>
+                                        <p>@Model.PayPalTabName</p>
                                     </a>
                                 </li>
                             }
@@ -198,7 +200,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="mol">
-                                        <p>@T("Online Banking")</p>
+                                        <p>@Model.MolTabName</p>
                                         @*<p>@T("Online Bancking")</p>*@
                                     </a>
                                 </li>
@@ -207,7 +209,7 @@
                             {
                                 <li>
                                     <a href="javascript:;" class="payment-method" data-payment-method="cash">
-                                        <p>@T("Cash on delivery")</p>
+                                        <p>@Model.CashDelivTabName</p>
                                     </a>
                                 </li>
 
@@ -504,118 +506,138 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            document.title = "Payment | Teeyoot";
+    $(document).ready(function () {
+        document.title = "Payment | Teeyoot";
 
-            $(window).on('unload', function () {
-                $('button').prop('disabled', false);
-            });
+        $(window).on('unload', function () {
+            $('button').prop('disabled', false);
+        });
 
-            $('.payment-method:first').css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
+        $('.payment-method:first').css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
 
-            var defaultPaymentMethod = $('.payment-method:first').data('payment-method');
-            if (defaultPaymentMethod === 'creditcard') {
-                $('#message_err').css({ "display": "none" });
+        var defaultPaymentMethod = $('.payment-method:first').data('payment-method');
+        if (defaultPaymentMethod === 'creditcard') {
+            $('#message_err').css({ "display": "none" });
+            $('#payment_method_credit_card').show();
+            $('#paymentMethod').val("1");
+            populateCountries("State");
+        } else if (defaultPaymentMethod === 'paypal') {
+            $('#message_err').css({ "display": "none" });
+            $('#payment_method_paypal').show();
+            $('#paymentMethod').val("2");
+            populateCountries("State");
+        } else if (defaultPaymentMethod === 'mol') {
+            $('#message_err').css({ "display": "none" });
+            /*$('.message_Mol').css({ "display": "" });*/
+            //document.getElementById("mol_container").style.display = "";
+            $('#payment_method_mol').show();
+            $('#paymentMethod').val("3");
+            populateCountries("State");
+        } else if (defaultPaymentMethod === 'cash') {
+            $('#payment_method_cash').show();
+            $('#paymentMethod').val("4");
+            $('#message_err').css({ "display": "" });
+            populateCountriesForCashOnDelivery("State");
+        }
+
+        $('.payment-method').click(function () {
+            $('.payment-method').css('text-decoration', '').css('color', '').css('border-color', '');
+            $(this).css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
+
+            $('.payment-method-container').hide();
+            var paymentMethod = $(this).data('payment-method');
+            if (paymentMethod === 'creditcard') {
                 $('#payment_method_credit_card').show();
+                /*$('.message_Mol').css({ "display": "none" });*/
+                $('#message_Mol_span').text("@Model.CreditCardNote");
+                if ('@Model.CreditCardNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
+                $('#message_err').css({ "display": "none" });
                 $('#paymentMethod').val("1");
                 populateCountries("State");
-            } else if (defaultPaymentMethod === 'paypal') {
-                $('#message_err').css({ "display": "none" });
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "none";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
+            } else if (paymentMethod === 'paypal') {
                 $('#payment_method_paypal').show();
+                /*$('.message_Mol').css({ "display": "none" });*/
+                $('#message_Mol_span').text("@Model.PayPalNote");
+                if ('@Model.PayPalNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
+                $('#message_err').css({ "display": "none" });
                 $('#paymentMethod').val("2");
                 populateCountries("State");
-            } else if (defaultPaymentMethod === 'mol') {
-                $('#message_err').css({ "display": "none" });
-                $('.message_Mol').css({ "display": "" });
-                //document.getElementById("mol_container").style.display = "";
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "none";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
+            } else if (paymentMethod === 'mol') {
                 $('#payment_method_mol').show();
+                /*$('.message_Mol').css({ "display": "" });*/
+                $('#message_Mol_span').text("@Model.MolNote");
+                if ('@Model.MolNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
+                $('#message_err').css({ "display": "none" });
                 $('#paymentMethod').val("3");
                 populateCountries("State");
-            } else if (defaultPaymentMethod === 'cash') {
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
+            } else if (paymentMethod === 'cash') {
                 $('#payment_method_cash').show();
-                $('#paymentMethod').val("4");
+                /*$('.message_Mol').css({ "display": "none" });*/
+                $('#message_Mol_span').text("@Model.CashDelivNote");
+                if ('@Model.CashDelivNote' == '')
+                { $('.message_Mol').css({ "display": "none" }); }
+                else { $('.message_Mol').css({ "display": "" }); }
+
                 $('#message_err').css({ "display": "" });
+                $('#paymentMethod').val("4");
                 populateCountriesForCashOnDelivery("State");
-            }
+                //document.getElementById("parentDelivery").style.display = "none";
+                //document.getElementById("mol_container").style.display = "none";
+                //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
+                //delivCost = 0;
 
-            $('.payment-method').click(function () {
-                $('.payment-method').css('text-decoration', '').css('color', '').css('border-color', '');
-                $(this).css('text-decoration', 'none').css('color', '#ff4f00').css('border-color', '#ff4f00');
-
-                $('.payment-method-container').hide();
-                var paymentMethod = $(this).data('payment-method');
-                if (paymentMethod === 'creditcard') {
-                    $('#payment_method_credit_card').show();
-                    $('.message_Mol').css({ "display": "none" });
-                    $('#message_err').css({ "display": "none" });
-                    $('#paymentMethod').val("1");
-                    populateCountries("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "none";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-                } else if (paymentMethod === 'paypal') {
-                    $('#payment_method_paypal').show();
-                    $('.message_Mol').css({ "display": "none" });
-                    $('#message_err').css({ "display": "none" });
-                    $('#paymentMethod').val("2");
-                    populateCountries("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "none";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-                } else if (paymentMethod === 'mol') {
-                    $('#payment_method_mol').show();
-                    $('.message_Mol').css({ "display": "" });
-                    $('#message_err').css({ "display": "none" });
-                    $('#paymentMethod').val("3");
-                    populateCountries("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-                } else if (paymentMethod === 'cash') {
-                    $('#payment_method_cash').show();
-                    $('.message_Mol').css({ "display": "none" });
-                    $('#message_err').css({ "display": "" });
-                    $('#paymentMethod').val("4");
-                    populateCountriesForCashOnDelivery("State");
-                    //document.getElementById("parentDelivery").style.display = "none";
-                    //document.getElementById("mol_container").style.display = "none";
-                    //document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                    //delivCost = 0;
-
-                }
-            });
-        });
-        //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
-        document.getElementById("transaction").disabled = "";
-        var token = document.getElementById("Token").value;
-        braintree.setup(token, "paypal",
-        {
-            container: "paypal-container",
-            onPaymentMethodReceived: function (obj) {
-                /*
-                document.getElementById("accordion").className = "accordion";
-                document.querySelector(".contLable").style.display = "none";
-                document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
-                document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
-                document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
-                document.getElementById("bt-pp-cancel").style.fontSize = "20px";
-                document.getElementById("bt-pp-email").style.fontSize = "18px";
-                document.querySelector(".accordion__item").style.borderTop = "0px";
-                document.getElementById("bt-pp-cancel").style.background = "white";
-                document.querySelector(".accordion").style.height = "50px";
-                document.getElementById("bt-pp-cancel").style.textDecoration = "none";
-                */
-                doSomethingWithTheNonce(obj.nonce);
-            },
-            onCancelled: function () {
-                document.getElementById("accordion").className = "credit_card_accordion accordion_min accordion";
-                document.querySelector(".contLable").style.display = "inline";
-                //document.querySelector(".accordion").style.height = "230px";
             }
         });
+    });
+    //  braintree.setup("eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==", "paypal", {
+    document.getElementById("transaction").disabled = "";
+    var token = document.getElementById("Token").value;
+    braintree.setup(token, "paypal",
+    {
+        container: "paypal-container",
+        onPaymentMethodReceived: function (obj) {
+            /*
+            document.getElementById("accordion").className = "accordion";
+            document.querySelector(".contLable").style.display = "none";
+            document.getElementById("braintree-paypal-loggedin").style.borderTopWidth = "0px";
+            document.getElementById("braintree-paypal-loggedin").style.borderBottomWidth = "0px";
+            document.getElementById("braintree-paypal-loggedin").style.marginTop = "-50px";
+            document.getElementById("bt-pp-cancel").style.fontSize = "20px";
+            document.getElementById("bt-pp-email").style.fontSize = "18px";
+            document.querySelector(".accordion__item").style.borderTop = "0px";
+            document.getElementById("bt-pp-cancel").style.background = "white";
+            document.querySelector(".accordion").style.height = "50px";
+            document.getElementById("bt-pp-cancel").style.textDecoration = "none";
+            */
+            doSomethingWithTheNonce(obj.nonce);
+        },
+        onCancelled: function () {
+            document.getElementById("accordion").className = "credit_card_accordion accordion_min accordion";
+            document.querySelector(".contLable").style.display = "inline";
+            //document.querySelector(".accordion").style.height = "230px";
+        }
+    });
 
     </script>
 

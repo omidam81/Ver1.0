@@ -88,6 +88,17 @@
                     var merchantIdMol = document.getElementById("textMerchMol").value;
                     var verifyKey = document.getElementById("textKey").value;
 
+
+                    var CashDelivTabName = document.getElementById("CashDelivTabName").value;
+                    var PayPalTabName = document.getElementById("PayPalTabName").value;
+                    var MolTabName = document.getElementById("MolTabName").value;
+                    var CreditCardTabName = document.getElementById("CreditCardTabName").value;
+                    var CashDelivNote = document.getElementById("CashDelivNote").value;
+                    var PayPalNote = document.getElementById("PayPalNote").value;
+                    var MolNote = document.getElementById("MolNote").value;
+                    var CreditCardNote = document.getElementById("CreditCardNote").value;
+
+
                     var result = new Array();
                     $.ajax({
                         async: false,
@@ -105,7 +116,18 @@
                             "MerchantId": merchantId.toString(),
                             "ClientToken": clientToken.toString(),
                             "MerchantIdMol": merchantIdMol.toString(),
-                            "VerifyKey": verifyKey.toString()
+                            "VerifyKey": verifyKey.toString(),
+                            
+                            "CashDelivTabName" : CashDelivTabName.toString(),
+                            "PayPalTabName" : PayPalTabName.toString(),
+                            "MolTabName" : MolTabName.toString(),
+                            "CreditCardTabName" : CreditCardTabName.toString(),
+                            "CashDelivNote" : CashDelivNote.toString(),
+                            "PayPalNote" : PayPalNote.toString(),
+                            "MolNote" : MolNote.toString(),
+                            "CreditCardNote": CreditCardNote.toString()
+     
+
                         }),
                         success: function (data) {
                             alert("Settings updated");
@@ -173,6 +195,14 @@
             <font class="method black">
                 @T("Cash on delivery")
             </font>
+
+            <p style="margin-left:20px" class="method black">
+                <br />@T("Tab name ")
+                <input type="text" id="CashDelivTabName" class="inp marg7" value="@Model.CashDelivTabName" />
+                <br />@T("Note message")
+                <input type="text" id="CashDelivNote" class="inp marg8" value="@Model.CashDelivNote" />
+            </p>
+
             <br>
             <br>
             @if (Model.PayPal)
@@ -185,6 +215,14 @@
             <font class="method black">
                 @T("Braintree PayPal")
             </font>
+
+            <p style="margin-left:20px" class="method black">
+                <br />@T("Tab name ")
+                <input type="text" id="PayPalTabName" class="inp marg7" value="@Model.PayPalTabName" />
+                <br />@T("Note message")
+                <input type="text" id="PayPalNote" class="inp marg8" value="@Model.PayPalNote" />
+            </p>
+
             <br>
             <hr>
             <font style="margin-left:20px" class="method black">
@@ -224,6 +262,14 @@
             <font class="method black">
                 @T("  Braintree Debit/Credit Card")
             </font>
+
+            <p style="margin-left:20px" class="method black">
+                <br />@T("Tab name ")
+                <input type="text" id="CreditCardTabName" class="inp marg7" value="@Model.CreditCardTabName" />
+                <br />@T("Note message")
+                <input type="text" id="CreditCardNote" class="inp marg8" value="@Model.CreditCardNote" />
+            </p>
+
             <br>
             <br>
             @if (Model.Mol)
@@ -236,6 +282,14 @@
             <font class="method black">
                 @T("  Molpay Online Banking")
             </font>
+
+            <p style="margin-left:20px" class="method black">
+                <br />@T("Tab name ")
+                <input type="text" id="MolTabName" class="inp marg7" value="@Model.MolTabName" />
+                <br />@T("Note message")
+                <input type="text" id="MolNote" class="inp marg8" value="@Model.MolNote" />
+            </p>
+
             <br>
             <hr>
             <font style="margin-left:20px" class="method black">

@@ -173,6 +173,27 @@ namespace Teeyoot.Module.Controllers
                 model.Mol = setting.Mol;
                 model.PayPal = setting.PayPal;
 
+                //
+                //
+                //
+                // Tab names for payment methods
+                model.CashDelivTabName = setting.CashDelivTabName;
+                model.PayPalTabName = setting.PayPalTabName;
+                model.MolTabName = setting.MolTabName;
+                model.CreditCardTabName = setting.CreditCardTabName;
+                // Notes for payment methods
+                model.CashDelivNote = setting.CashDelivNote;
+                model.PayPalNote = setting.PayPalNote;
+                model.MolNote = setting.MolNote;
+                model.CreditCardNote = setting.CreditCardNote;
+                //
+                var commonSettings = _commonSettingsRepository.Table.First();
+                model.CashOnDeliveryAvailabilityMessage = commonSettings.CashOnDeliveryAvailabilityMessage;
+                model.CheckoutPageRightSideContent = commonSettings.CheckoutPageRightSideContent;
+                //
+                //
+                //
+
                 if (promo != null)
                 {
                     PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
@@ -614,9 +635,15 @@ namespace Teeyoot.Module.Controllers
 
             var model = new ReservationCompleteViewModel();
             if (!oops)
+            {
+                model.Oops = false;
                 model.Message = T("Your reservation is confirmed. We will notify you once the T-shirt is ready. Meanwhile check out other designs or campaigns from the same seller").ToString();
+            }
             else
+            {
                 model.Message = T("Oops! we couldn't process this order, you can try to change your payment method and try again").ToString();
+                model.Oops = true;
+            }
 
             model.Campaigns = entriesProjection.ToArray();
 
@@ -672,7 +699,9 @@ namespace Teeyoot.Module.Controllers
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
             model.CampaignName = campaign.Title;
             model.CampaignAlias = campaign.Alias;
-            model.TotalPrice = (order.TotalPrice + order.Delivery).ToString();
+            model.TotalPrice = (order.TotalPrice + order.Delivery - order.Promotion).ToString();
+            model.Delivery = order.Delivery.ToString();
+            model.Promotion = order.Promotion == 0 ? string.Empty : order.Promotion.ToString();
 
             return View(model);
         }

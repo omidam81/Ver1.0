@@ -22,5 +22,18 @@ namespace Teeyoot.Module.ViewModels
 
        public string merchantIdMol { get; set; }
        public string verifyKey { get; set; }
+
+       //
+       //
+       // Tab names for payment methods
+       public string CashDelivTabName { get; set; }
+       public string PayPalTabName { get; set; }
+       public string MolTabName { get; set; }
+       public string CreditCardTabName { get; set; }
+       // Notes for payment methods
+       public string CashDelivNote { get; set; }
+       public string PayPalNote { get; set; }
+       public string MolNote { get; set; }
+       public string CreditCardNote { get; set; }
     }
 }
