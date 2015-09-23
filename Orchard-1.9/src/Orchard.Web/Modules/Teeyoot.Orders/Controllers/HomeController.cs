@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Orchard.Data;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
@@ -25,6 +26,7 @@ namespace Teeyoot.Orders.Controllers
     [Admin]
     public class HomeController : Controller
     {
+        private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
         private readonly IOrderService _orderService;
         private readonly ICampaignService _campaignService;
         private readonly IContentManager _contentManager;
@@ -39,7 +41,8 @@ namespace Teeyoot.Orders.Controllers
         private dynamic Shape { get; set; }
         // GET: Home
 
-        public HomeController(IOrderService orderService,
+        public HomeController(IRepository<OrderStatusRecord> orderStatusRepository,
+                              IOrderService orderService,
                               ICampaignService campaignService,
                               IShapeFactory shapeFactory,
                               IContentManager contentManager,
@@ -49,6 +52,7 @@ namespace Teeyoot.Orders.Controllers
                               ITeeyootMessagingService teeyootMessagingService, 
                               IWorkContextAccessor workContextAccessor)
         {
+            _orderStatusRepository = orderStatusRepository;
             _orderService = orderService;
             _campaignService = campaignService;
             _contentManager = contentManager;
@@ -167,7 +171,19 @@ namespace Teeyoot.Orders.Controllers
            
             //var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
 
-            return View("Index", new AdminOrderViewModel { DynamicOrders = entriesProjection.ToArray() });
+            var orderStatuses = _orderStatusRepository.Table
+                .Select(s => new OrderStatusItemViewModel
+                {
+                    Id = s.Id,
+                    Name = s.Name
+                })
+                .ToList();
+
+            return View("Index", new AdminOrderViewModel
+            {
+                DynamicOrders = entriesProjection.ToArray(),
+                OrderStatuses = orderStatuses
+            });
         }
 
         public JsonResult GetOrderInfirmation(string publicId)

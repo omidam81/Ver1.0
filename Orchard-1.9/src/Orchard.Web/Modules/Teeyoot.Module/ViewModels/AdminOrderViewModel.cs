@@ -17,6 +17,7 @@ namespace Teeyoot.Module.ViewModels
         public dynamic[] DynamicOrders { get; set; }
         public dynamic Pager { get; set; }
         public string SearchString { get; set; }
+        public IEnumerable<OrderStatusItemViewModel> OrderStatuses { get; set; }
     }
 
     public class AdminOrder {

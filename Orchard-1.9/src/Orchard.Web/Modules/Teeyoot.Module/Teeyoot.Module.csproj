@@ -1225,6 +1225,7 @@
     <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="Common\TeeyootCultureSelector.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
+    <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
     <Compile Include="ViewModels\RelaunchProductInfo.cs" />
     <Compile Include="ViewModels\AdminCostViewModel.cs" />
     <Compile Include="Services\Interfaces\ISwatchService.cs" />
