@@ -48,7 +48,7 @@
                             @item.Sender
                         </td>
                         <td class="text">
-                            @item.Text
+                            @Html.Raw(item.Text)
                         </td>
                         <td class="inf">
                             <a class="button" href="@Url.Action("SendSellerMessage", "AdminMessageContent", new { messageId = @item.Id })" title="@T("Approve")">@T("Approve")</a>

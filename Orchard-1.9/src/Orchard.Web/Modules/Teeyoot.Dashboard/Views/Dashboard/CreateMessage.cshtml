@@ -1,13 +1,103 @@
 ﻿@{
     Style.Include("Message.css");
-    Script.Require("jQuery");
+    Style.Include("jqueryui.css");
+    Style.Include("bootstrap-wysihtml5.css");
+    //Style.Include("bootstrap.min.css");
+
+    Script.Require("jQueryUI");
+    Script.Include("bootstrap.min.js");
+    Script.Include("wysihtml5-0.3.0.js");
+    Script.Include("bootstrap-wysihtml5.js");
+    Script.Include("advanced.js");
+
+
 }
 
 @model Teeyoot.Module.Dashboard.ViewModels.MessageContentViewModel
 
+
+
+
 @using (Script.Foot())
 {
-    <script>
+
+    <script type="text/javascript">
+        //var opts = {
+        //    'font-styles': false,
+        //    emphasis: true,
+        //    lists: true,
+        //    html: true,
+        //    image: true,
+        //    link: true,
+        //    'format-code': false,
+        //    events: {
+        //        load: onload,
+        //        focus: onfocus,
+        //        blur: onblur
+        //    }
+        //}
+        //$('.textarea').wysihtml5({
+            
+        //        "font-styles": true, // Font styling, e.g. h1, h2, etc.
+        //        "emphasis": true, // Italics, bold, etc.
+        //        "lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
+        //        "html": true, // Button which allows you to edit the generated HTML.
+        //        "link": true, // Button to insert a link.
+        //        "image": true, // Button to insert an image.
+        //        "color": true, // Button to change color of font
+        //        parserRules: wysihtml5ParserRules
+           
+        //});s
+        var editor = new wysihtml5.Editor("textarea", {
+            toolbar: "toolbar",
+            link: true,
+            parserRules: wysihtml5ParserRules
+        });
+        function showImgModal() {
+            $('#insertImg').modal('show');
+        }
+        function showLinkModal() {
+            $('#insertLink').modal('show');
+        }
+
+        $("form").bind("keypress", function (e) {
+            if (e.keyCode == 13 && $('.campUrl').is(":focus")) {
+                getParamsToMessage();
+                e.preventDefault();
+            }
+        });
+
+        function getParamsToMessage() {
+            var campaignId = $('.campUrl').val();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("GetCampaignUrlAndImagePath", "Dashboard"))",
+                data: addAntiForgeryToken({
+                    "campAlias": campaignId
+                }),
+                success: function (data, status, resp) {
+                    if (data.campaignUrl.length > 0) {
+                        document.getElementById('urlError').style.visibility = "hidden";
+                        editor.setValue('<p>Just wanted to let you know about an awesome new design that we have launched. We thought you might just want to pick one up...</p><center><p><strong><a class="campaign_url" href="' + data.campaignUrl + '" >Check it out here on Teeyoot!</a></strong></p><br><a href="' + data.campaignUrl + '" style="margin-left:10px"><img  src="' + data.imagePath + '"></a><br><p><strong>Click the image now and check it out a little closer!</strong></p><p>Thanks so much for your fantastic support!</p><p><a class="campaign_url" href="' + data.campaignUrl + '" style="background: #ff4f00; border: 2px solid #ff4f00; -webkit-border-radius: .3em; border-radius: .3em; color: #fff; display: inline-block; font-weight: 600; padding: 1em 2em; margin: 1em 0 1em;">Buy Now</a></p></center>')
+                    }
+                    else
+                        document.getElementById('urlError').style.visibility = "";
+
+                },
+            error: function (data, status, resp) {
+                alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+            }
+        });
+        }
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+
         $(document).ready(function () {
             $a = $('.aEmail');
             $rb = $('#newCamp');
@@ -24,9 +114,8 @@
             });
         });
     </script>
+
 }
-
-
 <div class="block" style="padding-bottom:10%">
 
     <div class="ttl">@T("Create message")</div>
@@ -69,9 +158,11 @@
                         <div class="flexDiv">
                             <input class="urlInp" type="text" readonly value="teeyoot.com/" />
                             <input class="campUrl" type="text" placeholder="@T("campaign")" />
+                            <span id="urlError" class="error" style="visibility:hidden">Wrong campaign url!</span>
                         </div>
                         <div style="font-size:12px">
-                            @T("Type Campaign URL to generate template")</div>
+                            @T("Type Campaign URL and press Enter to generate template")
+                        </div>
                     </div>
                     <div class="divEmail">
                         <div class="customEmail">
@@ -133,7 +224,42 @@
                 <div class="msgCont" style="padding-bottom:20px">
 
                     <div class="msgContTitle">@T("Message Content")</div>
-                    @Html.TextAreaFor(m => m.Content, new { @class = "msgText", @placeholder = T("Write something nice to your buyers...") })
+
+                    <div id="toolbar" style="display: none; margin-bottom:10px;">
+                        <a class="btn" data-wysihtml5-command="bold" title="CTRL+B">bold</a>
+                        <a class="btn" data-wysihtml5-command="italic" title="CTRL+I">italic</a>
+                        <a class="btn" data-wysihtml5-command="underline" title="CTRL+I">italic</a>
+                        <div id="insertLink" data-wysihtml5-dialog="createLink" class="bootstrap-wysihtml5-insert-image-modal modal fade modWind in" aria-hidden="true" style="display: none; ">
+                            <div style="margin:8% 28%">
+
+                                <label>
+                                    
+                                     Insert link:<input data-wysihtml5-dialog-field="href" value="http://" autofocus>
+                                </label>
+                                <div class="modal-buttons">
+                                    <a data-wysihtml5-dialog-action="save" data-dismiss="modal" class="send-button">OK</a>
+                                    <a data-wysihtml5-dialog-action="cancel" data-dismiss="modal" class="send-button">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="insertImg" data-wysihtml5-dialog="insertImage" class="bootstrap-wysihtml5-insert-image-modal modal fade modWind in" aria-hidden="true" style="display: none; ">
+                            <div style="margin:8% 28%">
+                                
+                            <label>
+                                Image link:
+                                <input data-wysihtml5-dialog-field="src" value="" autofocus>
+                            </label>
+                                <div class="modal-buttons">
+                                    <a data-wysihtml5-dialog-action="save" data-dismiss="modal" class="send-button">OK</a>
+                                    <a data-wysihtml5-dialog-action="cancel" data-dismiss="modal" class="send-button">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn" data-wysihtml5-command="createLink" onclick="showLinkModal()">link</a>
+                        <a class="btn" data-wysihtml5-command="insertImage" onclick="showImgModal()">insertImage</a>
+                        <a class="btn" data-wysihtml5-action="change_view"></a>
+                    </div>
+                    @Html.TextAreaFor(m => m.Content, new { @id = "textarea", @class = "msgText textarea wysiwyg ", @placeholder = T("Write something nice to your buyers...") })
                     @*<div><textarea class="txtArea" type="text"></textarea></div>*@
                     <div class="msgFooterDiv">
                         <div style="font-size:11px; width:90%; margin-right: 4%;">@T("You may send buyers from a single campaign up to 3 emails in a 7-day period.")</div>
@@ -144,7 +270,7 @@
                     </div>
                 </div>
             </div>
-        
+
         }
     </div>
 </div>

@@ -92,7 +92,36 @@ namespace Teeyoot.Dashboard.Controllers
             return View("CreateMessage", model);
         }
 
-
+        public JsonResult GetCampaignUrlAndImagePath(string campAlias)
+        {
+            var campaign = _campaignService.GetCampaignByAlias(campAlias);
+            if (campaign != null)
+            {
+                string baseUrl = "";
+                if (System.Web.HttpContext.Current != null)
+                {
+                    var request = System.Web.HttpContext.Current.Request;
+                    baseUrl = request.Url.Scheme + "://" + request.Url.Authority + request.ApplicationPath.TrimEnd('/') + "/";
+                }
+                else
+                {
+                    baseUrl = _wca.GetContext().CurrentSite.BaseUrl + "/";
+                }
+                string side = "";
+                if (campaign.BackSideByDefault)
+                {
+                    side = "back";
+                }
+                else
+                {
+                    side = "front";
+                }
+                string campaignUrl = baseUrl + campaign.Title;
+                string imagePath = baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First(p => p.WhenDeleted == null).Id + "/normal/" + side + ".png";
+                return Json(new { campaignUrl = campaignUrl, imagePath = imagePath }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { campaignUrl = "", imagePath = "" }, JsonRequestBehavior.AllowGet);
+        }
         
     }
 
