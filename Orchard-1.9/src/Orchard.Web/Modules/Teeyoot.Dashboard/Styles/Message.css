@@ -664,3 +664,88 @@ html, body {
         -moz-box-sizing: border-box;
     }
 }
+
+.wysihtml5-command-active{
+        background-color: #c2c9cc !important;
+    box-shadow: none !important;
+}
+.wysihtml5-action-active{
+        background-color: #c2c9cc !important;
+    box-shadow: none !important;
+}
+ .btn {
+    background-color: #f5f7f7;
+    border: 1px solid #e8eced !important;
+    height: 2rem;
+    padding: 0;
+    position: relative;
+    text-indent: -9999px;
+    width: 2rem;
+    color: #6c7478 !important;
+}
+.btn[data-wysihtml5-command="italic"]:before {
+    content: "\e628";
+}
+ .btn:before {
+    display: block;
+    font-family: ts-icon;
+    font-size: .8rem;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    text-indent: 0;
+    top: .5rem;
+    width: 100%;
+}
+
+ .btn[data-wysihtml5-command="bold"]:before {
+    content: "\e624";
+}
+
+.btn[data-wysihtml5-command="underline"]:before {
+    content: "\e62b";
+    font-size: .9rem;
+    top: .45rem;
+}
+
+.btn[data-wysihtml5-command="createLink"]:before {
+    content: "\e62a";
+    font-size: .95rem;
+    top: .4rem;
+}
+
+ .btn[data-wysihtml5-command="insertImage"]:before {
+    content: "\e627";
+    font-size: .95rem;
+    top: .4rem;
+}
+  .btn[data-wysihtml5-action="change_view"]:before {
+    content: "\html";
+    font-size: .95rem;
+    top: .3rem;
+}
+ 
+.wysihtml5-sandbox {
+    height:400px !important;
+}
+
+.modWind {
+    height: 230px !important;
+}
+.btn{
+    font-weight: normal !important; 
+}
+.modal-buttons{
+    margin-left:25%;
+}
+@media all and (max-width: 979px) {
+    .modal-buttons{
+    margin-left:5%;
+}
+}
+#insertImg{
+    overflow:hidden;
+}
+.error{
+    color:red;
+}

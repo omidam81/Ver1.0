@@ -1198,7 +1198,7 @@ namespace Teeyoot.Messaging.Services
                 totalPrice = record.TotalPrice + record.Delivery;
                 message.AddRcptMergeVars(record.Email, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
-            if (record.Delivery != null)
+            if (record.Delivery > 0.0)
             {
                 message.AddRcptMergeVars(record.Email, "DELIVERYPRICE", record.Delivery.ToString("F", CultureInfo.InvariantCulture));
             }
@@ -1258,7 +1258,7 @@ namespace Teeyoot.Messaging.Services
                 totalPrice = record.TotalPrice + record.Delivery;
                 message.AddRcptMergeVars(adminEmail, "TOTALPRICE", totalPrice.ToString("F", CultureInfo.InvariantCulture));
             }
-            if (record.Delivery != null)
+            if (record.Delivery > 0.0)
             {
                 message.AddRcptMergeVars(adminEmail, "DELIVERYPRICE", record.Delivery.ToString("F", CultureInfo.InvariantCulture));
             }
