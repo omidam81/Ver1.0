@@ -554,23 +554,23 @@
                     </div>
                 </div>
                 @Html.Action("EditEmailTemplateSubject", new { templateName = "new-campaign-admin-template" })
-                @*<div class="fileRow">
-                    <div class="alias">@T("New order buyer Template")</div>
-                    <div class="fileNameInput">@Model.NewOrderBuyerTemplate</div>
-                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "new-order-buyer-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                <div class="fileRow">
+                    <div class="alias">@T("New order Template")</div>
+                    <div class="fileNameInput">@Model.NewOrderTemplate</div>
+                    @using (Html.BeginForm("UploadTemplate", "AdminMessage", new { templateName = "new-order-template" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <input style="margin-left:5px" type="file" name="file" id="name" />
                         <input class="button primaryAction" type="submit" value="@T("Upload File")">
                     }
                     <div>
-                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "new-order-buyer-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
+                        <a class="button delete-button primaryAction" href="@Url.Action("Delete", "AdminMessage", new { templateName = "new-order-template", returnUrl = Request.Url.PathAndQuery })" itemprop="RemoveUrl UnsafeUrl">@T("Delete")</a>
                     </div>
                     <div>
-                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "new-order-buyer-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
+                        <a class="button delete-button" href="@Url.Action("Download", "AdminMessage", new { fileName = "new-order-template", returnUrl = Request.Url.PathAndQuery })">@T("Download")</a>
                     </div>
                 </div>
-                @Html.Action("EditEmailTemplateSubject", new { templateName = "new-order-buyer-template" })*@
+                @Html.Action("EditEmailTemplateSubject", new { templateName = "new-order-template" })
                 <div class="fileRow">
                     <div class="alias">@T("Not reach goal, but met minimum Template")</div>
                     <div class="fileNameInput">@Model.NotReachGoalMetMinimumTemplate</div>

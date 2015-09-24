@@ -788,7 +788,8 @@ namespace Teeyoot.Messaging.Services
             var mandrillMessage = new MandrillMessage() { };
             mandrillMessage.MergeLanguage = MandrillMessageMergeLanguage.Handlebars;
             mandrillMessage.FromEmail = "noreply@teeyoot.com";
-            mandrillMessage.Subject = "New order";
+            mandrillMessage.Subject = _mailSubjectService
+                .GetMailSubject("new-order-template", CultureUsed);
             mandrillMessage.FromName = "Teeyoot";
             var userIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
             var users = _contentManager.GetMany<IUser>(userIds, VersionOptions.Published, QueryHints.Empty);
