@@ -814,7 +814,7 @@ namespace Teeyoot.Module.Controllers
 
             _campaignService.ReservCampaign(id, email);
 
-            if (requests.Count() >= 10)
+            if (requests.Count() == 10)
             {
                 _teeyootMessagingService.SendReLaunchCampaignMessageToAdmin(id);
                 _teeyootMessagingService.SendReLaunchCampaignMessageToSeller(id);
