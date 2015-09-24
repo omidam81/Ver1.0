@@ -352,22 +352,24 @@
 @using (Script.Foot())
 {
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             //var campaignTable = $('#order-table').dataTable({ "aaSorting": [[1, 'desc']] });
             var campaignTable = $('#order-table').dataTable({
                 "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
                 iDisplayLength: 10,
-                aaSorting: [[1, 'desc']],
+                aaSorting: [[2, 'desc']],
                 bSortable: true,
                 aoColumnDefs: [
-                { "aTargets": [0], "bSortable": true },
-                { "aTargets": [1], "bSortable": true, "sType": "date-eu" },
-                { "aTargets": [2], "bSortable": false },
-                { "aTargets": [3], "bSortable": true },
-                { "aTargets": [4], "bSortable": true },
-                { "aTargets": [5], "bSortable": true },
-                { "aTargets": [6], "bSortable": true },
-                { "aTargets": [7], "bSortable": false }
+                    { "aTargets": [0], "bSortable": true },
+                    { "aTargets": [1], "bSortable": true },
+                    { "aTargets": [2], "bSortable": true, "sType": "date-eu" },
+                    { "aTargets": [3], "bSortable": true },
+                    { "aTargets": [4], "bSortable": true },
+                    { "aTargets": [5], "bSortable": true },
+                    { "aTargets": [6], "bSortable": true },
+                    { "aTargets": [7], "bSortable": false },
+                    { "aTargets": [8], "bSortable": false },
+                    { "aTargets": [9], "bSortable": false }
                 ]
             });
         });
