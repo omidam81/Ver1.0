@@ -1824,6 +1824,13 @@ var design={
 				    case 'art-color':
 				        rgb = design.designer.toRgbColor(app.state['color-art']);
 				        txt[0].setAttributeNS(null, 'fill', rgb);
+				        var paths = e.find('path');
+				        if (paths.length > 0) {
+				            $(paths).each(function () {
+				                this.setAttributeNS(null, 'fill', rgb);
+				            }
+                                );
+				        }
 				        if (obj.item.color) {
 				            app.state.unuseColors(obj.item.color);
 				        }
