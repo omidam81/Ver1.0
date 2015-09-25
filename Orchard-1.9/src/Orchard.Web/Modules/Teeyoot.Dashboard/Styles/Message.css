@@ -749,3 +749,31 @@ html, body {
 .error{
     color:red;
 }
+.modal {
+    background: white;
+    border: 1px solid #c2c9cc;
+    padding: 0;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 32rem;
+    max-height: 100%;
+    opacity: 1;
+    outline: none;
+    z-index: 9999;
+    -webkit-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+}
+.modWindow{
+    height:300px;
+}
+td .button{
+    background-color: rgba(155, 179, 108, 1.0) !important;
+}
+td .button:hover{
+    background-color: rgba(155, 179, 108, 1.0) !important;
+}

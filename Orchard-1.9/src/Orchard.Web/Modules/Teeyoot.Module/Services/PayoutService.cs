@@ -43,5 +43,15 @@ namespace Teeyoot.Module.Services
             _payoutRepository.Update(payout);
 
         }
+
+        public void DeletePayout(int payoutId)
+        {
+            var payout = _payoutRepository.Get(payoutId);
+            if (payout != null)
+            {
+                _payoutRepository.Delete(payout);
+                _payoutRepository.Flush();
+            }
+        }
     }
 }

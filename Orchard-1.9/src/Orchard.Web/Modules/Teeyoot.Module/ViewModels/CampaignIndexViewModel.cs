@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Dashboard.ViewModels
 {
@@ -13,6 +15,11 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public virtual string PromoId { get; set; }
 
-        public int CntRequests { get; set; } 
+        public int CntRequests { get; set; }
+
+        public virtual double PromoSize { get; set; }
+
+        public virtual string PromoType { get; set; }
+
     }
 }

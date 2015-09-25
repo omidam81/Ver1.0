@@ -2,6 +2,7 @@
 @{
     Style.Include("campaign.css");
     Script.Require("jQuery");
+    Script.Include("CostCalculatorPromo.js");
     Script.Include("jquery.flip.js");
     Script.Include("jquery.elevatezoom.js");
     //Layout.Title = T("Messages").ToString();
@@ -37,8 +38,11 @@
 
     var isChangetColor = false;
     var idProduct = "";
+    var allowPromo = false;
+
 
     $(document).ready(function () {
+
         var img = document.getElementById("prodBack");
         if (firstBack == "True") {
             img.setAttribute("src", "/Media/campaigns/@Model.Campaign.Id/@Model.Campaign.Products.Where(c => c.WhenDeleted == null).First().Id/normal/front.png");
@@ -51,10 +55,39 @@
             var cmItem = $(cm[i]).text();
             $(cm[i]).text(cmItem.replace(",", "."));
         }
+
+        $.ajax({
+            async: false,
+            cache: false,
+            type: "GET",
+            url: "@(Url.Action("GetDataForReLaunch", "Campaign"))",
+            data: {
+                "campaignName": "@Model.Campaign.Alias",
+            },
+            success: function (data) {
+                baseCostOld = minimumGoal(data.Products, data.CntFrontColor, data.CntBackColor, data.ProductCountGoal, data.TShirtCostRecord);
+                baseCostNew = minimumGoal(data.Products, data.CntFrontColor, data.CntBackColor, data.ProductCountGoal+1, data.TShirtCostRecord);
+                index = minProfitProductIndex(data.Products,data.CntFrontColor, data.CntBackColor, data.ProductCountGoal+1, data.TShirtCostRecord);
+                promoSize = availablePromoSize(baseCostOld[0].BaseCost, baseCostNew[0].BaseCost, data.ProductCountGoal, data.Products[index].Price);
+
+                if(@Model.PromoSize>0.0 && @Model.PromoSize < promoSize){
+                    allowPromo = true;
+                    document.querySelector('#promoAllowed').style.display = '';
+                }
+                else {
+                    if(@Model.PromoSize>0.0)
+                    document.querySelector('#promoNotAllowed').style.display = '';
+                }
+
+
+        }
+    });
+
+
+
     });
     document.title = document.querySelector(".campaign__name").innerHTML + " | Teeyoot";
     var firstBack = "@Model.Campaign.BackSideByDefault";
-
     var date = $(document.getElementById("days_for_twitter")).text();
     date = date.replace(/>/g, "").replace(/</g, "");
     date = date.trim();
@@ -592,7 +625,7 @@
     }
 
     function sendData() {
-        if (('@Model.PromoId') != null) {
+        if (('@Model.PromoId') != null && allowPromo)  {
             var promoId = '@Model.PromoId';
         }
         var products = [];
@@ -786,8 +819,8 @@
                     <i class="message_banner__close ts-icon-close"></i>
                 </div>
             </div>
-
-            <div class="js-campaign-title">
+            <div id="promoAllowed" style="display:none" class="message message-Information">@T("Congratulations, you'll be receiving "+ Model.PromoType+" "+ Model.PromoSize+ " off your purchase. Discount reflected at checkout!")</div>
+            <div id="promoNotAllowed" style="display:none"  class="message message-Information">@T("Sorry, but this promo is not available at this time!")</div>
                 <h1 class="campaign__name campaign__name--old">@Model.Campaign.Title</h1>
                 <h1 class="campaign__name display--mobile hidden">@Model.Campaign.Title</h1>
             </div>
