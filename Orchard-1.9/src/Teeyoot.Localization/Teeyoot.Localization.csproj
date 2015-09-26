@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeoLocation\GeoLocationInfo.cs" />
+    <Compile Include="GeoLocation\LocationInfoStatus.cs" />
     <Compile Include="ILocalizationInfo.cs" />
     <Compile Include="IpAddress\IIpAddressProvider.cs" />
     <Compile Include="IpAddress\WebIpAddressProvider.cs" />

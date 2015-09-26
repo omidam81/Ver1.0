@@ -8,13 +8,13 @@ namespace Teeyoot.Localization.IpAddress
     {
         public string GetIpAddress()
         {
-            var forwardedIpAddress = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            var forwarded = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
             var userHostAddress = HttpContext.Current.Request.UserHostAddress;
 
-            if (string.IsNullOrEmpty(forwardedIpAddress))
+            if (string.IsNullOrEmpty(forwarded))
                 return userHostAddress;
 
-            var forwardedIpAddresses = forwardedIpAddress.Split(',');
+            var forwardedIpAddresses = forwarded.Split(',');
             var publicForwardedIpAddresses = forwardedIpAddresses.Where(ip => !IsPrivateIpAddress(ip)).ToList();
 
             return publicForwardedIpAddresses.Any() ? publicForwardedIpAddresses.Last() : userHostAddress;

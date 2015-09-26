@@ -1,5 +1,6 @@
 ﻿using System;
 using MaxMind.GeoIP2;
+using MaxMind.GeoIP2.Exceptions;
 using MaxMind.GeoIP2.Responses;
 
 namespace Teeyoot.Localization.GeoLocation
@@ -15,7 +16,7 @@ namespace Teeyoot.Localization.GeoLocation
             _licenseKey = licenseKey;
         }
 
-        private CountryResponse TryGetGeoLocationResponse(string ipAddress)
+        private CountryResponse GetGeoLocationResponse(string ipAddress)
         {
             using (var client = new WebServiceClient(_userId, _licenseKey))
             {
@@ -28,13 +29,26 @@ namespace Teeyoot.Localization.GeoLocation
         {
             try
             {
-                var countryResponse = TryGetGeoLocationResponse(ipAddress);
+                var countryResponse = GetGeoLocationResponse(ipAddress);
+                var geoLocationInfo = new GeoLocationInfo {CountryIsoCode = countryResponse.Country.IsoCode};
+                return geoLocationInfo;
+            }
+            catch (AddressNotFoundException exception)
+            {
+                return new GeoLocationInfo(LocationInfoStatus.UnknownLocation, exception.Message);
+            }
+            catch (HttpException exception)
+            {
+                return new GeoLocationInfo(LocationInfoStatus.TransportError, exception.Message);
+            }
+            catch (GeoIP2Exception exception)
+            {
+                return new GeoLocationInfo(LocationInfoStatus.InvalidResponse, exception.Message);
             }
             catch (Exception exception)
             {
-                throw;
+                return new GeoLocationInfo(LocationInfoStatus.UnknownError, exception.Message);
             }
-            throw new NotImplementedException();
         }
     }
 }
