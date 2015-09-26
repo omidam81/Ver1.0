@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Teeyoot.Module.Models
 {
-    public class CurrencyRecord
+    public class CountryRecord
     {
         public virtual int Id { get; set; }
 
@@ -13,11 +13,5 @@ namespace Teeyoot.Module.Models
 
         public virtual string Name { get; set; }
 
-        public virtual string ShortName { get; set; }
-
-        //todo: drop this field 
-        public virtual string CurrencyCulture { get; set; }
-
-        public virtual string FlagFileName { get; set; }
     }
 }

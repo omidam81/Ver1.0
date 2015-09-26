@@ -800,7 +800,72 @@ namespace Teeyoot.Module
                     .Column<string>("Subject")
                 );
 
-            return 95;
+            // Migration #95.
+
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
+               table => table.AddColumn<string>("CashOnDeliveryAvailabilityMessage"));
+            //
+            // Tab names for payment methods
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+               table => table.AddColumn<string>("CashDelivTabName"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("PayPalTabName"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+                  table => table.AddColumn<string>("MolTabName"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("CreditCardTabName"));
+            // Notes for payment methods
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("CashDelivNote"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("PayPalNote"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+                  table => table.AddColumn<string>("MolNote"));
+            SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name,
+              table => table.AddColumn<string>("CreditCardNote"));
+            //
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
+              table => table.AddColumn<string>("CheckoutPageRightSideContent", c => c.Unlimited()));
+
+            // Migration #96.
+
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+              table => table.AddColumn<string>("FlagFileName", c => c.WithLength(1024)));
+
+            SchemaBuilder.CreateTable(typeof(CountryRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Code", c => c.WithLength(10))
+                    .Column<string>("Name", c => c.WithLength(150))
+                );
+
+            SchemaBuilder.CreateTable(typeof(LinkCountryCurrencyRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("CurrencyRecord_Id")
+                    .Column<int>("CountryRecord_Id")
+                );
+
+            SchemaBuilder.CreateTable(typeof(LinkCountryCultureRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("CultureRecord_Id")
+                    .Column<int>("CountryRecord_Id")
+                );
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Currency", "LinkCountryCurrencyRecord",
+                new[] { "CurrencyRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Country", "LinkCountryCurrencyRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Culture", "LinkCountryCultureRecord",
+                new[] { "CultureRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            return 97;
         }
 
         public int UpdateFrom2()
@@ -1845,9 +1910,6 @@ namespace Teeyoot.Module
         }
 
 
-        //
-        //
-        //
         public int UpdateFrom95()
         {
             SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name,
@@ -1877,9 +1939,49 @@ namespace Teeyoot.Module
 
             return 96;
         }
-        //
-        //
-        //
 
+        public int UpdateFrom96()
+        {
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+              table => table.AddColumn<string>("FlagFileName", c => c.WithLength(1024)));
+
+            SchemaBuilder.CreateTable(typeof(CountryRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<string>("Code", c => c.WithLength(10))
+                    .Column<string>("Name", c => c.WithLength(150))
+                );
+
+            SchemaBuilder.CreateTable(typeof(LinkCountryCurrencyRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("CurrencyRecord_Id")
+                    .Column<int>("CountryRecord_Id")
+                );
+
+            SchemaBuilder.CreateTable(typeof(LinkCountryCultureRecord).Name,
+                table => table
+                    .Column<int>("Id", column => column.PrimaryKey().Identity())
+                    .Column<int>("CultureRecord_Id")
+                    .Column<int>("CountryRecord_Id")
+                );
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Currency", "LinkCountryCurrencyRecord",
+                new[] { "CurrencyRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Country", "LinkCountryCurrencyRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Culture", "LinkCountryCultureRecord",
+                new[] { "CultureRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            return 97;
+
+            //todo: (auth:Juiceek) apply this after all the logic in the code will be unleashed from cultures to the new business logic based on countries
+            //SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name, table => table.DropColumn("CurrencyCulture"));
+        }
     }
 }
