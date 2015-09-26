@@ -12,6 +12,10 @@ using RM.Localization.Services;
 using Orchard.Data;
 
 using System.Linq;
+using System.Collections.Generic;
+using Teeyoot.Module.Services.Interfaces;
+using Teeyoot.Module.ViewModels;
+using System.Web.Script.Serialization;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -22,16 +26,20 @@ namespace Teeyoot.Module.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IPromotionService _promotionService;
         private readonly IWorkContextAccessor _wca;
+        private readonly IProductService _productService;
+        private readonly ITShirtCostService _tshirtService;
         private readonly INotifier _notifier;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         public Localizer T { get; set; }
         private readonly ICookieCultureService _cookieCultureService;
         private string cultureUsed = string.Empty;
 
-        public CampaignController(ICampaignService campaignService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
+        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
         {
             _currencyRepository = currencyRepository;
             Services = services;
+            _tshirtService = tshirtService;
+            _productService = productService;
             _campaignService = campaignService;
             _promotionService = promotionService;
             _wca = wca;
@@ -120,11 +128,15 @@ namespace Teeyoot.Module.Controllers
                             try
                             {
                                 PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
-                                if (promotion.Status && (promotion.AmountType == _currencyRepository.Table.Where(c=> c.CurrencyCulture == campaign.CampaignCulture).FirstOrDefault().Code) && (promotion.Expiration > DateTime.UtcNow))
+                                
+                                                               
+                                if (promotion.Status && (promotion.AmountType == _currencyRepository.Table.Where(c=> c.CurrencyCulture == campaign.CampaignCulture).FirstOrDefault().Code) && (promotion.Expiration > DateTime.UtcNow) && (campaign.ProductCountSold >= campaign.ProductMinimumGoal))
                                 {
                                     var infoMessage = T(String.Format("Congratulations, you'll be receiving {0} {1} off your purchase. Discount reflected at checkout!", promotion.AmountType, promotion.AmountSize));
-                                    _notifier.Add(NotifyType.Information, infoMessage);
+                                    //_notifier.Add(NotifyType.Error, infoMessage);
                                     model.PromoId = promo;
+                                    model.PromoSize = promotion.AmountSize;
+                                    model.PromoType = promotion.AmountType;
                                 }
                                 else
                                 {
@@ -149,5 +161,31 @@ namespace Teeyoot.Module.Controllers
 
             return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
         }
+
+        [HttpGet]
+        public JsonResult GetDataForReLaunch(string campaignName)
+        {
+            var campaign = _campaignService.GetCampaignByAlias(campaignName);
+            var products = _campaignService.GetProductsOfCampaign(campaign.Id);
+            var result = new RelaunchViewModel();
+            List<object> prodInfo = new List<object>();
+            foreach (var product in products)
+            {
+                var prodRec = _productService.GetProductById(product.ProductRecord.Id);
+                prodInfo.Add(new { Price = product.Price, BaseCostForProduct = prodRec.BaseCost, ProductId = prodRec.Id, BaseCost = product.BaseCost });
+            }
+
+            var tShirtCostRecord = _tshirtService.GetCost(cultureUsed);
+
+            result.Products = prodInfo.ToArray();
+            result.CntBackColor = campaign.CntBackColor;
+            result.CntFrontColor = campaign.CntFrontColor;
+            result.TShirtCostRecord = tShirtCostRecord;
+            result.ProductCountGoal = campaign.ProductCountSold;
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
 	}
 }

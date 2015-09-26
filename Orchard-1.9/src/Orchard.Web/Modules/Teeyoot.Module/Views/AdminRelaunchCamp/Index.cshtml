@@ -1,0 +1,98 @@
+﻿@model  List<Teeyoot.Module.ViewModels.CampaignRelRequestViewModel>
+@{
+    Script.Require("jQuery");
+    Script.Require("jQueryUI");
+    Script.Include("bootstrap.min.js");
+    Style.Include("Message.css");
+    Style.Include("jqueryui.css");
+    Script.Include("jquery.dataTables.min.js");
+    Style.Include("jquery.dataTables.css");
+    Layout.Title = T("Relaunch Campaigns Requests").ToString();
+}
+
+@using (Script.Foot())
+{
+    <script>
+        function showRequesters(id) {
+            var modalId = "#"+id; 
+            $(modalId).modal('show');
+        }
+
+               $(document).ready(function () {
+                   var campaignTable = $('#request-table').dataTable({
+                        "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
+                        iDisplayLength: 10,
+                        aaSorting: [[1, 'desc']],
+                        bSortable: true,
+                        aoColumnDefs: [
+                        { "aTargets": [0], "bSortable": true },
+                        { "aTargets": [1], "bSortable": true },
+                        { "aTargets": [2], "bSortable": true },          
+                        { "aTargets": [3], "bSortable": false }
+                        
+                        ]
+                    });
+                });
+    </script>
+}
+
+@{
+    <fieldset>
+        <table id="request-table" class="items">
+            <thead>
+                <tr class="admin-categories">
+                    <th class="date">
+                        <h3>@T("Campaign Title")</h3>
+                    </th>
+                    <th class="userId">
+                        <h3>@T("Seller")</h3>
+                    </th>
+                    <th class="subject">
+                        <h3>@T("Requests count")</h3>
+                    </th>
+                    <th class="sender">
+                        <h3>@T("Info")</h3>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="admin-categories-tr">
+                        <td class="date">
+                            @item.CampaignTitle
+                        </td>
+                        <td class="userId">
+                            @item.Seller.Email
+                        </td>
+                        <td class="subject">
+                            @item.CntRequests
+                        </td>
+                        <td class="inf">
+                            <a class="button" onclick="showRequesters(@item.CampaignId)" title="@T("Requesters")">@T("Requesters")</a>
+                        </td>
+                        
+                    </tr>
+    <div id=@item.CampaignId class="bootstrap-wysihtml5-insert-image-modal modal fade modWindow in" style="display: none; ">
+        <div style="margin-left:20%">
+            <ol style="list-style-type: decimal;">
+                @foreach (var request in item.Requests)
+                {
+
+                    <li>  @request.Email @request.</li>
+                }
+            </ol>
+            <div class="modal-buttons" style="margin-top:10px;margin-bottom:10px ">
+                <a data-dismiss="modal" class="send-button" style="margin-left: 15%">OK</a>
+            </div>
+        </div>
+    </div>
+                }
+            </tbody>
+        </table>
+
+    </fieldset>
+
+}
+

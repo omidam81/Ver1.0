@@ -42,7 +42,8 @@
         {
 
             var args = {};
-            args.switchState = document.getElementById('switchState').checked;
+            var elId = "switch_" + id;
+            args.switchState = document.getElementById(elId).checked;
             args.id = id;
             var token = $('input[name="__RequestVerificationToken"]').val();
 
@@ -189,7 +190,7 @@
                     <div class="list_item__cell list_item__status">
                         <label class="switch__label">
 
-                            <input id="switchState" checked="@promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@promotion.Id)" disabled />
+                            <input id="switch_@promotion.Id"  checked="@promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@promotion.Id)" disabled />
                             <div class="switch__el" data-off="Off" data-on="On"></div>
                         </label>
                     </div>
@@ -199,7 +200,7 @@
                     <div class="list_item__cell list_item__status">
                         <label class="switch__label">
 
-                            <input id="switchState" checked="@promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@promotion.Id)" />
+                            <input id="switch_@promotion.Id" checked="@promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@promotion.Id)" />
                             <div class="switch__el" data-off="Off" data-on="On"></div>
                         </label>
                     </div>
