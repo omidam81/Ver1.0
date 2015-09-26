@@ -92,6 +92,11 @@ namespace Teeyoot.Module
                         .Action("Index", "Payment", new { area = "Teeyoot.PaymentSettings" })
                         )
                     .Add(subItem => subItem
+                        .Caption(T("Relaunch Requests"))
+                        .Position("3.2")
+                        .Action("Index", "AdminRelaunchCamp", new { area = "Teeyoot.Module" })
+                        )
+                    .Add(subItem => subItem
                         .Caption(T("Mandrill Settings"))
                         .Position("2.3")
                         .Action("Index", "AdminMessage", new { area = "Teeyoot.Messaging" })
