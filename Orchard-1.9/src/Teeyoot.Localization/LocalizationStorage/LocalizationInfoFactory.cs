@@ -22,8 +22,13 @@ namespace Teeyoot.Localization.LocalizationStorage
         {
             var ipAddress = _ipAddressProvider.GetIpAddress();
             var geoLocationInfo = GetGeoLocationInfo(ipAddress);
+            var country = GetCurrentCountryFrom(geoLocationInfo);
 
-            var localizationInfo = new TeeyootLocalizationInfo {GeoLocationInfo = geoLocationInfo};
+            var localizationInfo = new TeeyootLocalizationInfo
+            {
+                GeoLocationInfo = geoLocationInfo,
+                Country = country
+            };
 
             return localizationInfo;
         }
@@ -50,6 +55,24 @@ namespace Teeyoot.Localization.LocalizationStorage
             }
 
             return geoLocationInfo;
+        }
+
+        private static Country GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
+        {
+            if (geoLocationInfo.Status != LocationInfoStatus.LocationFound) 
+                return Country.Unknown;
+
+            switch (geoLocationInfo.CountryIsoCode)
+            {
+                case "MY":
+                    return Country.Malaysia;
+                case "SG":
+                    return Country.Singapore;
+                case "ID":
+                    return Country.Indonesia;
+                default:
+                    return Country.Other;
+            }
         }
 
         public static ILocalizationInfo GetCurrentLocalizationInfo()

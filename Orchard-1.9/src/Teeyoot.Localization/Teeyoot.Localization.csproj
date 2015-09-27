@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Country.cs" />
     <Compile Include="GeoLocation\GeoLocationInfo.cs" />
     <Compile Include="GeoLocation\LocationInfoStatus.cs" />
     <Compile Include="ILocalizationInfo.cs" />
