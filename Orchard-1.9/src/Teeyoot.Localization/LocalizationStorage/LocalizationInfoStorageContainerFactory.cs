@@ -4,12 +4,19 @@ namespace Teeyoot.Localization.LocalizationStorage
 {
     public static class LocalizationInfoStorageContainerFactory
     {
+        private static ILocalizationInfoStorageContainer _localizationInfoStorageContainer;
+
         public static ILocalizationInfoStorageContainer GetStorageContainer()
         {
-            if (HttpContext.Current != null)
-                return new HttpLocalizationInfoStorageContainer();
+            if (_localizationInfoStorageContainer != null) 
+                return _localizationInfoStorageContainer;
 
-            return new ThreadLocalizationInfoStorageContainer();
+            if (HttpContext.Current == null)
+                _localizationInfoStorageContainer = new ThreadLocalizationInfoStorageContainer();
+            else
+                _localizationInfoStorageContainer = new HttpLocalizationInfoStorageContainer();
+
+            return _localizationInfoStorageContainer;
         }
     }
 }

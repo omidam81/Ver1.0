@@ -1,7 +1,8 @@
 ﻿using Teeyoot.Localization.GeoLocation;
 using Teeyoot.Localization.IpAddress;
+using Teeyoot.Localization.LocalizationStorage;
 
-namespace Teeyoot.Localization.LocalizationStorage
+namespace Teeyoot.Localization
 {
     public static class LocalizationInfoFactory
     {

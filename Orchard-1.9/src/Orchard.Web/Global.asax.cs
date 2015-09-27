@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Autofac;
 using Orchard.Environment;
 using Orchard.WarmupStarter;
+using Teeyoot.Localization;
 using Teeyoot.Localization.GeoLocation;
 using Teeyoot.Localization.IpAddress;
 using Teeyoot.Localization.LocalizationStorage;

@@ -84,7 +84,7 @@
     <Compile Include="LocalizationStorage\HttpLocalizationInfoStorageContainer.cs" />
     <Compile Include="GeoLocation\IGeoLocationInfoProvider.cs" />
     <Compile Include="LocalizationStorage\ILocalizationInfoStorageContainer.cs" />
-    <Compile Include="LocalizationStorage\LocalizationInfoFactory.cs" />
+    <Compile Include="LocalizationInfoFactory.cs" />
     <Compile Include="LocalizationStorage\LocalizationInfoStorageContainerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeeyootLocalizationInfo.cs" />

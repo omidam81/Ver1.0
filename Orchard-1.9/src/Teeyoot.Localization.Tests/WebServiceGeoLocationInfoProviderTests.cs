@@ -43,5 +43,11 @@ namespace Teeyoot.Localization.Tests
                 Assert.AreEqual(Country.Other, _geoLocationInfoProvider.GetCountry(ipAddress));
             }
         }
+
+        [Test]
+        public void LocalHost()
+        {
+            Assert.AreEqual(Country.Unknown, _geoLocationInfoProvider.GetCountry("::1"));
+        }
     }
 }
