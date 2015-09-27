@@ -31,7 +31,7 @@ namespace Teeyoot.Localization.GeoLocation
             try
             {
                 var countryResponse = GetGeoLocationResponse(ipAddress);
-                var geoLocationInfo = new GeoLocationInfo {CountryIsoCode = countryResponse.Country.IsoCode};
+                var geoLocationInfo = new GeoLocationInfo(countryResponse.Country.IsoCode);
                 return geoLocationInfo;
             }
             catch (AddressNotFoundException exception)
@@ -49,6 +49,24 @@ namespace Teeyoot.Localization.GeoLocation
             catch (Exception exception)
             {
                 return new GeoLocationInfo(LocationInfoStatus.UnknownError, exception.Message);
+            }
+        }
+
+        private static Country GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
+        {
+            if (geoLocationInfo.Status != LocationInfoStatus.LocationFound)
+                return Country.Unknown;
+
+            switch (geoLocationInfo.CountryIsoCode)
+            {
+                case "MY":
+                    return Country.Malaysia;
+                case "SG":
+                    return Country.Singapore;
+                case "ID":
+                    return Country.Indonesia;
+                default:
+                    return Country.Other;
             }
         }
 
@@ -74,24 +92,6 @@ namespace Teeyoot.Localization.GeoLocation
             }
 
             return GetCurrentCountryFrom(geoLocationInfo);
-        }
-
-        private static Country GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
-        {
-            if (geoLocationInfo.Status != LocationInfoStatus.LocationFound)
-                return Country.Unknown;
-
-            switch (geoLocationInfo.CountryIsoCode)
-            {
-                case "MY":
-                    return Country.Malaysia;
-                case "SG":
-                    return Country.Singapore;
-                case "ID":
-                    return Country.Indonesia;
-                default:
-                    return Country.Other;
-            }
         }
     }
 }

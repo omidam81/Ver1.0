@@ -21,7 +21,7 @@ namespace Teeyoot.Localization.LocalizationStorage
             var ipAddress = _ipAddressProvider.GetIpAddress();
             var country = _geoLocationInfoProvider.GetCountry(ipAddress);
 
-            return new TeeyootLocalizationInfo {Country = country};
+            return new TeeyootLocalizationInfo(country);
         }
 
         public static ILocalizationInfo GetCurrentLocalizationInfo()
