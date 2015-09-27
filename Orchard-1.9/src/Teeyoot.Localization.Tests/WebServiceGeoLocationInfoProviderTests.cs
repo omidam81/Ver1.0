@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Teeyoot.Localization.GeoLocation;
 
 namespace Teeyoot.Localization.Tests
@@ -19,29 +18,29 @@ namespace Teeyoot.Localization.Tests
         }
 
         [Test]
-        public void UnitedStates()
-        {
-            foreach (var geoLocationInfo in _unitedStatesIpAddresses.Select(ipAdress => _geoLocationInfoProvider.GetGeoLocationInfo(ipAdress)))
-            {
-                Assert.AreEqual("US", geoLocationInfo.CountryIsoCode);
-            }
-        }
-
-        [Test]
         public void Malaysia()
         {
-            foreach (var geoLocationInfo in _malaysianIpAddresses.Select(ipAdress => _geoLocationInfoProvider.GetGeoLocationInfo(ipAdress)))
+            foreach (var ipAddress in _malaysianIpAddresses)
             {
-                Assert.AreEqual("MY", geoLocationInfo.CountryIsoCode);
+                Assert.AreEqual(Country.Malaysia, _geoLocationInfoProvider.GetCountry(ipAddress));
             }
         }
 
         [Test]
         public void Indonesia()
         {
-            foreach (var geoLocationInfo in _indonesianIpAddresses.Select(ipAdress => _geoLocationInfoProvider.GetGeoLocationInfo(ipAdress)))
+            foreach (var ipAddress in _indonesianIpAddresses)
             {
-                Assert.AreEqual("ID", geoLocationInfo.CountryIsoCode);
+                Assert.AreEqual(Country.Indonesia, _geoLocationInfoProvider.GetCountry(ipAddress));
+            }
+        }
+
+        [Test]
+        public void OtherCountries()
+        {
+            foreach (var ipAddress in _unitedStatesIpAddresses)
+            {
+                Assert.AreEqual(Country.Other, _geoLocationInfoProvider.GetCountry(ipAddress));
             }
         }
     }

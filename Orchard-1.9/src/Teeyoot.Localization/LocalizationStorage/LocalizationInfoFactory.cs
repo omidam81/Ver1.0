@@ -1,5 +1,4 @@
-﻿using System;
-using Teeyoot.Localization.GeoLocation;
+﻿using Teeyoot.Localization.GeoLocation;
 using Teeyoot.Localization.IpAddress;
 
 namespace Teeyoot.Localization.LocalizationStorage
@@ -8,7 +7,6 @@ namespace Teeyoot.Localization.LocalizationStorage
     {
         private static IIpAddressProvider _ipAddressProvider;
         private static IGeoLocationInfoProvider _geoLocationInfoProvider;
-        private const int MaxAttemptsToKnowLocation = 3;
 
         public static void Init(
             IIpAddressProvider ipAddressProvider,
@@ -21,58 +19,9 @@ namespace Teeyoot.Localization.LocalizationStorage
         private static ILocalizationInfo GetNewLocalizationInfo()
         {
             var ipAddress = _ipAddressProvider.GetIpAddress();
-            var geoLocationInfo = GetGeoLocationInfo(ipAddress);
-            var country = GetCurrentCountryFrom(geoLocationInfo);
+            var country = _geoLocationInfoProvider.GetCountry(ipAddress);
 
-            var localizationInfo = new TeeyootLocalizationInfo
-            {
-                GeoLocationInfo = geoLocationInfo,
-                Country = country
-            };
-
-            return localizationInfo;
-        }
-
-        private static GeoLocationInfo GetGeoLocationInfo(string ipAddress)
-        {
-            GeoLocationInfo geoLocationInfo = null;
-
-            for (var i = 0; i < MaxAttemptsToKnowLocation; i++)
-            {
-                geoLocationInfo = _geoLocationInfoProvider.GetGeoLocationInfo(ipAddress);
-                switch (geoLocationInfo.Status)
-                {
-                    case LocationInfoStatus.TransportError:
-                    case LocationInfoStatus.InvalidResponse:
-                        continue;
-                    case LocationInfoStatus.LocationFound:
-                    case LocationInfoStatus.UnknownLocation:
-                    case LocationInfoStatus.UnknownError:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            return geoLocationInfo;
-        }
-
-        private static Country GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
-        {
-            if (geoLocationInfo.Status != LocationInfoStatus.LocationFound) 
-                return Country.Unknown;
-
-            switch (geoLocationInfo.CountryIsoCode)
-            {
-                case "MY":
-                    return Country.Malaysia;
-                case "SG":
-                    return Country.Singapore;
-                case "ID":
-                    return Country.Indonesia;
-                default:
-                    return Country.Other;
-            }
+            return new TeeyootLocalizationInfo {Country = country};
         }
 
         public static ILocalizationInfo GetCurrentLocalizationInfo()

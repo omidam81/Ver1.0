@@ -2,6 +2,6 @@
 {
     public interface IGeoLocationInfoProvider
     {
-        GeoLocationInfo GetGeoLocationInfo(string ipAddress);
+        Country GetCountry(string ipAddress);
     }
 }

@@ -9,6 +9,7 @@ namespace Teeyoot.Localization.GeoLocation
     {
         private readonly int _userId;
         private readonly string _licenseKey;
+        private const int MaxAttemptsToKnowLocation = 3;
 
         public WebServiceGeoLocationInfoProvider(int userId, string licenseKey)
         {
@@ -25,7 +26,7 @@ namespace Teeyoot.Localization.GeoLocation
             }
         }
 
-        public GeoLocationInfo GetGeoLocationInfo(string ipAddress)
+        private GeoLocationInfo GetGeoLocationInfo(string ipAddress)
         {
             try
             {
@@ -48,6 +49,48 @@ namespace Teeyoot.Localization.GeoLocation
             catch (Exception exception)
             {
                 return new GeoLocationInfo(LocationInfoStatus.UnknownError, exception.Message);
+            }
+        }
+
+        public Country GetCountry(string ipAddress)
+        {
+            GeoLocationInfo geoLocationInfo = null;
+
+            for (var i = 0; i < MaxAttemptsToKnowLocation; i++)
+            {
+                geoLocationInfo = GetGeoLocationInfo(ipAddress);
+                switch (geoLocationInfo.Status)
+                {
+                    case LocationInfoStatus.TransportError:
+                    case LocationInfoStatus.InvalidResponse:
+                        continue;
+                    case LocationInfoStatus.LocationFound:
+                    case LocationInfoStatus.UnknownLocation:
+                    case LocationInfoStatus.UnknownError:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            return GetCurrentCountryFrom(geoLocationInfo);
+        }
+
+        private static Country GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
+        {
+            if (geoLocationInfo.Status != LocationInfoStatus.LocationFound)
+                return Country.Unknown;
+
+            switch (geoLocationInfo.CountryIsoCode)
+            {
+                case "MY":
+                    return Country.Malaysia;
+                case "SG":
+                    return Country.Singapore;
+                case "ID":
+                    return Country.Indonesia;
+                default:
+                    return Country.Other;
             }
         }
     }
