@@ -85,3 +85,6 @@
 
         width:100%;
 }
+.dataTables_wrapper .dataTables_filter {
+    margin-left: 0px !important;
+}

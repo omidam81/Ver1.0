@@ -46,6 +46,10 @@ namespace Teeyoot.Module
                         .Caption(T("Payouts"))
                         .Position("2.8")
                         .Action("Index", "Tranzaction", new { area = "Teeyoot.Payouts" })
+                        .Add(T("Order profits"),
+                            i => i.Action("Index", "Tranzaction", new { area = "Teeyoot.Payouts" }).LocalNav())
+                        .Add(T("Payouts"),
+                            i => i.Action("Payouts", "Tranzaction", new { area = "Teeyoot.Payouts" }).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("Messages"))

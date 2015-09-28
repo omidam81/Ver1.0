@@ -44,14 +44,20 @@ namespace Teeyoot.Module.Services
 
         }
 
-        public void DeletePayout(int payoutId)
+        public bool DeletePayoutByOrderPublicId(string publicId)
         {
-            var payout = _payoutRepository.Get(payoutId);
+            var payout = _payoutRepository.Table.Where(p => p.Event == publicId && p.IsPlus == true).FirstOrDefault();
             if (payout != null)
             {
                 _payoutRepository.Delete(payout);
                 _payoutRepository.Flush();
+                return true;
             }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

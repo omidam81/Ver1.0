@@ -78,8 +78,10 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Styles\AdminPayout.css" />
+    <Content Include="Styles\jquery.dataTables.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -87,6 +89,7 @@
     <Content Include="Module.txt" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Tranzaction\PaymentUserInformation.cshtml" />
+    <Content Include="Views\Tranzaction\Payouts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">

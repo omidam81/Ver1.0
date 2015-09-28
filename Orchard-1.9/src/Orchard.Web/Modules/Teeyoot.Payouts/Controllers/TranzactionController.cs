@@ -61,11 +61,11 @@ namespace Teeyoot.Payouts.Controllers
             if (payouts != null)
             {
                 if (filter == "1")
-                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending").ToList();
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending" && s.IsPlus == true).ToList();
                 else if (filter == "2")
-                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed").ToList();
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed" && s.IsPlus == true).ToList();
                 else
-                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).ToList();
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.IsPlus == true).ToList();
 
                 var entriesProjection = list.Select(e =>
                 {
@@ -88,6 +88,42 @@ namespace Teeyoot.Payouts.Controllers
 
             return View("Index", new PayoutsViewModel { Transacts = null, Pager = null });
         }
+
+        public ActionResult Payouts(PagerParameters pagerParameters, PayoutsViewModel adminViewModel, string filter = "")
+        {
+            var payouts = _payoutService.GetAllPayouts();
+            List<History> list;
+            if (payouts != null)
+            {
+                if (filter == "1")
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending" && s.IsPlus == false).ToList();
+                else if (filter == "2")
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed" && s.IsPlus == false).ToList();
+                else
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.IsPlus == false).ToList();
+
+                var entriesProjection = list.Select(e =>
+                {
+                    return Shape.FaqEntry(
+                        Date: e.Date,
+                        Id: e.Id,
+                        Event: e.Event,
+                        Amount: e.Amount,
+                        Status: e.Status,
+                        UserId: e.UserId,
+                        IsPlus: e.IsPlus
+                        );
+                });
+                var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
+                var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
+                var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
+
+                return View("Payouts", new PayoutsViewModel { Transacts = entries.ToArray(), Pager = pagerShape });
+            }
+
+            return View("Payouts", new PayoutsViewModel { Transacts = null, Pager = null });
+        }
+
 
         [HttpPost]
         public HttpStatusCodeResult EditPayout(int Id, double Cost) 
