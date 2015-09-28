@@ -316,7 +316,8 @@
                     <td class="payout">
                         @if (item.Payout)
                         {
-                            @T("Paid")
+                            <a href="@Url.Action("DeletePayout", new {publicId = item.PublicId})" class="paid">@T("Not paid")</a>
+                            @T("| Paid ")
                         }
                         else
                         {

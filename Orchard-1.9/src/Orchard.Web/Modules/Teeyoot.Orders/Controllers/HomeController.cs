@@ -241,7 +241,19 @@ namespace Teeyoot.Orders.Controllers
             var campaign = _campaignService.GetCampaignById(campaignId) ;
             order.ProfitPaid = true;
             _orderService.UpdateOrder(order);
-            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = campaign.Alias });
+            _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = profit, IsPlus = true, Status = "Completed", UserId = sellerId, Event = publicId.Trim(' ') });
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeletePayout(string publicId)
+        {
+            if (_payoutService.DeletePayoutByOrderPublicId(publicId.Trim(' ')))
+            {
+                var order = _orderService.GetOrderByPublicId(publicId.Trim(' '));
+                order.Paid = null;
+                order.ProfitPaid = false;
+                _orderService.UpdateOrder(order);
+            }
             return RedirectToAction("Index");
         }
 

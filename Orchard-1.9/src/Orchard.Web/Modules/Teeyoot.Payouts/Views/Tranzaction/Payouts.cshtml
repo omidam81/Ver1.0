@@ -1,5 +1,6 @@
 ﻿@model  Teeyoot.Dashboard.ViewModels.PayoutsViewModel
 @{
+    Style.Include("AdminPayout.css");
     Script.Require("jQuery");
     Script.Require("jQueryUI");
     Script.Include("bootstrap.min.js");
@@ -49,9 +50,6 @@
                     });
                 };
 
-                
-                    
-                
 
                 /* End Запрос на сервак */
                 console.log(getes())
@@ -63,7 +61,7 @@
                     });
             });
 
-            var campaignTable = $('#order-profit-table').dataTable({
+            var payoutsTable = $('#payouts-table').dataTable({
                 "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
                 iDisplayLength: 10,
                 aaSorting: [[1, 'desc']],
@@ -170,7 +168,7 @@
     </div>
 
     <fieldset>
-        <table id="order-profit-table" class="items">
+        <table id="payouts-table" class="items">
             <thead>
                 <tr class="admin-categories">
                     <th class="date">
@@ -248,7 +246,7 @@
         </table>
 
     </fieldset>
- 
+
 }
 
 

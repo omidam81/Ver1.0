@@ -13,6 +13,7 @@ namespace Teeyoot.Module.Services.Interfaces
         IQueryable<PayoutRecord> GetAllPayouts();
         void AddPayout(PayoutRecord payout );
         void UpdatePayout(PayoutRecord payout);
+        bool DeletePayoutByOrderPublicId(string publicId);
         
     }
 }
