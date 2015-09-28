@@ -1180,11 +1180,14 @@
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
+    <Compile Include="Models\CountryRecord.cs" />
     <Compile Include="Models\DeliverySettingRecord.cs" />
     <Compile Include="Models\ArtRecord.cs" />
     <Compile Include="Models\CheckoutCampaignRequest.cs" />
     <Compile Include="Models\CommonSettingsRecord.cs" />
     <Compile Include="Models\BringBackCampaignRecord.cs" />
+    <Compile Include="Models\LinkCountryCultureRecord.cs" />
+    <Compile Include="Models\LinkCountryCurrencyRecord.cs" />
     <Compile Include="Models\MailChimpSettingsPart.cs" />
     <Compile Include="Models\MailChimpSettingsPartRecord.cs" />
     <Compile Include="Models\MailTemplateSubjectRecord.cs" />

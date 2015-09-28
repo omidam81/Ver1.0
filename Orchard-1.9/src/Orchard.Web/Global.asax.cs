@@ -4,6 +4,10 @@ using System.Web.Routing;
 using Autofac;
 using Orchard.Environment;
 using Orchard.WarmupStarter;
+using Teeyoot.Localization;
+using Teeyoot.Localization.GeoLocation;
+using Teeyoot.Localization.IpAddress;
+using Teeyoot.Localization.LocalizationStorage;
 
 namespace Orchard.Web {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -23,6 +27,10 @@ namespace Orchard.Web {
             RegisterRoutes(RouteTable.Routes);
             _starter = new Starter<IOrchardHost>(HostInitialization, HostBeginRequest, HostEndRequest);
             _starter.OnApplicationStart(this);
+
+            LocalizationInfoFactory.Init(
+                new WebIpAddressProvider(),
+                new WebServiceGeoLocationInfoProvider(105065, "QhPUJhXH8sh8"));
         }
 
         protected void Application_BeginRequest() {
