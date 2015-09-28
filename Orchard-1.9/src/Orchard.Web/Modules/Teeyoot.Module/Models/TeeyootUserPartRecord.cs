@@ -27,5 +27,7 @@ namespace Teeyoot.Module.Models
         public virtual string Country { get; set; }
 
         public virtual string TeeyootUserCulture { get; set; }
+
+        public virtual CurrencyRecord Currency { get; set; }
     }
 }

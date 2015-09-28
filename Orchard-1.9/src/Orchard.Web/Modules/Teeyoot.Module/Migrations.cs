@@ -865,7 +865,13 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
                 new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
 
-            return 97;
+            SchemaBuilder.AlterTable(typeof (TeeyootUserPartRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("TeeyootUserPartRecord_CurrencyRecord", "TeeyootUserPartRecord",
+                new[] {"CurrencyRecord_Id"}, "CurrencyRecord", new[] {"Id"});
+
+            return 98;
         }
 
         public int UpdateFrom2()
@@ -1982,6 +1988,17 @@ namespace Teeyoot.Module
 
             //todo: (auth:Juiceek) apply this after all the logic in the code will be unleashed from cultures to the new business logic based on countries
             //SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name, table => table.DropColumn("CurrencyCulture"));
+        }
+
+        public int UpdateFrom97()
+        {
+            SchemaBuilder.AlterTable(typeof (TeeyootUserPartRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("TeeyootUserPartRecord_CurrencyRecord", "TeeyootUserPartRecord",
+                new[] {"CurrencyRecord_Id"}, "CurrencyRecord", new[] {"Id"});
+
+            return 98;
         }
     }
 }
