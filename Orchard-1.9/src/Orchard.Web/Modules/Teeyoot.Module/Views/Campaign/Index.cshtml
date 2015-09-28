@@ -819,8 +819,9 @@
                     <i class="message_banner__close ts-icon-close"></i>
                 </div>
             </div>
-            <div id="promoAllowed" style="display:none" class="message message-Information">@T("Congratulations, you'll be receiving "+ Model.PromoType+" "+ Model.PromoSize+ " off your purchase. Discount reflected at checkout!")</div>
-            <div id="promoNotAllowed" style="display:none"  class="message message-Information">@T("Sorry, but this promo is not available at this time!")</div>
+            <div class="js-campaign-title">
+                <div id="promoAllowed" style="display:none" class="message message-Information">@T("Congratulations, you'll be receiving " + Model.PromoType + " " + Model.PromoSize + " off your purchase. Discount reflected at checkout!")</div>
+                <div id="promoNotAllowed" style="display:none" class="message message-Information">@T("Sorry, but this promo is not available at this time!")</div>
                 <h1 class="campaign__name campaign__name--old">@Model.Campaign.Title</h1>
                 <h1 class="campaign__name display--mobile hidden">@Model.Campaign.Title</h1>
             </div>
