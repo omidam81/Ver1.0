@@ -110,7 +110,11 @@ namespace Teeyoot.Module
                         .Position("2.8")
                         .Action("Index", "DeliverySettings", new { area = "Teeyoot.WizardSettings" })
                     )
-
+                    .Add(subItem => subItem
+                        .Caption(T("Users"))
+                        .Position("2.8")
+                        .Action("Index", "AdminUser", new { area = "Teeyoot.Module" })
+                    )
                 );
         }
     }

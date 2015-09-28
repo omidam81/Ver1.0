@@ -1129,6 +1129,7 @@
     <Content Include="Views\Home\Molpas.cshtml" />
     <Content Include="Views\Home\CallbackMolpay.cshtml" />
     <Content Include="Views\AdminRelaunchCamp\Index.cshtml" />
+    <Content Include="Views\AdminUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1173,6 +1174,7 @@
     <Compile Include="Controllers\AdminCommonSettingsController.cs" />
     <Compile Include="Controllers\AdminRelaunchCampController.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
@@ -1232,6 +1234,7 @@
     <Compile Include="Services\TeeyootMessagingService.cs" />
     <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="Common\TeeyootCultureSelector.cs" />
+    <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
@@ -1279,6 +1282,7 @@
     <Compile Include="Services\Interfaces\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
     <Compile Include="ViewModels\ReservationCompleteViewModel.cs" />
+    <Compile Include="ViewModels\UserItemViewModel.cs" />
     <Compile Include="ViewModels\WizardProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

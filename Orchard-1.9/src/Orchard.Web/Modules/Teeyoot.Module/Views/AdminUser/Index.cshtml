@@ -1,0 +1,23 @@
+﻿@model Teeyoot.Module.ViewModels.AdminUserIndexViewModel
+@{
+    Layout.Title = T("Users");
+}
+
+<fieldset>
+    <table class="items">
+        <thead>
+        <tr>
+            <th scope="col">@T("Email")</th>
+        </tr>
+        </thead>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    @user.Email
+                </td>
+            </tr>
+        }
+    </table>
+    @Display(Model.Pager)
+</fieldset>
