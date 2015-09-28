@@ -3,11 +3,10 @@
     Script.Require("jQuery");
     Script.Require("jQueryUI");
     Script.Include("bootstrap.min.js");
-    Style.Include("jqueryui.css");
     Style.Include("AdminPayout.css");
     Style.Include("jquery.dataTables.css");
     Script.Include("jquery.dataTables.min.js");
-    //Style.Include("bootstrap.min.css");
+
 }
 
 @using (Script.Foot())
@@ -64,9 +63,9 @@
             });
 
             var campaignTable = $('#order-profit-table').dataTable({
-                "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
-                iDisplayLength: 10,
                 aaSorting: [[1, 'desc']],
+                paging: false,
+                bInfo: false,
                 bSortable: true,
                 aoColumnDefs: [
                 { "aTargets": [0], "bSortable": true },
@@ -248,7 +247,7 @@
         </table>
 
     </fieldset>
- 
+@Display(@Model.Pager)
 }
 
 
