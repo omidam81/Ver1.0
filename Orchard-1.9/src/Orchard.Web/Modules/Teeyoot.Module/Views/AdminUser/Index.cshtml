@@ -16,7 +16,7 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("EditUser1", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@user.Email</a>
+                    <a href="@Url.Action("EditUser", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@user.Email</a>
                 </td>
                 <td>
                     @if (user.IsTeeyootUser)
@@ -32,7 +32,7 @@
                     }
                 </td>
                 <td>
-                    <a href="">@T("Edit")</a>
+                    <a href="@Url.Action("EditUser", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@T("Edit")</a>
                 </td>
             </tr>
         }

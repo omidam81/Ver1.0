@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Configuration;
+using Orchard.Localization;
+using Orchard.Security;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
+using Orchard.UI.Notify;
 using Orchard.Users.Models;
+using Orchard.Users.Services;
 using Orchard.Users.ViewModels;
 using Teeyoot.Module.ViewModels;
 
@@ -19,22 +25,30 @@ namespace Teeyoot.Module.Controllers
     [Admin]
     public class AdminUserController : Controller
     {
+        private readonly IMembershipService _membershipService;
+        private readonly IUserService _userService;
         private readonly ISiteService _siteService;
         private readonly ShellSettings _shellSettings;
 
-        private dynamic Shape { get; set; }
         public IOrchardServices Services { get; set; }
+        private dynamic Shape { get; set; }
+        public Localizer T { get; set; }
 
         public AdminUserController(
+            IMembershipService membershipService,
             ShellSettings shellSettings,
             IOrchardServices services,
+            IUserService userService,
             ISiteService siteService,
             IShapeFactory shapeFactory)
         {
+            _membershipService = membershipService;
             _shellSettings = shellSettings;
             Services = services;
             _siteService = siteService;
+            _userService = userService;
 
+            T = NullLocalizer.Instance;
             Shape = shapeFactory;
         }
 
@@ -134,16 +148,68 @@ namespace Teeyoot.Module.Controllers
             return View(viewModel);
         }
 
-        public ActionResult EditUser1(int userId)
+        public ActionResult EditUser(int userId)
         {
             var user = Services.ContentManager.Get<UserPart>(userId);
 
             var viewModel = new EditUserViewModel
             {
+                UserId = user.Id,
                 Email = user.UserName
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(EditUserViewModel model)
+        {
+            var user = Services.ContentManager.Get<UserPart>(model.UserId);
+
+            if (!_userService.VerifyUserUnicity(model.UserId, model.Email, model.Email))
+            {
+                Services.Notifier.Error(T("User with that email already exists."));
+            }
+            else if (!Regex.IsMatch(model.Email ?? "", UserPart.EmailPattern, RegexOptions.IgnoreCase))
+            {
+                // http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx    
+                Services.Notifier.Error(T("You must specify a valid email address."));
+            }
+            else
+            {
+                if (!(string.IsNullOrEmpty(model.Password) && string.IsNullOrEmpty(model.ConfirmPassword)))
+                {
+                    if (string.IsNullOrEmpty(model.Password) || string.IsNullOrEmpty(model.ConfirmPassword))
+                    {
+                        Services.Notifier.Error(T("Password or Confirm Password field is empty."));
+                    }
+                    else
+                    {
+                        if (model.Password != model.ConfirmPassword)
+                        {
+                            Services.Notifier.Error(T("Password confirmation must match."));
+                        }
+
+                        var actUser = _membershipService.GetUser(user.UserName);
+                        _membershipService.SetPassword(actUser, model.Password);
+                    }
+                }
+
+                user.UserName = model.Email;
+                user.Email = model.Email;
+                user.NormalizedUserName = model.Email.ToLowerInvariant();
+            }
+
+            if (!ModelState.IsValid || Services.Notifier.List().Any())
+            {
+                Services.TransactionManager.Cancel();
+                return RedirectToAction("EditUser", new {userId = user.Id});
+            }
+
+            Services.ContentManager.Publish(user.ContentItem);
+
+            Services.Notifier.Information(T("User information updated"));
+            return RedirectToAction("Index");
         }
     }
 }
