@@ -19,7 +19,6 @@ namespace Teeyoot.Module.Common.Enums
         Printing,
         Shipped,
         Delivered,
-        Paid, 
         Cancelled
     }
 

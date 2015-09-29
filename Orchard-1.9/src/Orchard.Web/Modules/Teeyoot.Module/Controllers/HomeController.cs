@@ -329,7 +329,8 @@ namespace Teeyoot.Module.Controllers
 
                 //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
                 //{
-               
+                if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString()))
+                {
 
                     if (status == "00")
                     {
@@ -382,7 +383,7 @@ namespace Teeyoot.Module.Controllers
                         _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());
                         return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                     }
-                
+                }
 
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
            

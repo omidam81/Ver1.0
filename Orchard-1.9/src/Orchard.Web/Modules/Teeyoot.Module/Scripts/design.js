@@ -879,7 +879,7 @@ var design={
                 '</div></div></div></li>');
             $('#labArt').css('display', 'inline');
             $list.append($html);
-            $html.on('#click', function() {
+            $html.on('click', function() {
                 var url = $(this).find('img').data('url-svg');
                 design.art.create({ item: { url: url, file_type: 'svg', change_color: 1 } });
             });
