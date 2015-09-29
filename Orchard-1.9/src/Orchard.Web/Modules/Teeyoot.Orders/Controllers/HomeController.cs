@@ -228,7 +228,9 @@ namespace Teeyoot.Orders.Controllers
                 streetAdress = order.StreetAddress,
                 city = order.City,
                 country = order.Country,
-                phoneNumber = order.PhoneNumber
+                phoneNumber = order.PhoneNumber,
+                state = order.State,
+                postalCode = order.PostalCode
             }, JsonRequestBehavior.AllowGet);
         }
 
