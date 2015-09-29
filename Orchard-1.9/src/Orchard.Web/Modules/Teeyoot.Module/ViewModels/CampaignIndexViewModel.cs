@@ -21,5 +21,7 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public virtual string PromoType { get; set; }
 
+        public virtual string FBDescription { get; set; }
+
     }
 }
