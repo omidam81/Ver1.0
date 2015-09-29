@@ -38,5 +38,7 @@ namespace Teeyoot.Module.Models
         public string PayPalNote { get; set; }
         public string MolNote { get; set; }
         public string CreditCardNote { get; set; }
+
+        public virtual CountryRecord CountryRecord { get; set; }
     }
 }

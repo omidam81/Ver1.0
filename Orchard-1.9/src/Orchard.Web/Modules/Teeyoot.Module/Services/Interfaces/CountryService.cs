@@ -44,5 +44,17 @@ namespace Teeyoot.Module.Services.Interfaces
 
             return currency;
         }
+
+        public CountryRecord GetCountryByCulture(string culture)
+        {
+            var cult = _cultureService.ListCultures().Where(c => c.Culture == culture).FirstOrDefault();
+            if (cult == null)
+            {
+                cult = _cultureService.ListCultures().Where(c => c.Culture == "en-MY").First();
+            }
+
+            var country = _linkCountryCultureRecord.Table.Where(l => l.CultureRecord.Culture == cult.Culture).Select(l => l.CountryRecord).First();
+            return country;
+        }
     }
 }
