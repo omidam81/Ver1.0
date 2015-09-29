@@ -54,7 +54,7 @@ namespace Teeyoot.Module.Controllers
         private string cultureUsed = string.Empty;
         private readonly ICookieCultureService _cookieCultureService;
         private readonly ICultureService _cultureService;
-
+        private readonly CountryService _countryService;
 
 
         public HomeController(IOrderService orderService,
@@ -76,7 +76,8 @@ namespace Teeyoot.Module.Controllers
                               IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
                               ICookieCultureService cookieCultureService,
                               ICultureService cultureService,
-                              IRepository<OrderStatusRecord> orderStatusRepository)
+                              IRepository<OrderStatusRecord> orderStatusRepository,
+                              CountryService countryService)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -100,10 +101,11 @@ namespace Teeyoot.Module.Controllers
             T = NullLocalizer.Instance;
             Shape = shapeFactory;
 
-            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            //var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            cultureUsed = _workContextAccessor.GetContext().CurrentCulture.Trim();//culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
             _cookieCultureService = cookieCultureService;
             _cultureService = cultureService;
+            _countryService = countryService;
         }
 
         private ILogger Logger { get; set; }
@@ -157,13 +159,14 @@ namespace Teeyoot.Module.Controllers
 
             if (order != null)
             {
-                var campaignCulture = order.CurrencyRecord.CurrencyCulture;
-                if (cultureUsed != campaignCulture)
-                {
-                    _cookieCultureService.SetCulture(campaignCulture);
-                    return RedirectToAction("Payment", new { orderId = orderId, promo = promo });
-                }
-                var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
+                //TODO: (auth:keinlekan) Удалить код, если больше не пригодиться. Переход сайта на культуру компании
+                //var campaignCulture = order.CurrencyRecord.CurrencyCulture;
+                //if (cultureUsed != campaignCulture)
+                //{
+                //    _cookieCultureService.SetCulture(campaignCulture);
+                //    return RedirectToAction("Payment", new { orderId = orderId, promo = promo });
+                //}
+                var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id);
 
                 var model = new PaymentViewModel();
                 //model.CountryName = _cultureService.ListCultures().Where(c => c.Culture == cultureUsed).First().LocalizedName;
@@ -247,7 +250,7 @@ namespace Teeyoot.Module.Controllers
         public string Molpay(OrderRecord order, string country, string firstName, string lastName, string email, string state, string phone, double deliveryCost)
         {
 
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id);
 
             //var merchantId = "teeyoot1_Dev";
             //var verifyKey = "856287426298f7e8508eae9896c09c03";
@@ -365,11 +368,11 @@ namespace Teeyoot.Module.Controllers
 
 
 
-                        var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+                        var commonSettings = _commonSettingsRepository.Table.Where(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id).FirstOrDefault();
                         if (commonSettings == null)
                         {
-                            _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
-                            commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                            _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CountryRecord = _countryService.GetCountryByCulture(cultureUsed) });
+                            commonSettings = _commonSettingsRepository.Table.Where(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id).First();
                         }
 
                     }
@@ -405,7 +408,7 @@ namespace Teeyoot.Module.Controllers
             var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
             var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id);
 
             BraintreeGateway Gateway = new BraintreeGateway
             {
@@ -585,11 +588,11 @@ namespace Teeyoot.Module.Controllers
                
             
                
-            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id).FirstOrDefault();
             if (commonSettings == null)
             {
-                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
-                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CountryRecord = _countryService.GetCountryByCulture(cultureUsed) });
+                commonSettings = _commonSettingsRepository.Table.Where(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id).First();
             }
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
@@ -617,7 +620,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult ReservationComplete(int campaignId, int sellerId, bool oops = false)
         {
             var campaigns = _campaignService.GetAllCampaigns()
-                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId && c.CampaignCulture == cultureUsed)
+                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId)
                                 .Select(c => new
                                 {
                                     Id = c.Id,
@@ -705,7 +708,7 @@ namespace Teeyoot.Module.Controllers
                 order.City + ", " + order.State + ", " + order.Country + " " + order.PostalCode
             };
             model.Events = order.Events.ToArray();
-            model.CultureInfo = CultureInfo.GetCultureInfo(_workContextAccessor.GetContext().CurrentCulture);
+            model.CultureInfo = CultureInfo.GetCultureInfo(cultureUsed);
             model.CreateDate = order.Created.ToLocalTime().ToString("dd MMM HH:mm", model.CultureInfo);
             var campaign = _campaignService.GetCampaignById(order.Products[0].CampaignProductRecord.CampaignRecord_Id);
             model.CampaignName = campaign.Title;
