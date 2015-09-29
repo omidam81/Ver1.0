@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Orchard;
 using Orchard.ContentManagement;
+using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Configuration;
 using Orchard.Localization;
@@ -18,6 +19,7 @@ using Orchard.UI.Notify;
 using Orchard.Users.Models;
 using Orchard.Users.Services;
 using Orchard.Users.ViewModels;
+using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers
@@ -29,12 +31,14 @@ namespace Teeyoot.Module.Controllers
         private readonly IUserService _userService;
         private readonly ISiteService _siteService;
         private readonly ShellSettings _shellSettings;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
 
         public IOrchardServices Services { get; set; }
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
 
         public AdminUserController(
+            IRepository<CurrencyRecord> currencyRepository,
             IMembershipService membershipService,
             ShellSettings shellSettings,
             IOrchardServices services,
@@ -42,6 +46,7 @@ namespace Teeyoot.Module.Controllers
             ISiteService siteService,
             IShapeFactory shapeFactory)
         {
+            _currencyRepository = currencyRepository;
             _membershipService = membershipService;
             _shellSettings = shellSettings;
             Services = services;
@@ -152,10 +157,19 @@ namespace Teeyoot.Module.Controllers
         {
             var user = Services.ContentManager.Get<UserPart>(userId);
 
+            var currencies = _currencyRepository.Table
+                .ToList()
+                .Select(c => new CurrencyItemViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                });
+
             var viewModel = new EditUserViewModel
             {
                 UserId = user.Id,
-                Email = user.UserName
+                Email = user.UserName,
+                Currencies = currencies
             };
 
             return View(viewModel);

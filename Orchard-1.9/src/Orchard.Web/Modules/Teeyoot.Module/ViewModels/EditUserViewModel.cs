@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Teeyoot.Module.ViewModels
@@ -16,5 +17,7 @@ namespace Teeyoot.Module.ViewModels
 
         [PasswordPropertyText]
         public string ConfirmPassword { get; set; }
+
+        public IEnumerable<CurrencyItemViewModel> Currencies { get; set; }
     }
 }

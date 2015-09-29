@@ -1237,6 +1237,7 @@
     <Compile Include="Common\TeeyootCultureSelector.cs" />
     <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
