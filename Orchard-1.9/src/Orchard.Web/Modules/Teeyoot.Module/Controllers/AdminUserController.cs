@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using Orchard;
+using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Configuration;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
+using Orchard.Users.Models;
 using Orchard.Users.ViewModels;
 using Teeyoot.Module.ViewModels;
 
@@ -47,7 +50,10 @@ namespace Teeyoot.Module.Controllers
                                           " ON ContentItemRecord.Id = UserPartRecord.Id" +
                                           " WHERE ContentItemVersionRecord.Published = 1";
 
-            const string userQuery = " SELECT UserPartRecord.UserName" +
+            const string userQuery = " SELECT UserPartRecord.UserName UserName," +
+                                     " UserPartRecord.Id UserId," +
+                                     " CurrencyRecord.Name CurrencyName," +
+                                     " CAST(CASE WHEN TeeyootUserPartRecord.Id IS NOT NULL THEN 1 ELSE 0 END AS BIT) IsTeeyootUser" +
                                      " FROM Orchard_Framework_ContentItemVersionRecord ContentItemVersionRecord" +
                                      " JOIN Orchard_Framework_ContentItemRecord ContentItemRecord" +
                                      " ON ContentItemVersionRecord.ContentItemRecord_id = ContentItemRecord.Id" +
@@ -55,6 +61,8 @@ namespace Teeyoot.Module.Controllers
                                      " ON ContentItemRecord.Id = UserPartRecord.Id" +
                                      " LEFT JOIN Teeyoot_Module_TeeyootUserPartRecord TeeyootUserPartRecord" +
                                      " ON UserPartRecord.Id = TeeyootUserPartRecord.Id" +
+                                     " LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord" +
+                                     " ON TeeyootUserPartRecord.CurrencyRecord_Id = CurrencyRecord.Id" +
                                      " WHERE ContentItemVersionRecord.Published = 1" +
                                      " ORDER BY UserPartRecord.Id" +
                                      " OFFSET @Offset ROWS" +
@@ -89,8 +97,13 @@ namespace Teeyoot.Module.Controllers
                             {
                                 var userItemViewModel = new UserItemViewModel
                                 {
-                                    Email = (string) reader["UserName"]
+                                    Email = (string) reader["UserName"],
+                                    UserId = (int) reader["UserId"],
+                                    IsTeeyootUser = (bool) reader["IsTeeyootUser"]
                                 };
+
+                                if (reader["CurrencyName"] != DBNull.Value)
+                                    userItemViewModel.Currency = (string) reader["CurrencyName"];
 
                                 userItems.Add(userItemViewModel);
                             }
@@ -116,6 +129,18 @@ namespace Teeyoot.Module.Controllers
             {
                 Users = userItems,
                 Pager = pagerShape
+            };
+
+            return View(viewModel);
+        }
+
+        public ActionResult EditUser1(int userId)
+        {
+            var user = Services.ContentManager.Get<UserPart>(userId);
+
+            var viewModel = new EditUserViewModel
+            {
+                Email = user.UserName
             };
 
             return View(viewModel);

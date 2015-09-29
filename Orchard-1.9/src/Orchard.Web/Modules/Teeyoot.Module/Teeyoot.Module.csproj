@@ -1130,6 +1130,7 @@
     <Content Include="Views\Home\CallbackMolpay.cshtml" />
     <Content Include="Views\AdminRelaunchCamp\Index.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
+    <Content Include="Views\AdminUser\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1236,6 +1237,7 @@
     <Compile Include="Common\TeeyootCultureSelector.cs" />
     <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
     <Compile Include="ViewModels\RelaunchViewModel.cs" />

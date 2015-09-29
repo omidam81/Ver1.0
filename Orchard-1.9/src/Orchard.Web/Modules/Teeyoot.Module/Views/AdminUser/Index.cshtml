@@ -8,13 +8,31 @@
         <thead>
         <tr>
             <th scope="col">@T("Email")</th>
+            <th scope="col">@T("Currency")</th>
+            <th scope="col">@T("Actions")</th>
         </tr>
         </thead>
         @foreach (var user in Model.Users)
         {
             <tr>
                 <td>
-                    @user.Email
+                    <a href="@Url.Action("EditUser1", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@user.Email</a>
+                </td>
+                <td>
+                    @if (user.IsTeeyootUser)
+                    {
+                        if (user.Currency != null)
+                        {
+                            @user.Currency
+                        }
+                        else
+                        {
+                            <b>@T("Not Set")</b>
+                        }
+                    }
+                </td>
+                <td>
+                    <a href="">@T("Edit")</a>
                 </td>
             </tr>
         }
