@@ -5,6 +5,7 @@ using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
 using Orchard.Logging;
+using Orchard.Roles.Models;
 using Orchard.Themes;
 using Orchard.UI.Notify;
 using RM.Localization.Services;
@@ -38,6 +39,8 @@ namespace Teeyoot.Module.Controllers
         private readonly INotifier _notifier;
         private readonly IimageHelper _imageHelper;
         private readonly IMailChimpSettingsService _settingsService;
+        private readonly IPayoutService _payoutService;
+        private readonly IRepository<UserRolesPartRecord> _userRolesPartRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IMessageService _messageService;
         private readonly IPaymentSettingsService _paymentSettingsService;
@@ -64,9 +67,11 @@ namespace Teeyoot.Module.Controllers
                               IShapeFactory shapeFactory,
                               ITeeyootMessagingService teeyootMessagingService,
                               IWorkContextAccessor workContextAccessor,
+                              IRepository<UserRolesPartRecord> userRolesPartRepository,
                               IRepository<TeeyootUserPartRecord> userRepository,
                               IDeliverySettingsService deliverySettingService,
                               IContentManager contentManager,
+                              IPayoutService payoutService,
                               IRepository<CommonSettingsRecord> commonSettingsRepository,
                               IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
                               ICookieCultureService cookieCultureService,
@@ -77,6 +82,8 @@ namespace Teeyoot.Module.Controllers
             _promotionService = promotionService;
             _campaignService = campaignService;
             _imageHelper = imageHelper;
+            _userRolesPartRepository = userRolesPartRepository;
+            _payoutService = payoutService;
             _deliverySettingService = deliverySettingService;
             _settingsService = settingsService;
             _teeyootMessagingService = teeyootMessagingService;
@@ -321,18 +328,21 @@ namespace Teeyoot.Module.Controllers
 
                 //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
                 //{
-                if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Paid.ToString()))
-                {
+               
 
                     if (status == "00")
                     {
-                        order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Paid.ToString());
+                        order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
+                        order.Paid = DateTime.Now.ToUniversalTime();
+                        order.ProfitPaid = true;
                         _orderService.UpdateOrder(order);
+                        var adminId = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId).First();
+                        _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = Convert.ToDouble(amount), IsPlus = true, Status = "Completed", UserId = adminId, Event = order.OrderPublicId.Trim(' ') });
                         var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                         var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
                         var users = _userRepository.Table.ToList();
                         _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
-                        _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Paid.ToString());
+                        _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
 
 
                         if (campaign.ProductCountSold >= campaign.ProductCountGoal)
@@ -371,7 +381,7 @@ namespace Teeyoot.Module.Controllers
                         _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());
                         return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                     }
-                }
+                
 
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
            
