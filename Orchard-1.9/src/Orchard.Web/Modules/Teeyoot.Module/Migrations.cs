@@ -865,7 +865,15 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
                 new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
 
-            return 97;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c => c.WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("Campaign_Currency", "CampaignRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
+            //SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("CampaignCulture"));
+
+            return 98;
         }
 
         public int UpdateFrom2()
@@ -1982,6 +1990,19 @@ namespace Teeyoot.Module
 
             //todo: (auth:Juiceek) apply this after all the logic in the code will be unleashed from cultures to the new business logic based on countries
             //SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name, table => table.DropColumn("CurrencyCulture"));
+        }
+
+        public int UpdateFrom97()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c=> c.WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("Campaign_Currency", "CampaignRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
+            //SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("CampaignCulture"));
+
+            return 98;
         }
     }
 }
