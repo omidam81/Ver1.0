@@ -33,8 +33,9 @@ namespace Teeyoot.Module.Controllers
         public Localizer T { get; set; }
         private readonly ICookieCultureService _cookieCultureService;
         private string cultureUsed = string.Empty;
+        private readonly CountryService _countryService;
 
-        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
+        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService, CountryService countryService)
         {
             _currencyRepository = currencyRepository;
             Services = services;
@@ -47,8 +48,10 @@ namespace Teeyoot.Module.Controllers
             Logger = NullLogger.Instance;
 
             _cookieCultureService = cookieCultureService;
-            var culture = _wca.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            //var culture = _wca.GetContext().CurrentCulture.Trim();
+            cultureUsed = _wca.GetContext().CurrentCulture.Trim();
+            //cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            _countryService = countryService;
         }
 
         public ILogger Logger { get; set; }

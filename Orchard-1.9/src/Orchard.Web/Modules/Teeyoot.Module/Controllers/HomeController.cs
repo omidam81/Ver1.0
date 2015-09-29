@@ -157,12 +157,13 @@ namespace Teeyoot.Module.Controllers
 
             if (order != null)
             {
-                var campaignCulture = order.CurrencyRecord.CurrencyCulture;
-                if (cultureUsed != campaignCulture)
-                {
-                    _cookieCultureService.SetCulture(campaignCulture);
-                    return RedirectToAction("Payment", new { orderId = orderId, promo = promo });
-                }
+                //TODO: (auth:keinlekan) Удалить код, если больше не пригодиться. Переход сайта на культуру компании
+                //var campaignCulture = order.CurrencyRecord.CurrencyCulture;
+                //if (cultureUsed != campaignCulture)
+                //{
+                //    _cookieCultureService.SetCulture(campaignCulture);
+                //    return RedirectToAction("Payment", new { orderId = orderId, promo = promo });
+                //}
                 var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
 
                 var model = new PaymentViewModel();
@@ -616,7 +617,7 @@ namespace Teeyoot.Module.Controllers
         public ActionResult ReservationComplete(int campaignId, int sellerId, bool oops = false)
         {
             var campaigns = _campaignService.GetAllCampaigns()
-                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId && c.CampaignCulture == cultureUsed)
+                                .Where(c => c.TeeyootUserId == sellerId && c.IsApproved && c.Id != campaignId)
                                 .Select(c => new
                                 {
                                     Id = c.Id,

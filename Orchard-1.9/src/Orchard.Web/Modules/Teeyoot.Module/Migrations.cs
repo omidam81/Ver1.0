@@ -873,7 +873,15 @@ namespace Teeyoot.Module
             //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
             //SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("CampaignCulture"));
 
-            return 98;
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c => c.WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CommonSettings_Currency", "CommonSettingsRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
+            //SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.DropColumn("CommonCulture"));
+
+            return 99;
         }
 
         public int UpdateFrom2()
@@ -2003,6 +2011,19 @@ namespace Teeyoot.Module
             //SchemaBuilder.AlterTable(typeof(CampaignRecord).Name, table => table.DropColumn("CampaignCulture"));
 
             return 98;
+        }
+
+        public int UpdateFrom98()
+        {
+            SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c => c.WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CommonSettings_Currency", "CommonSettingsRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
+            //SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.DropColumn("CommonCulture"));
+
+            return 99;
         }
     }
 }

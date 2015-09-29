@@ -8,5 +8,7 @@ namespace Teeyoot.Module.Models
         //
         public virtual string CashOnDeliveryAvailabilityMessage { get; set; }
         public virtual string CheckoutPageRightSideContent { get; set; }
+
+        public virtual CountryRecord CountryRecord { get; set; }
     }
 }
