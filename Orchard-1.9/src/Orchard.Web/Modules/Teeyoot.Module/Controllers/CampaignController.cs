@@ -74,11 +74,12 @@ namespace Teeyoot.Module.Controllers
 
                     if (campaign.IsApproved == true || Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId)
                     {
-                        string campaignCulture = campaign.CampaignCulture;
-                        if (campaignCulture != cultureUsed)
-                        {
-                            _cookieCultureService.SetCulture(campaignCulture);
-                        }
+                        //TODO: (auth:keinlekan) Удалить код, если больше не пригодиться. Переход сайта на культуру компании
+                        //string campaignCulture = campaign.CampaignCulture;
+                        //if (campaignCulture != cultureUsed)
+                        //{
+                        //    _cookieCultureService.SetCulture(campaignCulture);
+                        //}
 
                         if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.Rejected == true)
                         {
