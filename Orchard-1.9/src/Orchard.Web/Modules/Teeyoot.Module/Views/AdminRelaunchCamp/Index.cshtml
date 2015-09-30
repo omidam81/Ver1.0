@@ -61,7 +61,7 @@
                 {
                     <tr class="admin-categories-tr">
                         <td class="date">
-                            @item.CampaignTitle
+                            <a href="~/@item.CampaignAlias">@item.CampaignTitle</a>                           
                         </td>
                         <td class="userId">
                             @item.Seller.Email
@@ -80,7 +80,7 @@
             <ol style="list-style-type: decimal;">
                 @foreach (var request in item.Requests)
                 {
-                    <li style="font-size:large; margin-bottom:5px;">  @request.Email</li>
+                    <div style="font-size:large; margin-bottom:5px;">  @request.Email</div>
                 }
             </ol>
         </div>

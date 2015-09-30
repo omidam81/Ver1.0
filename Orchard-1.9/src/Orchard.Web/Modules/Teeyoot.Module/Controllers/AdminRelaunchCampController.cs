@@ -63,8 +63,9 @@ namespace Teeyoot.Module.Controllers
                {
                    var listItem = new CampaignRelRequestViewModel()
                    {
-                       CampaignTitle = _campaignService.GetCampaignById(id).Title,
+                       CampaignTitle = campaign.Title,
                        CampaignId = id,
+                       CampaignAlias = campaign.Alias,
                        CntRequests = _campaignService.GetCountOfReservedRequestsOfCampaign(id),
                        Requests = _campaignService.GetReservedRequestsOfCampaign(id).ToList(),
                        Seller = _userRepository.Get(_campaignService.GetCampaignById(id).TeeyootUserId.Value)
