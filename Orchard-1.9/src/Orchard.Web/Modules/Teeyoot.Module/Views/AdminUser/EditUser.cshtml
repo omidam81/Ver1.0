@@ -18,6 +18,26 @@
         @Html.LabelFor(m => m.ConfirmPassword, T("Confirm Password"))
         @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "text medium"})
     </fieldset>
+    if (Model.IsTeeyootUser)
+    {
+        <fieldset>
+            @Html.LabelFor(m => m.Currency, T("Currency"))
+            <select name="Currency" @if (!Model.IsUserCurrencyEditable)
+                                    {
+                                        @:disabled="disabled"
+                                    }>
+                <option>Select Currency ...</option>
+                @foreach (var currency in Model.Currencies)
+                {
+                    <option value="@currency.Id" @if (currency.Id == Model.Currency)
+                                                 {
+                                                     @:selected="selected"
+                                                 }>
+                        @currency.Name</option>
+                }
+            </select>
+        </fieldset>
+    }
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">@T("Save")</button>
         <a class="button" href="@Url.Action("Index", "AdminUser")">@T("Cancel")</a>

@@ -18,6 +18,12 @@ namespace Teeyoot.Module.ViewModels
         [PasswordPropertyText]
         public string ConfirmPassword { get; set; }
 
+        public bool IsTeeyootUser { get; set; }
+
+        public bool IsUserCurrencyEditable { get; set; }
+
         public IEnumerable<CurrencyItemViewModel> Currencies { get; set; }
+
+        public int? Currency { get; set; }
     }
 }

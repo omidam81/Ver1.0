@@ -28,6 +28,6 @@ namespace Teeyoot.Module.Models
 
         public virtual string TeeyootUserCulture { get; set; }
 
-        public virtual CurrencyRecord Currency { get; set; }
+        public virtual int? CurrencyRecord_Id { get; set; }
     }
 }

@@ -20,6 +20,7 @@ using Orchard.Users.Models;
 using Orchard.Users.Services;
 using Orchard.Users.ViewModels;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.Services;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers
@@ -32,12 +33,17 @@ namespace Teeyoot.Module.Controllers
         private readonly ISiteService _siteService;
         private readonly ShellSettings _shellSettings;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
+        private readonly ICampaignService _campaignService;
+        private readonly IOrderService _orderService;
 
         public IOrchardServices Services { get; set; }
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
 
         public AdminUserController(
+            IRepository<TeeyootUserPartRecord> teeyootUserRepository,
+            IOrderService orderService,
+            ICampaignService campaignService,
             IRepository<CurrencyRecord> currencyRepository,
             IMembershipService membershipService,
             ShellSettings shellSettings,
@@ -46,6 +52,8 @@ namespace Teeyoot.Module.Controllers
             ISiteService siteService,
             IShapeFactory shapeFactory)
         {
+            _orderService = orderService;
+            _campaignService = campaignService;
             _currencyRepository = currencyRepository;
             _membershipService = membershipService;
             _shellSettings = shellSettings;
@@ -155,7 +163,23 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult EditUser(int userId)
         {
+            var viewModel = new EditUserViewModel();
+
             var user = Services.ContentManager.Get<UserPart>(userId);
+            var teeyootUser = user.As<TeeyootUserPart>();
+
+            if (teeyootUser != null)
+            {
+                viewModel.IsTeeyootUser = true;
+                viewModel.Currency = teeyootUser.CurrencyId;
+
+                var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser.Id);
+
+                if (!campaignsQuery.Any(c => c.IsActive) && GetUserPayoutBalance(campaignsQuery) <= 0)
+                {
+                    viewModel.IsUserCurrencyEditable = true;
+                }
+            }
 
             var currencies = _currencyRepository.Table
                 .ToList()
@@ -165,12 +189,9 @@ namespace Teeyoot.Module.Controllers
                     Name = c.Name
                 });
 
-            var viewModel = new EditUserViewModel
-            {
-                UserId = user.Id,
-                Email = user.UserName,
-                Currencies = currencies
-            };
+            viewModel.UserId = user.Id;
+            viewModel.Email = user.UserName;
+            viewModel.Currencies = currencies;
 
             return View(viewModel);
         }
@@ -220,10 +241,43 @@ namespace Teeyoot.Module.Controllers
                 return RedirectToAction("EditUser", new {userId = user.Id});
             }
 
+            var teeyootUser = user.As<TeeyootUserPart>();
+            if (teeyootUser != null)
+            {
+                teeyootUser.CurrencyId = model.Currency;
+            }
+
             Services.ContentManager.Publish(user.ContentItem);
 
             Services.Notifier.Information(T("User information updated"));
             return RedirectToAction("Index");
+        }
+
+        private double GetUserPayoutBalance(IQueryable<CampaignRecord> campaignsQuery)
+        {
+            var campaignIds = new List<int>();
+            foreach (var campaign in campaignsQuery)
+            {
+                var campaignProducts = _orderService.GetProductsOrderedOfCampaign(campaign.Id)
+                    .ToList();
+
+                if (campaign.ProductMinimumGoal <= campaignProducts.Select(p => p.Count).Sum())
+                {
+                    campaignIds.Add(campaign.Id);
+                }
+            }
+
+            var orderedProducts = _orderService.GetProductsOrderedOfCampaigns(campaignIds.ToArray());
+            var payoutBalance = orderedProducts.Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" &&
+                                                           p.OrderRecord.OrderStatusRecord.Name != "Unapproved" &&
+                                                           p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                .Select(p => new
+                {
+                    Profit = p.Count*(p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost)
+                })
+                .Sum(entry => (double?) entry.Profit);
+
+            return payoutBalance ?? 0;
         }
     }
 }
