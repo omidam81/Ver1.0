@@ -889,11 +889,11 @@ namespace Teeyoot.Module
             //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
             //SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.DropColumn("CommonCulture"));
 
-            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
-                table => table.AddColumn<DateTime>("Created", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof (TeeyootUserPartRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
 
-            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
-                table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
+            SchemaBuilder.CreateForeignKey("TeeyootUserPartRecord_CurrencyRecord", "TeeyootUserPartRecord",
+                new[] {"CurrencyRecord_Id"}, "CurrencyRecord", new[] {"Id"});
 
             return 101;
         }
@@ -2055,11 +2055,11 @@ namespace Teeyoot.Module
 
         public int UpdateFrom100()
         {
-            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
-                table => table.AddColumn<DateTime>("Created", c => c.Nullable()));
+            SchemaBuilder.AlterTable(typeof (TeeyootUserPartRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
 
-            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
-                table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
+            SchemaBuilder.CreateForeignKey("TeeyootUserPartRecord_CurrencyRecord", "TeeyootUserPartRecord",
+                new[] {"CurrencyRecord_Id"}, "CurrencyRecord", new[] {"Id"});
 
             return 101;
         }

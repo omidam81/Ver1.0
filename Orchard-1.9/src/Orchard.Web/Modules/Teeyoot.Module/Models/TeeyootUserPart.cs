@@ -125,5 +125,17 @@ namespace Teeyoot.Module.Models
                 Store(p => p.TeeyootUserCulture, value);
             }
         }
+
+        public int? CurrencyId
+        {
+            get
+            {
+                return Retrieve(p => p.CurrencyRecord_Id);
+            }
+            set
+            {
+                Store(p => p.CurrencyRecord_Id, value);
+            }
+        }
     }
 }

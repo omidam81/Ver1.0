@@ -1,0 +1,41 @@
+﻿@model Teeyoot.Module.ViewModels.AdminUserIndexViewModel
+@{
+    Layout.Title = T("Users");
+}
+
+<fieldset>
+    <table class="items">
+        <thead>
+        <tr>
+            <th scope="col">@T("Email")</th>
+            <th scope="col">@T("Currency")</th>
+            <th scope="col">@T("Actions")</th>
+        </tr>
+        </thead>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("EditUser", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@user.Email</a>
+                </td>
+                <td>
+                    @if (user.IsTeeyootUser)
+                    {
+                        if (user.Currency != null)
+                        {
+                            @user.Currency
+                        }
+                        else
+                        {
+                            <b>@T("Not Set")</b>
+                        }
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("EditUser", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@T("Edit")</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @Display(Model.Pager)
+</fieldset>

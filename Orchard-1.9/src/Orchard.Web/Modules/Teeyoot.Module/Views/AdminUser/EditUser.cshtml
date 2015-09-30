@@ -1,0 +1,45 @@
+﻿@model Teeyoot.Module.ViewModels.EditUserViewModel
+@{
+    Layout.Title = T("Edit User");
+}
+
+@using (Html.BeginFormAntiForgeryPost())
+{
+    @Html.HiddenFor(model => model.UserId)
+    <fieldset>
+        @Html.LabelFor(model => model.Email, T("Email"))
+        @Html.TextBoxFor(model => model.Email, new {@class = "text medium"})
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(model => model.Password, T("Password"))
+        @Html.PasswordFor(m => m.Password, new {@class = "text medium"})
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.ConfirmPassword, T("Confirm Password"))
+        @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "text medium"})
+    </fieldset>
+    if (Model.IsTeeyootUser)
+    {
+        <fieldset>
+            @Html.LabelFor(m => m.Currency, T("Currency"))
+            <select name="Currency" @if (!Model.IsUserCurrencyEditable)
+                                    {
+                                        @:disabled="disabled"
+                                    }>
+                <option>Select Currency ...</option>
+                @foreach (var currency in Model.Currencies)
+                {
+                    <option value="@currency.Id" @if (currency.Id == Model.Currency)
+                                                 {
+                                                     @:selected="selected"
+                                                 }>
+                        @currency.Name</option>
+                }
+            </select>
+        </fieldset>
+    }
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "AdminUser")">@T("Cancel")</a>
+    </fieldset>
+}
