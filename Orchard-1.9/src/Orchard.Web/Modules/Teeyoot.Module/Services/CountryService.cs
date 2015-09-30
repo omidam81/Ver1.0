@@ -6,19 +6,20 @@ using Orchard;
 using Orchard.Data;
 using Teeyoot.Module.Models;
 using RM.Localization.Services;
+using Teeyoot.Module.Services.Interfaces;
 
-namespace Teeyoot.Module.Services.Interfaces
+namespace Teeyoot.Module.Services
 {
     public class CountryService : ICountryService
     {
         private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IRepository<LinkCountryCultureRecord> _linkCountryCultureRecord;
-        private readonly CultureService _cultureService;
+        private readonly ICultureService _cultureService;
         private readonly IRepository<LinkCountryCurrencyRecord> _linkCountryCurrencyRecord;
 
         public CountryService(IRepository<CountryRecord> countryRepository,
             IRepository<LinkCountryCultureRecord> linkCountryCultureRecord,
-            CultureService cultureService,
+            ICultureService cultureService,
             IRepository<LinkCountryCurrencyRecord> linkCountryCurrencyRecord)
         {
             _countryRepository = countryRepository;

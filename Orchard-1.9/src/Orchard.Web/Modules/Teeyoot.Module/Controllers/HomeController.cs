@@ -54,7 +54,7 @@ namespace Teeyoot.Module.Controllers
         private string cultureUsed = string.Empty;
         private readonly ICookieCultureService _cookieCultureService;
         private readonly ICultureService _cultureService;
-        private readonly CountryService _countryService;
+        private readonly ICountryService _countryService;
 
 
         public HomeController(IOrderService orderService,
@@ -77,7 +77,7 @@ namespace Teeyoot.Module.Controllers
                               ICookieCultureService cookieCultureService,
                               ICultureService cultureService,
                               IRepository<OrderStatusRecord> orderStatusRepository,
-                              CountryService countryService)
+                              ICountryService countryService)
         {
             _orderService = orderService;
             _promotionService = promotionService;

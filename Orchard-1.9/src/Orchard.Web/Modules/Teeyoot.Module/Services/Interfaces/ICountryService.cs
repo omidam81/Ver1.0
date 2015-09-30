@@ -11,5 +11,7 @@ namespace Teeyoot.Module.Services.Interfaces
     public interface ICountryService : IDependency    
     {
         CurrencyRecord GetCurrencyByCulture(string culture);
+
+        CountryRecord GetCountryByCulture(string culture);
     }
 }

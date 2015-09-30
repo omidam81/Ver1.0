@@ -34,9 +34,9 @@ namespace Teeyoot.Module.Controllers
         public Localizer T { get; set; }
         private readonly ICookieCultureService _cookieCultureService;
         private string cultureUsed = string.Empty;
-        private readonly CountryService _countryService;
+        private readonly ICountryService _countryService;
 
-        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService, CountryService countryService)
+        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService, ICountryService countryService)
         {
             _currencyRepository = currencyRepository;
             Services = services;

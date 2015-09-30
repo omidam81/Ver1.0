@@ -1207,7 +1207,7 @@
     <Compile Include="Models\PayoutRecord.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Permissions.cs" />
-    <Compile Include="Services\Interfaces\CountryService.cs" />
+    <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\Interfaces\ICountryService.cs" />
     <Compile Include="Services\Interfaces\IMailChimpSettingsService.cs" />
     <Compile Include="Services\Interfaces\IMailSubjectService.cs" />
