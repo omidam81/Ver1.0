@@ -889,7 +889,13 @@ namespace Teeyoot.Module
             //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
             //SchemaBuilder.AlterTable(typeof(CommonSettingsRecord).Name, table => table.DropColumn("CommonCulture"));
 
-            return 100;
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<DateTime>("Created", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
+
+            return 101;
         }
 
         public int UpdateFrom2()
@@ -2045,6 +2051,17 @@ namespace Teeyoot.Module
             //SchemaBuilder.AlterTable(typeof(PaymentSettingsRecord).Name, table => table.DropColumn("CountryRecord_Id"));
 
             return 100;
+        }
+
+        public int UpdateFrom100()
+        {
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<DateTime>("Created", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
+
+            return 101;
         }
     }
 }

@@ -1129,6 +1129,7 @@
     <Content Include="Views\Home\Molpas.cshtml" />
     <Content Include="Views\Home\CallbackMolpay.cshtml" />
     <Content Include="Views\AdminRelaunchCamp\Index.cshtml" />
+    <Content Include="Views\AdminPromotions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1174,6 +1175,7 @@
     <Compile Include="Controllers\AdminRelaunchCampController.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\AdminPromotionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />

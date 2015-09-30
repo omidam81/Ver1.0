@@ -9,13 +9,15 @@ namespace Teeyoot.Module.Services
     {
         IQueryable<PromotionRecord> GetAllPromotionsForUser(int userId);
 
+        IQueryable<PromotionRecord> GetAllPromotions();
+
         void DeletePromotion(int id);
 
         void DisablePromotion(int id);
 
         void ActivatePromotion(int id);
 
-        void AddPromotion(string promoId, string discountType, double amountSize, string amountType, DateTime expiration, int UserId);
+        void AddPromotion(string promoId, string discountType, double amountSize, string amountType, DateTime expiration, int UserId, int? campaignId, DateTime created);
 
         PromotionRecord GetPromotionByPromoId(string promoId);
 

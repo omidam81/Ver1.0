@@ -19,6 +19,11 @@ namespace Teeyoot.Module.Services
             return _promotionRepository.Table.Where(x=>x.UserId == userId);
         }
 
+        public IQueryable<PromotionRecord> GetAllPromotions()
+        {
+            return _promotionRepository.Table;
+        }
+
         public void DeletePromotion(int id)
         {
             _promotionRepository.Delete(_promotionRepository.Get(id));
@@ -36,7 +41,7 @@ namespace Teeyoot.Module.Services
             promotion.Status = true;
         }
 
-        public void AddPromotion(string promoId, string discountType, double amountSize, string amountType,  DateTime expiration, int userId)
+        public void AddPromotion(string promoId, string discountType, double amountSize, string amountType,  DateTime expiration, int userId, int? campaignId, DateTime created)
         {
             if (expiration == DateTime.MinValue)
             {
@@ -53,7 +58,9 @@ namespace Teeyoot.Module.Services
                     Status = true,
                     Expiration = expiration,
                     Redeemed = 0,
-                    UserId = userId
+                    UserId = userId,
+                    CampaignId = campaignId,
+                    Created = created
                 };
                 _promotionRepository.Create(newPromotion);
             }
