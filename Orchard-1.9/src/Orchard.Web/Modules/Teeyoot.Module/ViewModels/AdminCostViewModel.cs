@@ -49,5 +49,6 @@ namespace Teeyoot.Module.ViewModels
         public string GoogleApiKey { get; set; }
 
         public string CurrencyCulture { get; set; }
+        public bool IsCurrentUserAdministrator { get; set; }
     }
 }

@@ -41,7 +41,6 @@ namespace Teeyoot.Module.Controllers
         public Localizer T { get; set; }
 
         public AdminUserController(
-            IRepository<TeeyootUserPartRecord> teeyootUserRepository,
             IOrderService orderService,
             ICampaignService campaignService,
             IRepository<CurrencyRecord> currencyRepository,

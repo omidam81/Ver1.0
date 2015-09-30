@@ -1545,7 +1545,10 @@
 
                                                                 <div class="teespring-well designer-well tos-confirm" data-reactid=".6.0.7">
                                                                     <label class="errorSummary inlineError" data-reactid=".6.0.7.0"></label>
-                                                                    <button id="launch-campaign" type="submit" class="button button--transaction wizard-button" data-reactid=".6.0.7.1">@T("Launch Campaign")</button>
+                                                                    <button id="launch-campaign" type="submit" @if (Model.IsCurrentUserAdministrator)
+                                                                                                               {
+                                                                                                                   @: disabled="disabled"
+                                                                                                               } class="button button--transaction wizard-button" data-reactid=".6.0.7.1">@T("Launch Campaign")</button>
                                                                     <label class="errorSummary inlineError" data-reactid=".6.0.7.2"></label><p class="campaign-agreement" data-reactid=".6.0.7.3">
                                                                         <span>
                                                                             <span>@T("By clicking this button, I accept Teeyoot’s")</span>

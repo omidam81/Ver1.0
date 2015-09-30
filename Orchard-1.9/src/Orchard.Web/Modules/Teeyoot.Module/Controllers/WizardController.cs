@@ -28,6 +28,7 @@ using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 using Orchard.Localization;
+using Orchard.Roles.Models;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -147,6 +148,9 @@ namespace Teeyoot.Module.Controllers
 
             var currency = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
             costViewModel.CurrencyCulture = currency.Code;
+
+            var currentUserRoles = _orchardServices.WorkContext.CurrentUser.ContentItem.As<UserRolesPart>().Roles;
+            costViewModel.IsCurrentUserAdministrator = currentUserRoles.Any(r => r == "Administrator");
 
             return View(costViewModel);
         }
