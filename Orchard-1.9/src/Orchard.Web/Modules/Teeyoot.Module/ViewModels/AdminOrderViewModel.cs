@@ -29,6 +29,7 @@ namespace Teeyoot.Module.ViewModels
 
         public int CampaignId { get; set; }
         public string CampaignName { get; set; }
+        public string CampaignAlias { get; set; }
 
         //information buyuer
         public string EmailBuyer { get; set; }

@@ -124,6 +124,7 @@ namespace Teeyoot.Orders.Controllers
                     EmailBuyer = item.Email,
                     CampaignId = campaign.Id,
                     CampaignName = campaign.Title,
+                    CampaignAlias = campaign.Alias,
                     Id = item.Id,
                     Profit = orderProfit,
                     SellerId = seller != null ? seller.Id : 0,
@@ -163,6 +164,7 @@ namespace Teeyoot.Orders.Controllers
                     Payout: e.Payout,
                     CampaignId: e.CampaignId,
                     CampaignName: e.CampaignName,
+                    CampaignAlias: e.CampaignAlias,
                     SellerId: e.SellerId,
                     CreateDate: e.CreateDate.ToString("dd/MM/yyyy")
                     );
@@ -228,7 +230,9 @@ namespace Teeyoot.Orders.Controllers
                 streetAdress = order.StreetAddress,
                 city = order.City,
                 country = order.Country,
-                phoneNumber = order.PhoneNumber
+                phoneNumber = order.PhoneNumber,
+                state = order.State,
+                postalCode = order.PostalCode
             }, JsonRequestBehavior.AllowGet);
         }
 

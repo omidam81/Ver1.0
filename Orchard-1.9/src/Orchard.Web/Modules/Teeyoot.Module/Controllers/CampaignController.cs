@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 using System.Web.Script.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -33,8 +34,9 @@ namespace Teeyoot.Module.Controllers
         public Localizer T { get; set; }
         private readonly ICookieCultureService _cookieCultureService;
         private string cultureUsed = string.Empty;
+        private readonly ICountryService _countryService;
 
-        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService)
+        public CampaignController(ICampaignService campaignService, ITShirtCostService tshirtService, IProductService productService, IPromotionService promotionService, IRepository<CurrencyRecord> currencyRepository, IWorkContextAccessor wca, INotifier notifier, IOrchardServices services, ICookieCultureService cookieCultureService, ICountryService countryService)
         {
             _currencyRepository = currencyRepository;
             Services = services;
@@ -47,8 +49,10 @@ namespace Teeyoot.Module.Controllers
             Logger = NullLogger.Instance;
 
             _cookieCultureService = cookieCultureService;
-            var culture = _wca.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            //var culture = _wca.GetContext().CurrentCulture.Trim();
+            cultureUsed = _wca.GetContext().CurrentCulture.Trim();
+            //cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            _countryService = countryService;
         }
 
         public ILogger Logger { get; set; }
@@ -74,11 +78,12 @@ namespace Teeyoot.Module.Controllers
 
                     if (campaign.IsApproved == true || Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId)
                     {
-                        string campaignCulture = campaign.CampaignCulture;
-                        if (campaignCulture != cultureUsed)
-                        {
-                            _cookieCultureService.SetCulture(campaignCulture);
-                        }
+                        //TODO: (auth:keinlekan) Удалить код, если больше не пригодиться. Переход сайта на культуру компании
+                        //string campaignCulture = campaign.CampaignCulture;
+                        //if (campaignCulture != cultureUsed)
+                        //{
+                        //    _cookieCultureService.SetCulture(campaignCulture);
+                        //}
 
                         if ((Services.Authorizer.Authorize(Permissions.ApproveCampaigns) || teeyootUserId == campaign.TeeyootUserId) && campaign.Rejected == true)
                         {
@@ -96,7 +101,10 @@ namespace Teeyoot.Module.Controllers
 
                         CampaignIndexViewModel model = new CampaignIndexViewModel() { };
                         model.Campaign = campaign;
-
+                        model.FBDescription = model.Campaign.Description;
+                        model.FBDescription = Regex.Replace(model.FBDescription, @"<br>", " ").Trim();
+                        model.FBDescription = Regex.Replace(model.FBDescription, @"<[^>]+>", "").Trim();
+                        model.FBDescription = Regex.Replace(model.FBDescription, @"&nbsp;", " ").Trim();
                         if (campaign.ProductCountSold >= campaign.ProductMinimumGoal && campaign.IsActive)
                         {
                             var infoMessage = T("Yippee! The minimum order for this campaign is {0}, but we have already sold {1}. The item will definitely go to print once the campaign ends.", campaign.ProductMinimumGoal, campaign.ProductCountSold);

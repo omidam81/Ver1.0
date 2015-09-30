@@ -32,6 +32,8 @@
                             $("#city").html(data.city);
                             $("#country").html(data.country);
                             $("#phoneNumber").html(data.phoneNumber);
+                            $("#state").html(data.state);
+                            $("#postalCode").html(data.postalCode);
                         }, error: function (data, status, resp) {
                             alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                         }
@@ -277,8 +279,8 @@
                         @item.CampaignId
                     </td>
                     <td class="campaign">
-                        @item.CampaignName
-                    </td>
+                        <a href="~/@item.CampaignAlias">@item.CampaignName</a>
+</td>
                     <td class="seller">
                         @item.UserNameSeller
                     </td>
