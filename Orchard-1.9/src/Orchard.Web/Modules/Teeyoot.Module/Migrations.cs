@@ -901,6 +901,7 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
                 table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
 
+
             SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c => c.WithDefault(1)));
 
             SchemaBuilder.CreateForeignKey("CampaignCategories_Currency", "CampaignCategoriesRecord",
@@ -2128,6 +2129,20 @@ namespace Teeyoot.Module
             //SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.DropColumn("CountryRecord_Id"));
 
             return 104;
+        }
+
+        public int UpdateFrom104()
+        {
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+                table => table.AddColumn<double>("PriceBuyers", c => c.WithDefault(1)));
+
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+                table => table.AddColumn<double>("PriceSellers", c => c.WithDefault(1)));
+
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+                table => table.AddColumn<bool>("IsConvert", c => c.WithDefault(false)));
+
+            return 105;
         }
     }
 }
