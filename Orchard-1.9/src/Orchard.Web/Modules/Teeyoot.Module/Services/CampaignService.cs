@@ -5,7 +5,10 @@ using Orchard.Localization;
 using Orchard.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using Orchard.Environment.Configuration;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
@@ -29,6 +32,7 @@ namespace Teeyoot.Module.Services
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IRepository<BringBackCampaignRecord> _backCampaignRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly ShellSettings _shellSettings;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -45,7 +49,8 @@ namespace Teeyoot.Module.Services
                                IRepository<OrderHistoryRecord> orderHistoryRepository,
                                ITeeyootMessagingService teeyootMessagingService,
                                IRepository<BringBackCampaignRecord> backCampaignRepository,
-                               IWorkContextAccessor workContextAccessor)
+                               IWorkContextAccessor workContextAccessor,
+                               ShellSettings shellSettings)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -66,6 +71,7 @@ namespace Teeyoot.Module.Services
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
             _workContextAccessor = workContextAccessor;
+            _shellSettings = shellSettings;
         }
 
         private IOrchardServices Services { get; set; }
@@ -572,6 +578,97 @@ namespace Teeyoot.Module.Services
         public IQueryable<string> GetBuyersEmailOfReservedCampaign(int id)
         {
             return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Select(c=>c.Email);
-        }   
+        }
+
+        public void SearchCampaigns()
+        {
+            const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
+                                                " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
+                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
+                                                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
+                                                " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
+                                                " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
+                                                " JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
+                                                " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
+                                                " JOIN Teeyoot_Module_OrderRecord OrderRecord" +
+                                                " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
+                                                " GROUP BY CampaignRecord.Id";
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = searchCampaignsQuery;
+
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
+
+                        command.Parameters.Add(currentDateParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                            }
+                        }
+                    }
+
+                    /*
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = userQuery;
+
+                        var offsetParameter = new SqlParameter("@Offset", SqlDbType.Int) { Value = offset };
+                        var fetchParameter = new SqlParameter("@Fetch", SqlDbType.Int) { Value = fetch };
+
+                        command.Parameters.Add(offsetParameter);
+                        command.Parameters.Add(fetchParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var userItemViewModel = new UserItemViewModel
+                                {
+                                    Email = (string)reader["UserName"],
+                                    UserId = (int)reader["UserId"],
+                                    IsTeeyootUser = (bool)reader["IsTeeyootUser"]
+                                };
+
+                                if (reader["CurrencyName"] != DBNull.Value)
+                                    userItemViewModel.Currency = (string)reader["CurrencyName"];
+
+                                userItems.Add(userItemViewModel);
+                            }
+                        }
+                    }
+                     */
+                    /*
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = userTotalQuery;
+
+                        userTotal = (int)command.ExecuteScalar();
+                    }
+                     */
+
+                    transaction.Commit();
+                }
+            }
+
+            throw new NotImplementedException();
+        }
     }
 }

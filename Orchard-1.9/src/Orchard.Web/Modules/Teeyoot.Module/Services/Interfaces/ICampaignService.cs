@@ -12,6 +12,8 @@ namespace Teeyoot.Module.Services
 {
     public interface ICampaignService : IDependency
     {
+        void SearchCampaigns();
+
         IQueryable<CampaignRecord> GetAllCampaigns();
 
         CampaignRecord GetCampaignByAlias(string alias);
