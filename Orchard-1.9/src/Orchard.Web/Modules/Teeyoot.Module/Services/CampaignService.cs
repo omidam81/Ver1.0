@@ -587,8 +587,7 @@ namespace Teeyoot.Module.Services
 
             const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
                                                 " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
-                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod," +
-                                                " MAX(CampaignRecord.StartDate)" +
+                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
                                                 " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
                                                 " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
