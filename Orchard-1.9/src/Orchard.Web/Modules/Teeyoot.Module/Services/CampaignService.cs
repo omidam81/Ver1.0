@@ -595,6 +595,10 @@ namespace Teeyoot.Module.Services
                                                 " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
                                                 " JOIN Teeyoot_Module_OrderRecord OrderRecord" +
                                                 " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
+                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
+                                                " AND CampaignRecord.IsPrivate = 0" +
+                                                " AND CampaignRecord.IsActive = 1" +
+                                                " AND CampaignRecord.IsApproved = 1" +
                                                 " GROUP BY CampaignRecord.Id" +
                                                 " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
 
