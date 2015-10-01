@@ -1,0 +1,66 @@
+﻿@model Teeyoot.Module.ViewModels.CurrenciesViewModel
+@{
+    Layout.Title = T("Currencies");
+    Style.Include("currencies.css");
+}
+
+<div>
+    <a class="button primaryAction" href="@Url.Action("AddCurrency", "AdminCurrencies")">@T("Add New Currency")</a>
+</div>
+
+<fieldset>
+    <table class="items">
+        <thead>
+            <tr class="admin-categories">
+                <th class="visible">
+                    <h3>@T("Code ")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Name")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Short Name")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Country")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Flag")</h3>
+                </th>
+                <th class="name">
+                    <h3>@T("Action")</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currency in Model.Currencies)
+            {
+                <tr>
+                    <td class="visible">
+                        @currency.Code
+                    </td>
+                    <td class="visible">
+                        @currency.Name
+                    </td>
+                    <td class="visible">
+                        @currency.ShortName
+                    </td>
+                    <td class="visible">
+                        @currency.CountryName
+                    </td>
+                    <td class="visible">
+                        <img class="flagimg" src="@currency.FlagFileName" style="vertical-align:bottom" />
+                    </td>
+
+                    <td class="related">
+                        <a class="button" href="@Url.Action("EditCurrency", "AdminCurrencies", new { id = currency.Id })" title="@T("Edit")">@T("Edit")</a>
+                        <a class="button" href="@Url.Action("DeleteCurrency", "AdminCurrencies", new { id = currency.Id })" itemprop="RemoveUrl">@T("Delete")</a>
+                    </td>
+                </tr>
+            }
+            <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+        </tbody>
+    </table>
+</fieldset>
+
+@Display(Model.Pager)

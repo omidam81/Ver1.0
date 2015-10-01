@@ -95,11 +95,15 @@ namespace Orchard.UI.Navigation {
         /// <param name="currentRouteData">The current route data.</param>
         /// <param name="compareUrls">Should compare raw string URLs instead of route data.</param>
         /// <returns>A stack with the selection path being the last node the currently selected one.</returns>
-        private static Stack<MenuItem> SetSelectedPath(IEnumerable<MenuItem> menuItems, HttpRequestBase currentRequest, RouteValueDictionary currentRouteData, bool compareUrls) {
-            foreach (MenuItem menuItem in menuItems) {
+        private static Stack<MenuItem> SetSelectedPath(IEnumerable<MenuItem> menuItems, HttpRequestBase currentRequest, RouteValueDictionary currentRouteData, bool compareUrls)
+        {
+            foreach (MenuItem menuItem in menuItems)
+            {
                 Stack<MenuItem> selectedPath = SetSelectedPath(menuItem.Items, currentRequest, currentRouteData, compareUrls);
-                if (selectedPath != null) {
+                if (selectedPath != null)
+                {
                     menuItem.Selected = true;
+                    menuItem.Current = false;
                     selectedPath.Push(menuItem);
                     return selectedPath;
                 }
@@ -107,22 +111,32 @@ namespace Orchard.UI.Navigation {
                 // compare route values (if any) first
                 // if URL string comparison is used it means all previous route matches failed, thus no need to do them twice
                 bool match = !compareUrls && menuItem.RouteValues != null && RouteMatches(menuItem.RouteValues, currentRouteData);
+                bool current = true;
 
                 // if route match failed, try comparing URL strings, if
-                if (currentRequest != null && !match && compareUrls) {
+                if (currentRequest != null && !match && compareUrls)
+                {
                     string appPath = currentRequest.ApplicationPath ?? "/";
                     string requestUrl = currentRequest.Path.StartsWith(appPath) ? currentRequest.Path.Substring(appPath.Length) : currentRequest.Path;
 
                     string modelUrl = menuItem.Href.Replace("~/", appPath);
                     modelUrl = modelUrl.StartsWith(appPath) ? modelUrl.Substring(appPath.Length) : modelUrl;
 
-                    if (requestUrl.Equals(modelUrl, StringComparison.OrdinalIgnoreCase) || (!string.IsNullOrEmpty(modelUrl) && requestUrl.StartsWith(modelUrl + "/", StringComparison.OrdinalIgnoreCase))) {
+                    if (requestUrl.Equals(modelUrl, StringComparison.OrdinalIgnoreCase))
+                    {
                         match = true;
+                    }
+                    else if ((!string.IsNullOrEmpty(modelUrl) && requestUrl.StartsWith(modelUrl + "/", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        match = true;
+                        current = false;
                     }
                 }
 
-                if (match) {
+                if (match)
+                {
                     menuItem.Selected = true;
+                    menuItem.Current = current;
 
                     selectedPath = new Stack<MenuItem>();
                     selectedPath.Push(menuItem);

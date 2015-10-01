@@ -1999,11 +1999,13 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Currency", "LinkCountryCurrencyRecord",
                 new[] { "CurrencyRecord_Id" }, "CountryRecord", new[] { "Id" });
 
+
             SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Country", "LinkCountryCurrencyRecord",
                 new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
 
             SchemaBuilder.CreateForeignKey("LinkCountryCulture_Culture", "LinkCountryCultureRecord",
                 new[] { "CultureRecord_Id" }, "CountryRecord", new[] { "Id" });
+
 
             SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
                 new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
@@ -2062,6 +2064,43 @@ namespace Teeyoot.Module
                 new[] {"CurrencyRecord_Id"}, "CurrencyRecord", new[] {"Id"});
 
             return 101;
+        }
+
+        public int UpdateFrom101()
+        {
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<DateTime>("Created", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
+
+            return 102;
+        }
+
+        public int UpdateFrom102()
+        {
+            SchemaBuilder.DropForeignKey("LinkCountryCurrencyRecord", "LinkCountryCurrency_Currency");
+            SchemaBuilder.DropForeignKey("LinkCountryCurrencyRecord", "LinkCountryCurrency_Country");
+
+            SchemaBuilder.DropForeignKey("LinkCountryCultureRecord", "LinkCountryCulture_Culture");
+            SchemaBuilder.DropForeignKey("LinkCountryCultureRecord", "LinkCountryCulture_Country");
+
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Currency", "LinkCountryCurrencyRecord",
+                new[] { "CurrencyRecord_Id" }, "CurrencyRecord", new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Country", "LinkCountryCurrencyRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            
+            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            //todo: (auth:Juiceek) Apply this after figure out
+            //SchemaBuilder.CreateForeignKey("LinkCountryCulture_Culture", "LinkCountryCultureRecord",
+            //    new[] { "CultureRecord_Id" }, "Orchard_Framework_CultureRecord", new[] { "Id" });
+
+            return 103;
         }
     }
 }
