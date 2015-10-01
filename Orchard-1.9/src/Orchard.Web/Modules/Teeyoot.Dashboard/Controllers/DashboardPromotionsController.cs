@@ -33,7 +33,7 @@ namespace Teeyoot.Dashboard.Controllers
         public ActionResult AddPromotion(PromotionRecord model)
         {
             int currentUser = Services.WorkContext.CurrentUser.Id;
-            _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, currentUser);
+            _promotionService.AddPromotion(model.PromoId, model.DiscountType, model.AmountSize, model.AmountType, model.Expiration, currentUser, null, DateTime.Now.ToUniversalTime());
             var viewModel = new PromotionViewModel() { };
             return RedirectToAction("MarketingCampaigns");
         }

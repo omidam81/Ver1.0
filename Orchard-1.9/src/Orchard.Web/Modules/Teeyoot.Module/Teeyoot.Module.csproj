@@ -1130,6 +1130,7 @@
     <Content Include="Views\Home\Molpas.cshtml" />
     <Content Include="Views\Home\CallbackMolpay.cshtml" />
     <Content Include="Views\AdminRelaunchCamp\Index.cshtml" />
+    <Content Include="Views\AdminPromotions\Index.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminCurrencies\ConvertationTable.cshtml" />
     <Content Include="Views\AdminUser\EditUser.cshtml" />
@@ -1184,6 +1185,7 @@
     <Compile Include="Controllers\AdminCostController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\AdminPromotionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />

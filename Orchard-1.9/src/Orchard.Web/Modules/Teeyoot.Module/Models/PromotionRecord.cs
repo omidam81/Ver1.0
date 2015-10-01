@@ -23,5 +23,9 @@ namespace Teeyoot.Module.Models
         public virtual int Redeemed { get; set; }
 
         public virtual int UserId { get; set; }
+
+        public virtual int? CampaignId { get; set; }
+
+        public virtual DateTime? Created { get; set; }
     }
 }

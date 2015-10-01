@@ -895,7 +895,13 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("TeeyootUserPartRecord_CurrencyRecord", "TeeyootUserPartRecord",
                 new[] {"CurrencyRecord_Id"}, "CurrencyRecord", new[] {"Id"});
 
-            return 101;
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<DateTime>("Created", c => c.Nullable()));
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
+
+            return 102;
         }
 
         public int UpdateFrom2()
