@@ -259,7 +259,7 @@ namespace Teeyoot.Module.Controllers
                     }
                 }
 
-                data.CampaignCulture = cultureUsed;
+                data.CampaignCulture = cultureUsed; ////TODO: (auth:keinlekan) После удаления поля в таблице/моделе - удалить данный код
 
                 var campaign = _campaignService.CreateNewCampiagn(data);
                 CreateImagesForCampaignProducts(campaign);

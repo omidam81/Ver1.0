@@ -1,0 +1,61 @@
+﻿@model Teeyoot.Module.ViewModels.CurrencyViewModel
+@{
+    Layout.Title = T("Add New Currency");
+    Style.Include("currencies.css");
+}
+
+<h2>@T("Add New Currency")</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("AddCurrency", "AdminCurrencies"), FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @Html.LabelFor(m => m.Code, T("Code"))
+        @Html.EditorFor(m => m.Code, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Name"))
+        @Html.EditorFor(m => m.Name, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.ShortName, T("Short Name"))
+        @Html.EditorFor(m => m.ShortName, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.CountryId, T("Country"))
+        @Html.DropDownListFor(m => m.CountryId,
+            new SelectList( Model.Countries, "Id", "Name"),
+            T("Select Country ...").ToString(),
+            new { id = "coutries" })
+    </fieldset>
+    
+    <div class="buttondiv">
+        <img id="flagImage" class="flagimg"/> 
+        &nbsp;&nbsp;
+        @Html.TextBoxFor(m => m.FlagImage, new { type = "file", accept = "image/png", @class="loadbtn" })
+    </div>
+    
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Currencies", "AdminCurrencies")">@T("Cancel")</a>
+    </fieldset>
+}
+
+@using (Script.Foot())
+{
+    <script>
+        document.getElementById("FlagImage").onchange = function () {
+            if (!this.files[0]) {
+                document.getElementById("flagImage").src = "";
+            }
+            else {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("flagImage").src = e.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        };
+    </script>
+}
+
+ 

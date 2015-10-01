@@ -7,6 +7,7 @@
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("AddSetting", "DeliverySettings"), FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    
     <fieldset>
         @Html.LabelFor(m => m.State, T("State"))
         @Html.EditorFor(m => m.State, new { @class = "text large" })

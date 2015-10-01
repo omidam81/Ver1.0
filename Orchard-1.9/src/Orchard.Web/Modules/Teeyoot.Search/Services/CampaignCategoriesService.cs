@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Search.Services
 {
@@ -18,8 +19,9 @@ namespace Teeyoot.Search.Services
         private readonly IWorkContextAccessor _workContextAccessor;
         private string culture = string.Empty;
         private string cultureUsed = string.Empty;
+        private readonly ICountryService _countryService;
 
-        public CampaignCategoriesService(IRepository<CampaignCategoriesRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory, IRepository<CampaignRecord> campaign, IWorkContextAccessor workContextAccessor)
+        public CampaignCategoriesService(IRepository<CampaignCategoriesRecord> repository, IContentManager contentManager, IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCetegory, IRepository<CampaignRecord> campaign, IWorkContextAccessor workContextAccessor, ICountryService countryService)
         {
             _repository = repository;
             _contentManager = contentManager;
@@ -27,13 +29,15 @@ namespace Teeyoot.Search.Services
             _campaign = campaign;
 
             _workContextAccessor = workContextAccessor;
+            _countryService = countryService;
         }
 
         public IQueryable<CampaignCategoriesRecord> GetAllCategories()
         {
-            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
-            return _repository.Table.Where(c => c.CategoriesCulture == cultureUsed);
+            //TODO: (auth:keinlekan) Удалить после код после локализации
+            //culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            //cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            return _repository.Table.Where(c => c.CountryRecord.Id == _countryService.GetCountryByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim()).Id);
         }
 
         public IQueryable<CampaignRecord> GetCampaignsByIdCategory(int id)
@@ -75,13 +79,15 @@ namespace Teeyoot.Search.Services
             }
             else
             {
+                //TODO: (auth:keinlekan) Удалить данный код после удаления поля культуры 
                 culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
                 cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
                 var newCateg = new CampaignCategoriesRecord
                 {
                     Name = name,
                     IsVisible = false,
-                    CategoriesCulture = cultureUsed
+                    CategoriesCulture = cultureUsed,
+                    CountryRecord = _countryService.GetCountryByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim())
                 };
                 try
                 {

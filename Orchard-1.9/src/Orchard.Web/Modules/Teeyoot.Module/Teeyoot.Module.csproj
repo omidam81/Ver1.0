@@ -1083,6 +1083,7 @@
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\checkout.css" />
     <Content Include="Styles\Cost.css" />
+    <Content Include="Styles\currencies.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designerTeeyoot.css" />
     <Content Include="Styles\bootstrap-responsive.css" />
@@ -1131,7 +1132,11 @@
     <Content Include="Views\AdminRelaunchCamp\Index.cshtml" />
     <Content Include="Views\AdminPromotions\Index.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
+    <Content Include="Views\AdminCurrencies\ConvertationTable.cshtml" />
     <Content Include="Views\AdminUser\EditUser.cshtml" />
+    <Content Include="Views\AdminCurrencies\Currencies.cshtml" />
+    <Content Include="Views\AdminCurrencies\AddCurrency.cshtml" />
+    <Content Include="Views\AdminCurrencies\EditCurrency.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1172,8 +1177,10 @@
     <Compile Include="Common\ScheduledTasks\SendTermsAndConditionsToSellerTask.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredCampaignsTask.cs" />
     <Compile Include="Common\Utils\IimageHelper.cs" />
+    <Compile Include="Common\Utils\ImageFileHelper.cs" />
     <Compile Include="Common\Utils\ImageHelper.cs" />
     <Compile Include="Controllers\AdminCommonSettingsController.cs" />
+    <Compile Include="Controllers\AdminCurrenciesController.cs" />
     <Compile Include="Controllers\AdminRelaunchCampController.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
@@ -1242,7 +1249,9 @@
     <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
     <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\CurrenciesViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
     <Compile Include="ViewModels\AdminPromotionViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
