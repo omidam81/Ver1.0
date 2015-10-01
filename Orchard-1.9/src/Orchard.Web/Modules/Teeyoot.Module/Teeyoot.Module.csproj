@@ -1244,6 +1244,7 @@
     <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
+    <Compile Include="ViewModels\AdminPromotionViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
     <Compile Include="ViewModels\RelaunchViewModel.cs" />
     <Compile Include="ViewModels\RelaunchProductInfo.cs" />

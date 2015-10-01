@@ -400,14 +400,15 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
-                },                 new RouteDescriptor
+                },
+                new RouteDescriptor
                 {
                     Route = new Route(
                         "Promotions",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.Module"},
-                            {"controller", "AdminPromotion"},
+                            {"controller", "AdminPromotions"},
                             {"action", "Index"}
                         },
                         new RouteValueDictionary(),
@@ -417,6 +418,7 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 }
+              
 
             };
         }
