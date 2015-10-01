@@ -902,33 +902,13 @@ namespace Teeyoot.Module
                 table => table.AddColumn<int>("CampaignId", c => c.Nullable()));
 
 
-            // Migration #102.
-            SchemaBuilder.DropForeignKey("LinkCountryCurrencyRecord", "LinkCountryCurrency_Currency");
-            SchemaBuilder.DropForeignKey("LinkCountryCurrencyRecord", "LinkCountryCurrency_Country");
+            SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c => c.WithDefault(1)));
 
-            SchemaBuilder.DropForeignKey("LinkCountryCultureRecord", "LinkCountryCulture_Culture");
-            SchemaBuilder.DropForeignKey("LinkCountryCultureRecord", "LinkCountryCulture_Country");
-
-
-            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Currency", "LinkCountryCurrencyRecord",
-                new[] { "CurrencyRecord_Id" }, "CurrencyRecord", new[] { "Id" });
-
-            SchemaBuilder.CreateForeignKey("LinkCountryCurrency_Country", "LinkCountryCurrencyRecord",
+            SchemaBuilder.CreateForeignKey("CampaignCategories_Currency", "CampaignCategoriesRecord",
                 new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
 
-
-            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
-                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
-
-            // Migration #103.
-            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
-                table => table.AddColumn<double>("PriceBuyers", c => c.WithDefault(1)));
-
-            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
-                table => table.AddColumn<double>("PriceSellers", c => c.WithDefault(1)));
-
-            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
-                table => table.AddColumn<bool>("IsConvert", c => c.WithDefault(false)));
+            //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
+            //SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.DropColumn("CountryRecord_Id"));
 
             return 104;
         }
@@ -2140,8 +2120,21 @@ namespace Teeyoot.Module
 
         public int UpdateFrom103()
         {
+            SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.AddColumn<int>("CountryRecord_Id", c => c.WithDefault(1)));
+
+            SchemaBuilder.CreateForeignKey("CampaignCategories_Currency", "CampaignCategoriesRecord",
+                new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
+
+            //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
+            //SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.DropColumn("CountryRecord_Id"));
+
+            return 104;
+        }
+
+        public int UpdateFrom104()
+        {
             SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
-                table => table.AddColumn<double>("PriceBuyers", c => c.WithDefault(1) ));
+                table => table.AddColumn<double>("PriceBuyers", c => c.WithDefault(1)));
 
             SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
                 table => table.AddColumn<double>("PriceSellers", c => c.WithDefault(1)));
@@ -2149,7 +2142,7 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
                 table => table.AddColumn<bool>("IsConvert", c => c.WithDefault(false)));
 
-            return 104;
+            return 105;
         }
     }
 }
