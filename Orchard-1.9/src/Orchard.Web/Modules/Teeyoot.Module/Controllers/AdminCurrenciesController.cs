@@ -116,8 +116,6 @@ namespace Teeyoot.Module.Controllers
                     CurrencyCulture = "FAKE_CULT"
                 };
                 _currencyRepository.Create(record);
-                //_currencyRepository.Flush();
-
                 step1_CurrencySaved = true;
             
                 bool isNotPNG;
@@ -146,9 +144,18 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult DeleteCurrency(int id)
         {
-            ClearAllCurrencyToCountryLinks(id);
-            _currencyRepository.Delete(_currencyRepository.Get(id));
-            _imageFileHelper.DeleteImageFromDisc(id);
+            // Deleting in transaction.
+            try
+            {
+                ClearAllCurrencyToCountryLinks(id);
+                _currencyRepository.Delete(_currencyRepository.Get(id));
+                _imageFileHelper.DeleteImageFromDisc(id);
+            }
+            catch(Exception)
+            {
+                //todo: (auth:Juiceek) Add rollback transaction logic
+                throw;
+            }
 
             _orchardServices.Notifier.Information(T("Currency has been deleted!"));
             return RedirectToAction("Currencies");
@@ -231,6 +238,12 @@ namespace Teeyoot.Module.Controllers
 
 
 
+
+        #region ################# INNER_HELPERS >>> #################################################
+
+        /// <summary>
+        /// Helper function
+        /// </summary>
         private void ClearAllCurrencyToCountryLinks(int currencyId)
         {
             var query = _linkCountryCurrencyRepository.Table.Where(x => x.CurrencyRecord.Id == currencyId);
@@ -283,7 +296,9 @@ namespace Teeyoot.Module.Controllers
             }
             return _countryRepository.Get((int)countryId).Name;
         }
-        
+
+        #endregion ######################################### <<< INNER HELPERS ######################
+
     }
 
 
