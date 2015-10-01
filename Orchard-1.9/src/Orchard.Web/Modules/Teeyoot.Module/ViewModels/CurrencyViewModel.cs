@@ -29,6 +29,14 @@ namespace Teeyoot.Module.ViewModels
 
         public bool ImageChanged { get; set; }
 
+        public virtual double PriceBuyers { get; set; }
+
+        public virtual double PriceSellers { get; set; }
+
+        public virtual bool IsConvert { get; set; }
+
+
+
         public CurrencyViewModel(IRepository<CountryRecord> countriesRepo)
         {
             Countries = countriesRepo.Table;
