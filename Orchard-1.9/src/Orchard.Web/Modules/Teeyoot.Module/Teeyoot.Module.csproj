@@ -1210,6 +1210,7 @@
     <Compile Include="Models\OrderStatusRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
+    <Compile Include="Messaging\CampaignService\SearchCampaignItem.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Services\CountryService.cs" />
@@ -1236,6 +1237,7 @@
     <Compile Include="Services\Interfaces\ITShirtCostService.cs" />
     <Compile Include="Services\PayoutService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Messaging\CampaignService\SearchCampaignsResponse.cs" />
     <Compile Include="Services\TeeyootMessagingService.cs" />
     <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="Common\TeeyootCultureSelector.cs" />

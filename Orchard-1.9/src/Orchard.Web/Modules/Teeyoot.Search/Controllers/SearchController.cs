@@ -44,7 +44,7 @@ namespace Teebay.Search.Controllers
             string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
-            _campService.SearchCampaigns();
+            var response = _campService.SearchCampaigns();
 
             if (!string.IsNullOrEmpty(filter))
             {

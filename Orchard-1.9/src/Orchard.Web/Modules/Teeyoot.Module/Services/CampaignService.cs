@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Orchard.Environment.Configuration;
 using Teeyoot.Module.Common.Enums;
+using Teeyoot.Module.Messaging.CampaignService;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 
@@ -580,11 +581,14 @@ namespace Teeyoot.Module.Services
             return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Select(c=>c.Email);
         }
 
-        public void SearchCampaigns()
+        public SearchCampaignsResponse SearchCampaigns()
         {
+            var response = new SearchCampaignsResponse();
+
             const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
                                                 " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
-                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
+                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod," +
+                                                " MAX(CampaignRecord.StartDate)" +
                                                 " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
                                                 " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
@@ -592,7 +596,10 @@ namespace Teeyoot.Module.Services
                                                 " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
                                                 " JOIN Teeyoot_Module_OrderRecord OrderRecord" +
                                                 " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
-                                                " GROUP BY CampaignRecord.Id";
+                                                " GROUP BY CampaignRecord.Id" +
+                                                " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
+
+            var campaigns = new List<SearchCampaignItem>();
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
@@ -617,6 +624,12 @@ namespace Teeyoot.Module.Services
                         {
                             while (reader.Read())
                             {
+                                var searchCampaignItem = new SearchCampaignItem
+                                {
+                                    Id = (int) reader["CampaignRecordId"]
+                                };
+
+                                campaigns.Add(searchCampaignItem);
                             }
                         }
                     }
@@ -668,7 +681,9 @@ namespace Teeyoot.Module.Services
                 }
             }
 
-            throw new NotImplementedException();
+            response.Campaigns = campaigns;
+
+            return response;
         }
     }
 }

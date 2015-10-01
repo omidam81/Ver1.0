@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Teeyoot.Module.Common.Enums;
+using Teeyoot.Module.Messaging.CampaignService;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 
@@ -12,7 +13,7 @@ namespace Teeyoot.Module.Services
 {
     public interface ICampaignService : IDependency
     {
-        void SearchCampaigns();
+        SearchCampaignsResponse SearchCampaigns();
 
         IQueryable<CampaignRecord> GetAllCampaigns();
 
