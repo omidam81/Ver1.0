@@ -267,7 +267,7 @@
                         <a class="ordNumber"> @item.PublicId</a>
                     </td>
                     <td>
-                        @item.CreateDate
+                        @item.CreateDate.ToString("dd/MM/yyyy")
                     </td>
                     <td class="buyer">
                         @item.EmailBuyer
@@ -370,9 +370,9 @@
                     { "aTargets": [4], "bSortable": true },
                     { "aTargets": [5], "bSortable": true },
                     { "aTargets": [6], "bSortable": true },
-                    { "aTargets": [7], "bSortable": false },
-                    { "aTargets": [8], "bSortable": false },
-                    { "aTargets": [9], "bSortable": false }
+                    { "aTargets": [7], "bSortable": true },
+                    { "aTargets": [8], "bSortable": true },
+                    { "aTargets": [9], "bSortable": true }
                 ]
             });
         });
