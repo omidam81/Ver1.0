@@ -331,11 +331,12 @@ namespace Teeyoot.Module.Controllers
 
                 //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
                 //{
-                if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString()))
-                {
+                
 
                     if (status == "00")
                     {
+                        if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString()))
+                        {
                         amount = amount.Replace(".", ",");
                         order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
                         order.Paid = DateTime.Now.ToUniversalTime();
@@ -375,18 +376,24 @@ namespace Teeyoot.Module.Controllers
                             _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CountryRecord = _countryService.GetCountryByCulture(cultureUsed) });
                             commonSettings = _commonSettingsRepository.Table.Where(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id).First();
                         }
-
+                      }
                     }
                     else if (status == "11")
                     {
-                        order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
-                        _orderService.UpdateOrder(order);
-                        var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
-                        var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                        _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());
+                        if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString()))
+                        {
+                            order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
+                            order.Paid = null;
+                            order.ProfitPaid = false;
+                            _orderService.UpdateOrder(order);
+                            _payoutService.DeletePayoutByOrderPublicId(order.OrderPublicId);
+                            var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
+                            var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                            _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Cancelled.ToString());                          
+                        }
                         return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                     }
-                }
+                
 
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
            
