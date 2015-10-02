@@ -194,7 +194,7 @@
                 //{
                 if (Model.Balances[i].Currency == "RM")
                 {
-                    @T("You currently have ") @Model.Balances[i].Currency <b class="profit">@Model.Balances[i].Bal</b>@T(" ready to be paid out")
+                    @T("You currently have ") @Model.Balances[i].Currency <b class="profit">@Model.Balances[i].Bal.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</b>@T(" ready to be paid out")
                     <a class="btnStartPayout" id="go">@T("Start a payout")</a>
                 }
 
