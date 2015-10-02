@@ -45,14 +45,21 @@ namespace Teebay.Search.Controllers
             string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
-            var searchCampaignsRequest = new SearchCampaignsRequest
-            {
-                Filter = filter,
-                Skip = skip,
-                Take = take
-            };
+            
 
-            var searchCampaignsResponse = _campService.SearchCampaigns(searchCampaignsRequest);
+            //var searchCampaignsResponse = _campService.SearchCampaigns(searchCampaignsRequest);
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var searchCampaignsRequest = new SearchCampaignsRequest
+                {
+                    Filter = filter,
+                    Skip = skip,
+                    Take = take
+                };
+
+                var searchCampaignsResponse = _campService.SearchCampaignsForFilter(searchCampaignsRequest);
+            }
 
             if (!string.IsNullOrEmpty(filter))
             {

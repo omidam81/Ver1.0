@@ -726,26 +726,32 @@ namespace Teeyoot.Module.Services
         {
             var response = new SearchCampaignsResponse();
 
-            const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
+            const string searchCampaignsQuery = " SELECT CampaignTemp.CampaignRecordId CampaignRecordId," +
                                                 " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
                                                 " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
+                                                " FROM" +
+                                                " (SELECT DISTINCT CampaignRecord.Id CampaignRecordId" +
                                                 " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
                                                 " LEFT JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
                                                 " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
                                                 " ON LinkCampaignAndCategoriesRecord.CampaignRecord_Id = CampaignCategoriesRecord.Id" +
-                                                //" AND LOWER(CampaignCategoriesRecord.Name) = @Tag" +
+                                                " AND LOWER(CampaignCategoriesRecord.Name) LIKE @Filter" +
+                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
+                                                " AND CampaignRecord.IsPrivate = 0" +
+                                                " AND CampaignRecord.IsActive = 1" +
+                                                " AND CampaignRecord.IsApproved = 1" +
+                                                " AND (CampaignRecord.Title LIKE @Filter" +
+                                                " OR CampaignRecord.Description LIKE @Filter)) CampaignTemp" +
+                                                " JOIN Teeyoot_Module_CampaignRecord CampaignRecord" +
+                                                " ON CampaignTemp.CampaignRecordId = CampaignRecord.Id" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
                                                 " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
                                                 " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
                                                 " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
                                                 " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
                                                 " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
-                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
-                                                " AND CampaignRecord.IsPrivate = 0" +
-                                                " AND CampaignRecord.IsActive = 1" +
-                                                " AND CampaignRecord.IsApproved = 1" +
-                                                " GROUP BY CampaignRecord.Id" +
+                                                " GROUP BY CampaignRecordId" +
                                                 " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
 
             var campaigns = new List<SearchCampaignItem>();
@@ -769,7 +775,7 @@ namespace Teeyoot.Module.Services
 
                         var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar)
                         {
-                            Value = request.Filter
+                            Value = "%" + request.Filter + "%"
                         };
 
                         command.Parameters.Add(currentDateParameter);
@@ -796,23 +802,6 @@ namespace Teeyoot.Module.Services
             response.Campaigns = campaigns;
 
             return response;
-
-            var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).Select(c => c.Id);
-            var campForTags =
-                _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id))
-                    .Select(c => c.CampaignRecord)
-                    .Where(c => c.WhenDeleted == null && !c.IsPrivate && c.IsActive && c.IsApproved);
-            //List<CampaignRecord> campForTags = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).ToList();
-            IEnumerable<CampaignRecord> camps =
-                GetAllCampaigns()
-                    .Where(c => !c.IsPrivate && c.IsActive && c.IsApproved)
-                    .Where(c => c.Title.Contains(filter) || c.Description.Contains(filter));
-            camps =
-                camps.Concat(campForTags).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
-            //return camps.Skip(skip).Take(take);
-            return camps.Skip(skip).Take(take).ToList();
-
-            throw new NotImplementedException();
         }
     }
 }
