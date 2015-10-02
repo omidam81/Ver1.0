@@ -2164,8 +2164,19 @@ var design={
 							o.file			= item.url;
 							o.svg = $(data).find('svg');
 
-							var imgWidth = parseFloat($(data).find('svg').attr('width'));;
-							var imgHeight = parseFloat($(data).find('svg').attr('height'));;
+							
+							var imgWidth = parseFloat($(data).find('svg').attr('width'));
+							if(!($.isNumeric(imgWidth))){
+							    imgWidth = ($(data).find('svg').prop('viewBox')).animVal.width;							   
+							}
+							var imgHeight = parseFloat($(data).find('svg').attr('height'));
+							if (!($.isNumeric(imgHeight))) {
+							    imgHeight = ($(data).find('svg').prop('viewBox')).animVal.height;
+							}
+							var viewBox = parseFloat($(data).find('svg').attr('viewBox'));
+							if (!($.isNumeric(viewBox))) {
+							    $(data).find('svg').attr("viewBox", "0 0 " + imgWidth + " " + imgHeight);
+							}
 							var imageData = app.state.getImage();
 							var view = app.state.getView();
 							var prefix = 'printable_' + view + '_';

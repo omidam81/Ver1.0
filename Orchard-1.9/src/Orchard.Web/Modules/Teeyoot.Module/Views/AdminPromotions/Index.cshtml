@@ -1,4 +1,4 @@
-﻿@model  List<Teeyoot.Module.Models.PromotionRecord>
+﻿@model  List<Teeyoot.Module.ViewModels.AdminPromotionViewModel>
 @{
     Script.Require("jQuery");
     Script.Require("jQueryUI");
@@ -48,6 +48,52 @@
     }
 
 
+        function editNode(Id) {
+            var tdId = "action_"+Id;
+            var buttonId = "btn_"+Id;
+            var amountTd =  document.getElementById(Id);
+            var action = document.getElementById(tdId);
+            var sp = amountTd.querySelector("span");
+            var butt = document.getElementById(buttonId);
+            var valueSpan = sp.innerHTML;
+            sp.parentNode.removeChild(sp);
+            var inp = document.createElement("input");
+            inp.type = "text";
+            inp.style.width = "40px";
+            inp.value = valueSpan;
+            amountTd.appendChild(inp);
+            butt.style.display = "none";
+
+
+            var butSave = document.createElement("button");
+            butSave.innerHTML = "save";
+            butSave.classList.add("btnEdit");
+            action.appendChild(butSave);
+
+            butSave.addEventListener("click", function () {
+                var span2 = document.createElement("span");
+                span2.innerHTML = inp.value;
+                inp.parentNode.removeChild(inp);
+                butSave.parentNode.removeChild(butSave);
+                butt.style.display = "";
+                amountTd.appendChild(span2);
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("ChangePromotion", "AdminPromotions"))",
+                    data: addAntiForgeryToken({ "id": Id, "amount": span2.innerHTML.replace(".", ",") }),
+                success: function (data) {
+                }, error: function (data, status, resp) {
+                    alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                }
+            });
+
+
+        });
+        }
+
+
         $(document).ready(function () {
                    var campaignTable = $('#promotions-table').dataTable({
                         "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
@@ -60,12 +106,13 @@
                         { "aTargets": [2], "bSortable": true },          
                         { "aTargets": [3], "bSortable": false },
                         { "aTargets": [4], "bSortable": false },
-                        { "aTargets": [5], "bSortable": false },
+                        { "aTargets": [5], "bSortable": true },
                         { "aTargets": [6], "bSortable": true },
                         { "aTargets": [7], "bSortable": true },
                         { "aTargets": [8], "bSortable": true },
                         { "aTargets": [9], "bSortable": true },
-                        { "aTargets": [10], "bSortable": false }
+                        { "aTargets": [10], "bSortable": true },
+                        { "aTargets": [11], "bSortable": false }
                         
                         ]
                     });
@@ -111,6 +158,9 @@
                     <th class="sender">
                         <h3>@T("URL")</h3>
                     </th>
+                    <th class="sender">
+                        <h3>@T("Action")</h3>
+                    </th>
                 </tr>
             </thead>
 
@@ -119,18 +169,21 @@
                 {
                     <tr class="admin-categories-tr">
                         <td class="date">
-                            @item.Id
+                            @item.Promotion.Id
                         </td>
                         <td class="userId">
-                            @item.PromoId
+                            @item.Promotion.PromoId
                         </td>
-                        <td class="subject">
-                            @if (item.AmountType == "%") { 
-                                @item.AmountSize.ToString("F", System.Globalization.CultureInfo.InvariantCulture)@T(" ")@item.AmountType
+                        <td id="@item.Promotion.Id" class="amount">
+                            @if (item.Promotion.AmountType == "%")
+                            {
+                                <span>@item.Promotion.AmountSize.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T(" ")@item.Promotion.AmountType
+
                             }
                             else
                             {
-                                @item.AmountType@T(" ")@item.AmountSize.ToString("F", System.Globalization.CultureInfo.InvariantCulture)
+                                @item.Promotion.AmountType@T(" ")<span>@item.Promotion.AmountSize.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>
+
 
                             }
                         </td>
@@ -138,11 +191,13 @@
                            
                         </td>
                         <td class="inf"></td>
-                        <td class="inf"></td>
                         <td class="inf">
-                            @if (item.Created != null)
+                            @item.CampaignerEmail
+                        </td>
+                        <td class="inf">
+                            @if (item.Promotion.Created != null)
                             {
-                                @item.Created;
+                                @item.Promotion.Created;
                             }
                             else
                             {
@@ -150,24 +205,24 @@
                             }
                         </td>
                         <td class="inf">
-                            @if (item.Expiration.Year == DateTime.MaxValue.Year)
+                            @if (item.Promotion.Expiration.Year == DateTime.MaxValue.Year)
                             {
                             @T("Never")
                             }
                             else
                             {
-                            @item.Expiration.ToString("dd/MM/yyyy");
+                            @item.Promotion.Expiration.ToString("dd/MM/yyyy");
                             }
                         </td>
                         <td class="inf">
-                            @item.Redeemed
+                            @item.Promotion.Redeemed
                         </td>
                         <td id="status">
-                            @if (item.Expiration < DateTime.UtcNow)
+                            @if (item.Promotion.Expiration < DateTime.UtcNow)
                             {
                                 <div class="list_item__cell list_item__status">
                                     <label class="switch__label">
-                                        <input id="switch_@item.Id" checked="@item.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@item.Id)" />
+                                        <input id="switch_@item.Promotion.Id" checked="@item.Promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@item.Promotion.Id)" />
                                         <div class="switch__el" data-off="Off" data-on="On"></div>
                                     </label>
                                 </div>
@@ -177,24 +232,18 @@
                                 <div class="list_item__cell list_item__status">
                                     <label class="switch__label">
 
-                                        <input id="switch_@item.Id" checked="@item.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@item.Id)" />
+                                        <input id="switch_@item.Promotion.Id" checked="@item.Promotion.Status" class="switch__input promotion__status__checkbox" name="active" type="checkbox" onclick="changeState(@item.Promotion.Id)" />
                                         <div class="switch__el" data-off="Off" data-on="On"></div>
                                     </label>
                                 </div>
                             }
-                            @*@if (item.Status)
-                            {
-                                @T("ON | ")
-                                <button onclick="changeState(@item.Id, false)" class="paid">@T("OFF")</button>
-                            }
-                            else
-                            {
-                                <button onclick="changeState(@item.Id, true)" class="paid">@T("ON")</button>
-                                @T("| OFF")
-                            }*@
+                            
                         </td>
                         <td class="inf">
 
+                        </td>
+                        <td id="action_@item.Promotion.Id" class="inf">
+                            <button id="btn_@item.Promotion.Id" class="btnEdit" type="submit" onclick="editNode(@item.Promotion.Id)">@T("edit")</button>
                         </td>
                         
                     </tr>

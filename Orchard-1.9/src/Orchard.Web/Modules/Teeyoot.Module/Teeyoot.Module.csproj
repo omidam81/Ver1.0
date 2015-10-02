@@ -1137,6 +1137,7 @@
     <Content Include="Views\AdminCurrencies\AddCurrency.cshtml" />
     <Content Include="Views\AdminCurrencies\EditCurrency.cshtml" />
     <Content Include="Views\AdminCurrenciesConvertationTable\Index.cshtml" />
+    <Content Include="Views\AdminTranslationText\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1184,6 +1185,7 @@
     <Compile Include="Controllers\AdminCurrenciesConvertationTableController.cs" />
     <Compile Include="Controllers\AdminRelaunchCampController.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />
+    <Compile Include="Controllers\AdminTranslationTextController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\AdminPromotionsController.cs" />
@@ -1254,6 +1256,7 @@
     <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\CurrenciesViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />
+    <Compile Include="ViewModels\AdminPromotionViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusItemViewModel.cs" />
     <Compile Include="ViewModels\RelaunchViewModel.cs" />
     <Compile Include="ViewModels\RelaunchProductInfo.cs" />

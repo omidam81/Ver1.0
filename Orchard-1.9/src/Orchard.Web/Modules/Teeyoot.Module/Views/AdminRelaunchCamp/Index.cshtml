@@ -14,29 +14,30 @@
 {
     <script>
         function showRequesters(id) {
-            var modalId = "#"+id; 
+            var modalId = "#" + id;
             $(modalId).modal('show');
         }
 
         $(document).ready(function () {
-                   var campaignTable = $('#request-table').dataTable({
-                        "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
-                        iDisplayLength: 10,
-                        aaSorting: [[1, 'desc']],
-                        bSortable: true,
-                        aoColumnDefs: [
-                        { "aTargets": [0], "bSortable": true },
-                        { "aTargets": [1], "bSortable": true },
-                        { "aTargets": [2], "bSortable": true },          
-                        { "aTargets": [3], "bSortable": false }
-                        
-                        ]
-                    });
-                });
+            var campaignTable = $('#request-table').dataTable({
+                "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
+                iDisplayLength: 10,
+                aaSorting: [[1, 'desc']],
+                bSortable: true,
+                aoColumnDefs: [
+                { "aTargets": [0], "bSortable": true },
+                { "aTargets": [1], "bSortable": true },
+                { "aTargets": [2], "bSortable": true },
+                { "aTargets": [3], "bSortable": false }
+
+                ]
+            });
+        });
     </script>
 }
 
 @{
+    var i = 1;
     <fieldset>
         <table id="request-table" class="items">
             <thead>
@@ -61,7 +62,7 @@
                 {
                     <tr class="admin-categories-tr">
                         <td class="date">
-                            <a href="~/@item.CampaignAlias">@item.CampaignTitle</a>                           
+                            <a href="~/@item.CampaignAlias">@item.CampaignTitle</a>
                         </td>
                         <td class="userId">
                             @item.Seller.Email
@@ -72,23 +73,31 @@
                         <td class="inf">
                             <a class="button" onclick="showRequesters(@item.CampaignId)" title="@T("Requesters")">@T("Requesters")</a>
                         </td>
-                        
+
                     </tr>
-    <div id=@item.CampaignId class="bootstrap-wysihtml5-insert-image-modal modal fade modWindow in" style="display: none; ">
-        <div style="margin-left:8%; min-height: 246px;" class="admin-categories">
-            <h1> Requesters emails:</h1>
-            <ol style="list-style-type: decimal;">
-                @foreach (var request in item.Requests)
-                {
-                    <div style="font-size:large; margin-bottom:5px;">  @request.Email</div>
-                }
-            </ol>
-        </div>
-        <div class="modal-buttons" style="margin-top:10px;margin-bottom:10px; ">
-            <a data-dismiss="modal" class="send-button" style="margin-left: 20%">CLOSE</a>
-        </div>
-        
-    </div>
+                    <div id=@item.CampaignId class="bootstrap-wysihtml5-insert-image-modal modal fade modWindow in" style="display: none; ">
+                        <div style="margin-left:8%; min-height: 246px;" class="admin-categories">
+                            <h1> Requesters emails:</h1>
+                            <div class="div-table">
+                                <div class="div-table-header">
+                                    <div class="div-table-num" style="margin-left:1%">Num</div>
+                                    <div class="div-table-col" style="margin-left:3%">Email</div>
+                                </div>
+                                @foreach (var request in item.Requests)
+                                {
+                                    <div class="div-table-row">
+                                        <div class="div-table-num" style="margin-left:4%">@i </div>
+                                        <div class="div-table-col">@request.Email</div>                                        
+                                    </div>
+                                    i++;
+                                }
+                            </div>
+                        </div>
+                        <div class="modal-buttons" style="margin-top:10px;margin-bottom:10px; ">
+                            <a data-dismiss="modal" class="send-button" style="margin-left: 20%">CLOSE</a>
+                        </div>
+
+                    </div>
                 }
             </tbody>
         </table>

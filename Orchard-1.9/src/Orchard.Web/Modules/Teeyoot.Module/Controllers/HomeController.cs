@@ -336,6 +336,7 @@ namespace Teeyoot.Module.Controllers
 
                     if (status == "00")
                     {
+                        amount = amount.Replace(".", ",");
                         order.OrderStatusRecord = _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString());
                         order.Paid = DateTime.Now.ToUniversalTime();
                         order.ProfitPaid = true;
