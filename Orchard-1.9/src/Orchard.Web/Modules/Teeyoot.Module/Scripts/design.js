@@ -1828,8 +1828,45 @@ var design={
 				        if (paths.length > 0) {
 				            $(paths).each(function () {
 				                this.setAttributeNS(null, 'fill', rgb);
+				                var id = "" + this.id + "";
+				                if (document.getElementById(id) != null) {
+				                    if ((document.getElementById(id).style.fill != "rgb(255, 255, 255)") && (document.getElementById(id).style.fill != "none")) {
+				                        document.getElementById(id).style.fill = "";
+				                    }
+				                    if (document.getElementById(id).style.fill == "none") {
+				                        document.getElementById(id).style.stroke = rgb;
+				                    }
+				                }			                
 				            }
                                 );
+				        }
+				        var polygons = e.find('polygon');
+				        if (polygons.length > 0) {
+				            $(polygons).each(function () {
+				                this.setAttributeNS(null, 'fill', rgb);
+				            });
+
+				        }
+				        var rects = e.find('rect');
+				        if (rects.length > 0) {
+				            $(rects).each(function () {
+				                this.setAttributeNS(null, 'fill', rgb);
+				            });
+
+				        }
+				        var ellipses = e.find('ellipse');
+				        if (ellipses.length > 0) {
+				            $(ellipses).each(function () {
+				                this.setAttributeNS(null, 'fill', rgb);
+				            });
+
+				        }
+				        var g = e.find('g');
+				        if (g.length > 0) {
+				            $(g).each(function () {
+				                this.setAttributeNS(null, 'stroke', rgb);
+				            });
+
 				        }
 				        if (obj.item.color) {
 				            app.state.unuseColors(obj.item.color);
