@@ -106,6 +106,11 @@ namespace Teeyoot.Module
                         .Action("Index", "AdminPromotions", new { area = "Teeyoot.Module" })
                         )
                     .Add(subItem => subItem
+                        .Caption(T("Text translation"))
+                        .Position("3.4")
+                        .Action("Index", "AdminTranslationText", new { area = "Teeyoot.Module" })
+                        )
+                    .Add(subItem => subItem
                         .Caption(T("Mandrill Settings"))
                         .Position("2.3")
                         .Action("Index", "AdminMessage", new { area = "Teeyoot.Messaging" })
