@@ -10,6 +10,7 @@ using Teeyoot.Module.Services;
 using Teeyoot.Module.Models;
 using Teeyoot.Search.ViewModels;
 using Orchard;
+using Teeyoot.Module.Messaging.CampaignService;
 
 namespace Teebay.Search.Controllers
 {
@@ -44,7 +45,14 @@ namespace Teebay.Search.Controllers
             string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
-            var response = _campService.SearchCampaigns();
+            var searchCampaignsRequest = new SearchCampaignsRequest
+            {
+                Filter = filter,
+                Skip = skip,
+                Take = take
+            };
+
+            var searchCampaignsResponse = _campService.SearchCampaigns(searchCampaignsRequest);
 
             if (!string.IsNullOrEmpty(filter))
             {
@@ -79,6 +87,15 @@ namespace Teebay.Search.Controllers
 
             string culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
             string cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
+            var searchCampaignsRequest = new SearchCampaignsRequest
+            {
+                Tag = categoriesName.ToLowerInvariant(),
+                Skip = 0,
+                Take = 16
+            };
+
+            var searchCampaignsResponse = _campService.SearchCampaignsForTag(searchCampaignsRequest);
 
             if (findCampCateg != null)
             {

@@ -13,7 +13,11 @@ namespace Teeyoot.Module.Services
 {
     public interface ICampaignService : IDependency
     {
-        SearchCampaignsResponse SearchCampaigns();
+        SearchCampaignsResponse SearchCampaigns(SearchCampaignsRequest request);
+
+        SearchCampaignsResponse SearchCampaignsForTag(SearchCampaignsRequest request);
+
+        SearchCampaignsResponse SearchCampaignsForFilter(SearchCampaignsRequest request);
 
         IQueryable<CampaignRecord> GetAllCampaigns();
 

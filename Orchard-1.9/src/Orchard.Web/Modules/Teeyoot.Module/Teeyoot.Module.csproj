@@ -1183,6 +1183,7 @@
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
+    <Compile Include="Messaging\CampaignService\SearchCampaignsRequest.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
     <Compile Include="Models\CountryRecord.cs" />

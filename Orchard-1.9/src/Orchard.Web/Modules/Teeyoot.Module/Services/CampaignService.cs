@@ -581,7 +581,7 @@ namespace Teeyoot.Module.Services
             return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Select(c=>c.Email);
         }
 
-        public SearchCampaignsResponse SearchCampaigns()
+        public SearchCampaignsResponse SearchCampaigns(SearchCampaignsRequest request)
         {
             var response = new SearchCampaignsResponse();
 
@@ -637,48 +637,81 @@ namespace Teeyoot.Module.Services
                         }
                     }
 
-                    /*
+                    transaction.Commit();
+                }
+            }
+
+            response.Campaigns = campaigns;
+
+            return response;
+        }
+
+        public SearchCampaignsResponse SearchCampaignsForTag(SearchCampaignsRequest request)
+        {
+            var response = new SearchCampaignsResponse();
+
+            const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
+                                                " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
+                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
+                                                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
+                                                " JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
+                                                " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
+                                                " JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
+                                                " ON LinkCampaignAndCategoriesRecord.CampaignRecord_Id = CampaignCategoriesRecord.Id" +
+                                                " AND LOWER(CampaignCategoriesRecord.Name) = @Tag" +
+                                                " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
+                                                " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
+                                                " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
+                                                " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
+                                                " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
+                                                " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
+                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
+                                                " AND CampaignRecord.IsPrivate = 0" +
+                                                " AND CampaignRecord.IsActive = 1" +
+                                                " AND CampaignRecord.IsApproved = 1" +
+                                                " GROUP BY CampaignRecord.Id" +
+                                                " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
+
+            var campaigns = new List<SearchCampaignItem>();
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
                     using (var command = connection.CreateCommand())
                     {
                         command.Transaction = transaction;
                         command.CommandType = CommandType.Text;
-                        command.CommandText = userQuery;
+                        command.CommandText = searchCampaignsQuery;
 
-                        var offsetParameter = new SqlParameter("@Offset", SqlDbType.Int) { Value = offset };
-                        var fetchParameter = new SqlParameter("@Fetch", SqlDbType.Int) { Value = fetch };
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
 
-                        command.Parameters.Add(offsetParameter);
-                        command.Parameters.Add(fetchParameter);
+                        var tagParameter = new SqlParameter("@Tag", SqlDbType.NVarChar)
+                        {
+                            Value = request.Tag
+                        };
+
+                        command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(tagParameter);
 
                         using (var reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                var userItemViewModel = new UserItemViewModel
+                                var searchCampaignItem = new SearchCampaignItem
                                 {
-                                    Email = (string)reader["UserName"],
-                                    UserId = (int)reader["UserId"],
-                                    IsTeeyootUser = (bool)reader["IsTeeyootUser"]
+                                    Id = (int) reader["CampaignRecordId"]
                                 };
 
-                                if (reader["CurrencyName"] != DBNull.Value)
-                                    userItemViewModel.Currency = (string)reader["CurrencyName"];
-
-                                userItems.Add(userItemViewModel);
+                                campaigns.Add(searchCampaignItem);
                             }
                         }
                     }
-                     */
-                    /*
-                    using (var command = connection.CreateCommand())
-                    {
-                        command.Transaction = transaction;
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = userTotalQuery;
-
-                        userTotal = (int)command.ExecuteScalar();
-                    }
-                     */
 
                     transaction.Commit();
                 }
@@ -687,6 +720,99 @@ namespace Teeyoot.Module.Services
             response.Campaigns = campaigns;
 
             return response;
+        }
+
+        public SearchCampaignsResponse SearchCampaignsForFilter(SearchCampaignsRequest request)
+        {
+            var response = new SearchCampaignsResponse();
+
+            const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
+                                                " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
+                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
+                                                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
+                                                " LEFT JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
+                                                " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
+                                                " LEFT JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
+                                                " ON LinkCampaignAndCategoriesRecord.CampaignRecord_Id = CampaignCategoriesRecord.Id" +
+                                                //" AND LOWER(CampaignCategoriesRecord.Name) = @Tag" +
+                                                " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
+                                                " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
+                                                " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
+                                                " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
+                                                " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
+                                                " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
+                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
+                                                " AND CampaignRecord.IsPrivate = 0" +
+                                                " AND CampaignRecord.IsActive = 1" +
+                                                " AND CampaignRecord.IsApproved = 1" +
+                                                " GROUP BY CampaignRecord.Id" +
+                                                " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
+
+            var campaigns = new List<SearchCampaignItem>();
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = searchCampaignsQuery;
+
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
+
+                        var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar)
+                        {
+                            Value = request.Filter
+                        };
+
+                        command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(filterParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var searchCampaignItem = new SearchCampaignItem
+                                {
+                                    Id = (int) reader["CampaignRecordId"]
+                                };
+
+                                campaigns.Add(searchCampaignItem);
+                            }
+                        }
+                    }
+
+                    transaction.Commit();
+                }
+            }
+
+            response.Campaigns = campaigns;
+
+            return response;
+
+            var categCamp = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).Select(c => c.Id);
+            var campForTags =
+                _linkCampaignAndCategories.Table.Where(c => categCamp.Contains(c.CampaignCategoriesPartRecord.Id))
+                    .Select(c => c.CampaignRecord)
+                    .Where(c => c.WhenDeleted == null && !c.IsPrivate && c.IsActive && c.IsApproved);
+            //List<CampaignRecord> campForTags = _campaignCategories.Table.Where(c => c.Name.ToLower().Contains(filter)).SelectMany(c => c.Campaigns.Select(x => x.CampaignRecord)).ToList();
+            IEnumerable<CampaignRecord> camps =
+                GetAllCampaigns()
+                    .Where(c => !c.IsPrivate && c.IsActive && c.IsApproved)
+                    .Where(c => c.Title.Contains(filter) || c.Description.Contains(filter));
+            camps =
+                camps.Concat(campForTags).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).Distinct();
+            //return camps.Skip(skip).Take(take);
+            return camps.Skip(skip).Take(take).ToList();
+
+            throw new NotImplementedException();
         }
     }
 }
