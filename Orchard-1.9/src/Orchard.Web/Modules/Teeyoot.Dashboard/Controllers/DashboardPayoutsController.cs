@@ -24,6 +24,7 @@ namespace Teeyoot.Dashboard.Controllers
             model.Transactions = list;
             model.Balances = _currencyRepository.Table.Select(c => new Balance { CurrencyId = c.Id, Currency = c.Code }).ToList();
             var procProfits = 0.0;
+            var unclProfits = 0.0;
             foreach (var itemBal in model.Balances)
             {
                 foreach (var item in model.Transactions)
@@ -33,7 +34,11 @@ namespace Teeyoot.Dashboard.Controllers
                         item.Currency = itemBal.Currency;
 
                         if (item.IsPlus && item.Status != "pending")
+                        {
                             itemBal.Bal = itemBal.Bal + item.Amount;
+                            unclProfits = unclProfits - item.Amount;
+                        }
+
                         else if (!item.IsPlus && item.Status != "pending")
                         {
                             itemBal.Bal = itemBal.Bal - item.Amount;
@@ -52,7 +57,7 @@ namespace Teeyoot.Dashboard.Controllers
             }
 
             var campaigns = _campaignService.GetCampaignsOfUser(currentUserId);
-            var unclProfits = 0.0;
+
             
             foreach (var item in campaigns)
             {
