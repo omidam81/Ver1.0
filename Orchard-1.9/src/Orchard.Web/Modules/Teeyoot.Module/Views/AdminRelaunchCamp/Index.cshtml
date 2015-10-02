@@ -28,7 +28,8 @@
                 { "aTargets": [0], "bSortable": true },
                 { "aTargets": [1], "bSortable": true },
                 { "aTargets": [2], "bSortable": true },
-                { "aTargets": [3], "bSortable": false }
+                { "aTargets": [3], "bSortable": true },
+                { "aTargets": [4], "bSortable": false }
 
                 ]
             });
@@ -42,6 +43,9 @@
         <table id="request-table" class="items">
             <thead>
                 <tr class="admin-categories">
+                    <th class="date">
+                        <h3>@T("Campaign Id")</h3>
+                    </th>
                     <th class="date">
                         <h3>@T("Campaign Title")</h3>
                     </th>
@@ -61,6 +65,9 @@
                 @foreach (var item in Model)
                 {
                     <tr class="admin-categories-tr">
+                        <td class="date">
+                            @item.CampaignId
+                        </td>
                         <td class="date">
                             <a href="~/@item.CampaignAlias">@item.CampaignTitle</a>
                         </td>

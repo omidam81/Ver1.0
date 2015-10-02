@@ -69,21 +69,21 @@
                 <div class="overview-for-period selected">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
                     <div>
-                        <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
+                        <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit")</div>
 
                     </div>
 
-                    <div>
+                    @*<div>
                         <div><span>@Model.MYCurrencyCode @item.MYToBePaid.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Claimed Payout Balance")</div>
 
-                    </div>
+                    </div>*@
                 </div>
             }
             else if (item.Type != Teeyoot.Module.Common.Enums.OverviewType.AllTime)
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit (includes pending profit)")</div>
+                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit (includes pending profit)")</div>
 
 
                 </div>
@@ -92,7 +92,7 @@
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Unclaimed Profit")</div>
+                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit")</div>
                 </div>
             }
         }
@@ -218,7 +218,7 @@
                             @if (!c.IsActive)
                             {
                                 <div>
-                                    <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Edit")">
+                                    <a href="@Url.Action("DeleteCampaign", "Dashboard", new { id = c.Id })" title="@T("Move to Trash")">
                                         <i class="fa fa-times"></i>
                                     </a>
                                 </div>

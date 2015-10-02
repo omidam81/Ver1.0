@@ -96,12 +96,11 @@ namespace Teeyoot.Orders.Controllers
                 try
                 {
 
-                var seller = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId);
+                var seller = _contentManager.Query<UserPart, UserPartRecord>().Where(user => user.Id == campaign.TeeyootUserId).List().First();
 
                 double orderProfit = 0;
 
-                if (item.Products != null)
-                {
+                
                     foreach (var product in item.Products)
                     {
                         var prof = product.CampaignProductRecord.Price - product.CampaignProductRecord.BaseCost;
@@ -113,7 +112,7 @@ namespace Teeyoot.Orders.Controllers
                         orderProfit = orderProfit + (prof*product.Count);
                         orderProfit = Math.Round(orderProfit, 2);
                     }
-                }
+                
 
                 //if (string.IsNullOrWhiteSpace(searchString) || campaign.Title.ToLower().Contains(searchString.ToLower()))
                 //{
@@ -128,12 +127,6 @@ namespace Teeyoot.Orders.Controllers
                     Id = item.Id,
                     Profit = orderProfit,
                     SellerId = seller != null ? seller.Id : 0,
-                    //FirstName = item.FirstName,
-                    //LastName = item.LastName,
-                    //StreetAdress = item.StreetAddress,
-                    //City = item.City,
-                    //Country = item.Country,
-                    //PhoneNumber = item.PhoneNumber,
                     Payout = item.ProfitPaid,
                     CreateDate = item.Created,
                     UserNameSeller = seller != null ? seller.UserName : ""
@@ -151,24 +144,24 @@ namespace Teeyoot.Orders.Controllers
             }
             //var qwe = new List<SelectListItem>();
             
-            var entriesProjection = orderEntities.Orders.Select(e =>
-            {
-                return Shape.FaqEntry(
-                    PublicId: e.PublicId,
-                    Products: e.Products,
-                    Status: e.Status,
-                    EmailBuyer: e.EmailBuyer,
-                    Id: e.Id,
-                    Profit: e.Profit,
-                    UserNameSeller: e.UserNameSeller,
-                    Payout: e.Payout,
-                    CampaignId: e.CampaignId,
-                    CampaignName: e.CampaignName,
-                    CampaignAlias: e.CampaignAlias,
-                    SellerId: e.SellerId,
-                    CreateDate: e.CreateDate.ToString("dd/MM/yyyy")
-                    );
-            });
+            //var entriesProjection = orderEntities.Orders.Select(e =>
+            //{
+            //    return Shape.FaqEntry(
+            //        PublicId: e.PublicId,
+            //        Products: e.Products,
+            //        Status: e.Status,
+            //        EmailBuyer: e.EmailBuyer,
+            //        Id: e.Id,
+            //        Profit: e.Profit,
+            //        UserNameSeller: e.UserNameSeller,
+            //        Payout: e.Payout,
+            //        CampaignId: e.CampaignId,
+            //        CampaignName: e.CampaignName,
+            //        CampaignAlias: e.CampaignAlias,
+            //        SellerId: e.SellerId,
+            //        CreateDate: e.CreateDate.ToString("dd/MM/yyyy")
+            //        );
+            //});
             //var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
            
             //var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
@@ -183,7 +176,7 @@ namespace Teeyoot.Orders.Controllers
 
             return View("Index", new AdminOrderViewModel
             {
-                DynamicOrders = entriesProjection.ToArray(),
+                DynamicOrders = orderEntities.Orders.ToArray(),
                 OrderStatuses = orderStatuses
             });
         }
