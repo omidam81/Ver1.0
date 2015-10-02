@@ -657,7 +657,7 @@ namespace Teeyoot.Module.Services
                                                 " JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
                                                 " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
                                                 " JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
-                                                " ON LinkCampaignAndCategoriesRecord.CampaignRecord_Id = CampaignCategoriesRecord.Id" +
+                                                " ON LinkCampaignAndCategoriesRecord.CampaignCategoriesPartRecord_Id = CampaignCategoriesRecord.Id" +
                                                 " AND LOWER(CampaignCategoriesRecord.Name) = @Tag" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
                                                 " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
@@ -735,14 +735,14 @@ namespace Teeyoot.Module.Services
                                                 " LEFT JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
                                                 " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
-                                                " ON LinkCampaignAndCategoriesRecord.CampaignRecord_Id = CampaignCategoriesRecord.Id" +
-                                                " AND LOWER(CampaignCategoriesRecord.Name) LIKE @Filter" +
+                                                " ON LinkCampaignAndCategoriesRecord.CampaignCategoriesPartRecord_Id = CampaignCategoriesRecord.Id" +
                                                 " WHERE CampaignRecord.WhenDeleted IS NULL" +
                                                 " AND CampaignRecord.IsPrivate = 0" +
                                                 " AND CampaignRecord.IsActive = 1" +
                                                 " AND CampaignRecord.IsApproved = 1" +
                                                 " AND (CampaignRecord.Title LIKE @Filter" +
-                                                " OR CampaignRecord.Description LIKE @Filter)) CampaignTemp" +
+                                                " OR CampaignRecord.Description LIKE @Filter" +
+                                                " OR CampaignCategoriesRecord.Name LIKE @Filter)) CampaignTemp" +
                                                 " JOIN Teeyoot_Module_CampaignRecord CampaignRecord" +
                                                 " ON CampaignTemp.CampaignRecordId = CampaignRecord.Id" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
