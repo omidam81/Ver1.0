@@ -52,6 +52,7 @@ h1 {
     margin: auto;
     border: 1px solid #e8eced;
     position: relative;
+    height: 270px;
 }
 
 .btnStartPayout {
@@ -77,6 +78,52 @@ h1 {
         text-decoration: none;
     }
 
+@media all and (max-width: 1700px) {
+    .balance {
+        height: 290px;
+    }
+}
+
+@media all and (max-width: 1428px) {
+    .balance {
+        height: 350px;
+    }
+}
+
+@media all and (max-width: 1428px) {
+    .balance {
+        height: 360px;
+    }
+}
+
+@media all and (max-width: 1140px) {
+    .balance {
+        height: 370px;
+    }
+}
+
+@media all and (max-width: 577px) {
+    .balance {
+        height: 470px !important;
+    }
+}
+
+@media all and (max-width: 438px) {
+    .balance {
+        height: 510px !important;
+    }
+}
+
+@media all and (max-width: 350px) {
+    .balance {
+        height: 550px !important;
+    }
+}
+
+
+
+
+
 @media all and (max-width: 877px) {
     #modal_form {
         top: 45%;
@@ -88,11 +135,16 @@ h1 {
 
 @media all and (max-width: 767px) {
     #modal_form {
-        height: 850px !important; 
+        height: 850px !important;
         top: 35% !important;
     }
+
     .form-group {
         margin-bottom: 0;
+    }
+
+        .balance {
+        height: 380px;
     }
 }
 
@@ -102,21 +154,23 @@ h1 {
         margin-left: -170px !important;
     }
 }
+
 @media all and (max-width: 370px) {
     #modal_form {
         /*max-width: 90% !important;*/
         margin-left: -150px !important;
     }
 }
-    @media all and (max-width: 330px) {
+
+@media all and (max-width: 330px) {
     #modal_form {
         margin-left: -130px !important;
     }
 }
 
-  @media all and (max-width: 397px) {
+@media all and (max-width: 397px) {
     #modal_form {
-      height: 870px !important;
+        height: 870px !important;
     }
 }
 
@@ -150,20 +204,22 @@ input.error {
     z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
     padding: 20px 10px;
 }
-#messageForProfit{
+
+#messageForProfit {
     max-width: 800px;
-       width: 400px;
+    width: 400px;
     height: 100px;
     border-radius: 5px;
     border: 1px solid red;
     background: #fff;
-    position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */ 
-    left: 40%; /* пoлoвинa экрaнa слевa */  
+    position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+    left: 40%; /* пoлoвинa экрaнa слевa */
     display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
     opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
     z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
     padding: 20px 10px;
 }
+
 @media all and (max-width: 980px) {
     #messageForProfit {
         left: 20%;
@@ -175,10 +231,11 @@ input.error {
         left: 10%;
     }
 }
+
 @media all and (max-width: 460px) {
     #messageForProfit {
         left: 10px;
-        width:90%;
+        width: 90%;
     }
 }
 /* Кнoпкa зaкрыть для тех ктo в тaнке) */

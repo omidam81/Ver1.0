@@ -26,6 +26,7 @@ namespace Teeyoot.Module.Services
 
         void UpdateOrder(OrderRecord order);
 
+
         void UpdateOrder(OrderRecord order, OrderStatus status);
 
         OrderRecord CreateOrder(IEnumerable<OrderProductViewModel> products);
@@ -36,8 +37,12 @@ namespace Teeyoot.Module.Services
 
         IQueryable<LinkOrderCampaignProductRecord> GetAllOrderedProducts();
 
+        IQueryable<LinkOrderCampaignProductRecord> GetActiveProductsOrderedOfCampaign(int campaignId);
+
         void DeleteOrder(int orderId);
 
         Task<int> GetProfitOfCampaign(int id);
+
+        double GetProfitActiveOrdersOfCampaign(int id);
     }
 }
