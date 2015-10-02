@@ -20,11 +20,6 @@ namespace Teeyoot.Module.ViewModels
         public List<string> SearchResult { get; set; }
         public List<string> SearchResultReplace { get; set; }
         public List<string> SearchResultFilePath { get; set; }
-    }
-
-    public class LinkCountryCulture
-    {
-        public int CountryId { get; set; }
-        public int CultureId { get; set; }
+        public int ChangeText { get; set; }
     }
 }

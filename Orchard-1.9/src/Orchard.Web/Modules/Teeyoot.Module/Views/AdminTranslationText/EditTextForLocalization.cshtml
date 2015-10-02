@@ -1,0 +1,29 @@
+﻿@model Teeyoot.Module.ViewModels.AdminEditTranslationTextViewModel
+@{
+    Style.Include("TextTranslation.css");
+    Layout.Title = T("Edit text").ToString();
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+
+<fieldset>
+    @using (Html.BeginForm("SaveText", "AdminTranslationText", FormMethod.Get))
+    {
+        <fieldset>
+            <div class="div-row">
+                @Html.TextBoxFor(m => m.ChangeText)
+                @Html.HiddenFor(m => m.ReplaceText)
+                @Html.HiddenFor(m => m.FilePath)
+                @Html.HiddenFor(m => m.ActionCountry)
+                @Html.HiddenFor(m => m.ActionCulture)
+                @Html.HiddenFor(m => m.Search)
+            </div>
+            <div class="div-row">
+                <button type="submit">@T("Save")</button>
+            </div>
+        </fieldset>
+    }
+</fieldset>

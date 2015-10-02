@@ -15,6 +15,7 @@ using System.Text;
 using Orchard.UI.Navigation;
 using Orchard.Settings;
 using Orchard.DisplayManagement;
+using Orchard.Localization;
 
 namespace Teeyoot.Module.Controllers
 {
@@ -25,6 +26,8 @@ namespace Teeyoot.Module.Controllers
         private readonly ICultureService _cultureService;
         private readonly IRepository<CultureRecord> _cultureRepository;
         private readonly IWorkContextAccessor _wca;
+        private IOrchardServices Services { get; set; }
+        public Localizer T { get; set; }
 
         private const string pathToTeeyootAccount = "Modules/Teeyoot.Account/App_Data/Localization/";
         private const string pathToTeeyootDashboard = "Modules/Teeyoot.Dashboard/App_Data/Localization/";
@@ -41,16 +44,17 @@ namespace Teeyoot.Module.Controllers
         private const string nameFileToModule = "/orchard.module.po";
         private const string nameFileToTheme = "/orchard.theme.po";
 
-        public AdminTranslationTextController(ICountryService countryService, ICultureService cultureService, IRepository<CultureRecord> cultureRepository, IWorkContextAccessor wca)
+        public AdminTranslationTextController(ICountryService countryService, ICultureService cultureService, IRepository<CultureRecord> cultureRepository, IWorkContextAccessor wca, IOrchardServices services)
         {
             _countryService = countryService;
             _cultureService = cultureService;
             _cultureRepository = cultureRepository;
             _wca = wca;
+            Services = services;
         }
 
         // GET: AdminTranslationText
-        public ActionResult Index(PagerParameters pagerParameters, AdminTranslationTextViewModel attvm)
+        public ActionResult Index(AdminTranslationTextViewModel attvm)
         {
             attvm.ActionCountry = _countryService.GetAllCountry().ToList();
             if (attvm.ActionCountryId > 0)
@@ -263,11 +267,32 @@ namespace Teeyoot.Module.Controllers
                         }
                     }
                 }
+                strAc.Close();
+                strDach.Close();
+                strFAQ.Close();
+                strFeaturedCampaigns.Close();
+                strMess.Close();
+                strModule.Close();
+                strOrders.Close();
+                strPaym.Close();
+                strPayots.Close();
+                strSearch.Close();
+                strWiz.Close();
+                strTeeTheme.Close();
 
                 attvm.SearchResult = result;
+
+                if (result == null || result.Count == 0)
+                {
+                    attvm.NotFoundResult = true;
+                }
+                else
+                {
+                    attvm.NotFoundResult = false;
+                }
+
                 attvm.SearchResultReplace = resultReplace;
                 attvm.SearchResultFilePath = resultFilePath;
-                attvm.NotFoundResult = false;
             }
 
             return View(attvm);
@@ -279,6 +304,27 @@ namespace Teeyoot.Module.Controllers
             model.ActionCulture = _countryService.GetCultureByCountry(countryId).ToList();
 
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditTextForLocalization(string changeText, string replaceText, string filePath, int actionCountry, int actionCulture, string search)
+        {
+            return View("EditTextForLocalization", new AdminEditTranslationTextViewModel { ChangeText = changeText, ReplaceText = replaceText, FilePath = filePath, ActionCountry = actionCountry, ActionCulture = actionCulture, Search = search });
+        }
+
+        public ActionResult SaveText(AdminEditTranslationTextViewModel aettvm)
+        {
+            try
+            {
+                StringBuilder sbText = new StringBuilder(System.IO.File.ReadAllText(aettvm.FilePath));
+                sbText.Replace(aettvm.ReplaceText, "msgstr \"" + aettvm.ChangeText + "\"");
+                System.IO.File.WriteAllText(aettvm.FilePath, sbText.ToString());
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Information, T("Text upgraded successfully"));
+            }
+            catch {
+                Services.Notifier.Add(Orchard.UI.Notify.NotifyType.Error, T("An error occurred while updating the text"));
+            }
+
+            return this.RedirectToAction("Index", new AdminTranslationTextViewModel { ActionCountryId = aettvm.ActionCountry, ActionCultureId = aettvm.ActionCulture, SearchString = aettvm.Search });
         }
     }
 }

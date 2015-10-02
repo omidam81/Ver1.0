@@ -473,12 +473,46 @@ namespace Teeyoot.Module
                 new RouteDescriptor
                 {
                     Route = new Route(
-                        "TextTranslation",
+                        "Admin/TextTranslation",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.Module"},
                             {"controller", "AdminTranslationText"},
                             {"action", "Index"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },                 
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/EdtTextForTranslation",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminTranslationText"},
+                            {"action", "EditTextForLocalization"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },                 
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/SaveTextForTransaltion",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminTranslationText"},
+                            {"action", "SaveText"}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary
