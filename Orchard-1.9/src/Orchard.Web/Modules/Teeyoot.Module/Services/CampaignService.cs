@@ -591,9 +591,9 @@ namespace Teeyoot.Module.Services
                                                 " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
                                                 " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
                                                 " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
-                                                " JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
+                                                " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
                                                 " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
-                                                " JOIN Teeyoot_Module_OrderRecord OrderRecord" +
+                                                " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
                                                 " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
                                                 " WHERE CampaignRecord.WhenDeleted IS NULL" +
                                                 " AND CampaignRecord.IsPrivate = 0" +
