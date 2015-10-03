@@ -53,8 +53,7 @@ namespace Teeyoot.Module.Services
                                ITeeyootMessagingService teeyootMessagingService,
                                IRepository<BringBackCampaignRecord> backCampaignRepository,
                                IWorkContextAccessor workContextAccessor,
-                               ICountryService countryService)
-                               IWorkContextAccessor workContextAccessor,
+                               ICountryService countryService,
                                ShellSettings shellSettings)
         {
             _campaignRepository = campaignRepository;
