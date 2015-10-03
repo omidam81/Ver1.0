@@ -1077,6 +1077,7 @@
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\wizard.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
+    <Content Include="SearchCampaignsStoredProcedures.sql" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap-wysihtml5.css" />
