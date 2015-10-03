@@ -585,8 +585,6 @@ namespace Teeyoot.Module.Services
         {
             var response = new SearchCampaignsResponse();
 
-            var campaigns = new List<SearchCampaignItem>();
-
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
                 connection.Open();
@@ -618,15 +616,7 @@ namespace Teeyoot.Module.Services
 
                         using (var reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
-                            {
-                                var searchCampaignItem = new SearchCampaignItem
-                                {
-                                    Id = (int) reader["CampaignRecordId"]
-                                };
-
-                                campaigns.Add(searchCampaignItem);
-                            }
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
                         }
                     }
 
@@ -634,16 +624,12 @@ namespace Teeyoot.Module.Services
                 }
             }
 
-            response.Campaigns = campaigns;
-
             return response;
         }
 
         public SearchCampaignsResponse SearchCampaignsForTag(SearchCampaignsRequest request)
         {
             var response = new SearchCampaignsResponse();
-
-            var campaigns = new List<SearchCampaignItem>();
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
@@ -681,15 +667,7 @@ namespace Teeyoot.Module.Services
 
                         using (var reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
-                            {
-                                var searchCampaignItem = new SearchCampaignItem
-                                {
-                                    Id = (int) reader["CampaignRecordId"]
-                                };
-
-                                campaigns.Add(searchCampaignItem);
-                            }
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
                         }
                     }
 
@@ -697,16 +675,12 @@ namespace Teeyoot.Module.Services
                 }
             }
 
-            response.Campaigns = campaigns;
-
             return response;
         }
 
         public SearchCampaignsResponse SearchCampaignsForFilter(SearchCampaignsRequest request)
         {
             var response = new SearchCampaignsResponse();
-
-            var campaigns = new List<SearchCampaignItem>();
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
@@ -744,15 +718,7 @@ namespace Teeyoot.Module.Services
 
                         using (var reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
-                            {
-                                var searchCampaignItem = new SearchCampaignItem
-                                {
-                                    Id = (int) reader["CampaignRecordId"]
-                                };
-
-                                campaigns.Add(searchCampaignItem);
-                            }
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
                         }
                     }
 
@@ -760,12 +726,10 @@ namespace Teeyoot.Module.Services
                 }
             }
 
-            response.Campaigns = campaigns;
-
             return response;
         }
 
-        private IEnumerable<SearchCampaignItem> GetSearchCampaignItemsFrom(IDataReader reader)
+        private static IEnumerable<SearchCampaignItem> GetSearchCampaignItemsFrom(IDataReader reader)
         {
             var searchCampaigns = new List<SearchCampaignItem>();
 
@@ -773,7 +737,13 @@ namespace Teeyoot.Module.Services
             {
                 var searchCampaignItem = new SearchCampaignItem
                 {
-                    Id = (int)reader["CampaignRecordId"]
+                    Id = (int) reader["Id"],
+                    Title = (string) reader["Title"],
+                    Alias = (string) reader["Alias"],
+                    EndDate = (DateTime) reader["EndDate"],
+                    ProductCountSold = (int) reader["ProductCountSold"],
+                    ProductMinimumGoal = (int) reader["ProductMinimumGoal"],
+                    BackSideByDefault = (bool) reader["BackSideByDefault"]
                 };
 
                 searchCampaigns.Add(searchCampaignItem);
