@@ -52,6 +52,7 @@ namespace Teebay.Search.Controllers
                 var searchCampaignsRequest = new SearchCampaignsRequest
                 {
                     Filter = filter,
+                    Culture = cultureSearch,
                     Skip = skip,
                     Take = take
                 };
@@ -64,6 +65,7 @@ namespace Teebay.Search.Controllers
             {
                 var searchCampaignsRequest = new SearchCampaignsRequest
                 {
+                    Culture = cultureSearch,
                     Skip = skip,
                     Take = take
                 };

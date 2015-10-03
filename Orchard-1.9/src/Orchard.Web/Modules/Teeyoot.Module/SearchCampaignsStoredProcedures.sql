@@ -4,6 +4,7 @@ GO
 
 CREATE PROCEDURE SearchCampaigns
 	@CurrentDate DATETIME,
+	@Culture NVARCHAR(50),
 	@Skip INT,
 	@Take INT
 AS
@@ -34,6 +35,7 @@ FROM(
 		ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id
 	WHERE 
 		CampaignRecord.WhenDeleted IS NULL
+		AND CampaignRecord.CampaignCulture = @Culture
 		AND CampaignRecord.IsPrivate = 0
 		AND CampaignRecord.IsActive = 1
 		AND CampaignRecord.IsApproved = 1
@@ -58,6 +60,7 @@ GO
 
 CREATE PROCEDURE SearchCampaignsForFilter
 	@CurrentDate DATETIME,
+	@Culture NVARCHAR(50),
 	@Filter NVARCHAR(4000),
 	@Skip INT,
 	@Take INT
@@ -90,6 +93,7 @@ FROM(
 			ON LinkCampaignAndCategoriesRecord.CampaignCategoriesPartRecord_Id = CampaignCategoriesRecord.Id
 		WHERE 
 			CampaignRecord.WhenDeleted IS NULL
+			AND CampaignRecord.CampaignCulture = @Culture
 			AND CampaignRecord.IsPrivate = 0
 			AND CampaignRecord.IsActive = 1
 			AND CampaignRecord.IsApproved = 1
@@ -124,6 +128,7 @@ GO
 
 CREATE PROCEDURE SearchCampaignsForTag
 	@CurrentDate DATETIME,
+	@Culture NVARCHAR(50),
 	@Tag NVARCHAR(100),
 	@Skip INT,
 	@Take INT
@@ -157,6 +162,7 @@ FROM(
 			AND LOWER(CampaignCategoriesRecord.Name) = @Tag
 		WHERE 
 			CampaignRecord.WhenDeleted IS NULL
+			AND CampaignRecord.CampaignCulture = @Culture
 			AND CampaignRecord.IsPrivate = 0
 			AND CampaignRecord.IsActive = 1
 			AND CampaignRecord.IsApproved = 1

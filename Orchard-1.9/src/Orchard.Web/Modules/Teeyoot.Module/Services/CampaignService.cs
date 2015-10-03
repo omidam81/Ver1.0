@@ -601,6 +601,10 @@ namespace Teeyoot.Module.Services
                         {
                             Value = DateTime.UtcNow
                         };
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = request.Culture
+                        };
                         var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
                         {
                             Value = request.Skip
@@ -611,6 +615,7 @@ namespace Teeyoot.Module.Services
                         };
 
                         command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
                         command.Parameters.Add(skipParameter);
                         command.Parameters.Add(takeParameter);
 
@@ -649,6 +654,10 @@ namespace Teeyoot.Module.Services
                         {
                             Value = DateTime.UtcNow
                         };
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = request.Culture
+                        };
                         var tagParameter = new SqlParameter("@Tag", SqlDbType.NVarChar, 100)
                         {
                             Value = request.Tag
@@ -663,6 +672,7 @@ namespace Teeyoot.Module.Services
                         };
 
                         command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
                         command.Parameters.Add(tagParameter);
                         command.Parameters.Add(skipParameter);
                         command.Parameters.Add(takeParameter);
@@ -702,6 +712,10 @@ namespace Teeyoot.Module.Services
                         {
                             Value = DateTime.UtcNow
                         };
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = request.Culture
+                        };
                         var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
                         {
                             Value = "%" + request.Filter + "%"
@@ -716,6 +730,7 @@ namespace Teeyoot.Module.Services
                         };
 
                         command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
                         command.Parameters.Add(filterParameter);
                         command.Parameters.Add(skipParameter);
                         command.Parameters.Add(takeParameter);
