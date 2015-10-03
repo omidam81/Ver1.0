@@ -844,5 +844,18 @@ namespace Teeyoot.Module.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+
+        public ActionResult ChangeCountryAndCulture(int countrId)
+        {
+            var cultures = _countryService.GetCultureByCountry(countrId);
+            if (cultures == null || cultures.Count() == 0)
+            {
+                cultures = _countryService.GetCultureByCountry(_countryService.GetAllCountry().First().Id);
+            }
+
+            _cookieCultureService.SetCulture(cultures.First().Culture);
+
+            return Redirect(Request.Url.ToString());
+        }
     }
 }

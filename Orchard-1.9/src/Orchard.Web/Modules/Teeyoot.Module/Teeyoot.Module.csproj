@@ -1040,6 +1040,9 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
+    <Content Include="Placement.info">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\ciede2000.js" />
@@ -1083,6 +1086,7 @@
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\checkout.css" />
     <Content Include="Styles\Cost.css" />
+    <Content Include="Styles\CountryWidget.css" />
     <Content Include="Styles\currencies.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designerTeeyoot.css" />
@@ -1140,6 +1144,7 @@
     <Content Include="Views\AdminCurrencies\EditCurrency.cshtml" />
     <Content Include="Views\AdminTranslationText\Index.cshtml" />
     <Content Include="Views\AdminTranslationText\EditTextForLocalization.cshtml" />
+    <Content Include="Views\Parts\AllCountryWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1192,9 +1197,11 @@
     <Compile Include="Controllers\AdminPromotionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
+    <Compile Include="Drivers\AllCountryWidget.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\AllCountryWidgetPart.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
     <Compile Include="Models\CountryRecord.cs" />
     <Compile Include="Models\DeliverySettingRecord.cs" />
