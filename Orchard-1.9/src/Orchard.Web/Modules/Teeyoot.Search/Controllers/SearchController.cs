@@ -79,11 +79,29 @@ namespace Teebay.Search.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_CustomerRow", new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
+                var searchViewModel = new SearchViewModel
+                {
+                    NotResult = notResult,
+                    Filter = filter,
+                    Campaigns = searchCampaignsResponse.Campaigns,
+                    CampList = campListAfterSearch,
+                    Price = price
+                };
+
+                return PartialView("_CustomerRow", searchViewModel);
             }
             else
             {
-                return View(new SearchViewModel { NotResult = notResult, Filter = filter, CampList = campListAfterSearch, Price = price });
+                var searchViewModel = new SearchViewModel
+                {
+                    NotResult = notResult,
+                    Filter = filter,
+                    Campaigns = searchCampaignsResponse.Campaigns,
+                    CampList = campListAfterSearch,
+                    Price = price
+                };
+
+                return View(searchViewModel);
             }
         }
 

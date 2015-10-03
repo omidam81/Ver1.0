@@ -1,15 +1,14 @@
 ﻿@model Teeyoot.Search.ViewModels.SearchViewModel
-@using Teeyoot.Module.Models;
 @{
-    int countPrice = 0;
-    foreach (CampaignRecord camp in Model.CampList)
+    var countPrice = 0;
+    foreach (var campaign in Model.Campaigns)
     {
-        int min = camp.ProductMinimumGoal == 0 ? 1 : camp.ProductMinimumGoal;
-        string sold = camp.ProductCountSold.ToString() + "/" + min.ToString() + " sold";
+        var min = campaign.ProductMinimumGoal == 0 ? 1 : campaign.ProductMinimumGoal;
+        var sold = campaign.ProductCountSold + "/" + min + " sold";
 
-        DateTime now = DateTime.UtcNow;
-        TimeSpan dif = camp.EndDate.Subtract(now);
-        string dateLeft = string.Empty;
+        var now = DateTime.UtcNow;
+        var dif = campaign.EndDate.Subtract(now);
+        string dateLeft;
         if (dif.Days < 0)
         {
             dateLeft = "Ended";
@@ -19,45 +18,49 @@
             dateLeft = dif.Days + "d left";
         }
 
-        float widthResult = 0;
-        string width = string.Empty;
-        if ((min - camp.ProductCountSold) <= 0)
+        float widthResult;
+        if ((min - campaign.ProductCountSold) <= 0)
         {
             widthResult = 100;
         }
         else
         {
-            if (camp.ProductCountSold != 0)
+            if (campaign.ProductCountSold != 0)
             {
-                float procent = (float)min / 100;
-                widthResult = camp.ProductCountSold / procent;
+                var procent = (float) min/100;
+                widthResult = campaign.ProductCountSold/procent;
             }
             else
             {
                 widthResult = 0;
             }
         }
-        width = (int)widthResult + "% !important";
+        var width = (int) widthResult + "% !important";
 
-        string path = "/Media/campaigns/" + camp.Id.ToString() + "/" + camp.Products.Where(c => c.WhenDeleted == null).First().Id + "/";
-        string backIMG;
-        string frontIMG;
-        if (camp.BackSideByDefault) {
-            backIMG = path + "normal/front.png";
-            frontIMG = path + "normal/back.png";
+        var path = "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.Where(c => c.WhenDeleted == null).First().Id + "/";
+        string backImg;
+        string frontImg;
+        if (campaign.BackSideByDefault)
+        {
+            backImg = path + "normal/front.png";
+            frontImg = path + "normal/back.png";
         }
         else
         {
-            backIMG = path + "normal/back.png";
-            frontIMG = path + "normal/front.png";
+            backImg = path + "normal/back.png";
+            frontImg = path + "normal/front.png";
         }
 
         <div class=" span-1 cell tee-previewSearch">
             <div>
                 <div class="featurde-compaigns">
                     <div class="preview-img">
-                        <div class="product-price">@camp.Products.First().CurrencyRecord.Code @Model.Price[countPrice].ToString("F", System.Globalization.CultureInfo.InvariantCulture)</div>
-                        <p><a href="~/@camp.Alias"><img onmouseover="this.src='@backIMG'" onmouseout="this.src = '@frontIMG'" src="@frontIMG"></a></p>
+                        <div class="product-price">@campaign.Products.First().CurrencyRecord.Code @Model.Price[countPrice].ToString("F", System.Globalization.CultureInfo.InvariantCulture)</div>
+                        <p>
+                            <a href="~/@campaign.Alias">
+                                <img onmouseover="this.src = '@backImg'" onmouseout="this.src = '@frontImg'" src="@frontImg" alt="">
+                            </a>
+                        </p>
                     </div>
                     <div class="progress-bar-search">
                         <div class="progress-bar-result" style="width: @width"></div>
@@ -68,7 +71,9 @@
                             <div class="days-right">@dateLeft</div>
                         </div>
                         <div class=" span-3 cell campaigns-text-search">
-                            <div><a href="~/@camp.Alias">@camp.Title</a></div>
+                            <div>
+                                <a href="~/@campaign.Alias">@campaign.Title</a>
+                            </div>
                         </div>
                     </div>
                 </div>
