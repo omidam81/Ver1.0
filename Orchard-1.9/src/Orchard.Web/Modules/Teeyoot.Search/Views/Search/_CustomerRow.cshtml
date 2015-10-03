@@ -37,7 +37,7 @@
         }
         var width = (int) widthResult + "% !important";
 
-        var path = "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.Where(c => c.WhenDeleted == null).First().Id + "/";
+        var path = "/Media/campaigns/" + campaign.Id + "/" + campaign.CampaignFirstProductId + "/";
         string backImg;
         string frontImg;
         if (campaign.BackSideByDefault)
@@ -55,7 +55,7 @@
             <div>
                 <div class="featurde-compaigns">
                     <div class="preview-img">
-                        <div class="product-price">@campaign.Products.First().CurrencyRecord.Code @Model.Price[countPrice].ToString("F", System.Globalization.CultureInfo.InvariantCulture)</div>
+                        <div class="product-price">@campaign.CampaignFirstProductCurrencyCode @Model.Price[countPrice].ToString("F", System.Globalization.CultureInfo.InvariantCulture)</div>
                         <p>
                             <a href="~/@campaign.Alias">
                                 <img onmouseover="this.src = '@backImg'" onmouseout="this.src = '@frontImg'" src="@frontImg" alt="">

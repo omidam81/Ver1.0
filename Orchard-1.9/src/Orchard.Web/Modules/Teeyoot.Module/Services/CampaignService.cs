@@ -620,6 +620,8 @@ namespace Teeyoot.Module.Services
                         }
                     }
 
+                    FillSearchCampaignItemsWithData(response.Campaigns, transaction);
+
                     transaction.Commit();
                 }
             }
@@ -671,6 +673,8 @@ namespace Teeyoot.Module.Services
                         }
                     }
 
+                    FillSearchCampaignItemsWithData(response.Campaigns, transaction);
+
                     transaction.Commit();
                 }
             }
@@ -721,15 +725,16 @@ namespace Teeyoot.Module.Services
                             response.Campaigns = GetSearchCampaignItemsFrom(reader);
                         }
                     }
+                    
+                    FillSearchCampaignItemsWithData(response.Campaigns, transaction);
 
                     transaction.Commit();
                 }
             }
-
             return response;
         }
 
-        private static IEnumerable<SearchCampaignItem> GetSearchCampaignItemsFrom(IDataReader reader)
+        private static List<SearchCampaignItem> GetSearchCampaignItemsFrom(IDataReader reader)
         {
             var searchCampaigns = new List<SearchCampaignItem>();
 
@@ -750,6 +755,45 @@ namespace Teeyoot.Module.Services
             }
 
             return searchCampaigns;
+        }
+
+        private static void FillSearchCampaignItemsWithData(
+            IList<SearchCampaignItem> searchCampaignItems,
+            IDbTransaction transaction)
+        {
+            if (!searchCampaignItems.Any())
+                return;
+
+            var sqlQuery =
+                " SELECT CampaignRecord.Id CampaignRecordId," +
+                " CampaignProductRecord.Id CampaignFirstProductId," +
+                " CurrencyRecord.Code CampaignFirstProductCurrencyCode" +
+                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
+                " CROSS APPLY (SELECT TOP 1 Id, CurrencyRecord_Id FROM Teeyoot_Module_CampaignProductRecord WHERE CampaignRecord_Id = CampaignRecord.Id AND WhenDeleted IS NULL) CampaignProductRecord" +
+                " LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord" +
+                " ON CampaignProductRecord.CurrencyRecord_Id = CurrencyRecord.Id" +
+                " WHERE CampaignRecord.Id IN ({0})";
+
+            sqlQuery = string.Format(sqlQuery, string.Join(",", searchCampaignItems.Select(c => c.Id)));
+
+            using (var command = transaction.Connection.CreateCommand())
+            {
+                command.Transaction = transaction;
+                command.CommandType = CommandType.Text;
+                command.CommandText = sqlQuery;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var campaignId = (int) reader["CampaignRecordId"];
+                        searchCampaignItems.First(c => c.Id == campaignId).CampaignFirstProductId =
+                            (int) reader["CampaignFirstProductId"];
+                        searchCampaignItems.First(c => c.Id == campaignId).CampaignFirstProductCurrencyCode =
+                            (string) reader["CampaignFirstProductCurrencyCode"];
+                    }
+                }
+            }
         }
     }
 }

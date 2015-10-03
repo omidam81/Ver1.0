@@ -11,5 +11,7 @@ namespace Teeyoot.Module.Messaging.CampaignService
         public int ProductCountSold { get; set; }
         public int ProductMinimumGoal { get; set; }
         public bool BackSideByDefault { get; set; }
+        public int CampaignFirstProductId { get; set; }
+        public string CampaignFirstProductCurrencyCode { get; set; }
     }
 }

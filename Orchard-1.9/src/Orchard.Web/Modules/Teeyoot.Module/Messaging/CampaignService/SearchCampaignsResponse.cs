@@ -4,6 +4,6 @@ namespace Teeyoot.Module.Messaging.CampaignService
 {
     public class SearchCampaignsResponse
     {
-        public IEnumerable<SearchCampaignItem> Campaigns { get; set; }
+        public List<SearchCampaignItem> Campaigns { get; set; }
     }
 }
