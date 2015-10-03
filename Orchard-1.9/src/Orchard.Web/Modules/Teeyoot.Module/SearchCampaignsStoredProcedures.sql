@@ -3,7 +3,9 @@
 GO
 
 CREATE PROCEDURE SearchCampaigns
-	@CurrentDate DATETIME
+	@CurrentDate DATETIME,
+	@Skip INT,
+	@Take INT
 AS
 SET NOCOUNT ON
 SELECT 
@@ -26,8 +28,16 @@ WHERE
 	AND CampaignRecord.IsPrivate = 0
 	AND CampaignRecord.IsActive = 1
 	AND CampaignRecord.IsApproved = 1
-GROUP BY CampaignRecord.Id
-ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC
+GROUP BY 
+	CampaignRecord.Id
+ORDER BY 
+	SalesLast24Hours DESC, 
+	SalesAllPeriod DESC, 
+	MAX(CampaignRecord.StartDate) DESC
+OFFSET 
+	@Skip ROWS
+FETCH NEXT 
+	@Take ROWS ONLY
 GO
 
 IF OBJECT_ID('SearchCampaignsForTag', 'P') IS NOT NULL
@@ -36,7 +46,9 @@ GO
 
 CREATE PROCEDURE SearchCampaignsForTag
 	@CurrentDate DATETIME,
-	@Tag NVARCHAR(100)
+	@Tag NVARCHAR(100),
+	@Skip INT,
+	@Take INT
 AS
 SET NOCOUNT ON
 SELECT 
@@ -64,8 +76,16 @@ WHERE
 	AND CampaignRecord.IsPrivate = 0
 	AND CampaignRecord.IsActive = 1
 	AND CampaignRecord.IsApproved = 1
-GROUP BY CampaignRecord.Id
-ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC
+GROUP BY 
+	CampaignRecord.Id
+ORDER BY 
+	SalesLast24Hours DESC, 
+	SalesAllPeriod DESC, 
+	MAX(CampaignRecord.StartDate) DESC
+OFFSET 
+	@Skip ROWS
+FETCH NEXT 
+	@Take ROWS ONLY
 GO
 
 IF OBJECT_ID('SearchCampaignsForFilter', 'P') IS NOT NULL
@@ -74,7 +94,9 @@ GO
 
 CREATE PROCEDURE SearchCampaignsForFilter
 	@CurrentDate DATETIME,
-	@Filter NVARCHAR(4000)
+	@Filter NVARCHAR(4000),
+	@Skip INT,
+	@Take INT
 AS
 SET NOCOUNT ON
 SELECT 
@@ -108,6 +130,14 @@ FROM(
 	ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id
 	LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord
 	ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id
-GROUP BY CampaignRecordId
-ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC
+GROUP BY 
+	CampaignRecordId
+ORDER BY 
+	SalesLast24Hours DESC, 
+	SalesAllPeriod DESC, 
+	MAX(CampaignRecord.StartDate) DESC
+OFFSET 
+	@Skip ROWS
+FETCH NEXT 
+	@Take ROWS ONLY
 GO

@@ -603,8 +603,18 @@ namespace Teeyoot.Module.Services
                         {
                             Value = DateTime.UtcNow
                         };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
 
                         command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -651,14 +661,23 @@ namespace Teeyoot.Module.Services
                         {
                             Value = DateTime.UtcNow
                         };
-
                         var tagParameter = new SqlParameter("@Tag", SqlDbType.NVarChar, 100)
                         {
                             Value = request.Tag
                         };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
 
                         command.Parameters.Add(currentDateParameter);
                         command.Parameters.Add(tagParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -705,14 +724,23 @@ namespace Teeyoot.Module.Services
                         {
                             Value = DateTime.UtcNow
                         };
-
                         var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
                         {
                             Value = "%" + request.Filter + "%"
                         };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
 
                         command.Parameters.Add(currentDateParameter);
                         command.Parameters.Add(filterParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
 
                         using (var reader = command.ExecuteReader())
                         {
