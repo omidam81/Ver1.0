@@ -1,40 +1,37 @@
-﻿@{
+﻿@model Teeyoot.Search.ViewModels.SearchViewModel
+@{
     Style.Include("Search.css");
     Script.Include("infiniteScroll.js").AtFoot();
-    @model Teeyoot.Search.ViewModels.SearchViewModel
 }
-@using Teeyoot.Module.Models;
 
 <div class="tb-return-result">
     @if (Model.NotResult)
     {
         <h1>@T("No search results for the word ")"@Model.Filter"!</h1>
-
     }
     else
     {
         <table class="infinite-scroll">
             <tbody>
-                @Html.Partial("_CustomerRow", (Model as Teeyoot.Search.ViewModels.SearchViewModel))
+            @Html.Partial("_CustomerRow", Model)
             </tbody>
         </table>
     }
 </div>
 
-
 @using (Script.Foot())
 {
     <script type="text/javascript">
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             document.title = "@T("Search | Teeyoot").ToString()";
         });
         //$(function () {
         //    $("div#loading").hide();
         //});
         var moreRowsUrl = "/Teeyoot.Search/Search/Search";
-        var string = '@Model.Filter.ToString()';
-        $(window).scroll(function () {
+        var string = '@Model.Filter';
+        $(window).scroll(function() {
             if (hasReachedEndOfInfiniteScroll == false &&
             ($(window).scrollTop() == $(document).height() - $(window).height())) {
                 loadMoreToInfiniteScrollTable(moreRowsUrl, string);
@@ -43,8 +40,7 @@
 
         var doc_height = $(document).height();
         var page_height = $('#layout-wrapper').height();
-        if (page_height <= doc_height)
-        {
+        if (page_height <= doc_height) {
             var footer_height_now = $('.tb-layout-footer').height();
             var footer_padding_top_now = parseInt($('.tb-layout-footer').css("padding-top"));
             var footer_padding_bottom_now = parseInt($('.tb-layout-footer').css("padding-bottom"));
@@ -68,7 +64,7 @@
         var height = $('.tee-preview:first-child img').height();
         $('.tee-preview img').css("height", height + "px !important");
 
-        window.onresize = function (e) {
+        window.onresize = function(e) {
             $('.tee-preview:first-child img').css("height", "100% !important");
             var heightNew = $('.tee-preview:first-child img').height();
             $('.tee-preview img').css("height", heightNew + "px !important");
