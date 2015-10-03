@@ -766,6 +766,9 @@ namespace Teeyoot.Module.Services
                     BackSideByDefault = (bool) reader["BackSideByDefault"]
                 };
 
+                if (reader["URL"] != DBNull.Value)
+                    searchCampaignItem.Url = (string) reader["URL"];
+
                 searchCampaigns.Add(searchCampaignItem);
             }
 

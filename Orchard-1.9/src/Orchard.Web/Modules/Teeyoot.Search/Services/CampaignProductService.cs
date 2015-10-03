@@ -1,8 +1,6 @@
-﻿using Orchard.Data;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Orchard.Data;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Search.Services
@@ -16,10 +14,11 @@ namespace Teeyoot.Search.Services
             _repository = repository;
         }
 
-        public List<CampaignProductRecord> GetCampaignProductsByCampaign(List<CampaignRecord> campList)
+        public List<CampaignProductRecord> GetCampaignProductsByCampaign(IEnumerable<int> campaignIds)
         {
-            int[] campId = campList.Select(s => s.Id).ToArray();
-            return _repository.Table.Where(c => campId.Contains(c.CampaignRecord_Id)).ToList();
+            return _repository.Table
+                .Where(c => campaignIds.Contains(c.CampaignRecord_Id))
+                .ToList();
         }
     }
 }

@@ -14,6 +14,7 @@ SELECT
 	CampaignRecord.Title Title,
 	CampaignRecord.Alias Alias,
 	CampaignRecord.EndDate EndDate,
+	CampaignRecord.URL URL,
 	CampaignRecord.ProductCountSold ProductCountSold,
 	CampaignRecord.ProductMinimumGoal ProductMinimumGoal,
 	CampaignRecord.BackSideByDefault BackSideByDefault
@@ -71,6 +72,7 @@ SELECT
 	CampaignRecord.Title Title,
 	CampaignRecord.Alias Alias,
 	CampaignRecord.EndDate EndDate,
+	CampaignRecord.URL URL,
 	CampaignRecord.ProductCountSold ProductCountSold,
 	CampaignRecord.ProductMinimumGoal ProductMinimumGoal,
 	CampaignRecord.BackSideByDefault BackSideByDefault
@@ -139,6 +141,7 @@ SELECT
 	CampaignRecord.Title Title,
 	CampaignRecord.Alias Alias,
 	CampaignRecord.EndDate EndDate,
+	CampaignRecord.URL URL,
 	CampaignRecord.ProductCountSold ProductCountSold,
 	CampaignRecord.ProductMinimumGoal ProductMinimumGoal,
 	CampaignRecord.BackSideByDefault BackSideByDefault
