@@ -148,7 +148,7 @@ namespace Teeyoot.Module.Controllers
                                 }
                                 else
                                 {
-                                    var infoMessage = T("Sorry, this promo is expired!");
+                                    var infoMessage = T("Oh no! The requested promotion is currently not available for this campaign. But you can still buy at the normal price!");
                                     _notifier.Add(NotifyType.Information, infoMessage);
                                 }
                                 return View(model);
@@ -156,7 +156,7 @@ namespace Teeyoot.Module.Controllers
                             catch (Exception)
                             {
 
-                                var infoMessage = T("You have wrong promo code!");
+                                var infoMessage = T("Oh no! The requested promotion is currently not available for this campaign. But you can still buy at the normal price!");
                                 _notifier.Add(NotifyType.Information, infoMessage);
                                 return View(model);
                             }

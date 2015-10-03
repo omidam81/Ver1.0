@@ -13,6 +13,7 @@ using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Messaging.CampaignService;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Module.Services
 {
@@ -33,6 +34,7 @@ namespace Teeyoot.Module.Services
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IRepository<BringBackCampaignRecord> _backCampaignRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
+        private readonly ICountryService _countryService;
         private readonly ShellSettings _shellSettings;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
@@ -50,6 +52,8 @@ namespace Teeyoot.Module.Services
                                IRepository<OrderHistoryRecord> orderHistoryRepository,
                                ITeeyootMessagingService teeyootMessagingService,
                                IRepository<BringBackCampaignRecord> backCampaignRepository,
+                               IWorkContextAccessor workContextAccessor,
+                               ICountryService countryService)
                                IWorkContextAccessor workContextAccessor,
                                ShellSettings shellSettings)
         {
@@ -72,6 +76,7 @@ namespace Teeyoot.Module.Services
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
             _workContextAccessor = workContextAccessor;
+            _countryService = countryService;
             _shellSettings = shellSettings;
         }
 
@@ -167,15 +172,17 @@ namespace Teeyoot.Module.Services
                     CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Unpaid.ToString()),
                     CampaignProfit = data.CampaignProfit != null ? data.CampaignProfit : string.Empty,
                     ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal,
-                    CampaignCulture = (data.CampaignCulture == null || string.IsNullOrEmpty(data.CampaignCulture)) ? "en-MY" : data.CampaignCulture.Trim(),
+                    CampaignCulture = (data.CampaignCulture == null || string.IsNullOrEmpty(data.CampaignCulture)) ? "en-MY" : data.CampaignCulture.Trim(), //TODO: (auth:keinlekan) Удалить код после удаления поля из таблицы/модели
                     CntBackColor = data.CntBackColor,
-                    CntFrontColor = data.CntFrontColor
+                    CntFrontColor = data.CntFrontColor,
+                    CountryRecord = _countryService.GetCountryByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim())
                 };
                 _campaignRepository.Create(newCampaign);
 
+                //TODO: (auth:keinlekan) Удалить данный код после локализации
                 var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
                 string cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
-                var currencyId = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
+                var currencyId = _countryService.GetCurrencyByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim());//_currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
 
                 if (data.Tags != null)
                 {
@@ -197,7 +204,8 @@ namespace Teeyoot.Module.Services
                             {
                                 Name = tag,
                                 IsVisible = false,
-                                CategoriesCulture = cultureUsed
+                                CategoriesCulture = cultureUsed,
+                                CountryRecord = _countryService.GetCountryByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim())
                             };
                             _campaignCategories.Create(cat);
                             var link = new LinkCampaignAndCategoriesRecord

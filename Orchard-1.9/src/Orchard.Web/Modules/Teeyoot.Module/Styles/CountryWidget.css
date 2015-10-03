@@ -1,0 +1,32 @@
+﻿.country-widget {
+    margin-left: -7px;
+}
+
+.tb-button-orange-country {
+    background: #ff4f00;
+    font-size: 14px;
+    font-weight: normal;
+    border-radius: 5px;
+    padding: 6px 18px;
+    display: block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: .025em;
+    height: 25px;
+    text-decoration: none;
+    border: 0;
+    font-size: 16px;
+    padding: 6px 24px;
+    width: 100px;
+    margin-bottom: 0px;
+    background-color: #ff4f00;
+    margin: 15px 0 15px 0;
+}
+.tb-button-orange-country:hover {
+        background: #e64700;
+    }
+
+    .tb-button-orange-country a {
+        text-decoration: none;
+    }

@@ -93,7 +93,8 @@ namespace Orchard.Core.Navigation.Drivers {
                     }
 
                     // inject the current page
-                    if (!part.AddCurrentPage && selectedPath != null) {
+                    if (!part.AddCurrentPage && selectedPath != null && result[result.Count - 1].Current)
+                    {
                         result.RemoveAt(result.Count - 1);
                     }
 

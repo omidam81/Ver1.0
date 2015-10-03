@@ -31,6 +31,10 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public double Bal { get; set; }
 
+        public double UnclProfits { get; set; }
+
+        public double ProcessedProfits { get; set; }
+
         public int CurrencyId { get; set; }
 
         public string Currency { get; set; }

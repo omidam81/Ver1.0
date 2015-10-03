@@ -19,5 +19,12 @@ namespace Teeyoot.Module.Models
         public virtual string CurrencyCulture { get; set; }
 
         public virtual string FlagFileName { get; set; }
+
+        public virtual double PriceBuyers { get; set; }
+
+        public virtual double PriceSellers { get; set; }
+
+        public virtual bool IsConvert { get; set; }
+
     }
 }

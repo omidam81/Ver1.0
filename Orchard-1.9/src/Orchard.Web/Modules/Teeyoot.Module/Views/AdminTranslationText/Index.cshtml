@@ -1,0 +1,122 @@
+﻿@model Teeyoot.Module.ViewModels.AdminTranslationTextViewModel
+@{
+    Script.Require("jQuery");
+    Script.Require("jQueryUI");
+    Style.Include("TextTranslation.css");
+    Style.Include("jquery.dataTables.css");
+    Layout.Title = T("Text translation").ToString();
+}
+
+<fieldset>
+    <div class="admin-categories-menu">
+        <div class="left-box">
+            @using (Html.BeginForm("Index", "AdminTranslationText", FormMethod.Get))
+            {
+                <fieldset class="bulk-actions">
+                    @Html.LabelFor(m => m.ActionCountryId, T("Country")):
+                    @Html.DropDownListFor(m => m.ActionCountryId, Model.ActionCountry.Select(l => new SelectListItem
+                        {
+                            Selected = Model.ActionCountryId > 1 ? l.Id == Model.ActionCountryId : false,
+                            Text = l.Name,
+                            Value = l.Id.ToString()
+                        }), new { @id = "dropDownCountry", @text = T("Choose country...") })
+
+                    @Html.LabelFor(m => m.ActionCultureId, T("Culture")):
+                    @Html.DropDownListFor(m => m.ActionCultureId, Model.ActionCulture.Select(l => new SelectListItem
+                        {
+                            Selected = Model.ActionCultureId > 1 ? l.Id == Model.ActionCultureId : false,
+                            Text = l.Culture,
+                            Value = l.Id.ToString()
+                        }), new { @id = "dropDownCulture", @text = T("Choose culture...") })
+
+                    @Html.LabelFor(m => m.SearchString, T("Filter")):
+                    @Html.TextBoxFor(m => m.SearchString)
+                    <button type="submit">@T("Search")</button>
+                </fieldset>
+            }
+        </div>
+    </div>
+</fieldset>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+}
+
+@{
+    <fieldset>
+        @if (Model.NotFoundResult)
+        {
+            <div>
+                @T("Not found result for this search string")
+            </div>
+        }
+        else if (Model.NotFoundCulture)
+        {
+            <div>
+                @T("No results were found for the culture of the country")
+            </div>
+        }
+        else
+        {
+            int i = 0;
+            <table class="items">
+                <tbody>
+
+                    @foreach (var str in Model.SearchResult)
+                    {
+                        <tr class="tr-row">
+                            <td class="td-one">
+                                @str
+                            </td>
+                            <td class="td-two">
+                                <a class="button" href="@Url.Action("EditTextForLocalization", "AdminTranslationText", new { changeText = str, replaceText = Model.SearchResultReplace[i], filePath = Model.SearchResultFilePath[i], actionCountry = Model.ActionCountryId, actionCulture = Model.ActionCultureId, search = Model.SearchString })" title="@T("Edit")">@T("Edit")</a>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        }
+    </fieldset>
+}
+
+@using (Script.Foot())
+{
+    <script>
+        $("#dropDownCountry").change(function () {
+            $("#dropDownCountry option:selected").each(function () {
+                var idCountry = this.value;
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("GetCultureByCountry", "AdminTranslationText"))",
+                    data: addAntiForgeryToken({ "countryId": idCountry }),
+                    success: function (data) {
+                        var cultures = data.ActionCulture;
+                        var childs = $("#dropDownCulture").children();
+                        for (var i = 0; i < childs.length; i++) {
+                            childs[i].remove();
+                        };
+                        if (cultures.length > 0) {
+                            for (var k = 0; k < cultures.length; k++) {
+                                var ch = document.createElement("option");
+                                ch.value = cultures[k].Id;
+                                ch.innerHTML = cultures[k].Culture;
+                                $("#dropDownCulture").append(ch);
+                            }
+                        }
+                    }, error: function (data, status, resp) {
+                        alert('Status: ' + data.status + '. Error message: ' + data.statusText);
+                    }
+                });
+            });
+        });
+
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+    </script>
+}

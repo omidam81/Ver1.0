@@ -14,6 +14,8 @@ namespace Teeyoot.Module.ViewModels
 
         public int CampaignId { get; set; }
 
+        public string CampaignAlias { get; set; }
+
         public UserPartRecord Seller { get; set; }
 
         public int CntRequests { get; set; }

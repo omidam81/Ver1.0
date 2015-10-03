@@ -1,0 +1,15 @@
+﻿.buttondiv {
+    height: 30px;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.loadbtn {
+    vertical-align: top !important;
+}
+.flagimg {
+    width:25px; 
+    height:25px; 
+    border-color:black; 
+    border-width:1px;  
+    border-style:solid;
+}

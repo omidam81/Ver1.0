@@ -27,6 +27,7 @@ namespace Orchard.UI.Navigation {
         public bool Selected { get; set; }
         public int Level { get; set; }
         public RouteValueDictionary RouteValues { get; set; }
+        public bool Current { get; set; }
 
         public IEnumerable<MenuItem> Items {
             get { return _items; }

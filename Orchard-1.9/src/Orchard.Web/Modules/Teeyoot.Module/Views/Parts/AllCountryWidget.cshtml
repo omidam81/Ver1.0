@@ -1,0 +1,23 @@
+﻿@using Orchard.Utility.Extensions;
+@using Orchard.Mvc.Html;
+@using Orchard.Mvc.Extensions;
+@using System.Linq;
+@using Teeyoot.Module.Models;
+
+@{
+    Style.Include("CountryWidget.css");
+    var providers = Model.Providers as List<CountryRecord>;
+}
+
+
+@if (providers.Any())
+{
+    <ul class="country-widget">
+        @foreach (CountryRecord p in providers)
+        {
+            <li class="tb-button-orange-country">
+                <a href="/ChangeCountry?countrId=@p.Id">@p.Name</a>
+            </li>
+        }
+    </ul>
+}

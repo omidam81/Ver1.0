@@ -23,6 +23,57 @@ namespace Teeyoot.Module
                 new RouteDescriptor
                 {
                     Route = new Route(
+                        "Admin/Currencies/Edit/{id}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCurrencies"},
+                            {"action", "EditCurrency"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Currencies/Delete/{id}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCurrencies"},
+                            {"action", "DeleteCurrency"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Currencies/Add",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCurrencies"},
+                            {"action", "AddCurrency"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
                         "Admin/Users",
                         new RouteValueDictionary
                         {
@@ -400,14 +451,16 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
-                },                 new RouteDescriptor
+
+                },                 
+                new RouteDescriptor
                 {
                     Route = new Route(
                         "Promotions",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.Module"},
-                            {"controller", "AdminPromotion"},
+                            {"controller", "AdminPromotions"},
                             {"action", "Index"}
                         },
                         new RouteValueDictionary(),
@@ -416,7 +469,73 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
+                },                 
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/TextTranslation",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminTranslationText"},
+                            {"action", "Index"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },                 
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/EdtTextForTranslation",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminTranslationText"},
+                            {"action", "EditTextForLocalization"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },                 
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/SaveTextForTransaltion",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminTranslationText"},
+                            {"action", "SaveText"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor {
+                    Route = new Route(
+                        "ChangeCountry",
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "Home"},
+                            {"action", "ChangeCountryAndCulture"}                           
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
                 }
+              
 
             };
         }

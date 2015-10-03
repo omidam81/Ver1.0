@@ -7,6 +7,8 @@ using Orchard.Data;
 using Teeyoot.Module.Models;
 using RM.Localization.Services;
 using Teeyoot.Module.Services.Interfaces;
+using RM.Localization.Models;
+using Orchard.Localization.Records;
 
 namespace Teeyoot.Module.Services
 {
@@ -56,6 +58,16 @@ namespace Teeyoot.Module.Services
 
             var country = _linkCountryCultureRecord.Table.Where(l => l.CultureRecord.Culture == cult.Culture).Select(l => l.CountryRecord).First();
             return country;
+        }
+
+        public IQueryable<CultureRecord> GetCultureByCountry(int countryId)
+        {
+            return _linkCountryCultureRecord.Table.Where(l => l.CountryRecord.Id == countryId).Select(l => l.CultureRecord);
+        }
+
+        public IQueryable<LinkCountryCultureRecord> GetAllCultureWithAllCountry()
+        {
+            return _linkCountryCultureRecord.Table;
         }
     }
 }

@@ -14,5 +14,6 @@ namespace Teeyoot.Module.Models
         public virtual bool IsVisible { get; set; }
 
         public virtual string CategoriesCulture { get; set; }
+        public virtual CountryRecord CountryRecord { get; set; }
     }
 }
