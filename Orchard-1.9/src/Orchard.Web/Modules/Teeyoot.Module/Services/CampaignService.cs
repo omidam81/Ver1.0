@@ -764,5 +764,22 @@ namespace Teeyoot.Module.Services
 
             return response;
         }
+
+        private IEnumerable<SearchCampaignItem> GetSearchCampaignItemsFrom(IDataReader reader)
+        {
+            var searchCampaigns = new List<SearchCampaignItem>();
+
+            while (reader.Read())
+            {
+                var searchCampaignItem = new SearchCampaignItem
+                {
+                    Id = (int)reader["CampaignRecordId"]
+                };
+
+                searchCampaigns.Add(searchCampaignItem);
+            }
+
+            return searchCampaigns;
+        }
     }
 }
