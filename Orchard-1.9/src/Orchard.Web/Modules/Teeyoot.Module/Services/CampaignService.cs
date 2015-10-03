@@ -585,23 +585,6 @@ namespace Teeyoot.Module.Services
         {
             var response = new SearchCampaignsResponse();
 
-            const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
-                                                " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
-                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
-                                                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
-                                                " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
-                                                " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
-                                                " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
-                                                " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
-                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
-                                                " AND CampaignRecord.IsPrivate = 0" +
-                                                " AND CampaignRecord.IsActive = 1" +
-                                                " AND CampaignRecord.IsApproved = 1" +
-                                                " GROUP BY CampaignRecord.Id" +
-                                                " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
-
             var campaigns = new List<SearchCampaignItem>();
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
@@ -613,8 +596,8 @@ namespace Teeyoot.Module.Services
                     using (var command = connection.CreateCommand())
                     {
                         command.Transaction = transaction;
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = searchCampaignsQuery;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SearchCampaigns";
 
                         var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
                         {
@@ -650,28 +633,6 @@ namespace Teeyoot.Module.Services
         {
             var response = new SearchCampaignsResponse();
 
-            const string searchCampaignsQuery = " SELECT CampaignRecord.Id CampaignRecordId," +
-                                                " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
-                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
-                                                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
-                                                " JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
-                                                " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
-                                                " JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
-                                                " ON LinkCampaignAndCategoriesRecord.CampaignCategoriesPartRecord_Id = CampaignCategoriesRecord.Id" +
-                                                " AND LOWER(CampaignCategoriesRecord.Name) = @Tag" +
-                                                " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
-                                                " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
-                                                " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
-                                                " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
-                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
-                                                " AND CampaignRecord.IsPrivate = 0" +
-                                                " AND CampaignRecord.IsActive = 1" +
-                                                " AND CampaignRecord.IsApproved = 1" +
-                                                " GROUP BY CampaignRecord.Id" +
-                                                " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
-
             var campaigns = new List<SearchCampaignItem>();
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
@@ -683,15 +644,15 @@ namespace Teeyoot.Module.Services
                     using (var command = connection.CreateCommand())
                     {
                         command.Transaction = transaction;
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = searchCampaignsQuery;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SearchCampaignsForTag";
 
                         var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
                         {
                             Value = DateTime.UtcNow
                         };
 
-                        var tagParameter = new SqlParameter("@Tag", SqlDbType.NVarChar)
+                        var tagParameter = new SqlParameter("@Tag", SqlDbType.NVarChar, 100)
                         {
                             Value = request.Tag
                         };
@@ -726,34 +687,6 @@ namespace Teeyoot.Module.Services
         {
             var response = new SearchCampaignsResponse();
 
-            const string searchCampaignsQuery = " SELECT CampaignTemp.CampaignRecordId CampaignRecordId," +
-                                                " SUM(CASE WHEN OrderRecord.Created IS NOT NULL AND OrderRecord.Created >= DATEADD(HH, -24, @CurrentDate) THEN LinkOrderCampaignProductRecord.Count ELSE 0 END) SalesLast24Hours," +
-                                                " SUM(LinkOrderCampaignProductRecord.Count) SalesAllPeriod" +
-                                                " FROM" +
-                                                " (SELECT DISTINCT CampaignRecord.Id CampaignRecordId" +
-                                                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
-                                                " LEFT JOIN Teeyoot_Module_LinkCampaignAndCategoriesRecord LinkCampaignAndCategoriesRecord" +
-                                                " ON CampaignRecord.Id = LinkCampaignAndCategoriesRecord.CampaignRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_CampaignCategoriesRecord CampaignCategoriesRecord" +
-                                                " ON LinkCampaignAndCategoriesRecord.CampaignCategoriesPartRecord_Id = CampaignCategoriesRecord.Id" +
-                                                " WHERE CampaignRecord.WhenDeleted IS NULL" +
-                                                " AND CampaignRecord.IsPrivate = 0" +
-                                                " AND CampaignRecord.IsActive = 1" +
-                                                " AND CampaignRecord.IsApproved = 1" +
-                                                " AND (CampaignRecord.Title LIKE @Filter" +
-                                                " OR CampaignRecord.Description LIKE @Filter" +
-                                                " OR CampaignCategoriesRecord.Name LIKE @Filter)) CampaignTemp" +
-                                                " JOIN Teeyoot_Module_CampaignRecord CampaignRecord" +
-                                                " ON CampaignTemp.CampaignRecordId = CampaignRecord.Id" +
-                                                " LEFT JOIN Teeyoot_Module_CampaignProductRecord CampaignProductRecord" +
-                                                " ON CampaignRecord.Id = CampaignProductRecord.CampaignRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_LinkOrderCampaignProductRecord LinkOrderCampaignProductRecord" +
-                                                " ON CampaignProductRecord.Id = LinkOrderCampaignProductRecord.CampaignProductRecord_Id" +
-                                                " LEFT JOIN Teeyoot_Module_OrderRecord OrderRecord" +
-                                                " ON LinkOrderCampaignProductRecord.OrderRecord_Id = OrderRecord.Id" +
-                                                " GROUP BY CampaignRecordId" +
-                                                " ORDER BY SalesLast24Hours DESC, SalesAllPeriod DESC, MAX(CampaignRecord.StartDate) DESC";
-
             var campaigns = new List<SearchCampaignItem>();
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
@@ -765,15 +698,15 @@ namespace Teeyoot.Module.Services
                     using (var command = connection.CreateCommand())
                     {
                         command.Transaction = transaction;
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = searchCampaignsQuery;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SearchCampaignsForFilter";
 
                         var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
                         {
                             Value = DateTime.UtcNow
                         };
 
-                        var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar)
+                        var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
                         {
                             Value = "%" + request.Filter + "%"
                         };
