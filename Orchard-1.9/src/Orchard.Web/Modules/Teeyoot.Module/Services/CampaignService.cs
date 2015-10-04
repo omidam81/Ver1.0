@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using Microsoft.SqlServer.Server;
 using Orchard.Environment.Configuration;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Messaging.CampaignService;
@@ -789,23 +790,29 @@ namespace Teeyoot.Module.Services
             if (!searchCampaignItems.Any())
                 return;
 
-            var sqlQuery =
-                " SELECT CampaignRecord.Id CampaignRecordId," +
-                " CampaignProductRecord.Id CampaignFirstProductId," +
-                " CurrencyRecord.Code CampaignFirstProductCurrencyCode" +
-                " FROM Teeyoot_Module_CampaignRecord CampaignRecord" +
-                " CROSS APPLY (SELECT TOP 1 Id, CurrencyRecord_Id FROM Teeyoot_Module_CampaignProductRecord WHERE CampaignRecord_Id = CampaignRecord.Id AND WhenDeleted IS NULL) CampaignProductRecord" +
-                " LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord" +
-                " ON CampaignProductRecord.CurrencyRecord_Id = CurrencyRecord.Id" +
-                " WHERE CampaignRecord.Id IN ({0})";
-
-            sqlQuery = string.Format(sqlQuery, string.Join(",", searchCampaignItems.Select(c => c.Id)));
-
             using (var command = transaction.Connection.CreateCommand())
             {
                 command.Transaction = transaction;
-                command.CommandType = CommandType.Text;
-                command.CommandText = sqlQuery;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "GetCampaignsFirstProductData";
+
+                // http://www.sommarskog.se/arrays-in-sql-2008.html#TVP_in_TSQL
+                var campaignIdsValue = new List<SqlDataRecord>();
+                foreach (var searchCampaignItem in searchCampaignItems)
+                {
+                    var campaignIdValue = new SqlDataRecord(new SqlMetaData("N", SqlDbType.BigInt));
+                    campaignIdValue.SetInt64(0, Convert.ToInt64(searchCampaignItem.Id));
+
+                    campaignIdsValue.Add(campaignIdValue);
+                }
+
+                var campaignIdsParameter = new SqlParameter("@CampaignIds", SqlDbType.Structured)
+                {
+                    TypeName = "INTEGER_LIST_TABLE_TYPE",
+                    Value = campaignIdsValue
+                };
+
+                command.Parameters.Add(campaignIdsParameter);
 
                 using (var reader = command.ExecuteReader())
                 {

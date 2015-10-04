@@ -192,3 +192,39 @@ OFFSET
 FETCH NEXT 
 	@Take ROWS ONLY
 GO
+
+IF TYPE_ID('INTEGER_LIST_TABLE_TYPE') IS NOT NULL
+	/* Firts drop stored procedures that depends on this type */
+	IF OBJECT_ID('GetCampaignsFirstProductData', 'P') IS NOT NULL
+		DROP PROCEDURE GetCampaignsFirstProductData
+	DROP TYPE INTEGER_LIST_TABLE_TYPE
+GO
+
+CREATE TYPE INTEGER_LIST_TABLE_TYPE AS TABLE(N INT NOT NULL PRIMARY KEY)
+GO
+
+CREATE PROCEDURE GetCampaignsFirstProductData
+	/* http://www.sommarskog.se/arrays-in-sql-2008.html#TVP_in_TSQL */
+	@CampaignIds INTEGER_LIST_TABLE_TYPE READONLY
+AS
+SET NOCOUNT ON
+SELECT 
+	CampaignRecord.Id CampaignRecordId,
+	CampaignProductRecord.Id CampaignFirstProductId,
+	CurrencyRecord.Code CampaignFirstProductCurrencyCode
+FROM
+	Teeyoot_Module_CampaignRecord CampaignRecord
+	CROSS APPLY (
+		SELECT TOP 1 
+			Id, 
+			CurrencyRecord_Id 
+		FROM 
+			Teeyoot_Module_CampaignProductRecord 
+		WHERE 
+			CampaignRecord_Id = CampaignRecord.Id 
+			AND WhenDeleted IS NULL
+	) CampaignProductRecord
+	LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord
+	ON CampaignProductRecord.CurrencyRecord_Id = CurrencyRecord.Id
+WHERE CampaignRecord.Id IN (SELECT N FROM @CampaignIds)
+GO
