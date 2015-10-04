@@ -812,10 +812,10 @@ namespace Teeyoot.Module.Services
                     while (reader.Read())
                     {
                         var campaignId = (int) reader["CampaignRecordId"];
-                        searchCampaignItems.First(c => c.Id == campaignId).CampaignFirstProductId =
-                            (int) reader["CampaignFirstProductId"];
-                        searchCampaignItems.First(c => c.Id == campaignId).CampaignFirstProductCurrencyCode =
-                            (string) reader["CampaignFirstProductCurrencyCode"];
+                        var campaign = searchCampaignItems.First(c => c.Id == campaignId);
+
+                        campaign.CampaignFirstProductId = (int) reader["CampaignFirstProductId"];
+                        campaign.CampaignFirstProductCurrencyCode = (string) reader["CampaignFirstProductCurrencyCode"];
                     }
                 }
             }

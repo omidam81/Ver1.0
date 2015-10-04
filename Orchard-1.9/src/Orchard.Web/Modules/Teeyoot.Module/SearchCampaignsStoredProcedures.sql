@@ -48,7 +48,7 @@ FROM(
 ORDER BY 
 	CampaignsTemp.SalesLast24Hours DESC, 
 	CampaignsTemp.SalesAllPeriod DESC, 
-	CampaignRecord.StartDate DESC
+	CampaignRecord.WhenApproved DESC
 OFFSET 
 	@Skip ROWS
 FETCH NEXT 
@@ -117,7 +117,7 @@ FROM(
 ORDER BY 
 	CampaignsTemp.SalesLast24Hours DESC, 
 	CampaignsTemp.SalesAllPeriod DESC, 
-	CampaignRecord.StartDate DESC
+	CampaignRecord.WhenApproved DESC
 OFFSET 
 	@Skip ROWS
 FETCH NEXT 
@@ -186,7 +186,7 @@ FROM(
 ORDER BY 
 	CampaignsTemp.SalesLast24Hours DESC, 
 	CampaignsTemp.SalesAllPeriod DESC, 
-	CampaignRecord.StartDate DESC
+	CampaignRecord.WhenApproved DESC
 OFFSET 
 	@Skip ROWS
 FETCH NEXT 
