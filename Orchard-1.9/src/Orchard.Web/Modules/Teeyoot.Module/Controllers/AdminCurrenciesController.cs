@@ -133,6 +133,7 @@ namespace Teeyoot.Module.Controllers
                 throw;
             }
 
+            _orchardServices.Notifier.Information(T("Record has been added!"));
             return RedirectToAction("Index");
         }
 
@@ -151,7 +152,7 @@ namespace Teeyoot.Module.Controllers
                 throw;
             }
 
-            _orchardServices.Notifier.Information(T("Currency has been deleted!"));
+            _orchardServices.Notifier.Information(T("Record has been deleted!"));
             return RedirectToAction("Index");
         }
 
@@ -211,7 +212,6 @@ namespace Teeyoot.Module.Controllers
                 {
                     record.FlagFileName = viewModel.FlagFileName;
                 }
-
                 step1_ImageFileSaved = true;
 
                 SetCountryForCurrency(viewModel.Id, viewModel.CountryId);

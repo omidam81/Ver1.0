@@ -1138,6 +1138,8 @@
     <Content Include="Views\AdminCurrencies\EditCurrency.cshtml" />
     <Content Include="Views\AdminCurrenciesConvertationTable\Index.cshtml" />
     <Content Include="Views\AdminTranslationText\Index.cshtml" />
+    <Content Include="Views\AdminCurrenciesConvertationTable\AddConvertation.cshtml" />
+    <Content Include="Views\AdminCurrenciesConvertationTable\EditConvertation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">

@@ -1,0 +1,34 @@
+﻿@model Teeyoot.Module.ViewModels.CurrencyViewModel
+@{
+    Layout.Title = T("Edit Convertation");
+}
+
+<h2>@T("Edit Convertation")</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("EditConvertation", "AdminCurrenciesConvertationTable"), FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @T("Currency Name:")
+        <br />
+        @Model.Name
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.PriceBuyers, T("Price for Buyers"))
+        @Html.EditorFor(m => m.PriceBuyers, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.PriceSellers, T("Price for Sellers"))
+        @Html.EditorFor(m => m.PriceSellers, new { @class = "text large" })
+    </fieldset>
+
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "AdminCurrenciesConvertationTable")">@T("Cancel")</a>
+    </fieldset>
+}
+
+
+
+
+
+

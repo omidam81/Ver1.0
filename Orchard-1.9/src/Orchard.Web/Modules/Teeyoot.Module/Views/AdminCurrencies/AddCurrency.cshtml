@@ -11,14 +11,17 @@
     <fieldset>
         @Html.LabelFor(m => m.Code, T("Code"))
         @Html.EditorFor(m => m.Code, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.Code)
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.Name, T("Name"))
         @Html.EditorFor(m => m.Name, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.Name)
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.ShortName, T("Short Name"))
         @Html.EditorFor(m => m.ShortName, new { @class = "text large" })
+        @Html.ValidationMessageFor(m => m.ShortName)
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.CountryId, T("Country"))
@@ -27,16 +30,16 @@
             T("Select Country ...").ToString(),
             new { id = "coutries" })
     </fieldset>
-    
+
     <div class="buttondiv">
-        <img id="flagImage" class="flagimg"/> 
+        <img id="flagImage" class="flagimg"/>
         &nbsp;&nbsp;
         @Html.TextBoxFor(m => m.FlagImage, new { type = "file", accept = "image/png", @class="loadbtn" })
     </div>
-    
+
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">@T("Save")</button>
-        <a class="button" href="@Url.Action("Currencies", "AdminCurrencies")">@T("Cancel")</a>
+        <a class="button" href="@Url.Action("Index", "AdminCurrencies")">@T("Cancel")</a>
     </fieldset>
 }
 

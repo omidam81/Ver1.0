@@ -36,7 +36,7 @@
 
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">@T("Save")</button>
-        <a class="button" href="@Url.Action("Currencies", "AdminCurrencies")">@T("Cancel")</a>
+        <a class="button" href="@Url.Action("Index", "AdminCurrencies")">@T("Cancel")</a>
     </fieldset>
     
     @Html.HiddenFor(m => m.ImageChanged)

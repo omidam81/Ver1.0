@@ -13,7 +13,7 @@
         <thead>
             <tr class="admin-categories">
                 <th class="visible">
-                    <h3>@T("Code ")</h3>
+                    <h3>@T("Currency Name ")</h3>
                 </th>
                 <th class="visible">
                     <h3>@T("Price for Buyers")</h3>
@@ -28,7 +28,7 @@
             {
                 <tr>
                     <td class="visible">
-                        @currency.Code
+                        @currency.Name
                     </td>
                     <td class="visible">
                         @currency.PriceBuyers
@@ -45,6 +45,10 @@
             <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
         </tbody>
     </table>
+    @if (Model.Currencies.Count() == 0)
+    {
+        @: There are no convertations
+    }
 </fieldset>
 
 @Display(Model.Pager)
