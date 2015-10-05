@@ -3541,7 +3541,7 @@ var design={
 				svg[0].setAttributeNS(null, 'width', zoom * svg[0].getAttributeNS(null, 'width'));
 				svg[0].setAttributeNS(null, 'height', zoom * svg[0].getAttributeNS(null, 'height'));
 
-				obj[i].svg 		= $('<div></div>').html(svg).html();
+				obj[i].svg = new XMLSerializer().serializeToString(svg[0]);
 				var image 		= $(svg).find('image');
 				if (typeof image[0] == 'undefined')
 				{
