@@ -1488,11 +1488,11 @@
                                 <button aria-hidden="true" class="precheckout_close_button" id="close-reservation" onclick="CloseModalBackReserv()" type="button">
                                     <i class="ts-icon-close"></i>
                                 </button>
-                                <h2 class="reservation_modal__title">@T("Your Reservation")</h2>
+                                <h2 class="reservation_modal__title">@T("Your request")</h2>
                             </div>
 
                             <div class="modal-body-central-block">
-                                @T("If just") <span>@Model.CntRequests</span> @T("more items are reserved, we can bring this design back! Leave your email and reserve your order now!")
+                                @T("Be among the") <span>@Model.CntRequests</span> @T("people who have requested this campaign. Type in your email and request it now!")
                             </div>
 
                             <div id="reserv_container">
@@ -1507,7 +1507,7 @@
                                     <div class="payment_options_container">
                                         <div class="reserve-yours-now">
                                             <div onclick="ReservCampaign(); return false;" class="button-reserve-yours-now">
-                                                @T("RESERVE YOURS NOW!")
+                                                @T("Request yours now")
                                             </div>
                                         </div>
                                     </div>

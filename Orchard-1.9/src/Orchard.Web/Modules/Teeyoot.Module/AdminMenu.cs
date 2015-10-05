@@ -24,7 +24,7 @@ namespace Teeyoot.Module
                     .Add(subItem => subItem
                         .Caption(T("Teeyoot"))
                         .Position("2.1")
-                        //.Action("Index", "Home", new { area = "Teeyoot.Module" })
+                    //.Action("Index", "Home", new { area = "Teeyoot.Module" })
                     )
                      .Add(subItem => subItem
                         .Caption(T("Campaigns"))
@@ -45,11 +45,11 @@ namespace Teeyoot.Module
                      .Add(subItem => subItem
                         .Caption(T("Payouts"))
                         .Position("2.8")
-                        .Action("Index", "Tranzaction", new { area = "Teeyoot.Payouts" })
-                        .Add(T("Order profits"),
-                            i => i.Action("Index", "Tranzaction", new { area = "Teeyoot.Payouts" }).LocalNav())
+                        .Action("Payouts", "Tranzaction", new { area = "Teeyoot.Payouts" })
                         .Add(T("Payouts"),
                             i => i.Action("Payouts", "Tranzaction", new { area = "Teeyoot.Payouts" }).LocalNav())
+                        .Add(T("Order profits"),
+                            i => i.Action("Index", "Tranzaction", new { area = "Teeyoot.Payouts" }).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("Messages"))
