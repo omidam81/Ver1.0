@@ -197,6 +197,9 @@ IF TYPE_ID('INTEGER_LIST_TABLE_TYPE') IS NOT NULL
 	/* Firts drop stored procedures that depends on this type */
 	IF OBJECT_ID('GetCampaignsFirstProductData', 'P') IS NOT NULL
 		DROP PROCEDURE GetCampaignsFirstProductData
+GO
+
+IF TYPE_ID('INTEGER_LIST_TABLE_TYPE') IS NOT NULL
 	DROP TYPE INTEGER_LIST_TABLE_TYPE
 GO
 
