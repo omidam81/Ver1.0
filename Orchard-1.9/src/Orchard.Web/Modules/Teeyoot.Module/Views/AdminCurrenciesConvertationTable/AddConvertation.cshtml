@@ -1,0 +1,39 @@
+﻿@model Teeyoot.Module.ViewModels.CurrencyViewModel
+@{
+    Layout.Title = T("Add New Convertation");
+}
+
+<h2>@T("Add New Convertation")</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("AddConvertation", "AdminCurrenciesConvertationTable"), FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Currency Name"))
+        @Html.DropDownListFor(m => m.Id,
+            new SelectList(Model.CurrenciesNotIsConvert, "Id", "Name"),
+            T("Select Currency ...").ToString(),
+            new { id = "currencies" })
+        @if (Model.CurrenciesNotIsConvert.Count() == 0)
+        {
+            @: There are no currencies having no converatation
+        }
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.PriceBuyers, T("Price for Buyers"))
+        @Html.EditorFor(m => m.PriceBuyers, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.PriceSellers, T("Price for Sellers"))
+        @Html.EditorFor(m => m.PriceSellers, new { @class = "text large" })
+    </fieldset>
+
+
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "AdminCurrenciesConvertationTable")">@T("Cancel")</a>
+    </fieldset>
+}
+
+
+
+

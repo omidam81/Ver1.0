@@ -132,11 +132,11 @@ namespace Teeyoot.Module
                     .Add(subItem => subItem
                         .Caption(T("Currency Converter"))
                         .Position("2.9")
-                        .Action("Index", "AdminCurrencies", new { area = "Teeyoot.Module" })
+                        .Action("Index", "AdminCurrenciesConvertationTable", new { area = "Teeyoot.Module" })
                         .Add(T("Convertation Table"),
-                            i => i.Action("ConvertationTable", "AdminCurrencies", new { area = "Teeyoot.Module" }).LocalNav())
+                            i => i.Action("Index", "AdminCurrenciesConvertationTable", new { area = "Teeyoot.Module" }).LocalNav())
                         .Add(T("Currencies"),
-                            i => i.Action("Currencies", "AdminCurrencies", new { area = "Teeyoot.Module" }).LocalNav())
+                            i => i.Action("Index", "AdminCurrencies", new { area = "Teeyoot.Module" }).LocalNav())
                     )
                 );
         }

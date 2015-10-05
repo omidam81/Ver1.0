@@ -53,13 +53,7 @@ namespace Teeyoot.Module.Controllers
         }
 
 
-
-        public ActionResult ConvertationTable()
-        {
-            return View();
-        }
-
-        public ActionResult Currencies(PagerParameters pagerParameters)
+        public ActionResult Index(PagerParameters pagerParameters)
         {
             var viewModel = new CurrenciesViewModel();
 
@@ -138,8 +132,9 @@ namespace Teeyoot.Module.Controllers
                 //todo: (auth:Juiceek) Add rollback transaction logic
                 throw;
             }
-                        
-            return RedirectToAction("Currencies");
+
+            _orchardServices.Notifier.Information(T("Record has been added!"));
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeleteCurrency(int id)
@@ -157,8 +152,8 @@ namespace Teeyoot.Module.Controllers
                 throw;
             }
 
-            _orchardServices.Notifier.Information(T("Currency has been deleted!"));
-            return RedirectToAction("Currencies");
+            _orchardServices.Notifier.Information(T("Record has been deleted!"));
+            return RedirectToAction("Index");
         }
 
         public ActionResult EditCurrency(int id)
@@ -217,7 +212,6 @@ namespace Teeyoot.Module.Controllers
                 {
                     record.FlagFileName = viewModel.FlagFileName;
                 }
-
                 step1_ImageFileSaved = true;
 
                 SetCountryForCurrency(viewModel.Id, viewModel.CountryId);
@@ -233,7 +227,7 @@ namespace Teeyoot.Module.Controllers
             }
 
             _orchardServices.Notifier.Information(T("Record has been changed!"));
-            return RedirectToAction("Currencies");
+            return RedirectToAction("Index");
         }
 
 

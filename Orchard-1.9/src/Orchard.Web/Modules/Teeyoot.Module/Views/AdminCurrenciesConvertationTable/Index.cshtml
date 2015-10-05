@@ -1,0 +1,54 @@
+﻿@model Teeyoot.Module.ViewModels.CurrenciesViewModel
+@{
+    Layout.Title = T("Convertation Table");
+    Style.Include("currencies.css");
+}
+
+<div>
+    <a class="button primaryAction" href="@Url.Action("AddConvertation", "AdminCurrenciesConvertationTable")">@T("Add New Convertation")</a>
+</div>
+
+<fieldset>
+    <table class="items">
+        <thead>
+            <tr class="admin-categories">
+                <th class="visible">
+                    <h3>@T("Currency Name ")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Price for Buyers")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Price for Sellers")</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currency in Model.Currencies)
+            {
+                <tr>
+                    <td class="visible">
+                        @currency.Name
+                    </td>
+                    <td class="visible">
+                        @currency.PriceBuyers
+                    </td>
+                    <td class="visible">
+                        @currency.PriceSellers
+                    </td>
+                    <td class="related">
+                        <a class="button" href="@Url.Action("EditConvertation", "AdminCurrenciesConvertationTable", new { id = currency.Id })" title="@T("Edit")">@T("Edit")</a>
+                        <a class="button" href="@Url.Action("DeleteConvertation", "AdminCurrenciesConvertationTable", new { id = currency.Id })" itemprop="RemoveUrl">@T("Delete")</a>
+                    </td>
+                </tr>
+            }
+            <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+        </tbody>
+    </table>
+    @if (Model.Currencies.Count() == 0)
+    {
+        @: There are no convertations
+    }
+</fieldset>
+
+@Display(Model.Pager)

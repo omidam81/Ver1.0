@@ -1138,12 +1138,14 @@
     <Content Include="Views\AdminRelaunchCamp\Index.cshtml" />
     <Content Include="Views\AdminPromotions\Index.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
-    <Content Include="Views\AdminCurrencies\ConvertationTable.cshtml" />
     <Content Include="Views\AdminUser\EditUser.cshtml" />
-    <Content Include="Views\AdminCurrencies\Currencies.cshtml" />
+    <Content Include="Views\AdminCurrencies\Index.cshtml" />
     <Content Include="Views\AdminCurrencies\AddCurrency.cshtml" />
     <Content Include="Views\AdminCurrencies\EditCurrency.cshtml" />
+    <Content Include="Views\AdminCurrenciesConvertationTable\Index.cshtml" />
     <Content Include="Views\AdminTranslationText\Index.cshtml" />
+    <Content Include="Views\AdminCurrenciesConvertationTable\AddConvertation.cshtml" />
+    <Content Include="Views\AdminCurrenciesConvertationTable\EditConvertation.cshtml" />
     <Content Include="Views\AdminTranslationText\EditTextForLocalization.cshtml" />
     <Content Include="Views\Parts\AllCountryWidget.cshtml" />
   </ItemGroup>
@@ -1190,6 +1192,7 @@
     <Compile Include="Common\Utils\ImageHelper.cs" />
     <Compile Include="Controllers\AdminCommonSettingsController.cs" />
     <Compile Include="Controllers\AdminCurrenciesController.cs" />
+    <Compile Include="Controllers\AdminCurrenciesConvertationTableController.cs" />
     <Compile Include="Controllers\AdminRelaunchCampController.cs" />
     <Compile Include="Controllers\AdminCostController.cs" />
     <Compile Include="Controllers\AdminTranslationTextController.cs" />
