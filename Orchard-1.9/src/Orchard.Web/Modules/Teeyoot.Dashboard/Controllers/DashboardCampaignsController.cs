@@ -278,6 +278,8 @@ namespace Teeyoot.Dashboard.Controllers
             foreach (var item in model.Overviews)
             {
                 item.MYProfit = item.MYProfit - item.MYToBeAllPaid;
+                if (item.MYProfit < 0)
+                    item.MYProfit = item.MYProfit * -1;
             }
 
         }
