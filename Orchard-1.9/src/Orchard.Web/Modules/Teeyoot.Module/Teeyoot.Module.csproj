@@ -1181,6 +1181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
+    <Content Include="AdminUserStoredProcedures.sql" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredPromotionsTask.cs" />
