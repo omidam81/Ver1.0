@@ -1,0 +1,31 @@
+﻿.tr-row {
+    width: 100%;
+}
+
+.td-one {
+    width: 80%;
+}
+
+    .td-one input {
+        width: 95%;
+        margin-left: 2%;
+    }
+
+.td-two {
+    width: 20%;
+    text-align: center;
+}
+
+.div-row {
+    width: 100%;
+}
+
+    .div-row input {
+        width: 95%;
+        margin-left: 2%;
+    }
+
+    .div-row  button{
+        margin-top: 10px;
+        margin-left: 2%;
+    }

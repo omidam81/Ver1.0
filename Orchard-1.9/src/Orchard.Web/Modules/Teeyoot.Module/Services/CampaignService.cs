@@ -5,8 +5,13 @@ using Orchard.Localization;
 using Orchard.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using Microsoft.SqlServer.Server;
+using Orchard.Environment.Configuration;
 using Teeyoot.Module.Common.Enums;
+using Teeyoot.Module.Messaging.CampaignService;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 using Teeyoot.Module.Services.Interfaces;
@@ -31,6 +36,7 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<BringBackCampaignRecord> _backCampaignRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
         private readonly ICountryService _countryService;
+        private readonly ShellSettings _shellSettings;
 
         public CampaignService(IRepository<CampaignRecord> campaignRepository,
                                IRepository<CampaignProductRecord> campProdRepository,
@@ -48,7 +54,8 @@ namespace Teeyoot.Module.Services
                                ITeeyootMessagingService teeyootMessagingService,
                                IRepository<BringBackCampaignRecord> backCampaignRepository,
                                IWorkContextAccessor workContextAccessor,
-                               ICountryService countryService)
+                               ICountryService countryService,
+                               ShellSettings shellSettings)
         {
             _campaignRepository = campaignRepository;
             _campProdRepository = campProdRepository;
@@ -70,6 +77,7 @@ namespace Teeyoot.Module.Services
             Logger = NullLogger.Instance;
             _workContextAccessor = workContextAccessor;
             _countryService = countryService;
+            _shellSettings = shellSettings;
         }
 
         private IOrchardServices Services { get; set; }
@@ -579,6 +587,245 @@ namespace Teeyoot.Module.Services
         public IQueryable<string> GetBuyersEmailOfReservedCampaign(int id)
         {
             return _backCampaignRepository.Table.Where(c => c.CampaignRecord.Id == id).Select(c=>c.Email);
-        }   
+        }
+
+        public SearchCampaignsResponse SearchCampaigns(SearchCampaignsRequest request)
+        {
+            var response = new SearchCampaignsResponse();
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SearchCampaigns";
+
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = request.Culture
+                        };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
+
+                        command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
+                        }
+                    }
+
+                    FillSearchCampaignItemsWithData(response.Campaigns, transaction);
+
+                    transaction.Commit();
+                }
+            }
+
+            return response;
+        }
+
+        public SearchCampaignsResponse SearchCampaignsForTag(SearchCampaignsRequest request)
+        {
+            var response = new SearchCampaignsResponse();
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SearchCampaignsForTag";
+
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = request.Culture
+                        };
+                        var tagParameter = new SqlParameter("@Tag", SqlDbType.NVarChar, 100)
+                        {
+                            Value = request.Tag
+                        };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
+
+                        command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
+                        command.Parameters.Add(tagParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
+                        }
+                    }
+
+                    FillSearchCampaignItemsWithData(response.Campaigns, transaction);
+
+                    transaction.Commit();
+                }
+            }
+
+            return response;
+        }
+
+        public SearchCampaignsResponse SearchCampaignsForFilter(SearchCampaignsRequest request)
+        {
+            var response = new SearchCampaignsResponse();
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SearchCampaignsForFilter";
+
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = request.Culture
+                        };
+                        var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
+                        {
+                            Value = "%" + request.Filter + "%"
+                        };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
+
+                        command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
+                        command.Parameters.Add(filterParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
+                        }
+                    }
+                    
+                    FillSearchCampaignItemsWithData(response.Campaigns, transaction);
+
+                    transaction.Commit();
+                }
+            }
+            return response;
+        }
+
+        private static List<SearchCampaignItem> GetSearchCampaignItemsFrom(IDataReader reader)
+        {
+            var searchCampaigns = new List<SearchCampaignItem>();
+
+            while (reader.Read())
+            {
+                var searchCampaignItem = new SearchCampaignItem
+                {
+                    Id = (int) reader["Id"],
+                    Title = (string) reader["Title"],
+                    Alias = (string) reader["Alias"],
+                    EndDate = (DateTime) reader["EndDate"],
+                    ProductCountSold = (int) reader["ProductCountSold"],
+                    ProductMinimumGoal = (int) reader["ProductMinimumGoal"],
+                    BackSideByDefault = (bool) reader["BackSideByDefault"]
+                };
+
+                if (reader["URL"] != DBNull.Value)
+                    searchCampaignItem.Url = (string) reader["URL"];
+
+                searchCampaigns.Add(searchCampaignItem);
+            }
+
+            return searchCampaigns;
+        }
+
+        private static void FillSearchCampaignItemsWithData(
+            IList<SearchCampaignItem> searchCampaignItems,
+            IDbTransaction transaction)
+        {
+            if (!searchCampaignItems.Any())
+                return;
+
+            using (var command = transaction.Connection.CreateCommand())
+            {
+                command.Transaction = transaction;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "GetCampaignsFirstProductData";
+
+                // http://www.sommarskog.se/arrays-in-sql-2008.html#TVP_in_TSQL
+                var campaignIdsValue = new List<SqlDataRecord>();
+                foreach (var searchCampaignItem in searchCampaignItems)
+                {
+                    var campaignIdValue = new SqlDataRecord(new SqlMetaData("N", SqlDbType.BigInt));
+                    campaignIdValue.SetInt64(0, Convert.ToInt64(searchCampaignItem.Id));
+
+                    campaignIdsValue.Add(campaignIdValue);
+                }
+
+                var campaignIdsParameter = new SqlParameter("@CampaignIds", SqlDbType.Structured)
+                {
+                    TypeName = "INTEGER_LIST_TABLE_TYPE",
+                    Value = campaignIdsValue
+                };
+
+                command.Parameters.Add(campaignIdsParameter);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var campaignId = (int) reader["CampaignRecordId"];
+                        var campaign = searchCampaignItems.First(c => c.Id == campaignId);
+
+                        campaign.CampaignFirstProductId = (int) reader["CampaignFirstProductId"];
+                        campaign.CampaignFirstProductCurrencyCode = (string) reader["CampaignFirstProductCurrencyCode"];
+                    }
+                }
+            }
+        }
     }
 }

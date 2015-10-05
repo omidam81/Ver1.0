@@ -143,6 +143,11 @@ namespace Teeyoot.Module.Services
             return _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive);
         }
 
+        public IQueryable<LinkOrderCampaignProductRecord> GetActiveProductsOrderedOfCampaign(int campaignId)
+        {
+            return _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled");
+        }
+
         public IQueryable<LinkOrderCampaignProductRecord> GetAllOrderedProducts()
         {
             return _ocpRepository.Table;
@@ -154,7 +159,14 @@ namespace Teeyoot.Module.Services
                                         .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                                         .Sum(entry => (int?)entry.Profit) ?? 0);
         }
+        
 
+        public double GetProfitActiveOrdersOfCampaign(int id)
+        {
+            return GetActiveProductsOrderedOfCampaign(id)
+                                        .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
+                                        .Sum(entry => (double?)entry.Profit) ?? 0;
+        }
 
         public void UpdateOrder(OrderRecord order, OrderStatus status)
         {

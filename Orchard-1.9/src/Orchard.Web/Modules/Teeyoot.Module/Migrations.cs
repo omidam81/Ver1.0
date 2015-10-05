@@ -910,7 +910,29 @@ namespace Teeyoot.Module
             //TODO: (auth:keinlekan) Удалить колонку после того, как заработает полностью новая логика по привязке к странам
             //SchemaBuilder.AlterTable(typeof(CampaignCategoriesRecord).Name, table => table.DropColumn("CountryRecord_Id"));
 
-            return 104;
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+                table => table.AddColumn<double>("PriceBuyers", c => c.WithDefault(1)));
+
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+                table => table.AddColumn<double>("PriceSellers", c => c.WithDefault(1)));
+
+            SchemaBuilder.AlterTable(typeof(CurrencyRecord).Name,
+                table => table.AddColumn<bool>("IsConvert", c => c.WithDefault(false)));
+
+            ContentDefinitionManager.AlterPartDefinition(
+                "AllCountryWidgetPart",
+                builder => builder.Attachable());
+
+            ContentDefinitionManager.AlterTypeDefinition(
+                "AllCountryWidget",
+                cfg => cfg
+                           .WithPart("AllCountryWidgetPart")
+                           .WithPart("CommonPart")
+                           .WithPart("WidgetPart")
+                           .WithSetting("Stereotype", "Widget")
+                );
+
+            return 106;
         }
 
         public int UpdateFrom2()
@@ -2143,6 +2165,24 @@ namespace Teeyoot.Module
                 table => table.AddColumn<bool>("IsConvert", c => c.WithDefault(false)));
 
             return 105;
+        }
+
+        public int UpdateFrom105()
+        {
+            ContentDefinitionManager.AlterPartDefinition(
+                "AllCountryWidgetPart",
+                builder => builder.Attachable());
+
+            ContentDefinitionManager.AlterTypeDefinition(
+                "AllCountryWidget",
+                cfg => cfg
+                           .WithPart("AllCountryWidgetPart")
+                           .WithPart("CommonPart")
+                           .WithPart("WidgetPart")
+                           .WithSetting("Stereotype", "Widget")
+                );
+
+            return 106;
         }
     }
 }

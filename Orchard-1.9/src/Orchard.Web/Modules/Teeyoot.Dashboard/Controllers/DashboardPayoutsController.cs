@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web.Mvc;
 using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.Services;
 
 namespace Teeyoot.Dashboard.Controllers
 {
     public partial class DashboardController : Controller
     {
+
         public ActionResult Accounts()
         {
             int currentUserId = Services.WorkContext.CurrentUser.Id;
@@ -21,7 +23,8 @@ namespace Teeyoot.Dashboard.Controllers
             //model.CurrencyId = _currencyRepository.Table.ToList().ElementAt(0).Id;
             model.Transactions = list;
             model.Balances = _currencyRepository.Table.Select(c => new Balance { CurrencyId = c.Id, Currency = c.Code }).ToList();
-
+            var procProfits = 0.0;
+            var unclProfits = 0.0;
             foreach (var itemBal in model.Balances)
             {
                 foreach (var item in model.Transactions)
@@ -31,14 +34,40 @@ namespace Teeyoot.Dashboard.Controllers
                         item.Currency = itemBal.Currency;
 
                         if (item.IsPlus && item.Status != "pending")
+                        {
                             itemBal.Bal = itemBal.Bal + item.Amount;
+                            unclProfits = unclProfits - item.Amount;
+                        }
+
                         else if (!item.IsPlus && item.Status != "pending")
+                        {
                             itemBal.Bal = itemBal.Bal - item.Amount;
+                        }
+                        else if (!item.IsPlus && item.Status == "pending")
+                        {
+                            itemBal.Bal = itemBal.Bal - item.Amount;
+                            procProfits = procProfits + item.Amount;
+                        }
                     }
                 }
                 if (itemBal.Bal < 0)
                     itemBal.Bal = 0;
+
+                itemBal.ProcessedProfits = procProfits;
             }
+
+            var campaigns = _campaignService.GetCampaignsOfUser(currentUserId);
+
+            
+            foreach (var item in campaigns)
+            {
+                if (item.ProductMinimumGoal <= item.ProductCountSold)
+                	{
+                        unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);  
+	                }
+            }
+
+            model.Balances.Where(b => b.Currency == "RM").First().UnclProfits = Math.Round(unclProfits, 2);
 
 
 

@@ -31,7 +31,9 @@
             $("#tags_to_save").val(value);
         });
 
-        $(".textarea").wysihtml5();
+        $(".textarea").wysihtml5({
+            parserRules: wysihtml5ParserRules
+        });
 
         var isFront = true;
         $("#card").flip({

@@ -10,6 +10,6 @@ namespace Teeyoot.Search.Services
 {
     public interface ICampaignProductService : IDependency
     {
-        List<CampaignProductRecord> GetCampaignProductsByCampaign(List<CampaignRecord> campList);
+        List<CampaignProductRecord> GetCampaignProductsByCampaign(IEnumerable<int> campaignIds);
     }
 }

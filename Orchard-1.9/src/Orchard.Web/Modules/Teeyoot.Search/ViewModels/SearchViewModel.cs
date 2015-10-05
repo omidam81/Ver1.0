@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Teeyoot.Module.Messaging.CampaignService;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Search.ViewModels
@@ -11,6 +12,8 @@ namespace Teeyoot.Search.ViewModels
         public bool NotResult { get; set; }
 
         public string Filter { get; set; }
+
+        public IEnumerable<SearchCampaignItem> Campaigns { get; set; }
 
         public List<CampaignRecord> CampList { get; set; }
 

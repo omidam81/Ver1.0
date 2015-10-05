@@ -1040,6 +1040,9 @@
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
+    <Content Include="Placement.info">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\ciede2000.js" />
@@ -1077,12 +1080,14 @@
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\wizard.js" />
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
+    <Content Include="SearchCampaignsStoredProcedures.sql" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap-wysihtml5.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\checkout.css" />
     <Content Include="Styles\Cost.css" />
+    <Content Include="Styles\CountryWidget.css" />
     <Content Include="Styles\currencies.css" />
     <Content Include="Styles\custom.css" />
     <Content Include="Styles\designerTeeyoot.css" />
@@ -1101,6 +1106,7 @@
     <Content Include="Styles\price.css" />
     <Content Include="Styles\reservationcomplete.css" />
     <Content Include="Styles\selectize.css" />
+    <Content Include="Styles\TextTranslation.css" />
     <Content Include="Styles\track.css" />
     <Content Include="Styles\Wizard.css" />
     <Content Include="Views\Wizard\Oops.cshtml">
@@ -1140,6 +1146,8 @@
     <Content Include="Views\AdminTranslationText\Index.cshtml" />
     <Content Include="Views\AdminCurrenciesConvertationTable\AddConvertation.cshtml" />
     <Content Include="Views\AdminCurrenciesConvertationTable\EditConvertation.cshtml" />
+    <Content Include="Views\AdminTranslationText\EditTextForLocalization.cshtml" />
+    <Content Include="Views\Parts\AllCountryWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -1193,9 +1201,12 @@
     <Compile Include="Controllers\AdminPromotionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WizardController.cs" />
+    <Compile Include="Drivers\AllCountryWidget.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
+    <Compile Include="Messaging\CampaignService\SearchCampaignsRequest.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\AllCountryWidgetPart.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
     <Compile Include="Models\CountryRecord.cs" />
     <Compile Include="Models\DeliverySettingRecord.cs" />
@@ -1222,6 +1233,7 @@
     <Compile Include="Models\OrderStatusRecord.cs" />
     <Compile Include="Models\CampaignStatusRecord.cs" />
     <Compile Include="Models\PayoutRecord.cs" />
+    <Compile Include="Messaging\CampaignService\SearchCampaignItem.cs" />
     <Compile Include="Models\TShirtCostRecord.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Services\CountryService.cs" />
@@ -1248,9 +1260,12 @@
     <Compile Include="Services\Interfaces\ITShirtCostService.cs" />
     <Compile Include="Services\PayoutService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Messaging\CampaignService\SearchCampaignsResponse.cs" />
     <Compile Include="Services\TeeyootMessagingService.cs" />
     <Compile Include="Services\TShirtCostService.cs" />
     <Compile Include="Common\TeeyootCultureSelector.cs" />
+    <Compile Include="ViewModels\AdminEditTranslationTextViewModel.cs" />
+    <Compile Include="ViewModels\AdminTranslationTextViewModel.cs" />
     <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
     <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
