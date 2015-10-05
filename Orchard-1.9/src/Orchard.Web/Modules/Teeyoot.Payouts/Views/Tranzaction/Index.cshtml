@@ -214,7 +214,7 @@
                                 else
                                 {
                                     @T("- ")<span> @item.Amount</span>
-                                    if (@item.Status == "pending")
+                                    if (@item.Status == "Pending")
                                     {
                                         <button class="btnEdit" type="submit" onclick="editNode(@item.Id)">@T("edit")</button>
                                     }
@@ -223,7 +223,7 @@
                             </td>
                             <td class="status">
                                 @item.Status
-                                @if (@item.Status == "pending")
+                                @if (@item.Status == "Pending")
                                 {
                                     @T(" | ")
                                     <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" Completed")">@T("Completed")</a>
