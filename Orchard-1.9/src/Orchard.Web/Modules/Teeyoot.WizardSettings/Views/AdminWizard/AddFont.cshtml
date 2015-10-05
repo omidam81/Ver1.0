@@ -7,7 +7,7 @@
 
 @Html.AntiForgeryToken()
 <div class="inpFields">
-    @T("Select font (supported format(s): .woff)")
+    <label style ="width: 250px;">@T("Select font (supported format(s): .woff)")</label>
     
     @using (Html.BeginForm("UploadWoffFile", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
     {
@@ -23,7 +23,7 @@
     
 </div>
 <div class="inpFields">
-    @T("Font Thumbnail")
+    <label style="width: 250px;">@T("Font Thumbnail")</label>
     @using (Html.BeginForm("UploadThumbnail", "AdminWizard", FormMethod.Post, new { enctype = "multipart/form-data", model = Model }))
     {
         @Html.AntiForgeryToken()
@@ -32,7 +32,7 @@
         @Html.HiddenFor(m => Model.WoffFile)
         @Html.HiddenFor(m => Model.Family)
         @Html.HiddenFor(m => Model.FileName)
-        <input style="margin-left:186px" type="file" name="file" id="name" value=@Model.Thumbnail />
+        <input style="margin-left:55px" type="file" name="file" id="name" value=@Model.Thumbnail />
         <input class="button primaryAction" type="submit" value="@T("Upload File")">
     }
     

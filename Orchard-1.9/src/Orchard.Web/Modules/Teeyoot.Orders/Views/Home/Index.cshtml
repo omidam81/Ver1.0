@@ -280,7 +280,7 @@
                     </td>
                     <td class="campaign">
                         <a href="~/@item.CampaignAlias">@item.CampaignName</a>
-</td>
+                    </td>
                     <td class="seller">
                         @item.UserNameSeller
                     </td>
@@ -291,6 +291,19 @@
                     <td class="status">
                         @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
                         {
+                            bool hasStatus = true;
+                            foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.OrderStatus)))
+                            {
+                                if (s.ToString() == item.Status)
+                                {
+                                    hasStatus = false;
+                                    <label style="display: none">@s.ToString().SplitCamelCase()</label>
+                                }
+                            }
+                            if (hasStatus)
+                            {
+                                <label style="display: none">@item.Status</label>
+                            }
                             <input type="hidden" value="@item.Id" name="orderId"/>
 
                             <select name="orderStatus">
