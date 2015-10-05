@@ -12,6 +12,10 @@ h1 {
 
 .inpFields {
     display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    width: 100%;
     margin: 20px;
 }
 
