@@ -138,7 +138,7 @@ namespace Teeyoot.Module.Controllers
                                 PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
                                 
                                                                
-                                if (promotion.Status && (promotion.AmountType == _currencyRepository.Table.Where(c=> c.CurrencyCulture == campaign.CampaignCulture).FirstOrDefault().Code) && (promotion.Expiration > DateTime.UtcNow) && (campaign.ProductCountSold >= campaign.ProductMinimumGoal))
+                                if (promotion.Status && (promotion.AmountType == _currencyRepository.Table.Where(c=> c.CurrencyCulture == campaign.CampaignCulture).FirstOrDefault().Code) && (promotion.Expiration > DateTime.UtcNow) && (campaign.ProductCountSold >= campaign.ProductMinimumGoal) && promotion.UserId == campaign.TeeyootUserId)
                                 {
                                     var infoMessage = T(String.Format("Congratulations, you'll be receiving {0} {1} off your purchase. Discount reflected at checkout!", promotion.AmountType, promotion.AmountSize));
                                     //_notifier.Add(NotifyType.Error, infoMessage);
