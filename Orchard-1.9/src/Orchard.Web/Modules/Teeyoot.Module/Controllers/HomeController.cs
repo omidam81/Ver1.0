@@ -331,8 +331,6 @@ namespace Teeyoot.Module.Controllers
 
                 //if (order.OrderStatusRecord.Name == OrderStatus.Unapproved.ToString())
                 //{
-                
-
                     if (status == "00")
                     {
                         if (order.OrderStatusRecord != _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Approved.ToString()))
@@ -342,14 +340,25 @@ namespace Teeyoot.Module.Controllers
                         order.Paid = DateTime.Now.ToUniversalTime();
                         order.ProfitPaid = true;
                         _orderService.UpdateOrder(order);
-                        var adminId = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId).First();
+                        var adminIds = _userRolesPartRepository.Table.Where(x => x.Role.Name == "Administrator").Select(x => x.UserId);
+                        var adminId = 0;
+                        var users = _userRepository.Table.ToList();
+                        foreach (var item in adminIds)
+                        {
+                            if (users.Select(u => u.Id).ToList().Contains(item))
+                            {
+                                adminId = item;
+                                break;
+                            }
+                        }
+
+
                         _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = Convert.ToDouble(amount), IsPlus = true, Status = "Completed", UserId = adminId, Event = order.OrderPublicId.Trim(' ') });
                         var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                         var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-                        var users = _userRepository.Table.ToList();
+
                         _teeyootMessagingService.SendNewOrderMessageToAdmin(order.Id, pathToMedia, pathToTemplates);
                         _teeyootMessagingService.SendOrderStatusMessage(pathToTemplates, pathToMedia, order.Id, OrderStatus.Approved.ToString());
-
 
                         if (campaign.ProductCountSold >= campaign.ProductCountGoal)
                         {
@@ -393,8 +402,6 @@ namespace Teeyoot.Module.Controllers
                         }
                         return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId, oops = true });
                     }
-                
-
                 return RedirectToAction("ReservationComplete", new { campaignId = campaign.Id, sellerId = campaign.TeeyootUserId });
            
 
