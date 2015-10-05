@@ -63,9 +63,12 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 if (item.ProductMinimumGoal <= item.ProductCountSold)
                 	{
-                        unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);  
+                        unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);
 	                }
             }
+            
+            if (unclProfits < 0)
+                unclProfits = unclProfits * -1;
 
             model.Balances.Where(b => b.Currency == "RM").First().UnclProfits = Math.Round(unclProfits, 2);
 
