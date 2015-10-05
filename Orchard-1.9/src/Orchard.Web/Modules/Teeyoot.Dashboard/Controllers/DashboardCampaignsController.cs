@@ -233,7 +233,7 @@ namespace Teeyoot.Dashboard.Controllers
                              .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                              .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => p.IsPlus == false && p.Status == "pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Where(p => p.IsPlus == false && p.Status == "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
                           .Select(p => new { Amount = p.Amount })
                            .Sum(entry => (double?)entry.Amount) ?? 0, 2),
 
