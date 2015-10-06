@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using Microsoft.SqlServer.Server;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
@@ -148,6 +149,8 @@ namespace Teeyoot.Module.Controllers
                         userTotal = (int) command.ExecuteScalar();
                     }
 
+                    FillUsersWithRoles(userItems, transaction);
+
                     transaction.Commit();
                 }
             }
@@ -290,6 +293,54 @@ namespace Teeyoot.Module.Controllers
                 .Sum(entry => (double?) entry.Profit);
 
             return payoutBalance ?? 0;
+        }
+
+        private static void FillUsersWithRoles(IList<UserItemViewModel> users, IDbTransaction transaction)
+        {
+            if (!users.Any())
+                return;
+
+            using (var command = transaction.Connection.CreateCommand())
+            {
+                command.Transaction = transaction;
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "GetUsersRoles";
+
+                var userIdsValue = new List<SqlDataRecord>();
+                foreach (var user in users)
+                {
+                    var campaignIdValue = new SqlDataRecord(new SqlMetaData("N", SqlDbType.BigInt));
+                    campaignIdValue.SetInt64(0, Convert.ToInt64(user.UserId));
+
+                    userIdsValue.Add(campaignIdValue);
+                }
+
+                var userIdsParameter = new SqlParameter("@UserIds", SqlDbType.Structured)
+                {
+                    TypeName = "INTEGER_LIST_TABLE_TYPE",
+                    Value = userIdsValue
+                };
+                command.Parameters.Add(userIdsParameter);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var userId = (int) reader["UserId"];
+                        var user = users.First(u => u.UserId == userId);
+
+                        var role = (string) reader["RoleName"];
+                        if (string.IsNullOrEmpty(user.Roles))
+                        {
+                            user.Roles = role;
+                        }
+                        else
+                        {
+                            user.Roles += ", " + role;
+                        }
+                    }
+                }
+            }
         }
     }
 }

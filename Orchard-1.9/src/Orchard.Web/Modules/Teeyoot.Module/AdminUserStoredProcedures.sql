@@ -94,3 +94,24 @@ SET @ParamDefinition =
 EXECUTE sp_executesql @SQLQuery, @ParamDefinition,
 	@RoleId
 GO
+
+IF OBJECT_ID('GetUsersRoles', 'P') IS NOT NULL
+	DROP PROCEDURE GetUsersRoles
+GO
+
+CREATE PROCEDURE GetUsersRoles
+	@UserIds INTEGER_LIST_TABLE_TYPE READONLY
+AS
+SET NOCOUNT ON
+SELECT
+	N UserId,
+	RoleRecord.Name RoleName
+FROM
+	@UserIds Users
+	JOIN Orchard_Roles_UserRolesPartRecord UserRolesPartRecord
+	ON Users.N = UserRolesPartRecord.UserId
+	JOIN Orchard_Roles_RoleRecord RoleRecord
+	ON UserRolesPartRecord.Role_id = RoleRecord.Id
+ORDER BY
+	RoleRecord.Id
+GO

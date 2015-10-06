@@ -27,6 +27,7 @@
         <thead>
         <tr>
             <th scope="col">@T("Email")</th>
+            <th scope="col">@T("Roles")</th>
             <th scope="col">@T("Currency")</th>
             <th scope="col">@T("Actions")</th>
         </tr>
@@ -36,6 +37,9 @@
             <tr>
                 <td>
                     <a href="@Url.Action("EditUser", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@user.Email</a>
+                </td>
+                <td>
+                    @user.Roles
                 </td>
                 <td>
                     @if (user.IsTeeyootUser)
