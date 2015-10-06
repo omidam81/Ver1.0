@@ -61,7 +61,7 @@ namespace Teeyoot.Payouts.Controllers
             if (payouts != null)
             {
                 if (filter == "1")
-                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending" && s.IsPlus == true).ToList();
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Pending" && s.IsPlus == true).ToList();
                 else if (filter == "2")
                     list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed" && s.IsPlus == true).ToList();
                 else
@@ -96,7 +96,7 @@ namespace Teeyoot.Payouts.Controllers
             if (payouts != null)
             {
                 if (filter == "1")
-                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "pending" && s.IsPlus == false).ToList();
+                    list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Pending" && s.IsPlus == false).ToList();
                 else if (filter == "2")
                     list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status }).Where(s => s.Status == "Completed" && s.IsPlus == false).ToList();
                 else
