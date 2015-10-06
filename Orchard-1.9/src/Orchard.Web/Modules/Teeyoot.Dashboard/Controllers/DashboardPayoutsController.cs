@@ -33,17 +33,17 @@ namespace Teeyoot.Dashboard.Controllers
                     {
                         item.Currency = itemBal.Currency;
 
-                        if (item.IsPlus && item.Status != "pending")
+                        if (item.IsPlus && item.Status != "Pending")
                         {
                             itemBal.Bal = itemBal.Bal + item.Amount;
                             unclProfits = unclProfits - item.Amount;
                         }
 
-                        else if (!item.IsPlus && item.Status != "pending")
+                        else if (!item.IsPlus && item.Status != "Pending")
                         {
                             itemBal.Bal = itemBal.Bal - item.Amount;
                         }
-                        else if (!item.IsPlus && item.Status == "pending")
+                        else if (!item.IsPlus && item.Status == "Pending")
                         {
                             itemBal.Bal = itemBal.Bal - item.Amount;
                             procProfits = procProfits + item.Amount;
@@ -63,9 +63,12 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 if (item.ProductMinimumGoal <= item.ProductCountSold)
                 	{
-                        unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);  
+                        unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);
 	                }
             }
+            
+            if (unclProfits < 0)
+                unclProfits = unclProfits * -1;
 
             model.Balances.Where(b => b.Currency == "RM").First().UnclProfits = Math.Round(unclProfits, 2);
 
@@ -98,7 +101,7 @@ namespace Teeyoot.Dashboard.Controllers
             }
             if (balance > 0)
             {
-                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = T("You requested a payout").ToString(), Currency_Id = currId, IsPlus = false, UserId = currentUserId, Status = "pending" };
+                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = T("Someone requested a payout").ToString(), Currency_Id = currId, IsPlus = false, UserId = currentUserId, Status = "Pending" };
                 _payoutService.AddPayout(payout);
                 _paymentInfService.AddPayment(new PaymentInformationRecord
                 {
