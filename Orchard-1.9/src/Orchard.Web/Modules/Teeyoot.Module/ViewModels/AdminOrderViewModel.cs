@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Module.ViewModels
@@ -18,11 +16,14 @@ namespace Teeyoot.Module.ViewModels
         public dynamic Pager { get; set; }
         public string SearchString { get; set; }
         public IEnumerable<OrderStatusItemViewModel> OrderStatuses { get; set; }
+        public int? SelectedCurrencyFilterId { get; set; }
+        public IEnumerable<CurrencyItemViewModel> Currencies { get; set; }
     }
 
-    public class AdminOrder {
+    public class AdminOrder
+    {
         public string PublicId { get; set; }
-        public  IList<LinkOrderCampaignProductRecord> Products { get; set; }
+        public IList<LinkOrderCampaignProductRecord> Products { get; set; }
         public string Status { get; set; }
 
 
@@ -33,7 +34,7 @@ namespace Teeyoot.Module.ViewModels
 
         //information buyuer
         public string EmailBuyer { get; set; }
-        public int Id{ get; set; }
+        public int Id { get; set; }
         public int SellerId { get; set; }
         public DateTime CreateDate { get; set; }
         //public string FirstName { get; set; }
@@ -46,7 +47,6 @@ namespace Teeyoot.Module.ViewModels
         public string UserNameSeller { get; set; }
         public double Profit { get; set; }
         public bool Payout { get; set; }
-
+        public string Currency { get; set; }
     }
-
 }
