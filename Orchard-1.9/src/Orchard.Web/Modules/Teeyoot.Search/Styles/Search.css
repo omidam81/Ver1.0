@@ -368,6 +368,6 @@
     }
 .infinite-scroll {
     width: 100%;
-    display: -moz-inline-grid;
+    /*display: -moz-inline-grid;*/
     display: inline-grid;
 }
