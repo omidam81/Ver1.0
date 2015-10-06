@@ -116,7 +116,7 @@
                 </div>
                 <div class="new_promotion__type">
                     <div class="label__title">@T("Types of Promotions")</div>
-                    @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = T("Discount"), @readonly = "true" })
+                    @Html.TextBoxFor(m => m.DiscountType, new { @class = "form__textfield ", @id = "code", @maxlength = "10", @name = "code", @type = "text", Value = T("Discount"), @readonly = "true", @style = "line-height: -moz-block-height; width: 100% !important;" })
                 </div>
                 <div class="new_promotion__discount">
                     <div class="label__title">@("Amount")</div>

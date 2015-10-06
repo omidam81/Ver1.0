@@ -492,6 +492,10 @@ input[readonly] {
     .new_promotion__form .label__title {
         height: 2rem;
     }
+
+    .add-button{
+        margin-top: 15px !important;
+    }
 }
 
 @media all and (max-width: 720px) {
@@ -571,4 +575,16 @@ input[readonly] {
 
 .share_promotions__url {
     font-weight: 600;
+}
+
+@media all and (max-width: 1600px){
+    .form__textfield{
+        width: 75% !important;
+    }
+}
+
+@media all and (max-width: 1220px){
+    .form__textfield{
+        width: 65% !important;
+    }
 }
