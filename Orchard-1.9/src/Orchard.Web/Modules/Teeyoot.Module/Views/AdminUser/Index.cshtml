@@ -3,7 +3,7 @@
     Layout.Title = T("Users");
 }
 
-@using (Html.BeginFormAntiForgeryPost())
+@using (Html.BeginForm("Index", "AdminUser", FormMethod.Get))
 {
     <fieldset class="bulk-actions">
         @T("Filter:")
