@@ -1,22 +1,23 @@
 ﻿@using Teeyoot.Module.Common.ExtentionMethods
-@model  Teeyoot.Module.ViewModels.AdminOrderViewModel
+@model Teeyoot.Module.ViewModels.AdminOrderViewModel
 @{
     Style.Include("AdminOrders.css");
     Style.Include("jquery.dataTables.css");
     Script.Require("jQuery");
     Script.Include("jquery.dataTables.min.js");
-    
 }
+
 @using (Script.Foot())
 {
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
 
 
-            $('.go').click(function (event) {
+            $('.go').click(function(event) {
                 event.preventDefault();
                 /* Запрос на сервак */
                 var orderId = this.value;
+
                 function getes(request, response) {
                     var result = new Array();
                     $.ajax({
@@ -25,7 +26,7 @@
                         type: "GET",
                         url: "@(Url.Action("GetBuyerInfirmation", "Home"))",
                         data: { "orderId": orderId },
-                        success: function (data) {
+                        success: function(data) {
                             $("#firstName").html(data.firstName);
                             $("#lastName").html(data.lastName);
                             $("#streetAdress").html(data.streetAdress);
@@ -34,15 +35,17 @@
                             $("#phoneNumber").html(data.phoneNumber);
                             $("#state").html(data.state);
                             $("#postalCode").html(data.postalCode);
-                        }, error: function (data, status, resp) {
+                        },
+                        error: function(data, status, resp) {
                             alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                         }
                     });
                 };
-                /* End Запрос на сервак */
+
+/* End Запрос на сервак */
                 console.log(getes())
                 $('#overlay').fadeIn(400,
-                    function () {
+                    function() {
                         $('#modal_form')
                             .css('display', 'block')
                             .animate({ opacity: 1, top: '50%' }, 200);
@@ -50,12 +53,11 @@
             });
 
 
-
-
-            $('.ordNumber').click(function (event) {
+            $('.ordNumber').click(function(event) {
                 event.preventDefault();
                 /* Запрос на сервак */
                 var orderId = this.innerHTML;
+
                 function getesOrder(request, response) {
                     var result = new Array();
                     $.ajax({
@@ -64,7 +66,7 @@
                         type: "GET",
                         url: "@(Url.Action("GetOrderInfirmation", "Home"))",
                         data: { "publicId": orderId },
-                        success: function (data) {
+                        success: function(data) {
                             var modal = document.getElementById("modalOrderTable");
                             var trs = modal.querySelectorAll("tr");
                             if (trs.length > 1) {
@@ -74,7 +76,7 @@
 
                             }
 
-                            data.products.forEach(function (item, i, arr) {
+                            data.products.forEach(function(item, i, arr) {
 
                                 var tr = document.createElement("tr");
                                 var tdName = document.createElement("td")
@@ -98,7 +100,6 @@
                                 pCount.innerHTML = item.Count;
                                 var pPrice = document.createElement("p");
                                 pPrice.innerHTML = item.Currency + " " + item.Price;
-
 
 
                                 tdName.appendChild(pName);
@@ -126,15 +127,17 @@
                             //$("#country").html(data.country);
                             //$("#phoneNumber").html(data.phoneNumber);
 
-                        }, error: function (data, status, resp) {
+                        },
+                        error: function(data, status, resp) {
                             alert('Status: ' + data.status + '. Error message: ' + data.statusText);
                         }
                     });
                 };
-                /* End Запрос на сервак */
+
+/* End Запрос на сервак */
                 console.log(getesOrder())
                 $('#overlay_order').fadeIn(400,
-                    function () {
+                    function() {
                         $('#modal_form_order')
                             .css('display', 'block')
                             .animate({ opacity: 1, top: '50%' }, 200);
@@ -142,27 +145,11 @@
             });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
-            $('#modal_close, #overlay').click(function () {
+/* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+            $('#modal_close, #overlay').click(function() {
                 $('#modal_form')
                     .animate({ opacity: 0, top: '45%' }, 200,
-                        function () { // пoсле aнимaции
+                        function() { // пoсле aнимaции
                             $(this).css('display', 'none');
                             $('#overlay').fadeOut(400);
                         }
@@ -170,12 +157,11 @@
             });
 
 
-
-            /* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
-            $('#modal_close_order, #overlay_order').click(function () {
+/* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+            $('#modal_close_order, #overlay_order').click(function() {
                 $('#modal_form_order')
                     .animate({ opacity: 0, top: '45%' }, 200,
-                        function () { // пoсле aнимaции
+                        function() { // пoсле aнимaции
                             $(this).css('display', 'none');
                             $('#overlay_order').fadeOut(400);
                         }
@@ -206,158 +192,170 @@
 {
     @Html.AntiForgeryToken()
 }
-@{
-    <fieldset>
-        <label>
-            Order Status
-            <select>
-                <option>@T("All")</option>
-                @foreach (var orderStatus in Model.OrderStatuses)
-                {
-                    <option value="@orderStatus.Id">@orderStatus.Name</option>
-                }
-            </select>
-        </label>
-    </fieldset>
-    <fieldset>
-        <table class="items" id="order-table">
-            <thead>
-            <tr class="admin-categories">
-                <th class="publicId">
-                    <h3>@T("Order ID")</h3>
-                </th>
-                <th class="publicId">
-                    <h3>@T("Order Number")</h3>
-                </th>
-                <th class="publicId">
-                    <h3>@T("Order Date")</h3>
-                </th>
-                <th class="buyer">
-                    <h3>@T("Buyer")</h3>
-                </th>
-                <th class="campaign">
-                    <h3>@T("Campaign ID")</h3>
-                </th>
-                <th class="campaign">
-                    <h3>@T("Campaign")</h3>
-                </th>
-                <th class="seller">
-                    <h3>@T("Seller")</h3>
-                </th>
-                <th class="profit">
-                    <h3>@T("Profit")</h3>
-                </th>
-                <th class="status">
-                    <h3>@T("Status")</h3>
-                </th>
-                <th class="payout">
-                    <h3>@T("Payment Status")</h3>
-                </th>
-            </tr>
-            </thead>
 
-            <tbody>
-            @foreach (var item in Model.DynamicOrders)
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <fieldset class="bulk-actions">
+        @T("Order Status")
+        <select>
+            <option>@T("All")</option>
+            @foreach (var orderStatus in Model.OrderStatuses)
             {
-                <tr class="admin-categories-tr">
-                    <td>
-                        @item.Id
-                    </td>
-                    <td class="publicId">
-                        <a class="ordNumber"> @item.PublicId</a>
-                    </td>
-                    <td>
-                        @item.CreateDate.ToString("dd/MM/yyyy")
-                    </td>
-                    <td class="buyer">
-                        @item.EmailBuyer
-                        <button class="go" type="submit" value="@item.Id">
-                            @T("inf")
-                        </button>
-                    </td>
-                    <td>
-                        @item.CampaignId
-                    </td>
-                    <td class="campaign">
-                        <a href="~/@item.CampaignAlias">@item.CampaignName</a>
-                    </td>
-                    <td class="seller">
-                        @item.UserNameSeller
-                    </td>
-                    <td class="profit">
-                        @T("RM ")
-                        @item.Profit
-                    </td>
-                    <td class="status">
-                        @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
+                <option value="@orderStatus.Id">@orderStatus.Name</option>
+            }
+        </select>
+        @T("Currency")
+        <select name="FilterCurrencyId">
+            <option>@T("All")</option>
+            @foreach (var currency in Model.Currencies)
+            {
+                <option value="@currency.Id" @if (currency.Id == Model.SelectedCurrencyFilterId)
+                                             {
+                                                 @:selected="selected"
+                                             }>
+                    @currency.Name</option>
+            }
+        </select>
+        <button type="submit">@T("Apply")</button>
+    </fieldset>
+}
+<fieldset>
+    <table class="items" id="order-table">
+        <thead>
+        <tr class="admin-categories">
+            <th class="publicId">
+                <h3>@T("Order ID")</h3>
+            </th>
+            <th class="publicId">
+                <h3>@T("Order Number")</h3>
+            </th>
+            <th class="publicId">
+                <h3>@T("Order Date")</h3>
+            </th>
+            <th class="buyer">
+                <h3>@T("Buyer")</h3>
+            </th>
+            <th class="campaign">
+                <h3>@T("Campaign ID")</h3>
+            </th>
+            <th class="campaign">
+                <h3>@T("Campaign")</h3>
+            </th>
+            <th class="seller">
+                <h3>@T("Seller")</h3>
+            </th>
+            <th class="profit">
+                <h3>@T("Profit")</h3>
+            </th>
+            <th class="status">
+                <h3>@T("Status")</h3>
+            </th>
+            <th class="payout">
+                <h3>@T("Payment Status")</h3>
+            </th>
+            <th>
+                <h3>@T("Currency")</h3>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.DynamicOrders)
+        {
+            <tr class="admin-categories-tr">
+                <td>
+                    @item.Id
+                </td>
+                <td class="publicId">
+                    <a class="ordNumber"> @item.PublicId</a>
+                </td>
+                <td>
+                    @item.CreateDate.ToString("dd/MM/yyyy")
+                </td>
+                <td class="buyer">
+                    @item.EmailBuyer
+                    <button class="go" type="submit" value="@item.Id">
+                        @T("inf")
+                    </button>
+                </td>
+                <td>
+                    @item.CampaignId
+                </td>
+                <td class="campaign">
+                    <a href="~/@item.CampaignAlias">@item.CampaignName</a>
+                </td>
+                <td class="seller">
+                    @item.UserNameSeller
+                </td>
+                <td class="profit">
+                    @T("RM ")
+                    @item.Profit
+                </td>
+                <td class="status">
+                    @using (Html.BeginForm("ApplyStatus", "Home", FormMethod.Get))
+                    {
+                        bool hasStatus = true;
+                        foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof (Teeyoot.Module.Common.Enums.OrderStatus)))
                         {
-                            bool hasStatus = true;
-                            foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.OrderStatus)))
+                            if (s.ToString() == item.Status)
+                            {
+                                hasStatus = false;
+                                <label style="display: none">@s.ToString().SplitCamelCase()</label>
+                            }
+                        }
+                        if (hasStatus)
+                        {
+                            <label style="display: none">@item.Status</label>
+                        }
+                        <input type="hidden" value="@item.Id" name="orderId"/>
+
+                        <select name="orderStatus">
+                            @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof (Teeyoot.Module.Common.Enums.OrderStatus)))
                             {
                                 if (s.ToString() == item.Status)
                                 {
-                                    hasStatus = false;
-                                    <label style="display: none">@s.ToString().SplitCamelCase()</label>
+                                    <option selected value="@s">
+                                        @s.ToString().SplitCamelCase()
+                                    </option>
                                 }
-                            }
-                            if (hasStatus)
-                            {
-                                <label style="display: none">@item.Status</label>
-                            }
-                            <input type="hidden" value="@item.Id" name="orderId"/>
-
-                            <select name="orderStatus">
-                                @foreach (Teeyoot.Module.Common.Enums.OrderStatus s in Enum.GetValues(typeof (Teeyoot.Module.Common.Enums.OrderStatus)))
+                                else
                                 {
-                                    if (s.ToString() == item.Status)
-                                    {
-                                        <option selected value="@s">
-                                            @s.ToString().SplitCamelCase()
-                                        </option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@s">
-                                            @s.ToString().SplitCamelCase()
-                                        </option>
-                                    }
+                                    <option value="@s">
+                                        @s.ToString().SplitCamelCase()
+                                    </option>
                                 }
-                            </select>
-                            <button class="apply" type="submit">
-                                @T("Apply")
-                            </button>
-                        }
-                    </td>
-                    <td class="payout">
-                        @if (item.Payout)
-                        {
-                            <a href="@Url.Action("DeletePayout", new {publicId = item.PublicId})" class="paid">@T("Not paid")</a>
-                            @T("| Paid ")
-                        }
-                        else
-                        {
-                            @T("Not paid | ")
-                            <a href="@Url.Action("EditStatusPayout", new {publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId})" class="paid">@T("Paid")</a>
-                        }
-                    </td>
-                </tr>
-
-
-            }
-            </tbody>
-        </table>
-
-    </fieldset>
-    @*@Display(Model.Pager)*@
-}
+                            }
+                        </select>
+                        <button class="apply" type="submit">
+                            @T("Apply")
+                        </button>
+                    }
+                </td>
+                <td class="payout">
+                    @if (item.Payout)
+                    {
+                        <a href="@Url.Action("DeletePayout", new {publicId = item.PublicId})" class="paid">@T("Not paid")</a>
+                        @T("| Paid ")
+                    }
+                    else
+                    {
+                        @T("Not paid | ")
+                        <a href="@Url.Action("EditStatusPayout", new {publicId = item.PublicId, profit = item.Profit, sellerId = item.SellerId})" class="paid">@T("Paid")</a>
+                    }
+                </td>
+                <td>
+                    @item.Currency
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</fieldset>
 <fieldset>
     <div id="modal_form" style="">
         @Html.Partial("ModalBuyer")
     </div>
     <div id="overlay"></div>
 </fieldset>
-
-
 <fieldset>
     <div id="modal_form_order" style="">
         @Html.Partial("ModalOrder")
@@ -391,7 +389,7 @@
         });
 
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-            "date-eu-pre": function (date) {
+            "date-eu-pre": function(date) {
                 date = date.replace(" ", "");
 
                 if (!date) {
@@ -404,8 +402,7 @@
                 /*year (optional)*/
                 if (eu_date[2]) {
                     year = eu_date[2];
-                }
-                else {
+                } else {
                     year = 0;
                 }
 
@@ -424,13 +421,13 @@
                 return (year + month + day) * 1;
             },
 
-            "date-eu-asc": function (a, b) {
+            "date-eu-asc": function(a, b) {
                 return ((a < b) ? -1 : ((a > b) ? 1 : 0));
             },
 
-            "date-eu-desc": function (a, b) {
+            "date-eu-desc": function(a, b) {
                 return ((a < b) ? 1 : ((a > b) ? -1 : 0));
             }
-        });     
+        });
     </script>
 }
