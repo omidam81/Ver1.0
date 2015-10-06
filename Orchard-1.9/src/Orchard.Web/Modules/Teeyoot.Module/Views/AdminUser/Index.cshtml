@@ -3,6 +3,25 @@
     Layout.Title = T("Users");
 }
 
+@using (Html.BeginFormAntiForgeryPost())
+{
+    <fieldset class="bulk-actions">
+        @T("Filter:")
+        <select name="Role">
+            <option>All</option>
+            @foreach (var role in Model.Roles)
+            {
+                <option value="@role.Id" @if (role.Id == Model.SelectedRoleId)
+                                         {
+                                             @:selected="selected"
+                                         }>
+                    @role.Name</option>
+            }
+        </select>
+        <button type="submit">@T("Apply")</button>
+    </fieldset>
+}
+
 <fieldset>
     <table class="items">
         <thead>

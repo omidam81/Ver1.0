@@ -11,6 +11,7 @@ using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Configuration;
 using Orchard.Localization;
+using Orchard.Roles.Models;
 using Orchard.Security;
 using Orchard.Settings;
 using Orchard.UI.Admin;
@@ -35,12 +36,14 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly ICampaignService _campaignService;
         private readonly IOrderService _orderService;
+        private readonly IRepository<RoleRecord> _roleRepository;
 
         public IOrchardServices Services { get; set; }
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
 
         public AdminUserController(
+            IRepository<RoleRecord> roleRepository,
             IOrderService orderService,
             ICampaignService campaignService,
             IRepository<CurrencyRecord> currencyRepository,
@@ -51,6 +54,7 @@ namespace Teeyoot.Module.Controllers
             ISiteService siteService,
             IShapeFactory shapeFactory)
         {
+            _roleRepository = roleRepository;
             _orderService = orderService;
             _campaignService = campaignService;
             _currencyRepository = currencyRepository;
@@ -64,58 +68,48 @@ namespace Teeyoot.Module.Controllers
             Shape = shapeFactory;
         }
 
-        public ActionResult Index(UserIndexOptions options, PagerParameters pagerParameters)
+        public ActionResult Index(int? role, UserIndexOptions options, PagerParameters pagerParameters)
         {
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters);
-
-            const string userTotalQuery = " SELECT COUNT(*)" +
-                                          " FROM Orchard_Framework_ContentItemVersionRecord ContentItemVersionRecord" +
-                                          " JOIN Orchard_Framework_ContentItemRecord ContentItemRecord" +
-                                          " ON ContentItemVersionRecord.ContentItemRecord_id = ContentItemRecord.Id" +
-                                          " JOIN Orchard_Users_UserPartRecord UserPartRecord" +
-                                          " ON ContentItemRecord.Id = UserPartRecord.Id" +
-                                          " WHERE ContentItemVersionRecord.Published = 1";
-
-            const string userQuery = " SELECT UserPartRecord.UserName UserName," +
-                                     " UserPartRecord.Id UserId," +
-                                     " CurrencyRecord.Name CurrencyName," +
-                                     " CAST(CASE WHEN TeeyootUserPartRecord.Id IS NOT NULL THEN 1 ELSE 0 END AS BIT) IsTeeyootUser" +
-                                     " FROM Orchard_Framework_ContentItemVersionRecord ContentItemVersionRecord" +
-                                     " JOIN Orchard_Framework_ContentItemRecord ContentItemRecord" +
-                                     " ON ContentItemVersionRecord.ContentItemRecord_id = ContentItemRecord.Id" +
-                                     " JOIN Orchard_Users_UserPartRecord UserPartRecord" +
-                                     " ON ContentItemRecord.Id = UserPartRecord.Id" +
-                                     " LEFT JOIN Teeyoot_Module_TeeyootUserPartRecord TeeyootUserPartRecord" +
-                                     " ON UserPartRecord.Id = TeeyootUserPartRecord.Id" +
-                                     " LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord" +
-                                     " ON TeeyootUserPartRecord.CurrencyRecord_Id = CurrencyRecord.Id" +
-                                     " WHERE ContentItemVersionRecord.Published = 1" +
-                                     " ORDER BY UserPartRecord.Id" +
-                                     " OFFSET @Offset ROWS" +
-                                     " FETCH NEXT @Fetch ROWS ONLY";
 
             var userItems = new List<UserItemViewModel>();
             int userTotal;
 
-            var offset = pager.Page > 0 ? (pager.Page - 1)*pager.PageSize : 0;
-            var fetch = pager.PageSize == 0 ? int.MaxValue : pager.PageSize;
+            var skip = pager.Page > 0 ? (pager.Page - 1)*pager.PageSize : 0;
+            var take = pager.PageSize == 0 ? int.MaxValue : pager.PageSize;
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
                 connection.Open();
+
                 using (var transaction = connection.BeginTransaction())
                 {
                     using (var command = connection.CreateCommand())
                     {
                         command.Transaction = transaction;
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = userQuery;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "GetUsers";
 
-                        var offsetParameter = new SqlParameter("@Offset", SqlDbType.Int) {Value = offset};
-                        var fetchParameter = new SqlParameter("@Fetch", SqlDbType.Int) {Value = fetch};
+                        if (role.HasValue)
+                        {
+                            var roleIdParameter = new SqlParameter("@RoleId", SqlDbType.Int)
+                            {
+                                Value = role.Value
+                            };
+                            command.Parameters.Add(roleIdParameter);
+                        }
 
-                        command.Parameters.Add(offsetParameter);
-                        command.Parameters.Add(fetchParameter);
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = take
+                        };
+
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -139,8 +133,17 @@ namespace Teeyoot.Module.Controllers
                     using (var command = connection.CreateCommand())
                     {
                         command.Transaction = transaction;
-                        command.CommandType = CommandType.Text;
-                        command.CommandText = userTotalQuery;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "GetUsersCount";
+
+                        if (role.HasValue)
+                        {
+                            var roleIdParameter = new SqlParameter("@RoleId", SqlDbType.Int)
+                            {
+                                Value = role.Value
+                            };
+                            command.Parameters.Add(roleIdParameter);
+                        }
 
                         userTotal = (int) command.ExecuteScalar();
                     }
@@ -151,8 +154,18 @@ namespace Teeyoot.Module.Controllers
 
             var pagerShape = Shape.Pager(pager).TotalItemCount(userTotal);
 
+            var roles = _roleRepository.Table
+                .Select(r => new RoleItemViewModel
+                {
+                    Id = r.Id,
+                    Name = r.Name
+                })
+                .ToList();
+
             var viewModel = new AdminUserIndexViewModel
             {
+                Roles = roles,
+                SelectedRoleId = role,
                 Users = userItems,
                 Pager = pagerShape
             };
