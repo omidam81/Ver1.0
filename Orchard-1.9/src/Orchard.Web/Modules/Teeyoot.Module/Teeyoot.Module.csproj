@@ -1181,6 +1181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
+    <Content Include="AdminUserStoredProcedures.sql" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredPromotionsTask.cs" />
@@ -1319,6 +1320,7 @@
     <Compile Include="Services\Interfaces\ICampaignService.cs" />
     <Compile Include="Services\CampaignService.cs" />
     <Compile Include="ViewModels\ReservationCompleteViewModel.cs" />
+    <Compile Include="ViewModels\RoleItemViewModel.cs" />
     <Compile Include="ViewModels\UserItemViewModel.cs" />
     <Compile Include="ViewModels\WizardProductsViewModel.cs" />
   </ItemGroup>

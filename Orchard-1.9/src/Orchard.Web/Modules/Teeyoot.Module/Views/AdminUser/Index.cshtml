@@ -3,11 +3,31 @@
     Layout.Title = T("Users");
 }
 
+@using (Html.BeginForm("Index", "AdminUser", FormMethod.Get))
+{
+    <fieldset class="bulk-actions">
+        @T("Filter:")
+        <select name="Role">
+            <option>All</option>
+            @foreach (var role in Model.Roles)
+            {
+                <option value="@role.Id" @if (role.Id == Model.SelectedRoleId)
+                                         {
+                                             @:selected="selected"
+                                         }>
+                    @role.Name</option>
+            }
+        </select>
+        <button type="submit">@T("Apply")</button>
+    </fieldset>
+}
+
 <fieldset>
     <table class="items">
         <thead>
         <tr>
             <th scope="col">@T("Email")</th>
+            <th scope="col">@T("Roles")</th>
             <th scope="col">@T("Currency")</th>
             <th scope="col">@T("Actions")</th>
         </tr>
@@ -17,6 +37,9 @@
             <tr>
                 <td>
                     <a href="@Url.Action("EditUser", "AdminUser", new {area = "Teeyoot.Module", userId = user.UserId})">@user.Email</a>
+                </td>
+                <td>
+                    @user.Roles
                 </td>
                 <td>
                     @if (user.IsTeeyootUser)
