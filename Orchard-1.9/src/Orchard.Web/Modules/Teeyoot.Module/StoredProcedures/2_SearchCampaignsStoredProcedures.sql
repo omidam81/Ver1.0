@@ -193,21 +193,6 @@ FETCH NEXT
 	@Take ROWS ONLY
 GO
 
-IF TYPE_ID('INTEGER_LIST_TABLE_TYPE') IS NOT NULL
-BEGIN
-	/* Firts drop stored procedures that depends on this type */
-	IF OBJECT_ID('GetCampaignsFirstProductData', 'P') IS NOT NULL
-	BEGIN
-		DROP PROCEDURE GetCampaignsFirstProductData
-	END
-	/* Drop type itself */
-	DROP TYPE INTEGER_LIST_TABLE_TYPE
-END
-GO
-
-CREATE TYPE INTEGER_LIST_TABLE_TYPE AS TABLE(N INT NOT NULL PRIMARY KEY)
-GO
-
 CREATE PROCEDURE GetCampaignsFirstProductData
 	/* http://www.sommarskog.se/arrays-in-sql-2008.html#TVP_in_TSQL */
 	@CampaignIds INTEGER_LIST_TABLE_TYPE READONLY
