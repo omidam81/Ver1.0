@@ -19,24 +19,24 @@
                 <a href="#" onclick="changeLogAndCreate('login-into-teeyoot', 'create-account')">@T("Already have an account?")</a>
             </legend>
         </div>
-        <div class="password">
+        <div class="password tb-height">
           <label><span class="mandatory">@T("* ")</span>@T("Name")</label>
             @Html.TextBoxFor(model => model.Name)
         </div>
-        <div class="password">
-           <label><span class="mandatory">@T("* ")</span>@T("Email address")</label>
+        <div class="password tb-height">
+            <label><span class="mandatory">@T("* ")</span>@T("Email address")</label>
             @Html.TextBoxFor(model => model.Email)
         </div>
-        <div class="password">
+        <div class="password tb-height">
             <label>@T("Phone Number")</label>
             @Html.TextBoxFor(model => model.Phone)
         </div>
-        <div class="password">
-           <label><span class="mandatory">@T("* ")</span>@T("Password")</label>
+        <div class="password tb-height">
+            <label><span class="mandatory">@T("* ")</span>@T("Password")</label>
             @Html.PasswordFor(model => model.Password)
             <p>@T("Must be longer than 8 characters!")</p>
         </div>
-        <div class="password">
+        <div class="password tb-height">
             <label><span class="mandatory">@T("* ")</span>@T("Confirm Password")</label>
             @Html.PasswordFor(model => model.ConfirmPassword)
         </div>
