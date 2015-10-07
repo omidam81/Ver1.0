@@ -193,6 +193,10 @@ FETCH NEXT
 	@Take ROWS ONLY
 GO
 
+IF OBJECT_ID('GetCampaignsFirstProductData', 'P') IS NOT NULL
+	DROP PROCEDURE GetCampaignsFirstProductData
+GO
+
 CREATE PROCEDURE GetCampaignsFirstProductData
 	/* http://www.sommarskog.se/arrays-in-sql-2008.html#TVP_in_TSQL */
 	@CampaignIds INTEGER_LIST_TABLE_TYPE READONLY
