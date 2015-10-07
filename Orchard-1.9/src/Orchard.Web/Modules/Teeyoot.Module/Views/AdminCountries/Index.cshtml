@@ -1,0 +1,62 @@
+﻿@model Teeyoot.Module.ViewModels.CountriesViewModel
+@{
+    Layout.Title = T("Countries");
+}
+
+<div>
+    <a class="button primaryAction" href="@Url.Action("AddCountry", "AdminCountries")">@T("Add New Country")</a>
+</div>
+
+<fieldset>
+    <table class="items">
+        <thead>
+            <tr class="admin-categories">
+                <th class="visible">
+                    <h3>@T("Country Name ")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Country Code")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Linked Languages")</h3>
+                </th>
+                <th class="visible">
+                    <h3>@T("Action")</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var country in Model.Countries)
+            {
+                <tr>
+                    <td class="visible">
+                        @country.Name
+                    </td>
+                    <td class="visible">
+                        @country.Code
+                    </td>
+                    <td class="visible">
+                        @foreach(var c in @country.Cultures.Where(c=>c.Selected))
+                        {
+                            @c.Culture 
+                            @: &nbsp;&nbsp;
+                        }
+                    </td>
+                    <td class="related">
+                        <a class="button" href="@Url.Action("EditCountry", "AdminCountries", new { id = country.Id })" title="@T("Edit")">@T("Edit")</a>
+                        <a class="button" href="@Url.Action("DeleteCountry", "AdminCountries", new { id = country.Id })" itemprop="RemoveUrl">@T("Delete")</a>
+                    </td>
+                </tr>
+            }
+            <input type="hidden" id="anti_forgery_token" value="@Html.AntiForgeryTokenValueOrchard()" />
+        </tbody>
+    </table>
+    @if (Model.Countries.Count() == 0)
+    {
+        @T("There are no countries")
+    }
+</fieldset>
+
+@Display(Model.Pager)
+
+

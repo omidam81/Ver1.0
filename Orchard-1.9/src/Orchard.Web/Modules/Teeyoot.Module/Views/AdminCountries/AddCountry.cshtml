@@ -1,0 +1,60 @@
+﻿@model Teeyoot.Module.ViewModels.CountryViewModel
+@{
+    Layout.Title = T("Add New Country");
+
+    Style.Include("/Modules/Teeyoot.Module/Content/lou-multi-select/css/multi-select.css");
+}
+
+<h2>@T("Add New Country")</h2>
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("AddCountry", "AdminCountries"), FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @Html.LabelFor(m => m.Name, T("Country Name"))
+        @Html.EditorFor(m => m.Name, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.Code, T("Country Code"))
+        @Html.EditorFor(m => m.Code, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        <select id="cultures" name="SelectedCultures" multiple="multiple">
+            @foreach (var culture in Model.Cultures)
+            {
+                <option value="@culture.Id" @if (culture.Selected) { <text> selected="selected" </text>  }>
+                    @culture.Culture
+                </option>
+            }
+        </select>
+    </fieldset>
+
+    <fieldset class="save-button">
+        <button type="submit" class="primaryAction">@T("Save")</button>
+        <a class="button" href="@Url.Action("Index", "AdminCountries")">@T("Cancel")</a>
+    </fieldset>
+}
+
+
+
+
+@using (Script.Foot())
+{
+    <script src="/Modules/Teeyoot.Module/Content/lou-multi-select/js/jquery.multi-select.js"></script>
+
+    <script>
+        $(document).ready(
+            function () {
+                $('#cultures').multiSelect(
+                        {
+                            selectableHeader: "<div>@T("Selectable Languages")</div>",
+                            selectionHeader: "<div>@T("Selected Languages")</div>"
+                        });
+            }
+            );
+    </script>
+}
+
+
+
+
+

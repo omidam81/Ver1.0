@@ -103,7 +103,7 @@ namespace Teeyoot.Module.Controllers
             record.IsConvert = false;
             _currencyRepository.Update(record);
 
-            _orchardServices.Notifier.Information(T("Record has been added!"));
+            _orchardServices.Notifier.Information(T("Record has been deleted!"));
             return RedirectToAction("Index");
         }
 

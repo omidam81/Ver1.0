@@ -12,14 +12,10 @@ namespace Teeyoot.Module.ViewModels
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(10)]
         public string Code { get; set; }
 
-        [StringLength(150)]
         public string Name { get; set; }
 
-        [StringLength(50)]
         public string ShortName { get; set; }
 
         public int? CountryId { get; set; }

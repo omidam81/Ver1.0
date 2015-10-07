@@ -138,6 +138,11 @@ namespace Teeyoot.Module
                         .Add(T("Currencies"),
                             i => i.Action("Index", "AdminCurrencies", new { area = "Teeyoot.Module" }).LocalNav())
                     )
+                    .Add(subItem => subItem
+                        .Caption(T("Countries"))
+                        .Position("2.8")
+                        .Action("Index", "AdminCountries", new { area = "Teeyoot.Module" })
+                    )
                 );
         }
     }

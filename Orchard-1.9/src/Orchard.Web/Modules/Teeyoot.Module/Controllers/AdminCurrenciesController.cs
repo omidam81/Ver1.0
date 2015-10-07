@@ -111,7 +111,7 @@ namespace Teeyoot.Module.Controllers
                 };
                 _currencyRepository.Create(record);
                 step1_CurrencySaved = true;
-            
+
                 bool isNotPNG;
                 record.FlagFileName = _imageFileHelper.SaveImageToDisc(viewModel.FlagImage, record.Id, out isNotPNG);
                 if (isNotPNG)
