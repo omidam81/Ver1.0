@@ -432,7 +432,7 @@ namespace Teeyoot.Module.Services
         {
             var campaigns = _campaignRepository
                                 .Table
-                                .Where(c => c.EndDate < DateTime.UtcNow && c.IsActive && c.IsApproved)
+                                .Where(c => c.EndDate < DateTime.UtcNow.AddMinutes(2) && c.IsActive && c.IsApproved)
                                 .ToList();
 
             Logger.Information("Check expired campaign --------------- > {0} expired campaigns found", campaigns.Count);
