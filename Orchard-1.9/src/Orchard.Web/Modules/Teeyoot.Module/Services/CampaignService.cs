@@ -461,9 +461,9 @@ namespace Teeyoot.Module.Services
                     {
                         if (o.OrderStatusRecord.Name == OrderStatus.Approved.ToString())
                         {
-                            o.OrderStatusRecord = isSuccesfull ?
-                                _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
-                                _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
+                            //o.OrderStatusRecord = isSuccesfull ?
+                            //    _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Printing.ToString()) :
+                            //    _orderStatusRepository.Table.First(s => s.Name == OrderStatus.Cancelled.ToString());
 
                             
                             if (isSuccesfull && o.TranzactionId != null)
