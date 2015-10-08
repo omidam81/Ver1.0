@@ -27,6 +27,7 @@ namespace Teeyoot.WizardSettings.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IDeliverySettingsService _deliverySettingService;
         private readonly IRepository<DeliverySettingRecord> _deliverySettingsRepository;
+        private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
         private string cultureUsed = string.Empty;
 
@@ -40,6 +41,7 @@ namespace Teeyoot.WizardSettings.Controllers
             IOrchardServices orchardServices,
             IDeliverySettingsService deliverySettingService,
             IRepository<DeliverySettingRecord> deliverySettingsRepository,
+            IRepository<CountryRecord> countryRepository,
             IShapeFactory shapeFactory,
             IWorkContextAccessor workContextAccessor)
         {
@@ -47,6 +49,7 @@ namespace Teeyoot.WizardSettings.Controllers
             _orchardServices = orchardServices;
             _deliverySettingService = deliverySettingService;
             _deliverySettingsRepository = deliverySettingsRepository;
+            _countryRepository = countryRepository;
             Shape = shapeFactory;
             _workContextAccessor = workContextAccessor;
             var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
@@ -56,63 +59,91 @@ namespace Teeyoot.WizardSettings.Controllers
             Logger = NullLogger.Instance;
         }
 
-        public ActionResult Index(PagerParameters pagerParameters)
+        public ActionResult Index(int? countryId, PagerParameters pagerParameters)
         {
-            var viewModel = new DeliverySettingsViewModel();
+
+            var viewModel = new DeliverySettingsViewModel
+                {
+                    CountryId = countryId,
+                    CountryRepository = _countryRepository
+                };
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
-            var setting = _deliverySettingsRepository.Table.Where(s => s.DeliveryCulture == cultureUsed);
+            //var setting = _deliverySettingsRepository.Table.Where(s => s.DeliveryCulture == cultureUsed);
+            //if (setting.FirstOrDefault() == null)
+            //    {
+            //        _deliverySettingService.AddSetting("Default", 0, 0, 1, cultureUsed);
+            //    }
 
-            if (setting.FirstOrDefault() == null)
-	            {
-                    _deliverySettingService.AddSetting("Default",0,cultureUsed);
-	            }
 
-            viewModel.DeliverySettings = setting
+            var allCountrySettings = _deliverySettingsRepository.Table.Where(s => s.Country.Id == (countryId ?? 0));
+
+            viewModel.DeliverySettings = allCountrySettings
                 .OrderBy(a => a.State)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize);
 
-                //var q = "qwe";
-
-            var pagerShape = Shape.Pager(pager).TotalItemCount(setting.Count());
+            var pagerShape = Shape.Pager(pager).TotalItemCount(allCountrySettings.Count());
             viewModel.Pager = pagerShape;
 
             return View(viewModel);
         }
 
-        public ActionResult AddSetting()
+
+        public ActionResult AddSetting(int countryId)
         {
-            return View();
+            var viewModel = new EditDeliverySettingViewModel() { CountryId = countryId };
+            return View(viewModel);
         }
 
+
         [HttpPost]
-        public ActionResult AddSetting(DeliverySettingRecord record)
+        public ActionResult AddSetting(EditDeliverySettingViewModel viewModel)
         {
-            _deliverySettingService.AddSetting(record.State, record.DeliveryCost, cultureUsed);
-            return RedirectToAction("Index");
+            _deliverySettingService.
+                AddSetting(viewModel.State, viewModel.PostageCost, viewModel.CodCost, viewModel.CountryId,
+                    //todo : (auth:juiceek) drop this param
+                    cultureUsed);
+            return RedirectToAction("Index", new { countryId = viewModel.CountryId});
         }
+
 
         public ActionResult DeleteSetting(int id)
         {
+            int oldCountryId = _deliverySettingsRepository.Get(id).Country.Id;
+
             _deliverySettingService.DeleteSetting(id);
-            _orchardServices.Notifier.Information(T("State has been deleted!"));
-            return RedirectToAction("Index");
+            _orchardServices.Notifier.Information(T("Record has been deleted!"));
+            return RedirectToAction("Index", new { countryId = oldCountryId });
         }
 
-        public ActionResult EditSetting(int id)
+
+        public ActionResult EditSetting(int id, int countryId)
         {
             var setting = _deliverySettingService.GetSettingById(id);
             var model = new EditDeliverySettingViewModel()
             {
                 Id = setting.Id,
                 State = setting.State,
-                DeliveryCost = setting.DeliveryCost
-
+                //DeliveryCost = setting.DeliveryCost,
+                CountryId = countryId,
+                PostageCost = setting.PostageCost,
+                CodCost = setting.CodCost
             };
             return View(model);
         }
+
+
+        [HttpPost]
+        public ActionResult EditSetting(EditDeliverySettingViewModel viewModel)
+        {
+            _deliverySettingService.EditSetting(viewModel);
+
+            _orchardServices.Notifier.Information(T("Record has been changed!"));
+            return RedirectToAction("Index", new { countryId = viewModel.CountryId });
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -127,13 +158,6 @@ namespace Teeyoot.WizardSettings.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult EditSetting(EditDeliverySettingViewModel model)
-        {
-            _deliverySettingService.EditSetting(model);
-            _orchardServices.Notifier.Information(T("Record has been changed!"));
-            return RedirectToAction("Index");
-        }
 
         
 

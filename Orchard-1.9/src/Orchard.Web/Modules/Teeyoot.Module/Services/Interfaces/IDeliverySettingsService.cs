@@ -10,7 +10,9 @@ namespace Teeyoot.Module.Services
     {
         void DeleteSetting(int id);
 
-        void AddSetting(string state, double deliveryCost, string culture);
+        void AddSetting(string state, double postageCost, double codCost, int countryId, 
+            //todo: (auth:juiceek) drop this param
+            string culture);
 
         void EditSetting(EditDeliverySettingViewModel newSetting);
 
