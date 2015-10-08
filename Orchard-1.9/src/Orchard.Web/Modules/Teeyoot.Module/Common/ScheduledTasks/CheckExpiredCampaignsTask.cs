@@ -52,7 +52,7 @@ namespace Teeyoot.Module.Common.ScheduledTasks
                 finally
                 {
                     Logger.Information("----------------------------- Check Expired campaigns task finished --------------------------------");
-                    var nextTaskDate = DateTime.Today.Date.AddDays(1).AddMinutes(1);
+                    var nextTaskDate = DateTime.Today.Date.AddDays(1).AddMinutes(-1);
                     ScheduleNextTask(TimeZoneInfo.ConvertTimeToUtc(nextTaskDate, TimeZoneInfo.Local));
                 }
             }
