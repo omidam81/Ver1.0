@@ -1232,6 +1232,7 @@
     <Compile Include="Models\AllCountryWidgetPart.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
     <Compile Include="Models\CountryRecord.cs" />
+    <Compile Include="Models\DeliveryInternationalSettingRecord.cs" />
     <Compile Include="Models\DeliverySettingRecord.cs" />
     <Compile Include="Models\ArtRecord.cs" />
     <Compile Include="Models\CheckoutCampaignRequest.cs" />

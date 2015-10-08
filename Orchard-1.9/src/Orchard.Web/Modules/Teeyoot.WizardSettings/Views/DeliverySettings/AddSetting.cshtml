@@ -1,23 +1,28 @@
-﻿@model Teeyoot.Module.Models.DeliverySettingRecord
+﻿@model Teeyoot.Module.ViewModels.EditDeliverySettingViewModel
 @{
-    Layout.Title = T("Add New Setting");
+    Layout.Title = T("Add New State");
 }
 
-<h2>@T("Add New Setting")</h2>
+<h2>@T("Add New State")</h2>
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("AddSetting", "DeliverySettings"), FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.HiddenFor(m => m.CountryId)
     
     <fieldset>
         @Html.LabelFor(m => m.State, T("State"))
         @Html.EditorFor(m => m.State, new { @class = "text large" })
     </fieldset>
     <fieldset>
-        @Html.LabelFor(m => m.DeliveryCost, T("Delivery Cost (only ',' decimal is allowed)"))
-        @Html.EditorFor(m => m.DeliveryCost, new { @class = "text large" })
+        @Html.LabelFor(m => m.PostageCost, T("Postage Cost (only ',' decimal is allowed)"))
+        @Html.EditorFor(m => m.PostageCost, new { @class = "text large" })
+    </fieldset>
+    <fieldset>
+        @Html.LabelFor(m => m.CodCost, T("COD Cost (only ',' decimal is allowed)"))
+        @Html.EditorFor(m => m.CodCost, new { @class = "text large" })
     </fieldset>
     <fieldset class="save-button">
         <button type="submit" class="primaryAction">@T("Save")</button>
-        <a class="button" href="@Url.Action("Index", "DeliverySettings")">@T("Cancel")</a>
+        <a class="button" href="@Url.Action("Index", "DeliverySettings", new { countryId = Model.CountryId})">@T("Cancel")</a>
     </fieldset>
 }

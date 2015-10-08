@@ -10,11 +10,16 @@ namespace Teeyoot.Module.Services
     public class DeliverySettingsService : IDeliverySettingsService
     {
         private readonly IRepository<DeliverySettingRecord> _deliverySettingsRepository;
+        private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
+        
 
-        public DeliverySettingsService(IRepository<DeliverySettingRecord> deliverySettingsRepository, IWorkContextAccessor workContextAccessor)
+        public DeliverySettingsService(IRepository<DeliverySettingRecord> deliverySettingsRepository, 
+                                        IRepository<CountryRecord> countryRepository,
+                                        IWorkContextAccessor workContextAccessor)
         {
             _deliverySettingsRepository = deliverySettingsRepository;
+            _countryRepository = countryRepository;
             _workContextAccessor = workContextAccessor;
             
         }
@@ -30,19 +35,22 @@ namespace Teeyoot.Module.Services
             _deliverySettingsRepository.Update(setting);
 
         }
-        public void AddSetting(string state, double deliveryCost, string culture)
+        public void AddSetting(string state, double postageCost, double codCost, int countryId,
+                //todo: (aut:juiceek) drop this param        
+                string culture)
         {
-           
             try
             {
-                var newSetting = new DeliverySettingRecord()
+                var newRecord = new DeliverySettingRecord()
                 {
                     State = state,
-                    DeliveryCost = deliveryCost,
-                    DeliveryCulture = culture
-
+                    //DeliveryCost = deliveryCost,
+                    DeliveryCulture = culture,
+                    Country =  _countryRepository.Get(countryId),
+                    PostageCost = postageCost,
+                    CodCost = codCost
                 };
-                _deliverySettingsRepository.Create(newSetting);
+                _deliverySettingsRepository.Create(newRecord);
             }
             catch
             {
@@ -69,12 +77,17 @@ namespace Teeyoot.Module.Services
         }
 
 
-        public void EditSetting(EditDeliverySettingViewModel newSetting)
+        public void EditSetting(EditDeliverySettingViewModel viewModel)
         {
-            DeliverySettingRecord setting = _deliverySettingsRepository.Get(f => f.Id == newSetting.Id);
-            setting.State = newSetting.State;
-            setting.DeliveryCost = newSetting.DeliveryCost;
-            _deliverySettingsRepository.Update(setting);
+            DeliverySettingRecord record = _deliverySettingsRepository.Get(f => f.Id == viewModel.Id);
+            record.State = viewModel.State;
+            // todo: (auth:juiceek) drop this 
+            //setting.DeliveryCost = newSetting.DeliveryCost;
+            record.Country = _countryRepository.Get(viewModel.CountryId);
+            record.PostageCost = viewModel.PostageCost;
+            record.CodCost = viewModel.CodCost;
+
+            _deliverySettingsRepository.Update(record);
 
         }
 
