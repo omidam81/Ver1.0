@@ -932,7 +932,59 @@ namespace Teeyoot.Module
                            .WithSetting("Stereotype", "Widget")
                 );
 
-            return 106;
+            // Default is used only to set existing records Country field to 1 before applying notnull constaraint.
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name, table => table.AddColumn<int>("Country_id", c=> c.WithDefault(1).NotNull()));
+            SchemaBuilder.CreateForeignKey("DeliverySettings_Country", 
+                typeof(DeliverySettingRecord).Name,  new[] { "Country_id" },
+                typeof(CountryRecord).Name, new[] { "Id" });
+
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name,
+                table => table.AddColumn<double>("PostageCost"));
+
+            SchemaBuilder.AlterTable(typeof(DeliverySettingRecord).Name,
+                table => table.AddColumn<double>("CodCost"));
+
+            // Dropping the default constarint for Country field
+            SchemaBuilder.ExecuteSql(
+                    @"declare @table_name nvarchar(256)
+                    declare @col_name nvarchar(256)
+                    declare @Command  nvarchar(1000)
+
+                    set @table_name = N'Teeyoot_Module_DeliverySettingRecord'
+                    set @col_name = N'Country_id'
+
+                    select @Command = 'ALTER TABLE ' + @table_name + ' drop constraint ' + d.name
+                     from sys.tables t   
+                      join    sys.default_constraints d       
+                       on d.parent_object_id = t.object_id  
+                      join    sys.columns c      
+                       on c.object_id = t.object_id      
+                        and c.column_id = d.parent_column_id
+                     where t.name = @table_name
+                      and c.name = @col_name
+
+                    execute (@Command)"
+                );
+
+            SchemaBuilder.CreateTable(typeof(DeliveryInternationalSettingRecord).Name,
+            table => table
+                .Column<int>("Id", column => column.PrimaryKey().Identity())
+                .Column<int>("CountryFrom_Id", c => c.NotNull())
+                .Column<int>("CountryTo_Id", c => c.NotNull())
+            );
+
+            SchemaBuilder.CreateForeignKey("FK_DeliveryInternationalSetting_CountryFrom", 
+                typeof(DeliveryInternationalSettingRecord).Name, new[] { "CountryFrom_Id" },
+                typeof(CountryRecord).Name, new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("FK_DeliveryInternationalSetting_CountryTo",
+                typeof(DeliveryInternationalSettingRecord).Name, new[] { "CountryTo_Id" },
+                typeof(CountryRecord).Name, new[] { "Id" });
+        
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+                table => table.AddColumn<bool>("IsProfitPaid", c => c.WithDefault(false)));
+
+            return 109;
         }
 
         public int UpdateFrom2()
@@ -2254,6 +2306,5 @@ namespace Teeyoot.Module
 
             return 109;
         }
-
     }
 }
