@@ -2225,5 +2225,26 @@ namespace Teeyoot.Module
 
             return 107;
         }
+
+
+        public int UpdateFrom107()
+        {
+            SchemaBuilder.CreateTable(typeof(DeliveryInternationalSettingRecord).Name,
+            table => table
+                .Column<int>("Id", column => column.PrimaryKey().Identity())
+                .Column<int>("CountryFrom_Id", c => c.NotNull())
+                .Column<int>("CountryTo_Id", c => c.NotNull())
+            );
+
+            SchemaBuilder.CreateForeignKey("FK_DeliveryInternationalSetting_CountryFrom", 
+                typeof(DeliveryInternationalSettingRecord).Name, new[] { "CountryFrom_Id" },
+                typeof(CountryRecord).Name, new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("FK_DeliveryInternationalSetting_CountryTo",
+                typeof(DeliveryInternationalSettingRecord).Name, new[] { "CountryTo_Id" },
+                typeof(CountryRecord).Name, new[] { "Id" });
+
+            return 108;
+        }
     }
 }
