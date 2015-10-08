@@ -2184,5 +2184,13 @@ namespace Teeyoot.Module
 
             return 106;
         }
+
+        public int UpdateFrom106()
+        {
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+                table => table.AddColumn<bool>("IsProfitPaid", c => c.WithDefault(false)));
+
+            return 107;
+        }
     }
 }

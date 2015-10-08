@@ -32,6 +32,7 @@ namespace Teeyoot.Payouts.Controllers
         private readonly IPaymentInformationService _paymentInformationService;
         private readonly IContentManager _contentManager;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly ICampaignService _campService;
 
         private dynamic Shape { get; set; }
         // GET: Tranzaction
@@ -41,7 +42,8 @@ namespace Teeyoot.Payouts.Controllers
                                      IShapeFactory shapeFactory,
                                      IContentManager contentManager,
                                      IPaymentInformationService paymentInformationService,
-                                     ITeeyootMessagingService teeyootMessagingService)
+                                     ITeeyootMessagingService teeyootMessagingService,
+                                     ICampaignService campService)
         {
             _payoutService = payoutService;
             _siteService = siteService;
@@ -49,6 +51,7 @@ namespace Teeyoot.Payouts.Controllers
             _contentManager = contentManager;
             _teeyootMessagingService = teeyootMessagingService;
             Shape = shapeFactory;
+            _campService = campService;
         }
 
 
@@ -72,13 +75,29 @@ namespace Teeyoot.Payouts.Controllers
                     return Shape.FaqEntry(
                         Date: e.Date,
                         Id: e.Id,
-                        Event: e.Event,
+                        Event: e.Event.Substring(e.Event.IndexOf(" "), e.Event.Length - e.Event.Substring(0, e.Event.IndexOf(" ")).Length),
                         Amount: e.Amount,
-                        Status: e.Status,
                         UserId: e.UserId,
-                        IsPlus: e.IsPlus
+                        IsPlus: e.IsPlus,
+                        CampaignAlias: e.Event.Substring(0, e.Event.IndexOf(" ")),
+                        CampaignName: _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Title,
+                        CampaignId: _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Id,
+                        SellerEmail: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId).Email
                         );
                 });
+
+                //foreach(var tranz in entriesProjection){
+                //    string alias = tranz.Event.Substring(0, tranz.Event.IndexOf(" "));
+                //    var camp = _campService.GetCampaignByAlias(alias);
+                //    var usr = _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == tranz.UserId);
+
+                //    tranz.Event = tranz.Event.Substring(tranz.Event.IndexOf(" "), tranz.Event.Length - alias.Length);
+                //    tranz.CampaignAlias = camp.Alias;
+                //    tranz.CampaignName = camp.Title;
+                //    tranz.CampaignId = camp.Id;
+                //    tranz.SellerEmail = usr.Email;
+                //}
+
                 var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
                 var entries = entriesProjection.Skip(pager.GetStartIndex()).Take(pager.PageSize);
                 var pagerShape = Shape.Pager(pager).TotalItemCount(entriesProjection.Count());
@@ -138,12 +157,13 @@ namespace Teeyoot.Payouts.Controllers
         public ActionResult EditStatus(int id)
         {
             var item = _payoutService.GetAllPayouts().Where(payout => payout.Id == id).First();
-            item.Status = "completed";
+            item.Status = "Completed";
+            item.IsProfitPaid = true;
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             _payoutService.UpdatePayout(item);
-            _teeyootMessagingService.SendCompletedPayoutMessage(pathToTemplates, pathToMedia, item);
-            return RedirectToAction("Index");
+            //_teeyootMessagingService.SendCompletedPayoutMessage(pathToTemplates, pathToMedia, item);
+            return RedirectToAction("Payouts");
         }
 
         public JsonResult GetPayoutInfirmation(int userId, int tranzId)

@@ -61,6 +61,10 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public string Currency { get; set; }
 
+        public string Alias { get; set; }
+
+        public string CampaignName { get; set; }
+
     }
 
 

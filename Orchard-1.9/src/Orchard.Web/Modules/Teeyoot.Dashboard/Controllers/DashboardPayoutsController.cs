@@ -16,64 +16,131 @@ namespace Teeyoot.Dashboard.Controllers
         {
             int currentUserId = Services.WorkContext.CurrentUser.Id;
             var payouts = _payoutService.GetAllPayouts();
-            var list = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status, CurrencyId = s.Currency_Id }).Where(t => t.UserId == currentUserId).ToList();
+            var list = payouts.Where(t => t.UserId == currentUserId).ToList();
             var model = new PayoutsViewModel();
             //Вытаскивать валюту по культуре 
             //model.Currency = _currencyRepository.Table.ToList().ElementAt(0).Code;
             //model.CurrencyId = _currencyRepository.Table.ToList().ElementAt(0).Id;
-            model.Transactions = list;
+            //model.Transactions = list;
             model.Balances = _currencyRepository.Table.Select(c => new Balance { CurrencyId = c.Id, Currency = c.Code }).ToList();
-            var procProfits = 0.0;
+
             var unclProfits = 0.0;
+            var balance = 0.0;
+            var procProfits = 0.0;
+            //var allPaymentProfit = 0.0;
             foreach (var itemBal in model.Balances)
             {
-                foreach (var item in model.Transactions)
+                foreach (var item in list)
                 {
-                    if (itemBal.CurrencyId == item.CurrencyId)
+                    if (itemBal.CurrencyId == item.Currency_Id)
                     {
-                        item.Currency = itemBal.Currency;
 
-                        if (item.IsPlus && item.Status != "Pending")
+                        if (item.Status == "Pending")
                         {
-                            itemBal.Bal = itemBal.Bal + item.Amount;
-                            unclProfits = unclProfits - item.Amount;
-                        }
-
-                        else if (!item.IsPlus && item.Status != "Pending")
-                        {
-                            itemBal.Bal = itemBal.Bal - item.Amount;
-                        }
-                        else if (!item.IsPlus && item.Status == "Pending")
-                        {
-                            itemBal.Bal = itemBal.Bal - item.Amount;
                             procProfits = procProfits + item.Amount;
+                            unclProfits = unclProfits - item.Amount;
+                            balance = balance - item.Amount;
                         }
+                        if (item.IsProfitPaid != null && item.IsProfitPaid && item.Status != "Pending")
+                        {
+                            unclProfits = unclProfits - item.Amount;
+                            balance = balance - item.Amount;
+                        }
+                        //if (item.IsPlus && item.Status != "Pending")
+                        //{
+                        //itemBal.Bal = itemBal.Bal + item.Amount;
+                        //unclProfits = unclProfits - item.Amount;
+                        //}
+
+                        //else if (!item.IsPlus && item.Status != "Pending")
+                        //{
+                        //    itemBal.Bal = itemBal.Bal - item.Amount;
+                        //}
+                        //else if (!item.IsPlus && item.Status == "Pending")
+                        //{
+                        //itemBal.Bal = itemBal.Bal - item.Amount;
+                        //procProfits = procProfits + item.Amount;
+                        //}
                     }
                 }
-                if (itemBal.Bal < 0)
-                    itemBal.Bal = 0;
+                //if (itemBal.Bal < 0)
+                //    itemBal.Bal = 0;
 
                 itemBal.ProcessedProfits = procProfits;
             }
 
             var campaigns = _campaignService.GetCampaignsOfUser(currentUserId);
+            var campaignsInProfit = new List<CampaignRecord>();
 
-            
             foreach (var item in campaigns)
             {
                 if (item.ProductMinimumGoal <= item.ProductCountSold)
-                	{
-                        unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);
-	                }
+                {
+                    unclProfits = unclProfits + _orderService.GetProfitActiveOrdersOfCampaign(item.Id);
+                }
+
+                if (!item.IsActive && _orderService.IsOrdersForCampaignHasStatusDeliveredAndPaid(item.Id))
+                {
+                    var prof = _orderService.GetProfitByCampaign(item.Id);
+                    if (prof > 0)
+                    {
+                        balance = balance + prof;
+                        campaignsInProfit.Add(item);
+                    }
+                }
             }
-            
+
             if (unclProfits < 0)
                 unclProfits = unclProfits * -1;
 
+            if (balance < 0)
+                balance = 0;
+
+            unclProfits = unclProfits - balance;
+
+            if (balance > 0)
+            {
+                var newCampaignInProfit = new List<CampaignRecord>();
+                foreach (var camp in campaignsInProfit)
+                {
+                    bool notInTranz = false;
+                    foreach (var tranz in list)
+                    {
+                        if (!tranz.Event.StartsWith(camp.Alias) && tranz.Status == "Completed" && tranz.IsProfitPaid != null && tranz.IsProfitPaid == false)
+                        {
+                            notInTranz = true;
+                        }
+                    }
+
+                    if (notInTranz || list.Count == 0)
+                    {
+                        var evant = T("{0} was delivered ({1} items sold)", camp.Alias, camp.ProductCountSold);
+                        var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = evant.ToString(), Currency_Id = _currencyRepository.Table.Where(c => c.Code == "RM").First().Id, IsPlus = true, UserId = currentUserId, Status = "Completed" };
+                        _payoutService.AddPayout(payout);
+                    }
+                }
+            }
+
+            //list = null;
+            model.Transactions = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status, CurrencyId = s.Currency_Id, Alias = string.Empty, CampaignName = string.Empty }).Where(t => t.UserId == currentUserId).ToList();
+            foreach (var camp in campaignsInProfit)
+            {
+                foreach (var tranz in model.Transactions)
+                {
+                    if (tranz.Event.StartsWith(camp.Alias))
+                    {
+                        tranz.Event = tranz.Event.Replace(camp.Alias, "");
+                        tranz.Alias = camp.Alias;
+                        tranz.CampaignName = camp.Title;
+                    }
+                    tranz.Currency = _currencyRepository.Table.Where(c => c.Id == tranz.CurrencyId).Select(c => c.Code).First();
+                }
+            }
+
             model.Balances.Where(b => b.Currency == "RM").First().UnclProfits = Math.Round(unclProfits, 2);
+            model.Balances.Where(b => b.Currency == "RM").First().Bal = Math.Round(balance, 2);
 
-
-
+            //model.Transactions = list;
             return View(model);
         }
 
@@ -87,21 +154,32 @@ namespace Teeyoot.Dashboard.Controllers
         {
             int currentUserId = Services.WorkContext.CurrentUser.Id;
 
-            var payouts = _payoutService.GetAllPayouts().ToList();
+            //var payouts = _payoutService.GetAllPayouts().ToList();
             double balance = 0;
-            foreach (var item in payouts)
+            //foreach (var item in payouts)
+            //{
+            //    if (item.Currency_Id == currId)
+            //    {
+            //        if (item.IsPlus && item.UserId == currentUserId)
+            //            balance = balance + item.Amount;
+            //        else if (item.UserId == currentUserId)
+            //            balance = balance - item.Amount;
+            //    }
+            //}
+
+            var campaigns = _campaignService.GetCampaignsOfUser(currentUserId);
+            foreach (var item in campaigns)
             {
-                if (item.Currency_Id == currId)
+                if (!item.IsActive && _orderService.IsOrdersForCampaignHasStatusDeliveredAndPaid(item.Id))
                 {
-                    if (item.IsPlus && item.UserId == currentUserId)
-                        balance = balance + item.Amount;
-                    else if (item.UserId == currentUserId)
-                        balance = balance - item.Amount;
+                    balance = balance + _orderService.GetProfitByCampaign(item.Id); ;
                 }
             }
+
+
             if (balance > 0)
             {
-                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = T("Someone requested a payout").ToString(), Currency_Id = currId, IsPlus = false, UserId = currentUserId, Status = "Pending" };
+                var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = T("You requested a payout").ToString(), Currency_Id = currId, IsPlus = false, UserId = currentUserId, Status = "Pending", IsProfitPaid = false };
                 _payoutService.AddPayout(payout);
                 _paymentInfService.AddPayment(new PaymentInformationRecord
                 {
@@ -113,9 +191,10 @@ namespace Teeyoot.Dashboard.Controllers
                     TranzactionId = payout.Id
                 });
 
+                //_teeyootMessagingService.SendPayoutRequestMessageToAdmin(currentUserId, accountNumber, bankName, accHoldName, contNum, messAdmin);
+                //_teeyootMessagingService.SendPayoutRequestMessageToSeller(currentUserId, accountNumber, bankName, accHoldName, contNum);
             }
-            _teeyootMessagingService.SendPayoutRequestMessageToAdmin(currentUserId, accountNumber, bankName, accHoldName, contNum, messAdmin);
-            _teeyootMessagingService.SendPayoutRequestMessageToSeller(currentUserId, accountNumber, bankName, accHoldName, contNum);
+            
             return RedirectToAction("Accounts");
         }
 

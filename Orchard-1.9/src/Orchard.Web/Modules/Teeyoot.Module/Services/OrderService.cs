@@ -205,5 +205,24 @@ namespace Teeyoot.Module.Services
 
             _orderRepository.Flush();
         }
+
+        public bool IsOrdersForCampaignHasStatusDeliveredAndPaid(int campignId)
+        {
+            var allOrderForThisCampaign = _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campignId).Count();
+            var allOrderForThisCampignsStatusPaidAndDelivered = _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campignId && l.OrderRecord.ProfitPaid == true && l.OrderRecord.OrderStatusRecord.Id == int.Parse(OrderStatus.Delivered.ToString("d"))).Count();
+            var allProductSoldByOrder = _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campignId && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d"))).Sum(l => (int?)l.Count) ?? 0;
+
+            if (allOrderForThisCampaign == allOrderForThisCampignsStatusPaidAndDelivered && _campaignService.GetCampaignById(campignId).ProductCountSold <= allProductSoldByOrder)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public double GetProfitByCampaign(int campaignId)
+        {
+            return _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campaignId && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d"))).Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) }).Sum(entry => (double?)entry.Profit) ?? 0;
+        }
     }
 }
