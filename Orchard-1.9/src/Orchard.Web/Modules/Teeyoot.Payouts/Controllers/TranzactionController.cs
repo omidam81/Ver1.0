@@ -75,14 +75,14 @@ namespace Teeyoot.Payouts.Controllers
                     return Shape.FaqEntry(
                         Date: e.Date,
                         Id: e.Id,
-                        Event: e.Event.Substring(e.Event.IndexOf(" "), e.Event.Length - e.Event.Substring(0, e.Event.IndexOf(" ")).Length),
+                        Event: e.Event,
                         Amount: e.Amount,
                         UserId: e.UserId,
                         IsPlus: e.IsPlus,
-                        CampaignAlias: e.Event.Substring(0, e.Event.IndexOf(" ")),
-                        CampaignName: _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Title,
-                        CampaignId: _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Id,
-                        SellerEmail: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId).Email
+                        CampaignAlias: _campService.GetCampaignByAlias(e.Event.Substring(0, (e.Event.IndexOf(" ") < 0 ? 1 : e.Event.IndexOf(" ")))) != null ? _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Alias : string.Empty,
+                        CampaignName: _campService.GetCampaignByAlias(e.Event.Substring(0, (e.Event.IndexOf(" ") < 0 ? 1 : e.Event.IndexOf(" ")))) != null ? _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Title : string.Empty,
+                        CampaignId: _campService.GetCampaignByAlias(e.Event.Substring(0, (e.Event.IndexOf(" ") < 0 ? 1 : e.Event.IndexOf(" ")))) != null ? _campService.GetCampaignByAlias(e.Event.Substring(0, e.Event.IndexOf(" "))).Id : 0,
+                        SellerEmail: _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId) != null ? _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == e.UserId).Email : string.Empty
                         );
                 });
 

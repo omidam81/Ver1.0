@@ -206,8 +206,14 @@
                                 @item.Date
                             </td>
                             <td class="event">
-                                @{
-                                    <a href="@WorkContext.CurrentSite.BaseUrl/@item.CampaignAlias">@item.CampaignName</a>@item.Event
+                                @if (string.IsNullOrEmpty(item.CampaignAlias))
+                                {
+                                    @item.Event
+                                }
+                                else
+                                {
+                                    string str = item.Event.Replace(item.Event.Substring(0, item.Event.IndexOf(" ")), "");
+                                    <a href="@WorkContext.CurrentSite.BaseUrl/@item.CampaignAlias">@item.CampaignName</a>@str
                                 }
                                 
                             </td>
