@@ -2292,6 +2292,8 @@ namespace Teeyoot.Module
                 .Column<int>("Id", column => column.PrimaryKey().Identity())
                 .Column<int>("CountryFrom_Id", c => c.NotNull())
                 .Column<int>("CountryTo_Id", c => c.NotNull())
+                .Column<double>("DeliveryPrice")
+                .Column<bool>("IsActive", c => c.NotNull())
             );
 
             SchemaBuilder.CreateForeignKey("FK_DeliveryInternationalSetting_CountryFrom", 

@@ -126,7 +126,7 @@ namespace Teeyoot.Module
                         .Add(T("Domestic"),
                             i => i.Action("Index", "DeliverySettings", new { area = "Teeyoot.WizardSettings" }).LocalNav())
                         .Add(T("International"),
-                            i => i.Action("Index", "DeliverySettings", new { area = "Teeyoot.WizardSettings" }).LocalNav())
+                            i => i.Action("Index", "DeliveryInternationalSettings", new { area = "Teeyoot.WizardSettings" }).LocalNav())
                     )
                     .Add(subItem => subItem
                         .Caption(T("Users"))
