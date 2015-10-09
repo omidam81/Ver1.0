@@ -108,8 +108,7 @@ namespace Teeyoot.Account.Services
                     return "RM";
                 case Country.Other:
                 case Country.Unknown:
-                    //return "USD";
-                    return "RM";
+                    return "USD";
                 default:
                     throw new ArgumentOutOfRangeException("country", country, null);
             }

@@ -270,7 +270,8 @@ namespace Teeyoot.Orders.Controllers
                 IsPlus = true,
                 Status = "Completed",
                 UserId = sellerId,
-                Event = publicId.Trim(' ')
+                Event = publicId.Trim(' '),
+                IsOrder = true
             });
             return RedirectToAction("Index");
         }
