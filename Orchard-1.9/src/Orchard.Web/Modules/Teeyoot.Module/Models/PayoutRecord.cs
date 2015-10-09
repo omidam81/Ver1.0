@@ -17,5 +17,6 @@ namespace Teeyoot.Module.Models
         public virtual int UserId { get; set; }
         public virtual int Currency_Id { get; set; }
         public virtual bool IsProfitPaid { get; set; }
+        public virtual bool IsCampiaign { get; set; }
     }
 }
