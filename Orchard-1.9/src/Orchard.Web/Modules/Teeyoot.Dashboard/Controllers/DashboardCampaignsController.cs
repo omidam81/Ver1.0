@@ -46,7 +46,7 @@ namespace Teeyoot.Dashboard.Controllers
             model.SGCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "en-SG").FirstOrDefault().Code;
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
-            var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser != null ? teeyootUser.Id : 0);
+            var campaignsQuery = _campaignService.GetCampaignsOfUser(user.Id);
             var productsOrderedQuery = _orderService
                 .GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
 
@@ -150,7 +150,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Today)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
@@ -164,7 +164,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                        .Where(p => p.IsPlus == false && p.Date.Day == DateTime.Now.Day && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                        .Where(p => (p.IsPlus == false && p.Date.Day == DateTime.Now.Day && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day))
                         .Select(p => new { Amount = p.Amount })
                         .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
@@ -184,7 +184,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Yesterday)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
@@ -198,7 +198,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => p.IsPlus == false && p.Date.Day == DateTime.Now.Day - 1 && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Where(p => (p.IsPlus == false && p.Date.Day == DateTime.Now.Day - 1 && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day - 1))
                           .Select(p => new { Amount = p.Amount })
                            .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
@@ -219,7 +219,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
@@ -238,7 +238,7 @@ namespace Teeyoot.Dashboard.Controllers
                            .Sum(entry => (double?)entry.Amount) ?? 0, 2),
 
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
+                          .Where(p => (p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id))
                           .Select(p => new { Amount = p.Amount })
                            .Sum(entry => (double?)entry.Amount) ?? 0, 2)
 
@@ -258,7 +258,7 @@ namespace Teeyoot.Dashboard.Controllers
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
@@ -269,10 +269,11 @@ namespace Teeyoot.Dashboard.Controllers
                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-                MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                           .Where(p => p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
-                           .Select(p => new { Amount = p.Amount })
-                            .Sum(entry => (double?)entry.Amount) ?? 0, 2)
+                //MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                //           .Where(p => (p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id))
+                //           .Select(p => new { Amount = p.Amount })
+                //            .Sum(entry => (double?)entry.Amount) ?? 0, 2)
+                MYToBeAllPaid = 0
 
             });
             foreach (var item in model.Overviews)

@@ -162,7 +162,7 @@ namespace Teeyoot.Payouts.Controllers
             string pathToMedia = AppDomain.CurrentDomain.BaseDirectory;
             string pathToTemplates = Path.Combine(pathToMedia, "Modules/Teeyoot.Module/Content/message-templates/");
             _payoutService.UpdatePayout(item);
-            //_teeyootMessagingService.SendCompletedPayoutMessage(pathToTemplates, pathToMedia, item);
+            _teeyootMessagingService.SendCompletedPayoutMessage(pathToTemplates, pathToMedia, item);
             return RedirectToAction("Payouts");
         }
 
