@@ -150,7 +150,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
                             .FilterByType(OverviewType.Today)
-                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
+                             .Where(p => p.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d")) && p.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Unapproved.ToString("d")))
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum
@@ -163,8 +163,12 @@ namespace Teeyoot.Dashboard.Controllers
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
+                MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
+                        .Where(p => p.IsPlus == true && p.IsProfitPaid != null && p.IsProfitPaid == false && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day)
+                        .Select(p => new { Amount = p.Amount })
+                        .Sum(entry => (double?)entry.Amount) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                        .Where(p => (p.IsPlus == false && p.Date.Day == DateTime.Now.Day && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day))
+                        .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day)
                         .Select(p => new { Amount = p.Amount })
                         .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
@@ -198,7 +202,7 @@ namespace Teeyoot.Dashboard.Controllers
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => (p.IsPlus == false && p.Date.Day == DateTime.Now.Day - 1 && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day - 1))
+                          .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.AddDays(-1).Day)
                           .Select(p => new { Amount = p.Amount })
                            .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
@@ -218,7 +222,6 @@ namespace Teeyoot.Dashboard.Controllers
                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
-                            .FilterByType(OverviewType.Active, campaignsQuery)
                             .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
@@ -232,25 +235,12 @@ namespace Teeyoot.Dashboard.Controllers
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                              .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                              .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-                MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => p.IsPlus == false && p.Status == "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
-                          .Select(p => new { Amount = p.Amount })
-                           .Sum(entry => (double?)entry.Amount) ?? 0, 2),
-
                 MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => (p.IsPlus == false && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Status == "Pending") || (p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id))
+                          .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id)
                           .Select(p => new { Amount = p.Amount })
                            .Sum(entry => (double?)entry.Amount) ?? 0, 2)
-
-
-
-                //MYToBePaid = Math.Round(productsOrderedQuery
-                //            .FilterByType(OverviewType.Active, campaignsQuery)
-                //            .Where(p => !p.OrderRecord.Paid.HasValue && p.OrderRecord.OrderStatusRecord.Name != "Cancelled")
-                //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
-                //            .Sum(entry => (double?)entry.Profit) ?? 0, 2)
             });
-            //model.Overviews.Where(p=>p.Type == OverviewType.Active)
+
             model.Overviews.Add(new CampaignsOverview
             {
                 Type = OverviewType.AllTime,
@@ -297,7 +287,7 @@ namespace Teeyoot.Dashboard.Controllers
             }
 
             var allTags = _campaignService.GetAllCategories()
-                .Select(t => new TagViewModel {name = t.Name})
+                .Select(t => new TagViewModel { name = t.Name })
                 .ToList();
 
             var tags = _campaignCategoryService.GetCategoryByCampaignId(camp.Id)
@@ -357,7 +347,7 @@ namespace Teeyoot.Dashboard.Controllers
             }
 
             // Create new campaign tags
-            string[] tagsToSave = {};
+            string[] tagsToSave = { };
             if (editCampaign.TagsToSave != null)
             {
                 tagsToSave = editCampaign.TagsToSave.Split(',');

@@ -198,20 +198,20 @@
                         @Model.Balances[i].UnclProfits.ToString("F", System.Globalization.CultureInfo.InvariantCulture)
                     </b>
                     <a class="btnStartPayout" id="go">@T("Start a payout")</a>
-                    <div style="line-height: 26px;margin-top: -13px;">@T("We do not payout until the campaign has ended. For COD sales we do not payout until we have received the money from the buyer")</div>
-                    <br>
+                    <div style="line-height: 26px; margin-top: -13px; margin-bottom: 5px;">@T("We do not payout until the campaign has ended. For COD sales we do not payout until we have received the money from the buyer")</div>
+                    @*<br>*@
                     <b>
                         @T("Claimable Profits")
                         @Model.Balances[i].Currency
                     </b> <b class="profit">@Model.Balances[i].Bal.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</b>
-                    <div style="line-height: 18px;margin-top: -8px;">@T("You can claim these now")</div>
-                    <br>
+                    <div style="line-height: 18px;margin-top: -8px; margin-bottom: 10px;">@T("You can claim these now")</div>
+                    @*<br>*@
                     <b>
                         @T("Profits Being Processed")
                         @Model.Balances[i].Currency
                         @Model.Balances[i].ProcessedProfits.ToString("F", System.Globalization.CultureInfo.InvariantCulture)
                     </b>
-                    <div style="line-height: 18px;margin-top: -8px;">@T("You should have the money soon!")</div>
+                    <div style="line-height: 18px;margin-top: -8px; margin-bottom: 12px;">@T("You should have the money soon!")</div>
 
                 }
 
