@@ -984,7 +984,10 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
                 table => table.AddColumn<bool>("IsProfitPaid", c => c.WithDefault(false)));
 
-            return 109;
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+                table => table.AddColumn<bool>("IsCampiaign", c => c.WithDefault(false)));
+
+            return 110;
         }
 
         public int UpdateFrom2()
@@ -2305,6 +2308,14 @@ namespace Teeyoot.Module
                 table => table.AddColumn<bool>("IsProfitPaid", c => c.WithDefault(false)));
 
             return 109;
+        }
+
+        public int UpdateFrom109()
+        {
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+                table => table.AddColumn<bool>("IsCampiaign", c => c.WithDefault(false)));
+
+            return 110;
         }
     }
 }
