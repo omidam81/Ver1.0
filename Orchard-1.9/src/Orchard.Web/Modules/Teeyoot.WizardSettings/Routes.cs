@@ -446,7 +446,25 @@ namespace Teeyoot.WizardSettings
                             {"area", "Teeyoot.WizardSettings"}
                         },
                         new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/DeliverySettings/AddSetting/{countryId}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"},
+                            {"controller", "DeliverySettings"},
+                            {"action", "AddSetting"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.WizardSettings"}
+                        },
+                        new MvcRouteHandler())
                 }
+
 
             };
         }
