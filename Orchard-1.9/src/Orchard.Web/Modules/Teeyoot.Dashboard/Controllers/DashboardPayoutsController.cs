@@ -16,7 +16,7 @@ namespace Teeyoot.Dashboard.Controllers
         {
             int currentUserId = Services.WorkContext.CurrentUser.Id;
             var payouts = _payoutService.GetAllPayouts();
-            var list = payouts.Where(t => t.UserId == currentUserId).ToList();
+            var list = payouts.Where(t => t.UserId == currentUserId && t.IsOrder == false).ToList();
             var model = new PayoutsViewModel();
             //Вытаскивать валюту по культуре 
             //model.Currency = _currencyRepository.Table.ToList().ElementAt(0).Code;
@@ -122,7 +122,7 @@ namespace Teeyoot.Dashboard.Controllers
             }
 
             //list = null;
-            model.Transactions = payouts.Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status, CurrencyId = s.Currency_Id, Alias = string.Empty, CampaignName = string.Empty }).Where(t => t.UserId == currentUserId).ToList();
+            model.Transactions = payouts.Where(t => t.UserId == currentUserId && t.IsOrder == false).Select(s => new History { Id = s.Id, Date = s.Date, Event = s.Event, Amount = s.Amount, IsPlus = s.IsPlus, UserId = s.UserId, Status = s.Status, CurrencyId = s.Currency_Id, Alias = string.Empty, CampaignName = string.Empty }).ToList();
             foreach (var camp in campaignsInProfit)
             {
                 foreach (var tranz in model.Transactions)
