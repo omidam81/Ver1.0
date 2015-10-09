@@ -138,6 +138,12 @@ namespace Teeyoot.Module.Controllers
                 costViewModel.Products = products;
             }
 
+            if (_orchardServices.WorkContext.CurrentUser != null)
+            {
+                var currentUserRoles = _orchardServices.WorkContext.CurrentUser.ContentItem.As<UserRolesPart>().Roles;
+                costViewModel.IsCurrentUserAdministrator = currentUserRoles.Any(r => r == "Administrator");
+            }
+
             var facebookSettingsPart = _orchardServices.WorkContext.CurrentSite.As<FacebookSettingsPart>();
             costViewModel.FacebookClientId = facebookSettingsPart.ClientId;
 
@@ -148,9 +154,6 @@ namespace Teeyoot.Module.Controllers
 
             var currency = _currencyRepository.Table.Where(c => c.CurrencyCulture == cultureUsed).First();
             costViewModel.CurrencyCulture = currency.Code;
-
-            var currentUserRoles = _orchardServices.WorkContext.CurrentUser.ContentItem.As<UserRolesPart>().Roles;
-            costViewModel.IsCurrentUserAdministrator = currentUserRoles.Any(r => r == "Administrator");
 
             return View(costViewModel);
         }
