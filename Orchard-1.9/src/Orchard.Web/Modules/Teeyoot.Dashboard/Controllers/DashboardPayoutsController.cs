@@ -103,19 +103,19 @@ namespace Teeyoot.Dashboard.Controllers
                 var newCampaignInProfit = new List<CampaignRecord>();
                 foreach (var camp in campaignsInProfit)
                 {
-                    bool notInTranz = false;
-                    foreach (var tranz in list)
-                    {
-                        if (!tranz.Event.StartsWith(camp.Alias) && tranz.Status == "Completed" && tranz.IsProfitPaid != null && tranz.IsProfitPaid == false)
-                        {
-                            notInTranz = true;
-                        }
-                    }
+                    //bool notInTranz = false;
+                    //foreach (var tranz in list)
+                    //{
+                    //    if (!tranz.Event.StartsWith(camp.Alias) && tranz.Status == "Completed" && tranz.IsProfitPaid != null && tranz.IsProfitPaid == false && tranz.IsCampiaign)
+                    //    {
+                    //        notInTranz = true;
+                    //    }
+                    //}
 
-                    if (notInTranz || list.Count == 0)
+                    if (list.Where(tranz => tranz.Event.StartsWith(camp.Alias)).ToList().Count == 0 || list.Count == 0)
                     {
                         var evant = T("{0} was delivered ({1} items sold)", camp.Alias, camp.ProductCountSold);
-                        var payout = new PayoutRecord() { Date = DateTime.Now, Amount = balance, Event = evant.ToString(), Currency_Id = _currencyRepository.Table.Where(c => c.Code == "RM").First().Id, IsPlus = true, UserId = currentUserId, Status = "Completed" };
+                        var payout = new PayoutRecord() { Date = DateTime.Now, Amount = _orderService.GetProfitByCampaign(camp.Id), Event = evant.ToString(), Currency_Id = _currencyRepository.Table.Where(c => c.Code == "RM").First().Id, IsPlus = true, UserId = currentUserId, Status = "Completed", IsCampiaign = true, IsProfitPaid = false };
                         _payoutService.AddPayout(payout);
                     }
                 }
@@ -172,9 +172,11 @@ namespace Teeyoot.Dashboard.Controllers
             {
                 if (!item.IsActive && _orderService.IsOrdersForCampaignHasStatusDeliveredAndPaid(item.Id))
                 {
-                    balance = balance + _orderService.GetProfitByCampaign(item.Id); ;
+                    balance = balance + _orderService.GetProfitByCampaign(item.Id);
                 }
             }
+
+            balance = balance - _payoutService.GetAllPayouts().Where(p => p.UserId == currentUserId && p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending").Sum(p => p.Amount);
 
 
             if (balance > 0)

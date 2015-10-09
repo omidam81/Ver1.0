@@ -163,20 +163,21 @@ namespace Teeyoot.Dashboard.Controllers
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-                MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
-                        .Where(p => p.IsPlus == true && p.IsProfitPaid != null && p.IsProfitPaid == false && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day)
-                        .Select(p => new { Amount = p.Amount })
-                        .Sum(entry => (double?)entry.Amount) ?? 0, 2),
-                MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                        .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day)
-                        .Select(p => new { Amount = p.Amount })
-                        .Sum(entry => (double?)entry.Amount) ?? 0, 2)
+                //MYToBePaid = Math.Round(_payoutService.GetAllPayouts()
+                //        .Where(p => p.IsPlus == true && p.IsProfitPaid != null && p.IsProfitPaid == false && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day && p.IsCampiaign != null && p.IsCampiaign)
+                //        .Select(p => new { Amount = p.Amount })
+                //        .Sum(entry => (double?)entry.Amount) ?? 0, 2),
+                //MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                //        .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.Day)
+                //        .Select(p => new { Amount = p.Amount })
+                //        .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Today)
                 //            .Where(p => !p.OrderRecord.Reserved.HasValue)
                 //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                 //            .Sum(entry => entry.Profit)
+                MYToBeAllPaid = 0
             });
 
             model.Overviews.Add(new CampaignsOverview
@@ -201,16 +202,17 @@ namespace Teeyoot.Dashboard.Controllers
                              .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved" && p.OrderRecord.CurrencyRecord.CurrencyCulture == "id-ID")
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
-                MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
-                          .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.AddDays(-1).Day)
-                          .Select(p => new { Amount = p.Amount })
-                           .Sum(entry => (double?)entry.Amount) ?? 0, 2)
+                //MYToBeAllPaid = Math.Round(_payoutService.GetAllPayouts()
+                //          .Where(p => p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending" && p.UserId == _workContextAccessor.GetContext().CurrentUser.Id && p.Date.Day == DateTime.Now.AddDays(-1).Day)
+                //          .Select(p => new { Amount = p.Amount })
+                //           .Sum(entry => (double?)entry.Amount) ?? 0, 2)
                 //,
                 //ToBePaid = productsOrderedQuery
                 //            .FilterByType(OverviewType.Yesterday)
                 //            .Where(p => !p.OrderRecord.Reserved.HasValue)
                 //            .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                 //            .Sum(entry => entry.Profit)
+                MYToBeAllPaid = 0
             });
 
             model.Overviews.Add(new CampaignsOverview
