@@ -1296,6 +1296,8 @@
     <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryInternationalSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryMatrixViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\CurrenciesViewModel.cs" />
     <Compile Include="ViewModels\MolpasViewModel.cs" />

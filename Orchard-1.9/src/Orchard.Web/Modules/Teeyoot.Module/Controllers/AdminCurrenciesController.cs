@@ -27,6 +27,10 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IRepository<LinkCountryCurrencyRecord> _linkCountryCurrencyRepository;
 
+        //todo: (auth:juiceek) drop after applying new logic
+        private readonly IWorkContextAccessor _workContextAccessor;
+        private string _cultureUsed;
+
         private readonly ImageFileHelper _imageFileHelper; 
         
         private dynamic Shape { get; set; }
@@ -38,9 +42,16 @@ namespace Teeyoot.Module.Controllers
             IShapeFactory shapeFactory,
             IRepository<CurrencyRecord> currencyRepository,
             IRepository<CountryRecord> countryRepository,
-            IRepository<LinkCountryCurrencyRecord> linkCountryCurrencyRepository
+            IRepository<LinkCountryCurrencyRecord> linkCountryCurrencyRepository,
+
+            IWorkContextAccessor workContextAccessor
             )
         {
+
+            _workContextAccessor = workContextAccessor;
+            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
+            _cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+
             _siteService = siteService;
             _orchardServices = orchardServices;
             Shape = shapeFactory;
@@ -107,7 +118,7 @@ namespace Teeyoot.Module.Controllers
                     Code = viewModel.Code,
                     Name = viewModel.Name,
                     ShortName = viewModel.ShortName,
-                    CurrencyCulture = "FAKE_CULT"
+                    CurrencyCulture = _cultureUsed
                 };
                 _currencyRepository.Create(record);
                 step1_CurrencySaved = true;
@@ -190,7 +201,7 @@ namespace Teeyoot.Module.Controllers
                 Code = viewModel.Code,
                 Name = viewModel.Name,
                 ShortName = viewModel.ShortName,
-                CurrencyCulture = "FAKE_CULT"
+                CurrencyCulture = _cultureUsed
             };
             // Saving in transaction.
             bool step1_ImageFileSaved = false;
