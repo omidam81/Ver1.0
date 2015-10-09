@@ -181,11 +181,14 @@
                     <th class="amount">
                         <h3>@T("AMOUNT")</h3>
                     </th>
-                    <th class="status">
-                        <h3>@T("STATUS")</h3>
+                    <th class="campaignId">
+                        <h3>@T("CAMPAIGN ID")</h3>
                     </th>
                     <th class="userId">
-                        <h3>@T("USER ID")</h3>
+                        <h3>@T("SELLER ID")</h3>
+                    </th>
+                    <th class="sellerEmail">
+                        <h3>@T("SELLER EMAIL")</h3>
                     </th>
                     <th class="inf">
                         <h3></h3>
@@ -203,7 +206,16 @@
                                 @item.Date
                             </td>
                             <td class="event">
-                                @item.Event
+                                @if (string.IsNullOrEmpty(item.CampaignAlias))
+                                {
+                                    @item.Event
+                                }
+                                else
+                                {
+                                    string str = item.Event.Replace(item.Event.Substring(0, item.Event.IndexOf(" ")), "");
+                                    <a href="@WorkContext.CurrentSite.BaseUrl/@item.CampaignAlias">@item.CampaignName</a>@str
+                                }
+                                
                             </td>
                             <td class="amount" id="@item.Id">
                                 @if (@item.IsPlus)
@@ -221,17 +233,14 @@
 
                                 }
                             </td>
-                            <td class="status">
-                                @item.Status
-                                @if (@item.Status == "Pending")
-                                {
-                                    @T(" | ")
-                                    <a href="@Url.Action("EditStatus", new { id=item.Id})" title="@T(" Completed")">@T("Completed")</a>
-                                }
-
+                            <td class="campaignId">
+                                @item.CampaignId
                             </td>
                             <td class="userId">
                                 @item.UserId
+                            </td>
+                            <td class="sellerEmail">
+                                @item.SellerEmail
                             </td>
                             <td class="inf">
                                 <button class="go" type="submit" value="@item.UserId,@item.Id">

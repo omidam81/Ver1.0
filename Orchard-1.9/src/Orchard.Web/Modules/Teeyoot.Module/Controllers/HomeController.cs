@@ -353,7 +353,7 @@ namespace Teeyoot.Module.Controllers
                         }
 
 
-                        _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = Convert.ToDouble(amount), IsPlus = true, Status = "Completed", UserId = adminId, Event = order.OrderPublicId.Trim(' ') });
+                        _payoutService.AddPayout(new PayoutRecord { Date = DateTime.Now.ToUniversalTime(), Currency_Id = order.CurrencyRecord.Id, Amount = Convert.ToDouble(amount), IsPlus = true, Status = "Completed", UserId = adminId, Event = order.OrderPublicId.Trim(' '), IsOrder = true });
                         var pathToTemplates = Server.MapPath("/Modules/Teeyoot.Module/Content/message-templates/");
                         var pathToMedia = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 

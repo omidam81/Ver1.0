@@ -135,7 +135,7 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaigns(int[] ids)
         {
-            return _ocpRepository.Table.Where(p => ids.Contains(p.CampaignProductRecord.CampaignRecord_Id) && p.OrderRecord.IsActive);
+            return _ocpRepository.Table.Where(p => ids.Contains(p.CampaignProductRecord.CampaignRecord_Id));
         }
 
         public IQueryable<LinkOrderCampaignProductRecord> GetProductsOrderedOfCampaign(int campaignId)
@@ -145,7 +145,7 @@ namespace Teeyoot.Module.Services
 
         public IQueryable<LinkOrderCampaignProductRecord> GetActiveProductsOrderedOfCampaign(int campaignId)
         {
-            return _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled");
+            return _ocpRepository.Table.Where(p => p.CampaignProductRecord.CampaignRecord_Id == campaignId && p.OrderRecord.IsActive && p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved");
         }
 
         public IQueryable<LinkOrderCampaignProductRecord> GetAllOrderedProducts()
@@ -204,6 +204,25 @@ namespace Teeyoot.Module.Services
             _orderRepository.Delete(order);
 
             _orderRepository.Flush();
+        }
+
+        public bool IsOrdersForCampaignHasStatusDeliveredAndPaid(int campignId)
+        {
+            var allOrderForThisCampaign = _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campignId && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d")) && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Unapproved.ToString("d"))).Count();
+            var allOrderForThisCampignsStatusPaidAndDelivered = _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campignId && l.OrderRecord.ProfitPaid == true && l.OrderRecord.OrderStatusRecord.Id == int.Parse(OrderStatus.Delivered.ToString("d"))).Count();
+            var allProductSoldByOrder = _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campignId && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d")) && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Unapproved.ToString("d"))).Sum(l => (int?)l.Count) ?? 0;
+
+            if (allOrderForThisCampaign == allOrderForThisCampignsStatusPaidAndDelivered && _campaignService.GetCampaignById(campignId).ProductCountSold <= allProductSoldByOrder)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public double GetProfitByCampaign(int campaignId)
+        {
+            return _ocpRepository.Table.Where(l => l.CampaignProductRecord.CampaignRecord_Id == campaignId && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d")) && l.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Unapproved.ToString("d"))).Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) }).Sum(entry => (double?)entry.Profit) ?? 0;
         }
     }
 }

@@ -44,5 +44,9 @@ namespace Teeyoot.Module.Services
         Task<int> GetProfitOfCampaign(int id);
 
         double GetProfitActiveOrdersOfCampaign(int id);
+
+        bool IsOrdersForCampaignHasStatusDeliveredAndPaid(int campignId);
+
+        double GetProfitByCampaign(int campaignId);
     }
 }

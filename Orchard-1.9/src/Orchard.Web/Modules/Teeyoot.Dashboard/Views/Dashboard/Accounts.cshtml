@@ -197,44 +197,44 @@
                         @Model.Balances[i].Currency
                         @Model.Balances[i].UnclProfits.ToString("F", System.Globalization.CultureInfo.InvariantCulture)
                     </b>
-                <a class="btnStartPayout" id="go">@T("Start a payout")</a>
-                 <div style="line-height: 26px;margin-top: -13px;">@T("We do not payout until the campaign has ended. For COD sales we do not payout until we have received the money from the buyer")</div>
-                    <br>
-    <b>
-        @T("Claimable Profits")
-        @Model.Balances[i].Currency
-    </b> <b class="profit">@Model.Balances[i].Bal.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</b>
-    <div style="line-height: 18px;margin-top: -8px;">@T("You can claim these now")</div>
-    <br>
+                    <a class="btnStartPayout" id="go">@T("Start a payout")</a>
+                    <div style="line-height: 26px; margin-top: -13px; margin-bottom: 5px;">@T("We do not payout until the campaign has ended. For COD sales we do not payout until we have received the money from the buyer")</div>
+                    @*<br>*@
+                    <b>
+                        @T("Claimable Profits")
+                        @Model.Balances[i].Currency
+                    </b> <b class="profit">@Model.Balances[i].Bal.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</b>
+                    <div style="line-height: 18px;margin-top: -8px; margin-bottom: 10px;">@T("You can claim these now")</div>
+                    @*<br>*@
                     <b>
                         @T("Profits Being Processed")
                         @Model.Balances[i].Currency
                         @Model.Balances[i].ProcessedProfits.ToString("F", System.Globalization.CultureInfo.InvariantCulture)
                     </b>
-                 <div style="line-height: 18px;margin-top: -8px;">@T("You should have the money soon!")</div>
+                    <div style="line-height: 18px;margin-top: -8px; margin-bottom: 12px;">@T("You should have the money soon!")</div>
 
                 }
 
                 //}
-                    @*else
-                        {
-                            @T("You currently have ") @Model.Balances[i].Currency <b class="profit">@Model.Balances[i].Bal</b>@T(" ready to be paid out")
-                          <br>
-                        }*@
+                @*else
+                    {
+                        @T("You currently have ") @Model.Balances[i].Currency <b class="profit">@Model.Balances[i].Bal</b>@T(" ready to be paid out")
+                      <br>
+                    }*@
 
-                    }
+            }
 
-                    @*@foreach (var item in Model.Balances)
-                        {
-                            @T("You currently have ") @item.Currency <b>@item.Bal</b>@T(" ready to be paid out")
-                            <br>
-                        }*@
+            @*@foreach (var item in Model.Balances)
+                {
+                    @T("You currently have ") @item.Currency <b>@item.Bal</b>@T(" ready to be paid out")
+                    <br>
+                }*@
 
 
 
-                    @* <div style="clear:both;"></div>*@
+            @* <div style="clear:both;"></div>*@
 
-</div>
+        </div>
         <h1>@T("Payout History")</h1>
         <table class="tbl-pay">
             <tr class="thead">
@@ -247,14 +247,21 @@
             {
                 <tr>
                     <td class="td1">@elem.Date</td>
-                    <td class="td2">@elem.Event</td>
-                    @if (@elem.IsPlus)
+                    @*<td class="td2">@elem.Event</td>*@
+                    <td class="td2">
+                        @if(string.IsNullOrEmpty(elem.Alias)){
+                            @elem.Event
+                        }else{
+                            <a href="@WorkContext.CurrentSite.BaseUrl/@elem.Alias">@elem.CampaignName</a>@elem.Event
+                        }
+                    </td>
+                    @if (string.IsNullOrEmpty(elem.Alias))
                     {
-                        <td class="td3">+ @elem.Currency @elem.Amount.ToString("F", System.Globalization.CultureInfo.InvariantCulture) </td>
+                        <td class="td3">@elem.Currency @elem.Amount.ToString("F", System.Globalization.CultureInfo.InvariantCulture) </td>
                     }
                     else
                     {
-                        <td class="td3"> - @elem.Currency @elem.Amount.ToString("F", System.Globalization.CultureInfo.InvariantCulture) </td>
+                        <td class="td3">+ @elem.Currency @elem.Amount.ToString("F", System.Globalization.CultureInfo.InvariantCulture) </td>
                     }
                     <td class="td4">@elem.Status</td>
                 </tr>
