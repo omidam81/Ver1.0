@@ -260,6 +260,14 @@
     </script>
 
     <script>
+        function getCampaignsFilter() {
+            var filterCurrencyId = $('#currency_filter option:selected').val();
+            var filter = {
+                FilterCurrencyId : filterCurrencyId
+            }
+            return filter;
+        };
+
         $(document).ready(function() {
             $('#campaigns_table').DataTable({
                 'processing': true,
@@ -269,6 +277,9 @@
                     'type': 'POST',
                     'data': function(d) {
                         addAntiForgeryToken(d);
+                        var campaignsFilter = getCampaignsFilter();
+
+                        d.FilterCurrencyId = campaignsFilter.FilterCurrencyId;
                     }
                 },
                 'columnDefs': [
@@ -324,7 +335,7 @@
                     },
                     {
                         'targets': 10,
-                        'data': 'Status'
+                        'data': 'EndDate'
                     },
                     {
                         'targets': 11,
@@ -339,6 +350,11 @@
                         'data': 'Currency'
                     }
                 ]
+            });
+
+            $('#currency_filter').change(function() {
+                var campaignsTable = $('#campaigns_table').DataTable();
+                campaignsTable.ajax.reload();
             });
         });
     </script>

@@ -184,6 +184,15 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         };
                         command.Parameters.Add(currentDateParameter);
 
+                        if (request.FilterCurrencyId.HasValue)
+                        {
+                            var currencyIdParameter = new SqlParameter("@CurrencyId", SqlDbType.Int)
+                            {
+                                Value = request.FilterCurrencyId.Value
+                            };
+                            command.Parameters.Add(currencyIdParameter);
+                        }
+
                         var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
                         {
                             Value = _cultureUsed
@@ -228,43 +237,6 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         }
 
                         campaignItemViewModels = ConvertToCampaignItemViewModels(campaignItems);
-
-                        /*
-
-                        var sortColumnParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
-                        {
-                            Value = _cultureUsed
-                        };
-                        */
-                        /*
-                        var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
-                        {
-                            Value = "%" + request.Filter + "%"
-                        };
-                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
-                        {
-                            Value = request.Skip
-                        };
-                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
-                        {
-                            Value = request.Take
-                        };
-                         */
-                        /*
-                        command.Parameters.Add(currentDateParameter);
-                        command.Parameters.Add(cultureParameter);
-                         */
-                        /*
-                        command.Parameters.Add(filterParameter);
-                        command.Parameters.Add(skipParameter);
-                        command.Parameters.Add(takeParameter);
-                         */
-                        /*
-                        using (var reader = command.ExecuteReader())
-                        {
-                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
-                        }
-                         */
                     }
 
                     transaction.Commit();
@@ -295,12 +267,14 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Minimum = (int) reader["Minimum"],
                     CreatedDate = (DateTime) reader["CreatedDate"],
                     Status = (string) reader["Status"],
-                    Email = (string) reader["Email"],
-                    Currency = (string) reader["Currency"]
+                    Email = (string) reader["Email"]
                 };
 
                 if (reader["PhoneNumber"] != DBNull.Value)
                     campaignItem.PhoneNumber = (string) reader["PhoneNumber"];
+
+                if (reader["Currency"] != DBNull.Value)
+                    campaignItem.Currency = (string) reader["Currency"];
 
                 campaignItems.Add(campaignItem);
             }
