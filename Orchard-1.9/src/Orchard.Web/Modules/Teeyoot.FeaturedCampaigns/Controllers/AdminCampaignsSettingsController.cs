@@ -143,7 +143,22 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     );
             });
 
-            return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), NotApprovedTotal = totalNotApproved });
+            var currencies = _currencyRepository.Table
+                .Select(c => new CurrencyItemViewModel
+                {
+                    Id = c.Id,
+                    Name = c.ShortName
+                })
+                .ToList();
+
+            var viewModel = new ExportPrintsViewModel
+            {
+                Campaigns = entriesProjection.ToArray(),
+                NotApprovedTotal = totalNotApproved,
+                Currencies = currencies
+            };
+
+            return View(viewModel);
         }
 
         public JsonResult GetCampaigns(
@@ -280,7 +295,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                     Minimum = (int) reader["Minimum"],
                     CreatedDate = (DateTime) reader["CreatedDate"],
                     Status = (string) reader["Status"],
-                    Email = (string) reader["Email"]
+                    Email = (string) reader["Email"],
+                    Currency = (string) reader["Currency"]
                 };
 
                 if (reader["PhoneNumber"] != DBNull.Value)
@@ -310,7 +326,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 Status = campaignItem.Status,
                 EndDate = campaignItem.EndDate.ToLocalTime().ToString("dd/MM/yyyy"),
                 Email = campaignItem.Email,
-                PhoneNumber = campaignItem.PhoneNumber
+                PhoneNumber = campaignItem.PhoneNumber,
+                Currency = campaignItem.Currency
             }).ToList();
         }
 
