@@ -1,8 +1,19 @@
-﻿using Ionic.Zip;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using DataTables.Mvc;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Data;
 using Orchard.DisplayManagement;
+using Orchard.Environment.Configuration;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Settings;
@@ -10,16 +21,8 @@ using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
 using Orchard.Users.Models;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Mime;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
+using Teeyoot.FeaturedCampaigns.Common;
+using Teeyoot.FeaturedCampaigns.Models;
 using Teeyoot.FeaturedCampaigns.ViewModels;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Common.Utils;
@@ -42,10 +45,22 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly INotifier _notifier;
         private readonly IRepository<ProductColorRecord> _repositoryColor;
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string cultureUsed = string.Empty;
+        private readonly ShellSettings _shellSettings;
+        private readonly string _cultureUsed;
 
-        public AdminCampaignsSettingsController(ICampaignService campaignService, ISiteService siteService, IShapeFactory shapeFactory, IimageHelper imageHelper, IOrderService orderService, IContentManager contentManager,
-            ITeeyootMessagingService teeyootMessagingService, INotifier notifier, IRepository<ProductColorRecord> repositoryColor, IWorkContextAccessor workContextAccessor, IRepository<CurrencyRecord> currencyRepository)
+        public AdminCampaignsSettingsController(
+            ICampaignService campaignService,
+            ISiteService siteService,
+            IShapeFactory shapeFactory,
+            IimageHelper imageHelper,
+            IOrderService orderService,
+            IContentManager contentManager,
+            ITeeyootMessagingService teeyootMessagingService,
+            INotifier notifier,
+            IRepository<ProductColorRecord> repositoryColor,
+            IWorkContextAccessor workContextAccessor,
+            ShellSettings shellSettings,
+            IRepository<CurrencyRecord> currencyRepository)
         {
             _campaignService = campaignService;
             _siteService = siteService;
@@ -61,9 +76,11 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             _notifier = notifier;
             _repositoryColor = repositoryColor;
 
+            _shellSettings = shellSettings;
+
             _workContextAccessor = workContextAccessor;
             var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
+            _cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         private dynamic Shape { get; set; }
@@ -72,10 +89,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult Index(PagerParameters pagerParameters)
         {
-            var total = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).Count();
+            var total = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == _cultureUsed).Count();
             var orderedProducts = _orderService.GetAllOrderedProducts();
 
-            var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).Select(c => new
+            var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == _cultureUsed).Select(c => new
             {
                 Id = c.Id,
                 Title = c.Title,
@@ -96,10 +113,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             })
                                 .ToList()
                                 .OrderBy(e => e.Title);
-            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == cultureUsed).Count();
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == _cultureUsed).Count();
 
             var yesterday = DateTime.UtcNow.AddDays(-1);
-            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.CurrencyRecord.CurrencyCulture == cultureUsed && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
+            var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.CurrencyRecord.CurrencyCulture == _cultureUsed && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
 
             var entriesProjection = campaigns.Select(e =>
             {
@@ -127,6 +144,174 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             });
 
             return View(new ExportPrintsViewModel { Campaigns = entriesProjection.ToArray(), NotApprovedTotal = totalNotApproved });
+        }
+
+        public JsonResult GetCampaigns(
+            [ModelBinder(typeof (GetCampaignsDataTablesBinder))] GetCampaignsDataTablesRequest request)
+        {
+            IEnumerable<CampaignItemViewModel> campaignItemViewModels;
+
+            using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "GetCampaigns";
+
+                        var currentDateParameter = new SqlParameter("@CurrentDate", SqlDbType.DateTime)
+                        {
+                            Value = DateTime.UtcNow
+                        };
+                        command.Parameters.Add(currentDateParameter);
+
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = _cultureUsed
+                        };
+                        command.Parameters.Add(cultureParameter);
+
+                        if (request.Columns.GetSortedColumns().Any())
+                        {
+                            var sortColumn = request.Columns.GetSortedColumns().First();
+                            var sortColumnParameter = new SqlParameter("@SortColumn", SqlDbType.NVarChar, 100)
+                            {
+                                Value = sortColumn.Data
+                            };
+                            command.Parameters.Add(sortColumnParameter);
+
+                            var sortDirection = sortColumn.SortDirection == Column.OrderDirection.Ascendant
+                                ? "ASC"
+                                : "DESC";
+                            var sortDirectionParameter = new SqlParameter("@SortDirection", SqlDbType.NVarChar, 50)
+                            {
+                                Value = sortDirection
+                            };
+                            command.Parameters.Add(sortDirectionParameter);
+                        }
+
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Start
+                        };
+                        command.Parameters.Add(skipParameter);
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Length
+                        };
+                        command.Parameters.Add(takeParameter);
+
+                        IEnumerable<CampaignItem> campaignItems;
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            campaignItems = GetCampaignItemsFrom(reader);
+                        }
+
+                        campaignItemViewModels = ConvertToCampaignItemViewModels(campaignItems);
+
+                        /*
+
+                        var sortColumnParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = _cultureUsed
+                        };
+                        */
+                        /*
+                        var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
+                        {
+                            Value = "%" + request.Filter + "%"
+                        };
+                        var skipParameter = new SqlParameter("@Skip", SqlDbType.Int)
+                        {
+                            Value = request.Skip
+                        };
+                        var takeParameter = new SqlParameter("@Take", SqlDbType.Int)
+                        {
+                            Value = request.Take
+                        };
+                         */
+                        /*
+                        command.Parameters.Add(currentDateParameter);
+                        command.Parameters.Add(cultureParameter);
+                         */
+                        /*
+                        command.Parameters.Add(filterParameter);
+                        command.Parameters.Add(skipParameter);
+                        command.Parameters.Add(takeParameter);
+                         */
+                        /*
+                        using (var reader = command.ExecuteReader())
+                        {
+                            response.Campaigns = GetSearchCampaignItemsFrom(reader);
+                        }
+                         */
+                    }
+
+                    transaction.Commit();
+                }
+            }
+
+            return Json(new DataTablesResponse(request.Draw, campaignItemViewModels, 100, 100));
+        }
+
+        private static IEnumerable<CampaignItem> GetCampaignItemsFrom(IDataReader reader)
+        {
+            var campaignItems = new List<CampaignItem>();
+
+            while (reader.Read())
+            {
+                var campaignItem = new CampaignItem
+                {
+                    Profit = (double) reader["Profit"],
+                    Last24HoursSold = (int) reader["Last24HoursSold"],
+                    Id = (int) reader["Id"],
+                    Title = (string) reader["Title"],
+                    Goal = (int) reader["Goal"],
+                    Sold = (int) reader["Sold"],
+                    IsApproved = (bool) reader["IsApproved"],
+                    EndDate = (DateTime) reader["EndDate"],
+                    Alias = (string) reader["Alias"],
+                    IsActive = (bool) reader["IsActive"],
+                    Minimum = (int) reader["Minimum"],
+                    CreatedDate = (DateTime) reader["CreatedDate"],
+                    Status = (string) reader["Status"],
+                    Email = (string) reader["Email"]
+                };
+
+                if (reader["PhoneNumber"] != DBNull.Value)
+                    campaignItem.PhoneNumber = (string) reader["PhoneNumber"];
+
+                campaignItems.Add(campaignItem);
+            }
+
+            return campaignItems;
+        }
+
+        private IEnumerable<CampaignItemViewModel> ConvertToCampaignItemViewModels(
+            IEnumerable<CampaignItem> campaignItems)
+        {
+            return campaignItems.Select(campaignItem => new CampaignItemViewModel
+            {
+                Id = campaignItem.Id,
+                Title = campaignItem.Title,
+                Alias = "/" + campaignItem.Alias,
+                CreatedDate = campaignItem.CreatedDate.ToLocalTime().ToString("dd/MM/yyyy"),
+                IsActive = campaignItem.IsActive ? T("Yes").ToString() : T("No").ToString(),
+                Last24HoursSold = campaignItem.Last24HoursSold > 0 ? campaignItem.Last24HoursSold.ToString() : "-",
+                Sold = campaignItem.Sold,
+                Minimum = campaignItem.Minimum,
+                Goal = campaignItem.Goal,
+                Profit = campaignItem.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture),
+                Status = campaignItem.Status,
+                EndDate = campaignItem.EndDate.ToLocalTime().ToString("dd/MM/yyyy"),
+                Email = campaignItem.Email,
+                PhoneNumber = campaignItem.PhoneNumber
+            }).ToList();
         }
 
         public ActionResult ChangeStatus(PagerParameters pagerParameters, int id, CampaignStatus status)

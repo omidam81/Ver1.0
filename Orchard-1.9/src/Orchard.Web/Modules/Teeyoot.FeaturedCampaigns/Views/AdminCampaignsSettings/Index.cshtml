@@ -8,6 +8,29 @@
     Layout.Title = T("Details");
 }
 
+<table id="campaigns_table">
+    <thead>
+    <tr>
+        <th>@T("Campaign Id")</th>
+        <th>@T("Campaign Name")</th>
+        <th>@T("Create date")</th>
+        <th>@T("Active")</th>
+        <th>@T("Sold last 24 hours")</th>
+        <th>@T("Sold")</th>
+        <th>@T("Minimum")</th>
+        <th>@T("Goal")</th>
+        <th>@T("Profit")</th>
+        <th>@T("Payment Status")</th>
+        <th>@T("End Date")</th>
+        <th>@T("Seller Email")</th>
+        <th>@T("Phone Number")</th>
+    @*
+        <th>@T("Change Status")</th>
+        *@
+    </tr>
+    </thead>
+</table>
+
 <div>
 
     @using (Html.BeginForm())
@@ -149,19 +172,19 @@
                 iDisplayLength: 10,
                 bSortable: true,
                 aoColumnDefs: [
-                { "aTargets": [0], "bSortable": true },
-                { "aTargets": [1], "bSortable": true },
-                { "aTargets": [2], "bSortable": true, "sType": "date-eu" },
-                { "aTargets": [3], "bSortable": true },
-                { "aTargets": [4], "bSortable": true },
-                { "aTargets": [5], "bSortable": true },
-                { "aTargets": [6], "bSortable": true },
-                { "aTargets": [7], "bSortable": true },
-                { "aTargets": [8], "bSortable": true, "sType": "date-eu" },
-                { "aTargets": [9], "bSortable": true },
-                { "aTargets": [10], "bSortable": true },
-                { "aTargets": [11], "bSortable": true },
-                { "aTargets": [12], "bSortable": true }
+                    { "aTargets": [0], "bSortable": true },
+                    { "aTargets": [1], "bSortable": true },
+                    { "aTargets": [2], "bSortable": true, "sType": "date-eu" },
+                    { "aTargets": [3], "bSortable": true },
+                    { "aTargets": [4], "bSortable": true },
+                    { "aTargets": [5], "bSortable": true },
+                    { "aTargets": [6], "bSortable": true },
+                    { "aTargets": [7], "bSortable": true },
+                    { "aTargets": [8], "bSortable": true, "sType": "date-eu" },
+                    { "aTargets": [9], "bSortable": true },
+                    { "aTargets": [10], "bSortable": true },
+                    { "aTargets": [11], "bSortable": true },
+                    { "aTargets": [12], "bSortable": true }
                 ]
             });
         });
@@ -211,12 +234,92 @@
     </script>
 
     <script>
-    $(document).ready(function () {
-        var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");
-        var node = document.createElement("text");
+        $(document).ready(function() {
+            var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");
+            var node = document.createElement("text");
 
-        node.appendChild(textnode);
-        document.getElementsByClassName("local-section-status")[0].appendChild(node);
-    });
+            node.appendChild(textnode);
+            document.getElementsByClassName("local-section-status")[0].appendChild(node);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#campaigns_table').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'ajax': {
+                    'url': '@Url.Action("GetCampaigns", "AdminCampaignsSettings")',
+                    'type': 'POST',
+                    'data': function(d) {
+                        addAntiForgeryToken(d);
+                    }
+                },
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'data': 'Id'
+                    },
+                    {
+                        'targets': 1,
+                        'data': 'Title',
+                        'render': function(data, type, row) {
+                            var innerHtmlMarkup = '<a target="_blank" href="%ALIAS%">%TITLE%</a>';
+                            innerHtmlMarkup = innerHtmlMarkup.replace('%ALIAS%', row.Alias).replace('%TITLE%', data);
+                            return innerHtmlMarkup;
+                        }
+                    },
+                    {
+                        'targets': 2,
+                        'data': 'CreatedDate'
+                    },
+                    {
+                        'targets': 3,
+                        'data': 'IsActive'
+                    },
+                    {
+                        'targets': 4,
+                        'data': 'Last24HoursSold'
+                    },
+                    {
+                        'targets': 5,
+                        'data': 'Sold'
+                    },
+                    {
+                        'targets': 6,
+                        'data': 'Minimum'
+                    },
+                    {
+                        'targets': 7,
+                        'data': 'Goal'
+                    },
+                    {
+                        'targets': 8,
+                        'data': 'Profit',
+                        'render': function(data) {
+                            var innerHtmlMarkup = '<span>%PROFIT%</span>';
+                            innerHtmlMarkup = innerHtmlMarkup.replace('%PROFIT%', data);
+                            return innerHtmlMarkup;
+                        }
+                    },
+                    {
+                        'targets': 9,
+                        'data': 'Status'
+                    },
+                    {
+                        'targets': 10,
+                        'data': 'Status'
+                    },
+                    {
+                        'targets': 11,
+                        'data': 'Email'
+                    },
+                    {
+                        'targets': 12,
+                        'data': 'PhoneNumber'
+                    }
+                ]
+            });
+        });
     </script>
 }
