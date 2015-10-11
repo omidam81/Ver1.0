@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Teeyoot.Module.Models;
+using Orchard.Data;
 
 namespace Teeyoot.FeaturedCampaigns.ViewModels
 {
@@ -15,6 +16,10 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public int StartedIndex { get; set; }
 
         public int NotApprovedTotal { get; set; }
+
+        public IRepository<CurrencyRecord> Currencies { get; set; }
+
+        public int FilterCurrencyId { get; set; }
 
     }
 
@@ -48,5 +53,9 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public string Alias { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public CurrencyRecord Currency { get; set; }
+
+        public int? FilterCurrencyId { get; set; }
     }
 }

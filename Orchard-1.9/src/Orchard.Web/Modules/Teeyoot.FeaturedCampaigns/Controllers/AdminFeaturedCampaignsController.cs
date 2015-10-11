@@ -15,6 +15,7 @@ using Orchard.Localization;
 using Teeyoot.Module.Services;
 using Orchard.Logging;
 using Teeyoot.Module.Common.Enums;
+using Orchard.Data;
 
 namespace Teeyoot.FeaturedCampaigns.Controllers
 {
@@ -26,6 +27,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly IOrderService _orderService;
         private IOrchardServices Services { get; set; }
         private readonly ITeeyootMessagingService _teeyootMessagingService;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
 
@@ -39,12 +41,14 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                                 ICampaignService campaignService,
                                                 IOrderService orderService,
                                                 ITeeyootMessagingService teeyootMessagingService,
+                                                IRepository<CurrencyRecord> currencyRepository,
                                                 IWorkContextAccessor workContextAccessor)
         {
             _siteService = siteService;
             _campaignService = campaignService;
             _orderService = orderService;
             _teeyootMessagingService = teeyootMessagingService;
+            _currencyRepository = currencyRepository;
             Shape = shapeFactory;
             Services = services;
             Logger = NullLogger.Instance;
@@ -55,9 +59,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         }
 
         // GET: Admin
-        public ActionResult Index(PagerParameters pagerParameters)
+        public ActionResult Index(PagerParameters pagerParameters, int? filterCurrencyId = null)
         {
-            var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed);
+            var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).
+                Where(c => (null == filterCurrencyId) || (c.CurrencyRecord.Id == filterCurrencyId));
             var yesterday = DateTime.UtcNow.AddDays(-1);
             var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
 
@@ -82,7 +87,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         CreatedDate = c.StartDate.ToLocalTime(),
                         IsApproved = c.IsApproved,
                         Minimum = c.ProductMinimumGoal,
-                        Rejected = c.Rejected
+                        Rejected = c.Rejected,
+                        Currency = c.CurrencyRecord,
+                        FilterCurrencyId = filterCurrencyId
                     })
                     .Select(c => new FeaturedCampaignViewModel
                     {
@@ -100,7 +107,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 campaigns.OrderByDescending(c => c.Id);
             }
           
-            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns,NotApprovedTotal= totalNotApproved });
+            return View("Index", new AdminFeaturedCampaignsViewModel { Campaigns = featuredCampaigns,NotApprovedTotal= totalNotApproved,
+                                        Currencies = _currencyRepository});
         }
 
         public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)

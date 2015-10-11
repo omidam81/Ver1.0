@@ -67,6 +67,8 @@ namespace Teeyoot.Module.Models
 
         public virtual CountryRecord CountryRecord { get; set; }
 
+        public virtual CurrencyRecord CurrencyRecord { get; set; }
+
         public virtual IList<CampaignProductRecord> Products { get; set; }
 
         public virtual IList<LinkCampaignAndCategoriesRecord> Categories { get; set; }
