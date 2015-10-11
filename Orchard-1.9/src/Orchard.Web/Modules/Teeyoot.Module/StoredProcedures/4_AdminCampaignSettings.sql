@@ -125,3 +125,56 @@ EXECUTE sp_executesql @SQLQuery, @ParamDefinition,
 	@Skip,
 	@Take
 GO
+
+IF OBJECT_ID('GetCampaignsCount', 'P') IS NOT NULL
+	DROP PROCEDURE GetCampaignsCount
+GO
+
+CREATE PROCEDURE GetCampaignsCount
+	@Culture NVARCHAR(50),
+	@CurrencyId INT = NULL
+AS
+SET NOCOUNT ON
+DECLARE @SQLQuery NVARCHAR(MAX)
+DECLARE @ParamDefinition NVARCHAR(MAX)
+
+SET @SQLQuery = N'
+SELECT
+	COUNT(*)
+FROM
+	Teeyoot_Module_CampaignRecord CampaignRecord'
+
+IF @CurrencyId IS NOT NULL
+BEGIN
+	SET @SQLQuery = @SQLQuery + N'
+	OUTER APPLY (
+		SELECT TOP 1
+			CampaignProductRecord.CurrencyRecord_Id CurrencyRecord_Id
+		FROM 
+			Teeyoot_Module_CampaignProductRecord CampaignProductRecord
+		WHERE 
+			CampaignProductRecord.CampaignRecord_Id = CampaignRecord.Id 
+	) CampaignProductRecord'
+END
+
+SET @SQLQuery = @SQLQuery + N'
+WHERE
+	CampaignRecord.WhenDeleted IS NULL
+	AND CampaignRecord.CampaignCulture = @Culture'
+
+IF @CurrencyId IS NOT NULL
+BEGIN
+	SET @SQLQuery = @SQLQuery + N'
+	AND CampaignProductRecord.CurrencyRecord_Id = @CurrencyId'
+END
+
+PRINT @SQLQuery
+
+SET @ParamDefinition = N'
+	@Culture NVARCHAR(50),
+	@CurrencyId INT'
+
+EXECUTE sp_executesql @SQLQuery, @ParamDefinition,
+	@Culture,
+	@CurrencyId
+GO

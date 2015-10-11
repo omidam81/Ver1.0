@@ -11,5 +11,6 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public string SearchString { get; set; }
         public int NotApprovedTotal { get; set; }
         public IEnumerable<CurrencyItemViewModel> Currencies { get; set; }
+        public IEnumerable<string> CampaignStatuses { get; set; }
     }
 }

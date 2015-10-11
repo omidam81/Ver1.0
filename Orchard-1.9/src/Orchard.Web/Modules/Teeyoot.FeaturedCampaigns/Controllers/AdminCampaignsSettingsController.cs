@@ -35,6 +35,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
     [Admin]
     public class AdminCampaignsSettingsController : Controller
     {
+        private readonly IRepository<CampaignStatusRecord> _campaignStatusRepository;
         private readonly ICampaignService _campaignService;
         private readonly ISiteService _siteService;
         private readonly IimageHelper _imageHelper;
@@ -49,6 +50,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly string _cultureUsed;
 
         public AdminCampaignsSettingsController(
+            IRepository<CampaignStatusRecord> campaignStatusRepository,
             ICampaignService campaignService,
             ISiteService siteService,
             IShapeFactory shapeFactory,
@@ -62,6 +64,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             ShellSettings shellSettings,
             IRepository<CurrencyRecord> currencyRepository)
         {
+            _campaignStatusRepository = campaignStatusRepository;
             _campaignService = campaignService;
             _siteService = siteService;
             _imageHelper = imageHelper;
@@ -151,11 +154,16 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 })
                 .ToList();
 
+            var campaignStatuses = _campaignStatusRepository.Table
+                .Select(s => s.Name)
+                .ToList();
+
             var viewModel = new ExportPrintsViewModel
             {
                 Campaigns = entriesProjection.ToArray(),
                 NotApprovedTotal = totalNotApproved,
-                Currencies = currencies
+                Currencies = currencies,
+                CampaignStatuses = campaignStatuses
             };
 
             return View(viewModel);
@@ -165,6 +173,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             [ModelBinder(typeof (GetCampaignsDataTablesBinder))] GetCampaignsDataTablesRequest request)
         {
             IEnumerable<CampaignItemViewModel> campaignItemViewModels;
+            int campaignsTotal;
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
@@ -239,11 +248,35 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         campaignItemViewModels = ConvertToCampaignItemViewModels(campaignItems);
                     }
 
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Transaction = transaction;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "GetCampaignsCount";
+
+                        var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                        {
+                            Value = _cultureUsed
+                        };
+                        command.Parameters.Add(cultureParameter);
+
+                        if (request.FilterCurrencyId.HasValue)
+                        {
+                            var currencyIdParameter = new SqlParameter("@CurrencyId", SqlDbType.Int)
+                            {
+                                Value = request.FilterCurrencyId.Value
+                            };
+                            command.Parameters.Add(currencyIdParameter);
+                        }
+
+                        campaignsTotal = (int) command.ExecuteScalar();
+                    }
+
                     transaction.Commit();
                 }
             }
 
-            return Json(new DataTablesResponse(request.Draw, campaignItemViewModels, 100, 100));
+            return Json(new DataTablesResponse(request.Draw, campaignItemViewModels, campaignsTotal, campaignsTotal));
         }
 
         private static IEnumerable<CampaignItem> GetCampaignItemsFrom(IDataReader reader)

@@ -20,7 +20,7 @@
 </fieldset>
 <hr/>
 <fieldset>
-    <table id="campaigns_table">
+    <table id="campaigns_table" class="items" data-campaign-statuses="@Json.Encode(Model.CampaignStatuses)">
         <thead>
         <tr>
             <th>@T("Campaign Id")</th>
@@ -37,9 +37,7 @@
             <th>@T("Seller Email")</th>
             <th>@T("Phone Number")</th>
             <th>@T("Currency")</th>
-            @*
-                    <th>@T("Change Status")</th>
-                *@
+            <th>@T("Change Status")</th>
         </tr>
         </thead>
     </table>
@@ -176,10 +174,6 @@
             });
         };
 
-        function addAntiForgeryToken(data) {
-            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-            return data;
-        };
 
     </script>
     <script>
@@ -260,10 +254,15 @@
     </script>
 
     <script>
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
         function getCampaignsFilter() {
             var filterCurrencyId = $('#currency_filter option:selected').val();
             var filter = {
-                FilterCurrencyId : filterCurrencyId
+                FilterCurrencyId: filterCurrencyId
             }
             return filter;
         };
@@ -348,6 +347,32 @@
                     {
                         'targets': 13,
                         'data': 'Currency'
+                    },
+                    {
+                        'targets': 14,
+                        'data': 'Status',
+                        'render': function(data, type, row) {
+                            var innerHtmlMarkup = '';
+                            var campaignStatuses = $('#campaigns_table').data('campaign-statuses');
+
+                            var firstStatusToShow = true;
+                            $.each(campaignStatuses, function(index, value) {
+                                if (value !== data) {
+                                    if (!firstStatusToShow) {
+                                        innerHtmlMarkup += ' |';
+                                    }
+
+                                    innerHtmlMarkup += '<a href="@Url.Action("ChangeStatus", "AdminCampaignsSettings", new {id = "ID", status = "STATUS"})">STATUSNAME</a>'
+                                        .replace('ID', row.Id)
+                                        .replace('STATUS', value)
+                                        .replace('STATUSNAME', value);
+
+                                    firstStatusToShow = false;
+                                }
+                            });
+
+                            return innerHtmlMarkup;
+                        }
                     }
                 ]
             });
