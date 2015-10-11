@@ -268,10 +268,10 @@ namespace Teeyoot.Module.Controllers
             return RedirectToAction("Index");
         }
 
-        private double GetUserPayoutBalance(IQueryable<CampaignRecord> campaignsQuery)
+        private double GetUserPayoutBalance(IEnumerable<CampaignRecord> campaigns)
         {
             var campaignIds = new List<int>();
-            foreach (var campaign in campaignsQuery)
+            foreach (var campaign in campaigns)
             {
                 var campaignProducts = _orderService.GetProductsOrderedOfCampaign(campaign.Id)
                     .ToList();
@@ -283,16 +283,21 @@ namespace Teeyoot.Module.Controllers
             }
 
             var orderedProducts = _orderService.GetProductsOrderedOfCampaigns(campaignIds.ToArray());
-            var payoutBalance = orderedProducts.Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" &&
-                                                           p.OrderRecord.OrderStatusRecord.Name != "Unapproved" &&
-                                                           p.OrderRecord.CurrencyRecord.CurrencyCulture == "en-MY")
+            var myProfit = orderedProducts
+                .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" &&
+                            p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
                 .Select(p => new
                 {
                     Profit = p.Count*(p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost)
                 })
                 .Sum(entry => (double?) entry.Profit);
 
-            return payoutBalance ?? 0;
+            if (myProfit < 0)
+            {
+                myProfit *= -1;
+            }
+
+            return myProfit ?? 0;
         }
 
         private static void FillUsersWithRoles(IList<UserItemViewModel> users, IDbTransaction transaction)
