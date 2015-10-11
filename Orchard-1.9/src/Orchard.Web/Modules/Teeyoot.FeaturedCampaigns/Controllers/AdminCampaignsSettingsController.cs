@@ -166,6 +166,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                 Mounth = Convert.ToInt32(mounth),
                 Year = Convert.ToInt32(year),
                 Description = campaign.Description,
+                Currency = campaign.CurrencyRecord,
+                Currencies = _currencyRepository,
                 Products = campaign.Products.Where(c => c.WhenDeleted == null)
             };
             return View(model);
@@ -173,10 +175,12 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string[] Prices, string[] Colors)
+        public HttpStatusCodeResult SaveInfo(int campaignId, string Title, string URL, int Day, int Mounth, int Year, int Target, string Description, string[] Prices, int currencyId, string[] Colors)
         {
             var campaign = _campaignService.GetCampaignById(campaignId);
             var campaigns = _campaignService.GetAllCampaigns();
+
+            campaign.CurrencyRecord = _currencyRepository.Get(currencyId);
 
             bool resultError = false;
 

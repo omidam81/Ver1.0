@@ -123,6 +123,8 @@
             var prices = parsePrice();
             var colors = allNewColors();
 
+            var currencyId = document.getElementById("currencies").value;
+
             $.ajax({
                 async: false,
                 cache: false,
@@ -138,6 +140,7 @@
                     "Target": target,
                     "Description": description,
                     "Prices": prices,
+                    "CurrencyId": currencyId,
                     "Colors" : colors
                 }),
                 success: function (data, status, resp) {
@@ -495,6 +498,18 @@
         </table>
     </fieldset>
 }
+
+
+<p style="margin-bottom:40px">
+    @Html.LabelFor(m => m.Currency.Id, T("Currency"))
+    @Html.DropDownListFor(m => m.Currency.Id,
+            new SelectList(Model.Currencies.Table, "Id", "Code"),
+            T("Select currency ...").ToString(),
+            new { id = "currencies" })
+</p>
+
+
+
 
 <button class="button" type="submit" onclick="sendData()">@T("Save").ToString()</button>
 @Html.ActionLink(T("Back").Text, "Index", "AdminFeaturedCampaigns", new { }, new { @class = "button" })

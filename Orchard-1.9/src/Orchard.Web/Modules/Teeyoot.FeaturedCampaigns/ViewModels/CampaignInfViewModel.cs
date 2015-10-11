@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Teeyoot.Module.Models;
+using Orchard.Data;
 
 namespace Teeyoot.FeaturedCampaigns.ViewModels
 {
@@ -16,6 +17,8 @@ namespace Teeyoot.FeaturedCampaigns.ViewModels
         public int Year { get; set; }
         public int Target { get; set; }
         public string Description{ get; set; }
+        public CurrencyRecord Currency { get; set; }
         public IEnumerable<CampaignProductRecord> Products { get; set; }
+        public IRepository<CurrencyRecord> Currencies { get; set; }
     }
 }
