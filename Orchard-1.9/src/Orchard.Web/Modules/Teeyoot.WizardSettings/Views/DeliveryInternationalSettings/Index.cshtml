@@ -1,0 +1,66 @@
+﻿@model Teeyoot.Module.ViewModels.DeliveryMatrixViewModel
+@{
+    Layout.Title = T("International Delivery Settings");
+    Style.Include("DeliveryInternational.css");
+}
+
+
+@using (Html.BeginFormAntiForgeryPost(
+            Url.Action("Edit", "DeliveryInternationalSettings"), FormMethod.Post))
+{
+    <br />
+    <table>
+        <thead>
+            @* Creating the horizontal header of the countries-to. *@
+            <tr>
+                <th class="crosscell"></th>
+                @for (int x = 0; x < Model.Columns.Count; x++)
+                {
+                    <th class="headercell">
+                        To @Model.Columns[x][0].CountryToName
+                    </th>
+                }
+            </tr>
+        </thead>
+        @for (int y = 0; y < Model.Columns[0].Count; y++)
+        {
+            <tr>
+                @* Creating the vertical header of the countries-from. *@
+                <td class="headercell">
+                    From @Model.Columns[0][y].CountryFromName
+                </td>
+
+                @* Creating cells. *@
+                @for (int x = 0; x < Model.Columns.Count; x++)
+                {
+                    if( x != y)
+                    { 
+                        <td class="cell">
+                                @Html.LabelFor(m => m.Columns[x][y].DeliveryPrice, T("Delivery price"))
+                                @Html.EditorFor(m => m.Columns[x][y].DeliveryPrice)
+                            
+                                <br /><br />
+                                @Html.LabelFor(m => m.Columns[x][y].IsActive, T("Deliverable "))
+                                @Html.CheckBoxFor(m => m.Columns[x][y].IsActive)
+
+                                @Html.HiddenFor(m => m.Columns[x][y].CountryFromId)
+                                @Html.HiddenFor(m => m.Columns[x][y].CountryToId)
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="crosscell">
+                            @Html.HiddenFor(m => m.Columns[x][y].DeliveryPrice)
+                            @Html.HiddenFor(m => m.Columns[x][y].IsActive)
+                        </td>
+                    }
+                }
+            </tr>
+        }
+
+    </table>
+    <br /><br />
+    <button type="submit" class="primaryAction">@T("Save settings")</button>
+
+}
+

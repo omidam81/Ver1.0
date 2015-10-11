@@ -22,7 +22,6 @@
     {
         <a class="button primaryAction" href="@Url.Action("AddSetting", "DeliverySettings", new { countryId=Model.CountryId})">@T("Add New State")</a>
   
-
         <fieldset>
             <table class="items">
                 <thead>
@@ -50,9 +49,6 @@
                         <tr>
                             <td class="visible">
                                 @record.State
-                                <p>
-                                    @record.Country.Name
-                                </p>
                             </td>
                             <td class="visible">
                                 @(String.Format("{0:0.00}", @record.PostageCost))

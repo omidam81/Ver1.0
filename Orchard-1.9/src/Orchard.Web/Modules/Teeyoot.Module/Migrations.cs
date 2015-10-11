@@ -987,7 +987,10 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
                 table => table.AddColumn<bool>("IsCampiaign", c => c.WithDefault(false)));
 
-            return 110;
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+                table => table.AddColumn<bool>("IsOrder", c => c.WithDefault(false)));
+
+            return 111;
         }
 
         public int UpdateFrom2()
@@ -2289,6 +2292,8 @@ namespace Teeyoot.Module
                 .Column<int>("Id", column => column.PrimaryKey().Identity())
                 .Column<int>("CountryFrom_Id", c => c.NotNull())
                 .Column<int>("CountryTo_Id", c => c.NotNull())
+                .Column<double>("DeliveryPrice")
+                .Column<bool>("IsActive", c => c.NotNull())
             );
 
             SchemaBuilder.CreateForeignKey("FK_DeliveryInternationalSetting_CountryFrom", 
@@ -2317,5 +2322,16 @@ namespace Teeyoot.Module
 
             return 110;
         }
+
+        public int UpdateFrom110()
+        {
+            SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
+                table => table.AddColumn<bool>("IsOrder", c => c.WithDefault(false)));
+
+            return 111;
+        }
+
+
+
     }
 }
