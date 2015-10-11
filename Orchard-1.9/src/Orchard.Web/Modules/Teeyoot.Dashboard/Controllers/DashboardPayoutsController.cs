@@ -176,8 +176,11 @@ namespace Teeyoot.Dashboard.Controllers
                 }
             }
 
-            balance = balance - _payoutService.GetAllPayouts().Where(p => p.UserId == currentUserId && p.IsProfitPaid != null && p.IsProfitPaid && p.Status != "Pending").Sum(p => p.Amount);
-
+            var pay = _payoutService.GetAllPayouts().Where(p => p.UserId == currentUserId && p.IsProfitPaid != null && p.IsProfitPaid == true && p.Status != "Pending").ToList();
+            if (pay.Count > 0)
+            {
+                balance = balance - pay.Sum(p => p.Amount);
+            }
 
             if (balance > 0)
             {
