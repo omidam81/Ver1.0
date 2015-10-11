@@ -1,10 +1,7 @@
-﻿using Orchard.Mvc.Routes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Orchard.Mvc.Routes;
 
 namespace Teeyoot.FeaturedCampaigns
 {
@@ -18,64 +15,89 @@ namespace Teeyoot.FeaturedCampaigns
 
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
-
-            return new[] {
-
-                new RouteDescriptor {
+            return new[]
+            {
+                new RouteDescriptor
+                {
                     Route = new Route(
                         "Admin/FeaturedCampaigns",
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"},
                             {"controller", "AdminFeaturedCampaigns"},
-                            {"action", "Index"}                           
+                            {"action", "Index"}
                         },
                         new RouteValueDictionary(),
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"}
                         },
                         new MvcRouteHandler())
-                }
-                ,
-                new RouteDescriptor {
+                },
+                new RouteDescriptor
+                {
                     Route = new Route(
                         "Admin/ExportPrints",
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"},
                             {"controller", "AdminExportPrints"},
-                            {"action", "Index"}                           
+                            {"action", "Index"}
                         },
                         new RouteValueDictionary(),
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"}
                         },
                         new MvcRouteHandler())
-                }
-                ,
-                new RouteDescriptor {
+                },
+                new RouteDescriptor
+                {
                     Route = new Route(
                         "Admin/ApproveCampaigns",
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"},
                             {"controller", "AdminApproveCampaigns"},
-                            {"action", "Index"}                           
+                            {"action", "Index"}
                         },
                         new RouteValueDictionary(),
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"}
                         },
                         new MvcRouteHandler())
-                }
-                 ,
-                new RouteDescriptor {
+                },
+                new RouteDescriptor
+                {
                     Route = new Route(
                         "Admin/CampaignsSettings",
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"},
                             {"controller", "AdminCampaignsSettings"},
-                            {"action", "Index"}                           
+                            {"action", "Index"}
                         },
                         new RouteValueDictionary(),
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.FeaturedCampaigns"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/GetCampaigns",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.FeaturedCampaigns"},
+                            {"controller", "AdminCampaignsSettings"},
+                            {"action", "GetCampaigns"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.FeaturedCampaigns"}
                         },
                         new MvcRouteHandler())

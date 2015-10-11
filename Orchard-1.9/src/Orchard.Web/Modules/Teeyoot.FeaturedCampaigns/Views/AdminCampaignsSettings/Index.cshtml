@@ -8,6 +8,42 @@
     Layout.Title = T("Details");
 }
 
+<fieldset class="bulk-actions">
+    @T("Currency")
+    <select id="currency_filter">
+        <option>@T("All")</option>
+        @foreach (var currency in Model.Currencies)
+        {
+            <option value="@currency.Id">@currency.Name</option>
+        }
+    </select>
+</fieldset>
+<hr/>
+<fieldset>
+    <table id="campaigns_table" class="items" data-campaign-statuses="@Json.Encode(Model.CampaignStatuses)">
+        <thead>
+        <tr>
+            <th>@T("Campaign Id")</th>
+            <th>@T("Campaign Name")</th>
+            <th>@T("Create date")</th>
+            <th>@T("Active")</th>
+            <th>@T("Sold last 24 hours")</th>
+            <th>@T("Sold")</th>
+            <th>@T("Minimum")</th>
+            <th>@T("Goal")</th>
+            <th>@T("Profit")</th>
+            <th>@T("Payment Status")</th>
+            <th>@T("End Date")</th>
+            <th>@T("Seller Email")</th>
+            <th>@T("Phone Number")</th>
+            <th>@T("Currency")</th>
+            <th>@T("Change Status")</th>
+        </tr>
+        </thead>
+    </table>
+</fieldset>
+
+@*
 <div>
 
     @using (Html.BeginForm())
@@ -17,60 +53,62 @@
 
     <table class="items" id="campaign-table">
         <thead>
-            <tr>
-                <th>@T("Campaign Id")</th>
-                <th>@T("Campaign Name")</th>
-                <th>@T("Create date")</th>
-                <th>@T("Active")</th>
-                <th>@T("Sold last 24 hours")</th>
-                <th>@T("Sold / Minimum / Goal")</th>
-                <th>@T("Profit")</th>
-                <th>@T("Payment Status")</th>
-                <th>@T("End Date")</th>
-                <th>@T("Seller Name")</th>
-                <th>@T("Seller Email")</th>
-                <th>@T("Phone Number")</th>                
-                <th>@T("Change Status")</th>
-                
-            </tr>
+        <tr>
+            <th>@T("Campaign Id")</th>
+            <th>@T("Campaign Name")</th>
+            <th>@T("Create date")</th>
+            <th>@T("Active")</th>
+            <th>@T("Sold last 24 hours")</th>
+            <th>@T("Sold / Minimum / Goal")</th>
+            <th>@T("Profit")</th>
+            <th>@T("Payment Status")</th>
+            <th>@T("End Date")</th>
+            <th>@T("Seller Name")</th>
+            <th>@T("Seller Email")</th>
+            <th>@T("Phone Number")</th>
+            <th>@T("Change Status")</th>
+
+        </tr>
         </thead>
         <tbody>
-            @if (Model.Campaigns.Length > 0)
+        @if (Model.Campaigns.Length > 0)
+        {
+            foreach (var c in Model.Campaigns)
             {
-                foreach (var c in Model.Campaigns)
-                {
-                    var isActive = c.IsActive ? "Yes" : "No";
-                    var value = c.Last24HoursSold > 0 ? c.Last24HoursSold.ToString() : "-";
+                var isActive = c.IsActive ? "Yes" : "No";
+                var value = c.Last24HoursSold > 0 ? c.Last24HoursSold.ToString() : "-";
 
-                    <tr data-record-text="@c.Id" class="contentItems">
-                        <td>@c.Id</td>
-                        <td><a target="_blank" href="/@c.Alias">@c.Title</a></td>
-                        <td>@c.CreatedDate</td>
-                        <td>@T(isActive)</td>
-                        <td>@value</td>
-                        <td>@c.Sold / @c.Minimum / @c.Goal</td>
-                        <td><span>@c.SummaryCurrency @c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span></td>
-                        <td>@c.Status</td>
-                        <td id="date_@c.Id">@c.EndDate</td>
-                        <td>@c.Seller.UserName</td>
-                        <td>@c.Seller.Email</td>
-                        <td>@c.TeeyootSeller.PhoneNumber</td>         
-                        <td>
-                            <text> | </text>
-                            @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof(Teeyoot.Module.Common.Enums.CampaignStatus)))
+                <tr data-record-text="@c.Id" class="contentItems">
+                    <td>@c.Id</td>
+                    <td>
+                        <a target="_blank" href="/@c.Alias">@c.Title</a>
+                    </td>
+                    <td>@c.CreatedDate</td>
+                    <td>@T(isActive)</td>
+                    <td>@value</td>
+                    <td>@c.Sold / @c.Minimum / @c.Goal</td>
+                    <td>
+                        <span>@c.SummaryCurrency @c.Profit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span></td>
+                    <td>@c.Status</td>
+                    <td id="date_@c.Id">@c.EndDate</td>
+                    <td>@c.Seller.UserName</td>
+                    <td>@c.Seller.Email</td>
+                    <td>@c.TeeyootSeller.PhoneNumber</td>
+                    <td>
+                        <text> | </text>
+                        @foreach (Teeyoot.Module.Common.Enums.CampaignStatus item in Enum.GetValues(typeof (Teeyoot.Module.Common.Enums.CampaignStatus)))
+                        {
+                            if (item.ToString() != c.Status)
                             {
-                                if (item.ToString() != c.Status)
-                                {
-                                    <a href="@Url.Action("ChangeStatus", new { id = c.Id, status = item })">@item</a> <text> | </text>
-                                }
+                                <a href="@Url.Action("ChangeStatus", new {id = c.Id, status = item})">@item</a>
+                                <text> | </text>
                             }
-                        </td>
-                        
-                    </tr>
-                }
+                        }
+                    </td>
 
-
+                </tr>
             }
+        }
         </tbody>
     </table>
 </div>
@@ -94,16 +132,149 @@
                         <option value="@i">@i</option>
                     }
                 </select>
-                <span class="inp_date">@T("Year")</span><input type="text" placeholder="YYYY" id="year" />
+                <span class="inp_date">@T("Year")</span><input type="text" placeholder="YYYY" id="year"/>
                 <br>
                 <button type="submit" id="change_date_btn" onclick="changeData(this)">@T("Change")</button>
             </div>
         </div>
     </div>
 </div>
+*@
 
 @using (Script.Foot())
 {
+    <script>
+        function addAntiForgeryToken(data) {
+            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
+            return data;
+        };
+
+        function getCampaignsFilter() {
+            var filterCurrencyId = $('#currency_filter option:selected').val();
+            var filter = {
+                FilterCurrencyId: filterCurrencyId
+            }
+            return filter;
+        };
+
+        $(document).ready(function() {
+            $('#campaigns_table').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'ajax': {
+                    'url': '@Url.Action("GetCampaigns", "AdminCampaignsSettings")',
+                    'type': 'POST',
+                    'data': function(d) {
+                        addAntiForgeryToken(d);
+                        var campaignsFilter = getCampaignsFilter();
+
+                        d.FilterCurrencyId = campaignsFilter.FilterCurrencyId;
+                    }
+                },
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        'data': 'Id'
+                    },
+                    {
+                        'targets': 1,
+                        'data': 'Title',
+                        'render': function(data, type, row) {
+                            var innerHtmlMarkup = '<a target="_blank" href="%ALIAS%">%TITLE%</a>';
+                            innerHtmlMarkup = innerHtmlMarkup.replace('%ALIAS%', row.Alias).replace('%TITLE%', data);
+                            return innerHtmlMarkup;
+                        }
+                    },
+                    {
+                        'targets': 2,
+                        'data': 'CreatedDate'
+                    },
+                    {
+                        'targets': 3,
+                        'data': 'IsActive'
+                    },
+                    {
+                        'targets': 4,
+                        'data': 'Last24HoursSold'
+                    },
+                    {
+                        'targets': 5,
+                        'data': 'Sold'
+                    },
+                    {
+                        'targets': 6,
+                        'data': 'Minimum'
+                    },
+                    {
+                        'targets': 7,
+                        'data': 'Goal'
+                    },
+                    {
+                        'targets': 8,
+                        'data': 'Profit',
+                        'render': function(data) {
+                            var innerHtmlMarkup = '<span>%PROFIT%</span>';
+                            innerHtmlMarkup = innerHtmlMarkup.replace('%PROFIT%', data);
+                            return innerHtmlMarkup;
+                        }
+                    },
+                    {
+                        'targets': 9,
+                        'data': 'Status'
+                    },
+                    {
+                        'targets': 10,
+                        'data': 'EndDate'
+                    },
+                    {
+                        'targets': 11,
+                        'data': 'Email'
+                    },
+                    {
+                        'targets': 12,
+                        'data': 'PhoneNumber'
+                    },
+                    {
+                        'targets': 13,
+                        'data': 'Currency'
+                    },
+                    {
+                        'targets': 14,
+                        'data': 'Status',
+                        'render': function(data, type, row) {
+                            var innerHtmlMarkup = '';
+                            var campaignStatuses = $('#campaigns_table').data('campaign-statuses');
+
+                            var firstStatusToShow = true;
+                            $.each(campaignStatuses, function(index, value) {
+                                if (value !== data) {
+                                    if (!firstStatusToShow) {
+                                        innerHtmlMarkup += ' |';
+                                    }
+
+                                    innerHtmlMarkup += '<a href="@Url.Action("ChangeStatus", "AdminCampaignsSettings", new {id = "ID", status = "STATUS"})">STATUSNAME</a>'
+                                        .replace('ID', row.Id)
+                                        .replace('STATUS', value)
+                                        .replace('STATUSNAME', value);
+
+                                    firstStatusToShow = false;
+                                }
+                            });
+
+                            return innerHtmlMarkup;
+                        }
+                    }
+                ]
+            });
+
+            $('#currency_filter').change(function() {
+                var campaignsTable = $('#campaigns_table').DataTable();
+                campaignsTable.ajax.reload();
+            });
+        });
+    </script>
+
+    @*
     <script type="text/javascript">
 
         function openModal(id) {
@@ -112,7 +283,7 @@
         };
 
 
-        $('.close').click(function () {
+        $('.close').click(function() {
             document.getElementById("modal_date_change").className = "dg-overlay-not-show";
         });
 
@@ -127,7 +298,7 @@
                 type: "POST",
                 url: "@(Url.Action("ChangeEndDate", "AdminCampaignsSettings"))",
                 data: addAntiForgeryToken({ "campaignId": campaignId, "day": day, "month": month, "year": year }),
-                success: function (data, status, resp) {
+                success: function(data, status, resp) {
                     if (resp.status === 200) {
                         $(document.getElementById("date_" + campaignId)).text(data);
                         document.getElementById("modal_date_change").className = "dg-overlay-not-show";
@@ -136,38 +307,34 @@
             });
         };
 
-        function addAntiForgeryToken(data) {
-            data.__RequestVerificationToken = "@Html.AntiForgeryTokenValueOrchard()";
-            return data;
-        };
 
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var campaignTable = $('#campaign-table').dataTable({
                 "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
                 iDisplayLength: 10,
                 bSortable: true,
                 aoColumnDefs: [
-                { "aTargets": [0], "bSortable": true },
-                { "aTargets": [1], "bSortable": true },
-                { "aTargets": [2], "bSortable": true, "sType": "date-eu" },
-                { "aTargets": [3], "bSortable": true },
-                { "aTargets": [4], "bSortable": true },
-                { "aTargets": [5], "bSortable": true },
-                { "aTargets": [6], "bSortable": true },
-                { "aTargets": [7], "bSortable": true },
-                { "aTargets": [8], "bSortable": true, "sType": "date-eu" },
-                { "aTargets": [9], "bSortable": true },
-                { "aTargets": [10], "bSortable": true },
-                { "aTargets": [11], "bSortable": true },
-                { "aTargets": [12], "bSortable": true }
+                    { "aTargets": [0], "bSortable": true },
+                    { "aTargets": [1], "bSortable": true },
+                    { "aTargets": [2], "bSortable": true, "sType": "date-eu" },
+                    { "aTargets": [3], "bSortable": true },
+                    { "aTargets": [4], "bSortable": true },
+                    { "aTargets": [5], "bSortable": true },
+                    { "aTargets": [6], "bSortable": true },
+                    { "aTargets": [7], "bSortable": true },
+                    { "aTargets": [8], "bSortable": true, "sType": "date-eu" },
+                    { "aTargets": [9], "bSortable": true },
+                    { "aTargets": [10], "bSortable": true },
+                    { "aTargets": [11], "bSortable": true },
+                    { "aTargets": [12], "bSortable": true }
                 ]
             });
         });
 
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-            "date-eu-pre": function (date) {
+            "date-eu-pre": function(date) {
                 date = date.replace(" ", "");
 
                 if (!date) {
@@ -180,8 +347,7 @@
                 /*year (optional)*/
                 if (eu_date[2]) {
                     year = eu_date[2];
-                }
-                else {
+                } else {
                     year = 0;
                 }
 
@@ -200,23 +366,24 @@
                 return (year + month + day) * 1;
             },
 
-            "date-eu-asc": function (a, b) {
+            "date-eu-asc": function(a, b) {
                 return ((a < b) ? -1 : ((a > b) ? 1 : 0));
             },
 
-            "date-eu-desc": function (a, b) {
+            "date-eu-desc": function(a, b) {
                 return ((a < b) ? 1 : ((a > b) ? -1 : 0));
             }
         });
     </script>
 
     <script>
-    $(document).ready(function () {
-        var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");
-        var node = document.createElement("text");
+        $(document).ready(function() {
+            var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");
+            var node = document.createElement("text");
 
-        node.appendChild(textnode);
-        document.getElementsByClassName("local-section-status")[0].appendChild(node);
-    });
+            node.appendChild(textnode);
+            document.getElementsByClassName("local-section-status")[0].appendChild(node);
+        });
     </script>
+        *@
 }
