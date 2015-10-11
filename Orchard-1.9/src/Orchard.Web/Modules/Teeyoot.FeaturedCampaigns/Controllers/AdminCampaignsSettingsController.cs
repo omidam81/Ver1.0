@@ -20,7 +20,6 @@ using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
-using Orchard.Users.Models;
 using Teeyoot.FeaturedCampaigns.Common;
 using Teeyoot.FeaturedCampaigns.Models;
 using Teeyoot.FeaturedCampaigns.ViewModels;
@@ -178,6 +177,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         {
             IEnumerable<CampaignItemViewModel> campaignItemViewModels;
             int campaignsTotal;
+            int campaignsFilteredTotal;
 
             using (var connection = new SqlConnection(_shellSettings.DataConnectionString))
             {
@@ -285,11 +285,54 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                         campaignsTotal = (int) command.ExecuteScalar();
                     }
 
+                    if (!string.IsNullOrWhiteSpace(request.Search.Value))
+                    {
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.Transaction = transaction;
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = "GetCampaignsCount";
+
+                            var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
+                            {
+                                Value = _cultureUsed
+                            };
+                            command.Parameters.Add(cultureParameter);
+
+                            var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
+                            {
+                                Value = request.Search.Value
+                            };
+                            command.Parameters.Add(filterParameter);
+
+                            if (request.FilterCurrencyId.HasValue)
+                            {
+                                var currencyIdParameter = new SqlParameter("@CurrencyId", SqlDbType.Int)
+                                {
+                                    Value = request.FilterCurrencyId.Value
+                                };
+                                command.Parameters.Add(currencyIdParameter);
+                            }
+
+                            campaignsFilteredTotal = (int) command.ExecuteScalar();
+                        }
+                    }
+                    else
+                    {
+                        campaignsFilteredTotal = campaignsTotal;
+                    }
+
                     transaction.Commit();
                 }
             }
 
-            return Json(new DataTablesResponse(request.Draw, campaignItemViewModels, campaignsTotal, campaignsTotal));
+            var dataTableResponse = new DataTablesResponse(
+                request.Draw,
+                campaignItemViewModels,
+                campaignsFilteredTotal,
+                campaignsTotal);
+
+            return Json(dataTableResponse);
         }
 
         private static IEnumerable<CampaignItem> GetCampaignItemsFrom(IDataReader reader)
