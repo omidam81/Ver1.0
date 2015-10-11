@@ -90,8 +90,9 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         public Localizer T { get; set; }
         public ILogger Logger { get; set; }
 
-        public ActionResult Index(PagerParameters pagerParameters)
+        public ActionResult Index(/*PagerParameters pagerParameters*/)
         {
+            /*
             var total = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == _cultureUsed).Count();
             var orderedProducts = _orderService.GetAllOrderedProducts();
 
@@ -145,6 +146,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                                         .Sum(p => (int?)p.Count) ?? 0
                     );
             });
+             */
 
             var currencies = _currencyRepository.Table
                 .Select(c => new CurrencyItemViewModel
@@ -160,8 +162,10 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             var viewModel = new ExportPrintsViewModel
             {
+                /*
                 Campaigns = entriesProjection.ToArray(),
                 NotApprovedTotal = totalNotApproved,
+                 */
                 Currencies = currencies,
                 CampaignStatuses = campaignStatuses
             };
