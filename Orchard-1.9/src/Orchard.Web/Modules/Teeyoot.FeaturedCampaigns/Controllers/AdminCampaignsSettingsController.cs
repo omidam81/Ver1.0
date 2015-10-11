@@ -206,6 +206,15 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
                             command.Parameters.Add(currencyIdParameter);
                         }
 
+                        if (!string.IsNullOrWhiteSpace(request.Search.Value))
+                        {
+                            var filterParameter = new SqlParameter("@Filter", SqlDbType.NVarChar, 4000)
+                            {
+                                Value = request.Search.Value
+                            };
+                            command.Parameters.Add(filterParameter);
+                        }
+
                         var cultureParameter = new SqlParameter("@Culture", SqlDbType.NVarChar, 50)
                         {
                             Value = _cultureUsed
