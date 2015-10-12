@@ -75,7 +75,7 @@ namespace Teeyoot.Module.Services
                 UserId = userId,
                 CampaignId = campaignId,
                 Created = created,
-                Currency = promotionCurrency
+                CurrencyRecord = promotionCurrency
             };
 
             _promotionRepository.Create(newPromotion);
