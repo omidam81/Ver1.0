@@ -644,7 +644,8 @@ namespace Teeyoot.Module.Controllers
                                     Goal = c.ProductMinimumGoal,
                                     Sold = c.ProductCountSold,
                                     ShowBack = c.BackSideByDefault,
-                                    EndDate = c.EndDate
+                                    EndDate = c.EndDate,
+                                    FlagFileName = c.CurrencyRecord.FlagFileName
                                 })
                                 .ToArray();
 
@@ -658,6 +659,7 @@ namespace Teeyoot.Module.Controllers
                     ShowBack: e.ShowBack,
                     Alias: e.Alias,
                     EndDate: e.EndDate,
+                    FlagFileName: e.FlagFileName,
                     FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id && p.WhenDeleted== null).Id
                     );
             });

@@ -14,5 +14,6 @@ namespace Teeyoot.Module.Messaging.CampaignService
         public bool BackSideByDefault { get; set; }
         public int CampaignFirstProductId { get; set; }
         public string CampaignFirstProductCurrencyCode { get; set; }
+        public string FlagFileName { get; set; }
     }
 }
