@@ -137,6 +137,13 @@ namespace Teeyoot.Module.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, T("Please, select at least one product to place your order").ToString());
             }
 
+            foreach(var prod in products){
+                if (prod.Count == 0)
+                {
+                    prod.Count = 1;
+                }
+            }
+
             try
             {
                 var id = _orderService.CreateOrder(products).OrderPublicId;
