@@ -9,12 +9,21 @@
     Script.Include("jquery.dataTables.min.js");
 }
 
+
 <div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
     }
     <fieldset>
+        <p style="margin-bottom:20px">
+            @T("Filter by currency: ")
+            @Html.DropDownListFor(m => m.FilterCurrencyId,
+                            new SelectList(Model.Currencies.Table, "Id", "Code"),
+                            T("Select currency ...").ToString(),
+                            new { id = "currencies" })
+        </p>
+
         <table class="items" id="campaign-table">
             <thead>
                 <tr>
@@ -27,7 +36,9 @@
                     <th>@T("Approved")</th>
                     <th>@T("Featured")</th>
                     <th>@T("Ready to print")</th>
+                    <th>@T("Currency") </th>
                     <th>@T("Modify")</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -111,6 +122,13 @@
 
                             </td>
                             <td>
+                                <span style="vertical-align:middle">
+                                    @camp.Campaign.Currency.Code
+                                </span>
+                                <img src="@camp.Campaign.Currency.FlagFileName" style="margin-left:5px; width:20px; height:20px; vertical-align:middle; border: solid 1px black;">
+
+                            </td>
+                            <td>
                                 <a class="button" href="@Url.Action("ChangeInformation","AdminCampaignsSettings", new { Id = camp.Campaign.Id })" title="@T("Modify")">@T("Modify")</a>
                                 @if (!camp.Campaign.IsActive)
                                 {
@@ -131,6 +149,12 @@
 {
     <script>
         $(document).ready(function () {
+
+            $('#currencies').change(function () {
+                window.location = "@Url.Action("Index", "AdminFeaturedCampaigns")?filterCurrencyId=" +
+                                    $(this).find('option:selected').val();
+            })
+
             var campaignTable = $('#campaign-table').dataTable({
                 "aLengthMenu": [[5, 10, 25, 50, 100, 500, 1000, -1], [5, 10, 25, 50, 100, 500, 1000, "All"]],
                 iDisplayLength: 10,
@@ -196,13 +220,9 @@
         
     </script>
     
-    <script>
-        $(document).ready(function () {
-            var textnode = document.createTextNode(" (@Model.NotApprovedTotal)");     
-            var node = document.createElement("text");                 
-                  
-            node.appendChild(textnode);
-            document.getElementsByClassName("local-section-status")[0].appendChild(node);
-        });
-    </script>
+
 }
+
+
+
+

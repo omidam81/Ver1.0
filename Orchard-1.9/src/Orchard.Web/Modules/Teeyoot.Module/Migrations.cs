@@ -2330,5 +2330,26 @@ namespace Teeyoot.Module
 
             return 111;
         }
+
+
+        //(auth:juiceek)
+        public int UpdateFrom111()
+        {
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("FK_Campaign_Currency",
+                typeof(CampaignRecord).Name, new[] { "CurrencyRecord_Id" },
+                typeof(CurrencyRecord).Name, new[] { "Id" });
+
+            SchemaBuilder.ExecuteSql(@"
+                update 
+                [dbo].[Teeyoot_Module_CampaignRecord]
+                set CurrencyRecord_Id = 1
+                ");
+
+            return 112;
+        }
+
     }
 }

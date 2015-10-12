@@ -1,17 +1,19 @@
 ﻿@model Teeyoot.Module.ViewModels.EditDeliverySettingViewModel
 @{
     Layout.Title = T("Edit State");
-}
+ }
+
+
 
 <h2>@T("Edit State")</h2>
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("EditSetting", "DeliverySettings"), FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("EditSetting", "DeliverySettings"), FormMethod.Post, new { Id ="deliveryForm", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m => m.CountryId)
     @Html.HiddenFor(m => m.Id)
     <fieldset>
         @Html.LabelFor(m => m.State, T("State"))
-        @Html.TextBoxFor(m => m.State, new { @class = "text large" })
+        @Html.EditorFor(m => m.State, new { @class = "text large"})
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.PostageCost, T("Postage Cost (only ',' decimal is allowed)"))
@@ -25,4 +27,59 @@
         <button type="submit" class="primaryAction">@T("Save")</button>
         <a class="button" href="@Url.Action("Index", "DeliverySettings", new { countryId = Model.CountryId })">@T("Cancel")</a>
     </fieldset>
+}
+
+@using (Script.Foot())
+{
+    //todo : (auth: juiceek) apply this validation later
+    @*<script src="/Modules/Teeyoot.WizardSettings/scripts/jquery.validate.js" type="text/javascript"></script>
+    
+    <script>
+        $(document).ready(function () {
+
+            $("#deliveryForm").validate({
+                rules: {
+                    State: {
+                        required: true,
+                        maxlength: 5
+                    }
+                    //,
+                    //username: {
+                    //    required: true,
+                    //    minlength: 3
+                    //},
+                    //zipcode: {
+                    //    minlength: 5,
+                    //    maxlength: 5
+                    //},
+                    //reg_password: {
+                    //    required: true,
+                    //    minlength: 5
+                    //},
+                    //confpass: {
+                    //    required: true,
+                    //    equalTo: "#reg_password",
+                    //}
+                },
+                messages: {
+                    State: {
+                        required: "Please enter a username",
+                        maxlength: "Your username must consist of no more 3 characters"
+                    }
+                //    ,
+                //    password: {
+                //        required: "Please provide a password",
+                //        minlength: "Your password must be at least 5 characters long"
+                //    },
+                //    confirm_password: {
+                //        required: "Please provide a password",
+                //        minlength: "Your password must be at least 5 characters long",
+                //        equalTo: "Please enter the same password as above"
+                //    },
+                //    email: "Please enter a valid email address",
+                }
+            });
+        });
+    </script>*@
+    //-------------------
 }

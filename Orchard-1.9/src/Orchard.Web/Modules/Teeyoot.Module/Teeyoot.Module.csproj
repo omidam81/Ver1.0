@@ -1099,6 +1099,7 @@
     <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="StoredProcedures\1_UserDefinedTypes.sql" />
     <Content Include="StoredProcedures\2_SearchCampaignsStoredProcedures.sql" />
+    <Content Include="StoredProcedures\4_AdminCampaignSettings.sql" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
     <Content Include="Styles\bootstrap-wysihtml5.css" />
