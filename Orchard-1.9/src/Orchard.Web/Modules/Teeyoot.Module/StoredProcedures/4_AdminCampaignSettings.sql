@@ -5,6 +5,7 @@ GO
 CREATE PROCEDURE GetCampaigns
 	@CurrentDate DATETIME,
 	@Culture NVARCHAR(50),
+	@Filter NVARCHAR(4000) = NULL,
 	@CurrencyId INT = NULL,
 	@SortColumn NVARCHAR(100) = NULL,
 	@SortDirection NVARCHAR(50) = NULL,
@@ -14,6 +15,8 @@ AS
 SET NOCOUNT ON
 DECLARE @SQLQuery NVARCHAR(MAX)
 DECLARE @ParamDefinition NVARCHAR(MAX)
+DECLARE @TitleFilterPattern NVARCHAR(4000)
+DECLARE @CampaignIdFilterPattern NVARCHAR(4000)
 
 SET @SQLQuery = N'
 SELECT
@@ -81,13 +84,26 @@ FROM(
 	LEFT JOIN Orchard_Users_UserPartRecord UserPartRecord
 	ON TeeyootUserPartRecord.Id = UserPartRecord.Id
 	LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord
-	ON CampaignTemp.CampaignAnyProductCurrencyId = CurrencyRecord.Id'
+	ON CampaignTemp.CampaignAnyProductCurrencyId = CurrencyRecord.Id
+WHERE 
+	1 = 1'
 
 IF @CurrencyId IS NOT NULL
 BEGIN
 	SET @SQLQuery = @SQLQuery + N'
-WHERE 
-	CampaignTemp.CampaignAnyProductCurrencyId = @CurrencyId'
+	AND CampaignTemp.CampaignAnyProductCurrencyId = @CurrencyId'
+END
+
+IF @Filter IS NOT NULL
+BEGIN
+	SET @CampaignIdFilterPattern = '''' + @Filter + '%'''
+	SET @TitleFilterPattern = '''%' + @Filter + '%'''
+
+	SET @SQLQuery = @SQLQuery + N'
+	AND(
+		CAST(CampaignRecord.Id AS VARCHAR(20)) LIKE ' + @CampaignIdFilterPattern + 
+		' OR CampaignRecord.Title LIKE ' + @TitleFilterPattern + 
+	')'
 END
 
 IF @SortColumn IS NOT NULL
@@ -132,11 +148,14 @@ GO
 
 CREATE PROCEDURE GetCampaignsCount
 	@Culture NVARCHAR(50),
+	@Filter NVARCHAR(4000) = NULL,
 	@CurrencyId INT = NULL
 AS
 SET NOCOUNT ON
 DECLARE @SQLQuery NVARCHAR(MAX)
 DECLARE @ParamDefinition NVARCHAR(MAX)
+DECLARE @TitleFilterPattern NVARCHAR(4000)
+DECLARE @CampaignIdFilterPattern NVARCHAR(4000)
 
 SET @SQLQuery = N'
 SELECT
@@ -158,7 +177,7 @@ BEGIN
 END
 
 SET @SQLQuery = @SQLQuery + N'
-WHERE
+WHERE 
 	CampaignRecord.WhenDeleted IS NULL
 	AND CampaignRecord.CampaignCulture = @Culture'
 
@@ -166,6 +185,18 @@ IF @CurrencyId IS NOT NULL
 BEGIN
 	SET @SQLQuery = @SQLQuery + N'
 	AND CampaignProductRecord.CurrencyRecord_Id = @CurrencyId'
+END
+
+IF @Filter IS NOT NULL
+BEGIN
+	SET @CampaignIdFilterPattern = '''' + @Filter + '%'''
+	SET @TitleFilterPattern = '''%' + @Filter + '%'''
+
+	SET @SQLQuery = @SQLQuery + N'
+	AND(
+		CAST(CampaignRecord.Id AS VARCHAR(20)) LIKE ' + @CampaignIdFilterPattern + 
+		' OR CampaignRecord.Title LIKE ' + @TitleFilterPattern + 
+	')'
 END
 
 PRINT @SQLQuery
