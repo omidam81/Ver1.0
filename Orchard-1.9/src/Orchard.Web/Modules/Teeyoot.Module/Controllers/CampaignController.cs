@@ -195,6 +195,12 @@ namespace Teeyoot.Module.Controllers
                         {
                             FillViewModelWithPromo(model, promotion);
                         }
+                        else
+                        {
+                            var infoMessage = T(
+                                "Oh no! The requested promotion is currently not available for this campaign. But you can still buy at the normal price!");
+                            _notifier.Add(NotifyType.Information, infoMessage);
+                        }
                     }
                 }
                 else
@@ -211,7 +217,6 @@ namespace Teeyoot.Module.Controllers
 
                 var infoMessage = T(
                     "Oh no! The requested promotion is currently not available for this campaign. But you can still buy at the normal price!");
-
                 _notifier.Add(NotifyType.Information, infoMessage);
 
                 return View(model);
