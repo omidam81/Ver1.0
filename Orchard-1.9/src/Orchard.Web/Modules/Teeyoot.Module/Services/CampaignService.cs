@@ -823,6 +823,7 @@ namespace Teeyoot.Module.Services
 
                         campaign.CampaignFirstProductId = (int) reader["CampaignFirstProductId"];
                         campaign.CampaignFirstProductCurrencyCode = (string) reader["CampaignFirstProductCurrencyCode"];
+                        campaign.FlagFileName = (string) reader["FlagFileName"];
                     }
                 }
             }

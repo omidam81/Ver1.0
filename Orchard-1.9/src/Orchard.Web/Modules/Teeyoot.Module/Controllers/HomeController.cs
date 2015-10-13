@@ -1,15 +1,4 @@
-﻿using Braintree;
-using Orchard;
-using Orchard.ContentManagement;
-using Orchard.Data;
-using Orchard.DisplayManagement;
-using Orchard.Localization;
-using Orchard.Logging;
-using Orchard.Roles.Models;
-using Orchard.Themes;
-using Orchard.UI.Notify;
-using RM.Localization.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -20,13 +9,25 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Braintree;
+using Orchard;
+using Orchard.ContentManagement;
+using Orchard.Data;
+using Orchard.DisplayManagement;
+using Orchard.Localization;
+using Orchard.Logging;
+using Orchard.Roles.Models;
+using Orchard.Themes;
+using Orchard.UI.Notify;
+using RM.Localization.Services;
+using Teeyoot.Localization;
+using Teeyoot.Module.Common;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
-
 
 namespace Teeyoot.Module.Controllers
 {
@@ -55,6 +56,7 @@ namespace Teeyoot.Module.Controllers
         private readonly ICookieCultureService _cookieCultureService;
         private readonly ICultureService _cultureService;
         private readonly ICountryService _countryService;
+        private readonly IRepository<CurrencyRecord> _currencyRepository;
 
 
         public HomeController(IOrderService orderService,
@@ -77,7 +79,8 @@ namespace Teeyoot.Module.Controllers
                               ICookieCultureService cookieCultureService,
                               ICultureService cultureService,
                               IRepository<OrderStatusRecord> orderStatusRepository,
-                              ICountryService countryService)
+                              ICountryService countryService,
+                              IRepository<CurrencyRecord> currencyRepository)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -95,6 +98,7 @@ namespace Teeyoot.Module.Controllers
             _userRepository = userRepository;
             _contentManager = contentManager;
             _orderStatusRepository = orderStatusRepository;
+            _currencyRepository = currencyRepository;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -173,11 +177,15 @@ namespace Teeyoot.Module.Controllers
                 //    _cookieCultureService.SetCulture(campaignCulture);
                 //    return RedirectToAction("Payment", new { orderId = orderId, promo = promo });
                 //}
-                var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id);
+                var setting = _paymentSettingsService.GetAllSettigns()
+                    .FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(cultureUsed).Id);
 
                 var model = new PaymentViewModel();
                 //model.CountryName = _cultureService.ListCultures().Where(c => c.Culture == cultureUsed).First().LocalizedName;
-                string localName = _cultureService.ListCultures().Where(c => c.Culture == cultureUsed).First().LocalizedName;
+                string localName = _cultureService.ListCultures()
+                    .Where(c => c.Culture == cultureUsed)
+                    .First().LocalizedName;
+
                 int firstIndex = localName.IndexOf("(") + 1;
                 model.CountryName = localName.Substring(firstIndex, localName.IndexOf(")") - firstIndex);
                 model.Order = order;
@@ -213,31 +221,41 @@ namespace Teeyoot.Module.Controllers
 
                 if (promo != null)
                 {
-                    PromotionRecord promotion = _promotionService.GetPromotionByPromoId(promo);
+                    var promotion = _promotionService.GetPromotionByPromoId(promo);
                     model.Promotion = promotion;
+
                     if (promotion.AmountType == "%")
                     {
-                        model.Order.Promotion = (model.Order.TotalPrice / 100) * promotion.AmountSize;
+                        model.Order.Promotion = (model.Order.TotalPrice/100)*promotion.AmountSize;
                         model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
                     }
                     else
                     {
+                        var localizationInfo = LocalizationInfoFactory.GetCurrentLocalizationInfo();
+                        var currencyCode = CountryCurrencyHelper.GetCountryCurrencyCode(localizationInfo.Country);
+                        var currency = _currencyRepository.Table.First(c => c.Code == currencyCode);
+
+                        if (order.CurrencyRecord == currency)
+                        {
+                            model.Order.Promotion = promotion.AmountSize;
+                            model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
+                        }
+
+                        /*
                         if (promotion.AmountType == order.CurrencyRecord.Code)
                         {
                             model.Order.Promotion = promotion.AmountSize;
                             model.Order.TotalPriceWithPromo = model.Order.TotalPrice - model.Order.Promotion;
                         }
+                         */
                     }
                 }
+
                 return View(model);
             }
-            else
-            {
-                return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
-            }
+
+            return View("NotFound", Request.UrlReferrer != null ? Request.UrlReferrer.PathAndQuery : "");
         }
-
-
 
         private string GetVCode(string input)
         {
@@ -651,7 +669,8 @@ namespace Teeyoot.Module.Controllers
                                     Goal = c.ProductMinimumGoal,
                                     Sold = c.ProductCountSold,
                                     ShowBack = c.BackSideByDefault,
-                                    EndDate = c.EndDate
+                                    EndDate = c.EndDate,
+                                    FlagFileName = c.CurrencyRecord.FlagFileName
                                 })
                                 .ToArray();
 
@@ -665,6 +684,7 @@ namespace Teeyoot.Module.Controllers
                     ShowBack: e.ShowBack,
                     Alias: e.Alias,
                     EndDate: e.EndDate,
+                    FlagFileName: e.FlagFileName,
                     FirstProductId: _campaignService.GetAllCampaignProducts().First(p => p.CampaignRecord_Id == e.Id && p.WhenDeleted== null).Id
                     );
             });

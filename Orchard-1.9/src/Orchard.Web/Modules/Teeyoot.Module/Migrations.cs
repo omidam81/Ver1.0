@@ -990,7 +990,27 @@ namespace Teeyoot.Module
             SchemaBuilder.AlterTable(typeof(PayoutRecord).Name,
                 table => table.AddColumn<bool>("IsOrder", c => c.WithDefault(false)));
 
-            return 111;
+            SchemaBuilder.AlterTable(typeof(CampaignRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("FK_Campaign_Currency",
+                typeof(CampaignRecord).Name, new[] { "CurrencyRecord_Id" },
+                typeof(CurrencyRecord).Name, new[] { "Id" });
+
+            SchemaBuilder.ExecuteSql(@"
+                update 
+                [dbo].[Teeyoot_Module_CampaignRecord]
+                set CurrencyRecord_Id = 1
+                ");
+
+            SchemaBuilder.AlterTable(typeof(PromotionRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("Promotion_Currency",
+                "PromotionRecord", new[] { "CurrencyRecord_Id" },
+                "CurrencyRecord", new[] { "Id" });
+
+            return 113;
         }
 
         public int UpdateFrom2()
@@ -2351,5 +2371,16 @@ namespace Teeyoot.Module
             return 112;
         }
 
+        public int UpdateFrom112()
+        {
+            SchemaBuilder.AlterTable(typeof (PromotionRecord).Name,
+                table => table.AddColumn<int>("CurrencyRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("Promotion_Currency",
+                "PromotionRecord", new[] {"CurrencyRecord_Id"},
+                "CurrencyRecord", new[] {"Id"});
+
+            return 113;
+        }
     }
 }

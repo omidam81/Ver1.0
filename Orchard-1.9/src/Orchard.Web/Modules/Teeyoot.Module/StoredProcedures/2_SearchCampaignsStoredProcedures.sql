@@ -205,18 +205,19 @@ SET NOCOUNT ON
 SELECT 
 	CampaignRecord.Id CampaignRecordId,
 	CampaignProductRecord.Id CampaignFirstProductId,
-	CurrencyRecord.Code CampaignFirstProductCurrencyCode
+	CurrencyRecord.Code CampaignFirstProductCurrencyCode,
+	CurrencyRecord.FlagFileName FlagFileName
 FROM
 	Teeyoot_Module_CampaignRecord CampaignRecord
 	CROSS APPLY (
 		SELECT TOP 1 
-			Id, 
-			CurrencyRecord_Id 
+			CampaignProductRecord.Id Id, 
+			CampaignProductRecord.CurrencyRecord_Id CurrencyRecord_Id
 		FROM 
-			Teeyoot_Module_CampaignProductRecord 
+			Teeyoot_Module_CampaignProductRecord CampaignProductRecord
 		WHERE 
-			CampaignRecord_Id = CampaignRecord.Id 
-			AND WhenDeleted IS NULL
+			CampaignProductRecord.CampaignRecord_Id = CampaignRecord.Id 
+			AND CampaignProductRecord.WhenDeleted IS NULL
 	) CampaignProductRecord
 	LEFT JOIN Teeyoot_Module_CurrencyRecord CurrencyRecord
 	ON CampaignProductRecord.CurrencyRecord_Id = CurrencyRecord.Id
