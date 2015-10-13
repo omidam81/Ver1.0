@@ -46,6 +46,8 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
         private readonly IRepository<ProductColorRecord> _repositoryColor;
         private readonly IWorkContextAccessor _workContextAccessor;
         private readonly ShellSettings _shellSettings;
+
+        //TODO: (auth:juiceek) drop after Q1 resolved
         private readonly string _cultureUsed;
 
         public AdminCampaignsSettingsController(

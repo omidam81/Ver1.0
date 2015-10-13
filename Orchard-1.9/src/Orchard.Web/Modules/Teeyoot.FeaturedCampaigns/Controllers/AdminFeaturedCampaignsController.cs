@@ -33,7 +33,6 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ILogger Logger { get; set; }
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string cultureUsed = string.Empty;
 
         public AdminFeaturedCampaignsController(ISiteService siteService, 
                                                 IShapeFactory shapeFactory, 
@@ -54,14 +53,12 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
             Logger = NullLogger.Instance;
 
             _workContextAccessor = workContextAccessor;
-            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         // GET: Admin
         public ActionResult Index(PagerParameters pagerParameters, int? filterCurrencyId = null)
         {
-            var campaigns = _campaignService.GetAllCampaigns().Where(c => c.CampaignCulture == cultureUsed).
+            var campaigns = _campaignService.GetAllCampaigns().
                 Where(c => (null == filterCurrencyId) || (c.CurrencyRecord.Id == filterCurrencyId));
             var yesterday = DateTime.UtcNow.AddDays(-1);
             var last24hoursOrders = _orderService.GetAllOrders().Where(o => o.IsActive && o.Created >= yesterday && o.OrderStatusRecord.Name != OrderStatus.Cancelled.ToString() && o.OrderStatusRecord.Name != OrderStatus.Unapproved.ToString());
@@ -70,7 +67,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
             var total =_campaignService.GetAllCampaigns().Count();
 
-            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false && c.CampaignCulture == cultureUsed).Count();
+            var totalNotApproved = _campaignService.GetAllCampaigns().Where(c => c.IsApproved == false && c.Rejected == false).Count();
 
             if (total > 0)
             {
@@ -113,7 +110,7 @@ namespace Teeyoot.FeaturedCampaigns.Controllers
 
         public ActionResult ChangeVisible(PagerParameters pagerParameters, int id, bool visible)
         {
-            var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured && c.CampaignCulture == cultureUsed);
+            var featuredCampaigns = _campaignService.GetAllCampaigns().Where(c => c.IsFeatured);
 
             if (featuredCampaigns.Count() >= 6 && visible)
             {
