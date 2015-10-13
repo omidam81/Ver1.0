@@ -771,8 +771,7 @@ namespace Teeyoot.Module.Services
                     EndDate = (DateTime) reader["EndDate"],
                     ProductCountSold = (int) reader["ProductCountSold"],
                     ProductMinimumGoal = (int) reader["ProductMinimumGoal"],
-                    BackSideByDefault = (bool) reader["BackSideByDefault"],
-                    FlagFileName = (string) reader["FlagFileName"]
+                    BackSideByDefault = (bool) reader["BackSideByDefault"]
                 };
 
                 if (reader["URL"] != DBNull.Value)
@@ -824,6 +823,7 @@ namespace Teeyoot.Module.Services
 
                         campaign.CampaignFirstProductId = (int) reader["CampaignFirstProductId"];
                         campaign.CampaignFirstProductCurrencyCode = (string) reader["CampaignFirstProductCurrencyCode"];
+                        campaign.FlagFileName = (string) reader["FlagFileName"];
                     }
                 }
             }
