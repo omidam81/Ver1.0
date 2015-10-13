@@ -95,6 +95,10 @@
       <Project>{FBC8B571-ED50-49D8-8D9D-64AB7454A0D6}</Project>
       <Name>Orchard.Localization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Module.txt" />

@@ -2211,10 +2211,6 @@ namespace Teeyoot.Module
             SchemaBuilder.CreateForeignKey("LinkCountryCulture_Country", "LinkCountryCultureRecord",
                 new[] { "CountryRecord_Id" }, "CountryRecord", new[] { "Id" });
 
-            //todo: (auth:Juiceek) Apply this after figure out
-            //SchemaBuilder.CreateForeignKey("LinkCountryCulture_Culture", "LinkCountryCultureRecord",
-            //    new[] { "CultureRecord_Id" }, "Orchard_Framework_CultureRecord", new[] { "Id" });
-
             return 103;
         }
 
@@ -2363,9 +2359,13 @@ namespace Teeyoot.Module
                 typeof(CurrencyRecord).Name, new[] { "Id" });
 
             SchemaBuilder.ExecuteSql(@"
-                update 
-                [dbo].[Teeyoot_Module_CampaignRecord]
-                set CurrencyRecord_Id = 1
+                    update c
+                        set c.CurrencyRecord_Id = p.CurrencyRecord_Id
+                    from 
+                    [dbo].[Teeyoot_Module_CampaignRecord] c
+                        left outer join 
+                    [dbo].[Teeyoot_Module_CampaignProductRecord] p
+	                    on p.CampaignRecord_Id = c.Id
                 ");
 
             return 112;
@@ -2381,6 +2381,37 @@ namespace Teeyoot.Module
                 "CurrencyRecord", new[] {"Id"});
 
             return 113;
+        }
+
+
+        public int UpdateFrom113()
+        {
+            //SchemaBuilder.AlterTable(typeof(Orchard.Users.Models.UserPartRecord).Name,
+
+            SchemaBuilder.ExecuteSql(@"
+                    ALTER TABLE [Orchard_Users_UserPartRecord]
+                    ADD CultureRecord_Id int NULL;
+                ");
+
+            SchemaBuilder.CreateForeignKey("FK_UserPartRecord_CultureRecord", 
+                "Orchard.Users",
+                    typeof(Orchard.Users.Models.UserPartRecord).Name, new[] { "CultureRecord_Id" },
+                "Orchard.Framework",
+                    typeof(Orchard.Localization.Records.CultureRecord).Name, new[] { "Id" });
+
+            return 114;
+        }
+
+
+        public int UpdateFrom114()
+        {
+            SchemaBuilder.CreateForeignKey("LinkCountryCulture_Culture",
+                "Teeyoot.Module",
+                    "LinkCountryCultureRecord", new[] { "CultureRecord_Id" }, 
+                "Orchard.Framework",
+                    typeof(Orchard.Localization.Records.CultureRecord).Name, new[] { "Id" });
+
+            return 115;
         }
     }
 }
