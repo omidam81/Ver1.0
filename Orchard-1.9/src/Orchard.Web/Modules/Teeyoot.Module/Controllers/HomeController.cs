@@ -580,7 +580,7 @@ namespace Teeyoot.Module.Controllers
                     orderMol.City = collection["City"];
                     orderMol.State = collection["State"];
                     orderMol.PostalCode = collection["PostalCode"];
-                    orderMol.Country = collection["Country"];
+                    orderMol.Country = country.Name;
                     orderMol.PhoneNumber = collection["PhoneNumber"];
                     orderMol.Reserved = DateTime.UtcNow;
                     orderMol.OrderStatusRecord = _orderStatusRepository
@@ -608,7 +608,7 @@ namespace Teeyoot.Module.Controllers
                     //_teeyootMessagingService.SendNewOrderMessageToBuyer(orderMol.Id, pathToMedia, pathToTemplates);
 
                     var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])),
-                        collection["Country"],
+                        country.Name,
                         collection["FirstName"],
                         collection["LastName"],
                         collection["Email"],
@@ -634,7 +634,7 @@ namespace Teeyoot.Module.Controllers
             order.City = collection["City"];
             order.State = collection["State"];
             order.PostalCode = collection["PostalCode"];
-            order.Country = collection["Country"];
+            order.Country = country.Name;
             order.PhoneNumber = collection["PhoneNumber"];
             order.Reserved = DateTime.UtcNow;
 
