@@ -15,5 +15,7 @@ namespace Orchard.Users.Models {
         public virtual UserStatus RegistrationStatus { get; set; }
         public virtual UserStatus EmailStatus { get; set; }
         public virtual string EmailChallengeToken { get; set; }
+
+        public virtual Orchard.Localization.Records.CultureRecord CultureRecord { get; set;}
     }
 }

@@ -47,11 +47,11 @@ namespace Teeyoot.Module.Controllers
 
         public ActionResult Index()
         {
-            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+            var commonSettings = _commonSettingsRepository.Table.FirstOrDefault();
             if (commonSettings == null)
             {
                 _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
-                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                commonSettings = _commonSettingsRepository.Table.First();
             }
             var numberOfNotSentEmailCheckoutRequests = _checkoutRequestRepository.Table
                 .Count(r => r.EmailSentUtcDate == null);
@@ -72,11 +72,11 @@ namespace Teeyoot.Module.Controllers
         [HttpPost]
         public ActionResult EditDoNotAcceptAnyNewCampaigns(bool doNotAcceptAnyNewCampaigns, bool sendEmails)
         {
-            var commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).FirstOrDefault();
+            var commonSettings = _commonSettingsRepository.Table.FirstOrDefault();
             if (commonSettings == null)
             {
                 _commonSettingsRepository.Create(new CommonSettingsRecord() { DoNotAcceptAnyNewCampaigns = false, CommonCulture = cultureUsed });
-                commonSettings = _commonSettingsRepository.Table.Where(s => s.CommonCulture == cultureUsed).First();
+                commonSettings = _commonSettingsRepository.Table.First();
             }
             commonSettings.DoNotAcceptAnyNewCampaigns = doNotAcceptAnyNewCampaigns;
             _commonSettingsRepository.Update(commonSettings);

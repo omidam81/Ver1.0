@@ -86,7 +86,7 @@ namespace Teeyoot.Search.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                camps = camps.Where(c => c.Title.Contains(searchString)).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).ToList();
+                camps = camps.Where(c => c.Title.ToLower().Contains(searchString.ToLower())).OrderByDescending(c => c.ProductCountSold).OrderBy(c => c.Title).ToList();
             }
 
             var entriesProjection = camps.Select(e =>

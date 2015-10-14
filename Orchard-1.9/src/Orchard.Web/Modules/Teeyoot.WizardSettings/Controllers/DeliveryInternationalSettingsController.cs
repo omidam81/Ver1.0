@@ -34,7 +34,6 @@ namespace Teeyoot.WizardSettings.Controllers
         public ILogger Logger { get; set; }
 
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string cultureUsed = string.Empty;
 
 
         public DeliveryInternationalSettingsController(
@@ -50,8 +49,6 @@ namespace Teeyoot.WizardSettings.Controllers
             _countryRepository = countryRepository;
 
             _workContextAccessor = workContextAccessor;
-            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
 
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;

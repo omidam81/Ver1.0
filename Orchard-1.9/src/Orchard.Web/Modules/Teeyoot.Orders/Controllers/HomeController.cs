@@ -34,7 +34,6 @@ namespace Teeyoot.Orders.Controllers
         private readonly INotifier _notifierService;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string cultureUsed = string.Empty;
 
         public ILogger Logger { get; set; }
         private dynamic Shape { get; set; }
@@ -66,8 +65,6 @@ namespace Teeyoot.Orders.Controllers
 
             T = NullLocalizer.Instance;
             _workContextAccessor = workContextAccessor;
-            var culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureUsed = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
         public Localizer T { get; set; }
@@ -75,7 +72,7 @@ namespace Teeyoot.Orders.Controllers
         public ActionResult Index(int? filterCurrencyId, PagerParameters pagerParameters)
         {
             var orders = _orderService.GetAllOrders()
-                .Where(o => o.IsActive && o.CurrencyRecord.CurrencyCulture == cultureUsed);
+                .Where(o => o.IsActive);
 
             if (filterCurrencyId.HasValue)
             {
