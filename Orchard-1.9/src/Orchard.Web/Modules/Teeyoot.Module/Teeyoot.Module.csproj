@@ -1299,6 +1299,7 @@
     <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
+    <Compile Include="ViewModels\CountryItemViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
