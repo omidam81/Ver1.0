@@ -22,7 +22,7 @@ namespace Teeyoot.Localization.Tests
         {
             foreach (var ipAddress in _malaysianIpAddresses)
             {
-                Assert.AreEqual(Country.Malaysia, _geoLocationInfoProvider.GetCountry(ipAddress));
+                Assert.AreEqual(Country.Malaysia, _geoLocationInfoProvider.GetCountry(ipAddress).Country);
             }
         }
 
@@ -31,7 +31,7 @@ namespace Teeyoot.Localization.Tests
         {
             foreach (var ipAddress in _indonesianIpAddresses)
             {
-                Assert.AreEqual(Country.Indonesia, _geoLocationInfoProvider.GetCountry(ipAddress));
+                Assert.AreEqual(Country.Indonesia, _geoLocationInfoProvider.GetCountry(ipAddress).Country);
             }
         }
 
@@ -40,14 +40,14 @@ namespace Teeyoot.Localization.Tests
         {
             foreach (var ipAddress in _unitedStatesIpAddresses)
             {
-                Assert.AreEqual(Country.Other, _geoLocationInfoProvider.GetCountry(ipAddress));
+                Assert.AreEqual(Country.Other, _geoLocationInfoProvider.GetCountry(ipAddress).Country);
             }
         }
 
         [Test]
         public void LocalHost()
         {
-            Assert.AreEqual(Country.Unknown, _geoLocationInfoProvider.GetCountry("::1"));
+            Assert.AreEqual(Country.Unknown, _geoLocationInfoProvider.GetCountry("::1").Country);
         }
     }
 }

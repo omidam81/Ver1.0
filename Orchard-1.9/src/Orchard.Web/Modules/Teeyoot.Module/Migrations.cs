@@ -2413,5 +2413,17 @@ namespace Teeyoot.Module
 
             return 115;
         }
+
+        public int UpdateFrom115()
+        {
+            SchemaBuilder.AlterTable(typeof (TeeyootUserPartRecord).Name,
+                table => table.AddColumn<int>("CountryRecord_Id"));
+
+            SchemaBuilder.CreateForeignKey("TeeyootUserPartRecord_CountryRecord",
+                "TeeyootUserPartRecord", new[] {"CountryRecord_Id"},
+                "CountryRecord", new[] {"Id"});
+
+            return 116;
+        }
     }
 }
