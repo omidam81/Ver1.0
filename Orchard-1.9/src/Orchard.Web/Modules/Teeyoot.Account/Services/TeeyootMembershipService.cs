@@ -9,6 +9,7 @@ using Orchard.Roles.Services;
 using Orchard.Security;
 using Orchard.Users.Models;
 using Teeyoot.Localization;
+using Teeyoot.Module.Common;
 using Teeyoot.Module.Models;
 
 namespace Teeyoot.Account.Services
@@ -20,6 +21,7 @@ namespace Teeyoot.Account.Services
         private readonly IRoleService _roleService;
         private readonly IRepository<UserRolesPartRecord> _userRolesRepository;
         private readonly IRepository<CurrencyRecord> _currencyRecordRepository;
+        private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IWorkContextAccessor _workContextAccessor;
 
         // ReSharper disable once InconsistentNaming
@@ -33,6 +35,7 @@ namespace Teeyoot.Account.Services
             IRoleService roleService,
             IRepository<UserRolesPartRecord> userRolesRepository,
             IRepository<CurrencyRecord> currencyRecordRepository,
+            IRepository<CountryRecord> countryRepository,
             IWorkContextAccessor workContextAccessor)
         {
             _orchardServices = orchardServices;
@@ -40,6 +43,7 @@ namespace Teeyoot.Account.Services
             _roleService = roleService;
             _userRolesRepository = userRolesRepository;
             _currencyRecordRepository = currencyRecordRepository;
+            _countryRepository = countryRepository;
 
             Logger = NullLogger.Instance;
             _workContextAccessor = workContextAccessor;
@@ -71,8 +75,8 @@ namespace Teeyoot.Account.Services
             teeyootUserPart.TeeyootUserCulture = cultureUsed;
 
             var localizationInfo = LocalizationInfoFactory.GetCurrentLocalizationInfo();
-            var currencyCode = GetDefaultCurrency(localizationInfo.Country);
 
+            var currencyCode = CountryCurrencyHelper.GetCountryCurrencyCode(localizationInfo.Country);
             var currency = _currencyRecordRepository.Table
                 .FirstOrDefault(c => c.CurrencyCulture == cultureUsed && c.Code == currencyCode);
 
@@ -80,6 +84,11 @@ namespace Teeyoot.Account.Services
                 throw new ApplicationException("Currency is not found in database");
 
             teeyootUserPart.CurrencyId = currency.Id;
+
+            var country = _countryRepository.Table
+                .FirstOrDefault(c => c.Code == localizationInfo.CountryIsoCode);
+
+            teeyootUserPart.CountryRecord = country ?? _countryRepository.Table.First(c => c.Code == "US");
 
             _orchardServices.ContentManager.Create(teeyootUser);
 
@@ -94,24 +103,6 @@ namespace Teeyoot.Account.Services
             }
 
             return userPart;
-        }
-
-        private static string GetDefaultCurrency(Country country)
-        {
-            switch (country)
-            {
-                case Country.Indonesia:
-                    return "IDR";
-                case Country.Singapore:
-                    return "SGD";
-                case Country.Malaysia:
-                    return "RM";
-                case Country.Other:
-                case Country.Unknown:
-                    return "USD";
-                default:
-                    throw new ArgumentOutOfRangeException("country", country, null);
-            }
         }
     }
 }

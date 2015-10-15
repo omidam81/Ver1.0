@@ -225,10 +225,10 @@ namespace Teeyoot.Dashboard.Controllers
 
                 ProductsOrdered = productsOrderedQuery
                             .FilterByType(OverviewType.Active, campaignsQuery)
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d")) && p.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Unapproved.ToString("d")) && p.OrderRecord.IsActive)
                             .Sum(p => (int?)p.Count) ?? 0,
                 MYProfit = Math.Round(productsOrderedQueryWithMinimum
-                            .Where(p => p.OrderRecord.OrderStatusRecord.Name != "Cancelled" && p.OrderRecord.OrderStatusRecord.Name != "Unapproved")
+                            .Where(p => p.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Cancelled.ToString("d")) && p.OrderRecord.OrderStatusRecord.Id != int.Parse(OrderStatus.Unapproved.ToString("d")) && p.OrderRecord.IsActive)
                             .Select(p => new { Profit = p.Count * (p.CampaignProductRecord.Price - p.CampaignProductRecord.BaseCost) })
                             .Sum(entry => (double?)entry.Profit) ?? 0, 2),
                 SGProfit = Math.Round(productsOrderedQueryWithMinimum

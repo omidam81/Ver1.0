@@ -52,25 +52,51 @@ namespace Teeyoot.Localization.GeoLocation
             }
         }
 
-        private static Country GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
+        private static CountryInfo GetCurrentCountryFrom(GeoLocationInfo geoLocationInfo)
         {
             if (geoLocationInfo.Status != LocationInfoStatus.LocationFound)
-                return Country.Unknown;
+            {
+                return new CountryInfo {Country = Country.Unknown};
+            }
 
             switch (geoLocationInfo.CountryIsoCode)
             {
                 case "MY":
-                    return Country.Malaysia;
+                {
+                    return new CountryInfo
+                    {
+                        Country = Country.Malaysia,
+                        CountryIsoCode = geoLocationInfo.CountryIsoCode
+                    };
+                }
                 case "SG":
-                    return Country.Singapore;
+                {
+                    return new CountryInfo
+                    {
+                        Country = Country.Singapore,
+                        CountryIsoCode = geoLocationInfo.CountryIsoCode
+                    };
+                }
                 case "ID":
-                    return Country.Indonesia;
+                {
+                    return new CountryInfo
+                    {
+                        Country = Country.Indonesia,
+                        CountryIsoCode = geoLocationInfo.CountryIsoCode
+                    };
+                }
                 default:
-                    return Country.Other;
+                {
+                    return new CountryInfo
+                    {
+                        Country = Country.Other,
+                        CountryIsoCode = geoLocationInfo.CountryIsoCode
+                    };
+                }
             }
         }
 
-        public Country GetCountry(string ipAddress)
+        public CountryInfo GetCountry(string ipAddress)
         {
             GeoLocationInfo geoLocationInfo = null;
 
