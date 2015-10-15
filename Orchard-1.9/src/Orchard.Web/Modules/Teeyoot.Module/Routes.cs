@@ -435,10 +435,10 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 },
-                 new RouteDescriptor
+                new RouteDescriptor
                 {
                     Route = new Route(
-                        "GetSettings",
+                        "GetSettings/Country/{countryId}",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.Module"},
@@ -451,8 +451,7 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
-
-                },                 
+                },
                 new RouteDescriptor
                 {
                     Route = new Route(
@@ -469,7 +468,7 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
-                },                 
+                },
                 new RouteDescriptor
                 {
                     Route = new Route(
@@ -486,7 +485,7 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
-                },                 
+                },
                 new RouteDescriptor
                 {
                     Route = new Route(
@@ -503,7 +502,7 @@ namespace Teeyoot.Module
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
-                },                 
+                },
                 new RouteDescriptor
                 {
                     Route = new Route(
@@ -521,22 +520,23 @@ namespace Teeyoot.Module
                         },
                         new MvcRouteHandler())
                 },
-                new RouteDescriptor {
+                new RouteDescriptor
+                {
                     Route = new Route(
                         "ChangeCountry",
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.Module"},
                             {"controller", "Home"},
-                            {"action", "ChangeCountryAndCulture"}                           
+                            {"action", "ChangeCountryAndCulture"}
                         },
                         new RouteValueDictionary(),
-                        new RouteValueDictionary {
+                        new RouteValueDictionary
+                        {
                             {"area", "Teeyoot.Module"}
                         },
                         new MvcRouteHandler())
                 }
-              
-
             };
         }
 
@@ -549,8 +549,12 @@ namespace Teeyoot.Module
                 _values = values;
             }
 
-            public bool Match(HttpContextBase httpContext, Route route, string parameterName,
-                RouteValueDictionary values, RouteDirection routeDirection)
+            public bool Match(
+                HttpContextBase httpContext,
+                Route route,
+                string parameterName,
+                RouteValueDictionary values,
+                RouteDirection routeDirection)
             {
                 return !_values.Contains(values[parameterName].ToString(), StringComparer.InvariantCultureIgnoreCase);
             }

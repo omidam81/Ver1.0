@@ -36,7 +36,7 @@ namespace Teeyoot.PaymentSettings.Controllers
 
         public ActionResult Index(string culture)
         {
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(p => p.Culture == cultureUsed);
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault();
             if (setting == null)
                 return View(new PaymentSettingsViewModel() { CashDeliv = false, CreditCard = false, Mol = false, PayPal = false, SettingEmpty = true });
             else
@@ -66,7 +66,7 @@ namespace Teeyoot.PaymentSettings.Controllers
                                         string MolNote,
                                         string CreditCardNote)
         {
-            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault(s => s.Culture == cultureUsed);
+            var setting = _paymentSettingsService.GetAllSettigns().FirstOrDefault();
             //setting.PaymentMethod = Convert.ToInt32(PaymentMethod);
             setting.PublicKey = PublicKey;
             setting.PrivateKey = PrivateKey;

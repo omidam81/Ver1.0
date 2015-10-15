@@ -16,6 +16,7 @@ using Orchard.UI.Notify;
 using Teeyoot.Module.Models;
 using Teeyoot.WizardSettings.ViewModels;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.WizardSettings.Controllers

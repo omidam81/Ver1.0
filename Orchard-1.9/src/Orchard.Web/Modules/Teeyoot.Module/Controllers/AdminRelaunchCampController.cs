@@ -28,8 +28,6 @@ namespace Teeyoot.Module.Controllers
         public Localizer T { get; set; }
         private IOrchardServices Services { get; set; }
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string culture = string.Empty;
-        private string cultureSearch = string.Empty;
 
         public AdminRelaunchCampController(IRepository<BringBackCampaignRecord> backCampaignRepository,IContentManager contentManager, IRepository<UserPartRecord> userRepository, IRepository<CampaignRecord> campaignRepository, ICampaignService campaignService, IOrchardServices services, IWorkContextAccessor workContextAccessor)
         {
@@ -41,8 +39,6 @@ namespace Teeyoot.Module.Controllers
             Services = services;
 
             _workContextAccessor = workContextAccessor;
-            culture = _workContextAccessor.GetContext().CurrentCulture.Trim();
-            cultureSearch = culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
         }
 
 
