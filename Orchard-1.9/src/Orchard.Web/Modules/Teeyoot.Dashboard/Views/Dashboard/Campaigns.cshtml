@@ -69,7 +69,7 @@
                 <div class="overview-for-period selected">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
                     <div>
-                        <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit")</div>
+                        <div><span>@Model.CurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit")</div>
 
                     </div>
 
@@ -83,7 +83,7 @@
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit (includes pending profit)")</div>
+                    <div><span>@Model.CurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit (includes pending profit)")</div>
 
 
                 </div>
@@ -92,7 +92,7 @@
             {
                 <div class="overview-for-period">
                     <div><span>@item.ProductsOrdered</span>@T("products ordered")</div>
-                    <div><span>@Model.MYCurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit")</div>
+                    <div><span>@Model.CurrencyCode @item.MYProfit.ToString("F", System.Globalization.CultureInfo.InvariantCulture)</span>@T("Profit")</div>
                 </div>
             }
         }

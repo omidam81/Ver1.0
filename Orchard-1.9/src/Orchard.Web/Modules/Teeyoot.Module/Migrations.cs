@@ -2413,5 +2413,28 @@ namespace Teeyoot.Module
 
             return 115;
         }
+
+
+        public int UpdateFrom115()
+        {
+            SchemaBuilder.CreateTable(typeof(CurrencyExchangeRecord).Name,
+            table => table
+                .Column<int>("Id", column => column.PrimaryKey().Identity())
+                .Column<int>("CurrencyFrom_Id", c => c.NotNull())
+                .Column<int>("CurrencyTo_Id", c => c.NotNull())
+                .Column<double>("RateForBuyer")
+                .Column<double>("RateForSeller")
+            );
+
+            SchemaBuilder.CreateForeignKey("FK_CurrencyExchange_CurrencyFrom",
+                typeof(CurrencyExchangeRecord).Name, new[] { "CurrencyFrom_Id" },
+                typeof(CurrencyRecord).Name, new[] { "Id" });
+
+            SchemaBuilder.CreateForeignKey("FK_CurrencyExchange_CurrencyTo",
+                typeof(CurrencyExchangeRecord).Name, new[] { "CurrencyTo_Id" },
+                typeof(CurrencyRecord).Name, new[] { "Id" });
+
+            return 116;
+        }
     }
 }

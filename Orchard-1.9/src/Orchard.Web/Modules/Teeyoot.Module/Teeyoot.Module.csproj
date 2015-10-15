@@ -1238,6 +1238,7 @@
     <Compile Include="Models\AllCountryWidgetPart.cs" />
     <Compile Include="Models\ArtItemDto.cs" />
     <Compile Include="Models\CountryRecord.cs" />
+    <Compile Include="Models\CurrencyExchangeRecord.cs" />
     <Compile Include="Models\DeliveryInternationalSettingRecord.cs" />
     <Compile Include="Models\DeliverySettingRecord.cs" />
     <Compile Include="Models\ArtRecord.cs" />
@@ -1301,9 +1302,11 @@
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\CountryItemViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyExchangeMatrixViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyExchangeViewModel.cs" />
     <Compile Include="ViewModels\CurrencyItemViewModel.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
-    <Compile Include="ViewModels\DeliveryInternationalSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryInternationalSettingViewModel.cs" />
     <Compile Include="ViewModels\DeliveryMatrixViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
     <Compile Include="ViewModels\CurrenciesViewModel.cs" />

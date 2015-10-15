@@ -17,11 +17,11 @@ namespace Teeyoot.Dashboard.ViewModels
 
         public CampaignSummary[] Campaigns { get; set; }
 
-        public string MYCurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
-        public string IDCurrencyCode { get; set; }
+        //public string IDCurrencyCode { get; set; }
 
-        public string SGCurrencyCode { get; set; }
+        //public string SGCurrencyCode { get; set; }
     }
 
     public class CampaignSummary

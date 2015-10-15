@@ -41,11 +41,15 @@ namespace Teeyoot.Dashboard.Controllers
         public ActionResult Campaigns(bool? isError, string result)
         {
             var model = new CampaignsViewModel();
-            model.MYCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "en-MY").FirstOrDefault().Code;
-            model.IDCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "id-ID").FirstOrDefault().Code;
-            model.SGCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "en-SG").FirstOrDefault().Code;
+            
+            //model.IDCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "id-ID").FirstOrDefault().Code;
+            //model.SGCurrencyCode = _currencyRepository.Table.Where(c => c.CurrencyCulture == "en-SG").FirstOrDefault().Code;
             var user = _wca.GetContext().CurrentUser;
-            var teeyootUser = user.ContentItem.Get(typeof(TeeyootUserPart));
+            var teeyootUser = (TeeyootUserPart)user.ContentItem.Get(typeof(TeeyootUserPart));
+
+            model.CurrencyCode = _currencyRepository.Table.Where(c => c.Id == teeyootUser.CurrencyId).FirstOrDefault().Code;
+            
+
             var campaignsQuery = _campaignService.GetCampaignsOfUser(user.Id);
             var productsOrderedQuery = _orderService
                 .GetProductsOrderedOfCampaigns(campaignsQuery.Select(c => c.Id).ToArray());
