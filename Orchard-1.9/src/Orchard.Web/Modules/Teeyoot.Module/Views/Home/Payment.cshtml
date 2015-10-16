@@ -298,8 +298,7 @@
                                     <select class="form__textfield" id="Country" name="Country" tabindex="8">
                                         @foreach (var deliverableCountry in Model.DeliverableCountries)
                                         {
-                                            <option value="@deliverableCountry.Id" @if (deliverableCountry.Id == Model.Country) { @: selected="selected"
-                                                                                                                                                                                                                        }>
+                                            <option value="@deliverableCountry.Id">
                                                 @deliverableCountry.Name
                                             </option>
                                         }
@@ -507,6 +506,9 @@
 
         function populateCountries(countryElementId, countryToId) {
             var countryFromId = $('#seller_country_id').val();
+
+            $('#Country').prop('disabled', false);
+
             var state = "@Model.Order.State";
             var settingsArr = [];
 
@@ -563,6 +565,10 @@
 
         function populateCountriesForCashOnDelivery(countryElementId, countryToId) {
             var countryFromId = $('#seller_country_id').val();
+
+            $('#Country option[value=' + countryFromId + ']').prop('selected', true);
+            $('#Country').prop('disabled', true);
+
             var state = "@Model.Order.State";
             var settingsArr = [];
 

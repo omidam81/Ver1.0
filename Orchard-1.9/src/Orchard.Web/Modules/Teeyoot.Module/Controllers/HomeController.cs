@@ -194,12 +194,13 @@ namespace Teeyoot.Module.Controllers
             var setting = _paymentSettingsService.GetAllSettigns()
                 .FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(_cultureUsed).Id);
 
-            var viewModel = new PaymentViewModel();
+            var viewModel = new PaymentViewModel {SellerCountryId = order.SellerCountry.Id};
 
+            /*
             var firstCountry = _countryRepository.Table.First();
             viewModel.Country = firstCountry.Id;
+             */
 
-            viewModel.SellerCountryId = order.SellerCountry.Id;
 
             //model.CountryName = _cultureService.ListCultures().Where(c => c.Culture == cultureUsed).First().LocalizedName;
 
