@@ -2,6 +2,7 @@
 using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
 using System;
+using System.Linq;
 using Orchard.Data;
 using Teeyoot.Module.Models;
 
@@ -10,10 +11,17 @@ namespace Teeyoot.Module
     public class Migrations : DataMigrationImpl
     {
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
+        private readonly IRepository<TeeyootUserPartRecord> _teeyootUserPartRepository;
+        private readonly IRepository<CountryRecord> _countryRepository;
 
-        public Migrations(IRepository<CommonSettingsRecord> commonSettingsRepository)
+        public Migrations(
+            IRepository<CommonSettingsRecord> commonSettingsRepository,
+            IRepository<TeeyootUserPartRecord> teeyootUserPartRepository,
+            IRepository<CountryRecord> countryRepository)
         {
             _commonSettingsRepository = commonSettingsRepository;
+            _teeyootUserPartRepository = teeyootUserPartRepository;
+            _countryRepository = countryRepository;
         }
 
         public int Create()
@@ -1973,7 +1981,6 @@ namespace Teeyoot.Module
             return 79;
         }
 
-
         public int UpdateFrom79()
         {
             SchemaBuilder.AlterTable(typeof (CampaignRecord).Name,
@@ -2134,7 +2141,6 @@ namespace Teeyoot.Module
 
             return 95;
         }
-
 
         public int UpdateFrom95()
         {
@@ -2344,8 +2350,6 @@ namespace Teeyoot.Module
             return 106;
         }
 
-
-
         public int UpdateFrom106()
         {
             // Default is used only to set existing records Country field to 1 before applying notnull constaraint.
@@ -2385,7 +2389,6 @@ namespace Teeyoot.Module
 
             return 107;
         }
-
 
         public int UpdateFrom107()
         {
@@ -2432,7 +2435,6 @@ namespace Teeyoot.Module
 
             return 111;
         }
-
 
         //(auth:juiceek)
         public int UpdateFrom111()
@@ -2542,6 +2544,21 @@ namespace Teeyoot.Module
                 "CountryRecord", new[] {"Id"});
 
             return 118;
+        }
+
+        public int UpdateFrom118()
+        {
+            var malaysia = _countryRepository.Table.First(c => c.Code == "MY");
+
+            var sellers = _teeyootUserPartRepository.Table.ToList();
+
+            foreach (var seller in sellers)
+            {
+                seller.CountryRecord = malaysia;
+                _teeyootUserPartRepository.Update(seller);
+            }
+
+            return 119;
         }
     }
 }
