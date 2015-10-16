@@ -30,6 +30,7 @@ namespace Teeyoot.Module.ViewModels
         //
         public string CheckoutPageRightSideContent { get; set; }
         public int Country { get; set; }
-        public IEnumerable<CountryItemViewModel> Countries { get; set; }
+        public IEnumerable<CountryItemViewModel> DeliverableCountries { get; set; }
+        public int SellerCountryId { get; set; }
     }
 }

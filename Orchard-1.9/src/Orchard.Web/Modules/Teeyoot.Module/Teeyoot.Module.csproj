@@ -1232,6 +1232,7 @@
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Drivers\AllCountryWidget.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
+    <Compile Include="DTOs\DeliverySettingItem.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Messaging\CampaignService\SearchCampaignsRequest.cs" />
     <Compile Include="Migrations.cs" />
