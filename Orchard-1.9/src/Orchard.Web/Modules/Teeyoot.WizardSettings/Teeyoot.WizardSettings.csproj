@@ -99,7 +99,7 @@
     <Content Include="Styles\datatables\images\sort_desc_disabled.png" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.multi-select.js" />
-    <Content Include="Styles\DeliveryInternational.css" />
+    <Content Include="Styles\crosstable.css" />
     <Content Include="Styles\multi-select\img\switch.png" />
     <Content Include="Styles\multi-select\css\multi-select.css" />
     <Content Include="Styles\WizardSettings.css" />
