@@ -1,17 +1,15 @@
-﻿using Orchard;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Orchard;
 using Orchard.Data;
 using Orchard.DisplayManagement;
-using Orchard.Services;
 using Orchard.Localization;
 using Orchard.Settings;
 using Orchard.UI.Admin;
 using Orchard.UI.Navigation;
 using Orchard.UI.Notify;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
@@ -29,10 +27,10 @@ namespace Teeyoot.Module.Controllers
 
         //todo: (auth:juiceek) drop after applying new logic
         private readonly IWorkContextAccessor _workContextAccessor;
-        private string _cultureUsed;
+        private readonly string _cultureUsed;
 
-        private readonly ImageFileHelper _imageFileHelper; 
-        
+        private readonly ImageFileHelper _imageFileHelper;
+
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
 
@@ -43,9 +41,7 @@ namespace Teeyoot.Module.Controllers
             IRepository<CurrencyRecord> currencyRepository,
             IRepository<CountryRecord> countryRepository,
             IRepository<LinkCountryCurrencyRecord> linkCountryCurrencyRepository,
-
-            IWorkContextAccessor workContextAccessor
-            )
+            IWorkContextAccessor workContextAccessor)
         {
 
             _workContextAccessor = workContextAccessor;
@@ -59,10 +55,9 @@ namespace Teeyoot.Module.Controllers
             _countryRepository = countryRepository;
             _linkCountryCurrencyRepository = linkCountryCurrencyRepository;
 
-            _imageFileHelper = new ImageFileHelper("currency_{0}_flag.png", 
-                                    "/Modules/Teeyoot.Module/Content/images", () => this.Server);
+            _imageFileHelper = new ImageFileHelper("currency_{0}_flag.png",
+                "/Modules/Teeyoot.Module/Content/images", () => Server);
         }
-
 
         public ActionResult Index(PagerParameters pagerParameters)
         {
@@ -70,19 +65,19 @@ namespace Teeyoot.Module.Controllers
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
-            var allCurrencies = new List<CurrencyViewModel>(); 
-            foreach(var record in _currencyRepository.Table)
+            var allCurrencies = new List<CurrencyViewModel>();
+            foreach (var record in _currencyRepository.Table)
             {
-                allCurrencies.Add(new CurrencyViewModel(_countryRepository){
+                allCurrencies.Add(new CurrencyViewModel(_countryRepository)
+                {
                     Id = record.Id,
                     Code = record.Code,
                     Name = record.Name,
                     ShortName = record.ShortName,
                     CountryId = GetCountryByCurrency(record.Id),
-                    CountryName = GetCountryName( GetCountryByCurrency(record.Id) ),
+                    CountryName = GetCountryName(GetCountryByCurrency(record.Id)),
                     FlagFileName = record.FlagFileName
                 });
-                
             }
 
             viewModel.Currencies = allCurrencies
@@ -96,7 +91,6 @@ namespace Teeyoot.Module.Controllers
             return View(viewModel);
         }
 
-
         public ActionResult AddCurrency()
         {
             return View(new CurrencyViewModel(_countryRepository));
@@ -106,39 +100,38 @@ namespace Teeyoot.Module.Controllers
         public ActionResult AddCurrency(CurrencyViewModel viewModel)
         {
             // Saving in transaction.
-            bool step1_CurrencySaved = false;
-            bool step2_ImageFileSaved = false;
-            bool step3_CountryForCurrencySaved = false;
-            bool step4_CurrencyResaved = false;
+            var step1CurrencySaved = false;
+            var step2ImageFileSaved = false;
+            var step3CountryForCurrencySaved = false;
+            var step4CurrencyResaved = false;
             try
             {
-                var record = new CurrencyRecord
+                var currency = new CurrencyRecord
                 {
-                    Id = viewModel.Id,
                     Code = viewModel.Code,
                     Name = viewModel.Name,
                     ShortName = viewModel.ShortName,
                     CurrencyCulture = _cultureUsed
                 };
-                _currencyRepository.Create(record);
-                step1_CurrencySaved = true;
+                _currencyRepository.Create(currency);
+                step1CurrencySaved = true;
 
-                bool isNotPNG;
-                record.FlagFileName = _imageFileHelper.SaveImageToDisc(viewModel.FlagImage, record.Id, out isNotPNG);
-                if (isNotPNG)
+                bool isNotPng;
+                currency.FlagFileName = _imageFileHelper.SaveImageToDisc(viewModel.FlagImage, currency.Id, out isNotPng);
+                if (isNotPng)
                 {
                     _orchardServices.Notifier.Error(T("Flag Image file must be *.png."));
                     return RedirectToAction("Currencies");
                 }
-                step2_ImageFileSaved = true;
+                step2ImageFileSaved = true;
 
-                SetCountryForCurrency(record.Id, viewModel.CountryId);
-                step3_CountryForCurrencySaved = true;
+                SetCountryForCurrency(currency.Id, viewModel.CountryId);
+                step3CountryForCurrencySaved = true;
 
-                _currencyRepository.Update(record);
-                step4_CurrencyResaved = true;
+                _currencyRepository.Update(currency);
+                step4CurrencyResaved = true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 //todo: (auth:Juiceek) Add rollback transaction logic
                 throw;
@@ -157,7 +150,7 @@ namespace Teeyoot.Module.Controllers
                 _currencyRepository.Delete(_currencyRepository.Get(id));
                 _imageFileHelper.DeleteImageFromDisc(id);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 //todo: (auth:Juiceek) Add rollback transaction logic
                 throw;
@@ -187,33 +180,33 @@ namespace Teeyoot.Module.Controllers
         {
             // Getting old record to determine if the image is changed,
             // than we must clear out the old image.
-            var oldrecord = _currencyRepository.Get(viewModel.Id);
-            if (viewModel.ImageChanged && 
-                !String.IsNullOrEmpty(oldrecord.FlagFileName) &&
-                   (oldrecord.FlagFileName != viewModel.FlagFileName))
+            var currency = _currencyRepository.Get(viewModel.Id);
+
+            if (viewModel.ImageChanged &&
+                !string.IsNullOrEmpty(currency.FlagFileName) &&
+                (currency.FlagFileName != viewModel.FlagFileName))
             {
-                _imageFileHelper.DeleteImageFromDisc(oldrecord.Id);
+                _imageFileHelper.DeleteImageFromDisc(currency.Id);
             }
+
             // Updating values by new ones.
-            var record = new CurrencyRecord
-            {
-                Id = viewModel.Id,
-                Code = viewModel.Code,
-                Name = viewModel.Name,
-                ShortName = viewModel.ShortName,
-                CurrencyCulture = _cultureUsed
-            };
+            currency.Code = viewModel.Code;
+            currency.Name = viewModel.Name;
+            currency.ShortName = viewModel.ShortName;
+            currency.CurrencyCulture = _cultureUsed;
+
             // Saving in transaction.
-            bool step1_ImageFileSaved = false;
-            bool step2_CountryForCurrencySaved = false;
-            bool step3_CurrencySaved = false;
+            var step1ImageFileSaved = false;
+            var step2CountryForCurrencySaved = false;
+            var step3CurrencySaved = false;
             try
             {
                 if (viewModel.ImageChanged)
                 {
-                    bool isNotPNG;
-                    record.FlagFileName = _imageFileHelper.SaveImageToDisc(viewModel.FlagImage, viewModel.Id, out isNotPNG);
-                    if (isNotPNG)
+                    bool isNotPng;
+                    currency.FlagFileName = _imageFileHelper.SaveImageToDisc(viewModel.FlagImage, viewModel.Id,
+                        out isNotPng);
+                    if (isNotPng)
                     {
                         _orchardServices.Notifier.Error(T("Flag Image file must be *.png."));
                         return RedirectToAction("Currencies");
@@ -221,15 +214,15 @@ namespace Teeyoot.Module.Controllers
                 }
                 else
                 {
-                    record.FlagFileName = viewModel.FlagFileName;
+                    currency.FlagFileName = viewModel.FlagFileName;
                 }
-                step1_ImageFileSaved = true;
+                step1ImageFileSaved = true;
 
                 SetCountryForCurrency(viewModel.Id, viewModel.CountryId);
-                step2_CountryForCurrencySaved = true;
+                step2CountryForCurrencySaved = true;
 
-                _currencyRepository.Update(record);
-                step3_CurrencySaved = true;
+                _currencyRepository.Update(currency);
+                step3CurrencySaved = true;
             }
             catch (Exception)
             {
@@ -241,17 +234,14 @@ namespace Teeyoot.Module.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
-        #region ################# INNER_HELPERS >>> #################################################
-
         /// <summary>
         /// Helper function
         /// </summary>
         private void ClearAllCurrencyToCountryLinks(int currencyId)
         {
-            var query = _linkCountryCurrencyRepository.Table.Where(x => x.CurrencyRecord.Id == currencyId);
+            var query = _linkCountryCurrencyRepository.Table
+                .Where(x => x.CurrencyRecord.Id == currencyId);
+
             foreach (var lnk in query)
             {
                 _linkCountryCurrencyRepository.Delete(lnk);
@@ -263,17 +253,21 @@ namespace Teeyoot.Module.Controllers
         /// </summary>
         private void SetCountryForCurrency(int currencyId, int? countryId)
         {
-            // Claar the old links.
+            // Clear the old links.
             ClearAllCurrencyToCountryLinks(currencyId);
-            // Relink. 
-            if (countryId != null)
+            if (countryId == null)
             {
-                var newLnk = new LinkCountryCurrencyRecord() {
-                                    CurrencyRecord = _currencyRepository.Get(currencyId),
-                                    CountryRecord = _countryRepository.Get((int)countryId)
-                                };
-                _linkCountryCurrencyRepository.Create(newLnk);
+                return;
             }
+
+            // Relink. 
+            var newLnk = new LinkCountryCurrencyRecord
+            {
+                CurrencyRecord = _currencyRepository.Get(currencyId),
+                CountryRecord = _countryRepository.Get((int) countryId)
+            };
+
+            _linkCountryCurrencyRepository.Create(newLnk);
         }
 
         /// <summary>
@@ -281,13 +275,17 @@ namespace Teeyoot.Module.Controllers
         /// </summary>
         private int? GetCountryByCurrency(int currencyId)
         {
-            var result = _linkCountryCurrencyRepository.Table.Where(x => x.CurrencyRecord.Id == currencyId).Select( x => x.CountryRecord.Id).FirstOrDefault();
-            if (result != 0) {
+            var result = _linkCountryCurrencyRepository.Table
+                .Where(x => x.CurrencyRecord.Id == currencyId)
+                .Select(x => x.CountryRecord.Id)
+                .FirstOrDefault();
+
+            if (result != 0)
+            {
                 return result;
             }
-            else {
-                return null;
-            }
+
+            return null;
         }
 
         /// <summary>
@@ -295,17 +293,7 @@ namespace Teeyoot.Module.Controllers
         /// </summary>
         private string GetCountryName(int? countryId)
         {
-            if (countryId == null) 
-            {
-                return null;
-            }
-            return _countryRepository.Get((int)countryId).Name;
+            return countryId == null ? null : _countryRepository.Get((int) countryId).Name;
         }
-
-        #endregion ######################################### <<< INNER HELPERS ######################
-
     }
-
-
-
 }
