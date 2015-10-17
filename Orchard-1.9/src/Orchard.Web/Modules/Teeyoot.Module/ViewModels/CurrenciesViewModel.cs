@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Teeyoot.Module.Models;
+﻿using System.Collections.Generic;
 
 namespace Teeyoot.Module.ViewModels
 {
     public class CurrenciesViewModel
     {
-        public IEnumerable<CurrencyViewModel> Currencies { get; set; }
-
+        public IEnumerable<CountryCurrencyItemViewModel> Currencies { get; set; }
         public dynamic Pager { get; set; }
     }
 }
-
-

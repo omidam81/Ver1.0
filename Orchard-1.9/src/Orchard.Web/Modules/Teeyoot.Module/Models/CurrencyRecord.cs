@@ -1,4 +1,7 @@
-﻿namespace Teeyoot.Module.Models
+﻿using System.Collections.Generic;
+using Orchard.Data.Conventions;
+
+namespace Teeyoot.Module.Models
 {
     public class CurrencyRecord
     {
@@ -12,5 +15,13 @@
         public virtual double PriceBuyers { get; set; }
         public virtual double PriceSellers { get; set; }
         public virtual bool IsConvert { get; set; }
+
+        [CascadeAllDeleteOrphan]
+        public virtual IList<LinkCountryCurrencyRecord> CountryCurrencies { get; set; }
+
+        public CurrencyRecord()
+        {
+            CountryCurrencies = new List<LinkCountryCurrencyRecord>();
+        }
     }
 }
