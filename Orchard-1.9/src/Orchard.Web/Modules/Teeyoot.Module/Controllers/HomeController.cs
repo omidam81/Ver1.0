@@ -633,9 +633,20 @@ namespace Teeyoot.Module.Controllers
                     orderMol.OrderStatusRecord = _orderStatusRepository
                         .Get(int.Parse(OrderStatus.Unapproved.ToString("d")));
 
-                    orderMol.Delivery = _deliverySettingService.GetAllSettings(country.Id)
-                        .First(s => s.State == collection["State"])
-                        .DeliveryCost;
+                    if (orderMol.SellerCountry == country)
+                    {
+                        var deliverySetting = _deliverySettingRepository.Table
+                            .First(s => s.State == collection["State"]);
+
+                        orderMol.Delivery = deliverySetting.PostageCost;
+                    }
+                    else
+                    {
+                        var deliverySetting = _deliveryInternationalSettingRepository.Table
+                            .First(s => s.CountryTo == country);
+
+                        orderMol.Delivery = deliverySetting.DeliveryPrice;
+                    }
 
                     /*
                     if (orderMol.TotalPriceWithPromo > 0)
@@ -654,16 +665,16 @@ namespace Teeyoot.Module.Controllers
                     // _teeyootMessagingService.SendNewOrderMessageToAdmin(orderMol.Id, pathToMedia, pathToTemplates);
                     //_teeyootMessagingService.SendNewOrderMessageToBuyer(orderMol.Id, pathToMedia, pathToTemplates);
 
-                    var url = Molpay(_orderService.GetOrderById(int.Parse(collection["OrderId"])),
+                    var url = Molpay(
+                        _orderService.GetOrderById(int.Parse(collection["OrderId"])),
                         country.Name,
                         collection["FirstName"],
                         collection["LastName"],
                         collection["Email"],
                         collection["State"],
                         collection["PhoneNumber"],
-                        _deliverySettingService.GetAllSettings(country.Id)
-                            .First(s => s.State == collection["State"])
-                            .DeliveryCost);
+                        orderMol.Delivery);
+
                     return Redirect(url);
                 }
                 default:
@@ -685,9 +696,22 @@ namespace Teeyoot.Module.Controllers
             order.PhoneNumber = collection["PhoneNumber"];
             order.Reserved = DateTime.UtcNow;
 
-            order.Delivery = _deliverySettingService.GetAllSettings(country.Id)
-                .First(s => s.State == collection["State"])
-                .DeliveryCost;
+            if (order.SellerCountry == country)
+            {
+                var deliverySetting = _deliverySettingRepository.Table
+                    .First(s => s.State == collection["State"]);
+
+                order.Delivery = collection["paumentMeth"] == "4" 
+                    ? deliverySetting.CodCost 
+                    : deliverySetting.PostageCost;
+            }
+            else
+            {
+                var deliverySetting = _deliveryInternationalSettingRepository.Table
+                    .First(s => s.CountryTo == country);
+
+                order.Delivery = deliverySetting.DeliveryPrice;
+            }
 
             /*
             if (order.TotalPriceWithPromo > 0)
@@ -739,9 +763,9 @@ namespace Teeyoot.Module.Controllers
             //ViewData["TransactionId"] = transaction.Id;
             //_notifier.Information(T("The transaction is successful"));
 
-            var commonSettings =
-                _commonSettingsRepository.Table.Where(
-                    s => s.CountryRecord.Id == _countryService.GetCountryByCulture(_cultureUsed).Id).FirstOrDefault();
+            var commonSettings = _commonSettingsRepository.Table
+                .FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(_cultureUsed).Id);
+
             if (commonSettings == null)
             {
                 _commonSettingsRepository.Create(new CommonSettingsRecord()
@@ -749,10 +773,10 @@ namespace Teeyoot.Module.Controllers
                     DoNotAcceptAnyNewCampaigns = false,
                     CountryRecord = _countryService.GetCountryByCulture(_cultureUsed)
                 });
-                commonSettings =
-                    _commonSettingsRepository.Table.Where(
-                        s => s.CountryRecord.Id == _countryService.GetCountryByCulture(_cultureUsed).Id).First();
+                commonSettings = _commonSettingsRepository.Table
+                    .First(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(_cultureUsed).Id);
             }
+
             if (commonSettings.DoNotAcceptAnyNewCampaigns)
             {
                 var request = new CheckoutCampaignRequest
@@ -765,6 +789,7 @@ namespace Teeyoot.Module.Controllers
 
             return RedirectToAction("ReservationComplete",
                 new {campaignId = campaign.Id, sellerId = campaign.TeeyootUserId});
+
             //}
             //else
             //{

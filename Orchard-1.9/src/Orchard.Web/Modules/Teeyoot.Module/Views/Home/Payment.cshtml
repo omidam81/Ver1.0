@@ -295,7 +295,7 @@
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
-                                    <select class="form__textfield" id="Country" name="Country" tabindex="8">
+                                    <select class="form__textfield" id="Country" tabindex="8">
                                         @foreach (var deliverableCountry in Model.DeliverableCountries)
                                         {
                                             <option value="@deliverableCountry.Id">
@@ -303,6 +303,8 @@
                                             </option>
                                         }
                                     </select>
+                                    <input type="hidden" id="hidden_country" name="Country" @if (Model.DeliverableCountries.Any()) { @: value="@Model.DeliverableCountries.First().Id"
+                                                                                                                                       } />
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
                             </div>
@@ -477,6 +479,8 @@
 
             $('#Country').change(function () {
                 var selCountryId = $('#Country option:selected').val();
+                $('#hidden_country').val(selCountryId);
+
                 var selPaymentMethod = $('#paymentMethod').val();
 
                 if (selPaymentMethod === "4") {
@@ -568,6 +572,7 @@
             $('#Country').prop('disabled', true);
 
             var countryToId = $('#Country option:selected').val();
+            $('#hidden_country').val(countryToId);
 
             var state = "@Model.Order.State";
             var settingsArr = [];
