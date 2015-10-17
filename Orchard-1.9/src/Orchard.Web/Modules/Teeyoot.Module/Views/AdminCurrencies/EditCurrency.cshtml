@@ -22,14 +22,14 @@
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.CountryId, T("Country"))
-        @Html.DropDownListFor(m => m.CountryId , 
-            new SelectList( Model.Countries, "Id", "Name"), 
-            T("Select Country ...").ToString(), 
+        @Html.DropDownListFor(m => m.CountryId,
+            new SelectList(Model.Countries, "Id", "Name"),
+            T("Select Country ...").ToString(),
             new { id = "countries" })
     </fieldset>
 
     <div class="buttondiv">
-        <img id="flagImage" class="flagimg" src="@Model.FlagFileName" /> 
+        <img id="flagImage" class="flagimg" src="@Model.FlagFileName" alt="" />
         &nbsp;&nbsp;
         @Html.TextBoxFor(m => m.FlagImage, new { type = "file", accept = "image/png", @class = "loadbtn" })
     </div>
@@ -38,7 +38,7 @@
         <button type="submit" class="primaryAction">@T("Save")</button>
         <a class="button" href="@Url.Action("Index", "AdminCurrencies")">@T("Cancel")</a>
     </fieldset>
-    
+
     @Html.HiddenFor(m => m.ImageChanged)
     @Html.HiddenFor(m => m.FlagFileName)
 }
@@ -61,4 +61,3 @@
         };
     </script>
 }
-

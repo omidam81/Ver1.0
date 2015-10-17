@@ -6,35 +6,35 @@
 
 <h2>@T("Add New Currency")</h2>
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("AddCurrency", "AdminCurrencies"), FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginFormAntiForgeryPost(Url.Action("AddCurrency", "AdminCurrencies"), FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     <fieldset>
         @Html.LabelFor(m => m.Code, T("Code"))
-        @Html.EditorFor(m => m.Code, new { @class = "text large" })
+        @Html.EditorFor(m => m.Code, new {@class = "text large"})
         @Html.ValidationMessageFor(m => m.Code)
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.Name, T("Name"))
-        @Html.EditorFor(m => m.Name, new { @class = "text large" })
+        @Html.EditorFor(m => m.Name, new {@class = "text large"})
         @Html.ValidationMessageFor(m => m.Name)
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.ShortName, T("Short Name"))
-        @Html.EditorFor(m => m.ShortName, new { @class = "text large" })
+        @Html.EditorFor(m => m.ShortName, new {@class = "text large"})
         @Html.ValidationMessageFor(m => m.ShortName)
     </fieldset>
     <fieldset>
         @Html.LabelFor(m => m.CountryId, T("Country"))
         @Html.DropDownListFor(m => m.CountryId,
-            new SelectList( Model.Countries, "Id", "Name"),
+            new SelectList(Model.Countries, "Id", "Name"),
             T("Select Country ...").ToString(),
-            new { id = "coutries" })
+            new {id = "coutries"})
     </fieldset>
 
     <div class="buttondiv">
-        <img id="flagImage" class="flagimg"/>
+        <img id="flagImage" class="flagimg" alt=""/>
         &nbsp;&nbsp;
-        @Html.TextBoxFor(m => m.FlagImage, new { type = "file", accept = "image/png", @class="loadbtn" })
+        @Html.TextBoxFor(m => m.FlagImage, new {type = "file", accept = "image/png", @class = "loadbtn"})
     </div>
 
     <fieldset class="save-button">
@@ -46,13 +46,12 @@
 @using (Script.Foot())
 {
     <script>
-        document.getElementById("FlagImage").onchange = function () {
+        document.getElementById("FlagImage").onchange = function() {
             if (!this.files[0]) {
                 document.getElementById("flagImage").src = "";
-            }
-            else {
+            } else {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     document.getElementById("flagImage").src = e.target.result;
                 };
                 reader.readAsDataURL(this.files[0]);
@@ -60,5 +59,3 @@
         };
     </script>
 }
-
- 
