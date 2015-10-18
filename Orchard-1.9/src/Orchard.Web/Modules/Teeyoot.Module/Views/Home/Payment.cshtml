@@ -47,7 +47,7 @@
                                                 <li>@item.ProductSizeRecord.SizeCodeRecord.Name</li>
                                                 <li>
                                                     <span class="order_summary__item_color_label">@colorName</span>
-                                                    <span class="order_summary__item_color" style="background-color: @colorValue"></span>
+                                                    <span class="order_summary__item_color" style="background-color:@colorValue"></span>
                                                 </li>
                                             </ul>
                                         </td>
@@ -55,22 +55,9 @@
                                             <span class="currency-code-placeholder">
                                                 @Model.CurrencyCode
                                             </span>
-                                            <span>
+                                            <span class="item-price-value-placeholder">
                                                 @((price * item.Count * Model.ExchangeRate).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                             </span>
-
-                                            @*
-                                                <span class="order_summary__total">
-                                                    @Model.Order.CurrencyRecord.Code
-                                                    <span id="ordTotal">
-                                                        @Model.Order.TotalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
-                                                    </span>
-                                                </span>
-                                            *@
-
-                                            @*
-                                                @item.CampaignProductRecord.CurrencyRecord.Code @((price*item.Count).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
-                                            *@
                                         </td>
                                     </tr>
                                 }
@@ -93,7 +80,9 @@
                                     @T("Delivery")
                                 </dt>
                                 <dd id="parentDelivery" style="display: none">
-                                    @Model.Order.CurrencyRecord.Code
+                                    <span class="currency-code-placeholder">
+                                        @Model.CurrencyCode
+                                    </span>
                                     <span id="deliveryCost"></span>
                                 </dd>
                             </dl>
@@ -108,9 +97,6 @@
                                             <span class="currency-code-placeholder">
                                                 @Model.CurrencyCode
                                             </span>
-                                            @*
-                                                @Model.Order.CurrencyRecord.Code
-                                            *@
                                             <span id="ordTotal">
                                                 @((Model.Order.TotalPriceWithPromo * Model.ExchangeRate).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                             </span>
@@ -122,9 +108,6 @@
                                             <span class="currency-code-placeholder">
                                                 @Model.CurrencyCode
                                             </span>
-                                            @*
-                                                @Model.Order.CurrencyRecord.Code
-                                            *@
                                             <span id="ordTotal">
                                                 @((Model.Order.TotalPrice * Model.ExchangeRate).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                             </span>
@@ -165,7 +148,7 @@
                     </span>
                 </dl>
             </div>
-            <form action="@Url.Action(" createtransaction", "Home" )" method="POST" id="braintree-payment-form">
+            <form action="@Url.Action("CreateTransaction", "Home" )" method="POST" id="braintree-payment-form">
                 @Html.AntiForgeryToken()
                 @if (Model.Promotion != null)
                 {
@@ -329,13 +312,12 @@
                                         {
                                             <option value="@deliverableCountry.Id"
                                                     data-currency-code="@deliverableCountry.CurrencyCode"
-                                                    data-exchange-rate="@deliverableCountry.ExchangeRate">
+                                                    data-exchange-rate="@Json.Encode(deliverableCountry.ExchangeRate)">
                                                 @deliverableCountry.Name
                                             </option>
                                         }
                                     </select>
-                                    <input type="hidden" id="hidden_country" name="Country" @if (Model.DeliverableCountries.Any()) { @: value="@Model.DeliverableCountries.First().Id"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          } />
+                                    <input type="hidden" id="hidden_country" name="Country" @if (Model.DeliverableCountries.Any()) { <text> value="@Model.DeliverableCountries.First().Id" </text>            } />
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
                             </div>
@@ -508,19 +490,23 @@
                 }
             });
 
-            $('#Country').change(function () {
-                var selCountryId = $('#Country option:selected').val();
-                $('#hidden_country').val(selCountryId);
+            $("#Country").change(function () {
+                var fromCountryId = $("#hidden_country").val();
 
-                var selPaymentMethod = $('#paymentMethod').val();
+                var toCountryId = $("#Country option:selected").val();
+                $("#hidden_country").val(toCountryId);
 
-                var currencyCode = $('#Country option:selected').data('currency-code');
-                $('.currency-code-placeholder').html(currencyCode);
+                var selPaymentMethod = $("#paymentMethod").val();
+
+                var currencyCode = $("#Country option:selected").data("currency-code");
+                $(".currency-code-placeholder").html(currencyCode);
+
+                ConvertPrices(fromCountryId, toCountryId);
 
                 if (selPaymentMethod === "4") {
                     populateCountriesForCashOnDelivery("State");
                 } else {
-                    populateCountries("State", selCountryId);
+                    populateCountries("State", toCountryId);
                 }
             });
         });
@@ -541,12 +527,12 @@
 
     <script>
         var Settings = [];
-        var delivCost = 0;
+        var delivCost = new BigNumber(0);
 
         function populateCountries(countryElementId, countryToId) {
-            var countryFromId = $('#seller_country_id').val();
+            var countryFromId = $("#seller_country_id").val();
 
-            $('#Country').prop('disabled', false);
+            $("#Country").prop("disabled", false);
 
             var state = "@Model.Order.State";
             var settingsArr = [];
@@ -585,31 +571,42 @@
                 }
             }
 
+            var orderTotal;
+            var orderTotalNumber;
+            var deliveryCostNumber;
+
             if (settingIndex === undefined) {
-                document.getElementById("parentDelivery").style.display = "none";
-                document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost)).toFixed(2);
-                delivCost = 0;
+                $("#parentDelivery").hide();
+                orderTotal = $("#ordTotal").html();
+                orderTotalNumber = new BigNumber(orderTotal);
+                orderTotalNumber = orderTotalNumber.minus(delivCost);
+                $("#ordTotal").html(orderTotalNumber.toFixed(2));
+                delivCost = new BigNumber(0);
             } else {
-                document.getElementById("deliveryCost").innerHTML = settingsArr[settingIndex].DeliveryCost;
-                document.getElementById("parentDelivery").style.display = "";
-                document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[settingIndex].DeliveryCost)).toFixed(2);
-                delivCost = parseFloat(Settings[settingIndex].DeliveryCost).toFixed(2);
+                deliveryCostNumber = new BigNumber(settingsArr[settingIndex].DeliveryCost);
+                $("#deliveryCost").html(deliveryCostNumber.toFixed(2));
+                $("#parentDelivery").show();
+                orderTotal = $("#ordTotal").html();
+                orderTotalNumber = new BigNumber(orderTotal);
+                orderTotalNumber = orderTotalNumber.minus(delivCost).plus(deliveryCostNumber);
+                $("#ordTotal").html(orderTotalNumber.toFixed(2));
+                delivCost = deliveryCostNumber;
             }
 
             countryElement.selectedIndex = selectedIndex;
         };
 
         function populateCountriesForCashOnDelivery(countryElementId) {
-            var countryFromId = $('#seller_country_id').val();
+            var countryFromId = $("#seller_country_id").val();
 
-            $('#Country option[value=' + countryFromId + ']').prop('selected', true);
-            $('#Country').prop('disabled', true);
+            $('#Country option[value=" + countryFromId + "]').prop('selected', true);
+            $("#Country").prop("disabled", true);
 
-            var currencyCode = $('#Country option:selected').data('currency-code');
-            $('.currency-code-placeholder').html(currencyCode);
+            var currencyCode = $("#Country option:selected").data("currency-code");
+            $(".currency-code-placeholder").html(currencyCode);
 
-            var countryToId = $('#Country option:selected').val();
-            $('#hidden_country').val(countryToId);
+            var countryToId = $("#Country option:selected").val();
+            $("#hidden_country").val(countryToId);
 
             var state = "@Model.Order.State";
             var settingsArr = [];
@@ -652,35 +649,81 @@
                 }
             }
 
+            var orderTotal;
+            var orderTotalNumber;
+            var deliveryCostNumber;
+
             if (settingIndex === undefined) {
-                document.getElementById("parentDelivery").style.display = "none";
-                document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost)).toFixed(2);
-                delivCost = 0;
+                $("#parentDelivery").hide();
+                orderTotal = $("#ordTotal").html();
+                orderTotalNumber = new BigNumber(orderTotal);
+                orderTotalNumber = orderTotalNumber.minus(delivCost);
+                $("#ordTotal").html(orderTotalNumber.toFixed(2));
+                delivCost = new BigNumber(0);
             } else {
-                document.getElementById("deliveryCost").innerHTML = settingsArr[settingIndex].DeliveryCost;
-                document.getElementById("parentDelivery").style.display = "";
-                document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML - delivCost) + parseFloat(Settings[settingIndex].DeliveryCost)).toFixed(2);
-                delivCost = parseFloat(Settings[settingIndex].DeliveryCost).toFixed(2);
+                deliveryCostNumber = new BigNumber(settingsArr[settingIndex].DeliveryCost);
+                $("#deliveryCost").html(deliveryCostNumber.toFixed(2));
+                $("#parentDelivery").show();
+                orderTotal = $("#ordTotal").html();
+                orderTotalNumber = new BigNumber(orderTotal);
+                orderTotalNumber = orderTotalNumber.minus(delivCost).plus(deliveryCostNumber);
+                $("#ordTotal").html(orderTotalNumber.toFixed(2));
+                delivCost = deliveryCostNumber;
             }
 
             countryElement.selectedIndex = selectedIndex;
         };
 
-        document.getElementById("State").addEventListener("change", function () {
-            if (this.options[this.selectedIndex].value === "") {
-                document.getElementById("parentDelivery").style.display = "none";
-                document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                delivCost = 0;
+        function ConvertPrices(fromCountryId, toCountryId) {
+            var fromCountryExchangeRate = $('#Country option[value="' + fromCountryId + '"]').data("exchange-rate");
+            var toCountryExchangeRate = $('#Country option[value="' + toCountryId + '"]').data("exchange-rate");
+
+            var fromCountryExchangeRateNumber = new BigNumber(fromCountryExchangeRate);
+            var toCountryExchangeRateNumber = new BigNumber(toCountryExchangeRate);
+
+            $(".item-price-value-placeholder").each(function (index, element) {
+                var price = $(element).html();
+
+                var priceNumber = new BigNumber(price);
+                priceNumber = priceNumber.dividedBy(fromCountryExchangeRateNumber).times(toCountryExchangeRateNumber);
+
+                $(element).html(priceNumber.toFixed(2));
+            });
+
+            var orderTotal = $("#ordTotal").html();
+
+            var orderTotalNumber = new BigNumber(orderTotal);
+            orderTotalNumber = orderTotalNumber.dividedBy(fromCountryExchangeRateNumber).times(toCountryExchangeRate);
+
+            $("#ordTotal").html(orderTotalNumber.toFixed(2));
+        };
+
+        $("#State").change(function () {
+            var stateValue = $("#State option:selected").val();
+
+            var orderTotal;
+            var orderTotalNumber;
+            var deliveryCostNumber;
+
+            if (stateValue === "") {
+                $("#parentDelivery").hide();
+                orderTotal = $("#ordTotal").html();
+                orderTotalNumber = new BigNumber(orderTotal);
+                orderTotalNumber = orderTotalNumber.minus(delivCost);
+                $("#ordTotal").html(orderTotalNumber.toFixed(2));
+                delivCost = new BigNumber(0);
             } else {
                 for (var i = 0; i < Settings.length; i++) {
-                    if (Settings[i].State === this.options[this.selectedIndex].value) {
-                        document.getElementById("parentDelivery").style.display = "";
-                        document.getElementById("deliveryCost").innerHTML = Settings[i].DeliveryCost;
-                        document.getElementById("ordTotal").innerHTML = parseFloat(document.getElementById("ordTotal").innerHTML) - delivCost;
-                        document.getElementById("ordTotal").innerHTML = (parseFloat(document.getElementById("ordTotal").innerHTML) + parseFloat(Settings[i].DeliveryCost)).toFixed(2);
-                        delivCost = Settings[i].DeliveryCost;
-
-                        $('#paymentState').val(this.options[this.selectedIndex].value);
+                    if (Settings[i].State === stateValue) {
+                        deliveryCostNumber = new BigNumber(Settings[i].DeliveryCost);
+                        $("#deliveryCost").html(deliveryCostNumber.toFixed(2));
+                        $("#parentDelivery").show();
+                        orderTotal = $("#ordTotal").html();
+                        orderTotalNumber = new BigNumber(orderTotal);
+                        orderTotalNumber = orderTotalNumber.minus(delivCost).plus(deliveryCostNumber);
+                        $("#ordTotal").html(orderTotalNumber.toFixed(2));
+                        delivCost = deliveryCostNumber;
+                        $("#paymentState").val(stateValue);
                     }
                 }
             }
