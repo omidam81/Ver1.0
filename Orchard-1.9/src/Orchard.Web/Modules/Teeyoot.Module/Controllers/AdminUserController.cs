@@ -186,7 +186,7 @@ namespace Teeyoot.Module.Controllers
             if (teeyootUser != null)
             {
                 viewModel.IsTeeyootUser = true;
-                viewModel.Currency = teeyootUser.CurrencyId;
+                viewModel.Currency = teeyootUser.CurrencyRecord != null ? teeyootUser.CurrencyRecord.Id : (int?) null;
 
                 var campaignsQuery = _campaignService.GetCampaignsOfUser(teeyootUser.Id);
 
@@ -259,7 +259,15 @@ namespace Teeyoot.Module.Controllers
             var teeyootUser = user.As<TeeyootUserPart>();
             if (teeyootUser != null)
             {
-                teeyootUser.CurrencyId = model.Currency;
+                if (model.Currency.HasValue)
+                {
+                    var currency = _currencyRepository.Get(model.Currency.Value);
+                    teeyootUser.CurrencyRecord = currency;
+                }
+                else
+                {
+                    teeyootUser.CurrencyRecord = null;
+                }
             }
 
             Services.ContentManager.Publish(user.ContentItem);
