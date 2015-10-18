@@ -135,16 +135,18 @@ namespace Teeyoot.Module.Controllers
             {
                 var currency = _currencyRepository.Get(id);
                 _currencyRepository.Delete(currency);
+               _currencyRepository.Flush();
             }
             catch (Exception)
             {
+                _orchardServices.TransactionManager.Cancel();
                 _orchardServices.Notifier.Error(T("Error deleting currency!"));
                 return RedirectToAction("Index");
             }
 
             _imageFileHelper.DeleteImageFromDisc(id);
 
-            _orchardServices.Notifier.Information(T("Record has been deleted!"));
+            _orchardServices.Notifier.Information(T("Currency has been deleted!"));
             return RedirectToAction("Index");
         }
 
