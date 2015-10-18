@@ -5,6 +5,7 @@
     Script.Require("jQuery");
     Script.Include("jquery.validate.min.js");
     Script.Include("additional-methods.min.js");
+    Script.Include("bignumber.min.js");
 }
 
 <div class="site__content_container">
@@ -51,7 +52,25 @@
                                             </ul>
                                         </td>
                                         <td class="order_summary__item_price">
-                                            @item.CampaignProductRecord.CurrencyRecord.Code @((price * item.Count).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
+                                            <span class="currency-code-placeholder">
+                                                @Model.CurrencyCode
+                                            </span>
+                                            <span>
+                                                @((price * item.Count * Model.ExchangeRate).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
+                                            </span>
+
+                                            @*
+                                                <span class="order_summary__total">
+                                                    @Model.Order.CurrencyRecord.Code
+                                                    <span id="ordTotal">
+                                                        @Model.Order.TotalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
+                                                    </span>
+                                                </span>
+                                            *@
+
+                                            @*
+                                                @item.CampaignProductRecord.CurrencyRecord.Code @((price*item.Count).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
+                                            *@
                                         </td>
                                     </tr>
                                 }
@@ -83,21 +102,31 @@
                                     @T("Total")
                                 </dt>
                                 <dd>
-                                    @if (Model.Order.TotalPriceWithPromo != 0)
+                                    @if (Model.Order.TotalPriceWithPromo > 0)
                                     {
                                         <span class="order_summary__total">
-                                            @Model.Order.CurrencyRecord.Code
+                                            <span class="currency-code-placeholder">
+                                                @Model.CurrencyCode
+                                            </span>
+                                            @*
+                                                @Model.Order.CurrencyRecord.Code
+                                            *@
                                             <span id="ordTotal">
-                                                @Model.Order.TotalPriceWithPromo.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
+                                                @((Model.Order.TotalPriceWithPromo * Model.ExchangeRate).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                             </span>
                                         </span>
                                     }
                                     else
                                     {
                                         <span class="order_summary__total">
-                                            @Model.Order.CurrencyRecord.Code
+                                            <span class="currency-code-placeholder">
+                                                @Model.CurrencyCode
+                                            </span>
+                                            @*
+                                                @Model.Order.CurrencyRecord.Code
+                                            *@
                                             <span id="ordTotal">
-                                                @Model.Order.TotalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)
+                                                @((Model.Order.TotalPrice * Model.ExchangeRate).ToString("F2", System.Globalization.CultureInfo.InvariantCulture))
                                             </span>
                                         </span>
                                     }
@@ -136,7 +165,7 @@
                     </span>
                 </dl>
             </div>
-            <form action="@Url.Action("CreateTransaction")" method="POST" id="braintree-payment-form">
+            <form action="@Url.Action(" createtransaction", "Home" )" method="POST" id="braintree-payment-form">
                 @Html.AntiForgeryToken()
                 @if (Model.Promotion != null)
                 {
@@ -148,7 +177,7 @@
                 <div class="checkout__container">
                     <div class="checkout__legend">@T("Contact Info")</div>
                     <div class="inp-fix">
-                        <input autofocus="autofocus" class="form__textfield " id="Email" name="Email" placeholder="@T("Email address")" tabindex="1" type="text">
+                        <input autofocus="autofocus" class="form__textfield " id="Email" name="Email" placeholder="@T(" email address")" tabindex="1" type="text">
                         <label id="Email-error" class="error valid" for="Email"></label>
                     </div>
                     <input type="hidden" name="paumentMeth" id="paymentMethod">
@@ -193,7 +222,7 @@
                     <div style="clear: both;">
                     </div>
                     <div class="checkout__legend">
-                        <div class="checkout__tool_tip--lock" data-tooltip="@T("All transactions are secure and encrypted.")">
+                        <div class="checkout__tool_tip--lock" data-tooltip="@T(" all transactions are secure and encrypted.")">
                             <i class="checkout__lock_icon"></i>
                         </div>@T("Payment Info")
                     </div>
@@ -221,7 +250,7 @@
                                 </label>
                                 <div class="accordion__content">
                                     <div class="inp-fix">
-                                        <input class="form__textfield  js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="@T("Credit card number")" tabindex="9" type="text">
+                                        <input class="form__textfield  js-cc-number" name="number" data-stripe="number" id="cc-number" inputmode="numeric" pattern="\d*" placeholder="@T(" credit card number")" tabindex="9" type="text">
                                         <label id="cc-number-error" class="error valid" for="cc-number"></label>
                                     </div>
                                     <div class="checkout_form__row">
@@ -243,7 +272,7 @@
                                         </div>
                                         <div class="checkout__input--small">
                                             <div class="checkout__tool_tip_container">
-                                                <div class="checkout__tool_tip--cvc" data-tooltip="@T("3 or 4 digit security code usually located on the back of the card.")">
+                                                <div class="checkout__tool_tip--cvc" data-tooltip="@T(" 3 or 4 digit security code usually located on the back of the card.")">
                                                     <i class="ss-icon ss-standard tool_tip__toggle"></i>
                                                 </div>
                                             </div>
@@ -267,51 +296,53 @@
                     <div class="form__group js-checkout-shipping">
                         <div class="checkout__legend">@T("Shipping Info")</div>
                         <div class="inp-half">
-                            <input class="form__textfield " data-default="" data-type="name" id="FirstName" maxlength="30" name="FirstName" placeholder="@T("First name")" size="30" tabindex="2" type="text">
+                            <input class="form__textfield " data-default="" data-type="name" id="FirstName" maxlength="30" name="FirstName" placeholder="@T(" first name")" size="30" tabindex="2" type="text">
                         </div>
                         <div class="inp-half-right">
-                            <input class="form__textfield " data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="@T("Last name")" size="30" tabindex="3" type="text">
+                            <input class="form__textfield " data-default="" data-type="name" id="LastName" maxlength="30" name="LastName" placeholder="@T(" last name")" size="30" tabindex="3" type="text">
                         </div>
                         <div class="input-address">
-                            <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T("Address line 1")" size="50" tabindex="4" type="text">
+                            <input class="form__textfield " data-default="" id="StreetAddress" maxlength="50" name="StreetAddress" placeholder="@T(" address line 1")" size="50" tabindex="4" type="text">
                         </div>
                         <div class="input-address">
-                            <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T("Address line 2")" size="50" tabindex="5" type="text">
+                            <input class="form__textfield " data-default="" id="StreetAddress2" maxlength="50" name="StreetAddress2" placeholder="@T(" address line 2")" size="50" tabindex="5" type="text">
                         </div>
                         <div class="checkout_form__row">
                             <div class="inp-half">
-                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T("City")" size="30" tabindex="7" type="text">
+                                <input class="form__textfield " data-default="" id="City" maxlength="30" name="City" placeholder="@T(" city")" size="30" tabindex="7" type="text">
                                 <label id="City-error" class="error valid" for="City"></label>
                             </div>
                             <div class="inp-half-right">
-                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T("Postal code")" tabindex="6" type="text">
+                                <input class="form__textfield " data-default="" id="PostalCode" name="PostalCode" placeholder="@T(" postal code")" tabindex="6" type="text">
                                 <label id="PostalCode-error" class="error valid" for="PostalCode"></label>
                             </div>
                         </div>
                         <div class="checkout_form__row">
                             <div>
                                 <div class="inp-half smarty-streets-container">
-                                    <select class="form__textfield " style="font-size: 17px" data-default="43" id="State" placeholder="@T("State")" name="State" tabindex="7" type="text"></select>
+                                    <select class="form__textfield " style="font-size: 17px" data-default="43" id="State" placeholder="@T(" state")" name="State" tabindex="7" type="text"></select>
                                     <label id="State-error" class="error valid" for="State"></label>
                                 </div>
                                 <div class="inp-half-right">
                                     <select class="form__textfield" id="Country" tabindex="8">
                                         @foreach (var deliverableCountry in Model.DeliverableCountries)
                                         {
-                                            <option value="@deliverableCountry.Id">
+                                            <option value="@deliverableCountry.Id"
+                                                    data-currency-code="@deliverableCountry.CurrencyCode"
+                                                    data-exchange-rate="@deliverableCountry.ExchangeRate">
                                                 @deliverableCountry.Name
                                             </option>
                                         }
                                     </select>
                                     <input type="hidden" id="hidden_country" name="Country" @if (Model.DeliverableCountries.Any()) { @: value="@Model.DeliverableCountries.First().Id"
-                                                                                                                                       } />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          } />
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="checkout_form__row">
                             <div class="form-phone inp-half">
-                                <input class="form__textfield  js-shipping-phone" id="PhoneNumber" placeholder="@T("Phone number")" tabindex="9" type="text" value="" name="PhoneNumber">
+                                <input class="form__textfield  js-shipping-phone" id="PhoneNumber" placeholder="@T(" phone number")" tabindex="9" type="text" value="" name="PhoneNumber">
                                 <label id="PhoneNumber-error" class="error valid" for="PhoneNumber"></label>
                             </div>
                         </div>
@@ -324,12 +355,12 @@
                                 @T("and") <a href='/Terms' target="_blank">@T("terms of service")</a>
                                 .
                             </p>
-                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="@T("Place Your Order")">@T("Place Your Order")</button>
+                            <button id="transaction" class="button button--transaction--flat checkout_form_footer__submit js_checkout_submit" data-disable-with="Placing Your Order" tabindex="14" type="submit" value="@T(" place your order")">@T("Place Your Order")</button>
                         </div>
                     </div>
                 </div>
             </form>
-            <input type="hidden" id="Token" value=@Model.ClientToken>
+            <input type="hidden" id="Token" value="@Model.ClientToken">
         </div>
     </div>
 </div>
@@ -483,6 +514,9 @@
 
                 var selPaymentMethod = $('#paymentMethod').val();
 
+                var currencyCode = $('#Country option:selected').data('currency-code');
+                $('.currency-code-placeholder').html(currencyCode);
+
                 if (selPaymentMethod === "4") {
                     populateCountriesForCashOnDelivery("State");
                 } else {
@@ -570,6 +604,9 @@
 
             $('#Country option[value=' + countryFromId + ']').prop('selected', true);
             $('#Country').prop('disabled', true);
+
+            var currencyCode = $('#Country option:selected').data('currency-code');
+            $('.currency-code-placeholder').html(currencyCode);
 
             var countryToId = $('#Country option:selected').val();
             $('#hidden_country').val(countryToId);

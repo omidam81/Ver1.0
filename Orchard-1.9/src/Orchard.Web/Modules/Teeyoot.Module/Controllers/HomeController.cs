@@ -11,7 +11,6 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Braintree;
 using Orchard;
-using Orchard.ContentManagement;
 using Orchard.Data;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
@@ -37,10 +36,8 @@ namespace Teeyoot.Module.Controllers
         private readonly IOrderService _orderService;
         private readonly IPromotionService _promotionService;
         private readonly ICampaignService _campaignService;
-        private readonly IDeliverySettingsService _deliverySettingService;
         private readonly INotifier _notifier;
         private readonly IimageHelper _imageHelper;
-        private readonly IMailChimpSettingsService _settingsService;
         private readonly IPayoutService _payoutService;
         private readonly IRepository<UserRolesPartRecord> _userRolesPartRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
@@ -50,15 +47,14 @@ namespace Teeyoot.Module.Controllers
 
         private readonly IRepository<CheckoutCampaignRequest> _checkoutRequestRepository;
         private readonly IRepository<TeeyootUserPartRecord> _userRepository;
-        private readonly IContentManager _contentManager;
         private readonly string _cultureUsed;
         private readonly ICookieCultureService _cookieCultureService;
-        private readonly ICultureService _cultureService;
         private readonly ICountryService _countryService;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IRepository<DeliverySettingRecord> _deliverySettingRepository;
         private readonly IRepository<DeliveryInternationalSettingRecord> _deliveryInternationalSettingRepository;
+        private readonly IRepository<CurrencyExchangeRecord> _currencyExchangeRepository;
 
         public HomeController(
             IOrderService orderService,
@@ -66,26 +62,23 @@ namespace Teeyoot.Module.Controllers
             INotifier notifier,
             IPromotionService promotionService,
             IimageHelper imageHelper,
-            IMailChimpSettingsService settingsService,
             IPaymentSettingsService paymentSettingsService,
             IShapeFactory shapeFactory,
             ITeeyootMessagingService teeyootMessagingService,
             IWorkContextAccessor workContextAccessor,
             IRepository<UserRolesPartRecord> userRolesPartRepository,
             IRepository<TeeyootUserPartRecord> userRepository,
-            IDeliverySettingsService deliverySettingService,
-            IContentManager contentManager,
             IPayoutService payoutService,
             IRepository<CommonSettingsRecord> commonSettingsRepository,
             IRepository<CheckoutCampaignRequest> checkoutRequestRepository,
             ICookieCultureService cookieCultureService,
-            ICultureService cultureService,
             IRepository<OrderStatusRecord> orderStatusRepository,
             ICountryService countryService,
             IRepository<CurrencyRecord> currencyRepository,
             IRepository<CountryRecord> countryRepository,
             IRepository<DeliverySettingRecord> deliverySettingRepository,
-            IRepository<DeliveryInternationalSettingRecord> deliveryInternationalSettingRepository)
+            IRepository<DeliveryInternationalSettingRecord> deliveryInternationalSettingRepository,
+            IRepository<CurrencyExchangeRecord> currencyExchangeRepository)
         {
             _orderService = orderService;
             _promotionService = promotionService;
@@ -93,19 +86,17 @@ namespace Teeyoot.Module.Controllers
             _imageHelper = imageHelper;
             _userRolesPartRepository = userRolesPartRepository;
             _payoutService = payoutService;
-            _deliverySettingService = deliverySettingService;
-            _settingsService = settingsService;
             _teeyootMessagingService = teeyootMessagingService;
             _paymentSettingsService = paymentSettingsService;
             _commonSettingsRepository = commonSettingsRepository;
             _checkoutRequestRepository = checkoutRequestRepository;
             _userRepository = userRepository;
-            _contentManager = contentManager;
             _orderStatusRepository = orderStatusRepository;
             _currencyRepository = currencyRepository;
             _countryRepository = countryRepository;
             _deliverySettingRepository = deliverySettingRepository;
             _deliveryInternationalSettingRepository = deliveryInternationalSettingRepository;
+            _currencyExchangeRepository = currencyExchangeRepository;
 
             Logger = NullLogger.Instance;
             _notifier = notifier;
@@ -116,7 +107,6 @@ namespace Teeyoot.Module.Controllers
             _cultureUsed = workContextAccessor.GetContext().CurrentCulture.Trim();
             //culture == "en-SG" ? "en-SG" : (culture == "id-ID" ? "id-ID" : "en-MY");
             _cookieCultureService = cookieCultureService;
-            _cultureService = cultureService;
             _countryService = countryService;
         }
 
@@ -124,7 +114,6 @@ namespace Teeyoot.Module.Controllers
         private Localizer T { get; set; }
 
         private dynamic Shape { get; set; }
-
 
         //public static BraintreeGateway Gateway = new BraintreeGateway
         //{
@@ -194,37 +183,61 @@ namespace Teeyoot.Module.Controllers
             var setting = _paymentSettingsService.GetAllSettigns()
                 .FirstOrDefault(s => s.CountryRecord.Id == _countryService.GetCountryByCulture(_cultureUsed).Id);
 
-            var viewModel = new PaymentViewModel {SellerCountryId = order.SellerCountry.Id};
-
-            /*
-            var firstCountry = _countryRepository.Table.First();
-            viewModel.Country = firstCountry.Id;
-             */
-
-
-            //model.CountryName = _cultureService.ListCultures().Where(c => c.Culture == cultureUsed).First().LocalizedName;
-
-            //var localName = _cultureService.ListCultures()
-            //.First(c => c.Culture == _cultureUsed).LocalizedName;
-
-            //var firstIndex = localName.IndexOf("(") + 1;
-            //model.CountryName = localName.Substring(firstIndex, localName.IndexOf(")") - firstIndex);
+            var viewModel = new PaymentViewModel
+            {
+                SellerCountryId = order.SellerCountry.Id
+            };
 
             var deliverableCountries = _deliveryInternationalSettingRepository.Table
                 .Where(s => s.CountryFrom == order.SellerCountry && s.IsActive)
+                .Fetch(s => s.CountryTo)
+                .ThenFetchMany(c => c.CountryCurrencies)
+                .ThenFetch(c => c.CurrencyRecord)
                 .Select(s => s.CountryTo)
                 .ToList();
 
             deliverableCountries.Add(order.SellerCountry);
 
-            viewModel.DeliverableCountries = deliverableCountries
-                .Select(c => new CountryItemViewModel
+            var sellerCurrency = order.SellerCountry.CountryCurrencies.First().CurrencyRecord;
+
+            var exchangeRates = _currencyExchangeRepository.Table
+                .Where(r => r.CurrencyFrom == sellerCurrency)
+                .ToList();
+
+            var deliverableCountryItems = deliverableCountries
+                .Select(c =>
                 {
-                    Id = c.Id,
-                    Name = c.Name
+                    var currency = c.CountryCurrencies.First().CurrencyRecord;
+
+                    var countryItemViewModel = new CountryItemViewModel
+                    {
+                        Id = c.Id,
+                        Name = c.Name,
+                        CurrencyCode = currency.Code
+                    };
+
+                    if (c == order.SellerCountry)
+                    {
+                        countryItemViewModel.ExchangeRate = 1;
+                    }
+                    else
+                    {
+                        var exchangeRate = exchangeRates.First(r => r.CurrencyTo == currency);
+                        countryItemViewModel.ExchangeRate = exchangeRate.RateForBuyer;
+                    }
+
+                    return countryItemViewModel;
                 })
                 .OrderBy(c => c.Name)
                 .ToList();
+
+            viewModel.DeliverableCountries = deliverableCountryItems;
+
+            var initialExchangeRate = deliverableCountryItems.First().ExchangeRate;
+            viewModel.ExchangeRate = initialExchangeRate;
+
+            var initialCurrencyCode = deliverableCountryItems.First().CurrencyCode;
+            viewModel.CurrencyCode = initialCurrencyCode;
 
             viewModel.Order = order;
             //model.ClientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1NGU1NmE0MmMwZTIzMGFiYjkyZjk2Njc4N2I3NDY4OTEzZDc5YmU5Zjg2NzE5NjI2N2FjMDMwYzEyZjk2ZTEyfGNyZWF0ZWRfYXQ9MjAxNS0wNy0wN1QwOToxNDoyOS41NTc5MDE5NDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2RjcHNweTJicndkanIzcW4vY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwibWVyY2hhbnRBY2NvdW50SWQiOiJzdGNoMm5mZGZ3c3p5dHc1IiwiY3VycmVuY3lJc29Db2RlIjoiVVNEIn0sImNvaW5iYXNlRW5hYmxlZCI6dHJ1ZSwiY29pbmJhc2UiOnsiY2xpZW50SWQiOiIxMWQyNzIyOWJhNThiNTZkN2UzYzAxYTA1MjdmNGQ1YjQ0NmQ0ZjY4NDgxN2NiNjIzZDI1NWI1NzNhZGRjNTliIiwibWVyY2hhbnRBY2NvdW50IjoiY29pbmJhc2UtZGV2ZWxvcG1lbnQtbWVyY2hhbnRAZ2V0YnJhaW50cmVlLmNvbSIsInNjb3BlcyI6ImF1dGhvcml6YXRpb25zOmJyYWludHJlZSB1c2VyIiwicmVkaXJlY3RVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbS9jb2luYmFzZS9vYXV0aC9yZWRpcmVjdC1sYW5kaW5nLmh0bWwiLCJlbnZpcm9ubWVudCI6Im1vY2sifSwibWVyY2hhbnRJZCI6ImRjcHNweTJicndkanIzcW4iLCJ2ZW5tbyI6Im9mZmxpbmUiLCJhcHBsZVBheSI6eyJzdGF0dXMiOiJtb2NrIiwiY291bnRyeUNvZGUiOiJVUyIsImN1cnJlbmN5Q29kZSI6IlVTRCIsIm1lcmNoYW50SWRlbnRpZmllciI6Im1lcmNoYW50LmNvbS5icmFpbnRyZWVwYXltZW50cy5zYW5kYm94LkJyYWludHJlZS1EZW1vIiwic3VwcG9ydGVkTmV0d29ya3MiOlsidmlzYSIsIm1hc3RlcmNhcmQiLCJhbWV4Il19fQ==";
@@ -701,8 +714,8 @@ namespace Teeyoot.Module.Controllers
                 var deliverySetting = _deliverySettingRepository.Table
                     .First(s => s.State == collection["State"]);
 
-                order.Delivery = collection["paumentMeth"] == "4" 
-                    ? deliverySetting.CodCost 
+                order.Delivery = collection["paumentMeth"] == "4"
+                    ? deliverySetting.CodCost
                     : deliverySetting.PostageCost;
             }
             else
