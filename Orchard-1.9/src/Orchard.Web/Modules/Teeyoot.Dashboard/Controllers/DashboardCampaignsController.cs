@@ -47,8 +47,7 @@ namespace Teeyoot.Dashboard.Controllers
             var user = _wca.GetContext().CurrentUser;
             var teeyootUser = (TeeyootUserPart)user.ContentItem.Get(typeof(TeeyootUserPart));
 
-            model.CurrencyCode = _currencyRepository.Table.Where(c => c.Id == teeyootUser.CurrencyId).FirstOrDefault().Code;
-            
+            model.CurrencyCode = teeyootUser.CurrencyRecord.Code;
 
             var campaignsQuery = _campaignService.GetCampaignsOfUser(user.Id);
             var productsOrderedQuery = _orderService

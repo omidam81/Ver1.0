@@ -496,7 +496,7 @@ namespace Teeyoot.Module
                 new RouteDescriptor
                 {
                     Route = new Route(
-                        "GetSettings/Country/{countryId}",
+                        "GetSettings",
                         new RouteValueDictionary
                         {
                             {"area", "Teeyoot.Module"},

@@ -83,7 +83,7 @@ namespace Teeyoot.Account.Services
             if (currency == null)
                 throw new ApplicationException("Currency is not found in database");
 
-            teeyootUserPart.CurrencyId = currency.Id;
+            teeyootUserPart.CurrencyRecord = currency;
 
             var country = _countryRepository.Table
                 .FirstOrDefault(c => c.Code == localizationInfo.CountryIsoCode);

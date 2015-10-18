@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.IO;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using System.Web;
 
 namespace Teeyoot.Module.Common.Utils
 {
-
     /// <summary>
     /// Provides methods to help working with image(.png) files
     ///  disc operations (saving to a disc, deleting).
@@ -19,7 +16,6 @@ namespace Teeyoot.Module.Common.Utils
         private readonly string _fileNameTemplate;
         private readonly string _virtualRelativePath;
         private readonly Func<HttpServerUtilityBase> _getServerFunc;
-
 
         /// <param name="fileNameTemplate">
         /// Example:   "currency_{0}_flag.png"    </param>
@@ -32,31 +28,32 @@ namespace Teeyoot.Module.Common.Utils
         /// Lambda is used because Server property isn't avalilable 
         /// in the constructor of a controller, but it's just handy to init it there 
         /// </param>
-        public ImageFileHelper(string fileNameTemplate, string virtualRelativePath,
+        public ImageFileHelper(
+            string fileNameTemplate,
+            string virtualRelativePath,
             Func<HttpServerUtilityBase> getServerFunc)
         {
-            this._fileNameTemplate = fileNameTemplate;
-            this._virtualRelativePath = virtualRelativePath;
-            this._getServerFunc = getServerFunc;
+            _fileNameTemplate = fileNameTemplate;
+            _virtualRelativePath = virtualRelativePath;
+            _getServerFunc = getServerFunc;
         }
-
-
 
         public string FormImageFileNameById(int id, bool virtualPath)
         {
             var imageFileName = string.Format(_fileNameTemplate, id);
 
-            return virtualPath ?
-                _virtualRelativePath + "/" + imageFileName
-                :
-                Path.Combine(_getServerFunc().MapPath("~" + _virtualRelativePath), imageFileName);
+            return virtualPath
+                ? _virtualRelativePath + "/" + imageFileName
+                : Path.Combine(_getServerFunc().MapPath("~" + _virtualRelativePath), imageFileName);
         }
-
 
         public string SaveImageToDisc(HttpPostedFileBase imageFile, int id, out bool isNotPNG)
         {
             isNotPNG = false; // by default
-            if (imageFile == null) { return null; }
+            if (imageFile == null)
+            {
+                return null;
+            }
             if (!IsImagePng(imageFile))
             {
                 isNotPNG = true;
@@ -69,16 +66,14 @@ namespace Teeyoot.Module.Common.Utils
             }
         }
 
-
         public void DeleteImageFromDisc(int id)
         {
-            string filename = FormImageFileNameById(id, false);
-            if (System.IO.File.Exists(filename))
+            var filename = FormImageFileNameById(id, false);
+            if (File.Exists(filename))
             {
-                System.IO.File.Delete(filename);
+                File.Delete(filename);
             }
         }
-
 
         private static bool IsImagePng(HttpPostedFileBase imageFile)
         {
@@ -89,6 +84,5 @@ namespace Teeyoot.Module.Common.Utils
 
             return strHeader.ToLowerInvariant().EndsWith("png");
         }
-
     }
 }

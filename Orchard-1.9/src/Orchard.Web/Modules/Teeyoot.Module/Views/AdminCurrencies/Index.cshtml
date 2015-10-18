@@ -49,12 +49,12 @@
                         @currency.CountryName
                     </td>
                     <td class="visible">
-                        <img class="flagimg" src="@currency.FlagFileName" style="vertical-align:bottom" />
+                        <img class="flagimg" src="@currency.FlagFileName" style="vertical-align: bottom" alt="" />
                     </td>
 
                     <td class="related">
-                        <a class="button" href="@Url.Action("EditCurrency", "AdminCurrencies", new { id = currency.Id })" title="@T("Edit")">@T("Edit")</a>
-                        <a class="button" href="@Url.Action("DeleteCurrency", "AdminCurrencies", new { id = currency.Id })" itemprop="RemoveUrl">@T("Delete")</a>
+                        <a class="button" href="@Url.Action("EditCurrency", "AdminCurrencies", new {id = currency.Id})" title="@T("Edit")">@T("Edit")</a>
+                        <a class="button" href="@Url.Action("DeleteCurrency", "AdminCurrencies", new {id = currency.Id})" itemprop="RemoveUrl">@T("Delete")</a>
                     </td>
                 </tr>
             }

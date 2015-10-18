@@ -1233,6 +1233,7 @@
     <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Drivers\AllCountryWidget.cs" />
     <Compile Include="Drivers\MailChimpSettingsPartDriver.cs" />
+    <Compile Include="DTOs\DeliverySettingItem.cs" />
     <Compile Include="Handlers\MailChimpSettingsPartHandler.cs" />
     <Compile Include="Messaging\CampaignService\SearchCampaignsRequest.cs" />
     <Compile Include="Migrations.cs" />
@@ -1301,6 +1302,7 @@
     <Compile Include="ViewModels\AdminUserIndexViewModel.cs" />
     <Compile Include="ViewModels\CampaignRelRequestViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
+    <Compile Include="ViewModels\CountryCurrencyItemViewModel.cs" />
     <Compile Include="ViewModels\CountryItemViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\CurrencyExchangeMatrixViewModel.cs" />

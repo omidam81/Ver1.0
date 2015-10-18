@@ -71,10 +71,10 @@ namespace Teeyoot.Module.Models
             set { Record.CountryRecord = value; }
         }
 
-        public int? CurrencyId
+        public CurrencyRecord CurrencyRecord
         {
-            get { return Retrieve(p => p.CurrencyRecord_Id); }
-            set { Store(p => p.CurrencyRecord_Id, value); }
+            get { return Record.CurrencyRecord; }
+            set { Record.CurrencyRecord = value; }
         }
     }
 }

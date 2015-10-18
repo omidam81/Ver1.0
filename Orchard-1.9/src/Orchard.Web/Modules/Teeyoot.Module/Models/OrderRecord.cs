@@ -31,6 +31,7 @@ namespace Teeyoot.Module.Models
         public virtual double Delivery { get; set; }
         public virtual double TotalPriceWithPromo { get; set; }
         public virtual string TranzactionId { get; set; }
+        public virtual CountryRecord SellerCountry { get; set; }
 
         public OrderRecord()
         {
