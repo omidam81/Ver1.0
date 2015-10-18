@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Orchard;
@@ -22,7 +23,6 @@ namespace Teeyoot.Module.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IRepository<CountryRecord> _countryRepository;
-        private readonly IRepository<LinkCountryCurrencyRecord> _linkCountryCurrencyRepository;
 
         //todo: (auth:juiceek) drop after applying new logic
         private readonly string _cultureUsed;
@@ -38,7 +38,6 @@ namespace Teeyoot.Module.Controllers
             IShapeFactory shapeFactory,
             IRepository<CurrencyRecord> currencyRepository,
             IRepository<CountryRecord> countryRepository,
-            IRepository<LinkCountryCurrencyRecord> linkCountryCurrencyRepository,
             IWorkContextAccessor workContextAccessor)
         {
             var culture = workContextAccessor.GetContext().CurrentCulture.Trim();
@@ -49,7 +48,6 @@ namespace Teeyoot.Module.Controllers
             Shape = shapeFactory;
             _currencyRepository = currencyRepository;
             _countryRepository = countryRepository;
-            _linkCountryCurrencyRepository = linkCountryCurrencyRepository;
 
             _imageFileHelper = new ImageFileHelper("currency_{0}_flag.png",
                 "/Modules/Teeyoot.Module/Content/images", () => Server);
@@ -61,25 +59,40 @@ namespace Teeyoot.Module.Controllers
 
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
-            var currencies = _linkCountryCurrencyRepository.Table
-                .Select(c => new CountryCurrencyItemViewModel
-                {
-                    Id = c.CurrencyRecord.Id,
-                    Code = c.CurrencyRecord.Code,
-                    Name = c.CurrencyRecord.Name,
-                    ShortName = c.CurrencyRecord.ShortName,
-                    CountryId = c.CountryRecord != null ? c.CountryRecord.Id : (int?) null,
-                    CountryName = c.CountryRecord != null ? c.CountryRecord.Name : null,
-                    FlagFileName = c.CurrencyRecord.FlagFileName
-                })
+            var currencies = _currencyRepository.Table
+                .FetchMany(c => c.CountryCurrencies)
+                .ThenFetch(c => c.CountryRecord)
                 .OrderBy(c => c.Name)
                 .Skip(pager.GetStartIndex())
                 .Take(pager.PageSize)
                 .ToList();
 
-            viewModel.Currencies = currencies;
+            var currencyItems = new List<CountryCurrencyItemViewModel>();
 
-            var pagerShape = Shape.Pager(pager).TotalItemCount(currencies.Count());
+            foreach (var currency in currencies)
+            {
+                var currencyItem = new CountryCurrencyItemViewModel
+                {
+                    Id = currency.Id,
+                    Code = currency.Code,
+                    Name = currency.Name,
+                    ShortName = currency.ShortName,
+                    FlagFileName = currency.FlagFileName
+                };
+
+                var country = currency.CountryCurrencies.First().CountryRecord;
+                currencyItem.CountryId = country != null ? country.Id : (int?) null;
+
+                currencyItem.CountryName = country != null ? country.Name : null;
+
+                currencyItems.Add(currencyItem);
+            }
+
+            viewModel.Currencies = currencyItems;
+
+            var currenciesTotal = _currencyRepository.Table.Count();
+
+            var pagerShape = Shape.Pager(pager).TotalItemCount(currenciesTotal);
             viewModel.Pager = pagerShape;
 
             return View(viewModel);
@@ -135,7 +148,7 @@ namespace Teeyoot.Module.Controllers
             {
                 var currency = _currencyRepository.Get(id);
                 _currencyRepository.Delete(currency);
-               _currencyRepository.Flush();
+                _currencyRepository.Flush();
             }
             catch (Exception)
             {
