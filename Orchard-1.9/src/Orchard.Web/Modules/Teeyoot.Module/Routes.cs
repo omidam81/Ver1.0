@@ -20,6 +20,64 @@ namespace Teeyoot.Module
         {
             return new[]
             {
+
+
+
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Countries/Edit/{id}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCountries"},
+                            {"action", "EditCountry"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Countries/Delete/{id}",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCountries"},
+                            {"action", "DeleteCountry"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+                new RouteDescriptor
+                {
+                    Route = new Route(
+                        "Admin/Countries/Add",
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"},
+                            {"controller", "AdminCountries"},
+                            {"action", "AddCountry"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary
+                        {
+                            {"area", "Teeyoot.Module"}
+                        },
+                        new MvcRouteHandler())
+                },
+
+
+
+
                 new RouteDescriptor
                 {
                     Route = new Route(
