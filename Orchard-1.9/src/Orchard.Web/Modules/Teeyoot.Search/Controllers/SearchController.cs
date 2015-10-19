@@ -6,6 +6,7 @@ using Orchard.Themes;
 using Teeyoot.Module.Messaging.CampaignService;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Search.Services;
 using Teeyoot.Search.ViewModels;
 

@@ -27,6 +27,7 @@ using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.FeaturedCampaigns.Controllers

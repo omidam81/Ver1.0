@@ -13,6 +13,7 @@ using Orchard.Localization;
 using Orchard.UI.Navigation;
 using Orchard.Settings;
 using Orchard.DisplayManagement;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Search.Controllers
 {

@@ -16,6 +16,7 @@ using Teeyoot.Module.Services;
 using Orchard.Logging;
 using Teeyoot.Module.Common.Enums;
 using Orchard.Data;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.FeaturedCampaigns.Controllers
 {

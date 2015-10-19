@@ -13,15 +13,18 @@ namespace Teeyoot.Module
         private readonly IRepository<CommonSettingsRecord> _commonSettingsRepository;
         private readonly IRepository<TeeyootUserPartRecord> _teeyootUserPartRepository;
         private readonly IRepository<CountryRecord> _countryRepository;
+        private readonly IRepository<CampaignRecord> _campaignRepository;
 
         public Migrations(
             IRepository<CommonSettingsRecord> commonSettingsRepository,
             IRepository<TeeyootUserPartRecord> teeyootUserPartRepository,
-            IRepository<CountryRecord> countryRepository)
+            IRepository<CountryRecord> countryRepository,
+            IRepository<CampaignRecord> campaignRepository)
         {
             _commonSettingsRepository = commonSettingsRepository;
             _teeyootUserPartRepository = teeyootUserPartRepository;
             _countryRepository = countryRepository;
+            _campaignRepository = campaignRepository;
         }
 
         public int Create()
@@ -2548,7 +2551,8 @@ namespace Teeyoot.Module
 
         public int UpdateFrom118()
         {
-            var malaysia = _countryRepository.Table.First(c => c.Code == "MY");
+            var malaysia = _countryRepository.Table
+                .First(c => c.Code == "MY");
 
             var sellers = _teeyootUserPartRepository.Table.ToList();
 
@@ -2559,6 +2563,41 @@ namespace Teeyoot.Module
             }
 
             return 119;
+        }
+
+        public int UpdateFrom119()
+        {
+            var malaysia = _countryRepository.Table
+                .First(c => c.Code == "MY");
+            var currency = malaysia.CountryCurrencies.First().CurrencyRecord;
+
+            var sellers = _teeyootUserPartRepository.Table.ToList();
+
+            foreach (var seller in sellers)
+            {
+                seller.CurrencyRecord = currency;
+                _teeyootUserPartRepository.Update(seller);
+            }
+
+            return 120;
+        }
+
+        public int UpdateFrom120()
+        {
+            var malaysia = _countryRepository.Table
+                .First(c => c.Code == "MY");
+            var currency = malaysia.CountryCurrencies.First().CurrencyRecord;
+
+            var campaigns = _campaignRepository.Table.ToList();
+            foreach (var campaign in campaigns)
+            {
+                campaign.CountryRecord = malaysia;
+                campaign.CurrencyRecord = currency;
+
+                _campaignRepository.Update(campaign);
+            }
+
+            return 121;
         }
     }
 }

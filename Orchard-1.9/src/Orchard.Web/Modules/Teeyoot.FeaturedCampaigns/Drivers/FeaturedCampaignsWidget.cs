@@ -8,6 +8,7 @@ using Teeyoot.FeaturedCampaigns.Services;
 using Orchard.ContentManagement.Drivers;
 using Teeyoot.Module.Services;
 using Orchard;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.FeaturedCampaigns.Drivers
 {

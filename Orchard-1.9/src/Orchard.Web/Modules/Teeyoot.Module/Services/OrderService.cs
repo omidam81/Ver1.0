@@ -7,6 +7,7 @@ using Orchard.ContentManagement;
 using Orchard.Data;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Services
