@@ -1094,6 +1094,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\nouislider.js" />
+    <Content Include="Scripts\Payment.js" />
     <Content Include="Scripts\quantize.js" />
     <Content Include="Scripts\selectize.js" />
     <Content Include="Scripts\upload.js" />
@@ -1211,7 +1212,6 @@
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
     <Content Include="StoredProcedures\3_AdminUserStoredProcedures.sql" />
-    <Compile Include="Common\CountryCurrencyHelper.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />
     <Compile Include="Common\ScheduledTasks\CheckExpiredPromotionsTask.cs" />

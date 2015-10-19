@@ -20,7 +20,6 @@ using Orchard.Themes;
 using Orchard.UI.Notify;
 using RM.Localization.Services;
 using Teeyoot.Localization;
-using Teeyoot.Module.Common;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.DTOs;
@@ -50,7 +49,6 @@ namespace Teeyoot.Module.Controllers
         private readonly string _cultureUsed;
         private readonly ICookieCultureService _cookieCultureService;
         private readonly ICountryService _countryService;
-        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IRepository<DeliverySettingRecord> _deliverySettingRepository;
         private readonly IRepository<DeliveryInternationalSettingRecord> _deliveryInternationalSettingRepository;
@@ -74,7 +72,6 @@ namespace Teeyoot.Module.Controllers
             ICookieCultureService cookieCultureService,
             IRepository<OrderStatusRecord> orderStatusRepository,
             ICountryService countryService,
-            IRepository<CurrencyRecord> currencyRepository,
             IRepository<CountryRecord> countryRepository,
             IRepository<DeliverySettingRecord> deliverySettingRepository,
             IRepository<DeliveryInternationalSettingRecord> deliveryInternationalSettingRepository,
@@ -92,7 +89,6 @@ namespace Teeyoot.Module.Controllers
             _checkoutRequestRepository = checkoutRequestRepository;
             _userRepository = userRepository;
             _orderStatusRepository = orderStatusRepository;
-            _currencyRepository = currencyRepository;
             _countryRepository = countryRepository;
             _deliverySettingRepository = deliverySettingRepository;
             _deliveryInternationalSettingRepository = deliveryInternationalSettingRepository;
@@ -283,8 +279,7 @@ namespace Teeyoot.Module.Controllers
                 else
                 {
                     var localizationInfo = LocalizationInfoFactory.GetCurrentLocalizationInfo();
-                    var currencyCode = CountryCurrencyHelper.GetCountryCurrencyCode(localizationInfo.Country);
-                    var currency = _currencyRepository.Table.First(c => c.Code == currencyCode);
+                    var currency = _countryService.GetCurrency(localizationInfo);
 
                     if (order.CurrencyRecord == currency)
                     {
