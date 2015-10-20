@@ -164,46 +164,60 @@
             $(".payment-method-container").hide();
             var paymentMethod = $(this).data("payment-method");
 
+            var note;
+
             if (paymentMethod === "creditcard") {
                 $("#payment_method_credit_card").show();
-                $("#message_Mol_span").text("@Model.CreditCardNote");
-                if ("@Model.CreditCardNote" === "") {
-                    $(".message_Mol").css({ "display": "none" });
+
+                note = $("#credit_card_note").val();
+                $("#message_Mol_span").text(note);
+
+                if (note === "") {
+                    $(".message_Mol").hide();
                 } else {
-                    $(".message_Mol").css({ "display": "" });
+                    $(".message_Mol").show();
                 }
 
                 $("#message_err").css({ "display": "none" });
                 $("#paymentMethod").val("1");
             } else if (paymentMethod === "paypal") {
                 $("#payment_method_paypal").show();
-                $("#message_Mol_span").text("@Model.PayPalNote");
-                if ("@Model.PayPalNote" === "") {
-                    $(".message_Mol").css({ "display": "none" });
+
+                note = $("#paypal_note").val();
+                $("#message_Mol_span").text(note);
+
+                if (note === "") {
+                    $(".message_Mol").hide();
                 } else {
-                    $(".message_Mol").css({ "display": "" });
+                    $(".message_Mol").show();
                 }
 
                 $("#message_err").css({ "display": "none" });
                 $("#paymentMethod").val("2");
             } else if (paymentMethod === "mol") {
                 $("#payment_method_mol").show();
-                $("#message_Mol_span").text("@Model.MolNote");
-                if ("@Model.MolNote" === "") {
-                    $(".message_Mol").css({ "display": "none" });
+
+                note = $("#mol_note").val();
+                $("#message_Mol_span").text(note);
+
+                if (note === "") {
+                    $(".message_Mol").hide();
                 } else {
-                    $(".message_Mol").css({ "display": "" });
+                    $(".message_Mol").show();
                 }
 
                 $("#message_err").css({ "display": "none" });
                 $("#paymentMethod").val("3");
             } else if (paymentMethod === "cash") {
                 $("#payment_method_cash").show();
-                $("#message_Mol_span").text("@Model.CashDelivNote");
-                if ("@Model.CashDelivNote" === "") {
-                    $(".message_Mol").css({ "display": "none" });
+
+                note = $("#cash_deliv_note").val();
+                $("#message_Mol_span").text(note);
+
+                if (note === "") {
+                    $(".message_Mol").hide();
                 } else {
-                    $(".message_Mol").css({ "display": "" });
+                    $(".message_Mol").show();
                 }
 
                 $("#message_err").css({ "display": "" });

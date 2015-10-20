@@ -320,7 +320,7 @@
                                             </option>
                                         }
                                     </select>
-                                    <input type="hidden" id="hidden_country" name="Country" @if (Model.DeliverableCountries.Any()) { <text> value="@Model.DeliverableCountries.First().Id" </text>                  } />
+                                    <input type="hidden" id="hidden_country" name="Country" @if (Model.DeliverableCountries.Any()) { <text> value="@Model.DeliverableCountries.First().Id" </text>                   } />
                                     <label id="Country-error" class="error valid" for="Country"></label>
                                 </div>
                             </div>
@@ -349,6 +349,10 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="credit_card_note" value="@Model.CreditCardNote" />
+<input type="hidden" id="paypal_note" value="@Model.PayPalNote" />
+<input type="hidden" id="mol_note" value="@Model.MolNote" />
+<input type="hidden" id="cash_deliv_note" value="@Model.CashDelivNote" />
 
 @using (Script.Foot())
 {
