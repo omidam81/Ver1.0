@@ -1110,7 +1110,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "SellerEmail", _contentManager.Query<UserPart, UserPartRecord>().List().FirstOrDefault(user => user.Id == campaign.TeeyootUserId).Email);
             message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First(p => p.WhenDeleted == null).Id + "/normal/" + side + ".png");
             message.AddRcptMergeVars(email, "VideoPreviewUrl", baseUrl + "/Media/Default/images/video_thumbnail_521x315.jpg/");
-            message.AddRcptMergeVars(email, "CurrencyFlagFileName", campaign.CurrencyRecord.FlagFileName);
+            message.AddRcptMergeVars(email, "CurrencyFlagFileName",  baseUrl.TrimEnd('/') + campaign.CurrencyRecord.FlagFileName);
         }
 
         private void FillRelaunchCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)
@@ -1164,7 +1164,7 @@ namespace Teeyoot.Messaging.Services
             message.AddRcptMergeVars(email, "CampaignEndDate", campaign.EndDate.ToLocalTime().ToShortDateString());
             message.AddRcptMergeVars(email, "CampaignAlias", campaign.Alias);
             message.AddRcptMergeVars(email, "CampaignPreviewUrl", baseUrl + "/Media/campaigns/" + campaign.Id + "/" + campaign.Products.First(p => p.WhenDeleted == null).Id + "/normal/" + side + ".png");
-            message.AddRcptMergeVars(email, "CurrencyFlagFileName", campaign.CurrencyRecord.FlagFileName);
+            message.AddRcptMergeVars(email, "CurrencyFlagFileName", baseUrl.TrimEnd('/') + campaign.CurrencyRecord.FlagFileName);
         }
 
         private void FillAdditionalCampaignMergeVars(MandrillMessage message, int campaignId, string email, string pathToMedia, string pathToTemplates)

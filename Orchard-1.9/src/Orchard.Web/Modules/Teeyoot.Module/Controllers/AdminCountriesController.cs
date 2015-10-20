@@ -16,6 +16,11 @@ using Teeyoot.Module.Common.Utils;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.ViewModels;
 using Orchard.Localization.Records;
+using Orchard.Logging;
+
+using Teeyoot.Module.Services;
+
+
 
 namespace Teeyoot.Module.Controllers
 {
@@ -27,9 +32,15 @@ namespace Teeyoot.Module.Controllers
         private readonly IRepository<CountryRecord> _countryRepository;
         private readonly IRepository<CultureRecord> _cultureRepository;
         private readonly IRepository<LinkCountryCultureRecord> _linkCountryCultureRepository;
+        // test
+        private readonly ITeeyootMessagingService _teeyootMessagingService;
 
         private dynamic Shape { get; set; }
         public Localizer T { get; set; }
+
+        public ILogger Logger { get; set; }
+
+
 
         public AdminCountriesController(
             ISiteService siteService,
@@ -37,7 +48,9 @@ namespace Teeyoot.Module.Controllers
             IShapeFactory shapeFactory,
             IRepository<CountryRecord> countryRepository,
             IRepository<CultureRecord> cultureRepository,
-            IRepository<LinkCountryCultureRecord> linkCountryCultureRepository
+            IRepository<LinkCountryCultureRecord> linkCountryCultureRepository,
+            // test
+            ITeeyootMessagingService teeyootMessagingService
             )
         {
             _siteService = siteService;
@@ -46,12 +59,25 @@ namespace Teeyoot.Module.Controllers
             _countryRepository = countryRepository;
             _cultureRepository = cultureRepository;
             _linkCountryCultureRepository = linkCountryCultureRepository;
+            // test
+            _teeyootMessagingService = teeyootMessagingService;
+
+            Logger = NullLogger.Instance;
         }
 
 
 
         public ActionResult Index(PagerParameters pagerParameters)
         {
+            //Logger.Warning("----------------TETS----------------");
+            //Logger.Error("error!!!!!!!!!!!");
+            //Logger.Error(new Exception(), "myerror");
+
+            //_teeyootMessagingService.SendExpiredCampaignMessageToSeller(323, true);
+
+            //<<<<<test
+
+
             var pager = new Pager(_siteService.GetSiteSettings(), pagerParameters.Page, pagerParameters.PageSize);
 
             var allCountries = new List<CountryViewModel>();
