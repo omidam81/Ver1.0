@@ -29,7 +29,10 @@ namespace Teeyoot.Module.ViewModels
         public string CreditCardNote { get; set; }
         //
         public string CheckoutPageRightSideContent { get; set; }
+        public int SelectedDeliverableCountryId { get; set; }
         public IEnumerable<CountryItemViewModel> DeliverableCountries { get; set; }
         public int SellerCountryId { get; set; }
+        public double ExchangeRate { get; set; }
+        public string CurrencyCode { get; set; }
     }
 }

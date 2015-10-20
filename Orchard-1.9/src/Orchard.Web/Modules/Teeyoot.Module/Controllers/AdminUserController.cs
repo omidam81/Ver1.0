@@ -23,6 +23,7 @@ using Orchard.Users.Services;
 using Orchard.Users.ViewModels;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
+using Teeyoot.Module.Services.Interfaces;
 using Teeyoot.Module.ViewModels;
 
 namespace Teeyoot.Module.Controllers

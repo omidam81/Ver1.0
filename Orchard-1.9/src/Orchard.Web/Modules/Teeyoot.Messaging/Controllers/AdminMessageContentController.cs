@@ -17,6 +17,7 @@ using System.IO;
 using System.Threading;
 using Orchard.Localization;
 using Orchard;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Messaging.Controllers
 {

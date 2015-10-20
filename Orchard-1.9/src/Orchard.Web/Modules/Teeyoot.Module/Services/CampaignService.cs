@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.SqlServer.Server;
+using Orchard.ContentManagement;
 using Orchard.Environment.Configuration;
 using Teeyoot.Module.Common.Enums;
 using Teeyoot.Module.Messaging.CampaignService;
@@ -24,12 +25,10 @@ namespace Teeyoot.Module.Services
         private readonly IRepository<CampaignProductRecord> _campProdRepository;
         private readonly IRepository<ProductColorRecord> _colorRepository;
         private readonly IRepository<ProductRecord> _productRepository;
-        private readonly IRepository<CurrencyRecord> _currencyRepository;
         private readonly IRepository<CampaignStatusRecord> _statusRepository;
         private readonly IRepository<CampaignCategoriesRecord> _campaignCategories;
         private readonly IRepository<LinkCampaignAndCategoriesRecord> _linkCampaignAndCategories;
         private readonly IRepository<LinkOrderCampaignProductRecord> _ocpRepository;
-        private readonly IRepository<OrderStatusRecord> _orderStatusRepository;
         private readonly IRepository<OrderRecord> _orderRepository;
         private readonly IRepository<OrderHistoryRecord> _orderHistoryRepository;
         private readonly ITeeyootMessagingService _teeyootMessagingService;
@@ -42,13 +41,11 @@ namespace Teeyoot.Module.Services
                                IRepository<CampaignProductRecord> campProdRepository,
                                IRepository<ProductColorRecord> colorRepository,
                                IRepository<ProductRecord> productRepository,
-                               IRepository<CurrencyRecord> currencyRepository,
                                IRepository<CampaignStatusRecord> statusRepository,
                                IRepository<CampaignCategoriesRecord> campaignCategories,
                                IOrchardServices services,
                                IRepository<LinkCampaignAndCategoriesRecord> linkCampaignAndCategories,
                                IRepository<LinkOrderCampaignProductRecord> ocpRepository,
-                               IRepository<OrderStatusRecord> orderStatusRepository,
                                IRepository<OrderRecord> orderRepository,
                                IRepository<OrderHistoryRecord> orderHistoryRepository,
                                ITeeyootMessagingService teeyootMessagingService,
@@ -61,13 +58,11 @@ namespace Teeyoot.Module.Services
             _campProdRepository = campProdRepository;
             _colorRepository = colorRepository;
             _productRepository = productRepository;
-            _currencyRepository = currencyRepository;
             _statusRepository = statusRepository;
             _campaignCategories = campaignCategories;
             Services = services;
             _linkCampaignAndCategories = linkCampaignAndCategories;
             _ocpRepository = ocpRepository;
-            _orderStatusRepository = orderStatusRepository;
             _orderRepository = orderRepository;
             _orderHistoryRepository = orderHistoryRepository;
             _teeyootMessagingService = teeyootMessagingService;
@@ -170,12 +165,14 @@ namespace Teeyoot.Module.Services
                     IsActive = true,
                     IsApproved = false,
                     CampaignStatusRecord = _statusRepository.Table.First(s => s.Name == CampaignStatus.Unpaid.ToString()),
-                    CampaignProfit = data.CampaignProfit != null ? data.CampaignProfit : string.Empty,
+                    CampaignProfit = data.CampaignProfit ?? string.Empty,
                     ProductMinimumGoal = data.ProductMinimumGoal == 0 ? 1 : data.ProductMinimumGoal,
                     CampaignCulture = (data.CampaignCulture == null || string.IsNullOrEmpty(data.CampaignCulture)) ? "en-MY" : data.CampaignCulture.Trim(), //TODO: (auth:keinlekan) Удалить код после удаления поля из таблицы/модели
                     CntBackColor = data.CntBackColor,
                     CntFrontColor = data.CntFrontColor,
-                    CountryRecord = _countryService.GetCountryByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim())
+                    //CountryRecord = _countryService.GetCountryByCulture(_workContextAccessor.GetContext().CurrentCulture.Trim()),
+                    CountryRecord = user.ContentItem.As<TeeyootUserPart>().CountryRecord,
+                    CurrencyRecord = user.ContentItem.As<TeeyootUserPart>().CurrencyRecord
                 };
                 _campaignRepository.Create(newCampaign);
 

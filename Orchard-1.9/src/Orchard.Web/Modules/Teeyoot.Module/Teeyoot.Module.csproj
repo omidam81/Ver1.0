@@ -779,6 +779,8 @@
     <Content Include="Content\vector\Woman 7.svg" />
     <Content Include="Scripts\add-ons.js" />
     <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\bignumber.js" />
+    <Content Include="Scripts\bignumber.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1060,6 +1062,7 @@
     <Content Include="Content\lou-multi-select\multi-select.jquery.json" />
     <Content Include="Content\lou-multi-select\README.markdown" />
     <Content Include="Content\lou-multi-select\test\lib\jasmine-1.2.0\MIT.LICENSE" />
+    <Content Include="Scripts\bignumber.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\canvg.js" />
     <Content Include="Scripts\ciede2000.js" />
@@ -1091,6 +1094,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\nouislider.js" />
+    <Content Include="Scripts\Payment.js" />
     <Content Include="Scripts\quantize.js" />
     <Content Include="Scripts\selectize.js" />
     <Content Include="Scripts\upload.js" />
@@ -1208,7 +1212,6 @@
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
     <Content Include="StoredProcedures\3_AdminUserStoredProcedures.sql" />
-    <Compile Include="Common\CountryCurrencyHelper.cs" />
     <Compile Include="Common\CurrentUserCulturesProvider.cs" />
     <Compile Include="Common\Enums\Enums.cs" />
     <Compile Include="Common\ExtentionMethods\ExtentionMethods.cs" />

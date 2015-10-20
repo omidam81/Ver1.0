@@ -12,7 +12,6 @@ using Orchard.UI.Notify;
 using RM.Localization.Services;
 using Teeyoot.Dashboard.ViewModels;
 using Teeyoot.Localization;
-using Teeyoot.Module.Common;
 using Teeyoot.Module.Models;
 using Teeyoot.Module.Services;
 using Teeyoot.Module.Services.Interfaces;
@@ -174,8 +173,7 @@ namespace Teeyoot.Module.Controllers
                 var promotion = _promotionService.GetPromotionByPromoId(promo);
 
                 var localizationInfo = LocalizationInfoFactory.GetCurrentLocalizationInfo();
-                var currencyCode = CountryCurrencyHelper.GetCountryCurrencyCode(localizationInfo.Country);
-                var currency = _currencyRepository.Table.First(c => c.Code == currencyCode);
+                var currency = _countryService.GetCurrency(localizationInfo);
 
                 if (promotion.Status &&
                     promotion.Expiration > DateTime.UtcNow &&

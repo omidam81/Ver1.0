@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Teeyoot.Module.Models;
+using Teeyoot.Module.Services.Interfaces;
 
 namespace Teeyoot.Module.Services
 {
